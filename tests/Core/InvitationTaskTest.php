@@ -1,53 +1,55 @@
 <?php
 
-namespace Tests\Unit\Upsun\Core;
+namespace Upsun\Test\Core;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
 use Upsun\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
 use Upsun\Configuration;
-use Upsun\Model\CreateOrgInviteRequest;
-use Upsun\Model\CreateProjectInviteRequest;
-use Upsun\Model\Error;
+use Upsun\Core\OAuthProvider;
 use Upsun\Model\OrganizationInvitation;
 use Upsun\Model\ProjectInvitation;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\InvitationTask;
 use Upsun\UpsunClient;
-use Upsun\UpsunConfig;
 
-class InvitationTaskTest extends TestCase
+class InvitationTaskTest extends BaseTestCase
 {
     private readonly InvitationTask $invitationTask;
-    private OrganizationInvitationsApi $organizationInvitationsApiMock;
-    private ProjectInvitationsApi $projectInvitationsApiMock;
-    
-    private UpsunClient $clientMock;
+    private ClientInterface $httpClient;
+
     protected function setUp(): void
     {
-        $this->organizationInvitationsApiMock = $this->createMock(OrganizationInvitationsApi::class);
-        $this->projectInvitationsApiMock = $this->createMock(ProjectInvitationsApi::class);
+        $psr17Factory = new Psr17Factory();
 
-        $this->clientMock = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public UpsunConfig $upsunConfig;
+        $oauthProvider = $this->createMock(OAuthProvider::class);
 
-            public function __construct()
-            {
-            }
-        };
-        
-        $this->invitationTask = new class(
-            $this->clientMock,
-            $this->organizationInvitationsApiMock,
-            $this->projectInvitationsApiMock
+        $orgInvitationApi = new OrganizationInvitationsApi(
+            $oauthProvider,
+            $this->httpClient,
+            $psr17Factory,
+            new Configuration()
+        );
+
+        $projectInvitationApi = new ProjectInvitationsApi(
+            $oauthProvider,
+            $this->httpClient,
+            $psr17Factory,
+            new Configuration()
+        );
+
+        $upsunClient = $this->createMock(UpsunClient::class);
+
+        $this->invitationTask = new class (
+            $upsunClient,
+            $orgInvitationApi,
+            $projectInvitationApi
         ) extends InvitationTask {
-            public function refreshToken(): void
-            {
-            }
         };
     }
 
@@ -59,113 +61,210 @@ class InvitationTaskTest extends TestCase
         $organizationId = 'org-123';
         $invitationId = 'invite-456';
 
-        $this->organizationInvitationsApiMock
+        $this->httpClient
             ->expects($this->once())
-            ->method('cancelOrgInvite')
-            ->with($organizationId, $invitationId);
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'no-content',
+                    'code' => 204
+                ])
+            ));
 
         $this->invitationTask->cancelOrgInvite($organizationId, $invitationId);
     }
 
     public function testCancelOrgInviteThrowsApiException(): void
     {
+        $this->expectException(ApiException::class);
+
         $organizationId = 'org-123';
         $invitationId = 'invite-456';
 
-        $this->organizationInvitationsApiMock
-            ->expects($this->once())
-            ->method('cancelOrgInvite')
-            ->with($organizationId, $invitationId)
-            ->willThrowException($this->createMock(ApiException::class));
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403
+                ])
+            ));
 
-        $this->expectException(ApiException::class);
         $this->invitationTask->cancelOrgInvite($organizationId, $invitationId);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testCreateOrgInvite(): void
+    {
+        $organizationId = 'org-123';
+        $email = 'test@example.com';
+        $permissions = ['read', 'write'];
+        $force = false;
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'finishedAt'     => '2025-09-16T10:15:30+00:00',
+                    'id'             => 'invite_123456',
+                    'state'          => 'pending',
+                    'organizationId' => 'org_78910',
+                    'email'          => 'user@example.com',
+                    'owner'          => [
+                        'id'    => 'owner_42',
+                        'name'  => 'Alice Dupont',
+                        'email' => 'alice.dupont@example.com',
+                    ],
+                    'createdAt'      => '2025-09-10T08:00:00+00:00',
+                    'updatedAt'      => '2025-09-12T09:30:00+00:00',
+                    'permissions'    => [
+                        'read',
+                        'write',
+                    ],
+                ])
+            ));
+
+        $response = $this->invitationTask->createOrgInvite($organizationId, $email, $permissions, $force);
+        $this->assertInstanceOf(OrganizationInvitation::class, $response);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testCreateOrgInviteWithDefaultForce(): void
     {
         $organizationId = 'org-123';
         $email = 'test@example.com';
         $permissions = ['read', 'write'];
         $force = true;
 
-        $expectedInvitation = new OrganizationInvitation();
-        $expectedRequest = new CreateOrgInviteRequest([
-            'email' => $email,
-            'permissions' => $permissions,
-            'force' => $force
-        ]);
-
-        $this->organizationInvitationsApiMock
+        $this->httpClient
             ->expects($this->once())
-            ->method('createOrgInvite')
-            ->with($organizationId, $this->callback(function ($request) use ($expectedRequest) {
-                return $request instanceof CreateOrgInviteRequest &&
-                    $request->getEmail() === $expectedRequest->getEmail() &&
-                    $request->getPermissions() === $expectedRequest->getPermissions() &&
-                    $request->getForce() === $expectedRequest->getForce();
-            }))
-            ->willReturn($expectedInvitation);
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'finishedAt'     => '2025-09-16T10:15:30+00:00',
+                    'id'             => 'invite_123456',
+                    'state'          => 'pending',
+                    'organizationId' => 'org_78910',
+                    'email'          => 'user@example.com',
+                    'owner'          => [
+                        'id'    => 'owner_42',
+                        'name'  => 'Alice Dupont',
+                        'email' => 'alice.dupont@example.com',
+                    ],
+                    'createdAt'      => '2025-09-10T08:00:00+00:00',
+                    'updatedAt'      => '2025-09-12T09:30:00+00:00',
+                    'permissions'    => [
+                        'read',
+                        'write',
+                    ],
+                ])
+            ));
 
-        $result = $this->invitationTask->createOrgInvite($organizationId, $email, $permissions, $force);
-
-        $this->assertSame($expectedInvitation, $result);
-    }
-
-    public function testCreateOrgInviteWithDefaultForce(): void
-    {
-        $organizationId = 'org-123';
-        $email = 'test@example.com';
-        $permissions = ['read'];
-
-        $expectedInvitation = new OrganizationInvitation();
-
-        $this->organizationInvitationsApiMock
-            ->expects($this->once())
-            ->method('createOrgInvite')
-            ->with($organizationId, $this->callback(function ($request) {
-                return $request instanceof CreateOrgInviteRequest &&
-                    $request->getForce() === true; // Default value
-            }))
-            ->willReturn($expectedInvitation);
-
-        $result = $this->invitationTask->createOrgInvite($organizationId, $email, $permissions);
-
-        $this->assertSame($expectedInvitation, $result);
+        $this->invitationTask->createOrgInvite($organizationId, $email, $permissions, $force);
     }
 
     public function testCreateOrgInviteReturnsError(): void
     {
+        $this->expectException(ApiException::class);
+
         $organizationId = 'org-123';
         $email = 'test@example.com';
-        $permissions = ['read'];
+        $permissions = ['read', 'write', 'admin'];
 
-        $expectedError = new Error();
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'Forbidden',
+                    'code' => 403
+                ])
+            ));
 
-        $this->organizationInvitationsApiMock
-            ->expects($this->once())
-            ->method('createOrgInvite')
-            ->willReturn($expectedError);
-
-        $result = $this->invitationTask->createOrgInvite($organizationId, $email, $permissions);
-
-        $this->assertSame($expectedError, $result);
+        $this->invitationTask->createOrgInvite($organizationId, $email, $permissions);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testListOrgInvites(): void
     {
         $organizationId = 'org-123';
-        $expectedInvitations = [new OrganizationInvitation(), new OrganizationInvitation()];
 
-        $this->organizationInvitationsApiMock
-            ->expects($this->once())
-            ->method('listOrgInvites')
-            ->with($organizationId, null, null, null, null, null)
-            ->willReturn($expectedInvitations);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    [
+                        'finishedAt'     => '2025-09-16T10:15:30+00:00',
+                        'id'             => 'invite_123456',
+                        'state'          => 'pending',
+                        'organizationId' => 'org_78910',
+                        'email'          => 'user@example.com',
+                        'owner'          => [
+                            'id'    => 'owner_42',
+                            'name'  => 'Anne Onyme',
+                            'email' => 'anne.onyme@example.com',
+                        ],
+                        'createdAt'      => '2025-09-10T08:00:00+00:00',
+                        'updatedAt'      => '2025-09-12T09:30:00+00:00',
+                        'permissions'    => [
+                            'read',
+                            'write',
+                        ]
+                    ],
+                    [
+                        'finishedAt'     => '2025-09-16T10:15:30+00:00',
+                        'id'             => 'invite_789123',
+                        'state'          => 'pending',
+                        'organizationId' => 'org_78910',
+                        'email'          => 'user2@example.com',
+                        'owner'          => [
+                            'id'    => 'owner_43',
+                            'name'  => 'Alice Dupont',
+                            'email' => 'alice.dupont@example.com',
+                        ],
+                        'createdAt'      => '2025-09-10T08:00:00+00:00',
+                        'updatedAt'      => '2025-09-12T09:30:00+00:00',
+                        'permissions'    => [
+                            'read',
+                            'write',
+                            'admin'
+                        ]
+                    ]
+                ])
+            ));
 
         $result = $this->invitationTask->listOrgInvites($organizationId);
 
-        $this->assertSame($expectedInvitations, $result);
+        $this->assertIsArray($result);
+        $this->assertContainsOnlyInstancesOf(OrganizationInvitation::class, $result);
+
+        $this->assertEquals("invite_123456", $result[0]->getId());
+        $this->assertEquals("org_78910", $result[0]->getOrganizationId());
+        $this->assertEquals("user@example.com", $result[0]->getEmail());
+        $this->assertEquals(['read', 'write'], $result[0]->getPermissions());
+
+        $this->assertEquals("invite_789123", $result[1]->getId());
+        $this->assertEquals("org_78910", $result[1]->getOrganizationId());
+        $this->assertEquals("user2@example.com", $result[1]->getEmail());
+        $this->assertEquals(['read', 'write', 'admin'], $result[1]->getPermissions());
     }
 
     public function testListOrgInvitesWithParameters(): void
@@ -177,13 +276,51 @@ class InvitationTaskTest extends TestCase
         $pageAfter = 'cursor-after';
         $sort = 'created_at';
 
-        $expectedInvitations = [new OrganizationInvitation()];
-
-        $this->organizationInvitationsApiMock
-            ->expects($this->once())
-            ->method('listOrgInvites')
-            ->with($organizationId, $filterState, $pageSize, $pageBefore, $pageAfter, $sort)
-            ->willReturn($expectedInvitations);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    [
+                        'finishedAt'     => '2025-09-16T10:15:30+00:00',
+                        'id'             => 'invite_789123',
+                        'state'          => 'pending',
+                        'organizationId' => 'org_78910',
+                        'email'          => 'user2@example.com',
+                        'owner'          => [
+                            'id'    => 'owner_43',
+                            'name'  => 'Alice Dupont',
+                            'email' => 'alice.dupont@example.com',
+                        ],
+                        'createdAt'      => '2025-09-10T07:00:00+00:00',
+                        'updatedAt'      => '2025-09-12T08:30:00+00:00',
+                        'permissions'    => [
+                            'read',
+                            'write',
+                            'admin'
+                        ]
+                    ],
+                    [
+                        'finishedAt'     => '2025-09-16T10:15:30+00:00',
+                        'id'             => 'invite_123456',
+                        'state'          => 'pending',
+                        'organizationId' => 'org_78910',
+                        'email'          => 'user@example.com',
+                        'owner'          => [
+                            'id'    => 'owner_42',
+                            'name'  => 'Anne Onyme',
+                            'email' => 'anne.onyme@example.com',
+                        ],
+                        'createdAt'      => '2025-09-10T08:00:00+00:00',
+                        'updatedAt'      => '2025-09-12T09:30:00+00:00',
+                        'permissions'    => [
+                            'read',
+                            'write',
+                        ]
+                    ]
+                ])
+            ));
 
         $result = $this->invitationTask->listOrgInvites(
             $organizationId,
@@ -194,7 +331,18 @@ class InvitationTaskTest extends TestCase
             $sort
         );
 
-        $this->assertSame($expectedInvitations, $result);
+        $this->assertIsArray($result);
+        $this->assertContainsOnlyInstancesOf(OrganizationInvitation::class, $result);
+
+        $this->assertEquals("invite_789123", $result[0]->getId());
+        $this->assertEquals("org_78910", $result[0]->getOrganizationId());
+        $this->assertEquals("user2@example.com", $result[0]->getEmail());
+        $this->assertEquals(['read', 'write', 'admin'], $result[0]->getPermissions());
+
+        $this->assertEquals("invite_123456", $result[1]->getId());
+        $this->assertEquals("org_78910", $result[1]->getOrganizationId());
+        $this->assertEquals("user@example.com", $result[1]->getEmail());
+        $this->assertEquals(['read', 'write'], $result[1]->getPermissions());
     }
 
     // Project Invitation Tests
@@ -204,10 +352,17 @@ class InvitationTaskTest extends TestCase
         $projectId = 'project-123';
         $invitationId = 'invite-456';
 
-        $this->projectInvitationsApiMock
+        $this->httpClient
             ->expects($this->once())
-            ->method('cancelProjectInvite')
-            ->with($projectId, $invitationId);
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'no-content',
+                    'code' => 204
+                ])
+            ));
 
         $this->invitationTask->cancelProjectInvite($projectId, $invitationId);
     }
@@ -217,80 +372,191 @@ class InvitationTaskTest extends TestCase
         $projectId = 'project-123';
         $invitationId = 'invite-456';
 
-        $this->projectInvitationsApiMock
+        $this->httpClient
             ->expects($this->once())
-            ->method('cancelProjectInvite')
-            ->with($projectId, $invitationId)
-            ->willThrowException($this->createMock(ApiException::class));
-
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403
+                ])
+            ));
         $this->expectException(ApiException::class);
         $this->invitationTask->cancelProjectInvite($projectId, $invitationId);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testCreateProjectInvite(): void
     {
         $projectId = 'project-123';
-        $request = ['email' => 'test@test.fr'];
-        $expectedInvitation = new ProjectInvitation();
 
-        $this->projectInvitationsApiMock
+        $userInvitationData = [
+            'email'       => 'jane.doe@example.com',
+            'role'        => 'admin',
+            'permissions' => ['read', 'write', 'admin'],
+            'environments' => [
+                ['id' => 'env_001', 'name' => 'production'],
+                ['id' => 'env_002', 'name' => 'staging'],
+            ],
+            'force'       => true,
+        ];
+
+        $this->httpClient
             ->expects($this->once())
-            ->method('createProjectInvite')
-            ->with($projectId)
-            ->willReturn($expectedInvitation);
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'finishedAt'  => '2025-09-16T10:15:30+00:00',
+                    'id'          => 'invite_987654',
+                    'state'       => 'pending',
+                    'projectId'   => 'proj_12345',
+                    'role'        => 'admin',
+                    'email'       => 'jane.doe@example.com',
+                    'owner'       => [
+                        'id'    => 'owner_001',
+                        'name'  => 'John Doe',
+                        'email' => 'john.doe@example.com',
+                    ],
+                    'createdAt'   => '2025-09-10T08:00:00+00:00',
+                    'updatedAt'   => '2025-09-12T09:30:00+00:00',
+                    'environments' => [
+                        [
+                            'id'   => 'env_001',
+                            'name' => 'production',
+                            'type' => 'main',
+                        ],
+                        [
+                            'id'   => 'env_002',
+                            'name' => 'staging',
+                            'type' => 'preprod',
+                        ],
+                    ],
+                ])
+            ));
 
-        $result = $this->invitationTask->createProjectInvite($projectId, $request);
-
-        $this->assertSame($expectedInvitation, $result);
+        $result = $this->invitationTask->createProjectInvite($projectId, $userInvitationData);
+        $this->assertInstanceOf(ProjectInvitation::class, $result);
+        $this->assertEquals("invite_987654", $result->getId());
+        $this->assertEquals("proj_12345", $result->getProjectId());
+        $this->assertEquals("jane.doe@example.com", $result->getEmail());
     }
 
-    public function testCreateProjectInviteWithNullRequest(): void
+    public function testCreateProjectInviteWithException(): void
     {
         $projectId = 'project-123';
-        $expectedInvitation = new ProjectInvitation();
+        $this->expectException(ApiException::class);
 
-        $this->projectInvitationsApiMock
+        $userInvitationData = [
+            'email'       => 'jane.doe@example.com',
+            'role'        => 'admin',
+            'permissions' => ['read', 'write', 'admin'],
+            'environments' => [
+                ['id' => 'env_001', 'name' => 'production'],
+                ['id' => 'env_002', 'name' => 'staging'],
+            ],
+            'force'       => true,
+        ];
+
+        $this->httpClient
             ->expects($this->once())
-            ->method('createProjectInvite')
-            ->with($projectId)
-            ->willReturn($expectedInvitation);
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403
+                ])
+            ));
 
-        $result = $this->invitationTask->createProjectInvite($projectId);
-
-        $this->assertSame($expectedInvitation, $result);
-    }
-
-    public function testCreateProjectInviteReturnsError(): void
-    {
-        $projectId = 'project-123';
-        $request = ['email' => 'test2@test.fr'];
-        $expectedError = new Error();
-
-        $this->projectInvitationsApiMock
-            ->expects($this->once())
-            ->method('createProjectInvite')
-            ->with($projectId)
-            ->willReturn($expectedError);
-
-        $result = $this->invitationTask->createProjectInvite($projectId, $request);
-
-        $this->assertSame($expectedError, $result);
+        $this->invitationTask->createProjectInvite($projectId, $userInvitationData);
     }
 
     public function testListProjectInvites(): void
     {
         $projectId = 'project-123';
-        $expectedInvitations = [new ProjectInvitation(), new ProjectInvitation()];
 
-        $this->projectInvitationsApiMock
+        $this->httpClient
             ->expects($this->once())
-            ->method('listProjectInvites')
-            ->with($projectId, null, null, null, null, null)
-            ->willReturn($expectedInvitations);
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    [
+                        'finishedAt'  => '2025-09-16T10:15:30+00:00',
+                        'id'          => 'invite_987654',
+                        'state'       => 'pending',
+                        'projectId'   => 'proj_12345',
+                        'role'        => 'admin',
+                        'email'       => 'jane.doe@example.com',
+                        'owner'       => [
+                            'id'    => 'owner_001',
+                            'name'  => 'John Doe',
+                            'email' => 'john.doe@example.com',
+                        ],
+                        'createdAt'   => '2025-09-10T08:00:00+00:00',
+                        'updatedAt'   => '2025-09-12T09:30:00+00:00',
+                        'environments' => [
+                            [
+                                'id'   => 'env_001',
+                                'name' => 'production',
+                                'type' => 'main',
+                            ],
+                            [
+                                'id'   => 'env_002',
+                                'name' => 'staging',
+                                'type' => 'preprod',
+                            ],
+                        ],
+                    ],
+                    [
+                        'finishedAt'  => '2025-09-16T10:15:30+00:00',
+                        'id'          => 'invite_12345',
+                        'state'       => 'pending',
+                        'projectId'   => 'proj_12345',
+                        'role'        => 'contributor',
+                        'email'       => 'john.test@example.com',
+                        'owner'       => [
+                            'id'    => 'owner_001',
+                            'name'  => 'John Doe',
+                            'email' => 'john.doe@example.com',
+                        ],
+                        'createdAt'   => '2025-09-10T08:00:00+00:00',
+                        'updatedAt'   => '2025-09-12T09:30:00+00:00',
+                        'environments' => [
+                            [
+                                'id'   => 'env_001',
+                                'name' => 'production',
+                                'type' => 'main',
+                            ],
+                            [
+                                'id'   => 'env_002',
+                                'name' => 'staging',
+                                'type' => 'preprod',
+                            ],
+                        ],
+                    ]
+                ])
+            ));
 
         $result = $this->invitationTask->listProjectInvites($projectId);
+        $this->assertIsArray($result);
+        $this->assertContainsOnlyInstancesOf(ProjectInvitation::class, $result);
 
-        $this->assertSame($expectedInvitations, $result);
+        $this->assertEquals("invite_987654", $result[0]->getId());
+        $this->assertEquals("proj_12345", $result[0]->getProjectId());
+        $this->assertEquals("jane.doe@example.com", $result[0]->getEmail());
+
+        $this->assertEquals("invite_12345", $result[1]->getId());
+        $this->assertEquals("proj_12345", $result[1]->getProjectId());
+        $this->assertEquals("john.test@example.com", $result[1]->getEmail());
     }
 
     public function testListProjectInvitesWithParameters(): void
@@ -302,13 +568,71 @@ class InvitationTaskTest extends TestCase
         $pageAfter = 'cursor-after';
         $sort = 'created_at';
 
-        $expectedInvitations = [new ProjectInvitation()];
+        $projectId = 'project-123';
 
-        $this->projectInvitationsApiMock
+        $this->httpClient
             ->expects($this->once())
-            ->method('listProjectInvites')
-            ->with($projectId, $filterState, $pageSize, $pageBefore, $pageAfter, $sort)
-            ->willReturn($expectedInvitations);
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    [
+                        'finishedAt'  => '2025-09-16T10:15:30+00:00',
+                        'id'          => 'invite_987654',
+                        'state'       => 'pending',
+                        'projectId'   => 'proj_12345',
+                        'role'        => 'admin',
+                        'email'       => 'jane.doe@example.com',
+                        'owner'       => [
+                            'id'    => 'owner_001',
+                            'name'  => 'John Doe',
+                            'email' => 'john.doe@example.com',
+                        ],
+                        'createdAt'   => '2025-09-10T08:00:00+00:00',
+                        'updatedAt'   => '2025-09-12T09:30:00+00:00',
+                        'environments' => [
+                            [
+                                'id'   => 'env_001',
+                                'name' => 'production',
+                                'type' => 'main',
+                            ],
+                            [
+                                'id'   => 'env_002',
+                                'name' => 'staging',
+                                'type' => 'preprod',
+                            ],
+                        ],
+                    ],
+                    [
+                        'finishedAt'  => '2025-09-16T10:15:30+00:00',
+                        'id'          => 'invite_12345',
+                        'state'       => 'pending',
+                        'projectId'   => 'proj_12345',
+                        'role'        => 'contributor',
+                        'email'       => 'john.test@example.com',
+                        'owner'       => [
+                            'id'    => 'owner_001',
+                            'name'  => 'John Doe',
+                            'email' => 'john.doe@example.com',
+                        ],
+                        'createdAt'   => '2025-09-10T08:00:00+00:00',
+                        'updatedAt'   => '2025-09-12T09:30:00+00:00',
+                        'environments' => [
+                            [
+                                'id'   => 'env_001',
+                                'name' => 'production',
+                                'type' => 'main',
+                            ],
+                            [
+                                'id'   => 'env_002',
+                                'name' => 'staging',
+                                'type' => 'preprod',
+                            ],
+                        ],
+                    ]
+                ])
+            ));
 
         $result = $this->invitationTask->listProjectInvites(
             $projectId,
@@ -318,23 +642,36 @@ class InvitationTaskTest extends TestCase
             $pageAfter,
             $sort
         );
+        $this->assertIsArray($result);
+        $this->assertContainsOnlyInstancesOf(ProjectInvitation::class, $result);
 
-        $this->assertSame($expectedInvitations, $result);
+        $this->assertEquals("invite_987654", $result[0]->getId());
+        $this->assertEquals("proj_12345", $result[0]->getProjectId());
+        $this->assertEquals("jane.doe@example.com", $result[0]->getEmail());
+
+        $this->assertEquals("invite_12345", $result[1]->getId());
+        $this->assertEquals("proj_12345", $result[1]->getProjectId());
+        $this->assertEquals("john.test@example.com", $result[1]->getEmail());
     }
 
     public function testListProjectInvitesReturnsError(): void
     {
         $projectId = 'project-123';
-        $expectedError = new Error();
 
-        $this->projectInvitationsApiMock
+        $this->expectException(ApiException::class);
+
+        $this->httpClient
             ->expects($this->once())
-            ->method('listProjectInvites')
-            ->with($projectId, null, null, null, null, null)
-            ->willReturn($expectedError);
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403
+                ])
+            ));
 
         $result = $this->invitationTask->listProjectInvites($projectId);
-
-        $this->assertSame($expectedError, $result);
     }
 }

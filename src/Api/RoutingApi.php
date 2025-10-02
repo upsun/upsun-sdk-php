@@ -37,9 +37,15 @@ final class RoutingApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,355 +55,21 @@ final class RoutingApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
-     * Create a new route
+     * Get a route's info
+     *
+     * Get details of a route from an environment using the `id` of the entry retrieved by the Get environment routes
+     * list
+     * (https://docs.upsun.com/api/#tag/Environment-Routes/paths//projects/{projectId}/environments/{environmentId}/routes/get)
+     * endpoint.
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectsEnvironmentsRoutes(
-        string $projectId,
-        string $environmentId,
-        \Upsun\Model\RouteCreateInput $routeCreateInput
-    ): \Upsun\Model\AcceptedResponse {
-        return $this->createProjectsEnvironmentsRoutesWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $routeCreateInput
-        );
-    }
-
-    /**
-     * Create a new route
      *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectsEnvironmentsRoutesWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        \Upsun\Model\RouteCreateInput $routeCreateInput
-    ): \Upsun\Model\AcceptedResponse {
-        $request = $this->createProjectsEnvironmentsRoutesRequest(
-            $projectId,
-            $environmentId,
-            $routeCreateInput
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders()
-            );
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response
-            );
-        } catch (ApiException $e) {
-            throw $e;
-        }
-    }
-
-    /**
-     * Create request for operation 'createProjectsEnvironmentsRoutes'
+     * @return \Upsun\Model\Route
      *
-     * @throws InvalidArgumentException
-     */
-    public function createProjectsEnvironmentsRoutesRequest(
-        string $projectId,
-        string $environmentId,
-        \Upsun\Model\RouteCreateInput $routeCreateInput
-    ): RequestInterface {
-        // verify the required parameter 'projectId' is set
-        if (
-            $projectId === null
-            || (is_array($projectId)
-            && count($projectId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling createProjectsEnvironmentsRoutes'
-            );
-        }
-        // verify the required parameter 'environmentId' is set
-        if (
-            $environmentId === null
-            || (is_array($environmentId)
-            && count($environmentId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling createProjectsEnvironmentsRoutes'
-            );
-        }
-        // verify the required parameter 'routeCreateInput' is set
-        if (
-            $routeCreateInput === null
-            || (is_array($routeCreateInput)
-            && count($routeCreateInput) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $routeCreateInput when calling createProjectsEnvironmentsRoutes'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/routes';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-
-
-        // path params
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($environmentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environmentId),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            'application/json',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($routeCreateInput)) {
-            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($routeCreateInput));
-            } else {
-                $httpBody = $routeCreateInput;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('POST', $uri, $headers, $httpBody);
-    }
-    /**
-     * Delete a route
-     *
-     * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsEnvironmentsRoutes(
-        string $projectId,
-        string $environmentId,
-        string $routeId
-    ): \Upsun\Model\AcceptedResponse {
-        return $this->deleteProjectsEnvironmentsRoutesWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $routeId
-        );
-    }
-
-    /**
-     * Delete a route
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsEnvironmentsRoutesWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $routeId
-    ): \Upsun\Model\AcceptedResponse {
-        $request = $this->deleteProjectsEnvironmentsRoutesRequest(
-            $projectId,
-            $environmentId,
-            $routeId
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders()
-            );
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response
-            );
-        } catch (ApiException $e) {
-            throw $e;
-        }
-    }
-
-    /**
-     * Create request for operation 'deleteProjectsEnvironmentsRoutes'
-     *
-     * @throws InvalidArgumentException
-     */
-    public function deleteProjectsEnvironmentsRoutesRequest(
-        string $projectId,
-        string $environmentId,
-        string $routeId
-    ): RequestInterface {
-        // verify the required parameter 'projectId' is set
-        if (
-            $projectId === null
-            || (is_array($projectId)
-            && count($projectId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling deleteProjectsEnvironmentsRoutes'
-            );
-        }
-        // verify the required parameter 'environmentId' is set
-        if (
-            $environmentId === null
-            || (is_array($environmentId)
-            && count($environmentId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling deleteProjectsEnvironmentsRoutes'
-            );
-        }
-        // verify the required parameter 'routeId' is set
-        if (
-            $routeId === null
-            || (is_array($routeId)
-            && count($routeId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $routeId when calling deleteProjectsEnvironmentsRoutes'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/routes/{routeId}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-
-
-        // path params
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($environmentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environmentId),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($routeId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'routeId' . '}',
-                ObjectSerializer::toPathValue($routeId),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            '',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('DELETE', $uri, $headers, $httpBody);
-    }
-    /**
-     * Get a route&#39;s info
-     *
-     * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException|Exception
+     * @see https://docs.upsun.com/api/#tag/Routing/operation/get-projects-environments-routes
      */
     public function getProjectsEnvironmentsRoutes(
         string $projectId,
@@ -412,11 +84,13 @@ final class RoutingApi extends AbstractApi
     }
 
     /**
-     * Get a route&#39;s info
+     * Get a route's info with HTTP Info
+     *
+     * @return \Upsun\Model\Route
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsEnvironmentsRoutesWithHttpInfo(
+    private function getProjectsEnvironmentsRoutesWithHttpInfo(
         string $projectId,
         string $environmentId,
         string $routeId
@@ -431,14 +105,17 @@ final class RoutingApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Route',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -448,11 +125,12 @@ final class RoutingApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsRoutesRequest(
+    private function getProjectsEnvironmentsRoutesRequest(
         string $projectId,
         string $environmentId,
         string $routeId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -460,9 +138,11 @@ final class RoutingApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling getProjectsEnvironmentsRoutes'
+                'Missing the required parameter $projectId 
+                when calling getProjectsEnvironmentsRoutes'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -470,9 +150,11 @@ final class RoutingApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling getProjectsEnvironmentsRoutes'
+                'Missing the required parameter $environmentId 
+                when calling getProjectsEnvironmentsRoutes'
             );
         }
+
         // verify the required parameter 'routeId' is set
         if (
             $routeId === null
@@ -480,18 +162,16 @@ final class RoutingApi extends AbstractApi
             && count($routeId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $routeId when calling getProjectsEnvironmentsRoutes'
+                'Missing the required parameter $routeId 
+                when calling getProjectsEnvironmentsRoutes'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/routes/{routeId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -526,7 +206,7 @@ final class RoutingApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -569,10 +249,15 @@ final class RoutingApi extends AbstractApi
     /**
      * Get list of routes
      *
+     * Retrieve a list of objects containing route definitions for a specific environment. The definitions returned by
+     * this endpoint are those present in an environment's `.upsun/config.yaml` file.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Route[]
+     *
+     * @see https://docs.upsun.com/api/#tag/Routing/operation/list-projects-environments-routes
      */
     public function listProjectsEnvironmentsRoutes(
         string $projectId,
@@ -585,11 +270,13 @@ final class RoutingApi extends AbstractApi
     }
 
     /**
-     * Get list of routes
+     * Get list of routes with HTTP Info
+     *
+     * @return \Upsun\Model\Route[]
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsRoutesWithHttpInfo(
+    private function listProjectsEnvironmentsRoutesWithHttpInfo(
         string $projectId,
         string $environmentId
     ): array {
@@ -602,14 +289,17 @@ final class RoutingApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Route[]',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -619,10 +309,11 @@ final class RoutingApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsRoutesRequest(
+    private function listProjectsEnvironmentsRoutesRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -630,9 +321,11 @@ final class RoutingApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling listProjectsEnvironmentsRoutes'
+                'Missing the required parameter $projectId 
+                when calling listProjectsEnvironmentsRoutes'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -640,18 +333,16 @@ final class RoutingApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling listProjectsEnvironmentsRoutes'
+                'Missing the required parameter $environmentId 
+                when calling listProjectsEnvironmentsRoutes'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/routes';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -678,7 +369,7 @@ final class RoutingApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -717,199 +408,5 @@ final class RoutingApi extends AbstractApi
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
-    }
-    /**
-     * Update a route
-     *
-     * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectsEnvironmentsRoutes(
-        string $projectId,
-        string $environmentId,
-        string $routeId,
-        \Upsun\Model\RoutePatch $routePatch
-    ): \Upsun\Model\AcceptedResponse {
-        return $this->updateProjectsEnvironmentsRoutesWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $routeId,
-            $routePatch
-        );
-    }
-
-    /**
-     * Update a route
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectsEnvironmentsRoutesWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $routeId,
-        \Upsun\Model\RoutePatch $routePatch
-    ): \Upsun\Model\AcceptedResponse {
-        $request = $this->updateProjectsEnvironmentsRoutesRequest(
-            $projectId,
-            $environmentId,
-            $routeId,
-            $routePatch
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders()
-            );
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response
-            );
-        } catch (ApiException $e) {
-            throw $e;
-        }
-    }
-
-    /**
-     * Create request for operation 'updateProjectsEnvironmentsRoutes'
-     *
-     * @throws InvalidArgumentException
-     */
-    public function updateProjectsEnvironmentsRoutesRequest(
-        string $projectId,
-        string $environmentId,
-        string $routeId,
-        \Upsun\Model\RoutePatch $routePatch
-    ): RequestInterface {
-        // verify the required parameter 'projectId' is set
-        if (
-            $projectId === null
-            || (is_array($projectId)
-            && count($projectId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling updateProjectsEnvironmentsRoutes'
-            );
-        }
-        // verify the required parameter 'environmentId' is set
-        if (
-            $environmentId === null
-            || (is_array($environmentId)
-            && count($environmentId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling updateProjectsEnvironmentsRoutes'
-            );
-        }
-        // verify the required parameter 'routeId' is set
-        if (
-            $routeId === null
-            || (is_array($routeId)
-            && count($routeId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $routeId when calling updateProjectsEnvironmentsRoutes'
-            );
-        }
-        // verify the required parameter 'routePatch' is set
-        if (
-            $routePatch === null
-            || (is_array($routePatch)
-            && count($routePatch) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $routePatch when calling updateProjectsEnvironmentsRoutes'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/routes/{routeId}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-
-
-        // path params
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($environmentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environmentId),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($routeId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'routeId' . '}',
-                ObjectSerializer::toPathValue($routeId),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            'application/json',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($routePatch)) {
-            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($routePatch));
-            } else {
-                $httpBody = $routePatch;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 }

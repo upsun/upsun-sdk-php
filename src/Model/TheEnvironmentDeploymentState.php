@@ -12,47 +12,31 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheEnvironmentDeploymentState implements JsonSerializable
+final class TheEnvironmentDeploymentState implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'lastDeploymentSuccessful' => 'last_deployment_successful',
-        'lastDeploymentAt' => 'last_deployment_at',
-        'crons' => 'crons'
-    ];
-
     public function __construct(
         private readonly bool $lastDeploymentSuccessful,
-        private readonly \Upsun\Model\TheCronsDeploymentState $crons,
-        private readonly ?\DateTime $lastDeploymentAt = null,
+        private readonly TheCronsDeploymentState $crons,
+        private readonly ?\DateTime $lastDeploymentAt,
+        private readonly ?\DateTime $lastAutoscaleUpAt,
+        private readonly ?\DateTime $lastAutoscaleDownAt,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'last_deployment_successful' => 'bool',
-            'last_deployment_at' => '?\DateTime',
-            'crons' => '\Upsun\Model\TheCronsDeploymentState',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
             'lastDeploymentSuccessful' => $this->lastDeploymentSuccessful,
-            'lastDeploymentAt' => $this->lastDeploymentAt,
+            'lastDeploymentAt' => $this->lastDeploymentAt?->format(DATE_ATOM),
+            'lastAutoscaleUpAt' => $this->lastAutoscaleUpAt?->format(DATE_ATOM),
+            'lastAutoscaleDownAt' => $this->lastAutoscaleDownAt?->format(DATE_ATOM),
             'crons' => $this->crons,
         ];
     }
@@ -62,28 +46,28 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getLastDeploymentSuccessful(): bool
     {
         return $this->lastDeploymentSuccessful;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getLastDeploymentAt(): ?\DateTime
     {
         return $this->lastDeploymentAt;
     }
 
-    /**
-     * @return \Upsun\Model\TheCronsDeploymentState
-     */
-    public function getCrons(): \Upsun\Model\TheCronsDeploymentState
+    public function getLastAutoscaleUpAt(): ?\DateTime
+    {
+        return $this->lastAutoscaleUpAt;
+    }
+
+    public function getLastAutoscaleDownAt(): ?\DateTime
+    {
+        return $this->lastAutoscaleDownAt;
+    }
+
+    public function getCrons(): TheCronsDeploymentState
     {
         return $this->crons;
     }
 }
-

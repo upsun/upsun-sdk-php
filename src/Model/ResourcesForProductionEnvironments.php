@@ -12,43 +12,21 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ResourcesForProductionEnvironments implements JsonSerializable
+final class ResourcesForProductionEnvironments implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'legacyDevelopment' => 'legacy_development',
-        'maxCpu' => 'max_cpu',
-        'maxMemory' => 'max_memory',
-        'maxEnvironments' => 'max_environments'
-    ];
-
     public function __construct(
         private readonly bool $legacyDevelopment,
-        private readonly ?float $maxCpu = null,
-        private readonly ?int $maxMemory = null,
-        private readonly ?int $maxEnvironments = null,
+        private readonly ?float $maxCpu,
+        private readonly ?int $maxMemory,
+        private readonly ?int $maxEnvironments,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'legacy_development' => 'bool',
-            'max_cpu' => '?float',
-            'max_memory' => '?int',
-            'max_environments' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,36 +44,23 @@ final class ResourcesForProductionEnvironments implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getLegacyDevelopment(): bool
     {
         return $this->legacyDevelopment;
     }
 
-    /**
-     * @return float|null
-     */
     public function getMaxCpu(): ?float
     {
         return $this->maxCpu;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMaxMemory(): ?int
     {
         return $this->maxMemory;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMaxEnvironments(): ?int
     {
         return $this->maxEnvironments;
     }
 }
-

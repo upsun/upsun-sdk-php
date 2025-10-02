@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationAlertConfigConfig (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationAlertConfigConfig implements JsonSerializable
+final class OrganizationAlertConfigConfig implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'threshold' => 'threshold',
-        'mode' => 'mode'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold = null,
+        private readonly ?OrganizationAlertConfigConfigThreshold $threshold = null,
         private readonly ?string $mode = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'threshold' => '?\Upsun\Model\OrganizationAlertConfigConfigThreshold',
-            'mode' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,22 +41,13 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationAlertConfigConfigThreshold|null
-     */
-    public function getThreshold(): ?\Upsun\Model\OrganizationAlertConfigConfigThreshold
+    public function getThreshold(): ?OrganizationAlertConfigConfigThreshold
     {
         return $this->threshold;
     }
 
-    /**
-     * The mode of alert.
-     *
-     * @return string|null
-     */
     public function getMode(): ?string
     {
         return $this->mode;
     }
 }
-

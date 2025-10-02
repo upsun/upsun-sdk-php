@@ -3,6 +3,8 @@
 /**
  * Low level OrganizationMFAEnforcement (auto-generated)
  *
+ * The MFA enforcement for the organization.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,34 +14,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationMFAEnforcement implements JsonSerializable
+final class OrganizationMFAEnforcement implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'enforceMfa' => 'enforce_mfa'
-    ];
-
     public function __construct(
         private readonly ?bool $enforceMfa = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enforce_mfa' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,14 +40,8 @@ final class OrganizationMFAEnforcement implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether the MFA enforcement is enabled.
-     *
-     * @return bool|null
-     */
     public function getEnforceMfa(): ?bool
     {
         return $this->enforceMfa;
     }
 }
-

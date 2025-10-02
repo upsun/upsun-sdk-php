@@ -12,21 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializable
+final class TheVariablesApplyingToThisEnvironmentInner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'name' => 'name',
-        'isSensitive' => 'is_sensitive',
-        'isJson' => 'is_json',
-        'visibleBuild' => 'visible_build',
-        'visibleRuntime' => 'visible_runtime',
-        'value' => 'value'
-    ];
-
     public function __construct(
         private readonly string $name,
         private readonly bool $isSensitive,
@@ -37,24 +26,9 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'name' => 'string',
-            'is_sensitive' => 'bool',
-            'is_json' => 'bool',
-            'visible_build' => 'bool',
-            'visible_runtime' => 'bool',
-            'value' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -74,52 +48,33 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsSensitive(): bool
     {
         return $this->isSensitive;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsJson(): bool
     {
         return $this->isJson;
     }
 
-    /**
-     * @return bool
-     */
     public function getVisibleBuild(): bool
     {
         return $this->visibleBuild;
     }
 
-    /**
-     * @return bool
-     */
     public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
     }
 
-    /**
-     * @return string|null
-     */
     public function getValue(): ?string
     {
         return $this->value;
     }
 }
-

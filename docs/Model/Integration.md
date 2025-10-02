@@ -39,6 +39,7 @@ Name | Type | Description | Notes
 **extra** | **array<string,string>** |  |
 **headers** | **array<string,string>** |  |
 **tlsVerify** | **bool** |  |
+**excludedServices** | **string[]** |  |
 **script** | **string** |  |
 **index** | **string** |  |
 **sourcetype** | **string** |  |
@@ -49,6 +50,7 @@ Name | Type | Description | Notes
 **facility** | **int** |  |
 **messageFormat** | **string** |  |
 **sharedKey** | **string** |  |
+**id** | **string** |  | [optional]
 **appCredentials** | [**\Upsun\Model\TheOAuth2ConsumerInformationOptional**](TheOAuth2ConsumerInformationOptional.md) |  | [optional]
 **addonCredentials** | [**\Upsun\Model\TheAddonCredentialInformationOptional**](TheAddonCredentialInformationOptional.md) |  | [optional]
 

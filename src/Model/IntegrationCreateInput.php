@@ -12,75 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class IntegrationCreateInput implements JsonSerializable
+final class IntegrationCreateInput implements ModelInterface, JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-    public const RESULT_STAR = '*';
-    public const RESULT_FAILURE = 'failure';
-    public const RESULT_SUCCESS = 'success';
-    public const PROTOCOL_TCP = 'tcp';
-    public const PROTOCOL_TLS = 'tls';
-    public const PROTOCOL_UDP = 'udp';
-    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
-    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
-    public const AUTH_MODE_PREFIX = 'prefix';
-    public const AUTH_MODE_STRUCTURED_DATA = 'structured_data';
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'repository' => 'repository',
-        'url' => 'url',
-        'username' => 'username',
-        'token' => 'token',
-        'project' => 'project',
-        'serviceId' => 'service_id',
-        'recipients' => 'recipients',
-        'routingKey' => 'routing_key',
-        'channel' => 'channel',
-        'licenseKey' => 'license_key',
-        'script' => 'script',
-        'index' => 'index',
-        'fetchBranches' => 'fetch_branches',
-        'pruneBranches' => 'prune_branches',
-        'environmentInitResources' => 'environment_init_resources',
-        'appCredentials' => 'app_credentials',
-        'addonCredentials' => 'addon_credentials',
-        'buildPullRequests' => 'build_pull_requests',
-        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
-        'resyncPullRequests' => 'resync_pull_requests',
-        'events' => 'events',
-        'environments' => 'environments',
-        'excludedEnvironments' => 'excluded_environments',
-        'states' => 'states',
-        'result' => 'result',
-        'baseUrl' => 'base_url',
-        'buildDraftPullRequests' => 'build_draft_pull_requests',
-        'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
-        'buildMergeRequests' => 'build_merge_requests',
-        'buildWipMergeRequests' => 'build_wip_merge_requests',
-        'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data',
-        'fromAddress' => 'from_address',
-        'sharedKey' => 'shared_key',
-        'extra' => 'extra',
-        'headers' => 'headers',
-        'tlsVerify' => 'tls_verify',
-        'sourcetype' => 'sourcetype',
-        'category' => 'category',
-        'host' => 'host',
-        'port' => 'port',
-        'protocol' => 'protocol',
-        'facility' => 'facility',
-        'messageFormat' => 'message_format',
-        'authToken' => 'auth_token',
-        'authMode' => 'auth_mode'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $repository,
@@ -95,8 +30,8 @@ final class IntegrationCreateInput implements JsonSerializable
         private readonly string $licenseKey,
         private readonly string $script,
         private readonly string $index,
-        private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
-        private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional1 $addonCredentials = null,
+        private readonly ?TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
+        private readonly ?TheAddonCredentialInformationOptional1 $addonCredentials = null,
         private readonly ?string $fromAddress = null,
         private readonly ?string $sharedKey = null,
         private readonly ?bool $fetchBranches = null,
@@ -119,6 +54,7 @@ final class IntegrationCreateInput implements JsonSerializable
         private readonly ?array $extra = [],
         private readonly ?array $headers = [],
         private readonly ?bool $tlsVerify = null,
+        private readonly ?array $excludedServices = [],
         private readonly ?string $sourcetype = null,
         private readonly ?string $category = null,
         private readonly ?string $host = null,
@@ -131,64 +67,9 @@ final class IntegrationCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'repository' => 'string',
-            'url' => 'string',
-            'username' => 'string',
-            'token' => 'string',
-            'project' => 'string',
-            'service_id' => 'string',
-            'recipients' => 'string[]',
-            'routing_key' => 'string',
-            'channel' => 'string',
-            'license_key' => 'string',
-            'script' => 'string',
-            'index' => 'string',
-            'fetch_branches' => '?bool',
-            'prune_branches' => '?bool',
-            'environment_init_resources' => '?string',
-            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional1',
-            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional1',
-            'build_pull_requests' => '?bool',
-            'pull_requests_clone_parent_data' => '?bool',
-            'resync_pull_requests' => '?bool',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
-            'result' => '?string',
-            'base_url' => '?string',
-            'build_draft_pull_requests' => '?bool',
-            'build_pull_requests_post_merge' => '?bool',
-            'build_merge_requests' => '?bool',
-            'build_wip_merge_requests' => '?bool',
-            'merge_requests_clone_parent_data' => '?bool',
-            'from_address' => '?string',
-            'shared_key' => '?string',
-            'extra' => 'string[]',
-            'headers' => 'string[]',
-            'tls_verify' => '?bool',
-            'sourcetype' => '?string',
-            'category' => '?string',
-            'host' => '?string',
-            'port' => '?int',
-            'protocol' => '?string',
-            'facility' => '?int',
-            'message_format' => '?string',
-            'auth_token' => '?string',
-            'auth_mode' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -231,6 +112,7 @@ final class IntegrationCreateInput implements JsonSerializable
             'extra' => $this->extra,
             'headers' => $this->headers,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
             'sourcetype' => $this->sourcetype,
             'category' => $this->category,
             'host' => $this->host,
@@ -248,372 +130,238 @@ final class IntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * @return string
-     */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * @return string
-     */
     public function getServiceId(): string
     {
         return $this->serviceId;
     }
 
-    /**
-     * @return string[]
-     */
     public function getRecipients(): array
     {
         return $this->recipients;
     }
 
-    /**
-     * @return string
-     */
     public function getRoutingKey(): string
     {
         return $this->routingKey;
     }
 
-    /**
-     * @return string
-     */
     public function getChannel(): string
     {
         return $this->channel;
     }
 
-    /**
-     * @return string
-     */
     public function getLicenseKey(): string
     {
         return $this->licenseKey;
     }
 
-    /**
-     * @return string
-     */
     public function getScript(): string
     {
         return $this->script;
     }
 
-    /**
-     * @return string
-     */
     public function getIndex(): string
     {
         return $this->index;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
-     */
-    public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1
+    public function getAppCredentials(): ?TheOAuth2ConsumerInformationOptional1
     {
         return $this->appCredentials;
     }
 
-    /**
-     * @return \Upsun\Model\TheAddonCredentialInformationOptional1|null
-     */
-    public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional1
+    public function getAddonCredentials(): ?TheAddonCredentialInformationOptional1
     {
         return $this->addonCredentials;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getResyncPullRequests(): ?bool
     {
         return $this->resyncPullRequests;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getEvents(): ?array
     {
         return $this->events;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getExcludedEnvironments(): ?array
     {
         return $this->excludedEnvironments;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getStates(): ?array
     {
         return $this->states;
     }
 
-    /**
-     * @return string|null
-     */
     public function getResult(): ?string
     {
         return $this->result;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildDraftPullRequests(): ?bool
     {
         return $this->buildDraftPullRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildPullRequestsPostMerge(): ?bool
     {
         return $this->buildPullRequestsPostMerge;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildMergeRequests(): ?bool
     {
         return $this->buildMergeRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildWipMergeRequests(): ?bool
     {
         return $this->buildWipMergeRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getMergeRequestsCloneParentData(): ?bool
     {
         return $this->mergeRequestsCloneParentData;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getHeaders(): ?array
     {
         return $this->headers;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
     }
 
-    /**
-     * @return string|null
-     */
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
+    }
+
     public function getSourcetype(): ?string
     {
         return $this->sourcetype;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCategory(): ?string
     {
         return $this->category;
     }
 
-    /**
-     * @return string|null
-     */
     public function getHost(): ?string
     {
         return $this->host;
     }
 
-    /**
-     * @return int|null
-     */
     public function getPort(): ?int
     {
         return $this->port;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
 
-    /**
-     * @return int|null
-     */
     public function getFacility(): ?int
     {
         return $this->facility;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMessageFormat(): ?string
     {
         return $this->messageFormat;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAuthToken(): ?string
     {
         return $this->authToken;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAuthMode(): ?string
     {
         return $this->authMode;
     }
 }
-

@@ -3,6 +3,8 @@
 /**
  * Low level OrganizationAlertConfig (auto-generated)
  *
+ * The alert configuration for an organization.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,49 +14,23 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationAlertConfig implements JsonSerializable
+final class OrganizationAlertConfig implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'active' => 'active',
-        'alertsSent' => 'alerts_sent',
-        'lastAlertAt' => 'last_alert_at',
-        'updatedAt' => 'updated_at',
-        'config' => 'config'
-    ];
-
     public function __construct(
         private readonly ?string $lastAlertAt = null,
         private readonly ?string $updatedAt = null,
-        private readonly ?\Upsun\Model\OrganizationAlertConfigConfig $config = null,
+        private readonly ?OrganizationAlertConfigConfig $config = null,
         private readonly ?string $id = null,
         private readonly ?bool $active = null,
         private readonly ?float $alertsSent = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'active' => '?bool',
-            'alerts_sent' => '?float',
-            'last_alert_at' => '?string',
-            'updated_at' => '?string',
-            'config' => '?\Upsun\Model\OrganizationAlertConfigConfig',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -74,62 +50,33 @@ final class OrganizationAlertConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Type of alert (e.g. \"billing\")
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * Whether the billing alert should be active or not.
-     *
-     * @return bool|null
-     */
     public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    /**
-     * Number of alerts sent.
-     *
-     * @return float|null
-     */
     public function getAlertsSent(): ?float
     {
         return $this->alertsSent;
     }
 
-    /**
-     * The datetime the alert was last sent.
-     *
-     * @return string|null
-     */
     public function getLastAlertAt(): ?string
     {
         return $this->lastAlertAt;
     }
 
-    /**
-     * The datetime the alert was last updated.
-     *
-     * @return string|null
-     */
     public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationAlertConfigConfig|null
-     */
-    public function getConfig(): ?\Upsun\Model\OrganizationAlertConfigConfig
+    public function getConfig(): ?OrganizationAlertConfigConfig
     {
         return $this->config;
     }
 }
-

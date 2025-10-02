@@ -1,13 +1,13 @@
-# Upsun\ProfilesApi
+# [Upsun\Api\ProfilesApi](../src/Api/ProfilesApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getOrgAddress()**](ProfilesApi.md#getOrgAddress) | **GET** /organizations/{organization_id}/address | Get address
-[**getOrgProfile()**](ProfilesApi.md#getOrgProfile) | **GET** /organizations/{organization_id}/profile | Get profile
-[**updateOrgAddress()**](ProfilesApi.md#updateOrgAddress) | **PATCH** /organizations/{organization_id}/address | Update address
-[**updateOrgProfile()**](ProfilesApi.md#updateOrgProfile) | **PATCH** /organizations/{organization_id}/profile | Update profile
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**getOrgAddress()**](ProfilesApi.md#getOrgAddress) | **GET** /organizations/{organization_id}/address | Get address | https://docs.upsun.com/api/#tag/Profiles/operation/get-org-address |
+| [**getOrgProfile()**](ProfilesApi.md#getOrgProfile) | **GET** /organizations/{organization_id}/profile | Get profile | https://docs.upsun.com/api/#tag/Profiles/operation/get-org-profile |
+| [**updateOrgAddress()**](ProfilesApi.md#updateOrgAddress) | **PATCH** /organizations/{organization_id}/address | Update address | https://docs.upsun.com/api/#tag/Profiles/operation/update-org-address |
+| [**updateOrgProfile()**](ProfilesApi.md#updateOrgProfile) | **PATCH** /organizations/{organization_id}/profile | Update profile | https://docs.upsun.com/api/#tag/Profiles/operation/update-org-profile |
 
 
 ## `getOrgAddress()`
@@ -29,8 +29,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProfilesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
@@ -45,9 +45,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
 
 ### Return type
 
@@ -85,8 +85,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProfilesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
@@ -101,9 +101,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
 
 ### Return type
 
@@ -141,8 +141,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProfilesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.
@@ -158,10 +158,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization. |
- **address** | [**\Upsun\Model\Address**](../Model/Address.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization. | |
+| **address** | [**\Upsun\Model\Address**](../Model/Address.md)|  | [optional] |
 
 ### Return type
 
@@ -199,8 +199,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProfilesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.
@@ -216,10 +216,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization. |
- **updateOrgProfileRequest** | [**\Upsun\Model\UpdateOrgProfileRequest**](../Model/UpdateOrgProfileRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization. | |
+| **updateOrgProfileRequest** | [**\Upsun\Model\UpdateOrgProfileRequest**](../Model/UpdateOrgProfileRequest.md)|  | [optional] |
 
 ### Return type
 

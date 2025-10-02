@@ -12,24 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializable
+final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterface, JsonSerializable
 {
-    public const RESOURCE_TYPE_PROJECT = 'project';
-    public const RESOURCE_TYPE_ORGANIZATION = 'organization';
-
-    private static array $attributeMap = [
-        'userId' => 'user_id',
-        'resourceId' => 'resource_id',
-        'resourceType' => 'resource_type',
-        'organizationId' => 'organization_id',
-        'permissions' => 'permissions',
-        'grantedAt' => 'granted_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?string $userId = null,
         private readonly ?string $resourceId = null,
@@ -41,25 +27,9 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'user_id' => '?string',
-            'resource_id' => '?string',
-            'resource_type' => '?string',
-            'organization_id' => '?string',
-            'permissions' => 'string[]',
-            'granted_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -70,8 +40,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
             'resourceType' => $this->resourceType,
             'organizationId' => $this->organizationId,
             'permissions' => $this->permissions,
-            'grantedAt' => $this->grantedAt,
-            'updatedAt' => $this->updatedAt,
+            'grantedAt' => $this->grantedAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -80,74 +50,38 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the user.
-     *
-     * @return string|null
-     */
     public function getUserId(): ?string
     {
         return $this->userId;
     }
 
-    /**
-     * The ID of the resource.
-     *
-     * @return string|null
-     */
     public function getResourceId(): ?string
     {
         return $this->resourceId;
     }
 
-    /**
-     * The type of the resource access to which is granted.
-     *
-     * @return string|null
-     */
     public function getResourceType(): ?string
     {
         return $this->resourceType;
     }
 
-    /**
-     * The ID of the organization owning the resource.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * List of project permissions.
-     *
-     * @return string[]|null
-     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
 
-    /**
-     * The date and time when the access was granted.
-     *
-     * @return \DateTime|null
-     */
     public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
 
-    /**
-     * The date and time when the access was updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 }
-

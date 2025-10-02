@@ -37,9 +37,15 @@ final class InvoicesApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,18 @@ final class InvoicesApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Get invoice
      *
+     * Retrieves an invoice for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Invoice
+     *
+     * @see https://docs.upsun.com/api/#tag/Invoices/operation/get-org-invoice
      */
     public function getOrgInvoice(
         string $invoiceId,
@@ -66,11 +79,13 @@ final class InvoicesApi extends AbstractApi
     }
 
     /**
-     * Get invoice
+     * Get invoice with HTTP Info
+     *
+     * @return \Upsun\Model\Invoice
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getOrgInvoiceWithHttpInfo(
+    private function getOrgInvoiceWithHttpInfo(
         string $invoiceId,
         string $organizationId
     ): \Upsun\Model\Invoice {
@@ -83,14 +98,17 @@ final class InvoicesApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Invoice',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -100,10 +118,11 @@ final class InvoicesApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgInvoiceRequest(
+    private function getOrgInvoiceRequest(
         string $invoiceId,
         string $organizationId
     ): RequestInterface {
+
         // verify the required parameter 'invoiceId' is set
         if (
             $invoiceId === null
@@ -111,9 +130,11 @@ final class InvoicesApi extends AbstractApi
             && count($invoiceId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $invoiceId when calling getOrgInvoice'
+                'Missing the required parameter $invoiceId 
+                when calling getOrgInvoice'
             );
         }
+
         // verify the required parameter 'organizationId' is set
         if (
             $organizationId === null
@@ -121,18 +142,16 @@ final class InvoicesApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organizationId when calling getOrgInvoice'
+                'Missing the required parameter $organizationId 
+                when calling getOrgInvoice'
             );
         }
-
         $resourcePath = '/organizations/{organization_id}/invoices/{invoice_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($invoiceId !== null) {
@@ -159,7 +178,7 @@ final class InvoicesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -202,8 +221,14 @@ final class InvoicesApi extends AbstractApi
     /**
      * List invoices
      *
+     * Retrieves a list of invoices for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListOrgInvoices200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Invoices/operation/list-org-invoices
      */
     public function listOrgInvoices(
         string $organizationId,
@@ -222,11 +247,13 @@ final class InvoicesApi extends AbstractApi
     }
 
     /**
-     * List invoices
+     * List invoices with HTTP Info
+     *
+     * @return \Upsun\Model\ListOrgInvoices200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listOrgInvoicesWithHttpInfo(
+    private function listOrgInvoicesWithHttpInfo(
         string $organizationId,
         ?string $filterStatus = null,
         ?string $filterType = null,
@@ -245,14 +272,17 @@ final class InvoicesApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListOrgInvoices200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -262,13 +292,14 @@ final class InvoicesApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgInvoicesRequest(
+    private function listOrgInvoicesRequest(
         string $organizationId,
         ?string $filterStatus = null,
         ?string $filterType = null,
         ?string $filterOrderId = null,
         ?int $page = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (
             $organizationId === null
@@ -276,9 +307,13 @@ final class InvoicesApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organizationId when calling listOrgInvoices'
+                'Missing the required parameter $organizationId 
+                when calling listOrgInvoices'
             );
         }
+
+
+
 
         $resourcePath = '/organizations/{organization_id}/invoices';
         $formParams = [];
@@ -294,9 +329,13 @@ final class InvoicesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus;
+                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                    ? $filterStatus->format(DATE_ATOM)
+                    : ($filterStatus);
             }
         }
+
+
 
         // query params
         if ($filterType !== null) {
@@ -305,9 +344,13 @@ final class InvoicesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[type]'] = $filterType;
+                $queryParams['filter[type]'] = $filterType instanceof \DateTime
+                    ? $filterType->format(DATE_ATOM)
+                    : ($filterType);
             }
         }
+
+
 
         // query params
         if ($filterOrderId !== null) {
@@ -316,9 +359,13 @@ final class InvoicesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[order_id]'] = $filterOrderId;
+                $queryParams['filter[order_id]'] = $filterOrderId instanceof \DateTime
+                    ? $filterOrderId->format(DATE_ATOM)
+                    : ($filterOrderId);
             }
         }
+
+
 
         // query params
         if ($page !== null) {
@@ -327,7 +374,9 @@ final class InvoicesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page;
+                $queryParams['page'] = $page instanceof \DateTime
+                    ? $page->format(DATE_ATOM)
+                    : ($page);
             }
         }
 
@@ -350,7 +399,7 @@ final class InvoicesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

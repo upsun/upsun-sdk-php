@@ -3,6 +3,7 @@
 /**
  * Low level PrepaymentObjectPrepayment (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,46 +13,22 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class PrepaymentObjectPrepayment implements JsonSerializable
+final class PrepaymentObjectPrepayment implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'organizationId' => 'organization_id',
-        'balance' => 'balance',
-        'lastUpdatedAt' => 'last_updated_at',
-        'sufficient' => 'sufficient',
-        'fallback' => 'fallback'
-    ];
-
     public function __construct(
         private readonly ?string $lastUpdatedAt = null,
         private readonly ?string $fallback = null,
         private readonly ?string $organizationId = null,
-        private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $balance = null,
+        private readonly ?PrepaymentObjectPrepaymentBalance $balance = null,
         private readonly ?bool $sufficient = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'organization_id' => '?string',
-            'balance' => '?\Upsun\Model\PrepaymentObjectPrepaymentBalance',
-            'last_updated_at' => '?string',
-            'sufficient' => '?bool',
-            'fallback' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -70,52 +47,28 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Organization ID
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
-     */
-    public function getBalance(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
+    public function getBalance(): ?PrepaymentObjectPrepaymentBalance
     {
         return $this->balance;
     }
 
-    /**
-     * The date the prepayment balance was last updated.
-     *
-     * @return string|null
-     */
     public function getLastUpdatedAt(): ?string
     {
         return $this->lastUpdatedAt;
     }
 
-    /**
-     * Whether the prepayment balance is enough to cover the upcoming order.
-     *
-     * @return bool|null
-     */
     public function getSufficient(): ?bool
     {
         return $this->sufficient;
     }
 
-    /**
-     * The fallback payment method, if any, to be used in case prepayment balance is not enough to cover an order.
-     *
-     * @return string|null
-     */
     public function getFallback(): ?string
     {
         return $this->fallback;
     }
 }
-

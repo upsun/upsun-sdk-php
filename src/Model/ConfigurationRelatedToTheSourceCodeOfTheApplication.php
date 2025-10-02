@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonSerializable
+final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'root' => 'root',
-        'operations' => 'operations'
-    ];
-
     public function __construct(
         private readonly array $operations,
-        private readonly ?string $root = null,
+        private readonly ?string $root,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'root' => '?string',
-            'operations' => '\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +40,16 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getRoot(): ?string
     {
         return $this->root;
     }
 
     /**
-     * @return \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]
+     * @return OperationsThatCanBeAppliedToTheSourceCodeValue[]
      */
     public function getOperations(): array
     {
         return $this->operations;
     }
 }
-

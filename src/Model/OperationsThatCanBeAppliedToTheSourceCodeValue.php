@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerializable
+final class OperationsThatCanBeAppliedToTheSourceCodeValue implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'command' => 'command'
-    ];
-
     public function __construct(
-        private readonly ?string $command = null,
+        private readonly ?string $command,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'command' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,12 +38,8 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getCommand(): ?string
     {
         return $this->command;
     }
 }
-

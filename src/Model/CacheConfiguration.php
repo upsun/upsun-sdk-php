@@ -12,19 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CacheConfiguration implements JsonSerializable
+final class CacheConfiguration implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'enabled' => 'enabled',
-        'defaultTtl' => 'default_ttl',
-        'cookies' => 'cookies',
-        'headers' => 'headers'
-    ];
-
     public function __construct(
         private readonly bool $enabled,
         private readonly int $defaultTtl,
@@ -33,22 +24,9 @@ final class CacheConfiguration implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enabled' => 'bool',
-            'default_ttl' => 'int',
-            'cookies' => 'string[]',
-            'headers' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,36 +44,23 @@ final class CacheConfiguration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return int
-     */
     public function getDefaultTtl(): int
     {
         return $this->defaultTtl;
     }
 
-    /**
-     * @return string[]
-     */
     public function getCookies(): array
     {
         return $this->cookies;
     }
 
-    /**
-     * @return string[]
-     */
     public function getHeaders(): array
     {
         return $this->headers;
     }
 }
-

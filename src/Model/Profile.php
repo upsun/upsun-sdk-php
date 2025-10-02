@@ -3,6 +3,8 @@
 /**
  * Low level Profile (auto-generated)
  *
+ * The user profile.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,40 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Profile implements JsonSerializable
+final class Profile implements ModelInterface, JsonSerializable
 {
-    public const TYPE_USER = 'user';
-    public const TYPE_ORGANIZATION = 'organization';
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'displayName' => 'display_name',
-        'email' => 'email',
-        'username' => 'username',
-        'type' => 'type',
-        'picture' => 'picture',
-        'companyType' => 'company_type',
-        'companyName' => 'company_name',
-        'currency' => 'currency',
-        'vatNumber' => 'vat_number',
-        'companyRole' => 'company_role',
-        'websiteUrl' => 'website_url',
-        'newUi' => 'new_ui',
-        'uiColorscheme' => 'ui_colorscheme',
-        'defaultCatalog' => 'default_catalog',
-        'projectOptionsUrl' => 'project_options_url',
-        'marketing' => 'marketing',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'billingContact' => 'billing_contact',
-        'securityContact' => 'security_contact',
-        'currentTrial' => 'current_trial',
-        'invoiced' => 'invoiced'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $displayName = null,
@@ -68,46 +40,14 @@ final class Profile implements JsonSerializable
         private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $billingContact = null,
         private readonly ?string $securityContact = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrial $currentTrial = null,
+        private readonly ?ProfileCurrentTrial $currentTrial = null,
         private readonly ?bool $invoiced = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'display_name' => '?string',
-            'email' => '?string',
-            'username' => '?string',
-            'type' => '?string',
-            'picture' => '?string',
-            'company_type' => '?string',
-            'company_name' => '?string',
-            'currency' => '?string',
-            'vat_number' => '?string',
-            'company_role' => '?string',
-            'website_url' => '?string',
-            'new_ui' => '?bool',
-            'ui_colorscheme' => '?string',
-            'default_catalog' => '?string',
-            'project_options_url' => '?string',
-            'marketing' => '?bool',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'billing_contact' => '?string',
-            'security_contact' => '?string',
-            'current_trial' => '?\Upsun\Model\ProfileCurrentTrial',
-            'invoiced' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -130,8 +70,8 @@ final class Profile implements JsonSerializable
             'defaultCatalog' => $this->defaultCatalog,
             'projectOptionsUrl' => $this->projectOptionsUrl,
             'marketing' => $this->marketing,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'billingContact' => $this->billingContact,
             'securityContact' => $this->securityContact,
             'currentTrial' => $this->currentTrial,
@@ -144,232 +84,118 @@ final class Profile implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The user's unique ID.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The user's display name.
-     *
-     * @return string|null
-     */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 
-    /**
-     * The user's email address.
-     *
-     * @return string|null
-     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * The user's username.
-     *
-     * @return string|null
-     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-     * The user's type (user/organization).
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * The URL of the user's picture.
-     *
-     * @return string|null
-     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    /**
-     * The company type.
-     *
-     * @return string|null
-     */
     public function getCompanyType(): ?string
     {
         return $this->companyType;
     }
 
-    /**
-     * The name of the company.
-     *
-     * @return string|null
-     */
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
 
-    /**
-     * A 3-letter ISO 4217 currency code (assigned according to the billing address).
-     *
-     * @return string|null
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
-    /**
-     * The vat number of the user.
-     *
-     * @return string|null
-     */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
 
-    /**
-     * The role of the user in the company.
-     *
-     * @return string|null
-     */
     public function getCompanyRole(): ?string
     {
         return $this->companyRole;
     }
 
-    /**
-     * The user or company website.
-     *
-     * @return string|null
-     */
     public function getWebsiteUrl(): ?string
     {
         return $this->websiteUrl;
     }
 
-    /**
-     * Whether the new UI features are enabled for this user.
-     *
-     * @return bool|null
-     */
     public function getNewUi(): ?bool
     {
         return $this->newUi;
     }
 
-    /**
-     * The user's chosen color scheme for user interfaces.
-     *
-     * @return string|null
-     */
     public function getUiColorscheme(): ?string
     {
         return $this->uiColorscheme;
     }
 
-    /**
-     * The URL of a catalog file which overrides the default.
-     *
-     * @return string|null
-     */
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
 
-    /**
-     * The URL of an account-wide project options file.
-     *
-     * @return string|null
-     */
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
 
-    /**
-     * Flag if the user agreed to receive marketing communication.
-     *
-     * @return bool|null
-     */
     public function getMarketing(): ?bool
     {
         return $this->marketing;
     }
 
-    /**
-     * The timestamp representing when the user account was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The timestamp representing when the user account was last modified.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The e-mail address of a contact to whom billing notices will be sent.
-     *
-     * @return string|null
-     */
     public function getBillingContact(): ?string
     {
         return $this->billingContact;
     }
 
-    /**
-     * The e-mail address of a contact to whom security notices will be sent.
-     *
-     * @return string|null
-     */
     public function getSecurityContact(): ?string
     {
         return $this->securityContact;
     }
 
-    /**
-     * @return \Upsun\Model\ProfileCurrentTrial|null
-     */
-    public function getCurrentTrial(): ?\Upsun\Model\ProfileCurrentTrial
+    public function getCurrentTrial(): ?ProfileCurrentTrial
     {
         return $this->currentTrial;
     }
 
-    /**
-     * The customer is invoiced.
-     *
-     * @return bool|null
-     */
     public function getInvoiced(): ?bool
     {
         return $this->invoiced;
     }
 }
-

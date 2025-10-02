@@ -12,19 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EnvironmentSynchronizeInput implements JsonSerializable
+final class EnvironmentSynchronizeInput implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'synchronizeCode' => 'synchronize_code',
-        'rebase' => 'rebase',
-        'synchronizeData' => 'synchronize_data',
-        'synchronizeResources' => 'synchronize_resources'
-    ];
-
     public function __construct(
         private readonly bool $synchronizeCode,
         private readonly bool $rebase,
@@ -33,22 +24,9 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'synchronize_code' => 'bool',
-            'rebase' => 'bool',
-            'synchronize_data' => 'bool',
-            'synchronize_resources' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,36 +44,23 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getSynchronizeCode(): bool
     {
         return $this->synchronizeCode;
     }
 
-    /**
-     * @return bool
-     */
     public function getRebase(): bool
     {
         return $this->rebase;
     }
 
-    /**
-     * @return bool
-     */
     public function getSynchronizeData(): bool
     {
         return $this->synchronizeData;
     }
 
-    /**
-     * @return bool
-     */
     public function getSynchronizeResources(): bool
     {
         return $this->synchronizeResources;
     }
 }
-

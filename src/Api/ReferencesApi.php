@@ -37,9 +37,15 @@ final class ReferencesApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,20 @@ final class ReferencesApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * List referenced organizations
      *
+     * Retrieves a list of organizations referenced by a trusted service. Clients cannot construct the URL themselves.
+     * The correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with
+     * a key like <code>ref:organizations:0</code>.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array<string,\Upsun\Model\OrganizationReference>
+     *
+     * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-orgs
      */
     public function listReferencedOrgs(
         string $in,
@@ -66,11 +81,13 @@ final class ReferencesApi extends AbstractApi
     }
 
     /**
-     * List referenced organizations
+     * List referenced organizations with HTTP Info
+     *
+     * @return array<string,\Upsun\Model\OrganizationReference>
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedOrgsWithHttpInfo(
+    private function listReferencedOrgsWithHttpInfo(
         string $in,
         string $sig
     ): array {
@@ -83,14 +100,17 @@ final class ReferencesApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 'array<string,\Upsun\Model\OrganizationReference>',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -100,10 +120,11 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listReferencedOrgsRequest(
+    private function listReferencedOrgsRequest(
         string $in,
         string $sig
     ): RequestInterface {
+
         // verify the required parameter 'in' is set
         if (
             $in === null
@@ -111,9 +132,11 @@ final class ReferencesApi extends AbstractApi
             && count($in) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $in when calling listReferencedOrgs'
+                'Missing the required parameter $in 
+                when calling listReferencedOrgs'
             );
         }
+
         // verify the required parameter 'sig' is set
         if (
             $sig === null
@@ -121,10 +144,10 @@ final class ReferencesApi extends AbstractApi
             && count($sig) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sig when calling listReferencedOrgs'
+                'Missing the required parameter $sig 
+                when calling listReferencedOrgs'
             );
         }
-
         $resourcePath = '/ref/organizations';
         $formParams = [];
         $queryParams = [];
@@ -139,9 +162,13 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in;
+                $queryParams['in'] = $in instanceof \DateTime
+                    ? $in->format(DATE_ATOM)
+                    : ($in);
             }
         }
+
+
 
         // query params
         if ($sig !== null) {
@@ -150,7 +177,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig;
+                $queryParams['sig'] = $sig instanceof \DateTime
+                    ? $sig->format(DATE_ATOM)
+                    : ($sig);
             }
         }
 
@@ -165,7 +194,7 @@ final class ReferencesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -208,8 +237,16 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced projects
      *
+     * Retrieves a list of projects referenced by a trusted service. Clients cannot construct the URL themselves. The
+     * correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a
+     * key like <code>ref:projects:0</code>.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array<string,\Upsun\Model\ProjectReference>
+     *
+     * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-projects
      */
     public function listReferencedProjects(
         string $in,
@@ -222,11 +259,13 @@ final class ReferencesApi extends AbstractApi
     }
 
     /**
-     * List referenced projects
+     * List referenced projects with HTTP Info
+     *
+     * @return array<string,\Upsun\Model\ProjectReference>
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedProjectsWithHttpInfo(
+    private function listReferencedProjectsWithHttpInfo(
         string $in,
         string $sig
     ): array {
@@ -239,14 +278,17 @@ final class ReferencesApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 'array<string,\Upsun\Model\ProjectReference>',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -256,10 +298,11 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listReferencedProjectsRequest(
+    private function listReferencedProjectsRequest(
         string $in,
         string $sig
     ): RequestInterface {
+
         // verify the required parameter 'in' is set
         if (
             $in === null
@@ -267,9 +310,11 @@ final class ReferencesApi extends AbstractApi
             && count($in) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $in when calling listReferencedProjects'
+                'Missing the required parameter $in 
+                when calling listReferencedProjects'
             );
         }
+
         // verify the required parameter 'sig' is set
         if (
             $sig === null
@@ -277,10 +322,10 @@ final class ReferencesApi extends AbstractApi
             && count($sig) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sig when calling listReferencedProjects'
+                'Missing the required parameter $sig 
+                when calling listReferencedProjects'
             );
         }
-
         $resourcePath = '/ref/projects';
         $formParams = [];
         $queryParams = [];
@@ -295,9 +340,13 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in;
+                $queryParams['in'] = $in instanceof \DateTime
+                    ? $in->format(DATE_ATOM)
+                    : ($in);
             }
         }
+
+
 
         // query params
         if ($sig !== null) {
@@ -306,7 +355,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig;
+                $queryParams['sig'] = $sig instanceof \DateTime
+                    ? $sig->format(DATE_ATOM)
+                    : ($sig);
             }
         }
 
@@ -321,7 +372,7 @@ final class ReferencesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -364,8 +415,16 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced regions
      *
+     * Retrieves a list of regions referenced by a trusted service. Clients cannot construct the URL themselves. The
+     * correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a
+     * key like <code>ref:regions:0</code>.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array<string,\Upsun\Model\RegionReference>
+     *
+     * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-regions
      */
     public function listReferencedRegions(
         string $in,
@@ -378,11 +437,13 @@ final class ReferencesApi extends AbstractApi
     }
 
     /**
-     * List referenced regions
+     * List referenced regions with HTTP Info
+     *
+     * @return array<string,\Upsun\Model\RegionReference>
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedRegionsWithHttpInfo(
+    private function listReferencedRegionsWithHttpInfo(
         string $in,
         string $sig
     ): array {
@@ -395,14 +456,17 @@ final class ReferencesApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 'array<string,\Upsun\Model\RegionReference>',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -412,10 +476,11 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listReferencedRegionsRequest(
+    private function listReferencedRegionsRequest(
         string $in,
         string $sig
     ): RequestInterface {
+
         // verify the required parameter 'in' is set
         if (
             $in === null
@@ -423,9 +488,11 @@ final class ReferencesApi extends AbstractApi
             && count($in) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $in when calling listReferencedRegions'
+                'Missing the required parameter $in 
+                when calling listReferencedRegions'
             );
         }
+
         // verify the required parameter 'sig' is set
         if (
             $sig === null
@@ -433,10 +500,10 @@ final class ReferencesApi extends AbstractApi
             && count($sig) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sig when calling listReferencedRegions'
+                'Missing the required parameter $sig 
+                when calling listReferencedRegions'
             );
         }
-
         $resourcePath = '/ref/regions';
         $formParams = [];
         $queryParams = [];
@@ -451,9 +518,13 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in;
+                $queryParams['in'] = $in instanceof \DateTime
+                    ? $in->format(DATE_ATOM)
+                    : ($in);
             }
         }
+
+
 
         // query params
         if ($sig !== null) {
@@ -462,7 +533,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig;
+                $queryParams['sig'] = $sig instanceof \DateTime
+                    ? $sig->format(DATE_ATOM)
+                    : ($sig);
             }
         }
 
@@ -477,7 +550,7 @@ final class ReferencesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -520,8 +593,16 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced teams
      *
+     * Retrieves a list of teams referenced by a trusted service. Clients cannot construct the URL themselves. The
+     * correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a
+     * key like <code>ref:teams:0</code>.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array<string,\Upsun\Model\TeamReference>
+     *
+     * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-teams
      */
     public function listReferencedTeams(
         string $in,
@@ -534,11 +615,13 @@ final class ReferencesApi extends AbstractApi
     }
 
     /**
-     * List referenced teams
+     * List referenced teams with HTTP Info
+     *
+     * @return array<string,\Upsun\Model\TeamReference>
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedTeamsWithHttpInfo(
+    private function listReferencedTeamsWithHttpInfo(
         string $in,
         string $sig
     ): array {
@@ -551,14 +634,17 @@ final class ReferencesApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 'array<string,\Upsun\Model\TeamReference>',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -568,10 +654,11 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listReferencedTeamsRequest(
+    private function listReferencedTeamsRequest(
         string $in,
         string $sig
     ): RequestInterface {
+
         // verify the required parameter 'in' is set
         if (
             $in === null
@@ -579,9 +666,11 @@ final class ReferencesApi extends AbstractApi
             && count($in) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $in when calling listReferencedTeams'
+                'Missing the required parameter $in 
+                when calling listReferencedTeams'
             );
         }
+
         // verify the required parameter 'sig' is set
         if (
             $sig === null
@@ -589,10 +678,10 @@ final class ReferencesApi extends AbstractApi
             && count($sig) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sig when calling listReferencedTeams'
+                'Missing the required parameter $sig 
+                when calling listReferencedTeams'
             );
         }
-
         $resourcePath = '/ref/teams';
         $formParams = [];
         $queryParams = [];
@@ -607,9 +696,13 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in;
+                $queryParams['in'] = $in instanceof \DateTime
+                    ? $in->format(DATE_ATOM)
+                    : ($in);
             }
         }
+
+
 
         // query params
         if ($sig !== null) {
@@ -618,7 +711,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig;
+                $queryParams['sig'] = $sig instanceof \DateTime
+                    ? $sig->format(DATE_ATOM)
+                    : ($sig);
             }
         }
 
@@ -633,7 +728,7 @@ final class ReferencesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -676,8 +771,16 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced users
      *
+     * Retrieves a list of users referenced by a trusted service. Clients cannot construct the URL themselves. The
+     * correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a
+     * key like <code>ref:users:0</code>.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array<string,\Upsun\Model\UserReference>
+     *
+     * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-users
      */
     public function listReferencedUsers(
         string $in,
@@ -690,11 +793,13 @@ final class ReferencesApi extends AbstractApi
     }
 
     /**
-     * List referenced users
+     * List referenced users with HTTP Info
+     *
+     * @return array<string,\Upsun\Model\UserReference>
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listReferencedUsersWithHttpInfo(
+    private function listReferencedUsersWithHttpInfo(
         string $in,
         string $sig
     ): array {
@@ -707,14 +812,17 @@ final class ReferencesApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 'array<string,\Upsun\Model\UserReference>',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -724,10 +832,11 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listReferencedUsersRequest(
+    private function listReferencedUsersRequest(
         string $in,
         string $sig
     ): RequestInterface {
+
         // verify the required parameter 'in' is set
         if (
             $in === null
@@ -735,9 +844,11 @@ final class ReferencesApi extends AbstractApi
             && count($in) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $in when calling listReferencedUsers'
+                'Missing the required parameter $in 
+                when calling listReferencedUsers'
             );
         }
+
         // verify the required parameter 'sig' is set
         if (
             $sig === null
@@ -745,10 +856,10 @@ final class ReferencesApi extends AbstractApi
             && count($sig) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sig when calling listReferencedUsers'
+                'Missing the required parameter $sig 
+                when calling listReferencedUsers'
             );
         }
-
         $resourcePath = '/ref/users';
         $formParams = [];
         $queryParams = [];
@@ -763,9 +874,13 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in;
+                $queryParams['in'] = $in instanceof \DateTime
+                    ? $in->format(DATE_ATOM)
+                    : ($in);
             }
         }
+
+
 
         // query params
         if ($sig !== null) {
@@ -774,7 +889,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig;
+                $queryParams['sig'] = $sig instanceof \DateTime
+                    ? $sig->format(DATE_ATOM)
+                    : ($sig);
             }
         }
 
@@ -789,7 +906,7 @@ final class ReferencesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

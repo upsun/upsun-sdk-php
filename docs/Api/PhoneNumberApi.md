@@ -1,11 +1,11 @@
-# Upsun\PhoneNumberApi
+# [Upsun\Api\PhoneNumberApi](../src/Api/PhoneNumberApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**confirmPhoneNumber()**](PhoneNumberApi.md#confirmPhoneNumber) | **POST** /users/{user_id}/phonenumber/{sid} | Confirm phone number
-[**verifyPhoneNumber()**](PhoneNumberApi.md#verifyPhoneNumber) | **POST** /users/{user_id}/phonenumber | Verify phone number
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**confirmPhoneNumber()**](PhoneNumberApi.md#confirmPhoneNumber) | **POST** /users/{user_id}/phonenumber/{sid} | Confirm phone number | https://docs.upsun.com/api/#tag/PhoneNumber/operation/confirm-phone-number |
+| [**verifyPhoneNumber()**](PhoneNumberApi.md#verifyPhoneNumber) | **POST** /users/{user_id}/phonenumber | Verify phone number | https://docs.upsun.com/api/#tag/PhoneNumber/operation/verify-phone-number |
 
 
 ## `confirmPhoneNumber()`
@@ -27,8 +27,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\PhoneNumberApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $sid = 'sid_example'; // string | The session ID obtained from `POST /users/{user_id}/phonenumber`.
@@ -44,11 +44,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sid** | **string**| The session ID obtained from &#x60;POST /users/{user_id}/phonenumber&#x60;. |
- **userId** | **string**| The ID of the user. |
- **confirmPhoneNumberRequest** | [**\Upsun\Model\ConfirmPhoneNumberRequest**](../Model/ConfirmPhoneNumberRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sid** | **string**| The session ID obtained from &#x60;POST /users/{user_id}/phonenumber&#x60;. | |
+| **userId** | **string**| The ID of the user. | |
+| **confirmPhoneNumberRequest** | [**\Upsun\Model\ConfirmPhoneNumberRequest**](../Model/ConfirmPhoneNumberRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -86,8 +86,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\PhoneNumberApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -103,10 +103,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **verifyPhoneNumberRequest** | [**\Upsun\Model\VerifyPhoneNumberRequest**](../Model/VerifyPhoneNumberRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **verifyPhoneNumberRequest** | [**\Upsun\Model\VerifyPhoneNumberRequest**](../Model/VerifyPhoneNumberRequest.md)|  | [optional] |
 
 ### Return type
 

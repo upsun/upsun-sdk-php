@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class GrantTeamProjectAccessRequestInner implements JsonSerializable
+final class GrantTeamProjectAccessRequestInner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'projectId' => 'project_id'
-    ];
-
     public function __construct(
         private readonly string $projectId,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'project_id' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,14 +38,8 @@ final class GrantTeamProjectAccessRequestInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * ID of the project.
-     *
-     * @return string
-     */
     public function getProjectId(): string
     {
         return $this->projectId;
     }
 }
-

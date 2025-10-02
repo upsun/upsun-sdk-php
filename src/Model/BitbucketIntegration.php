@@ -12,31 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class BitbucketIntegration implements JsonSerializable
+final class BitbucketIntegration implements ModelInterface, JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'fetchBranches' => 'fetch_branches',
-        'pruneBranches' => 'prune_branches',
-        'environmentInitResources' => 'environment_init_resources',
-        'repository' => 'repository',
-        'buildPullRequests' => 'build_pull_requests',
-        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
-        'resyncPullRequests' => 'resync_pull_requests',
-        'appCredentials' => 'app_credentials',
-        'addonCredentials' => 'addon_credentials'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly bool $fetchBranches,
@@ -46,44 +25,24 @@ final class BitbucketIntegration implements JsonSerializable
         private readonly bool $buildPullRequests,
         private readonly bool $pullRequestsCloneParentData,
         private readonly bool $resyncPullRequests,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $appCredentials = null,
-        private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional $addonCredentials = null,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?TheOAuth2ConsumerInformationOptional $appCredentials = null,
+        private readonly ?TheAddonCredentialInformationOptional $addonCredentials = null,
+        private readonly ?string $id = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'fetch_branches' => 'bool',
-            'prune_branches' => 'bool',
-            'environment_init_resources' => 'string',
-            'repository' => 'string',
-            'build_pull_requests' => 'bool',
-            'pull_requests_clone_parent_data' => 'bool',
-            'resync_pull_requests' => 'bool',
-            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional',
-            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'fetchBranches' => $this->fetchBranches,
             'pruneBranches' => $this->pruneBranches,
@@ -92,6 +51,7 @@ final class BitbucketIntegration implements JsonSerializable
             'buildPullRequests' => $this->buildPullRequests,
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
             'resyncPullRequests' => $this->resyncPullRequests,
+            'id' => $this->id,
             'appCredentials' => $this->appCredentials,
             'addonCredentials' => $this->addonCredentials,
         ];
@@ -102,100 +62,68 @@ final class BitbucketIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return bool
-     */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool
-     */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string
-     */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return string
-     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * @return bool
-     */
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
 
-    /**
-     * @return bool
-     */
     public function getResyncPullRequests(): bool
     {
         return $this->resyncPullRequests;
     }
 
-    /**
-     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
-     */
-    public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    public function getAppCredentials(): ?TheOAuth2ConsumerInformationOptional
     {
         return $this->appCredentials;
     }
 
-    /**
-     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
-     */
-    public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional
+    public function getAddonCredentials(): ?TheAddonCredentialInformationOptional
     {
         return $this->addonCredentials;
     }
 }
-

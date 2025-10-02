@@ -12,32 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationMember implements JsonSerializable
+final class OrganizationMember implements ModelInterface, JsonSerializable
 {
-    public const PERMISSIONS_ADMIN = 'admin';
-    public const PERMISSIONS_BILLING = 'billing';
-    public const PERMISSIONS_MEMBERS = 'members';
-    public const PERMISSIONS_PLANS = 'plans';
-    public const PERMISSIONS_PROJECTS_CREATE = 'projects:create';
-    public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
-    public const LEVEL_ADMIN = 'admin';
-    public const LEVEL_VIEWER = 'viewer';
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'organizationId' => 'organization_id',
-        'userId' => 'user_id',
-        'permissions' => 'permissions',
-        'level' => 'level',
-        'owner' => 'owner',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $organizationId = null,
@@ -47,31 +25,13 @@ final class OrganizationMember implements JsonSerializable
         private readonly ?bool $owner = null,
         private readonly ?\DateTime $createdAt = null,
         private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\OrganizationMemberLinks $links = null,
+        private readonly ?OrganizationMemberLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'organization_id' => '?string',
-            'user_id' => '?string',
-            'permissions' => 'string[]',
-            'level' => '?string',
-            'owner' => '?bool',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            '_links' => '?\Upsun\Model\OrganizationMemberLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -83,8 +43,8 @@ final class OrganizationMember implements JsonSerializable
             'permissions' => $this->permissions,
             'level' => $this->level,
             'owner' => $this->owner,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'links' => $this->links,
         ];
     }
@@ -94,92 +54,48 @@ final class OrganizationMember implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the user.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The ID of the user.
-     *
-     * @return string|null
-     */
     public function getUserId(): ?string
     {
         return $this->userId;
     }
 
-    /**
-     * The organization member permissions.
-     *
-     * @return string[]|null
-     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
 
-    /**
-     * Access level of the member.
-     *
-     * @return string|null
-     */
     public function getLevel(): ?string
     {
         return $this->level;
     }
 
-    /**
-     * Whether the member is the organization owner.
-     *
-     * @return bool|null
-     */
     public function getOwner(): ?bool
     {
         return $this->owner;
     }
 
-    /**
-     * The date and time when the member was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the member was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationMemberLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\OrganizationMemberLinks
+    public function getLinks(): ?OrganizationMemberLinks
     {
         return $this->links;
     }
 }
-

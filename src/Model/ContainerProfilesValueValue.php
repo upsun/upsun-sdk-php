@@ -12,37 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ContainerProfilesValueValue implements JsonSerializable
+final class ContainerProfilesValueValue implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'cpu' => 'cpu',
-        'memory' => 'memory'
-    ];
-
     public function __construct(
         private readonly float $cpu,
         private readonly int $memory,
+        private readonly string $cpuType,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'cpu' => 'float',
-            'memory' => 'int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -50,6 +33,7 @@ final class ContainerProfilesValueValue implements JsonSerializable
         return [
             'cpu' => $this->cpu,
             'memory' => $this->memory,
+            'cpuType' => $this->cpuType,
         ];
     }
 
@@ -58,20 +42,18 @@ final class ContainerProfilesValueValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return float
-     */
     public function getCpu(): float
     {
         return $this->cpu;
     }
 
-    /**
-     * @return int
-     */
     public function getMemory(): int
     {
         return $this->memory;
     }
-}
 
+    public function getCpuType(): string
+    {
+        return $this->cpuType;
+    }
+}

@@ -12,20 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class SpecificOverridesValue implements JsonSerializable
+final class SpecificOverridesValue implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'expires' => 'expires',
-        'passthru' => 'passthru',
-        'scripts' => 'scripts',
-        'allow' => 'allow',
-        'headers' => 'headers'
-    ];
-
     public function __construct(
         private readonly ?string $expires = null,
         private readonly ?string $passthru = null,
@@ -35,23 +25,9 @@ final class SpecificOverridesValue implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'expires' => '?string',
-            'passthru' => '?string',
-            'scripts' => '?bool',
-            'allow' => '?bool',
-            'headers' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -70,44 +46,28 @@ final class SpecificOverridesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getExpires(): ?string
     {
         return $this->expires;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPassthru(): ?string
     {
         return $this->passthru;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getScripts(): ?bool
     {
         return $this->scripts;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getAllow(): ?bool
     {
         return $this->allow;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getHeaders(): ?array
     {
         return $this->headers;
     }
 }
-

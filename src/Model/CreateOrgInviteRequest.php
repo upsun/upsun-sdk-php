@@ -12,24 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CreateOrgInviteRequest implements JsonSerializable
+final class CreateOrgInviteRequest implements ModelInterface, JsonSerializable
 {
-    public const PERMISSIONS_ADMIN = 'admin';
-    public const PERMISSIONS_BILLING = 'billing';
-    public const PERMISSIONS_PLANS = 'plans';
-    public const PERMISSIONS_MEMBERS = 'members';
-    public const PERMISSIONS_PROJECTS_CREATE = 'projects:create';
-    public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
-
-    private static array $attributeMap = [
-        'email' => 'email',
-        'permissions' => 'permissions',
-        'force' => 'force'
-    ];
-
     public function __construct(
         private readonly string $email,
         private readonly array $permissions,
@@ -37,21 +23,9 @@ final class CreateOrgInviteRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'email' => 'string',
-            'permissions' => 'string[]',
-            'force' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -68,34 +42,18 @@ final class CreateOrgInviteRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The email address of the invitee.
-     *
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * The permissions the invitee should be given on the organization.
-     *
-     * @return string[]
-     */
     public function getPermissions(): array
     {
         return $this->permissions;
     }
 
-    /**
-     * Whether to cancel any pending invitation for the specified invitee, and create a new invitation.
-     *
-     * @return bool|null
-     */
     public function getForce(): ?bool
     {
         return $this->force;
     }
 }
-

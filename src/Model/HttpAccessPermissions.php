@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class HttpAccessPermissions implements JsonSerializable
+final class HttpAccessPermissions implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'isEnabled' => 'is_enabled',
-        'addresses' => 'addresses',
-        'basicAuth' => 'basic_auth'
-    ];
-
     public function __construct(
         private readonly bool $isEnabled,
         private readonly array $addresses,
@@ -31,21 +23,9 @@ final class HttpAccessPermissions implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'is_enabled' => 'bool',
-            'addresses' => '\Upsun\Model\AddressGrantsInner[]',
-            'basic_auth' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,21 @@ final class HttpAccessPermissions implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getIsEnabled(): bool
     {
         return $this->isEnabled;
     }
 
     /**
-     * @return \Upsun\Model\AddressGrantsInner[]
+     * @return AddressGrantsInner[]
      */
     public function getAddresses(): array
     {
         return $this->addresses;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getBasicAuth(): array
     {
         return $this->basicAuth;
     }
 }
-

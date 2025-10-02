@@ -1,12 +1,12 @@
-# Upsun\ProjectActivityApi
+# [Upsun\Api\ProjectActivityApi](../src/Api/ProjectActivityApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**actionProjectsActivitiesCancel()**](ProjectActivityApi.md#actionProjectsActivitiesCancel) | **POST** /projects/{projectId}/activities/{activityId}/cancel | Cancel a project activity
-[**getProjectsActivities()**](ProjectActivityApi.md#getProjectsActivities) | **GET** /projects/{projectId}/activities/{activityId} | Get a project activity log entry
-[**listProjectsActivities()**](ProjectActivityApi.md#listProjectsActivities) | **GET** /projects/{projectId}/activities | Get project activity log
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**actionProjectsActivitiesCancel()**](ProjectActivityApi.md#actionProjectsActivitiesCancel) | **POST** /projects/{projectId}/activities/{activityId}/cancel | Cancel a project activity | https://docs.upsun.com/api/#tag/Project-Activity/operation/action-projects-activities-cancel |
+| [**getProjectsActivities()**](ProjectActivityApi.md#getProjectsActivities) | **GET** /projects/{projectId}/activities/{activityId} | Get a project activity log entry | https://docs.upsun.com/api/#tag/Project-Activity/operation/get-projects-activities |
+| [**listProjectsActivities()**](ProjectActivityApi.md#listProjectsActivities) | **GET** /projects/{projectId}/activities | Get project activity log | https://docs.upsun.com/api/#tag/Project-Activity/operation/list-projects-activities |
 
 
 ## `actionProjectsActivitiesCancel()`
@@ -28,8 +28,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProjectActivityApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -45,10 +45,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **activityId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **activityId** | **string**|  | |
 
 ### Return type
 
@@ -86,8 +86,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProjectActivityApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -103,10 +103,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **activityId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **activityId** | **string**|  | |
 
 ### Return type
 
@@ -133,7 +133,7 @@ listProjectsActivities($projectId): \Upsun\Model\Activity[]
 
 Get project activity log
 
-Retrieve a project's activity log including logging actions in all environments within a project. This returns a list of objects with records of actions such as:  - Commits being pushed to the repository - A new environment being branched out from the specified environment - A snapshot being created of the specified environment  The object includes a timestamp of when the action occurred (`created_at`), when the action concluded (`updated_at`), the current `state` of the action, the action's completion percentage (`completion_percent`), the `environments` it applies to and other related information in the `payload`.  The contents of the `payload` varies based on the `type` of the activity. For example:  - An `environment.branch` action's `payload` can contain objects representing the environment's `parent` environment and the branching action's `outcome`.  - An `environment.push` action's `payload` can contain objects representing the `environment`, the specific `commits` included in the push, and the `user` who pushed.
+Retrieve a project's activity log including logging actions in all environments within a project. This returns a list of objects with records of actions such as:  - Commits being pushed to the repository - A new environment being branched out from the specified environment - A snapshot being created of the specified environment  The object includes a timestamp of when the action occurred (`created_at`), when the action concluded (`updated_at`), the current `state` of the action, the action's completion percentage (`completion_percent`), the `environments` it applies to and when the activity expires (`expires_at`).  There are other related information in the `payload`. The contents of the `payload` varies based on the `type` of the activity. For example:  - An `environment.branch` action's `payload` can contain objects representing the environment's `parent` environment and the branching action's `outcome`.  - An `environment.push` action's `payload` can contain objects representing the `environment`, the specific `commits` included in the push, and the `user` who pushed.  Expired activities are removed from the project activity log, except the last 100 expired objects provided they are not of type `environment.cron` or `environment.backup`.
 
 ### Example
 
@@ -144,8 +144,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProjectActivityApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -160,9 +160,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
 
 ### Return type
 

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  |
 **clusterName** | **string** |  |
 **projectInfo** | [**\Upsun\Model\ProjectInfo**](ProjectInfo.md) |  |
 **environmentInfo** | [**\Upsun\Model\EnvironmentInfo**](EnvironmentInfo.md) |  |

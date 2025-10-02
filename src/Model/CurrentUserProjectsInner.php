@@ -12,35 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CurrentUserProjectsInner implements JsonSerializable
+final class CurrentUserProjectsInner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'title' => 'title',
-        'cluster' => 'cluster',
-        'clusterLabel' => 'cluster_label',
-        'region' => 'region',
-        'regionLabel' => 'region_label',
-        'uri' => 'uri',
-        'endpoint' => 'endpoint',
-        'licenseId' => 'license_id',
-        'owner' => 'owner',
-        'ownerInfo' => 'owner_info',
-        'plan' => 'plan',
-        'subscriptionId' => 'subscription_id',
-        'status' => 'status',
-        'vendor' => 'vendor',
-        'vendorLabel' => 'vendor_label',
-        'vendorWebsite' => 'vendor_website',
-        'vendorResources' => 'vendor_resources',
-        'createdAt' => 'created_at'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $name = null,
@@ -53,7 +28,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
         private readonly ?string $endpoint = null,
         private readonly ?int $licenseId = null,
         private readonly ?string $owner = null,
-        private readonly ?\Upsun\Model\OwnerInfo $ownerInfo = null,
+        private readonly ?OwnerInfo $ownerInfo = null,
         private readonly ?string $plan = null,
         private readonly ?int $subscriptionId = null,
         private readonly ?string $status = null,
@@ -65,38 +40,9 @@ final class CurrentUserProjectsInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'name' => '?string',
-            'title' => '?string',
-            'cluster' => '?string',
-            'cluster_label' => '?string',
-            'region' => '?string',
-            'region_label' => '?string',
-            'uri' => '?string',
-            'endpoint' => '?string',
-            'license_id' => '?int',
-            'owner' => '?string',
-            'owner_info' => '?\Upsun\Model\OwnerInfo',
-            'plan' => '?string',
-            'subscription_id' => '?int',
-            'status' => '?string',
-            'vendor' => '?string',
-            'vendor_label' => '?string',
-            'vendor_website' => '?string',
-            'vendor_resources' => '?string',
-            'created_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -121,7 +67,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
             'vendorLabel' => $this->vendorLabel,
             'vendorWebsite' => $this->vendorWebsite,
             'vendorResources' => $this->vendorResources,
-            'createdAt' => $this->createdAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
         ];
     }
 
@@ -130,202 +76,103 @@ final class CurrentUserProjectsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The unique ID string of the project.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The name given to the project. Appears as the title in the user interface.
-     *
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * The name given to the project. Appears as the title in the user interface.
-     *
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * The machine name of the region where the project is located. Cannot be changed after project creation.
-     *
-     * @return string|null
-     */
     public function getCluster(): ?string
     {
         return $this->cluster;
     }
 
-    /**
-     * The human-readable name of the region where the project is located.
-     *
-     * @return string|null
-     */
     public function getClusterLabel(): ?string
     {
         return $this->clusterLabel;
     }
 
-    /**
-     * The machine name of the region where the project is located. Cannot be changed after project creation.
-     *
-     * @return string|null
-     */
     public function getRegion(): ?string
     {
         return $this->region;
     }
 
-    /**
-     * The human-readable name of the region where the project is located.
-     *
-     * @return string|null
-     */
     public function getRegionLabel(): ?string
     {
         return $this->regionLabel;
     }
 
-    /**
-     * The URL for the project's user interface.
-     *
-     * @return string|null
-     */
     public function getUri(): ?string
     {
         return $this->uri;
     }
 
-    /**
-     * The project API endpoint for the project.
-     *
-     * @return string|null
-     */
     public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
 
-    /**
-     * The ID of the subscription.
-     *
-     * @return int|null
-     */
     public function getLicenseId(): ?int
     {
         return $this->licenseId;
     }
 
-    /**
-     * The UUID of the owner.
-     *
-     * @return string|null
-     */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
 
-    /**
-     * @return \Upsun\Model\OwnerInfo|null
-     */
-    public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
+    public function getOwnerInfo(): ?OwnerInfo
     {
         return $this->ownerInfo;
     }
 
-    /**
-     * The plan type of the subscription.
-     *
-     * @return string|null
-     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * The ID of the subscription.
-     *
-     * @return int|null
-     */
     public function getSubscriptionId(): ?int
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The status of the project.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * The machine name of the vendor the subscription belongs to.
-     *
-     * @return string|null
-     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    /**
-     * The machine name of the vendor the subscription belongs to.
-     *
-     * @return string|null
-     */
     public function getVendorLabel(): ?string
     {
         return $this->vendorLabel;
     }
 
-    /**
-     * The URL of the vendor the subscription belongs to.
-     *
-     * @return string|null
-     */
     public function getVendorWebsite(): ?string
     {
         return $this->vendorWebsite;
     }
 
-    /**
-     * The link to the resources of the vendor the subscription belongs to.
-     *
-     * @return string|null
-     */
     public function getVendorResources(): ?string
     {
         return $this->vendorResources;
     }
 
-    /**
-     * The creation date of the subscription.
-     *
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 }
-

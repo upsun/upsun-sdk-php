@@ -3,6 +3,8 @@
 /**
  * Low level Invoice (auto-generated)
  *
+ * The invoice object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,39 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Invoice implements JsonSerializable
+final class Invoice implements ModelInterface, JsonSerializable
 {
-    public const TYPE_INVOICE = 'invoice';
-    public const TYPE_CREDIT_MEMO = 'credit_memo';
-    public const STATUS_PAID = 'paid';
-    public const STATUS_CHARGED_OFF = 'charged_off';
-    public const STATUS_PENDING = 'pending';
-    public const STATUS_REFUNDED = 'refunded';
-    public const STATUS_CANCELED = 'canceled';
-    public const STATUS_REFUND_PENDING = 'refund_pending';
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'invoiceNumber' => 'invoice_number',
-        'type' => 'type',
-        'orderId' => 'order_id',
-        'relatedInvoiceId' => 'related_invoice_id',
-        'status' => 'status',
-        'owner' => 'owner',
-        'invoiceDate' => 'invoice_date',
-        'invoiceDue' => 'invoice_due',
-        'created' => 'created',
-        'changed' => 'changed',
-        'company' => 'company',
-        'total' => 'total',
-        'address' => 'address',
-        'notes' => 'notes',
-        'invoicePdf' => 'invoice_pdf'
-    ];
-
     public function __construct(
         private readonly ?string $relatedInvoiceId = null,
         private readonly ?\DateTime $invoiceDate = null,
@@ -59,40 +32,15 @@ final class Invoice implements JsonSerializable
         private readonly ?string $owner = null,
         private readonly ?string $company = null,
         private readonly ?float $total = null,
-        private readonly ?\Upsun\Model\Address $address = null,
+        private readonly ?Address $address = null,
         private readonly ?string $notes = null,
-        private readonly ?\Upsun\Model\InvoicePDF $invoicePdf = null,
+        private readonly ?InvoicePDF $invoicePdf = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'invoice_number' => '?string',
-            'type' => '?string',
-            'order_id' => '?string',
-            'related_invoice_id' => '?string',
-            'status' => '?string',
-            'owner' => '?string',
-            'invoice_date' => '?\DateTime',
-            'invoice_due' => '?\DateTime',
-            'created' => '?\DateTime',
-            'changed' => '?\DateTime',
-            'company' => '?string',
-            'total' => '?float',
-            'address' => '?\Upsun\Model\Address',
-            'notes' => '?string',
-            'invoice_pdf' => '?\Upsun\Model\InvoicePDF',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -105,10 +53,10 @@ final class Invoice implements JsonSerializable
             'relatedInvoiceId' => $this->relatedInvoiceId,
             'status' => $this->status,
             'owner' => $this->owner,
-            'invoiceDate' => $this->invoiceDate,
-            'invoiceDue' => $this->invoiceDue,
-            'created' => $this->created,
-            'changed' => $this->changed,
+            'invoiceDate' => $this->invoiceDate?->format(DATE_ATOM),
+            'invoiceDue' => $this->invoiceDue?->format(DATE_ATOM),
+            'created' => $this->created?->format(DATE_ATOM),
+            'changed' => $this->changed?->format(DATE_ATOM),
             'company' => $this->company,
             'total' => $this->total,
             'address' => $this->address,
@@ -122,160 +70,83 @@ final class Invoice implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The invoice id.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The invoice number.
-     *
-     * @return string|null
-     */
     public function getInvoiceNumber(): ?string
     {
         return $this->invoiceNumber;
     }
 
-    /**
-     * Invoice type.
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * The id of the related order.
-     *
-     * @return string|null
-     */
     public function getOrderId(): ?string
     {
         return $this->orderId;
     }
 
-    /**
-     * If the invoice is a credit memo (type=credit_memo), this field stores the id of the related/original invoice.
-     *
-     * @return string|null
-     */
     public function getRelatedInvoiceId(): ?string
     {
         return $this->relatedInvoiceId;
     }
 
-    /**
-     * The invoice status.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * The ULID of the owner.
-     *
-     * @return string|null
-     */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
 
-    /**
-     * The invoice date.
-     *
-     * @return \DateTime|null
-     */
     public function getInvoiceDate(): ?\DateTime
     {
         return $this->invoiceDate;
     }
 
-    /**
-     * The invoice due date.
-     *
-     * @return \DateTime|null
-     */
     public function getInvoiceDue(): ?\DateTime
     {
         return $this->invoiceDue;
     }
 
-    /**
-     * The time when the invoice was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
 
-    /**
-     * The time when the invoice was changed.
-     *
-     * @return \DateTime|null
-     */
     public function getChanged(): ?\DateTime
     {
         return $this->changed;
     }
 
-    /**
-     * Company name (if any).
-     *
-     * @return string|null
-     */
     public function getCompany(): ?string
     {
         return $this->company;
     }
 
-    /**
-     * The invoice total.
-     *
-     * @return float|null
-     */
     public function getTotal(): ?float
     {
         return $this->total;
     }
 
-    /**
-     * @return \Upsun\Model\Address|null
-     */
-    public function getAddress(): ?\Upsun\Model\Address
+    public function getAddress(): ?Address
     {
         return $this->address;
     }
 
-    /**
-     * The invoice note.
-     *
-     * @return string|null
-     */
     public function getNotes(): ?string
     {
         return $this->notes;
     }
 
-    /**
-     * @return \Upsun\Model\InvoicePDF|null
-     */
-    public function getInvoicePdf(): ?\Upsun\Model\InvoicePDF
+    public function getInvoicePdf(): ?InvoicePDF
     {
         return $this->invoicePdf;
     }
 }
-

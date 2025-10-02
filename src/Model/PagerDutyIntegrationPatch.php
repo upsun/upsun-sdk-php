@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class PagerDutyIntegrationPatch implements JsonSerializable
+final class PagerDutyIntegrationPatch implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'routingKey' => 'routing_key'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $routingKey,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'routing_key' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +40,13 @@ final class PagerDutyIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getRoutingKey(): string
     {
         return $this->routingKey;
     }
 }
-

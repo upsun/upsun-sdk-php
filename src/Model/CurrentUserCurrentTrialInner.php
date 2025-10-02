@@ -12,19 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CurrentUserCurrentTrialInner implements JsonSerializable
+final class CurrentUserCurrentTrialInner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'created' => 'created',
-        'description' => 'description',
-        'spendRemaining' => 'spend_remaining',
-        'expiration' => 'expiration'
-    ];
-
     public function __construct(
         private readonly ?\DateTime $created = null,
         private readonly ?string $description = null,
@@ -33,31 +24,18 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created' => '?\DateTime',
-            'description' => '?string',
-            'spend_remaining' => '?string',
-            'expiration' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'created' => $this->created,
+            'created' => $this->created?->format(DATE_ATOM),
             'description' => $this->description,
             'spendRemaining' => $this->spendRemaining,
-            'expiration' => $this->expiration,
+            'expiration' => $this->expiration?->format(DATE_ATOM),
         ];
     }
 
@@ -66,44 +44,23 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ISO timestamp of the trial creation date time.
-     *
-     * @return \DateTime|null
-     */
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
 
-    /**
-     * The human readable trial description
-     *
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * Total spend amount of the voucher minus existing project costs for the existing billing cycle.
-     *
-     * @return string|null
-     */
     public function getSpendRemaining(): ?string
     {
         return $this->spendRemaining;
     }
 
-    /**
-     * Date the trial expires.
-     *
-     * @return \DateTime|null
-     */
     public function getExpiration(): ?\DateTime
     {
         return $this->expiration;
     }
 }
-

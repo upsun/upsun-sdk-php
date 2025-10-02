@@ -12,48 +12,21 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheTreeItemsInner implements JsonSerializable
+final class TheTreeItemsInner implements ModelInterface, JsonSerializable
 {
-    public const MODE__040000 = '040000';
-    public const MODE__100644 = '100644';
-    public const MODE__100755 = '100755';
-    public const MODE__120000 = '120000';
-    public const MODE__160000 = '160000';
-
-    private static array $attributeMap = [
-        'path' => 'path',
-        'mode' => 'mode',
-        'type' => 'type',
-        'sha' => 'sha'
-    ];
-
     public function __construct(
         private readonly string $path,
         private readonly string $mode,
         private readonly string $type,
-        private readonly ?string $sha = null,
+        private readonly ?string $sha,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'path' => 'string',
-            'mode' => 'string',
-            'type' => 'string',
-            'sha' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -71,36 +44,23 @@ final class TheTreeItemsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getPath(): string
     {
         return $this->path;
     }
 
-    /**
-     * @return string
-     */
     public function getMode(): string
     {
         return $this->mode;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSha(): ?string
     {
         return $this->sha;
     }
 }
-

@@ -12,56 +12,34 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EmailIntegration implements JsonSerializable
+final class EmailIntegration implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'fromAddress' => 'from_address',
-        'recipients' => 'recipients'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly array $recipients,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $fromAddress = null,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?string $fromAddress,
+        private readonly ?string $id = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'from_address' => '?string',
-            'recipients' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'fromAddress' => $this->fromAddress,
             'recipients' => $this->recipients,
+            'id' => $this->id,
         ];
     }
 
@@ -70,44 +48,33 @@ final class EmailIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }
 
-    /**
-     * @return string[]
-     */
     public function getRecipients(): array
     {
         return $this->recipients;
     }
-}
 
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+}

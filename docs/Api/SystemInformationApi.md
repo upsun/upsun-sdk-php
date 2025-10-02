@@ -1,11 +1,11 @@
-# Upsun\SystemInformationApi
+# [Upsun\Api\SystemInformationApi](../src/Api/SystemInformationApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**actionProjectsSystemRestart()**](SystemInformationApi.md#actionProjectsSystemRestart) | **POST** /projects/{projectId}/system/restart | Restart the Git server
-[**getProjectsSystem()**](SystemInformationApi.md#getProjectsSystem) | **GET** /projects/{projectId}/system | Get information about the Git server.
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**actionProjectsSystemRestart()**](SystemInformationApi.md#actionProjectsSystemRestart) | **POST** /projects/{projectId}/system/restart | Restart the Git server | https://docs.upsun.com/api/#tag/System-Information/operation/action-projects-system-restart |
+| [**getProjectsSystem()**](SystemInformationApi.md#getProjectsSystem) | **GET** /projects/{projectId}/system | Get information about the Git server. | https://docs.upsun.com/api/#tag/System-Information/operation/get-projects-system |
 
 
 ## `actionProjectsSystemRestart()`
@@ -27,8 +27,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\SystemInformationApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -43,9 +43,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
 
 ### Return type
 
@@ -83,8 +83,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\SystemInformationApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -99,9 +99,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
 
 ### Return type
 

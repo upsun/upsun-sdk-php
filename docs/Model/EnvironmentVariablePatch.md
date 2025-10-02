@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **isSensitive** | **bool** |  | [optional]
 **visibleBuild** | **bool** |  | [optional]
 **visibleRuntime** | **bool** |  | [optional]
+**applicationScope** | **string[]** |  | [optional]
 **isEnabled** | **bool** |  | [optional]
 **isInheritable** | **bool** |  | [optional]
 

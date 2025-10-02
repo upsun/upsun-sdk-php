@@ -1,12 +1,12 @@
-# Upsun\SSHKeysApi
+# [Upsun\Api\SSHKeysApi](../src/Api/SSHKeysApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createSshKey()**](SSHKeysApi.md#createSshKey) | **POST** /ssh_keys | Add a new public SSH key to a user
-[**deleteSshKey()**](SSHKeysApi.md#deleteSshKey) | **DELETE** /ssh_keys/{key_id} | Delete an SSH key
-[**getSshKey()**](SSHKeysApi.md#getSshKey) | **GET** /ssh_keys/{key_id} | Get an SSH key
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**createSshKey()**](SSHKeysApi.md#createSshKey) | **POST** /ssh_keys | Add a new public SSH key to a user | https://docs.upsun.com/api/#tag/SSH-Keys/operation/create-ssh-key |
+| [**deleteSshKey()**](SSHKeysApi.md#deleteSshKey) | **DELETE** /ssh_keys/{key_id} | Delete an SSH key | https://docs.upsun.com/api/#tag/SSH-Keys/operation/delete-ssh-key |
+| [**getSshKey()**](SSHKeysApi.md#getSshKey) | **GET** /ssh_keys/{key_id} | Get an SSH key | https://docs.upsun.com/api/#tag/SSH-Keys/operation/get-ssh-key |
 
 
 ## `createSshKey()`
@@ -26,8 +26,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\SSHKeysApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $createSshKeyRequest = new \Upsun\Model\CreateSshKeyRequest(); // \Upsun\Model\CreateSshKeyRequest
@@ -42,9 +42,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createSshKeyRequest** | [**\Upsun\Model\CreateSshKeyRequest**](../Model/CreateSshKeyRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **createSshKeyRequest** | [**\Upsun\Model\CreateSshKeyRequest**](../Model/CreateSshKeyRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -80,8 +80,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\SSHKeysApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $keyId = 56; // int | The ID of the ssh key.
@@ -95,9 +95,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **keyId** | **int**| The ID of the ssh key. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **keyId** | **int**| The ID of the ssh key. | |
 
 ### Return type
 
@@ -133,8 +133,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\SSHKeysApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $keyId = 56; // int | The ID of the ssh key.
@@ -149,9 +149,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **keyId** | **int**| The ID of the ssh key. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **keyId** | **int**| The ID of the ssh key. | |
 
 ### Return type
 

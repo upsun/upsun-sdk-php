@@ -12,21 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UpdateOrgProfileRequest implements JsonSerializable
+final class UpdateOrgProfileRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'defaultCatalog' => 'default_catalog',
-        'projectOptionsUrl' => 'project_options_url',
-        'securityContact' => 'security_contact',
-        'companyName' => 'company_name',
-        'vatNumber' => 'vat_number',
-        'billingContact' => 'billing_contact'
-    ];
-
     public function __construct(
         private readonly ?string $defaultCatalog = null,
         private readonly ?string $projectOptionsUrl = null,
@@ -37,24 +26,9 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'default_catalog' => '?string',
-            'project_options_url' => '?string',
-            'security_contact' => '?string',
-            'company_name' => '?string',
-            'vat_number' => '?string',
-            'billing_contact' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -74,64 +48,33 @@ final class UpdateOrgProfileRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The URL of a catalog file which overrides the default.
-     *
-     * @return string|null
-     */
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
 
-    /**
-     * The URL of an organization-wide project options file.
-     *
-     * @return string|null
-     */
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
 
-    /**
-     * The e-mail address of a contact to whom security notices will be sent.
-     *
-     * @return string|null
-     */
     public function getSecurityContact(): ?string
     {
         return $this->securityContact;
     }
 
-    /**
-     * The company name.
-     *
-     * @return string|null
-     */
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
 
-    /**
-     * The VAT number of the company.
-     *
-     * @return string|null
-     */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
 
-    /**
-     * The e-mail address of a contact to whom billing notices will be sent.
-     *
-     * @return string|null
-     */
     public function getBillingContact(): ?string
     {
         return $this->billingContact;
     }
 }
-

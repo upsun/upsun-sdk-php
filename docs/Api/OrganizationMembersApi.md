@@ -1,14 +1,14 @@
-# Upsun\OrganizationMembersApi
+# [Upsun\Api\OrganizationMembersApi](../src/Api/OrganizationMembersApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createOrgMember()**](OrganizationMembersApi.md#createOrgMember) | **POST** /organizations/{organization_id}/members | Create organization member
-[**deleteOrgMember()**](OrganizationMembersApi.md#deleteOrgMember) | **DELETE** /organizations/{organization_id}/members/{user_id} | Delete organization member
-[**getOrgMember()**](OrganizationMembersApi.md#getOrgMember) | **GET** /organizations/{organization_id}/members/{user_id} | Get organization member
-[**listOrgMembers()**](OrganizationMembersApi.md#listOrgMembers) | **GET** /organizations/{organization_id}/members | List organization members
-[**updateOrgMember()**](OrganizationMembersApi.md#updateOrgMember) | **PATCH** /organizations/{organization_id}/members/{user_id} | Update organization member
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**createOrgMember()**](OrganizationMembersApi.md#createOrgMember) | **POST** /organizations/{organization_id}/members | Create organization member | https://docs.upsun.com/api/#tag/Organization-Members/operation/create-org-member |
+| [**deleteOrgMember()**](OrganizationMembersApi.md#deleteOrgMember) | **DELETE** /organizations/{organization_id}/members/{user_id} | Delete organization member | https://docs.upsun.com/api/#tag/Organization-Members/operation/delete-org-member |
+| [**getOrgMember()**](OrganizationMembersApi.md#getOrgMember) | **GET** /organizations/{organization_id}/members/{user_id} | Get organization member | https://docs.upsun.com/api/#tag/Organization-Members/operation/get-org-member |
+| [**listOrgMembers()**](OrganizationMembersApi.md#listOrgMembers) | **GET** /organizations/{organization_id}/members | List organization members | https://docs.upsun.com/api/#tag/Organization-Members/operation/list-org-members |
+| [**updateOrgMember()**](OrganizationMembersApi.md#updateOrgMember) | **PATCH** /organizations/{organization_id}/members/{user_id} | Update organization member | https://docs.upsun.com/api/#tag/Organization-Members/operation/update-org-member |
 
 
 ## `createOrgMember()`
@@ -30,8 +30,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\OrganizationMembersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.
@@ -47,10 +47,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization. |
- **createOrgMemberRequest** | [**\Upsun\Model\CreateOrgMemberRequest**](../Model/CreateOrgMemberRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization. | |
+| **createOrgMemberRequest** | [**\Upsun\Model\CreateOrgMemberRequest**](../Model/CreateOrgMemberRequest.md)|  | |
 
 ### Return type
 
@@ -88,8 +88,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\OrganizationMembersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.
@@ -104,10 +104,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization. |
- **userId** | **string**| The ID of the user. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization. | |
+| **userId** | **string**| The ID of the user. | |
 
 ### Return type
 
@@ -145,8 +145,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\OrganizationMembersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
@@ -162,10 +162,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **userId** | **string**| The ID of the user. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
+| **userId** | **string**| The ID of the user. | |
 
 ### Return type
 
@@ -203,8 +203,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\OrganizationMembersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
@@ -224,14 +224,14 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **filterPermissions** | [**\Upsun\Model\ArrayFilter**](../Model/.md)| Allows filtering by &#x60;permissions&#x60; using one or more operators. | [optional]
- **pageSize** | **int**| Determines the number of items to show. | [optional]
- **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
+| **filterPermissions** | [**\Upsun\Model\ArrayFilter**](../Model/.md)| Allows filtering by &#x60;permissions&#x60; using one or more operators. | [optional] |
+| **pageSize** | **int**| Determines the number of items to show. | [optional] |
+| **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
 
 ### Return type
 
@@ -269,8 +269,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\OrganizationMembersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.
@@ -287,11 +287,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization. |
- **userId** | **string**| The ID of the user. |
- **updateOrgMemberRequest** | [**\Upsun\Model\UpdateOrgMemberRequest**](../Model/UpdateOrgMemberRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization. | |
+| **userId** | **string**| The ID of the user. | |
+| **updateOrgMemberRequest** | [**\Upsun\Model\UpdateOrgMemberRequest**](../Model/UpdateOrgMemberRequest.md)|  | [optional] |
 
 ### Return type
 

@@ -12,71 +12,43 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ProjectVariable implements JsonSerializable
+final class ProjectVariable implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'name' => 'name',
-        'attributes' => 'attributes',
-        'isJson' => 'is_json',
-        'isSensitive' => 'is_sensitive',
-        'visibleBuild' => 'visible_build',
-        'visibleRuntime' => 'visible_runtime',
-        'value' => 'value'
-    ];
-
     public function __construct(
+        private readonly string $id,
         private readonly string $name,
         private readonly array $attributes,
         private readonly bool $isJson,
         private readonly bool $isSensitive,
         private readonly bool $visibleBuild,
         private readonly bool $visibleRuntime,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly array $applicationScope,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $value = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'name' => 'string',
-            'attributes' => 'string[]',
-            'is_json' => 'bool',
-            'is_sensitive' => 'bool',
-            'visible_build' => 'bool',
-            'visible_runtime' => 'bool',
-            'value' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'id' => $this->id,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'name' => $this->name,
             'attributes' => $this->attributes,
             'isJson' => $this->isJson,
             'isSensitive' => $this->isSensitive,
             'visibleBuild' => $this->visibleBuild,
             'visibleRuntime' => $this->visibleRuntime,
+            'applicationScope' => $this->applicationScope,
             'value' => $this->value,
         ];
     }
@@ -86,76 +58,58 @@ final class ProjectVariable implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsJson(): bool
     {
         return $this->isJson;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsSensitive(): bool
     {
         return $this->isSensitive;
     }
 
-    /**
-     * @return bool
-     */
     public function getVisibleBuild(): bool
     {
         return $this->visibleBuild;
     }
 
-    /**
-     * @return bool
-     */
     public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
     }
 
-    /**
-     * @return string|null
-     */
+    public function getApplicationScope(): array
+    {
+        return $this->applicationScope;
+    }
+
     public function getValue(): ?string
     {
         return $this->value;
     }
 }
-

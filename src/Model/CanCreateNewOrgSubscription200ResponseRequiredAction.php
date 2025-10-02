@@ -3,6 +3,7 @@
 /**
  * Low level CanCreateNewOrgSubscription200ResponseRequiredAction (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CanCreateNewOrgSubscription200ResponseRequiredAction implements JsonSerializable
+final class CanCreateNewOrgSubscription200ResponseRequiredAction implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'action' => 'action',
-        'type' => 'type'
-    ];
-
     public function __construct(
         private readonly ?string $action = null,
         private readonly ?string $type = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'action' => '?string',
-            'type' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +41,13 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Machine readable definition of requirement.
-     *
-     * @return string|null
-     */
     public function getAction(): ?string
     {
         return $this->action;
     }
 
-    /**
-     * Specification of the type of action.
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 }
-

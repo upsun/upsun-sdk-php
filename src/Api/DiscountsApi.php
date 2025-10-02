@@ -37,9 +37,15 @@ final class DiscountsApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,17 @@ final class DiscountsApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Get an organization discount
      *
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Discount
+     *
+     * @see https://docs.upsun.com/api/#tag/Discounts/operation/get-discount
      */
     public function getDiscount(
         string $id
@@ -64,11 +76,13 @@ final class DiscountsApi extends AbstractApi
     }
 
     /**
-     * Get an organization discount
+     * Get an organization discount with HTTP Info
+     *
+     * @return \Upsun\Model\Discount
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getDiscountWithHttpInfo(
+    private function getDiscountWithHttpInfo(
         string $id
     ): \Upsun\Model\Discount {
         $request = $this->getDiscountRequest(
@@ -79,14 +93,17 @@ final class DiscountsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Discount',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -96,9 +113,10 @@ final class DiscountsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getDiscountRequest(
+    private function getDiscountRequest(
         string $id
     ): RequestInterface {
+
         // verify the required parameter 'id' is set
         if (
             $id === null
@@ -106,18 +124,16 @@ final class DiscountsApi extends AbstractApi
             && count($id) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getDiscount'
+                'Missing the required parameter $id 
+                when calling getDiscount'
             );
         }
-
         $resourcePath = '/discounts/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($id !== null) {
@@ -136,7 +152,7 @@ final class DiscountsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -179,41 +195,49 @@ final class DiscountsApi extends AbstractApi
     /**
      * Get the value of the First Project Incentive discount
      *
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\GetTypeAllowance200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Discounts/operation/get-type-allowance
      */
     public function getTypeAllowance(
-        
-    ): \Upsun\Model\GetTypeAllowance200Response {
+    ): \Upsun\Model\GetTypeAllowance200Response 
+    {
         return $this->getTypeAllowanceWithHttpInfo(
-            
         );
     }
 
     /**
-     * Get the value of the First Project Incentive discount
+     * Get the value of the First Project Incentive discount with HTTP Info
+     *
+     * @return \Upsun\Model\GetTypeAllowance200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getTypeAllowanceWithHttpInfo(
-        
-    ): \Upsun\Model\GetTypeAllowance200Response {
+    private function getTypeAllowanceWithHttpInfo(
+    ): \Upsun\Model\GetTypeAllowance200Response 
+    {
         $request = $this->getTypeAllowanceRequest(
-            
         );
 
         try {
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\GetTypeAllowance200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -223,18 +247,14 @@ final class DiscountsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getTypeAllowanceRequest(
-        
+    private function getTypeAllowanceRequest(
     ): RequestInterface {
-
         $resourcePath = '/discounts/types/allowance';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
 
 
@@ -245,7 +265,7 @@ final class DiscountsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -288,8 +308,14 @@ final class DiscountsApi extends AbstractApi
     /**
      * List organization discounts
      *
+     * Retrieves all applicable discounts granted to the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListOrgDiscounts200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Discounts/operation/list-org-discounts
      */
     public function listOrgDiscounts(
         string $organizationId
@@ -300,11 +326,13 @@ final class DiscountsApi extends AbstractApi
     }
 
     /**
-     * List organization discounts
+     * List organization discounts with HTTP Info
+     *
+     * @return \Upsun\Model\ListOrgDiscounts200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listOrgDiscountsWithHttpInfo(
+    private function listOrgDiscountsWithHttpInfo(
         string $organizationId
     ): \Upsun\Model\ListOrgDiscounts200Response {
         $request = $this->listOrgDiscountsRequest(
@@ -315,14 +343,17 @@ final class DiscountsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListOrgDiscounts200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -332,9 +363,10 @@ final class DiscountsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgDiscountsRequest(
+    private function listOrgDiscountsRequest(
         string $organizationId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (
             $organizationId === null
@@ -342,18 +374,16 @@ final class DiscountsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organizationId when calling listOrgDiscounts'
+                'Missing the required parameter $organizationId 
+                when calling listOrgDiscounts'
             );
         }
-
         $resourcePath = '/organizations/{organization_id}/discounts';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($organizationId !== null) {
@@ -372,7 +402,7 @@ final class DiscountsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

@@ -3,6 +3,8 @@
 /**
  * Low level CurrentUser (auto-generated)
  *
+ * The user object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,30 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CurrentUser implements JsonSerializable
+final class CurrentUser implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'uuid' => 'uuid',
-        'username' => 'username',
-        'displayName' => 'display_name',
-        'status' => 'status',
-        'mail' => 'mail',
-        'sshKeys' => 'ssh_keys',
-        'hasKey' => 'has_key',
-        'projects' => 'projects',
-        'sequence' => 'sequence',
-        'roles' => 'roles',
-        'picture' => 'picture',
-        'tickets' => 'tickets',
-        'trial' => 'trial',
-        'currentTrial' => 'current_trial'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $uuid = null,
@@ -55,33 +37,9 @@ final class CurrentUser implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'uuid' => '?string',
-            'username' => '?string',
-            'display_name' => '?string',
-            'status' => '?int',
-            'mail' => '?string',
-            'ssh_keys' => '\Upsun\Model\SSHKey[]',
-            'has_key' => '?bool',
-            'projects' => '\Upsun\Model\CurrentUserProjectsInner[]',
-            'sequence' => '?int',
-            'roles' => 'string[]',
-            'picture' => '?string',
-            'tickets' => '?object',
-            'trial' => '?bool',
-            'current_trial' => '\Upsun\Model\CurrentUserCurrentTrialInner[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -110,148 +68,87 @@ final class CurrentUser implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The UUID of the owner.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The UUID of the owner.
-     *
-     * @return string|null
-     */
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
 
-    /**
-     * The username of the owner.
-     *
-     * @return string|null
-     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-     * The full name of the owner.
-     *
-     * @return string|null
-     */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 
-    /**
-     * Status of the user. 0 = blocked; 1 = active.
-     *
-     * @return int|null
-     */
     public function getStatus(): ?int
     {
         return $this->status;
     }
 
-    /**
-     * The email address of the owner.
-     *
-     * @return string|null
-     */
     public function getMail(): ?string
     {
         return $this->mail;
     }
 
     /**
-     * The list of user's public SSH keys.
-     *
-     * @return \Upsun\Model\SSHKey[]|null
+     * @return SSHKey[]|null
      */
     public function getSshKeys(): ?array
     {
         return $this->sshKeys;
     }
 
-    /**
-     * The indicator whether the user has a public ssh key on file or not.
-     *
-     * @return bool|null
-     */
     public function getHasKey(): ?bool
     {
         return $this->hasKey;
     }
 
     /**
-     * @return \Upsun\Model\CurrentUserProjectsInner[]|null
+     * @return CurrentUserProjectsInner[]|null
      */
     public function getProjects(): ?array
     {
         return $this->projects;
     }
 
-    /**
-     * The sequential ID of the user.
-     *
-     * @return int|null
-     */
     public function getSequence(): ?int
     {
         return $this->sequence;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getRoles(): ?array
     {
         return $this->roles;
     }
 
-    /**
-     * The URL of the user image.
-     *
-     * @return string|null
-     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    /**
-     * Number of support tickets by status.
-     *
-     * @return object|null
-     */
     public function getTickets(): ?object
     {
         return $this->tickets;
     }
 
-    /**
-     * The indicator whether the user is in trial or not.
-     *
-     * @return bool|null
-     */
     public function getTrial(): ?bool
     {
         return $this->trial;
     }
 
     /**
-     * @return \Upsun\Model\CurrentUserCurrentTrialInner[]|null
+     * @return CurrentUserCurrentTrialInner[]|null
      */
     public function getCurrentTrial(): ?array
     {
         return $this->currentTrial;
     }
 }
-

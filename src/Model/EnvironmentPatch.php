@@ -12,27 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EnvironmentPatch implements JsonSerializable
+final class EnvironmentPatch implements ModelInterface, JsonSerializable
 {
-    public const TYPE_DEVELOPMENT = 'development';
-    public const TYPE_PRODUCTION = 'production';
-    public const TYPE_STAGING = 'staging';
-
-    private static array $attributeMap = [
-        'name' => 'name',
-        'title' => 'title',
-        'attributes' => 'attributes',
-        'type' => 'type',
-        'parent' => 'parent',
-        'cloneParentOnCreate' => 'clone_parent_on_create',
-        'httpAccess' => 'http_access',
-        'enableSmtp' => 'enable_smtp',
-        'restrictRobots' => 'restrict_robots'
-    ];
-
     public function __construct(
         private readonly ?string $parent = null,
         private readonly ?string $name = null,
@@ -40,33 +23,15 @@ final class EnvironmentPatch implements JsonSerializable
         private readonly ?array $attributes = [],
         private readonly ?string $type = null,
         private readonly ?bool $cloneParentOnCreate = null,
-        private readonly ?\Upsun\Model\HttpAccessPermissions1 $httpAccess = null,
+        private readonly ?HttpAccessPermissions1 $httpAccess = null,
         private readonly ?bool $enableSmtp = null,
         private readonly ?bool $restrictRobots = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'name' => '?string',
-            'title' => '?string',
-            'attributes' => 'string[]',
-            'type' => '?string',
-            'parent' => '?string',
-            'clone_parent_on_create' => '?bool',
-            'http_access' => '?\Upsun\Model\HttpAccessPermissions1',
-            'enable_smtp' => '?bool',
-            'restrict_robots' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -89,76 +54,48 @@ final class EnvironmentPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * @return string|null
-     */
     public function getParent(): ?string
     {
         return $this->parent;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getCloneParentOnCreate(): ?bool
     {
         return $this->cloneParentOnCreate;
     }
 
-    /**
-     * @return \Upsun\Model\HttpAccessPermissions1|null
-     */
-    public function getHttpAccess(): ?\Upsun\Model\HttpAccessPermissions1
+    public function getHttpAccess(): ?HttpAccessPermissions1
     {
         return $this->httpAccess;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getEnableSmtp(): ?bool
     {
         return $this->enableSmtp;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getRestrictRobots(): ?bool
     {
         return $this->restrictRobots;
     }
 }
-

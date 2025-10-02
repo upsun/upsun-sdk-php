@@ -12,40 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class VerifyPhoneNumberRequest implements JsonSerializable
+final class VerifyPhoneNumberRequest implements ModelInterface, JsonSerializable
 {
-    public const CHANNEL_SMS = 'sms';
-    public const CHANNEL_WHATSAPP = 'whatsapp';
-    public const CHANNEL_CALL = 'call';
-
-    private static array $attributeMap = [
-        'channel' => 'channel',
-        'phoneNumber' => 'phone_number'
-    ];
-
     public function __construct(
         private readonly string $channel,
         private readonly string $phoneNumber,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'channel' => 'string',
-            'phone_number' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -61,24 +40,13 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The channel used to receive the verification code.
-     *
-     * @return string
-     */
     public function getChannel(): string
     {
         return $this->channel;
     }
 
-    /**
-     * The phone number used to receive the verification code.
-     *
-     * @return string
-     */
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
     }
 }
-

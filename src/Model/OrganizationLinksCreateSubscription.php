@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationLinksCreateSubscription (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationLinksCreateSubscription implements JsonSerializable
+final class OrganizationLinksCreateSubscription implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'href' => 'href',
-        'method' => 'method'
-    ];
-
     public function __construct(
         private readonly ?string $href = null,
         private readonly ?string $method = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'href' => '?string',
-            'method' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +41,13 @@ final class OrganizationLinksCreateSubscription implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * URL of the link.
-     *
-     * @return string|null
-     */
     public function getHref(): ?string
     {
         return $this->href;
     }
 
-    /**
-     * The HTTP method to use.
-     *
-     * @return string|null
-     */
     public function getMethod(): ?string
     {
         return $this->method;
     }
 }
-

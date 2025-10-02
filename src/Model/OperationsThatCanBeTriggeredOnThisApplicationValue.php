@@ -12,43 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSerializable
+final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelInterface, JsonSerializable
 {
-    public const ROLE_ADMIN = 'admin';
-    public const ROLE_CONTRIBUTOR = 'contributor';
-    public const ROLE_VIEWER = 'viewer';
-
-    private static array $attributeMap = [
-        'commands' => 'commands',
-        'timeout' => 'timeout',
-        'role' => 'role'
-    ];
-
     public function __construct(
-        private readonly \Upsun\Model\TheCommandsDefinition $commands,
+        private readonly TheCommandsDefinition $commands,
         private readonly string $role,
-        private readonly ?int $timeout = null,
+        private readonly ?int $timeout,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'commands' => '\Upsun\Model\TheCommandsDefinition',
-            'timeout' => '?int',
-            'role' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -65,28 +42,18 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\TheCommandsDefinition
-     */
-    public function getCommands(): \Upsun\Model\TheCommandsDefinition
+    public function getCommands(): TheCommandsDefinition
     {
         return $this->commands;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTimeout(): ?int
     {
         return $this->timeout;
     }
 
-    /**
-     * @return string
-     */
     public function getRole(): string
     {
         return $this->role;
     }
 }
-

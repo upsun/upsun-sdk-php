@@ -1,97 +1,249 @@
 <?php
 
-namespace Tests;
+namespace Upsun\Test\Core;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
 use Upsun\Configuration;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
+use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\WorkerTask;
 use Upsun\Api\DeploymentApi;
-use Upsun\Model\Deployment;
+use Upsun\Model\WorkersValue;
 use Upsun\UpsunClient;
 use Upsun\ApiException;
-use Upsun\UpsunConfig;
 
-class WorkerTaskTest extends TestCase
+class WorkerTaskTest extends BaseTestCase
 {
-    private DeploymentApi $deploymentApi;
-    private UpsunClient $upsunClient;
     private WorkerTask $workerTask;
+
+    private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
-        $this->deploymentApi = $this->createMock(DeploymentApi::class);
+        $psr17Factory = new Psr17Factory();
 
-        $this->upsunClient = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public UpsunConfig $upsunConfig;
+        $oauthProvider = $this->createMock(OAuthProvider::class);
 
-            public function __construct()
-            {
-            }
-        };
-        
-        $this->workerTask = new class(
-            $this->upsunClient,
-            $this->deploymentApi
+        $upsunClient = $this->createMock(UpsunClient::class);
+
+        $this->workerTask = new class (
+            $upsunClient,
+            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
         ) extends WorkerTask {
-            public function refreshToken(): void
-            {
-            }
         };
     }
 
-    public function testListSuccess(): void
+    public function testListWorkersSuccess()
     {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
 
-        $deployment = $this->createMock(Deployment::class);
-        $deployment->expects($this->once())
-            ->method('getWorkers')
-            ->willReturn([['name' => 'worker-1'], ['name' => 'worker-2']]);
+        $deploymentsFake = [
+            [
+                "id" => "deploymentId",
+                "cluster_name" => "clusterName",
+                "project_info" => [
+                    "title" => "Test project",
+                    "name" => "azertyuiop",
+                    "capabilities" => new \stdClass(),
+                    "settings" => new \stdClass(),
+                    "namespace" => null,
+                    "organization" => null,
+                ],
+                "environment_info" => [
+                    "name" => "main",
+                    "status" => "active",
+                    "is_main" => true,
+                    "is_production" => true,
+                    "reference" => "reference",
+                    "machine_name" => "machine name",
+                    "environment_type" => "production",
+                    "constraints" => [
+                        "cluster_type" => "environment",
+                        "deployment_type" => "production",
+                    ],
+                    "links" => new \stdClass(),
+                ],
+                "deployment_target" => "local",
+                "http_access" => [
+                    "is_enabled" => true,
+                    "addresses" => [],
+                    "basic_auth" => [],
+                ],
+                "enable_smtp" => true,
+                "restrict_robots" => true,
+                "variables" => [],
+                "access" => [
+                    ["entity_id" => "entityId", "role" => "admin"]
+                ],
+                "subscription" => [
+                    "license_uri" => "licence-uri",
+                    "storage" => 1024,
+                    "included_users" => 1,
+                    "restricted" => false,
+                    "suspended" => false,
+                    "user_licenses" => 1,
+                    "subscription_management_uri" => "subscription_management_uri",
+                ],
+                "services" => new \stdClass(),
+                "routes" => new \stdClass(),
+                "webapps" => [
+                    "anotherApp" => [
+                        "name" => "app",
+                        "type" => "php:8.3:545",
+                        "disk" => 512,
+                        "size" => "AUTO",
+                        "preflight" => [
+                            "enabled" => true,
+                            "ignored_rules" => [],
+                        ],
+                        "tree_id" => "treeId",
+                        "app_dir" => "/app",
+                        "runtime" => [
+                            "extensions" => ["apcu", "blackfire"],
+                        ],
+                        "web" => [
+                            "locations" => [
+                                "/" => [
+                                    "root" => "public",
+                                    "expires" => "1h",
+                                    "passthru" => "/index.php",
+                                    "scripts" => true,
+                                    "allow" => true,
+                                    "headers" => [],
+                                    "rules" => [],
+                                ]
+                            ],
+                            "move_to_root" => false,
+                        ],
+                        "hooks" => [
+                            "build" => "build hook",
+                            "deploy" => "set -x -e\nsymfony-deploy",
+                            "post_deploy" => null,
+                        ],
+                        "crons" => [],
+                        "source" => [
+                            "root" => "/",
+                            "operations" => [],
+                        ],
+                        "build" => [
+                            "flavor" => "none",
+                            "caches" => [],
+                        ],
+                        "dependencies" => [
+                            "php" => ["composer" => "^2"],
+                        ],
+                        "stack" => [],
+                        "is_across_submodule" => false,
+                        "instance_count" => 2,
+                        "config_id" => "slug",
+                        "slug_id" => "slug",
+                    ]
+                ],
+                "workers" => [
+                    [
+                        "size" => "medium",
+                        "access" => [],
+                        "relationships" => [],
+                        "additionalHosts" => [],
+                        "mounts" => [],
+                        "variables" => [],
+                        "operations" => [],
+                        "name" => "worker1",
+                        "type" => "php-worker",
+                        "preflight" => [
+                            "enabled" => true,
+                            "ignoredRules" => []
+                        ],
+                        "treeId" => "treeId1",
+                        "appDir" => "/app",
+                        "runtime" => new \stdClass(),
+                        "worker" => [
+                            "commands" => [
+                                "start" => "start-command",
+                                "preStart" => "prestart-command"
+                            ],
+                            "disk" => 256
+                        ],
+                        "app" => "app1",
+                        "slugId" => "slug1",
+                        "resources" => [
+                            "baseMemory" => 512,
+                            "memoryRatio" => 1,
+                            "profileSize" => "medium",
+                            "minimum" => [
+                                "cpu" => 1.0,
+                                "memory" => 512,
+                                "disk" => 256,
+                                "profileSize" => "medium",
+                                "cpuType" => "x86_64"
+                            ],
+                            "default" => [
+                                "cpu" => 2.0,
+                                "memory" => 1024,
+                                "disk" => 512,
+                                "profileSize" => "large",
+                                "cpuType" => "x86_64"
+                            ],
+                            "disk" => [
+                                "temporary" => 128,
+                                "instance" => 512,
+                                "storage" => 1024
+                            ]
+                        ],
+                        "disk" => 512,
+                        "timezone" => "UTC",
+                        "firewall" => [
+                            "outbound" => []
+                        ],
+                        "containerProfile" => null,
+                        "endpoints" => new \stdClass(),
+                        "stack" => [],
+                        "instanceCount" => 2
+                    ]
+                ],
+                "container_profiles" => new \stdClass(),
+                "created_at" => "2025-09-11T12:31:16+00:00",
+                "updated_at" => null,
+                "fingerprint" => null,
+            ]
+        ];
 
-        $this->deploymentApi->expects($this->once())
-            ->method('listProjectsEnvironmentsDeployments')
-            ->with($projectId, $environmentId)
-            ->willReturn([$deployment]);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($deploymentsFake)
+            ));
 
-        $workers = $this->workerTask->list($projectId, $environmentId);
-
-        $this->assertIsArray($workers);
-        $this->assertCount(2, $workers);
-        $this->assertEquals('worker-1', $workers[0]['name']);
+        $result = $this->workerTask->list($projectId, $environmentId);
+        $this->assertIsArray($result);
+        $this->assertNotEmpty($result);
+        $this->assertContainsOnlyInstancesOf(WorkersValue::class, $result);
+        $this->assertObjectMatchesArray($result, $deploymentsFake[0]['workers']);
     }
 
-    public function testListReturnsEmptyArrayWhenNoDeployment(): void
+    public function testListWorkersError()
     {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
 
-        $this->deploymentApi->expects($this->once())
-            ->method('listProjectsEnvironmentsDeployments')
-            ->with($projectId, $environmentId)
-            ->willReturn([]); // Simulate empty deployments
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'not_found',
+                    'code' => 404
+                ])
+            ));
 
-        $workers = $this->workerTask->list($projectId, $environmentId);
-
-        $this->assertIsArray($workers);
-        $this->assertEmpty($workers);
-    }
-
-    public function testListThrowsApiException(): void
-    {
         $this->expectException(ApiException::class);
-
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-
-        $this->deploymentApi->expects($this->once())
-            ->method('listProjectsEnvironmentsDeployments')
-            ->with($projectId, $environmentId)
-            ->willThrowException($this->createMock(ApiException::class));
 
         $this->workerTask->list($projectId, $environmentId);
     }

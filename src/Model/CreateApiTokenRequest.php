@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CreateApiTokenRequest implements JsonSerializable
+final class CreateApiTokenRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'name' => 'name'
-    ];
-
     public function __construct(
         private readonly string $name,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'name' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,14 +38,8 @@ final class CreateApiTokenRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The token name.
-     *
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 }
-

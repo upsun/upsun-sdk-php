@@ -12,42 +12,26 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Tree implements JsonSerializable
+final class Tree implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'sha' => 'sha',
-        'tree' => 'tree'
-    ];
-
     public function __construct(
+        private readonly string $id,
         private readonly string $sha,
         private readonly array $tree,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'sha' => 'string',
-            'tree' => '\Upsun\Model\TheTreeItemsInner[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'sha' => $this->sha,
             'tree' => $this->tree,
         ];
@@ -58,20 +42,21 @@ final class Tree implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getSha(): string
     {
         return $this->sha;
     }
 
     /**
-     * @return \Upsun\Model\TheTreeItemsInner[]
+     * @return TheTreeItemsInner[]
      */
     public function getTree(): array
     {
         return $this->tree;
     }
 }
-

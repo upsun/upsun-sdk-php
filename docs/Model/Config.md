@@ -21,5 +21,6 @@ Name | Type | Description | Notes
 **healthSlack** | [**\Upsun\Model\HealthSlackNotificationIntegrationConfigurations**](HealthSlackNotificationIntegrationConfigurations.md) |  | [optional]
 **cdnFastly** | [**\Upsun\Model\FastlyCDNIntegrationConfigurations**](FastlyCDNIntegrationConfigurations.md) |  | [optional]
 **blackfire** | [**\Upsun\Model\BlackfireIntegrationConfigurations**](BlackfireIntegrationConfigurations.md) |  | [optional]
+**otlp** | [**\Upsun\Model\OpenTelemetryLogForwardingIntegrationConfigurations**](OpenTelemetryLogForwardingIntegrationConfigurations.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -3,6 +3,7 @@
 /**
  * Low level ProjectOptionsDefaults (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,19 +13,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ProjectOptionsDefaults implements JsonSerializable
+final class ProjectOptionsDefaults implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'settings' => 'settings',
-        'variables' => 'variables',
-        'access' => 'access',
-        'capabilities' => 'capabilities'
-    ];
-
     public function __construct(
         private readonly ?object $settings = null,
         private readonly ?object $variables = null,
@@ -33,22 +25,9 @@ final class ProjectOptionsDefaults implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'settings' => '?object',
-            'variables' => '?object',
-            'access' => '?object',
-            'capabilities' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,44 +45,23 @@ final class ProjectOptionsDefaults implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The project settings.
-     *
-     * @return object|null
-     */
     public function getSettings(): ?object
     {
         return $this->settings;
     }
 
-    /**
-     * The project variables.
-     *
-     * @return object|null
-     */
     public function getVariables(): ?object
     {
         return $this->variables;
     }
 
-    /**
-     * The project access list.
-     *
-     * @return object|null
-     */
     public function getAccess(): ?object
     {
         return $this->access;
     }
 
-    /**
-     * The project capabilities.
-     *
-     * @return object|null
-     */
     public function getCapabilities(): ?object
     {
         return $this->capabilities;
     }
 }
-

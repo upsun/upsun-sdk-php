@@ -12,46 +12,22 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EnvironmentRestoreInput implements JsonSerializable
+final class EnvironmentRestoreInput implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'environmentName' => 'environment_name',
-        'branchFrom' => 'branch_from',
-        'restoreCode' => 'restore_code',
-        'restoreResources' => 'restore_resources',
-        'resources' => 'resources'
-    ];
-
     public function __construct(
         private readonly bool $restoreCode,
         private readonly bool $restoreResources,
-        private readonly ?string $environmentName = null,
-        private readonly ?string $branchFrom = null,
-        private readonly ?\Upsun\Model\Resources5 $resources = null,
+        private readonly ?string $environmentName,
+        private readonly ?string $branchFrom,
+        private readonly ?Resources6 $resources,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'environment_name' => '?string',
-            'branch_from' => '?string',
-            'restore_code' => 'bool',
-            'restore_resources' => 'bool',
-            'resources' => '?\Upsun\Model\Resources5',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -70,44 +46,28 @@ final class EnvironmentRestoreInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getEnvironmentName(): ?string
     {
         return $this->environmentName;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBranchFrom(): ?string
     {
         return $this->branchFrom;
     }
 
-    /**
-     * @return bool
-     */
     public function getRestoreCode(): bool
     {
         return $this->restoreCode;
     }
 
-    /**
-     * @return bool
-     */
     public function getRestoreResources(): bool
     {
         return $this->restoreResources;
     }
 
-    /**
-     * @return \Upsun\Model\Resources5|null
-     */
-    public function getResources(): ?\Upsun\Model\Resources5
+    public function getResources(): ?Resources6
     {
         return $this->resources;
     }
 }
-

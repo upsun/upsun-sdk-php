@@ -12,19 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
+final class ProfileCurrentTrialProjectsTotal implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'amount' => 'amount',
-        'currencyCode' => 'currency_code',
-        'currencySymbol' => 'currency_symbol',
-        'formatted' => 'formatted'
-    ];
-
     public function __construct(
         private readonly ?int $amount = null,
         private readonly ?string $currencyCode = null,
@@ -33,22 +24,9 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'amount' => '?int',
-            'currency_code' => '?string',
-            'currency_symbol' => '?string',
-            'formatted' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,44 +44,23 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Trial project cost
-     *
-     * @return int|null
-     */
     public function getAmount(): ?int
     {
         return $this->amount;
     }
 
-    /**
-     * Currency code
-     *
-     * @return string|null
-     */
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
 
-    /**
-     * Currency symbol
-     *
-     * @return string|null
-     */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
 
-    /**
-     * Trial project cost formatted with currency sign
-     *
-     * @return string|null
-     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 }
-

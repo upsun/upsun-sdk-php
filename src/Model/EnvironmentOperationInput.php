@@ -12,37 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EnvironmentOperationInput implements JsonSerializable
+final class EnvironmentOperationInput implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'service' => 'service',
-        'operation' => 'operation'
-    ];
-
     public function __construct(
         private readonly string $service,
         private readonly string $operation,
+        private readonly array $parameters,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'service' => 'string',
-            'operation' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -50,6 +33,7 @@ final class EnvironmentOperationInput implements JsonSerializable
         return [
             'service' => $this->service,
             'operation' => $this->operation,
+            'parameters' => $this->parameters,
         ];
     }
 
@@ -58,20 +42,18 @@ final class EnvironmentOperationInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getService(): string
     {
         return $this->service;
     }
 
-    /**
-     * @return string
-     */
     public function getOperation(): string
     {
         return $this->operation;
     }
-}
 
+    public function getParameters(): array
+    {
+        return $this->parameters;
+    }
+}

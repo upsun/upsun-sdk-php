@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class StrictTransportSecurityOptions implements JsonSerializable
+final class StrictTransportSecurityOptions implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'enabled' => 'enabled',
-        'includeSubdomains' => 'include_subdomains',
-        'preload' => 'preload'
-    ];
-
     public function __construct(
-        private readonly ?bool $enabled = null,
-        private readonly ?bool $includeSubdomains = null,
-        private readonly ?bool $preload = null,
+        private readonly ?bool $enabled,
+        private readonly ?bool $includeSubdomains,
+        private readonly ?bool $preload,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enabled' => '?bool',
-            'include_subdomains' => '?bool',
-            'preload' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class StrictTransportSecurityOptions implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool|null
-     */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIncludeSubdomains(): ?bool
     {
         return $this->includeSubdomains;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPreload(): ?bool
     {
         return $this->preload;
     }
 }
-

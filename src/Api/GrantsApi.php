@@ -37,9 +37,15 @@ final class GrantsApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,19 @@ final class GrantsApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * List extended access of a user
      *
+     * List extended access of the given user, which includes both individual and team access to project and
+     * organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListUserExtendedAccess200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Grants/operation/list-user-extended-access
      */
     public function listUserExtendedAccess(
         string $userId,
@@ -70,11 +84,13 @@ final class GrantsApi extends AbstractApi
     }
 
     /**
-     * List extended access of a user
+     * List extended access of a user with HTTP Info
+     *
+     * @return \Upsun\Model\ListUserExtendedAccess200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listUserExtendedAccessWithHttpInfo(
+    private function listUserExtendedAccessWithHttpInfo(
         string $userId,
         ?\Upsun\Model\StringFilter $filterResourceType = null,
         ?\Upsun\Model\StringFilter $filterOrganizationId = null,
@@ -91,14 +107,17 @@ final class GrantsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListUserExtendedAccess200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -108,12 +127,13 @@ final class GrantsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listUserExtendedAccessRequest(
+    private function listUserExtendedAccessRequest(
         string $userId,
         ?\Upsun\Model\StringFilter $filterResourceType = null,
         ?\Upsun\Model\StringFilter $filterOrganizationId = null,
         ?\Upsun\Model\StringFilter $filterPermissions = null
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (
             $userId === null
@@ -121,9 +141,12 @@ final class GrantsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $userId when calling listUserExtendedAccess'
+                'Missing the required parameter $userId 
+                when calling listUserExtendedAccess'
             );
         }
+
+
 
         $resourcePath = '/users/{user_id}/extended-access';
         $formParams = [];
@@ -139,9 +162,13 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[resource_type]'] = $filterResourceType->getEq();
+                $queryParams['filter[resource_type]'] = $filterResourceType instanceof \DateTime
+                    ? $filterResourceType->format(DATE_ATOM)
+                    : ($filterResourceType->getEq());
             }
         }
+
+
 
         // query params
         if ($filterOrganizationId !== null) {
@@ -150,9 +177,13 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filterOrganizationId->getEq();
+                $queryParams['filter[organization_id]'] = $filterOrganizationId instanceof \DateTime
+                    ? $filterOrganizationId->format(DATE_ATOM)
+                    : ($filterOrganizationId->getEq());
             }
         }
+
+
 
         // query params
         if ($filterPermissions !== null) {
@@ -161,7 +192,9 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[permissions]'] = $filterPermissions->getEq();
+                $queryParams['filter[permissions]'] = $filterPermissions instanceof \DateTime
+                    ? $filterPermissions->format(DATE_ATOM)
+                    : ($filterPermissions->getEq());
             }
         }
 
@@ -184,7 +217,7 @@ final class GrantsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

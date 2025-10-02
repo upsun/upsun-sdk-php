@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ConfigurationForPreFlightChecks implements JsonSerializable
+final class ConfigurationForPreFlightChecks implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'enabled' => 'enabled',
-        'ignoredRules' => 'ignored_rules'
-    ];
-
     public function __construct(
         private readonly bool $enabled,
         private readonly array $ignoredRules,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enabled' => 'bool',
-            'ignored_rules' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +40,13 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return string[]
-     */
     public function getIgnoredRules(): array
     {
         return $this->ignoredRules;
     }
 }
-

@@ -3,6 +3,8 @@
 /**
  * Low level Subscription (auto-generated)
  *
+ * The subscription object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,52 +14,17 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Subscription implements JsonSerializable
+final class Subscription implements ModelInterface, JsonSerializable
 {
-    public const STATUS_REQUESTED = 'requested';
-    public const STATUS_PROVISIONING_FAILURE = 'provisioning failure';
-    public const STATUS_PROVISIONING = 'provisioning';
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_SUSPENDED = 'suspended';
-    public const STATUS_DELETED = 'deleted';
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'status' => 'status',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'owner' => 'owner',
-        'ownerInfo' => 'owner_info',
-        'vendor' => 'vendor',
-        'plan' => 'plan',
-        'environments' => 'environments',
-        'storage' => 'storage',
-        'userLicenses' => 'user_licenses',
-        'projectId' => 'project_id',
-        'projectEndpoint' => 'project_endpoint',
-        'projectTitle' => 'project_title',
-        'projectRegion' => 'project_region',
-        'projectRegionLabel' => 'project_region_label',
-        'projectUi' => 'project_ui',
-        'projectOptions' => 'project_options',
-        'agencySite' => 'agency_site',
-        'invoiced' => 'invoiced',
-        'hipaa' => 'hipaa',
-        'isTrialPlan' => 'is_trial_plan',
-        'services' => 'services',
-        'green' => 'green'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $status = null,
         private readonly ?\DateTime $createdAt = null,
         private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $owner = null,
-        private readonly ?\Upsun\Model\OwnerInfo $ownerInfo = null,
+        private readonly ?OwnerInfo $ownerInfo = null,
         private readonly ?string $vendor = null,
         private readonly ?string $plan = null,
         private readonly ?int $environments = null,
@@ -69,7 +36,7 @@ final class Subscription implements JsonSerializable
         private readonly ?string $projectRegion = null,
         private readonly ?string $projectRegionLabel = null,
         private readonly ?string $projectUi = null,
-        private readonly ?\Upsun\Model\ProjectOptions $projectOptions = null,
+        private readonly ?ProjectOptions $projectOptions = null,
         private readonly ?bool $agencySite = null,
         private readonly ?bool $invoiced = null,
         private readonly ?bool $hipaa = null,
@@ -79,42 +46,9 @@ final class Subscription implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'status' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'owner' => '?string',
-            'owner_info' => '?\Upsun\Model\OwnerInfo',
-            'vendor' => '?string',
-            'plan' => '?string',
-            'environments' => '?int',
-            'storage' => '?int',
-            'user_licenses' => '?int',
-            'project_id' => '?string',
-            'project_endpoint' => '?string',
-            'project_title' => '?string',
-            'project_region' => '?string',
-            'project_region_label' => '?string',
-            'project_ui' => '?string',
-            'project_options' => '?\Upsun\Model\ProjectOptions',
-            'agency_site' => '?bool',
-            'invoiced' => '?bool',
-            'hipaa' => '?bool',
-            'is_trial_plan' => '?bool',
-            'services' => 'object[]',
-            'green' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -122,8 +56,8 @@ final class Subscription implements JsonSerializable
         return [
             'id' => $this->id,
             'status' => $this->status,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'owner' => $this->owner,
             'ownerInfo' => $this->ownerInfo,
             'vendor' => $this->vendor,
@@ -152,240 +86,123 @@ final class Subscription implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The internal ID of the subscription.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The status of the subscription.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * The date and time when the subscription was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the subscription was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The UUID of the owner.
-     *
-     * @return string|null
-     */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
 
-    /**
-     * @return \Upsun\Model\OwnerInfo|null
-     */
-    public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
+    public function getOwnerInfo(): ?OwnerInfo
     {
         return $this->ownerInfo;
     }
 
-    /**
-     * The machine name of the vendor the subscription belongs to.
-     *
-     * @return string|null
-     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    /**
-     * The plan type of the subscription.
-     *
-     * @return string|null
-     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * The number of environments which can be provisioned on the project.
-     *
-     * @return int|null
-     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
 
-    /**
-     * The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values.
-     *
-     * @return int|null
-     */
     public function getStorage(): ?int
     {
         return $this->storage;
     }
 
-    /**
-     * The number of chargeable users who currently have access to the project. Manage this value by adding and removing users through the Platform project API. Staff and billing/administrative contacts can be added to a project for no charge. Contact support for questions about user licenses.
-     *
-     * @return int|null
-     */
     public function getUserLicenses(): ?int
     {
         return $this->userLicenses;
     }
 
-    /**
-     * The unique ID string of the project.
-     *
-     * @return string|null
-     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-    /**
-     * The project API endpoint for the project.
-     *
-     * @return string|null
-     */
     public function getProjectEndpoint(): ?string
     {
         return $this->projectEndpoint;
     }
 
-    /**
-     * The name given to the project. Appears as the title in the UI.
-     *
-     * @return string|null
-     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * The machine name of the region where the project is located. Cannot be changed after project creation.
-     *
-     * @return string|null
-     */
     public function getProjectRegion(): ?string
     {
         return $this->projectRegion;
     }
 
-    /**
-     * The human-readable name of the region where the project is located.
-     *
-     * @return string|null
-     */
     public function getProjectRegionLabel(): ?string
     {
         return $this->projectRegionLabel;
     }
 
-    /**
-     * The URL for the project's user interface.
-     *
-     * @return string|null
-     */
     public function getProjectUi(): ?string
     {
         return $this->projectUi;
     }
 
-    /**
-     * @return \Upsun\Model\ProjectOptions|null
-     */
-    public function getProjectOptions(): ?\Upsun\Model\ProjectOptions
+    public function getProjectOptions(): ?ProjectOptions
     {
         return $this->projectOptions;
     }
 
-    /**
-     * True if the project is an agency site.
-     *
-     * @return bool|null
-     */
     public function getAgencySite(): ?bool
     {
         return $this->agencySite;
     }
 
-    /**
-     * Whether the subscription is invoiced.
-     *
-     * @return bool|null
-     */
     public function getInvoiced(): ?bool
     {
         return $this->invoiced;
     }
 
-    /**
-     * Whether the project is marked as HIPAA.
-     *
-     * @return bool|null
-     */
     public function getHipaa(): ?bool
     {
         return $this->hipaa;
     }
 
-    /**
-     * Whether the project is currently on a trial plan.
-     *
-     * @return bool|null
-     */
     public function getIsTrialPlan(): ?bool
     {
         return $this->isTrialPlan;
     }
 
-    /**
-     * Details of the attached services.
-     *
-     * @return object[]|null
-     */
     public function getServices(): ?array
     {
         return $this->services;
     }
 
-    /**
-     * Whether the subscription is considered green (on a green region, belonging to a green vendor) for billing purposes.
-     *
-     * @return bool|null
-     */
     public function getGreen(): ?bool
     {
         return $this->green;
     }
 }
-

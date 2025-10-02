@@ -3,6 +3,7 @@
 /**
  * Low level DiscountCommitment (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,40 +13,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class DiscountCommitment implements JsonSerializable
+final class DiscountCommitment implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'months' => 'months',
-        'amount' => 'amount',
-        'net' => 'net'
-    ];
-
     public function __construct(
         private readonly ?int $months = null,
-        private readonly ?\Upsun\Model\DiscountCommitmentAmount $amount = null,
-        private readonly ?\Upsun\Model\DiscountCommitmentNet $net = null,
+        private readonly ?DiscountCommitmentAmount $amount = null,
+        private readonly ?DiscountCommitmentNet $net = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'months' => '?int',
-            'amount' => '?\Upsun\Model\DiscountCommitmentAmount',
-            'net' => '?\Upsun\Model\DiscountCommitmentNet',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,30 +43,18 @@ final class DiscountCommitment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Commitment period length in months.
-     *
-     * @return int|null
-     */
     public function getMonths(): ?int
     {
         return $this->months;
     }
 
-    /**
-     * @return \Upsun\Model\DiscountCommitmentAmount|null
-     */
-    public function getAmount(): ?\Upsun\Model\DiscountCommitmentAmount
+    public function getAmount(): ?DiscountCommitmentAmount
     {
         return $this->amount;
     }
 
-    /**
-     * @return \Upsun\Model\DiscountCommitmentNet|null
-     */
-    public function getNet(): ?\Upsun\Model\DiscountCommitmentNet
+    public function getNet(): ?DiscountCommitmentNet
     {
         return $this->net;
     }
 }
-

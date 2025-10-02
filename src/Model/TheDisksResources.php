@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheDisksResources implements JsonSerializable
+final class TheDisksResources implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'temporary' => 'temporary',
-        'instance' => 'instance',
-        'storage' => 'storage'
-    ];
-
     public function __construct(
-        private readonly ?int $temporary = null,
-        private readonly ?int $instance = null,
-        private readonly ?int $storage = null,
+        private readonly ?int $temporary,
+        private readonly ?int $instance,
+        private readonly ?int $storage,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'temporary' => '?int',
-            'instance' => '?int',
-            'storage' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class TheDisksResources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int|null
-     */
     public function getTemporary(): ?int
     {
         return $this->temporary;
     }
 
-    /**
-     * @return int|null
-     */
     public function getInstance(): ?int
     {
         return $this->instance;
     }
 
-    /**
-     * @return int|null
-     */
     public function getStorage(): ?int
     {
         return $this->storage;
     }
 }
-

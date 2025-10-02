@@ -3,6 +3,8 @@
 /**
  * Low level LineItemComponent (auto-generated)
  *
+ * A price component for a line item.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,19 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class LineItemComponent implements JsonSerializable
+final class LineItemComponent implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'amount' => 'amount',
-        'amountFormatted' => 'amount_formatted',
-        'displayTitle' => 'display_title',
-        'currency' => 'currency'
-    ];
-
     public function __construct(
         private readonly ?float $amount = null,
         private readonly ?string $amountFormatted = null,
@@ -33,22 +26,9 @@ final class LineItemComponent implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'amount' => '?float',
-            'amount_formatted' => '?string',
-            'display_title' => '?string',
-            'currency' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,44 +46,23 @@ final class LineItemComponent implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The price as a decimal.
-     *
-     * @return float|null
-     */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
 
-    /**
-     * The price formatted with currency.
-     *
-     * @return string|null
-     */
     public function getAmountFormatted(): ?string
     {
         return $this->amountFormatted;
     }
 
-    /**
-     * The display title for the component.
-     *
-     * @return string|null
-     */
     public function getDisplayTitle(): ?string
     {
         return $this->displayTitle;
     }
 
-    /**
-     * The currency code for the component.
-     *
-     * @return string|null
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 }
-

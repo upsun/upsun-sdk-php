@@ -9,5 +9,6 @@ Name | Type | Description | Notes
 **extra** | **array<string,string>** |  | [optional]
 **headers** | **array<string,string>** |  | [optional]
 **tlsVerify** | **bool** |  | [optional]
+**excludedServices** | **string[]** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

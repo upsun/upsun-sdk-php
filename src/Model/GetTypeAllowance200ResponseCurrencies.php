@@ -3,6 +3,7 @@
 /**
  * Low level GetTypeAllowance200ResponseCurrencies (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,46 +13,22 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
+final class GetTypeAllowance200ResponseCurrencies implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'eUR' => 'EUR',
-        'uSD' => 'USD',
-        'gBP' => 'GBP',
-        'aUD' => 'AUD',
-        'cAD' => 'CAD'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eUR = null,
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $uSD = null,
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gBP = null,
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aUD = null,
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cAD = null,
+        private readonly ?GetTypeAllowance200ResponseCurrenciesEUR $eUR = null,
+        private readonly ?GetTypeAllowance200ResponseCurrenciesUSD $uSD = null,
+        private readonly ?GetTypeAllowance200ResponseCurrenciesGBP $gBP = null,
+        private readonly ?GetTypeAllowance200ResponseCurrenciesAUD $aUD = null,
+        private readonly ?GetTypeAllowance200ResponseCurrenciesCAD $cAD = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'EUR' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR',
-            'USD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD',
-            'GBP' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP',
-            'AUD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD',
-            'CAD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -70,44 +47,28 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null
-     */
-    public function getEUR(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR
+    public function getEUR(): ?GetTypeAllowance200ResponseCurrenciesEUR
     {
         return $this->eUR;
     }
 
-    /**
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null
-     */
-    public function getUSD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD
+    public function getUSD(): ?GetTypeAllowance200ResponseCurrenciesUSD
     {
         return $this->uSD;
     }
 
-    /**
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null
-     */
-    public function getGBP(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP
+    public function getGBP(): ?GetTypeAllowance200ResponseCurrenciesGBP
     {
         return $this->gBP;
     }
 
-    /**
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null
-     */
-    public function getAUD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD
+    public function getAUD(): ?GetTypeAllowance200ResponseCurrenciesAUD
     {
         return $this->aUD;
     }
 
-    /**
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null
-     */
-    public function getCAD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD
+    public function getCAD(): ?GetTypeAllowance200ResponseCurrenciesCAD
     {
         return $this->cAD;
     }
 }
-

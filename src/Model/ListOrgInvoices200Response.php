@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ListOrgInvoices200Response implements JsonSerializable
+final class ListOrgInvoices200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'items' => 'items'
-    ];
-
     public function __construct(
         private readonly ?array $items = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'items' => '\Upsun\Model\Invoice[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -55,11 +39,10 @@ final class ListOrgInvoices200Response implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\Invoice[]|null
+     * @return Invoice[]|null
      */
     public function getItems(): ?array
     {
         return $this->items;
     }
 }
-

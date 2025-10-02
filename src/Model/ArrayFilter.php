@@ -12,19 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ArrayFilter implements JsonSerializable
+final class ArrayFilter implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'eq' => 'eq',
-        'ne' => 'ne',
-        'in' => 'in',
-        'nin' => 'nin'
-    ];
-
     public function __construct(
         private readonly ?string $eq = null,
         private readonly ?string $ne = null,
@@ -33,22 +24,9 @@ final class ArrayFilter implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'eq' => '?string',
-            'ne' => '?string',
-            'in' => '?string',
-            'nin' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,44 +44,23 @@ final class ArrayFilter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Equal
-     *
-     * @return string|null
-     */
     public function getEq(): ?string
     {
         return $this->eq;
     }
 
-    /**
-     * Not equal
-     *
-     * @return string|null
-     */
     public function getNe(): ?string
     {
         return $this->ne;
     }
 
-    /**
-     * In (comma-separated list)
-     *
-     * @return string|null
-     */
     public function getIn(): ?string
     {
         return $this->in;
     }
 
-    /**
-     * Not in (comma-separated list)
-     *
-     * @return string|null
-     */
     public function getNin(): ?string
     {
         return $this->nin;
     }
 }
-

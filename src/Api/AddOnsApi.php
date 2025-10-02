@@ -37,9 +37,15 @@ final class AddOnsApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,18 @@ final class AddOnsApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Get add-ons
      *
+     * Retrieves information about the add-ons for an organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\OrganizationAddonsObject
+     *
+     * @see https://docs.upsun.com/api/#tag/Add-ons/operation/get-org-addons
      */
     public function getOrgAddons(
         string $organizationId
@@ -64,11 +77,13 @@ final class AddOnsApi extends AbstractApi
     }
 
     /**
-     * Get add-ons
+     * Get add-ons with HTTP Info
+     *
+     * @return \Upsun\Model\OrganizationAddonsObject
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getOrgAddonsWithHttpInfo(
+    private function getOrgAddonsWithHttpInfo(
         string $organizationId
     ): \Upsun\Model\OrganizationAddonsObject {
         $request = $this->getOrgAddonsRequest(
@@ -79,14 +94,17 @@ final class AddOnsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\OrganizationAddonsObject',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -96,9 +114,10 @@ final class AddOnsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getOrgAddonsRequest(
+    private function getOrgAddonsRequest(
         string $organizationId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (
             $organizationId === null
@@ -106,18 +125,16 @@ final class AddOnsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organizationId when calling getOrgAddons'
+                'Missing the required parameter $organizationId 
+                when calling getOrgAddons'
             );
         }
-
         $resourcePath = '/organizations/{organization_id}/addons';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($organizationId !== null) {
@@ -136,7 +153,7 @@ final class AddOnsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -175,5 +192,167 @@ final class AddOnsApi extends AbstractApi
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+    /**
+     * Update organization add-ons
+     *
+     * Updates the add-ons configuration for an organization.
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\OrganizationAddonsObject
+     *
+     * @see https://docs.upsun.com/api/#tag/Add-ons/operation/update-org-addons
+     */
+    public function updateOrgAddons(
+        string $organizationId,
+        \Upsun\Model\UpdateOrgAddonsRequest $updateOrgAddonsRequest
+    ): \Upsun\Model\OrganizationAddonsObject {
+        return $this->updateOrgAddonsWithHttpInfo(
+            $organizationId,
+            $updateOrgAddonsRequest
+        );
+    }
+
+    /**
+     * Update organization add-ons with HTTP Info
+     *
+     * @return \Upsun\Model\OrganizationAddonsObject
+     *
+     * @throws InvalidArgumentException|Exception
+     */
+    private function updateOrgAddonsWithHttpInfo(
+        string $organizationId,
+        \Upsun\Model\UpdateOrgAddonsRequest $updateOrgAddonsRequest
+    ): \Upsun\Model\OrganizationAddonsObject {
+        $request = $this->updateOrgAddonsRequest(
+            $organizationId,
+            $updateOrgAddonsRequest
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\OrganizationAddonsObject',
+                $request,
+                $response
+            );
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
+        }
+    }
+
+    /**
+     * Create request for operation 'updateOrgAddons'
+     *
+     * @throws InvalidArgumentException
+     */
+    private function updateOrgAddonsRequest(
+        string $organizationId,
+        \Upsun\Model\UpdateOrgAddonsRequest $updateOrgAddonsRequest
+    ): RequestInterface {
+
+        // verify the required parameter 'organizationId' is set
+        if (
+            $organizationId === null
+            || (is_array($organizationId)
+            && count($organizationId) === 0)
+        ) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $organizationId 
+                when calling updateOrgAddons'
+            );
+        }
+
+        // verify the required parameter 'updateOrgAddonsRequest' is set
+        if (
+            $updateOrgAddonsRequest === null
+            || (is_array($updateOrgAddonsRequest)
+            && count($updateOrgAddonsRequest) === 0)
+        ) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $updateOrgAddonsRequest 
+                when calling updateOrgAddons'
+            );
+        }
+        $resourcePath = '/organizations/{organization_id}/addons';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+        if ($organizationId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'organization_id' . '}',
+                ObjectSerializer::toPathValue($organizationId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json'],
+            'application/json',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($updateOrgAddonsRequest)) {
+            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($updateOrgAddonsRequest)
+                );
+            } else {
+                $httpBody = $updateOrgAddonsRequest;
+            }
+        } elseif ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 }

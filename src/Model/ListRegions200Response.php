@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ListRegions200Response implements JsonSerializable
+final class ListRegions200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'regions' => 'regions',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?array $regions = [],
-        private readonly ?\Upsun\Model\ListLinks $links = null,
+        private readonly ?ListLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'regions' => '\Upsun\Model\Region[]',
-            '_links' => '?\Upsun\Model\ListLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -59,19 +41,15 @@ final class ListRegions200Response implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\Region[]|null
+     * @return Region[]|null
      */
     public function getRegions(): ?array
     {
         return $this->regions;
     }
 
-    /**
-     * @return \Upsun\Model\ListLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\ListLinks
+    public function getLinks(): ?ListLinks
     {
         return $this->links;
     }
 }
-

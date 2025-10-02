@@ -3,6 +3,8 @@
 /**
  * Low level OrganizationAddonsObject (auto-generated)
  *
+ * The list of available and current add-ons of an organization.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,40 +14,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationAddonsObject implements JsonSerializable
+final class OrganizationAddonsObject implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'available' => 'available',
-        'current' => 'current',
-        'upgradesAvailable' => 'upgrades_available'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationAddonsObjectAvailable $available = null,
-        private readonly ?\Upsun\Model\OrganizationAddonsObjectCurrent $current = null,
-        private readonly ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgradesAvailable = null,
+        private readonly ?OrganizationAddonsObjectAvailable $available = null,
+        private readonly ?OrganizationAddonsObjectCurrent $current = null,
+        private readonly ?OrganizationAddonsObjectUpgradesAvailable $upgradesAvailable = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'available' => '?\Upsun\Model\OrganizationAddonsObjectAvailable',
-            'current' => '?\Upsun\Model\OrganizationAddonsObjectCurrent',
-            'upgrades_available' => '?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +44,18 @@ final class OrganizationAddonsObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationAddonsObjectAvailable|null
-     */
-    public function getAvailable(): ?\Upsun\Model\OrganizationAddonsObjectAvailable
+    public function getAvailable(): ?OrganizationAddonsObjectAvailable
     {
         return $this->available;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationAddonsObjectCurrent|null
-     */
-    public function getCurrent(): ?\Upsun\Model\OrganizationAddonsObjectCurrent
+    public function getCurrent(): ?OrganizationAddonsObjectCurrent
     {
         return $this->current;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null
-     */
-    public function getUpgradesAvailable(): ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable
+    public function getUpgradesAvailable(): ?OrganizationAddonsObjectUpgradesAvailable
     {
         return $this->upgradesAvailable;
     }
 }
-

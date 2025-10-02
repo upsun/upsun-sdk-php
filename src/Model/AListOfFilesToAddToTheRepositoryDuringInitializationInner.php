@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements JsonSerializable
+final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'path' => 'path',
-        'mode' => 'mode',
-        'contents' => 'contents'
-    ];
-
     public function __construct(
         private readonly string $path,
         private readonly int $mode,
@@ -31,21 +23,9 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'path' => 'string',
-            'mode' => 'int',
-            'contents' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getPath(): string
     {
         return $this->path;
     }
 
-    /**
-     * @return int
-     */
     public function getMode(): int
     {
         return $this->mode;
     }
 
-    /**
-     * @return string
-     */
     public function getContents(): string
     {
         return $this->contents;
     }
 }
-

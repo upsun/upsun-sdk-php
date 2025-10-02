@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationInvitationOwner (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationInvitationOwner implements JsonSerializable
+final class OrganizationInvitationOwner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'displayName' => 'display_name'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $displayName = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'display_name' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +41,13 @@ final class OrganizationInvitationOwner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the user.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The user's display name.
-     *
-     * @return string|null
-     */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 }
-

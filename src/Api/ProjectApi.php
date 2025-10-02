@@ -37,9 +37,15 @@ final class ProjectApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,20 @@ final class ProjectApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Clear project build cache
      *
+     * On rare occasions, a project's build cache can become corrupted. This endpoint will entirely flush the project's
+     * build cache. More information on [clearing the build cache can be found in our user
+     * documentation.](https://docs.upsun.com/anchors/troubleshoot/clear-build-cache/)
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Project/operation/action-projects-clear-build-cache
      */
     public function actionProjectsClearBuildCache(
         string $projectId
@@ -64,11 +79,13 @@ final class ProjectApi extends AbstractApi
     }
 
     /**
-     * Clear project build cache
+     * Clear project build cache with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function actionProjectsClearBuildCacheWithHttpInfo(
+    private function actionProjectsClearBuildCacheWithHttpInfo(
         string $projectId
     ): \Upsun\Model\AcceptedResponse {
         $request = $this->actionProjectsClearBuildCacheRequest(
@@ -79,14 +96,17 @@ final class ProjectApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -96,9 +116,10 @@ final class ProjectApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function actionProjectsClearBuildCacheRequest(
+    private function actionProjectsClearBuildCacheRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -106,18 +127,16 @@ final class ProjectApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling actionProjectsClearBuildCache'
+                'Missing the required parameter $projectId 
+                when calling actionProjectsClearBuildCache'
             );
         }
-
         $resourcePath = '/projects/{projectId}/clear_build_cache';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -136,7 +155,7 @@ final class ProjectApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -179,8 +198,14 @@ final class ProjectApi extends AbstractApi
     /**
      * Get a project
      *
+     * Retrieve the details of a single project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Project
+     *
+     * @see https://docs.upsun.com/api/#tag/Project/operation/get-projects
      */
     public function getProjects(
         string $projectId
@@ -191,11 +216,13 @@ final class ProjectApi extends AbstractApi
     }
 
     /**
-     * Get a project
+     * Get a project with HTTP Info
+     *
+     * @return \Upsun\Model\Project
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsWithHttpInfo(
+    private function getProjectsWithHttpInfo(
         string $projectId
     ): \Upsun\Model\Project {
         $request = $this->getProjectsRequest(
@@ -206,14 +233,17 @@ final class ProjectApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Project',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -223,9 +253,10 @@ final class ProjectApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsRequest(
+    private function getProjectsRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -233,18 +264,16 @@ final class ProjectApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling getProjects'
+                'Missing the required parameter $projectId 
+                when calling getProjects'
             );
         }
-
         $resourcePath = '/projects/{projectId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -263,7 +292,7 @@ final class ProjectApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -304,10 +333,17 @@ final class ProjectApi extends AbstractApi
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
     /**
-     * Get a project&#39;s capabilities
+     * Get a project's capabilities
+     *
+     * Get a list of capabilities on a project, as defined by the billing system. For instance, one special capability
+     * that could be defined on a project is large development environments.
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ProjectCapabilities
+     *
+     * @see https://docs.upsun.com/api/#tag/Project/operation/get-projects-capabilities
      */
     public function getProjectsCapabilities(
         string $projectId
@@ -318,11 +354,13 @@ final class ProjectApi extends AbstractApi
     }
 
     /**
-     * Get a project&#39;s capabilities
+     * Get a project's capabilities with HTTP Info
+     *
+     * @return \Upsun\Model\ProjectCapabilities
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsCapabilitiesWithHttpInfo(
+    private function getProjectsCapabilitiesWithHttpInfo(
         string $projectId
     ): \Upsun\Model\ProjectCapabilities {
         $request = $this->getProjectsCapabilitiesRequest(
@@ -333,14 +371,17 @@ final class ProjectApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ProjectCapabilities',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -350,9 +391,10 @@ final class ProjectApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsCapabilitiesRequest(
+    private function getProjectsCapabilitiesRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -360,18 +402,16 @@ final class ProjectApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling getProjectsCapabilities'
+                'Missing the required parameter $projectId 
+                when calling getProjectsCapabilities'
             );
         }
-
         $resourcePath = '/projects/{projectId}/capabilities';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -390,7 +430,7 @@ final class ProjectApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -433,8 +473,14 @@ final class ProjectApi extends AbstractApi
     /**
      * Update a project
      *
+     * Update the details of an existing project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Project/operation/update-projects
      */
     public function updateProjects(
         string $projectId,
@@ -447,11 +493,13 @@ final class ProjectApi extends AbstractApi
     }
 
     /**
-     * Update a project
+     * Update a project with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsWithHttpInfo(
+    private function updateProjectsWithHttpInfo(
         string $projectId,
         \Upsun\Model\ProjectPatch $projectPatch
     ): \Upsun\Model\AcceptedResponse {
@@ -464,14 +512,17 @@ final class ProjectApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -481,10 +532,11 @@ final class ProjectApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectsRequest(
+    private function updateProjectsRequest(
         string $projectId,
         \Upsun\Model\ProjectPatch $projectPatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -492,9 +544,11 @@ final class ProjectApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling updateProjects'
+                'Missing the required parameter $projectId 
+                when calling updateProjects'
             );
         }
+
         // verify the required parameter 'projectPatch' is set
         if (
             $projectPatch === null
@@ -502,18 +556,16 @@ final class ProjectApi extends AbstractApi
             && count($projectPatch) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectPatch when calling updateProjects'
+                'Missing the required parameter $projectPatch 
+                when calling updateProjects'
             );
         }
-
         $resourcePath = '/projects/{projectId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -534,11 +586,13 @@ final class ProjectApi extends AbstractApi
         // for model (json/xml)
         if (isset($projectPatch)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($projectPatch));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($projectPatch)
+                );
             } else {
                 $httpBody = $projectPatch;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

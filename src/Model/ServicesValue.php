@@ -12,68 +12,28 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ServicesValue implements JsonSerializable
+final class ServicesValue implements ModelInterface, JsonSerializable
 {
-    public const SIZE__2_XL = '2XL';
-    public const SIZE__4_XL = '4XL';
-    public const SIZE_AUTO = 'AUTO';
-    public const SIZE_L = 'L';
-    public const SIZE_M = 'M';
-    public const SIZE_S = 'S';
-    public const SIZE_XL = 'XL';
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'size' => 'size',
-        'disk' => 'disk',
-        'access' => 'access',
-        'configuration' => 'configuration',
-        'relationships' => 'relationships',
-        'firewall' => 'firewall',
-        'resources' => 'resources',
-        'containerProfile' => 'container_profile',
-        'endpoints' => 'endpoints'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $size,
         private readonly object $access,
         private readonly object $configuration,
         private readonly array $relationships,
-        private readonly ?int $disk = null,
-        private readonly ?\Upsun\Model\Firewall $firewall = null,
-        private readonly ?\Upsun\Model\Resources $resources = null,
-        private readonly ?string $containerProfile = null,
-        private readonly ?object $endpoints = null,
+        private readonly ?int $disk,
+        private readonly ?Firewall $firewall,
+        private readonly ?Resources $resources,
+        private readonly ?string $containerProfile,
+        private readonly ?object $endpoints,
+        private readonly ?int $instanceCount,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'size' => 'string',
-            'disk' => '?int',
-            'access' => 'object',
-            'configuration' => 'object',
-            'relationships' => 'string[]',
-            'firewall' => '?\Upsun\Model\Firewall',
-            'resources' => '?\Upsun\Model\Resources',
-            'container_profile' => '?string',
-            'endpoints' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -89,6 +49,7 @@ final class ServicesValue implements JsonSerializable
             'resources' => $this->resources,
             'containerProfile' => $this->containerProfile,
             'endpoints' => $this->endpoints,
+            'instanceCount' => $this->instanceCount,
         ];
     }
 
@@ -97,84 +58,58 @@ final class ServicesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getSize(): string
     {
         return $this->size;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDisk(): ?int
     {
         return $this->disk;
     }
 
-    /**
-     * @return object
-     */
     public function getAccess(): object
     {
         return $this->access;
     }
 
-    /**
-     * @return object
-     */
     public function getConfiguration(): object
     {
         return $this->configuration;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getRelationships(): array
     {
         return $this->relationships;
     }
 
-    /**
-     * @return \Upsun\Model\Firewall|null
-     */
-    public function getFirewall(): ?\Upsun\Model\Firewall
+    public function getFirewall(): ?Firewall
     {
         return $this->firewall;
     }
 
-    /**
-     * @return \Upsun\Model\Resources|null
-     */
-    public function getResources(): ?\Upsun\Model\Resources
+    public function getResources(): ?Resources
     {
         return $this->resources;
     }
 
-    /**
-     * @return string|null
-     */
     public function getContainerProfile(): ?string
     {
         return $this->containerProfile;
     }
 
-    /**
-     * @return object|null
-     */
     public function getEndpoints(): ?object
     {
         return $this->endpoints;
     }
-}
 
+    public function getInstanceCount(): ?int
+    {
+        return $this->instanceCount;
+    }
+}

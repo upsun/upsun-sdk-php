@@ -12,83 +12,41 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Project implements JsonSerializable
+final class Project implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'attributes' => 'attributes',
-        'title' => 'title',
-        'description' => 'description',
-        'owner' => 'owner',
-        'namespace' => 'namespace',
-        'organization' => 'organization',
-        'defaultBranch' => 'default_branch',
-        'status' => 'status',
-        'timezone' => 'timezone',
-        'region' => 'region',
-        'repository' => 'repository',
-        'subscription' => 'subscription',
-        'defaultDomain' => 'default_domain'
-    ];
-
     public function __construct(
+        private readonly string $id,
         private readonly array $attributes,
         private readonly string $title,
         private readonly string $description,
         private readonly string $owner,
-        private readonly \Upsun\Model\Status $status,
+        private readonly Status $status,
         private readonly string $timezone,
         private readonly string $region,
-        private readonly \Upsun\Model\RepositoryInformation $repository,
-        private readonly \Upsun\Model\SubscriptionInformation $subscription,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $namespace = null,
-        private readonly ?string $organization = null,
-        private readonly ?string $defaultBranch = null,
-        private readonly ?string $defaultDomain = null,
+        private readonly RepositoryInformation $repository,
+        private readonly SubscriptionInformation $subscription,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?string $namespace,
+        private readonly ?string $organization,
+        private readonly ?string $defaultBranch,
+        private readonly ?string $defaultDomain,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'attributes' => 'string[]',
-            'title' => 'string',
-            'description' => 'string',
-            'owner' => 'string',
-            'namespace' => '?string',
-            'organization' => '?string',
-            'default_branch' => '?string',
-            'status' => '\Upsun\Model\Status',
-            'timezone' => 'string',
-            'region' => 'string',
-            'repository' => '\Upsun\Model\RepositoryInformation',
-            'subscription' => '\Upsun\Model\SubscriptionInformation',
-            'default_domain' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'id' => $this->id,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'attributes' => $this->attributes,
             'title' => $this->title,
             'description' => $this->description,
@@ -100,8 +58,8 @@ final class Project implements JsonSerializable
             'timezone' => $this->timezone,
             'region' => $this->region,
             'repository' => $this->repository,
-            'subscription' => $this->subscription,
             'defaultDomain' => $this->defaultDomain,
+            'subscription' => $this->subscription,
         ];
     }
 
@@ -110,124 +68,83 @@ final class Project implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @return string
-     */
     public function getOwner(): string
     {
         return $this->owner;
     }
 
-    /**
-     * @return string|null
-     */
     public function getNamespace(): ?string
     {
         return $this->namespace;
     }
 
-    /**
-     * @return string|null
-     */
     public function getOrganization(): ?string
     {
         return $this->organization;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
 
-    /**
-     * @return \Upsun\Model\Status
-     */
-    public function getStatus(): \Upsun\Model\Status
+    public function getStatus(): Status
     {
         return $this->status;
     }
 
-    /**
-     * @return string
-     */
     public function getTimezone(): string
     {
         return $this->timezone;
     }
 
-    /**
-     * @return string
-     */
     public function getRegion(): string
     {
         return $this->region;
     }
 
-    /**
-     * @return \Upsun\Model\RepositoryInformation
-     */
-    public function getRepository(): \Upsun\Model\RepositoryInformation
+    public function getRepository(): RepositoryInformation
     {
         return $this->repository;
     }
 
-    /**
-     * @return \Upsun\Model\SubscriptionInformation
-     */
-    public function getSubscription(): \Upsun\Model\SubscriptionInformation
-    {
-        return $this->subscription;
-    }
-
-    /**
-     * @return string|null
-     */
     public function getDefaultDomain(): ?string
     {
         return $this->defaultDomain;
     }
-}
 
+    public function getSubscription(): SubscriptionInformation
+    {
+        return $this->subscription;
+    }
+}

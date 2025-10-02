@@ -12,19 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TeamMember implements JsonSerializable
+final class TeamMember implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'teamId' => 'team_id',
-        'userId' => 'user_id',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?string $teamId = null,
         private readonly ?string $userId = null,
@@ -33,22 +24,9 @@ final class TeamMember implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'team_id' => '?string',
-            'user_id' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -56,8 +34,8 @@ final class TeamMember implements JsonSerializable
         return [
             'teamId' => $this->teamId,
             'userId' => $this->userId,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -66,44 +44,23 @@ final class TeamMember implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the team.
-     *
-     * @return string|null
-     */
     public function getTeamId(): ?string
     {
         return $this->teamId;
     }
 
-    /**
-     * The ID of the user.
-     *
-     * @return string|null
-     */
     public function getUserId(): ?string
     {
         return $this->userId;
     }
 
-    /**
-     * The date and time when the team member was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the team member was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 }
-

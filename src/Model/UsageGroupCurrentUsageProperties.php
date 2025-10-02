@@ -3,6 +3,8 @@
 /**
  * Low level UsageGroupCurrentUsageProperties (auto-generated)
  *
+ * Current usage info for a usage group.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,24 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UsageGroupCurrentUsageProperties implements JsonSerializable
+final class UsageGroupCurrentUsageProperties implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'title' => 'title',
-        'type' => 'type',
-        'currentUsage' => 'current_usage',
-        'currentUsageFormatted' => 'current_usage_formatted',
-        'notCharged' => 'not_charged',
-        'freeQuantity' => 'free_quantity',
-        'freeQuantityFormatted' => 'free_quantity_formatted',
-        'dailyAverage' => 'daily_average',
-        'dailyAverageFormatted' => 'daily_average_formatted'
-    ];
-
     public function __construct(
         private readonly ?string $title = null,
         private readonly ?bool $type = null,
@@ -43,27 +31,9 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'title' => '?string',
-            'type' => '?bool',
-            'current_usage' => '?float',
-            'current_usage_formatted' => '?string',
-            'not_charged' => '?bool',
-            'free_quantity' => '?float',
-            'free_quantity_formatted' => '?string',
-            'daily_average' => '?float',
-            'daily_average_formatted' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -86,94 +56,48 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The title of the usage group.
-     *
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * The usage group type.
-     *
-     * @return bool|null
-     */
     public function getType(): ?bool
     {
         return $this->type;
     }
 
-    /**
-     * The value of current usage for the group.
-     *
-     * @return float|null
-     */
     public function getCurrentUsage(): ?float
     {
         return $this->currentUsage;
     }
 
-    /**
-     * The formatted value of current usage for the group.
-     *
-     * @return string|null
-     */
     public function getCurrentUsageFormatted(): ?string
     {
         return $this->currentUsageFormatted;
     }
 
-    /**
-     * Whether the group is not charged for the subscription.
-     *
-     * @return bool|null
-     */
     public function getNotCharged(): ?bool
     {
         return $this->notCharged;
     }
 
-    /**
-     * The amount of free usage for the group.
-     *
-     * @return float|null
-     */
     public function getFreeQuantity(): ?float
     {
         return $this->freeQuantity;
     }
 
-    /**
-     * The formatted amount of free usage for the group.
-     *
-     * @return string|null
-     */
     public function getFreeQuantityFormatted(): ?string
     {
         return $this->freeQuantityFormatted;
     }
 
-    /**
-     * The daily average usage calculated for the group.
-     *
-     * @return float|null
-     */
     public function getDailyAverage(): ?float
     {
         return $this->dailyAverage;
     }
 
-    /**
-     * The formatted daily average usage calculated for the group.
-     *
-     * @return string|null
-     */
     public function getDailyAverageFormatted(): ?string
     {
         return $this->dailyAverageFormatted;
     }
 }
-

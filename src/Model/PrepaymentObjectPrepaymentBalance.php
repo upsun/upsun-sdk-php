@@ -3,6 +3,7 @@
 /**
  * Low level PrepaymentObjectPrepaymentBalance (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,19 +13,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class PrepaymentObjectPrepaymentBalance implements JsonSerializable
+final class PrepaymentObjectPrepaymentBalance implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'formatted' => 'formatted',
-        'amount' => 'amount',
-        'currencyCode' => 'currency_code',
-        'currencySymbol' => 'currency_symbol'
-    ];
-
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?float $amount = null,
@@ -33,22 +25,9 @@ final class PrepaymentObjectPrepaymentBalance implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'formatted' => '?string',
-            'amount' => '?float',
-            'currency_code' => '?string',
-            'currency_symbol' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,44 +45,23 @@ final class PrepaymentObjectPrepaymentBalance implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Formatted balance.
-     *
-     * @return string|null
-     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
-    /**
-     * The balance amount.
-     *
-     * @return float|null
-     */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
 
-    /**
-     * The balance currency code.
-     *
-     * @return string|null
-     */
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
 
-    /**
-     * The balance currency symbol.
-     *
-     * @return string|null
-     */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
 }
-

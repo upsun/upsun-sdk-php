@@ -12,50 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class WorkersValue implements JsonSerializable
+final class WorkersValue implements ModelInterface, JsonSerializable
 {
-    public const SIZE__2_XL = '2XL';
-    public const SIZE__4_XL = '4XL';
-    public const SIZE_AUTO = 'AUTO';
-    public const SIZE_L = 'L';
-    public const SIZE_M = 'M';
-    public const SIZE_S = 'S';
-    public const SIZE_XL = 'XL';
-    public const SIZE_XS = 'XS';
-    public const ACCESS_ADMIN = 'admin';
-    public const ACCESS_CONTRIBUTOR = 'contributor';
-    public const ACCESS_VIEWER = 'viewer';
-
-    private static array $attributeMap = [
-        'resources' => 'resources',
-        'size' => 'size',
-        'disk' => 'disk',
-        'access' => 'access',
-        'relationships' => 'relationships',
-        'additionalHosts' => 'additional_hosts',
-        'mounts' => 'mounts',
-        'timezone' => 'timezone',
-        'variables' => 'variables',
-        'firewall' => 'firewall',
-        'containerProfile' => 'container_profile',
-        'operations' => 'operations',
-        'name' => 'name',
-        'type' => 'type',
-        'preflight' => 'preflight',
-        'treeId' => 'tree_id',
-        'appDir' => 'app_dir',
-        'endpoints' => 'endpoints',
-        'runtime' => 'runtime',
-        'worker' => 'worker',
-        'app' => 'app',
-        'stack' => 'stack',
-        'instanceCount' => 'instance_count',
-        'slugId' => 'slug_id'
-    ];
-
     public function __construct(
         private readonly string $size,
         private readonly array $access,
@@ -66,60 +26,27 @@ final class WorkersValue implements JsonSerializable
         private readonly array $operations,
         private readonly string $name,
         private readonly string $type,
-        private readonly \Upsun\Model\ConfigurationForPreFlightChecks $preflight,
+        private readonly ConfigurationForPreFlightChecks $preflight,
         private readonly string $treeId,
         private readonly string $appDir,
         private readonly object $runtime,
-        private readonly \Upsun\Model\ConfigurationOfAWorkerContainerInstance $worker,
+        private readonly ConfigurationOfAWorkerContainerInstance $worker,
         private readonly string $app,
         private readonly string $slugId,
-        private readonly ?\Upsun\Model\Resources $resources = null,
-        private readonly ?int $disk = null,
-        private readonly ?string $timezone = null,
-        private readonly ?\Upsun\Model\Firewall $firewall = null,
-        private readonly ?string $containerProfile = null,
-        private readonly ?object $endpoints = null,
-        private readonly ?array $stack = [],
-        private readonly ?int $instanceCount = null,
+        private readonly ?Resources $resources,
+        private readonly ?int $disk,
+        private readonly ?string $timezone,
+        private readonly ?Firewall $firewall,
+        private readonly ?string $containerProfile,
+        private readonly ?object $endpoints,
+        private readonly ?array $stack,
+        private readonly ?int $instanceCount,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'resources' => '?\Upsun\Model\Resources',
-            'size' => 'string',
-            'disk' => '?int',
-            'access' => 'string[]',
-            'relationships' => '\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]',
-            'additional_hosts' => 'string[]',
-            'mounts' => '\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]',
-            'timezone' => '?string',
-            'variables' => 'array&lt;string,mixed&gt;[]',
-            'firewall' => '?\Upsun\Model\Firewall',
-            'container_profile' => '?string',
-            'operations' => '\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]',
-            'name' => 'string',
-            'type' => 'string',
-            'preflight' => '\Upsun\Model\ConfigurationForPreFlightChecks',
-            'tree_id' => 'string',
-            'app_dir' => 'string',
-            'endpoints' => '?object',
-            'runtime' => 'object',
-            'worker' => '\Upsun\Model\ConfigurationOfAWorkerContainerInstance',
-            'app' => 'string',
-            'stack' => 'object[]',
-            'instance_count' => '?int',
-            'slug_id' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -157,196 +84,132 @@ final class WorkersValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\Resources|null
-     */
-    public function getResources(): ?\Upsun\Model\Resources
+    public function getResources(): ?Resources
     {
         return $this->resources;
     }
 
-    /**
-     * @return string
-     */
     public function getSize(): string
     {
         return $this->size;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDisk(): ?int
     {
         return $this->disk;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getAccess(): array
     {
         return $this->access;
     }
 
     /**
-     * @return \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]
+     * @return TheRelationshipsOfTheApplicationToDefinedServicesValue[]
      */
     public function getRelationships(): array
     {
         return $this->relationships;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getAdditionalHosts(): array
     {
         return $this->additionalHosts;
     }
 
     /**
-     * @return \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]
+     * @return FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]
      */
     public function getMounts(): array
     {
         return $this->mounts;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
-    /**
-     * @return array<string,array<string,mixed>>
-     */
     public function getVariables(): array
     {
         return $this->variables;
     }
 
-    /**
-     * @return \Upsun\Model\Firewall|null
-     */
-    public function getFirewall(): ?\Upsun\Model\Firewall
+    public function getFirewall(): ?Firewall
     {
         return $this->firewall;
     }
 
-    /**
-     * @return string|null
-     */
     public function getContainerProfile(): ?string
     {
         return $this->containerProfile;
     }
 
     /**
-     * @return \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]
+     * @return OperationsThatCanBeTriggeredOnThisApplicationValue[]
      */
     public function getOperations(): array
     {
         return $this->operations;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return \Upsun\Model\ConfigurationForPreFlightChecks
-     */
-    public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
+    public function getPreflight(): ConfigurationForPreFlightChecks
     {
         return $this->preflight;
     }
 
-    /**
-     * @return string
-     */
     public function getTreeId(): string
     {
         return $this->treeId;
     }
 
-    /**
-     * @return string
-     */
     public function getAppDir(): string
     {
         return $this->appDir;
     }
 
-    /**
-     * @return object|null
-     */
     public function getEndpoints(): ?object
     {
         return $this->endpoints;
     }
 
-    /**
-     * @return object
-     */
     public function getRuntime(): object
     {
         return $this->runtime;
     }
 
-    /**
-     * @return \Upsun\Model\ConfigurationOfAWorkerContainerInstance
-     */
-    public function getWorker(): \Upsun\Model\ConfigurationOfAWorkerContainerInstance
+    public function getWorker(): ConfigurationOfAWorkerContainerInstance
     {
         return $this->worker;
     }
 
-    /**
-     * @return string
-     */
     public function getApp(): string
     {
         return $this->app;
     }
 
-    /**
-     * @return object[]|null
-     */
     public function getStack(): ?array
     {
         return $this->stack;
     }
 
-    /**
-     * @return int|null
-     */
     public function getInstanceCount(): ?int
     {
         return $this->instanceCount;
     }
 
-    /**
-     * @return string
-     */
     public function getSlugId(): string
     {
         return $this->slugId;
     }
 }
-

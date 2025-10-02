@@ -12,34 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class GithubIntegration implements JsonSerializable
+final class GithubIntegration implements ModelInterface, JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-    public const TOKEN_TYPE_CLASSIC_PERSONAL_TOKEN = 'classic_personal_token';
-    public const TOKEN_TYPE_GITHUB_APP = 'github_app';
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'fetchBranches' => 'fetch_branches',
-        'pruneBranches' => 'prune_branches',
-        'environmentInitResources' => 'environment_init_resources',
-        'baseUrl' => 'base_url',
-        'repository' => 'repository',
-        'buildPullRequests' => 'build_pull_requests',
-        'buildDraftPullRequests' => 'build_draft_pull_requests',
-        'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
-        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
-        'tokenType' => 'token_type'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly bool $fetchBranches,
@@ -51,44 +27,23 @@ final class GithubIntegration implements JsonSerializable
         private readonly bool $buildPullRequestsPostMerge,
         private readonly bool $pullRequestsCloneParentData,
         private readonly string $tokenType,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $baseUrl = null,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?string $baseUrl,
+        private readonly ?string $id = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'fetch_branches' => 'bool',
-            'prune_branches' => 'bool',
-            'environment_init_resources' => 'string',
-            'base_url' => '?string',
-            'repository' => 'string',
-            'build_pull_requests' => 'bool',
-            'build_draft_pull_requests' => 'bool',
-            'build_pull_requests_post_merge' => 'bool',
-            'pull_requests_clone_parent_data' => 'bool',
-            'token_type' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'fetchBranches' => $this->fetchBranches,
             'pruneBranches' => $this->pruneBranches,
@@ -100,6 +55,7 @@ final class GithubIntegration implements JsonSerializable
             'buildPullRequestsPostMerge' => $this->buildPullRequestsPostMerge,
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
             'tokenType' => $this->tokenType,
+            'id' => $this->id,
         ];
     }
 
@@ -108,108 +64,73 @@ final class GithubIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return bool
-     */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool
-     */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string
-     */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * @return string
-     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildDraftPullRequests(): bool
     {
         return $this->buildDraftPullRequests;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildPullRequestsPostMerge(): bool
     {
         return $this->buildPullRequestsPostMerge;
     }
 
-    /**
-     * @return bool
-     */
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
 
-    /**
-     * @return string
-     */
     public function getTokenType(): string
     {
         return $this->tokenType;
     }
-}
 
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+}

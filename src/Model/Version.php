@@ -12,45 +12,27 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Version implements JsonSerializable
+final class Version implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'commit' => 'commit',
-        'locked' => 'locked',
-        'routing' => 'routing'
-    ];
-
     public function __construct(
+        private readonly string $id,
         private readonly bool $locked,
-        private readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
-        private readonly ?string $commit = null,
+        private readonly ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
+        private readonly ?string $commit,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'commit' => '?string',
-            'locked' => 'bool',
-            'routing' => '\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'commit' => $this->commit,
             'locked' => $this->locked,
             'routing' => $this->routing,
@@ -62,28 +44,23 @@ final class Version implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getCommit(): ?string
     {
         return $this->commit;
     }
 
-    /**
-     * @return bool
-     */
     public function getLocked(): bool
     {
         return $this->locked;
     }
 
-    /**
-     * @return \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
-     */
-    public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
+    public function getRouting(): ConfigurationAboutTheTrafficRoutedToThisVersion
     {
         return $this->routing;
     }
 }
-

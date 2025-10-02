@@ -12,38 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class GoogleSSOConfig implements JsonSerializable
+final class GoogleSSOConfig implements ModelInterface, JsonSerializable
 {
-    public const PROVIDER_TYPE_GOOGLE = 'google';
-
-    private static array $attributeMap = [
-        'providerType' => 'provider_type',
-        'domain' => 'domain'
-    ];
-
     public function __construct(
         private readonly ?string $providerType = null,
         private readonly ?string $domain = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'provider_type' => '?string',
-            'domain' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -59,24 +40,13 @@ final class GoogleSSOConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * SSO provider type.
-     *
-     * @return string|null
-     */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
-    /**
-     * Google hosted domain.
-     *
-     * @return string|null
-     */
     public function getDomain(): ?string
     {
         return $this->domain;
     }
 }
-

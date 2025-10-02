@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationMemberLinks implements JsonSerializable
+final class OrganizationMemberLinks implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'self' => 'self',
-        'update' => 'update',
-        'delete' => 'delete'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationMemberLinksSelf $self = null,
-        private readonly ?\Upsun\Model\OrganizationMemberLinksUpdate $update = null,
-        private readonly ?\Upsun\Model\OrganizationMemberLinksDelete $delete = null,
+        private readonly ?OrganizationMemberLinksSelf $self = null,
+        private readonly ?OrganizationMemberLinksUpdate $update = null,
+        private readonly ?OrganizationMemberLinksDelete $delete = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'self' => '?\Upsun\Model\OrganizationMemberLinksSelf',
-            'update' => '?\Upsun\Model\OrganizationMemberLinksUpdate',
-            'delete' => '?\Upsun\Model\OrganizationMemberLinksDelete',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class OrganizationMemberLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationMemberLinksSelf|null
-     */
-    public function getSelf(): ?\Upsun\Model\OrganizationMemberLinksSelf
+    public function getSelf(): ?OrganizationMemberLinksSelf
     {
         return $this->self;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationMemberLinksUpdate|null
-     */
-    public function getUpdate(): ?\Upsun\Model\OrganizationMemberLinksUpdate
+    public function getUpdate(): ?OrganizationMemberLinksUpdate
     {
         return $this->update;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationMemberLinksDelete|null
-     */
-    public function getDelete(): ?\Upsun\Model\OrganizationMemberLinksDelete
+    public function getDelete(): ?OrganizationMemberLinksDelete
     {
         return $this->delete;
     }
 }
-

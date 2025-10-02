@@ -12,43 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CreateOrgMemberRequest implements JsonSerializable
+final class CreateOrgMemberRequest implements ModelInterface, JsonSerializable
 {
-    public const PERMISSIONS_ADMIN = 'admin';
-    public const PERMISSIONS_BILLING = 'billing';
-    public const PERMISSIONS_MEMBERS = 'members';
-    public const PERMISSIONS_PLANS = 'plans';
-    public const PERMISSIONS_PROJECTS_CREATE = 'projects:create';
-    public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
-
-    private static array $attributeMap = [
-        'userId' => 'user_id',
-        'permissions' => 'permissions'
-    ];
-
     public function __construct(
         private readonly string $userId,
         private readonly ?array $permissions = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'user_id' => 'string',
-            'permissions' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -64,24 +40,13 @@ final class CreateOrgMemberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * ID of the user.
-     *
-     * @return string
-     */
     public function getUserId(): string
     {
         return $this->userId;
     }
 
-    /**
-     * The organization member permissions.
-     *
-     * @return string[]|null
-     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
 }
-

@@ -12,27 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UpdateOrgSubscriptionRequest implements JsonSerializable
+final class UpdateOrgSubscriptionRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'projectTitle' => 'project_title',
-        'plan' => 'plan',
-        'timezone' => 'timezone',
-        'environments' => 'environments',
-        'storage' => 'storage',
-        'bigDev' => 'big_dev',
-        'bigDevService' => 'big_dev_service',
-        'backups' => 'backups',
-        'observabilitySuite' => 'observability_suite',
-        'blackfire' => 'blackfire',
-        'continuousProfiling' => 'continuous_profiling',
-        'projectSupportLevel' => 'project_support_level'
-    ];
-
     public function __construct(
         private readonly ?string $projectTitle = null,
         private readonly ?string $plan = null,
@@ -49,30 +32,9 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'project_title' => '?string',
-            'plan' => '?string',
-            'timezone' => '?string',
-            'environments' => '?int',
-            'storage' => '?int',
-            'big_dev' => '?string',
-            'big_dev_service' => '?string',
-            'backups' => '?string',
-            'observability_suite' => '?string',
-            'blackfire' => '?string',
-            'continuous_profiling' => '?string',
-            'project_support_level' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -98,124 +60,63 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The title of the project.
-     *
-     * @return string|null
-     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * The project plan.
-     *
-     * @return string|null
-     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * Timezone of the project.
-     *
-     * @return string|null
-     */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
-    /**
-     * The maximum number of environments which can be provisioned on the project.
-     *
-     * @return int|null
-     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
 
-    /**
-     * The total storage available to each environment, in MiB.
-     *
-     * @return int|null
-     */
     public function getStorage(): ?int
     {
         return $this->storage;
     }
 
-    /**
-     * The development environment plan.
-     *
-     * @return string|null
-     */
     public function getBigDev(): ?string
     {
         return $this->bigDev;
     }
 
-    /**
-     * The development service plan.
-     *
-     * @return string|null
-     */
     public function getBigDevService(): ?string
     {
         return $this->bigDevService;
     }
 
-    /**
-     * The backups plan.
-     *
-     * @return string|null
-     */
     public function getBackups(): ?string
     {
         return $this->backups;
     }
 
-    /**
-     * The observability suite option.
-     *
-     * @return string|null
-     */
     public function getObservabilitySuite(): ?string
     {
         return $this->observabilitySuite;
     }
 
-    /**
-     * The Blackfire integration option.
-     *
-     * @return string|null
-     */
     public function getBlackfire(): ?string
     {
         return $this->blackfire;
     }
 
-    /**
-     * The Blackfire continuous profiling option.
-     *
-     * @return string|null
-     */
     public function getContinuousProfiling(): ?string
     {
         return $this->continuousProfiling;
     }
 
-    /**
-     * The project uptime option.
-     *
-     * @return string|null
-     */
     public function getProjectSupportLevel(): ?string
     {
         return $this->projectSupportLevel;
     }
 }
-

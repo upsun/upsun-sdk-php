@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ConfigurationAboutTheTrafficRoutedToThisVersion implements JsonSerializable
+final class ConfigurationAboutTheTrafficRoutedToThisVersion implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'percentage' => 'percentage'
-    ];
-
     public function __construct(
         private readonly int $percentage,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'percentage' => 'int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,12 +38,8 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion implements JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int
-     */
     public function getPercentage(): int
     {
         return $this->percentage;
     }
 }
-

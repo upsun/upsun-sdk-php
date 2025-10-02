@@ -3,6 +3,8 @@
 namespace {{invokerPackage}}\Api;
 
 use Exception;
+use JsonException;
+use RuntimeException;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClientFactory;
@@ -37,6 +39,7 @@ use function sprintf;
 abstract class AbstractApi
 {
     private readonly StreamFactoryInterface $streamFactory;
+
     private readonly UriFactoryInterface $uriFactory;
 
     public function __construct(
@@ -48,7 +51,6 @@ abstract class AbstractApi
     ) {
         $plugins = $plugins ?? [
             new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
         ];
 
         $this->httpClient = (new PluginClientFactory())->createClient(
@@ -57,7 +59,6 @@ abstract class AbstractApi
         );
 
         $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
         $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
     }
 
@@ -75,7 +76,8 @@ abstract class AbstractApi
     protected function createAuthenticatedRequest(
         string $method,
         string $uri,
-        array $headers = []
+        array $headers = [],
+        string|StreamInterface|null $body = null
     ): RequestInterface {
         if (preg_match('#^https?://#i', $uri)) {
             $fullUri = $uri;
@@ -91,6 +93,14 @@ abstract class AbstractApi
             $request = $request->withHeader($name, $value);
         }
 
+        if ($body !== null) {
+            if (is_string($body)) {
+                $body = $this->streamFactory->createStream($body);
+            }
+
+            $request = $request->withBody($body);
+        }
+
         return $request;
     }
 
@@ -100,35 +110,43 @@ abstract class AbstractApi
     protected function sendAuthenticatedRequest(
         string $method,
         string $uri,
-        array $headers = []
+        array $headers = [],
+        string|StreamInterface|null $body = null
     ): ResponseInterface {
         try {
             $this->refreshToken();
-            $request = $this->createAuthenticatedRequest($method, $uri, $headers);
+            $request = $this->createAuthenticatedRequest($method, $uri, $headers, $body);
 
-            return $this->httpClient->sendRequest($request);
-        } catch (HttpException $e) {
-            $response = $e->getResponse();
-            throw new ApiException(
-                sprintf(
-                    '[%d] Error connecting to the API (%s)',
-                    $response->getStatusCode(),
-                    $uri
-                ),
-                $request ?? null,
-                $response,
-                $e
-            );
+            $response = $this->httpClient->sendRequest($request);
+
+            // Manually check status code
+            if ($response->getStatusCode() >= 400) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $response->getStatusCode(),
+                        $uri
+                    ),
+                    $request,
+                    $response
+                );
+            }
+
+            return $response;
+        } catch (ApiException $e) {
+            // Enrich the ApiException with the Error object if possible
+            $e->enrichWithErrorObject();
+            throw $e;
         } catch (ClientExceptionInterface $e) {
             throw new ApiException(
-                "[{$e->getCode()}] {$e->getMessage()}",
-                $request,
+                sprintf('[%d] %s', $e->getCode(), $e->getMessage()),
+                $request ?? null,
                 null,
                 $e
             );
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new ApiException(
-                "[{$e->getCode()}] {$e->getMessage()}",
+                sprintf('[%s] %s', $e->getCode(), $e->getMessage()),
                 $request ?? null,
                 null,
                 $e
@@ -162,12 +180,14 @@ abstract class AbstractApi
         if (null !== $body) {
             if (is_string($body)) {
                 if (!$this->streamFactory) {
-                    throw new \RuntimeException(
+                    throw new RuntimeException(
                         'A stream factory is required to create a request with a string body.'
                     );
                 }
+
                 $body = $this->streamFactory->createStream($body);
             }
+
             $request = $request->withBody($body);
         }
 
@@ -206,7 +226,7 @@ abstract class AbstractApi
      * @param class-string<T>|string $dataType Fully-qualified class name, or scalar type like "string", "array"
      * @return T
      *
-     * @throws ApiException
+     * @throws ApiException|Exception
      */
     protected function handleResponseWithDataType(
         string $dataType,
@@ -216,11 +236,16 @@ abstract class AbstractApi
         if ($dataType === '\SplFileObject') {
             $content = $response->getBody(); //stream goes to serializer
         } else {
-            $content = (string) $response->getBody();
+            $content = (string)$response->getBody();
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
+
+                    // manage generic type like array<string,Model>
+                    if (str_contains($dataType, 'array<')) {
+                        return $this->deserializeGenericArray($content, $dataType, $request);
+                    }
+                } catch (JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',
@@ -234,5 +259,56 @@ abstract class AbstractApi
         }
 
         return ObjectSerializer::deserialize($content, $dataType, []);
+    }
+
+    /**
+     * Deserialize generic types array<key,value>
+     */
+    protected function deserializeGenericArray($content, string $dataType, RequestInterface $request)
+    {
+        // Parse generic type: array<string,\Upsun\Model\SomeModel>
+        if (!preg_match('/^array<([^,]+),\s*(.+)>$/', $dataType, $matches)) {
+            throw new \InvalidArgumentException("Invalid generic array type: $dataType");
+        }
+
+        $keyType = trim($matches[1]);
+        $valueType = trim($matches[2]);
+
+
+        if (!is_object($content) && !is_array($content)) {
+            throw new ApiException(
+                "Expected object or array for generic array type",
+                $request
+            );
+        }
+
+        $result = [];
+        foreach ($content as $key => $value) {
+            if ($keyType === 'string' && !is_string($key)) {
+                throw new ApiException(
+                    "Expected string key, got " . gettype($key),
+                    $request
+                );
+            }
+            if ($keyType === 'int' && !is_int($key)) {
+                throw new ApiException(
+                    "Expected integer key, got " . gettype($key),
+                    $request
+                );
+            }
+
+            if ($valueType === 'string' || $valueType === 'int' || $valueType === 'float' || $valueType === 'bool') {
+                // primitives
+                $result[$key] = $value;
+            } elseif (str_starts_with($valueType, '\\')) {
+                // classe (Model)
+                $result[$key] = ObjectSerializer::deserialize($value, $valueType, []);
+            } else {
+                // other types
+                $result[$key] = ObjectSerializer::deserialize($value, $valueType, []);
+            }
+        }
+
+        return $result;
     }
 }

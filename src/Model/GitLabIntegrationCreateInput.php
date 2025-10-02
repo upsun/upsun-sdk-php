@@ -12,29 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class GitLabIntegrationCreateInput implements JsonSerializable
+final class GitLabIntegrationCreateInput implements ModelInterface, JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'token' => 'token',
-        'project' => 'project',
-        'fetchBranches' => 'fetch_branches',
-        'pruneBranches' => 'prune_branches',
-        'environmentInitResources' => 'environment_init_resources',
-        'baseUrl' => 'base_url',
-        'buildMergeRequests' => 'build_merge_requests',
-        'buildWipMergeRequests' => 'build_wip_merge_requests',
-        'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $token,
@@ -49,28 +30,9 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'token' => 'string',
-            'project' => 'string',
-            'fetch_branches' => '?bool',
-            'prune_branches' => '?bool',
-            'environment_init_resources' => '?string',
-            'base_url' => '?string',
-            'build_merge_requests' => '?bool',
-            'build_wip_merge_requests' => '?bool',
-            'merge_requests_clone_parent_data' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -94,84 +56,53 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * @return string
-     */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildMergeRequests(): ?bool
     {
         return $this->buildMergeRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildWipMergeRequests(): ?bool
     {
         return $this->buildWipMergeRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getMergeRequestsCloneParentData(): ?bool
     {
         return $this->mergeRequestsCloneParentData;
     }
 }
-

@@ -1,118 +1,210 @@
 <?php
 
+namespace Upsun\Test\Core;
+
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
 use Upsun\Configuration;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
+use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\RegionTask;
 use Upsun\UpsunClient;
 use Upsun\Api\RegionsApi;
 use Upsun\Model\Region;
-use Upsun\Model\ListRegions200Response;
 use Upsun\ApiException;
-use Upsun\UpsunConfig;
 
-class RegionTaskTest extends TestCase
+class RegionTaskTest extends BaseTestCase
 {
-    private RegionTask $regionTask;
-    private RegionsApi $regionsApiMock;
-    private UpsunClient $clientMock;
+    protected RegionTask $regionTask;
+
+    private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
-        $this->regionsApiMock = $this->createMock(RegionsApi::class);
+        $psr17Factory = new Psr17Factory();
 
-        $this->clientMock = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public UpsunConfig $upsunConfig;
+        $oauthProvider = $this->createMock(OAuthProvider::class);
 
-            public function __construct()
-            {
-            }
-        };
+        $upsunClient = $this->createMock(UpsunClient::class);
 
-        $this->regionTask = new class(
-            $this->clientMock,
-            $this->regionsApiMock
+        $this->regionTask = new class (
+            $upsunClient,
+            new RegionsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
         ) extends RegionTask {
-            public function refreshToken(): void
-            {
-            }
         };
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testGetRegion(): void
     {
         $regionId = 'region-001';
-        $expectedRegion = $this->createMock(Region::class);
 
-        $this->regionsApiMock->expects($this->once())
-            ->method('getRegion')
-            ->with($regionId)
-            ->willReturn($expectedRegion);
+        $fakeRegion = [
+            'id' => 'us-east-1',
+            'label' => 'US East (Virginia)',
+            'zone' => 'us-east',
+            'selectionLabel' => 'United States East',
+            'projectLabel' => 'US East 1',
+            'timezone' => 'America/New_York',
+            'available' => true,
+            'private' => false,
+            'endpoint' => 'https://us.upsun.com',
+            'provider' => [
+                'name' => 'AWS',
+                'logo' => 'https://example.com/aws-logo.png',
+            ],
+            'datacenter' => [
+                'name' => 'us-east-dc-1',
+                'label' => 'Virginia Datacenter',
+                'location' => 'Ashburn, Virginia, USA',
+            ],
+            'environmentalImpact' => [
+                'zone' => 'us-east',
+                'carbonIntensity' => 'low',
+                'green' => true,
+            ],
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeRegion)
+            ));
 
         $result = $this->regionTask->get($regionId);
-
-        $this->assertSame($expectedRegion, $result);
+        $this->assertInstanceOf(Region::class, $result);
+        $this->assertObjectProperties($result, $fakeRegion);
     }
 
     public function testGetRegionThrowsApiException(): void
     {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-
-        $this->regionsApiMock->expects($this->once())
-            ->method('getRegion')
-            ->willThrowException($this->createMock(ApiException::class));
-
         $this->regionTask->get('invalid-region');
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testListRegions(): void
     {
-        $expectedList = $this->createMock(ListRegions200Response::class);
-
-        $this->regionsApiMock->expects($this->once())
-            ->method('listRegions')
-            ->willReturn($expectedList);
-
-        $result = $this->regionTask->list();
-
-        $this->assertSame($expectedList, $result);
-    }
-
-    public function testListRegionsWithParams(): void
-    {
-        $expectedList = $this->createMock(ListRegions200Response::class);
-        $filters = ['zone-eu'];
+        $filters = ['us-east'];
         $sort = 'name';
-
-        $this->regionsApiMock->expects($this->once())
-            ->method('listRegions')
-            ->with(null, null, $filters, 10, 'prev', 'next', $sort)
-            ->willReturn($expectedList);
+        $list = [
+            'regions' => [[
+                'id' => 'us-east-1',
+                'label' => 'US East (Virginia)',
+                'zone' => 'us-east',
+                'selectionLabel' => 'United States East',
+                'projectLabel' => 'US East 1',
+                'timezone' => 'America/New_York',
+                'available' => true,
+                'private' => false,
+                'endpoint' => 'https://us.upsun.com',
+                'provider' => [
+                    'name' => 'AWS',
+                    'logo' => 'https://example.com/aws-logo.png',
+                ],
+                'datacenter' => [
+                    'name' => 'us-east-dc-1',
+                    'label' => 'Virginia Datacenter',
+                    'location' => 'Ashburn, Virginia, USA',
+                ],
+                'environmentalImpact' => [
+                    'zone' => 'us-east',
+                    'carbonIntensity' => 'low',
+                    'green' => true,
+                ],
+            ],
+                [
+                    'id' => 'us-east-2',
+                    'label' => 'US East (Virginia 2)',
+                    'zone' => 'us-east-2',
+                    'selectionLabel' => 'United States East',
+                    'projectLabel' => 'US East 2',
+                    'timezone' => 'America/New_York',
+                    'available' => true,
+                    'private' => false,
+                    'endpoint' => 'https://us-2.upsun.com',
+                    'provider' => [
+                        'name' => 'AWS',
+                        'logo' => 'https://example.com/aws-logo.png',
+                    ],
+                    'datacenter' => [
+                        'name' => 'us-east-dc-2',
+                        'label' => 'Virginia Datacenter',
+                        'location' => 'Ashburn, Virginia, USA',
+                    ],
+                    'environmentalImpact' => [
+                        'zone' => 'us-east-2',
+                        'carbonIntensity' => 'low',
+                        'green' => true,
+                    ],
+                ]
+            ],
+            'links' => [
+                'self' => [
+                    'href' => 'https://api.example.com/regions',
+                ],
+                'update' => [
+                    'href' => 'https://api.example.com/regions',
+                ],
+                'delete' => [
+                    'href' => 'https://api.example.com//regions',
+                ],
+            ]
+        ];
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($list)
+            ));
 
         $result = $this->regionTask->list(
-            filter_available: null,
-            filter_private: null,
             filter_zone: $filters,
-            pageSize: 10,
+            pageSize: 2,
             pageBefore: 'prev',
             pageAfter: 'next',
             sort: $sort
         );
 
-        $this->assertSame($expectedList, $result);
+        $this->assertContainsOnlyInstancesOf(Region::class, $result->getRegions());
+        $this->assertObjectMatchesArray($result->getRegions(), $list['regions']);
     }
 
     public function testListRegionsThrowsApiException(): void
     {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-
-        $this->regionsApiMock->expects($this->once())
-            ->method('listRegions')
-            ->willThrowException($this->createMock(ApiException::class));
-
         $this->regionTask->list();
     }
 }

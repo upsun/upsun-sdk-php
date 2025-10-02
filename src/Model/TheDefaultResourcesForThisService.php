@@ -12,43 +12,22 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheDefaultResourcesForThisService implements JsonSerializable
+final class TheDefaultResourcesForThisService implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'cpu' => 'cpu',
-        'memory' => 'memory',
-        'disk' => 'disk',
-        'profileSize' => 'profile_size'
-    ];
-
     public function __construct(
         private readonly float $cpu,
         private readonly int $memory,
-        private readonly ?int $disk = null,
-        private readonly ?string $profileSize = null,
+        private readonly string $cpuType,
+        private readonly ?int $disk,
+        private readonly ?string $profileSize,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'cpu' => 'float',
-            'memory' => 'int',
-            'disk' => '?int',
-            'profile_size' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -56,6 +35,7 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
         return [
             'cpu' => $this->cpu,
             'memory' => $this->memory,
+            'cpuType' => $this->cpuType,
             'disk' => $this->disk,
             'profileSize' => $this->profileSize,
         ];
@@ -66,36 +46,28 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return float
-     */
     public function getCpu(): float
     {
         return $this->cpu;
     }
 
-    /**
-     * @return int
-     */
     public function getMemory(): int
     {
         return $this->memory;
     }
 
-    /**
-     * @return int|null
-     */
+    public function getCpuType(): string
+    {
+        return $this->cpuType;
+    }
+
     public function getDisk(): ?int
     {
         return $this->disk;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProfileSize(): ?string
     {
         return $this->profileSize;
     }
 }
-

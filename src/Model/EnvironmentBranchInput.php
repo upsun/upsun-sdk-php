@@ -12,48 +12,22 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EnvironmentBranchInput implements JsonSerializable
+final class EnvironmentBranchInput implements ModelInterface, JsonSerializable
 {
-    public const TYPE_DEVELOPMENT = 'development';
-    public const TYPE_STAGING = 'staging';
-
-    private static array $attributeMap = [
-        'title' => 'title',
-        'name' => 'name',
-        'cloneParent' => 'clone_parent',
-        'type' => 'type',
-        'resources' => 'resources'
-    ];
-
     public function __construct(
         private readonly string $title,
         private readonly string $name,
         private readonly bool $cloneParent,
         private readonly string $type,
-        private readonly ?\Upsun\Model\Resources2 $resources = null,
+        private readonly ?Resources3 $resources,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'title' => 'string',
-            'name' => 'string',
-            'clone_parent' => 'bool',
-            'type' => 'string',
-            'resources' => '?\Upsun\Model\Resources2',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -72,44 +46,28 @@ final class EnvironmentBranchInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return bool
-     */
     public function getCloneParent(): bool
     {
         return $this->cloneParent;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return \Upsun\Model\Resources2|null
-     */
-    public function getResources(): ?\Upsun\Model\Resources2
+    public function getResources(): ?Resources3
     {
         return $this->resources;
     }
 }
-

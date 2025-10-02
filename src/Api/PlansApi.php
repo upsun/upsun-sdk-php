@@ -37,9 +37,15 @@ final class PlansApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,44 +55,54 @@ final class PlansApi extends AbstractApi
         return $this->config;
     }
 
-    /**
-     * List available plans
-     *
-     * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listPlans(
-        
-    ): \Upsun\Model\ListPlans200Response {
-        return $this->listPlansWithHttpInfo(
-            
-        );
-    }
 
     /**
      * List available plans
      *
+     * Retrieve information about plans and pricing on Platform.sh.
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListPlans200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Plans/operation/list-plans
+     */
+    public function listPlans(
+    ): \Upsun\Model\ListPlans200Response 
+    {
+        return $this->listPlansWithHttpInfo(
+        );
+    }
+
+    /**
+     * List available plans with HTTP Info
+     *
+     * @return \Upsun\Model\ListPlans200Response
+     *
      * @throws InvalidArgumentException|Exception
      */
-    public function listPlansWithHttpInfo(
-        
-    ): \Upsun\Model\ListPlans200Response {
+    private function listPlansWithHttpInfo(
+    ): \Upsun\Model\ListPlans200Response 
+    {
         $request = $this->listPlansRequest(
-            
         );
 
         try {
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListPlans200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -96,18 +112,14 @@ final class PlansApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listPlansRequest(
-        
+    private function listPlansRequest(
     ): RequestInterface {
-
         $resourcePath = '/plans';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
 
 
@@ -118,7 +130,7 @@ final class PlansApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

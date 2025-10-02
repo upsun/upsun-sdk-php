@@ -12,32 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Backup implements JsonSerializable
+final class Backup implements ModelInterface, JsonSerializable
 {
-    public const STATUS_CREATED = 'CREATED';
-    public const STATUS_DELETING = 'DELETING';
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'id' => 'id',
-        'attributes' => 'attributes',
-        'status' => 'status',
-        'expiresAt' => 'expires_at',
-        'index' => 'index',
-        'commitId' => 'commit_id',
-        'environment' => 'environment',
-        'safe' => 'safe',
-        'sizeOfVolumes' => 'size_of_volumes',
-        'sizeUsed' => 'size_used',
-        'deployment' => 'deployment',
-        'restorable' => 'restorable',
-        'automated' => 'automated'
-    ];
-
     public function __construct(
         private readonly string $id,
         private readonly array $attributes,
@@ -47,54 +25,30 @@ final class Backup implements JsonSerializable
         private readonly bool $safe,
         private readonly bool $restorable,
         private readonly bool $automated,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\DateTime $expiresAt = null,
-        private readonly ?int $index = null,
-        private readonly ?int $sizeOfVolumes = null,
-        private readonly ?int $sizeUsed = null,
-        private readonly ?string $deployment = null,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?\DateTime $expiresAt,
+        private readonly ?int $index,
+        private readonly ?int $sizeOfVolumes,
+        private readonly ?int $sizeUsed,
+        private readonly ?string $deployment,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'id' => 'string',
-            'attributes' => 'string[]',
-            'status' => 'string',
-            'expires_at' => '?\DateTime',
-            'index' => '?int',
-            'commit_id' => 'string',
-            'environment' => 'string',
-            'safe' => 'bool',
-            'size_of_volumes' => '?int',
-            'size_used' => '?int',
-            'deployment' => '?string',
-            'restorable' => 'bool',
-            'automated' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
             'id' => $this->id,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'attributes' => $this->attributes,
             'status' => $this->status,
-            'expiresAt' => $this->expiresAt,
+            'expiresAt' => $this->expiresAt?->format(DATE_ATOM),
             'index' => $this->index,
             'commitId' => $this->commitId,
             'environment' => $this->environment,
@@ -112,124 +66,78 @@ final class Backup implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return array<string,string>
-     */
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string
-     */
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getExpiresAt(): ?\DateTime
     {
         return $this->expiresAt;
     }
 
-    /**
-     * @return int|null
-     */
     public function getIndex(): ?int
     {
         return $this->index;
     }
 
-    /**
-     * @return string
-     */
     public function getCommitId(): string
     {
         return $this->commitId;
     }
 
-    /**
-     * @return string
-     */
     public function getEnvironment(): string
     {
         return $this->environment;
     }
 
-    /**
-     * @return bool
-     */
     public function getSafe(): bool
     {
         return $this->safe;
     }
 
-    /**
-     * @return int|null
-     */
     public function getSizeOfVolumes(): ?int
     {
         return $this->sizeOfVolumes;
     }
 
-    /**
-     * @return int|null
-     */
     public function getSizeUsed(): ?int
     {
         return $this->sizeUsed;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDeployment(): ?string
     {
         return $this->deployment;
     }
 
-    /**
-     * @return bool
-     */
     public function getRestorable(): bool
     {
         return $this->restorable;
     }
 
-    /**
-     * @return bool
-     */
     public function getAutomated(): bool
     {
         return $this->automated;
     }
 }
-

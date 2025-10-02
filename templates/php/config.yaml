@@ -1,18 +1,20 @@
 generatorName: php
-inputSpec: ./schema/openapispec-platformsh-xreturn.json
+inputSpec: ./schema/openapispec-upsun-processed.json
 outputDir: .
 packageName: upsun-client
 templateDir: ./templates/php
 library: psr-18
 generateSupportingFiles: true
+filesToSkip: ["FormDataProcessor.php"]
 
 additionalProperties:
   invokerPackage: Upsun
   apiPackage: Api
   modelPackage: Model
   srcBasePath: src
-  testBasePath: tests
+  testsBasePath: tests
   composerVendor: upsun
+  basePath: https://api.upsun.com
   composerProject: upsun-sdk-php
   licenseName: Apache-2.0
   composerPackageName: upsun/upsun-sdk-php
@@ -34,6 +36,7 @@ additionalProperties:
   generateEnums: true
   enumClassPrefix: true
   sortModelPropertiesByRequiredFlag: true
+
 files:
   abstract_api.mustache:
     templateType: SupportingFiles
@@ -43,3 +46,16 @@ files:
     templateType: SupportingFiles
     destinationFilename: OAuthProvider.php
     folder: src/Core
+  ObjectAttributesMapper.mustache:
+    templateType: SupportingFiles
+    destinationFilename: ObjectAttributesMapper.php
+    folder: src/
+  ObjectOpenApiFormatsMapper.mustache:
+    templateType: SupportingFiles
+    destinationFilename: ObjectOpenApiFormatsMapper.php
+    folder: src/
+  ObjectOpenApiTypesMapper.mustache:
+    templateType: SupportingFiles
+    destinationFilename: ObjectOpenApiTypesMapper.php
+    folder: src/
+

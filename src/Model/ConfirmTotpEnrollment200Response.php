@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ConfirmTotpEnrollment200Response implements JsonSerializable
+final class ConfirmTotpEnrollment200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'recoveryCodes' => 'recovery_codes'
-    ];
-
     public function __construct(
         private readonly ?array $recoveryCodes = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'recovery_codes' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,14 +38,8 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * A list of recovery codes for the MFA enrollment.
-     *
-     * @return string[]|null
-     */
     public function getRecoveryCodes(): ?array
     {
         return $this->recoveryCodes;
     }
 }
-

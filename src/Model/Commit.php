@@ -12,54 +12,30 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Commit implements JsonSerializable
+final class Commit implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'sha' => 'sha',
-        'author' => 'author',
-        'committer' => 'committer',
-        'message' => 'message',
-        'tree' => 'tree',
-        'parents' => 'parents'
-    ];
-
     public function __construct(
+        private readonly string $id,
         private readonly string $sha,
-        private readonly \Upsun\Model\TheInformationAboutTheAuthor $author,
-        private readonly \Upsun\Model\TheInformationAboutTheCommitter $committer,
+        private readonly TheInformationAboutTheAuthor $author,
+        private readonly TheInformationAboutTheCommitter $committer,
         private readonly string $message,
         private readonly string $tree,
         private readonly array $parents,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'sha' => 'string',
-            'author' => '\Upsun\Model\TheInformationAboutTheAuthor',
-            'committer' => '\Upsun\Model\TheInformationAboutTheCommitter',
-            'message' => 'string',
-            'tree' => 'string',
-            'parents' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'sha' => $this->sha,
             'author' => $this->author,
             'committer' => $this->committer,
@@ -74,52 +50,38 @@ final class Commit implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getSha(): string
     {
         return $this->sha;
     }
 
-    /**
-     * @return \Upsun\Model\TheInformationAboutTheAuthor
-     */
-    public function getAuthor(): \Upsun\Model\TheInformationAboutTheAuthor
+    public function getAuthor(): TheInformationAboutTheAuthor
     {
         return $this->author;
     }
 
-    /**
-     * @return \Upsun\Model\TheInformationAboutTheCommitter
-     */
-    public function getCommitter(): \Upsun\Model\TheInformationAboutTheCommitter
+    public function getCommitter(): TheInformationAboutTheCommitter
     {
         return $this->committer;
     }
 
-    /**
-     * @return string
-     */
     public function getMessage(): string
     {
         return $this->message;
     }
 
-    /**
-     * @return string
-     */
     public function getTree(): string
     {
         return $this->tree;
     }
 
-    /**
-     * @return string[]
-     */
     public function getParents(): array
     {
         return $this->parents;
     }
 }
-

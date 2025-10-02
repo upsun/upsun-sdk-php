@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class DataRetentionConfigurationValue implements JsonSerializable
+final class DataRetentionConfigurationValue implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'maxBackups' => 'max_backups',
-        'defaultConfig' => 'default_config'
-    ];
-
     public function __construct(
         private readonly int $maxBackups,
-        private readonly \Upsun\Model\DefaultConfig $defaultConfig,
+        private readonly DefaultConfig $defaultConfig,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'max_backups' => 'int',
-            'default_config' => '\Upsun\Model\DefaultConfig',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +40,13 @@ final class DataRetentionConfigurationValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int
-     */
     public function getMaxBackups(): int
     {
         return $this->maxBackups;
     }
 
-    /**
-     * @return \Upsun\Model\DefaultConfig
-     */
-    public function getDefaultConfig(): \Upsun\Model\DefaultConfig
+    public function getDefaultConfig(): DefaultConfig
     {
         return $this->defaultConfig;
     }
 }
-

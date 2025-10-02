@@ -12,67 +12,26 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationInvitation implements JsonSerializable
+final class OrganizationInvitation implements ModelInterface, JsonSerializable
 {
-    public const STATE_PENDING = 'pending';
-    public const STATE_PROCESSING = 'processing';
-    public const STATE_ACCEPTED = 'accepted';
-    public const STATE_CANCELLED = 'cancelled';
-    public const STATE_ERROR = 'error';
-    public const PERMISSIONS_BILLING = 'billing';
-    public const PERMISSIONS_PLANS = 'plans';
-    public const PERMISSIONS_MEMBERS = 'members';
-    public const PERMISSIONS_PROJECT_CREATE = 'project:create';
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'state' => 'state',
-        'organizationId' => 'organization_id',
-        'email' => 'email',
-        'owner' => 'owner',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'finishedAt' => 'finished_at',
-        'permissions' => 'permissions'
-    ];
-
     public function __construct(
         private readonly ?\DateTime $finishedAt = null,
         private readonly ?string $id = null,
         private readonly ?string $state = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $email = null,
-        private readonly ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
+        private readonly ?OrganizationInvitationOwner $owner = null,
         private readonly ?\DateTime $createdAt = null,
         private readonly ?\DateTime $updatedAt = null,
         private readonly ?array $permissions = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'state' => '?string',
-            'organization_id' => '?string',
-            'email' => '?string',
-            'owner' => '?\Upsun\Model\OrganizationInvitationOwner',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'finished_at' => '?\DateTime',
-            'permissions' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -83,9 +42,9 @@ final class OrganizationInvitation implements JsonSerializable
             'organizationId' => $this->organizationId,
             'email' => $this->email,
             'owner' => $this->owner,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
-            'finishedAt' => $this->finishedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
+            'finishedAt' => $this->finishedAt?->format(DATE_ATOM),
             'permissions' => $this->permissions,
         ];
     }
@@ -95,92 +54,48 @@ final class OrganizationInvitation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the invitation.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The invitation state.
-     *
-     * @return string|null
-     */
     public function getState(): ?string
     {
         return $this->state;
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The email address of the invitee.
-     *
-     * @return string|null
-     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationInvitationOwner|null
-     */
-    public function getOwner(): ?\Upsun\Model\OrganizationInvitationOwner
+    public function getOwner(): ?OrganizationInvitationOwner
     {
         return $this->owner;
     }
 
-    /**
-     * The date and time when the invitation was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the invitation was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The date and time when the invitation was finished.
-     *
-     * @return \DateTime|null
-     */
     public function getFinishedAt(): ?\DateTime
     {
         return $this->finishedAt;
     }
 
-    /**
-     * The permissions the invitee should be given on the organization.
-     *
-     * @return string[]|null
-     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
 }
-

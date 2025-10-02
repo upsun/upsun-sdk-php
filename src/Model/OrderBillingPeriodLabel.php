@@ -3,6 +3,7 @@
 /**
  * Low level OrderBillingPeriodLabel (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,19 +13,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrderBillingPeriodLabel implements JsonSerializable
+final class OrderBillingPeriodLabel implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'formatted' => 'formatted',
-        'month' => 'month',
-        'year' => 'year',
-        'nextMonth' => 'next_month'
-    ];
-
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?string $month = null,
@@ -33,22 +25,9 @@ final class OrderBillingPeriodLabel implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'formatted' => '?string',
-            'month' => '?string',
-            'year' => '?string',
-            'next_month' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,44 +45,23 @@ final class OrderBillingPeriodLabel implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The renderable label for the billing cycle.
-     *
-     * @return string|null
-     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
-    /**
-     * The month of the billing cycle.
-     *
-     * @return string|null
-     */
     public function getMonth(): ?string
     {
         return $this->month;
     }
 
-    /**
-     * The year of the billing cycle.
-     *
-     * @return string|null
-     */
     public function getYear(): ?string
     {
         return $this->year;
     }
 
-    /**
-     * The name of the next month following this billing cycle.
-     *
-     * @return string|null
-     */
     public function getNextMonth(): ?string
     {
         return $this->nextMonth;
     }
 }
-

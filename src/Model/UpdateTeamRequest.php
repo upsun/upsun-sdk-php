@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UpdateTeamRequest implements JsonSerializable
+final class UpdateTeamRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'label' => 'label',
-        'projectPermissions' => 'project_permissions'
-    ];
-
     public function __construct(
         private readonly ?string $label = null,
         private readonly ?array $projectPermissions = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'label' => '?string',
-            'project_permissions' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +40,13 @@ final class UpdateTeamRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The human-readable label of the team.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * Project permissions that are granted to the team.
-     *
-     * @return string[]|null
-     */
     public function getProjectPermissions(): ?array
     {
         return $this->projectPermissions;
     }
 }
-

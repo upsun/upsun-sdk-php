@@ -3,6 +3,7 @@
 /**
  * Low level HalLinksSelf (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class HalLinksSelf implements JsonSerializable
+final class HalLinksSelf implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'title' => 'title',
-        'href' => 'href'
-    ];
-
     public function __construct(
         private readonly ?string $title = null,
         private readonly ?string $href = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'title' => '?string',
-            'href' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +41,13 @@ final class HalLinksSelf implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Title of the link
-     *
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * URL of the link
-     *
-     * @return string|null
-     */
     public function getHref(): ?string
     {
         return $this->href;
     }
 }
-

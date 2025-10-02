@@ -12,28 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class WebHookIntegration implements JsonSerializable
+final class WebHookIntegration implements ModelInterface, JsonSerializable
 {
-    public const RESULT_STAR = '*';
-    public const RESULT_FAILURE = 'failure';
-    public const RESULT_SUCCESS = 'success';
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'events' => 'events',
-        'environments' => 'environments',
-        'excludedEnvironments' => 'excluded_environments',
-        'states' => 'states',
-        'result' => 'result',
-        'sharedKey' => 'shared_key',
-        'url' => 'url'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly array $events,
@@ -42,41 +24,23 @@ final class WebHookIntegration implements JsonSerializable
         private readonly array $states,
         private readonly string $result,
         private readonly string $url,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $sharedKey = null,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?string $sharedKey,
+        private readonly ?string $id = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
-            'result' => 'string',
-            'shared_key' => '?string',
-            'url' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'events' => $this->events,
             'environments' => $this->environments,
@@ -85,6 +49,7 @@ final class WebHookIntegration implements JsonSerializable
             'result' => $this->result,
             'sharedKey' => $this->sharedKey,
             'url' => $this->url,
+            'id' => $this->id,
         ];
     }
 
@@ -93,84 +58,58 @@ final class WebHookIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string[]
-     */
     public function getEvents(): array
     {
         return $this->events;
     }
 
-    /**
-     * @return string[]
-     */
     public function getEnvironments(): array
     {
         return $this->environments;
     }
 
-    /**
-     * @return string[]
-     */
     public function getExcludedEnvironments(): array
     {
         return $this->excludedEnvironments;
     }
 
-    /**
-     * @return string[]
-     */
     public function getStates(): array
     {
         return $this->states;
     }
 
-    /**
-     * @return string
-     */
     public function getResult(): string
     {
         return $this->result;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
-}
 
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+}

@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class SendOrgMfaRemindersRequest implements JsonSerializable
+final class SendOrgMfaRemindersRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'userIds' => 'user_ids'
-    ];
-
     public function __construct(
         private readonly ?array $userIds = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'user_ids' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,14 +38,8 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The organization members.
-     *
-     * @return string[]|null
-     */
     public function getUserIds(): ?array
     {
         return $this->userIds;
     }
 }
-

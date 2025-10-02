@@ -12,64 +12,40 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class HttpLogIntegration implements JsonSerializable
+final class HttpLogIntegration implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'extra' => 'extra',
-        'url' => 'url',
-        'headers' => 'headers',
-        'tlsVerify' => 'tls_verify'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly array $extra,
         private readonly string $url,
         private readonly array $headers,
         private readonly bool $tlsVerify,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly array $excludedServices,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?string $id = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'extra' => 'string[]',
-            'url' => 'string',
-            'headers' => 'string[]',
-            'tls_verify' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'extra' => $this->extra,
             'url' => $this->url,
             'headers' => $this->headers,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
+            'id' => $this->id,
         ];
     }
 
@@ -78,60 +54,48 @@ final class HttpLogIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getExtra(): array
     {
         return $this->extra;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getHeaders(): array
     {
         return $this->headers;
     }
 
-    /**
-     * @return bool
-     */
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
     }
-}
 
+    public function getExcludedServices(): array
+    {
+        return $this->excludedServices;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+}

@@ -1,19 +1,19 @@
-# Upsun\UsersApi
+# [Upsun\Api\UsersApi](../src/Api/UsersApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getCurrentUser()**](UsersApi.md#getCurrentUser) | **GET** /users/me | Get the current user
-[**getCurrentUserDeprecated()**](UsersApi.md#getCurrentUserDeprecated) | **GET** /me | Get current logged-in user info
-[**getCurrentUserVerificationStatus()**](UsersApi.md#getCurrentUserVerificationStatus) | **POST** /me/phone | Check if phone verification is required
-[**getCurrentUserVerificationStatusFull()**](UsersApi.md#getCurrentUserVerificationStatusFull) | **POST** /me/verification | Check if verification is required
-[**getUser()**](UsersApi.md#getUser) | **GET** /users/{user_id} | Get a user
-[**getUserByEmailAddress()**](UsersApi.md#getUserByEmailAddress) | **GET** /users/email&#x3D;{email} | Get a user by email
-[**getUserByUsername()**](UsersApi.md#getUserByUsername) | **GET** /users/username&#x3D;{username} | Get a user by username
-[**resetEmailAddress()**](UsersApi.md#resetEmailAddress) | **POST** /users/{user_id}/emailaddress | Reset email address
-[**resetPassword()**](UsersApi.md#resetPassword) | **POST** /users/{user_id}/resetpassword | Reset user password
-[**updateUser()**](UsersApi.md#updateUser) | **PATCH** /users/{user_id} | Update a user
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**getCurrentUser()**](UsersApi.md#getCurrentUser) | **GET** /users/me | Get the current user | https://docs.upsun.com/api/#tag/Users/operation/get-current-user |
+| [**getCurrentUserDeprecated()**](UsersApi.md#getCurrentUserDeprecated) | **GET** /me | Get current logged-in user info | https://docs.upsun.com/api/#tag/Users/operation/get-current-user-deprecated |
+| [**getCurrentUserVerificationStatus()**](UsersApi.md#getCurrentUserVerificationStatus) | **POST** /me/phone | Check if phone verification is required | https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status |
+| [**getCurrentUserVerificationStatusFull()**](UsersApi.md#getCurrentUserVerificationStatusFull) | **POST** /me/verification | Check if verification is required | https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status-full |
+| [**getUser()**](UsersApi.md#getUser) | **GET** /users/{user_id} | Get a user | https://docs.upsun.com/api/#tag/Users/operation/get-user |
+| [**getUserByEmailAddress()**](UsersApi.md#getUserByEmailAddress) | **GET** /users/email&#x3D;{email} | Get a user by email | https://docs.upsun.com/api/#tag/Users/operation/get-user-by-email-address |
+| [**getUserByUsername()**](UsersApi.md#getUserByUsername) | **GET** /users/username&#x3D;{username} | Get a user by username | https://docs.upsun.com/api/#tag/Users/operation/get-user-by-username |
+| [**resetEmailAddress()**](UsersApi.md#resetEmailAddress) | **POST** /users/{user_id}/emailaddress | Reset email address | https://docs.upsun.com/api/#tag/Users/operation/reset-email-address |
+| [**resetPassword()**](UsersApi.md#resetPassword) | **POST** /users/{user_id}/resetpassword | Reset user password | https://docs.upsun.com/api/#tag/Users/operation/reset-password |
+| [**updateUser()**](UsersApi.md#updateUser) | **PATCH** /users/{user_id} | Update a user | https://docs.upsun.com/api/#tag/Users/operation/update-user |
 
 
 ## `getCurrentUser()`
@@ -35,8 +35,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 
@@ -88,8 +88,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 
@@ -141,8 +141,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 
@@ -194,8 +194,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 
@@ -247,8 +247,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -263,9 +263,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
 
 ### Return type
 
@@ -303,8 +303,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $email = hello@example.com; // string | The user's email address.
@@ -319,9 +319,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **email** | **string**| The user&#39;s email address. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **email** | **string**| The user&#39;s email address. | |
 
 ### Return type
 
@@ -359,8 +359,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $username = platform-sh; // string | The user's username.
@@ -375,9 +375,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **username** | **string**| The user&#39;s username. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **username** | **string**| The user&#39;s username. | |
 
 ### Return type
 
@@ -415,8 +415,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -431,10 +431,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **resetEmailAddressRequest** | [**\Upsun\Model\ResetEmailAddressRequest**](../Model/ResetEmailAddressRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **resetEmailAddressRequest** | [**\Upsun\Model\ResetEmailAddressRequest**](../Model/ResetEmailAddressRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -472,8 +472,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -487,9 +487,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
 
 ### Return type
 
@@ -527,8 +527,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UsersApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -544,10 +544,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **updateUserRequest** | [**\Upsun\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **updateUserRequest** | [**\Upsun\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)|  | [optional] |
 
 ### Return type
 

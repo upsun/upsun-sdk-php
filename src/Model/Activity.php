@@ -12,42 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Activity implements JsonSerializable
+final class Activity implements ModelInterface, JsonSerializable
 {
-    public const STATE_CANCELLED = 'cancelled';
-    public const STATE_COMPLETE = 'complete';
-    public const STATE_IN_PROGRESS = 'in_progress';
-    public const STATE_PENDING = 'pending';
-    public const STATE_SCHEDULED = 'scheduled';
-    public const RESULT_FAILURE = 'failure';
-    public const RESULT_SUCCESS = 'success';
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'parameters' => 'parameters',
-        'project' => 'project',
-        'state' => 'state',
-        'result' => 'result',
-        'startedAt' => 'started_at',
-        'completedAt' => 'completed_at',
-        'completionPercent' => 'completion_percent',
-        'cancelledAt' => 'cancelled_at',
-        'timings' => 'timings',
-        'log' => 'log',
-        'payload' => 'payload',
-        'description' => 'description',
-        'text' => 'text',
-        'expiresAt' => 'expires_at',
-        'integration' => 'integration',
-        'environments' => 'environments'
-    ];
-
     public function __construct(
+        private readonly string $id,
         private readonly string $type,
         private readonly object $parameters,
         private readonly string $project,
@@ -56,73 +26,48 @@ final class Activity implements JsonSerializable
         private readonly array $timings,
         private readonly string $log,
         private readonly object $payload,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $result = null,
-        private readonly ?\DateTime $startedAt = null,
-        private readonly ?\DateTime $completedAt = null,
-        private readonly ?\DateTime $cancelledAt = null,
-        private readonly ?string $description = null,
-        private readonly ?string $text = null,
-        private readonly ?\DateTime $expiresAt = null,
+        private readonly array $commands,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?string $result,
+        private readonly ?\DateTime $startedAt,
+        private readonly ?\DateTime $completedAt,
+        private readonly ?\DateTime $cancelledAt,
+        private readonly ?string $description,
+        private readonly ?string $text,
+        private readonly ?\DateTime $expiresAt,
         private readonly ?string $integration = null,
         private readonly ?array $environments = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'parameters' => 'object',
-            'project' => 'string',
-            'state' => 'string',
-            'result' => '?string',
-            'started_at' => '?\DateTime',
-            'completed_at' => '?\DateTime',
-            'completion_percent' => 'int',
-            'cancelled_at' => '?\DateTime',
-            'timings' => 'float[]',
-            'log' => 'string',
-            'payload' => 'object',
-            'description' => '?string',
-            'text' => '?string',
-            'expires_at' => '?\DateTime',
-            'integration' => '?string',
-            'environments' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'id' => $this->id,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'parameters' => $this->parameters,
             'project' => $this->project,
             'state' => $this->state,
             'result' => $this->result,
-            'startedAt' => $this->startedAt,
-            'completedAt' => $this->completedAt,
+            'startedAt' => $this->startedAt?->format(DATE_ATOM),
+            'completedAt' => $this->completedAt?->format(DATE_ATOM),
             'completionPercent' => $this->completionPercent,
-            'cancelledAt' => $this->cancelledAt,
+            'cancelledAt' => $this->cancelledAt?->format(DATE_ATOM),
             'timings' => $this->timings,
             'log' => $this->log,
             'payload' => $this->payload,
             'description' => $this->description,
             'text' => $this->text,
-            'expiresAt' => $this->expiresAt,
+            'expiresAt' => $this->expiresAt?->format(DATE_ATOM),
+            'commands' => $this->commands,
             'integration' => $this->integration,
             'environments' => $this->environments,
         ];
@@ -133,156 +78,111 @@ final class Activity implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return object
-     */
     public function getParameters(): object
     {
         return $this->parameters;
     }
 
-    /**
-     * @return string
-     */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * @return string
-     */
     public function getState(): string
     {
         return $this->state;
     }
 
-    /**
-     * @return string|null
-     */
     public function getResult(): ?string
     {
         return $this->result;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getStartedAt(): ?\DateTime
     {
         return $this->startedAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCompletedAt(): ?\DateTime
     {
         return $this->completedAt;
     }
 
-    /**
-     * @return int
-     */
     public function getCompletionPercent(): int
     {
         return $this->completionPercent;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCancelledAt(): ?\DateTime
     {
         return $this->cancelledAt;
     }
 
-    /**
-     * @return array<string,float>
-     */
     public function getTimings(): array
     {
         return $this->timings;
     }
 
-    /**
-     * @return string
-     */
     public function getLog(): string
     {
         return $this->log;
     }
 
-    /**
-     * @return object
-     */
     public function getPayload(): object
     {
         return $this->payload;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @return string|null
-     */
     public function getText(): ?string
     {
         return $this->text;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getExpiresAt(): ?\DateTime
     {
         return $this->expiresAt;
     }
 
     /**
-     * @return string|null
+     * @return CommandsInner[]
      */
+    public function getCommands(): array
+    {
+        return $this->commands;
+    }
+
     public function getIntegration(): ?string
     {
         return $this->integration;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
 }
-

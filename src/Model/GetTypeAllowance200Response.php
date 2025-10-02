@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class GetTypeAllowance200Response implements JsonSerializable
+final class GetTypeAllowance200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'currencies' => 'currencies'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies $currencies = null,
+        private readonly ?GetTypeAllowance200ResponseCurrencies $currencies = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'currencies' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrencies',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,12 +38,8 @@ final class GetTypeAllowance200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrencies|null
-     */
-    public function getCurrencies(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies
+    public function getCurrencies(): ?GetTypeAllowance200ResponseCurrencies
     {
         return $this->currencies;
     }
 }
-

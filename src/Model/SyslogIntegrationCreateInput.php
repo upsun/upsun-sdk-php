@@ -12,32 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class SyslogIntegrationCreateInput implements JsonSerializable
+final class SyslogIntegrationCreateInput implements ModelInterface, JsonSerializable
 {
-    public const PROTOCOL_TCP = 'tcp';
-    public const PROTOCOL_TLS = 'tls';
-    public const PROTOCOL_UDP = 'udp';
-    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
-    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
-    public const AUTH_MODE_PREFIX = 'prefix';
-    public const AUTH_MODE_STRUCTURED_DATA = 'structured_data';
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'extra' => 'extra',
-        'host' => 'host',
-        'port' => 'port',
-        'protocol' => 'protocol',
-        'facility' => 'facility',
-        'messageFormat' => 'message_format',
-        'authToken' => 'auth_token',
-        'authMode' => 'auth_mode',
-        'tlsVerify' => 'tls_verify'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly ?array $extra = [],
@@ -49,31 +27,13 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
         private readonly ?string $authToken = null,
         private readonly ?string $authMode = null,
         private readonly ?bool $tlsVerify = null,
+        private readonly ?array $excludedServices = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'extra' => 'string[]',
-            'host' => '?string',
-            'port' => '?int',
-            'protocol' => '?string',
-            'facility' => '?int',
-            'message_format' => '?string',
-            'auth_token' => '?string',
-            'auth_mode' => '?string',
-            'tls_verify' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -89,6 +49,7 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
             'authToken' => $this->authToken,
             'authMode' => $this->authMode,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
         ];
     }
 
@@ -97,84 +58,58 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
 
-    /**
-     * @return string|null
-     */
     public function getHost(): ?string
     {
         return $this->host;
     }
 
-    /**
-     * @return int|null
-     */
     public function getPort(): ?int
     {
         return $this->port;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
 
-    /**
-     * @return int|null
-     */
     public function getFacility(): ?int
     {
         return $this->facility;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMessageFormat(): ?string
     {
         return $this->messageFormat;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAuthToken(): ?string
     {
         return $this->authToken;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAuthMode(): ?string
     {
         return $this->authMode;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
     }
-}
 
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
+    }
+}

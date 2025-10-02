@@ -12,24 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EnvironmentVariableCreateInput implements JsonSerializable
+final class EnvironmentVariableCreateInput implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'name' => 'name',
-        'value' => 'value',
-        'attributes' => 'attributes',
-        'isJson' => 'is_json',
-        'isSensitive' => 'is_sensitive',
-        'visibleBuild' => 'visible_build',
-        'visibleRuntime' => 'visible_runtime',
-        'isEnabled' => 'is_enabled',
-        'isInheritable' => 'is_inheritable'
-    ];
-
     public function __construct(
         private readonly string $name,
         private readonly string $value,
@@ -38,32 +24,15 @@ final class EnvironmentVariableCreateInput implements JsonSerializable
         private readonly ?bool $isSensitive = null,
         private readonly ?bool $visibleBuild = null,
         private readonly ?bool $visibleRuntime = null,
+        private readonly ?array $applicationScope = [],
         private readonly ?bool $isEnabled = null,
         private readonly ?bool $isInheritable = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'name' => 'string',
-            'value' => 'string',
-            'attributes' => 'string[]',
-            'is_json' => '?bool',
-            'is_sensitive' => '?bool',
-            'visible_build' => '?bool',
-            'visible_runtime' => '?bool',
-            'is_enabled' => '?bool',
-            'is_inheritable' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -76,6 +45,7 @@ final class EnvironmentVariableCreateInput implements JsonSerializable
             'isSensitive' => $this->isSensitive,
             'visibleBuild' => $this->visibleBuild,
             'visibleRuntime' => $this->visibleRuntime,
+            'applicationScope' => $this->applicationScope,
             'isEnabled' => $this->isEnabled,
             'isInheritable' => $this->isInheritable,
         ];
@@ -86,76 +56,53 @@ final class EnvironmentVariableCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getValue(): string
     {
         return $this->value;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsJson(): ?bool
     {
         return $this->isJson;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsSensitive(): ?bool
     {
         return $this->isSensitive;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getVisibleBuild(): ?bool
     {
         return $this->visibleBuild;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getVisibleRuntime(): ?bool
     {
         return $this->visibleRuntime;
     }
 
-    /**
-     * @return bool|null
-     */
+    public function getApplicationScope(): ?array
+    {
+        return $this->applicationScope;
+    }
+
     public function getIsEnabled(): ?bool
     {
         return $this->isEnabled;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsInheritable(): ?bool
     {
         return $this->isInheritable;
     }
 }
-

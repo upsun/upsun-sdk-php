@@ -37,9 +37,15 @@ final class EnvironmentApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,18 @@ final class EnvironmentApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Activate an environment
      *
+     * Set the specified environment's status to active
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/activate-environment
      */
     public function activateEnvironment(
         string $projectId,
@@ -68,11 +81,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Activate an environment
+     * Activate an environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function activateEnvironmentWithHttpInfo(
+    private function activateEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentActivateInput $environmentActivateInput
@@ -87,14 +102,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -104,11 +122,12 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function activateEnvironmentRequest(
+    private function activateEnvironmentRequest(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentActivateInput $environmentActivateInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -116,9 +135,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling activateEnvironment'
+                'Missing the required parameter $projectId 
+                when calling activateEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -126,9 +147,11 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling activateEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling activateEnvironment'
             );
         }
+
         // verify the required parameter 'environmentActivateInput' is set
         if (
             $environmentActivateInput === null
@@ -136,18 +159,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentActivateInput) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentActivateInput when calling activateEnvironment'
+                'Missing the required parameter $environmentActivateInput 
+                when calling activateEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/activate';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -176,11 +197,13 @@ final class EnvironmentApi extends AbstractApi
         // for model (json/xml)
         if (isset($environmentActivateInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentActivateInput));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentActivateInput)
+                );
             } else {
                 $httpBody = $environmentActivateInput;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -223,8 +246,14 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Branch an environment
      *
+     * Create a new environment as a branch of the current environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/branch-environment
      */
     public function branchEnvironment(
         string $projectId,
@@ -239,11 +268,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Branch an environment
+     * Branch an environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function branchEnvironmentWithHttpInfo(
+    private function branchEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentBranchInput $environmentBranchInput
@@ -258,14 +289,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -275,11 +309,12 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function branchEnvironmentRequest(
+    private function branchEnvironmentRequest(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentBranchInput $environmentBranchInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -287,9 +322,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling branchEnvironment'
+                'Missing the required parameter $projectId 
+                when calling branchEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -297,9 +334,11 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling branchEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling branchEnvironment'
             );
         }
+
         // verify the required parameter 'environmentBranchInput' is set
         if (
             $environmentBranchInput === null
@@ -307,18 +346,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentBranchInput) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentBranchInput when calling branchEnvironment'
+                'Missing the required parameter $environmentBranchInput 
+                when calling branchEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/branch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -347,11 +384,13 @@ final class EnvironmentApi extends AbstractApi
         // for model (json/xml)
         if (isset($environmentBranchInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentBranchInput));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentBranchInput)
+                );
             } else {
                 $httpBody = $environmentBranchInput;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -394,8 +433,16 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Create versions associated with the environment
      *
+     * Create versions associated with the `{environmentId}` environment. At least one version always exists. When
+     * multiple versions exist, it means that multiple versions of an app are deployed. The deployment target type
+     * denotes whether staged deployment is supported.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/create-projects-environments-versions
      */
     public function createProjectsEnvironmentsVersions(
         string $projectId,
@@ -410,11 +457,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Create versions associated with the environment
+     * Create versions associated with the environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function createProjectsEnvironmentsVersionsWithHttpInfo(
+    private function createProjectsEnvironmentsVersionsWithHttpInfo(
         string $projectId,
         string $environmentId,
         \Upsun\Model\VersionCreateInput $versionCreateInput
@@ -429,14 +478,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -446,11 +498,12 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function createProjectsEnvironmentsVersionsRequest(
+    private function createProjectsEnvironmentsVersionsRequest(
         string $projectId,
         string $environmentId,
         \Upsun\Model\VersionCreateInput $versionCreateInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -458,9 +511,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling createProjectsEnvironmentsVersions'
+                'Missing the required parameter $projectId 
+                when calling createProjectsEnvironmentsVersions'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -468,9 +523,11 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling createProjectsEnvironmentsVersions'
+                'Missing the required parameter $environmentId 
+                when calling createProjectsEnvironmentsVersions'
             );
         }
+
         // verify the required parameter 'versionCreateInput' is set
         if (
             $versionCreateInput === null
@@ -478,18 +535,16 @@ final class EnvironmentApi extends AbstractApi
             && count($versionCreateInput) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $versionCreateInput when calling createProjectsEnvironmentsVersions'
+                'Missing the required parameter $versionCreateInput 
+                when calling createProjectsEnvironmentsVersions'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -518,11 +573,13 @@ final class EnvironmentApi extends AbstractApi
         // for model (json/xml)
         if (isset($versionCreateInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($versionCreateInput));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($versionCreateInput)
+                );
             } else {
                 $httpBody = $versionCreateInput;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -565,8 +622,16 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Deactivate an environment
      *
+     * Destroy all services and data running on this environment so that only the Git branch remains. The environment
+     * can be reactivated later at any time; reactivating an environment will sync data from the parent environment and
+     * redeploy. **NOTE: ALL DATA IN THIS ENVIRONMENT WILL BE IRREVOCABLY LOST**
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/deactivate-environment
      */
     public function deactivateEnvironment(
         string $projectId,
@@ -579,11 +644,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Deactivate an environment
+     * Deactivate an environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function deactivateEnvironmentWithHttpInfo(
+    private function deactivateEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
     ): \Upsun\Model\AcceptedResponse {
@@ -596,14 +663,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -613,10 +683,11 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function deactivateEnvironmentRequest(
+    private function deactivateEnvironmentRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -624,9 +695,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling deactivateEnvironment'
+                'Missing the required parameter $projectId 
+                when calling deactivateEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -634,18 +707,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling deactivateEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling deactivateEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/deactivate';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -672,7 +743,7 @@ final class EnvironmentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -715,8 +786,14 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Delete an environment
      *
+     * Delete a specified environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/delete-environment
      */
     public function deleteEnvironment(
         string $projectId,
@@ -729,11 +806,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Delete an environment
+     * Delete an environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function deleteEnvironmentWithHttpInfo(
+    private function deleteEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
     ): \Upsun\Model\AcceptedResponse {
@@ -746,14 +825,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -763,10 +845,11 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteEnvironmentRequest(
+    private function deleteEnvironmentRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -774,9 +857,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling deleteEnvironment'
+                'Missing the required parameter $projectId 
+                when calling deleteEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -784,18 +869,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling deleteEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling deleteEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -822,7 +905,7 @@ final class EnvironmentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -865,8 +948,15 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Delete the version
      *
+     * Delete the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if
+     * the deployment target supports it).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/delete-projects-environments-versions
      */
     public function deleteProjectsEnvironmentsVersions(
         string $projectId,
@@ -881,11 +971,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Delete the version
+     * Delete the version with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsEnvironmentsVersionsWithHttpInfo(
+    private function deleteProjectsEnvironmentsVersionsWithHttpInfo(
         string $projectId,
         string $environmentId,
         string $versionId
@@ -900,14 +992,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -917,11 +1012,12 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsVersionsRequest(
+    private function deleteProjectsEnvironmentsVersionsRequest(
         string $projectId,
         string $environmentId,
         string $versionId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -929,9 +1025,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling deleteProjectsEnvironmentsVersions'
+                'Missing the required parameter $projectId 
+                when calling deleteProjectsEnvironmentsVersions'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -939,9 +1037,11 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling deleteProjectsEnvironmentsVersions'
+                'Missing the required parameter $environmentId 
+                when calling deleteProjectsEnvironmentsVersions'
             );
         }
+
         // verify the required parameter 'versionId' is set
         if (
             $versionId === null
@@ -949,18 +1049,16 @@ final class EnvironmentApi extends AbstractApi
             && count($versionId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $versionId when calling deleteProjectsEnvironmentsVersions'
+                'Missing the required parameter $versionId 
+                when calling deleteProjectsEnvironmentsVersions'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -995,7 +1093,7 @@ final class EnvironmentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1036,10 +1134,205 @@ final class EnvironmentApi extends AbstractApi
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
     /**
-     * Get an environment
+     * Deploy an environment
+     *
+     * Trigger a controlled [manual
+     * deployment](https://docs.upsun.com/learn/overview/build-deploy.html#manual-deployment) to release all the staged
+     * changes
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/deploy-environment
+     */
+    public function deployEnvironment(
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentDeployInput $environmentDeployInput
+    ): \Upsun\Model\AcceptedResponse {
+        return $this->deployEnvironmentWithHttpInfo(
+            $projectId,
+            $environmentId,
+            $environmentDeployInput
+        );
+    }
+
+    /**
+     * Deploy an environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @throws InvalidArgumentException|Exception
+     */
+    private function deployEnvironmentWithHttpInfo(
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentDeployInput $environmentDeployInput
+    ): \Upsun\Model\AcceptedResponse {
+        $request = $this->deployEnvironmentRequest(
+            $projectId,
+            $environmentId,
+            $environmentDeployInput
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\AcceptedResponse',
+                $request,
+                $response
+            );
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
+        }
+    }
+
+    /**
+     * Create request for operation 'deployEnvironment'
+     *
+     * @throws InvalidArgumentException
+     */
+    private function deployEnvironmentRequest(
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentDeployInput $environmentDeployInput
+    ): RequestInterface {
+
+        // verify the required parameter 'projectId' is set
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $projectId 
+                when calling deployEnvironment'
+            );
+        }
+
+        // verify the required parameter 'environmentId' is set
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $environmentId 
+                when calling deployEnvironment'
+            );
+        }
+
+        // verify the required parameter 'environmentDeployInput' is set
+        if (
+            $environmentDeployInput === null
+            || (is_array($environmentDeployInput)
+            && count($environmentDeployInput) === 0)
+        ) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $environmentDeployInput 
+                when calling deployEnvironment'
+            );
+        }
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deploy';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+        if ($projectId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'projectId' . '}',
+                ObjectSerializer::toPathValue($projectId),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($environmentId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'environmentId' . '}',
+                ObjectSerializer::toPathValue($environmentId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            'application/json',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($environmentDeployInput)) {
+            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentDeployInput)
+                );
+            } else {
+                $httpBody = $environmentDeployInput;
+            }
+        } elseif ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('POST', $uri, $headers, $httpBody);
+    }
+    /**
+     * Get an environment
+     *
+     * Retrieve the details of a single existing environment.
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Environment
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/get-environment
      */
     public function getEnvironment(
         string $projectId,
@@ -1052,11 +1345,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Get an environment
+     * Get an environment with HTTP Info
+     *
+     * @return \Upsun\Model\Environment
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getEnvironmentWithHttpInfo(
+    private function getEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
     ): \Upsun\Model\Environment {
@@ -1069,14 +1364,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Environment',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -1086,10 +1384,11 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getEnvironmentRequest(
+    private function getEnvironmentRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -1097,9 +1396,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling getEnvironment'
+                'Missing the required parameter $projectId 
+                when calling getEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -1107,18 +1408,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling getEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling getEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -1145,7 +1444,7 @@ final class EnvironmentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1188,8 +1487,15 @@ final class EnvironmentApi extends AbstractApi
     /**
      * List the version
      *
+     * List the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if
+     * the deployment target supports it).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Version
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/get-projects-environments-versions
      */
     public function getProjectsEnvironmentsVersions(
         string $projectId,
@@ -1204,11 +1510,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * List the version
+     * List the version with HTTP Info
+     *
+     * @return \Upsun\Model\Version
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsEnvironmentsVersionsWithHttpInfo(
+    private function getProjectsEnvironmentsVersionsWithHttpInfo(
         string $projectId,
         string $environmentId,
         string $versionId
@@ -1223,14 +1531,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Version',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -1240,11 +1551,12 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsVersionsRequest(
+    private function getProjectsEnvironmentsVersionsRequest(
         string $projectId,
         string $environmentId,
         string $versionId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -1252,9 +1564,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling getProjectsEnvironmentsVersions'
+                'Missing the required parameter $projectId 
+                when calling getProjectsEnvironmentsVersions'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -1262,9 +1576,11 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling getProjectsEnvironmentsVersions'
+                'Missing the required parameter $environmentId 
+                when calling getProjectsEnvironmentsVersions'
             );
         }
+
         // verify the required parameter 'versionId' is set
         if (
             $versionId === null
@@ -1272,18 +1588,16 @@ final class EnvironmentApi extends AbstractApi
             && count($versionId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $versionId when calling getProjectsEnvironmentsVersions'
+                'Missing the required parameter $versionId 
+                when calling getProjectsEnvironmentsVersions'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -1318,7 +1632,7 @@ final class EnvironmentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1361,8 +1675,20 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Initialize a new environment
      *
+     * Initialize and configure a new environment with an existing repository. The payload is the url of a git
+     * repository with a profile name: ``` { "repository": "git@github.com:platformsh/a-project-template.git@master",
+     * "profile": "Example Project", "files": [ { "mode": 0600, "path": "config.json", "contents": "XXXXXXXX" } ] } ```
+     * It can optionally carry additional files that will be committed to the repository, the POSIX file mode to set on
+     * each file, and the base64-encoded contents of each file. This endpoint can also add a second repository URL in
+     * the `config` parameter that will be added to the contents of the first. This allows you to put your application
+     * in one repository and the Upsun YAML configuration files in another.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/initialize-environment
      */
     public function initializeEnvironment(
         string $projectId,
@@ -1377,11 +1703,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Initialize a new environment
+     * Initialize a new environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function initializeEnvironmentWithHttpInfo(
+    private function initializeEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentInitializeInput $environmentInitializeInput
@@ -1396,14 +1724,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -1413,11 +1744,12 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function initializeEnvironmentRequest(
+    private function initializeEnvironmentRequest(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentInitializeInput $environmentInitializeInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -1425,9 +1757,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling initializeEnvironment'
+                'Missing the required parameter $projectId 
+                when calling initializeEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -1435,9 +1769,11 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling initializeEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling initializeEnvironment'
             );
         }
+
         // verify the required parameter 'environmentInitializeInput' is set
         if (
             $environmentInitializeInput === null
@@ -1445,18 +1781,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentInitializeInput) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentInitializeInput when calling initializeEnvironment'
+                'Missing the required parameter $environmentInitializeInput 
+                when calling initializeEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/initialize';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -1485,11 +1819,13 @@ final class EnvironmentApi extends AbstractApi
         // for model (json/xml)
         if (isset($environmentInitializeInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentInitializeInput));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentInitializeInput)
+                );
             } else {
                 $httpBody = $environmentInitializeInput;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1532,10 +1868,14 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Get list of project environments
      *
+     * Retrieve a list of a project's existing environments and the information associated with each environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Environment[]
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/list-projects-environments
      */
     public function listProjectsEnvironments(
         string $projectId
@@ -1546,11 +1886,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Get list of project environments
+     * Get list of project environments with HTTP Info
+     *
+     * @return \Upsun\Model\Environment[]
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsWithHttpInfo(
+    private function listProjectsEnvironmentsWithHttpInfo(
         string $projectId
     ): array {
         $request = $this->listProjectsEnvironmentsRequest(
@@ -1561,14 +1903,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Environment[]',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -1578,9 +1923,10 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsRequest(
+    private function listProjectsEnvironmentsRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -1588,18 +1934,16 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling listProjectsEnvironments'
+                'Missing the required parameter $projectId 
+                when calling listProjectsEnvironments'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -1618,7 +1962,7 @@ final class EnvironmentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1661,10 +2005,16 @@ final class EnvironmentApi extends AbstractApi
     /**
      * List versions associated with the environment
      *
+     * List versions associated with the `{environmentId}` environment. At least one version always exists. When
+     * multiple versions exist, it means that multiple versions of an app are deployed. The deployment target type
+     * denotes whether staged deployment is supported.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Version[]
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/list-projects-environments-versions
      */
     public function listProjectsEnvironmentsVersions(
         string $projectId,
@@ -1677,11 +2027,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * List versions associated with the environment
+     * List versions associated with the environment with HTTP Info
+     *
+     * @return \Upsun\Model\Version[]
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsVersionsWithHttpInfo(
+    private function listProjectsEnvironmentsVersionsWithHttpInfo(
         string $projectId,
         string $environmentId
     ): array {
@@ -1694,14 +2046,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Version[]',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -1711,10 +2066,11 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsVersionsRequest(
+    private function listProjectsEnvironmentsVersionsRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -1722,9 +2078,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling listProjectsEnvironmentsVersions'
+                'Missing the required parameter $projectId 
+                when calling listProjectsEnvironmentsVersions'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -1732,18 +2090,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling listProjectsEnvironmentsVersions'
+                'Missing the required parameter $environmentId 
+                when calling listProjectsEnvironmentsVersions'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -1770,7 +2126,7 @@ final class EnvironmentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1813,8 +2169,16 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Merge an environment
      *
+     * Merge an environment into its parent. This means that code changes from the branch environment will be merged
+     * into the parent branch, and the parent branch will be rebuilt and deployed with the new code changes, retaining
+     * the existing data in the parent environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/merge-environment
      */
     public function mergeEnvironment(
         string $projectId,
@@ -1829,11 +2193,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Merge an environment
+     * Merge an environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function mergeEnvironmentWithHttpInfo(
+    private function mergeEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentMergeInput $environmentMergeInput
@@ -1848,14 +2214,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -1865,11 +2234,12 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function mergeEnvironmentRequest(
+    private function mergeEnvironmentRequest(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentMergeInput $environmentMergeInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -1877,9 +2247,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling mergeEnvironment'
+                'Missing the required parameter $projectId 
+                when calling mergeEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -1887,9 +2259,11 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling mergeEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling mergeEnvironment'
             );
         }
+
         // verify the required parameter 'environmentMergeInput' is set
         if (
             $environmentMergeInput === null
@@ -1897,18 +2271,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentMergeInput) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentMergeInput when calling mergeEnvironment'
+                'Missing the required parameter $environmentMergeInput 
+                when calling mergeEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/merge';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -1937,11 +2309,13 @@ final class EnvironmentApi extends AbstractApi
         // for model (json/xml)
         if (isset($environmentMergeInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentMergeInput));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentMergeInput)
+                );
             } else {
                 $httpBody = $environmentMergeInput;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1984,8 +2358,18 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Pause an environment
      *
+     * Pause an environment, stopping all services and applications (except the router). Development environments are
+     * often used for a limited time and then abandoned. To prevent unnecessary consumption of resources, development
+     * environments that haven't been redeployed in 14 days are automatically paused. You can pause an environment
+     * manually at any time using this endpoint. Further information is available in our [public
+     * documentation](https://docs.upsun.com/anchors/environments/paused/).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/pause-environment
      */
     public function pauseEnvironment(
         string $projectId,
@@ -1998,11 +2382,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Pause an environment
+     * Pause an environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function pauseEnvironmentWithHttpInfo(
+    private function pauseEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
     ): \Upsun\Model\AcceptedResponse {
@@ -2015,14 +2401,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -2032,10 +2421,11 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function pauseEnvironmentRequest(
+    private function pauseEnvironmentRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -2043,9 +2433,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling pauseEnvironment'
+                'Missing the required parameter $projectId 
+                when calling pauseEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -2053,18 +2445,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling pauseEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling pauseEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/pause';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -2091,7 +2481,7 @@ final class EnvironmentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2134,8 +2524,14 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Redeploy an environment
      *
+     * Trigger the redeployment sequence of an environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/redeploy-environment
      */
     public function redeployEnvironment(
         string $projectId,
@@ -2148,11 +2544,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Redeploy an environment
+     * Redeploy an environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function redeployEnvironmentWithHttpInfo(
+    private function redeployEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
     ): \Upsun\Model\AcceptedResponse {
@@ -2165,14 +2563,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -2182,10 +2583,11 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function redeployEnvironmentRequest(
+    private function redeployEnvironmentRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -2193,9 +2595,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling redeployEnvironment'
+                'Missing the required parameter $projectId 
+                when calling redeployEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -2203,18 +2607,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling redeployEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling redeployEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/redeploy';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -2241,7 +2643,7 @@ final class EnvironmentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2284,8 +2686,17 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Resume a paused environment
      *
+     * Resume a paused environment, restarting all services and applications. Development environments that haven't been
+     * used for 14 days will be paused automatically. They can be resumed via a redeployment or manually using this
+     * endpoint or the CLI as described in the [public
+     * documentation](https://docs.upsun.com/anchors/environments/paused/).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/resume-environment
      */
     public function resumeEnvironment(
         string $projectId,
@@ -2298,11 +2709,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Resume a paused environment
+     * Resume a paused environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function resumeEnvironmentWithHttpInfo(
+    private function resumeEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
     ): \Upsun\Model\AcceptedResponse {
@@ -2315,14 +2728,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -2332,10 +2748,11 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function resumeEnvironmentRequest(
+    private function resumeEnvironmentRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -2343,9 +2760,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling resumeEnvironment'
+                'Missing the required parameter $projectId 
+                when calling resumeEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -2353,18 +2772,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling resumeEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling resumeEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/resume';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -2391,7 +2808,7 @@ final class EnvironmentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2434,8 +2851,16 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Synchronize a child environment with its parent
      *
+     * This synchronizes the code and/or data of an environment with that of its parent, then redeploys the environment.
+     * Synchronization is only possible if a branch has no unmerged commits and it can be fast-forwarded. If data
+     * synchronization is specified, the data in the environment will be overwritten with that of its parent.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/synchronize-environment
      */
     public function synchronizeEnvironment(
         string $projectId,
@@ -2450,11 +2875,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Synchronize a child environment with its parent
+     * Synchronize a child environment with its parent with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function synchronizeEnvironmentWithHttpInfo(
+    private function synchronizeEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentSynchronizeInput $environmentSynchronizeInput
@@ -2469,14 +2896,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -2486,11 +2916,12 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function synchronizeEnvironmentRequest(
+    private function synchronizeEnvironmentRequest(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentSynchronizeInput $environmentSynchronizeInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -2498,9 +2929,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling synchronizeEnvironment'
+                'Missing the required parameter $projectId 
+                when calling synchronizeEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -2508,9 +2941,11 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling synchronizeEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling synchronizeEnvironment'
             );
         }
+
         // verify the required parameter 'environmentSynchronizeInput' is set
         if (
             $environmentSynchronizeInput === null
@@ -2518,18 +2953,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentSynchronizeInput) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentSynchronizeInput when calling synchronizeEnvironment'
+                'Missing the required parameter $environmentSynchronizeInput 
+                when calling synchronizeEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/synchronize';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -2558,11 +2991,13 @@ final class EnvironmentApi extends AbstractApi
         // for model (json/xml)
         if (isset($environmentSynchronizeInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentSynchronizeInput));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentSynchronizeInput)
+                );
             } else {
                 $httpBody = $environmentSynchronizeInput;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2605,8 +3040,14 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Update an environment
      *
+     * Update the details of a single existing environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/update-environment
      */
     public function updateEnvironment(
         string $projectId,
@@ -2621,11 +3062,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Update an environment
+     * Update an environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function updateEnvironmentWithHttpInfo(
+    private function updateEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentPatch $environmentPatch
@@ -2640,14 +3083,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -2657,11 +3103,12 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateEnvironmentRequest(
+    private function updateEnvironmentRequest(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentPatch $environmentPatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -2669,9 +3116,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling updateEnvironment'
+                'Missing the required parameter $projectId 
+                when calling updateEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -2679,9 +3128,11 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling updateEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling updateEnvironment'
             );
         }
+
         // verify the required parameter 'environmentPatch' is set
         if (
             $environmentPatch === null
@@ -2689,18 +3140,16 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentPatch) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentPatch when calling updateEnvironment'
+                'Missing the required parameter $environmentPatch 
+                when calling updateEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -2729,11 +3178,13 @@ final class EnvironmentApi extends AbstractApi
         // for model (json/xml)
         if (isset($environmentPatch)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentPatch));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentPatch)
+                );
             } else {
                 $httpBody = $environmentPatch;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -2776,8 +3227,15 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Update the version
      *
+     * Update the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if
+     * the deployment target supports it).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/update-projects-environments-versions
      */
     public function updateProjectsEnvironmentsVersions(
         string $projectId,
@@ -2794,11 +3252,13 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Update the version
+     * Update the version with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsEnvironmentsVersionsWithHttpInfo(
+    private function updateProjectsEnvironmentsVersionsWithHttpInfo(
         string $projectId,
         string $environmentId,
         string $versionId,
@@ -2815,14 +3275,17 @@ final class EnvironmentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -2832,12 +3295,13 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsVersionsRequest(
+    private function updateProjectsEnvironmentsVersionsRequest(
         string $projectId,
         string $environmentId,
         string $versionId,
         \Upsun\Model\VersionPatch $versionPatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -2845,9 +3309,11 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling updateProjectsEnvironmentsVersions'
+                'Missing the required parameter $projectId 
+                when calling updateProjectsEnvironmentsVersions'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -2855,9 +3321,11 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling updateProjectsEnvironmentsVersions'
+                'Missing the required parameter $environmentId 
+                when calling updateProjectsEnvironmentsVersions'
             );
         }
+
         // verify the required parameter 'versionId' is set
         if (
             $versionId === null
@@ -2865,9 +3333,11 @@ final class EnvironmentApi extends AbstractApi
             && count($versionId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $versionId when calling updateProjectsEnvironmentsVersions'
+                'Missing the required parameter $versionId 
+                when calling updateProjectsEnvironmentsVersions'
             );
         }
+
         // verify the required parameter 'versionPatch' is set
         if (
             $versionPatch === null
@@ -2875,18 +3345,16 @@ final class EnvironmentApi extends AbstractApi
             && count($versionPatch) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $versionPatch when calling updateProjectsEnvironmentsVersions'
+                'Missing the required parameter $versionPatch 
+                when calling updateProjectsEnvironmentsVersions'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -2923,11 +3391,13 @@ final class EnvironmentApi extends AbstractApi
         // for model (json/xml)
         if (isset($versionPatch)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($versionPatch));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($versionPatch)
+                );
             } else {
                 $httpBody = $versionPatch;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerializable
+final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'activeDocroot' => 'active_docroot',
-        'docrootVersions' => 'docroot_versions'
-    ];
-
     public function __construct(
-        private readonly ?string $activeDocroot = null,
-        private readonly ?array $docrootVersions = [],
+        private readonly ?string $activeDocroot,
+        private readonly ?array $docrootVersions,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'active_docroot' => '?string',
-            'docroot_versions' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +40,13 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getActiveDocroot(): ?string
     {
         return $this->activeDocroot;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getDocrootVersions(): ?array
     {
         return $this->docrootVersions;
     }
 }
-

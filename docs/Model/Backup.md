@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  |
 **createdAt** | **\DateTime** |  |
 **updatedAt** | **\DateTime** |  |
-**id** | **string** |  |
 **attributes** | **array<string,string>** |  |
 **status** | **string** |  |
 **expiresAt** | **\DateTime** |  |

@@ -12,25 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSerializable
+final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'locations' => 'locations',
-        'moveToRoot' => 'move_to_root',
-        'commands' => 'commands',
-        'upstream' => 'upstream',
-        'documentRoot' => 'document_root',
-        'passthru' => 'passthru',
-        'indexFiles' => 'index_files',
-        'whitelist' => 'whitelist',
-        'blacklist' => 'blacklist',
-        'expires' => 'expires'
-    ];
-
     public function __construct(
         private readonly array $locations,
         private readonly bool $moveToRoot,
@@ -40,33 +25,14 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         private readonly ?array $whitelist = [],
         private readonly ?array $blacklist = [],
         private readonly ?string $expires = null,
-        private readonly ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
-        private readonly ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
+        private readonly ?CommandsToManageTheApplicationSLifecycle $commands = null,
+        private readonly ?ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'locations' => '\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]',
-            'move_to_root' => 'bool',
-            'commands' => '?\Upsun\Model\CommandsToManageTheApplicationSLifecycle',
-            'upstream' => '?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication',
-            'document_root' => '?string',
-            'passthru' => '?string',
-            'index_files' => 'string[]',
-            'whitelist' => 'string[]',
-            'blacklist' => 'string[]',
-            'expires' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -91,83 +57,55 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     }
 
     /**
-     * @return \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]
+     * @return TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]
      */
     public function getLocations(): array
     {
         return $this->locations;
     }
 
-    /**
-     * @return bool
-     */
     public function getMoveToRoot(): bool
     {
         return $this->moveToRoot;
     }
 
-    /**
-     * @return \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null
-     */
-    public function getCommands(): ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle
+    public function getCommands(): ?CommandsToManageTheApplicationSLifecycle
     {
         return $this->commands;
     }
 
-    /**
-     * @return \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null
-     */
-    public function getUpstream(): ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication
+    public function getUpstream(): ?ConfigurationOnHowTheWebServerCommunicatesWithTheApplication
     {
         return $this->upstream;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDocumentRoot(): ?string
     {
         return $this->documentRoot;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPassthru(): ?string
     {
         return $this->passthru;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getIndexFiles(): ?array
     {
         return $this->indexFiles;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getWhitelist(): ?array
     {
         return $this->whitelist;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getBlacklist(): ?array
     {
         return $this->blacklist;
     }
 
-    /**
-     * @return string|null
-     */
     public function getExpires(): ?string
     {
         return $this->expires;
     }
 }
-

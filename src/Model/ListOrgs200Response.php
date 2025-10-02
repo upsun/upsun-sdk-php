@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ListOrgs200Response implements JsonSerializable
+final class ListOrgs200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'count' => 'count',
-        'items' => 'items',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $items = [],
-        private readonly ?\Upsun\Model\ListLinks $links = null,
+        private readonly ?ListLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'count' => '?int',
-            'items' => '\Upsun\Model\Organization[]',
-            '_links' => '?\Upsun\Model\ListLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,30 +42,21 @@ final class ListOrgs200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Total number of items across pages.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
     /**
-     * @return \Upsun\Model\Organization[]|null
+     * @return Organization[]|null
      */
     public function getItems(): ?array
     {
         return $this->items;
     }
 
-    /**
-     * @return \Upsun\Model\ListLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\ListLinks
+    public function getLinks(): ?ListLinks
     {
         return $this->links;
     }
 }
-

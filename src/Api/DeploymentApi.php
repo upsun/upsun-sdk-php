@@ -37,9 +37,15 @@ final class DeploymentApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,19 @@ final class DeploymentApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Get a single environment deployment
      *
+     * Retrieve a single deployment configuration with an id of `current`. This may be subject to change in the future.
+     * Only `current` can be queried.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Deployment
+     *
+     * @see https://docs.upsun.com/api/#tag/Deployment/operation/get-projects-environments-deployments
      */
     public function getProjectsEnvironmentsDeployments(
         string $projectId,
@@ -68,11 +82,13 @@ final class DeploymentApi extends AbstractApi
     }
 
     /**
-     * Get a single environment deployment
+     * Get a single environment deployment with HTTP Info
+     *
+     * @return \Upsun\Model\Deployment
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsEnvironmentsDeploymentsWithHttpInfo(
+    private function getProjectsEnvironmentsDeploymentsWithHttpInfo(
         string $projectId,
         string $environmentId,
         string $deploymentId
@@ -87,14 +103,17 @@ final class DeploymentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Deployment',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -104,11 +123,12 @@ final class DeploymentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsDeploymentsRequest(
+    private function getProjectsEnvironmentsDeploymentsRequest(
         string $projectId,
         string $environmentId,
         string $deploymentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -116,9 +136,11 @@ final class DeploymentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling getProjectsEnvironmentsDeployments'
+                'Missing the required parameter $projectId 
+                when calling getProjectsEnvironmentsDeployments'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -126,9 +148,11 @@ final class DeploymentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling getProjectsEnvironmentsDeployments'
+                'Missing the required parameter $environmentId 
+                when calling getProjectsEnvironmentsDeployments'
             );
         }
+
         // verify the required parameter 'deploymentId' is set
         if (
             $deploymentId === null
@@ -136,18 +160,16 @@ final class DeploymentApi extends AbstractApi
             && count($deploymentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $deploymentId when calling getProjectsEnvironmentsDeployments'
+                'Missing the required parameter $deploymentId 
+                when calling getProjectsEnvironmentsDeployments'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -182,7 +204,7 @@ final class DeploymentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -223,12 +245,21 @@ final class DeploymentApi extends AbstractApi
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
     /**
-     * Get an environment&#39;s deployment information
+     * Get an environment's deployment information
+     *
+     * Retrieve the read-only configuration of an environment's deployment. The returned information is everything
+     * required to recreate a project's current deployment. More specifically, the objects returned by this endpoint
+     * contain the configuration derived from the repository's YAML configuration file: `.upsun/config.yaml`.
+     * Additionally, any values deriving from environment variables, the domains attached to a project, project access
+     * settings, etc. are included here. This endpoint currently returns a list containing a single deployment
+     * configuration with an `id` of `current`. This may be subject to change in the future.
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Deployment[]
+     *
+     * @see https://docs.upsun.com/api/#tag/Deployment/operation/list-projects-environments-deployments
      */
     public function listProjectsEnvironmentsDeployments(
         string $projectId,
@@ -241,11 +272,13 @@ final class DeploymentApi extends AbstractApi
     }
 
     /**
-     * Get an environment&#39;s deployment information
+     * Get an environment's deployment information with HTTP Info
+     *
+     * @return \Upsun\Model\Deployment[]
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsDeploymentsWithHttpInfo(
+    private function listProjectsEnvironmentsDeploymentsWithHttpInfo(
         string $projectId,
         string $environmentId
     ): array {
@@ -258,14 +291,17 @@ final class DeploymentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Deployment[]',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -275,10 +311,11 @@ final class DeploymentApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsDeploymentsRequest(
+    private function listProjectsEnvironmentsDeploymentsRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -286,9 +323,11 @@ final class DeploymentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling listProjectsEnvironmentsDeployments'
+                'Missing the required parameter $projectId 
+                when calling listProjectsEnvironmentsDeployments'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -296,18 +335,16 @@ final class DeploymentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling listProjectsEnvironmentsDeployments'
+                'Missing the required parameter $environmentId 
+                when calling listProjectsEnvironmentsDeployments'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -334,7 +371,7 @@ final class DeploymentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -373,5 +410,182 @@ final class DeploymentApi extends AbstractApi
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+    /**
+     * Update the next deployment
+     *
+     * Update resources for either webapps, services, or workers in the next deployment.
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @see https://docs.upsun.com/api/#tag//operation/
+     */
+    public function updateProjectsEnvironmentsDeploymentsNext(
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
+    ): void {
+        $this->updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
+            $projectId,
+            $environmentId,
+            $updateProjectsEnvironmentsDeploymentsNextRequest
+        );
+    }
+
+    /**
+     * Update the next deployment with HTTP Info
+     *
+     * @throws InvalidArgumentException|Exception
+     */
+    private function updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
+    ): void {
+        $request = $this->updateProjectsEnvironmentsDeploymentsNextRequest(
+            $projectId,
+            $environmentId,
+            $updateProjectsEnvironmentsDeploymentsNextRequest
+        );
+
+        try {
+            $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
+        }
+    }
+
+    /**
+     * Create request for operation 'updateProjectsEnvironmentsDeploymentsNext'
+     *
+     * @throws InvalidArgumentException
+     */
+    private function updateProjectsEnvironmentsDeploymentsNextRequest(
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
+    ): RequestInterface {
+
+        // verify the required parameter 'projectId' is set
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $projectId 
+                when calling updateProjectsEnvironmentsDeploymentsNext'
+            );
+        }
+
+        // verify the required parameter 'environmentId' is set
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $environmentId 
+                when calling updateProjectsEnvironmentsDeploymentsNext'
+            );
+        }
+
+        // verify the required parameter 'updateProjectsEnvironmentsDeploymentsNextRequest' is set
+        if (
+            $updateProjectsEnvironmentsDeploymentsNextRequest === null
+            || (is_array($updateProjectsEnvironmentsDeploymentsNextRequest)
+            && count($updateProjectsEnvironmentsDeploymentsNextRequest) === 0)
+        ) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $updateProjectsEnvironmentsDeploymentsNextRequest 
+                when calling updateProjectsEnvironmentsDeploymentsNext'
+            );
+        }
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/next';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+        if ($projectId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'projectId' . '}',
+                ObjectSerializer::toPathValue($projectId),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($environmentId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'environmentId' . '}',
+                ObjectSerializer::toPathValue($environmentId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            'application/json',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($updateProjectsEnvironmentsDeploymentsNextRequest)) {
+            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($updateProjectsEnvironmentsDeploymentsNextRequest)
+                );
+            } else {
+                $httpBody = $updateProjectsEnvironmentsDeploymentsNextRequest;
+            }
+        } elseif ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 }

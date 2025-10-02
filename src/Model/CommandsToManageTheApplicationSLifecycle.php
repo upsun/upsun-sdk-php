@@ -12,37 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
+final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'preStart' => 'pre_start',
-        'start' => 'start'
-    ];
-
     public function __construct(
         private readonly ?string $preStart = null,
         private readonly ?string $start = null,
+        private readonly ?string $postStart = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'pre_start' => '?string',
-            'start' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -50,6 +33,7 @@ final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
         return [
             'preStart' => $this->preStart,
             'start' => $this->start,
+            'postStart' => $this->postStart,
         ];
     }
 
@@ -58,20 +42,18 @@ final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getPreStart(): ?string
     {
         return $this->preStart;
     }
 
-    /**
-     * @return string|null
-     */
     public function getStart(): ?string
     {
         return $this->start;
     }
-}
 
+    public function getPostStart(): ?string
+    {
+        return $this->postStart;
+    }
+}

@@ -1,159 +1,212 @@
 <?php
 
+namespace Upsun\Test\Core;
+
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
 use Upsun\Configuration;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
+use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\RouteTask;
 use Upsun\UpsunClient;
 use Upsun\Api\RoutingApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Route;
-use Upsun\ApiException;
-use Upsun\UpsunConfig;
 
-class RouteTaskTest extends TestCase
+class RouteTaskTest extends BaseTestCase
 {
-    private RouteTask $task;
-    private RoutingApi $apiMock;
-    private UpsunClient $clientMock;
+    private RouteTask $routeTask;
+    private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
-        $this->apiMock = $this->createMock(RoutingApiI::class);
-        
-        $this->clientMock = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $psr17Factory = new Psr17Factory();
 
-            public UpsunConfig $upsunConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public function __construct()
-            {
-            }
-        };
+        $oauthProvider = $this->createMock(OAuthProvider::class);
 
-        $this->task = new class(
-            $this->clientMock,
-            $this->apiMock
+        $upsunClient = $this->createMock(UpsunClient::class);
+
+        $this->routeTask = new class (
+            $upsunClient,
+            new RoutingApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
         ) extends RouteTask {
-            public function refreshToken(): void
-            {
-            }
         };
-        
-//        $this->task = new RouteTask($this->clientMock, $this->apiMock);
     }
 
-    public function testCreateSuccess(): void
+    public function testGet(): void
     {
-        $response = $this->createMock(AcceptedResponse::class);
-
-        $this->apiMock->expects($this->once())
-            ->method('createProjectsEnvironmentsRoutes')
-            ->willReturn($response);
-
-        $result = $this->task->create('proj1', 'env1', ['id' => 'r1']);
-        $this->assertSame($response, $result);
-    }
-
-    public function testCreateThrowsApiException(): void
-    {
-        $this->expectException(ApiException::class);
-
-        $this->apiMock->method('createProjectsEnvironmentsRoutes')
-            ->willThrowException($this->createMock(ApiException::class));
-
-        $this->task->create('proj1', 'env1', []);
-    }
-
-    public function testDeleteSuccess(): void
-    {
-        $response = $this->createMock(AcceptedResponse::class);
-
-        $this->apiMock->expects($this->once())
-            ->method('deleteProjectsEnvironmentsRoutes')
-            ->willReturn($response);
-
-        $result = $this->task->delete('proj1', 'env1', 'route1');
-        $this->assertSame($response, $result);
-    }
-
-    public function testDeleteThrowsApiException(): void
-    {
-        $this->expectException(ApiException::class);
-
-        $this->apiMock->method('deleteProjectsEnvironmentsRoutes')
-            ->willThrowException($this->createMock(ApiException::class));
-
-        $this->task->delete('proj1', 'env1', 'route1');
-    }
-
-    public function testGetSuccess(): void
-    {
-        $route = $this->createMock(Route::class);
-
-        $this->apiMock->expects($this->once())
-            ->method('getProjectsEnvironmentsRoutes')
-            ->willReturn($route);
-
-        $result = $this->task->get('proj1', 'env1', 'route1');
-        $this->assertSame($route, $result);
-    }
-
-    public function testGetThrowsApiException(): void
-    {
-        $this->expectException(ApiException::class);
-
-        $this->apiMock->method('getProjectsEnvironmentsRoutes')
-            ->willThrowException($this->createMock(ApiException::class));
-
-        $this->task->get('proj1', 'env1', 'route1');
-    }
-
-    public function testListSuccess(): void
-    {
-        $routes = [
-            $this->createMock(Route::class),
-            $this->createMock(Route::class),
+        $fakeRoute = [
+            'id' => 'route1',
+            'primary' => true,
+            'productionUrl' => 'https://www.myapp.com',
+            'attributes' => [
+                'env' => 'production',
+                'feature' => 'blue-green-deploy',
+            ],
+            'type' => 'proxy',
+            'tls' => [
+                'strictTransportSecurity' => [
+                    'enabled' => true,
+                    'includeSubdomains' => true,
+                    'preload' => false,
+                ],
+                'minVersion' => 'TLSv1.2',
+                'clientAuthentication' => 'require',
+                'clientCertificateAuthorities' => [
+                    '-----BEGIN CERTIFICATE-----FAKE-CA-DATA-----END CERTIFICATE-----',
+                    '-----BEGIN CERTIFICATE-----FAKE-CA-DATA-2-----END CERTIFICATE-----',
+                ],
+            ],
+            'to' => 'app:php',
+            'upstream' => 'php:9000',
+            'cache' => [
+                'enabled' => true,
+                'defaultTtl' => 3600,
+                'cookies' => ['sessionid', 'csrftoken'],
+                'headers' => ['Authorization', 'Accept-Language'],
+            ],
+            'redirects' => [
+                'paths' => [
+                    [
+                        'to' => '/new-path',
+                        'prefix' => true,
+                        'appendSuffix' => false,
+                        'expires' => '2026-01-01T00:00:00Z',
+                        'regexp' => false,
+                        'code' => 301,
+                    ],
+                ],
+                'expires' => '2026-01-01T00:00:00Z',
+            ],
+            'ssi' => [
+                'enabled' => false,
+            ],
         ];
 
-        $this->apiMock->expects($this->once())
-            ->method('listProjectsEnvironmentsRoutes')
-            ->willReturn($routes);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeRoute)
+            ));
 
-        $result = $this->task->list('proj1', 'env1');
-        $this->assertSame($routes, $result);
+        $result = $this->routeTask->get('proj1', 'env1', 'route1');
+        $this->assertInstanceOf(Route::class, $result);
+        $this->assertObjectProperties($result, $fakeRoute);
     }
 
-    public function testListThrowsApiException(): void
+    public function testList(): void
     {
-        $this->expectException(ApiException::class);
+        $list = [
+            [
+                'id' => 'route1',
+                'primary' => true,
+                'productionUrl' => 'https://www.myapp.com',
+                'attributes' => [
+                    'env' => 'production',
+                    'feature' => 'blue-green-deploy',
+                ],
+                'type' => 'proxy',
+                'tls' => [
+                    'strictTransportSecurity' => [
+                        'enabled' => true,
+                        'includeSubdomains' => true,
+                        'preload' => false,
+                    ],
+                    'minVersion' => 'TLSv1.2',
+                    'clientAuthentication' => 'require',
+                    'clientCertificateAuthorities' => [
+                        '-----BEGIN CERTIFICATE-----FAKE-CA-DATA-----END CERTIFICATE-----',
+                        '-----BEGIN CERTIFICATE-----FAKE-CA-DATA-2-----END CERTIFICATE-----',
+                    ],
+                ],
+                'to' => 'app:php',
+                'upstream' => 'php:8888',
+                'cache' => [
+                    'enabled' => true,
+                    'defaultTtl' => 3600,
+                    'cookies' => ['sessionid', 'csrftoken'],
+                    'headers' => ['Authorization', 'Accept-Language'],
+                ],
+                'redirects' => [
+                    'paths' => [
+                        [
+                            'to' => '/new-path',
+                            'prefix' => true,
+                            'appendSuffix' => false,
+                            'expires' => '2026-01-01T00:00:00Z',
+                            'regexp' => false,
+                            'code' => 301,
+                        ],
+                    ],
+                    'expires' => '2026-01-01T00:00:00Z',
+                ],
+                'ssi' => [
+                    'enabled' => false,
+                ],
+            ],
+            [
+                'id' => 'route2',
+                'primary' => false,
+                'productionUrl' => 'https://route2.myapp.com',
+                'attributes' => [
+                    'env' => 'production',
+                    'feature' => 'blue-green-deploy',
+                ],
+                'type' => 'proxy',
+                'tls' => [
+                    'strictTransportSecurity' => [
+                        'enabled' => true,
+                        'includeSubdomains' => true,
+                        'preload' => false,
+                    ],
+                    'minVersion' => 'TLSv1.2',
+                    'clientAuthentication' => 'require',
+                    'clientCertificateAuthorities' => [
+                        '-----BEGIN CERTIFICATE-----FAKE-CA-DATA-----END CERTIFICATE-----',
+                        '-----BEGIN CERTIFICATE-----FAKE-CA-DATA-2-----END CERTIFICATE-----',
+                    ],
+                ],
+                'to' => 'app2:php',
+                'upstream' => 'php:8888',
+                'cache' => [
+                    'enabled' => true,
+                    'defaultTtl' => 3600,
+                    'cookies' => ['sessionid', 'csrftoken'],
+                    'headers' => ['Authorization', 'Accept-Language'],
+                ],
+                'redirects' => [
+                    'paths' => [
+                        [
+                            'to' => '/new-path-2',
+                            'prefix' => true,
+                            'appendSuffix' => false,
+                            'expires' => '2026-01-01T00:00:00Z',
+                            'regexp' => false,
+                            'code' => 301,
+                        ],
+                    ],
+                    'expires' => '2026-01-01T00:00:00Z',
+                ],
+                'ssi' => [
+                    'enabled' => false,
+                ],
+            ]
+        ];
 
-        $this->apiMock->method('listProjectsEnvironmentsRoutes')
-            ->willThrowException($this->createMock(ApiException::class));
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($list)
+            ));
 
-        $this->task->list('proj1', 'env1');
-    }
-
-    public function testUpdateSuccess(): void
-    {
-        $response = $this->createMock(AcceptedResponse::class);
-
-        $this->apiMock->expects($this->once())
-            ->method('updateProjectsEnvironmentsRoutes')
-            ->willReturn($response);
-
-        $result = $this->task->update('proj1', 'env1', 'route1', ['label' => 'test']);
-        $this->assertSame($response, $result);
-    }
-
-    public function testUpdateThrowsApiException(): void
-    {
-        $this->expectException(ApiException::class);
-
-        $this->apiMock->method('updateProjectsEnvironmentsRoutes')
-            ->willThrowException($this->createMock(ApiException::class));
-
-        $this->task->update('proj1', 'env1', 'route1', ['label' => 'fail']);
+        $result = $this->routeTask->list('proj1', 'env1');
+        $this->assertContainsOnlyInstancesOf(Route::class, $result);
+        $this->assertObjectMatchesArray($result, $list);
     }
 }

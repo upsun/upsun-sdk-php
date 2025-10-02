@@ -1,224 +1,371 @@
 <?php
 
-namespace Tests\Upsun\Core;
+namespace Upsun\Test\Core;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
 use Upsun\ApiException;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Configuration;
+use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Domain;
-use Upsun\Model\DomainCreateInput;
-use Upsun\Model\DomainPatch;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\DomainTask;
 use Upsun\UpsunClient;
-use Upsun\UpsunConfig;
 
-class DomainTaskTest extends TestCase
+class DomainTaskTest extends BaseTestCase
 {
-    private DomainManagementApi $apiMock;
-    private DomainTask $task;
-
-    private UpsunClient $clientMock;
+    private DomainTask $domainTask;
+    private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
-        $this->apiMock = $this->createMock(DomainManagementApi::class);
-        
-        $this->clientMock = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $psr17Factory = new Psr17Factory();
 
-            public UpsunConfig $upsunConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public function __construct()
-            {
-            }
-        };
-        
-        $this->task = new class($this->clientMock, $this->apiMock) extends DomainTask {
-            public function refreshToken(): void {}
+        $oauthProvider = $this->createMock(OAuthProvider::class);
+
+        $domainApi = new DomainManagementApi(
+            $oauthProvider,
+            $this->httpClient,
+            $psr17Factory,
+            new Configuration()
+        );
+
+        $upsunClient = $this->createMock(UpsunClient::class);
+
+        $this->domainTask = new class (
+            $upsunClient,
+            $domainApi
+        ) extends DomainTask {
         };
     }
 
     public function testCreateWithoutEnvironment(): void
     {
         $projectId = 'proj-1';
-        $input = ['type' => 'custom', 'hostname' => 'test.example.com'];
-        $expected = $this->createMock(AcceptedResponse::class);
+        $input = [
+            'name' => 'example.com',
+            'attributes' => [
+                'ssl' => 'enabled',
+                'region' => 'eu',
+            ],
+            'isDefault' => true,
+            'replacementFor' => null,
+        ];
 
-        $this->apiMock->expects($this->once())
-            ->method('createProjectsDomains')
-            ->with($projectId, $this->isInstanceOf(DomainCreateInput::class))
-            ->willReturn($expected);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
 
-        $result = $this->task->create($projectId, $input);
-        $this->assertSame($expected, $result);
+        $result = $this->domainTask->create($projectId, $input);
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
     public function testCreateWithEnvironment(): void
     {
         $projectId = 'proj-1';
         $envId = 'env-1';
-        $input = ['type' => 'custom', 'hostname' => 'env.example.com'];
-        $expected = $this->createMock(AcceptedResponse::class);
+        $input = [
+            'name' => 'example.com',
+            'attributes' => [
+                'ssl' => 'enabled',
+                'region' => 'eu',
+            ],
+            'isDefault' => true,
+            'replacementFor' => null,
+        ];
 
-        $this->apiMock->expects($this->once())
-            ->method('createProjectsEnvironmentsDomains')
-            ->with($projectId, $envId, $this->isInstanceOf(DomainCreateInput::class))
-            ->willReturn($expected);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
 
-        $result = $this->task->create($projectId, $input, $envId);
-        $this->assertSame($expected, $result);
+        $result = $this->domainTask->create($projectId, $input, $envId);
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
     public function testDeleteWithoutEnvironment(): void
     {
         $projectId = 'proj-1';
         $domainId = 'domain-abc';
-        $expected = $this->createMock(AcceptedResponse::class);
 
-        $this->apiMock->expects($this->once())
-            ->method('deleteProjectsDomains')
-            ->with($projectId, $domainId)
-            ->willReturn($expected);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
 
-        $result = $this->task->delete($projectId, $domainId);
-        $this->assertSame($expected, $result);
+        $result = $this->domainTask->delete($projectId, $domainId);
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
     public function testDeleteWithEnvironment(): void
     {
         $projectId = 'proj-1';
-        $domainId = 'domain-xyz';
-        $envId = 'env-1';
-        $expected = $this->createMock(AcceptedResponse::class);
+        $domainId = 'domain-abc';
+        $envId = 'env-id';
 
-        $this->apiMock->expects($this->once())
-            ->method('deleteProjectsEnvironmentsDomains')
-            ->with($projectId, $envId, $domainId)
-            ->willReturn($expected);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
 
-        $result = $this->task->delete($projectId, $domainId, $envId);
-        $this->assertSame($expected, $result);
+        $result = $this->domainTask->delete($projectId, $domainId, $envId);
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
     public function testGetWithoutEnvironment(): void
     {
         $projectId = 'proj-1';
         $domainId = 'domain-abc';
-        $expected = $this->createMock(Domain::class);
 
-        $this->apiMock->expects($this->once())
-            ->method('getProjectsDomains')
-            ->with($projectId, $domainId)
-            ->willReturn($expected);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'type' => 'project',
+                    'name' => 'Production Environment',
+                    'attributes' => [
+                        'region' => 'us-east-1',
+                        'tier' => 'premium',
+                        'version' => '1.2.3',
+                    ],
+                    'createdAt' => '2025-09-15T12:00:00Z',
+                    'updatedAt' => '2025-09-15T12:30:00Z',
+                    'project' => 'project_123',
+                    'registeredName' => 'prod_env_001',
+                    'isDefault' => true,
+                    'replacementFor' => 'staging_env_001',
+                ])
+            ));
 
-        $result = $this->task->get($projectId, $domainId);
-        $this->assertSame($expected, $result);
+        $result = $this->domainTask->get($projectId, $domainId);
+        $this->assertEquals("Production Environment", $result->getName());
+        $this->assertEquals("project", $result->getType());
     }
 
     public function testGetWithEnvironment(): void
     {
         $projectId = 'proj-1';
-        $domainId = 'domain-xyz';
-        $envId = 'env-2';
-        $expected = $this->createMock(Domain::class);
+        $domainId = 'domain-abc';
+        $envId = 'env-id';
 
-        $this->apiMock->expects($this->once())
-            ->method('getProjectsEnvironmentsDomains')
-            ->with($projectId, $envId, $domainId)
-            ->willReturn($expected);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'type' => 'environment',
+                    'name' => 'Environment Domain',
+                    'attributes' => [
+                        'region' => 'us-east-1',
+                        'tier' => 'premium',
+                        'version' => '1.2.3',
+                    ],
+                    'createdAt' => '2025-09-15T12:00:00Z',
+                    'updatedAt' => '2025-09-15T12:30:00Z',
+                    'project' => 'project_123',
+                    'registeredName' => 'prod_env_001',
+                    'isDefault' => true,
+                    'replacementFor' => 'staging_env_001',
+                ])
+            ));
 
-        $result = $this->task->get($projectId, $domainId, $envId);
-        $this->assertSame($expected, $result);
+        $result = $this->domainTask->get($projectId, $domainId, $envId);
+        $this->assertEquals("Environment Domain", $result->getName());
+        $this->assertEquals("environment", $result->getType());
     }
 
     public function testListWithoutEnvironment(): void
     {
         $projectId = 'proj-1';
-        $domain1 = $this->createMock(Domain::class);
-        $domain2 = $this->createMock(Domain::class);
 
-        $this->apiMock->expects($this->once())
-            ->method('listProjectsDomains')
-            ->with($projectId)
-            ->willReturn([$domain1, $domain2]);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    [
+                        'type' => 'project',
+                        'name' => 'Production Domain',
+                        'attributes' => [
+                            'region' => 'us-east-1',
+                            'tier' => 'premium',
+                            'version' => '1.2.3',
+                        ],
+                        'createdAt' => '2025-09-15T12:00:00Z',
+                        'updatedAt' => '2025-09-15T12:30:00Z',
+                        'project' => 'project_123',
+                        'registeredName' => 'prod_env_001',
+                        'isDefault' => true,
+                        'replacementFor' => 'staging_env_001',
+                    ],
+                    [
+                        'type' => 'project',
+                        'name' => 'Production Domain',
+                        'attributes' => [
+                            'region' => 'us-east-1',
+                            'tier' => 'premium',
+                            'version' => '1.2.3',
+                        ],
+                        'createdAt' => '2025-09-15T12:00:00Z',
+                        'updatedAt' => '2025-09-15T12:30:00Z',
+                        'project' => 'project_123',
+                        'registeredName' => 'prod_env_001',
+                        'isDefault' => true,
+                        'replacementFor' => 'staging_env_001',
+                    ]
+                ])
+            ));
 
-        $result = $this->task->list($projectId);
-
-        $this->assertIsArray($result);
-        $this->assertCount(2, $result);
-        $this->assertContainsOnlyInstancesOf(Domain::class, $result);
+        $result = $this->domainTask->list($projectId);
+        $this->assertEquals("Production Domain", $result[0]->getName());
+        $this->assertEquals("Production Domain", $result[1]->getName());
+        $this->assertEquals("project", $result[0]->getType());
+        $this->assertEquals("project", $result[1]->getType());
     }
 
     public function testListWithEnvironment(): void
     {
         $projectId = 'proj-1';
-        $envId = 'env-1';
-        $domain = $this->createMock(Domain::class);
+        $envId = 'env-id';
 
-        $this->apiMock->expects($this->once())
-            ->method('listProjectsEnvironmentsDomains')
-            ->with($projectId, $envId)
-            ->willReturn([$domain]);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    [
+                        'type' => 'environment',
+                        'name' => 'Environment Domain',
+                        'attributes' => [
+                            'region' => 'us-east-1',
+                            'tier' => 'premium',
+                            'version' => '1.2.3',
+                        ],
+                        'createdAt' => '2025-09-15T12:00:00Z',
+                        'updatedAt' => '2025-09-15T12:30:00Z',
+                        'project' => 'project_123',
+                        'registeredName' => 'prod_env_001',
+                        'isDefault' => true,
+                        'replacementFor' => 'staging_env_001',
+                    ],
+                    [
+                        'type' => 'environment',
+                        'name' => 'Environment Domain',
+                        'attributes' => [
+                            'region' => 'us-east-1',
+                            'tier' => 'premium',
+                            'version' => '1.2.3',
+                        ],
+                        'createdAt' => '2025-09-15T12:00:00Z',
+                        'updatedAt' => '2025-09-15T12:30:00Z',
+                        'project' => 'project_123',
+                        'registeredName' => 'prod_env_001',
+                        'isDefault' => true,
+                        'replacementFor' => 'staging_env_001',
+                    ]
+                ])
+            ));
 
-        $result = $this->task->list($projectId, $envId);
-
-        $this->assertIsArray($result);
-        $this->assertCount(1, $result);
-        $this->assertContainsOnlyInstancesOf(Domain::class, $result);
+        $result = $this->domainTask->list($projectId, $envId);
+        $this->assertEquals("Environment Domain", $result[0]->getName());
+        $this->assertEquals("Environment Domain", $result[1]->getName());
+        $this->assertEquals("environment", $result[0]->getType());
+        $this->assertEquals("environment", $result[1]->getType());
     }
 
-    public function testUpdateWithoutEnvironment(): void
+    public function testUpdateProject(): void
     {
         $projectId = 'proj-1';
         $domainId = 'domain-1';
-        $patch = ['label' => 'new-label'];
-        $expected = $this->createMock(AcceptedResponse::class);
 
-        $this->apiMock->expects($this->once())
-            ->method('updateProjectsDomains')
-            ->with(
-                $projectId,
-                $domainId,
-                $this->isInstanceOf(DomainPatch::class)
-            )
-            ->willReturn($expected);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
 
-        $result = $this->task->update($projectId, $domainId, $patch);
-        $this->assertSame($expected, $result);
+        $result = $this->domainTask->update($projectId, $domainId, ['attributes' => [], "isDefault" => true]);
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
     public function testUpdateWithEnvironment(): void
     {
         $projectId = 'proj-1';
-        $domainId = 'domain-2';
-        $envId = 'env-2';
-        $patch = ['label' => 'custom-env-label'];
-        $expected = $this->createMock(AcceptedResponse::class);
+        $domainId = 'domain-1';
+        $envId = 'env-id';
 
-        $this->apiMock->expects($this->once())
-            ->method('updateProjectsEnvironmentsDomains')
-            ->with(
-                $projectId,
-                $envId,
-                $domainId,
-                $this->isInstanceOf(DomainPatch::class)
-            )
-            ->willReturn($expected);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
 
-        $result = $this->task->update($projectId, $domainId, $patch, $envId);
-        $this->assertSame($expected, $result);
+        $result = $this->domainTask->update($projectId, $domainId, ['attributes' => [], "isDefault" => true], $envId);
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
     public function testCreateThrowsApiException(): void
     {
         $this->expectException(ApiException::class);
-        $this->apiMock->method('createProjectsDomains')
-            ->willThrowException($this->createMock(ApiException::class));
 
-        $this->task->create('proj-x', ['type' => 'a', 'hostname' => 'b']);
+        $projectId = 'proj-1';
+        $input = ['name' => 'name'];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'KO',
+                    'code' => 404
+                ])
+            ));
+
+        $result = $this->domainTask->create($projectId, $input);
     }
 }

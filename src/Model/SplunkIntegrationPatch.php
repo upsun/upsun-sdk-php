@@ -12,22 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class SplunkIntegrationPatch implements JsonSerializable
+final class SplunkIntegrationPatch implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'url' => 'url',
-        'index' => 'index',
-        'token' => 'token',
-        'extra' => 'extra',
-        'sourcetype' => 'sourcetype',
-        'tlsVerify' => 'tls_verify'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -36,28 +24,13 @@ final class SplunkIntegrationPatch implements JsonSerializable
         private readonly ?array $extra = [],
         private readonly ?string $sourcetype = null,
         private readonly ?bool $tlsVerify = null,
+        private readonly ?array $excludedServices = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'url' => 'string',
-            'index' => 'string',
-            'token' => 'string',
-            'extra' => 'string[]',
-            'sourcetype' => '?string',
-            'tls_verify' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -70,6 +43,7 @@ final class SplunkIntegrationPatch implements JsonSerializable
             'extra' => $this->extra,
             'sourcetype' => $this->sourcetype,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
         ];
     }
 
@@ -78,60 +52,43 @@ final class SplunkIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return string
-     */
     public function getIndex(): string
     {
         return $this->index;
     }
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSourcetype(): ?string
     {
         return $this->sourcetype;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
     }
-}
 
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
+    }
+}

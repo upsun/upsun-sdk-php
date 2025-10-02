@@ -3,7 +3,10 @@
 namespace Upsun;
 
 use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
+use Psr\Http\Client\ClientInterface;
+use Symfony\Component\HttpClient\Psr18Client;
+use Upsun\Api\AddOnsApi;
+use Upsun\Api\AlertsApi;
 use Upsun\Api\APITokensApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
@@ -47,7 +50,6 @@ use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
 use Upsun\Api\VouchersApi;
-use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivityTask;
 use Upsun\Core\Tasks\ApplicationTask;
@@ -80,31 +82,54 @@ use Upsun\Core\Tasks\WorkerTask;
  */
 class UpsunClient
 {
-    public HttplugClient $apiClient;
+    public ClientInterface $apiClient;
+
     public Configuration $apiConfig;
+
     public OAuthProvider $auth;
+
     public ?string $userId = null;
 
     public ActivityTask $activity;
+
     public ApplicationTask $application;
+
     public BackupTask $backup;
+
     public CertificateTask $certificate;
+
     public DomainTask $domain;
+
     public EnvironmentTask $environment;
+
     public InvitationTask $invitations;
+
     public MetricsTask $metrics;
+
     public MountTask $mount;
+
     public OperationTask $operation;
+
     public OrganizationTask $organization;
+
     public ProjectTask $project;
+
     public RegionTask $region;
+
     public ResourcesTask $resource;
+
     public RouteTask $route;
+
     public SourceOperationTask $sourceOperation;
+
     public TeamTask $team;
+
     public SupportTicketTask $supportTicket;
+
     public UserTask $user;
+
     public VariableTask $variables;
+
     public WorkerTask $worker;
 
     public function __construct(protected UpsunConfig $upsunConfig)
@@ -112,13 +137,13 @@ class UpsunClient
         $this->apiConfig = Configuration::getDefaultConfiguration()
             ->setHost($this->upsunConfig->base_url);
 
-        $this->apiClient = new HttplugClient();
+        // Symfony HTTP client compatible PSR-18
+        $this->apiClient = new Psr18Client();
 
-        $httpClient = Psr18ClientDiscovery::find();
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
 
         $this->auth = new OAuthProvider(
-            $httpClient,
+            $this->apiClient, // Symfony PSR-18 client
             $requestFactory,
             tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
             clientId: $this->upsunConfig->clientId,
@@ -166,7 +191,6 @@ class UpsunClient
         );
         $this->organization = new OrganizationTask(
             $this,
-            new HeaderSelector(),
             new OrganizationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new OrganizationProjectsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new OrganizationMembersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
@@ -177,6 +201,7 @@ class UpsunClient
             new ProfilesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new RecordsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new VouchersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new AddOnsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->project = new ProjectTask(
             $this,
@@ -187,14 +212,15 @@ class UpsunClient
             new SystemInformationApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new ThirdPartyIntegrationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new SubscriptionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new OrganizationProjectsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
+            new AlertsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->region = new RegionTask(
             $this,
             new RegionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->resource = new ResourcesTask(
-            $this
+            $this,
+            new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->route = new RouteTask(
             $this,
@@ -236,27 +262,8 @@ class UpsunClient
         );
     }
 
-    public function getUserId()
-    {
-        if (!$this->userId) {
-            $this->userId = $this->user->me()->getId();
-        }
-
-        return $this->userId;
-    }
-
-    public function getToken()
+    public function getToken(): string
     {
         return $this->upsunConfig->apiToken;
-    }
-
-    public function getApiClient(): HttplugClient
-    {
-        return $this->apiClient;
-    }
-
-    public function getApiConfig(): Configuration
-    {
-        return $this->apiConfig;
     }
 }

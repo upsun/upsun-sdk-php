@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
+final class ListOrgPrepaymentTransactions200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'count' => 'count',
-        'transactions' => 'transactions',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $transactions = [],
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $links = null,
+        private readonly ?ListOrgPrepaymentTransactions200ResponseLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'count' => '?int',
-            'transactions' => '\Upsun\Model\PrepaymentTransactionObject[]',
-            '_links' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,30 +42,21 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Total number of items across pages.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
     /**
-     * @return \Upsun\Model\PrepaymentTransactionObject[]|null
+     * @return PrepaymentTransactionObject[]|null
      */
     public function getTransactions(): ?array
     {
         return $this->transactions;
     }
 
-    /**
-     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks
+    public function getLinks(): ?ListOrgPrepaymentTransactions200ResponseLinks
     {
         return $this->links;
     }
 }
-

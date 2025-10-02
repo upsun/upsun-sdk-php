@@ -3,6 +3,7 @@
 /**
  * Low level Connection (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,22 +13,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Connection implements JsonSerializable
+final class Connection implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'provider' => 'provider',
-        'providerType' => 'provider_type',
-        'isMandatory' => 'is_mandatory',
-        'subject' => 'subject',
-        'emailAddress' => 'email_address',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?string $provider = null,
         private readonly ?string $providerType = null,
@@ -39,25 +28,9 @@ final class Connection implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'provider' => '?string',
-            'provider_type' => '?string',
-            'is_mandatory' => '?bool',
-            'subject' => '?string',
-            'email_address' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -68,8 +41,8 @@ final class Connection implements JsonSerializable
             'isMandatory' => $this->isMandatory,
             'subject' => $this->subject,
             'emailAddress' => $this->emailAddress,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -78,74 +51,38 @@ final class Connection implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The name of the federation provider.
-     *
-     * @return string|null
-     */
     public function getProvider(): ?string
     {
         return $this->provider;
     }
 
-    /**
-     * The type of the federation provider.
-     *
-     * @return string|null
-     */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
-    /**
-     * Whether the federated login connection is mandatory.
-     *
-     * @return bool|null
-     */
     public function getIsMandatory(): ?bool
     {
         return $this->isMandatory;
     }
 
-    /**
-     * The identity on the federation provider.
-     *
-     * @return string|null
-     */
     public function getSubject(): ?string
     {
         return $this->subject;
     }
 
-    /**
-     * The email address presented on the federated login connection.
-     *
-     * @return string|null
-     */
     public function getEmailAddress(): ?string
     {
         return $this->emailAddress;
     }
 
-    /**
-     * The date and time when the connection was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the connection was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 }
-

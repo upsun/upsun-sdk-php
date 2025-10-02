@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CanCreateNewOrgSubscription200Response implements JsonSerializable
+final class CanCreateNewOrgSubscription200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'canCreate' => 'can_create',
-        'message' => 'message',
-        'requiredAction' => 'required_action'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
+        private readonly ?CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
         private readonly ?bool $canCreate = null,
         private readonly ?string $message = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'can_create' => '?bool',
-            'message' => '?string',
-            'required_action' => '?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,32 +42,18 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Boolean result of the check.
-     *
-     * @return bool|null
-     */
     public function getCanCreate(): ?bool
     {
         return $this->canCreate;
     }
 
-    /**
-     * Details in case of negative check result.
-     *
-     * @return string|null
-     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
 
-    /**
-     * @return \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null
-     */
-    public function getRequiredAction(): ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction
+    public function getRequiredAction(): ?CanCreateNewOrgSubscription200ResponseRequiredAction
     {
         return $this->requiredAction;
     }
 }
-

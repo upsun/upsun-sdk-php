@@ -1,14 +1,14 @@
-# Upsun\EnvironmentVariablesApi
+# [Upsun\Api\EnvironmentVariablesApi](../src/Api/EnvironmentVariablesApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createProjectsEnvironmentsVariables()**](EnvironmentVariablesApi.md#createProjectsEnvironmentsVariables) | **POST** /projects/{projectId}/environments/{environmentId}/variables | Add an environment variable
-[**deleteProjectsEnvironmentsVariables()**](EnvironmentVariablesApi.md#deleteProjectsEnvironmentsVariables) | **DELETE** /projects/{projectId}/environments/{environmentId}/variables/{variableId} | Delete an environment variable
-[**getProjectsEnvironmentsVariables()**](EnvironmentVariablesApi.md#getProjectsEnvironmentsVariables) | **GET** /projects/{projectId}/environments/{environmentId}/variables/{variableId} | Get an environment variable
-[**listProjectsEnvironmentsVariables()**](EnvironmentVariablesApi.md#listProjectsEnvironmentsVariables) | **GET** /projects/{projectId}/environments/{environmentId}/variables | Get list of environment variables
-[**updateProjectsEnvironmentsVariables()**](EnvironmentVariablesApi.md#updateProjectsEnvironmentsVariables) | **PATCH** /projects/{projectId}/environments/{environmentId}/variables/{variableId} | Update an environment variable
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**createProjectsEnvironmentsVariables()**](EnvironmentVariablesApi.md#createProjectsEnvironmentsVariables) | **POST** /projects/{projectId}/environments/{environmentId}/variables | Add an environment variable | https://docs.upsun.com/api/#tag/Environment-Variables/operation/create-projects-environments-variables |
+| [**deleteProjectsEnvironmentsVariables()**](EnvironmentVariablesApi.md#deleteProjectsEnvironmentsVariables) | **DELETE** /projects/{projectId}/environments/{environmentId}/variables/{variableId} | Delete an environment variable | https://docs.upsun.com/api/#tag/Environment-Variables/operation/delete-projects-environments-variables |
+| [**getProjectsEnvironmentsVariables()**](EnvironmentVariablesApi.md#getProjectsEnvironmentsVariables) | **GET** /projects/{projectId}/environments/{environmentId}/variables/{variableId} | Get an environment variable | https://docs.upsun.com/api/#tag/Environment-Variables/operation/get-projects-environments-variables |
+| [**listProjectsEnvironmentsVariables()**](EnvironmentVariablesApi.md#listProjectsEnvironmentsVariables) | **GET** /projects/{projectId}/environments/{environmentId}/variables | Get list of environment variables | https://docs.upsun.com/api/#tag/Environment-Variables/operation/list-projects-environments-variables |
+| [**updateProjectsEnvironmentsVariables()**](EnvironmentVariablesApi.md#updateProjectsEnvironmentsVariables) | **PATCH** /projects/{projectId}/environments/{environmentId}/variables/{variableId} | Update an environment variable | https://docs.upsun.com/api/#tag/Environment-Variables/operation/update-projects-environments-variables |
 
 
 ## `createProjectsEnvironmentsVariables()`
@@ -19,7 +19,7 @@ createProjectsEnvironmentsVariables($projectId, $environmentId, $environmentVari
 
 Add an environment variable
 
-Add a variable to an environment. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. Additionally, the inheritability of an environment variable can be determined through the `is_inheritable` flag (default: true). See the [Variables](https://docs.platform.sh/development/variables.html#platformsh-environment-variables) section in our documentation for more information.
+Add a variable to an environment. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. Additionally, the inheritability of an environment variable can be determined through the `is_inheritable` flag (default: true). See the [Environment Variables](https://docs.upsun.com/anchors/variables/set/environment/create/) section in our documentation for more information.
 
 ### Example
 
@@ -30,8 +30,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -48,11 +48,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **environmentVariableCreateInput** | [**\Upsun\Model\EnvironmentVariableCreateInput**](../Model/EnvironmentVariableCreateInput.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **environmentVariableCreateInput** | [**\Upsun\Model\EnvironmentVariableCreateInput**](../Model/EnvironmentVariableCreateInput.md)|  | |
 
 ### Return type
 
@@ -90,8 +90,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -108,11 +108,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **variableId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **variableId** | **string**|  | |
 
 ### Return type
 
@@ -150,8 +150,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -168,11 +168,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **variableId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **variableId** | **string**|  | |
 
 ### Return type
 
@@ -210,8 +210,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -227,10 +227,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
 
 ### Return type
 
@@ -257,7 +257,7 @@ updateProjectsEnvironmentsVariables($projectId, $environmentId, $variableId, $en
 
 Update an environment variable
 
-Update a single user-defined environment variable. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. Additionally, the inheritability of an environment variable can be determined through the `is_inheritable` flag (default: true). See the [Variables](https://docs.platform.sh/development/variables.html#platformsh-environment-variables) section in our documentation for more information.
+Update a single user-defined environment variable. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. Additionally, the inheritability of an environment variable can be determined through the `is_inheritable` flag (default: true). See the [Variables](https://docs.upsun.com/anchors/variables/) section in our documentation for more information.
 
 ### Example
 
@@ -268,8 +268,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -287,12 +287,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **variableId** | **string**|  |
- **environmentVariablePatch** | [**\Upsun\Model\EnvironmentVariablePatch**](../Model/EnvironmentVariablePatch.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **variableId** | **string**|  | |
+| **environmentVariablePatch** | [**\Upsun\Model\EnvironmentVariablePatch**](../Model/EnvironmentVariablePatch.md)|  | |
 
 ### Return type
 

@@ -12,30 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class GithubIntegrationCreateInput implements JsonSerializable
+final class GithubIntegrationCreateInput implements ModelInterface, JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'token' => 'token',
-        'repository' => 'repository',
-        'fetchBranches' => 'fetch_branches',
-        'pruneBranches' => 'prune_branches',
-        'environmentInitResources' => 'environment_init_resources',
-        'baseUrl' => 'base_url',
-        'buildPullRequests' => 'build_pull_requests',
-        'buildDraftPullRequests' => 'build_draft_pull_requests',
-        'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
-        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $token,
@@ -51,29 +31,9 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'token' => 'string',
-            'repository' => 'string',
-            'fetch_branches' => '?bool',
-            'prune_branches' => '?bool',
-            'environment_init_resources' => '?string',
-            'base_url' => '?string',
-            'build_pull_requests' => '?bool',
-            'build_draft_pull_requests' => '?bool',
-            'build_pull_requests_post_merge' => '?bool',
-            'pull_requests_clone_parent_data' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -98,92 +58,58 @@ final class GithubIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * @return string
-     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildDraftPullRequests(): ?bool
     {
         return $this->buildDraftPullRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildPullRequestsPostMerge(): ?bool
     {
         return $this->buildPullRequestsPostMerge;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
     }
 }
-

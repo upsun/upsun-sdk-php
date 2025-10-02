@@ -12,35 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class VPNConfiguration implements JsonSerializable
+final class VPNConfiguration implements ModelInterface, JsonSerializable
 {
-    public const VERSION_NUMBER_1 = 1;
-    public const VERSION_NUMBER_2 = 2;
-    public const AGGRESSIVE_NO = 'no';
-    public const AGGRESSIVE_YES = 'yes';
-    public const MODECONFIG_PULL = 'pull';
-    public const MODECONFIG_PUSH = 'push';
-
-    private static array $attributeMap = [
-        'version' => 'version',
-        'aggressive' => 'aggressive',
-        'modeconfig' => 'modeconfig',
-        'authentication' => 'authentication',
-        'gatewayIp' => 'gateway_ip',
-        'identity' => 'identity',
-        'secondIdentity' => 'second_identity',
-        'remoteIdentity' => 'remote_identity',
-        'remoteSubnets' => 'remote_subnets',
-        'ike' => 'ike',
-        'esp' => 'esp',
-        'ikelifetime' => 'ikelifetime',
-        'lifetime' => 'lifetime',
-        'margintime' => 'margintime'
-    ];
-
     public function __construct(
         private readonly int $version,
         private readonly string $aggressive,
@@ -53,38 +28,15 @@ final class VPNConfiguration implements JsonSerializable
         private readonly string $ikelifetime,
         private readonly string $lifetime,
         private readonly string $margintime,
-        private readonly ?string $identity = null,
-        private readonly ?string $secondIdentity = null,
-        private readonly ?string $remoteIdentity = null,
+        private readonly ?string $identity,
+        private readonly ?string $secondIdentity,
+        private readonly ?string $remoteIdentity,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'version' => 'int',
-            'aggressive' => 'string',
-            'modeconfig' => 'string',
-            'authentication' => 'string',
-            'gateway_ip' => 'string',
-            'identity' => '?string',
-            'second_identity' => '?string',
-            'remote_identity' => '?string',
-            'remote_subnets' => 'string[]',
-            'ike' => 'string',
-            'esp' => 'string',
-            'ikelifetime' => 'string',
-            'lifetime' => 'string',
-            'margintime' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -112,116 +64,73 @@ final class VPNConfiguration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int
-     */
     public function getVersion(): int
     {
         return $this->version;
     }
 
-    /**
-     * @return string
-     */
     public function getAggressive(): string
     {
         return $this->aggressive;
     }
 
-    /**
-     * @return string
-     */
     public function getModeconfig(): string
     {
         return $this->modeconfig;
     }
 
-    /**
-     * @return string
-     */
     public function getAuthentication(): string
     {
         return $this->authentication;
     }
 
-    /**
-     * @return string
-     */
     public function getGatewayIp(): string
     {
         return $this->gatewayIp;
     }
 
-    /**
-     * @return string|null
-     */
     public function getIdentity(): ?string
     {
         return $this->identity;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSecondIdentity(): ?string
     {
         return $this->secondIdentity;
     }
 
-    /**
-     * @return string|null
-     */
     public function getRemoteIdentity(): ?string
     {
         return $this->remoteIdentity;
     }
 
-    /**
-     * @return string[]
-     */
     public function getRemoteSubnets(): array
     {
         return $this->remoteSubnets;
     }
 
-    /**
-     * @return string
-     */
     public function getIke(): string
     {
         return $this->ike;
     }
 
-    /**
-     * @return string
-     */
     public function getEsp(): string
     {
         return $this->esp;
     }
 
-    /**
-     * @return string
-     */
     public function getIkelifetime(): string
     {
         return $this->ikelifetime;
     }
 
-    /**
-     * @return string
-     */
     public function getLifetime(): string
     {
         return $this->lifetime;
     }
 
-    /**
-     * @return string
-     */
     public function getMargintime(): string
     {
         return $this->margintime;
     }
 }
-

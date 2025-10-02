@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
+final class ConfigurationOfAWorkerContainerInstance implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'commands' => 'commands',
-        'disk' => 'disk'
-    ];
-
     public function __construct(
-        private readonly \Upsun\Model\TheCommandsToManageTheWorker $commands,
+        private readonly TheCommandsToManageTheWorker $commands,
         private readonly ?int $disk = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'commands' => '\Upsun\Model\TheCommandsToManageTheWorker',
-            'disk' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +40,13 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\TheCommandsToManageTheWorker
-     */
-    public function getCommands(): \Upsun\Model\TheCommandsToManageTheWorker
+    public function getCommands(): TheCommandsToManageTheWorker
     {
         return $this->commands;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDisk(): ?int
     {
         return $this->disk;
     }
 }
-

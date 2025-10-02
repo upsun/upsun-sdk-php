@@ -12,46 +12,23 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class NewRelicIntegrationCreateInput implements JsonSerializable
+final class NewRelicIntegrationCreateInput implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'url' => 'url',
-        'licenseKey' => 'license_key',
-        'extra' => 'extra',
-        'tlsVerify' => 'tls_verify'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $url,
         private readonly string $licenseKey,
         private readonly ?array $extra = [],
         private readonly ?bool $tlsVerify = null,
+        private readonly ?array $excludedServices = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'url' => 'string',
-            'license_key' => 'string',
-            'extra' => 'string[]',
-            'tls_verify' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,6 +39,7 @@ final class NewRelicIntegrationCreateInput implements JsonSerializable
             'licenseKey' => $this->licenseKey,
             'extra' => $this->extra,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
         ];
     }
 
@@ -70,44 +48,33 @@ final class NewRelicIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return string
-     */
     public function getLicenseKey(): string
     {
         return $this->licenseKey;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
     }
-}
 
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
+    }
+}

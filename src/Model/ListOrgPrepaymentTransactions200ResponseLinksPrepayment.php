@@ -3,6 +3,7 @@
 /**
  * Low level ListOrgPrepaymentTransactions200ResponseLinksPrepayment (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,34 +13,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ListOrgPrepaymentTransactions200ResponseLinksPrepayment implements JsonSerializable
+final class ListOrgPrepaymentTransactions200ResponseLinksPrepayment implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'href' => 'href'
-    ];
-
     public function __construct(
         private readonly ?string $href = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'href' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,14 +39,8 @@ final class ListOrgPrepaymentTransactions200ResponseLinksPrepayment implements J
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * URL of the link.
-     *
-     * @return string|null
-     */
     public function getHref(): ?string
     {
         return $this->href;
     }
 }
-

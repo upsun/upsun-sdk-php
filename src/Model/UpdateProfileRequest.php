@@ -12,28 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UpdateProfileRequest implements JsonSerializable
+final class UpdateProfileRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'displayName' => 'display_name',
-        'username' => 'username',
-        'currentPassword' => 'current_password',
-        'password' => 'password',
-        'companyType' => 'company_type',
-        'companyName' => 'company_name',
-        'vatNumber' => 'vat_number',
-        'companyRole' => 'company_role',
-        'marketing' => 'marketing',
-        'uiColorscheme' => 'ui_colorscheme',
-        'defaultCatalog' => 'default_catalog',
-        'projectOptionsUrl' => 'project_options_url',
-        'picture' => 'picture'
-    ];
-
     public function __construct(
         private readonly ?string $displayName = null,
         private readonly ?string $username = null,
@@ -51,31 +33,9 @@ final class UpdateProfileRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'display_name' => '?string',
-            'username' => '?string',
-            'current_password' => '?string',
-            'password' => '?string',
-            'company_type' => '?string',
-            'company_name' => '?string',
-            'vat_number' => '?string',
-            'company_role' => '?string',
-            'marketing' => '?bool',
-            'ui_colorscheme' => '?string',
-            'default_catalog' => '?string',
-            'project_options_url' => '?string',
-            'picture' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -102,134 +62,68 @@ final class UpdateProfileRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The user's display name.
-     *
-     * @return string|null
-     */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 
-    /**
-     * The user's username.
-     *
-     * @return string|null
-     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-     * The user's current password.
-     *
-     * @return string|null
-     */
     public function getCurrentPassword(): ?string
     {
         return $this->currentPassword;
     }
 
-    /**
-     * The user's new password.
-     *
-     * @return string|null
-     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    /**
-     * The company type.
-     *
-     * @return string|null
-     */
     public function getCompanyType(): ?string
     {
         return $this->companyType;
     }
 
-    /**
-     * The name of the company.
-     *
-     * @return string|null
-     */
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
 
-    /**
-     * The vat number of the user.
-     *
-     * @return string|null
-     */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
 
-    /**
-     * The role of the user in the company.
-     *
-     * @return string|null
-     */
     public function getCompanyRole(): ?string
     {
         return $this->companyRole;
     }
 
-    /**
-     * Flag if the user agreed to receive marketing communication.
-     *
-     * @return bool|null
-     */
     public function getMarketing(): ?bool
     {
         return $this->marketing;
     }
 
-    /**
-     * The user's chosen color scheme for user interfaces. Available values are 'light' and 'dark'.
-     *
-     * @return string|null
-     */
     public function getUiColorscheme(): ?string
     {
         return $this->uiColorscheme;
     }
 
-    /**
-     * The URL of a catalog file which overrides the default.
-     *
-     * @return string|null
-     */
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
 
-    /**
-     * The URL of an account-wide project options file.
-     *
-     * @return string|null
-     */
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
 
-    /**
-     * Url of the user's picture.
-     *
-     * @return string|null
-     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 }
-

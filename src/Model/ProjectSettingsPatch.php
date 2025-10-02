@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ProjectSettingsPatch implements JsonSerializable
+final class ProjectSettingsPatch implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'initialize' => 'initialize',
-        'dataRetention' => 'data_retention',
-        'buildResources' => 'build_resources'
-    ];
-
     public function __construct(
         private readonly ?array $dataRetention = [],
         private readonly ?object $initialize = null,
-        private readonly ?\Upsun\Model\BuildResources2 $buildResources = null,
+        private readonly ?BuildResources2 $buildResources = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'initialize' => '?object',
-            'data_retention' => '\Upsun\Model\DataRetentionConfigurationValue1[]',
-            'build_resources' => '?\Upsun\Model\BuildResources2',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,21 @@ final class ProjectSettingsPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return object|null
-     */
     public function getInitialize(): ?object
     {
         return $this->initialize;
     }
 
     /**
-     * @return \Upsun\Model\DataRetentionConfigurationValue1[]|null
+     * @return DataRetentionConfigurationValue1[]|null
      */
     public function getDataRetention(): ?array
     {
         return $this->dataRetention;
     }
 
-    /**
-     * @return \Upsun\Model\BuildResources2|null
-     */
-    public function getBuildResources(): ?\Upsun\Model\BuildResources2
+    public function getBuildResources(): ?BuildResources2
     {
         return $this->buildResources;
     }
 }
-

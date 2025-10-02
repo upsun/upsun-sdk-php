@@ -3,6 +3,8 @@
 /**
  * Low level EstimationObject (auto-generated)
  *
+ * A price estimate object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,21 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EstimationObject implements JsonSerializable
+final class EstimationObject implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'plan' => 'plan',
-        'userLicenses' => 'user_licenses',
-        'environments' => 'environments',
-        'storage' => 'storage',
-        'total' => 'total',
-        'options' => 'options'
-    ];
-
     public function __construct(
         private readonly ?string $plan = null,
         private readonly ?string $userLicenses = null,
@@ -37,24 +28,9 @@ final class EstimationObject implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'plan' => '?string',
-            'user_licenses' => '?string',
-            'environments' => '?string',
-            'storage' => '?string',
-            'total' => '?string',
-            'options' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -74,64 +50,33 @@ final class EstimationObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The monthly price of the plan.
-     *
-     * @return string|null
-     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * The monthly price of the user licenses.
-     *
-     * @return string|null
-     */
     public function getUserLicenses(): ?string
     {
         return $this->userLicenses;
     }
 
-    /**
-     * The monthly price of the environments.
-     *
-     * @return string|null
-     */
     public function getEnvironments(): ?string
     {
         return $this->environments;
     }
 
-    /**
-     * The monthly price of the storage.
-     *
-     * @return string|null
-     */
     public function getStorage(): ?string
     {
         return $this->storage;
     }
 
-    /**
-     * The total monthly price.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    /**
-     * The unit prices of the options.
-     *
-     * @return object|null
-     */
     public function getOptions(): ?object
     {
         return $this->options;
     }
 }
-

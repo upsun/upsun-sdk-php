@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ListPlans200Response implements JsonSerializable
+final class ListPlans200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'count' => 'count',
-        'plans' => 'plans',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $plans = [],
-        private readonly ?\Upsun\Model\HalLinks $links = null,
+        private readonly ?HalLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'count' => '?int',
-            'plans' => '\Upsun\Model\Plan[]',
-            '_links' => '?\Upsun\Model\HalLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,32 +42,21 @@ final class ListPlans200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Total number of plans.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
     /**
-     * Array of plans.
-     *
-     * @return \Upsun\Model\Plan[]|null
+     * @return Plan[]|null
      */
     public function getPlans(): ?array
     {
         return $this->plans;
     }
 
-    /**
-     * @return \Upsun\Model\HalLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\HalLinks
+    public function getLinks(): ?HalLinks
     {
         return $this->links;
     }
 }
-

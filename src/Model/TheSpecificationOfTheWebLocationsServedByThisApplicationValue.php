@@ -12,24 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implements JsonSerializable
+final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'root' => 'root',
-        'expires' => 'expires',
-        'passthru' => 'passthru',
-        'scripts' => 'scripts',
-        'allow' => 'allow',
-        'headers' => 'headers',
-        'rules' => 'rules',
-        'index' => 'index',
-        'requestBuffering' => 'request_buffering'
-    ];
-
     public function __construct(
         private readonly string $expires,
         private readonly string $passthru,
@@ -37,33 +23,15 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         private readonly bool $allow,
         private readonly array $headers,
         private readonly array $rules,
-        private readonly ?string $root = null,
+        private readonly ?string $root,
         private readonly ?array $index = [],
-        private readonly ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $requestBuffering = null,
+        private readonly ?ConfigurationForSupportingRequestBuffering $requestBuffering = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'root' => '?string',
-            'expires' => 'string',
-            'passthru' => 'string',
-            'scripts' => 'bool',
-            'allow' => 'bool',
-            'headers' => 'string[]',
-            'rules' => '\Upsun\Model\SpecificOverridesValue[]',
-            'index' => 'string[]',
-            'request_buffering' => '?\Upsun\Model\ConfigurationForSupportingRequestBuffering',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -86,76 +54,51 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getRoot(): ?string
     {
         return $this->root;
     }
 
-    /**
-     * @return string
-     */
     public function getExpires(): string
     {
         return $this->expires;
     }
 
-    /**
-     * @return string
-     */
     public function getPassthru(): string
     {
         return $this->passthru;
     }
 
-    /**
-     * @return bool
-     */
     public function getScripts(): bool
     {
         return $this->scripts;
     }
 
-    /**
-     * @return bool
-     */
     public function getAllow(): bool
     {
         return $this->allow;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getHeaders(): array
     {
         return $this->headers;
     }
 
     /**
-     * @return \Upsun\Model\SpecificOverridesValue[]
+     * @return SpecificOverridesValue[]
      */
     public function getRules(): array
     {
         return $this->rules;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getIndex(): ?array
     {
         return $this->index;
     }
 
-    /**
-     * @return \Upsun\Model\ConfigurationForSupportingRequestBuffering|null
-     */
-    public function getRequestBuffering(): ?\Upsun\Model\ConfigurationForSupportingRequestBuffering
+    public function getRequestBuffering(): ?ConfigurationForSupportingRequestBuffering
     {
         return $this->requestBuffering;
     }
 }
-

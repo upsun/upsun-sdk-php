@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements JsonSerializable
+final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'commitsAhead' => 'commits_ahead',
-        'commitsBehind' => 'commits_behind',
-        'parentRef' => 'parent_ref'
-    ];
-
     public function __construct(
-        private readonly ?int $commitsAhead = null,
-        private readonly ?int $commitsBehind = null,
-        private readonly ?string $parentRef = null,
+        private readonly ?int $commitsAhead,
+        private readonly ?int $commitsBehind,
+        private readonly ?string $parentRef,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'commits_ahead' => '?int',
-            'commits_behind' => '?int',
-            'parent_ref' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int|null
-     */
     public function getCommitsAhead(): ?int
     {
         return $this->commitsAhead;
     }
 
-    /**
-     * @return int|null
-     */
     public function getCommitsBehind(): ?int
     {
         return $this->commitsBehind;
     }
 
-    /**
-     * @return string|null
-     */
     public function getParentRef(): ?string
     {
         return $this->parentRef;
     }
 }
-

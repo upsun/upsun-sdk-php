@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheIssuerOfTheCertificateInner implements JsonSerializable
+final class TheIssuerOfTheCertificateInner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'oid' => 'oid',
-        'alias' => 'alias',
-        'value' => 'value'
-    ];
-
     public function __construct(
         private readonly string $oid,
         private readonly string $value,
-        private readonly ?string $alias = null,
+        private readonly ?string $alias,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'oid' => 'string',
-            'alias' => '?string',
-            'value' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getOid(): string
     {
         return $this->oid;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAlias(): ?string
     {
         return $this->alias;
     }
 
-    /**
-     * @return string
-     */
     public function getValue(): string
     {
         return $this->value;
     }
 }
-

@@ -12,22 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CreateOrgSubscriptionRequest implements JsonSerializable
+final class CreateOrgSubscriptionRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'projectRegion' => 'project_region',
-        'plan' => 'plan',
-        'projectTitle' => 'project_title',
-        'optionsUrl' => 'options_url',
-        'defaultBranch' => 'default_branch',
-        'environments' => 'environments',
-        'storage' => 'storage'
-    ];
-
     public function __construct(
         private readonly string $projectRegion,
         private readonly ?string $plan = null,
@@ -39,25 +27,9 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'project_region' => 'string',
-            'plan' => '?string',
-            'project_title' => '?string',
-            'options_url' => '?string',
-            'default_branch' => '?string',
-            'environments' => '?int',
-            'storage' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -78,74 +50,38 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The machine name of the region where the project is located. Cannot be changed after project creation.
-     *
-     * @return string
-     */
     public function getProjectRegion(): string
     {
         return $this->projectRegion;
     }
 
-    /**
-     * The project plan.
-     *
-     * @return string|null
-     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * The name given to the project. Appears as the title in the UI.
-     *
-     * @return string|null
-     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * The URL of the project options file.
-     *
-     * @return string|null
-     */
     public function getOptionsUrl(): ?string
     {
         return $this->optionsUrl;
     }
 
-    /**
-     * The default Git branch name for the project.
-     *
-     * @return string|null
-     */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
 
-    /**
-     * The maximum number of active environments on the project.
-     *
-     * @return int|null
-     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
 
-    /**
-     * The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values.
-     *
-     * @return int|null
-     */
     public function getStorage(): ?int
     {
         return $this->storage;
     }
 }
-

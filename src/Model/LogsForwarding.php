@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class LogsForwarding implements JsonSerializable
+final class LogsForwarding implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'maxExtraPayloadSize' => 'max_extra_payload_size'
-    ];
-
     public function __construct(
         private readonly int $maxExtraPayloadSize,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'max_extra_payload_size' => 'int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,12 +38,8 @@ final class LogsForwarding implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int
-     */
     public function getMaxExtraPayloadSize(): int
     {
         return $this->maxExtraPayloadSize;
     }
 }
-

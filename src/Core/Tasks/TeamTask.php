@@ -9,13 +9,14 @@ use Upsun\Api\TeamsApi;
 use Upsun\Model\CreateTeamMemberRequest;
 use Upsun\Model\CreateTeamRequest;
 use Upsun\Model\DateTimeFilter;
+use Upsun\Model\ListProjectTeamAccess200Response;
 use Upsun\Model\ListTeamMembers200Response;
-use Upsun\Model\ListTeamProjectAccess200Response;
 use Upsun\Model\ListTeams200Response;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Team;
 use Upsun\Model\TeamMember;
 use Upsun\Model\TeamProjectAccess;
+use Upsun\Model\UpdateTeamRequest;
 use Upsun\UpsunClient;
 
 /**
@@ -175,6 +176,7 @@ class TeamTask extends TaskBase
      */
     public function update(string $teamId, ?array $updateTeamRequest = null): Team
     {
+        $updateTeamRequest = new UpdateTeamRequest(...$updateTeamRequest);
         return $this->teamsApi->updateTeam($teamId, $updateTeamRequest);
     }
 
@@ -230,7 +232,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListTeamProjectAccess200Response {
+    ): ListProjectTeamAccess200Response {
         return $this->accessApi->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
@@ -245,7 +247,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListTeamProjectAccess200Response {
+    ): ListProjectTeamAccess200Response {
         return $this->accessApi->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 

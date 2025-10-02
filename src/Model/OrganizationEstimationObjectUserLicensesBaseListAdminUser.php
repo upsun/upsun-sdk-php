@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationEstimationObjectUserLicensesBaseListAdminUser (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements JsonSerializable
+final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'count' => 'count',
-        'total' => 'total'
-    ];
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?string $total = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'count' => '?int',
-            'total' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +41,13 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The number of admin user licenses.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
-    /**
-     * The total price for admin user licenses.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 }
-

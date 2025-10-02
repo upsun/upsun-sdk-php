@@ -1,11 +1,11 @@
-# Upsun\RecordsApi
+# [Upsun\Api\RecordsApi](../src/Api/RecordsApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**listOrgPlanRecords()**](RecordsApi.md#listOrgPlanRecords) | **GET** /organizations/{organization_id}/records/plan | List plan records
-[**listOrgUsageRecords()**](RecordsApi.md#listOrgUsageRecords) | **GET** /organizations/{organization_id}/records/usage | List usage records
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**listOrgPlanRecords()**](RecordsApi.md#listOrgPlanRecords) | **GET** /organizations/{organization_id}/records/plan | List plan records | https://docs.upsun.com/api/#tag/Records/operation/list-org-plan-records |
+| [**listOrgUsageRecords()**](RecordsApi.md#listOrgUsageRecords) | **GET** /organizations/{organization_id}/records/usage | List usage records | https://docs.upsun.com/api/#tag/Records/operation/list-org-usage-records |
 
 
 ## `listOrgPlanRecords()`
@@ -27,8 +27,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\RecordsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
@@ -51,17 +51,17 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **filterSubscriptionId** | **string**| The ID of the subscription | [optional]
- **filterPlan** | **string**| The plan type of the subscription. | [optional]
- **filterStatus** | **string**| The status of the plan record. | [optional]
- **filterStart** | **\DateTime**| The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 | [optional]
- **filterEnd** | **\DateTime**| The end of the observation period for the record. E.g. filter[end]&#x3D;2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 | [optional]
- **filterStartedAt** | **\DateTime**| The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; | [optional]
- **filterEndedAt** | **\DateTime**| The record&#39;s end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]&#x3D;2020-01-01&amp;filter[ended_at][operator]&#x3D;&gt; | [optional]
- **page** | **int**| Page to be displayed. Defaults to 1. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
+| **filterSubscriptionId** | **string**| The ID of the subscription | [optional] |
+| **filterPlan** | **string**| The plan type of the subscription. | [optional] |
+| **filterStatus** | **string**| The status of the plan record. | [optional] |
+| **filterStart** | **\DateTime**| The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 | [optional] |
+| **filterEnd** | **\DateTime**| The end of the observation period for the record. E.g. filter[end]&#x3D;2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 | [optional] |
+| **filterStartedAt** | **\DateTime**| The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; | [optional] |
+| **filterEndedAt** | **\DateTime**| The record&#39;s end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]&#x3D;2020-01-01&amp;filter[ended_at][operator]&#x3D;&gt; | [optional] |
+| **page** | **int**| Page to be displayed. Defaults to 1. | [optional] |
 
 ### Return type
 
@@ -99,8 +99,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\RecordsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
@@ -120,14 +120,14 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **filterSubscriptionId** | **string**| The ID of the subscription | [optional]
- **filterUsageGroup** | **string**| Filter records by the type of usage. | [optional]
- **filterStart** | **\DateTime**| The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 | [optional]
- **filterStartedAt** | **\DateTime**| The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; | [optional]
- **page** | **int**| Page to be displayed. Defaults to 1. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
+| **filterSubscriptionId** | **string**| The ID of the subscription | [optional] |
+| **filterUsageGroup** | **string**| Filter records by the type of usage. | [optional] |
+| **filterStart** | **\DateTime**| The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 | [optional] |
+| **filterStartedAt** | **\DateTime**| The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; | [optional] |
+| **page** | **int**| Page to be displayed. Defaults to 1. | [optional] |
 
 ### Return type
 

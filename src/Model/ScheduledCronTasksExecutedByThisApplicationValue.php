@@ -12,46 +12,22 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSerializable
+final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'spec' => 'spec',
-        'commands' => 'commands',
-        'timeout' => 'timeout',
-        'shutdownTimeout' => 'shutdown_timeout',
-        'cmd' => 'cmd'
-    ];
-
     public function __construct(
         private readonly string $spec,
-        private readonly \Upsun\Model\TheCommandsDefinition $commands,
+        private readonly TheCommandsDefinition $commands,
         private readonly int $timeout,
         private readonly ?int $shutdownTimeout = null,
         private readonly ?string $cmd = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'spec' => 'string',
-            'commands' => '\Upsun\Model\TheCommandsDefinition',
-            'timeout' => 'int',
-            'shutdown_timeout' => '?int',
-            'cmd' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -70,44 +46,28 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getSpec(): string
     {
         return $this->spec;
     }
 
-    /**
-     * @return \Upsun\Model\TheCommandsDefinition
-     */
-    public function getCommands(): \Upsun\Model\TheCommandsDefinition
+    public function getCommands(): TheCommandsDefinition
     {
         return $this->commands;
     }
 
-    /**
-     * @return int
-     */
     public function getTimeout(): int
     {
         return $this->timeout;
     }
 
-    /**
-     * @return int|null
-     */
     public function getShutdownTimeout(): ?int
     {
         return $this->shutdownTimeout;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCmd(): ?string
     {
         return $this->cmd;
     }
 }
-

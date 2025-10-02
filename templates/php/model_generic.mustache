@@ -1,29 +1,20 @@
-final class {{classname}} implements JsonSerializable
+
+final class {{classname}} implements ModelInterface, JsonSerializable
 {
-    {{#vars}}
-    {{#isEnum}}
-    {{#allowableValues}}
-    {{#enumVars}}
-    public const {{enumName}}_{{{name}}} = {{{value}}};
-    {{/enumVars}}
-    {{/allowableValues}}
-    {{/isEnum}}
-    {{/vars}}
-
-    private static array $attributeMap = [
-        {{#vars}}'{{name}}' => '{{baseName}}'{{^-last}},
-        {{/-last}}{{/vars}}
-    ];
-
     public function __construct(
-    {{#vars}}
+    {{#vars}}    
       {{#required}}
       {{^isNullable}}
       {{#isContainer}}
         private readonly array ${{name}},
       {{/isContainer}}
       {{^isContainer}}
-        private readonly {{{dataType}}} ${{name}},
+              {{#isDateTime}}
+        private readonly \DateTime ${{name}},
+              {{/isDateTime}}
+              {{^isDateTime}}
+        private readonly {{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}},
+              {{/isDateTime}}
       {{/isContainer}}
       {{/isNullable}}
       {{/required}}      
@@ -31,10 +22,15 @@ final class {{classname}} implements JsonSerializable
     {{#vars}}
       {{#isNullable}}
       {{#isContainer}}
-        private readonly ?array ${{name}} = [],
+        private readonly ?array ${{name}}{{^required}} = []{{/required}},
       {{/isContainer}}
       {{^isContainer}}
-        private readonly ?{{{dataType}}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+          {{#isDateTime}}
+        private readonly ?\DateTime ${{name}}{{^required}} = null{{/required}},
+          {{/isDateTime}}
+          {{^isDateTime}}
+        private readonly ?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}}{{^required}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}}{{/required}},
+          {{/isDateTime}}
       {{/isContainer}}
       {{/isNullable}}      
     {{/vars}}
@@ -45,36 +41,29 @@ final class {{classname}} implements JsonSerializable
         private readonly ?array ${{name}} = [],
     {{/isContainer}}
     {{^isContainer}}
-        private readonly ?{{{dataType}}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+      {{#isDateTime}}
+        private readonly ?\DateTime ${{name}} = null,
+      {{/isDateTime}}
+      {{^isDateTime}}
+        private readonly ?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+      {{/isDateTime}}
     {{/isContainer}}
     {{/isNullable}}      
     {{/required}}      
-    {{/vars}}  
+    {{/vars}}
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-    {{#vars}}
-            '{{baseName}}' => '{{#isContainer}}{{#items}}{{dataType}}[]{{/items}}{{^items}}array{{/items}}{{/isContainer}}{{^isContainer}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{dataType}}{{/isContainer}}',
-    {{/vars}}
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
             {{#vars}}
-            '{{name}}' => $this->{{name}},
+            '{{name}}' => $this->{{name}}{{#isDateTime}}?->format(DATE_ATOM){{/isDateTime}},
             {{/vars}}
         ];
     }
@@ -85,24 +74,14 @@ final class {{classname}} implements JsonSerializable
     }
 {{#vars}}
 
-    /**
-{{#description}}
-     * {{{description}}}
-     *
-{{/description}}
 {{#isContainer}}
   {{#items.isModel}}
-     * @return {{{items.dataType}}}[]{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
-  {{/items.isModel}}
-  {{^items.isModel}}
-     * @return {{{dataType}}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
-  {{/items.isModel}}
-{{/isContainer}}
-{{^isContainer}}
-     * @return {{{dataType}}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
-{{/isContainer}}
+    /**
+     * @return {{{items.openApiType}}}[]{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
      */
-    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}}
+  {{/items.isModel}}
+{{/isContainer}}
+    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#openApiType}}{{#isDateTime}}\DateTime{{/isDateTime}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isNumber}}float{{/isNumber}}{{#isInteger}}int{{/isInteger}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{^isDateTime}}{{{openApiType}}}{{/isDateTime}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isContainer}}
     {
         return $this->{{{name}}};
     }

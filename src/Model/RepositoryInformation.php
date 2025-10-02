@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class RepositoryInformation implements JsonSerializable
+final class RepositoryInformation implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'url' => 'url',
-        'clientSshKey' => 'client_ssh_key'
-    ];
-
     public function __construct(
         private readonly string $url,
-        private readonly ?string $clientSshKey = null,
+        private readonly ?string $clientSshKey,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'url' => 'string',
-            'client_ssh_key' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +40,13 @@ final class RepositoryInformation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return string|null
-     */
     public function getClientSshKey(): ?string
     {
         return $this->clientSshKey;
     }
 }
-

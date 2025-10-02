@@ -3,6 +3,7 @@
 /**
  * Low level OrderLinks (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,34 +13,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrderLinks implements JsonSerializable
+final class OrderLinks implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'invoices' => 'invoices'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\OrderLinksInvoices $invoices = null,
+        private readonly ?OrderLinksInvoices $invoices = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'invoices' => '?\Upsun\Model\OrderLinksInvoices',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,12 +39,8 @@ final class OrderLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\OrderLinksInvoices|null
-     */
-    public function getInvoices(): ?\Upsun\Model\OrderLinksInvoices
+    public function getInvoices(): ?OrderLinksInvoices
     {
         return $this->invoices;
     }
 }
-

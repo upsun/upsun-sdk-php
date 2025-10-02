@@ -3,6 +3,8 @@
 /**
  * Low level PrepaymentTransactionObject (auto-generated)
  *
+ * Prepayment transaction for an organization.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,52 +14,24 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class PrepaymentTransactionObject implements JsonSerializable
+final class PrepaymentTransactionObject implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'orderId' => 'order_id',
-        'message' => 'message',
-        'status' => 'status',
-        'amount' => 'amount',
-        'created' => 'created',
-        'updated' => 'updated',
-        'expireDate' => 'expire_date'
-    ];
-
     public function __construct(
         private readonly ?string $updated = null,
         private readonly ?string $expireDate = null,
         private readonly ?string $orderId = null,
         private readonly ?string $message = null,
         private readonly ?string $status = null,
-        private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
+        private readonly ?PrepaymentTransactionObjectAmount $amount = null,
         private readonly ?string $created = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'order_id' => '?string',
-            'message' => '?string',
-            'status' => '?string',
-            'amount' => '?\Upsun\Model\PrepaymentObjectPrepaymentBalance',
-            'created' => '?string',
-            'updated' => '?string',
-            'expire_date' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -78,72 +52,38 @@ final class PrepaymentTransactionObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Order ID
-     *
-     * @return string|null
-     */
     public function getOrderId(): ?string
     {
         return $this->orderId;
     }
 
-    /**
-     * The message associated with transaction.
-     *
-     * @return string|null
-     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
 
-    /**
-     * Whether the transactions was successful or a failure.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
-     */
-    public function getAmount(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
+    public function getAmount(): ?PrepaymentTransactionObjectAmount
     {
         return $this->amount;
     }
 
-    /**
-     * Time the transaction was created.
-     *
-     * @return string|null
-     */
     public function getCreated(): ?string
     {
         return $this->created;
     }
 
-    /**
-     * Time the transaction was last updated.
-     *
-     * @return string|null
-     */
     public function getUpdated(): ?string
     {
         return $this->updated;
     }
 
-    /**
-     * The expiration date of the transaction (deposits only).
-     *
-     * @return string|null
-     */
     public function getExpireDate(): ?string
     {
         return $this->expireDate;
     }
 }
-

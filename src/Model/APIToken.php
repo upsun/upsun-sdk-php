@@ -3,6 +3,7 @@
 /**
  * Low level APIToken (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,22 +13,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class APIToken implements JsonSerializable
+final class APIToken implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'mfaOnCreation' => 'mfa_on_creation',
-        'token' => 'token',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'lastUsedAt' => 'last_used_at'
-    ];
-
     public function __construct(
         private readonly ?\DateTime $lastUsedAt = null,
         private readonly ?string $id = null,
@@ -39,25 +28,9 @@ final class APIToken implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'name' => '?string',
-            'mfa_on_creation' => '?bool',
-            'token' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'last_used_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -67,9 +40,9 @@ final class APIToken implements JsonSerializable
             'name' => $this->name,
             'mfaOnCreation' => $this->mfaOnCreation,
             'token' => $this->token,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
-            'lastUsedAt' => $this->lastUsedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
+            'lastUsedAt' => $this->lastUsedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -78,74 +51,38 @@ final class APIToken implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the token.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The token name.
-     *
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * Whether the user had multi-factor authentication (MFA) enabled when they created the token.
-     *
-     * @return bool|null
-     */
     public function getMfaOnCreation(): ?bool
     {
         return $this->mfaOnCreation;
     }
 
-    /**
-     * The token in plain text (available only when created).
-     *
-     * @return string|null
-     */
     public function getToken(): ?string
     {
         return $this->token;
     }
 
-    /**
-     * The date and time when the token was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the token was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The date and time when the token was last exchanged for an access token. This will be <code>null</code> for a token which has never been used, or not used since this API property was added. <strong>Note:</strong> After an API token is used, the derived access token may continue to be used until its expiry. This also applies to SSH certificate(s) derived from the access token.
-     *
-     * @return \DateTime|null
-     */
     public function getLastUsedAt(): ?\DateTime
     {
         return $this->lastUsedAt;
     }
 }
-

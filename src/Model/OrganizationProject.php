@@ -12,73 +12,36 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationProject implements JsonSerializable
+final class OrganizationProject implements ModelInterface, JsonSerializable
 {
-    public const ACCESS_MIGRATION_STATUS_PENDING = 'pending';
-    public const ACCESS_MIGRATION_STATUS_IN_PROGRESS = 'in_progress';
-    public const ACCESS_MIGRATION_STATUS_COMPLETED = 'completed';
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'organizationId' => 'organization_id',
-        'subscriptionId' => 'subscription_id',
-        'region' => 'region',
-        'title' => 'title',
-        'type' => 'type',
-        'plan' => 'plan',
-        'accessMigrationStatus' => 'access_migration_status',
-        'status' => 'status',
-        'vendor' => 'vendor',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $subscriptionId = null,
+        private readonly ?string $vendor = null,
         private readonly ?string $region = null,
         private readonly ?string $title = null,
-        private readonly ?\Upsun\Model\OrganizationProjectType $type = null,
-        private readonly ?\Upsun\Model\OrganizationProjectPlan $plan = null,
-        private readonly ?string $accessMigrationStatus = null,
-        private readonly ?\Upsun\Model\OrganizationProjectStatus $status = null,
-        private readonly ?string $vendor = null,
+        private readonly ?ProjectType $type = null,
+        private readonly ?string $plan = null,
+        private readonly ?string $timezone = null,
+        private readonly ?string $defaultBranch = null,
+        private readonly ?ProjectStatus $status = null,
+        private readonly ?bool $trialPlan = null,
+        private readonly ?string $projectUi = null,
+        private readonly ?bool $locked = null,
+        private readonly ?string $cseNotes = null,
+        private readonly ?string $dedicatedTag = null,
         private readonly ?\DateTime $createdAt = null,
         private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\OrganizationProjectLinks $links = null,
+        private readonly ?OrganizationProjectLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'organization_id' => '?string',
-            'subscription_id' => '?string',
-            'region' => '?string',
-            'title' => '?string',
-            'type' => '?\Upsun\Model\OrganizationProjectType',
-            'plan' => '?\Upsun\Model\OrganizationProjectPlan',
-            'access_migration_status' => '?string',
-            'status' => '?\Upsun\Model\OrganizationProjectStatus',
-            'vendor' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            '_links' => '?\Upsun\Model\OrganizationProjectLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -87,15 +50,21 @@ final class OrganizationProject implements JsonSerializable
             'id' => $this->id,
             'organizationId' => $this->organizationId,
             'subscriptionId' => $this->subscriptionId,
+            'vendor' => $this->vendor,
             'region' => $this->region,
             'title' => $this->title,
             'type' => $this->type,
             'plan' => $this->plan,
-            'accessMigrationStatus' => $this->accessMigrationStatus,
+            'timezone' => $this->timezone,
+            'defaultBranch' => $this->defaultBranch,
             'status' => $this->status,
-            'vendor' => $this->vendor,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'trialPlan' => $this->trialPlan,
+            'projectUi' => $this->projectUi,
+            'locked' => $this->locked,
+            'cseNotes' => $this->cseNotes,
+            'dedicatedTag' => $this->dedicatedTag,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'links' => $this->links,
         ];
     }
@@ -105,126 +74,98 @@ final class OrganizationProject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the project.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The ID of the subscription.
-     *
-     * @return string|null
-     */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The machine name of the region where the project is located.
-     *
-     * @return string|null
-     */
-    public function getRegion(): ?string
-    {
-        return $this->region;
-    }
-
-    /**
-     * The title of the project.
-     *
-     * @return string|null
-     */
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    /**
-     * @return \Upsun\Model\OrganizationProjectType|null
-     */
-    public function getType(): ?\Upsun\Model\OrganizationProjectType
-    {
-        return $this->type;
-    }
-
-    /**
-     * @return \Upsun\Model\OrganizationProjectPlan|null
-     */
-    public function getPlan(): ?\Upsun\Model\OrganizationProjectPlan
-    {
-        return $this->plan;
-    }
-
-    /**
-     * The access migration status of the project.
-     *
-     * @return string|null
-     */
-    public function getAccessMigrationStatus(): ?string
-    {
-        return $this->accessMigrationStatus;
-    }
-
-    /**
-     * @return \Upsun\Model\OrganizationProjectStatus|null
-     */
-    public function getStatus(): ?\Upsun\Model\OrganizationProjectStatus
-    {
-        return $this->status;
-    }
-
-    /**
-     * The vendor.
-     *
-     * @return string|null
-     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    /**
-     * The date and time when the project was created.
-     *
-     * @return \DateTime|null
-     */
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function getType(): ?ProjectType
+    {
+        return $this->type;
+    }
+
+    public function getPlan(): ?string
+    {
+        return $this->plan;
+    }
+
+    public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
+
+    public function getDefaultBranch(): ?string
+    {
+        return $this->defaultBranch;
+    }
+
+    public function getStatus(): ?ProjectStatus
+    {
+        return $this->status;
+    }
+
+    public function getTrialPlan(): ?bool
+    {
+        return $this->trialPlan;
+    }
+
+    public function getProjectUi(): ?string
+    {
+        return $this->projectUi;
+    }
+
+    public function getLocked(): ?bool
+    {
+        return $this->locked;
+    }
+
+    public function getCseNotes(): ?string
+    {
+        return $this->cseNotes;
+    }
+
+    public function getDedicatedTag(): ?string
+    {
+        return $this->dedicatedTag;
+    }
+
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the project was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\OrganizationProjectLinks
+    public function getLinks(): ?OrganizationProjectLinks
     {
         return $this->links;
     }
 }
-

@@ -12,30 +12,17 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Domain implements JsonSerializable
+final class Domain implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'name' => 'name',
-        'attributes' => 'attributes',
-        'project' => 'project',
-        'registeredName' => 'registered_name',
-        'isDefault' => 'is_default',
-        'replacementFor' => 'replacement_for'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
         private readonly array $attributes,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?string $id = null,
         private readonly ?string $project = null,
         private readonly ?string $registeredName = null,
         private readonly ?bool $isDefault = null,
@@ -43,37 +30,20 @@ final class Domain implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'name' => 'string',
-            'attributes' => 'string[]',
-            'project' => '?string',
-            'registered_name' => '?string',
-            'is_default' => '?bool',
-            'replacement_for' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'name' => $this->name,
             'attributes' => $this->attributes,
+            'id' => $this->id,
             'project' => $this->project,
             'registeredName' => $this->registeredName,
             'isDefault' => $this->isDefault,
@@ -86,76 +56,53 @@ final class Domain implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string|null
-     */
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
     public function getProject(): ?string
     {
         return $this->project;
     }
 
-    /**
-     * @return string|null
-     */
     public function getRegisteredName(): ?string
     {
         return $this->registeredName;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 
-    /**
-     * @return string|null
-     */
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;
     }
 }
-

@@ -12,22 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CreateOrgRequest implements JsonSerializable
+final class CreateOrgRequest implements ModelInterface, JsonSerializable
 {
-    public const TYPE_FIXED = 'fixed';
-    public const TYPE_FLEXIBLE = 'flexible';
-
-    private static array $attributeMap = [
-        'label' => 'label',
-        'type' => 'type',
-        'ownerId' => 'owner_id',
-        'name' => 'name',
-        'country' => 'country'
-    ];
-
     public function __construct(
         private readonly string $label,
         private readonly ?string $type = null,
@@ -37,23 +25,9 @@ final class CreateOrgRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'label' => 'string',
-            'type' => '?string',
-            'owner_id' => '?string',
-            'name' => '?string',
-            'country' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -72,54 +46,28 @@ final class CreateOrgRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The human-readable label of the organization.
-     *
-     * @return string
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * The type of the organization.
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * ID of the owner.
-     *
-     * @return string|null
-     */
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
 
-    /**
-     * A unique machine name representing the organization.
-     *
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * The organization country (2-letter country code).
-     *
-     * @return string|null
-     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 }
-

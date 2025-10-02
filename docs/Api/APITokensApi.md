@@ -1,13 +1,13 @@
-# Upsun\APITokensApi
+# [Upsun\Api\APITokensApi](../src/Api/APITokensApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createApiToken()**](APITokensApi.md#createApiToken) | **POST** /users/{user_id}/api-tokens | Create an API token
-[**deleteApiToken()**](APITokensApi.md#deleteApiToken) | **DELETE** /users/{user_id}/api-tokens/{token_id} | Delete an API token
-[**getApiToken()**](APITokensApi.md#getApiToken) | **GET** /users/{user_id}/api-tokens/{token_id} | Get an API token
-[**listApiTokens()**](APITokensApi.md#listApiTokens) | **GET** /users/{user_id}/api-tokens | List a user&#39;s API tokens
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**createApiToken()**](APITokensApi.md#createApiToken) | **POST** /users/{user_id}/api-tokens | Create an API token | https://docs.upsun.com/api/#tag/API-Tokens/operation/create-api-token |
+| [**deleteApiToken()**](APITokensApi.md#deleteApiToken) | **DELETE** /users/{user_id}/api-tokens/{token_id} | Delete an API token | https://docs.upsun.com/api/#tag/API-Tokens/operation/delete-api-token |
+| [**getApiToken()**](APITokensApi.md#getApiToken) | **GET** /users/{user_id}/api-tokens/{token_id} | Get an API token | https://docs.upsun.com/api/#tag/API-Tokens/operation/get-api-token |
+| [**listApiTokens()**](APITokensApi.md#listApiTokens) | **GET** /users/{user_id}/api-tokens | List a user&#39;s API tokens | https://docs.upsun.com/api/#tag/API-Tokens/operation/list-api-tokens |
 
 
 ## `createApiToken()`
@@ -29,8 +29,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\APITokensApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -46,10 +46,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **createApiTokenRequest** | [**\Upsun\Model\CreateApiTokenRequest**](../Model/CreateApiTokenRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **createApiTokenRequest** | [**\Upsun\Model\CreateApiTokenRequest**](../Model/CreateApiTokenRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -87,8 +87,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\APITokensApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -103,10 +103,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **tokenId** | **string**| The ID of the token. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **tokenId** | **string**| The ID of the token. | |
 
 ### Return type
 
@@ -144,8 +144,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\APITokensApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -161,10 +161,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **tokenId** | **string**| The ID of the token. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **tokenId** | **string**| The ID of the token. | |
 
 ### Return type
 
@@ -202,8 +202,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\APITokensApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -218,9 +218,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
 
 ### Return type
 

@@ -12,34 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Organization implements JsonSerializable
+final class Organization implements ModelInterface, JsonSerializable
 {
-    public const TYPE_FIXED = 'fixed';
-    public const TYPE_FLEXIBLE = 'flexible';
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_RESTRICTED = 'restricted';
-    public const STATUS_SUSPENDED = 'suspended';
-    public const STATUS_DELETED = 'deleted';
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'type' => 'type',
-        'ownerId' => 'owner_id',
-        'namespace' => 'namespace',
-        'name' => 'name',
-        'label' => 'label',
-        'country' => 'country',
-        'capabilities' => 'capabilities',
-        'vendor' => 'vendor',
-        'status' => 'status',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $type = null,
@@ -50,38 +26,18 @@ final class Organization implements JsonSerializable
         private readonly ?string $country = null,
         private readonly ?array $capabilities = [],
         private readonly ?string $vendor = null,
+        private readonly ?string $billingAccountId = null,
+        private readonly ?bool $billingLegacy = null,
         private readonly ?string $status = null,
         private readonly ?\DateTime $createdAt = null,
         private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\OrganizationLinks $links = null,
+        private readonly ?OrganizationLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'type' => '?string',
-            'owner_id' => '?string',
-            'namespace' => '?string',
-            'name' => '?string',
-            'label' => '?string',
-            'country' => '?string',
-            'capabilities' => 'string[]',
-            'vendor' => '?string',
-            'status' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            '_links' => '?\Upsun\Model\OrganizationLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -96,9 +52,11 @@ final class Organization implements JsonSerializable
             'country' => $this->country,
             'capabilities' => $this->capabilities,
             'vendor' => $this->vendor,
+            'billingAccountId' => $this->billingAccountId,
+            'billingLegacy' => $this->billingLegacy,
             'status' => $this->status,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'links' => $this->links,
         ];
     }
@@ -108,132 +66,78 @@ final class Organization implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The type of the organization.
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * The ID of the owner.
-     *
-     * @return string|null
-     */
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
 
-    /**
-     * The namespace in which the organization name is unique.
-     *
-     * @return string|null
-     */
     public function getNamespace(): ?string
     {
         return $this->namespace;
     }
 
-    /**
-     * A unique machine name representing the organization.
-     *
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * The human-readable label of the organization.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * The organization country (2-letter country code).
-     *
-     * @return string|null
-     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 
-    /**
-     * The organization capabilities.
-     *
-     * @return string[]|null
-     */
     public function getCapabilities(): ?array
     {
         return $this->capabilities;
     }
 
-    /**
-     * The vendor.
-     *
-     * @return string|null
-     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    /**
-     * The status of the organization.
-     *
-     * @return string|null
-     */
+    public function getBillingAccountId(): ?string
+    {
+        return $this->billingAccountId;
+    }
+
+    public function getBillingLegacy(): ?bool
+    {
+        return $this->billingLegacy;
+    }
+
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * The date and time when the organization was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the organization was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\OrganizationLinks
+    public function getLinks(): ?OrganizationLinks
     {
         return $this->links;
     }
 }
-

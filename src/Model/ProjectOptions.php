@@ -3,6 +3,8 @@
 /**
  * Low level ProjectOptions (auto-generated)
  *
+ * The project options object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,46 +14,22 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ProjectOptions implements JsonSerializable
+final class ProjectOptions implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'defaults' => 'defaults',
-        'enforced' => 'enforced',
-        'regions' => 'regions',
-        'plans' => 'plans',
-        'billing' => 'billing'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\ProjectOptionsDefaults $defaults = null,
-        private readonly ?\Upsun\Model\ProjectOptionsEnforced $enforced = null,
+        private readonly ?ProjectOptionsDefaults $defaults = null,
+        private readonly ?ProjectOptionsEnforced $enforced = null,
         private readonly ?array $regions = [],
         private readonly ?array $plans = [],
         private readonly ?object $billing = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'defaults' => '?\Upsun\Model\ProjectOptionsDefaults',
-            'enforced' => '?\Upsun\Model\ProjectOptionsEnforced',
-            'regions' => 'string[]',
-            'plans' => 'string[]',
-            'billing' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -70,50 +48,28 @@ final class ProjectOptions implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\ProjectOptionsDefaults|null
-     */
-    public function getDefaults(): ?\Upsun\Model\ProjectOptionsDefaults
+    public function getDefaults(): ?ProjectOptionsDefaults
     {
         return $this->defaults;
     }
 
-    /**
-     * @return \Upsun\Model\ProjectOptionsEnforced|null
-     */
-    public function getEnforced(): ?\Upsun\Model\ProjectOptionsEnforced
+    public function getEnforced(): ?ProjectOptionsEnforced
     {
         return $this->enforced;
     }
 
-    /**
-     * The available regions.
-     *
-     * @return string[]|null
-     */
     public function getRegions(): ?array
     {
         return $this->regions;
     }
 
-    /**
-     * The available plans.
-     *
-     * @return string[]|null
-     */
     public function getPlans(): ?array
     {
         return $this->plans;
     }
 
-    /**
-     * The billing settings.
-     *
-     * @return object|null
-     */
     public function getBilling(): ?object
     {
         return $this->billing;
     }
 }
-

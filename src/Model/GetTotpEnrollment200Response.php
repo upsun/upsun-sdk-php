@@ -12,19 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class GetTotpEnrollment200Response implements JsonSerializable
+final class GetTotpEnrollment200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'issuer' => 'issuer',
-        'accountName' => 'account_name',
-        'secret' => 'secret',
-        'qrCode' => 'qr_code'
-    ];
-
     public function __construct(
         private readonly ?string $issuer = null,
         private readonly ?string $accountName = null,
@@ -33,22 +24,9 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'issuer' => '?string',
-            'account_name' => '?string',
-            'secret' => '?string',
-            'qr_code' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,44 +44,23 @@ final class GetTotpEnrollment200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * 
-     *
-     * @return string|null
-     */
     public function getIssuer(): ?string
     {
         return $this->issuer;
     }
 
-    /**
-     * Account name for the enrollment.
-     *
-     * @return string|null
-     */
     public function getAccountName(): ?string
     {
         return $this->accountName;
     }
 
-    /**
-     * The secret seed for the enrollment
-     *
-     * @return string|null
-     */
     public function getSecret(): ?string
     {
         return $this->secret;
     }
 
-    /**
-     * Data URI of a PNG QR code image for the enrollment.
-     *
-     * @return string|null
-     */
     public function getQrCode(): ?string
     {
         return $this->qrCode;
     }
 }
-

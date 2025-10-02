@@ -3,6 +3,8 @@
 /**
  * Low level SSHKey (auto-generated)
  *
+ * The ssh key object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,21 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class SSHKey implements JsonSerializable
+final class SSHKey implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'keyId' => 'key_id',
-        'uid' => 'uid',
-        'fingerprint' => 'fingerprint',
-        'title' => 'title',
-        'value' => 'value',
-        'changed' => 'changed'
-    ];
-
     public function __construct(
         private readonly ?int $keyId = null,
         private readonly ?int $uid = null,
@@ -37,24 +28,9 @@ final class SSHKey implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'key_id' => '?int',
-            'uid' => '?int',
-            'fingerprint' => '?string',
-            'title' => '?string',
-            'value' => '?string',
-            'changed' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -74,64 +50,33 @@ final class SSHKey implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the public key.
-     *
-     * @return int|null
-     */
     public function getKeyId(): ?int
     {
         return $this->keyId;
     }
 
-    /**
-     * The internal user ID.
-     *
-     * @return int|null
-     */
     public function getUid(): ?int
     {
         return $this->uid;
     }
 
-    /**
-     * The fingerprint of the public key.
-     *
-     * @return string|null
-     */
     public function getFingerprint(): ?string
     {
         return $this->fingerprint;
     }
 
-    /**
-     * The title of the public key.
-     *
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * The actual value of the public key.
-     *
-     * @return string|null
-     */
     public function getValue(): ?string
     {
         return $this->value;
     }
 
-    /**
-     * The time of the last key modification (ISO 8601)
-     *
-     * @return string|null
-     */
     public function getChanged(): ?string
     {
         return $this->changed;
     }
 }
-

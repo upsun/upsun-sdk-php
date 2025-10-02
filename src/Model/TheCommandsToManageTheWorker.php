@@ -12,37 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheCommandsToManageTheWorker implements JsonSerializable
+final class TheCommandsToManageTheWorker implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'start' => 'start',
-        'preStart' => 'pre_start'
-    ];
-
     public function __construct(
         private readonly string $start,
         private readonly ?string $preStart = null,
+        private readonly ?string $postStart = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'start' => 'string',
-            'pre_start' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -50,6 +33,7 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
         return [
             'start' => $this->start,
             'preStart' => $this->preStart,
+            'postStart' => $this->postStart,
         ];
     }
 
@@ -58,20 +42,18 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getStart(): string
     {
         return $this->start;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPreStart(): ?string
     {
         return $this->preStart;
     }
-}
 
+    public function getPostStart(): ?string
+    {
+        return $this->postStart;
+    }
+}

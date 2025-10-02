@@ -3,6 +3,8 @@
 /**
  * Low level Ticket (auto-generated)
  *
+ * The support ticket object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,84 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Ticket implements JsonSerializable
+final class Ticket implements ModelInterface, JsonSerializable
 {
-    public const TYPE_PROBLEM = 'problem';
-    public const TYPE_TASK = 'task';
-    public const TYPE_INCIDENT = 'incident';
-    public const TYPE_QUESTION = 'question';
-    public const PRIORITY_LOW = 'low';
-    public const PRIORITY_NORMAL = 'normal';
-    public const PRIORITY_HIGH = 'high';
-    public const PRIORITY_URGENT = 'urgent';
-    public const STATUS_CLOSED = 'closed';
-    public const STATUS_DELETED = 'deleted';
-    public const STATUS_HOLD = 'hold';
-    public const STATUS__NEW = 'new';
-    public const STATUS_OPEN = 'open';
-    public const STATUS_PENDING = 'pending';
-    public const STATUS_SOLVED = 'solved';
-    public const CATEGORY_ACCESS = 'access';
-    public const CATEGORY_BILLING_QUESTION = 'billing_question';
-    public const CATEGORY_COMPLAINT = 'complaint';
-    public const CATEGORY_COMPLIANCE_QUESTION = 'compliance_question';
-    public const CATEGORY_CONFIGURATION_CHANGE = 'configuration_change';
-    public const CATEGORY_GENERAL_QUESTION = 'general_question';
-    public const CATEGORY_INCIDENT_OUTAGE = 'incident_outage';
-    public const CATEGORY_BUG_REPORT = 'bug_report';
-    public const CATEGORY_ONBOARDING = 'onboarding';
-    public const CATEGORY_REPORT_A_GUI_BUG = 'report_a_gui_bug';
-    public const CATEGORY_CLOSE_MY_ACCOUNT = 'close_my_account';
-    public const ENVIRONMENT_ENV_DEVELOPMENT = 'env_development';
-    public const ENVIRONMENT_ENV_STAGING = 'env_staging';
-    public const ENVIRONMENT_ENV_PRODUCTION = 'env_production';
-    public const TICKET_SHARING_STATUS_TS_SENT_TO_PLATFORM = 'ts_sent_to_platform';
-    public const TICKET_SHARING_STATUS_TS_ACCEPTED_BY_PLATFORM = 'ts_accepted_by_platform';
-    public const TICKET_SHARING_STATUS_TS_RETURNED_FROM_PLATFORM = 'ts_returned_from_platform';
-    public const TICKET_SHARING_STATUS_TS_SOLVED_BY_PLATFORM = 'ts_solved_by_platform';
-    public const TICKET_SHARING_STATUS_TS_REJECTED_BY_PLATFORM = 'ts_rejected_by_platform';
-
-    private static array $attributeMap = [
-        'ticketId' => 'ticket_id',
-        'created' => 'created',
-        'updated' => 'updated',
-        'type' => 'type',
-        'subject' => 'subject',
-        'description' => 'description',
-        'priority' => 'priority',
-        'followupTid' => 'followup_tid',
-        'status' => 'status',
-        'recipient' => 'recipient',
-        'requesterId' => 'requester_id',
-        'submitterId' => 'submitter_id',
-        'assigneeId' => 'assignee_id',
-        'organizationId' => 'organization_id',
-        'collaboratorIds' => 'collaborator_ids',
-        'hasIncidents' => 'has_incidents',
-        'due' => 'due',
-        'tags' => 'tags',
-        'subscriptionId' => 'subscription_id',
-        'ticketGroup' => 'ticket_group',
-        'supportPlan' => 'support_plan',
-        'affectedUrl' => 'affected_url',
-        'queue' => 'queue',
-        'issueType' => 'issue_type',
-        'resolutionTime' => 'resolution_time',
-        'responseTime' => 'response_time',
-        'projectUrl' => 'project_url',
-        'region' => 'region',
-        'category' => 'category',
-        'environment' => 'environment',
-        'ticketSharingStatus' => 'ticket_sharing_status',
-        'applicationTicketUrl' => 'application_ticket_url',
-        'infrastructureTicketUrl' => 'infrastructure_ticket_url',
-        'jira' => 'jira',
-        'zdTicketUrl' => 'zd_ticket_url'
-    ];
-
     public function __construct(
         private readonly ?int $ticketId = null,
         private readonly ?\DateTime $created = null,
@@ -129,61 +57,17 @@ final class Ticket implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'ticket_id' => '?int',
-            'created' => '?\DateTime',
-            'updated' => '?\DateTime',
-            'type' => '?string',
-            'subject' => '?string',
-            'description' => '?string',
-            'priority' => '?string',
-            'followup_tid' => '?string',
-            'status' => '?string',
-            'recipient' => '?string',
-            'requester_id' => '?string',
-            'submitter_id' => '?string',
-            'assignee_id' => '?string',
-            'organization_id' => '?string',
-            'collaborator_ids' => 'string[]',
-            'has_incidents' => '?bool',
-            'due' => '?\DateTime',
-            'tags' => 'string[]',
-            'subscription_id' => '?string',
-            'ticket_group' => '?string',
-            'support_plan' => '?string',
-            'affected_url' => '?string',
-            'queue' => '?string',
-            'issue_type' => '?string',
-            'resolution_time' => '?\DateTime',
-            'response_time' => '?\DateTime',
-            'project_url' => '?string',
-            'region' => '?string',
-            'category' => '?string',
-            'environment' => '?string',
-            'ticket_sharing_status' => '?string',
-            'application_ticket_url' => '?string',
-            'infrastructure_ticket_url' => '?string',
-            'jira' => '\Upsun\Model\TicketJiraInner[]',
-            'zd_ticket_url' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
             'ticketId' => $this->ticketId,
-            'created' => $this->created,
-            'updated' => $this->updated,
+            'created' => $this->created?->format(DATE_ATOM),
+            'updated' => $this->updated?->format(DATE_ATOM),
             'type' => $this->type,
             'subject' => $this->subject,
             'description' => $this->description,
@@ -197,7 +81,7 @@ final class Ticket implements JsonSerializable
             'organizationId' => $this->organizationId,
             'collaboratorIds' => $this->collaboratorIds,
             'hasIncidents' => $this->hasIncidents,
-            'due' => $this->due,
+            'due' => $this->due?->format(DATE_ATOM),
             'tags' => $this->tags,
             'subscriptionId' => $this->subscriptionId,
             'ticketGroup' => $this->ticketGroup,
@@ -205,8 +89,8 @@ final class Ticket implements JsonSerializable
             'affectedUrl' => $this->affectedUrl,
             'queue' => $this->queue,
             'issueType' => $this->issueType,
-            'resolutionTime' => $this->resolutionTime,
-            'responseTime' => $this->responseTime,
+            'resolutionTime' => $this->resolutionTime?->format(DATE_ATOM),
+            'responseTime' => $this->responseTime?->format(DATE_ATOM),
             'projectUrl' => $this->projectUrl,
             'region' => $this->region,
             'category' => $this->category,
@@ -224,354 +108,181 @@ final class Ticket implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the ticket.
-     *
-     * @return int|null
-     */
     public function getTicketId(): ?int
     {
         return $this->ticketId;
     }
 
-    /**
-     * The time when the support ticket was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
 
-    /**
-     * The time when the support ticket was updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdated(): ?\DateTime
     {
         return $this->updated;
     }
 
-    /**
-     * A type of the ticket.
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * A title of the ticket.
-     *
-     * @return string|null
-     */
     public function getSubject(): ?string
     {
         return $this->subject;
     }
 
-    /**
-     * The description body of the support ticket.
-     *
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * A priority of the ticket.
-     *
-     * @return string|null
-     */
     public function getPriority(): ?string
     {
         return $this->priority;
     }
 
-    /**
-     * Followup ticket ID. The unique ID of the ticket which this ticket is a follow-up to.
-     *
-     * @return string|null
-     */
     public function getFollowupTid(): ?string
     {
         return $this->followupTid;
     }
 
-    /**
-     * The status of the support ticket.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * Email address of the ticket recipient, defaults to support@platform.sh.
-     *
-     * @return string|null
-     */
     public function getRecipient(): ?string
     {
         return $this->recipient;
     }
 
-    /**
-     * UUID of the ticket requester.
-     *
-     * @return string|null
-     */
     public function getRequesterId(): ?string
     {
         return $this->requesterId;
     }
 
-    /**
-     * UUID of the ticket submitter.
-     *
-     * @return string|null
-     */
     public function getSubmitterId(): ?string
     {
         return $this->submitterId;
     }
 
-    /**
-     * UUID of the ticket assignee.
-     *
-     * @return string|null
-     */
     public function getAssigneeId(): ?string
     {
         return $this->assigneeId;
     }
 
-    /**
-     * A reference id that is usable to find the commerce license.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * A list of the collaborators uuids for this ticket.
-     *
-     * @return string[]|null
-     */
     public function getCollaboratorIds(): ?array
     {
         return $this->collaboratorIds;
     }
 
-    /**
-     * Whether or not this ticket has incidents.
-     *
-     * @return bool|null
-     */
     public function getHasIncidents(): ?bool
     {
         return $this->hasIncidents;
     }
 
-    /**
-     * A time that the ticket is due at.
-     *
-     * @return \DateTime|null
-     */
     public function getDue(): ?\DateTime
     {
         return $this->due;
     }
 
-    /**
-     * A list of tags assigned to the ticket.
-     *
-     * @return string[]|null
-     */
     public function getTags(): ?array
     {
         return $this->tags;
     }
 
-    /**
-     * The internal ID of the subscription.
-     *
-     * @return string|null
-     */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * Maps to zendesk field 'Request group'.
-     *
-     * @return string|null
-     */
     public function getTicketGroup(): ?string
     {
         return $this->ticketGroup;
     }
 
-    /**
-     * Maps to zendesk field 'The support plan associated with this ticket.
-     *
-     * @return string|null
-     */
     public function getSupportPlan(): ?string
     {
         return $this->supportPlan;
     }
 
-    /**
-     * The affected URL associated with the support ticket.
-     *
-     * @return string|null
-     */
     public function getAffectedUrl(): ?string
     {
         return $this->affectedUrl;
     }
 
-    /**
-     * The queue the support ticket is in.
-     *
-     * @return string|null
-     */
     public function getQueue(): ?string
     {
         return $this->queue;
     }
 
-    /**
-     * The issue type of the support ticket.
-     *
-     * @return string|null
-     */
     public function getIssueType(): ?string
     {
         return $this->issueType;
     }
 
-    /**
-     * Maps to zendesk field 'Resolution Time'.
-     *
-     * @return \DateTime|null
-     */
     public function getResolutionTime(): ?\DateTime
     {
         return $this->resolutionTime;
     }
 
-    /**
-     * Maps to zendesk field 'Response Time (time from request to reply).
-     *
-     * @return \DateTime|null
-     */
     public function getResponseTime(): ?\DateTime
     {
         return $this->responseTime;
     }
 
-    /**
-     * Maps to zendesk field 'Project URL'.
-     *
-     * @return string|null
-     */
     public function getProjectUrl(): ?string
     {
         return $this->projectUrl;
     }
 
-    /**
-     * Maps to zendesk field 'Region'.
-     *
-     * @return string|null
-     */
     public function getRegion(): ?string
     {
         return $this->region;
     }
 
-    /**
-     * Maps to zendesk field 'Category'.
-     *
-     * @return string|null
-     */
     public function getCategory(): ?string
     {
         return $this->category;
     }
 
-    /**
-     * Maps to zendesk field 'Environment'.
-     *
-     * @return string|null
-     */
     public function getEnvironment(): ?string
     {
         return $this->environment;
     }
 
-    /**
-     * Maps to zendesk field 'Ticket Sharing Status'.
-     *
-     * @return string|null
-     */
     public function getTicketSharingStatus(): ?string
     {
         return $this->ticketSharingStatus;
     }
 
-    /**
-     * Maps to zendesk field 'Application Ticket URL'.
-     *
-     * @return string|null
-     */
     public function getApplicationTicketUrl(): ?string
     {
         return $this->applicationTicketUrl;
     }
 
-    /**
-     * Maps to zendesk field 'Infrastructure Ticket URL'.
-     *
-     * @return string|null
-     */
     public function getInfrastructureTicketUrl(): ?string
     {
         return $this->infrastructureTicketUrl;
     }
 
     /**
-     * A list of JIRA issues related to the support ticket.
-     *
-     * @return \Upsun\Model\TicketJiraInner[]|null
+     * @return TicketJiraInner[]|null
      */
     public function getJira(): ?array
     {
         return $this->jira;
     }
 
-    /**
-     * URL to the customer-facing ticket in Zendesk.
-     *
-     * @return string|null
-     */
     public function getZdTicketUrl(): ?string
     {
         return $this->zdTicketUrl;
     }
 }
-

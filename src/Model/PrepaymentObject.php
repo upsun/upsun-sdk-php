@@ -3,6 +3,8 @@
 /**
  * Low level PrepaymentObject (auto-generated)
  *
+ * Prepayment information for an organization.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,34 +14,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class PrepaymentObject implements JsonSerializable
+final class PrepaymentObject implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'prepayment' => 'prepayment'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\PrepaymentObjectPrepayment $prepayment = null,
+        private readonly ?PrepaymentObjectPrepayment $prepayment = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'prepayment' => '?\Upsun\Model\PrepaymentObjectPrepayment',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,12 +40,8 @@ final class PrepaymentObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\PrepaymentObjectPrepayment|null
-     */
-    public function getPrepayment(): ?\Upsun\Model\PrepaymentObjectPrepayment
+    public function getPrepayment(): ?PrepaymentObjectPrepayment
     {
         return $this->prepayment;
     }
 }
-

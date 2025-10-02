@@ -12,40 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class AccessControlDefinitionForThisEnviromentInner implements JsonSerializable
+final class AccessControlDefinitionForThisEnviromentInner implements ModelInterface, JsonSerializable
 {
-    public const ROLE_ADMIN = 'admin';
-    public const ROLE_CONTRIBUTOR = 'contributor';
-    public const ROLE_VIEWER = 'viewer';
-
-    private static array $attributeMap = [
-        'entityId' => 'entity_id',
-        'role' => 'role'
-    ];
-
     public function __construct(
         private readonly string $entityId,
         private readonly string $role,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'entity_id' => 'string',
-            'role' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -61,20 +40,13 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getEntityId(): string
     {
         return $this->entityId;
     }
 
-    /**
-     * @return string
-     */
     public function getRole(): string
     {
         return $this->role;
     }
 }
-

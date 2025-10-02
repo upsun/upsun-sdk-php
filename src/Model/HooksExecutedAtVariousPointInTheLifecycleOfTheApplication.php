@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements JsonSerializable
+final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'build' => 'build',
-        'deploy' => 'deploy',
-        'postDeploy' => 'post_deploy'
-    ];
-
     public function __construct(
-        private readonly ?string $build = null,
-        private readonly ?string $deploy = null,
-        private readonly ?string $postDeploy = null,
+        private readonly ?string $build,
+        private readonly ?string $deploy,
+        private readonly ?string $postDeploy,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'build' => '?string',
-            'deploy' => '?string',
-            'post_deploy' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getBuild(): ?string
     {
         return $this->build;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDeploy(): ?string
     {
         return $this->deploy;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPostDeploy(): ?string
     {
         return $this->postDeploy;
     }
 }
-

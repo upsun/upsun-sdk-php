@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements JsonSerializable
+final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'service' => 'service',
-        'endpoint' => 'endpoint'
-    ];
-
     public function __construct(
-        private readonly ?string $service = null,
-        private readonly ?string $endpoint = null,
+        private readonly ?string $service,
+        private readonly ?string $endpoint,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'service' => '?string',
-            'endpoint' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +40,13 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getService(): ?string
     {
         return $this->service;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
 }
-

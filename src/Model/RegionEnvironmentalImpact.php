@@ -3,6 +3,7 @@
 /**
  * Low level RegionEnvironmentalImpact (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,18 +13,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class RegionEnvironmentalImpact implements JsonSerializable
+final class RegionEnvironmentalImpact implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'zone' => 'zone',
-        'carbonIntensity' => 'carbon_intensity',
-        'green' => 'green'
-    ];
-
     public function __construct(
         private readonly ?string $zone = null,
         private readonly ?string $carbonIntensity = null,
@@ -31,21 +24,9 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'zone' => '?string',
-            'carbon_intensity' => '?string',
-            'green' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +43,18 @@ final class RegionEnvironmentalImpact implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getZone(): ?string
     {
         return $this->zone;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCarbonIntensity(): ?string
     {
         return $this->carbonIntensity;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getGreen(): ?bool
     {
         return $this->green;
     }
 }
-

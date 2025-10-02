@@ -12,49 +12,23 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Resources implements JsonSerializable
+final class Resources implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'baseMemory' => 'base_memory',
-        'memoryRatio' => 'memory_ratio',
-        'profileSize' => 'profile_size',
-        'minimum' => 'minimum',
-        'default' => 'default',
-        'disk' => 'disk'
-    ];
-
     public function __construct(
-        private readonly ?int $baseMemory = null,
-        private readonly ?int $memoryRatio = null,
-        private readonly ?string $profileSize = null,
-        private readonly ?\Upsun\Model\TheMinimumResourcesForThisService $minimum = null,
-        private readonly ?\Upsun\Model\TheDefaultResourcesForThisService $default = null,
-        private readonly ?\Upsun\Model\TheDisksResources $disk = null,
+        private readonly ?int $baseMemory,
+        private readonly ?int $memoryRatio,
+        private readonly ?string $profileSize,
+        private readonly ?TheMinimumResourcesForThisService $minimum,
+        private readonly ?TheDefaultResourcesForThisService $default,
+        private readonly ?TheDisksResources $disk,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'base_memory' => '?int',
-            'memory_ratio' => '?int',
-            'profile_size' => '?string',
-            'minimum' => '?\Upsun\Model\TheMinimumResourcesForThisService',
-            'default' => '?\Upsun\Model\TheDefaultResourcesForThisService',
-            'disk' => '?\Upsun\Model\TheDisksResources',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -74,52 +48,33 @@ final class Resources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int|null
-     */
     public function getBaseMemory(): ?int
     {
         return $this->baseMemory;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMemoryRatio(): ?int
     {
         return $this->memoryRatio;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProfileSize(): ?string
     {
         return $this->profileSize;
     }
 
-    /**
-     * @return \Upsun\Model\TheMinimumResourcesForThisService|null
-     */
-    public function getMinimum(): ?\Upsun\Model\TheMinimumResourcesForThisService
+    public function getMinimum(): ?TheMinimumResourcesForThisService
     {
         return $this->minimum;
     }
 
-    /**
-     * @return \Upsun\Model\TheDefaultResourcesForThisService|null
-     */
-    public function getDefault(): ?\Upsun\Model\TheDefaultResourcesForThisService
+    public function getDefault(): ?TheDefaultResourcesForThisService
     {
         return $this->default;
     }
 
-    /**
-     * @return \Upsun\Model\TheDisksResources|null
-     */
-    public function getDisk(): ?\Upsun\Model\TheDisksResources
+    public function getDisk(): ?TheDisksResources
     {
         return $this->disk;
     }
 }
-

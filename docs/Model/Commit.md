@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  |
 **sha** | **string** |  |
 **author** | [**\Upsun\Model\TheInformationAboutTheAuthor**](TheInformationAboutTheAuthor.md) |  |
 **committer** | [**\Upsun\Model\TheInformationAboutTheCommitter**](TheInformationAboutTheCommitter.md) |  |

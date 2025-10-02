@@ -12,46 +12,22 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EnvironmentInitializeInput implements JsonSerializable
+final class EnvironmentInitializeInput implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'profile' => 'profile',
-        'repository' => 'repository',
-        'config' => 'config',
-        'files' => 'files',
-        'resources' => 'resources'
-    ];
-
     public function __construct(
         private readonly string $profile,
         private readonly string $repository,
         private readonly array $files,
-        private readonly ?string $config = null,
-        private readonly ?\Upsun\Model\Resources3 $resources = null,
+        private readonly ?string $config,
+        private readonly ?Resources4 $resources,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'profile' => 'string',
-            'repository' => 'string',
-            'config' => '?string',
-            'files' => '\Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]',
-            'resources' => '?\Upsun\Model\Resources3',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -70,44 +46,31 @@ final class EnvironmentInitializeInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getProfile(): string
     {
         return $this->profile;
     }
 
-    /**
-     * @return string
-     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * @return string|null
-     */
     public function getConfig(): ?string
     {
         return $this->config;
     }
 
     /**
-     * @return \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]
+     * @return AListOfFilesToAddToTheRepositoryDuringInitializationInner[]
      */
     public function getFiles(): array
     {
         return $this->files;
     }
 
-    /**
-     * @return \Upsun\Model\Resources3|null
-     */
-    public function getResources(): ?\Upsun\Model\Resources3
+    public function getResources(): ?Resources4
     {
         return $this->resources;
     }
 }
-

@@ -3,6 +3,7 @@
 /**
  * Low level AddressMetadataMetadata (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,18 +13,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class AddressMetadataMetadata implements JsonSerializable
+final class AddressMetadataMetadata implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'requiredFields' => 'required_fields',
-        'fieldLabels' => 'field_labels',
-        'showVat' => 'show_vat'
-    ];
-
     public function __construct(
         private readonly ?array $requiredFields = [],
         private readonly ?object $fieldLabels = null,
@@ -31,21 +24,9 @@ final class AddressMetadataMetadata implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'required_fields' => 'string[]',
-            'field_labels' => '?object',
-            'show_vat' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,34 +43,18 @@ final class AddressMetadataMetadata implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Fields required to express the address.
-     *
-     * @return string[]|null
-     */
     public function getRequiredFields(): ?array
     {
         return $this->requiredFields;
     }
 
-    /**
-     * Localized labels for address fields.
-     *
-     * @return object|null
-     */
     public function getFieldLabels(): ?object
     {
         return $this->fieldLabels;
     }
 
-    /**
-     * Whether this country supports a VAT number.
-     *
-     * @return bool|null
-     */
     public function getShowVat(): ?bool
     {
         return $this->showVat;
     }
 }
-

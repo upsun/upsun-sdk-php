@@ -3,6 +3,8 @@
 /**
  * Low level Address (auto-generated)
  *
+ * The address of the user.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,25 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Address implements JsonSerializable
+final class Address implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'country' => 'country',
-        'nameLine' => 'name_line',
-        'premise' => 'premise',
-        'subPremise' => 'sub_premise',
-        'thoroughfare' => 'thoroughfare',
-        'administrativeArea' => 'administrative_area',
-        'subAdministrativeArea' => 'sub_administrative_area',
-        'locality' => 'locality',
-        'dependentLocality' => 'dependent_locality',
-        'postalCode' => 'postal_code'
-    ];
-
     public function __construct(
         private readonly ?string $country = null,
         private readonly ?string $nameLine = null,
@@ -45,28 +32,9 @@ final class Address implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'country' => '?string',
-            'name_line' => '?string',
-            'premise' => '?string',
-            'sub_premise' => '?string',
-            'thoroughfare' => '?string',
-            'administrative_area' => '?string',
-            'sub_administrative_area' => '?string',
-            'locality' => '?string',
-            'dependent_locality' => '?string',
-            'postal_code' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -90,104 +58,53 @@ final class Address implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Two-letter country codes are used to represent countries and states
-     *
-     * @return string|null
-     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 
-    /**
-     * The full name of the user
-     *
-     * @return string|null
-     */
     public function getNameLine(): ?string
     {
         return $this->nameLine;
     }
 
-    /**
-     * Premise (i.e. Apt, Suite, Bldg.)
-     *
-     * @return string|null
-     */
     public function getPremise(): ?string
     {
         return $this->premise;
     }
 
-    /**
-     * Sub Premise (i.e. Suite, Apartment, Floor, Unknown.
-     *
-     * @return string|null
-     */
     public function getSubPremise(): ?string
     {
         return $this->subPremise;
     }
 
-    /**
-     * The address of the user
-     *
-     * @return string|null
-     */
     public function getThoroughfare(): ?string
     {
         return $this->thoroughfare;
     }
 
-    /**
-     * The administrative area of the user address
-     *
-     * @return string|null
-     */
     public function getAdministrativeArea(): ?string
     {
         return $this->administrativeArea;
     }
 
-    /**
-     * The sub-administrative area of the user address
-     *
-     * @return string|null
-     */
     public function getSubAdministrativeArea(): ?string
     {
         return $this->subAdministrativeArea;
     }
 
-    /**
-     * The locality of the user address
-     *
-     * @return string|null
-     */
     public function getLocality(): ?string
     {
         return $this->locality;
     }
 
-    /**
-     * The dependant_locality area of the user address
-     *
-     * @return string|null
-     */
     public function getDependentLocality(): ?string
     {
         return $this->dependentLocality;
     }
 
-    /**
-     * The postal code area of the user address
-     *
-     * @return string|null
-     */
     public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
 }
-

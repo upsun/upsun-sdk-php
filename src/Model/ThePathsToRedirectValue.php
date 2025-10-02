@@ -12,53 +12,23 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ThePathsToRedirectValue implements JsonSerializable
+final class ThePathsToRedirectValue implements ModelInterface, JsonSerializable
 {
-    public const CODE_NUMBER_301 = 301;
-    public const CODE_NUMBER_302 = 302;
-    public const CODE_NUMBER_307 = 307;
-    public const CODE_NUMBER_308 = 308;
-
-    private static array $attributeMap = [
-        'regexp' => 'regexp',
-        'to' => 'to',
-        'prefix' => 'prefix',
-        'appendSuffix' => 'append_suffix',
-        'code' => 'code',
-        'expires' => 'expires'
-    ];
-
     public function __construct(
         private readonly bool $regexp,
         private readonly string $to,
         private readonly int $code,
-        private readonly ?bool $prefix = null,
-        private readonly ?bool $appendSuffix = null,
-        private readonly ?string $expires = null,
+        private readonly ?bool $prefix,
+        private readonly ?bool $appendSuffix,
+        private readonly ?string $expires,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'regexp' => 'bool',
-            'to' => 'string',
-            'prefix' => '?bool',
-            'append_suffix' => '?bool',
-            'code' => 'int',
-            'expires' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -78,52 +48,33 @@ final class ThePathsToRedirectValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getRegexp(): bool
     {
         return $this->regexp;
     }
 
-    /**
-     * @return string
-     */
     public function getTo(): string
     {
         return $this->to;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPrefix(): ?bool
     {
         return $this->prefix;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getAppendSuffix(): ?bool
     {
         return $this->appendSuffix;
     }
 
-    /**
-     * @return int
-     */
     public function getCode(): int
     {
         return $this->code;
     }
 
-    /**
-     * @return string|null
-     */
     public function getExpires(): ?string
     {
         return $this->expires;
     }
 }
-

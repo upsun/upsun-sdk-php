@@ -37,9 +37,15 @@ final class ProjectSettingsApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,18 @@ final class ProjectSettingsApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Get list of project settings
      *
+     * Retrieve the global settings for a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ProjectSettings
+     *
+     * @see https://docs.upsun.com/api/#tag/Project-Settings/operation/get-projects-settings
      */
     public function getProjectsSettings(
         string $projectId
@@ -64,11 +77,13 @@ final class ProjectSettingsApi extends AbstractApi
     }
 
     /**
-     * Get list of project settings
+     * Get list of project settings with HTTP Info
+     *
+     * @return \Upsun\Model\ProjectSettings
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsSettingsWithHttpInfo(
+    private function getProjectsSettingsWithHttpInfo(
         string $projectId
     ): \Upsun\Model\ProjectSettings {
         $request = $this->getProjectsSettingsRequest(
@@ -79,14 +94,17 @@ final class ProjectSettingsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ProjectSettings',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -96,9 +114,10 @@ final class ProjectSettingsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsSettingsRequest(
+    private function getProjectsSettingsRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -106,18 +125,16 @@ final class ProjectSettingsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling getProjectsSettings'
+                'Missing the required parameter $projectId 
+                when calling getProjectsSettings'
             );
         }
-
         $resourcePath = '/projects/{projectId}/settings';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -136,7 +153,7 @@ final class ProjectSettingsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -179,8 +196,14 @@ final class ProjectSettingsApi extends AbstractApi
     /**
      * Update a project setting
      *
+     * Update one or more project-level settings.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Project-Settings/operation/update-projects-settings
      */
     public function updateProjectsSettings(
         string $projectId,
@@ -193,11 +216,13 @@ final class ProjectSettingsApi extends AbstractApi
     }
 
     /**
-     * Update a project setting
+     * Update a project setting with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsSettingsWithHttpInfo(
+    private function updateProjectsSettingsWithHttpInfo(
         string $projectId,
         \Upsun\Model\ProjectSettingsPatch $projectSettingsPatch
     ): \Upsun\Model\AcceptedResponse {
@@ -210,14 +235,17 @@ final class ProjectSettingsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -227,10 +255,11 @@ final class ProjectSettingsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectsSettingsRequest(
+    private function updateProjectsSettingsRequest(
         string $projectId,
         \Upsun\Model\ProjectSettingsPatch $projectSettingsPatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -238,9 +267,11 @@ final class ProjectSettingsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling updateProjectsSettings'
+                'Missing the required parameter $projectId 
+                when calling updateProjectsSettings'
             );
         }
+
         // verify the required parameter 'projectSettingsPatch' is set
         if (
             $projectSettingsPatch === null
@@ -248,18 +279,16 @@ final class ProjectSettingsApi extends AbstractApi
             && count($projectSettingsPatch) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectSettingsPatch when calling updateProjectsSettings'
+                'Missing the required parameter $projectSettingsPatch 
+                when calling updateProjectsSettings'
             );
         }
-
         $resourcePath = '/projects/{projectId}/settings';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -280,11 +309,13 @@ final class ProjectSettingsApi extends AbstractApi
         // for model (json/xml)
         if (isset($projectSettingsPatch)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($projectSettingsPatch));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($projectSettingsPatch)
+                );
             } else {
                 $httpBody = $projectSettingsPatch;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

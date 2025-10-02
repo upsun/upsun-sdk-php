@@ -3,6 +3,7 @@
 /**
  * Low level SubscriptionAddonsObjectCurrent (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class SubscriptionAddonsObjectCurrent implements JsonSerializable
+final class SubscriptionAddonsObjectCurrent implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'continuousProfiling' => 'continuous_profiling',
-        'projectSupportLevel' => 'project_support_level'
-    ];
-
     public function __construct(
         private readonly ?array $continuousProfiling = [],
         private readonly ?array $projectSupportLevel = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'continuous_profiling' => 'float[]',
-            'project_support_level' => 'float[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +41,13 @@ final class SubscriptionAddonsObjectCurrent implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The current continuous profiling level of the license.
-     *
-     * @return array<string,float>|null
-     */
     public function getContinuousProfiling(): ?array
     {
         return $this->continuousProfiling;
     }
 
-    /**
-     * The current project uptime level of the license.
-     *
-     * @return array<string,float>|null
-     */
     public function getProjectSupportLevel(): ?array
     {
         return $this->projectSupportLevel;
     }
 }
-

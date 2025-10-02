@@ -12,49 +12,23 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class FoundationDeploymentTarget implements JsonSerializable
+final class FoundationDeploymentTarget implements ModelInterface, JsonSerializable
 {
-    public const TYPE_DEDICATED = 'dedicated';
-    public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'name' => 'name',
-        'hosts' => 'hosts',
-        'useDedicatedGrid' => 'use_dedicated_grid',
-        'storageType' => 'storage_type'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
         private readonly bool $useDedicatedGrid,
-        private readonly ?array $hosts = [],
-        private readonly ?string $storageType = null,
+        private readonly ?array $hosts,
+        private readonly ?string $storageType,
+        private readonly ?string $id = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'name' => 'string',
-            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
-            'use_dedicated_grid' => 'bool',
-            'storage_type' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -65,6 +39,7 @@ final class FoundationDeploymentTarget implements JsonSerializable
             'hosts' => $this->hosts,
             'useDedicatedGrid' => $this->useDedicatedGrid,
             'storageType' => $this->storageType,
+            'id' => $this->id,
         ];
     }
 
@@ -73,44 +48,36 @@ final class FoundationDeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
+     * @return TheHostsOfTheDeploymentTargetInner[]|null
      */
     public function getHosts(): ?array
     {
         return $this->hosts;
     }
 
-    /**
-     * @return bool
-     */
     public function getUseDedicatedGrid(): bool
     {
         return $this->useDedicatedGrid;
     }
 
-    /**
-     * @return string|null
-     */
     public function getStorageType(): ?string
     {
         return $this->storageType;
     }
-}
 
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+}

@@ -37,9 +37,15 @@ final class TeamAccessApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,18 @@ final class TeamAccessApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Get team access for a project
      *
+     * Retrieves the team's permissions for the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\TeamProjectAccess
+     *
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/get-project-team-access
      */
     public function getProjectTeamAccess(
         string $projectId,
@@ -66,11 +79,13 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Get team access for a project
+     * Get team access for a project with HTTP Info
+     *
+     * @return \Upsun\Model\TeamProjectAccess
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getProjectTeamAccessWithHttpInfo(
+    private function getProjectTeamAccessWithHttpInfo(
         string $projectId,
         string $teamId
     ): \Upsun\Model\TeamProjectAccess {
@@ -83,14 +98,17 @@ final class TeamAccessApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\TeamProjectAccess',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -100,10 +118,11 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectTeamAccessRequest(
+    private function getProjectTeamAccessRequest(
         string $projectId,
         string $teamId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -111,9 +130,11 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling getProjectTeamAccess'
+                'Missing the required parameter $projectId 
+                when calling getProjectTeamAccess'
             );
         }
+
         // verify the required parameter 'teamId' is set
         if (
             $teamId === null
@@ -121,18 +142,16 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $teamId when calling getProjectTeamAccess'
+                'Missing the required parameter $teamId 
+                when calling getProjectTeamAccess'
             );
         }
-
         $resourcePath = '/projects/{project_id}/team-access/{team_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -159,7 +178,7 @@ final class TeamAccessApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -202,8 +221,14 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Get project access for a team
      *
+     * Retrieves the team's permissions for the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\TeamProjectAccess
+     *
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/get-team-project-access
      */
     public function getTeamProjectAccess(
         string $teamId,
@@ -216,11 +241,13 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Get project access for a team
+     * Get project access for a team with HTTP Info
+     *
+     * @return \Upsun\Model\TeamProjectAccess
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getTeamProjectAccessWithHttpInfo(
+    private function getTeamProjectAccessWithHttpInfo(
         string $teamId,
         string $projectId
     ): \Upsun\Model\TeamProjectAccess {
@@ -233,14 +260,17 @@ final class TeamAccessApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\TeamProjectAccess',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -250,10 +280,11 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getTeamProjectAccessRequest(
+    private function getTeamProjectAccessRequest(
         string $teamId,
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'teamId' is set
         if (
             $teamId === null
@@ -261,9 +292,11 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $teamId when calling getTeamProjectAccess'
+                'Missing the required parameter $teamId 
+                when calling getTeamProjectAccess'
             );
         }
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -271,18 +304,16 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling getTeamProjectAccess'
+                'Missing the required parameter $projectId 
+                when calling getTeamProjectAccess'
             );
         }
-
         $resourcePath = '/teams/{team_id}/project-access/{project_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($teamId !== null) {
@@ -309,7 +340,7 @@ final class TeamAccessApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -352,8 +383,12 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Grant team access to a project
      *
+     * Grants one or more team access to a specific project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/grant-project-team-access
      */
     public function grantProjectTeamAccess(
         string $projectId,
@@ -366,11 +401,11 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Grant team access to a project
+     * Grant team access to a project with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function grantProjectTeamAccessWithHttpInfo(
+    private function grantProjectTeamAccessWithHttpInfo(
         string $projectId,
         array $grantProjectTeamAccessRequestInner
     ): void {
@@ -380,13 +415,14 @@ final class TeamAccessApi extends AbstractApi
         );
 
         try {
-            $response = $this->sendAuthenticatedRequest(
+            $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
-
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -396,10 +432,11 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function grantProjectTeamAccessRequest(
+    private function grantProjectTeamAccessRequest(
         string $projectId,
         array $grantProjectTeamAccessRequestInner
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -407,9 +444,11 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling grantProjectTeamAccess'
+                'Missing the required parameter $projectId 
+                when calling grantProjectTeamAccess'
             );
         }
+
         // verify the required parameter 'grantProjectTeamAccessRequestInner' is set
         if (
             $grantProjectTeamAccessRequestInner === null
@@ -417,18 +456,16 @@ final class TeamAccessApi extends AbstractApi
             && count($grantProjectTeamAccessRequestInner) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $grantProjectTeamAccessRequestInner when calling grantProjectTeamAccess'
+                'Missing the required parameter $grantProjectTeamAccessRequestInner 
+                when calling grantProjectTeamAccess'
             );
         }
-
         $resourcePath = '/projects/{project_id}/team-access';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -449,11 +486,13 @@ final class TeamAccessApi extends AbstractApi
         // for model (json/xml)
         if (isset($grantProjectTeamAccessRequestInner)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($grantProjectTeamAccessRequestInner));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($grantProjectTeamAccessRequestInner)
+                );
             } else {
                 $httpBody = $grantProjectTeamAccessRequestInner;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -496,8 +535,12 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Grant project access to a team
      *
+     * Adds the team to one or more specified projects.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/grant-team-project-access
      */
     public function grantTeamProjectAccess(
         string $teamId,
@@ -510,11 +553,11 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Grant project access to a team
+     * Grant project access to a team with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function grantTeamProjectAccessWithHttpInfo(
+    private function grantTeamProjectAccessWithHttpInfo(
         string $teamId,
         array $grantTeamProjectAccessRequestInner
     ): void {
@@ -524,13 +567,14 @@ final class TeamAccessApi extends AbstractApi
         );
 
         try {
-            $response = $this->sendAuthenticatedRequest(
+            $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
-
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -540,10 +584,11 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function grantTeamProjectAccessRequest(
+    private function grantTeamProjectAccessRequest(
         string $teamId,
         array $grantTeamProjectAccessRequestInner
     ): RequestInterface {
+
         // verify the required parameter 'teamId' is set
         if (
             $teamId === null
@@ -551,9 +596,11 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $teamId when calling grantTeamProjectAccess'
+                'Missing the required parameter $teamId 
+                when calling grantTeamProjectAccess'
             );
         }
+
         // verify the required parameter 'grantTeamProjectAccessRequestInner' is set
         if (
             $grantTeamProjectAccessRequestInner === null
@@ -561,18 +608,16 @@ final class TeamAccessApi extends AbstractApi
             && count($grantTeamProjectAccessRequestInner) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $grantTeamProjectAccessRequestInner when calling grantTeamProjectAccess'
+                'Missing the required parameter $grantTeamProjectAccessRequestInner 
+                when calling grantTeamProjectAccess'
             );
         }
-
         $resourcePath = '/teams/{team_id}/project-access';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($teamId !== null) {
@@ -593,11 +638,13 @@ final class TeamAccessApi extends AbstractApi
         // for model (json/xml)
         if (isset($grantTeamProjectAccessRequestInner)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($grantTeamProjectAccessRequestInner));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($grantTeamProjectAccessRequestInner)
+                );
             } else {
                 $httpBody = $grantTeamProjectAccessRequestInner;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -640,8 +687,14 @@ final class TeamAccessApi extends AbstractApi
     /**
      * List team access for a project
      *
+     * Returns a list of items representing the project access.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListProjectTeamAccess200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/list-project-team-access
      */
     public function listProjectTeamAccess(
         string $projectId,
@@ -649,7 +702,7 @@ final class TeamAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeamProjectAccess200Response {
+    ): \Upsun\Model\ListProjectTeamAccess200Response {
         return $this->listProjectTeamAccessWithHttpInfo(
             $projectId,
             $pageSize,
@@ -660,17 +713,19 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * List team access for a project
+     * List team access for a project with HTTP Info
+     *
+     * @return \Upsun\Model\ListProjectTeamAccess200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listProjectTeamAccessWithHttpInfo(
+    private function listProjectTeamAccessWithHttpInfo(
         string $projectId,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeamProjectAccess200Response {
+    ): \Upsun\Model\ListProjectTeamAccess200Response {
         $request = $this->listProjectTeamAccessRequest(
             $projectId,
             $pageSize,
@@ -683,14 +738,17 @@ final class TeamAccessApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListTeamProjectAccess200Response',
+                '\Upsun\Model\ListProjectTeamAccess200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -700,13 +758,14 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectTeamAccessRequest(
+    private function listProjectTeamAccessRequest(
         string $projectId,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -714,9 +773,13 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling listProjectTeamAccess'
+                'Missing the required parameter $projectId 
+                when calling listProjectTeamAccess'
             );
         }
+
+
+
         if ($pageSize !== null && $pageSize > 200) {
             throw new \InvalidArgumentException(
                 'invalid value for "$pageSize" when calling TeamAccessApi.listProjectTeamAccess, 
@@ -729,6 +792,7 @@ final class TeamAccessApi extends AbstractApi
                 must be bigger than or equal to 1.'
             );
         }
+
 
 
         $resourcePath = '/projects/{project_id}/team-access';
@@ -745,9 +809,13 @@ final class TeamAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize;
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
             }
         }
+
+
 
         // query params
         if ($pageBefore !== null) {
@@ -756,9 +824,13 @@ final class TeamAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
+
+
 
         // query params
         if ($pageAfter !== null) {
@@ -767,9 +839,13 @@ final class TeamAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
+
+
 
         // query params
         if ($sort !== null) {
@@ -778,7 +854,9 @@ final class TeamAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 
@@ -801,7 +879,7 @@ final class TeamAccessApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -844,8 +922,14 @@ final class TeamAccessApi extends AbstractApi
     /**
      * List project access for a team
      *
+     * Returns a list of items representing the team's project access.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListProjectTeamAccess200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/list-team-project-access
      */
     public function listTeamProjectAccess(
         string $teamId,
@@ -853,7 +937,7 @@ final class TeamAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeamProjectAccess200Response {
+    ): \Upsun\Model\ListProjectTeamAccess200Response {
         return $this->listTeamProjectAccessWithHttpInfo(
             $teamId,
             $pageSize,
@@ -864,17 +948,19 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * List project access for a team
+     * List project access for a team with HTTP Info
+     *
+     * @return \Upsun\Model\ListProjectTeamAccess200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listTeamProjectAccessWithHttpInfo(
+    private function listTeamProjectAccessWithHttpInfo(
         string $teamId,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeamProjectAccess200Response {
+    ): \Upsun\Model\ListProjectTeamAccess200Response {
         $request = $this->listTeamProjectAccessRequest(
             $teamId,
             $pageSize,
@@ -887,14 +973,17 @@ final class TeamAccessApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListTeamProjectAccess200Response',
+                '\Upsun\Model\ListProjectTeamAccess200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -904,13 +993,14 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listTeamProjectAccessRequest(
+    private function listTeamProjectAccessRequest(
         string $teamId,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
+
         // verify the required parameter 'teamId' is set
         if (
             $teamId === null
@@ -918,9 +1008,13 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $teamId when calling listTeamProjectAccess'
+                'Missing the required parameter $teamId 
+                when calling listTeamProjectAccess'
             );
         }
+
+
+
         if ($pageSize !== null && $pageSize > 200) {
             throw new \InvalidArgumentException(
                 'invalid value for "$pageSize" when calling TeamAccessApi.listTeamProjectAccess, 
@@ -933,6 +1027,7 @@ final class TeamAccessApi extends AbstractApi
                 must be bigger than or equal to 1.'
             );
         }
+
 
 
         $resourcePath = '/teams/{team_id}/project-access';
@@ -949,9 +1044,13 @@ final class TeamAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize;
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
             }
         }
+
+
 
         // query params
         if ($pageBefore !== null) {
@@ -960,9 +1059,13 @@ final class TeamAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
+
+
 
         // query params
         if ($pageAfter !== null) {
@@ -971,9 +1074,13 @@ final class TeamAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
+
+
 
         // query params
         if ($sort !== null) {
@@ -982,7 +1089,9 @@ final class TeamAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 
@@ -1005,7 +1114,7 @@ final class TeamAccessApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1048,8 +1157,12 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Remove team access for a project
      *
+     * Removes the team from the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/remove-project-team-access
      */
     public function removeProjectTeamAccess(
         string $projectId,
@@ -1062,11 +1175,11 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Remove team access for a project
+     * Remove team access for a project with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function removeProjectTeamAccessWithHttpInfo(
+    private function removeProjectTeamAccessWithHttpInfo(
         string $projectId,
         string $teamId
     ): void {
@@ -1076,13 +1189,14 @@ final class TeamAccessApi extends AbstractApi
         );
 
         try {
-            $response = $this->sendAuthenticatedRequest(
+            $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
-
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -1092,10 +1206,11 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function removeProjectTeamAccessRequest(
+    private function removeProjectTeamAccessRequest(
         string $projectId,
         string $teamId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -1103,9 +1218,11 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling removeProjectTeamAccess'
+                'Missing the required parameter $projectId 
+                when calling removeProjectTeamAccess'
             );
         }
+
         // verify the required parameter 'teamId' is set
         if (
             $teamId === null
@@ -1113,18 +1230,16 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $teamId when calling removeProjectTeamAccess'
+                'Missing the required parameter $teamId 
+                when calling removeProjectTeamAccess'
             );
         }
-
         $resourcePath = '/projects/{project_id}/team-access/{team_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -1151,7 +1266,7 @@ final class TeamAccessApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1194,8 +1309,12 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Remove project access for a team
      *
+     * Removes the team from the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/remove-team-project-access
      */
     public function removeTeamProjectAccess(
         string $teamId,
@@ -1208,11 +1327,11 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Remove project access for a team
+     * Remove project access for a team with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function removeTeamProjectAccessWithHttpInfo(
+    private function removeTeamProjectAccessWithHttpInfo(
         string $teamId,
         string $projectId
     ): void {
@@ -1222,13 +1341,14 @@ final class TeamAccessApi extends AbstractApi
         );
 
         try {
-            $response = $this->sendAuthenticatedRequest(
+            $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
-
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -1238,10 +1358,11 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function removeTeamProjectAccessRequest(
+    private function removeTeamProjectAccessRequest(
         string $teamId,
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'teamId' is set
         if (
             $teamId === null
@@ -1249,9 +1370,11 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $teamId when calling removeTeamProjectAccess'
+                'Missing the required parameter $teamId 
+                when calling removeTeamProjectAccess'
             );
         }
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -1259,18 +1382,16 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling removeTeamProjectAccess'
+                'Missing the required parameter $projectId 
+                when calling removeTeamProjectAccess'
             );
         }
-
         $resourcePath = '/teams/{team_id}/project-access/{project_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($teamId !== null) {
@@ -1297,7 +1418,7 @@ final class TeamAccessApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

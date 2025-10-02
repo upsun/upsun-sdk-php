@@ -12,46 +12,22 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationProjectLinks implements JsonSerializable
+final class OrganizationProjectLinks implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'self' => 'self',
-        'update' => 'update',
-        'delete' => 'delete',
-        'subscription' => 'subscription',
-        'api' => 'api'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationProjectLinksSelf $self = null,
-        private readonly ?\Upsun\Model\OrganizationProjectLinksUpdate $update = null,
-        private readonly ?\Upsun\Model\OrganizationProjectLinksDelete $delete = null,
-        private readonly ?\Upsun\Model\OrganizationProjectLinksSubscription $subscription = null,
-        private readonly ?\Upsun\Model\OrganizationProjectLinksApi $api = null,
+        private readonly ?OrganizationProjectLinksSelf $self = null,
+        private readonly ?OrganizationProjectLinksUpdate $update = null,
+        private readonly ?OrganizationProjectLinksDelete $delete = null,
+        private readonly ?OrganizationProjectLinksActivities $activities = null,
+        private readonly ?OrganizationProjectLinksAddons $addons = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'self' => '?\Upsun\Model\OrganizationProjectLinksSelf',
-            'update' => '?\Upsun\Model\OrganizationProjectLinksUpdate',
-            'delete' => '?\Upsun\Model\OrganizationProjectLinksDelete',
-            'subscription' => '?\Upsun\Model\OrganizationProjectLinksSubscription',
-            'api' => '?\Upsun\Model\OrganizationProjectLinksApi',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -60,8 +36,8 @@ final class OrganizationProjectLinks implements JsonSerializable
             'self' => $this->self,
             'update' => $this->update,
             'delete' => $this->delete,
-            'subscription' => $this->subscription,
-            'api' => $this->api,
+            'activities' => $this->activities,
+            'addons' => $this->addons,
         ];
     }
 
@@ -70,44 +46,28 @@ final class OrganizationProjectLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectLinksSelf|null
-     */
-    public function getSelf(): ?\Upsun\Model\OrganizationProjectLinksSelf
+    public function getSelf(): ?OrganizationProjectLinksSelf
     {
         return $this->self;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectLinksUpdate|null
-     */
-    public function getUpdate(): ?\Upsun\Model\OrganizationProjectLinksUpdate
+    public function getUpdate(): ?OrganizationProjectLinksUpdate
     {
         return $this->update;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectLinksDelete|null
-     */
-    public function getDelete(): ?\Upsun\Model\OrganizationProjectLinksDelete
+    public function getDelete(): ?OrganizationProjectLinksDelete
     {
         return $this->delete;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectLinksSubscription|null
-     */
-    public function getSubscription(): ?\Upsun\Model\OrganizationProjectLinksSubscription
+    public function getActivities(): ?OrganizationProjectLinksActivities
     {
-        return $this->subscription;
+        return $this->activities;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectLinksApi|null
-     */
-    public function getApi(): ?\Upsun\Model\OrganizationProjectLinksApi
+    public function getAddons(): ?OrganizationProjectLinksAddons
     {
-        return $this->api;
+        return $this->addons;
     }
 }
-

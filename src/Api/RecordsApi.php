@@ -37,9 +37,15 @@ final class RecordsApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,18 @@ final class RecordsApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * List plan records
      *
+     * Retrieves plan records for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListOrgPlanRecords200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-plan-records
      */
     public function listOrgPlanRecords(
         string $organizationId,
@@ -80,11 +93,13 @@ final class RecordsApi extends AbstractApi
     }
 
     /**
-     * List plan records
+     * List plan records with HTTP Info
+     *
+     * @return \Upsun\Model\ListOrgPlanRecords200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listOrgPlanRecordsWithHttpInfo(
+    private function listOrgPlanRecordsWithHttpInfo(
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterPlan = null,
@@ -111,14 +126,17 @@ final class RecordsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListOrgPlanRecords200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -128,7 +146,7 @@ final class RecordsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgPlanRecordsRequest(
+    private function listOrgPlanRecordsRequest(
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterPlan = null,
@@ -139,6 +157,7 @@ final class RecordsApi extends AbstractApi
         ?\DateTime $filterEndedAt = null,
         ?int $page = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (
             $organizationId === null
@@ -146,9 +165,17 @@ final class RecordsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organizationId when calling listOrgPlanRecords'
+                'Missing the required parameter $organizationId 
+                when calling listOrgPlanRecords'
             );
         }
+
+
+
+
+
+
+
 
         $resourcePath = '/organizations/{organization_id}/records/plan';
         $formParams = [];
@@ -164,9 +191,13 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[subscription_id]'] = $filterSubscriptionId;
+                $queryParams['filter[subscription_id]'] = $filterSubscriptionId instanceof \DateTime
+                    ? $filterSubscriptionId->format(DATE_ATOM)
+                    : ($filterSubscriptionId);
             }
         }
+
+
 
         // query params
         if ($filterPlan !== null) {
@@ -175,9 +206,13 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[plan]'] = $filterPlan;
+                $queryParams['filter[plan]'] = $filterPlan instanceof \DateTime
+                    ? $filterPlan->format(DATE_ATOM)
+                    : ($filterPlan);
             }
         }
+
+
 
         // query params
         if ($filterStatus !== null) {
@@ -186,9 +221,13 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus;
+                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                    ? $filterStatus->format(DATE_ATOM)
+                    : ($filterStatus);
             }
         }
+
+
 
         // query params
         if ($filterStart !== null) {
@@ -197,9 +236,13 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[start]'] = $filterStart;
+                $queryParams['filter[start]'] = $filterStart instanceof \DateTime
+                    ? $filterStart->format(DATE_ATOM)
+                    : ($filterStart);
             }
         }
+
+
 
         // query params
         if ($filterEnd !== null) {
@@ -208,9 +251,13 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[end]'] = $filterEnd;
+                $queryParams['filter[end]'] = $filterEnd instanceof \DateTime
+                    ? $filterEnd->format(DATE_ATOM)
+                    : ($filterEnd);
             }
         }
+
+
 
         // query params
         if ($filterStartedAt !== null) {
@@ -219,9 +266,13 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[started_at]'] = $filterStartedAt;
+                $queryParams['filter[started_at]'] = $filterStartedAt instanceof \DateTime
+                    ? $filterStartedAt->format(DATE_ATOM)
+                    : ($filterStartedAt);
             }
         }
+
+
 
         // query params
         if ($filterEndedAt !== null) {
@@ -230,9 +281,13 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[ended_at]'] = $filterEndedAt;
+                $queryParams['filter[ended_at]'] = $filterEndedAt instanceof \DateTime
+                    ? $filterEndedAt->format(DATE_ATOM)
+                    : ($filterEndedAt);
             }
         }
+
+
 
         // query params
         if ($page !== null) {
@@ -241,7 +296,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page;
+                $queryParams['page'] = $page instanceof \DateTime
+                    ? $page->format(DATE_ATOM)
+                    : ($page);
             }
         }
 
@@ -264,7 +321,7 @@ final class RecordsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -307,8 +364,14 @@ final class RecordsApi extends AbstractApi
     /**
      * List usage records
      *
+     * Retrieves usage records for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListOrgUsageRecords200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-usage-records
      */
     public function listOrgUsageRecords(
         string $organizationId,
@@ -329,11 +392,13 @@ final class RecordsApi extends AbstractApi
     }
 
     /**
-     * List usage records
+     * List usage records with HTTP Info
+     *
+     * @return \Upsun\Model\ListOrgUsageRecords200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listOrgUsageRecordsWithHttpInfo(
+    private function listOrgUsageRecordsWithHttpInfo(
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterUsageGroup = null,
@@ -354,14 +419,17 @@ final class RecordsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListOrgUsageRecords200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -371,7 +439,7 @@ final class RecordsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listOrgUsageRecordsRequest(
+    private function listOrgUsageRecordsRequest(
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterUsageGroup = null,
@@ -379,6 +447,7 @@ final class RecordsApi extends AbstractApi
         ?\DateTime $filterStartedAt = null,
         ?int $page = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (
             $organizationId === null
@@ -386,9 +455,14 @@ final class RecordsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organizationId when calling listOrgUsageRecords'
+                'Missing the required parameter $organizationId 
+                when calling listOrgUsageRecords'
             );
         }
+
+
+
+
 
         $resourcePath = '/organizations/{organization_id}/records/usage';
         $formParams = [];
@@ -404,9 +478,13 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[subscription_id]'] = $filterSubscriptionId;
+                $queryParams['filter[subscription_id]'] = $filterSubscriptionId instanceof \DateTime
+                    ? $filterSubscriptionId->format(DATE_ATOM)
+                    : ($filterSubscriptionId);
             }
         }
+
+
 
         // query params
         if ($filterUsageGroup !== null) {
@@ -415,9 +493,13 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[usage_group]'] = $filterUsageGroup;
+                $queryParams['filter[usage_group]'] = $filterUsageGroup instanceof \DateTime
+                    ? $filterUsageGroup->format(DATE_ATOM)
+                    : ($filterUsageGroup);
             }
         }
+
+
 
         // query params
         if ($filterStart !== null) {
@@ -426,9 +508,13 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[start]'] = $filterStart;
+                $queryParams['filter[start]'] = $filterStart instanceof \DateTime
+                    ? $filterStart->format(DATE_ATOM)
+                    : ($filterStart);
             }
         }
+
+
 
         // query params
         if ($filterStartedAt !== null) {
@@ -437,9 +523,13 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[started_at]'] = $filterStartedAt;
+                $queryParams['filter[started_at]'] = $filterStartedAt instanceof \DateTime
+                    ? $filterStartedAt->format(DATE_ATOM)
+                    : ($filterStartedAt);
             }
         }
+
+
 
         // query params
         if ($page !== null) {
@@ -448,7 +538,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page;
+                $queryParams['page'] = $page instanceof \DateTime
+                    ? $page->format(DATE_ATOM)
+                    : ($page);
             }
         }
 
@@ -471,7 +563,7 @@ final class RecordsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

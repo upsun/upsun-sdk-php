@@ -12,43 +12,21 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSerializable
+final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'self' => 'self',
-        'previous' => 'previous',
-        'next' => 'next',
-        'prepayment' => 'prepayment'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous = null,
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext $next = null,
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment $prepayment = null,
+        private readonly ?ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
+        private readonly ?ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous = null,
+        private readonly ?ListOrgPrepaymentTransactions200ResponseLinksNext $next = null,
+        private readonly ?ListOrgPrepaymentTransactions200ResponseLinksPrepayment $prepayment = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'self' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf',
-            'previous' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious',
-            'next' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext',
-            'prepayment' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,36 +44,23 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf|null
-     */
-    public function getSelf(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf
+    public function getSelf(): ?ListOrgPrepaymentTransactions200ResponseLinksSelf
     {
         return $this->self;
     }
 
-    /**
-     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious|null
-     */
-    public function getPrevious(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious
+    public function getPrevious(): ?ListOrgPrepaymentTransactions200ResponseLinksPrevious
     {
         return $this->previous;
     }
 
-    /**
-     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext|null
-     */
-    public function getNext(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext
+    public function getNext(): ?ListOrgPrepaymentTransactions200ResponseLinksNext
     {
         return $this->next;
     }
 
-    /**
-     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment|null
-     */
-    public function getPrepayment(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment
+    public function getPrepayment(): ?ListOrgPrepaymentTransactions200ResponseLinksPrepayment
     {
         return $this->prepayment;
     }
 }
-

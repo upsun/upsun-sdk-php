@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationEstimationObjectSubscriptions (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectSubscriptions implements JsonSerializable
+final class OrganizationEstimationObjectSubscriptions implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'total' => 'total',
-        'list' => 'list'
-    ];
-
     public function __construct(
         private readonly ?string $total = null,
         private readonly ?array $list = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'total' => '?string',
-            'list' => '\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +41,16 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The total price for subscriptions.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
     /**
-     * The list of active subscriptions.
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]|null
+     * @return OrganizationEstimationObjectSubscriptionsListInner[]|null
      */
     public function getList(): ?array
     {
         return $this->list;
     }
 }
-

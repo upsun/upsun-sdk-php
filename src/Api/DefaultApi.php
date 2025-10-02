@@ -37,9 +37,15 @@ final class DefaultApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,17 @@ final class DefaultApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * List support tickets
      *
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListTickets200Response
+     *
+     * @see https://docs.upsun.com/api/#tag//operation/list-tickets
      */
     public function listTickets(
         ?int $filterTicketId = null,
@@ -88,11 +100,13 @@ final class DefaultApi extends AbstractApi
     }
 
     /**
-     * List support tickets
+     * List support tickets with HTTP Info
+     *
+     * @return \Upsun\Model\ListTickets200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listTicketsWithHttpInfo(
+    private function listTicketsWithHttpInfo(
         ?int $filterTicketId = null,
         ?\DateTime $filterCreated = null,
         ?\DateTime $filterUpdated = null,
@@ -127,14 +141,17 @@ final class DefaultApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListTickets200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -144,7 +161,7 @@ final class DefaultApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listTicketsRequest(
+    private function listTicketsRequest(
         ?int $filterTicketId = null,
         ?\DateTime $filterCreated = null,
         ?\DateTime $filterUpdated = null,
@@ -160,6 +177,18 @@ final class DefaultApi extends AbstractApi
         ?int $page = null
     ): RequestInterface {
 
+
+
+
+
+
+
+
+
+
+
+
+
         $resourcePath = '/tickets';
         $formParams = [];
         $queryParams = [];
@@ -174,9 +203,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[ticket_id]'] = $filterTicketId;
+                $queryParams['filter[ticket_id]'] = $filterTicketId instanceof \DateTime
+                    ? $filterTicketId->format(DATE_ATOM)
+                    : ($filterTicketId);
             }
         }
+
+
 
         // query params
         if ($filterCreated !== null) {
@@ -185,9 +218,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[created]'] = $filterCreated;
+                $queryParams['filter[created]'] = $filterCreated instanceof \DateTime
+                    ? $filterCreated->format(DATE_ATOM)
+                    : ($filterCreated);
             }
         }
+
+
 
         // query params
         if ($filterUpdated !== null) {
@@ -196,9 +233,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated]'] = $filterUpdated;
+                $queryParams['filter[updated]'] = $filterUpdated instanceof \DateTime
+                    ? $filterUpdated->format(DATE_ATOM)
+                    : ($filterUpdated);
             }
         }
+
+
 
         // query params
         if ($filterType !== null) {
@@ -207,9 +248,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[type]'] = $filterType;
+                $queryParams['filter[type]'] = $filterType instanceof \DateTime
+                    ? $filterType->format(DATE_ATOM)
+                    : ($filterType);
             }
         }
+
+
 
         // query params
         if ($filterPriority !== null) {
@@ -218,9 +263,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[priority]'] = $filterPriority;
+                $queryParams['filter[priority]'] = $filterPriority instanceof \DateTime
+                    ? $filterPriority->format(DATE_ATOM)
+                    : ($filterPriority);
             }
         }
+
+
 
         // query params
         if ($filterStatus !== null) {
@@ -229,9 +278,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus;
+                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                    ? $filterStatus->format(DATE_ATOM)
+                    : ($filterStatus);
             }
         }
+
+
 
         // query params
         if ($filterRequesterId !== null) {
@@ -240,9 +293,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[requester_id]'] = $filterRequesterId;
+                $queryParams['filter[requester_id]'] = $filterRequesterId instanceof \DateTime
+                    ? $filterRequesterId->format(DATE_ATOM)
+                    : ($filterRequesterId);
             }
         }
+
+
 
         // query params
         if ($filterSubmitterId !== null) {
@@ -251,9 +308,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[submitter_id]'] = $filterSubmitterId;
+                $queryParams['filter[submitter_id]'] = $filterSubmitterId instanceof \DateTime
+                    ? $filterSubmitterId->format(DATE_ATOM)
+                    : ($filterSubmitterId);
             }
         }
+
+
 
         // query params
         if ($filterAssigneeId !== null) {
@@ -262,9 +323,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[assignee_id]'] = $filterAssigneeId;
+                $queryParams['filter[assignee_id]'] = $filterAssigneeId instanceof \DateTime
+                    ? $filterAssigneeId->format(DATE_ATOM)
+                    : ($filterAssigneeId);
             }
         }
+
+
 
         // query params
         if ($filterHasIncidents !== null) {
@@ -273,9 +338,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[has_incidents]'] = $filterHasIncidents;
+                $queryParams['filter[has_incidents]'] = $filterHasIncidents instanceof \DateTime
+                    ? $filterHasIncidents->format(DATE_ATOM)
+                    : ($filterHasIncidents);
             }
         }
+
+
 
         // query params
         if ($filterDue !== null) {
@@ -284,9 +353,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[due]'] = $filterDue;
+                $queryParams['filter[due]'] = $filterDue instanceof \DateTime
+                    ? $filterDue->format(DATE_ATOM)
+                    : ($filterDue);
             }
         }
+
+
 
         // query params
         if ($search !== null) {
@@ -295,9 +368,13 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['search'] = $search;
+                $queryParams['search'] = $search instanceof \DateTime
+                    ? $search->format(DATE_ATOM)
+                    : ($search);
             }
         }
+
+
 
         // query params
         if ($page !== null) {
@@ -306,7 +383,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page;
+                $queryParams['page'] = $page instanceof \DateTime
+                    ? $page->format(DATE_ATOM)
+                    : ($page);
             }
         }
 
@@ -321,7 +400,207 @@ final class DefaultApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+    /**
+     * Query project carbon emissions metrics for an entire organization
+     *
+     * Queries the carbon emission data for all projects owned by the specified organiation.
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\OrganizationCarbon
+     *
+     * @see https://docs.upsun.com/api/#tag//operation/query-organiation-carbon
+     */
+    public function queryOrganiationCarbon(
+        string $organizationId,
+        ?\Upsun\Model\DateTimeFilter $from = null,
+        ?\Upsun\Model\DateTimeFilter $to = null,
+        ?string $interval = null
+    ): \Upsun\Model\OrganizationCarbon {
+        return $this->queryOrganiationCarbonWithHttpInfo(
+            $organizationId,
+            $from,
+            $to,
+            $interval
+        );
+    }
+
+    /**
+     * Query project carbon emissions metrics for an entire organization with HTTP Info
+     *
+     * @return \Upsun\Model\OrganizationCarbon
+     *
+     * @throws InvalidArgumentException|Exception
+     */
+    private function queryOrganiationCarbonWithHttpInfo(
+        string $organizationId,
+        ?\Upsun\Model\DateTimeFilter $from = null,
+        ?\Upsun\Model\DateTimeFilter $to = null,
+        ?string $interval = null
+    ): \Upsun\Model\OrganizationCarbon {
+        $request = $this->queryOrganiationCarbonRequest(
+            $organizationId,
+            $from,
+            $to,
+            $interval
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\OrganizationCarbon',
+                $request,
+                $response
+            );
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
+        }
+    }
+
+    /**
+     * Create request for operation 'queryOrganiationCarbon'
+     *
+     * @throws InvalidArgumentException
+     */
+    private function queryOrganiationCarbonRequest(
+        string $organizationId,
+        ?\Upsun\Model\DateTimeFilter $from = null,
+        ?\Upsun\Model\DateTimeFilter $to = null,
+        ?string $interval = null
+    ): RequestInterface {
+
+        // verify the required parameter 'organizationId' is set
+        if (
+            $organizationId === null
+            || (is_array($organizationId)
+            && count($organizationId) === 0)
+        ) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $organizationId 
+                when calling queryOrganiationCarbon'
+            );
+        }
+
+
+
+        $resourcePath = '/organizations/{organization_id}/metrics/carbon';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // query params
+        if ($from !== null) {
+            if ('form' === 'form' && is_array($from)) {
+                foreach ($from as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['from'] = $from instanceof \DateTime
+                    ? $from->format(DATE_ATOM)
+                    : ($from->getEq());
+            }
+        }
+
+
+
+        // query params
+        if ($to !== null) {
+            if ('form' === 'form' && is_array($to)) {
+                foreach ($to as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['to'] = $to instanceof \DateTime
+                    ? $to->format(DATE_ATOM)
+                    : ($to->getEq());
+            }
+        }
+
+
+
+        // query params
+        if ($interval !== null) {
+            if ('form' === 'form' && is_array($interval)) {
+                foreach ($interval as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['interval'] = $interval instanceof \DateTime
+                    ? $interval->format(DATE_ATOM)
+                    : ($interval);
+            }
+        }
+
+
+
+        // path params
+        if ($organizationId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'organization_id' . '}',
+                ObjectSerializer::toPathValue($organizationId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

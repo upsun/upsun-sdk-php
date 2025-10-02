@@ -12,22 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class VouchersVouchersInnerOrdersInner implements JsonSerializable
+final class VouchersVouchersInnerOrdersInner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'orderId' => 'order_id',
-        'status' => 'status',
-        'billingPeriodStart' => 'billing_period_start',
-        'billingPeriodEnd' => 'billing_period_end',
-        'orderTotal' => 'order_total',
-        'orderDiscount' => 'order_discount',
-        'currency' => 'currency'
-    ];
-
     public function __construct(
         private readonly ?string $orderId = null,
         private readonly ?string $status = null,
@@ -39,25 +27,9 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'order_id' => '?string',
-            'status' => '?string',
-            'billing_period_start' => '?string',
-            'billing_period_end' => '?string',
-            'order_total' => '?string',
-            'order_discount' => '?string',
-            'currency' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -78,74 +50,38 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The id of the order.
-     *
-     * @return string|null
-     */
     public function getOrderId(): ?string
     {
         return $this->orderId;
     }
 
-    /**
-     * The status of the order.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * The billing period start timestamp of the order (ISO 8601).
-     *
-     * @return string|null
-     */
     public function getBillingPeriodStart(): ?string
     {
         return $this->billingPeriodStart;
     }
 
-    /**
-     * The billing period end timestamp of the order (ISO 8601).
-     *
-     * @return string|null
-     */
     public function getBillingPeriodEnd(): ?string
     {
         return $this->billingPeriodEnd;
     }
 
-    /**
-     * The total of the order.
-     *
-     * @return string|null
-     */
     public function getOrderTotal(): ?string
     {
         return $this->orderTotal;
     }
 
-    /**
-     * The total voucher credit applied to the order.
-     *
-     * @return string|null
-     */
     public function getOrderDiscount(): ?string
     {
         return $this->orderDiscount;
     }
 
-    /**
-     * The currency of the order.
-     *
-     * @return string|null
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 }
-

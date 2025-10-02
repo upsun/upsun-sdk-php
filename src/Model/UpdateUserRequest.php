@@ -3,6 +3,7 @@
 /**
  * Low level UpdateUserRequest (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,22 +13,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UpdateUserRequest implements JsonSerializable
+final class UpdateUserRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'username' => 'username',
-        'firstName' => 'first_name',
-        'lastName' => 'last_name',
-        'picture' => 'picture',
-        'company' => 'company',
-        'website' => 'website',
-        'country' => 'country'
-    ];
-
     public function __construct(
         private readonly ?string $username = null,
         private readonly ?string $firstName = null,
@@ -39,25 +28,9 @@ final class UpdateUserRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'username' => '?string',
-            'first_name' => '?string',
-            'last_name' => '?string',
-            'picture' => '?string',
-            'company' => '?string',
-            'website' => '?string',
-            'country' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -78,74 +51,38 @@ final class UpdateUserRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The user's username.
-     *
-     * @return string|null
-     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-     * The user's first name.
-     *
-     * @return string|null
-     */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
-    /**
-     * The user's last name.
-     *
-     * @return string|null
-     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
-    /**
-     * The user's picture.
-     *
-     * @return string|null
-     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    /**
-     * The user's company.
-     *
-     * @return string|null
-     */
     public function getCompany(): ?string
     {
         return $this->company;
     }
 
-    /**
-     * The user's website.
-     *
-     * @return string|null
-     */
     public function getWebsite(): ?string
     {
         return $this->website;
     }
 
-    /**
-     * The user's country (2-letter country code).
-     *
-     * @return string|null
-     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 }
-

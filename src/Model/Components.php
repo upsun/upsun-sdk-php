@@ -3,6 +3,8 @@
 /**
  * Low level Components (auto-generated)
  *
+ * The components of the project
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,34 +14,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Components implements JsonSerializable
+final class Components implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'voucherVatBaseprice' => 'voucher/vat/baseprice'
-    ];
-
     public function __construct(
         private readonly ?object $voucherVatBaseprice = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'voucher/vat/baseprice' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,14 +40,8 @@ final class Components implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * stub
-     *
-     * @return object|null
-     */
     public function getVoucherVatBaseprice(): ?object
     {
         return $this->voucherVatBaseprice;
     }
 }
-

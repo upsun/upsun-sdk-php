@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cpu** | **float** |  |
 **memory** | **int** |  |
+**cpuType** | **string** |  |
 **disk** | **int** |  |
 **profileSize** | **string** |  |
 

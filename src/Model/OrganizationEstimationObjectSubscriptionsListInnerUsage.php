@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationEstimationObjectSubscriptionsListInnerUsage (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,19 +13,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements JsonSerializable
+final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'cpu' => 'cpu',
-        'memory' => 'memory',
-        'storage' => 'storage',
-        'environments' => 'environments'
-    ];
-
     public function __construct(
         private readonly ?float $cpu = null,
         private readonly ?float $memory = null,
@@ -33,22 +25,9 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'cpu' => '?float',
-            'memory' => '?float',
-            'storage' => '?float',
-            'environments' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,44 +45,23 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The total cpu for this subsciption.
-     *
-     * @return float|null
-     */
     public function getCpu(): ?float
     {
         return $this->cpu;
     }
 
-    /**
-     * The total memory for this subsciption.
-     *
-     * @return float|null
-     */
     public function getMemory(): ?float
     {
         return $this->memory;
     }
 
-    /**
-     * The total storage for this subsciption.
-     *
-     * @return float|null
-     */
     public function getStorage(): ?float
     {
         return $this->storage;
     }
 
-    /**
-     * The total environments for this subsciption.
-     *
-     * @return int|null
-     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
 }
-

@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ConfirmTotpEnrollmentRequest implements JsonSerializable
+final class ConfirmTotpEnrollmentRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'secret' => 'secret',
-        'passcode' => 'passcode'
-    ];
-
     public function __construct(
         private readonly string $secret,
         private readonly string $passcode,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'secret' => 'string',
-            'passcode' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +40,13 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The secret seed for the enrollment
-     *
-     * @return string
-     */
     public function getSecret(): string
     {
         return $this->secret;
     }
 
-    /**
-     * TOTP passcode for the enrollment
-     *
-     * @return string
-     */
     public function getPasscode(): string
     {
         return $this->passcode;
     }
 }
-

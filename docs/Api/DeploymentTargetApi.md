@@ -1,14 +1,14 @@
-# Upsun\DeploymentTargetApi
+# [Upsun\Api\DeploymentTargetApi](../src/Api/DeploymentTargetApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createProjectsDeployments()**](DeploymentTargetApi.md#createProjectsDeployments) | **POST** /projects/{projectId}/deployments | Create a project deployment target
-[**deleteProjectsDeployments()**](DeploymentTargetApi.md#deleteProjectsDeployments) | **DELETE** /projects/{projectId}/deployments/{deploymentTargetConfigurationId} | Delete a single project deployment target
-[**getProjectsDeployments()**](DeploymentTargetApi.md#getProjectsDeployments) | **GET** /projects/{projectId}/deployments/{deploymentTargetConfigurationId} | Get a single project deployment target
-[**listProjectsDeployments()**](DeploymentTargetApi.md#listProjectsDeployments) | **GET** /projects/{projectId}/deployments | Get project deployment target info
-[**updateProjectsDeployments()**](DeploymentTargetApi.md#updateProjectsDeployments) | **PATCH** /projects/{projectId}/deployments/{deploymentTargetConfigurationId} | Update a project deployment
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**createProjectsDeployments()**](DeploymentTargetApi.md#createProjectsDeployments) | **POST** /projects/{projectId}/deployments | Create a project deployment target | https://docs.upsun.com/api/#tag/Deployment-Target/operation/create-projects-deployments |
+| [**deleteProjectsDeployments()**](DeploymentTargetApi.md#deleteProjectsDeployments) | **DELETE** /projects/{projectId}/deployments/{deploymentTargetConfigurationId} | Delete a single project deployment target | https://docs.upsun.com/api/#tag/Deployment-Target/operation/delete-projects-deployments |
+| [**getProjectsDeployments()**](DeploymentTargetApi.md#getProjectsDeployments) | **GET** /projects/{projectId}/deployments/{deploymentTargetConfigurationId} | Get a single project deployment target | https://docs.upsun.com/api/#tag/Deployment-Target/operation/get-projects-deployments |
+| [**listProjectsDeployments()**](DeploymentTargetApi.md#listProjectsDeployments) | **GET** /projects/{projectId}/deployments | Get project deployment target info | https://docs.upsun.com/api/#tag/Deployment-Target/operation/list-projects-deployments |
+| [**updateProjectsDeployments()**](DeploymentTargetApi.md#updateProjectsDeployments) | **PATCH** /projects/{projectId}/deployments/{deploymentTargetConfigurationId} | Update a project deployment | https://docs.upsun.com/api/#tag/Deployment-Target/operation/update-projects-deployments |
 
 
 ## `createProjectsDeployments()`
@@ -30,8 +30,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DeploymentTargetApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -47,10 +47,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **deploymentTargetCreateInput** | [**\Upsun\Model\DeploymentTargetCreateInput**](../Model/DeploymentTargetCreateInput.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **deploymentTargetCreateInput** | [**\Upsun\Model\DeploymentTargetCreateInput**](../Model/DeploymentTargetCreateInput.md)|  | |
 
 ### Return type
 
@@ -88,8 +88,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DeploymentTargetApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -105,10 +105,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **deploymentTargetConfigurationId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **deploymentTargetConfigurationId** | **string**|  | |
 
 ### Return type
 
@@ -146,8 +146,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DeploymentTargetApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -163,10 +163,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **deploymentTargetConfigurationId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **deploymentTargetConfigurationId** | **string**|  | |
 
 ### Return type
 
@@ -204,8 +204,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DeploymentTargetApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -220,9 +220,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
 
 ### Return type
 
@@ -258,8 +258,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DeploymentTargetApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -276,11 +276,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **deploymentTargetConfigurationId** | **string**|  |
- **deploymentTargetPatch** | [**\Upsun\Model\DeploymentTargetPatch**](../Model/DeploymentTargetPatch.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **deploymentTargetConfigurationId** | **string**|  | |
+| **deploymentTargetPatch** | [**\Upsun\Model\DeploymentTargetPatch**](../Model/DeploymentTargetPatch.md)|  | |
 
 ### Return type
 

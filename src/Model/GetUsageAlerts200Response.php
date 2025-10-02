@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class GetUsageAlerts200Response implements JsonSerializable
+final class GetUsageAlerts200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'available' => 'available',
-        'current' => 'current'
-    ];
-
     public function __construct(
         private readonly ?array $available = [],
         private readonly ?array $current = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'available' => '\Upsun\Model\Alert[]',
-            'current' => '\Upsun\Model\Alert[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -59,9 +41,7 @@ final class GetUsageAlerts200Response implements JsonSerializable
     }
 
     /**
-     * The list of available usage alerts.
-     *
-     * @return \Upsun\Model\Alert[]|null
+     * @return Alert[]|null
      */
     public function getAvailable(): ?array
     {
@@ -69,13 +49,10 @@ final class GetUsageAlerts200Response implements JsonSerializable
     }
 
     /**
-     * The list of the current usage alerts.
-     *
-     * @return \Upsun\Model\Alert[]|null
+     * @return Alert[]|null
      */
     public function getCurrent(): ?array
     {
         return $this->current;
     }
 }
-

@@ -37,7 +37,13 @@ use {{invokerPackage}}\Core\OAuthProvider;
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, '{{basePath}}', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            '{{basePath}}',
+            $streamFactory
+        );
 
         $this->config = $config ?? (new Configuration())->setHost('{{basePath}}');
 
@@ -48,95 +54,90 @@ use {{invokerPackage}}\Core\OAuthProvider;
     {
         return $this->config;
     }
+
 {{#operation}}
 
     /**
 {{#summary}}
-     * {{.}}
+     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{{.}}}
+     *
 {{/summary}}
-{{#description}}
-     *
-     * {{.}}
-     *
-{{/description}}
-{{#vendorExtensions.x-group-parameters}}
-     * Note: the input parameter is an associative array with the keys listed as the parameter name below
-     *
-{{/vendorExtensions.x-group-parameters}}
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
+{{#vendorExtensions.x-description}}
+     * {{{.}}}
+{{/vendorExtensions.x-description}}
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
 {{#vendorExtensions.x-return-types-displayReturn}}
      *
-     * @return {{{vendorExtensions.x-return-types.0}}}
+     * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}
 {{/vendorExtensions.x-return-types-displayReturn}}
+{{^vendorExtensions.x-return-types-displayReturn}}
+{{#vendorExtensions.x-phpdoc.return}}
+     *
+     * @return {{{returnType}}}
+{{/vendorExtensions.x-phpdoc.return}}
+{{/vendorExtensions.x-return-types-displayReturn}}
+     *
+     * @see https://docs.upsun.com/api/#tag/{{vendorExtensions.x-tag-id-kebab}}/operation/{{vendorExtensions.x-property-id-kebab}}
+{{#vendorExtensions.x-deprecated}}
+     *
+     * @deprecated
+{{/vendorExtensions.x-deprecated}}
      */
-    public function {{operationId}}(
-        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{#isNullable}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/isNullable}}{{^isNullable}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isNullable}}{{^-last}},
-        {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ){{#returnContainer}}: array{{/returnContainer}}{{^returnContainer}}{{#vendorExtensions.x-return-types-union}}: {{{.}}}{{/vendorExtensions.x-return-types-union}}{{^vendorExtensions.x-return-types-union}}: {{#vendorExtensions.x-returnable}}{{{returnType}}}{{/vendorExtensions.x-returnable}}{{^vendorExtensions.x-returnable}}void{{/vendorExtensions.x-returnable}}{{/vendorExtensions.x-return-types-union}}{{/returnContainer}} {
-        {{#vendorExtensions.x-returnable}}return {{/vendorExtensions.x-returnable}}$this->{{operationId}}WithHttpInfo(
-            {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
-            {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
+    public function {{operationId}}({{#allParams}}
+        {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{#isNullable}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/isNullable}}{{^isNullable}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isNullable}}{{^-last}},{{/-last}}{{/allParams}}
+    ){{#returnContainer}}: array{{/returnContainer}}{{^returnContainer}}{{#vendorExtensions.x-return-types-union}}: {{{.}}}{{/vendorExtensions.x-return-types-union}}{{^vendorExtensions.x-return-types-union}}: {{#vendorExtensions.x-returnable}}{{{returnType}}}{{/vendorExtensions.x-returnable}}{{^vendorExtensions.x-returnable}}void{{/vendorExtensions.x-returnable}}{{/vendorExtensions.x-return-types-union}}{{/returnContainer}} {{#allParams}}{{/allParams}}{{^allParams}}
+    {{/allParams}}{
+        {{#vendorExtensions.x-returnable}}return {{/vendorExtensions.x-returnable}}$this->{{operationId}}WithHttpInfo({{#allParams}}
+            ${{paramName}}{{^-last}},{{/-last}}{{/allParams}}
         );
     }
 
     /**
 {{#summary}}
-     * {{.}}
+     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{{.}}} with HTTP Info
 {{/summary}}
-{{#description}}
-     * 
-     * {{.}}
+{{#vendorExtensions.x-return-types-displayReturn}}
      *
-{{/description}}
-{{#vendorExtensions.x-group-parameters}}
-     * Note: the input parameter is an associative array with the keys listed as the parameter name below
+     * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}
+{{/vendorExtensions.x-return-types-displayReturn}}
+{{^vendorExtensions.x-return-types-displayReturn}}
+{{#vendorExtensions.x-phpdoc.return}}
      *
-{{/vendorExtensions.x-group-parameters}}
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
+     * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}
+{{/vendorExtensions.x-phpdoc.return}}
+{{/vendorExtensions.x-return-types-displayReturn}}
      *
      * @throws InvalidArgumentException|Exception
+{{#vendorExtensions.x-deprecated}}
+     *
+     * @deprecated
+{{/vendorExtensions.x-deprecated}}
      */
-    public function {{operationId}}WithHttpInfo(
-        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{#isNullable}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/isNullable}}{{^isNullable}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isNullable}}{{^-last}},
-        {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ){{#returnContainer}}: array{{/returnContainer}}{{^returnContainer}}{{#vendorExtensions.x-return-types-union}}: {{{.}}}{{/vendorExtensions.x-return-types-union}}{{^vendorExtensions.x-return-types-union}}: {{#vendorExtensions.x-returnable}}{{{returnType}}}{{/vendorExtensions.x-returnable}}{{^vendorExtensions.x-returnable}}void{{/vendorExtensions.x-returnable}}{{/vendorExtensions.x-return-types-union}}{{/returnContainer}} {
-        $request = $this->{{operationId}}Request(
-            {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
-            {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
+    private function {{operationId}}WithHttpInfo({{#allParams}}
+        {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{#isNullable}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/isNullable}}{{^isNullable}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isNullable}}{{^-last}},{{/-last}}{{/allParams}}
+    ){{#returnContainer}}: array{{/returnContainer}}{{^returnContainer}}{{#vendorExtensions.x-return-types-union}}: {{{.}}}{{/vendorExtensions.x-return-types-union}}{{^vendorExtensions.x-return-types-union}}: {{#vendorExtensions.x-returnable}}{{{returnType}}}{{/vendorExtensions.x-returnable}}{{^vendorExtensions.x-returnable}}void{{/vendorExtensions.x-returnable}}{{/vendorExtensions.x-return-types-union}}{{/returnContainer}} {{#allParams}}{{/allParams}}{{^allParams}}
+    {{/allParams}}{
+        $request = $this->{{operationId}}Request({{#allParams}}
+            ${{paramName}}{{^-last}},{{/-last}}{{/allParams}}
         );
 
         try {
-            $response = $this->sendAuthenticatedRequest(
+            {{#vendorExtensions.x-returnable}}$response = {{/vendorExtensions.x-returnable}}$this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
-            );
-{{#returnType}}
-            {{#vendorExtensions.x-returnable}}return {{/vendorExtensions.x-returnable}}$this->handleResponseWithDataType(
-                '{{{returnType}}}',
+                $request->getHeaders(),
+                $request->getBody()
+            );{{#vendorExtensions.x-returnable}}
+
+            return $this->handleResponseWithDataType(
+                '{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}',
                 $request,
                 $response
-            );{{/returnType}}
+            );{{/vendorExtensions.x-returnable}}
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -144,35 +145,16 @@ use {{invokerPackage}}\Core\OAuthProvider;
     /**
      * Create request for operation '{{{operationId}}}'
      *
-{{#vendorExtensions.x-group-parameters}}
-     * Note: the input parameter is an associative array with the keys listed as the parameter name below
-     *
-{{/vendorExtensions.x-group-parameters}}
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
      * @throws InvalidArgumentException
+{{#vendorExtensions.x-deprecated}}
+     *
+     * @deprecated
+{{/vendorExtensions.x-deprecated}}
      */
-    public function {{operationId}}Request(
-        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{#isNullable}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/isNullable}}{{^isNullable}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isNullable}}{{^-last}},
-        {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ): RequestInterface {
-        {{#vendorExtensions.x-group-parameters}}
-        // unbox the parameters from the associative array
-        {{#allParams}}
-        ${{paramName}} = array_key_exists('{{paramName}}', $associative_array) ? $associative_array['{{paramName}}'] : {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}};
-        {{/allParams}}
-
-        {{/vendorExtensions.x-group-parameters}}
-        {{#allParams}}
-        {{^isNullable}}
-        {{#required}}
+    private function {{operationId}}Request({{#allParams}}
+        {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{#isNullable}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/isNullable}}{{^isNullable}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isNullable}}{{^-last}},{{/-last}}{{/allParams}}
+    ){{#allParams}}{{/allParams}}: RequestInterface {
+{{#allParams}}{{^isNullable}}{{#required}}
         // verify the required parameter '{{paramName}}' is set
         if (
             ${{paramName}} === null
@@ -180,28 +162,24 @@ use {{invokerPackage}}\Core\OAuthProvider;
             && count(${{paramName}}) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter ${{paramName}} when calling {{operationId}}'
+                'Missing the required parameter ${{paramName}} 
+                when calling {{operationId}}'
             );
-        }
-        {{/required}}
-        {{/isNullable}}
-        {{#hasValidation}}
-        {{#maxLength}}
+        }{{/required}}{{/isNullable}}
+{{#hasValidation}}{{#maxLength}}
         if ({{^required}}${{paramName}} !== null && {{/required}}strlen(${{paramName}}) > {{maxLength}}) {
             throw new \InvalidArgumentException(
                 'invalid length for "${{paramName}}" when calling {{classname}}.{{operationId}}, 
                 must be smaller than or equal to {{maxLength}}.'
             );
-        }
-        {{/maxLength}}
+        }{{/maxLength}}
         {{#minLength}}
         if ({{^required}}${{paramName}} !== null && {{/required}}strlen(${{paramName}}) < {{minLength}}) {
             throw new \InvalidArgumentException(
                 'invalid length for "${{paramName}}" when calling {{classname}}.{{operationId}}, 
                 must be bigger than or equal to {{minLength}}.'
             );
-        }
-        {{/minLength}}
+        }{{/minLength}}
         {{#maximum}}
         if ({{^required}}${{paramName}} !== null && {{/required}}${{paramName}} >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{maximum}}) {
             throw new \InvalidArgumentException(
@@ -242,18 +220,15 @@ use {{invokerPackage}}\Core\OAuthProvider;
             );
         }
         {{/minItems}}
-
         {{/hasValidation}}
         {{/allParams}}
-
         $resourcePath = '{{{path}}}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
-        $multipart = false;
+        $multipart = false;{{#queryParams}}
 
-{{#queryParams}}
         // query params
         {{#isExplode}}
         if (${{paramName}} !== null) {
@@ -263,11 +238,15 @@ use {{invokerPackage}}\Core\OAuthProvider;
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['{{baseName}}'] = {{#isModel}}${{paramName}}->getEq(){{/isModel}}{{^isModel}}${{paramName}}{{/isModel}};
+                $queryParams['{{baseName}}'] = ${{paramName}} instanceof \DateTime
+                    ? ${{paramName}}->format(DATE_ATOM)
+                    : ({{#isModel}}${{paramName}}->getEq(){{/isModel}}{{^isModel}}${{paramName}}{{/isModel}});
             }
         {{/style}}
         {{^style}}
-            $queryParams['{{baseName}}'] = {{#isModel}}${{paramName}}->getEq(){{/isModel}}{{^isModel}}${{paramName}}{{/isModel}};
+            $queryParams['{{baseName}}'] = ${{paramName}} instanceof \DateTime
+                ? ${{paramName}}->format(DATE_ATOM)
+                : ({{#isModel}}${{paramName}}->getEq(){{/isModel}}{{^isModel}}${{paramName}}{{/isModel}});
         {{/style}}
         }
 
@@ -277,12 +256,14 @@ use {{invokerPackage}}\Core\OAuthProvider;
             ${{paramName}} = ObjectSerializer::serializeCollection(${{paramName}}, '{{#style}}{{style}}{{/style}}{{^style}}{{#collectionFormat}}{{collectionFormat}}{{/collectionFormat}}{{/style}}', true);
         }
         if (${{paramName}} !== null) {
-            $queryParams['{{baseName}}'] = {{#isModel}}${{paramName}}->toHeaderValue(){{/isModel}}{{^isModel}}${{paramName}}{{/isModel}};
+            $queryParams['{{baseName}}'] = ${{paramName}} instanceof \DateTime
+                ? ${{paramName}}->format(DATE_ATOM)
+                : ({{#isModel}}${{paramName}}->toHeaderValue(){{/isModel}}{{^isModel}}${{paramName}}{{/isModel}});
         }
         {{/isExplode}}
 {{/queryParams}}
+{{#headerParams}}
 
-        {{#headerParams}}
         // header params
         {{#collectionFormat}}
         if (is_array(${{paramName}})) {
@@ -291,10 +272,9 @@ use {{invokerPackage}}\Core\OAuthProvider;
         {{/collectionFormat}}
         if (${{paramName}} !== null) {
             $headerParams['{{baseName}}'] = ObjectSerializer::toHeaderValue(${{paramName}});
-        }
-        {{/headerParams}}
+        }{{/headerParams}}
+{{#pathParams}}
 
-        {{#pathParams}}
         // path params
         {{#collectionFormat}}
         if (is_array(${{paramName}})) {
@@ -307,10 +287,9 @@ use {{invokerPackage}}\Core\OAuthProvider;
                 ObjectSerializer::toPathValue(${{paramName}}),
                 $resourcePath
             );
-        }
-        {{/pathParams}}
+        }{{/pathParams}}
+{{#formParams}}
 
-        {{#formParams}}
         {{#-first}}
         // form params
         $formDataProcessor = new FormDataProcessor();
@@ -323,8 +302,7 @@ use {{invokerPackage}}\Core\OAuthProvider;
 
         $formParams = $formDataProcessor->flatten($formData);
         $multipart = $formDataProcessor->has_file;
-        {{/-last}}
-        {{/formParams}}
+        {{/-last}}{{/formParams}}
 
         $headers = $this->headerSelector->selectHeaders(
             [{{#produces}}'{{{mediaType}}}'{{^-last}}, {{/-last}}{{/produces}}],
@@ -336,14 +314,16 @@ use {{invokerPackage}}\Core\OAuthProvider;
         {{#bodyParams}}
         if (isset(${{paramName}})) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization(${{paramName}}));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization(${{paramName}})
+                );
             } else {
                 $httpBody = ${{paramName}};
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
         {{/bodyParams}}
         {{^bodyParams}}
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
         {{/bodyParams}}
             if ($multipart) {
                 $multipartContents = [];

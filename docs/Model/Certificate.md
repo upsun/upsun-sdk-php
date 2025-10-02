@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  |
 **createdAt** | **\DateTime** |  |
 **updatedAt** | **\DateTime** |  |
 **certificate** | **string** |  |

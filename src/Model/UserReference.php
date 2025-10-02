@@ -3,6 +3,8 @@
 /**
  * Low level UserReference (auto-generated)
  *
+ * The referenced user, or null if it no longer exists.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,23 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UserReference implements JsonSerializable
+final class UserReference implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'username' => 'username',
-        'email' => 'email',
-        'firstName' => 'first_name',
-        'lastName' => 'last_name',
-        'picture' => 'picture',
-        'mfaEnabled' => 'mfa_enabled',
-        'ssoEnabled' => 'sso_enabled'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $username = null,
@@ -41,26 +30,9 @@ final class UserReference implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'username' => '?string',
-            'email' => '?string',
-            'first_name' => '?string',
-            'last_name' => '?string',
-            'picture' => '?string',
-            'mfa_enabled' => '?bool',
-            'sso_enabled' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -82,84 +54,43 @@ final class UserReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the user.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The user's username.
-     *
-     * @return string|null
-     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-     * The user's email address.
-     *
-     * @return string|null
-     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * The user's first name.
-     *
-     * @return string|null
-     */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
-    /**
-     * The user's last name.
-     *
-     * @return string|null
-     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
-    /**
-     * The user's picture.
-     *
-     * @return string|null
-     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    /**
-     * Whether the user has enabled MFA. Note: the built-in MFA feature may not be necessary if the user is linked to a mandatory SSO provider that itself supports MFA (see \"sso_enabled\\\").
-     *
-     * @return bool|null
-     */
     public function getMfaEnabled(): ?bool
     {
         return $this->mfaEnabled;
     }
 
-    /**
-     * Whether the user is linked to a mandatory SSO provider.
-     *
-     * @return bool|null
-     */
     public function getSsoEnabled(): ?bool
     {
         return $this->ssoEnabled;
     }
 }
-

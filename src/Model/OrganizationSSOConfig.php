@@ -3,6 +3,8 @@
 /**
  * Low level OrganizationSSOConfig (auto-generated)
  *
+ * The SSO configuration for the organization.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,22 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationSSOConfig implements JsonSerializable
+final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
 {
-    public const PROVIDER_TYPE_GOOGLE = 'google';
-
-    private static array $attributeMap = [
-        'providerType' => 'provider_type',
-        'domain' => 'domain',
-        'organizationId' => 'organization_id',
-        'enforced' => 'enforced',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?string $providerType = null,
         private readonly ?string $domain = null,
@@ -38,24 +28,9 @@ final class OrganizationSSOConfig implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'provider_type' => '?string',
-            'domain' => '?string',
-            'organization_id' => '?string',
-            'enforced' => '?bool',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -65,8 +40,8 @@ final class OrganizationSSOConfig implements JsonSerializable
             'domain' => $this->domain,
             'organizationId' => $this->organizationId,
             'enforced' => $this->enforced,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -75,64 +50,33 @@ final class OrganizationSSOConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * SSO provider type.
-     *
-     * @return string|null
-     */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
-    /**
-     * Google hosted domain.
-     *
-     * @return string|null
-     */
     public function getDomain(): ?string
     {
         return $this->domain;
     }
 
-    /**
-     * Organization ID.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * Whether the configuration is enforced for all the organization members.
-     *
-     * @return bool|null
-     */
     public function getEnforced(): ?bool
     {
         return $this->enforced;
     }
 
-    /**
-     * The date and time when the SSO configuration was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the SSO configuration was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 }
-

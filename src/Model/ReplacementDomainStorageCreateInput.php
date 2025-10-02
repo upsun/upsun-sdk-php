@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ReplacementDomainStorageCreateInput implements JsonSerializable
+final class ReplacementDomainStorageCreateInput implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'name' => 'name',
-        'attributes' => 'attributes',
-        'replacementFor' => 'replacement_for'
-    ];
-
     public function __construct(
         private readonly string $name,
         private readonly ?array $attributes = [],
@@ -31,21 +23,9 @@ final class ReplacementDomainStorageCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'name' => 'string',
-            'attributes' => 'string[]',
-            'replacement_for' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class ReplacementDomainStorageCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string|null
-     */
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;
     }
 }
-

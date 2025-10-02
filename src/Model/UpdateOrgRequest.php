@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UpdateOrgRequest implements JsonSerializable
+final class UpdateOrgRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'name' => 'name',
-        'label' => 'label',
-        'country' => 'country'
-    ];
-
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?string $label = null,
@@ -31,21 +23,9 @@ final class UpdateOrgRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'name' => '?string',
-            'label' => '?string',
-            'country' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,34 +42,18 @@ final class UpdateOrgRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * A unique machine name representing the organization.
-     *
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * The human-readable label of the organization.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * The organization country (2-letter country code).
-     *
-     * @return string|null
-     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 }
-

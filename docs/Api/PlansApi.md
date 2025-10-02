@@ -1,10 +1,10 @@
-# Upsun\PlansApi
+# [Upsun\Api\PlansApi](../src/Api/PlansApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**listPlans()**](PlansApi.md#listPlans) | **GET** /plans | List available plans
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**listPlans()**](PlansApi.md#listPlans) | **GET** /plans | List available plans | https://docs.upsun.com/api/#tag/Plans/operation/list-plans |
 
 
 ## `listPlans()`
@@ -26,8 +26,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\PlansApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 

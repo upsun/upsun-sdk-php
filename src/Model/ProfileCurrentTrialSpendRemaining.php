@@ -3,6 +3,7 @@
 /**
  * Low level ProfileCurrentTrialSpendRemaining (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,20 +13,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
+final class ProfileCurrentTrialSpendRemaining implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'formatted' => 'formatted',
-        'amount' => 'amount',
-        'currency' => 'currency',
-        'currencySymbol' => 'currency_symbol',
-        'unlimited' => 'unlimited'
-    ];
-
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?string $amount = null,
@@ -35,23 +26,9 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'formatted' => '?string',
-            'amount' => '?string',
-            'currency' => '?string',
-            'currency_symbol' => '?string',
-            'unlimited' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -70,54 +47,28 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The total amount formatted.
-     *
-     * @return string|null
-     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
-    /**
-     * The total amount.
-     *
-     * @return string|null
-     */
     public function getAmount(): ?string
     {
         return $this->amount;
     }
 
-    /**
-     * The currency.
-     *
-     * @return string|null
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
-    /**
-     * Currency symbol.
-     *
-     * @return string|null
-     */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
 
-    /**
-     * Spend limit is ignored (in favor of resource limitations).
-     *
-     * @return bool|null
-     */
     public function getUnlimited(): ?bool
     {
         return $this->unlimited;
     }
 }
-

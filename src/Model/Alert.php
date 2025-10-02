@@ -3,6 +3,8 @@
 /**
  * Low level Alert (auto-generated)
  *
+ * The alert object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,21 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Alert implements JsonSerializable
+final class Alert implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'active' => 'active',
-        'alertsSent' => 'alerts_sent',
-        'lastAlertAt' => 'last_alert_at',
-        'updatedAt' => 'updated_at',
-        'config' => 'config'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?bool $active = null,
@@ -37,24 +28,9 @@ final class Alert implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'active' => '?bool',
-            'alerts_sent' => '?int',
-            'last_alert_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'config' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -63,8 +39,8 @@ final class Alert implements JsonSerializable
             'id' => $this->id,
             'active' => $this->active,
             'alertsSent' => $this->alertsSent,
-            'lastAlertAt' => $this->lastAlertAt,
-            'updatedAt' => $this->updatedAt,
+            'lastAlertAt' => $this->lastAlertAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'config' => $this->config,
         ];
     }
@@ -74,64 +50,33 @@ final class Alert implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identification of the alert type.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * Whether the alert is currently active.
-     *
-     * @return bool|null
-     */
     public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    /**
-     * The amount of alerts of this type that have been sent so far.
-     *
-     * @return int|null
-     */
     public function getAlertsSent(): ?int
     {
         return $this->alertsSent;
     }
 
-    /**
-     * The time the last alert has been sent.
-     *
-     * @return \DateTime|null
-     */
     public function getLastAlertAt(): ?\DateTime
     {
         return $this->lastAlertAt;
     }
 
-    /**
-     * The time the alert has last been updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The alert type specific configuration.
-     *
-     * @return object|null
-     */
     public function getConfig(): ?object
     {
         return $this->config;
     }
 }
-

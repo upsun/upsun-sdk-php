@@ -12,56 +12,34 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class BlackfireIntegration implements JsonSerializable
+final class BlackfireIntegration implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'environmentsCredentials' => 'environments_credentials',
-        'continuousProfiling' => 'continuous_profiling'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly array $environmentsCredentials,
         private readonly bool $continuousProfiling,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?string $id = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'environments_credentials' => '\Upsun\Model\BlackfireEnvironmentsCredentialsValue[]',
-            'continuous_profiling' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'environmentsCredentials' => $this->environmentsCredentials,
             'continuousProfiling' => $this->continuousProfiling,
+            'id' => $this->id,
         ];
     }
 
@@ -70,44 +48,36 @@ final class BlackfireIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * @return \Upsun\Model\BlackfireEnvironmentsCredentialsValue[]
+     * @return BlackfireEnvironmentsCredentialsValue[]
      */
     public function getEnvironmentsCredentials(): array
     {
         return $this->environmentsCredentials;
     }
 
-    /**
-     * @return bool
-     */
     public function getContinuousProfiling(): bool
     {
         return $this->continuousProfiling;
     }
-}
 
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+}

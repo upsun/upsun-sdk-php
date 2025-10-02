@@ -12,79 +12,46 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UpstreamRoute implements JsonSerializable
+final class UpstreamRoute implements ModelInterface, JsonSerializable
 {
-    public const TYPE_PROXY = 'proxy';
-    public const TYPE_REDIRECT = 'redirect';
-    public const TYPE_UPSTREAM = 'upstream';
-
-    private static array $attributeMap = [
-        'primary' => 'primary',
-        'id' => 'id',
-        'productionUrl' => 'production_url',
-        'attributes' => 'attributes',
-        'type' => 'type',
-        'tls' => 'tls',
-        'cache' => 'cache',
-        'ssi' => 'ssi',
-        'upstream' => 'upstream',
-        'redirects' => 'redirects'
-    ];
-
     public function __construct(
+        private readonly string $id,
         private readonly array $attributes,
         private readonly string $type,
-        private readonly \Upsun\Model\TLSSettingsForTheRoute $tls,
-        private readonly \Upsun\Model\CacheConfiguration $cache,
-        private readonly \Upsun\Model\ServerSideIncludeConfiguration $ssi,
-        private readonly string $upstream,
-        private readonly \Upsun\Model\TheConfigurationOfTheRedirects $redirects,
+        private readonly TLSSettingsForTheRoute $tls,
         private readonly ?bool $primary = null,
-        private readonly ?string $id = null,
         private readonly ?string $productionUrl = null,
+        private readonly ?CacheConfiguration $cache = null,
+        private readonly ?ServerSideIncludeConfiguration $ssi = null,
+        private readonly ?string $upstream = null,
+        private readonly ?TheConfigurationOfTheRedirects $redirects = null,
+        private readonly ?StickyRoutingConfiguration $sticky = null,
+        private readonly ?string $to = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'primary' => '?bool',
-            'id' => '?string',
-            'production_url' => '?string',
-            'attributes' => 'string[]',
-            'type' => 'string',
-            'tls' => '\Upsun\Model\TLSSettingsForTheRoute',
-            'cache' => '\Upsun\Model\CacheConfiguration',
-            'ssi' => '\Upsun\Model\ServerSideIncludeConfiguration',
-            'upstream' => 'string',
-            'redirects' => '\Upsun\Model\TheConfigurationOfTheRedirects',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'primary' => $this->primary,
             'id' => $this->id,
-            'productionUrl' => $this->productionUrl,
             'attributes' => $this->attributes,
             'type' => $this->type,
             'tls' => $this->tls,
+            'primary' => $this->primary,
+            'productionUrl' => $this->productionUrl,
             'cache' => $this->cache,
             'ssi' => $this->ssi,
             'upstream' => $this->upstream,
             'redirects' => $this->redirects,
+            'sticky' => $this->sticky,
+            'to' => $this->to,
         ];
     }
 
@@ -93,84 +60,63 @@ final class UpstreamRoute implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool|null
-     */
-    public function getPrimary(): ?bool
-    {
-        return $this->primary;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
+    public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getProductionUrl(): ?string
-    {
-        return $this->productionUrl;
-    }
-
-    /**
-     * @return array<string,string>
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return \Upsun\Model\TLSSettingsForTheRoute
-     */
-    public function getTls(): \Upsun\Model\TLSSettingsForTheRoute
+    public function getTls(): TLSSettingsForTheRoute
     {
         return $this->tls;
     }
 
-    /**
-     * @return \Upsun\Model\CacheConfiguration
-     */
-    public function getCache(): \Upsun\Model\CacheConfiguration
+    public function getPrimary(): ?bool
+    {
+        return $this->primary;
+    }
+
+    public function getProductionUrl(): ?string
+    {
+        return $this->productionUrl;
+    }
+
+    public function getCache(): ?CacheConfiguration
     {
         return $this->cache;
     }
 
-    /**
-     * @return \Upsun\Model\ServerSideIncludeConfiguration
-     */
-    public function getSsi(): \Upsun\Model\ServerSideIncludeConfiguration
+    public function getSsi(): ?ServerSideIncludeConfiguration
     {
         return $this->ssi;
     }
 
-    /**
-     * @return string
-     */
-    public function getUpstream(): string
+    public function getUpstream(): ?string
     {
         return $this->upstream;
     }
 
-    /**
-     * @return \Upsun\Model\TheConfigurationOfTheRedirects
-     */
-    public function getRedirects(): \Upsun\Model\TheConfigurationOfTheRedirects
+    public function getRedirects(): ?TheConfigurationOfTheRedirects
     {
         return $this->redirects;
     }
-}
 
+    public function getSticky(): ?StickyRoutingConfiguration
+    {
+        return $this->sticky;
+    }
+
+    public function getTo(): ?string
+    {
+        return $this->to;
+    }
+}

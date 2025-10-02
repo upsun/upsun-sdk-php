@@ -12,19 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CertificateCreateInput implements JsonSerializable
+final class CertificateCreateInput implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'certificate' => 'certificate',
-        'key' => 'key',
-        'chain' => 'chain',
-        'isInvalid' => 'is_invalid'
-    ];
-
     public function __construct(
         private readonly string $certificate,
         private readonly string $key,
@@ -33,22 +24,9 @@ final class CertificateCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'certificate' => 'string',
-            'key' => 'string',
-            'chain' => 'string[]',
-            'is_invalid' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,36 +44,23 @@ final class CertificateCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getCertificate(): string
     {
         return $this->certificate;
     }
 
-    /**
-     * @return string
-     */
     public function getKey(): string
     {
         return $this->key;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getChain(): ?array
     {
         return $this->chain;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsInvalid(): ?bool
     {
         return $this->isInvalid;
     }
 }
-

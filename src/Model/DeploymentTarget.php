@@ -12,37 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class DeploymentTarget implements JsonSerializable
+final class DeploymentTarget implements ModelInterface, JsonSerializable
 {
-    public const TYPE_DEDICATED = 'dedicated';
-    public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'name' => 'name',
-        'deployHost' => 'deploy_host',
-        'deployPort' => 'deploy_port',
-        'sshHost' => 'ssh_host',
-        'hosts' => 'hosts',
-        'autoMounts' => 'auto_mounts',
-        'excludedMounts' => 'excluded_mounts',
-        'enforcedMounts' => 'enforced_mounts',
-        'autoCrons' => 'auto_crons',
-        'autoNginx' => 'auto_nginx',
-        'maintenanceMode' => 'maintenance_mode',
-        'guardrailsPhase' => 'guardrails_phase',
-        'docroots' => 'docroots',
-        'siteUrls' => 'site_urls',
-        'sshHosts' => 'ssh_hosts',
-        'useDedicatedGrid' => 'use_dedicated_grid',
-        'storageType' => 'storage_type',
-        'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -57,46 +30,19 @@ final class DeploymentTarget implements JsonSerializable
         private readonly object $siteUrls,
         private readonly array $sshHosts,
         private readonly bool $useDedicatedGrid,
-        private readonly ?string $deployHost = null,
-        private readonly ?int $deployPort = null,
-        private readonly ?string $sshHost = null,
-        private readonly ?array $hosts = [],
-        private readonly ?string $storageType = null,
+        private readonly ?string $deployHost,
+        private readonly ?int $deployPort,
+        private readonly ?string $sshHost,
+        private readonly ?array $hosts,
+        private readonly ?string $storageType,
+        private readonly ?string $id = null,
         private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'name' => 'string',
-            'deploy_host' => '?string',
-            'deploy_port' => '?int',
-            'ssh_host' => '?string',
-            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
-            'auto_mounts' => 'bool',
-            'excluded_mounts' => 'string[]',
-            'enforced_mounts' => 'object',
-            'auto_crons' => 'bool',
-            'auto_nginx' => 'bool',
-            'maintenance_mode' => 'bool',
-            'guardrails_phase' => 'int',
-            'docroots' => '\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]',
-            'site_urls' => 'object',
-            'ssh_hosts' => 'string[]',
-            'use_dedicated_grid' => 'bool',
-            'storage_type' => '?string',
-            'enterprise_environments_mapping' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -120,6 +66,7 @@ final class DeploymentTarget implements JsonSerializable
             'sshHosts' => $this->sshHosts,
             'useDedicatedGrid' => $this->useDedicatedGrid,
             'storageType' => $this->storageType,
+            'id' => $this->id,
             'enterpriseEnvironmentsMapping' => $this->enterpriseEnvironmentsMapping,
         ];
     }
@@ -129,156 +76,109 @@ final class DeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDeployHost(): ?string
     {
         return $this->deployHost;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDeployPort(): ?int
     {
         return $this->deployPort;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSshHost(): ?string
     {
         return $this->sshHost;
     }
 
     /**
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
+     * @return TheHostsOfTheDeploymentTargetInner[]|null
      */
     public function getHosts(): ?array
     {
         return $this->hosts;
     }
 
-    /**
-     * @return bool
-     */
     public function getAutoMounts(): bool
     {
         return $this->autoMounts;
     }
 
-    /**
-     * @return string[]
-     */
     public function getExcludedMounts(): array
     {
         return $this->excludedMounts;
     }
 
-    /**
-     * @return object
-     */
     public function getEnforcedMounts(): object
     {
         return $this->enforcedMounts;
     }
 
-    /**
-     * @return bool
-     */
     public function getAutoCrons(): bool
     {
         return $this->autoCrons;
     }
 
-    /**
-     * @return bool
-     */
     public function getAutoNginx(): bool
     {
         return $this->autoNginx;
     }
 
-    /**
-     * @return bool
-     */
     public function getMaintenanceMode(): bool
     {
         return $this->maintenanceMode;
     }
 
-    /**
-     * @return int
-     */
     public function getGuardrailsPhase(): int
     {
         return $this->guardrailsPhase;
     }
 
     /**
-     * @return \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]
+     * @return MappingOfClustersToEnterpriseApplicationsValue[]
      */
     public function getDocroots(): array
     {
         return $this->docroots;
     }
 
-    /**
-     * @return object
-     */
     public function getSiteUrls(): object
     {
         return $this->siteUrls;
     }
 
-    /**
-     * @return string[]
-     */
     public function getSshHosts(): array
     {
         return $this->sshHosts;
     }
 
-    /**
-     * @return bool
-     */
     public function getUseDedicatedGrid(): bool
     {
         return $this->useDedicatedGrid;
     }
 
-    /**
-     * @return string|null
-     */
     public function getStorageType(): ?string
     {
         return $this->storageType;
     }
 
-    /**
-     * @return object|null
-     */
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
 }
-

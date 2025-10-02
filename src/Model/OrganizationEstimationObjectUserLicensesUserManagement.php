@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectUserLicensesUserManagement implements JsonSerializable
+final class OrganizationEstimationObjectUserLicensesUserManagement implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'count' => 'count',
-        'total' => 'total',
-        'list' => 'list'
-    ];
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?string $total = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList $list = null,
+        private readonly ?OrganizationEstimationObjectUserLicensesUserManagementList $list = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'count' => '?int',
-            'total' => '?string',
-            'list' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,32 +42,18 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The number of user_management licenses.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
-    /**
-     * The total price for user_management licenses.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList|null
-     */
-    public function getList(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList
+    public function getList(): ?OrganizationEstimationObjectUserLicensesUserManagementList
     {
         return $this->list;
     }
 }
-

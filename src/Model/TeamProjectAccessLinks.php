@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TeamProjectAccessLinks implements JsonSerializable
+final class TeamProjectAccessLinks implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'self' => 'self',
-        'update' => 'update',
-        'delete' => 'delete'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\TeamProjectAccessLinksSelf $self = null,
-        private readonly ?\Upsun\Model\TeamProjectAccessLinksUpdate $update = null,
-        private readonly ?\Upsun\Model\TeamProjectAccessLinksDelete $delete = null,
+        private readonly ?TeamProjectAccessLinksSelf $self = null,
+        private readonly ?TeamProjectAccessLinksUpdate $update = null,
+        private readonly ?TeamProjectAccessLinksDelete $delete = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'self' => '?\Upsun\Model\TeamProjectAccessLinksSelf',
-            'update' => '?\Upsun\Model\TeamProjectAccessLinksUpdate',
-            'delete' => '?\Upsun\Model\TeamProjectAccessLinksDelete',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class TeamProjectAccessLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\TeamProjectAccessLinksSelf|null
-     */
-    public function getSelf(): ?\Upsun\Model\TeamProjectAccessLinksSelf
+    public function getSelf(): ?TeamProjectAccessLinksSelf
     {
         return $this->self;
     }
 
-    /**
-     * @return \Upsun\Model\TeamProjectAccessLinksUpdate|null
-     */
-    public function getUpdate(): ?\Upsun\Model\TeamProjectAccessLinksUpdate
+    public function getUpdate(): ?TeamProjectAccessLinksUpdate
     {
         return $this->update;
     }
 
-    /**
-     * @return \Upsun\Model\TeamProjectAccessLinksDelete|null
-     */
-    public function getDelete(): ?\Upsun\Model\TeamProjectAccessLinksDelete
+    public function getDelete(): ?TeamProjectAccessLinksDelete
     {
         return $this->delete;
     }
 }
-

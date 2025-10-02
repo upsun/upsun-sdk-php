@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EnvironmentBackupInput implements JsonSerializable
+final class EnvironmentBackupInput implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'safe' => 'safe'
-    ];
-
     public function __construct(
         private readonly bool $safe,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'safe' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,12 +38,8 @@ final class EnvironmentBackupInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getSafe(): bool
     {
         return $this->safe;
     }
 }
-

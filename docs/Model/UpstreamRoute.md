@@ -4,15 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**primary** | **bool** |  |
 **id** | **string** |  |
-**productionUrl** | **string** |  |
 **attributes** | **array<string,string>** |  |
 **type** | **string** |  |
 **tls** | [**\Upsun\Model\TLSSettingsForTheRoute**](TLSSettingsForTheRoute.md) |  |
-**cache** | [**\Upsun\Model\CacheConfiguration**](CacheConfiguration.md) |  |
-**ssi** | [**\Upsun\Model\ServerSideIncludeConfiguration**](ServerSideIncludeConfiguration.md) |  |
-**upstream** | **string** |  |
-**redirects** | [**\Upsun\Model\TheConfigurationOfTheRedirects**](TheConfigurationOfTheRedirects.md) |  |
+**primary** | **bool** |  | [optional]
+**productionUrl** | **string** |  | [optional]
+**cache** | [**\Upsun\Model\CacheConfiguration**](CacheConfiguration.md) |  | [optional]
+**ssi** | [**\Upsun\Model\ServerSideIncludeConfiguration**](ServerSideIncludeConfiguration.md) |  | [optional]
+**upstream** | **string** |  | [optional]
+**redirects** | [**\Upsun\Model\TheConfigurationOfTheRedirects**](TheConfigurationOfTheRedirects.md) |  | [optional]
+**sticky** | [**\Upsun\Model\StickyRoutingConfiguration**](StickyRoutingConfiguration.md) |  | [optional]
+**to** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

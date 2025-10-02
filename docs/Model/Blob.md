@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  |
 **sha** | **string** |  |
 **size** | **int** |  |
 **encoding** | **string** |  |

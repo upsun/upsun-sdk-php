@@ -37,9 +37,15 @@ final class EnvironmentActivityApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,20 @@ final class EnvironmentActivityApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Cancel an environment activity
      *
+     * Cancel a single activity as specified by an `id` returned by the Get environment activities list
+     * (https://docs.upsun.com/api/#tag/Environment-Activity/paths//projects/{projectId}/environments/{environmentId}/activities/get)
+     * endpoint. Please note that not all activities are cancelable.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/action-projects-environments-activities-cancel
      */
     public function actionProjectsEnvironmentsActivitiesCancel(
         string $projectId,
@@ -68,11 +83,13 @@ final class EnvironmentActivityApi extends AbstractApi
     }
 
     /**
-     * Cancel an environment activity
+     * Cancel an environment activity with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
+    private function actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
         string $projectId,
         string $environmentId,
         string $activityId
@@ -87,14 +104,17 @@ final class EnvironmentActivityApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -104,11 +124,12 @@ final class EnvironmentActivityApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function actionProjectsEnvironmentsActivitiesCancelRequest(
+    private function actionProjectsEnvironmentsActivitiesCancelRequest(
         string $projectId,
         string $environmentId,
         string $activityId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -116,9 +137,11 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling actionProjectsEnvironmentsActivitiesCancel'
+                'Missing the required parameter $projectId 
+                when calling actionProjectsEnvironmentsActivitiesCancel'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -126,9 +149,11 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling actionProjectsEnvironmentsActivitiesCancel'
+                'Missing the required parameter $environmentId 
+                when calling actionProjectsEnvironmentsActivitiesCancel'
             );
         }
+
         // verify the required parameter 'activityId' is set
         if (
             $activityId === null
@@ -136,18 +161,16 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($activityId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $activityId when calling actionProjectsEnvironmentsActivitiesCancel'
+                'Missing the required parameter $activityId 
+                when calling actionProjectsEnvironmentsActivitiesCancel'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities/{activityId}/cancel';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -182,7 +205,7 @@ final class EnvironmentActivityApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -225,8 +248,17 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Get an environment activity log entry
      *
+     * Retrieve a single environment activity entry as specified by an `id` returned by the Get environment activities
+     * list
+     * (https://docs.upsun.com/api/#tag/Environment-Activity/paths//projects/{projectId}/environments/{environmentId}/activities/get)
+     * endpoint. See the documentation on that endpoint for details about the information this endpoint can return.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Activity
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/get-projects-environments-activities
      */
     public function getProjectsEnvironmentsActivities(
         string $projectId,
@@ -241,11 +273,13 @@ final class EnvironmentActivityApi extends AbstractApi
     }
 
     /**
-     * Get an environment activity log entry
+     * Get an environment activity log entry with HTTP Info
+     *
+     * @return \Upsun\Model\Activity
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsEnvironmentsActivitiesWithHttpInfo(
+    private function getProjectsEnvironmentsActivitiesWithHttpInfo(
         string $projectId,
         string $environmentId,
         string $activityId
@@ -260,14 +294,17 @@ final class EnvironmentActivityApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Activity',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -277,11 +314,12 @@ final class EnvironmentActivityApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsActivitiesRequest(
+    private function getProjectsEnvironmentsActivitiesRequest(
         string $projectId,
         string $environmentId,
         string $activityId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -289,9 +327,11 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling getProjectsEnvironmentsActivities'
+                'Missing the required parameter $projectId 
+                when calling getProjectsEnvironmentsActivities'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -299,9 +339,11 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling getProjectsEnvironmentsActivities'
+                'Missing the required parameter $environmentId 
+                when calling getProjectsEnvironmentsActivities'
             );
         }
+
         // verify the required parameter 'activityId' is set
         if (
             $activityId === null
@@ -309,18 +351,16 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($activityId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $activityId when calling getProjectsEnvironmentsActivities'
+                'Missing the required parameter $activityId 
+                when calling getProjectsEnvironmentsActivities'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities/{activityId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -355,7 +395,7 @@ final class EnvironmentActivityApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -398,10 +438,22 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Get environment activity log
      *
+     * Retrieve an environment's activity log. This returns a list of object with records of actions such as: - Commits
+     * being pushed to the repository - A new environment being branched out from the specified environment - A snapshot
+     * being created of the specified environment The object includes a timestamp of when the action occurred
+     * (`created_at`), when the action concluded (`updated_at`), the current `state` of the action, the action's
+     * completion percentage (`completion_percent`), and other related information in the `payload`. The contents of the
+     * `payload` varies based on the `type` of the activity. For example: - An `environment.branch` action's `payload`
+     * can contain objects representing the `parent` environment and the branching action's `outcome`. - An
+     * `environment.push` action's `payload` can contain objects representing the `environment`, the specific `commits`
+     * included in the push, and the `user` who pushed.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Activity[]
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/list-projects-environments-activities
      */
     public function listProjectsEnvironmentsActivities(
         string $projectId,
@@ -414,11 +466,13 @@ final class EnvironmentActivityApi extends AbstractApi
     }
 
     /**
-     * Get environment activity log
+     * Get environment activity log with HTTP Info
+     *
+     * @return \Upsun\Model\Activity[]
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsActivitiesWithHttpInfo(
+    private function listProjectsEnvironmentsActivitiesWithHttpInfo(
         string $projectId,
         string $environmentId
     ): array {
@@ -431,14 +485,17 @@ final class EnvironmentActivityApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Activity[]',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -448,10 +505,11 @@ final class EnvironmentActivityApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsActivitiesRequest(
+    private function listProjectsEnvironmentsActivitiesRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -459,9 +517,11 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling listProjectsEnvironmentsActivities'
+                'Missing the required parameter $projectId 
+                when calling listProjectsEnvironmentsActivities'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -469,18 +529,16 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling listProjectsEnvironmentsActivities'
+                'Missing the required parameter $environmentId 
+                when calling listProjectsEnvironmentsActivities'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -507,7 +565,7 @@ final class EnvironmentActivityApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

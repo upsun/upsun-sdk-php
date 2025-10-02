@@ -12,49 +12,23 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ProjectInfo implements JsonSerializable
+final class ProjectInfo implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'title' => 'title',
-        'name' => 'name',
-        'namespace' => 'namespace',
-        'organization' => 'organization',
-        'capabilities' => 'capabilities',
-        'settings' => 'settings'
-    ];
-
     public function __construct(
         private readonly string $title,
         private readonly string $name,
         private readonly object $capabilities,
         private readonly object $settings,
-        private readonly ?string $namespace = null,
-        private readonly ?string $organization = null,
+        private readonly ?string $namespace,
+        private readonly ?string $organization,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'title' => 'string',
-            'name' => 'string',
-            'namespace' => '?string',
-            'organization' => '?string',
-            'capabilities' => 'object',
-            'settings' => 'object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -74,52 +48,33 @@ final class ProjectInfo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string|null
-     */
     public function getNamespace(): ?string
     {
         return $this->namespace;
     }
 
-    /**
-     * @return string|null
-     */
     public function getOrganization(): ?string
     {
         return $this->organization;
     }
 
-    /**
-     * @return object
-     */
     public function getCapabilities(): object
     {
         return $this->capabilities;
     }
 
-    /**
-     * @return object
-     */
     public function getSettings(): object
     {
         return $this->settings;
     }
 }
-

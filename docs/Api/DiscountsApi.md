@@ -1,12 +1,12 @@
-# Upsun\DiscountsApi
+# [Upsun\Api\DiscountsApi](../src/Api/DiscountsApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getDiscount()**](DiscountsApi.md#getDiscount) | **GET** /discounts/{id} | Get an organization discount
-[**getTypeAllowance()**](DiscountsApi.md#getTypeAllowance) | **GET** /discounts/types/allowance | Get the value of the First Project Incentive discount
-[**listOrgDiscounts()**](DiscountsApi.md#listOrgDiscounts) | **GET** /organizations/{organization_id}/discounts | List organization discounts
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**getDiscount()**](DiscountsApi.md#getDiscount) | **GET** /discounts/{id} | Get an organization discount | https://docs.upsun.com/api/#tag/Discounts/operation/get-discount |
+| [**getTypeAllowance()**](DiscountsApi.md#getTypeAllowance) | **GET** /discounts/types/allowance | Get the value of the First Project Incentive discount | https://docs.upsun.com/api/#tag/Discounts/operation/get-type-allowance |
+| [**listOrgDiscounts()**](DiscountsApi.md#listOrgDiscounts) | **GET** /organizations/{organization_id}/discounts | List organization discounts | https://docs.upsun.com/api/#tag/Discounts/operation/list-org-discounts |
 
 
 ## `getDiscount()`
@@ -26,8 +26,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DiscountsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $id = 'id_example'; // string | The ID of the organization discount
@@ -42,9 +42,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| The ID of the organization discount |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The ID of the organization discount | |
 
 ### Return type
 
@@ -80,8 +80,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DiscountsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 
@@ -133,8 +133,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DiscountsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
@@ -149,9 +149,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
 
 ### Return type
 

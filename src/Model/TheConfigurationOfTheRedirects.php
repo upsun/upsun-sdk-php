@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheConfigurationOfTheRedirects implements JsonSerializable
+final class TheConfigurationOfTheRedirects implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'expires' => 'expires',
-        'paths' => 'paths'
-    ];
-
     public function __construct(
         private readonly string $expires,
         private readonly array $paths,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'expires' => 'string',
-            'paths' => '\Upsun\Model\ThePathsToRedirectValue[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +40,16 @@ final class TheConfigurationOfTheRedirects implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getExpires(): string
     {
         return $this->expires;
     }
 
     /**
-     * @return \Upsun\Model\ThePathsToRedirectValue[]
+     * @return ThePathsToRedirectValue[]
      */
     public function getPaths(): array
     {
         return $this->paths;
     }
 }
-

@@ -25,27 +25,27 @@ jobs:
             -   name: Download and patch OpenAPI spec
                 run: |
                     echo "Download OpenAPI spec..."
-                    wget -O ./schema/openapispec-platformsh.json https://proxy.upsun.com/docs/openapispec-platformsh.json
+                    wget -O ./schema/openapispec-upsun.json https://docs.upsun.com/api/openapispec-upsun.json
 
                     echo "Patch OpenAPI spec..."
-                    sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json
+                    sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-upsun.json
 
-            -   name: Patch openapispec-platformsh.yaml (add x-<info> for better generation)
+            -   name: Remove existing Api and Model Classes
                 run: |
-                    php templates/pre-processing/preprocess_openapi.php
+                    rm -Rf src/Api/*
+                    rm -Rf src/Model/*
+                    rm -Rf docs/*
+
+            -   name: Pre-process OpenApi specs 
+                run: |
+                    php templates/pre-processing/preprocess-schema.php
             
             -   name: Generate code (php)
                 uses: openapitools/openapi-generator-cli@v2
                 with:
                     generator: php
                     config-file: templates/php/config.yaml
-                    openapi-file: schema/openapispec-platformsh.json                    
-
-            -   name: Remove empty phpunit tests from OpenAPI Generator 
-                run: |
-                    if [ -d "./test" ]; then
-                        rm -Rf "./test"
-                    fi
+                    openapi-file: schema/openapispec-upsun-processed.json
 
             -   name: Create Pull Request if changes
                 uses: peter-evans/create-pull-request@v6
@@ -63,7 +63,6 @@ jobs:
                         report
                         automated pr
                     add-paths: |
-                        schema/openapispec-platformsh.json
                         src/
                         tests/
                         docs/

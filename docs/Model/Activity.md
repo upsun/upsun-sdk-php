@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  |
 **createdAt** | **\DateTime** |  |
 **updatedAt** | **\DateTime** |  |
 **type** | **string** |  |
@@ -21,6 +22,7 @@ Name | Type | Description | Notes
 **description** | **string** |  |
 **text** | **string** |  |
 **expiresAt** | **\DateTime** |  |
+**commands** | [**\Upsun\Model\CommandsInner[]**](CommandsInner.md) |  |
 **integration** | **string** |  | [optional]
 **environments** | **string[]** |  | [optional]
 

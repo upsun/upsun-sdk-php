@@ -12,43 +12,24 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Resources1 implements JsonSerializable
+final class Resources1 implements ModelInterface, JsonSerializable
 {
-    public const INIT__DEFAULT = 'default';
-    public const INIT_MINIMUM = 'minimum';
-    public const INIT_PARENT = 'parent';
-
-    private static array $attributeMap = [
-        'init' => 'init'
-    ];
-
     public function __construct(
-        private readonly ?string $init = null,
+        private readonly ?string $profileSize,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'init' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'init' => $this->init,
+            'profileSize' => $this->profileSize,
         ];
     }
 
@@ -57,12 +38,8 @@ final class Resources1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
-    public function getInit(): ?string
+    public function getProfileSize(): ?string
     {
-        return $this->init;
+        return $this->profileSize;
     }
 }
-

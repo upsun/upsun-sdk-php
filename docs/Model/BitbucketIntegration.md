@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **buildPullRequests** | **bool** |  |
 **pullRequestsCloneParentData** | **bool** |  |
 **resyncPullRequests** | **bool** |  |
+**id** | **string** |  | [optional]
 **appCredentials** | [**\Upsun\Model\TheOAuth2ConsumerInformationOptional**](TheOAuth2ConsumerInformationOptional.md) |  | [optional]
 **addonCredentials** | [**\Upsun\Model\TheAddonCredentialInformationOptional**](TheAddonCredentialInformationOptional.md) |  | [optional]
 

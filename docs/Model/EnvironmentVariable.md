@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  |
 **createdAt** | **\DateTime** |  |
 **updatedAt** | **\DateTime** |  |
 **name** | **string** |  |
@@ -12,6 +13,7 @@ Name | Type | Description | Notes
 **isSensitive** | **bool** |  |
 **visibleBuild** | **bool** |  |
 **visibleRuntime** | **bool** |  |
+**applicationScope** | **string[]** |  |
 **project** | **string** |  |
 **environment** | **string** |  |
 **inherited** | **bool** |  |

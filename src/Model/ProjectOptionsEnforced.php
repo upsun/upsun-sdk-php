@@ -3,6 +3,7 @@
 /**
  * Low level ProjectOptionsEnforced (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ProjectOptionsEnforced implements JsonSerializable
+final class ProjectOptionsEnforced implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'settings' => 'settings',
-        'capabilities' => 'capabilities'
-    ];
-
     public function __construct(
         private readonly ?object $settings = null,
         private readonly ?object $capabilities = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'settings' => '?object',
-            'capabilities' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +41,13 @@ final class ProjectOptionsEnforced implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The project settings.
-     *
-     * @return object|null
-     */
     public function getSettings(): ?object
     {
         return $this->settings;
     }
 
-    /**
-     * The project capabilities.
-     *
-     * @return object|null
-     */
     public function getCapabilities(): ?object
     {
         return $this->capabilities;
     }
 }
-

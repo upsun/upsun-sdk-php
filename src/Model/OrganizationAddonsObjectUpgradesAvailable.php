@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationAddonsObjectUpgradesAvailable (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationAddonsObjectUpgradesAvailable implements JsonSerializable
+final class OrganizationAddonsObjectUpgradesAvailable implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'userManagement' => 'user_management',
-        'supportLevel' => 'support_level'
-    ];
-
     public function __construct(
         private readonly ?array $userManagement = [],
         private readonly ?array $supportLevel = [],
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'user_management' => 'string[]',
-            'support_level' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +41,13 @@ final class OrganizationAddonsObjectUpgradesAvailable implements JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Available upgrade options for user management.
-     *
-     * @return string[]|null
-     */
     public function getUserManagement(): ?array
     {
         return $this->userManagement;
     }
 
-    /**
-     * Available upgrade options for support.
-     *
-     * @return string[]|null
-     */
     public function getSupportLevel(): ?array
     {
         return $this->supportLevel;
     }
 }
-

@@ -37,9 +37,15 @@ final class EnvironmentBackupsApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,19 @@ final class EnvironmentBackupsApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
-     * Create snapshot of environment
+     * Create backup of environment
+     *
+     * Trigger a new backup of an environment to be created. See the
+     * [Backups](https://docs.upsun.com/anchors/environments/backup/) section of the documentation for more information.
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/backup-environment
      */
     public function backupEnvironment(
         string $projectId,
@@ -68,11 +82,13 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Create snapshot of environment
+     * Create backup of environment with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function backupEnvironmentWithHttpInfo(
+    private function backupEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
@@ -87,14 +103,17 @@ final class EnvironmentBackupsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -104,11 +123,12 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function backupEnvironmentRequest(
+    private function backupEnvironmentRequest(
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -116,9 +136,11 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling backupEnvironment'
+                'Missing the required parameter $projectId 
+                when calling backupEnvironment'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -126,9 +148,11 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling backupEnvironment'
+                'Missing the required parameter $environmentId 
+                when calling backupEnvironment'
             );
         }
+
         // verify the required parameter 'environmentBackupInput' is set
         if (
             $environmentBackupInput === null
@@ -136,18 +160,16 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentBackupInput) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentBackupInput when calling backupEnvironment'
+                'Missing the required parameter $environmentBackupInput 
+                when calling backupEnvironment'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/backup';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -176,11 +198,13 @@ final class EnvironmentBackupsApi extends AbstractApi
         // for model (json/xml)
         if (isset($environmentBackupInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentBackupInput));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentBackupInput)
+                );
             } else {
                 $httpBody = $environmentBackupInput;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -221,10 +245,18 @@ final class EnvironmentBackupsApi extends AbstractApi
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
     /**
-     * Delete an environment snapshot
+     * Delete an environment backup
+     *
+     * Delete a specific backup from an environment using the `id` of the entry retrieved by the Get backups list
+     * (https://docs.upsun.com/api/#tag/Environment-Backups/paths//projects/{projectId}/environments/{environmentId}/backups/get)
+     * endpoint.
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/delete-projects-environments-backups
      */
     public function deleteProjectsEnvironmentsBackups(
         string $projectId,
@@ -239,11 +271,13 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Delete an environment snapshot
+     * Delete an environment backup with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function deleteProjectsEnvironmentsBackupsWithHttpInfo(
+    private function deleteProjectsEnvironmentsBackupsWithHttpInfo(
         string $projectId,
         string $environmentId,
         string $backupId
@@ -258,14 +292,17 @@ final class EnvironmentBackupsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -275,11 +312,12 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteProjectsEnvironmentsBackupsRequest(
+    private function deleteProjectsEnvironmentsBackupsRequest(
         string $projectId,
         string $environmentId,
         string $backupId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -287,9 +325,11 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling deleteProjectsEnvironmentsBackups'
+                'Missing the required parameter $projectId 
+                when calling deleteProjectsEnvironmentsBackups'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -297,9 +337,11 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling deleteProjectsEnvironmentsBackups'
+                'Missing the required parameter $environmentId 
+                when calling deleteProjectsEnvironmentsBackups'
             );
         }
+
         // verify the required parameter 'backupId' is set
         if (
             $backupId === null
@@ -307,18 +349,16 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($backupId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $backupId when calling deleteProjectsEnvironmentsBackups'
+                'Missing the required parameter $backupId 
+                when calling deleteProjectsEnvironmentsBackups'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups/{backupId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -353,7 +393,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -394,10 +434,19 @@ final class EnvironmentBackupsApi extends AbstractApi
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
     /**
-     * Get an environment snapshot&#39;s info
+     * Get an environment backup's info
+     *
+     * Get the details of a specific backup from an environment using the `id` of the entry retrieved by the Get backups
+     * list
+     * (https://docs.upsun.com/api/#tag/Environment-Backups/paths//projects/{projectId}/environments/{environmentId}/backups/get)
+     * endpoint.
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Backup
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/get-projects-environments-backups
      */
     public function getProjectsEnvironmentsBackups(
         string $projectId,
@@ -412,11 +461,13 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Get an environment snapshot&#39;s info
+     * Get an environment backup's info with HTTP Info
+     *
+     * @return \Upsun\Model\Backup
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getProjectsEnvironmentsBackupsWithHttpInfo(
+    private function getProjectsEnvironmentsBackupsWithHttpInfo(
         string $projectId,
         string $environmentId,
         string $backupId
@@ -431,14 +482,17 @@ final class EnvironmentBackupsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Backup',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -448,11 +502,12 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getProjectsEnvironmentsBackupsRequest(
+    private function getProjectsEnvironmentsBackupsRequest(
         string $projectId,
         string $environmentId,
         string $backupId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -460,9 +515,11 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling getProjectsEnvironmentsBackups'
+                'Missing the required parameter $projectId 
+                when calling getProjectsEnvironmentsBackups'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -470,9 +527,11 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling getProjectsEnvironmentsBackups'
+                'Missing the required parameter $environmentId 
+                when calling getProjectsEnvironmentsBackups'
             );
         }
+
         // verify the required parameter 'backupId' is set
         if (
             $backupId === null
@@ -480,18 +539,16 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($backupId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $backupId when calling getProjectsEnvironmentsBackups'
+                'Missing the required parameter $backupId 
+                when calling getProjectsEnvironmentsBackups'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups/{backupId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -526,7 +583,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -567,12 +624,16 @@ final class EnvironmentBackupsApi extends AbstractApi
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
     /**
-     * Get an environment&#39;s snapshot list
+     * Get an environment's backup list
+     *
+     * Retrieve a list of objects representing backups of this environment.
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Backup[]
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/list-projects-environments-backups
      */
     public function listProjectsEnvironmentsBackups(
         string $projectId,
@@ -585,11 +646,13 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Get an environment&#39;s snapshot list
+     * Get an environment's backup list with HTTP Info
+     *
+     * @return \Upsun\Model\Backup[]
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listProjectsEnvironmentsBackupsWithHttpInfo(
+    private function listProjectsEnvironmentsBackupsWithHttpInfo(
         string $projectId,
         string $environmentId
     ): array {
@@ -602,14 +665,17 @@ final class EnvironmentBackupsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Backup[]',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -619,10 +685,11 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listProjectsEnvironmentsBackupsRequest(
+    private function listProjectsEnvironmentsBackupsRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -630,9 +697,11 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling listProjectsEnvironmentsBackups'
+                'Missing the required parameter $projectId 
+                when calling listProjectsEnvironmentsBackups'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -640,18 +709,16 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling listProjectsEnvironmentsBackups'
+                'Missing the required parameter $environmentId 
+                when calling listProjectsEnvironmentsBackups'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -678,7 +745,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -721,8 +788,16 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Restore an environment snapshot
      *
+     * Restore a specific backup from an environment using the `id` of the entry retrieved by the Get backups list
+     * (https://docs.upsun.com/api/#tag/Environment-Backups/paths//projects/{projectId}/environments/{environmentId}/backups/get)
+     * endpoint.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/restore-backup
      */
     public function restoreBackup(
         string $projectId,
@@ -739,11 +814,13 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Restore an environment snapshot
+     * Restore an environment snapshot with HTTP Info
+     *
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function restoreBackupWithHttpInfo(
+    private function restoreBackupWithHttpInfo(
         string $projectId,
         string $environmentId,
         string $backupId,
@@ -760,14 +837,17 @@ final class EnvironmentBackupsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -777,12 +857,13 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function restoreBackupRequest(
+    private function restoreBackupRequest(
         string $projectId,
         string $environmentId,
         string $backupId,
         \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (
             $projectId === null
@@ -790,9 +871,11 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling restoreBackup'
+                'Missing the required parameter $projectId 
+                when calling restoreBackup'
             );
         }
+
         // verify the required parameter 'environmentId' is set
         if (
             $environmentId === null
@@ -800,9 +883,11 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling restoreBackup'
+                'Missing the required parameter $environmentId 
+                when calling restoreBackup'
             );
         }
+
         // verify the required parameter 'backupId' is set
         if (
             $backupId === null
@@ -810,9 +895,11 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($backupId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $backupId when calling restoreBackup'
+                'Missing the required parameter $backupId 
+                when calling restoreBackup'
             );
         }
+
         // verify the required parameter 'environmentRestoreInput' is set
         if (
             $environmentRestoreInput === null
@@ -820,18 +907,16 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentRestoreInput) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentRestoreInput when calling restoreBackup'
+                'Missing the required parameter $environmentRestoreInput 
+                when calling restoreBackup'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups/{backupId}/restore';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($projectId !== null) {
@@ -868,11 +953,13 @@ final class EnvironmentBackupsApi extends AbstractApi
         // for model (json/xml)
         if (isset($environmentRestoreInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentRestoreInput));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentRestoreInput)
+                );
             } else {
                 $httpBody = $environmentRestoreInput;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

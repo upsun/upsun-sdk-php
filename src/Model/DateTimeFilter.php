@@ -12,22 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class DateTimeFilter implements JsonSerializable
+final class DateTimeFilter implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'eq' => 'eq',
-        'ne' => 'ne',
-        'between' => 'between',
-        'gt' => 'gt',
-        'gte' => 'gte',
-        'lt' => 'lt',
-        'lte' => 'lte'
-    ];
-
     public function __construct(
         private readonly ?string $eq = null,
         private readonly ?string $ne = null,
@@ -39,25 +27,9 @@ final class DateTimeFilter implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'eq' => '?string',
-            'ne' => '?string',
-            'between' => '?string',
-            'gt' => '?string',
-            'gte' => '?string',
-            'lt' => '?string',
-            'lte' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -78,74 +50,38 @@ final class DateTimeFilter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Equal
-     *
-     * @return string|null
-     */
     public function getEq(): ?string
     {
         return $this->eq;
     }
 
-    /**
-     * Not equal
-     *
-     * @return string|null
-     */
     public function getNe(): ?string
     {
         return $this->ne;
     }
 
-    /**
-     * Between (comma-separated list)
-     *
-     * @return string|null
-     */
     public function getBetween(): ?string
     {
         return $this->between;
     }
 
-    /**
-     * Greater than
-     *
-     * @return string|null
-     */
     public function getGt(): ?string
     {
         return $this->gt;
     }
 
-    /**
-     * Greater than or equal
-     *
-     * @return string|null
-     */
     public function getGte(): ?string
     {
         return $this->gte;
     }
 
-    /**
-     * Less than
-     *
-     * @return string|null
-     */
     public function getLt(): ?string
     {
         return $this->lt;
     }
 
-    /**
-     * Less than or equal
-     *
-     * @return string|null
-     */
     public function getLte(): ?string
     {
         return $this->lte;
     }
 }
-

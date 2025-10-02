@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ConfigurationForSupportingRequestBuffering implements JsonSerializable
+final class ConfigurationForSupportingRequestBuffering implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'enabled' => 'enabled',
-        'maxRequestSize' => 'max_request_size'
-    ];
-
     public function __construct(
         private readonly bool $enabled,
-        private readonly ?string $maxRequestSize = null,
+        private readonly ?string $maxRequestSize,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enabled' => 'bool',
-            'max_request_size' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +40,13 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMaxRequestSize(): ?string
     {
         return $this->maxRequestSize;
     }
 }
-

@@ -12,34 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UserProjectAccess implements JsonSerializable
+final class UserProjectAccess implements ModelInterface, JsonSerializable
 {
-    public const PERMISSIONS_ADMIN = 'admin';
-    public const PERMISSIONS_VIEWER = 'viewer';
-    public const PERMISSIONS_DEVELOPMENT_ADMIN = 'development:admin';
-    public const PERMISSIONS_DEVELOPMENT_CONTRIBUTOR = 'development:contributor';
-    public const PERMISSIONS_DEVELOPMENT_VIEWER = 'development:viewer';
-    public const PERMISSIONS_STAGING_ADMIN = 'staging:admin';
-    public const PERMISSIONS_STAGING_CONTRIBUTOR = 'staging:contributor';
-    public const PERMISSIONS_STAGING_VIEWER = 'staging:viewer';
-    public const PERMISSIONS_PRODUCTION_ADMIN = 'production:admin';
-    public const PERMISSIONS_PRODUCTION_CONTRIBUTOR = 'production:contributor';
-    public const PERMISSIONS_PRODUCTION_VIEWER = 'production:viewer';
-
-    private static array $attributeMap = [
-        'userId' => 'user_id',
-        'organizationId' => 'organization_id',
-        'projectId' => 'project_id',
-        'projectTitle' => 'project_title',
-        'permissions' => 'permissions',
-        'grantedAt' => 'granted_at',
-        'updatedAt' => 'updated_at',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $userId = null,
         private readonly ?string $organizationId = null,
@@ -48,30 +24,13 @@ final class UserProjectAccess implements JsonSerializable
         private readonly ?array $permissions = [],
         private readonly ?\DateTime $grantedAt = null,
         private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\TeamProjectAccessLinks $links = null,
+        private readonly ?TeamProjectAccessLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'user_id' => '?string',
-            'organization_id' => '?string',
-            'project_id' => '?string',
-            'project_title' => '?string',
-            'permissions' => 'string[]',
-            'granted_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            '_links' => '?\Upsun\Model\TeamProjectAccessLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -82,8 +41,8 @@ final class UserProjectAccess implements JsonSerializable
             'projectId' => $this->projectId,
             'projectTitle' => $this->projectTitle,
             'permissions' => $this->permissions,
-            'grantedAt' => $this->grantedAt,
-            'updatedAt' => $this->updatedAt,
+            'grantedAt' => $this->grantedAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'links' => $this->links,
         ];
     }
@@ -93,82 +52,43 @@ final class UserProjectAccess implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the user.
-     *
-     * @return string|null
-     */
     public function getUserId(): ?string
     {
         return $this->userId;
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The ID of the project.
-     *
-     * @return string|null
-     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-    /**
-     * The title of the project.
-     *
-     * @return string|null
-     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * An array of project permissions.
-     *
-     * @return string[]|null
-     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
 
-    /**
-     * The date and time when the access was granted.
-     *
-     * @return \DateTime|null
-     */
     public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
 
-    /**
-     * The date and time when the access was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return \Upsun\Model\TeamProjectAccessLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\TeamProjectAccessLinks
+    public function getLinks(): ?TeamProjectAccessLinks
     {
         return $this->links;
     }
 }
-

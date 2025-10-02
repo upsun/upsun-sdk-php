@@ -3,6 +3,8 @@
 /**
  * Low level OrganizationReference (auto-generated)
  *
+ * The referenced organization, or null if it no longer exists.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,24 +14,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationReference implements JsonSerializable
+final class OrganizationReference implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'ownerId' => 'owner_id',
-        'name' => 'name',
-        'label' => 'label',
-        'vendor' => 'vendor',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
+        private readonly ?string $type = null,
         private readonly ?string $ownerId = null,
         private readonly ?string $name = null,
         private readonly ?string $label = null,
@@ -39,37 +30,22 @@ final class OrganizationReference implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'owner_id' => '?string',
-            'name' => '?string',
-            'label' => '?string',
-            'vendor' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,
+            'type' => $this->type,
             'ownerId' => $this->ownerId,
             'name' => $this->name,
             'label' => $this->label,
             'vendor' => $this->vendor,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -78,74 +54,43 @@ final class OrganizationReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the owner.
-     *
-     * @return string|null
-     */
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
 
-    /**
-     * A unique machine name representing the organization.
-     *
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * The human-readable label of the organization.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * The vendor.
-     *
-     * @return string|null
-     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    /**
-     * The date and time when the organization was created.
-     *
-     * @return \DateTime|null
-     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the organization was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 }
-

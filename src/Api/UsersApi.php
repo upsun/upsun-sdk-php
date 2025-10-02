@@ -37,9 +37,15 @@ final class UsersApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,44 +55,54 @@ final class UsersApi extends AbstractApi
         return $this->config;
     }
 
-    /**
-     * Get the current user
-     *
-     * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getCurrentUser(
-        
-    ): \Upsun\Model\User {
-        return $this->getCurrentUserWithHttpInfo(
-            
-        );
-    }
 
     /**
      * Get the current user
      *
+     * Retrieves the current user, determined from the used access token.
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\User
+     *
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user
+     */
+    public function getCurrentUser(
+    ): \Upsun\Model\User 
+    {
+        return $this->getCurrentUserWithHttpInfo(
+        );
+    }
+
+    /**
+     * Get the current user with HTTP Info
+     *
+     * @return \Upsun\Model\User
+     *
      * @throws InvalidArgumentException|Exception
      */
-    public function getCurrentUserWithHttpInfo(
-        
-    ): \Upsun\Model\User {
+    private function getCurrentUserWithHttpInfo(
+    ): \Upsun\Model\User 
+    {
         $request = $this->getCurrentUserRequest(
-            
         );
 
         try {
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\User',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -96,10 +112,8 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getCurrentUserRequest(
-        
+    private function getCurrentUserRequest(
     ): RequestInterface {
-
         $resourcePath = '/users/me';
         $formParams = [];
         $queryParams = [];
@@ -109,8 +123,6 @@ final class UsersApi extends AbstractApi
 
 
 
-
-
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -118,7 +130,7 @@ final class UsersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -161,41 +173,54 @@ final class UsersApi extends AbstractApi
     /**
      * Get current logged-in user info
      *
+     * Retrieve information about the currently logged-in user (the user associated with the access token).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\CurrentUser
+     *
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-deprecated
+     *
+     * @deprecated
      */
     public function getCurrentUserDeprecated(
-        
-    ): \Upsun\Model\CurrentUser {
+    ): \Upsun\Model\CurrentUser 
+    {
         return $this->getCurrentUserDeprecatedWithHttpInfo(
-            
         );
     }
 
     /**
-     * Get current logged-in user info
+     * Get current logged-in user info with HTTP Info
+     *
+     * @return \Upsun\Model\CurrentUser
      *
      * @throws InvalidArgumentException|Exception
+     *
+     * @deprecated
      */
-    public function getCurrentUserDeprecatedWithHttpInfo(
-        
-    ): \Upsun\Model\CurrentUser {
+    private function getCurrentUserDeprecatedWithHttpInfo(
+    ): \Upsun\Model\CurrentUser 
+    {
         $request = $this->getCurrentUserDeprecatedRequest(
-            
         );
 
         try {
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\CurrentUser',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -204,11 +229,11 @@ final class UsersApi extends AbstractApi
      * Create request for operation 'getCurrentUserDeprecated'
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
-    public function getCurrentUserDeprecatedRequest(
-        
+    private function getCurrentUserDeprecatedRequest(
     ): RequestInterface {
-
         $resourcePath = '/me';
         $formParams = [];
         $queryParams = [];
@@ -218,8 +243,6 @@ final class UsersApi extends AbstractApi
 
 
 
-
-
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -227,7 +250,7 @@ final class UsersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -270,41 +293,50 @@ final class UsersApi extends AbstractApi
     /**
      * Check if phone verification is required
      *
+     * Find out if the current logged in user requires phone verification to create projects.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\GetCurrentUserVerificationStatus200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status
      */
     public function getCurrentUserVerificationStatus(
-        
-    ): \Upsun\Model\GetCurrentUserVerificationStatus200Response {
+    ): \Upsun\Model\GetCurrentUserVerificationStatus200Response 
+    {
         return $this->getCurrentUserVerificationStatusWithHttpInfo(
-            
         );
     }
 
     /**
-     * Check if phone verification is required
+     * Check if phone verification is required with HTTP Info
+     *
+     * @return \Upsun\Model\GetCurrentUserVerificationStatus200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getCurrentUserVerificationStatusWithHttpInfo(
-        
-    ): \Upsun\Model\GetCurrentUserVerificationStatus200Response {
+    private function getCurrentUserVerificationStatusWithHttpInfo(
+    ): \Upsun\Model\GetCurrentUserVerificationStatus200Response 
+    {
         $request = $this->getCurrentUserVerificationStatusRequest(
-            
         );
 
         try {
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\GetCurrentUserVerificationStatus200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -314,18 +346,14 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getCurrentUserVerificationStatusRequest(
-        
+    private function getCurrentUserVerificationStatusRequest(
     ): RequestInterface {
-
         $resourcePath = '/me/phone';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
 
 
@@ -336,7 +364,7 @@ final class UsersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -379,41 +407,50 @@ final class UsersApi extends AbstractApi
     /**
      * Check if verification is required
      *
+     * Find out if the current logged in user requires verification (phone or staff) to create projects.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\GetCurrentUserVerificationStatusFull200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status-full
      */
     public function getCurrentUserVerificationStatusFull(
-        
-    ): \Upsun\Model\GetCurrentUserVerificationStatusFull200Response {
+    ): \Upsun\Model\GetCurrentUserVerificationStatusFull200Response 
+    {
         return $this->getCurrentUserVerificationStatusFullWithHttpInfo(
-            
         );
     }
 
     /**
-     * Check if verification is required
+     * Check if verification is required with HTTP Info
+     *
+     * @return \Upsun\Model\GetCurrentUserVerificationStatusFull200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getCurrentUserVerificationStatusFullWithHttpInfo(
-        
-    ): \Upsun\Model\GetCurrentUserVerificationStatusFull200Response {
+    private function getCurrentUserVerificationStatusFullWithHttpInfo(
+    ): \Upsun\Model\GetCurrentUserVerificationStatusFull200Response 
+    {
         $request = $this->getCurrentUserVerificationStatusFullRequest(
-            
         );
 
         try {
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\GetCurrentUserVerificationStatusFull200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -423,18 +460,14 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getCurrentUserVerificationStatusFullRequest(
-        
+    private function getCurrentUserVerificationStatusFullRequest(
     ): RequestInterface {
-
         $resourcePath = '/me/verification';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
 
 
@@ -445,7 +478,7 @@ final class UsersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -488,8 +521,14 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user
      *
+     * Retrieves the specified user.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\User
+     *
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-user
      */
     public function getUser(
         string $userId
@@ -500,11 +539,13 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Get a user
+     * Get a user with HTTP Info
+     *
+     * @return \Upsun\Model\User
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getUserWithHttpInfo(
+    private function getUserWithHttpInfo(
         string $userId
     ): \Upsun\Model\User {
         $request = $this->getUserRequest(
@@ -515,14 +556,17 @@ final class UsersApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\User',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -532,9 +576,10 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getUserRequest(
+    private function getUserRequest(
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (
             $userId === null
@@ -542,18 +587,16 @@ final class UsersApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $userId when calling getUser'
+                'Missing the required parameter $userId 
+                when calling getUser'
             );
         }
-
         $resourcePath = '/users/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($userId !== null) {
@@ -572,7 +615,7 @@ final class UsersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -615,8 +658,14 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user by email
      *
+     * Retrieves a user matching the specified email address.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\User
+     *
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-user-by-email-address
      */
     public function getUserByEmailAddress(
         string $email
@@ -627,11 +676,13 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Get a user by email
+     * Get a user by email with HTTP Info
+     *
+     * @return \Upsun\Model\User
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getUserByEmailAddressWithHttpInfo(
+    private function getUserByEmailAddressWithHttpInfo(
         string $email
     ): \Upsun\Model\User {
         $request = $this->getUserByEmailAddressRequest(
@@ -642,14 +693,17 @@ final class UsersApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\User',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -659,9 +713,10 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getUserByEmailAddressRequest(
+    private function getUserByEmailAddressRequest(
         string $email
     ): RequestInterface {
+
         // verify the required parameter 'email' is set
         if (
             $email === null
@@ -669,18 +724,16 @@ final class UsersApi extends AbstractApi
             && count($email) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $email when calling getUserByEmailAddress'
+                'Missing the required parameter $email 
+                when calling getUserByEmailAddress'
             );
         }
-
         $resourcePath = '/users/email={email}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($email !== null) {
@@ -699,7 +752,7 @@ final class UsersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -742,8 +795,14 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user by username
      *
+     * Retrieves a user matching the specified username.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\User
+     *
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-user-by-username
      */
     public function getUserByUsername(
         string $username
@@ -754,11 +813,13 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Get a user by username
+     * Get a user by username with HTTP Info
+     *
+     * @return \Upsun\Model\User
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getUserByUsernameWithHttpInfo(
+    private function getUserByUsernameWithHttpInfo(
         string $username
     ): \Upsun\Model\User {
         $request = $this->getUserByUsernameRequest(
@@ -769,14 +830,17 @@ final class UsersApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\User',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -786,9 +850,10 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getUserByUsernameRequest(
+    private function getUserByUsernameRequest(
         string $username
     ): RequestInterface {
+
         // verify the required parameter 'username' is set
         if (
             $username === null
@@ -796,18 +861,16 @@ final class UsersApi extends AbstractApi
             && count($username) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $username when calling getUserByUsername'
+                'Missing the required parameter $username 
+                when calling getUserByUsername'
             );
         }
-
         $resourcePath = '/users/username={username}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($username !== null) {
@@ -826,7 +889,7 @@ final class UsersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -869,8 +932,13 @@ final class UsersApi extends AbstractApi
     /**
      * Reset email address
      *
+     * Requests a reset of the user's email address. A confirmation email will be sent to the new address when the
+     * request is accepted.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @see https://docs.upsun.com/api/#tag/Users/operation/reset-email-address
      */
     public function resetEmailAddress(
         string $userId,
@@ -883,11 +951,11 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Reset email address
+     * Reset email address with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function resetEmailAddressWithHttpInfo(
+    private function resetEmailAddressWithHttpInfo(
         string $userId,
         ?\Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): void {
@@ -897,13 +965,14 @@ final class UsersApi extends AbstractApi
         );
 
         try {
-            $response = $this->sendAuthenticatedRequest(
+            $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
-
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -913,10 +982,11 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function resetEmailAddressRequest(
+    private function resetEmailAddressRequest(
         string $userId,
         ?\Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (
             $userId === null
@@ -924,7 +994,8 @@ final class UsersApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $userId when calling resetEmailAddress'
+                'Missing the required parameter $userId 
+                when calling resetEmailAddress'
             );
         }
 
@@ -934,8 +1005,6 @@ final class UsersApi extends AbstractApi
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($userId !== null) {
@@ -956,11 +1025,13 @@ final class UsersApi extends AbstractApi
         // for model (json/xml)
         if (isset($resetEmailAddressRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($resetEmailAddressRequest));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($resetEmailAddressRequest)
+                );
             } else {
                 $httpBody = $resetEmailAddressRequest;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1003,8 +1074,13 @@ final class UsersApi extends AbstractApi
     /**
      * Reset user password
      *
+     * Requests a reset of the user's password. A password reset email will be sent to the user when the request is
+     * accepted.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @see https://docs.upsun.com/api/#tag/Users/operation/reset-password
      */
     public function resetPassword(
         string $userId
@@ -1015,11 +1091,11 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Reset user password
+     * Reset user password with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function resetPasswordWithHttpInfo(
+    private function resetPasswordWithHttpInfo(
         string $userId
     ): void {
         $request = $this->resetPasswordRequest(
@@ -1027,13 +1103,14 @@ final class UsersApi extends AbstractApi
         );
 
         try {
-            $response = $this->sendAuthenticatedRequest(
+            $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
-
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -1043,9 +1120,10 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function resetPasswordRequest(
+    private function resetPasswordRequest(
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (
             $userId === null
@@ -1053,18 +1131,16 @@ final class UsersApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $userId when calling resetPassword'
+                'Missing the required parameter $userId 
+                when calling resetPassword'
             );
         }
-
         $resourcePath = '/users/{user_id}/resetpassword';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($userId !== null) {
@@ -1083,7 +1159,7 @@ final class UsersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1126,8 +1202,14 @@ final class UsersApi extends AbstractApi
     /**
      * Update a user
      *
+     * Updates the specified user.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\User
+     *
+     * @see https://docs.upsun.com/api/#tag/Users/operation/update-user
      */
     public function updateUser(
         string $userId,
@@ -1140,11 +1222,13 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Update a user
+     * Update a user with HTTP Info
+     *
+     * @return \Upsun\Model\User
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function updateUserWithHttpInfo(
+    private function updateUserWithHttpInfo(
         string $userId,
         ?\Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): \Upsun\Model\User {
@@ -1157,14 +1241,17 @@ final class UsersApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\User',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -1174,10 +1261,11 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateUserRequest(
+    private function updateUserRequest(
         string $userId,
         ?\Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (
             $userId === null
@@ -1185,7 +1273,8 @@ final class UsersApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $userId when calling updateUser'
+                'Missing the required parameter $userId 
+                when calling updateUser'
             );
         }
 
@@ -1195,8 +1284,6 @@ final class UsersApi extends AbstractApi
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($userId !== null) {
@@ -1217,11 +1304,13 @@ final class UsersApi extends AbstractApi
         // for model (json/xml)
         if (isset($updateUserRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($updateUserRequest));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($updateUserRequest)
+                );
             } else {
                 $httpBody = $updateUserRequest;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

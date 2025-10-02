@@ -12,54 +12,30 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ResourcesOverridesValue implements JsonSerializable
+final class ResourcesOverridesValue implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'services' => 'services',
-        'startsAt' => 'starts_at',
-        'endsAt' => 'ends_at',
-        'redeployedStart' => 'redeployed_start',
-        'redeployedEnd' => 'redeployed_end'
-    ];
-
     public function __construct(
         private readonly array $services,
         private readonly bool $redeployedStart,
         private readonly bool $redeployedEnd,
-        private readonly ?\DateTime $startsAt = null,
-        private readonly ?\DateTime $endsAt = null,
+        private readonly ?\DateTime $startsAt,
+        private readonly ?\DateTime $endsAt,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'services' => '\Upsun\Model\PerServiceResourcesOverridesValue[]',
-            'starts_at' => '?\DateTime',
-            'ends_at' => '?\DateTime',
-            'redeployed_start' => 'bool',
-            'redeployed_end' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
             'services' => $this->services,
-            'startsAt' => $this->startsAt,
-            'endsAt' => $this->endsAt,
+            'startsAt' => $this->startsAt?->format(DATE_ATOM),
+            'endsAt' => $this->endsAt?->format(DATE_ATOM),
             'redeployedStart' => $this->redeployedStart,
             'redeployedEnd' => $this->redeployedEnd,
         ];
@@ -71,43 +47,30 @@ final class ResourcesOverridesValue implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\PerServiceResourcesOverridesValue[]
+     * @return PerServiceResourcesOverridesValue[]
      */
     public function getServices(): array
     {
         return $this->services;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getStartsAt(): ?\DateTime
     {
         return $this->startsAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getEndsAt(): ?\DateTime
     {
         return $this->endsAt;
     }
 
-    /**
-     * @return bool
-     */
     public function getRedeployedStart(): bool
     {
         return $this->redeployedStart;
     }
 
-    /**
-     * @return bool
-     */
     public function getRedeployedEnd(): bool
     {
         return $this->redeployedEnd;
     }
 }
-

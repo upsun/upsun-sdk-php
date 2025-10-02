@@ -37,9 +37,15 @@ final class AlertsApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,295 +55,17 @@ final class AlertsApi extends AbstractApi
         return $this->config;
     }
 
-    /**
-     * Create a usage alert.
-     *
-     * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createUsageAlert(
-        string $subscriptionId,
-        ?\Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
-    ): \Upsun\Model\Alert {
-        return $this->createUsageAlertWithHttpInfo(
-            $subscriptionId,
-            $createUsageAlertRequest
-        );
-    }
 
-    /**
-     * Create a usage alert.
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createUsageAlertWithHttpInfo(
-        string $subscriptionId,
-        ?\Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
-    ): \Upsun\Model\Alert {
-        $request = $this->createUsageAlertRequest(
-            $subscriptionId,
-            $createUsageAlertRequest
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders()
-            );
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Alert',
-                $request,
-                $response
-            );
-        } catch (ApiException $e) {
-            throw $e;
-        }
-    }
-
-    /**
-     * Create request for operation 'createUsageAlert'
-     *
-     * @throws InvalidArgumentException
-     */
-    public function createUsageAlertRequest(
-        string $subscriptionId,
-        ?\Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
-    ): RequestInterface {
-        // verify the required parameter 'subscriptionId' is set
-        if (
-            $subscriptionId === null
-            || (is_array($subscriptionId)
-            && count($subscriptionId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $subscriptionId when calling createUsageAlert'
-            );
-        }
-
-        $resourcePath = '/alerts/subscriptions/{subscriptionId}/usage';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-
-
-        // path params
-        if ($subscriptionId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'subscriptionId' . '}',
-                ObjectSerializer::toPathValue($subscriptionId),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            'application/json',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($createUsageAlertRequest)) {
-            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($createUsageAlertRequest));
-            } else {
-                $httpBody = $createUsageAlertRequest;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('POST', $uri, $headers, $httpBody);
-    }
-    /**
-     * Delete a usage alert.
-     *
-     * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteUsageAlert(
-        string $subscriptionId,
-        string $usageId
-    ): void {
-        $this->deleteUsageAlertWithHttpInfo(
-            $subscriptionId,
-            $usageId
-        );
-    }
-
-    /**
-     * Delete a usage alert.
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteUsageAlertWithHttpInfo(
-        string $subscriptionId,
-        string $usageId
-    ): void {
-        $request = $this->deleteUsageAlertRequest(
-            $subscriptionId,
-            $usageId
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders()
-            );
-
-        } catch (ApiException $e) {
-            throw $e;
-        }
-    }
-
-    /**
-     * Create request for operation 'deleteUsageAlert'
-     *
-     * @throws InvalidArgumentException
-     */
-    public function deleteUsageAlertRequest(
-        string $subscriptionId,
-        string $usageId
-    ): RequestInterface {
-        // verify the required parameter 'subscriptionId' is set
-        if (
-            $subscriptionId === null
-            || (is_array($subscriptionId)
-            && count($subscriptionId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $subscriptionId when calling deleteUsageAlert'
-            );
-        }
-        // verify the required parameter 'usageId' is set
-        if (
-            $usageId === null
-            || (is_array($usageId)
-            && count($usageId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $usageId when calling deleteUsageAlert'
-            );
-        }
-
-        $resourcePath = '/alerts/subscriptions/{subscriptionId}/usage/{usageId}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-
-
-        // path params
-        if ($subscriptionId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'subscriptionId' . '}',
-                ObjectSerializer::toPathValue($subscriptionId),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($usageId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'usageId' . '}',
-                ObjectSerializer::toPathValue($usageId),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            '',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('DELETE', $uri, $headers, $httpBody);
-    }
     /**
      * Get usage alerts for a subscription
      *
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\GetUsageAlerts200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Alerts/operation/get-usage-alerts
      */
     public function getUsageAlerts(
         string $subscriptionId
@@ -348,11 +76,13 @@ final class AlertsApi extends AbstractApi
     }
 
     /**
-     * Get usage alerts for a subscription
+     * Get usage alerts for a subscription with HTTP Info
+     *
+     * @return \Upsun\Model\GetUsageAlerts200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getUsageAlertsWithHttpInfo(
+    private function getUsageAlertsWithHttpInfo(
         string $subscriptionId
     ): \Upsun\Model\GetUsageAlerts200Response {
         $request = $this->getUsageAlertsRequest(
@@ -363,14 +93,17 @@ final class AlertsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\GetUsageAlerts200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -380,9 +113,10 @@ final class AlertsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getUsageAlertsRequest(
+    private function getUsageAlertsRequest(
         string $subscriptionId
     ): RequestInterface {
+
         // verify the required parameter 'subscriptionId' is set
         if (
             $subscriptionId === null
@@ -390,18 +124,16 @@ final class AlertsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $subscriptionId when calling getUsageAlerts'
+                'Missing the required parameter $subscriptionId 
+                when calling getUsageAlerts'
             );
         }
-
         $resourcePath = '/alerts/subscriptions/{subscriptionId}/usage';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($subscriptionId !== null) {
@@ -420,7 +152,7 @@ final class AlertsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -461,65 +193,71 @@ final class AlertsApi extends AbstractApi
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
     /**
-     * Update a usage alert.
+     * Update usage alerts.
+     *
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\GetUsageAlerts200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Alerts/operation/update-usage-alerts
      */
-    public function updateUsageAlert(
+    public function updateUsageAlerts(
         string $subscriptionId,
-        string $usageId,
-        ?\Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
-    ): \Upsun\Model\Alert {
-        return $this->updateUsageAlertWithHttpInfo(
+        ?\Upsun\Model\UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
+    ): \Upsun\Model\GetUsageAlerts200Response {
+        return $this->updateUsageAlertsWithHttpInfo(
             $subscriptionId,
-            $usageId,
-            $updateUsageAlertRequest
+            $updateUsageAlertsRequest
         );
     }
 
     /**
-     * Update a usage alert.
+     * Update usage alerts. with HTTP Info
+     *
+     * @return \Upsun\Model\GetUsageAlerts200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function updateUsageAlertWithHttpInfo(
+    private function updateUsageAlertsWithHttpInfo(
         string $subscriptionId,
-        string $usageId,
-        ?\Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
-    ): \Upsun\Model\Alert {
-        $request = $this->updateUsageAlertRequest(
+        ?\Upsun\Model\UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
+    ): \Upsun\Model\GetUsageAlerts200Response {
+        $request = $this->updateUsageAlertsRequest(
             $subscriptionId,
-            $usageId,
-            $updateUsageAlertRequest
+            $updateUsageAlertsRequest
         );
 
         try {
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Alert',
+                '\Upsun\Model\GetUsageAlerts200Response',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
 
     /**
-     * Create request for operation 'updateUsageAlert'
+     * Create request for operation 'updateUsageAlerts'
      *
      * @throws InvalidArgumentException
      */
-    public function updateUsageAlertRequest(
+    private function updateUsageAlertsRequest(
         string $subscriptionId,
-        string $usageId,
-        ?\Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
+        ?\Upsun\Model\UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'subscriptionId' is set
         if (
             $subscriptionId === null
@@ -527,42 +265,23 @@ final class AlertsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $subscriptionId when calling updateUsageAlert'
-            );
-        }
-        // verify the required parameter 'usageId' is set
-        if (
-            $usageId === null
-            || (is_array($usageId)
-            && count($usageId) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $usageId when calling updateUsageAlert'
+                'Missing the required parameter $subscriptionId 
+                when calling updateUsageAlerts'
             );
         }
 
-        $resourcePath = '/alerts/subscriptions/{subscriptionId}/usage/{usageId}';
+        $resourcePath = '/alerts/subscriptions/{subscriptionId}/usage';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
 
-
-
         // path params
         if ($subscriptionId !== null) {
             $resourcePath = str_replace(
                 '{' . 'subscriptionId' . '}',
                 ObjectSerializer::toPathValue($subscriptionId),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($usageId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'usageId' . '}',
-                ObjectSerializer::toPathValue($usageId),
                 $resourcePath
             );
         }
@@ -575,13 +294,15 @@ final class AlertsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($updateUsageAlertRequest)) {
+        if (isset($updateUsageAlertsRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($updateUsageAlertRequest));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($updateUsageAlertsRequest)
+                );
             } else {
-                $httpBody = $updateUsageAlertRequest;
+                $httpBody = $updateUsageAlertsRequest;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

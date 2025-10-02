@@ -3,6 +3,7 @@
 /**
  * Low level ProfileCurrentTrialProjects (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,40 +13,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ProfileCurrentTrialProjects implements JsonSerializable
+final class ProfileCurrentTrialProjects implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'total' => 'total'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $name = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrialProjectsTotal $total = null,
+        private readonly ?ProfileCurrentTrialProjectsTotal $total = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'name' => '?string',
-            'total' => '?\Upsun\Model\ProfileCurrentTrialProjectsTotal',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,32 +43,18 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Trial project ID
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * Trial project name
-     *
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @return \Upsun\Model\ProfileCurrentTrialProjectsTotal|null
-     */
-    public function getTotal(): ?\Upsun\Model\ProfileCurrentTrialProjectsTotal
+    public function getTotal(): ?ProfileCurrentTrialProjectsTotal
     {
         return $this->total;
     }
 }
-

@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CreateSshKeyRequest implements JsonSerializable
+final class CreateSshKeyRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'value' => 'value',
-        'title' => 'title',
-        'uuid' => 'uuid'
-    ];
-
     public function __construct(
         private readonly string $value,
         private readonly ?string $title = null,
@@ -31,21 +23,9 @@ final class CreateSshKeyRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'value' => 'string',
-            'title' => '?string',
-            'uuid' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,34 +42,18 @@ final class CreateSshKeyRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The value of the ssh key.
-     *
-     * @return string
-     */
     public function getValue(): string
     {
         return $this->value;
     }
 
-    /**
-     * The title of the ssh key.
-     *
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * The uuid of the user.
-     *
-     * @return string|null
-     */
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
 }
-

@@ -12,40 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheCronsDeploymentState implements JsonSerializable
+final class TheCronsDeploymentState implements ModelInterface, JsonSerializable
 {
-    public const STATUS_PAUSED = 'paused';
-    public const STATUS_RUNNING = 'running';
-    public const STATUS_SLEEPING = 'sleeping';
-
-    private static array $attributeMap = [
-        'enabled' => 'enabled',
-        'status' => 'status'
-    ];
-
     public function __construct(
         private readonly bool $enabled,
         private readonly string $status,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enabled' => 'bool',
-            'status' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -61,20 +40,13 @@ final class TheCronsDeploymentState implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return string
-     */
     public function getStatus(): string
     {
         return $this->status;
     }
 }
-

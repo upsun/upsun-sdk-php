@@ -12,20 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UpdateTicketRequest implements JsonSerializable
+final class UpdateTicketRequest implements ModelInterface, JsonSerializable
 {
-    public const STATUS_OPEN = 'open';
-    public const STATUS_SOLVED = 'solved';
-
-    private static array $attributeMap = [
-        'status' => 'status',
-        'collaboratorIds' => 'collaborator_ids',
-        'collaboratorsReplace' => 'collaborators_replace'
-    ];
-
     public function __construct(
         private readonly ?string $status = null,
         private readonly ?array $collaboratorIds = [],
@@ -33,21 +23,9 @@ final class UpdateTicketRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'status' => '?string',
-            'collaborator_ids' => 'string[]',
-            'collaborators_replace' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -64,34 +42,18 @@ final class UpdateTicketRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The status of the support ticket.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * A list of collaborators uuids for the ticket.
-     *
-     * @return string[]|null
-     */
     public function getCollaboratorIds(): ?array
     {
         return $this->collaboratorIds;
     }
 
-    /**
-     * Whether or not should replace ticket collaborators with the provided values. If false, the collaborators will be appended.
-     *
-     * @return bool|null
-     */
     public function getCollaboratorsReplace(): ?bool
     {
         return $this->collaboratorsReplace;
     }
 }
-

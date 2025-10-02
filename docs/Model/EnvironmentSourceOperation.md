@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  |
 **app** | **string** |  |
 **operation** | **string** |  |
 **command** | **string** |  |

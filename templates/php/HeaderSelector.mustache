@@ -23,7 +23,7 @@ class HeaderSelector
         }
 
         if (!$isMultipart) {
-            if($contentType === '') {
+            if ($contentType === '') {
                 $contentType = 'application/json';
             }
 
@@ -68,17 +68,18 @@ class HeaderSelector
     {
         return preg_match('~^application/(json|[\w!#$&.+-^_]+\+json)\s*(;|$)~', $searchString) === 1;
     }
-    
+
     /**
     * Select all items from a list containing a JSON mime type
     *
     * @param array $mimeList
     * @return array
     */
-    private function selectJsonMimeList(array $mimeList): array {
+    private function selectJsonMimeList(array $mimeList): array
+    {
         $jsonMimeList = [];
         foreach ($mimeList as $mime) {
-            if($this->isJsonMime($mime)) {
+            if ($this->isJsonMime($mime)) {
                 $jsonMimeList[] = $mime;
             }
         }
@@ -98,7 +99,6 @@ class HeaderSelector
         ];
 
         foreach ($accept as $header) {
-
             $headerData = $this->getHeaderAndWeight($header);
 
             if (stripos($headerData['header'], 'application/json') === 0) {
@@ -115,7 +115,7 @@ class HeaderSelector
 
         $hasMoreThan28Headers = count($accept) > 28;
 
-        foreach($processedHeaders as $headers) {
+        foreach ($processedHeaders as $headers) {
             if (count($headers) > 0) {
                 $acceptHeaders[] = $this->adjustWeight($headers, $currentWeight, $hasMoreThan28Headers);
             }
@@ -155,8 +155,7 @@ class HeaderSelector
 
         $acceptHeaders = [];
         foreach ($headers as $index => $header) {
-            if($index > 0 && $headers[$index - 1]['weight'] > $header['weight'])
-            {
+            if ($index > 0 && $headers[$index - 1]['weight'] > $header['weight']) {
                 $currentWeight = $this->getNextWeight($currentWeight, $hasMoreThan28Headers);
             }
 
@@ -172,7 +171,7 @@ class HeaderSelector
 
     private function buildAcceptHeader(string $header, int $weight): string
     {
-        if($weight === 1000) {
+        if ($weight === 1000) {
             return $header;
         }
 
@@ -182,19 +181,22 @@ class HeaderSelector
     /**
      * Calculate the next weight, based on the current one.
      *
-     * If there are less than 28 "Accept" headers, the weights will be decreased by 1 on its highest significant digit, using the
-     * following formula:
+     * If there are less than 28 "Accept" headers, the weights will be decreased by 1 on its highest significant digit,
+     * using the following formula:
      *
      *    next weight = current weight - 10 ^ (floor(log(current weight - 1)))
      *
-     *    ( current weight minus ( 10 raised to the power of ( floor of (log to the base 10 of ( current weight minus 1 ) ) ) ) )
+     *    ( current weight minus (
+     *       10 raised to the power of ( floor of (log to the base 10 of ( current weight minus 1 ) ) ) )
+     *    )
      *
      * Starting from 1000, this generates the following series:
      *
      * 1000, 900, 800, 700, 600, 500, 400, 300, 200, 100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
      *
-     * The resulting quality codes are closer to the average "normal" usage of them (like "q=0.9", "q=0.8" and so on), but it only works
-     * if there is a maximum of 28 "Accept" headers. If we have more than that (which is extremely unlikely), then we fall back to a 1-by-1
+     * The resulting quality codes are closer to the average "normal" usage of them (like "q=0.9", "q=0.8" and so on),
+     * but it only works if there is a maximum of 28 "Accept" headers. If we have more than that
+     * (which is extremely unlikely), then we fall back to a 1-by-1
      * decrement rule, which will result in quality codes like "q=0.999", "q=0.998" etc.
      */
     public function getNextWeight(int $currentWeight, bool $hasMoreThan28Headers): int
@@ -207,6 +209,6 @@ class HeaderSelector
             return $currentWeight - 1;
         }
 
-        return $currentWeight - 10 ** floor( log10($currentWeight - 1) );
+        return $currentWeight - 10 ** floor(log10($currentWeight - 1));
     }
 }

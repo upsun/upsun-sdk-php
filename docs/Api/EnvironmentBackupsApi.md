@@ -1,14 +1,14 @@
-# Upsun\EnvironmentBackupsApi
+# [Upsun\Api\EnvironmentBackupsApi](../src/Api/EnvironmentBackupsApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**backupEnvironment()**](EnvironmentBackupsApi.md#backupEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/backup | Create snapshot of environment
-[**deleteProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#deleteProjectsEnvironmentsBackups) | **DELETE** /projects/{projectId}/environments/{environmentId}/backups/{backupId} | Delete an environment snapshot
-[**getProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#getProjectsEnvironmentsBackups) | **GET** /projects/{projectId}/environments/{environmentId}/backups/{backupId} | Get an environment snapshot&#39;s info
-[**listProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#listProjectsEnvironmentsBackups) | **GET** /projects/{projectId}/environments/{environmentId}/backups | Get an environment&#39;s snapshot list
-[**restoreBackup()**](EnvironmentBackupsApi.md#restoreBackup) | **POST** /projects/{projectId}/environments/{environmentId}/backups/{backupId}/restore | Restore an environment snapshot
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**backupEnvironment()**](EnvironmentBackupsApi.md#backupEnvironment) | **POST** /projects/{projectId}/environments/{environmentId}/backup | Create backup of environment | https://docs.upsun.com/api/#tag/Environment-Backups/operation/backup-environment |
+| [**deleteProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#deleteProjectsEnvironmentsBackups) | **DELETE** /projects/{projectId}/environments/{environmentId}/backups/{backupId} | Delete an environment backup | https://docs.upsun.com/api/#tag/Environment-Backups/operation/delete-projects-environments-backups |
+| [**getProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#getProjectsEnvironmentsBackups) | **GET** /projects/{projectId}/environments/{environmentId}/backups/{backupId} | Get an environment backup&#39;s info | https://docs.upsun.com/api/#tag/Environment-Backups/operation/get-projects-environments-backups |
+| [**listProjectsEnvironmentsBackups()**](EnvironmentBackupsApi.md#listProjectsEnvironmentsBackups) | **GET** /projects/{projectId}/environments/{environmentId}/backups | Get an environment&#39;s backup list | https://docs.upsun.com/api/#tag/Environment-Backups/operation/list-projects-environments-backups |
+| [**restoreBackup()**](EnvironmentBackupsApi.md#restoreBackup) | **POST** /projects/{projectId}/environments/{environmentId}/backups/{backupId}/restore | Restore an environment snapshot | https://docs.upsun.com/api/#tag/Environment-Backups/operation/restore-backup |
 
 
 ## `backupEnvironment()`
@@ -17,9 +17,9 @@ Method | HTTP request | Description
 backupEnvironment($projectId, $environmentId, $environmentBackupInput): \Upsun\Model\AcceptedResponse
 ```
 
-Create snapshot of environment
+Create backup of environment
 
-Trigger a new snapshot of an environment to be created. See the [Snapshot and Restore](https://docs.platform.sh/administration/snapshot-and-restore.html) section of the documentation for more information.
+Trigger a new backup of an environment to be created. See the [Backups](https://docs.upsun.com/anchors/environments/backup/) section of the documentation for more information.
 
 ### Example
 
@@ -30,8 +30,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -48,11 +48,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **environmentBackupInput** | [**\Upsun\Model\EnvironmentBackupInput**](../Model/EnvironmentBackupInput.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **environmentBackupInput** | [**\Upsun\Model\EnvironmentBackupInput**](../Model/EnvironmentBackupInput.md)|  | |
 
 ### Return type
 
@@ -77,7 +77,7 @@ No authorization required
 deleteProjectsEnvironmentsBackups($projectId, $environmentId, $backupId): \Upsun\Model\AcceptedResponse
 ```
 
-Delete an environment snapshot
+Delete an environment backup
 
 Delete a specific backup from an environment using the `id` of the entry retrieved by the [Get backups list](#tag/Environment-Backups%2Fpaths%2F~1projects~1%7BprojectId%7D~1environments~1%7BenvironmentId%7D~1backups%2Fget) endpoint.
 
@@ -90,8 +90,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -108,11 +108,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **backupId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **backupId** | **string**|  | |
 
 ### Return type
 
@@ -137,7 +137,7 @@ No authorization required
 getProjectsEnvironmentsBackups($projectId, $environmentId, $backupId): \Upsun\Model\Backup
 ```
 
-Get an environment snapshot's info
+Get an environment backup's info
 
 Get the details of a specific backup from an environment using the `id` of the entry retrieved by the [Get backups list](#tag/Environment-Backups%2Fpaths%2F~1projects~1%7BprojectId%7D~1environments~1%7BenvironmentId%7D~1backups%2Fget) endpoint.
 
@@ -150,8 +150,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -168,11 +168,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **backupId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **backupId** | **string**|  | |
 
 ### Return type
 
@@ -197,7 +197,7 @@ No authorization required
 listProjectsEnvironmentsBackups($projectId, $environmentId): \Upsun\Model\Backup[]
 ```
 
-Get an environment's snapshot list
+Get an environment's backup list
 
 Retrieve a list of objects representing backups of this environment.
 
@@ -210,8 +210,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -227,10 +227,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
 
 ### Return type
 
@@ -268,8 +268,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -287,12 +287,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **backupId** | **string**|  |
- **environmentRestoreInput** | [**\Upsun\Model\EnvironmentRestoreInput**](../Model/EnvironmentRestoreInput.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **backupId** | **string**|  | |
+| **environmentRestoreInput** | [**\Upsun\Model\EnvironmentRestoreInput**](../Model/EnvironmentRestoreInput.md)|  | |
 
 ### Return type
 

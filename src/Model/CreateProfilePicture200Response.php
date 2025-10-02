@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CreateProfilePicture200Response implements JsonSerializable
+final class CreateProfilePicture200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'url' => 'url'
-    ];
-
     public function __construct(
         private readonly ?string $url = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'url' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,14 +38,8 @@ final class CreateProfilePicture200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The relative url of the picture.
-     *
-     * @return string|null
-     */
     public function getUrl(): ?string
     {
         return $this->url;
     }
 }
-

@@ -12,41 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication implements JsonSerializable
+final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication implements ModelInterface, JsonSerializable
 {
-    public const SOCKET_FAMILY_TCP = 'tcp';
-    public const SOCKET_FAMILY_UNIX = 'unix';
-    public const PROTOCOL_FASTCGI = 'fastcgi';
-    public const PROTOCOL_HTTP = 'http';
-
-    private static array $attributeMap = [
-        'socketFamily' => 'socket_family',
-        'protocol' => 'protocol'
-    ];
-
     public function __construct(
         private readonly string $socketFamily,
-        private readonly ?string $protocol = null,
+        private readonly ?string $protocol,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'socket_family' => 'string',
-            'protocol' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,20 +40,13 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getSocketFamily(): string
     {
         return $this->socketFamily;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
 }
-

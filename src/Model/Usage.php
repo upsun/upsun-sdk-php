@@ -3,6 +3,8 @@
 /**
  * Low level Usage (auto-generated)
  *
+ * The usage object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,20 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Usage implements JsonSerializable
+final class Usage implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'subscriptionId' => 'subscription_id',
-        'usageGroup' => 'usage_group',
-        'quantity' => 'quantity',
-        'start' => 'start'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $subscriptionId = null,
@@ -35,23 +27,9 @@ final class Usage implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'subscription_id' => '?string',
-            'usage_group' => '?string',
-            'quantity' => '?float',
-            'start' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -61,7 +39,7 @@ final class Usage implements JsonSerializable
             'subscriptionId' => $this->subscriptionId,
             'usageGroup' => $this->usageGroup,
             'quantity' => $this->quantity,
-            'start' => $this->start,
+            'start' => $this->start?->format(DATE_ATOM),
         ];
     }
 
@@ -70,54 +48,28 @@ final class Usage implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The unique ID of the usage record.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the subscription.
-     *
-     * @return string|null
-     */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The type of usage that this record represents.
-     *
-     * @return string|null
-     */
     public function getUsageGroup(): ?string
     {
         return $this->usageGroup;
     }
 
-    /**
-     * The quantity used.
-     *
-     * @return float|null
-     */
     public function getQuantity(): ?float
     {
         return $this->quantity;
     }
 
-    /**
-     * The start timestamp of this usage record (ISO 8601).
-     *
-     * @return \DateTime|null
-     */
     public function getStart(): ?\DateTime
     {
         return $this->start;
     }
 }
-

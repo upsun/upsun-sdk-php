@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class SystemInformation implements JsonSerializable
+final class SystemInformation implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'version' => 'version',
-        'image' => 'image',
-        'startedAt' => 'started_at'
-    ];
-
     public function __construct(
         private readonly string $version,
         private readonly string $image,
@@ -31,21 +23,9 @@ final class SystemInformation implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'version' => 'string',
-            'image' => 'string',
-            'started_at' => '\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -53,7 +33,7 @@ final class SystemInformation implements JsonSerializable
         return [
             'version' => $this->version,
             'image' => $this->image,
-            'startedAt' => $this->startedAt,
+            'startedAt' => $this->startedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -62,28 +42,18 @@ final class SystemInformation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getVersion(): string
     {
         return $this->version;
     }
 
-    /**
-     * @return string
-     */
     public function getImage(): string
     {
         return $this->image;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getStartedAt(): \DateTime
     {
         return $this->startedAt;
     }
 }
-

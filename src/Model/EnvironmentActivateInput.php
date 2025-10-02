@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EnvironmentActivateInput implements JsonSerializable
+final class EnvironmentActivateInput implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'resources' => 'resources'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\Resources1 $resources = null,
+        private readonly ?Resources2 $resources,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'resources' => '?\Upsun\Model\Resources1',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,12 +38,8 @@ final class EnvironmentActivateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\Resources1|null
-     */
-    public function getResources(): ?\Upsun\Model\Resources1
+    public function getResources(): ?Resources2
     {
         return $this->resources;
     }
 }
-

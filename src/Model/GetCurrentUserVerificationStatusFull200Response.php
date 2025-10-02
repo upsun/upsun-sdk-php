@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class GetCurrentUserVerificationStatusFull200Response implements JsonSerializable
+final class GetCurrentUserVerificationStatusFull200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'state' => 'state',
-        'type' => 'type'
-    ];
-
     public function __construct(
         private readonly ?bool $state = null,
         private readonly ?string $type = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'state' => '?bool',
-            'type' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +40,13 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Does this user need verification for project creation.
-     *
-     * @return bool|null
-     */
     public function getState(): ?bool
     {
         return $this->state;
     }
 
-    /**
-     * What type of verification is needed (phone or ticket)
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 }
-

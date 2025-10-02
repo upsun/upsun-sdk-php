@@ -12,24 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class EnvironmentInfo implements JsonSerializable
+final class EnvironmentInfo implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'name' => 'name',
-        'status' => 'status',
-        'isMain' => 'is_main',
-        'isProduction' => 'is_production',
-        'constraints' => 'constraints',
-        'reference' => 'reference',
-        'machineName' => 'machine_name',
-        'environmentType' => 'environment_type',
-        'links' => 'links'
-    ];
-
     public function __construct(
         private readonly string $name,
         private readonly string $status,
@@ -43,27 +29,9 @@ final class EnvironmentInfo implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'name' => 'string',
-            'status' => 'string',
-            'is_main' => 'bool',
-            'is_production' => 'bool',
-            'constraints' => 'object',
-            'reference' => 'string',
-            'machine_name' => 'string',
-            'environment_type' => 'string',
-            'links' => 'object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -86,76 +54,48 @@ final class EnvironmentInfo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsMain(): bool
     {
         return $this->isMain;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsProduction(): bool
     {
         return $this->isProduction;
     }
 
-    /**
-     * @return object
-     */
     public function getConstraints(): object
     {
         return $this->constraints;
     }
 
-    /**
-     * @return string
-     */
     public function getReference(): string
     {
         return $this->reference;
     }
 
-    /**
-     * @return string
-     */
     public function getMachineName(): string
     {
         return $this->machineName;
     }
 
-    /**
-     * @return string
-     */
     public function getEnvironmentType(): string
     {
         return $this->environmentType;
     }
 
-    /**
-     * @return object
-     */
     public function getLinks(): object
     {
         return $this->links;
     }
 }
-

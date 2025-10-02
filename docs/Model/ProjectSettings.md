@@ -25,6 +25,8 @@ Name | Type | Description | Notes
 **localDiskSize** | **int** |  |
 **cronMinimumInterval** | **int** |  |
 **cronMaximumJitter** | **int** |  |
+**cronProductionExpiryInterval** | **int** |  |
+**cronNonProductionExpiryInterval** | **int** |  |
 **concurrencyLimits** | **array<string,int>** |  |
 **flexibleBuildCache** | **bool** |  |
 **strictConfiguration** | **bool** |  |
@@ -64,5 +66,12 @@ Name | Type | Description | Notes
 **continuousProfiling** | [**\Upsun\Model\TheContinuousProfilingConfiguration**](TheContinuousProfilingConfiguration.md) |  |
 **disableAgentErrorReporter** | **bool** |  |
 **requiresDomainOwnership** | **bool** |  |
+**enableGuaranteedResources** | **bool** |  |
+**gitServer** | [**\Upsun\Model\GitServerConfiguration**](GitServerConfiguration.md) |  |
+**activityLogsMaxSize** | **int** |  |
+**allowManualDeployments** | **bool** |  |
+**allowRollingDeployments** | **bool** |  |
+**allowBurst** | **bool** |  |
+**routerResources** | [**\Upsun\Model\RouterResourceSettingsForFlexPlan**](RouterResourceSettingsForFlexPlan.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

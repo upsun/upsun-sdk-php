@@ -3,6 +3,8 @@
 /**
  * Low level RegionReference (auto-generated)
  *
+ * The referenced region, or null if it no longer exists.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,31 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class RegionReference implements JsonSerializable
+final class RegionReference implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'label' => 'label',
-        'zone' => 'zone',
-        'selectionLabel' => 'selection_label',
-        'projectLabel' => 'project_label',
-        'timezone' => 'timezone',
-        'available' => 'available',
-        'endpoint' => 'endpoint',
-        'provider' => 'provider',
-        'datacenter' => 'datacenter',
-        'compliance' => 'compliance',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'private' => 'private',
-        'code' => 'code',
-        'envimpact' => 'envimpact'
-    ];
-
     public function __construct(
         private readonly string $id,
         private readonly string $label,
@@ -57,34 +38,9 @@ final class RegionReference implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => 'string',
-            'label' => 'string',
-            'zone' => 'string',
-            'selection_label' => 'string',
-            'project_label' => 'string',
-            'timezone' => 'string',
-            'available' => 'bool',
-            'endpoint' => 'string',
-            'provider' => 'object',
-            'datacenter' => 'object',
-            'compliance' => 'object',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            'private' => '?bool',
-            'code' => '?string',
-            'envimpact' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -101,8 +57,8 @@ final class RegionReference implements JsonSerializable
             'provider' => $this->provider,
             'datacenter' => $this->datacenter,
             'compliance' => $this->compliance,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'private' => $this->private,
             'code' => $this->code,
             'envimpact' => $this->envimpact,
@@ -114,164 +70,83 @@ final class RegionReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The machine name of the region where the project is located.
-     *
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The human-readable name of the region.
-     *
-     * @return string
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * The geographical zone of the region.
-     *
-     * @return string
-     */
     public function getZone(): string
     {
         return $this->zone;
     }
 
-    /**
-     * The label to display when choosing between regions for new projects.
-     *
-     * @return string
-     */
     public function getSelectionLabel(): string
     {
         return $this->selectionLabel;
     }
 
-    /**
-     * The label to display on existing projects.
-     *
-     * @return string
-     */
     public function getProjectLabel(): string
     {
         return $this->projectLabel;
     }
 
-    /**
-     * Default timezone of the region.
-     *
-     * @return string
-     */
     public function getTimezone(): string
     {
         return $this->timezone;
     }
 
-    /**
-     * Indicator whether or not this region is selectable during the checkout. Not available regions will never show up during checkout.
-     *
-     * @return bool
-     */
     public function getAvailable(): bool
     {
         return $this->available;
     }
 
-    /**
-     * Link to the region API endpoint.
-     *
-     * @return string
-     */
     public function getEndpoint(): string
     {
         return $this->endpoint;
     }
 
-    /**
-     * Information about the region provider.
-     *
-     * @return object
-     */
     public function getProvider(): object
     {
         return $this->provider;
     }
 
-    /**
-     * Information about the region provider data center.
-     *
-     * @return object
-     */
     public function getDatacenter(): object
     {
         return $this->datacenter;
     }
 
-    /**
-     * Information about the region's compliance.
-     *
-     * @return object
-     */
     public function getCompliance(): object
     {
         return $this->compliance;
     }
 
-    /**
-     * The date and time when the resource was created.
-     *
-     * @return \DateTime
-     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the resource was last updated.
-     *
-     * @return \DateTime
-     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Indicator whether or not this platform is for private use only.
-     *
-     * @return bool|null
-     */
     public function getPrivate(): ?bool
     {
         return $this->private;
     }
 
-    /**
-     * The code of the region
-     *
-     * @return string|null
-     */
     public function getCode(): ?string
     {
         return $this->code;
     }
 
-    /**
-     * Information about the region provider's environmental impact.
-     *
-     * @return object|null
-     */
     public function getEnvimpact(): ?object
     {
         return $this->envimpact;
     }
 }
-

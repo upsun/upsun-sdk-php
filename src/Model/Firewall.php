@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Firewall implements JsonSerializable
+final class Firewall implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'outbound' => 'outbound'
-    ];
-
     public function __construct(
         private readonly array $outbound,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'outbound' => '\Upsun\Model\OutboundFirewallRestrictionsInner[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -55,11 +39,10 @@ final class Firewall implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\OutboundFirewallRestrictionsInner[]
+     * @return OutboundFirewallRestrictionsInner[]
      */
     public function getOutbound(): array
     {
         return $this->outbound;
     }
 }
-

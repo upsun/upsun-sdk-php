@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheAddonCredentialInformationOptional1 implements JsonSerializable
+final class TheAddonCredentialInformationOptional1 implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'addonKey' => 'addon_key',
-        'clientKey' => 'client_key',
-        'sharedSecret' => 'shared_secret'
-    ];
-
     public function __construct(
         private readonly string $addonKey,
         private readonly string $clientKey,
@@ -31,21 +23,9 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'addon_key' => 'string',
-            'client_key' => 'string',
-            'shared_secret' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getAddonKey(): string
     {
         return $this->addonKey;
     }
 
-    /**
-     * @return string
-     */
     public function getClientKey(): string
     {
         return $this->clientKey;
     }
 
-    /**
-     * @return string
-     */
     public function getSharedSecret(): string
     {
         return $this->sharedSecret;
     }
 }
-

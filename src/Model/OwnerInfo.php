@@ -3,6 +3,8 @@
 /**
  * Low level OwnerInfo (auto-generated)
  *
+ * Project owner information that can be exposed to collaborators.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,18 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OwnerInfo implements JsonSerializable
+final class OwnerInfo implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'username' => 'username',
-        'displayName' => 'display_name'
-    ];
-
     public function __construct(
         private readonly ?string $type = null,
         private readonly ?string $username = null,
@@ -31,21 +25,9 @@ final class OwnerInfo implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => '?string',
-            'username' => '?string',
-            'display_name' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,34 +44,18 @@ final class OwnerInfo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Type of the owner, usually 'user'.
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * The username of the owner.
-     *
-     * @return string|null
-     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-     * The full name of the owner.
-     *
-     * @return string|null
-     */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 }
-

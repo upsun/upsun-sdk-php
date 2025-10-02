@@ -12,42 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
+final class TheHostsOfTheDeploymentTargetInner implements ModelInterface, JsonSerializable
 {
-    public const TYPE_CORE = 'core';
-    public const TYPE_SATELLITE = 'satellite';
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'type' => 'type',
-        'services' => 'services'
-    ];
-
     public function __construct(
         private readonly string $type,
-        private readonly ?string $id = null,
-        private readonly ?array $services = [],
+        private readonly ?string $id,
+        private readonly ?array $services,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'type' => 'string',
-            'services' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -64,28 +42,18 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getServices(): ?array
     {
         return $this->services;
     }
 }
-

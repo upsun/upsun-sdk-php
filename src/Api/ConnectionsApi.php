@@ -37,9 +37,15 @@ final class ConnectionsApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,16 @@ final class ConnectionsApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Delete a federated login connection
      *
+     * Deletes the specified connection.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @see https://docs.upsun.com/api/#tag/Connections/operation/delete-login-connection
      */
     public function deleteLoginConnection(
         string $provider,
@@ -66,11 +77,11 @@ final class ConnectionsApi extends AbstractApi
     }
 
     /**
-     * Delete a federated login connection
+     * Delete a federated login connection with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function deleteLoginConnectionWithHttpInfo(
+    private function deleteLoginConnectionWithHttpInfo(
         string $provider,
         string $userId
     ): void {
@@ -80,13 +91,14 @@ final class ConnectionsApi extends AbstractApi
         );
 
         try {
-            $response = $this->sendAuthenticatedRequest(
+            $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
-
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -96,10 +108,11 @@ final class ConnectionsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function deleteLoginConnectionRequest(
+    private function deleteLoginConnectionRequest(
         string $provider,
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'provider' is set
         if (
             $provider === null
@@ -107,9 +120,11 @@ final class ConnectionsApi extends AbstractApi
             && count($provider) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $provider when calling deleteLoginConnection'
+                'Missing the required parameter $provider 
+                when calling deleteLoginConnection'
             );
         }
+
         // verify the required parameter 'userId' is set
         if (
             $userId === null
@@ -117,18 +132,16 @@ final class ConnectionsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $userId when calling deleteLoginConnection'
+                'Missing the required parameter $userId 
+                when calling deleteLoginConnection'
             );
         }
-
         $resourcePath = '/users/{user_id}/connections/{provider}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($provider !== null) {
@@ -155,7 +168,7 @@ final class ConnectionsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -198,8 +211,14 @@ final class ConnectionsApi extends AbstractApi
     /**
      * Get a federated login connection
      *
+     * Retrieves the specified connection.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Connection
+     *
+     * @see https://docs.upsun.com/api/#tag/Connections/operation/get-login-connection
      */
     public function getLoginConnection(
         string $provider,
@@ -212,11 +231,13 @@ final class ConnectionsApi extends AbstractApi
     }
 
     /**
-     * Get a federated login connection
+     * Get a federated login connection with HTTP Info
+     *
+     * @return \Upsun\Model\Connection
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function getLoginConnectionWithHttpInfo(
+    private function getLoginConnectionWithHttpInfo(
         string $provider,
         string $userId
     ): \Upsun\Model\Connection {
@@ -229,14 +250,17 @@ final class ConnectionsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Connection',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -246,10 +270,11 @@ final class ConnectionsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function getLoginConnectionRequest(
+    private function getLoginConnectionRequest(
         string $provider,
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'provider' is set
         if (
             $provider === null
@@ -257,9 +282,11 @@ final class ConnectionsApi extends AbstractApi
             && count($provider) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $provider when calling getLoginConnection'
+                'Missing the required parameter $provider 
+                when calling getLoginConnection'
             );
         }
+
         // verify the required parameter 'userId' is set
         if (
             $userId === null
@@ -267,18 +294,16 @@ final class ConnectionsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $userId when calling getLoginConnection'
+                'Missing the required parameter $userId 
+                when calling getLoginConnection'
             );
         }
-
         $resourcePath = '/users/{user_id}/connections/{provider}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($provider !== null) {
@@ -305,7 +330,7 @@ final class ConnectionsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -348,10 +373,14 @@ final class ConnectionsApi extends AbstractApi
     /**
      * List federated login connections
      *
+     * Retrieves a list of connections associated with a single user.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
      * @return \Upsun\Model\Connection[]
+     *
+     * @see https://docs.upsun.com/api/#tag/Connections/operation/list-login-connections
      */
     public function listLoginConnections(
         string $userId
@@ -362,11 +391,13 @@ final class ConnectionsApi extends AbstractApi
     }
 
     /**
-     * List federated login connections
+     * List federated login connections with HTTP Info
+     *
+     * @return \Upsun\Model\Connection[]
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listLoginConnectionsWithHttpInfo(
+    private function listLoginConnectionsWithHttpInfo(
         string $userId
     ): array {
         $request = $this->listLoginConnectionsRequest(
@@ -377,14 +408,17 @@ final class ConnectionsApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Connection[]',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -394,9 +428,10 @@ final class ConnectionsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listLoginConnectionsRequest(
+    private function listLoginConnectionsRequest(
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (
             $userId === null
@@ -404,18 +439,16 @@ final class ConnectionsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $userId when calling listLoginConnections'
+                'Missing the required parameter $userId 
+                when calling listLoginConnections'
             );
         }
-
         $resourcePath = '/users/{user_id}/connections';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($userId !== null) {
@@ -434,7 +467,7 @@ final class ConnectionsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

@@ -12,22 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ProjectPatch implements JsonSerializable
+final class ProjectPatch implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'attributes' => 'attributes',
-        'title' => 'title',
-        'description' => 'description',
-        'defaultBranch' => 'default_branch',
-        'timezone' => 'timezone',
-        'region' => 'region',
-        'defaultDomain' => 'default_domain'
-    ];
-
     public function __construct(
         private readonly ?string $defaultBranch = null,
         private readonly ?string $defaultDomain = null,
@@ -39,25 +27,9 @@ final class ProjectPatch implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'attributes' => 'string[]',
-            'title' => '?string',
-            'description' => '?string',
-            'default_branch' => '?string',
-            'timezone' => '?string',
-            'region' => '?string',
-            'default_domain' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -78,60 +50,38 @@ final class ProjectPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
-    /**
-     * @return string|null
-     */
     public function getRegion(): ?string
     {
         return $this->region;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDefaultDomain(): ?string
     {
         return $this->defaultDomain;
     }
 }
-

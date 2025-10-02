@@ -3,6 +3,8 @@
 /**
  * Low level ProjectReference (auto-generated)
  *
+ * The referenced project, or null if it no longer exists.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,61 +14,27 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ProjectReference implements JsonSerializable
+final class ProjectReference implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'organizationId' => 'organization_id',
-        'subscriptionId' => 'subscription_id',
-        'region' => 'region',
-        'title' => 'title',
-        'type' => 'type',
-        'plan' => 'plan',
-        'status' => 'status',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly string $id,
         private readonly string $organizationId,
         private readonly string $subscriptionId,
         private readonly string $region,
         private readonly string $title,
-        private readonly \Upsun\Model\OrganizationProjectType $type,
-        private readonly \Upsun\Model\OrganizationProjectPlan $plan,
-        private readonly \Upsun\Model\OrganizationProjectStatus $status,
+        private readonly ProjectType $type,
+        private readonly string $plan,
+        private readonly ProjectStatus $status,
         private readonly \DateTime $createdAt,
         private readonly \DateTime $updatedAt,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => 'string',
-            'organization_id' => 'string',
-            'subscription_id' => 'string',
-            'region' => 'string',
-            'title' => 'string',
-            'type' => '\Upsun\Model\OrganizationProjectType',
-            'plan' => '\Upsun\Model\OrganizationProjectPlan',
-            'status' => '\Upsun\Model\OrganizationProjectStatus',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -80,8 +48,8 @@ final class ProjectReference implements JsonSerializable
             'type' => $this->type,
             'plan' => $this->plan,
             'status' => $this->status,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -90,98 +58,53 @@ final class ProjectReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the project.
-     *
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string
-     */
     public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The ID of the subscription.
-     *
-     * @return string
-     */
     public function getSubscriptionId(): string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The machine name of the region where the project is located.
-     *
-     * @return string
-     */
     public function getRegion(): string
     {
         return $this->region;
     }
 
-    /**
-     * The title of the project.
-     *
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectType
-     */
-    public function getType(): \Upsun\Model\OrganizationProjectType
+    public function getType(): ProjectType
     {
         return $this->type;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectPlan
-     */
-    public function getPlan(): \Upsun\Model\OrganizationProjectPlan
+    public function getPlan(): string
     {
         return $this->plan;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectStatus
-     */
-    public function getStatus(): \Upsun\Model\OrganizationProjectStatus
+    public function getStatus(): ProjectStatus
     {
         return $this->status;
     }
 
-    /**
-     * The date and time when the project was created.
-     *
-     * @return \DateTime
-     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the project was last updated.
-     *
-     * @return \DateTime
-     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
 }
-

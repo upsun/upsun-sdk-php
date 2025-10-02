@@ -12,27 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Certificate implements JsonSerializable
+final class Certificate implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'certificate' => 'certificate',
-        'chain' => 'chain',
-        'isProvisioned' => 'is_provisioned',
-        'isInvalid' => 'is_invalid',
-        'isRoot' => 'is_root',
-        'domains' => 'domains',
-        'authType' => 'auth_type',
-        'issuer' => 'issuer',
-        'expiresAt' => 'expires_at'
-    ];
-
     public function __construct(
+        private readonly string $id,
         private readonly string $certificate,
         private readonly array $chain,
         private readonly bool $isProvisioned,
@@ -42,41 +27,22 @@ final class Certificate implements JsonSerializable
         private readonly array $authType,
         private readonly array $issuer,
         private readonly \DateTime $expiresAt,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'certificate' => 'string',
-            'chain' => 'string[]',
-            'is_provisioned' => 'bool',
-            'is_invalid' => 'bool',
-            'is_root' => 'bool',
-            'domains' => 'string[]',
-            'auth_type' => 'string[]',
-            'issuer' => '\Upsun\Model\TheIssuerOfTheCertificateInner[]',
-            'expires_at' => '\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'id' => $this->id,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'certificate' => $this->certificate,
             'chain' => $this->chain,
             'isProvisioned' => $this->isProvisioned,
@@ -85,7 +51,7 @@ final class Certificate implements JsonSerializable
             'domains' => $this->domains,
             'authType' => $this->authType,
             'issuer' => $this->issuer,
-            'expiresAt' => $this->expiresAt,
+            'expiresAt' => $this->expiresAt?->format(DATE_ATOM),
         ];
     }
 
@@ -94,92 +60,66 @@ final class Certificate implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getCertificate(): string
     {
         return $this->certificate;
     }
 
-    /**
-     * @return string[]
-     */
     public function getChain(): array
     {
         return $this->chain;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsProvisioned(): bool
     {
         return $this->isProvisioned;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsInvalid(): bool
     {
         return $this->isInvalid;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsRoot(): bool
     {
         return $this->isRoot;
     }
 
-    /**
-     * @return string[]
-     */
     public function getDomains(): array
     {
         return $this->domains;
     }
 
-    /**
-     * @return string[]
-     */
     public function getAuthType(): array
     {
         return $this->authType;
     }
 
     /**
-     * @return \Upsun\Model\TheIssuerOfTheCertificateInner[]
+     * @return TheIssuerOfTheCertificateInner[]
      */
     public function getIssuer(): array
     {
         return $this->issuer;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getExpiresAt(): \DateTime
     {
         return $this->expiresAt;
     }
 }
-

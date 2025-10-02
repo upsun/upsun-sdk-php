@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CreateTeamMemberRequest implements JsonSerializable
+final class CreateTeamMemberRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'userId' => 'user_id'
-    ];
-
     public function __construct(
         private readonly string $userId,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'user_id' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,14 +38,8 @@ final class CreateTeamMemberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * ID of the user.
-     *
-     * @return string
-     */
     public function getUserId(): string
     {
         return $this->userId;
     }
 }
-

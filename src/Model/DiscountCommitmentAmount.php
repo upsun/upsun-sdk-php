@@ -3,6 +3,7 @@
 /**
  * Low level DiscountCommitmentAmount (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,40 +13,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class DiscountCommitmentAmount implements JsonSerializable
+final class DiscountCommitmentAmount implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'monthly' => 'monthly',
-        'commitmentPeriod' => 'commitment_period',
-        'contractTotal' => 'contract_total'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\CurrencyAmount $monthly = null,
-        private readonly ?\Upsun\Model\CurrencyAmount $commitmentPeriod = null,
-        private readonly ?\Upsun\Model\CurrencyAmount $contractTotal = null,
+        private readonly ?CurrencyAmount $monthly = null,
+        private readonly ?CurrencyAmount $commitmentPeriod = null,
+        private readonly ?CurrencyAmount $contractTotal = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'monthly' => '?\Upsun\Model\CurrencyAmount',
-            'commitment_period' => '?\Upsun\Model\CurrencyAmount',
-            'contract_total' => '?\Upsun\Model\CurrencyAmount',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +43,18 @@ final class DiscountCommitmentAmount implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\CurrencyAmount|null
-     */
-    public function getMonthly(): ?\Upsun\Model\CurrencyAmount
+    public function getMonthly(): ?CurrencyAmount
     {
         return $this->monthly;
     }
 
-    /**
-     * @return \Upsun\Model\CurrencyAmount|null
-     */
-    public function getCommitmentPeriod(): ?\Upsun\Model\CurrencyAmount
+    public function getCommitmentPeriod(): ?CurrencyAmount
     {
         return $this->commitmentPeriod;
     }
 
-    /**
-     * @return \Upsun\Model\CurrencyAmount|null
-     */
-    public function getContractTotal(): ?\Upsun\Model\CurrencyAmount
+    public function getContractTotal(): ?CurrencyAmount
     {
         return $this->contractTotal;
     }
 }
-

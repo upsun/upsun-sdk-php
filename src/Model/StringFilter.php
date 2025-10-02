@@ -12,23 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class StringFilter implements JsonSerializable
+final class StringFilter implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'eq' => 'eq',
-        'ne' => 'ne',
-        'in' => 'in',
-        'nin' => 'nin',
-        'between' => 'between',
-        'contains' => 'contains',
-        'starts' => 'starts',
-        'ends' => 'ends'
-    ];
-
     public function __construct(
         private readonly ?string $eq = null,
         private readonly ?string $ne = null,
@@ -41,26 +28,9 @@ final class StringFilter implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'eq' => '?string',
-            'ne' => '?string',
-            'in' => '?string',
-            'nin' => '?string',
-            'between' => '?string',
-            'contains' => '?string',
-            'starts' => '?string',
-            'ends' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -82,84 +52,43 @@ final class StringFilter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Equal
-     *
-     * @return string|null
-     */
     public function getEq(): ?string
     {
         return $this->eq;
     }
 
-    /**
-     * Not equal
-     *
-     * @return string|null
-     */
     public function getNe(): ?string
     {
         return $this->ne;
     }
 
-    /**
-     * In (comma-separated list)
-     *
-     * @return string|null
-     */
     public function getIn(): ?string
     {
         return $this->in;
     }
 
-    /**
-     * Not in (comma-separated list)
-     *
-     * @return string|null
-     */
     public function getNin(): ?string
     {
         return $this->nin;
     }
 
-    /**
-     * Between (comma-separated list)
-     *
-     * @return string|null
-     */
     public function getBetween(): ?string
     {
         return $this->between;
     }
 
-    /**
-     * Contains
-     *
-     * @return string|null
-     */
     public function getContains(): ?string
     {
         return $this->contains;
     }
 
-    /**
-     * Starts with
-     *
-     * @return string|null
-     */
     public function getStarts(): ?string
     {
         return $this->starts;
     }
 
-    /**
-     * Ends with
-     *
-     * @return string|null
-     */
     public function getEnds(): ?string
     {
         return $this->ends;
     }
 }
-

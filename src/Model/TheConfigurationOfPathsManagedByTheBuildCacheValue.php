@@ -12,43 +12,21 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSerializable
+final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'directory' => 'directory',
-        'watch' => 'watch',
-        'allowStale' => 'allow_stale',
-        'shareBetweenApps' => 'share_between_apps'
-    ];
-
     public function __construct(
         private readonly array $watch,
         private readonly bool $allowStale,
         private readonly bool $shareBetweenApps,
-        private readonly ?string $directory = null,
+        private readonly ?string $directory,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'directory' => '?string',
-            'watch' => 'string[]',
-            'allow_stale' => 'bool',
-            'share_between_apps' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,36 +44,23 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getDirectory(): ?string
     {
         return $this->directory;
     }
 
-    /**
-     * @return string[]
-     */
     public function getWatch(): array
     {
         return $this->watch;
     }
 
-    /**
-     * @return bool
-     */
     public function getAllowStale(): bool
     {
         return $this->allowStale;
     }
 
-    /**
-     * @return bool
-     */
     public function getShareBetweenApps(): bool
     {
         return $this->shareBetweenApps;
     }
 }
-

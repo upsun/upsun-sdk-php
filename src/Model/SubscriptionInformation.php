@@ -12,35 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class SubscriptionInformation implements JsonSerializable
+final class SubscriptionInformation implements ModelInterface, JsonSerializable
 {
-    public const PLAN__2XLARGE = '2xlarge';
-    public const PLAN__4XLARGE = '4xlarge';
-    public const PLAN__8XLARGE = '8xlarge';
-    public const PLAN_DEVELOPMENT = 'development';
-    public const PLAN_LARGE = 'large';
-    public const PLAN_MEDIUM = 'medium';
-    public const PLAN_STANDARD = 'standard';
-    public const PLAN_XLARGE = 'xlarge';
-
-    private static array $attributeMap = [
-        'licenseUri' => 'license_uri',
-        'storage' => 'storage',
-        'includedUsers' => 'included_users',
-        'subscriptionManagementUri' => 'subscription_management_uri',
-        'restricted' => 'restricted',
-        'suspended' => 'suspended',
-        'userLicenses' => 'user_licenses',
-        'plan' => 'plan',
-        'environments' => 'environments',
-        'resources' => 'resources',
-        'resourceValidationUrl' => 'resource_validation_url',
-        'imageTypes' => 'image_types'
-    ];
-
     public function __construct(
         private readonly string $licenseUri,
         private readonly int $storage,
@@ -49,38 +24,18 @@ final class SubscriptionInformation implements JsonSerializable
         private readonly bool $restricted,
         private readonly bool $suspended,
         private readonly int $userLicenses,
+        private readonly string $id,
         private readonly ?string $plan = null,
         private readonly ?int $environments = null,
-        private readonly ?\Upsun\Model\ResourcesLimits $resources = null,
+        private readonly ?ResourcesLimits $resources = null,
         private readonly ?string $resourceValidationUrl = null,
-        private readonly ?\Upsun\Model\RestrictedAndDeniedImageTypes $imageTypes = null,
+        private readonly ?RestrictedAndDeniedImageTypes $imageTypes = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'license_uri' => 'string',
-            'storage' => 'int',
-            'included_users' => 'int',
-            'subscription_management_uri' => 'string',
-            'restricted' => 'bool',
-            'suspended' => 'bool',
-            'user_licenses' => 'int',
-            'plan' => '?string',
-            'environments' => '?int',
-            'resources' => '?\Upsun\Model\ResourcesLimits',
-            'resource_validation_url' => '?string',
-            'image_types' => '?\Upsun\Model\RestrictedAndDeniedImageTypes',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -93,6 +48,7 @@ final class SubscriptionInformation implements JsonSerializable
             'restricted' => $this->restricted,
             'suspended' => $this->suspended,
             'userLicenses' => $this->userLicenses,
+            'id' => $this->id,
             'plan' => $this->plan,
             'environments' => $this->environments,
             'resources' => $this->resources,
@@ -106,100 +62,68 @@ final class SubscriptionInformation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getLicenseUri(): string
     {
         return $this->licenseUri;
     }
 
-    /**
-     * @return int
-     */
     public function getStorage(): int
     {
         return $this->storage;
     }
 
-    /**
-     * @return int
-     */
     public function getIncludedUsers(): int
     {
         return $this->includedUsers;
     }
 
-    /**
-     * @return string
-     */
     public function getSubscriptionManagementUri(): string
     {
         return $this->subscriptionManagementUri;
     }
 
-    /**
-     * @return bool
-     */
     public function getRestricted(): bool
     {
         return $this->restricted;
     }
 
-    /**
-     * @return bool
-     */
     public function getSuspended(): bool
     {
         return $this->suspended;
     }
 
-    /**
-     * @return int
-     */
     public function getUserLicenses(): int
     {
         return $this->userLicenses;
     }
 
-    /**
-     * @return string|null
-     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * @return int|null
-     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
 
-    /**
-     * @return \Upsun\Model\ResourcesLimits|null
-     */
-    public function getResources(): ?\Upsun\Model\ResourcesLimits
+    public function getResources(): ?ResourcesLimits
     {
         return $this->resources;
     }
 
-    /**
-     * @return string|null
-     */
     public function getResourceValidationUrl(): ?string
     {
         return $this->resourceValidationUrl;
     }
 
-    /**
-     * @return \Upsun\Model\RestrictedAndDeniedImageTypes|null
-     */
-    public function getImageTypes(): ?\Upsun\Model\RestrictedAndDeniedImageTypes
+    public function getImageTypes(): ?RestrictedAndDeniedImageTypes
     {
         return $this->imageTypes;
     }
 }
-

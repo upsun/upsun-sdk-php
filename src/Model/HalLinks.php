@@ -3,6 +3,8 @@
 /**
  * Low level HalLinks (auto-generated)
  *
+ * Links to _self, and previous or next page, given that they exist.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,40 +14,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class HalLinks implements JsonSerializable
+final class HalLinks implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'self' => 'self',
-        'previous' => 'previous',
-        'next' => 'next'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\HalLinksSelf $self = null,
-        private readonly ?\Upsun\Model\HalLinksPrevious $previous = null,
-        private readonly ?\Upsun\Model\HalLinksNext $next = null,
+        private readonly ?HalLinksSelf $self = null,
+        private readonly ?HalLinksPrevious $previous = null,
+        private readonly ?HalLinksNext $next = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'self' => '?\Upsun\Model\HalLinksSelf',
-            'previous' => '?\Upsun\Model\HalLinksPrevious',
-            'next' => '?\Upsun\Model\HalLinksNext',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +44,18 @@ final class HalLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\HalLinksSelf|null
-     */
-    public function getSelf(): ?\Upsun\Model\HalLinksSelf
+    public function getSelf(): ?HalLinksSelf
     {
         return $this->self;
     }
 
-    /**
-     * @return \Upsun\Model\HalLinksPrevious|null
-     */
-    public function getPrevious(): ?\Upsun\Model\HalLinksPrevious
+    public function getPrevious(): ?HalLinksPrevious
     {
         return $this->previous;
     }
 
-    /**
-     * @return \Upsun\Model\HalLinksNext|null
-     */
-    public function getNext(): ?\Upsun\Model\HalLinksNext
+    public function getNext(): ?HalLinksNext
     {
         return $this->next;
     }
 }
-

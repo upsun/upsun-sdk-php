@@ -12,26 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class FastlyIntegrationPatch implements JsonSerializable
+final class FastlyIntegrationPatch implements ModelInterface, JsonSerializable
 {
-    public const RESULT_STAR = '*';
-    public const RESULT_FAILURE = 'failure';
-    public const RESULT_SUCCESS = 'success';
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'token' => 'token',
-        'serviceId' => 'service_id',
-        'events' => 'events',
-        'environments' => 'environments',
-        'excludedEnvironments' => 'excluded_environments',
-        'states' => 'states',
-        'result' => 'result'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $token,
@@ -44,26 +28,9 @@ final class FastlyIntegrationPatch implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'token' => 'string',
-            'service_id' => 'string',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
-            'result' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -85,68 +52,43 @@ final class FastlyIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * @return string
-     */
     public function getServiceId(): string
     {
         return $this->serviceId;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getEvents(): ?array
     {
         return $this->events;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getExcludedEnvironments(): ?array
     {
         return $this->excludedEnvironments;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getStates(): ?array
     {
         return $this->states;
     }
 
-    /**
-     * @return string|null
-     */
     public function getResult(): ?string
     {
         return $this->result;
     }
 }
-

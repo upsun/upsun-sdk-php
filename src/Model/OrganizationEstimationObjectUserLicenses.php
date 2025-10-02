@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationEstimationObjectUserLicenses (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
+final class OrganizationEstimationObjectUserLicenses implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'base' => 'base',
-        'userManagement' => 'user_management'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase $base = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement $userManagement = null,
+        private readonly ?OrganizationEstimationObjectUserLicensesBase $base = null,
+        private readonly ?OrganizationEstimationObjectUserLicensesUserManagement $userManagement = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'base' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase',
-            'user_management' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +41,13 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null
-     */
-    public function getBase(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase
+    public function getBase(): ?OrganizationEstimationObjectUserLicensesBase
     {
         return $this->base;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null
-     */
-    public function getUserManagement(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement
+    public function getUserManagement(): ?OrganizationEstimationObjectUserLicensesUserManagement
     {
         return $this->userManagement;
     }
 }
-

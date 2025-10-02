@@ -12,19 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ListTicketPriorities200ResponseInner implements JsonSerializable
+final class ListTicketPriorities200ResponseInner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'label' => 'label',
-        'shortDescription' => 'short_description',
-        'description' => 'description'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $label = null,
@@ -33,22 +24,9 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'label' => '?string',
-            'short_description' => '?string',
-            'description' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,44 +44,23 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Machine name of the priority.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The human-readable label of the priority.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * The short description of the priority.
-     *
-     * @return string|null
-     */
     public function getShortDescription(): ?string
     {
         return $this->shortDescription;
     }
 
-    /**
-     * The long description of the priority.
-     *
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 }
-

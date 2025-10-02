@@ -3,6 +3,7 @@
 /**
  * Low level UpdateOrgBillingAlertConfigRequestConfig (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,37 +13,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
+final class UpdateOrgBillingAlertConfigRequestConfig implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'threshold' => 'threshold',
-        'mode' => 'mode'
-    ];
-
     public function __construct(
         private readonly ?int $threshold = null,
         private readonly ?string $mode = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'threshold' => '?int',
-            'mode' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +41,13 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The amount after which a billing alert should be triggered.
-     *
-     * @return int|null
-     */
     public function getThreshold(): ?int
     {
         return $this->threshold;
     }
 
-    /**
-     * The mode in which the alert is triggered.
-     *
-     * @return string|null
-     */
     public function getMode(): ?string
     {
         return $this->mode;
     }
 }
-

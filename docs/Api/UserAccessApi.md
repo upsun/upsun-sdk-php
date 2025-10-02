@@ -1,19 +1,19 @@
-# Upsun\UserAccessApi
+# [Upsun\Api\UserAccessApi](../src/Api/UserAccessApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getProjectUserAccess()**](UserAccessApi.md#getProjectUserAccess) | **GET** /projects/{project_id}/user-access/{user_id} | Get user access for a project
-[**getUserProjectAccess()**](UserAccessApi.md#getUserProjectAccess) | **GET** /users/{user_id}/project-access/{project_id} | Get project access for a user
-[**grantProjectUserAccess()**](UserAccessApi.md#grantProjectUserAccess) | **POST** /projects/{project_id}/user-access | Grant user access to a project
-[**grantUserProjectAccess()**](UserAccessApi.md#grantUserProjectAccess) | **POST** /users/{user_id}/project-access | Grant project access to a user
-[**listProjectUserAccess()**](UserAccessApi.md#listProjectUserAccess) | **GET** /projects/{project_id}/user-access | List user access for a project
-[**listUserProjectAccess()**](UserAccessApi.md#listUserProjectAccess) | **GET** /users/{user_id}/project-access | List project access for a user
-[**removeProjectUserAccess()**](UserAccessApi.md#removeProjectUserAccess) | **DELETE** /projects/{project_id}/user-access/{user_id} | Remove user access for a project
-[**removeUserProjectAccess()**](UserAccessApi.md#removeUserProjectAccess) | **DELETE** /users/{user_id}/project-access/{project_id} | Remove project access for a user
-[**updateProjectUserAccess()**](UserAccessApi.md#updateProjectUserAccess) | **PATCH** /projects/{project_id}/user-access/{user_id} | Update user access for a project
-[**updateUserProjectAccess()**](UserAccessApi.md#updateUserProjectAccess) | **PATCH** /users/{user_id}/project-access/{project_id} | Update project access for a user
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**getProjectUserAccess()**](UserAccessApi.md#getProjectUserAccess) | **GET** /projects/{project_id}/user-access/{user_id} | Get user access for a project | https://docs.upsun.com/api/#tag/User-Access/operation/get-project-user-access |
+| [**getUserProjectAccess()**](UserAccessApi.md#getUserProjectAccess) | **GET** /users/{user_id}/project-access/{project_id} | Get project access for a user | https://docs.upsun.com/api/#tag/User-Access/operation/get-user-project-access |
+| [**grantProjectUserAccess()**](UserAccessApi.md#grantProjectUserAccess) | **POST** /projects/{project_id}/user-access | Grant user access to a project | https://docs.upsun.com/api/#tag/User-Access/operation/grant-project-user-access |
+| [**grantUserProjectAccess()**](UserAccessApi.md#grantUserProjectAccess) | **POST** /users/{user_id}/project-access | Grant project access to a user | https://docs.upsun.com/api/#tag/User-Access/operation/grant-user-project-access |
+| [**listProjectUserAccess()**](UserAccessApi.md#listProjectUserAccess) | **GET** /projects/{project_id}/user-access | List user access for a project | https://docs.upsun.com/api/#tag/User-Access/operation/list-project-user-access |
+| [**listUserProjectAccess()**](UserAccessApi.md#listUserProjectAccess) | **GET** /users/{user_id}/project-access | List project access for a user | https://docs.upsun.com/api/#tag/User-Access/operation/list-user-project-access |
+| [**removeProjectUserAccess()**](UserAccessApi.md#removeProjectUserAccess) | **DELETE** /projects/{project_id}/user-access/{user_id} | Remove user access for a project | https://docs.upsun.com/api/#tag/User-Access/operation/remove-project-user-access |
+| [**removeUserProjectAccess()**](UserAccessApi.md#removeUserProjectAccess) | **DELETE** /users/{user_id}/project-access/{project_id} | Remove project access for a user | https://docs.upsun.com/api/#tag/User-Access/operation/remove-user-project-access |
+| [**updateProjectUserAccess()**](UserAccessApi.md#updateProjectUserAccess) | **PATCH** /projects/{project_id}/user-access/{user_id} | Update user access for a project | https://docs.upsun.com/api/#tag/User-Access/operation/update-project-user-access |
+| [**updateUserProjectAccess()**](UserAccessApi.md#updateUserProjectAccess) | **PATCH** /users/{user_id}/project-access/{project_id} | Update project access for a user | https://docs.upsun.com/api/#tag/User-Access/operation/update-user-project-access |
 
 
 ## `getProjectUserAccess()`
@@ -35,8 +35,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string | The ID of the project.
@@ -52,10 +52,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| The ID of the project. |
- **userId** | **string**| The ID of the user. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| The ID of the project. | |
+| **userId** | **string**| The ID of the user. | |
 
 ### Return type
 
@@ -93,8 +93,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -110,10 +110,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **projectId** | **string**| The ID of the project. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **projectId** | **string**| The ID of the project. | |
 
 ### Return type
 
@@ -151,8 +151,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string | The ID of the project.
@@ -167,10 +167,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| The ID of the project. |
- **grantProjectUserAccessRequestInner** | [**\Upsun\Model\GrantProjectUserAccessRequestInner[]**](../Model/GrantProjectUserAccessRequestInner.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| The ID of the project. | |
+| **grantProjectUserAccessRequestInner** | [**\Upsun\Model\GrantProjectUserAccessRequestInner[]**](../Model/GrantProjectUserAccessRequestInner.md)|  | |
 
 ### Return type
 
@@ -208,8 +208,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -224,10 +224,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **grantUserProjectAccessRequestInner** | [**\Upsun\Model\GrantUserProjectAccessRequestInner[]**](../Model/GrantUserProjectAccessRequestInner.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **grantUserProjectAccessRequestInner** | [**\Upsun\Model\GrantUserProjectAccessRequestInner[]**](../Model/GrantUserProjectAccessRequestInner.md)|  | |
 
 ### Return type
 
@@ -265,8 +265,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string | The ID of the project.
@@ -285,13 +285,13 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| The ID of the project. |
- **pageSize** | **int**| Determines the number of items to show. | [optional]
- **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| The ID of the project. | |
+| **pageSize** | **int**| Determines the number of items to show. | [optional] |
+| **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
 
 ### Return type
 
@@ -329,8 +329,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -350,14 +350,14 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **filterOrganizationId** | **string**| Allows filtering by &#x60;organization_id&#x60;. | [optional]
- **pageSize** | **int**| Determines the number of items to show. | [optional]
- **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **filterOrganizationId** | **string**| Allows filtering by &#x60;organization_id&#x60;. | [optional] |
+| **pageSize** | **int**| Determines the number of items to show. | [optional] |
+| **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
 
 ### Return type
 
@@ -395,8 +395,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string | The ID of the project.
@@ -411,10 +411,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| The ID of the project. |
- **userId** | **string**| The ID of the user. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| The ID of the project. | |
+| **userId** | **string**| The ID of the user. | |
 
 ### Return type
 
@@ -452,8 +452,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -468,10 +468,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **projectId** | **string**| The ID of the project. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **projectId** | **string**| The ID of the project. | |
 
 ### Return type
 
@@ -509,8 +509,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string | The ID of the project.
@@ -526,11 +526,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| The ID of the project. |
- **userId** | **string**| The ID of the user. |
- **updateProjectUserAccessRequest** | [**\Upsun\Model\UpdateProjectUserAccessRequest**](../Model/UpdateProjectUserAccessRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| The ID of the project. | |
+| **userId** | **string**| The ID of the user. | |
+| **updateProjectUserAccessRequest** | [**\Upsun\Model\UpdateProjectUserAccessRequest**](../Model/UpdateProjectUserAccessRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -568,8 +568,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\UserAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -585,11 +585,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **projectId** | **string**| The ID of the project. |
- **updateProjectUserAccessRequest** | [**\Upsun\Model\UpdateProjectUserAccessRequest**](../Model/UpdateProjectUserAccessRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **projectId** | **string**| The ID of the project. | |
+| **updateProjectUserAccessRequest** | [**\Upsun\Model\UpdateProjectUserAccessRequest**](../Model/UpdateProjectUserAccessRequest.md)|  | [optional] |
 
 ### Return type
 

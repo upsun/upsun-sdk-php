@@ -3,6 +3,8 @@
 /**
  * Low level Discount (auto-generated)
  *
+ * The discount object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,35 +14,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Discount implements JsonSerializable
+final class Discount implements ModelInterface, JsonSerializable
 {
-    public const TYPE_ALLOWANCE = 'allowance';
-    public const TYPE_STARTUP = 'startup';
-    public const TYPE_ENTERPRISE = 'enterprise';
-    public const STATUS_INACTIVE = 'inactive';
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_EXPIRED = 'expired';
-    public const STATUS_DEACTIVATED = 'deactivated';
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'organizationId' => 'organization_id',
-        'type' => 'type',
-        'typeLabel' => 'type_label',
-        'status' => 'status',
-        'commitment' => 'commitment',
-        'totalMonths' => 'total_months',
-        'discount' => 'discount',
-        'config' => 'config',
-        'startAt' => 'start_at',
-        'endAt' => 'end_at'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\DiscountCommitment $commitment = null,
+        private readonly ?DiscountCommitment $commitment = null,
         private readonly ?int $totalMonths = null,
         private readonly ?\DateTime $endAt = null,
         private readonly ?int $id = null,
@@ -48,35 +27,15 @@ final class Discount implements JsonSerializable
         private readonly ?string $type = null,
         private readonly ?string $typeLabel = null,
         private readonly ?string $status = null,
-        private readonly ?\Upsun\Model\DiscountDiscount $discount = null,
+        private readonly ?DiscountDiscount $discount = null,
         private readonly ?object $config = null,
         private readonly ?\DateTime $startAt = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?int',
-            'organization_id' => '?string',
-            'type' => '?string',
-            'type_label' => '?string',
-            'status' => '?string',
-            'commitment' => '?\Upsun\Model\DiscountCommitment',
-            'total_months' => '?int',
-            'discount' => '?\Upsun\Model\DiscountDiscount',
-            'config' => '?object',
-            'start_at' => '?\DateTime',
-            'end_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -91,8 +50,8 @@ final class Discount implements JsonSerializable
             'totalMonths' => $this->totalMonths,
             'discount' => $this->discount,
             'config' => $this->config,
-            'startAt' => $this->startAt,
-            'endAt' => $this->endAt,
+            'startAt' => $this->startAt?->format(DATE_ATOM),
+            'endAt' => $this->endAt?->format(DATE_ATOM),
         ];
     }
 
@@ -101,110 +60,58 @@ final class Discount implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the organization discount.
-     *
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * The ULID of the organization the discount applies to.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The machine name of the discount type.
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * The label of the discount type.
-     *
-     * @return string|null
-     */
     public function getTypeLabel(): ?string
     {
         return $this->typeLabel;
     }
 
-    /**
-     * The status of the discount.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * @return \Upsun\Model\DiscountCommitment|null
-     */
-    public function getCommitment(): ?\Upsun\Model\DiscountCommitment
+    public function getCommitment(): ?DiscountCommitment
     {
         return $this->commitment;
     }
 
-    /**
-     * The contract length in months (if applicable).
-     *
-     * @return int|null
-     */
     public function getTotalMonths(): ?int
     {
         return $this->totalMonths;
     }
 
-    /**
-     * @return \Upsun\Model\DiscountDiscount|null
-     */
-    public function getDiscount(): ?\Upsun\Model\DiscountDiscount
+    public function getDiscount(): ?DiscountDiscount
     {
         return $this->discount;
     }
 
-    /**
-     * The discount type specific configuration.
-     *
-     * @return object|null
-     */
     public function getConfig(): ?object
     {
         return $this->config;
     }
 
-    /**
-     * The start time of the discount period.
-     *
-     * @return \DateTime|null
-     */
     public function getStartAt(): ?\DateTime
     {
         return $this->startAt;
     }
 
-    /**
-     * The end time of the discount period (if applicable).
-     *
-     * @return \DateTime|null
-     */
     public function getEndAt(): ?\DateTime
     {
         return $this->endAt;
     }
 }
-

@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class BuildResources implements JsonSerializable
+final class BuildResources implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'enabled' => 'enabled',
-        'maxCpu' => 'max_cpu',
-        'maxMemory' => 'max_memory'
-    ];
-
     public function __construct(
         private readonly bool $enabled,
         private readonly float $maxCpu,
@@ -31,21 +23,9 @@ final class BuildResources implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enabled' => 'bool',
-            'max_cpu' => 'float',
-            'max_memory' => 'int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class BuildResources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return float
-     */
     public function getMaxCpu(): float
     {
         return $this->maxCpu;
     }
 
-    /**
-     * @return int
-     */
     public function getMaxMemory(): int
     {
         return $this->maxMemory;
     }
 }
-

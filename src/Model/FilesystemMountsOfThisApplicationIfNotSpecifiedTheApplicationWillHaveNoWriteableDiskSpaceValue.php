@@ -12,24 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue implements JsonSerializable
+final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue implements ModelInterface, JsonSerializable
 {
-    public const SOURCE_INSTANCE = 'instance';
-    public const SOURCE_LOCAL = 'local';
-    public const SOURCE_SERVICE = 'service';
-    public const SOURCE_STORAGE = 'storage';
-    public const SOURCE_TEMPORARY = 'temporary';
-    public const SOURCE_TMP = 'tmp';
-
-    private static array $attributeMap = [
-        'source' => 'source',
-        'sourcePath' => 'source_path',
-        'service' => 'service'
-    ];
-
     public function __construct(
         private readonly string $source,
         private readonly string $sourcePath,
@@ -37,21 +23,9 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'source' => 'string',
-            'source_path' => 'string',
-            'service' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -68,28 +42,18 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getSource(): string
     {
         return $this->source;
     }
 
-    /**
-     * @return string
-     */
     public function getSourcePath(): string
     {
         return $this->sourcePath;
     }
 
-    /**
-     * @return string|null
-     */
     public function getService(): ?string
     {
         return $this->service;
     }
 }
-

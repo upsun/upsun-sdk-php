@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializable
+final class OrganizationEstimationObjectUserLicensesBase implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'count' => 'count',
-        'total' => 'total',
-        'list' => 'list'
-    ];
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?string $total = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList $list = null,
+        private readonly ?OrganizationEstimationObjectUserLicensesBaseList $list = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'count' => '?int',
-            'total' => '?string',
-            'list' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,32 +42,18 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The number of base user licenses.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
-    /**
-     * The total price for base user licenses.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList|null
-     */
-    public function getList(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList
+    public function getList(): ?OrganizationEstimationObjectUserLicensesBaseList
     {
         return $this->list;
     }
 }
-

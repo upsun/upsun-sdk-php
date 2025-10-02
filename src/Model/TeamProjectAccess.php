@@ -12,22 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TeamProjectAccess implements JsonSerializable
+final class TeamProjectAccess implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'teamId' => 'team_id',
-        'organizationId' => 'organization_id',
-        'projectId' => 'project_id',
-        'projectTitle' => 'project_title',
-        'grantedAt' => 'granted_at',
-        'updatedAt' => 'updated_at',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $teamId = null,
         private readonly ?string $organizationId = null,
@@ -35,29 +23,13 @@ final class TeamProjectAccess implements JsonSerializable
         private readonly ?string $projectTitle = null,
         private readonly ?\DateTime $grantedAt = null,
         private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\TeamProjectAccessLinks $links = null,
+        private readonly ?TeamProjectAccessLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'team_id' => '?string',
-            'organization_id' => '?string',
-            'project_id' => '?string',
-            'project_title' => '?string',
-            'granted_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            '_links' => '?\Upsun\Model\TeamProjectAccessLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -67,8 +39,8 @@ final class TeamProjectAccess implements JsonSerializable
             'organizationId' => $this->organizationId,
             'projectId' => $this->projectId,
             'projectTitle' => $this->projectTitle,
-            'grantedAt' => $this->grantedAt,
-            'updatedAt' => $this->updatedAt,
+            'grantedAt' => $this->grantedAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'links' => $this->links,
         ];
     }
@@ -78,72 +50,38 @@ final class TeamProjectAccess implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the team.
-     *
-     * @return string|null
-     */
     public function getTeamId(): ?string
     {
         return $this->teamId;
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The ID of the project.
-     *
-     * @return string|null
-     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-    /**
-     * The title of the project.
-     *
-     * @return string|null
-     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * The date and time when the access was granted.
-     *
-     * @return \DateTime|null
-     */
     public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
 
-    /**
-     * The date and time when the access was last updated.
-     *
-     * @return \DateTime|null
-     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return \Upsun\Model\TeamProjectAccessLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\TeamProjectAccessLinks
+    public function getLinks(): ?TeamProjectAccessLinks
     {
         return $this->links;
     }
 }
-

@@ -3,6 +3,8 @@
 /**
  * Low level AddressMetadata (auto-generated)
  *
+ * Information about fields required to express an address.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,34 +14,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class AddressMetadata implements JsonSerializable
+final class AddressMetadata implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'metadata' => 'metadata'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
+        private readonly ?AddressMetadataMetadata $metadata = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'metadata' => '?\Upsun\Model\AddressMetadataMetadata',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,12 +40,8 @@ final class AddressMetadata implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\AddressMetadataMetadata|null
-     */
-    public function getMetadata(): ?\Upsun\Model\AddressMetadataMetadata
+    public function getMetadata(): ?AddressMetadataMetadata
     {
         return $this->metadata;
     }
 }
-

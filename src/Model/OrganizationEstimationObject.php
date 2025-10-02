@@ -3,6 +3,8 @@
 /**
  * Low level OrganizationEstimationObject (auto-generated)
  *
+ * An estimation of all organization spend.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,52 +14,24 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationEstimationObject implements JsonSerializable
+final class OrganizationEstimationObject implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'total' => 'total',
-        'subTotal' => 'sub_total',
-        'vouchers' => 'vouchers',
-        'userLicenses' => 'user_licenses',
-        'userManagement' => 'user_management',
-        'supportLevel' => 'support_level',
-        'subscriptions' => 'subscriptions'
-    ];
-
     public function __construct(
         private readonly ?string $total = null,
         private readonly ?string $subTotal = null,
         private readonly ?string $vouchers = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicenses $userLicenses = null,
+        private readonly ?OrganizationEstimationObjectUserLicenses $userLicenses = null,
         private readonly ?string $userManagement = null,
         private readonly ?string $supportLevel = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
+        private readonly ?OrganizationEstimationObjectSubscriptions $subscriptions = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'total' => '?string',
-            'sub_total' => '?string',
-            'vouchers' => '?string',
-            'user_licenses' => '?\Upsun\Model\OrganizationEstimationObjectUserLicenses',
-            'user_management' => '?string',
-            'support_level' => '?string',
-            'subscriptions' => '?\Upsun\Model\OrganizationEstimationObjectSubscriptions',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -78,70 +52,38 @@ final class OrganizationEstimationObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The total estimated price for the organization.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    /**
-     * The sub total for all projects and sellables.
-     *
-     * @return string|null
-     */
     public function getSubTotal(): ?string
     {
         return $this->subTotal;
     }
 
-    /**
-     * The total amount of vouchers.
-     *
-     * @return string|null
-     */
     public function getVouchers(): ?string
     {
         return $this->vouchers;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicenses|null
-     */
-    public function getUserLicenses(): ?\Upsun\Model\OrganizationEstimationObjectUserLicenses
+    public function getUserLicenses(): ?OrganizationEstimationObjectUserLicenses
     {
         return $this->userLicenses;
     }
 
-    /**
-     * An estimation of the advanced user management sellable cost.
-     *
-     * @return string|null
-     */
     public function getUserManagement(): ?string
     {
         return $this->userManagement;
     }
 
-    /**
-     * The total monthly price for premium support.
-     *
-     * @return string|null
-     */
     public function getSupportLevel(): ?string
     {
         return $this->supportLevel;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptions|null
-     */
-    public function getSubscriptions(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptions
+    public function getSubscriptions(): ?OrganizationEstimationObjectSubscriptions
     {
         return $this->subscriptions;
     }
 }
-

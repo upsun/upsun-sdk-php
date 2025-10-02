@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
+final class SendOrgMfaReminders200ResponseValue implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'code' => 'code',
-        'message' => 'message'
-    ];
-
     public function __construct(
         private readonly ?int $code = null,
         private readonly ?string $message = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'code' => '?int',
-            'message' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +40,13 @@ final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * An HTTP-like status code referring to the result of the operation for the specific user.
-     *
-     * @return int|null
-     */
     public function getCode(): ?int
     {
         return $this->code;
     }
 
-    /**
-     * A human-readable message describing the result of the operation for the specific user
-     *
-     * @return string|null
-     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
 }
-

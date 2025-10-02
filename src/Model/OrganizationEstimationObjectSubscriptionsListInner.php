@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationEstimationObjectSubscriptionsListInner (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,43 +13,21 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSerializable
+final class OrganizationEstimationObjectSubscriptionsListInner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'licenseId' => 'license_id',
-        'projectTitle' => 'project_title',
-        'total' => 'total',
-        'usage' => 'usage'
-    ];
-
     public function __construct(
         private readonly ?string $licenseId = null,
         private readonly ?string $projectTitle = null,
         private readonly ?string $total = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
+        private readonly ?OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'license_id' => '?string',
-            'project_title' => '?string',
-            'total' => '?string',
-            'usage' => '?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -66,42 +45,23 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The id of the subscription.
-     *
-     * @return string|null
-     */
     public function getLicenseId(): ?string
     {
         return $this->licenseId;
     }
 
-    /**
-     * The name of the project.
-     *
-     * @return string|null
-     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * The total price for the subscription.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null
-     */
-    public function getUsage(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage
+    public function getUsage(): ?OrganizationEstimationObjectSubscriptionsListInnerUsage
     {
         return $this->usage;
     }
 }
-

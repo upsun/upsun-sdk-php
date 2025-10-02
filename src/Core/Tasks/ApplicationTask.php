@@ -5,7 +5,6 @@ namespace Upsun\Core\Tasks;
 use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DeploymentApi;
-use Upsun\Model\Deployment;
 use Upsun\Model\WebApplicationsValue;
 use Upsun\UpsunClient;
 
@@ -29,11 +28,12 @@ class ApplicationTask extends TaskBase
      * Lists applications of an environment
      *
      * @throws ApiException|Exception
-     * @return Deployment[]
+     * @return WebApplicationsValue[]
      */
     public function list(string $projectId, string $environmentId): array
     {
         $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
+
         $deployments = reset($deployments);
 
         return !empty($deployments) ? $deployments->getWebapps() : [];
@@ -44,17 +44,9 @@ class ApplicationTask extends TaskBase
      *
      * @throws ApiException|Exception
      */
-    public function get(string $projectId, string $environmentId, string $app_id): ?WebApplicationsValue
+    public function get(string $projectId, string $environmentId, string $appId): ?WebApplicationsValue
     {
-        $environment = $this->client->environment->get($projectId, $environmentId);
-        if ($environment->getDeploymentState() && $environment->getDeploymentState()->getLastDeploymentSuccessful()) {
-            $deployment = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
-            $deployment = reset($deployment);
-            /** @var Deployment $deployment */
-
-            return !(empty($deployment->getWebapps())) ? ($deployment->getWebapps())[$app_id] ?? null : null;
-        } else {
-            return null;
-        }
+        $appList = $this->list($projectId, $environmentId);
+        return $appList[$appId] ?? null;
     }
 }

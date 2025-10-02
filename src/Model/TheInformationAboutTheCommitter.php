@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TheInformationAboutTheCommitter implements JsonSerializable
+final class TheInformationAboutTheCommitter implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'date' => 'date',
-        'name' => 'name',
-        'email' => 'email'
-    ];
-
     public function __construct(
         private readonly \DateTime $date,
         private readonly string $name,
@@ -31,27 +23,15 @@ final class TheInformationAboutTheCommitter implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'date' => '\DateTime',
-            'name' => 'string',
-            'email' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'date' => $this->date,
+            'date' => $this->date?->format(DATE_ATOM),
             'name' => $this->name,
             'email' => $this->email,
         ];
@@ -62,28 +42,18 @@ final class TheInformationAboutTheCommitter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getDate(): \DateTime
     {
         return $this->date;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 }
-

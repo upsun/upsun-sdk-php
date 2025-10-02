@@ -12,39 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class AddressGrantsInner implements JsonSerializable
+final class AddressGrantsInner implements ModelInterface, JsonSerializable
 {
-    public const PERMISSION_ALLOW = 'allow';
-    public const PERMISSION_DENY = 'deny';
-
-    private static array $attributeMap = [
-        'permission' => 'permission',
-        'address' => 'address'
-    ];
-
     public function __construct(
         private readonly string $permission,
         private readonly string $address,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'permission' => 'string',
-            'address' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -60,20 +40,13 @@ final class AddressGrantsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getPermission(): string
     {
         return $this->permission;
     }
 
-    /**
-     * @return string
-     */
     public function getAddress(): string
     {
         return $this->address;
     }
 }
-

@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
+final class UpdateOrgBillingAlertConfigRequest implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'active' => 'active',
-        'config' => 'config'
-    ];
-
     public function __construct(
         private readonly ?bool $active = null,
-        private readonly ?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config = null,
+        private readonly ?UpdateOrgBillingAlertConfigRequestConfig $config = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'active' => '?bool',
-            'config' => '?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,22 +40,13 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether the billing alert should be active or not.
-     *
-     * @return bool|null
-     */
     public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    /**
-     * @return \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null
-     */
-    public function getConfig(): ?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig
+    public function getConfig(): ?UpdateOrgBillingAlertConfigRequestConfig
     {
         return $this->config;
     }
 }
-

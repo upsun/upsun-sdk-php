@@ -6,6 +6,7 @@ use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Model\Deployment;
+use Upsun\Model\WorkersValue;
 use Upsun\UpsunClient;
 
 /**
@@ -29,7 +30,7 @@ class WorkerTask extends TaskBase
      *
      * @throws ApiException|Exception
      *
-     * @return Deployment[]
+     * @return WorkersValue[]
      */
     public function list(string $projectId, string $environmentId): array
     {

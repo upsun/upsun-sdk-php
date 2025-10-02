@@ -3,6 +3,8 @@
 /**
  * Low level LineItem (auto-generated)
  *
+ * A line item in an order.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,30 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class LineItem implements JsonSerializable
+final class LineItem implements ModelInterface, JsonSerializable
 {
-    public const TYPE_PROJECT_PLAN = 'project_plan';
-    public const TYPE_PROJECT_FEATURE = 'project_feature';
-    public const TYPE_PROJECT_SUBTOTAL = 'project_subtotal';
-    public const TYPE_ORGANIZATION_PLAN = 'organization_plan';
-    public const TYPE_ORGANIZATION_FEATURE = 'organization_feature';
-    public const TYPE_ORGANIZATION_SUBTOTAL = 'organization_subtotal';
-
-    private static array $attributeMap = [
-        'type' => 'type',
-        'licenseId' => 'license_id',
-        'projectId' => 'project_id',
-        'product' => 'product',
-        'sku' => 'sku',
-        'total' => 'total',
-        'totalFormatted' => 'total_formatted',
-        'components' => 'components',
-        'excludeFromInvoice' => 'exclude_from_invoice'
-    ];
-
     public function __construct(
         private readonly ?float $licenseId = null,
         private readonly ?string $projectId = null,
@@ -49,27 +31,9 @@ final class LineItem implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => '?string',
-            'license_id' => '?float',
-            'project_id' => '?string',
-            'product' => '?string',
-            'sku' => '?string',
-            'total' => '?float',
-            'total_formatted' => '?string',
-            'components' => '\Upsun\Model\LineItemComponent[]',
-            'exclude_from_invoice' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -92,94 +56,51 @@ final class LineItem implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of line item.
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * The associated subscription identifier.
-     *
-     * @return float|null
-     */
     public function getLicenseId(): ?float
     {
         return $this->licenseId;
     }
 
-    /**
-     * The associated project identifier.
-     *
-     * @return string|null
-     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-    /**
-     * Display name of the line item product.
-     *
-     * @return string|null
-     */
     public function getProduct(): ?string
     {
         return $this->product;
     }
 
-    /**
-     * The line item product SKU.
-     *
-     * @return string|null
-     */
     public function getSku(): ?string
     {
         return $this->sku;
     }
 
-    /**
-     * Total price as a decimal.
-     *
-     * @return float|null
-     */
     public function getTotal(): ?float
     {
         return $this->total;
     }
 
-    /**
-     * Total price, formatted with currency.
-     *
-     * @return string|null
-     */
     public function getTotalFormatted(): ?string
     {
         return $this->totalFormatted;
     }
 
     /**
-     * The price components for the line item, keyed by type.
-     *
-     * @return \Upsun\Model\LineItemComponent[]|null
+     * @return LineItemComponent[]|null
      */
     public function getComponents(): ?array
     {
         return $this->components;
     }
 
-    /**
-     * Line item should not be considered billable.
-     *
-     * @return bool|null
-     */
     public function getExcludeFromInvoice(): ?bool
     {
         return $this->excludeFromInvoice;
     }
 }
-

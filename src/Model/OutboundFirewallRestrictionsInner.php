@@ -12,20 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class OutboundFirewallRestrictionsInner implements JsonSerializable
+final class OutboundFirewallRestrictionsInner implements ModelInterface, JsonSerializable
 {
-    public const PROTOCOL_TCP = 'tcp';
-
-    private static array $attributeMap = [
-        'protocol' => 'protocol',
-        'ips' => 'ips',
-        'domains' => 'domains',
-        'ports' => 'ports'
-    ];
-
     public function __construct(
         private readonly string $protocol,
         private readonly array $ips,
@@ -34,22 +24,9 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'protocol' => 'string',
-            'ips' => 'string[]',
-            'domains' => 'string[]',
-            'ports' => 'int[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -67,36 +44,23 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getProtocol(): string
     {
         return $this->protocol;
     }
 
-    /**
-     * @return string[]
-     */
     public function getIps(): array
     {
         return $this->ips;
     }
 
-    /**
-     * @return string[]
-     */
     public function getDomains(): array
     {
         return $this->domains;
     }
 
-    /**
-     * @return int[]
-     */
     public function getPorts(): array
     {
         return $this->ports;
     }
 }
-

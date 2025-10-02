@@ -37,9 +37,15 @@ final class SupportApi extends AbstractApi
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
+        parent::__construct(
+            $oauthProvider,
+            $httpClient,
+            $requestFactory,
+            'https://api.upsun.com',
+            $streamFactory
+        );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -49,11 +55,17 @@ final class SupportApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Create a new support ticket
      *
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Ticket
+     *
+     * @see https://docs.upsun.com/api/#tag/Support/operation/create-ticket
      */
     public function createTicket(
         ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
@@ -64,11 +76,13 @@ final class SupportApi extends AbstractApi
     }
 
     /**
-     * Create a new support ticket
+     * Create a new support ticket with HTTP Info
+     *
+     * @return \Upsun\Model\Ticket
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function createTicketWithHttpInfo(
+    private function createTicketWithHttpInfo(
         ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
     ): \Upsun\Model\Ticket {
         $request = $this->createTicketRequest(
@@ -79,14 +93,17 @@ final class SupportApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Ticket',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -96,7 +113,7 @@ final class SupportApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function createTicketRequest(
+    private function createTicketRequest(
         ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
     ): RequestInterface {
 
@@ -109,8 +126,6 @@ final class SupportApi extends AbstractApi
 
 
 
-
-
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             'application/json',
@@ -120,11 +135,13 @@ final class SupportApi extends AbstractApi
         // for model (json/xml)
         if (isset($createTicketRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($createTicketRequest));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($createTicketRequest)
+                );
             } else {
                 $httpBody = $createTicketRequest;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -167,8 +184,13 @@ final class SupportApi extends AbstractApi
     /**
      * List support ticket categories
      *
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListTicketCategories200ResponseInner[]
+     *
+     * @see https://docs.upsun.com/api/#tag/Support/operation/list-ticket-categories
      */
     public function listTicketCategories(
         ?string $subscriptionId = null,
@@ -181,11 +203,13 @@ final class SupportApi extends AbstractApi
     }
 
     /**
-     * List support ticket categories
+     * List support ticket categories with HTTP Info
+     *
+     * @return \Upsun\Model\ListTicketCategories200ResponseInner[]
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listTicketCategoriesWithHttpInfo(
+    private function listTicketCategoriesWithHttpInfo(
         ?string $subscriptionId = null,
         ?string $organizationId = null
     ): array {
@@ -198,14 +222,17 @@ final class SupportApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListTicketCategories200ResponseInner[]',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -215,10 +242,11 @@ final class SupportApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listTicketCategoriesRequest(
+    private function listTicketCategoriesRequest(
         ?string $subscriptionId = null,
         ?string $organizationId = null
     ): RequestInterface {
+
 
         $resourcePath = '/tickets/category';
         $formParams = [];
@@ -234,9 +262,13 @@ final class SupportApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['subscription_id'] = $subscriptionId;
+                $queryParams['subscription_id'] = $subscriptionId instanceof \DateTime
+                    ? $subscriptionId->format(DATE_ATOM)
+                    : ($subscriptionId);
             }
         }
+
+
 
         // query params
         if ($organizationId !== null) {
@@ -245,7 +277,9 @@ final class SupportApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['organization_id'] = $organizationId;
+                $queryParams['organization_id'] = $organizationId instanceof \DateTime
+                    ? $organizationId->format(DATE_ATOM)
+                    : ($organizationId);
             }
         }
 
@@ -260,7 +294,7 @@ final class SupportApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -303,8 +337,13 @@ final class SupportApi extends AbstractApi
     /**
      * List support ticket priorities
      *
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListTicketPriorities200ResponseInner[]
+     *
+     * @see https://docs.upsun.com/api/#tag/Support/operation/list-ticket-priorities
      */
     public function listTicketPriorities(
         ?string $subscriptionId = null,
@@ -317,11 +356,13 @@ final class SupportApi extends AbstractApi
     }
 
     /**
-     * List support ticket priorities
+     * List support ticket priorities with HTTP Info
+     *
+     * @return \Upsun\Model\ListTicketPriorities200ResponseInner[]
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function listTicketPrioritiesWithHttpInfo(
+    private function listTicketPrioritiesWithHttpInfo(
         ?string $subscriptionId = null,
         ?string $category = null
     ): array {
@@ -334,14 +375,17 @@ final class SupportApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListTicketPriorities200ResponseInner[]',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -351,10 +395,11 @@ final class SupportApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function listTicketPrioritiesRequest(
+    private function listTicketPrioritiesRequest(
         ?string $subscriptionId = null,
         ?string $category = null
     ): RequestInterface {
+
 
         $resourcePath = '/tickets/priority';
         $formParams = [];
@@ -370,9 +415,13 @@ final class SupportApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['subscription_id'] = $subscriptionId;
+                $queryParams['subscription_id'] = $subscriptionId instanceof \DateTime
+                    ? $subscriptionId->format(DATE_ATOM)
+                    : ($subscriptionId);
             }
         }
+
+
 
         // query params
         if ($category !== null) {
@@ -381,7 +430,9 @@ final class SupportApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['category'] = $category;
+                $queryParams['category'] = $category instanceof \DateTime
+                    ? $category->format(DATE_ATOM)
+                    : ($category);
             }
         }
 
@@ -396,7 +447,7 @@ final class SupportApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -439,13 +490,18 @@ final class SupportApi extends AbstractApi
     /**
      * Update a ticket
      *
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Ticket
+     *
+     * @see https://docs.upsun.com/api/#tag/Support/operation/update-ticket
      */
     public function updateTicket(
         string $ticketId,
         ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
-    ): \Upsun\Model\Ticket {
+    ): \Upsun\Model\Ticket|null {
         return $this->updateTicketWithHttpInfo(
             $ticketId,
             $updateTicketRequest
@@ -453,14 +509,16 @@ final class SupportApi extends AbstractApi
     }
 
     /**
-     * Update a ticket
+     * Update a ticket with HTTP Info
+     *
+     * @return \Upsun\Model\Ticket
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function updateTicketWithHttpInfo(
+    private function updateTicketWithHttpInfo(
         string $ticketId,
         ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
-    ): \Upsun\Model\Ticket {
+    ): \Upsun\Model\Ticket|null {
         $request = $this->updateTicketRequest(
             $ticketId,
             $updateTicketRequest
@@ -470,14 +528,17 @@ final class SupportApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
+
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Ticket',
                 $request,
                 $response
             );
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }
@@ -487,10 +548,11 @@ final class SupportApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    public function updateTicketRequest(
+    private function updateTicketRequest(
         string $ticketId,
         ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'ticketId' is set
         if (
             $ticketId === null
@@ -498,7 +560,8 @@ final class SupportApi extends AbstractApi
             && count($ticketId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $ticketId when calling updateTicket'
+                'Missing the required parameter $ticketId 
+                when calling updateTicket'
             );
         }
 
@@ -508,8 +571,6 @@ final class SupportApi extends AbstractApi
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         // path params
         if ($ticketId !== null) {
@@ -530,11 +591,13 @@ final class SupportApi extends AbstractApi
         // for model (json/xml)
         if (isset($updateTicketRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($updateTicketRequest));
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($updateTicketRequest)
+                );
             } else {
                 $httpBody = $updateTicketRequest;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

@@ -3,6 +3,7 @@
 /**
  * Low level Error (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,20 +13,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Error implements JsonSerializable
+final class Error implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'status' => 'status',
-        'message' => 'message',
-        'code' => 'code',
-        'detail' => 'detail',
-        'title' => 'title'
-    ];
-
     public function __construct(
         private readonly ?string $status = null,
         private readonly ?string $message = null,
@@ -35,23 +26,9 @@ final class Error implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'status' => '?string',
-            'message' => '?string',
-            'code' => '?float',
-            'detail' => '?object',
-            'title' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -70,44 +47,28 @@ final class Error implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
 
-    /**
-     * @return float|null
-     */
     public function getCode(): ?float
     {
         return $this->code;
     }
 
-    /**
-     * @return object|null
-     */
     public function getDetail(): ?object
     {
         return $this->detail;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 }
-

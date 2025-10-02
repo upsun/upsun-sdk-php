@@ -14,5 +14,6 @@ Name | Type | Description | Notes
 **authToken** | **string** |  | [optional]
 **authMode** | **string** |  | [optional]
 **tlsVerify** | **bool** |  | [optional]
+**excludedServices** | **string[]** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

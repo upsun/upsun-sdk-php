@@ -1,17 +1,17 @@
-# Upsun\TeamAccessApi
+# [Upsun\Api\TeamAccessApi](../src/Api/TeamAccessApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getProjectTeamAccess()**](TeamAccessApi.md#getProjectTeamAccess) | **GET** /projects/{project_id}/team-access/{team_id} | Get team access for a project
-[**getTeamProjectAccess()**](TeamAccessApi.md#getTeamProjectAccess) | **GET** /teams/{team_id}/project-access/{project_id} | Get project access for a team
-[**grantProjectTeamAccess()**](TeamAccessApi.md#grantProjectTeamAccess) | **POST** /projects/{project_id}/team-access | Grant team access to a project
-[**grantTeamProjectAccess()**](TeamAccessApi.md#grantTeamProjectAccess) | **POST** /teams/{team_id}/project-access | Grant project access to a team
-[**listProjectTeamAccess()**](TeamAccessApi.md#listProjectTeamAccess) | **GET** /projects/{project_id}/team-access | List team access for a project
-[**listTeamProjectAccess()**](TeamAccessApi.md#listTeamProjectAccess) | **GET** /teams/{team_id}/project-access | List project access for a team
-[**removeProjectTeamAccess()**](TeamAccessApi.md#removeProjectTeamAccess) | **DELETE** /projects/{project_id}/team-access/{team_id} | Remove team access for a project
-[**removeTeamProjectAccess()**](TeamAccessApi.md#removeTeamProjectAccess) | **DELETE** /teams/{team_id}/project-access/{project_id} | Remove project access for a team
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**getProjectTeamAccess()**](TeamAccessApi.md#getProjectTeamAccess) | **GET** /projects/{project_id}/team-access/{team_id} | Get team access for a project | https://docs.upsun.com/api/#tag/Team-Access/operation/get-project-team-access |
+| [**getTeamProjectAccess()**](TeamAccessApi.md#getTeamProjectAccess) | **GET** /teams/{team_id}/project-access/{project_id} | Get project access for a team | https://docs.upsun.com/api/#tag/Team-Access/operation/get-team-project-access |
+| [**grantProjectTeamAccess()**](TeamAccessApi.md#grantProjectTeamAccess) | **POST** /projects/{project_id}/team-access | Grant team access to a project | https://docs.upsun.com/api/#tag/Team-Access/operation/grant-project-team-access |
+| [**grantTeamProjectAccess()**](TeamAccessApi.md#grantTeamProjectAccess) | **POST** /teams/{team_id}/project-access | Grant project access to a team | https://docs.upsun.com/api/#tag/Team-Access/operation/grant-team-project-access |
+| [**listProjectTeamAccess()**](TeamAccessApi.md#listProjectTeamAccess) | **GET** /projects/{project_id}/team-access | List team access for a project | https://docs.upsun.com/api/#tag/Team-Access/operation/list-project-team-access |
+| [**listTeamProjectAccess()**](TeamAccessApi.md#listTeamProjectAccess) | **GET** /teams/{team_id}/project-access | List project access for a team | https://docs.upsun.com/api/#tag/Team-Access/operation/list-team-project-access |
+| [**removeProjectTeamAccess()**](TeamAccessApi.md#removeProjectTeamAccess) | **DELETE** /projects/{project_id}/team-access/{team_id} | Remove team access for a project | https://docs.upsun.com/api/#tag/Team-Access/operation/remove-project-team-access |
+| [**removeTeamProjectAccess()**](TeamAccessApi.md#removeTeamProjectAccess) | **DELETE** /teams/{team_id}/project-access/{project_id} | Remove project access for a team | https://docs.upsun.com/api/#tag/Team-Access/operation/remove-team-project-access |
 
 
 ## `getProjectTeamAccess()`
@@ -33,8 +33,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string | The ID of the project.
@@ -50,10 +50,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| The ID of the project. |
- **teamId** | **string**| The ID of the team. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| The ID of the project. | |
+| **teamId** | **string**| The ID of the team. | |
 
 ### Return type
 
@@ -91,8 +91,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $teamId = 'teamId_example'; // string | The ID of the team.
@@ -108,10 +108,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **teamId** | **string**| The ID of the team. |
- **projectId** | **string**| The ID of the project. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The ID of the team. | |
+| **projectId** | **string**| The ID of the project. | |
 
 ### Return type
 
@@ -149,8 +149,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string | The ID of the project.
@@ -165,10 +165,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| The ID of the project. |
- **grantProjectTeamAccessRequestInner** | [**\Upsun\Model\GrantProjectTeamAccessRequestInner[]**](../Model/GrantProjectTeamAccessRequestInner.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| The ID of the project. | |
+| **grantProjectTeamAccessRequestInner** | [**\Upsun\Model\GrantProjectTeamAccessRequestInner[]**](../Model/GrantProjectTeamAccessRequestInner.md)|  | |
 
 ### Return type
 
@@ -206,8 +206,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $teamId = 'teamId_example'; // string | The ID of the team.
@@ -222,10 +222,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **teamId** | **string**| The ID of the team. |
- **grantTeamProjectAccessRequestInner** | [**\Upsun\Model\GrantTeamProjectAccessRequestInner[]**](../Model/GrantTeamProjectAccessRequestInner.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The ID of the team. | |
+| **grantTeamProjectAccessRequestInner** | [**\Upsun\Model\GrantTeamProjectAccessRequestInner[]**](../Model/GrantTeamProjectAccessRequestInner.md)|  | |
 
 ### Return type
 
@@ -247,7 +247,7 @@ No authorization required
 ## `listProjectTeamAccess()`
 
 ```php
-listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListTeamProjectAccess200Response
+listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListProjectTeamAccess200Response
 ```
 
 List team access for a project
@@ -263,8 +263,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string | The ID of the project.
@@ -283,17 +283,17 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| The ID of the project. |
- **pageSize** | **int**| Determines the number of items to show. | [optional]
- **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| The ID of the project. | |
+| **pageSize** | **int**| Determines the number of items to show. | [optional] |
+| **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
 
 ### Return type
 
-[**\Upsun\Model\ListTeamProjectAccess200Response**](../Model/ListTeamProjectAccess200Response.md)
+[**\Upsun\Model\ListProjectTeamAccess200Response**](../Model/ListProjectTeamAccess200Response.md)
 
 ### Authorization
 
@@ -311,7 +311,7 @@ No authorization required
 ## `listTeamProjectAccess()`
 
 ```php
-listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListTeamProjectAccess200Response
+listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListProjectTeamAccess200Response
 ```
 
 List project access for a team
@@ -327,8 +327,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $teamId = 'teamId_example'; // string | The ID of the team.
@@ -347,17 +347,17 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **teamId** | **string**| The ID of the team. |
- **pageSize** | **int**| Determines the number of items to show. | [optional]
- **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The ID of the team. | |
+| **pageSize** | **int**| Determines the number of items to show. | [optional] |
+| **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
 
 ### Return type
 
-[**\Upsun\Model\ListTeamProjectAccess200Response**](../Model/ListTeamProjectAccess200Response.md)
+[**\Upsun\Model\ListProjectTeamAccess200Response**](../Model/ListProjectTeamAccess200Response.md)
 
 ### Authorization
 
@@ -391,8 +391,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string | The ID of the project.
@@ -407,10 +407,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**| The ID of the project. |
- **teamId** | **string**| The ID of the team. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**| The ID of the project. | |
+| **teamId** | **string**| The ID of the team. | |
 
 ### Return type
 
@@ -448,8 +448,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $teamId = 'teamId_example'; // string | The ID of the team.
@@ -464,10 +464,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **teamId** | **string**| The ID of the team. |
- **projectId** | **string**| The ID of the project. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The ID of the team. | |
+| **projectId** | **string**| The ID of the project. | |
 
 ### Return type
 

@@ -3,6 +3,8 @@
 /**
  * Low level PlanRecords (auto-generated)
  *
+ * The plan record object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,24 +14,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class PlanRecords implements JsonSerializable
+final class PlanRecords implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'owner' => 'owner',
-        'subscriptionId' => 'subscription_id',
-        'sku' => 'sku',
-        'plan' => 'plan',
-        'options' => 'options',
-        'start' => 'start',
-        'end' => 'end',
-        'status' => 'status'
-    ];
-
     public function __construct(
         private readonly ?\DateTime $end = null,
         private readonly ?string $id = null,
@@ -43,27 +31,9 @@ final class PlanRecords implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'owner' => '?string',
-            'subscription_id' => '?string',
-            'sku' => '?string',
-            'plan' => '?string',
-            'options' => 'string[]',
-            'start' => '?\DateTime',
-            'end' => '?\DateTime',
-            'status' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -75,8 +45,8 @@ final class PlanRecords implements JsonSerializable
             'sku' => $this->sku,
             'plan' => $this->plan,
             'options' => $this->options,
-            'start' => $this->start,
-            'end' => $this->end,
+            'start' => $this->start?->format(DATE_ATOM),
+            'end' => $this->end?->format(DATE_ATOM),
             'status' => $this->status,
         ];
     }
@@ -86,92 +56,48 @@ final class PlanRecords implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The unique ID of the plan record.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The UUID of the owner.
-     *
-     * @return string|null
-     */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
 
-    /**
-     * The ID of the subscription this record pertains to.
-     *
-     * @return string|null
-     */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The product SKU of the plan that this record represents.
-     *
-     * @return string|null
-     */
     public function getSku(): ?string
     {
         return $this->sku;
     }
 
-    /**
-     * The machine name of the plan that this record represents.
-     *
-     * @return string|null
-     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getOptions(): ?array
     {
         return $this->options;
     }
 
-    /**
-     * The start timestamp of this plan record (ISO 8601).
-     *
-     * @return \DateTime|null
-     */
     public function getStart(): ?\DateTime
     {
         return $this->start;
     }
 
-    /**
-     * The end timestamp of this plan record (ISO 8601).
-     *
-     * @return \DateTime|null
-     */
     public function getEnd(): ?\DateTime
     {
         return $this->end;
     }
 
-    /**
-     * The status of the subscription during this record: active or suspended.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 }
-

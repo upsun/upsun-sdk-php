@@ -12,34 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class VerifyPhoneNumber200Response implements JsonSerializable
+final class VerifyPhoneNumber200Response implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'sid' => 'sid'
-    ];
-
     public function __construct(
         private readonly ?string $sid = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'sid' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -54,14 +38,8 @@ final class VerifyPhoneNumber200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Session ID of the verification.
-     *
-     * @return string|null
-     */
     public function getSid(): ?string
     {
         return $this->sid;
     }
 }
-

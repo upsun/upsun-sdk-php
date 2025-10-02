@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class CreateTicketRequestAttachmentsInner implements JsonSerializable
+final class CreateTicketRequestAttachmentsInner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'filename' => 'filename',
-        'data' => 'data'
-    ];
-
     public function __construct(
         private readonly ?string $filename = null,
         private readonly ?string $data = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'filename' => '?string',
-            'data' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,24 +40,13 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The filename to be used in storage.
-     *
-     * @return string|null
-     */
     public function getFilename(): ?string
     {
         return $this->filename;
     }
 
-    /**
-     * the base64 encoded file.
-     *
-     * @return string|null
-     */
     public function getData(): ?string
     {
         return $this->data;
     }
 }
-

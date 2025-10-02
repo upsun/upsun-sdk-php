@@ -12,37 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class DefaultConfig implements JsonSerializable
+final class DefaultConfig implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'manualCount' => 'manual_count',
-        'schedule' => 'schedule'
-    ];
-
     public function __construct(
         private readonly int $manualCount,
         private readonly array $schedule,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'manual_count' => 'int',
-            'schedule' => '\Upsun\Model\TheBackupScheduleSpecificationInner[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -58,20 +40,16 @@ final class DefaultConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int
-     */
     public function getManualCount(): int
     {
         return $this->manualCount;
     }
 
     /**
-     * @return \Upsun\Model\TheBackupScheduleSpecificationInner[]
+     * @return TheBackupScheduleSpecificationInner[]
      */
     public function getSchedule(): array
     {
         return $this->schedule;
     }
 }
-

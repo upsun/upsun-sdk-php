@@ -12,40 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class ResourcesLimits implements JsonSerializable
+final class ResourcesLimits implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'containerProfiles' => 'container_profiles',
-        'production' => 'production',
-        'development' => 'development'
-    ];
-
     public function __construct(
         private readonly bool $containerProfiles,
-        private readonly \Upsun\Model\ResourcesForProductionEnvironments $production,
-        private readonly \Upsun\Model\ResourcesForDevelopmentEnvironments $development,
+        private readonly ResourcesForProductionEnvironments $production,
+        private readonly ResourcesForDevelopmentEnvironments $development,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'container_profiles' => 'bool',
-            'production' => '\Upsun\Model\ResourcesForProductionEnvironments',
-            'development' => '\Upsun\Model\ResourcesForDevelopmentEnvironments',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -62,28 +42,18 @@ final class ResourcesLimits implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getContainerProfiles(): bool
     {
         return $this->containerProfiles;
     }
 
-    /**
-     * @return \Upsun\Model\ResourcesForProductionEnvironments
-     */
-    public function getProduction(): \Upsun\Model\ResourcesForProductionEnvironments
+    public function getProduction(): ResourcesForProductionEnvironments
     {
         return $this->production;
     }
 
-    /**
-     * @return \Upsun\Model\ResourcesForDevelopmentEnvironments
-     */
-    public function getDevelopment(): \Upsun\Model\ResourcesForDevelopmentEnvironments
+    public function getDevelopment(): ResourcesForDevelopmentEnvironments
     {
         return $this->development;
     }
 }
-

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **priority** | **string** | A priority of the ticket. | [optional]
 **followupTid** | **string** | Followup ticket ID. The unique ID of the ticket which this ticket is a follow-up to. | [optional]
 **status** | **string** | The status of the support ticket. | [optional]
-**recipient** | **string** | Email address of the ticket recipient, defaults to support@platform.sh. | [optional]
+**recipient** | **string** | Email address of the ticket recipient, defaults to support@upsun.com. | [optional]
 **requesterId** | **string** | UUID of the ticket requester. | [optional]
 **submitterId** | **string** | UUID of the ticket submitter. | [optional]
 **assigneeId** | **string** | UUID of the ticket assignee. | [optional]

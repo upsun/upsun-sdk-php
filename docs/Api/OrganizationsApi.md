@@ -1,15 +1,15 @@
-# Upsun\OrganizationsApi
+# [Upsun\Api\OrganizationsApi](../src/Api/OrganizationsApi.php)
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createOrg()**](OrganizationsApi.md#createOrg) | **POST** /organizations | Create organization
-[**deleteOrg()**](OrganizationsApi.md#deleteOrg) | **DELETE** /organizations/{organization_id} | Delete organization
-[**getOrg()**](OrganizationsApi.md#getOrg) | **GET** /organizations/{organization_id} | Get organization
-[**listOrgs()**](OrganizationsApi.md#listOrgs) | **GET** /organizations | List organizations
-[**listUserOrgs()**](OrganizationsApi.md#listUserOrgs) | **GET** /users/{user_id}/organizations | User organizations
-[**updateOrg()**](OrganizationsApi.md#updateOrg) | **PATCH** /organizations/{organization_id} | Update organization
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**createOrg()**](OrganizationsApi.md#createOrg) | **POST** /organizations | Create organization | https://docs.upsun.com/api/#tag/Organizations/operation/create-org |
+| [**deleteOrg()**](OrganizationsApi.md#deleteOrg) | **DELETE** /organizations/{organization_id} | Delete organization | https://docs.upsun.com/api/#tag/Organizations/operation/delete-org |
+| [**getOrg()**](OrganizationsApi.md#getOrg) | **GET** /organizations/{organization_id} | Get organization | https://docs.upsun.com/api/#tag/Organizations/operation/get-org |
+| [**listOrgs()**](OrganizationsApi.md#listOrgs) | **GET** /organizations | List organizations | https://docs.upsun.com/api/#tag/Organizations/operation/list-orgs |
+| [**listUserOrgs()**](OrganizationsApi.md#listUserOrgs) | **GET** /users/{user_id}/organizations | User organizations | https://docs.upsun.com/api/#tag/Organizations/operation/list-user-orgs |
+| [**updateOrg()**](OrganizationsApi.md#updateOrg) | **PATCH** /organizations/{organization_id} | Update organization | https://docs.upsun.com/api/#tag/Organizations/operation/update-org |
 
 
 ## `createOrg()`
@@ -31,8 +31,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\OrganizationsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $createOrgRequest = new \Upsun\Model\CreateOrgRequest(); // \Upsun\Model\CreateOrgRequest
@@ -47,9 +47,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createOrgRequest** | [**\Upsun\Model\CreateOrgRequest**](../Model/CreateOrgRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **createOrgRequest** | [**\Upsun\Model\CreateOrgRequest**](../Model/CreateOrgRequest.md)|  | |
 
 ### Return type
 
@@ -87,8 +87,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\OrganizationsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.
@@ -102,9 +102,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization. | |
 
 ### Return type
 
@@ -142,8 +142,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\OrganizationsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
@@ -158,9 +158,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
 
 ### Return type
 
@@ -182,7 +182,7 @@ No authorization required
 ## `listOrgs()`
 
 ```php
-listOrgs($filterId, $filterOwnerId, $filterName, $filterLabel, $filterVendor, $filterCapabilities, $filterStatus, $filterUpdatedAt, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListOrgs200Response
+listOrgs($filterId, $filterType, $filterOwnerId, $filterName, $filterLabel, $filterVendor, $filterCapabilities, $filterStatus, $filterUpdatedAt, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListOrgs200Response
 ```
 
 List organizations
@@ -198,11 +198,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\OrganizationsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $filterId = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `id` using one or more operators.
+$filterType = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `type` using one or more operators.
 $filterOwnerId = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `owner_id` using one or more operators.
 $filterName = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `name` using one or more operators.
 $filterLabel = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `label` using one or more operators.
@@ -216,7 +217,7 @@ $pageAfter = 'pageAfter_example'; // string | Pagination cursor. This is automat
 $sort = -updated_at; // string | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`.
 
 try {
-    $result = $apiInstance->listOrgs($filterId, $filterOwnerId, $filterName, $filterLabel, $filterVendor, $filterCapabilities, $filterStatus, $filterUpdatedAt, $pageSize, $pageBefore, $pageAfter, $sort);
+    $result = $apiInstance->listOrgs($filterId, $filterType, $filterOwnerId, $filterName, $filterLabel, $filterVendor, $filterCapabilities, $filterStatus, $filterUpdatedAt, $pageSize, $pageBefore, $pageAfter, $sort);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationsApi->listOrgs: ', $e->getMessage(), PHP_EOL;
@@ -225,20 +226,21 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **filterId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;id&#x60; using one or more operators. | [optional]
- **filterOwnerId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;owner_id&#x60; using one or more operators. | [optional]
- **filterName** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;name&#x60; using one or more operators. | [optional]
- **filterLabel** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;label&#x60; using one or more operators. | [optional]
- **filterVendor** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;vendor&#x60; using one or more operators. | [optional]
- **filterCapabilities** | [**\Upsun\Model\ArrayFilter**](../Model/.md)| Allows filtering by &#x60;capabilites&#x60; using one or more operators. | [optional]
- **filterStatus** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. | [optional]
- **filterUpdatedAt** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional]
- **pageSize** | **int**| Determines the number of items to show. | [optional]
- **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;name&#x60;, &#x60;label&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **filterId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;id&#x60; using one or more operators. | [optional] |
+| **filterType** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;type&#x60; using one or more operators. | [optional] |
+| **filterOwnerId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;owner_id&#x60; using one or more operators. | [optional] |
+| **filterName** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;name&#x60; using one or more operators. | [optional] |
+| **filterLabel** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;label&#x60; using one or more operators. | [optional] |
+| **filterVendor** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;vendor&#x60; using one or more operators. | [optional] |
+| **filterCapabilities** | [**\Upsun\Model\ArrayFilter**](../Model/.md)| Allows filtering by &#x60;capabilites&#x60; using one or more operators. | [optional] |
+| **filterStatus** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. | [optional] |
+| **filterUpdatedAt** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional] |
+| **pageSize** | **int**| Determines the number of items to show. | [optional] |
+| **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;name&#x60;, &#x60;label&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
 
 ### Return type
 
@@ -260,7 +262,7 @@ No authorization required
 ## `listUserOrgs()`
 
 ```php
-listUserOrgs($userId, $filterId, $filterVendor, $filterStatus, $filterUpdatedAt, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListUserOrgs200Response
+listUserOrgs($userId, $filterId, $filterType, $filterVendor, $filterStatus, $filterUpdatedAt, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListUserOrgs200Response
 ```
 
 User organizations
@@ -276,12 +278,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\OrganizationsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 $filterId = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `id` using one or more operators.
+$filterType = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `type` using one or more operators.
 $filterVendor = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `vendor` using one or more operators.
 $filterStatus = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`.
 $filterUpdatedAt = new \Upsun\Model\\Upsun\Model\DateTimeFilter(); // \Upsun\Model\DateTimeFilter | Allows filtering by `updated_at` using one or more operators.
@@ -291,7 +294,7 @@ $pageAfter = 'pageAfter_example'; // string | Pagination cursor. This is automat
 $sort = -updated_at; // string | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`.
 
 try {
-    $result = $apiInstance->listUserOrgs($userId, $filterId, $filterVendor, $filterStatus, $filterUpdatedAt, $pageSize, $pageBefore, $pageAfter, $sort);
+    $result = $apiInstance->listUserOrgs($userId, $filterId, $filterType, $filterVendor, $filterStatus, $filterUpdatedAt, $pageSize, $pageBefore, $pageAfter, $sort);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationsApi->listUserOrgs: ', $e->getMessage(), PHP_EOL;
@@ -300,17 +303,18 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **filterId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;id&#x60; using one or more operators. | [optional]
- **filterVendor** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;vendor&#x60; using one or more operators. | [optional]
- **filterStatus** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. | [optional]
- **filterUpdatedAt** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional]
- **pageSize** | **int**| Determines the number of items to show. | [optional]
- **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;name&#x60;, &#x60;label&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **filterId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;id&#x60; using one or more operators. | [optional] |
+| **filterType** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;type&#x60; using one or more operators. | [optional] |
+| **filterVendor** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;vendor&#x60; using one or more operators. | [optional] |
+| **filterStatus** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;status&#x60; using one or more operators.&lt;br&gt; Defaults to &#x60;filter[status][in]&#x3D;active,restricted,suspended&#x60;. | [optional] |
+| **filterUpdatedAt** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional] |
+| **pageSize** | **int**| Determines the number of items to show. | [optional] |
+| **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;name&#x60;, &#x60;label&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional] |
 
 ### Return type
 
@@ -348,8 +352,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\OrganizationsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.
@@ -365,10 +369,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization. |
- **updateOrgRequest** | [**\Upsun\Model\UpdateOrgRequest**](../Model/UpdateOrgRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization. | |
+| **updateOrgRequest** | [**\Upsun\Model\UpdateOrgRequest**](../Model/UpdateOrgRequest.md)|  | [optional] |
 
 ### Return type
 

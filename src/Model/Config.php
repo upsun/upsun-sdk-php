@@ -12,82 +12,35 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Config implements JsonSerializable
+final class Config implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'newrelic' => 'newrelic',
-        'sumologic' => 'sumologic',
-        'splunk' => 'splunk',
-        'httplog' => 'httplog',
-        'syslog' => 'syslog',
-        'webhook' => 'webhook',
-        'script' => 'script',
-        'github' => 'github',
-        'gitlab' => 'gitlab',
-        'bitbucket' => 'bitbucket',
-        'bitbucketServer' => 'bitbucket_server',
-        'healthEmail' => 'health.email',
-        'healthWebhook' => 'health.webhook',
-        'healthPagerduty' => 'health.pagerduty',
-        'healthSlack' => 'health.slack',
-        'cdnFastly' => 'cdn.fastly',
-        'blackfire' => 'blackfire'
-    ];
-
     public function __construct(
-        private readonly ?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations $newrelic = null,
-        private readonly ?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations $sumologic = null,
-        private readonly ?\Upsun\Model\SplunkLogForwardingIntegrationConfigurations $splunk = null,
-        private readonly ?\Upsun\Model\HTTPLogForwardingIntegrationConfigurations $httplog = null,
-        private readonly ?\Upsun\Model\SyslogLogForwardingIntegrationConfigurations $syslog = null,
-        private readonly ?\Upsun\Model\WebhookIntegrationConfigurations $webhook = null,
-        private readonly ?\Upsun\Model\ScriptIntegrationConfigurations $script = null,
-        private readonly ?\Upsun\Model\GitHubIntegrationConfigurations $github = null,
-        private readonly ?\Upsun\Model\GitLabIntegrationConfigurations $gitlab = null,
-        private readonly ?\Upsun\Model\BitbucketIntegrationConfigurations $bitbucket = null,
-        private readonly ?\Upsun\Model\BitbucketServerIntegrationConfigurations $bitbucketServer = null,
-        private readonly ?\Upsun\Model\HealthEmailNotificationIntegrationConfigurations $healthEmail = null,
-        private readonly ?\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations $healthWebhook = null,
-        private readonly ?\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations $healthPagerduty = null,
-        private readonly ?\Upsun\Model\HealthSlackNotificationIntegrationConfigurations $healthSlack = null,
-        private readonly ?\Upsun\Model\FastlyCDNIntegrationConfigurations $cdnFastly = null,
-        private readonly ?\Upsun\Model\BlackfireIntegrationConfigurations $blackfire = null,
+        private readonly ?NewRelicLogForwardingIntegrationConfigurations $newrelic = null,
+        private readonly ?SumoLogicLogForwardingIntegrationConfigurations $sumologic = null,
+        private readonly ?SplunkLogForwardingIntegrationConfigurations $splunk = null,
+        private readonly ?HTTPLogForwardingIntegrationConfigurations $httplog = null,
+        private readonly ?SyslogLogForwardingIntegrationConfigurations $syslog = null,
+        private readonly ?WebhookIntegrationConfigurations $webhook = null,
+        private readonly ?ScriptIntegrationConfigurations $script = null,
+        private readonly ?GitHubIntegrationConfigurations $github = null,
+        private readonly ?GitLabIntegrationConfigurations $gitlab = null,
+        private readonly ?BitbucketIntegrationConfigurations $bitbucket = null,
+        private readonly ?BitbucketServerIntegrationConfigurations $bitbucketServer = null,
+        private readonly ?HealthEmailNotificationIntegrationConfigurations $healthEmail = null,
+        private readonly ?HealthWebhookNotificationIntegrationConfigurations $healthWebhook = null,
+        private readonly ?HealthPagerDutyNotificationIntegrationConfigurations $healthPagerduty = null,
+        private readonly ?HealthSlackNotificationIntegrationConfigurations $healthSlack = null,
+        private readonly ?FastlyCDNIntegrationConfigurations $cdnFastly = null,
+        private readonly ?BlackfireIntegrationConfigurations $blackfire = null,
+        private readonly ?OpenTelemetryLogForwardingIntegrationConfigurations $otlp = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'newrelic' => '?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations',
-            'sumologic' => '?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations',
-            'splunk' => '?\Upsun\Model\SplunkLogForwardingIntegrationConfigurations',
-            'httplog' => '?\Upsun\Model\HTTPLogForwardingIntegrationConfigurations',
-            'syslog' => '?\Upsun\Model\SyslogLogForwardingIntegrationConfigurations',
-            'webhook' => '?\Upsun\Model\WebhookIntegrationConfigurations',
-            'script' => '?\Upsun\Model\ScriptIntegrationConfigurations',
-            'github' => '?\Upsun\Model\GitHubIntegrationConfigurations',
-            'gitlab' => '?\Upsun\Model\GitLabIntegrationConfigurations',
-            'bitbucket' => '?\Upsun\Model\BitbucketIntegrationConfigurations',
-            'bitbucket_server' => '?\Upsun\Model\BitbucketServerIntegrationConfigurations',
-            'health.email' => '?\Upsun\Model\HealthEmailNotificationIntegrationConfigurations',
-            'health.webhook' => '?\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations',
-            'health.pagerduty' => '?\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations',
-            'health.slack' => '?\Upsun\Model\HealthSlackNotificationIntegrationConfigurations',
-            'cdn.fastly' => '?\Upsun\Model\FastlyCDNIntegrationConfigurations',
-            'blackfire' => '?\Upsun\Model\BlackfireIntegrationConfigurations',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -110,6 +63,7 @@ final class Config implements JsonSerializable
             'healthSlack' => $this->healthSlack,
             'cdnFastly' => $this->cdnFastly,
             'blackfire' => $this->blackfire,
+            'otlp' => $this->otlp,
         ];
     }
 
@@ -118,140 +72,93 @@ final class Config implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null
-     */
-    public function getNewrelic(): ?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations
+    public function getNewrelic(): ?NewRelicLogForwardingIntegrationConfigurations
     {
         return $this->newrelic;
     }
 
-    /**
-     * @return \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null
-     */
-    public function getSumologic(): ?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations
+    public function getSumologic(): ?SumoLogicLogForwardingIntegrationConfigurations
     {
         return $this->sumologic;
     }
 
-    /**
-     * @return \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null
-     */
-    public function getSplunk(): ?\Upsun\Model\SplunkLogForwardingIntegrationConfigurations
+    public function getSplunk(): ?SplunkLogForwardingIntegrationConfigurations
     {
         return $this->splunk;
     }
 
-    /**
-     * @return \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null
-     */
-    public function getHttplog(): ?\Upsun\Model\HTTPLogForwardingIntegrationConfigurations
+    public function getHttplog(): ?HTTPLogForwardingIntegrationConfigurations
     {
         return $this->httplog;
     }
 
-    /**
-     * @return \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null
-     */
-    public function getSyslog(): ?\Upsun\Model\SyslogLogForwardingIntegrationConfigurations
+    public function getSyslog(): ?SyslogLogForwardingIntegrationConfigurations
     {
         return $this->syslog;
     }
 
-    /**
-     * @return \Upsun\Model\WebhookIntegrationConfigurations|null
-     */
-    public function getWebhook(): ?\Upsun\Model\WebhookIntegrationConfigurations
+    public function getWebhook(): ?WebhookIntegrationConfigurations
     {
         return $this->webhook;
     }
 
-    /**
-     * @return \Upsun\Model\ScriptIntegrationConfigurations|null
-     */
-    public function getScript(): ?\Upsun\Model\ScriptIntegrationConfigurations
+    public function getScript(): ?ScriptIntegrationConfigurations
     {
         return $this->script;
     }
 
-    /**
-     * @return \Upsun\Model\GitHubIntegrationConfigurations|null
-     */
-    public function getGithub(): ?\Upsun\Model\GitHubIntegrationConfigurations
+    public function getGithub(): ?GitHubIntegrationConfigurations
     {
         return $this->github;
     }
 
-    /**
-     * @return \Upsun\Model\GitLabIntegrationConfigurations|null
-     */
-    public function getGitlab(): ?\Upsun\Model\GitLabIntegrationConfigurations
+    public function getGitlab(): ?GitLabIntegrationConfigurations
     {
         return $this->gitlab;
     }
 
-    /**
-     * @return \Upsun\Model\BitbucketIntegrationConfigurations|null
-     */
-    public function getBitbucket(): ?\Upsun\Model\BitbucketIntegrationConfigurations
+    public function getBitbucket(): ?BitbucketIntegrationConfigurations
     {
         return $this->bitbucket;
     }
 
-    /**
-     * @return \Upsun\Model\BitbucketServerIntegrationConfigurations|null
-     */
-    public function getBitbucketServer(): ?\Upsun\Model\BitbucketServerIntegrationConfigurations
+    public function getBitbucketServer(): ?BitbucketServerIntegrationConfigurations
     {
         return $this->bitbucketServer;
     }
 
-    /**
-     * @return \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null
-     */
-    public function getHealthEmail(): ?\Upsun\Model\HealthEmailNotificationIntegrationConfigurations
+    public function getHealthEmail(): ?HealthEmailNotificationIntegrationConfigurations
     {
         return $this->healthEmail;
     }
 
-    /**
-     * @return \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null
-     */
-    public function getHealthWebhook(): ?\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations
+    public function getHealthWebhook(): ?HealthWebhookNotificationIntegrationConfigurations
     {
         return $this->healthWebhook;
     }
 
-    /**
-     * @return \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null
-     */
-    public function getHealthPagerduty(): ?\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations
+    public function getHealthPagerduty(): ?HealthPagerDutyNotificationIntegrationConfigurations
     {
         return $this->healthPagerduty;
     }
 
-    /**
-     * @return \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null
-     */
-    public function getHealthSlack(): ?\Upsun\Model\HealthSlackNotificationIntegrationConfigurations
+    public function getHealthSlack(): ?HealthSlackNotificationIntegrationConfigurations
     {
         return $this->healthSlack;
     }
 
-    /**
-     * @return \Upsun\Model\FastlyCDNIntegrationConfigurations|null
-     */
-    public function getCdnFastly(): ?\Upsun\Model\FastlyCDNIntegrationConfigurations
+    public function getCdnFastly(): ?FastlyCDNIntegrationConfigurations
     {
         return $this->cdnFastly;
     }
 
-    /**
-     * @return \Upsun\Model\BlackfireIntegrationConfigurations|null
-     */
-    public function getBlackfire(): ?\Upsun\Model\BlackfireIntegrationConfigurations
+    public function getBlackfire(): ?BlackfireIntegrationConfigurations
     {
         return $this->blackfire;
     }
-}
 
+    public function getOtlp(): ?OpenTelemetryLogForwardingIntegrationConfigurations
+    {
+        return $this->otlp;
+    }
+}

@@ -12,22 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class Vouchers implements JsonSerializable
+final class Vouchers implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'uuid' => 'uuid',
-        'vouchersTotal' => 'vouchers_total',
-        'vouchersApplied' => 'vouchers_applied',
-        'vouchersRemainingBalance' => 'vouchers_remaining_balance',
-        'currency' => 'currency',
-        'vouchers' => 'vouchers',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $uuid = null,
         private readonly ?string $vouchersTotal = null,
@@ -35,29 +23,13 @@ final class Vouchers implements JsonSerializable
         private readonly ?string $vouchersRemainingBalance = null,
         private readonly ?string $currency = null,
         private readonly ?array $vouchers = [],
-        private readonly ?\Upsun\Model\VouchersLinks $links = null,
+        private readonly ?VouchersLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'uuid' => '?string',
-            'vouchers_total' => '?string',
-            'vouchers_applied' => '?string',
-            'vouchers_remaining_balance' => '?string',
-            'currency' => '?string',
-            'vouchers' => '\Upsun\Model\VouchersVouchersInner[]',
-            '_links' => '?\Upsun\Model\VouchersLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -78,72 +50,41 @@ final class Vouchers implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The uuid of the user.
-     *
-     * @return string|null
-     */
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
 
-    /**
-     * The total voucher credit given to the user.
-     *
-     * @return string|null
-     */
     public function getVouchersTotal(): ?string
     {
         return $this->vouchersTotal;
     }
 
-    /**
-     * The part of total voucher credit applied to orders.
-     *
-     * @return string|null
-     */
     public function getVouchersApplied(): ?string
     {
         return $this->vouchersApplied;
     }
 
-    /**
-     * The remaining voucher credit, available for future orders.
-     *
-     * @return string|null
-     */
     public function getVouchersRemainingBalance(): ?string
     {
         return $this->vouchersRemainingBalance;
     }
 
-    /**
-     * The currency of the vouchers.
-     *
-     * @return string|null
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
     /**
-     * Array of vouchers.
-     *
-     * @return \Upsun\Model\VouchersVouchersInner[]|null
+     * @return VouchersVouchersInner[]|null
      */
     public function getVouchers(): ?array
     {
         return $this->vouchers;
     }
 
-    /**
-     * @return \Upsun\Model\VouchersLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\VouchersLinks
+    public function getLinks(): ?VouchersLinks
     {
         return $this->links;
     }
 }
-

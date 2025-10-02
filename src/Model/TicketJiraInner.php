@@ -12,21 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
-final class TicketJiraInner implements JsonSerializable
+final class TicketJiraInner implements ModelInterface, JsonSerializable
 {
-
-    private static array $attributeMap = [
-        'id' => 'id',
-        'ticketId' => 'ticket_id',
-        'issueId' => 'issue_id',
-        'issueKey' => 'issue_key',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?int $id = null,
         private readonly ?int $ticketId = null,
@@ -37,24 +26,9 @@ final class TicketJiraInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?int',
-            'ticket_id' => '?int',
-            'issue_id' => '?int',
-            'issue_key' => '?string',
-            'created_at' => '?float',
-            'updated_at' => '?float',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
@@ -74,64 +48,33 @@ final class TicketJiraInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The id of the query.
-     *
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * The id of the ticket.
-     *
-     * @return int|null
-     */
     public function getTicketId(): ?int
     {
         return $this->ticketId;
     }
 
-    /**
-     * The issue id number.
-     *
-     * @return int|null
-     */
     public function getIssueId(): ?int
     {
         return $this->issueId;
     }
 
-    /**
-     * The issue key.
-     *
-     * @return string|null
-     */
     public function getIssueKey(): ?string
     {
         return $this->issueKey;
     }
 
-    /**
-     * The created at timestamp.
-     *
-     * @return float|null
-     */
     public function getCreatedAt(): ?float
     {
         return $this->createdAt;
     }
 
-    /**
-     * The updated at timestamp.
-     *
-     * @return float|null
-     */
     public function getUpdatedAt(): ?float
     {
         return $this->updatedAt;
     }
 }
-
