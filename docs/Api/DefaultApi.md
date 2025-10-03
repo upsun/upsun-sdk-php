@@ -5,7 +5,6 @@ All URIs are relative to https://api.upsun.com, except if the operation defines 
 | Method | HTTP request | Description | Upsun API Doc |
 | ------------- | ------------- | ------------- | ------------- |
 | [**listTickets()**](DefaultApi.md#listTickets) | **GET** /tickets | List support tickets | https://docs.upsun.com/api/#tag//operation/list-tickets |
-| [**queryOrganiationCarbon()**](DefaultApi.md#queryOrganiationCarbon) | **GET** /organizations/{organization_id}/metrics/carbon | Query project carbon emissions metrics for an entire organization | https://docs.upsun.com/api/#tag//operation/query-organiation-carbon |
 
 
 ## `listTickets()`
@@ -81,68 +80,6 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `queryOrganiationCarbon()`
-
-```php
-queryOrganiationCarbon($organizationId, $from, $to, $interval): \Upsun\Model\OrganizationCarbon
-```
-
-Query project carbon emissions metrics for an entire organization
-
-Queries the carbon emission data for all projects owned by the specified organiation.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-
-$apiInstance = new Upsun\Api\DefaultApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$organizationId = 'organizationId_example'; // string | The ID of the organization.
-$from = new \Upsun\Model\\Upsun\Model\DateTimeFilter(); // \Upsun\Model\DateTimeFilter | The start of the time frame for the query. Inclusive.
-$to = new \Upsun\Model\\Upsun\Model\DateTimeFilter(); // \Upsun\Model\DateTimeFilter | The end of the time frame for the query. Exclusive.
-$interval = 'interval_example'; // string | The interval by which the query groups the results. of the time frame for the query. Exclusive.
-
-try {
-    $result = $apiInstance->queryOrganiationCarbon($organizationId, $from, $to, $interval);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->queryOrganiationCarbon: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organizationId** | **string**| The ID of the organization. | |
-| **from** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| The start of the time frame for the query. Inclusive. | [optional] |
-| **to** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| The end of the time frame for the query. Exclusive. | [optional] |
-| **interval** | **string**| The interval by which the query groups the results. of the time frame for the query. Exclusive. | [optional] |
-
-### Return type
-
-[**\Upsun\Model\OrganizationCarbon**](../Model/OrganizationCarbon.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`, `application/problem+json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

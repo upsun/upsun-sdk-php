@@ -66,36 +66,57 @@ final class Organization implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the organization.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The type of the organization.
+    */
     public function getType(): ?string
     {
         return $this->type;
     }
 
+    /**
+    * The ID of the owner.
+    */
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
 
+    /**
+    * The namespace in which the organization name is unique.
+    */
     public function getNamespace(): ?string
     {
         return $this->namespace;
     }
 
+    /**
+    * A unique machine name representing the organization.
+    */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+    * The human-readable label of the organization.
+    */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
+    /**
+    * The organization country (2-letter country code).
+    */
     public function getCountry(): ?string
     {
         return $this->country;
@@ -106,31 +127,49 @@ final class Organization implements ModelInterface, JsonSerializable
         return $this->capabilities;
     }
 
+    /**
+    * The vendor.
+    */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
+    /**
+    * The Billing Account ID.
+    */
     public function getBillingAccountId(): ?string
     {
         return $this->billingAccountId;
     }
 
+    /**
+    * Whether the account is billed with the legacy system.
+    */
     public function getBillingLegacy(): ?bool
     {
         return $this->billingLegacy;
     }
 
+    /**
+    * The status of the organization.
+    */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
+    /**
+    * The date and time when the organization was created.
+    */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
+    /**
+    * The date and time when the organization was last updated.
+    */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

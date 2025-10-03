@@ -451,14 +451,14 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Activity[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/list-projects-environments-activities
      */
     public function listProjectsEnvironmentsActivities(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsEnvironmentsActivitiesWithHttpInfo(
             $projectId,
             $environmentId
@@ -468,14 +468,14 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Get environment activity log with HTTP Info
      *
-     * @return \Upsun\Model\Activity[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsActivitiesWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsEnvironmentsActivitiesRequest(
             $projectId,
             $environmentId
@@ -490,7 +490,7 @@ final class EnvironmentActivityApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Activity[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );

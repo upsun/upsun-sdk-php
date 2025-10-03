@@ -403,13 +403,13 @@ final class ProjectActivityApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Activity[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/list-projects-activities
      */
     public function listProjectsActivities(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsActivitiesWithHttpInfo(
             $projectId
         );
@@ -418,13 +418,13 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Get project activity log with HTTP Info
      *
-     * @return \Upsun\Model\Activity[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsActivitiesWithHttpInfo(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsActivitiesRequest(
             $projectId
         );
@@ -438,7 +438,7 @@ final class ProjectActivityApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Activity[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );

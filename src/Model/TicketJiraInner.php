@@ -48,31 +48,43 @@ final class TicketJiraInner implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+    */
     public function getTicketId(): ?int
     {
         return $this->ticketId;
     }
 
+    /**
+    */
     public function getIssueId(): ?int
     {
         return $this->issueId;
     }
 
+    /**
+    */
     public function getIssueKey(): ?string
     {
         return $this->issueKey;
     }
 
+    /**
+    */
     public function getCreatedAt(): ?float
     {
         return $this->createdAt;
     }
 
+    /**
+    */
     public function getUpdatedAt(): ?float
     {
         return $this->updatedAt;

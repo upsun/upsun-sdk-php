@@ -44,21 +44,29 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
 
+    /**
+    */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+    */
     public function getSpendRemaining(): ?string
     {
         return $this->spendRemaining;
     }
 
+    /**
+    */
     public function getExpiration(): ?\DateTime
     {
         return $this->expiration;

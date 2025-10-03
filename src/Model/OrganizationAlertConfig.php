@@ -50,31 +50,47 @@ final class OrganizationAlertConfig implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Type of alert (e.g. "billing")
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * Whether the billing alert should be active or not.
+    */
     public function getActive(): ?bool
     {
         return $this->active;
     }
 
+    /**
+    * Number of alerts sent.
+    */
     public function getAlertsSent(): ?float
     {
         return $this->alertsSent;
     }
 
+    /**
+    * The datetime the alert was last sent.
+    */
     public function getLastAlertAt(): ?string
     {
         return $this->lastAlertAt;
     }
 
+    /**
+    * The datetime the alert was last updated.
+    */
     public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
+    * Configuration for threshold and mode.
     public function getConfig(): ?OrganizationAlertConfigConfig
     {
         return $this->config;

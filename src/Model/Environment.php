@@ -217,10 +217,10 @@ final class Environment implements ModelInterface, JsonSerializable
     {
         return $this->sizing;
     }
-
     /**
      * @return ResourcesOverridesValue[]
      */
+
     public function getResourcesOverrides(): array
     {
         return $this->resourcesOverrides;

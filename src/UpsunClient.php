@@ -6,7 +6,6 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Symfony\Component\HttpClient\Psr18Client;
 use Upsun\Api\AddOnsApi;
-use Upsun\Api\AlertsApi;
 use Upsun\Api\APITokensApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;

@@ -6,7 +6,7 @@ All URIs are relative to https://api.upsun.com, except if the operation defines 
 | ------------- | ------------- | ------------- | ------------- |
 | [**getProjectsEnvironmentsDeployments()**](DeploymentApi.md#getProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Get a single environment deployment | https://docs.upsun.com/api/#tag/Deployment/operation/get-projects-environments-deployments |
 | [**listProjectsEnvironmentsDeployments()**](DeploymentApi.md#listProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments | Get an environment&#39;s deployment information | https://docs.upsun.com/api/#tag/Deployment/operation/list-projects-environments-deployments |
-| [**updateProjectsEnvironmentsDeploymentsNext()**](DeploymentApi.md#updateProjectsEnvironmentsDeploymentsNext) | **PATCH** /projects/{projectId}/environments/{environmentId}/deployments/next | Update the next deployment | https://docs.upsun.com/api/#tag//operation/ |
+| [**updateProjectsEnvironmentsDeploymentsNext()**](DeploymentApi.md#updateProjectsEnvironmentsDeploymentsNext) | **PATCH** /projects/{projectId}/environments/{environmentId}/deployments/next | Update the next deployment | https://docs.upsun.com/api/#tag/Deployment/operation/update-projects-environments-deployments-next |
 
 
 ## `getProjectsEnvironmentsDeployments()`
@@ -72,7 +72,7 @@ No authorization required
 ## `listProjectsEnvironmentsDeployments()`
 
 ```php
-listProjectsEnvironmentsDeployments($projectId, $environmentId): \Upsun\Model\Deployment[]
+listProjectsEnvironmentsDeployments($projectId, $environmentId): \Upsun\Model\AcceptedResponse
 ```
 
 Get an environment's deployment information
@@ -112,7 +112,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\Deployment[]**](../Model/Deployment.md)
+[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
 
 ### Authorization
 

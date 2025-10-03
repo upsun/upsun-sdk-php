@@ -3,6 +3,7 @@
 /**
  * Low level ProfileCurrentTrialSpendRemaining (auto-generated)
  *
+ * The remaining amount available for the trial.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -47,26 +48,41 @@ final class ProfileCurrentTrialSpendRemaining implements ModelInterface, JsonSer
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The total amount formatted.
+    */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
+    /**
+    * The total amount.
+    */
     public function getAmount(): ?string
     {
         return $this->amount;
     }
 
+    /**
+    * The currency.
+    */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
+    /**
+    * Currency symbol.
+    */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
 
+    /**
+    * Spend limit is ignored (in favor of resource limitations).
+    */
     public function getUnlimited(): ?bool
     {
         return $this->unlimited;

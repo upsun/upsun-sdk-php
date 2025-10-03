@@ -167,10 +167,10 @@ final class Activity implements ModelInterface, JsonSerializable
     {
         return $this->expiresAt;
     }
-
     /**
      * @return CommandsInner[]
      */
+
     public function getCommands(): array
     {
         return $this->commands;

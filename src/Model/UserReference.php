@@ -54,41 +54,66 @@ final class UserReference implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the user.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The user's username.
+    */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
+    /**
+    * The user's email address.
+    */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+    * The user's first name.
+    */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
+    /**
+    * The user's last name.
+    */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
+    /**
+    * The user's picture.
+    */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
+    /**
+    * Whether the user has enabled MFA. Note: the built-in MFA feature may not be necessary if the user is linked to a
+    * mandatory SSO provider that itself supports MFA (see "sso_enabled\").
+    */
     public function getMfaEnabled(): ?bool
     {
         return $this->mfaEnabled;
     }
 
+    /**
+    * Whether the user is linked to a mandatory SSO provider.
+    */
     public function getSsoEnabled(): ?bool
     {
         return $this->ssoEnabled;

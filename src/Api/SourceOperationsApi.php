@@ -66,14 +66,14 @@ final class SourceOperationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\EnvironmentSourceOperation[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Source-Operations/operation/list-projects-environments-source-operations
      */
     public function listProjectsEnvironmentsSourceOperations(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsEnvironmentsSourceOperationsWithHttpInfo(
             $projectId,
             $environmentId
@@ -83,14 +83,14 @@ final class SourceOperationsApi extends AbstractApi
     /**
      * List source operations with HTTP Info
      *
-     * @return \Upsun\Model\EnvironmentSourceOperation[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsSourceOperationsWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsEnvironmentsSourceOperationsRequest(
             $projectId,
             $environmentId
@@ -105,7 +105,7 @@ final class SourceOperationsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\EnvironmentSourceOperation[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );

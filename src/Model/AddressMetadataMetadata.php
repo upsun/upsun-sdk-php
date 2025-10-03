@@ -3,6 +3,7 @@
 /**
  * Low level AddressMetadataMetadata (auto-generated)
  *
+ * Address field metadata.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -48,11 +49,17 @@ final class AddressMetadataMetadata implements ModelInterface, JsonSerializable
         return $this->requiredFields;
     }
 
+    /**
+    * Localized labels for address fields.
+    */
     public function getFieldLabels(): ?object
     {
         return $this->fieldLabels;
     }
 
+    /**
+    * Whether this country supports a VAT number.
+    */
     public function getShowVat(): ?bool
     {
         return $this->showVat;

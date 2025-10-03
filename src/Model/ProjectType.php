@@ -27,8 +27,6 @@ final class ProjectType implements JsonSerializable
     private string $value;
 
     /**
-     * Constructor
-     *
      * @throws InvalidArgumentException if value is not allowed
      */
     public function __construct(string $value)
@@ -51,8 +49,6 @@ final class ProjectType implements JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
     public static function getAllowableEnumValues(): array
     {

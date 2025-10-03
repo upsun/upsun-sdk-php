@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationAddonsObjectUpgradesAvailable (auto-generated)
  *
+ * The upgrades available for current add-ons.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0

@@ -8,7 +8,6 @@ All URIs are relative to https://api.upsun.com, except if the operation defines 
 | [**deleteOrgProject()**](OrganizationProjectsApi.md#deleteOrgProject) | **DELETE** /organizations/{organization_id}/projects/{project_id} | Delete project | https://docs.upsun.com/api/#tag/Organization-Projects/operation/delete-org-project |
 | [**getOrgProject()**](OrganizationProjectsApi.md#getOrgProject) | **GET** /organizations/{organization_id}/projects/{project_id} | Get project | https://docs.upsun.com/api/#tag/Organization-Projects/operation/get-org-project |
 | [**listOrgProjects()**](OrganizationProjectsApi.md#listOrgProjects) | **GET** /organizations/{organization_id}/projects | List projects | https://docs.upsun.com/api/#tag/Organization-Projects/operation/list-org-projects |
-| [**queryProjectCarbon()**](OrganizationProjectsApi.md#queryProjectCarbon) | **GET** /organizations/{organization_id}/projects/{project_id}/metrics/carbon | Query project carbon emissions metrics | https://docs.upsun.com/api/#tag/Organization-Projects/operation/query-project-carbon |
 | [**updateOrgProject()**](OrganizationProjectsApi.md#updateOrgProject) | **PATCH** /organizations/{organization_id}/projects/{project_id} | Update project | https://docs.upsun.com/api/#tag/Organization-Projects/operation/update-org-project |
 
 
@@ -245,70 +244,6 @@ try {
 ### Return type
 
 [**\Upsun\Model\ListOrgProjects200Response**](../Model/ListOrgProjects200Response.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`, `application/problem+json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `queryProjectCarbon()`
-
-```php
-queryProjectCarbon($organizationId, $projectId, $from, $to, $interval): \Upsun\Model\ProjectCarbon
-```
-
-Query project carbon emissions metrics
-
-Queries the carbon emission data for the specified project using the supplied parameters.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-
-$apiInstance = new Upsun\Api\OrganizationProjectsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$organizationId = 'organizationId_example'; // string | The ID of the organization.
-$projectId = 'projectId_example'; // string | The ID of the project.
-$from = new \Upsun\Model\\Upsun\Model\DateTimeFilter(); // \Upsun\Model\DateTimeFilter | The start of the time frame for the query. Inclusive.
-$to = new \Upsun\Model\\Upsun\Model\DateTimeFilter(); // \Upsun\Model\DateTimeFilter | The end of the time frame for the query. Exclusive.
-$interval = 'interval_example'; // string | The interval by which the query groups the results. of the time frame for the query. Exclusive.
-
-try {
-    $result = $apiInstance->queryProjectCarbon($organizationId, $projectId, $from, $to, $interval);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling OrganizationProjectsApi->queryProjectCarbon: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **organizationId** | **string**| The ID of the organization. | |
-| **projectId** | **string**| The ID of the project. | |
-| **from** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| The start of the time frame for the query. Inclusive. | [optional] |
-| **to** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| The end of the time frame for the query. Exclusive. | [optional] |
-| **interval** | **string**| The interval by which the query groups the results. of the time frame for the query. Exclusive. | [optional] |
-
-### Return type
-
-[**\Upsun\Model\ProjectCarbon**](../Model/ProjectCarbon.md)
 
 ### Authorization
 

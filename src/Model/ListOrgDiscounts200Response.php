@@ -39,10 +39,10 @@ final class ListOrgDiscounts200Response implements ModelInterface, JsonSerializa
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-
     /**
      * @return Discount[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

@@ -4,10 +4,10 @@ All URIs are relative to https://api.upsun.com, except if the operation defines 
 
 | Method | HTTP request | Description | Upsun API Doc |
 | ------------- | ------------- | ------------- | ------------- |
-| [**getAutoscalerSettings()**](AutoscalingApi.md#getAutoscalerSettings) | **GET** /projects/{projectId}/environments/{environmentId}/autoscaling/settings |  | https://docs.upsun.com/api/#tag/Autoscaling/operation/get-autoscaler-settings |
-| [**patchAutoscalerSettings()**](AutoscalingApi.md#patchAutoscalerSettings) | **PATCH** /projects/{projectId}/environments/{environmentId}/autoscaling/settings |  | https://docs.upsun.com/api/#tag/Autoscaling/operation/patch-autoscaler-settings |
+| [**getAutoscalerSettings()**](AutoscalingApi.md#getAutoscalerSettings) | **GET** /projects/{projectId}/environments/{environmentId}/autoscaling/settings | Retrieves Autoscaler settings | https://docs.upsun.com/api/#tag/Autoscaling/operation/get-autoscaler-settings |
+| [**patchAutoscalerSettings()**](AutoscalingApi.md#patchAutoscalerSettings) | **PATCH** /projects/{projectId}/environments/{environmentId}/autoscaling/settings | Modifies Autoscaler settings | https://docs.upsun.com/api/#tag/Autoscaling/operation/patch-autoscaler-settings |
 | [**postAutoscalerAlert()**](AutoscalingApi.md#postAutoscalerAlert) | **POST** /projects/{projectId}/environments/{environmentId}/autoscaling/alerts |  | https://docs.upsun.com/api/#tag/Autoscaling/operation/post-autoscaler-alert |
-| [**postAutoscalerSettings()**](AutoscalingApi.md#postAutoscalerSettings) | **POST** /projects/{projectId}/environments/{environmentId}/autoscaling/settings |  | https://docs.upsun.com/api/#tag/Autoscaling/operation/post-autoscaler-settings |
+| [**postAutoscalerSettings()**](AutoscalingApi.md#postAutoscalerSettings) | **POST** /projects/{projectId}/environments/{environmentId}/autoscaling/settings | Updates Autoscaler settings | https://docs.upsun.com/api/#tag/Autoscaling/operation/post-autoscaler-settings |
 
 
 ## `getAutoscalerSettings()`
@@ -16,9 +16,9 @@ All URIs are relative to https://api.upsun.com, except if the operation defines 
 getAutoscalerSettings($projectId, $environmentId): \Upsun\Model\AutoscalerSettings
 ```
 
-
-
 Retrieves Autoscaler settings
+
+Retrieves the current Autoscaler configuration for a specific environment. This includes all thresholds, conditions, and rules currently applied. Use this endpoint to inspect how automatic scaling is configured.
 
 ### Example
 
@@ -74,9 +74,9 @@ No authorization required
 patchAutoscalerSettings($projectId, $environmentId, $autoscalerSettings): \Upsun\Model\AutoscalerSettings
 ```
 
-
-
 Modifies Autoscaler settings
+
+Modifies the configuration of an existing Autoscaler for the specified environment. Use this endpoint to change scaling thresholds, conditions, or other autoscaling parameters without deleting the Autoscaler.
 
 ### Example
 
@@ -131,7 +131,7 @@ No authorization required
 ## `postAutoscalerAlert()`
 
 ```php
-postAutoscalerAlert($projectId, $environmentId, $autoscalerAlertPartial): object
+postAutoscalerAlert($projectId, $environmentId, $autoscalerAlertPartial): \Upsun\Model\AcceptedResponse
 ```
 
 
@@ -173,7 +173,7 @@ try {
 
 ### Return type
 
-**object**
+[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
 
 ### Authorization
 
@@ -194,9 +194,9 @@ No authorization required
 postAutoscalerSettings($projectId, $environmentId, $autoscalerSettings): \Upsun\Model\AutoscalerSettings
 ```
 
-
-
 Updates Autoscaler settings
+
+Creates or updates the Autoscaler settings for a specific environment. Use this endpoint to define new autoscaling rules or override existing ones.
 
 ### Example
 

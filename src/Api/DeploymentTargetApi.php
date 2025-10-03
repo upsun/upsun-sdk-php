@@ -388,14 +388,14 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\DeploymentTarget
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/get-projects-deployments
      */
     public function getProjectsDeployments(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): \Upsun\Model\DeploymentTarget {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->getProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetConfigurationId
@@ -405,14 +405,14 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Get a single project deployment target with HTTP Info
      *
-     * @return \Upsun\Model\DeploymentTarget
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsDeploymentsWithHttpInfo(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): \Upsun\Model\DeploymentTarget {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->getProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetConfigurationId
@@ -427,7 +427,7 @@ final class DeploymentTargetApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\DeploymentTarget',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
@@ -550,13 +550,13 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\DeploymentTarget[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/list-projects-deployments
      */
     public function listProjectsDeployments(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsDeploymentsWithHttpInfo(
             $projectId
         );
@@ -565,13 +565,13 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Get project deployment target info with HTTP Info
      *
-     * @return \Upsun\Model\DeploymentTarget[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsDeploymentsWithHttpInfo(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsDeploymentsRequest(
             $projectId
         );
@@ -585,7 +585,7 @@ final class DeploymentTargetApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\DeploymentTarget[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );

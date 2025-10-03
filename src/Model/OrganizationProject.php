@@ -74,91 +74,141 @@ final class OrganizationProject implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the project.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The ID of the organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
+    /**
+    * The ID of the subscription.
+    */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
+    /**
+    * Vendor of the project.
+    */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
+    /**
+    * The machine name of the region where the project is located.
+    */
     public function getRegion(): ?string
     {
         return $this->region;
     }
 
+    /**
+    * The title of the project.
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    * The type of projects.
     public function getType(): ?ProjectType
     {
         return $this->type;
     }
 
+    /**
+    * The project plan.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
+    /**
+    * Timezone of the project.
+    */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
+    /**
+    * Default branch.
+    */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
 
+    * The status of the project.
     public function getStatus(): ?ProjectStatus
     {
         return $this->status;
     }
 
+    /**
+    * Whether the project is currently on a trial plan.
+    */
     public function getTrialPlan(): ?bool
     {
         return $this->trialPlan;
     }
 
+    /**
+    * The URL for the project's user interface.
+    */
     public function getProjectUi(): ?string
     {
         return $this->projectUi;
     }
 
+    /**
+    * Locked
+    */
     public function getLocked(): ?bool
     {
         return $this->locked;
     }
 
+    /**
+    * CSE notes.
+    */
     public function getCseNotes(): ?string
     {
         return $this->cseNotes;
     }
 
+    /**
+    * Dedicated tag.
+    */
     public function getDedicatedTag(): ?string
     {
         return $this->dedicatedTag;
     }
 
+    /**
+    * The date and time when the resource was created.
+    */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
+    /**
+    * The date and time when the resource was last updated.
+    */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

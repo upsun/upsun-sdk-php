@@ -62,10 +62,10 @@ final class BlackfireIntegration implements ModelInterface, JsonSerializable
     {
         return $this->type;
     }
-
     /**
      * @return BlackfireEnvironmentsCredentialsValue[]
      */
+
     public function getEnvironmentsCredentials(): array
     {
         return $this->environmentsCredentials;

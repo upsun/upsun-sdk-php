@@ -120,18 +120,18 @@ final class Deployment implements ModelInterface, JsonSerializable
     {
         return $this->restrictRobots;
     }
-
     /**
      * @return TheVariablesApplyingToThisEnvironmentInner[]
      */
+
     public function getVariables(): array
     {
         return $this->variables;
     }
-
     /**
      * @return AccessControlDefinitionForThisEnviromentInner[]
      */
+
     public function getAccess(): array
     {
         return $this->access;
@@ -141,34 +141,34 @@ final class Deployment implements ModelInterface, JsonSerializable
     {
         return $this->subscription;
     }
-
     /**
      * @return ServicesValue[]
      */
+
     public function getServices(): array
     {
         return $this->services;
     }
-
     /**
      * @return RoutesValue[]
      */
+
     public function getRoutes(): array
     {
         return $this->routes;
     }
-
     /**
      * @return WebApplicationsValue[]
      */
+
     public function getWebapps(): array
     {
         return $this->webapps;
     }
-
     /**
      * @return WorkersValue[]
      */
+
     public function getWorkers(): array
     {
         return $this->workers;

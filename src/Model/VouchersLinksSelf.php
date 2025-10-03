@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Low level OrganizationLinksDelete (auto-generated)
+ * Low level VouchersLinksSelf (auto-generated)
  *
- * Link for deleting the current organization.
+ * Link to the current resource.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -16,11 +16,10 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OrganizationLinksDelete implements ModelInterface, JsonSerializable
+final class VouchersLinksSelf implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $href = null,
-        private readonly ?string $method = null,
     ) {
     }
 
@@ -33,7 +32,6 @@ final class OrganizationLinksDelete implements ModelInterface, JsonSerializable
     {
         return [
             'href' => $this->href,
-            'method' => $this->method,
         ];
     }
 
@@ -48,13 +46,5 @@ final class OrganizationLinksDelete implements ModelInterface, JsonSerializable
     public function getHref(): ?string
     {
         return $this->href;
-    }
-
-    /**
-    * The HTTP method to use.
-    */
-    public function getMethod(): ?string
-    {
-        return $this->method;
     }
 }

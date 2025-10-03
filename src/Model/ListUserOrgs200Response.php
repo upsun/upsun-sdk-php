@@ -39,10 +39,10 @@ final class ListUserOrgs200Response implements ModelInterface, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-
     /**
      * @return Organization[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

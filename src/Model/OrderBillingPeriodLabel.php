@@ -3,6 +3,7 @@
 /**
  * Low level OrderBillingPeriodLabel (auto-generated)
  *
+ * Descriptive information about the billing cycle.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -45,21 +46,33 @@ final class OrderBillingPeriodLabel implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The renderable label for the billing cycle.
+    */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
+    /**
+    * The month of the billing cycle.
+    */
     public function getMonth(): ?string
     {
         return $this->month;
     }
 
+    /**
+    * The year of the billing cycle.
+    */
     public function getYear(): ?string
     {
         return $this->year;
     }
 
+    /**
+    * The name of the next month following this billing cycle.
+    */
     public function getNextMonth(): ?string
     {
         return $this->nextMonth;

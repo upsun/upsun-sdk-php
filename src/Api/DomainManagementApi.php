@@ -767,14 +767,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Domain
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-domains
      */
     public function getProjectsDomains(
         string $projectId,
         string $domainId
-    ): \Upsun\Model\Domain {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->getProjectsDomainsWithHttpInfo(
             $projectId,
             $domainId
@@ -784,14 +784,14 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get a project domain with HTTP Info
      *
-     * @return \Upsun\Model\Domain
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId
-    ): \Upsun\Model\Domain {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->getProjectsDomainsRequest(
             $projectId,
             $domainId
@@ -806,7 +806,7 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Domain',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
@@ -929,7 +929,7 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Domain
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-environments-domains
      */
@@ -937,7 +937,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): \Upsun\Model\Domain {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->getProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -948,7 +948,7 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get an environment domain with HTTP Info
      *
-     * @return \Upsun\Model\Domain
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -956,7 +956,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): \Upsun\Model\Domain {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->getProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -972,7 +972,7 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Domain',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
@@ -1118,13 +1118,13 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Domain[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-domains
      */
     public function listProjectsDomains(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsDomainsWithHttpInfo(
             $projectId
         );
@@ -1133,13 +1133,13 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get list of project domains with HTTP Info
      *
-     * @return \Upsun\Model\Domain[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsDomainsWithHttpInfo(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsDomainsRequest(
             $projectId
         );
@@ -1153,7 +1153,7 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Domain[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
@@ -1256,14 +1256,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Domain[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-environments-domains
      */
     public function listProjectsEnvironmentsDomains(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId
@@ -1273,14 +1273,14 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get a list of environment domains with HTTP Info
      *
-     * @return \Upsun\Model\Domain[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId
@@ -1295,7 +1295,7 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Domain[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );

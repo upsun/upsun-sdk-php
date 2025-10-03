@@ -88,10 +88,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, JsonSerializabl
     {
         return $this->sshHost;
     }
-
     /**
      * @return TheHostsOfTheDeploymentTargetInner[]|null
      */
+
     public function getHosts(): ?array
     {
         return $this->hosts;

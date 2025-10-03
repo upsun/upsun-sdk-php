@@ -3,6 +3,7 @@
 /**
  * Low level ProjectOptionsEnforced (auto-generated)
  *
+ * The enforced values applied to the project.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -41,11 +42,17 @@ final class ProjectOptionsEnforced implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The project settings.
+    */
     public function getSettings(): ?object
     {
         return $this->settings;
     }
 
+    /**
+    * The project capabilities.
+    */
     public function getCapabilities(): ?object
     {
         return $this->capabilities;

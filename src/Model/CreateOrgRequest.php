@@ -46,26 +46,36 @@ final class CreateOrgRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getLabel(): string
     {
         return $this->label;
     }
 
+    /**
+    */
     public function getType(): ?string
     {
         return $this->type;
     }
 
+    /**
+    */
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
 
+    /**
+    */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+    */
     public function getCountry(): ?string
     {
         return $this->country;

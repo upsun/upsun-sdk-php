@@ -44,16 +44,24 @@ final class AutoscalerCondition implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Value at which the condition is satisfied
+    */
     public function getThreshold(): float
     {
         return $this->threshold;
     }
 
+    /**
+    */
     public function getDuration(): ?AutoscalerDuration
     {
         return $this->duration;
     }
 
+    /**
+    * Whether the condition should be used for generating alerts
+    */
     public function getEnabled(): ?bool
     {
         return $this->enabled;

@@ -56,54 +56,79 @@ final class ProjectInvitation implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the invitation.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The invitation state.
+    */
     public function getState(): ?string
     {
         return $this->state;
     }
 
+    /**
+    * The ID of the project.
+    */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
+    /**
+    * The project role.
+    */
     public function getRole(): ?string
     {
         return $this->role;
     }
 
+    /**
+    * The email address of the invitee.
+    */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    * The inviter.
     public function getOwner(): ?OrganizationInvitationOwner
     {
         return $this->owner;
     }
 
+    /**
+    * The date and time when the invitation was created.
+    */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
+    /**
+    * The date and time when the invitation was last updated.
+    */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
+    /**
+    * The date and time when the invitation was finished.
+    */
     public function getFinishedAt(): ?\DateTime
     {
         return $this->finishedAt;
     }
-
     /**
      * @return ProjectInvitationEnvironmentsInner[]|null
      */
+
     public function getEnvironments(): ?array
     {
         return $this->environments;

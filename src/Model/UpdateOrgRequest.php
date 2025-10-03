@@ -42,16 +42,22 @@ final class UpdateOrgRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+    */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
+    /**
+    */
     public function getCountry(): ?string
     {
         return $this->country;

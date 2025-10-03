@@ -40,11 +40,15 @@ final class CreateProjectInviteRequestEnvironmentsInner implements ModelInterfac
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    */
     public function getRole(): ?string
     {
         return $this->role;

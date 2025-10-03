@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationAlertConfigConfig (auto-generated)
  *
+ * Configuration for threshold and mode.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -41,11 +42,15 @@ final class OrganizationAlertConfigConfig implements ModelInterface, JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    * Data regarding threshold spend.
     public function getThreshold(): ?OrganizationAlertConfigConfigThreshold
     {
         return $this->threshold;
     }
 
+    /**
+    * The mode of alert.
+    */
     public function getMode(): ?string
     {
         return $this->mode;

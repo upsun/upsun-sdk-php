@@ -67,7 +67,7 @@ final class RoutingApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Route
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Routing/operation/get-projects-environments-routes
      */
@@ -75,7 +75,7 @@ final class RoutingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $routeId
-    ): \Upsun\Model\Route {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->getProjectsEnvironmentsRoutesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -86,7 +86,7 @@ final class RoutingApi extends AbstractApi
     /**
      * Get a route's info with HTTP Info
      *
-     * @return \Upsun\Model\Route
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -94,7 +94,7 @@ final class RoutingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $routeId
-    ): \Upsun\Model\Route {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->getProjectsEnvironmentsRoutesRequest(
             $projectId,
             $environmentId,
@@ -110,7 +110,7 @@ final class RoutingApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Route',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
@@ -255,14 +255,14 @@ final class RoutingApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Route[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Routing/operation/list-projects-environments-routes
      */
     public function listProjectsEnvironmentsRoutes(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsEnvironmentsRoutesWithHttpInfo(
             $projectId,
             $environmentId
@@ -272,14 +272,14 @@ final class RoutingApi extends AbstractApi
     /**
      * Get list of routes with HTTP Info
      *
-     * @return \Upsun\Model\Route[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsRoutesWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsEnvironmentsRoutesRequest(
             $projectId,
             $environmentId
@@ -294,7 +294,7 @@ final class RoutingApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Route[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );

@@ -42,16 +42,22 @@ final class CreateSshKeyRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getValue(): string
     {
         return $this->value;
     }
 
+    /**
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+    */
     public function getUuid(): ?string
     {
         return $this->uuid;

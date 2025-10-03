@@ -42,14 +42,16 @@ final class ListOrgMembers200Response implements ModelInterface, JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getCount(): ?int
     {
         return $this->count;
     }
-
     /**
      * @return OrganizationMember[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

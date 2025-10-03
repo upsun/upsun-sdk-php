@@ -3,6 +3,7 @@
 /**
  * Low level OrderLinksInvoices (auto-generated)
  *
+ * Link to related Invoices API. Use this to retrieve invoices related to this order.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -39,6 +40,9 @@ final class OrderLinksInvoices implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * URL of the link
+    */
     public function getHref(): ?string
     {
         return $this->href;

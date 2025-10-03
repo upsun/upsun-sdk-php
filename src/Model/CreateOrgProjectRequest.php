@@ -52,41 +52,63 @@ final class CreateOrgProjectRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The machine name of the region where the project is located.
+    */
     public function getRegion(): string
     {
         return $this->region;
     }
 
+    /**
+    * The ID of the organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
+    /**
+    * The title of the project.
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    * The type of projects.
     public function getType(): ?ProjectType
     {
         return $this->type;
     }
 
+    /**
+    * The project plan.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
+    /**
+    * Default branch.
+    */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
 
+    /**
+    * CSE notes.
+    */
     public function getCseNotes(): ?string
     {
         return $this->cseNotes;
     }
 
+    /**
+    * Dedicated tag.
+    */
     public function getDedicatedTag(): ?string
     {
         return $this->dedicatedTag;

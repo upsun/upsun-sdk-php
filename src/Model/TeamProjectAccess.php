@@ -50,31 +50,49 @@ final class TeamProjectAccess implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the team.
+    */
     public function getTeamId(): ?string
     {
         return $this->teamId;
     }
 
+    /**
+    * The ID of the organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
+    /**
+    * The ID of the project.
+    */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
+    /**
+    * The title of the project.
+    */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
+    /**
+    * The date and time when the access was granted.
+    */
     public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
 
+    /**
+    * The date and time when the access was last updated.
+    */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

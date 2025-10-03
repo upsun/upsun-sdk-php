@@ -54,41 +54,63 @@ final class OrganizationInvitation implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the invitation.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The invitation state.
+    */
     public function getState(): ?string
     {
         return $this->state;
     }
 
+    /**
+    * The ID of the organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
+    /**
+    * The email address of the invitee.
+    */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    * The inviter.
     public function getOwner(): ?OrganizationInvitationOwner
     {
         return $this->owner;
     }
 
+    /**
+    * The date and time when the invitation was created.
+    */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
+    /**
+    * The date and time when the invitation was last updated.
+    */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
+    /**
+    * The date and time when the invitation was finished.
+    */
     public function getFinishedAt(): ?\DateTime
     {
         return $this->finishedAt;

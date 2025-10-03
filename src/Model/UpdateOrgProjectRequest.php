@@ -46,26 +46,41 @@ final class UpdateOrgProjectRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The title of the project.
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+    * The project plan.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
+    /**
+    * Timezone of the project.
+    */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
+    /**
+    * CSE notes.
+    */
     public function getCseNotes(): ?string
     {
         return $this->cseNotes;
     }
 
+    /**
+    * Dedicated tag.
+    */
     public function getDedicatedTag(): ?string
     {
         return $this->dedicatedTag;

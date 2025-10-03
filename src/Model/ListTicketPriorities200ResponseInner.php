@@ -44,21 +44,29 @@ final class ListTicketPriorities200ResponseInner implements ModelInterface, Json
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
+    /**
+    */
     public function getShortDescription(): ?string
     {
         return $this->shortDescription;
     }
 
+    /**
+    */
     public function getDescription(): ?string
     {
         return $this->description;

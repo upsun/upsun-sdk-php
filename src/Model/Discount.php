@@ -60,56 +60,85 @@ final class Discount implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the organization discount.
+    */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+    * The ULID of the organization the discount applies to.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
+    /**
+    * The machine name of the discount type.
+    */
     public function getType(): ?string
     {
         return $this->type;
     }
 
+    /**
+    * The label of the discount type.
+    */
     public function getTypeLabel(): ?string
     {
         return $this->typeLabel;
     }
 
+    /**
+    * The status of the discount.
+    */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
+    * The minimum commitment associated with the discount (if applicable).
     public function getCommitment(): ?DiscountCommitment
     {
         return $this->commitment;
     }
 
+    /**
+    * The contract length in months (if applicable).
+    */
     public function getTotalMonths(): ?int
     {
         return $this->totalMonths;
     }
 
+    * Discount value per relevant time periods.
     public function getDiscount(): ?DiscountDiscount
     {
         return $this->discount;
     }
 
+    /**
+    * The discount type specific configuration.
+    */
     public function getConfig(): ?object
     {
         return $this->config;
     }
 
+    /**
+    * The start time of the discount period.
+    */
     public function getStartAt(): ?\DateTime
     {
         return $this->startAt;
     }
 
+    /**
+    * The end time of the discount period (if applicable).
+    */
     public function getEndAt(): ?\DateTime
     {
         return $this->endAt;

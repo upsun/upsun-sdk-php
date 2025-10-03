@@ -3,6 +3,7 @@
 /**
  * Low level UsageAlertConfigThreshold (auto-generated)
  *
+ * Data regarding threshold spend.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -43,16 +44,25 @@ final class UsageAlertConfigThreshold implements ModelInterface, JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Formatted threshold value.
+    */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
+    /**
+    * Threshold value.
+    */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
 
+    /**
+    * Threshold unit.
+    */
     public function getUnit(): ?string
     {
         return $this->unit;

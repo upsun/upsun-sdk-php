@@ -42,11 +42,17 @@ final class AutoscalerMemoryResources implements ModelInterface, JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Minimum memory (bytes) when scaling down vertically
+    */
     public function getMin(): ?int
     {
         return $this->min;
     }
 
+    /**
+    * Maximum memory (bytes) when scaling up vertically
+    */
     public function getMax(): ?int
     {
         return $this->max;

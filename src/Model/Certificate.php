@@ -109,10 +109,10 @@ final class Certificate implements ModelInterface, JsonSerializable
     {
         return $this->authType;
     }
-
     /**
      * @return TheIssuerOfTheCertificateInner[]
      */
+
     public function getIssuer(): array
     {
         return $this->issuer;

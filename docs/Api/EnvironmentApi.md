@@ -622,7 +622,7 @@ No authorization required
 ## `listProjectsEnvironments()`
 
 ```php
-listProjectsEnvironments($projectId): \Upsun\Model\Environment[]
+listProjectsEnvironments($projectId): \Upsun\Model\AcceptedResponse
 ```
 
 Get list of project environments
@@ -660,7 +660,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\Environment[]**](../Model/Environment.md)
+[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
 
 ### Authorization
 
@@ -678,7 +678,7 @@ No authorization required
 ## `listProjectsEnvironmentsVersions()`
 
 ```php
-listProjectsEnvironmentsVersions($projectId, $environmentId): \Upsun\Model\Version[]
+listProjectsEnvironmentsVersions($projectId, $environmentId): \Upsun\Model\AcceptedResponse
 ```
 
 List versions associated with the environment
@@ -718,7 +718,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\Version[]**](../Model/Version.md)
+[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
 
 ### Authorization
 

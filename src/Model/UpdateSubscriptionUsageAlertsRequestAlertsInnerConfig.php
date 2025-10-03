@@ -39,6 +39,8 @@ final class UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig implements Mod
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getThreshold(): ?int
     {
         return $this->threshold;

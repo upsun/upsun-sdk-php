@@ -128,7 +128,7 @@ No authorization required
 ## `listProjectsActivities()`
 
 ```php
-listProjectsActivities($projectId): \Upsun\Model\Activity[]
+listProjectsActivities($projectId): \Upsun\Model\AcceptedResponse
 ```
 
 Get project activity log
@@ -166,7 +166,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\Activity[]**](../Model/Activity.md)
+[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
 
 ### Authorization
 

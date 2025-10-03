@@ -44,21 +44,33 @@ final class ArrayFilter implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Equal
+    */
     public function getEq(): ?string
     {
         return $this->eq;
     }
 
+    /**
+    * Not equal
+    */
     public function getNe(): ?string
     {
         return $this->ne;
     }
 
+    /**
+    * In (comma-separated list)
+    */
     public function getIn(): ?string
     {
         return $this->in;
     }
 
+    /**
+    * Not in (comma-separated list)
+    */
     public function getNin(): ?string
     {
         return $this->nin;

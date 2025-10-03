@@ -45,21 +45,29 @@ final class GetTypeAllowance200ResponseCurrenciesUSD implements ModelInterface, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
+    /**
+    */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
 
+    /**
+    */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
+    /**
+    */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;

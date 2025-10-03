@@ -1902,12 +1902,6 @@ final class ObjectOpenApiTypesMapper
             '_links' => '?\Upsun\Model\ListLinks',
         ],
 
-        'Upsun\Model\ListPlans200Response' => [
-            'count' => '?int',
-            'plans' => '\Upsun\Model\Plan[]',
-            '_links' => '?\Upsun\Model\HalLinks',
-        ],
-
         'Upsun\Model\ListProfiles200Response' => [
             'count' => '?int',
             'profiles' => '\Upsun\Model\Profile[]',
@@ -1989,18 +1983,6 @@ final class ObjectOpenApiTypesMapper
 
         'Upsun\Model\Metrics' => [
             'max_range' => 'string',
-        ],
-
-        'Upsun\Model\MetricsMetadata' => [
-            'from' => '?mixed',
-            'to' => '?mixed',
-            'interval' => '?mixed',
-            'units' => '?mixed',
-        ],
-
-        'Upsun\Model\MetricsValue' => [
-            'value' => '?mixed',
-            'start_time' => '?mixed',
         ],
 
         'Upsun\Model\NewRelicIntegration' => [
@@ -2148,13 +2130,6 @@ final class ObjectOpenApiTypesMapper
             'amount' => '?float',
             'currency_code' => '?string',
             'currency_symbol' => '?string',
-        ],
-
-        'Upsun\Model\OrganizationCarbon' => [
-            'organization_id' => '?string',
-            'meta' => '?\Upsun\Model\MetricsMetadata',
-            'projects' => '\Upsun\Model\OrganizationProjectCarbon[]',
-            'total' => '?float',
         ],
 
         'Upsun\Model\OrganizationEstimationObject' => [
@@ -2391,13 +2366,6 @@ final class ObjectOpenApiTypesMapper
             '_links' => '?\Upsun\Model\OrganizationProjectLinks',
         ],
 
-        'Upsun\Model\OrganizationProjectCarbon' => [
-            'project_id' => '?string',
-            'project_title' => '?string',
-            'values' => '\Upsun\Model\MetricsValue[]',
-            'total' => '?float',
-        ],
-
         'Upsun\Model\OrganizationProjectLinks' => [
             'self' => '?\Upsun\Model\OrganizationProjectLinksSelf',
             'update' => '?\Upsun\Model\OrganizationProjectLinksUpdate',
@@ -2487,11 +2455,6 @@ final class ObjectOpenApiTypesMapper
             'cpu' => '?float',
             'memory' => '?int',
             'disk' => '?int',
-        ],
-
-        'Upsun\Model\Plan' => [
-            'name' => '?string',
-            'label' => '?string',
         ],
 
         'Upsun\Model\PlanRecords' => [
@@ -2673,14 +2636,6 @@ final class ObjectOpenApiTypesMapper
             'runtime_operations' => '?\Upsun\Model\RuntimeOperations',
             'outbound_firewall' => '?\Upsun\Model\OutboundFirewall',
             'integrations' => '?\Upsun\Model\Integrations',
-        ],
-
-        'Upsun\Model\ProjectCarbon' => [
-            'project_id' => '?string',
-            'project_title' => '?string',
-            'meta' => '?\Upsun\Model\MetricsMetadata',
-            'values' => '\Upsun\Model\MetricsValue[]',
-            'total' => '?float',
         ],
 
         'Upsun\Model\ProjectInfo' => [
@@ -4059,7 +4014,11 @@ final class ObjectOpenApiTypesMapper
         ],
 
         'Upsun\Model\VouchersLinks' => [
-            'self' => '?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf',
+            'self' => '?\Upsun\Model\VouchersLinksSelf',
+        ],
+
+        'Upsun\Model\VouchersLinksSelf' => [
+            'href' => '?string',
         ],
 
         'Upsun\Model\VouchersVouchersInner' => [

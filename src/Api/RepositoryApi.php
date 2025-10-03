@@ -728,13 +728,13 @@ final class RepositoryApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Ref[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Repository/operation/list-projects-git-refs
      */
     public function listProjectsGitRefs(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsGitRefsWithHttpInfo(
             $projectId
         );
@@ -743,13 +743,13 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get list of repository refs with HTTP Info
      *
-     * @return \Upsun\Model\Ref[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsGitRefsWithHttpInfo(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsGitRefsRequest(
             $projectId
         );
@@ -763,7 +763,7 @@ final class RepositoryApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Ref[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );

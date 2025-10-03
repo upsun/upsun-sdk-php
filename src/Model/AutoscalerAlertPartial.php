@@ -52,36 +52,57 @@ final class AutoscalerAlertPartial implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * User friendly name for the alert
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
+    /**
+    * Service for which the alert was received
+    */
     public function getService(): string
     {
         return $this->service;
     }
 
+    /**
+    * Comparison condition to use when evaluating the alert
+    */
     public function getCondition(): string
     {
         return $this->condition;
     }
 
+    /**
+    * Value that has to be crossed for the alert to be considered triggered
+    */
     public function getThreshold(): float
     {
         return $this->threshold;
     }
 
+    /**
+    * Current value for the received alert
+    */
     public function getValue(): float
     {
         return $this->value;
     }
 
+    /**
+    * Environment for which the alert was received
+    */
     public function getEnvironment(): ?string
     {
         return $this->environment;
     }
 
+    /**
+    * Name of resource that triggered the alert
+    */
     public function getResource(): ?string
     {
         return $this->resource;

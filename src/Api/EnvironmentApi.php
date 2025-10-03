@@ -1873,13 +1873,13 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Environment[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/list-projects-environments
      */
     public function listProjectsEnvironments(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsEnvironmentsWithHttpInfo(
             $projectId
         );
@@ -1888,13 +1888,13 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Get list of project environments with HTTP Info
      *
-     * @return \Upsun\Model\Environment[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsWithHttpInfo(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsEnvironmentsRequest(
             $projectId
         );
@@ -1908,7 +1908,7 @@ final class EnvironmentApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Environment[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
@@ -2012,14 +2012,14 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Version[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/list-projects-environments-versions
      */
     public function listProjectsEnvironmentsVersions(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsEnvironmentsVersionsWithHttpInfo(
             $projectId,
             $environmentId
@@ -2029,14 +2029,14 @@ final class EnvironmentApi extends AbstractApi
     /**
      * List versions associated with the environment with HTTP Info
      *
-     * @return \Upsun\Model\Version[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsVersionsWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsEnvironmentsVersionsRequest(
             $projectId,
             $environmentId
@@ -2051,7 +2051,7 @@ final class EnvironmentApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Version[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );

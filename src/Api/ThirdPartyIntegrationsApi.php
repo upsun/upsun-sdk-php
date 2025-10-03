@@ -385,14 +385,14 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Integration
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/get-projects-integrations
      */
     public function getProjectsIntegrations(
         string $projectId,
         string $integrationId
-    ): \Upsun\Model\Integration {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->getProjectsIntegrationsWithHttpInfo(
             $projectId,
             $integrationId
@@ -402,14 +402,14 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Get information about an existing third-party integration with HTTP Info
      *
-     * @return \Upsun\Model\Integration
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsIntegrationsWithHttpInfo(
         string $projectId,
         string $integrationId
-    ): \Upsun\Model\Integration {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->getProjectsIntegrationsRequest(
             $projectId,
             $integrationId
@@ -424,7 +424,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Integration',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
@@ -546,13 +546,13 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Integration[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/list-projects-integrations
      */
     public function listProjectsIntegrations(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsIntegrationsWithHttpInfo(
             $projectId
         );
@@ -561,13 +561,13 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Get list of existing integrations for a project with HTTP Info
      *
-     * @return \Upsun\Model\Integration[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsIntegrationsWithHttpInfo(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsIntegrationsRequest(
             $projectId
         );
@@ -581,7 +581,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Integration[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );

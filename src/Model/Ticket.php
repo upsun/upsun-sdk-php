@@ -108,71 +108,113 @@ final class Ticket implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the ticket.
+    */
     public function getTicketId(): ?int
     {
         return $this->ticketId;
     }
 
+    /**
+    * The time when the support ticket was created.
+    */
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
 
+    /**
+    * The time when the support ticket was updated.
+    */
     public function getUpdated(): ?\DateTime
     {
         return $this->updated;
     }
 
+    /**
+    * A type of the ticket.
+    */
     public function getType(): ?string
     {
         return $this->type;
     }
 
+    /**
+    * A title of the ticket.
+    */
     public function getSubject(): ?string
     {
         return $this->subject;
     }
 
+    /**
+    * The description body of the support ticket.
+    */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+    * A priority of the ticket.
+    */
     public function getPriority(): ?string
     {
         return $this->priority;
     }
 
+    /**
+    * Followup ticket ID. The unique ID of the ticket which this ticket is a follow-up to.
+    */
     public function getFollowupTid(): ?string
     {
         return $this->followupTid;
     }
 
+    /**
+    * The status of the support ticket.
+    */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
+    /**
+    * Email address of the ticket recipient, defaults to support@upsun.com.
+    */
     public function getRecipient(): ?string
     {
         return $this->recipient;
     }
 
+    /**
+    * UUID of the ticket requester.
+    */
     public function getRequesterId(): ?string
     {
         return $this->requesterId;
     }
 
+    /**
+    * UUID of the ticket submitter.
+    */
     public function getSubmitterId(): ?string
     {
         return $this->submitterId;
     }
 
+    /**
+    * UUID of the ticket assignee.
+    */
     public function getAssigneeId(): ?string
     {
         return $this->assigneeId;
     }
 
+    /**
+    * A reference id that is usable to find the commerce license.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
@@ -183,11 +225,17 @@ final class Ticket implements ModelInterface, JsonSerializable
         return $this->collaboratorIds;
     }
 
+    /**
+    * Whether or not this ticket has incidents.
+    */
     public function getHasIncidents(): ?bool
     {
         return $this->hasIncidents;
     }
 
+    /**
+    * A time that the ticket is due at.
+    */
     public function getDue(): ?\DateTime
     {
         return $this->due;
@@ -198,89 +246,138 @@ final class Ticket implements ModelInterface, JsonSerializable
         return $this->tags;
     }
 
+    /**
+    * The internal ID of the subscription.
+    */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
+    /**
+    * Maps to zendesk field 'Request group'.
+    */
     public function getTicketGroup(): ?string
     {
         return $this->ticketGroup;
     }
 
+    /**
+    * Maps to zendesk field 'The support plan associated with this ticket.
+    */
     public function getSupportPlan(): ?string
     {
         return $this->supportPlan;
     }
 
+    /**
+    * The affected URL associated with the support ticket.
+    */
     public function getAffectedUrl(): ?string
     {
         return $this->affectedUrl;
     }
 
+    /**
+    * The queue the support ticket is in.
+    */
     public function getQueue(): ?string
     {
         return $this->queue;
     }
 
+    /**
+    * The issue type of the support ticket.
+    */
     public function getIssueType(): ?string
     {
         return $this->issueType;
     }
 
+    /**
+    * Maps to zendesk field 'Resolution Time'.
+    */
     public function getResolutionTime(): ?\DateTime
     {
         return $this->resolutionTime;
     }
 
+    /**
+    * Maps to zendesk field 'Response Time (time from request to reply).
+    */
     public function getResponseTime(): ?\DateTime
     {
         return $this->responseTime;
     }
 
+    /**
+    * Maps to zendesk field 'Project URL'.
+    */
     public function getProjectUrl(): ?string
     {
         return $this->projectUrl;
     }
 
+    /**
+    * Maps to zendesk field 'Region'.
+    */
     public function getRegion(): ?string
     {
         return $this->region;
     }
 
+    /**
+    * Maps to zendesk field 'Category'.
+    */
     public function getCategory(): ?string
     {
         return $this->category;
     }
 
+    /**
+    * Maps to zendesk field 'Environment'.
+    */
     public function getEnvironment(): ?string
     {
         return $this->environment;
     }
 
+    /**
+    * Maps to zendesk field 'Ticket Sharing Status'.
+    */
     public function getTicketSharingStatus(): ?string
     {
         return $this->ticketSharingStatus;
     }
 
+    /**
+    * Maps to zendesk field 'Application Ticket URL'.
+    */
     public function getApplicationTicketUrl(): ?string
     {
         return $this->applicationTicketUrl;
     }
 
+    /**
+    * Maps to zendesk field 'Infrastructure Ticket URL'.
+    */
     public function getInfrastructureTicketUrl(): ?string
     {
         return $this->infrastructureTicketUrl;
     }
-
     /**
+    * A list of JIRA issues related to the support ticket.
      * @return TicketJiraInner[]|null
      */
+
     public function getJira(): ?array
     {
         return $this->jira;
     }
 
+    /**
+    * URL to the customer-facing ticket in Zendesk.
+    */
     public function getZdTicketUrl(): ?string
     {
         return $this->zdTicketUrl;

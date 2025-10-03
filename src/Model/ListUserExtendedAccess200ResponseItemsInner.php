@@ -50,21 +50,29 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getUserId(): ?string
     {
         return $this->userId;
     }
 
+    /**
+    */
     public function getResourceId(): ?string
     {
         return $this->resourceId;
     }
 
+    /**
+    */
     public function getResourceType(): ?string
     {
         return $this->resourceType;
     }
 
+    /**
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
@@ -75,11 +83,15 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
         return $this->permissions;
     }
 
+    /**
+    */
     public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
 
+    /**
+    */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

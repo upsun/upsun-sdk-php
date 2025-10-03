@@ -42,16 +42,22 @@ final class CanUpdateSubscription200Response implements ModelInterface, JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getCanUpdate(): ?bool
     {
         return $this->canUpdate;
     }
 
+    /**
+    */
     public function getMessage(): ?string
     {
         return $this->message;
     }
 
+    /**
+    */
     public function getRequiredAction(): ?object
     {
         return $this->requiredAction;

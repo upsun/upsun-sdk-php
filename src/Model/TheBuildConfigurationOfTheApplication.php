@@ -44,10 +44,10 @@ final class TheBuildConfigurationOfTheApplication implements ModelInterface, Jso
     {
         return $this->flavor;
     }
-
     /**
      * @return TheConfigurationOfPathsManagedByTheBuildCacheValue[]
      */
+
     public function getCaches(): array
     {
         return $this->caches;

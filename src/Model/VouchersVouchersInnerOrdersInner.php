@@ -50,36 +50,50 @@ final class VouchersVouchersInnerOrdersInner implements ModelInterface, JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getOrderId(): ?string
     {
         return $this->orderId;
     }
 
+    /**
+    */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
+    /**
+    */
     public function getBillingPeriodStart(): ?string
     {
         return $this->billingPeriodStart;
     }
 
+    /**
+    */
     public function getBillingPeriodEnd(): ?string
     {
         return $this->billingPeriodEnd;
     }
 
+    /**
+    */
     public function getOrderTotal(): ?string
     {
         return $this->orderTotal;
     }
 
+    /**
+    */
     public function getOrderDiscount(): ?string
     {
         return $this->orderDiscount;
     }
 
+    /**
+    */
     public function getCurrency(): ?string
     {
         return $this->currency;

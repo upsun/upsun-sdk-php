@@ -40,11 +40,15 @@ final class SendOrgMfaReminders200ResponseValue implements ModelInterface, JsonS
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getCode(): ?int
     {
         return $this->code;
     }
 
+    /**
+    */
     public function getMessage(): ?string
     {
         return $this->message;

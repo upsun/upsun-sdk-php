@@ -38,6 +38,9 @@ final class ResourceConfig implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Profile size (e.g. "0.5", "1", "2")
+    */
     public function getProfileSize(): ?string
     {
         return $this->profileSize;

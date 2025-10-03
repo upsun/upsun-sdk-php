@@ -11,7 +11,7 @@ All URIs are relative to https://api.upsun.com, except if the operation defines 
 ## `getProjectsEnvironmentsRoutes()`
 
 ```php
-getProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId): \Upsun\Model\Route
+getProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId): \Upsun\Model\AcceptedResponse
 ```
 
 Get a route's info
@@ -53,7 +53,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\Route**](../Model/Route.md)
+[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
 
 ### Authorization
 
@@ -71,7 +71,7 @@ No authorization required
 ## `listProjectsEnvironmentsRoutes()`
 
 ```php
-listProjectsEnvironmentsRoutes($projectId, $environmentId): \Upsun\Model\Route[]
+listProjectsEnvironmentsRoutes($projectId, $environmentId): \Upsun\Model\AcceptedResponse
 ```
 
 Get list of routes
@@ -111,7 +111,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\Route[]**](../Model/Route.md)
+[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
 
 ### Authorization
 

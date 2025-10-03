@@ -42,19 +42,22 @@ final class ListTickets200Response implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getCount(): ?int
     {
         return $this->count;
     }
-
     /**
      * @return Ticket[]|null
      */
+
     public function getTickets(): ?array
     {
         return $this->tickets;
     }
 
+    * Links to _self, and previous or next page, given that they exist.
     public function getLinks(): ?HalLinks
     {
         return $this->links;

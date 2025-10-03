@@ -50,36 +50,51 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getProjectRegion(): string
     {
         return $this->projectRegion;
     }
 
+    /**
+    * The project plan.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
+    /**
+    */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
+    /**
+    */
     public function getOptionsUrl(): ?string
     {
         return $this->optionsUrl;
     }
 
+    /**
+    */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
 
+    /**
+    */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
 
+    /**
+    */
     public function getStorage(): ?int
     {
         return $this->storage;

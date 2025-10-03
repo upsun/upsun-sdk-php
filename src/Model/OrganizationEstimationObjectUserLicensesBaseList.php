@@ -40,11 +40,13 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements ModelInt
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    * An estimation of admin users cost.
     public function getAdminUser(): ?OrganizationEstimationObjectUserLicensesBaseListAdminUser
     {
         return $this->adminUser;
     }
 
+    * An estimation of viewer users cost.
     public function getViewerUser(): ?OrganizationEstimationObjectUserLicensesBaseListViewerUser
     {
         return $this->viewerUser;

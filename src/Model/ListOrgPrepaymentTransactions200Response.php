@@ -42,14 +42,16 @@ final class ListOrgPrepaymentTransactions200Response implements ModelInterface, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getCount(): ?int
     {
         return $this->count;
     }
-
     /**
      * @return PrepaymentTransactionObject[]|null
      */
+
     public function getTransactions(): ?array
     {
         return $this->transactions;

@@ -42,11 +42,15 @@ final class CanCreateNewOrgSubscription200Response implements ModelInterface, Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getCanCreate(): ?bool
     {
         return $this->canCreate;
     }
 
+    /**
+    */
     public function getMessage(): ?string
     {
         return $this->message;

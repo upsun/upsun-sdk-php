@@ -44,24 +44,30 @@ final class VouchersVouchersInner implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getCode(): ?string
     {
         return $this->code;
     }
 
+    /**
+    */
     public function getAmount(): ?string
     {
         return $this->amount;
     }
 
+    /**
+    */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
-
     /**
      * @return VouchersVouchersInnerOrdersInner[]|null
      */
+
     public function getOrders(): ?array
     {
         return $this->orders;

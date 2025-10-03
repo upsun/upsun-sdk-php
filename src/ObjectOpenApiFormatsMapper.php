@@ -1905,12 +1905,6 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
-        'Upsun\Model\ListPlans200Response' => [
-            'count' => null,
-            'plans' => null,
-            'links' => null
-        ],
-
         'Upsun\Model\ListProfiles200Response' => [
             'count' => null,
             'profiles' => null,
@@ -1992,18 +1986,6 @@ final class ObjectOpenApiFormatsMapper
 
         'Upsun\Model\Metrics' => [
             'maxRange' => null
-        ],
-
-        'Upsun\Model\MetricsMetadata' => [
-            'from' => null,
-            'to' => null,
-            'interval' => null,
-            'units' => null
-        ],
-
-        'Upsun\Model\MetricsValue' => [
-            'value' => null,
-            'startTime' => null
         ],
 
         'Upsun\Model\NewRelicIntegration' => [
@@ -2151,13 +2133,6 @@ final class ObjectOpenApiFormatsMapper
             'amount' => null,
             'currencyCode' => null,
             'currencySymbol' => null
-        ],
-
-        'Upsun\Model\OrganizationCarbon' => [
-            'organizationId' => null,
-            'meta' => null,
-            'projects' => null,
-            'total' => null
         ],
 
         'Upsun\Model\OrganizationEstimationObject' => [
@@ -2394,13 +2369,6 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
-        'Upsun\Model\OrganizationProjectCarbon' => [
-            'projectId' => null,
-            'projectTitle' => null,
-            'values' => null,
-            'total' => null
-        ],
-
         'Upsun\Model\OrganizationProjectLinks' => [
             'self' => null,
             'update' => null,
@@ -2490,11 +2458,6 @@ final class ObjectOpenApiFormatsMapper
             'cpu' => 'float',
             'memory' => null,
             'disk' => null
-        ],
-
-        'Upsun\Model\Plan' => [
-            'name' => null,
-            'label' => null
         ],
 
         'Upsun\Model\PlanRecords' => [
@@ -2676,14 +2639,6 @@ final class ObjectOpenApiFormatsMapper
             'runtimeOperations' => null,
             'outboundFirewall' => null,
             'integrations' => null
-        ],
-
-        'Upsun\Model\ProjectCarbon' => [
-            'projectId' => null,
-            'projectTitle' => null,
-            'meta' => null,
-            'values' => null,
-            'total' => null
         ],
 
         'Upsun\Model\ProjectInfo' => [
@@ -4065,6 +4020,10 @@ final class ObjectOpenApiFormatsMapper
 
         'Upsun\Model\VouchersLinks' => [
             'self' => null
+        ],
+
+        'Upsun\Model\VouchersLinksSelf' => [
+            'href' => null
         ],
 
         'Upsun\Model\VouchersVouchersInner' => [

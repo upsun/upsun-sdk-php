@@ -39,6 +39,8 @@ final class GetOrgPrepaymentInfo200ResponseLinksSelf implements ModelInterface, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getHref(): ?string
     {
         return $this->href;

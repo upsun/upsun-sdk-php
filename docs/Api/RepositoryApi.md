@@ -246,7 +246,7 @@ No authorization required
 ## `listProjectsGitRefs()`
 
 ```php
-listProjectsGitRefs($projectId): \Upsun\Model\Ref[]
+listProjectsGitRefs($projectId): \Upsun\Model\AcceptedResponse
 ```
 
 Get list of repository refs
@@ -284,7 +284,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\Ref[]**](../Model/Ref.md)
+[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
 
 ### Authorization
 

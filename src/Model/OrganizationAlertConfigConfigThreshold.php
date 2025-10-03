@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationAlertConfigConfigThreshold (auto-generated)
  *
+ * Data regarding threshold spend.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -45,21 +46,33 @@ final class OrganizationAlertConfigConfigThreshold implements ModelInterface, Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Formatted threshold value.
+    */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
+    /**
+    * Threshold value.
+    */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
 
+    /**
+    * Threshold currency code.
+    */
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
 
+    /**
+    * Threshold currency symbol.
+    */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;

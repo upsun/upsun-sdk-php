@@ -68,57 +68,82 @@ final class CurrentUser implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The UUID of the owner.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The UUID of the owner.
+    */
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
 
+    /**
+    * The username of the owner.
+    */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
+    /**
+    * The full name of the owner.
+    */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 
+    /**
+    * Status of the user. 0 = blocked; 1 = active.
+    */
     public function getStatus(): ?int
     {
         return $this->status;
     }
 
+    /**
+    * The email address of the owner.
+    */
     public function getMail(): ?string
     {
         return $this->mail;
     }
-
     /**
+    * The list of user's public SSH keys.
      * @return SSHKey[]|null
      */
+
     public function getSshKeys(): ?array
     {
         return $this->sshKeys;
     }
 
+    /**
+    * The indicator whether the user has a public ssh key on file or not.
+    */
     public function getHasKey(): ?bool
     {
         return $this->hasKey;
     }
-
     /**
      * @return CurrentUserProjectsInner[]|null
      */
+
     public function getProjects(): ?array
     {
         return $this->projects;
     }
 
+    /**
+    * The sequential ID of the user.
+    */
     public function getSequence(): ?int
     {
         return $this->sequence;
@@ -129,24 +154,33 @@ final class CurrentUser implements ModelInterface, JsonSerializable
         return $this->roles;
     }
 
+    /**
+    * The URL of the user image.
+    */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
+    /**
+    * Number of support tickets by status.
+    */
     public function getTickets(): ?object
     {
         return $this->tickets;
     }
 
+    /**
+    * The indicator whether the user is in trial or not.
+    */
     public function getTrial(): ?bool
     {
         return $this->trial;
     }
-
     /**
      * @return CurrentUserCurrentTrialInner[]|null
      */
+
     public function getCurrentTrial(): ?array
     {
         return $this->currentTrial;

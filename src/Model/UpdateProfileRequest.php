@@ -62,66 +62,92 @@ final class UpdateProfileRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 
+    /**
+    */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
+    /**
+    */
     public function getCurrentPassword(): ?string
     {
         return $this->currentPassword;
     }
 
+    /**
+    */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
+    /**
+    */
     public function getCompanyType(): ?string
     {
         return $this->companyType;
     }
 
+    /**
+    */
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
 
+    /**
+    */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
 
+    /**
+    */
     public function getCompanyRole(): ?string
     {
         return $this->companyRole;
     }
 
+    /**
+    */
     public function getMarketing(): ?bool
     {
         return $this->marketing;
     }
 
+    /**
+    */
     public function getUiColorscheme(): ?string
     {
         return $this->uiColorscheme;
     }
 
+    /**
+    */
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
 
+    /**
+    */
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
 
+    /**
+    */
     public function getPicture(): ?string
     {
         return $this->picture;

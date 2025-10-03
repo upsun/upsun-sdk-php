@@ -3,6 +3,7 @@
 /**
  * Low level HalLinksSelf (auto-generated)
  *
+ * The cardinal link to the self resource.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -41,11 +42,17 @@ final class HalLinksSelf implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Title of the link
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+    * URL of the link
+    */
     public function getHref(): ?string
     {
         return $this->href;

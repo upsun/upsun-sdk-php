@@ -3,6 +3,7 @@
 /**
  * Low level ProfileCurrentTrial (auto-generated)
  *
+ * The current trial for the profile.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -59,56 +60,81 @@ final class ProfileCurrentTrial implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The trial active status.
+    */
     public function getActive(): ?bool
     {
         return $this->active;
     }
 
+    /**
+    * The trial creation date.
+    */
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
 
+    /**
+    * The trial description.
+    */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+    * The trial expiration-date.
+    */
     public function getExpiration(): ?\DateTime
     {
         return $this->expiration;
     }
 
+    * The total amount spent by the trial user at this point in time.
     public function getCurrent(): ?ProfileCurrentTrialCurrent
     {
         return $this->current;
     }
 
+    * The total amount available for the trial.
     public function getSpend(): ?ProfileCurrentTrialSpend
     {
         return $this->spend;
     }
 
+    * The remaining amount available for the trial.
     public function getSpendRemaining(): ?ProfileCurrentTrialSpendRemaining
     {
         return $this->spendRemaining;
     }
 
+    * Projects active under trial
     public function getProjects(): ?ProfileCurrentTrialProjects
     {
         return $this->projects;
     }
 
+    /**
+    * Required verification method (if applicable).
+    */
     public function getPendingVerification(): ?string
     {
         return $this->pendingVerification;
     }
 
+    /**
+    * The trial trial model.
+    */
     public function getModel(): ?string
     {
         return $this->model;
     }
 
+    /**
+    * The amount of days until the trial expires.
+    */
     public function getDaysRemaining(): ?int
     {
         return $this->daysRemaining;

@@ -38,6 +38,8 @@ final class GetCurrentUserVerificationStatus200Response implements ModelInterfac
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getVerifyPhone(): ?bool
     {
         return $this->verifyPhone;

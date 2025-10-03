@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationLinksEstimateSubscription (auto-generated)
  *
+ * Link for estimating the price of a new subscription.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -39,6 +40,9 @@ final class OrganizationLinksEstimateSubscription implements ModelInterface, Jso
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * URL of the link.
+    */
     public function getHref(): ?string
     {
         return $this->href;

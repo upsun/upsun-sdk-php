@@ -5,9 +5,6 @@ namespace Upsun\Core\Tasks;
 use Exception;
 use Upsun\Api\AutoscalingApi;
 use Upsun\ApiException;
-use Upsun\Api\EnvironmentActivityApi;
-use Upsun\Api\ProjectActivityApi;
-use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\UpsunClient;
 

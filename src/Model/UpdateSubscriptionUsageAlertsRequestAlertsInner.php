@@ -43,11 +43,15 @@ final class UpdateSubscriptionUsageAlertsRequestAlertsInner implements ModelInte
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    */
     public function getActive(): ?bool
     {
         return $this->active;

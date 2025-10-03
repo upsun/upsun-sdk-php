@@ -1674,11 +1674,6 @@ final class ObjectAttributesMapper
             'items' => 'items',
             'links' => '_links'
         ],
-        'Upsun\Model\ListPlans200Response' => [
-            'count' => 'count',
-            'plans' => 'plans',
-            'links' => '_links'
-        ],
         'Upsun\Model\ListProfiles200Response' => [
             'count' => 'count',
             'profiles' => 'profiles',
@@ -1746,16 +1741,6 @@ final class ObjectAttributesMapper
         ],
         'Upsun\Model\Metrics' => [
             'maxRange' => 'max_range'
-        ],
-        'Upsun\Model\MetricsMetadata' => [
-            'from' => 'from',
-            'to' => 'to',
-            'interval' => 'interval',
-            'units' => 'units'
-        ],
-        'Upsun\Model\MetricsValue' => [
-            'value' => 'value',
-            'startTime' => 'start_time'
         ],
         'Upsun\Model\NewRelicIntegration' => [
             'createdAt' => 'created_at',
@@ -1884,12 +1869,6 @@ final class ObjectAttributesMapper
             'amount' => 'amount',
             'currencyCode' => 'currency_code',
             'currencySymbol' => 'currency_symbol'
-        ],
-        'Upsun\Model\OrganizationCarbon' => [
-            'organizationId' => 'organization_id',
-            'meta' => 'meta',
-            'projects' => 'projects',
-            'total' => 'total'
         ],
         'Upsun\Model\OrganizationEstimationObject' => [
             'total' => 'total',
@@ -2087,12 +2066,6 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'links' => '_links'
         ],
-        'Upsun\Model\OrganizationProjectCarbon' => [
-            'projectId' => 'project_id',
-            'projectTitle' => 'project_title',
-            'values' => 'values',
-            'total' => 'total'
-        ],
         'Upsun\Model\OrganizationProjectLinks' => [
             'self' => 'self',
             'update' => 'update',
@@ -2168,10 +2141,6 @@ final class ObjectAttributesMapper
             'cpu' => 'cpu',
             'memory' => 'memory',
             'disk' => 'disk'
-        ],
-        'Upsun\Model\Plan' => [
-            'name' => 'name',
-            'label' => 'label'
         ],
         'Upsun\Model\PlanRecords' => [
             'id' => 'id',
@@ -2335,13 +2304,6 @@ final class ObjectAttributesMapper
             'runtimeOperations' => 'runtime_operations',
             'outboundFirewall' => 'outbound_firewall',
             'integrations' => 'integrations'
-        ],
-        'Upsun\Model\ProjectCarbon' => [
-            'projectId' => 'project_id',
-            'projectTitle' => 'project_title',
-            'meta' => 'meta',
-            'values' => 'values',
-            'total' => 'total'
         ],
         'Upsun\Model\ProjectInfo' => [
             'title' => 'title',
@@ -3558,6 +3520,9 @@ final class ObjectAttributesMapper
         ],
         'Upsun\Model\VouchersLinks' => [
             'self' => 'self'
+        ],
+        'Upsun\Model\VouchersLinksSelf' => [
+            'href' => 'href'
         ],
         'Upsun\Model\VouchersVouchersInner' => [
             'code' => 'code',

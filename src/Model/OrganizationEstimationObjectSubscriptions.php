@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationEstimationObjectSubscriptions (auto-generated)
  *
+ * An estimation of subscriptions cost.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -41,14 +42,18 @@ final class OrganizationEstimationObjectSubscriptions implements ModelInterface,
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The total price for subscriptions.
+    */
     public function getTotal(): ?string
     {
         return $this->total;
     }
-
     /**
+    * The list of active subscriptions.
      * @return OrganizationEstimationObjectSubscriptionsListInner[]|null
      */
+
     public function getList(): ?array
     {
         return $this->list;

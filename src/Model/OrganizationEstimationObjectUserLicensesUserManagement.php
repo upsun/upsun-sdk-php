@@ -42,11 +42,17 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Mo
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The number of user_management licenses.
+    */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
+    /**
+    * The total price for user_management licenses.
+    */
     public function getTotal(): ?string
     {
         return $this->total;

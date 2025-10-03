@@ -40,6 +40,9 @@ final class Link implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * URL of the link
+    */
     public function getHref(): ?string
     {
         return $this->href;

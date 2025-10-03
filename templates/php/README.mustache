@@ -41,24 +41,24 @@ $client = new UpsunClient($config);
 ### Example: List organizations
 
 ```php
-$organizations = $client->organization->list();
+$organizations = $client->organizations->list();
 ```
 
 ### Example: List projects in an organization
 
 ```php
-$projects = $client->organization->listProjects('<organizationId>');
+$projects = $client->organizations->listProjects('<organizationId>');
 ```
 
 ### Example: Get a project
 
 ```php
-$project = $client->project->get('<projectId>');
+$project = $client->projects->get('<projectId>');
 ```
 
 ### Example: Create a project in a specific organization
 ```php
-$project = $client->project->create(
+$project = $client->projects->create(
     <organizationId>,
     [
         'owner' => '<upsunUserId>',
@@ -76,13 +76,13 @@ $projectData = [
     'title' => 'title',
     'description' => 'description' // see vendor/upsun/upsun-sdk-php/src/Model/Project.php for more option
 ];
-$response = $client->project->update(<projectId>, $projectData);
+$response = $client->projects->update(<projectId>, $projectData);
 ```
 
 ### Example: Delete a project
 
 ```php
-$client->organization->deleteProject(<organizationId>, <projectId>);
+$client->organizations->deleteProject(<organizationId>, <projectId>);
 ```
 
 ---

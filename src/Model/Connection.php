@@ -51,36 +51,57 @@ final class Connection implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The name of the federation provider.
+    */
     public function getProvider(): ?string
     {
         return $this->provider;
     }
 
+    /**
+    * The type of the federation provider.
+    */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
+    /**
+    * Whether the federated login connection is mandatory.
+    */
     public function getIsMandatory(): ?bool
     {
         return $this->isMandatory;
     }
 
+    /**
+    * The identity on the federation provider.
+    */
     public function getSubject(): ?string
     {
         return $this->subject;
     }
 
+    /**
+    * The email address presented on the federated login connection.
+    */
     public function getEmailAddress(): ?string
     {
         return $this->emailAddress;
     }
 
+    /**
+    * The date and time when the connection was created.
+    */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
+    /**
+    * The date and time when the connection was last updated.
+    */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

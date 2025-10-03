@@ -57,10 +57,10 @@ final class FoundationDeploymentTarget implements ModelInterface, JsonSerializab
     {
         return $this->name;
     }
-
     /**
      * @return TheHostsOfTheDeploymentTargetInner[]|null
      */
+
     public function getHosts(): ?array
     {
         return $this->hosts;

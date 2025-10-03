@@ -54,41 +54,65 @@ final class OrganizationReference implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the organization.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The type of the organization.
+    */
     public function getType(): ?string
     {
         return $this->type;
     }
 
+    /**
+    * The ID of the owner.
+    */
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
 
+    /**
+    * A unique machine name representing the organization.
+    */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+    * The human-readable label of the organization.
+    */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
+    /**
+    * The vendor.
+    */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
+    /**
+    * The date and time when the organization was created.
+    */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
+    /**
+    * The date and time when the organization was last updated.
+    */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

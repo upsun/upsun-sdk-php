@@ -257,14 +257,14 @@ final class DeploymentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Deployment[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Deployment/operation/list-projects-environments-deployments
      */
     public function listProjectsEnvironmentsDeployments(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsEnvironmentsDeploymentsWithHttpInfo(
             $projectId,
             $environmentId
@@ -274,14 +274,14 @@ final class DeploymentApi extends AbstractApi
     /**
      * Get an environment's deployment information with HTTP Info
      *
-     * @return \Upsun\Model\Deployment[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsDeploymentsWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsEnvironmentsDeploymentsRequest(
             $projectId,
             $environmentId
@@ -296,7 +296,7 @@ final class DeploymentApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Deployment[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
@@ -419,14 +419,16 @@ final class DeploymentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @see https://docs.upsun.com/api/#tag//operation/
+     * @return \Upsun\Model\AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Deployment/operation/update-projects-environments-deployments-next
      */
     public function updateProjectsEnvironmentsDeploymentsNext(
         string $projectId,
         string $environmentId,
         \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
-    ): void {
-        $this->updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
+    ): \Upsun\Model\AcceptedResponse {
+        return $this->updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
             $projectId,
             $environmentId,
             $updateProjectsEnvironmentsDeploymentsNextRequest
@@ -436,13 +438,15 @@ final class DeploymentApi extends AbstractApi
     /**
      * Update the next deployment with HTTP Info
      *
+     * @return \Upsun\Model\AcceptedResponse
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
         string $projectId,
         string $environmentId,
         \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
-    ): void {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsEnvironmentsDeploymentsNextRequest(
             $projectId,
             $environmentId,
@@ -450,11 +454,17 @@ final class DeploymentApi extends AbstractApi
         );
 
         try {
-            $this->sendAuthenticatedRequest(
+            $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
                 $request->getHeaders(),
                 $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\AcceptedResponse',
+                $request,
+                $response
             );
         } catch (ApiException $e) {
             $e->enrichWithErrorObject();

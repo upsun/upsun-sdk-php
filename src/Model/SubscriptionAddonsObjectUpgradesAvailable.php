@@ -3,6 +3,7 @@
 /**
  * Low level SubscriptionAddonsObjectUpgradesAvailable (auto-generated)
  *
+ * The upgrades available for current addons.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0

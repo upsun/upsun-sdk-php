@@ -38,6 +38,8 @@ final class ApplyOrgVoucherRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getCode(): string
     {
         return $this->code;

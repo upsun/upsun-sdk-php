@@ -3,6 +3,7 @@
 /**
  * Low level RegionProvider (auto-generated)
  *
+ * Information about the region provider.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0

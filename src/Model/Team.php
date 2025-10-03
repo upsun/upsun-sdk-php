@@ -51,16 +51,25 @@ final class Team implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the team.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The ID of the parent organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
+    /**
+    * The human-readable label of the team.
+    */
     public function getLabel(): ?string
     {
         return $this->label;
@@ -76,11 +85,17 @@ final class Team implements ModelInterface, JsonSerializable
         return $this->counts;
     }
 
+    /**
+    * The date and time when the team was created.
+    */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
+    /**
+    * The date and time when the team was last updated.
+    */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

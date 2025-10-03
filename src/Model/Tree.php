@@ -51,10 +51,10 @@ final class Tree implements ModelInterface, JsonSerializable
     {
         return $this->sha;
     }
-
     /**
      * @return TheTreeItemsInner[]
      */
+
     public function getTree(): array
     {
         return $this->tree;

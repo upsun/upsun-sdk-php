@@ -17,7 +17,7 @@ use JsonSerializable;
 final class VouchersLinks implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
+        private readonly ?VouchersLinksSelf $self = null,
     ) {
     }
 
@@ -38,7 +38,8 @@ final class VouchersLinks implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getSelf(): ?GetOrgPrepaymentInfo200ResponseLinksSelf
+    * Link to the current resource.
+    public function getSelf(): ?VouchersLinksSelf
     {
         return $this->self;
     }

@@ -46,32 +46,38 @@ final class CreateProjectInviteRequest implements ModelInterface, JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getEmail(): string
     {
         return $this->email;
     }
 
+    /**
+    */
     public function getRole(): ?string
     {
         return $this->role;
     }
-
     /**
      * @return CreateProjectInviteRequestPermissionsInner[]|null
      */
+
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
-
     /**
      * @return CreateProjectInviteRequestEnvironmentsInner[]|null
      */
+
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
 
+    /**
+    */
     public function getForce(): ?bool
     {
         return $this->force;

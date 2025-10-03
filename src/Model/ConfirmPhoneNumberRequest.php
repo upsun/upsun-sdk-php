@@ -38,6 +38,8 @@ final class ConfirmPhoneNumberRequest implements ModelInterface, JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    */
     public function getCode(): string
     {
         return $this->code;

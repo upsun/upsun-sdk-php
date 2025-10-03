@@ -3,6 +3,7 @@
 /**
  * Low level HalLinksPrevious (auto-generated)
  *
+ * The link to the previous resource page, given that it exists.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -41,11 +42,17 @@ final class HalLinksPrevious implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Title of the link
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+    * URL of the link
+    */
     public function getHref(): ?string
     {
         return $this->href;

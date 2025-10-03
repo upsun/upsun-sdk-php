@@ -50,31 +50,49 @@ final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * SSO provider type.
+    */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
+    /**
+    * Google hosted domain.
+    */
     public function getDomain(): ?string
     {
         return $this->domain;
     }
 
+    /**
+    * Organization ID.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
+    /**
+    * Whether the configuration is enforced for all the organization members.
+    */
     public function getEnforced(): ?bool
     {
         return $this->enforced;
     }
 
+    /**
+    * The date and time when the SSO configuration was created.
+    */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
+    /**
+    * The date and time when the SSO configuration was last updated.
+    */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

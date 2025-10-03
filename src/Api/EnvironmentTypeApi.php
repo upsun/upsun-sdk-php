@@ -226,13 +226,13 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\EnvironmentType[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Type/operation/list-projects-environment-types
      */
     public function listProjectsEnvironmentTypes(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->listProjectsEnvironmentTypesWithHttpInfo(
             $projectId
         );
@@ -241,13 +241,13 @@ final class EnvironmentTypeApi extends AbstractApi
     /**
      * Get environment types with HTTP Info
      *
-     * @return \Upsun\Model\EnvironmentType[]
+     * @return \Upsun\Model\AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentTypesWithHttpInfo(
         string $projectId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->listProjectsEnvironmentTypesRequest(
             $projectId
         );
@@ -261,7 +261,7 @@ final class EnvironmentTypeApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\EnvironmentType[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );

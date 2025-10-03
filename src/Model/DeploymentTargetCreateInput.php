@@ -81,10 +81,10 @@ final class DeploymentTargetCreateInput implements ModelInterface, JsonSerializa
     {
         return $this->enterpriseEnvironmentsMapping;
     }
-
     /**
      * @return TheHostsOfTheDeploymentTargetInner1[]|null
      */
+
     public function getHosts(): ?array
     {
         return $this->hosts;

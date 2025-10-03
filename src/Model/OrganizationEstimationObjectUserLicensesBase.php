@@ -42,11 +42,17 @@ final class OrganizationEstimationObjectUserLicensesBase implements ModelInterfa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The number of base user licenses.
+    */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
+    /**
+    * The total price for base user licenses.
+    */
     public function getTotal(): ?string
     {
         return $this->total;
