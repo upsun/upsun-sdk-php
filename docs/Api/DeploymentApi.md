@@ -72,7 +72,7 @@ No authorization required
 ## `listProjectsEnvironmentsDeployments()`
 
 ```php
-listProjectsEnvironmentsDeployments($projectId, $environmentId): \Upsun\Model\AcceptedResponse
+listProjectsEnvironmentsDeployments($projectId, $environmentId): \Upsun\Model\Deployment[]
 ```
 
 Get an environment's deployment information
@@ -112,7 +112,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\Deployment[]**](../Model/Deployment.md)
 
 ### Authorization
 

@@ -4,6 +4,7 @@ namespace Upsun\Api;
 
 use Upsun\Model\DomainCreateInput;
 use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Domain;
 use Upsun\Model\DomainPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
@@ -787,14 +788,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return Domain
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-domains
      */
     public function getProjectsDomains(
         string $projectId,
         string $domainId
-    ): AcceptedResponse {
+    ): Domain {
         return $this->getProjectsDomainsWithHttpInfo(
             $projectId,
             $domainId
@@ -804,14 +805,14 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get a project domain with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return Domain
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId
-    ): AcceptedResponse {
+    ): Domain {
         $request = $this->getProjectsDomainsRequest(
             $projectId,
             $domainId
@@ -826,7 +827,7 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                Domain::class,
                 $request,
                 $response
             );
@@ -953,7 +954,7 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return Domain
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-environments-domains
      */
@@ -961,7 +962,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): AcceptedResponse {
+    ): Domain {
         return $this->getProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -972,7 +973,7 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get an environment domain with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return Domain
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -980,7 +981,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): AcceptedResponse {
+    ): Domain {
         $request = $this->getProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -996,7 +997,7 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                Domain::class,
                 $request,
                 $response
             );
@@ -1147,13 +1148,13 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return Domain[]
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-domains
      */
     public function listProjectsDomains(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         return $this->listProjectsDomainsWithHttpInfo(
             $projectId
         );
@@ -1162,13 +1163,13 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get list of project domains with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return Domain[]
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsDomainsWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         $request = $this->listProjectsDomainsRequest(
             $projectId
         );
@@ -1182,7 +1183,7 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\Domain[]',
                 $request,
                 $response
             );
@@ -1288,14 +1289,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return Domain[]
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-environments-domains
      */
     public function listProjectsEnvironmentsDomains(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): array {
         return $this->listProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId
@@ -1305,14 +1306,14 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get a list of environment domains with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return Domain[]
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): array {
         $request = $this->listProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId
@@ -1327,7 +1328,7 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\Domain[]',
                 $request,
                 $response
             );

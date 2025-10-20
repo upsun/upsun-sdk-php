@@ -34,7 +34,7 @@
   "tags": [
     {
       "name": "Cert Management",
-      "description": "User-supplied SSL/TLS certificates can be managed using these\nendpoints. You can now list and modify certificate provisioners\nusing the `/projects/{projectId}/provisioners` and\n`/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}`\nendpoints. For more information, see our\n[Third-party TLS certificate](https://docs.upsun.com/anchors/domains/custom/custom-certificates/)\ndocumentation. These endpoints are not for managing certificates\nthat are automatically supplied by Upsun via Let's Encrypt.\n"
+      "description": "User-supplied SSL/TLS certificates can be managed using these\nendpoints. For more information, see our\n[Third-party TLS certificate](https://docs.upsun.com/anchors/domains/custom/custom-certificates/)\ndocumentation. These endpoints are not for managing certificates\nthat are automatically supplied by Upsun via Let's Encrypt.\n"
     },
     {
       "name": "Environment",
@@ -51,10 +51,6 @@
     {
       "name": "Environment Variables",
       "description": "These endpoints manipulate user-defined variables which are bound to a\nspecific environment, as well as (optionally) the children of an\nenvironment. These variables can be made available at both build time\nand runtime. For more information on environment variables,\nsee the [Variables](https://docs.upsun.com/anchors/variables/set/environment/create/)\nsection of the documentation.\n"
-    },
-    {
-      "name": "Autoscaling",
-      "description": "Upsun provides native support for autoscaling, allowing your applications to automatically adjust based on resource usage.\nThis ensures that your apps remain responsive under load while helping you optimize costs.\nYou can configure thresholds for metrics such as CPU, RAM, and request latency.  \nResources will automatically scale to meet demand.\nEach container profile assigned to an application or service provides a specific combination of CPU and RAM, which you can select via the Upsun UI or CLI.\n\nThese endpoints manage autoscaling configurations that are tied to a\nspecific environment, and optionally to its child environments.\nYou can define scaling rules based on metrics like CPU, memory, or\nrequest latency, and these rules will be applied at both build time\nand runtime. For more information on configuring autoscaling for your\nenvironments, see the [Autoscaling](https://docs.upsun.com/manage-resources/autoscaling.html) section\nof the documentation.\n"
     },
     {
       "name": "Project",
@@ -78,7 +74,7 @@
     },
     {
       "name": "Routing",
-      "description": "These endpoints modify an environment's `routes:` section of the `.upsun/config.yaml` file.\nFor routes to propagate to child environments, the child environments\nmust be synchronized with their parent.\n\nMore information about routing can be found in the [Routes](https://docs.upsun.com/anchors/routes/)\nsection of the documentation.\n"
+      "description": "These endpoints access an environment's `routes:` section of the `.upsun/config.yaml` file.\nFor routes to propagate to child environments, the child environments\nmust be synchronized with their parent.\n\nMore information about routing can be found in the [Routes](https://docs.upsun.com/anchors/routes/)\nsection of the documentation.\n"
     },
     {
       "name": "Source Operations",
@@ -605,6 +601,44 @@
                     "type": {
                       "description": "What type of verification is needed (phone or ticket)",
                       "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plans": {
+      "get": {
+        "tags": [
+          "Plans"
+        ],
+        "summary": "List available plans",
+        "description": "Retrieve information about plans and pricing on Platform.sh.",
+        "operationId": "list-plans",
+        "responses": {
+          "200": {
+            "description": "The list of plans.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "count": {
+                      "description": "Total number of plans.",
+                      "type": "integer"
+                    },
+                    "plans": {
+                      "description": "Array of plans.",
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Plan"
+                      }
+                    },
+                    "_links": {
+                      "$ref": "#/components/schemas/HalLinks"
                     }
                   },
                   "type": "object"
@@ -7294,10 +7328,8 @@
           }
         },
         "tags": [
-          "Cert Management"
-        ],
-        "summary": "List Project Certificate Provisioners",
-        "description": "Retrieves all certificate provisioners associated with a specific project.\nUse this endpoint to view the configuration, status, and settings of each\nprovisioner. The response includes a collection of provisioner objects.\n"
+          "CertificateProvisioner"
+        ]
       }
     },
     "/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}": {
@@ -7334,10 +7366,8 @@
           }
         },
         "tags": [
-          "Cert Management"
-        ],
-        "summary": "Get Projects Provisioners",
-        "description": "Retrieves the details of a specific certificate provisioner within a project.\nUse this endpoint to inspect the configuration, status, and settings of\nthe provisioner identified by `certificateProvisionerDocumentId`.\n"
+          "CertificateProvisioner"
+        ]
       },
       "patch": {
         "requestBody": {
@@ -7383,10 +7413,8 @@
           }
         },
         "tags": [
-          "Cert Management"
-        ],
-        "summary": "Update Projects Provisioners",
-        "description": "Updates the configuration of an existing certificate provisioner within a project.\nUse this endpoint to modify settings such as certificate sources, deployment options,\nor other provisioner-specific parameters without creating a new provisioner.\n"
+          "CertificateProvisioner"
+        ]
       }
     },
     "/projects/{projectId}/settings": {
@@ -7731,7 +7759,7 @@
         "tags": [
           "Autoscaling"
         ],
-        "description": "Retrieves the current Autoscaler configuration for a specific environment.\nThis includes all thresholds, conditions, and rules currently applied.\nUse this endpoint to inspect how automatic scaling is configured.\n",
+        "description": "Retrieves Autoscaler settings",
         "operationId": "get-autoscaler-settings",
         "parameters": [
           {
@@ -7764,14 +7792,13 @@
               }
             }
           }
-        },
-        "summary": "Retrieves Autoscaler settings"
+        }
       },
       "post": {
         "tags": [
           "Autoscaling"
         ],
-        "description": "Creates or updates the Autoscaler settings for a specific environment.\nUse this endpoint to define new autoscaling rules or override existing ones.\n",
+        "description": "Updates Autoscaler settings",
         "operationId": "post-autoscaler-settings",
         "parameters": [
           {
@@ -7814,14 +7841,13 @@
               }
             }
           }
-        },
-        "summary": "Updates Autoscaler settings"
+        }
       },
       "patch": {
         "tags": [
           "Autoscaling"
         ],
-        "description": "Modifies the configuration of an existing Autoscaler for the specified environment.\nUse this endpoint to change scaling thresholds, conditions, or other autoscaling parameters\nwithout deleting the Autoscaler.\n",
+        "description": "Modifies Autoscaler settings",
         "operationId": "patch-autoscaler-settings",
         "parameters": [
           {
@@ -7864,8 +7890,7 @@
               }
             }
           }
-        },
-        "summary": "Modifies Autoscaler settings"
+        }
       }
     },
     "/projects/{projectId}/environments/{environmentId}/autoscaling/alerts": {
@@ -11335,6 +11360,138 @@
         }
       }
     },
+    "/organizations/{organization_id}/metrics/carbon": {
+      "get": {
+        "summary": "Query project carbon emissions metrics for an entire organization",
+        "description": "Queries the carbon emission data for all projects owned by the specified organiation.",
+        "operationId": "query-organiation-carbon",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
+            "$ref": "#/components/parameters/interval"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationCarbon"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{organization_id}/projects/{project_id}/metrics/carbon": {
+      "get": {
+        "summary": "Query project carbon emissions metrics",
+        "description": "Queries the carbon emission data for the specified project using the supplied parameters.",
+        "operationId": "query-project-carbon",
+        "tags": [
+          "Organization Projects"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/OrganizationID"
+          },
+          {
+            "$ref": "#/components/parameters/ProjectID"
+          },
+          {
+            "$ref": "#/components/parameters/from"
+          },
+          {
+            "$ref": "#/components/parameters/to"
+          },
+          {
+            "$ref": "#/components/parameters/interval"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectCarbon"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/organizations/{organization_id}/subscriptions": {
       "get": {
         "summary": "List subscriptions",
@@ -13544,6 +13701,20 @@
           },
           "changed": {
             "description": "The time of the last key modification (ISO 8601)",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Plan": {
+        "description": "The hosting plan.",
+        "properties": {
+          "name": {
+            "description": "The machine name of the plan.",
+            "type": "string"
+          },
+          "label": {
+            "description": "The human-readable name of the plan.",
             "type": "string"
           }
         },
@@ -27478,6 +27649,63 @@
           }
         }
       },
+      "OrganizationCarbon": {
+        "type": "object",
+        "properties": {
+          "organization_id": {
+            "$ref": "#/components/schemas/OrganizationID"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetricsMetadata"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationProjectCarbon"
+            }
+          },
+          "total": {
+            "$ref": "#/components/schemas/CarbonTotal"
+          }
+        }
+      },
+      "ProjectCarbon": {
+        "type": "object",
+        "properties": {
+          "project_id": {
+            "$ref": "#/components/schemas/ProjectID"
+          },
+          "project_title": {
+            "$ref": "#/components/schemas/ProjectTitle"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/MetricsMetadata"
+          },
+          "values": {
+            "$ref": "#/components/schemas/MetricsValues"
+          },
+          "total": {
+            "$ref": "#/components/schemas/CarbonTotal"
+          }
+        }
+      },
+      "OrganizationProjectCarbon": {
+        "type": "object",
+        "properties": {
+          "project_id": {
+            "$ref": "#/components/schemas/ProjectID"
+          },
+          "project_title": {
+            "$ref": "#/components/schemas/ProjectTitle"
+          },
+          "values": {
+            "$ref": "#/components/schemas/MetricsValues"
+          },
+          "total": {
+            "$ref": "#/components/schemas/CarbonTotal"
+          }
+        }
+      },
       "ProjectPlan": {
         "type": "string",
         "description": "The project plan."
@@ -27721,6 +27949,44 @@
       "RegionCompliance": {
         "type": "object",
         "description": "Information about the region's compliance."
+      },
+      "MetricsMetadata": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "description": "The value used to calculate the lower bound of the temporal query. Inclusive."
+          },
+          "to": {
+            "description": "The truncated value used to calculate the upper bound of the temporal query. Exclusive."
+          },
+          "interval": {
+            "description": "The interval used to group the metric values."
+          },
+          "units": {
+            "description": "The units associated with the provided values."
+          }
+        }
+      },
+      "MetricsValues": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/MetricsValue"
+        }
+      },
+      "MetricsValue": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "The measured value of the metric for the given time interval."
+          },
+          "start_time": {
+            "description": "The timestamp at which the time interval began."
+          }
+        }
+      },
+      "CarbonTotal": {
+        "type": "number",
+        "description": "The calculated total of the metric for the given interval."
       },
       "CreatedAt": {
         "type": "string",
@@ -28676,6 +28942,35 @@
         "schema": {
           "type": "string"
         }
+      },
+      "from": {
+        "in": "query",
+        "name": "from",
+        "description": "The start of the time frame for the query. Inclusive.",
+        "schema": {
+          "$ref": "#/components/schemas/DateTimeFilter"
+        }
+      },
+      "to": {
+        "in": "query",
+        "name": "to",
+        "description": "The end of the time frame for the query. Exclusive.",
+        "schema": {
+          "$ref": "#/components/schemas/DateTimeFilter"
+        }
+      },
+      "interval": {
+        "in": "query",
+        "name": "interval",
+        "description": "The interval by which the query groups the results. of the time frame for the query. Exclusive.",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "day",
+            "month",
+            "year"
+          ]
+        }
       }
     },
     "securitySchemes": {
@@ -28725,7 +29020,6 @@
         "Project",
         "Domain Management",
         "Cert Management",
-        "Certificate Provisioner",
         "Project Variables",
         "Repository",
         "Third-Party Integrations",
@@ -28737,13 +29031,11 @@
       "tags": [
         "Environment",
         "Environment Backups",
-        "Environment Type",
         "Environment Variables",
         "Routing",
         "Source Operations",
         "Runtime Operations",
-        "Deployment",
-        "Autoscaling"
+        "Deployment"
       ]
     },
     {

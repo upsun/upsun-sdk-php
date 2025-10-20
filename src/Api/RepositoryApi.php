@@ -6,7 +6,6 @@ use Upsun\Model\Blob;
 use Upsun\Model\Commit;
 use Upsun\Model\Ref;
 use Upsun\Model\Tree;
-use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -750,13 +749,13 @@ final class RepositoryApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return Ref[]
      *
      * @see https://docs.upsun.com/api/#tag/Repository/operation/list-projects-git-refs
      */
     public function listProjectsGitRefs(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         return $this->listProjectsGitRefsWithHttpInfo(
             $projectId
         );
@@ -765,13 +764,13 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get list of repository refs with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return Ref[]
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsGitRefsWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         $request = $this->listProjectsGitRefsRequest(
             $projectId
         );
@@ -785,7 +784,7 @@ final class RepositoryApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\Ref[]',
                 $request,
                 $response
             );

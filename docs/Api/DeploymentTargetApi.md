@@ -130,7 +130,7 @@ No authorization required
 ## `getProjectsDeployments()`
 
 ```php
-getProjectsDeployments($projectId, $deploymentTargetConfigurationId): \Upsun\Model\AcceptedResponse
+getProjectsDeployments($projectId, $deploymentTargetConfigurationId): \Upsun\Model\DeploymentTarget
 ```
 
 Get a single project deployment target
@@ -170,7 +170,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\DeploymentTarget**](../Model/DeploymentTarget.md)
 
 ### Authorization
 
@@ -188,7 +188,7 @@ No authorization required
 ## `listProjectsDeployments()`
 
 ```php
-listProjectsDeployments($projectId): \Upsun\Model\AcceptedResponse
+listProjectsDeployments($projectId): \Upsun\Model\DeploymentTarget[]
 ```
 
 Get project deployment target info
@@ -226,7 +226,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\DeploymentTarget[]**](../Model/DeploymentTarget.md)
 
 ### Authorization
 

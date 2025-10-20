@@ -132,7 +132,7 @@ No authorization required
 ## `listProjectsEnvironmentsActivities()`
 
 ```php
-listProjectsEnvironmentsActivities($projectId, $environmentId): \Upsun\Model\AcceptedResponse
+listProjectsEnvironmentsActivities($projectId, $environmentId): \Upsun\Model\Activity[]
 ```
 
 Get environment activity log
@@ -172,7 +172,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\Activity[]**](../Model/Activity.md)
 
 ### Authorization
 

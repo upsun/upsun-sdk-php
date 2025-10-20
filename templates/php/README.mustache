@@ -61,10 +61,9 @@ $project = $client->projects->get('<projectId>');
 $project = $client->projects->create(
     <organizationId>,
     [
-        'owner' => '<upsunUserId>',
-        'project_title' => 'Project title',
-        'project_region' => 'eu-5.platform.sh',
-        'default_branch' => 'main',
+        'projectTitle' => 'Project title',
+        'projectRegion' => 'eu-5.platform.sh',
+        'defaultBranch' => 'main',
     ]
 );
 ```
@@ -74,7 +73,7 @@ $project = $client->projects->create(
 ```php
 $projectData = [
     'title' => 'title',
-    'description' => 'description' // see vendor/upsun/upsun-sdk-php/src/Model/Project.php for more option
+    'description' => 'description'
 ];
 $response = $client->projects->update(<projectId>, $projectData);
 ```
@@ -82,7 +81,7 @@ $response = $client->projects->update(<projectId>, $projectData);
 ### Example: Delete a project
 
 ```php
-$client->organizations->deleteProject(<organizationId>, <projectId>);
+$client->projects->delete(<organizationId>, <projectId>);
 ```
 
 ---

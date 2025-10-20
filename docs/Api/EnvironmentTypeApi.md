@@ -69,7 +69,7 @@ No authorization required
 ## `listProjectsEnvironmentTypes()`
 
 ```php
-listProjectsEnvironmentTypes($projectId): \Upsun\Model\AcceptedResponse
+listProjectsEnvironmentTypes($projectId): \Upsun\Model\EnvironmentType[]
 ```
 
 Get environment types
@@ -107,7 +107,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\EnvironmentType[]**](../Model/EnvironmentType.md)
 
 ### Authorization
 

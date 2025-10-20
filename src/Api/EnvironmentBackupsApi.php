@@ -650,14 +650,14 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return Backup[]
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/list-projects-environments-backups
      */
     public function listProjectsEnvironmentsBackups(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): array {
         return $this->listProjectsEnvironmentsBackupsWithHttpInfo(
             $projectId,
             $environmentId
@@ -667,14 +667,14 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Get an environment's backup list with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return Backup[]
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsBackupsWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): array {
         $request = $this->listProjectsEnvironmentsBackupsRequest(
             $projectId,
             $environmentId
@@ -689,7 +689,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\Backup[]',
                 $request,
                 $response
             );

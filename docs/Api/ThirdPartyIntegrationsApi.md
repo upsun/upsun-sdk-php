@@ -126,7 +126,7 @@ No authorization required
 ## `getProjectsIntegrations()`
 
 ```php
-getProjectsIntegrations($projectId, $integrationId): \Upsun\Model\AcceptedResponse
+getProjectsIntegrations($projectId, $integrationId): \Upsun\Model\Integration
 ```
 
 Get information about an existing third-party integration
@@ -164,7 +164,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\Integration**](../Model/Integration.md)
 
 ### Authorization
 
@@ -182,7 +182,7 @@ No authorization required
 ## `listProjectsIntegrations()`
 
 ```php
-listProjectsIntegrations($projectId): \Upsun\Model\AcceptedResponse
+listProjectsIntegrations($projectId): \Upsun\Model\Integration[]
 ```
 
 Get list of existing integrations for a project
@@ -218,7 +218,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\Integration[]**](../Model/Integration.md)
 
 ### Authorization
 

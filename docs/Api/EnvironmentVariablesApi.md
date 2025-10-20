@@ -194,7 +194,7 @@ No authorization required
 ## `listProjectsEnvironmentsVariables()`
 
 ```php
-listProjectsEnvironmentsVariables($projectId, $environmentId): \Upsun\Model\AcceptedResponse
+listProjectsEnvironmentsVariables($projectId, $environmentId): \Upsun\Model\EnvironmentVariable[]
 ```
 
 Get list of environment variables
@@ -234,7 +234,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\EnvironmentVariable[]**](../Model/EnvironmentVariable.md)
 
 ### Authorization
 

@@ -3,8 +3,8 @@
 namespace Upsun\Api;
 
 use Upsun\Model\Deployment;
-use Upsun\Model\AcceptedResponse;
 use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
+use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -266,14 +266,14 @@ final class DeploymentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return Deployment[]
      *
      * @see https://docs.upsun.com/api/#tag/Deployment/operation/list-projects-environments-deployments
      */
     public function listProjectsEnvironmentsDeployments(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): array {
         return $this->listProjectsEnvironmentsDeploymentsWithHttpInfo(
             $projectId,
             $environmentId
@@ -283,14 +283,14 @@ final class DeploymentApi extends AbstractApi
     /**
      * Get an environment's deployment information with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return Deployment[]
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsDeploymentsWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): array {
         $request = $this->listProjectsEnvironmentsDeploymentsRequest(
             $projectId,
             $environmentId
@@ -305,7 +305,7 @@ final class DeploymentApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\Deployment[]',
                 $request,
                 $response
             );

@@ -568,13 +568,13 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return ProjectVariable[]
      *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/list-projects-variables
      */
     public function listProjectsVariables(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         return $this->listProjectsVariablesWithHttpInfo(
             $projectId
         );
@@ -583,13 +583,13 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Get list of project variables with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return ProjectVariable[]
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsVariablesWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         $request = $this->listProjectsVariablesRequest(
             $projectId
         );
@@ -603,7 +603,7 @@ final class ProjectVariablesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\ProjectVariable[]',
                 $request,
                 $response
             );

@@ -255,7 +255,7 @@ No authorization required
 ## `getProjectsDomains()`
 
 ```php
-getProjectsDomains($projectId, $domainId): \Upsun\Model\AcceptedResponse
+getProjectsDomains($projectId, $domainId): \Upsun\Model\Domain
 ```
 
 Get a project domain
@@ -295,7 +295,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\Domain**](../Model/Domain.md)
 
 ### Authorization
 
@@ -313,7 +313,7 @@ No authorization required
 ## `getProjectsEnvironmentsDomains()`
 
 ```php
-getProjectsEnvironmentsDomains($projectId, $environmentId, $domainId): \Upsun\Model\AcceptedResponse
+getProjectsEnvironmentsDomains($projectId, $environmentId, $domainId): \Upsun\Model\Domain
 ```
 
 Get an environment domain
@@ -355,7 +355,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\Domain**](../Model/Domain.md)
 
 ### Authorization
 
@@ -373,7 +373,7 @@ No authorization required
 ## `listProjectsDomains()`
 
 ```php
-listProjectsDomains($projectId): \Upsun\Model\AcceptedResponse
+listProjectsDomains($projectId): \Upsun\Model\Domain[]
 ```
 
 Get list of project domains
@@ -411,7 +411,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\Domain[]**](../Model/Domain.md)
 
 ### Authorization
 
@@ -429,7 +429,7 @@ No authorization required
 ## `listProjectsEnvironmentsDomains()`
 
 ```php
-listProjectsEnvironmentsDomains($projectId, $environmentId): \Upsun\Model\AcceptedResponse
+listProjectsEnvironmentsDomains($projectId, $environmentId): \Upsun\Model\Domain[]
 ```
 
 Get a list of environment domains
@@ -469,7 +469,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\Domain[]**](../Model/Domain.md)
 
 ### Authorization
 

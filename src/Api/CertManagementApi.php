@@ -5,9 +5,7 @@ namespace Upsun\Api;
 use Upsun\Model\CertificateCreateInput;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Certificate;
-use Upsun\Model\CertificateProvisioner;
 use Upsun\Model\CertificatePatch;
-use Upsun\Model\CertificateProvisionerPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -561,173 +559,6 @@ final class CertManagementApi extends AbstractApi
     }
 
     /**
-     * Get Projects Provisioners
-     *
-     * Retrieves the details of a specific certificate provisioner within a project. Use this endpoint to inspect the
-     * configuration, status, and settings of the provisioner identified by `certificateProvisionerDocumentId`.
-     *
-     * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException|Exception
-     *
-     * @return CertificateProvisioner
-     *
-     * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/get-projects-provisioners
-     */
-    public function getProjectsProvisioners(
-        string $projectId,
-        string $certificateProvisionerDocumentId
-    ): CertificateProvisioner {
-        return $this->getProjectsProvisionersWithHttpInfo(
-            $projectId,
-            $certificateProvisionerDocumentId
-        );
-    }
-
-    /**
-     * Get Projects Provisioners with HTTP Info
-     *
-     * @return CertificateProvisioner
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    private function getProjectsProvisionersWithHttpInfo(
-        string $projectId,
-        string $certificateProvisionerDocumentId
-    ): CertificateProvisioner {
-        $request = $this->getProjectsProvisionersRequest(
-            $projectId,
-            $certificateProvisionerDocumentId
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders(),
-                $request->getBody()
-            );
-
-            return $this->handleResponseWithDataType(
-                CertificateProvisioner::class,
-                $request,
-                $response
-            );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
-        }
-    }
-
-    /**
-     * Create request for operation 'getProjectsProvisioners'
-     *
-     * @throws InvalidArgumentException
-     */
-    private function getProjectsProvisionersRequest(
-        string $projectId,
-        string $certificateProvisionerDocumentId
-    ): RequestInterface {
-
-        // verify the required parameter 'projectId' is set
-        if (
-            $projectId === null
-            || (is_array($projectId)
-            && count($projectId) === 0)
-        ) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
-                when calling getProjectsProvisioners'
-            );
-        }
-
-        // verify the required parameter 'certificateProvisionerDocumentId' is set
-        if (
-            $certificateProvisionerDocumentId === null
-            || (is_array($certificateProvisionerDocumentId)
-            && count($certificateProvisionerDocumentId) === 0)
-        ) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $certificateProvisionerDocumentId 
-                when calling getProjectsProvisioners'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-        // path params
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-
-        // path params
-        if ($certificateProvisionerDocumentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'certificateProvisionerDocumentId' . '}',
-                ObjectSerializer::toPathValue($certificateProvisionerDocumentId),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            '',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if ($formParams !== []) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('GET', $uri, $headers, $httpBody);
-    }
-
-    /**
      * Get list of SSL certificates
      *
      * Retrieve a list of objects representing the SSL certificates associated with a project.
@@ -735,13 +566,13 @@ final class CertManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return Certificate[]
      *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/list-projects-certificates
      */
     public function listProjectsCertificates(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         return $this->listProjectsCertificatesWithHttpInfo(
             $projectId
         );
@@ -750,13 +581,13 @@ final class CertManagementApi extends AbstractApi
     /**
      * Get list of SSL certificates with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return Certificate[]
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsCertificatesWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         $request = $this->listProjectsCertificatesRequest(
             $projectId
         );
@@ -770,7 +601,7 @@ final class CertManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\Certificate[]',
                 $request,
                 $response
             );
@@ -802,148 +633,6 @@ final class CertManagementApi extends AbstractApi
         }
 
         $resourcePath = '/projects/{projectId}/certificates';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-        // path params
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            '',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if ($formParams !== []) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('GET', $uri, $headers, $httpBody);
-    }
-
-    /**
-     * List Project Certificate Provisioners
-     *
-     * Retrieves all certificate provisioners associated with a specific project. Use this endpoint to view the
-     * configuration, status, and settings of each provisioner. The response includes a collection of provisioner
-     * objects.
-     *
-     * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException|Exception
-     *
-     * @return AcceptedResponse
-     *
-     * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/list-projects-provisioners
-     */
-    public function listProjectsProvisioners(
-        string $projectId
-    ): AcceptedResponse {
-        return $this->listProjectsProvisionersWithHttpInfo(
-            $projectId
-        );
-    }
-
-    /**
-     * List Project Certificate Provisioners with HTTP Info
-     *
-     * @return AcceptedResponse
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    private function listProjectsProvisionersWithHttpInfo(
-        string $projectId
-    ): AcceptedResponse {
-        $request = $this->listProjectsProvisionersRequest(
-            $projectId
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders(),
-                $request->getBody()
-            );
-
-            return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
-                $request,
-                $response
-            );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
-        }
-    }
-
-    /**
-     * Create request for operation 'listProjectsProvisioners'
-     *
-     * @throws InvalidArgumentException
-     */
-    private function listProjectsProvisionersRequest(
-        string $projectId
-    ): RequestInterface {
-
-        // verify the required parameter 'projectId' is set
-        if (
-            $projectId === null
-            || (is_array($projectId)
-            && count($projectId) === 0)
-        ) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
-                when calling listProjectsProvisioners'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/provisioners';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1157,199 +846,6 @@ final class CertManagementApi extends AbstractApi
                 );
             } else {
                 $httpBody = $certificatePatch;
-            }
-        } elseif ($formParams !== []) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('PATCH', $uri, $headers, $httpBody);
-    }
-
-    /**
-     * Update Projects Provisioners
-     *
-     * Updates the configuration of an existing certificate provisioner within a project. Use this endpoint to modify
-     * settings such as certificate sources, deployment options, or other provisioner-specific parameters without
-     * creating a new provisioner.
-     *
-     * @throws ApiException on non-2xx response
-     * @throws InvalidArgumentException|Exception
-     *
-     * @return AcceptedResponse
-     *
-     * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/update-projects-provisioners
-     */
-    public function updateProjectsProvisioners(
-        string $projectId,
-        string $certificateProvisionerDocumentId,
-        CertificateProvisionerPatch $certificateProvisionerPatch
-    ): AcceptedResponse {
-        return $this->updateProjectsProvisionersWithHttpInfo(
-            $projectId,
-            $certificateProvisionerDocumentId,
-            $certificateProvisionerPatch
-        );
-    }
-
-    /**
-     * Update Projects Provisioners with HTTP Info
-     *
-     * @return AcceptedResponse
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    private function updateProjectsProvisionersWithHttpInfo(
-        string $projectId,
-        string $certificateProvisionerDocumentId,
-        CertificateProvisionerPatch $certificateProvisionerPatch
-    ): AcceptedResponse {
-        $request = $this->updateProjectsProvisionersRequest(
-            $projectId,
-            $certificateProvisionerDocumentId,
-            $certificateProvisionerPatch
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders(),
-                $request->getBody()
-            );
-
-            return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
-                $request,
-                $response
-            );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
-        }
-    }
-
-    /**
-     * Create request for operation 'updateProjectsProvisioners'
-     *
-     * @throws InvalidArgumentException
-     */
-    private function updateProjectsProvisionersRequest(
-        string $projectId,
-        string $certificateProvisionerDocumentId,
-        CertificateProvisionerPatch $certificateProvisionerPatch
-    ): RequestInterface {
-
-        // verify the required parameter 'projectId' is set
-        if (
-            $projectId === null
-            || (is_array($projectId)
-            && count($projectId) === 0)
-        ) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
-                when calling updateProjectsProvisioners'
-            );
-        }
-
-        // verify the required parameter 'certificateProvisionerDocumentId' is set
-        if (
-            $certificateProvisionerDocumentId === null
-            || (is_array($certificateProvisionerDocumentId)
-            && count($certificateProvisionerDocumentId) === 0)
-        ) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $certificateProvisionerDocumentId 
-                when calling updateProjectsProvisioners'
-            );
-        }
-
-        // verify the required parameter 'certificateProvisionerPatch' is set
-        if (
-            $certificateProvisionerPatch === null
-            || (is_array($certificateProvisionerPatch)
-            && count($certificateProvisionerPatch) === 0)
-        ) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $certificateProvisionerPatch 
-                when calling updateProjectsProvisioners'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-        // path params
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-
-        // path params
-        if ($certificateProvisionerDocumentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'certificateProvisionerDocumentId' . '}',
-                ObjectSerializer::toPathValue($certificateProvisionerDocumentId),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            'application/json',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($certificateProvisionerPatch)) {
-            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($certificateProvisionerPatch)
-                );
-            } else {
-                $httpBody = $certificateProvisionerPatch;
             }
         } elseif ($formParams !== []) {
             if ($multipart) {

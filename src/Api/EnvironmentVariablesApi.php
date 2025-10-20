@@ -648,14 +648,14 @@ final class EnvironmentVariablesApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return EnvironmentVariable[]
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Variables/operation/list-projects-environments-variables
      */
     public function listProjectsEnvironmentsVariables(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): array {
         return $this->listProjectsEnvironmentsVariablesWithHttpInfo(
             $projectId,
             $environmentId
@@ -665,14 +665,14 @@ final class EnvironmentVariablesApi extends AbstractApi
     /**
      * Get list of environment variables with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return EnvironmentVariable[]
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsVariablesWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): array {
         $request = $this->listProjectsEnvironmentsVariablesRequest(
             $projectId,
             $environmentId
@@ -687,7 +687,7 @@ final class EnvironmentVariablesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\EnvironmentVariable[]',
                 $request,
                 $response
             );

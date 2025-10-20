@@ -194,7 +194,7 @@ No authorization required
 ## `listProjectsEnvironmentsBackups()`
 
 ```php
-listProjectsEnvironmentsBackups($projectId, $environmentId): \Upsun\Model\AcceptedResponse
+listProjectsEnvironmentsBackups($projectId, $environmentId): \Upsun\Model\Backup[]
 ```
 
 Get an environment's backup list
@@ -234,7 +234,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\Backup[]**](../Model/Backup.md)
 
 ### Authorization
 

@@ -61,10 +61,9 @@ $project = $client->projects->get('<projectId>');
 $project = $client->projects->create(
     <organizationId>,
     [
-        'owner' => '<upsunUserId>',
-        'project_title' => 'Project title',
-        'project_region' => 'eu-5.platform.sh',
-        'default_branch' => 'main',
+        'projectTitle' => 'Project title',
+        'projectRegion' => 'eu-5.platform.sh',
+        'defaultBranch' => 'main',
     ]
 );
 ```
@@ -74,7 +73,7 @@ $project = $client->projects->create(
 ```php
 $projectData = [
     'title' => 'title',
-    'description' => 'description' // see vendor/upsun/upsun-sdk-php/src/Model/Project.php for more option
+    'description' => 'description'
 ];
 $response = $client->projects->update(<projectId>, $projectData);
 ```
@@ -82,7 +81,7 @@ $response = $client->projects->update(<projectId>, $projectData);
 ### Example: Delete a project
 
 ```php
-$client->organizations->deleteProject(<organizationId>, <projectId>);
+$client->projects->delete(<organizationId>, <projectId>);
 ```
 
 ---
@@ -144,22 +143,23 @@ All URIs are relative to *https://api.upsun.com*
 | **AddOnsApi** | [**updateOrgAddons**](docs/Api/AddOnsApi.md#updateorgaddons) | **PATCH** /organizations/{organization_id}/addons | Update organization add-ons | https://docs.upsun.com/api/#tag/Add-ons/operation/update-org-addons |
 | **AlertsApi** | [**getUsageAlerts**](docs/Api/AlertsApi.md#getusagealerts) | **GET** /alerts/subscriptions/{subscriptionId}/usage | Get usage alerts for a subscription | https://docs.upsun.com/api/#tag/Alerts/operation/get-usage-alerts |
 | **AlertsApi** | [**updateUsageAlerts**](docs/Api/AlertsApi.md#updateusagealerts) | **PATCH** /alerts/subscriptions/{subscriptionId}/usage | Update usage alerts. | https://docs.upsun.com/api/#tag/Alerts/operation/update-usage-alerts |
-| **AutoscalingApi** | [**getAutoscalerSettings**](docs/Api/AutoscalingApi.md#getautoscalersettings) | **GET** /projects/{projectId}/environments/{environmentId}/autoscaling/settings | Retrieves Autoscaler settings | https://docs.upsun.com/api/#tag/Autoscaling/operation/get-autoscaler-settings |
-| **AutoscalingApi** | [**patchAutoscalerSettings**](docs/Api/AutoscalingApi.md#patchautoscalersettings) | **PATCH** /projects/{projectId}/environments/{environmentId}/autoscaling/settings | Modifies Autoscaler settings | https://docs.upsun.com/api/#tag/Autoscaling/operation/patch-autoscaler-settings |
+| **AutoscalingApi** | [**getAutoscalerSettings**](docs/Api/AutoscalingApi.md#getautoscalersettings) | **GET** /projects/{projectId}/environments/{environmentId}/autoscaling/settings |  | https://docs.upsun.com/api/#tag/Autoscaling/operation/get-autoscaler-settings |
+| **AutoscalingApi** | [**patchAutoscalerSettings**](docs/Api/AutoscalingApi.md#patchautoscalersettings) | **PATCH** /projects/{projectId}/environments/{environmentId}/autoscaling/settings |  | https://docs.upsun.com/api/#tag/Autoscaling/operation/patch-autoscaler-settings |
 | **AutoscalingApi** | [**postAutoscalerAlert**](docs/Api/AutoscalingApi.md#postautoscaleralert) | **POST** /projects/{projectId}/environments/{environmentId}/autoscaling/alerts |  | https://docs.upsun.com/api/#tag/Autoscaling/operation/post-autoscaler-alert |
-| **AutoscalingApi** | [**postAutoscalerSettings**](docs/Api/AutoscalingApi.md#postautoscalersettings) | **POST** /projects/{projectId}/environments/{environmentId}/autoscaling/settings | Updates Autoscaler settings | https://docs.upsun.com/api/#tag/Autoscaling/operation/post-autoscaler-settings |
+| **AutoscalingApi** | [**postAutoscalerSettings**](docs/Api/AutoscalingApi.md#postautoscalersettings) | **POST** /projects/{projectId}/environments/{environmentId}/autoscaling/settings |  | https://docs.upsun.com/api/#tag/Autoscaling/operation/post-autoscaler-settings |
 | **CertManagementApi** | [**createProjectsCertificates**](docs/Api/CertManagementApi.md#createprojectscertificates) | **POST** /projects/{projectId}/certificates | Add an SSL certificate | https://docs.upsun.com/api/#tag/Cert-Management/operation/create-projects-certificates |
 | **CertManagementApi** | [**deleteProjectsCertificates**](docs/Api/CertManagementApi.md#deleteprojectscertificates) | **DELETE** /projects/{projectId}/certificates/{certificateId} | Delete an SSL certificate | https://docs.upsun.com/api/#tag/Cert-Management/operation/delete-projects-certificates |
 | **CertManagementApi** | [**getProjectsCertificates**](docs/Api/CertManagementApi.md#getprojectscertificates) | **GET** /projects/{projectId}/certificates/{certificateId} | Get an SSL certificate | https://docs.upsun.com/api/#tag/Cert-Management/operation/get-projects-certificates |
-| **CertManagementApi** | [**getProjectsProvisioners**](docs/Api/CertManagementApi.md#getprojectsprovisioners) | **GET** /projects/{projectId}/provisioners/{certificateProvisionerDocumentId} | Get Projects Provisioners | https://docs.upsun.com/api/#tag/Cert-Management/operation/get-projects-provisioners |
 | **CertManagementApi** | [**listProjectsCertificates**](docs/Api/CertManagementApi.md#listprojectscertificates) | **GET** /projects/{projectId}/certificates | Get list of SSL certificates | https://docs.upsun.com/api/#tag/Cert-Management/operation/list-projects-certificates |
-| **CertManagementApi** | [**listProjectsProvisioners**](docs/Api/CertManagementApi.md#listprojectsprovisioners) | **GET** /projects/{projectId}/provisioners | List Project Certificate Provisioners | https://docs.upsun.com/api/#tag/Cert-Management/operation/list-projects-provisioners |
 | **CertManagementApi** | [**updateProjectsCertificates**](docs/Api/CertManagementApi.md#updateprojectscertificates) | **PATCH** /projects/{projectId}/certificates/{certificateId} | Update an SSL certificate | https://docs.upsun.com/api/#tag/Cert-Management/operation/update-projects-certificates |
-| **CertManagementApi** | [**updateProjectsProvisioners**](docs/Api/CertManagementApi.md#updateprojectsprovisioners) | **PATCH** /projects/{projectId}/provisioners/{certificateProvisionerDocumentId} | Update Projects Provisioners | https://docs.upsun.com/api/#tag/Cert-Management/operation/update-projects-provisioners |
+| **CertificateProvisionerApi** | [**getProjectsProvisioners**](docs/Api/CertificateProvisionerApi.md#getprojectsprovisioners) | **GET** /projects/{projectId}/provisioners/{certificateProvisionerDocumentId} |  | https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/get-projects-provisioners |
+| **CertificateProvisionerApi** | [**listProjectsProvisioners**](docs/Api/CertificateProvisionerApi.md#listprojectsprovisioners) | **GET** /projects/{projectId}/provisioners |  | https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/list-projects-provisioners |
+| **CertificateProvisionerApi** | [**updateProjectsProvisioners**](docs/Api/CertificateProvisionerApi.md#updateprojectsprovisioners) | **PATCH** /projects/{projectId}/provisioners/{certificateProvisionerDocumentId} |  | https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/update-projects-provisioners |
 | **ConnectionsApi** | [**deleteLoginConnection**](docs/Api/ConnectionsApi.md#deleteloginconnection) | **DELETE** /users/{user_id}/connections/{provider} | Delete a federated login connection | https://docs.upsun.com/api/#tag/Connections/operation/delete-login-connection |
 | **ConnectionsApi** | [**getLoginConnection**](docs/Api/ConnectionsApi.md#getloginconnection) | **GET** /users/{user_id}/connections/{provider} | Get a federated login connection | https://docs.upsun.com/api/#tag/Connections/operation/get-login-connection |
 | **ConnectionsApi** | [**listLoginConnections**](docs/Api/ConnectionsApi.md#listloginconnections) | **GET** /users/{user_id}/connections | List federated login connections | https://docs.upsun.com/api/#tag/Connections/operation/list-login-connections |
 | **DefaultApi** | [**listTickets**](docs/Api/DefaultApi.md#listtickets) | **GET** /tickets | List support tickets | https://docs.upsun.com/api/#tag//operation/list-tickets |
+| **DefaultApi** | [**queryOrganiationCarbon**](docs/Api/DefaultApi.md#queryorganiationcarbon) | **GET** /organizations/{organization_id}/metrics/carbon | Query project carbon emissions metrics for an entire organization | https://docs.upsun.com/api/#tag//operation/query-organiation-carbon |
 | **DeploymentApi** | [**getProjectsEnvironmentsDeployments**](docs/Api/DeploymentApi.md#getprojectsenvironmentsdeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Get a single environment deployment | https://docs.upsun.com/api/#tag/Deployment/operation/get-projects-environments-deployments |
 | **DeploymentApi** | [**listProjectsEnvironmentsDeployments**](docs/Api/DeploymentApi.md#listprojectsenvironmentsdeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments | Get an environment&#39;s deployment information | https://docs.upsun.com/api/#tag/Deployment/operation/list-projects-environments-deployments |
 | **DeploymentApi** | [**updateProjectsEnvironmentsDeploymentsNext**](docs/Api/DeploymentApi.md#updateprojectsenvironmentsdeploymentsnext) | **PATCH** /projects/{projectId}/environments/{environmentId}/deployments/next | Update the next deployment | https://docs.upsun.com/api/#tag/Deployment/operation/update-projects-environments-deployments-next |
@@ -247,6 +247,7 @@ All URIs are relative to *https://api.upsun.com*
 | **OrganizationProjectsApi** | [**deleteOrgProject**](docs/Api/OrganizationProjectsApi.md#deleteorgproject) | **DELETE** /organizations/{organization_id}/projects/{project_id} | Delete project | https://docs.upsun.com/api/#tag/Organization-Projects/operation/delete-org-project |
 | **OrganizationProjectsApi** | [**getOrgProject**](docs/Api/OrganizationProjectsApi.md#getorgproject) | **GET** /organizations/{organization_id}/projects/{project_id} | Get project | https://docs.upsun.com/api/#tag/Organization-Projects/operation/get-org-project |
 | **OrganizationProjectsApi** | [**listOrgProjects**](docs/Api/OrganizationProjectsApi.md#listorgprojects) | **GET** /organizations/{organization_id}/projects | List projects | https://docs.upsun.com/api/#tag/Organization-Projects/operation/list-org-projects |
+| **OrganizationProjectsApi** | [**queryProjectCarbon**](docs/Api/OrganizationProjectsApi.md#queryprojectcarbon) | **GET** /organizations/{organization_id}/projects/{project_id}/metrics/carbon | Query project carbon emissions metrics | https://docs.upsun.com/api/#tag/Organization-Projects/operation/query-project-carbon |
 | **OrganizationProjectsApi** | [**updateOrgProject**](docs/Api/OrganizationProjectsApi.md#updateorgproject) | **PATCH** /organizations/{organization_id}/projects/{project_id} | Update project | https://docs.upsun.com/api/#tag/Organization-Projects/operation/update-org-project |
 | **OrganizationsApi** | [**createOrg**](docs/Api/OrganizationsApi.md#createorg) | **POST** /organizations | Create organization | https://docs.upsun.com/api/#tag/Organizations/operation/create-org |
 | **OrganizationsApi** | [**deleteOrg**](docs/Api/OrganizationsApi.md#deleteorg) | **DELETE** /organizations/{organization_id} | Delete organization | https://docs.upsun.com/api/#tag/Organizations/operation/delete-org |
@@ -256,6 +257,7 @@ All URIs are relative to *https://api.upsun.com*
 | **OrganizationsApi** | [**updateOrg**](docs/Api/OrganizationsApi.md#updateorg) | **PATCH** /organizations/{organization_id} | Update organization | https://docs.upsun.com/api/#tag/Organizations/operation/update-org |
 | **PhoneNumberApi** | [**confirmPhoneNumber**](docs/Api/PhoneNumberApi.md#confirmphonenumber) | **POST** /users/{user_id}/phonenumber/{sid} | Confirm phone number | https://docs.upsun.com/api/#tag/PhoneNumber/operation/confirm-phone-number |
 | **PhoneNumberApi** | [**verifyPhoneNumber**](docs/Api/PhoneNumberApi.md#verifyphonenumber) | **POST** /users/{user_id}/phonenumber | Verify phone number | https://docs.upsun.com/api/#tag/PhoneNumber/operation/verify-phone-number |
+| **PlansApi** | [**listPlans**](docs/Api/PlansApi.md#listplans) | **GET** /plans | List available plans | https://docs.upsun.com/api/#tag/Plans/operation/list-plans |
 | **ProfilesApi** | [**getOrgAddress**](docs/Api/ProfilesApi.md#getorgaddress) | **GET** /organizations/{organization_id}/address | Get address | https://docs.upsun.com/api/#tag/Profiles/operation/get-org-address |
 | **ProfilesApi** | [**getOrgProfile**](docs/Api/ProfilesApi.md#getorgprofile) | **GET** /organizations/{organization_id}/profile | Get profile | https://docs.upsun.com/api/#tag/Profiles/operation/get-org-profile |
 | **ProfilesApi** | [**updateOrgAddress**](docs/Api/ProfilesApi.md#updateorgaddress) | **PATCH** /organizations/{organization_id}/address | Update address | https://docs.upsun.com/api/#tag/Profiles/operation/update-org-address |
@@ -602,6 +604,7 @@ All URIs are relative to *https://api.upsun.com*
 - [ListOrgSubscriptions200Response](docs/Model/ListOrgSubscriptions200Response.md)
 - [ListOrgUsageRecords200Response](docs/Model/ListOrgUsageRecords200Response.md)
 - [ListOrgs200Response](docs/Model/ListOrgs200Response.md)
+- [ListPlans200Response](docs/Model/ListPlans200Response.md)
 - [ListProfiles200Response](docs/Model/ListProfiles200Response.md)
 - [ListProjectTeamAccess200Response](docs/Model/ListProjectTeamAccess200Response.md)
 - [ListProjectUserAccess200Response](docs/Model/ListProjectUserAccess200Response.md)
@@ -617,6 +620,8 @@ All URIs are relative to *https://api.upsun.com*
 - [LogsForwarding](docs/Model/LogsForwarding.md)
 - [MappingOfClustersToEnterpriseApplicationsValue](docs/Model/MappingOfClustersToEnterpriseApplicationsValue.md)
 - [Metrics](docs/Model/Metrics.md)
+- [MetricsMetadata](docs/Model/MetricsMetadata.md)
+- [MetricsValue](docs/Model/MetricsValue.md)
 - [NewRelicIntegration](docs/Model/NewRelicIntegration.md)
 - [NewRelicIntegrationCreateInput](docs/Model/NewRelicIntegrationCreateInput.md)
 - [NewRelicIntegrationPatch](docs/Model/NewRelicIntegrationPatch.md)
@@ -636,6 +641,7 @@ All URIs are relative to *https://api.upsun.com*
 - [OrganizationAlertConfig](docs/Model/OrganizationAlertConfig.md)
 - [OrganizationAlertConfigConfig](docs/Model/OrganizationAlertConfigConfig.md)
 - [OrganizationAlertConfigConfigThreshold](docs/Model/OrganizationAlertConfigConfigThreshold.md)
+- [OrganizationCarbon](docs/Model/OrganizationCarbon.md)
 - [OrganizationEstimationObject](docs/Model/OrganizationEstimationObject.md)
 - [OrganizationEstimationObjectSubscriptions](docs/Model/OrganizationEstimationObjectSubscriptions.md)
 - [OrganizationEstimationObjectSubscriptionsListInner](docs/Model/OrganizationEstimationObjectSubscriptionsListInner.md)
@@ -674,6 +680,7 @@ All URIs are relative to *https://api.upsun.com*
 - [OrganizationMemberLinksSelf](docs/Model/OrganizationMemberLinksSelf.md)
 - [OrganizationMemberLinksUpdate](docs/Model/OrganizationMemberLinksUpdate.md)
 - [OrganizationProject](docs/Model/OrganizationProject.md)
+- [OrganizationProjectCarbon](docs/Model/OrganizationProjectCarbon.md)
 - [OrganizationProjectLinks](docs/Model/OrganizationProjectLinks.md)
 - [OrganizationProjectLinksActivities](docs/Model/OrganizationProjectLinksActivities.md)
 - [OrganizationProjectLinksAddons](docs/Model/OrganizationProjectLinksAddons.md)
@@ -689,6 +696,7 @@ All URIs are relative to *https://api.upsun.com*
 - [PagerDutyIntegrationCreateInput](docs/Model/PagerDutyIntegrationCreateInput.md)
 - [PagerDutyIntegrationPatch](docs/Model/PagerDutyIntegrationPatch.md)
 - [PerServiceResourcesOverridesValue](docs/Model/PerServiceResourcesOverridesValue.md)
+- [Plan](docs/Model/Plan.md)
 - [PlanRecords](docs/Model/PlanRecords.md)
 - [PrepaymentObject](docs/Model/PrepaymentObject.md)
 - [PrepaymentObjectPrepayment](docs/Model/PrepaymentObjectPrepayment.md)
@@ -707,6 +715,7 @@ All URIs are relative to *https://api.upsun.com*
 - [ProfileCurrentTrialSpendRemaining](docs/Model/ProfileCurrentTrialSpendRemaining.md)
 - [Project](docs/Model/Project.md)
 - [ProjectCapabilities](docs/Model/ProjectCapabilities.md)
+- [ProjectCarbon](docs/Model/ProjectCarbon.md)
 - [ProjectInfo](docs/Model/ProjectInfo.md)
 - [ProjectInvitation](docs/Model/ProjectInvitation.md)
 - [ProjectInvitationEnvironmentsInner](docs/Model/ProjectInvitationEnvironmentsInner.md)

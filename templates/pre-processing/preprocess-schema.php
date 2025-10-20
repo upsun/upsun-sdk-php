@@ -969,33 +969,46 @@ class OpenApiPreprocessor
     {
         foreach ($this->schema['paths'] as $path => &$methods) {
             foreach ($methods as $httpMethod => &$operation) {
-                if (!isset($operation['responses']) || !is_array($operation['responses'])) {
+                $responses = $operation['responses'] ?? null;
+                if (!is_array($responses)) {
                     continue;
                 }
 
-                foreach ($operation['responses'] as $statusCode => &$response) {
-                    if (
-                        isset($response['content']['application/json']['schema']['$ref'])
-                    ) {
-                        $ref = $response['content']['application/json']['schema']['$ref'];
-                        $refName = basename($ref);
+                foreach ($responses as $statusCode => &$response) {
+                    $schemaRef = $response['content']['application/json']['schema']['$ref'] ?? null;
+                    if (!$schemaRef) {
+                        continue; // no $ref
+                    }
 
-                        // Check if ref is empty (no property)
-                        if (
-                            !isset($this->schema['components']['schemas'][$refName])
-                            || empty($this->schema['components']['schemas'][$refName]['properties'])
-                        ) {
-                            // replace with AcceptedResponse
-                            $response['content']['application/json']['schema'] = [
-                                '$ref' => '#/components/schemas/AcceptedResponse'
-                            ];
-                            echo "🔄 Replaced empty \$ref $refName with AcceptedResponse for {$httpMethod} {$path} [$statusCode]\n";
-                        }
+                    $refName = basename($schemaRef);
+                    $schemaDef = $this->schema['components']['schemas'][$refName] ?? null;
+
+                    // Check if empty schema
+                    $isEmpty = false;
+                    if ($schemaDef === null) {
+                        $isEmpty = true; // schema does not exist
+                    } elseif (
+                        empty($schemaDef['properties'])
+                        && empty($schemaDef['oneOf'])
+                        && empty($schemaDef['allOf'])
+                        && empty($schemaDef['anyOf'])
+                    ) {
+                        $isEmpty = true; // existing empty schema
+                    }
+
+                    if ($isEmpty) {
+                        // Replace with AcceptedResponse
+                        $response['content']['application/json']['schema'] = [
+                            '$ref' => '#/components/schemas/AcceptedResponse',
+                        ];
+                        
+                        echo "🔄 Replaced empty \$ref $refName with AcceptedResponse for {$httpMethod} {$path} [$statusCode]\n";
                     }
                 }
             }
         }
     }
+
 
 }
 

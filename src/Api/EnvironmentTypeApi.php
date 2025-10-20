@@ -3,7 +3,6 @@
 namespace Upsun\Api;
 
 use Upsun\Model\EnvironmentType;
-use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -233,13 +232,13 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return EnvironmentType[]
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Type/operation/list-projects-environment-types
      */
     public function listProjectsEnvironmentTypes(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         return $this->listProjectsEnvironmentTypesWithHttpInfo(
             $projectId
         );
@@ -248,13 +247,13 @@ final class EnvironmentTypeApi extends AbstractApi
     /**
      * Get environment types with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return EnvironmentType[]
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentTypesWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         $request = $this->listProjectsEnvironmentTypesRequest(
             $projectId
         );
@@ -268,7 +267,7 @@ final class EnvironmentTypeApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\EnvironmentType[]',
                 $request,
                 $response
             );

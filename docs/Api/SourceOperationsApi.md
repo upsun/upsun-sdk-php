@@ -11,7 +11,7 @@ All URIs are relative to https://api.upsun.com, except if the operation defines 
 ## `listProjectsEnvironmentsSourceOperations()`
 
 ```php
-listProjectsEnvironmentsSourceOperations($projectId, $environmentId): \Upsun\Model\AcceptedResponse
+listProjectsEnvironmentsSourceOperations($projectId, $environmentId): \Upsun\Model\EnvironmentSourceOperation[]
 ```
 
 List source operations
@@ -51,7 +51,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\EnvironmentSourceOperation[]**](../Model/EnvironmentSourceOperation.md)
 
 ### Authorization
 

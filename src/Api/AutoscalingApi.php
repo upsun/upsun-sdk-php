@@ -4,7 +4,7 @@ namespace Upsun\Api;
 
 use Upsun\Model\AutoscalerSettings;
 use Upsun\Model\AutoscalerAlertPartial;
-use Upsun\Model\AcceptedResponse;
+use Upsun\Model\AutoscalerEmptyBody;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -63,9 +63,6 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Retrieves Autoscaler settings
      *
-     * Retrieves the current Autoscaler configuration for a specific environment. This includes all thresholds,
-     * conditions, and rules currently applied. Use this endpoint to inspect how automatic scaling is configured.
-     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -84,7 +81,6 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
-     * Retrieves Autoscaler settings with HTTP Info
      *
      * @return AutoscalerSettings
      *
@@ -230,9 +226,6 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Modifies Autoscaler settings
      *
-     * Modifies the configuration of an existing Autoscaler for the specified environment. Use this endpoint to change
-     * scaling thresholds, conditions, or other autoscaling parameters without deleting the Autoscaler.
-     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -253,7 +246,6 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
-     * Modifies Autoscaler settings with HTTP Info
      *
      * @return AutoscalerSettings
      *
@@ -413,7 +405,7 @@ final class AutoscalingApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return object
      *
      * @see https://docs.upsun.com/api/#tag/Autoscaling/operation/post-autoscaler-alert
      */
@@ -421,7 +413,7 @@ final class AutoscalingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         ?AutoscalerAlertPartial $autoscalerAlertPartial = null
-    ): AcceptedResponse {
+    ): AutoscalerEmptyBody {
         return $this->postAutoscalerAlertWithHttpInfo(
             $projectId,
             $environmentId,
@@ -431,7 +423,7 @@ final class AutoscalingApi extends AbstractApi
 
     /**
      *
-     * @return AcceptedResponse
+     * @return object
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -439,7 +431,7 @@ final class AutoscalingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         ?AutoscalerAlertPartial $autoscalerAlertPartial = null
-    ): AcceptedResponse {
+    ): AutoscalerEmptyBody {
         $request = $this->postAutoscalerAlertRequest(
             $projectId,
             $environmentId,
@@ -455,7 +447,7 @@ final class AutoscalingApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                'object',
                 $request,
                 $response
             );
@@ -586,9 +578,6 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Updates Autoscaler settings
      *
-     * Creates or updates the Autoscaler settings for a specific environment. Use this endpoint to define new
-     * autoscaling rules or override existing ones.
-     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -609,7 +598,6 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
-     * Updates Autoscaler settings with HTTP Info
      *
      * @return AutoscalerSettings
      *

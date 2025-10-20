@@ -2,8 +2,9 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\AcceptedResponse;
 use Upsun\Model\EnvironmentSourceOperationInput;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentSourceOperation;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -69,14 +70,14 @@ final class SourceOperationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return EnvironmentSourceOperation[]
      *
      * @see https://docs.upsun.com/api/#tag/Source-Operations/operation/list-projects-environments-source-operations
      */
     public function listProjectsEnvironmentsSourceOperations(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): array {
         return $this->listProjectsEnvironmentsSourceOperationsWithHttpInfo(
             $projectId,
             $environmentId
@@ -86,14 +87,14 @@ final class SourceOperationsApi extends AbstractApi
     /**
      * List source operations with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return EnvironmentSourceOperation[]
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentsSourceOperationsWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): array {
         $request = $this->listProjectsEnvironmentsSourceOperationsRequest(
             $projectId,
             $environmentId
@@ -108,7 +109,7 @@ final class SourceOperationsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\EnvironmentSourceOperation[]',
                 $request,
                 $response
             );

@@ -188,7 +188,7 @@ No authorization required
 ## `listProjectsVariables()`
 
 ```php
-listProjectsVariables($projectId): \Upsun\Model\AcceptedResponse
+listProjectsVariables($projectId): \Upsun\Model\ProjectVariable[]
 ```
 
 Get list of project variables
@@ -226,7 +226,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
+[**\Upsun\Model\ProjectVariable[]**](../Model/ProjectVariable.md)
 
 ### Authorization
 

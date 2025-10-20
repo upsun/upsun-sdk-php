@@ -244,6 +244,7 @@ use Upsun\Model\ListOrgProjects200Response;
 use Upsun\Model\ListOrgSubscriptions200Response;
 use Upsun\Model\ListOrgUsageRecords200Response;
 use Upsun\Model\ListOrgs200Response;
+use Upsun\Model\ListPlans200Response;
 use Upsun\Model\ListProfiles200Response;
 use Upsun\Model\ListProjectTeamAccess200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
@@ -259,6 +260,8 @@ use Upsun\Model\ListUserOrgs200Response;
 use Upsun\Model\LogsForwarding;
 use Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue;
 use Upsun\Model\Metrics;
+use Upsun\Model\MetricsMetadata;
+use Upsun\Model\MetricsValue;
 use Upsun\Model\NewRelicIntegration;
 use Upsun\Model\NewRelicIntegrationCreateInput;
 use Upsun\Model\NewRelicIntegrationPatch;
@@ -278,6 +281,7 @@ use Upsun\Model\OrganizationAddonsObjectUpgradesAvailable;
 use Upsun\Model\OrganizationAlertConfig;
 use Upsun\Model\OrganizationAlertConfigConfig;
 use Upsun\Model\OrganizationAlertConfigConfigThreshold;
+use Upsun\Model\OrganizationCarbon;
 use Upsun\Model\OrganizationEstimationObject;
 use Upsun\Model\OrganizationEstimationObjectSubscriptions;
 use Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner;
@@ -316,6 +320,7 @@ use Upsun\Model\OrganizationMemberLinksDelete;
 use Upsun\Model\OrganizationMemberLinksSelf;
 use Upsun\Model\OrganizationMemberLinksUpdate;
 use Upsun\Model\OrganizationProject;
+use Upsun\Model\OrganizationProjectCarbon;
 use Upsun\Model\OrganizationProjectLinks;
 use Upsun\Model\OrganizationProjectLinksActivities;
 use Upsun\Model\OrganizationProjectLinksAddons;
@@ -331,6 +336,7 @@ use Upsun\Model\PagerDutyIntegration;
 use Upsun\Model\PagerDutyIntegrationCreateInput;
 use Upsun\Model\PagerDutyIntegrationPatch;
 use Upsun\Model\PerServiceResourcesOverridesValue;
+use Upsun\Model\Plan;
 use Upsun\Model\PlanRecords;
 use Upsun\Model\PrepaymentObject;
 use Upsun\Model\PrepaymentObjectPrepayment;
@@ -349,6 +355,7 @@ use Upsun\Model\ProfileCurrentTrialSpend;
 use Upsun\Model\ProfileCurrentTrialSpendRemaining;
 use Upsun\Model\Project;
 use Upsun\Model\ProjectCapabilities;
+use Upsun\Model\ProjectCarbon;
 use Upsun\Model\ProjectInfo;
 use Upsun\Model\ProjectInvitation;
 use Upsun\Model\ProjectInvitationEnvironmentsInner;
@@ -2414,6 +2421,12 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
+        ListPlans200Response::class => [
+            'count' => null,
+            'plans' => null,
+            'links' => null
+        ],
+
         ListProfiles200Response::class => [
             'count' => null,
             'profiles' => null,
@@ -2495,6 +2508,18 @@ final class ObjectOpenApiFormatsMapper
 
         Metrics::class => [
             'maxRange' => null
+        ],
+
+        MetricsMetadata::class => [
+            'from' => null,
+            'to' => null,
+            'interval' => null,
+            'units' => null
+        ],
+
+        MetricsValue::class => [
+            'value' => null,
+            'startTime' => null
         ],
 
         NewRelicIntegration::class => [
@@ -2642,6 +2667,13 @@ final class ObjectOpenApiFormatsMapper
             'amount' => null,
             'currencyCode' => null,
             'currencySymbol' => null
+        ],
+
+        OrganizationCarbon::class => [
+            'organizationId' => null,
+            'meta' => null,
+            'projects' => null,
+            'total' => null
         ],
 
         OrganizationEstimationObject::class => [
@@ -2878,6 +2910,13 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
+        OrganizationProjectCarbon::class => [
+            'projectId' => null,
+            'projectTitle' => null,
+            'values' => null,
+            'total' => null
+        ],
+
         OrganizationProjectLinks::class => [
             'self' => null,
             'update' => null,
@@ -2967,6 +3006,11 @@ final class ObjectOpenApiFormatsMapper
             'cpu' => 'float',
             'memory' => null,
             'disk' => null
+        ],
+
+        Plan::class => [
+            'name' => null,
+            'label' => null
         ],
 
         PlanRecords::class => [
@@ -3148,6 +3192,14 @@ final class ObjectOpenApiFormatsMapper
             'runtimeOperations' => null,
             'outboundFirewall' => null,
             'integrations' => null
+        ],
+
+        ProjectCarbon::class => [
+            'projectId' => null,
+            'projectTitle' => null,
+            'meta' => null,
+            'values' => null,
+            'total' => null
         ],
 
         ProjectInfo::class => [

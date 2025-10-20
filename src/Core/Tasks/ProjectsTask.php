@@ -106,7 +106,6 @@ class ProjectsTask extends TaskBase
      *     storage?: int
      * } $projectData Update data
      * @throws ApiException|Exception
-     *
      */
     public function create(string $organizationId, array $projectData): Subscription
     {

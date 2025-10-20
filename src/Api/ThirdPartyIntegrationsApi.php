@@ -4,6 +4,7 @@ namespace Upsun\Api;
 
 use Upsun\Model\IntegrationCreateInput;
 use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Integration;
 use Upsun\Model\IntegrationPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
@@ -396,14 +397,14 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return Integration
      *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/get-projects-integrations
      */
     public function getProjectsIntegrations(
         string $projectId,
         string $integrationId
-    ): AcceptedResponse {
+    ): Integration {
         return $this->getProjectsIntegrationsWithHttpInfo(
             $projectId,
             $integrationId
@@ -413,14 +414,14 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Get information about an existing third-party integration with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return Integration
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsIntegrationsWithHttpInfo(
         string $projectId,
         string $integrationId
-    ): AcceptedResponse {
+    ): Integration {
         $request = $this->getProjectsIntegrationsRequest(
             $projectId,
             $integrationId
@@ -435,7 +436,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                Integration::class,
                 $request,
                 $response
             );
@@ -561,13 +562,13 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AcceptedResponse
+     * @return Integration[]
      *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/list-projects-integrations
      */
     public function listProjectsIntegrations(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         return $this->listProjectsIntegrationsWithHttpInfo(
             $projectId
         );
@@ -576,13 +577,13 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Get list of existing integrations for a project with HTTP Info
      *
-     * @return AcceptedResponse
+     * @return Integration[]
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsIntegrationsWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): array {
         $request = $this->listProjectsIntegrationsRequest(
             $projectId
         );
@@ -596,7 +597,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\Integration[]',
                 $request,
                 $response
             );
