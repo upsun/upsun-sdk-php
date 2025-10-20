@@ -38,8 +38,6 @@ final class CreateProfilePicture200Response implements ModelInterface, JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getUrl(): ?string
     {
         return $this->url;

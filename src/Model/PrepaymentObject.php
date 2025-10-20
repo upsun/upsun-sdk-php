@@ -40,7 +40,9 @@ final class PrepaymentObject implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
     * Prepayment information for an organization.
+    */
     public function getPrepayment(): ?PrepaymentObjectPrepayment
     {
         return $this->prepayment;

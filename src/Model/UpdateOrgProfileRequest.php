@@ -48,43 +48,31 @@ final class UpdateOrgProfileRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
 
-    /**
-    */
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
 
-    /**
-    */
     public function getSecurityContact(): ?string
     {
         return $this->securityContact;
     }
 
-    /**
-    */
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
 
-    /**
-    */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
 
-    /**
-    */
     public function getBillingContact(): ?string
     {
         return $this->billingContact;

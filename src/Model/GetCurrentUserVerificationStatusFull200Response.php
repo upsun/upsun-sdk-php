@@ -40,15 +40,11 @@ final class GetCurrentUserVerificationStatusFull200Response implements ModelInte
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getState(): ?bool
     {
         return $this->state;
     }
 
-    /**
-    */
     public function getType(): ?string
     {
         return $this->type;

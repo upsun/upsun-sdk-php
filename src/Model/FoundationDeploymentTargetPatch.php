@@ -53,6 +53,7 @@ final class FoundationDeploymentTargetPatch implements ModelInterface, JsonSeria
     {
         return $this->name;
     }
+
     /**
      * @return TheHostsOfTheDeploymentTargetInner1[]|null
      */

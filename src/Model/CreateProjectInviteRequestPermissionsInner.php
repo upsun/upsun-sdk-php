@@ -40,15 +40,11 @@ final class CreateProjectInviteRequestPermissionsInner implements ModelInterface
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-    */
     public function getRole(): ?string
     {
         return $this->role;

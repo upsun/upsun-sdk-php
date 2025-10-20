@@ -50,11 +50,15 @@ final class ListPlans200Response implements ModelInterface, JsonSerializable
     /**
      * @return Plan[]|null
      */
+
     public function getPlans(): ?array
     {
         return $this->plans;
     }
 
+    /**
+    * Links to _self, and previous or next page, given that they exist.
+    */
     public function getLinks(): ?HalLinks
     {
         return $this->links;

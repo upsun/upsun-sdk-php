@@ -3,8 +3,8 @@
 namespace Upsun\Api;
 
 use Upsun\Model\CertificateProvisioner;
-use Upsun\Model\CertificateProvisionerPatch;
 use Upsun\Model\AcceptedResponse;
+use Upsun\Model\CertificateProvisionerPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -227,13 +227,13 @@ final class CertificateProvisionerApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return CertificateProvisioner[]
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/list-projects-provisioners
      */
     public function listProjectsProvisioners(
         string $projectId
-    ): array {
+    ): AcceptedResponse {
         return $this->listProjectsProvisionersWithHttpInfo(
             $projectId
         );
@@ -241,13 +241,13 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
-     * @return CertificateProvisioner[]
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsProvisionersWithHttpInfo(
         string $projectId
-    ): array {
+    ): AcceptedResponse {
         $request = $this->listProjectsProvisionersRequest(
             $projectId
         );
@@ -261,7 +261,7 @@ final class CertificateProvisionerApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\CertificateProvisioner[]',
+                AcceptedResponse::class,
                 $request,
                 $response
             );

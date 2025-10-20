@@ -42,8 +42,6 @@ final class UpdateTicketRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getStatus(): ?string
     {
         return $this->status;
@@ -54,8 +52,6 @@ final class UpdateTicketRequest implements ModelInterface, JsonSerializable
         return $this->collaboratorIds;
     }
 
-    /**
-    */
     public function getCollaboratorsReplace(): ?bool
     {
         return $this->collaboratorsReplace;

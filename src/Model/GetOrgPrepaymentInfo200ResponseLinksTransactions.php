@@ -39,8 +39,6 @@ final class GetOrgPrepaymentInfo200ResponseLinksTransactions implements ModelInt
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getHref(): ?string
     {
         return $this->href;

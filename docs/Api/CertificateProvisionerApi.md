@@ -68,7 +68,7 @@ No authorization required
 ## `listProjectsProvisioners()`
 
 ```php
-listProjectsProvisioners($projectId): \Upsun\Model\CertificateProvisioner[]
+listProjectsProvisioners($projectId): \Upsun\Model\AcceptedResponse
 ```
 
 
@@ -104,7 +104,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\CertificateProvisioner[]**](../Model/CertificateProvisioner.md)
+[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
 
 ### Authorization
 

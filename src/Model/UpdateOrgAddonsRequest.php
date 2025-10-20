@@ -40,15 +40,11 @@ final class UpdateOrgAddonsRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getUserManagement(): ?string
     {
         return $this->userManagement;
     }
 
-    /**
-    */
     public function getSupportLevel(): ?string
     {
         return $this->supportLevel;

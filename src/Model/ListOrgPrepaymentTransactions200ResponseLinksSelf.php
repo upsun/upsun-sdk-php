@@ -39,8 +39,6 @@ final class ListOrgPrepaymentTransactions200ResponseLinksSelf implements ModelIn
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getHref(): ?string
     {
         return $this->href;

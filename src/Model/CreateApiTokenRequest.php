@@ -38,8 +38,6 @@ final class CreateApiTokenRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getName(): string
     {
         return $this->name;

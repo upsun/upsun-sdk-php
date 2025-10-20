@@ -90,7 +90,9 @@ final class OrganizationAlertConfig implements ModelInterface, JsonSerializable
         return $this->updatedAt;
     }
 
+    /**
     * Configuration for threshold and mode.
+    */
     public function getConfig(): ?OrganizationAlertConfigConfig
     {
         return $this->config;

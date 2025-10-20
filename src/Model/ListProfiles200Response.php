@@ -42,12 +42,11 @@ final class ListProfiles200Response implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getCount(): ?int
     {
         return $this->count;
     }
+
     /**
      * @return Profile[]|null
      */
@@ -57,7 +56,9 @@ final class ListProfiles200Response implements ModelInterface, JsonSerializable
         return $this->profiles;
     }
 
+    /**
     * Links to _self, and previous or next page, given that they exist.
+    */
     public function getLinks(): ?HalLinks
     {
         return $this->links;

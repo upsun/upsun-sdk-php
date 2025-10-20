@@ -42,8 +42,6 @@ final class CreateOrgInviteRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getEmail(): string
     {
         return $this->email;
@@ -54,8 +52,6 @@ final class CreateOrgInviteRequest implements ModelInterface, JsonSerializable
         return $this->permissions;
     }
 
-    /**
-    */
     public function getForce(): ?bool
     {
         return $this->force;

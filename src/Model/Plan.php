@@ -42,11 +42,17 @@ final class Plan implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The machine name of the plan.
+    */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+    * The human-readable name of the plan.
+    */
     public function getLabel(): ?string
     {
         return $this->label;

@@ -40,8 +40,6 @@ final class UpdateOrgBillingAlertConfigRequest implements ModelInterface, JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getActive(): ?bool
     {
         return $this->active;

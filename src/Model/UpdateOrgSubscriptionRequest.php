@@ -84,64 +84,46 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, JsonSerializ
         return $this->timezone;
     }
 
-    /**
-    */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
 
-    /**
-    */
     public function getStorage(): ?int
     {
         return $this->storage;
     }
 
-    /**
-    */
     public function getBigDev(): ?string
     {
         return $this->bigDev;
     }
 
-    /**
-    */
     public function getBigDevService(): ?string
     {
         return $this->bigDevService;
     }
 
-    /**
-    */
     public function getBackups(): ?string
     {
         return $this->backups;
     }
 
-    /**
-    */
     public function getObservabilitySuite(): ?string
     {
         return $this->observabilitySuite;
     }
 
-    /**
-    */
     public function getBlackfire(): ?string
     {
         return $this->blackfire;
     }
 
-    /**
-    */
     public function getContinuousProfiling(): ?string
     {
         return $this->continuousProfiling;
     }
 
-    /**
-    */
     public function getProjectSupportLevel(): ?string
     {
         return $this->projectSupportLevel;

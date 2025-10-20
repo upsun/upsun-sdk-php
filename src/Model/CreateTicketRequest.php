@@ -58,68 +58,51 @@ final class CreateTicketRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getSubject(): string
     {
         return $this->subject;
     }
 
-    /**
-    */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-    */
     public function getRequesterId(): ?string
     {
         return $this->requesterId;
     }
 
-    /**
-    */
     public function getPriority(): ?string
     {
         return $this->priority;
     }
 
-    /**
-    */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-    */
     public function getAffectedUrl(): ?string
     {
         return $this->affectedUrl;
     }
 
-    /**
-    */
     public function getFollowupTid(): ?string
     {
         return $this->followupTid;
     }
 
-    /**
-    */
     public function getCategory(): ?string
     {
         return $this->category;
     }
+
     /**
      * @return CreateTicketRequestAttachmentsInner[]|null
      */

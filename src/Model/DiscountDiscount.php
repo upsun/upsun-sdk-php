@@ -44,19 +44,25 @@ final class DiscountDiscount implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
     * Currency amount with detailed components.
+    */
     public function getMonthly(): ?CurrencyAmount
     {
         return $this->monthly;
     }
 
+    /**
     * Currency amount with detailed components.
+    */
     public function getCommitmentPeriod(): ?CurrencyAmountNullable
     {
         return $this->commitmentPeriod;
     }
 
+    /**
     * Currency amount with detailed components.
+    */
     public function getContractTotal(): ?CurrencyAmountNullable
     {
         return $this->contractTotal;

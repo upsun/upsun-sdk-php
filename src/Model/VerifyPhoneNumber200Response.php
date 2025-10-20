@@ -38,8 +38,6 @@ final class VerifyPhoneNumber200Response implements ModelInterface, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getSid(): ?string
     {
         return $this->sid;

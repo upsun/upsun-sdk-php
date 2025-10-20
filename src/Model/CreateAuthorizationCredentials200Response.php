@@ -45,8 +45,6 @@ final class CreateAuthorizationCredentials200Response implements ModelInterface,
         return $this->redirectToUrl;
     }
 
-    /**
-    */
     public function getType(): ?string
     {
         return $this->type;

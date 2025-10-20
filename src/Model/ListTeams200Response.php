@@ -41,6 +41,7 @@ final class ListTeams200Response implements ModelInterface, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return Team[]|null
      */
@@ -50,8 +51,6 @@ final class ListTeams200Response implements ModelInterface, JsonSerializable
         return $this->items;
     }
 
-    /**
-    */
     public function getCount(): ?int
     {
         return $this->count;

@@ -51,50 +51,36 @@ final class UpdateUserRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-    */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
-    /**
-    */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
-    /**
-    */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    /**
-    */
     public function getCompany(): ?string
     {
         return $this->company;
     }
 
-    /**
-    */
     public function getWebsite(): ?string
     {
         return $this->website;
     }
 
-    /**
-    */
     public function getCountry(): ?string
     {
         return $this->country;

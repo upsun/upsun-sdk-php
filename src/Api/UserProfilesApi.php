@@ -2,6 +2,13 @@
 
 namespace Upsun\Api;
 
+use SplFileObject;
+use Upsun\Model\CreateProfilePicture200Response;
+use Upsun\Model\GetAddress200Response;
+use Upsun\Model\Profile;
+use Upsun\Model\ListProfiles200Response;
+use Upsun\Model\Address;
+use Upsun\Model\UpdateProfileRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +34,7 @@ use Upsun\Core\OAuthProvider;
 final class UserProfilesApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -63,14 +71,14 @@ final class UserProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\CreateProfilePicture200Response
+     * @return CreateProfilePicture200Response
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/create-profile-picture
      */
     public function createProfilePicture(
         string $uuid,
-        ?\SplFileObject $file = null
-    ): \Upsun\Model\CreateProfilePicture200Response {
+        ?SplFileObject $file = null
+    ): CreateProfilePicture200Response {
         return $this->createProfilePictureWithHttpInfo(
             $uuid,
             $file
@@ -80,14 +88,14 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Create a user profile picture with HTTP Info
      *
-     * @return \Upsun\Model\CreateProfilePicture200Response
+     * @return CreateProfilePicture200Response
      *
      * @throws InvalidArgumentException|Exception
      */
     private function createProfilePictureWithHttpInfo(
         string $uuid,
-        ?\SplFileObject $file = null
-    ): \Upsun\Model\CreateProfilePicture200Response {
+        ?SplFileObject $file = null
+    ): CreateProfilePicture200Response {
         $request = $this->createProfilePictureRequest(
             $uuid,
             $file
@@ -102,13 +110,13 @@ final class UserProfilesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\CreateProfilePicture200Response',
+                CreateProfilePicture200Response::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -119,7 +127,7 @@ final class UserProfilesApi extends AbstractApi
      */
     private function createProfilePictureRequest(
         string $uuid,
-        ?\SplFileObject $file = null
+        ?SplFileObject $file = null
     ): RequestInterface {
 
         // verify the required parameter 'uuid' is set
@@ -128,7 +136,7 @@ final class UserProfilesApi extends AbstractApi
             || (is_array($uuid)
             && count($uuid) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $uuid 
                 when calling createProfilePicture'
             );
@@ -159,7 +167,7 @@ final class UserProfilesApi extends AbstractApi
 
         $formParams = $formDataProcessor->flatten($formData);
         $multipart = $formDataProcessor->has_file;
-        
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -180,6 +188,7 @@ final class UserProfilesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -208,6 +217,7 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Delete a user profile picture
      *
@@ -244,9 +254,9 @@ final class UserProfilesApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -265,11 +275,12 @@ final class UserProfilesApi extends AbstractApi
             || (is_array($uuid)
             && count($uuid) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $uuid 
                 when calling deleteProfilePicture'
             );
         }
+
         $resourcePath = '/profile/{uuid}/picture';
         $formParams = [];
         $queryParams = [];
@@ -306,6 +317,7 @@ final class UserProfilesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -334,6 +346,7 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
+
     /**
      * Get a user address
      *
@@ -345,7 +358,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function getAddress(
         string $userId
-    ): \Upsun\Model\GetAddress200Response {
+    ): GetAddress200Response {
         return $this->getAddressWithHttpInfo(
             $userId
         );
@@ -358,7 +371,7 @@ final class UserProfilesApi extends AbstractApi
      */
     private function getAddressWithHttpInfo(
         string $userId
-    ): \Upsun\Model\GetAddress200Response {
+    ): GetAddress200Response {
         $request = $this->getAddressRequest(
             $userId
         );
@@ -372,13 +385,13 @@ final class UserProfilesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\GetAddress200Response',
+                GetAddress200Response::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -397,11 +410,12 @@ final class UserProfilesApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling getAddress'
             );
         }
+
         $resourcePath = '/profiles/{userId}/address';
         $formParams = [];
         $queryParams = [];
@@ -438,6 +452,7 @@ final class UserProfilesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -466,6 +481,7 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get a single user profile
      *
@@ -473,13 +489,13 @@ final class UserProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Profile
+     * @return Profile
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/get-profile
      */
     public function getProfile(
         string $userId
-    ): \Upsun\Model\Profile {
+    ): Profile {
         return $this->getProfileWithHttpInfo(
             $userId
         );
@@ -488,13 +504,13 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Get a single user profile with HTTP Info
      *
-     * @return \Upsun\Model\Profile
+     * @return Profile
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getProfileWithHttpInfo(
         string $userId
-    ): \Upsun\Model\Profile {
+    ): Profile {
         $request = $this->getProfileRequest(
             $userId
         );
@@ -508,13 +524,13 @@ final class UserProfilesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Profile',
+                Profile::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -533,11 +549,12 @@ final class UserProfilesApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling getProfile'
             );
         }
+
         $resourcePath = '/profiles/{userId}';
         $formParams = [];
         $queryParams = [];
@@ -574,6 +591,7 @@ final class UserProfilesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -602,6 +620,7 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * List user profiles
      *
@@ -609,12 +628,11 @@ final class UserProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\ListProfiles200Response
+     * @return ListProfiles200Response
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/list-profiles
      */
-    public function listProfiles(
-    ): \Upsun\Model\ListProfiles200Response 
+    public function listProfiles(): ListProfiles200Response
     {
         return $this->listProfilesWithHttpInfo(
         );
@@ -623,12 +641,11 @@ final class UserProfilesApi extends AbstractApi
     /**
      * List user profiles with HTTP Info
      *
-     * @return \Upsun\Model\ListProfiles200Response
+     * @return ListProfiles200Response
      *
      * @throws InvalidArgumentException|Exception
      */
-    private function listProfilesWithHttpInfo(
-    ): \Upsun\Model\ListProfiles200Response 
+    private function listProfilesWithHttpInfo(): ListProfiles200Response
     {
         $request = $this->listProfilesRequest(
         );
@@ -642,13 +659,13 @@ final class UserProfilesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListProfiles200Response',
+                ListProfiles200Response::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -657,8 +674,8 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    private function listProfilesRequest(
-    ): RequestInterface {
+    private function listProfilesRequest(): RequestInterface
+    {
         $resourcePath = '/profiles';
         $formParams = [];
         $queryParams = [];
@@ -687,6 +704,7 @@ final class UserProfilesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -715,6 +733,7 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Update a user address
      *
@@ -727,8 +746,8 @@ final class UserProfilesApi extends AbstractApi
      */
     public function updateAddress(
         string $userId,
-        ?\Upsun\Model\Address $address = null
-    ): \Upsun\Model\GetAddress200Response {
+        ?Address $address = null
+    ): GetAddress200Response {
         return $this->updateAddressWithHttpInfo(
             $userId,
             $address
@@ -742,8 +761,8 @@ final class UserProfilesApi extends AbstractApi
      */
     private function updateAddressWithHttpInfo(
         string $userId,
-        ?\Upsun\Model\Address $address = null
-    ): \Upsun\Model\GetAddress200Response {
+        ?Address $address = null
+    ): GetAddress200Response {
         $request = $this->updateAddressRequest(
             $userId,
             $address
@@ -758,13 +777,13 @@ final class UserProfilesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\GetAddress200Response',
+                GetAddress200Response::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -775,7 +794,7 @@ final class UserProfilesApi extends AbstractApi
      */
     private function updateAddressRequest(
         string $userId,
-        ?\Upsun\Model\Address $address = null
+        ?Address $address = null
     ): RequestInterface {
 
         // verify the required parameter 'userId' is set
@@ -784,7 +803,7 @@ final class UserProfilesApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling updateAddress'
             );
@@ -834,6 +853,7 @@ final class UserProfilesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -862,6 +882,7 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
+
     /**
      * Update a user profile
      *
@@ -870,14 +891,14 @@ final class UserProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Profile
+     * @return Profile
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/update-profile
      */
     public function updateProfile(
         string $userId,
-        ?\Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
-    ): \Upsun\Model\Profile {
+        ?UpdateProfileRequest $updateProfileRequest = null
+    ): Profile {
         return $this->updateProfileWithHttpInfo(
             $userId,
             $updateProfileRequest
@@ -887,14 +908,14 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Update a user profile with HTTP Info
      *
-     * @return \Upsun\Model\Profile
+     * @return Profile
      *
      * @throws InvalidArgumentException|Exception
      */
     private function updateProfileWithHttpInfo(
         string $userId,
-        ?\Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
-    ): \Upsun\Model\Profile {
+        ?UpdateProfileRequest $updateProfileRequest = null
+    ): Profile {
         $request = $this->updateProfileRequest(
             $userId,
             $updateProfileRequest
@@ -909,13 +930,13 @@ final class UserProfilesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Profile',
+                Profile::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -926,7 +947,7 @@ final class UserProfilesApi extends AbstractApi
      */
     private function updateProfileRequest(
         string $userId,
-        ?\Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
+        ?UpdateProfileRequest $updateProfileRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'userId' is set
@@ -935,7 +956,7 @@ final class UserProfilesApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling updateProfile'
             );
@@ -985,6 +1006,7 @@ final class UserProfilesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

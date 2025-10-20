@@ -40,15 +40,11 @@ final class ConfirmTotpEnrollmentRequest implements ModelInterface, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getSecret(): string
     {
         return $this->secret;
     }
 
-    /**
-    */
     public function getPasscode(): string
     {
         return $this->passcode;

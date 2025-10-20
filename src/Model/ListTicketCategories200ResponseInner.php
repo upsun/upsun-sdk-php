@@ -40,15 +40,11 @@ final class ListTicketCategories200ResponseInner implements ModelInterface, Json
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-    */
     public function getLabel(): ?string
     {
         return $this->label;

@@ -40,8 +40,6 @@ final class UpdateTeamRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getLabel(): ?string
     {
         return $this->label;

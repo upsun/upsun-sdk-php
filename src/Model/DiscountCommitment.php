@@ -52,13 +52,17 @@ final class DiscountCommitment implements ModelInterface, JsonSerializable
         return $this->months;
     }
 
+    /**
     * Commitment amounts.
+    */
     public function getAmount(): ?DiscountCommitmentAmount
     {
         return $this->amount;
     }
 
+    /**
     * Net commitment amounts (discount deducted).
+    */
     public function getNet(): ?DiscountCommitmentNet
     {
         return $this->net;

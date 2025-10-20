@@ -40,15 +40,11 @@ final class CreateTicketRequestAttachmentsInner implements ModelInterface, JsonS
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getFilename(): ?string
     {
         return $this->filename;
     }
 
-    /**
-    */
     public function getData(): ?string
     {
         return $this->data;

@@ -90,7 +90,9 @@ final class UsageAlert implements ModelInterface, JsonSerializable
         return $this->updatedAt;
     }
 
+    /**
     * Configuration for the usage alert.
+    */
     public function getConfig(): ?UsageAlertConfig
     {
         return $this->config;

@@ -42,7 +42,9 @@ final class OrganizationAlertConfigConfig implements ModelInterface, JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
     * Data regarding threshold spend.
+    */
     public function getThreshold(): ?OrganizationAlertConfigConfigThreshold
     {
         return $this->threshold;

@@ -41,15 +41,11 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements ModelInterface, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getThreshold(): ?int
     {
         return $this->threshold;
     }
 
-    /**
-    */
     public function getMode(): ?string
     {
         return $this->mode;

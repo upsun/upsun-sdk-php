@@ -44,19 +44,25 @@ final class OrganizationAddonsObject implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
     * The list of available add-ons and their possible values.
+    */
     public function getAvailable(): ?OrganizationAddonsObjectAvailable
     {
         return $this->available;
     }
 
+    /**
     * The list of existing add-ons and their current values.
+    */
     public function getCurrent(): ?OrganizationAddonsObjectCurrent
     {
         return $this->current;
     }
 
+    /**
     * The upgrades available for current add-ons.
+    */
     public function getUpgradesAvailable(): ?OrganizationAddonsObjectUpgradesAvailable
     {
         return $this->upgradesAvailable;

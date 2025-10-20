@@ -46,31 +46,41 @@ final class OrganizationProjectLinks implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
     * Link to the current project.
+    */
     public function getSelf(): ?OrganizationProjectLinksSelf
     {
         return $this->self;
     }
 
+    /**
     * Link for updating the current project.
+    */
     public function getUpdate(): ?OrganizationProjectLinksUpdate
     {
         return $this->update;
     }
 
+    /**
     * Link for deleting the current project.
+    */
     public function getDelete(): ?OrganizationProjectLinksDelete
     {
         return $this->delete;
     }
 
+    /**
     * Link to the project's activities.
+    */
     public function getActivities(): ?OrganizationProjectLinksActivities
     {
         return $this->activities;
     }
 
+    /**
     * Link to the project's add-ons.
+    */
     public function getAddons(): ?OrganizationProjectLinksAddons
     {
         return $this->addons;

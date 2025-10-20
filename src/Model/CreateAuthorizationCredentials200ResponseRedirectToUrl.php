@@ -41,15 +41,11 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getReturnUrl(): ?string
     {
         return $this->returnUrl;
     }
 
-    /**
-    */
     public function getUrl(): ?string
     {
         return $this->url;

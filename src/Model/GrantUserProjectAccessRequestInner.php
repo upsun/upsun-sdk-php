@@ -40,8 +40,6 @@ final class GrantUserProjectAccessRequestInner implements ModelInterface, JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getProjectId(): string
     {
         return $this->projectId;

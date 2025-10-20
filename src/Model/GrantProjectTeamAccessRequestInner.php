@@ -38,8 +38,6 @@ final class GrantProjectTeamAccessRequestInner implements ModelInterface, JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getTeamId(): string
     {
         return $this->teamId;

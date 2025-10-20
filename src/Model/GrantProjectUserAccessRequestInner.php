@@ -42,8 +42,6 @@ final class GrantProjectUserAccessRequestInner implements ModelInterface, JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getUserId(): string
     {
         return $this->userId;
@@ -54,8 +52,6 @@ final class GrantProjectUserAccessRequestInner implements ModelInterface, JsonSe
         return $this->permissions;
     }
 
-    /**
-    */
     public function getAutoAddMember(): ?bool
     {
         return $this->autoAddMember;

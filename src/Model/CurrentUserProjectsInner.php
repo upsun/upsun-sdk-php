@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class CurrentUserProjectsInner implements ModelInterface, JsonSerializable
@@ -36,7 +37,7 @@ final class CurrentUserProjectsInner implements ModelInterface, JsonSerializable
         private readonly ?string $vendorLabel = null,
         private readonly ?string $vendorWebsite = null,
         private readonly ?string $vendorResources = null,
-        private readonly ?\DateTime $createdAt = null,
+        private readonly ?DateTime $createdAt = null,
     ) {
     }
 
@@ -76,141 +77,105 @@ final class CurrentUserProjectsInner implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-    */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-    */
     public function getCluster(): ?string
     {
         return $this->cluster;
     }
 
-    /**
-    */
     public function getClusterLabel(): ?string
     {
         return $this->clusterLabel;
     }
 
-    /**
-    */
     public function getRegion(): ?string
     {
         return $this->region;
     }
 
-    /**
-    */
     public function getRegionLabel(): ?string
     {
         return $this->regionLabel;
     }
 
-    /**
-    */
     public function getUri(): ?string
     {
         return $this->uri;
     }
 
-    /**
-    */
     public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
 
-    /**
-    */
     public function getLicenseId(): ?int
     {
         return $this->licenseId;
     }
 
-    /**
-    */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
 
+    /**
     * Project owner information that can be exposed to collaborators.
+    */
     public function getOwnerInfo(): ?OwnerInfo
     {
         return $this->ownerInfo;
     }
 
-    /**
-    */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-    */
     public function getSubscriptionId(): ?int
     {
         return $this->subscriptionId;
     }
 
-    /**
-    */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-    */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    /**
-    */
     public function getVendorLabel(): ?string
     {
         return $this->vendorLabel;
     }
 
-    /**
-    */
     public function getVendorWebsite(): ?string
     {
         return $this->vendorWebsite;
     }
 
-    /**
-    */
     public function getVendorResources(): ?string
     {
         return $this->vendorResources;
     }
 
-    /**
-    */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }

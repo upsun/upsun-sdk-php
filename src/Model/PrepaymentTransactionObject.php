@@ -76,7 +76,9 @@ final class PrepaymentTransactionObject implements ModelInterface, JsonSerializa
         return $this->status;
     }
 
+    /**
     * The prepayment balance in complex format.
+    */
     public function getAmount(): ?PrepaymentTransactionObjectAmount
     {
         return $this->amount;

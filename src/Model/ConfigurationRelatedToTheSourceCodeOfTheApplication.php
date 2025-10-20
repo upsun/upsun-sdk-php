@@ -44,6 +44,7 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements Model
     {
         return $this->root;
     }
+
     /**
      * @return OperationsThatCanBeAppliedToTheSourceCodeValue[]
      */

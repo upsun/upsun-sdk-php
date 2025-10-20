@@ -44,29 +44,21 @@ final class GetTotpEnrollment200Response implements ModelInterface, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getIssuer(): ?string
     {
         return $this->issuer;
     }
 
-    /**
-    */
     public function getAccountName(): ?string
     {
         return $this->accountName;
     }
 
-    /**
-    */
     public function getSecret(): ?string
     {
         return $this->secret;
     }
 
-    /**
-    */
     public function getQrCode(): ?string
     {
         return $this->qrCode;

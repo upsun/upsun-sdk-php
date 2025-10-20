@@ -56,7 +56,9 @@ final class PrepaymentObjectPrepayment implements ModelInterface, JsonSerializab
         return $this->organizationId;
     }
 
+    /**
     * The prepayment balance in complex format.
+    */
     public function getBalance(): ?PrepaymentObjectPrepaymentBalance
     {
         return $this->balance;

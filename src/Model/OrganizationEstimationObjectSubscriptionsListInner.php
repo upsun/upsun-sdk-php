@@ -45,22 +45,16 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements ModelI
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getLicenseId(): ?string
     {
         return $this->licenseId;
     }
 
-    /**
-    */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-    */
     public function getTotal(): ?string
     {
         return $this->total;

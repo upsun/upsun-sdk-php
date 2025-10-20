@@ -135,19 +135,25 @@ final class Region implements ModelInterface, JsonSerializable
         return $this->endpoint;
     }
 
+    /**
     * Information about the region provider.
+    */
     public function getProvider(): ?RegionProvider
     {
         return $this->provider;
     }
 
+    /**
     * Information about the region provider data center.
+    */
     public function getDatacenter(): ?RegionDatacenter
     {
         return $this->datacenter;
     }
 
+    /**
     * Information about the region provider's environmental impact.
+    */
     public function getEnvironmentalImpact(): ?RegionEnvironmentalImpact
     {
         return $this->environmentalImpact;

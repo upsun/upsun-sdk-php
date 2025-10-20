@@ -76,7 +76,9 @@ final class OrganizationEstimationObject implements ModelInterface, JsonSerializ
         return $this->vouchers;
     }
 
+    /**
     * An estimation of user licenses cost.
+    */
     public function getUserLicenses(): ?OrganizationEstimationObjectUserLicenses
     {
         return $this->userLicenses;
@@ -98,7 +100,9 @@ final class OrganizationEstimationObject implements ModelInterface, JsonSerializ
         return $this->supportLevel;
     }
 
+    /**
     * An estimation of subscriptions cost.
+    */
     public function getSubscriptions(): ?OrganizationEstimationObjectSubscriptions
     {
         return $this->subscriptions;

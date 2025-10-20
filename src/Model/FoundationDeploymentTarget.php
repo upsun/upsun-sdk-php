@@ -57,6 +57,7 @@ final class FoundationDeploymentTarget implements ModelInterface, JsonSerializab
     {
         return $this->name;
     }
+
     /**
      * @return TheHostsOfTheDeploymentTargetInner[]|null
      */

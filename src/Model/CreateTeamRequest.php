@@ -42,15 +42,11 @@ final class CreateTeamRequest implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
 
-    /**
-    */
     public function getLabel(): string
     {
         return $this->label;

@@ -47,15 +47,11 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue impleme
         return $this->resources;
     }
 
-    /**
-    */
     public function getInstanceCount(): ?int
     {
         return $this->instanceCount;
     }
 
-    /**
-    */
     public function getDisk(): ?int
     {
         return $this->disk;

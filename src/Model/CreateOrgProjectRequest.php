@@ -76,7 +76,9 @@ final class CreateOrgProjectRequest implements ModelInterface, JsonSerializable
         return $this->title;
     }
 
+    /**
     * The type of projects.
+    */
     public function getType(): ?ProjectType
     {
         return $this->type;

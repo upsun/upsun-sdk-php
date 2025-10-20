@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class ResourcesOverridesValue implements ModelInterface, JsonSerializable
@@ -20,8 +21,8 @@ final class ResourcesOverridesValue implements ModelInterface, JsonSerializable
         private readonly array $services,
         private readonly bool $redeployedStart,
         private readonly bool $redeployedEnd,
-        private readonly ?\DateTime $startsAt,
-        private readonly ?\DateTime $endsAt,
+        private readonly ?DateTime $startsAt,
+        private readonly ?DateTime $endsAt,
     ) {
     }
 
@@ -45,6 +46,7 @@ final class ResourcesOverridesValue implements ModelInterface, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return PerServiceResourcesOverridesValue[]
      */
@@ -54,12 +56,12 @@ final class ResourcesOverridesValue implements ModelInterface, JsonSerializable
         return $this->services;
     }
 
-    public function getStartsAt(): ?\DateTime
+    public function getStartsAt(): ?DateTime
     {
         return $this->startsAt;
     }
 
-    public function getEndsAt(): ?\DateTime
+    public function getEndsAt(): ?DateTime
     {
         return $this->endsAt;
     }

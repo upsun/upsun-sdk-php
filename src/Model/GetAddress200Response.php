@@ -138,7 +138,9 @@ final class GetAddress200Response implements ModelInterface, JsonSerializable
         return $this->postalCode;
     }
 
+    /**
     * Address field metadata.
+    */
     public function getMetadata(): ?AddressMetadataMetadata
     {
         return $this->metadata;

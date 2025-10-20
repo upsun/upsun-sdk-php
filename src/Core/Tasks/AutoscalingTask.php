@@ -32,7 +32,7 @@ class AutoscalingTask extends TaskBase
     public function get(string $projectId, string $activityId, ?string $environmentId = null): Activity
     {
         if (!$environmentId) {
-            return $this->prjApi->getProjectsActivities($projectId, $activityId);
+            return $this->api->getProjectsActivities($projectId, $activityId);
         } else {
             return $this->envApi->getProjectsEnvironmentsActivities($projectId, $environmentId, $activityId);
         }

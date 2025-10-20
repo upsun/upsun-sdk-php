@@ -38,7 +38,9 @@ final class VouchersLinks implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
     * Link to the current resource.
+    */
     public function getSelf(): ?VouchersLinksSelf
     {
         return $this->self;

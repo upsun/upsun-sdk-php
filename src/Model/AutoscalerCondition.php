@@ -52,8 +52,6 @@ final class AutoscalerCondition implements ModelInterface, JsonSerializable
         return $this->threshold;
     }
 
-    /**
-    */
     public function getDuration(): ?AutoscalerDuration
     {
         return $this->duration;

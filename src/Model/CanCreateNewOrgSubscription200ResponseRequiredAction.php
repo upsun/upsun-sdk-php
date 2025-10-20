@@ -41,15 +41,11 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-    */
     public function getAction(): ?string
     {
         return $this->action;
     }
 
-    /**
-    */
     public function getType(): ?string
     {
         return $this->type;

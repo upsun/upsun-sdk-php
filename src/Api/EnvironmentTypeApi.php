@@ -2,6 +2,8 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\EnvironmentType;
+use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +29,7 @@ use Upsun\Core\OAuthProvider;
 final class EnvironmentTypeApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -64,14 +67,14 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\EnvironmentType
+     * @return EnvironmentType
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Type/operation/get-environment-type
      */
     public function getEnvironmentType(
         string $projectId,
         string $environmentTypeId
-    ): \Upsun\Model\EnvironmentType {
+    ): EnvironmentType {
         return $this->getEnvironmentTypeWithHttpInfo(
             $projectId,
             $environmentTypeId
@@ -81,14 +84,14 @@ final class EnvironmentTypeApi extends AbstractApi
     /**
      * Get environment type links with HTTP Info
      *
-     * @return \Upsun\Model\EnvironmentType
+     * @return EnvironmentType
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getEnvironmentTypeWithHttpInfo(
         string $projectId,
         string $environmentTypeId
-    ): \Upsun\Model\EnvironmentType {
+    ): EnvironmentType {
         $request = $this->getEnvironmentTypeRequest(
             $projectId,
             $environmentTypeId
@@ -103,13 +106,13 @@ final class EnvironmentTypeApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\EnvironmentType',
+                EnvironmentType::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -129,7 +132,7 @@ final class EnvironmentTypeApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getEnvironmentType'
             );
@@ -141,11 +144,12 @@ final class EnvironmentTypeApi extends AbstractApi
             || (is_array($environmentTypeId)
             && count($environmentTypeId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentTypeId 
                 when calling getEnvironmentType'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environment-types/{environmentTypeId}';
         $formParams = [];
         $queryParams = [];
@@ -161,6 +165,7 @@ final class EnvironmentTypeApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($environmentTypeId !== null) {
             $resourcePath = str_replace(
@@ -190,6 +195,7 @@ final class EnvironmentTypeApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -218,6 +224,7 @@ final class EnvironmentTypeApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get environment types
      *
@@ -226,13 +233,13 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Type/operation/list-projects-environment-types
      */
     public function listProjectsEnvironmentTypes(
         string $projectId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->listProjectsEnvironmentTypesWithHttpInfo(
             $projectId
         );
@@ -241,13 +248,13 @@ final class EnvironmentTypeApi extends AbstractApi
     /**
      * Get environment types with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectsEnvironmentTypesWithHttpInfo(
         string $projectId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->listProjectsEnvironmentTypesRequest(
             $projectId
         );
@@ -261,13 +268,13 @@ final class EnvironmentTypeApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -286,11 +293,12 @@ final class EnvironmentTypeApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsEnvironmentTypes'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environment-types';
         $formParams = [];
         $queryParams = [];
@@ -327,6 +335,7 @@ final class EnvironmentTypeApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
