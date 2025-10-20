@@ -684,7 +684,7 @@ class OpenApiPreprocessor
                         $this->fixAllRefsWithAllOf($subNode);
                     }
 
-                    return; // important pour ne pas repasser sur les children déjà déplacés
+                    return; // Do not process already processed children
                 }
             }
 
