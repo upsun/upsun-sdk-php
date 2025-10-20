@@ -59,6 +59,7 @@ final class CreateProjectInviteRequest implements ModelInterface, JsonSerializab
     /**
      * @return CreateProjectInviteRequestPermissionsInner[]|null
      */
+
     public function getPermissions(): ?array
     {
         return $this->permissions;
@@ -67,6 +68,7 @@ final class CreateProjectInviteRequest implements ModelInterface, JsonSerializab
     /**
      * @return CreateProjectInviteRequestEnvironmentsInner[]|null
      */
+
     public function getEnvironments(): ?array
     {
         return $this->environments;

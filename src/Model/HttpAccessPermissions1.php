@@ -50,6 +50,7 @@ final class HttpAccessPermissions1 implements ModelInterface, JsonSerializable
     /**
      * @return AddressGrantsInner[]|null
      */
+
     public function getAddresses(): ?array
     {
         return $this->addresses;

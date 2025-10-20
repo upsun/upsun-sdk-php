@@ -43,6 +43,7 @@ final class ListUserExtendedAccess200Response implements ModelInterface, JsonSer
     /**
      * @return ListUserExtendedAccess200ResponseItemsInner[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

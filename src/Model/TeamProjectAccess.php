@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class TeamProjectAccess implements ModelInterface, JsonSerializable
@@ -21,8 +22,8 @@ final class TeamProjectAccess implements ModelInterface, JsonSerializable
         private readonly ?string $organizationId = null,
         private readonly ?string $projectId = null,
         private readonly ?string $projectTitle = null,
-        private readonly ?\DateTime $grantedAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $grantedAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?TeamProjectAccessLinks $links = null,
     ) {
     }
@@ -50,32 +51,50 @@ final class TeamProjectAccess implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the team.
+    */
     public function getTeamId(): ?string
     {
         return $this->teamId;
     }
 
+    /**
+    * The ID of the organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
+    /**
+    * The ID of the project.
+    */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
+    /**
+    * The title of the project.
+    */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    public function getGrantedAt(): ?\DateTime
+    /**
+    * The date and time when the access was granted.
+    */
+    public function getGrantedAt(): ?DateTime
     {
         return $this->grantedAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    /**
+    * The date and time when the access was last updated.
+    */
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

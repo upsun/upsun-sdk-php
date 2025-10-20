@@ -92,6 +92,7 @@ final class DedicatedDeploymentTarget implements ModelInterface, JsonSerializabl
     /**
      * @return TheHostsOfTheDeploymentTargetInner[]|null
      */
+
     public function getHosts(): ?array
     {
         return $this->hosts;

@@ -3,6 +3,7 @@
 /**
  * Low level RegionDatacenter (auto-generated)
  *
+ * Information about the region provider data center.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0

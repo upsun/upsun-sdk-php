@@ -2,6 +2,8 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Activity;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +29,7 @@ use Upsun\Core\OAuthProvider;
 final class ProjectActivityApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -66,14 +69,14 @@ final class ProjectActivityApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/action-projects-activities-cancel
      */
     public function actionProjectsActivitiesCancel(
         string $projectId,
         string $activityId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->actionProjectsActivitiesCancelWithHttpInfo(
             $projectId,
             $activityId
@@ -83,14 +86,14 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Cancel a project activity with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function actionProjectsActivitiesCancelWithHttpInfo(
         string $projectId,
         string $activityId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->actionProjectsActivitiesCancelRequest(
             $projectId,
             $activityId
@@ -105,13 +108,13 @@ final class ProjectActivityApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -131,7 +134,7 @@ final class ProjectActivityApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling actionProjectsActivitiesCancel'
             );
@@ -143,11 +146,12 @@ final class ProjectActivityApi extends AbstractApi
             || (is_array($activityId)
             && count($activityId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $activityId 
                 when calling actionProjectsActivitiesCancel'
             );
         }
+
         $resourcePath = '/projects/{projectId}/activities/{activityId}/cancel';
         $formParams = [];
         $queryParams = [];
@@ -163,6 +167,7 @@ final class ProjectActivityApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($activityId !== null) {
             $resourcePath = str_replace(
@@ -192,6 +197,7 @@ final class ProjectActivityApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -220,6 +226,7 @@ final class ProjectActivityApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Get a project activity log entry
      *
@@ -230,14 +237,14 @@ final class ProjectActivityApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Activity
+     * @return Activity
      *
      * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/get-projects-activities
      */
     public function getProjectsActivities(
         string $projectId,
         string $activityId
-    ): \Upsun\Model\Activity {
+    ): Activity {
         return $this->getProjectsActivitiesWithHttpInfo(
             $projectId,
             $activityId
@@ -247,14 +254,14 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Get a project activity log entry with HTTP Info
      *
-     * @return \Upsun\Model\Activity
+     * @return Activity
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsActivitiesWithHttpInfo(
         string $projectId,
         string $activityId
-    ): \Upsun\Model\Activity {
+    ): Activity {
         $request = $this->getProjectsActivitiesRequest(
             $projectId,
             $activityId
@@ -269,13 +276,13 @@ final class ProjectActivityApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Activity',
+                Activity::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -295,7 +302,7 @@ final class ProjectActivityApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsActivities'
             );
@@ -307,11 +314,12 @@ final class ProjectActivityApi extends AbstractApi
             || (is_array($activityId)
             && count($activityId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $activityId 
                 when calling getProjectsActivities'
             );
         }
+
         $resourcePath = '/projects/{projectId}/activities/{activityId}';
         $formParams = [];
         $queryParams = [];
@@ -327,6 +335,7 @@ final class ProjectActivityApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($activityId !== null) {
             $resourcePath = str_replace(
@@ -356,6 +365,7 @@ final class ProjectActivityApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -384,6 +394,7 @@ final class ProjectActivityApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get project activity log
      *
@@ -403,7 +414,7 @@ final class ProjectActivityApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Activity[]
+     * @return Activity[]
      *
      * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/list-projects-activities
      */
@@ -418,7 +429,7 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Get project activity log with HTTP Info
      *
-     * @return \Upsun\Model\Activity[]
+     * @return Activity[]
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -442,9 +453,9 @@ final class ProjectActivityApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -463,11 +474,12 @@ final class ProjectActivityApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsActivities'
             );
         }
+
         $resourcePath = '/projects/{projectId}/activities';
         $formParams = [];
         $queryParams = [];
@@ -504,6 +516,7 @@ final class ProjectActivityApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

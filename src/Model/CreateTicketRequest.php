@@ -106,6 +106,7 @@ final class CreateTicketRequest implements ModelInterface, JsonSerializable
     /**
      * @return CreateTicketRequestAttachmentsInner[]|null
      */
+
     public function getAttachments(): ?array
     {
         return $this->attachments;

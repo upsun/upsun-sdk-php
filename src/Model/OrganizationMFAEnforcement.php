@@ -40,6 +40,9 @@ final class OrganizationMFAEnforcement implements ModelInterface, JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Whether the MFA enforcement is enabled.
+    */
     public function getEnforceMfa(): ?bool
     {
         return $this->enforceMfa;

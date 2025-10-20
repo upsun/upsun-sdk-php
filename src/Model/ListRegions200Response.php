@@ -43,6 +43,7 @@ final class ListRegions200Response implements ModelInterface, JsonSerializable
     /**
      * @return Region[]|null
      */
+
     public function getRegions(): ?array
     {
         return $this->regions;

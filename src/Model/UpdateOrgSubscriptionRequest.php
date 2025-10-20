@@ -60,16 +60,25 @@ final class UpdateOrgSubscriptionRequest implements ModelInterface, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The title of the project.
+    */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
+    /**
+    * The project plan.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
+    /**
+    * Timezone of the project.
+    */
     public function getTimezone(): ?string
     {
         return $this->timezone;

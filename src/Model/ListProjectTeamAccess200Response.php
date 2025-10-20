@@ -43,6 +43,7 @@ final class ListProjectTeamAccess200Response implements ModelInterface, JsonSeri
     /**
      * @return TeamProjectAccess[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

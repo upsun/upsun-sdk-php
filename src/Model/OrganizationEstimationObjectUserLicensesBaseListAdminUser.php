@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationEstimationObjectUserLicensesBaseListAdminUser (auto-generated)
  *
+ * An estimation of admin users cost.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -41,11 +42,17 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The number of admin user licenses.
+    */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
+    /**
+    * The total price for admin user licenses.
+    */
     public function getTotal(): ?string
     {
         return $this->total;

@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class CurrentUserProjectsInner implements ModelInterface, JsonSerializable
@@ -36,7 +37,7 @@ final class CurrentUserProjectsInner implements ModelInterface, JsonSerializable
         private readonly ?string $vendorLabel = null,
         private readonly ?string $vendorWebsite = null,
         private readonly ?string $vendorResources = null,
-        private readonly ?\DateTime $createdAt = null,
+        private readonly ?DateTime $createdAt = null,
     ) {
     }
 
@@ -131,6 +132,9 @@ final class CurrentUserProjectsInner implements ModelInterface, JsonSerializable
         return $this->owner;
     }
 
+    /**
+    * Project owner information that can be exposed to collaborators.
+    */
     public function getOwnerInfo(): ?OwnerInfo
     {
         return $this->ownerInfo;
@@ -171,7 +175,7 @@ final class CurrentUserProjectsInner implements ModelInterface, JsonSerializable
         return $this->vendorResources;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }

@@ -43,6 +43,7 @@ final class ListOrgUsageRecords200Response implements ModelInterface, JsonSerial
     /**
      * @return Usage[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

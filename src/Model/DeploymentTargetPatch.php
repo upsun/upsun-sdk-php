@@ -85,6 +85,7 @@ final class DeploymentTargetPatch implements ModelInterface, JsonSerializable
     /**
      * @return TheHostsOfTheDeploymentTargetInner1[]|null
      */
+
     public function getHosts(): ?array
     {
         return $this->hosts;

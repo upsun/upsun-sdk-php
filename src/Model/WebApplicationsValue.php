@@ -119,6 +119,7 @@ final class WebApplicationsValue implements ModelInterface, JsonSerializable
     /**
      * @return TheRelationshipsOfTheApplicationToDefinedServicesValue[]
      */
+
     public function getRelationships(): array
     {
         return $this->relationships;
@@ -132,6 +133,7 @@ final class WebApplicationsValue implements ModelInterface, JsonSerializable
     /**
      * @return FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]
      */
+
     public function getMounts(): array
     {
         return $this->mounts;
@@ -160,6 +162,7 @@ final class WebApplicationsValue implements ModelInterface, JsonSerializable
     /**
      * @return OperationsThatCanBeTriggeredOnThisApplicationValue[]
      */
+
     public function getOperations(): array
     {
         return $this->operations;
@@ -213,6 +216,7 @@ final class WebApplicationsValue implements ModelInterface, JsonSerializable
     /**
      * @return ScheduledCronTasksExecutedByThisApplicationValue[]
      */
+
     public function getCrons(): array
     {
         return $this->crons;

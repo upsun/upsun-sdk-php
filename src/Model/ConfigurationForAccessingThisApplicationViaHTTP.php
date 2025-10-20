@@ -59,6 +59,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInte
     /**
      * @return TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]
      */
+
     public function getLocations(): array
     {
         return $this->locations;

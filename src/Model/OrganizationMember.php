@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class OrganizationMember implements ModelInterface, JsonSerializable
@@ -23,8 +24,8 @@ final class OrganizationMember implements ModelInterface, JsonSerializable
         private readonly ?array $permissions = [],
         private readonly ?string $level = null,
         private readonly ?bool $owner = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?OrganizationMemberLinks $links = null,
     ) {
     }
@@ -54,16 +55,25 @@ final class OrganizationMember implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the user.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The ID of the organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
+    /**
+    * The ID of the user.
+    */
     public function getUserId(): ?string
     {
         return $this->userId;
@@ -74,22 +84,34 @@ final class OrganizationMember implements ModelInterface, JsonSerializable
         return $this->permissions;
     }
 
+    /**
+    * Access level of the member.
+    */
     public function getLevel(): ?string
     {
         return $this->level;
     }
 
+    /**
+    * Whether the member is the organization owner.
+    */
     public function getOwner(): ?bool
     {
         return $this->owner;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    /**
+    * The date and time when the member was created.
+    */
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    /**
+    * The date and time when the member was last updated.
+    */
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

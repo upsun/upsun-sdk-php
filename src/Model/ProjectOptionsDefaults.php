@@ -3,6 +3,7 @@
 /**
  * Low level ProjectOptionsDefaults (auto-generated)
  *
+ * The initial values applied to the project.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -45,21 +46,33 @@ final class ProjectOptionsDefaults implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The project settings.
+    */
     public function getSettings(): ?object
     {
         return $this->settings;
     }
 
+    /**
+    * The project variables.
+    */
     public function getVariables(): ?object
     {
         return $this->variables;
     }
 
+    /**
+    * The project access list.
+    */
     public function getAccess(): ?object
     {
         return $this->access;
     }
 
+    /**
+    * The project capabilities.
+    */
     public function getCapabilities(): ?object
     {
         return $this->capabilities;

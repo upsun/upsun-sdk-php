@@ -62,6 +62,7 @@ final class VouchersVouchersInner implements ModelInterface, JsonSerializable
     /**
      * @return VouchersVouchersInnerOrdersInner[]|null
      */
+
     public function getOrders(): ?array
     {
         return $this->orders;

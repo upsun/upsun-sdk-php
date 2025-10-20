@@ -104,6 +104,7 @@ final class DeploymentTarget implements ModelInterface, JsonSerializable
     /**
      * @return TheHostsOfTheDeploymentTargetInner[]|null
      */
+
     public function getHosts(): ?array
     {
         return $this->hosts;
@@ -147,6 +148,7 @@ final class DeploymentTarget implements ModelInterface, JsonSerializable
     /**
      * @return MappingOfClustersToEnterpriseApplicationsValue[]
      */
+
     public function getDocroots(): array
     {
         return $this->docroots;

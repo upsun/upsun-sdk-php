@@ -62,61 +62,98 @@ final class Region implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the region.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The human-readable name of the region.
+    */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
+    /**
+    * Geographical zone of the region
+    */
     public function getZone(): ?string
     {
         return $this->zone;
     }
 
+    /**
+    * The label to display when choosing between regions for new projects.
+    */
     public function getSelectionLabel(): ?string
     {
         return $this->selectionLabel;
     }
 
+    /**
+    * The label to display on existing projects.
+    */
     public function getProjectLabel(): ?string
     {
         return $this->projectLabel;
     }
 
+    /**
+    * Default timezone of the region
+    */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
+    /**
+    * Indicator whether or not this region is selectable during the checkout. Not available regions will never show up
+    * during checkout.
+    */
     public function getAvailable(): ?bool
     {
         return $this->available;
     }
 
+    /**
+    * Indicator whether or not this platform is for private use only.
+    */
     public function getPrivate(): ?bool
     {
         return $this->private;
     }
 
+    /**
+    * Link to the region API endpoint.
+    */
     public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
 
+    /**
+    * Information about the region provider.
+    */
     public function getProvider(): ?RegionProvider
     {
         return $this->provider;
     }
 
+    /**
+    * Information about the region provider data center.
+    */
     public function getDatacenter(): ?RegionDatacenter
     {
         return $this->datacenter;
     }
 
+    /**
+    * Information about the region provider's environmental impact.
+    */
     public function getEnvironmentalImpact(): ?RegionEnvironmentalImpact
     {
         return $this->environmentalImpact;

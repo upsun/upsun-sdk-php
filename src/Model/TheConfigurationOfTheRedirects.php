@@ -48,6 +48,7 @@ final class TheConfigurationOfTheRedirects implements ModelInterface, JsonSerial
     /**
      * @return ThePathsToRedirectValue[]
      */
+
     public function getPaths(): array
     {
         return $this->paths;

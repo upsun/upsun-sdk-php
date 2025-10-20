@@ -42,11 +42,17 @@ final class AutoscalerScalingCooldown implements ModelInterface, JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Number of seconds to wait until scaling up can be done again (since last attempt)
+    */
     public function getUp(): ?int
     {
         return $this->up;
     }
 
+    /**
+    * Number of seconds to wait until scaling down can be done again (since last attempt)
+    */
     public function getDown(): ?int
     {
         return $this->down;

@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationEstimationObjectUserLicenses (auto-generated)
  *
+ * An estimation of user licenses cost.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0

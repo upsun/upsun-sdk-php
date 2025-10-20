@@ -48,6 +48,7 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements Model
     /**
      * @return OperationsThatCanBeAppliedToTheSourceCodeValue[]
      */
+
     public function getOperations(): array
     {
         return $this->operations;

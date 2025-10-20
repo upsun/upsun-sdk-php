@@ -50,6 +50,7 @@ final class ListOrgPrepaymentTransactions200Response implements ModelInterface, 
     /**
      * @return PrepaymentTransactionObject[]|null
      */
+
     public function getTransactions(): ?array
     {
         return $this->transactions;

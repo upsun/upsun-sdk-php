@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationMemberLinksDelete (auto-generated)
  *
+ * Link for deleting the current member.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -41,11 +42,17 @@ final class OrganizationMemberLinksDelete implements ModelInterface, JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * URL of the link.
+    */
     public function getHref(): ?string
     {
         return $this->href;
     }
 
+    /**
+    * The HTTP method to use.
+    */
     public function getMethod(): ?string
     {
         return $this->method;

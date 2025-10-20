@@ -41,6 +41,7 @@ final class Firewall implements ModelInterface, JsonSerializable
     /**
      * @return OutboundFirewallRestrictionsInner[]
      */
+
     public function getOutbound(): array
     {
         return $this->outbound;

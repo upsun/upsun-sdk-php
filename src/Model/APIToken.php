@@ -13,18 +13,19 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class APIToken implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?\DateTime $lastUsedAt = null,
+        private readonly ?DateTime $lastUsedAt = null,
         private readonly ?string $id = null,
         private readonly ?string $name = null,
         private readonly ?bool $mfaOnCreation = null,
         private readonly ?string $token = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
     ) {
     }
 
@@ -51,37 +52,61 @@ final class APIToken implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the token.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The token name.
+    */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+    * Whether the user had multi-factor authentication (MFA) enabled when they created the token.
+    */
     public function getMfaOnCreation(): ?bool
     {
         return $this->mfaOnCreation;
     }
 
+    /**
+    * The token in plain text (available only when created).
+    */
     public function getToken(): ?string
     {
         return $this->token;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    /**
+    * The date and time when the token was created.
+    */
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    /**
+    * The date and time when the token was last updated.
+    */
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
 
-    public function getLastUsedAt(): ?\DateTime
+    /**
+    * The date and time when the token was last exchanged for an access token. This will be <code>null</code> for a
+    * token which has never been used, or not used since this API property was added. <strong>Note:</strong> After an
+    * API token is used, the derived access token may continue to be used until its expiry. This also applies to SSH
+    * certificate(s) derived from the access token.
+    */
+    public function getLastUsedAt(): ?DateTime
     {
         return $this->lastUsedAt;
     }

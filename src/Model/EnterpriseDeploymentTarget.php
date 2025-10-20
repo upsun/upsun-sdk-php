@@ -72,6 +72,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, JsonSerializab
     /**
      * @return MappingOfClustersToEnterpriseApplicationsValue[]
      */
+
     public function getDocroots(): array
     {
         return $this->docroots;

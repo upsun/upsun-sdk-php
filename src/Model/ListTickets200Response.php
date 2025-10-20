@@ -50,11 +50,15 @@ final class ListTickets200Response implements ModelInterface, JsonSerializable
     /**
      * @return Ticket[]|null
      */
+
     public function getTickets(): ?array
     {
         return $this->tickets;
     }
 
+    /**
+    * Links to _self, and previous or next page, given that they exist.
+    */
     public function getLinks(): ?HalLinks
     {
         return $this->links;

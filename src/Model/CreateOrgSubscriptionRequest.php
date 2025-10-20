@@ -55,6 +55,9 @@ final class CreateOrgSubscriptionRequest implements ModelInterface, JsonSerializ
         return $this->projectRegion;
     }
 
+    /**
+    * The project plan.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;

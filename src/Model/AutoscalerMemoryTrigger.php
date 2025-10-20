@@ -45,16 +45,25 @@ final class AutoscalerMemoryTrigger implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Whether the trigger is enabled
+    */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
 
+    /**
+    * Trigger condition settings
+    */
     public function getDown(): ?AutoscalerCondition
     {
         return $this->down;
     }
 
+    /**
+    * Trigger condition settings
+    */
     public function getUp(): ?AutoscalerCondition
     {
         return $this->up;

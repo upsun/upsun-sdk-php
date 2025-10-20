@@ -12,15 +12,16 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class CurrentUserCurrentTrialInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?\DateTime $created = null,
+        private readonly ?DateTime $created = null,
         private readonly ?string $description = null,
         private readonly ?string $spendRemaining = null,
-        private readonly ?\DateTime $expiration = null,
+        private readonly ?DateTime $expiration = null,
     ) {
     }
 
@@ -44,7 +45,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreated(): ?\DateTime
+    public function getCreated(): ?DateTime
     {
         return $this->created;
     }
@@ -59,7 +60,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, JsonSerializ
         return $this->spendRemaining;
     }
 
-    public function getExpiration(): ?\DateTime
+    public function getExpiration(): ?DateTime
     {
         return $this->expiration;
     }

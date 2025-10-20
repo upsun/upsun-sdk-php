@@ -73,14 +73,19 @@ final class {{classname}} implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 {{#vars}}
-
 {{#isContainer}}
   {{#items.isModel}}
     /**
+{{#vendorExtensions.x-description}}
+    * {{{.}}}
+{{/vendorExtensions.x-description}}
      * @return {{{items.openApiType}}}[]{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
      */
   {{/items.isModel}}
-{{/isContainer}}
+{{/isContainer}}{{^isContainer}}{{#vendorExtensions.x-description.0}}
+    /**{{/vendorExtensions.x-description.0}}{{#vendorExtensions.x-description}}
+    * {{{.}}}{{/vendorExtensions.x-description}}{{#vendorExtensions.x-description.0}}
+    */{{/vendorExtensions.x-description.0}}{{/isContainer}}
     public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#openApiType}}{{#isDateTime}}\DateTime{{/isDateTime}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isNumber}}float{{/isNumber}}{{#isInteger}}int{{/isInteger}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{^isDateTime}}{{{openApiType}}}{{/isDateTime}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isContainer}}
     {
         return $this->{{{name}}};

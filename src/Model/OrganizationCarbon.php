@@ -44,6 +44,9 @@ final class OrganizationCarbon implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
@@ -57,11 +60,15 @@ final class OrganizationCarbon implements ModelInterface, JsonSerializable
     /**
      * @return OrganizationProjectCarbon[]|null
      */
+
     public function getProjects(): ?array
     {
         return $this->projects;
     }
 
+    /**
+    * The calculated total of the metric for the given interval.
+    */
     public function getTotal(): ?float
     {
         return $this->total;

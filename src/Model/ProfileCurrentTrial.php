@@ -3,6 +3,7 @@
 /**
  * Low level ProfileCurrentTrial (auto-generated)
  *
+ * The current trial for the profile.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -13,6 +14,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class ProfileCurrentTrial implements ModelInterface, JsonSerializable
@@ -20,9 +22,9 @@ final class ProfileCurrentTrial implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly ?string $pendingVerification = null,
         private readonly ?bool $active = null,
-        private readonly ?\DateTime $created = null,
+        private readonly ?DateTime $created = null,
         private readonly ?string $description = null,
-        private readonly ?\DateTime $expiration = null,
+        private readonly ?DateTime $expiration = null,
         private readonly ?ProfileCurrentTrialCurrent $current = null,
         private readonly ?ProfileCurrentTrialSpend $spend = null,
         private readonly ?ProfileCurrentTrialSpendRemaining $spendRemaining = null,
@@ -59,56 +61,89 @@ final class ProfileCurrentTrial implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The trial active status.
+    */
     public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    public function getCreated(): ?\DateTime
+    /**
+    * The trial creation date.
+    */
+    public function getCreated(): ?DateTime
     {
         return $this->created;
     }
 
+    /**
+    * The trial description.
+    */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function getExpiration(): ?\DateTime
+    /**
+    * The trial expiration-date.
+    */
+    public function getExpiration(): ?DateTime
     {
         return $this->expiration;
     }
 
+    /**
+    * The total amount spent by the trial user at this point in time.
+    */
     public function getCurrent(): ?ProfileCurrentTrialCurrent
     {
         return $this->current;
     }
 
+    /**
+    * The total amount available for the trial.
+    */
     public function getSpend(): ?ProfileCurrentTrialSpend
     {
         return $this->spend;
     }
 
+    /**
+    * The remaining amount available for the trial.
+    */
     public function getSpendRemaining(): ?ProfileCurrentTrialSpendRemaining
     {
         return $this->spendRemaining;
     }
 
+    /**
+    * Projects active under trial
+    */
     public function getProjects(): ?ProfileCurrentTrialProjects
     {
         return $this->projects;
     }
 
+    /**
+    * Required verification method (if applicable).
+    */
     public function getPendingVerification(): ?string
     {
         return $this->pendingVerification;
     }
 
+    /**
+    * The trial trial model.
+    */
     public function getModel(): ?string
     {
         return $this->model;
     }
 
+    /**
+    * The amount of days until the trial expires.
+    */
     public function getDaysRemaining(): ?int
     {
         return $this->daysRemaining;

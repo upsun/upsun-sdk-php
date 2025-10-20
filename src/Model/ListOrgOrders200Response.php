@@ -43,6 +43,7 @@ final class ListOrgOrders200Response implements ModelInterface, JsonSerializable
     /**
      * @return Order[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

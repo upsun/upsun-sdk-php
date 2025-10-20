@@ -48,11 +48,17 @@ final class ProjectOptions implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The initial values applied to the project.
+    */
     public function getDefaults(): ?ProjectOptionsDefaults
     {
         return $this->defaults;
     }
 
+    /**
+    * The enforced values applied to the project.
+    */
     public function getEnforced(): ?ProjectOptionsEnforced
     {
         return $this->enforced;
@@ -68,6 +74,9 @@ final class ProjectOptions implements ModelInterface, JsonSerializable
         return $this->plans;
     }
 
+    /**
+    * The billing settings.
+    */
     public function getBilling(): ?object
     {
         return $this->billing;

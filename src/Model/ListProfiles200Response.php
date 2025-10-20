@@ -50,11 +50,15 @@ final class ListProfiles200Response implements ModelInterface, JsonSerializable
     /**
      * @return Profile[]|null
      */
+
     public function getProfiles(): ?array
     {
         return $this->profiles;
     }
 
+    /**
+    * Links to _self, and previous or next page, given that they exist.
+    */
     public function getLinks(): ?HalLinks
     {
         return $this->links;

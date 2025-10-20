@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationLinksSelf (auto-generated)
  *
+ * Link to the current organization.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -39,6 +40,9 @@ final class OrganizationLinksSelf implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * URL of the link.
+    */
     public function getHref(): ?string
     {
         return $this->href;

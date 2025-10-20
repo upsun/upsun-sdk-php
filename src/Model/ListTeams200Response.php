@@ -45,6 +45,7 @@ final class ListTeams200Response implements ModelInterface, JsonSerializable
     /**
      * @return Team[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

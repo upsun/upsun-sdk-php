@@ -43,6 +43,7 @@ final class ListOrgProjects200Response implements ModelInterface, JsonSerializab
     /**
      * @return OrganizationProject[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

@@ -64,66 +64,105 @@ final class SubscriptionCurrentUsageObject implements ModelInterface, JsonSerial
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getCpuApp(): ?UsageGroupCurrentUsageProperties
     {
         return $this->cpuApp;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getStorageAppServices(): ?UsageGroupCurrentUsageProperties
     {
         return $this->storageAppServices;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getMemoryApp(): ?UsageGroupCurrentUsageProperties
     {
         return $this->memoryApp;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getCpuServices(): ?UsageGroupCurrentUsageProperties
     {
         return $this->cpuServices;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getMemoryServices(): ?UsageGroupCurrentUsageProperties
     {
         return $this->memoryServices;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getBackupStorage(): ?UsageGroupCurrentUsageProperties
     {
         return $this->backupStorage;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getBuildCpu(): ?UsageGroupCurrentUsageProperties
     {
         return $this->buildCpu;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getBuildMemory(): ?UsageGroupCurrentUsageProperties
     {
         return $this->buildMemory;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getEgressBandwidth(): ?UsageGroupCurrentUsageProperties
     {
         return $this->egressBandwidth;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getIngressRequests(): ?UsageGroupCurrentUsageProperties
     {
         return $this->ingressRequests;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getLogsFwdContentSize(): ?UsageGroupCurrentUsageProperties
     {
         return $this->logsFwdContentSize;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getFastlyBandwidth(): ?UsageGroupCurrentUsageProperties
     {
         return $this->fastlyBandwidth;
     }
 
+    /**
+    * Current usage info for a usage group.
+    */
     public function getFastlyRequests(): ?UsageGroupCurrentUsageProperties
     {
         return $this->fastlyRequests;

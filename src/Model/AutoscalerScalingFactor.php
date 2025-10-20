@@ -42,11 +42,17 @@ final class AutoscalerScalingFactor implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Number of instances to add when scaling up horizontally
+    */
     public function getUp(): ?int
     {
         return $this->up;
     }
 
+    /**
+    * Number of instances to remove when scaling down horizontally
+    */
     public function getDown(): ?int
     {
         return $this->down;

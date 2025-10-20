@@ -48,6 +48,7 @@ final class DefaultConfig implements ModelInterface, JsonSerializable
     /**
      * @return TheBackupScheduleSpecificationInner[]
      */
+
     public function getSchedule(): array
     {
         return $this->schedule;

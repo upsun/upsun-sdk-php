@@ -3,6 +3,7 @@
 /**
  * Low level RegionEnvironmentalImpact (auto-generated)
  *
+ * Information about the region provider's environmental impact.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0

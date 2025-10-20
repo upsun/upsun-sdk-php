@@ -87,6 +87,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     /**
      * @return SpecificOverridesValue[]
      */
+
     public function getRules(): array
     {
         return $this->rules;

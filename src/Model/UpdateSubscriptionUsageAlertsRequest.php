@@ -41,6 +41,7 @@ final class UpdateSubscriptionUsageAlertsRequest implements ModelInterface, Json
     /**
      * @return UpdateSubscriptionUsageAlertsRequestAlertsInner[]|null
      */
+
     public function getAlerts(): ?array
     {
         return $this->alerts;

@@ -50,6 +50,7 @@ final class ListOrgMembers200Response implements ModelInterface, JsonSerializabl
     /**
      * @return OrganizationMember[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

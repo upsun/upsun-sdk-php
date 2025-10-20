@@ -3,6 +3,7 @@
 /**
  * Low level ProfileCurrentTrialProjects (auto-generated)
  *
+ * Projects active under trial
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -43,11 +44,17 @@ final class ProfileCurrentTrialProjects implements ModelInterface, JsonSerializa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Trial project ID
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * Trial project name
+    */
     public function getName(): ?string
     {
         return $this->name;

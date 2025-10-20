@@ -50,31 +50,49 @@ final class UsageAlert implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Tidentifier of the alert.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * Whether the usage alert is activated.
+    */
     public function getActive(): ?bool
     {
         return $this->active;
     }
 
+    /**
+    * Number of alerts sent.
+    */
     public function getAlertsSent(): ?float
     {
         return $this->alertsSent;
     }
 
+    /**
+    * The datetime the alert was last sent.
+    */
     public function getLastAlertAt(): ?string
     {
         return $this->lastAlertAt;
     }
 
+    /**
+    * The datetime the alert was last updated.
+    */
     public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
+    /**
+    * Configuration for the usage alert.
+    */
     public function getConfig(): ?UsageAlertConfig
     {
         return $this->config;

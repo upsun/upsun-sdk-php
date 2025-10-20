@@ -43,6 +43,7 @@ final class ListProjectUserAccess200Response implements ModelInterface, JsonSeri
     /**
      * @return UserProjectAccess[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

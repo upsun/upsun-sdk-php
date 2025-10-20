@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationEstimationObjectUserLicensesBaseListViewerUser (auto-generated)
  *
+ * An estimation of viewer users cost.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -41,11 +42,17 @@ final class OrganizationEstimationObjectUserLicensesBaseListViewerUser implement
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The number of viewer user licenses.
+    */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
+    /**
+    * The total price for viewer user licenses.
+    */
     public function getTotal(): ?string
     {
         return $this->total;

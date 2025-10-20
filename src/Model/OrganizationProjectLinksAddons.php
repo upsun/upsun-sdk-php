@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationProjectLinksAddons (auto-generated)
  *
+ * Link to the project's add-ons.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -39,6 +40,9 @@ final class OrganizationProjectLinksAddons implements ModelInterface, JsonSerial
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * URL of the link.
+    */
     public function getHref(): ?string
     {
         return $this->href;

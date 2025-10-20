@@ -678,15 +678,21 @@ class OpenApiPreprocessor
                             $extraKeys
                         ]
                     ];
+
+                    // Recurse inside allOf elements
+                    foreach ($node['allOf'] as &$subNode) {
+                        $this->fixAllRefsWithAllOf($subNode);
+                    }
+
+                    return; // Do not process already processed children
                 }
             }
 
-            // Recurse into children
+            // Recurse into other children
             foreach ($node as &$child) {
                 $this->fixAllRefsWithAllOf($child);
             }
         }
-        // If scalar (string, number, etc.), do nothing
     }
 
     public function fixEmptyParameters(): void
@@ -893,8 +899,37 @@ class OpenApiPreprocessor
 
         // on Components
         foreach ($this->schema['components']['schemas'] as &$schema) {
-            if ($schema['description'] ?? false) {
-                $schema['x-description'] = $this->preprocessDescription($schema['description']);
+            $this->wordwrapSchemaDescription($schema);
+        }
+    }
+
+    private function wordwrapSchemaDescription(array &$schema): void
+    {
+        // schema.description
+        if (!empty($schema['description'])) {
+            $schema['x-description'] = $this->preprocessDescription($schema['description']);
+        }
+
+        // description des propriétés
+        if (!empty($schema['properties']) && is_array($schema['properties'])) {
+            foreach ($schema['properties'] as &$prop) {
+                if (!empty($prop['description'])) {
+                    $prop['x-description'] = $this->preprocessDescription($prop['description']);
+                }
+
+                // recursive if property is an object
+                if (!empty($prop['properties']) && is_array($prop['properties'])) {
+                    $this->wordwrapSchemaDescription($prop);
+                }
+            }
+        }
+
+        // loop on allOf / anyOf / oneOf
+        foreach (['allOf', 'anyOf', 'oneOf'] as $key) {
+            if (!empty($schema[$key]) && is_array($schema[$key])) {
+                foreach ($schema[$key] as &$subSchema) {
+                    $this->wordwrapSchemaDescription($subSchema);
+                }
             }
         }
     }
@@ -930,28 +965,50 @@ class OpenApiPreprocessor
         return explode("\n", $lines);
     }
 
-    public function markEmptyResponses(): void
+    public function replaceEmptyRefResponsesWithAccepted(): void
     {
-        // on Path
-        foreach ($this->schema['paths'] as &$methods) {
-            foreach ($methods as &$operation) {
-                foreach ($operation['responses'] as $respKey) {
-                    if (!empty($operation[$respKey])) {
-                        foreach ($operation[$respKey] as &$resp) {
-                            if (isset($resp['content']['application/json']['schema']['$ref'])) {
-                                $ref = $resp['content']['application/json']['schema']['$ref'];
-                                $refName = basename($ref);
-                                if (empty($this->schema['components']['schemas'][$refName]['properties'])) {
-                                    // remove response.content as targeted schema is property empty
-                                    unset($resp['content']);
-                                }
-                            }
-                        }
+        foreach ($this->schema['paths'] as $path => &$methods) {
+            foreach ($methods as $httpMethod => &$operation) {
+                $responses = $operation['responses'] ?? null;
+                if (!is_array($responses)) {
+                    continue;
+                }
+
+                foreach ($responses as $statusCode => &$response) {
+                    $schemaRef = $response['content']['application/json']['schema']['$ref'] ?? null;
+                    if (!$schemaRef) {
+                        continue; // no $ref
+                    }
+
+                    $refName = basename($schemaRef);
+                    $schemaDef = $this->schema['components']['schemas'][$refName] ?? null;
+
+                    // Check if empty schema
+                    $isEmpty = false;
+                    if ($schemaDef === null) {
+                        $isEmpty = true; // schema does not exist
+                    } elseif (
+                        empty($schemaDef['properties'])
+                        && empty($schemaDef['oneOf'])
+                        && empty($schemaDef['allOf'])
+                        && empty($schemaDef['anyOf'])
+                    ) {
+                        $isEmpty = true; // existing empty schema
+                    }
+
+                    if ($isEmpty) {
+                        // Replace with AcceptedResponse
+                        $response['content']['application/json']['schema'] = [
+                            '$ref' => '#/components/schemas/AcceptedResponse',
+                        ];
+                        
+                        echo "🔄 Replaced empty \$ref $refName with AcceptedResponse for {$httpMethod} {$path} [$statusCode]\n";
                     }
                 }
             }
         }
     }
+
 
 }
 
@@ -987,8 +1044,12 @@ try {
     // Remove Project->delete path
     $preprocessor->removeProjectDeletePath();
 
-    // Add x-return-* properties
-    $preprocessor->addXReturn();
+    // Fix empty parameters
+    $preprocessor->fixEmptyParameters();
+    
+    // replace empty response object
+    $preprocessor->replaceEmptyRefResponsesWithAccepted();
+
 
     // Add deployment/next path for managing resources
     $preprocessor->addResourcePath();
@@ -996,20 +1057,17 @@ try {
     // Fix nullable/required
     $preprocessor->fixNullableRequired();
 
-    // Fix empty parameters
-    $preprocessor->fixEmptyParameters();
-
     // rename x-internal --> x-internal-doc
     $preprocessor->renameXInternal();
 
     // rename deprecated --> x-deprecated
     $preprocessor->renameDeprecated();
 
+    // Add x-return-* properties
+    $preprocessor->addXReturn();
+
     // wordwrap description
     $preprocessor->wordwrapDescription();
-
-    // remove response.content targeting empty object
-    $preprocessor->markEmptyResponses();
 
     // Save
     $preprocessor->save($outputPath);

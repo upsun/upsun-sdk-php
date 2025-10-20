@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationInvitationOwner (auto-generated)
  *
+ * The inviter.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -41,11 +42,17 @@ final class OrganizationInvitationOwner implements ModelInterface, JsonSerializa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the user.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The user's display name.
+    */
     public function getDisplayName(): ?string
     {
         return $this->displayName;

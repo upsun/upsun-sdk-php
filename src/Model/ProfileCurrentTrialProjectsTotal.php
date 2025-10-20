@@ -44,21 +44,33 @@ final class ProfileCurrentTrialProjectsTotal implements ModelInterface, JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Trial project cost
+    */
     public function getAmount(): ?int
     {
         return $this->amount;
     }
 
+    /**
+    * Currency code
+    */
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
 
+    /**
+    * Currency symbol
+    */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
 
+    /**
+    * Trial project cost formatted with currency sign
+    */
     public function getFormatted(): ?string
     {
         return $this->formatted;

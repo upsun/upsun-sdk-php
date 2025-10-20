@@ -2,6 +2,10 @@
 
 namespace Upsun\Api;
 
+use DateTime;
+use Upsun\Model\ListTickets200Response;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\OrganizationCarbon;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +31,7 @@ use Upsun\Core\OAuthProvider;
 final class DefaultApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -63,14 +68,14 @@ final class DefaultApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\ListTickets200Response
+     * @return ListTickets200Response
      *
      * @see https://docs.upsun.com/api/#tag//operation/list-tickets
      */
     public function listTickets(
         ?int $filterTicketId = null,
-        ?\DateTime $filterCreated = null,
-        ?\DateTime $filterUpdated = null,
+        ?DateTime $filterCreated = null,
+        ?DateTime $filterUpdated = null,
         ?string $filterType = null,
         ?string $filterPriority = null,
         ?string $filterStatus = null,
@@ -78,10 +83,10 @@ final class DefaultApi extends AbstractApi
         ?string $filterSubmitterId = null,
         ?string $filterAssigneeId = null,
         ?bool $filterHasIncidents = null,
-        ?\DateTime $filterDue = null,
+        ?DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
-    ): \Upsun\Model\ListTickets200Response {
+    ): ListTickets200Response {
         return $this->listTicketsWithHttpInfo(
             $filterTicketId,
             $filterCreated,
@@ -102,14 +107,14 @@ final class DefaultApi extends AbstractApi
     /**
      * List support tickets with HTTP Info
      *
-     * @return \Upsun\Model\ListTickets200Response
+     * @return ListTickets200Response
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listTicketsWithHttpInfo(
         ?int $filterTicketId = null,
-        ?\DateTime $filterCreated = null,
-        ?\DateTime $filterUpdated = null,
+        ?DateTime $filterCreated = null,
+        ?DateTime $filterUpdated = null,
         ?string $filterType = null,
         ?string $filterPriority = null,
         ?string $filterStatus = null,
@@ -117,10 +122,10 @@ final class DefaultApi extends AbstractApi
         ?string $filterSubmitterId = null,
         ?string $filterAssigneeId = null,
         ?bool $filterHasIncidents = null,
-        ?\DateTime $filterDue = null,
+        ?DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
-    ): \Upsun\Model\ListTickets200Response {
+    ): ListTickets200Response {
         $request = $this->listTicketsRequest(
             $filterTicketId,
             $filterCreated,
@@ -146,13 +151,13 @@ final class DefaultApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListTickets200Response',
+                ListTickets200Response::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -163,8 +168,8 @@ final class DefaultApi extends AbstractApi
      */
     private function listTicketsRequest(
         ?int $filterTicketId = null,
-        ?\DateTime $filterCreated = null,
-        ?\DateTime $filterUpdated = null,
+        ?DateTime $filterCreated = null,
+        ?DateTime $filterUpdated = null,
         ?string $filterType = null,
         ?string $filterPriority = null,
         ?string $filterStatus = null,
@@ -172,7 +177,7 @@ final class DefaultApi extends AbstractApi
         ?string $filterSubmitterId = null,
         ?string $filterAssigneeId = null,
         ?bool $filterHasIncidents = null,
-        ?\DateTime $filterDue = null,
+        ?DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
     ): RequestInterface {
@@ -203,7 +208,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[ticket_id]'] = $filterTicketId instanceof \DateTime
+                $queryParams['filter[ticket_id]'] = $filterTicketId instanceof DateTime
                     ? $filterTicketId->format(DATE_ATOM)
                     : ($filterTicketId);
             }
@@ -218,7 +223,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[created]'] = $filterCreated instanceof \DateTime
+                $queryParams['filter[created]'] = $filterCreated instanceof DateTime
                     ? $filterCreated->format(DATE_ATOM)
                     : ($filterCreated);
             }
@@ -233,7 +238,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated]'] = $filterUpdated instanceof \DateTime
+                $queryParams['filter[updated]'] = $filterUpdated instanceof DateTime
                     ? $filterUpdated->format(DATE_ATOM)
                     : ($filterUpdated);
             }
@@ -248,7 +253,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[type]'] = $filterType instanceof \DateTime
+                $queryParams['filter[type]'] = $filterType instanceof DateTime
                     ? $filterType->format(DATE_ATOM)
                     : ($filterType);
             }
@@ -263,7 +268,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[priority]'] = $filterPriority instanceof \DateTime
+                $queryParams['filter[priority]'] = $filterPriority instanceof DateTime
                     ? $filterPriority->format(DATE_ATOM)
                     : ($filterPriority);
             }
@@ -278,7 +283,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                $queryParams['filter[status]'] = $filterStatus instanceof DateTime
                     ? $filterStatus->format(DATE_ATOM)
                     : ($filterStatus);
             }
@@ -293,7 +298,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[requester_id]'] = $filterRequesterId instanceof \DateTime
+                $queryParams['filter[requester_id]'] = $filterRequesterId instanceof DateTime
                     ? $filterRequesterId->format(DATE_ATOM)
                     : ($filterRequesterId);
             }
@@ -308,7 +313,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[submitter_id]'] = $filterSubmitterId instanceof \DateTime
+                $queryParams['filter[submitter_id]'] = $filterSubmitterId instanceof DateTime
                     ? $filterSubmitterId->format(DATE_ATOM)
                     : ($filterSubmitterId);
             }
@@ -323,7 +328,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[assignee_id]'] = $filterAssigneeId instanceof \DateTime
+                $queryParams['filter[assignee_id]'] = $filterAssigneeId instanceof DateTime
                     ? $filterAssigneeId->format(DATE_ATOM)
                     : ($filterAssigneeId);
             }
@@ -338,7 +343,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[has_incidents]'] = $filterHasIncidents instanceof \DateTime
+                $queryParams['filter[has_incidents]'] = $filterHasIncidents instanceof DateTime
                     ? $filterHasIncidents->format(DATE_ATOM)
                     : ($filterHasIncidents);
             }
@@ -353,7 +358,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[due]'] = $filterDue instanceof \DateTime
+                $queryParams['filter[due]'] = $filterDue instanceof DateTime
                     ? $filterDue->format(DATE_ATOM)
                     : ($filterDue);
             }
@@ -368,7 +373,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['search'] = $search instanceof \DateTime
+                $queryParams['search'] = $search instanceof DateTime
                     ? $search->format(DATE_ATOM)
                     : ($search);
             }
@@ -383,7 +388,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page instanceof \DateTime
+                $queryParams['page'] = $page instanceof DateTime
                     ? $page->format(DATE_ATOM)
                     : ($page);
             }
@@ -412,6 +417,7 @@ final class DefaultApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -440,6 +446,7 @@ final class DefaultApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Query project carbon emissions metrics for an entire organization
      *
@@ -448,16 +455,16 @@ final class DefaultApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\OrganizationCarbon
+     * @return OrganizationCarbon
      *
      * @see https://docs.upsun.com/api/#tag//operation/query-organiation-carbon
      */
     public function queryOrganiationCarbon(
         string $organizationId,
-        ?\Upsun\Model\DateTimeFilter $from = null,
-        ?\Upsun\Model\DateTimeFilter $to = null,
+        ?DateTimeFilter $from = null,
+        ?DateTimeFilter $to = null,
         ?string $interval = null
-    ): \Upsun\Model\OrganizationCarbon {
+    ): OrganizationCarbon {
         return $this->queryOrganiationCarbonWithHttpInfo(
             $organizationId,
             $from,
@@ -469,16 +476,16 @@ final class DefaultApi extends AbstractApi
     /**
      * Query project carbon emissions metrics for an entire organization with HTTP Info
      *
-     * @return \Upsun\Model\OrganizationCarbon
+     * @return OrganizationCarbon
      *
      * @throws InvalidArgumentException|Exception
      */
     private function queryOrganiationCarbonWithHttpInfo(
         string $organizationId,
-        ?\Upsun\Model\DateTimeFilter $from = null,
-        ?\Upsun\Model\DateTimeFilter $to = null,
+        ?DateTimeFilter $from = null,
+        ?DateTimeFilter $to = null,
         ?string $interval = null
-    ): \Upsun\Model\OrganizationCarbon {
+    ): OrganizationCarbon {
         $request = $this->queryOrganiationCarbonRequest(
             $organizationId,
             $from,
@@ -495,13 +502,13 @@ final class DefaultApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationCarbon',
+                OrganizationCarbon::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -512,8 +519,8 @@ final class DefaultApi extends AbstractApi
      */
     private function queryOrganiationCarbonRequest(
         string $organizationId,
-        ?\Upsun\Model\DateTimeFilter $from = null,
-        ?\Upsun\Model\DateTimeFilter $to = null,
+        ?DateTimeFilter $from = null,
+        ?DateTimeFilter $to = null,
         ?string $interval = null
     ): RequestInterface {
 
@@ -523,7 +530,7 @@ final class DefaultApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling queryOrganiationCarbon'
             );
@@ -545,7 +552,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['from'] = $from instanceof \DateTime
+                $queryParams['from'] = $from instanceof DateTime
                     ? $from->format(DATE_ATOM)
                     : ($from->getEq());
             }
@@ -560,7 +567,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['to'] = $to instanceof \DateTime
+                $queryParams['to'] = $to instanceof DateTime
                     ? $to->format(DATE_ATOM)
                     : ($to->getEq());
             }
@@ -575,7 +582,7 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['interval'] = $interval instanceof \DateTime
+                $queryParams['interval'] = $interval instanceof DateTime
                     ? $interval->format(DATE_ATOM)
                     : ($interval);
             }
@@ -612,6 +619,7 @@ final class DefaultApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

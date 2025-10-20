@@ -46,11 +46,17 @@ final class ProjectCarbon implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the project.
+    */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
+    /**
+    * The title of the project.
+    */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
@@ -64,11 +70,15 @@ final class ProjectCarbon implements ModelInterface, JsonSerializable
     /**
      * @return MetricsValue[]|null
      */
+
     public function getValues(): ?array
     {
         return $this->values;
     }
 
+    /**
+    * The calculated total of the metric for the given interval.
+    */
     public function getTotal(): ?float
     {
         return $this->total;

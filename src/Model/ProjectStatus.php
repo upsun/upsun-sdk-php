@@ -23,24 +23,28 @@ final class ProjectStatus implements JsonSerializable
      * Possible values of this enum
      */
     public const REQUESTED = 'requested';
+
     public const ACTIVE = 'active';
+
     public const FAILED = 'failed';
+
     public const SUSPENDED = 'suspended';
+
     public const DELETED = 'deleted';
+
     private string $value;
 
     /**
-     * Constructor
-     *
      * @throws InvalidArgumentException if value is not allowed
      */
     public function __construct(string $value)
     {
         if (!in_array($value, self::getAllowableEnumValues(), true)) {
             throw new InvalidArgumentException(
-                "Invalid value '{$value}' for enum ProjectStatus"
+                sprintf("Invalid value '%s' for enum ProjectStatus", $value)
             );
         }
+
         $this->value = $value;
     }
 
@@ -54,8 +58,6 @@ final class ProjectStatus implements JsonSerializable
 
     /**
      * Gets allowable values of the enum
-     *
-     * @return string[]
      */
     public static function getAllowableEnumValues(): array
     {

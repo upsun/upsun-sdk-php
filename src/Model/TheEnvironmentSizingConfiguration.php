@@ -45,6 +45,7 @@ final class TheEnvironmentSizingConfiguration implements ModelInterface, JsonSer
     /**
      * @return ServicesValue1[]
      */
+
     public function getServices(): array
     {
         return $this->services;
@@ -53,6 +54,7 @@ final class TheEnvironmentSizingConfiguration implements ModelInterface, JsonSer
     /**
      * @return ServicesValue1[]
      */
+
     public function getWebapps(): array
     {
         return $this->webapps;
@@ -61,6 +63,7 @@ final class TheEnvironmentSizingConfiguration implements ModelInterface, JsonSer
     /**
      * @return ServicesValue1[]
      */
+
     public function getWorkers(): array
     {
         return $this->workers;

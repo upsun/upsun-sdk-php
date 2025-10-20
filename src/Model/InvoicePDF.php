@@ -42,11 +42,19 @@ final class InvoicePDF implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * A link to the PDF invoice.
+    */
     public function getUrl(): ?string
     {
         return $this->url;
     }
 
+    /**
+    * The status of the PDF document. We generate invoice PDF asyncronously in batches. An invoice PDF document may not
+    * be immediately available to download. If status is 'ready', the PDF is ready to download. 'pending' means the PDF
+    * is not created but queued up. If you get this status, try again later.
+    */
     public function getStatus(): ?string
     {
         return $this->status;

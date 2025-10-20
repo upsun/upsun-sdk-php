@@ -41,6 +41,7 @@ final class UpdateUsageAlertsRequest implements ModelInterface, JsonSerializable
     /**
      * @return Alert[]|null
      */
+
     public function getAlerts(): ?array
     {
         return $this->alerts;

@@ -52,36 +52,57 @@ final class OrganizationEstimationObject implements ModelInterface, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The total estimated price for the organization.
+    */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
+    /**
+    * The sub total for all projects and sellables.
+    */
     public function getSubTotal(): ?string
     {
         return $this->subTotal;
     }
 
+    /**
+    * The total amount of vouchers.
+    */
     public function getVouchers(): ?string
     {
         return $this->vouchers;
     }
 
+    /**
+    * An estimation of user licenses cost.
+    */
     public function getUserLicenses(): ?OrganizationEstimationObjectUserLicenses
     {
         return $this->userLicenses;
     }
 
+    /**
+    * An estimation of the advanced user management sellable cost.
+    */
     public function getUserManagement(): ?string
     {
         return $this->userManagement;
     }
 
+    /**
+    * The total monthly price for premium support.
+    */
     public function getSupportLevel(): ?string
     {
         return $this->supportLevel;
     }
 
+    /**
+    * An estimation of subscriptions cost.
+    */
     public function getSubscriptions(): ?OrganizationEstimationObjectSubscriptions
     {
         return $this->subscriptions;

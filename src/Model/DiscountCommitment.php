@@ -3,6 +3,7 @@
 /**
  * Low level DiscountCommitment (auto-generated)
  *
+ * The minimum commitment associated with the discount (if applicable).
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -43,16 +44,25 @@ final class DiscountCommitment implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Commitment period length in months.
+    */
     public function getMonths(): ?int
     {
         return $this->months;
     }
 
+    /**
+    * Commitment amounts.
+    */
     public function getAmount(): ?DiscountCommitmentAmount
     {
         return $this->amount;
     }
 
+    /**
+    * Net commitment amounts (discount deducted).
+    */
     public function getNet(): ?DiscountCommitmentNet
     {
         return $this->net;

@@ -332,6 +332,7 @@ final class ProjectSettings implements ModelInterface, JsonSerializable
     /**
      * @return DataRetentionConfigurationValue[]|null
      */
+
     public function getDataRetention(): ?array
     {
         return $this->dataRetention;

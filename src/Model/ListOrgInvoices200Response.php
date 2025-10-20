@@ -41,6 +41,7 @@ final class ListOrgInvoices200Response implements ModelInterface, JsonSerializab
     /**
      * @return Invoice[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

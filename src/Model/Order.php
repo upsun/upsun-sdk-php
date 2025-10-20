@@ -14,20 +14,21 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Order implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?\DateTime $paidOn = null,
+        private readonly ?DateTime $paidOn = null,
         private readonly ?string $id = null,
         private readonly ?string $status = null,
         private readonly ?string $owner = null,
         private readonly ?Address $address = null,
         private readonly ?string $company = null,
         private readonly ?string $vatNumber = null,
-        private readonly ?\DateTime $billingPeriodStart = null,
-        private readonly ?\DateTime $billingPeriodEnd = null,
+        private readonly ?DateTime $billingPeriodStart = null,
+        private readonly ?DateTime $billingPeriodEnd = null,
         private readonly ?OrderBillingPeriodLabel $billingPeriodLabel = null,
         private readonly ?int $billingPeriodDuration = null,
         private readonly ?int $total = null,
@@ -35,7 +36,7 @@ final class Order implements ModelInterface, JsonSerializable
         private readonly ?Components $components = null,
         private readonly ?string $currency = null,
         private readonly ?string $invoiceUrl = null,
-        private readonly ?\DateTime $lastRefreshed = null,
+        private readonly ?DateTime $lastRefreshed = null,
         private readonly ?bool $invoiced = null,
         private readonly ?array $lineItems = [],
         private readonly ?OrderLinks $links = null,
@@ -78,104 +79,163 @@ final class Order implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the order.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
+    /**
+    * The status of the subscription.
+    */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
+    /**
+    * The UUID of the owner.
+    */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
 
+    /**
+    * The address of the user.
+    */
     public function getAddress(): ?Address
     {
         return $this->address;
     }
 
+    /**
+    * The company name.
+    */
     public function getCompany(): ?string
     {
         return $this->company;
     }
 
+    /**
+    * An identifier used in many countries for value added tax purposes.
+    */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
 
-    public function getBillingPeriodStart(): ?\DateTime
+    /**
+    * The time when the billing period of the order started.
+    */
+    public function getBillingPeriodStart(): ?DateTime
     {
         return $this->billingPeriodStart;
     }
 
-    public function getBillingPeriodEnd(): ?\DateTime
+    /**
+    * The time when the billing period of the order ended.
+    */
+    public function getBillingPeriodEnd(): ?DateTime
     {
         return $this->billingPeriodEnd;
     }
 
+    /**
+    * Descriptive information about the billing cycle.
+    */
     public function getBillingPeriodLabel(): ?OrderBillingPeriodLabel
     {
         return $this->billingPeriodLabel;
     }
 
+    /**
+    * The duration of the billing period of the order in seconds.
+    */
     public function getBillingPeriodDuration(): ?int
     {
         return $this->billingPeriodDuration;
     }
 
-    public function getPaidOn(): ?\DateTime
+    /**
+    * The time when the order was successfully charged.
+    */
+    public function getPaidOn(): ?DateTime
     {
         return $this->paidOn;
     }
 
+    /**
+    * The total of the order.
+    */
     public function getTotal(): ?int
     {
         return $this->total;
     }
 
+    /**
+    * The total of the order, formatted with currency.
+    */
     public function getTotalFormatted(): ?int
     {
         return $this->totalFormatted;
     }
 
+    /**
+    * The components of the project
+    */
     public function getComponents(): ?Components
     {
         return $this->components;
     }
 
+    /**
+    * The order currency code.
+    */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
+    /**
+    * A link to the PDF invoice.
+    */
     public function getInvoiceUrl(): ?string
     {
         return $this->invoiceUrl;
     }
 
-    public function getLastRefreshed(): ?\DateTime
+    /**
+    * The time when the order was last refreshed.
+    */
+    public function getLastRefreshed(): ?DateTime
     {
         return $this->lastRefreshed;
     }
 
+    /**
+    * The customer is invoiced.
+    */
     public function getInvoiced(): ?bool
     {
         return $this->invoiced;
     }
 
     /**
+    * The line items that comprise the order.
      * @return LineItem[]|null
      */
+
     public function getLineItems(): ?array
     {
         return $this->lineItems;
     }
 
+    /**
+    * Links to related API endpoints.
+    */
     public function getLinks(): ?OrderLinks
     {
         return $this->links;

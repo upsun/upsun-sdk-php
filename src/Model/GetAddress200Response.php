@@ -58,56 +58,89 @@ final class GetAddress200Response implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Two-letter country codes are used to represent countries and states
+    */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 
+    /**
+    * The full name of the user
+    */
     public function getNameLine(): ?string
     {
         return $this->nameLine;
     }
 
+    /**
+    * Premise (i.e. Apt, Suite, Bldg.)
+    */
     public function getPremise(): ?string
     {
         return $this->premise;
     }
 
+    /**
+    * Sub Premise (i.e. Suite, Apartment, Floor, Unknown.
+    */
     public function getSubPremise(): ?string
     {
         return $this->subPremise;
     }
 
+    /**
+    * The address of the user
+    */
     public function getThoroughfare(): ?string
     {
         return $this->thoroughfare;
     }
 
+    /**
+    * The administrative area of the user address
+    */
     public function getAdministrativeArea(): ?string
     {
         return $this->administrativeArea;
     }
 
+    /**
+    * The sub-administrative area of the user address
+    */
     public function getSubAdministrativeArea(): ?string
     {
         return $this->subAdministrativeArea;
     }
 
+    /**
+    * The locality of the user address
+    */
     public function getLocality(): ?string
     {
         return $this->locality;
     }
 
+    /**
+    * The dependant_locality area of the user address
+    */
     public function getDependentLocality(): ?string
     {
         return $this->dependentLocality;
     }
 
+    /**
+    * The postal code area of the user address
+    */
     public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
 
+    /**
+    * Address field metadata.
+    */
     public function getMetadata(): ?AddressMetadataMetadata
     {
         return $this->metadata;

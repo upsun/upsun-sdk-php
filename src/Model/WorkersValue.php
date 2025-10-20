@@ -107,6 +107,7 @@ final class WorkersValue implements ModelInterface, JsonSerializable
     /**
      * @return TheRelationshipsOfTheApplicationToDefinedServicesValue[]
      */
+
     public function getRelationships(): array
     {
         return $this->relationships;
@@ -120,6 +121,7 @@ final class WorkersValue implements ModelInterface, JsonSerializable
     /**
      * @return FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]
      */
+
     public function getMounts(): array
     {
         return $this->mounts;
@@ -148,6 +150,7 @@ final class WorkersValue implements ModelInterface, JsonSerializable
     /**
      * @return OperationsThatCanBeTriggeredOnThisApplicationValue[]
      */
+
     public function getOperations(): array
     {
         return $this->operations;

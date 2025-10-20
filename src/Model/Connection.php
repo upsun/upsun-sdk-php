@@ -13,6 +13,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Connection implements ModelInterface, JsonSerializable
@@ -23,8 +24,8 @@ final class Connection implements ModelInterface, JsonSerializable
         private readonly ?bool $isMandatory = null,
         private readonly ?string $subject = null,
         private readonly ?string $emailAddress = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
     ) {
     }
 
@@ -51,37 +52,58 @@ final class Connection implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The name of the federation provider.
+    */
     public function getProvider(): ?string
     {
         return $this->provider;
     }
 
+    /**
+    * The type of the federation provider.
+    */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
+    /**
+    * Whether the federated login connection is mandatory.
+    */
     public function getIsMandatory(): ?bool
     {
         return $this->isMandatory;
     }
 
+    /**
+    * The identity on the federation provider.
+    */
     public function getSubject(): ?string
     {
         return $this->subject;
     }
 
+    /**
+    * The email address presented on the federated login connection.
+    */
     public function getEmailAddress(): ?string
     {
         return $this->emailAddress;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    /**
+    * The date and time when the connection was created.
+    */
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    /**
+    * The date and time when the connection was last updated.
+    */
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

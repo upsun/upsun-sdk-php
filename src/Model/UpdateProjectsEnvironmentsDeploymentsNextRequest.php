@@ -45,6 +45,7 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements ModelInt
     /**
      * @return UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue[]|null
      */
+
     public function getWebapps(): ?array
     {
         return $this->webapps;
@@ -53,6 +54,7 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements ModelInt
     /**
      * @return UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]|null
      */
+
     public function getServices(): ?array
     {
         return $this->services;
@@ -61,6 +63,7 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements ModelInt
     /**
      * @return UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]|null
      */
+
     public function getWorkers(): ?array
     {
         return $this->workers;

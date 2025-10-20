@@ -50,6 +50,7 @@ final class ListOrgs200Response implements ModelInterface, JsonSerializable
     /**
      * @return Organization[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

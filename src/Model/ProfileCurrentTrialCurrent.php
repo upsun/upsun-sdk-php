@@ -3,6 +3,7 @@
 /**
  * Low level ProfileCurrentTrialCurrent (auto-generated)
  *
+ * The total amount spent by the trial user at this point in time.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -45,21 +46,33 @@ final class ProfileCurrentTrialCurrent implements ModelInterface, JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The total amount formatted.
+    */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
+    /**
+    * The total amount.
+    */
     public function getAmount(): ?string
     {
         return $this->amount;
     }
 
+    /**
+    * The currency.
+    */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
+    /**
+    * Currency symbol.
+    */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;

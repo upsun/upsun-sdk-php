@@ -43,16 +43,20 @@ final class AutoscalerResources implements ModelInterface, JsonSerializable
     }
 
     /**
+    * Lower/Upper bounds on CPU allocation when scaling
      * @return AutoscalerCPUResources[]|null
      */
+
     public function getCpu(): ?array
     {
         return $this->cpu;
     }
 
     /**
+    * Lower/Upper bounds on Memory allocation when scaling
      * @return AutoscalerMemoryResources[]|null
      */
+
     public function getMemory(): ?array
     {
         return $this->memory;

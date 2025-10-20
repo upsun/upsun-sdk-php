@@ -50,31 +50,49 @@ final class SSHKey implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The ID of the public key.
+    */
     public function getKeyId(): ?int
     {
         return $this->keyId;
     }
 
+    /**
+    * The internal user ID.
+    */
     public function getUid(): ?int
     {
         return $this->uid;
     }
 
+    /**
+    * The fingerprint of the public key.
+    */
     public function getFingerprint(): ?string
     {
         return $this->fingerprint;
     }
 
+    /**
+    * The title of the public key.
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+    * The actual value of the public key.
+    */
     public function getValue(): ?string
     {
         return $this->value;
     }
 
+    /**
+    * The time of the last key modification (ISO 8601)
+    */
     public function getChanged(): ?string
     {
         return $this->changed;

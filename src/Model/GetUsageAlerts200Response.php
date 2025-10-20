@@ -43,6 +43,7 @@ final class GetUsageAlerts200Response implements ModelInterface, JsonSerializabl
     /**
      * @return Alert[]|null
      */
+
     public function getAvailable(): ?array
     {
         return $this->available;
@@ -51,6 +52,7 @@ final class GetUsageAlerts200Response implements ModelInterface, JsonSerializabl
     /**
      * @return Alert[]|null
      */
+
     public function getCurrent(): ?array
     {
         return $this->current;

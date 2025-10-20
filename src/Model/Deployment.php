@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Deployment implements ModelInterface, JsonSerializable
@@ -34,8 +35,8 @@ final class Deployment implements ModelInterface, JsonSerializable
         private readonly array $workers,
         private readonly array $containerProfiles,
         private readonly ?VPNConfiguration $vpn,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?string $fingerprint = null,
     ) {
     }
@@ -124,6 +125,7 @@ final class Deployment implements ModelInterface, JsonSerializable
     /**
      * @return TheVariablesApplyingToThisEnvironmentInner[]
      */
+
     public function getVariables(): array
     {
         return $this->variables;
@@ -132,6 +134,7 @@ final class Deployment implements ModelInterface, JsonSerializable
     /**
      * @return AccessControlDefinitionForThisEnviromentInner[]
      */
+
     public function getAccess(): array
     {
         return $this->access;
@@ -145,6 +148,7 @@ final class Deployment implements ModelInterface, JsonSerializable
     /**
      * @return ServicesValue[]
      */
+
     public function getServices(): array
     {
         return $this->services;
@@ -153,6 +157,7 @@ final class Deployment implements ModelInterface, JsonSerializable
     /**
      * @return RoutesValue[]
      */
+
     public function getRoutes(): array
     {
         return $this->routes;
@@ -161,6 +166,7 @@ final class Deployment implements ModelInterface, JsonSerializable
     /**
      * @return WebApplicationsValue[]
      */
+
     public function getWebapps(): array
     {
         return $this->webapps;
@@ -169,6 +175,7 @@ final class Deployment implements ModelInterface, JsonSerializable
     /**
      * @return WorkersValue[]
      */
+
     public function getWorkers(): array
     {
         return $this->workers;
@@ -179,12 +186,12 @@ final class Deployment implements ModelInterface, JsonSerializable
         return $this->containerProfiles;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

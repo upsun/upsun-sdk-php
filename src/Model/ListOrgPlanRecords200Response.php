@@ -43,6 +43,7 @@ final class ListOrgPlanRecords200Response implements ModelInterface, JsonSeriali
     /**
      * @return PlanRecords[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;

@@ -3,6 +3,7 @@
 /**
  * Low level OrganizationAddonsObjectCurrent (auto-generated)
  *
+ * The list of existing add-ons and their current values.
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0

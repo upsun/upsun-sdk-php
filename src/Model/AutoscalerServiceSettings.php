@@ -48,26 +48,41 @@ final class AutoscalerServiceSettings implements ModelInterface, JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * Scaling triggers settings
+    */
     public function getTriggers(): ?AutoscalerTriggers
     {
         return $this->triggers;
     }
 
+    /**
+    * Horizontal scaling settings
+    */
     public function getInstances(): ?AutoscalerInstances
     {
         return $this->instances;
     }
 
+    /**
+    * Vertical scaling settings
+    */
     public function getResources(): ?AutoscalerResources
     {
         return $this->resources;
     }
 
+    /**
+    * Scaling factor settings
+    */
     public function getScaleFactor(): ?AutoscalerScalingFactor
     {
         return $this->scaleFactor;
     }
 
+    /**
+    * Scaling cooldown settings
+    */
     public function getScaleCooldown(): ?AutoscalerScalingCooldown
     {
         return $this->scaleCooldown;

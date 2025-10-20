@@ -14,6 +14,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class RegionReference implements ModelInterface, JsonSerializable
@@ -30,8 +31,8 @@ final class RegionReference implements ModelInterface, JsonSerializable
         private readonly object $provider,
         private readonly object $datacenter,
         private readonly object $compliance,
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
+        private readonly DateTime $createdAt,
+        private readonly DateTime $updatedAt,
         private readonly ?bool $private = null,
         private readonly ?string $code = null,
         private readonly ?object $envimpact = null,
@@ -70,81 +71,130 @@ final class RegionReference implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+    * The machine name of the region where the project is located.
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
+    /**
+    * The human-readable name of the region.
+    */
     public function getLabel(): string
     {
         return $this->label;
     }
 
+    /**
+    * The geographical zone of the region.
+    */
     public function getZone(): string
     {
         return $this->zone;
     }
 
+    /**
+    * The label to display when choosing between regions for new projects.
+    */
     public function getSelectionLabel(): string
     {
         return $this->selectionLabel;
     }
 
+    /**
+    * The label to display on existing projects.
+    */
     public function getProjectLabel(): string
     {
         return $this->projectLabel;
     }
 
+    /**
+    * Default timezone of the region.
+    */
     public function getTimezone(): string
     {
         return $this->timezone;
     }
 
+    /**
+    * Indicator whether or not this region is selectable during the checkout. Not available regions will never show up
+    * during checkout.
+    */
     public function getAvailable(): bool
     {
         return $this->available;
     }
 
+    /**
+    * Link to the region API endpoint.
+    */
     public function getEndpoint(): string
     {
         return $this->endpoint;
     }
 
+    /**
+    * Information about the region provider.
+    */
     public function getProvider(): object
     {
         return $this->provider;
     }
 
+    /**
+    * Information about the region provider data center.
+    */
     public function getDatacenter(): object
     {
         return $this->datacenter;
     }
 
+    /**
+    * Information about the region's compliance.
+    */
     public function getCompliance(): object
     {
         return $this->compliance;
     }
 
-    public function getCreatedAt(): \DateTime
+    /**
+    * The date and time when the resource was created.
+    */
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): \DateTime
+    /**
+    * The date and time when the resource was last updated.
+    */
+    public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }
 
+    /**
+    * Indicator whether or not this platform is for private use only.
+    */
     public function getPrivate(): ?bool
     {
         return $this->private;
     }
 
+    /**
+    * The code of the region
+    */
     public function getCode(): ?string
     {
         return $this->code;
     }
 
+    /**
+    * Information about the region provider's environmental impact.
+    */
     public function getEnvimpact(): ?object
     {
         return $this->envimpact;

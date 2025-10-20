@@ -43,6 +43,7 @@ final class ListOrgSubscriptions200Response implements ModelInterface, JsonSeria
     /**
      * @return Subscription[]|null
      */
+
     public function getItems(): ?array
     {
         return $this->items;
