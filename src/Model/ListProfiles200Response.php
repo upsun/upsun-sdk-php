@@ -46,7 +46,6 @@ final class ListProfiles200Response implements ModelInterface, JsonSerializable
     {
         return $this->count;
     }
-
     /**
      * @return Profile[]|null
      */

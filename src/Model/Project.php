@@ -12,7 +12,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class Project implements ModelInterface, JsonSerializable
@@ -28,8 +27,8 @@ final class Project implements ModelInterface, JsonSerializable
         private readonly string $region,
         private readonly RepositoryInformation $repository,
         private readonly SubscriptionInformation $subscription,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $namespace,
         private readonly ?string $organization,
         private readonly ?string $defaultBranch,
@@ -74,12 +73,12 @@ final class Project implements ModelInterface, JsonSerializable
         return $this->id;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

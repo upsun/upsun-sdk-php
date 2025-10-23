@@ -12,7 +12,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class TheEnvironmentDeploymentState implements ModelInterface, JsonSerializable
@@ -20,9 +19,9 @@ final class TheEnvironmentDeploymentState implements ModelInterface, JsonSeriali
     public function __construct(
         private readonly bool $lastDeploymentSuccessful,
         private readonly TheCronsDeploymentState $crons,
-        private readonly ?DateTime $lastDeploymentAt,
-        private readonly ?DateTime $lastAutoscaleUpAt,
-        private readonly ?DateTime $lastAutoscaleDownAt,
+        private readonly ?\DateTime $lastDeploymentAt,
+        private readonly ?\DateTime $lastAutoscaleUpAt,
+        private readonly ?\DateTime $lastAutoscaleDownAt,
     ) {
     }
 
@@ -52,17 +51,17 @@ final class TheEnvironmentDeploymentState implements ModelInterface, JsonSeriali
         return $this->lastDeploymentSuccessful;
     }
 
-    public function getLastDeploymentAt(): ?DateTime
+    public function getLastDeploymentAt(): ?\DateTime
     {
         return $this->lastDeploymentAt;
     }
 
-    public function getLastAutoscaleUpAt(): ?DateTime
+    public function getLastAutoscaleUpAt(): ?\DateTime
     {
         return $this->lastAutoscaleUpAt;
     }
 
-    public function getLastAutoscaleDownAt(): ?DateTime
+    public function getLastAutoscaleDownAt(): ?\DateTime
     {
         return $this->lastAutoscaleDownAt;
     }

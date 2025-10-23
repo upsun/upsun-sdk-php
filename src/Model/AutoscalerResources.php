@@ -41,7 +41,6 @@ final class AutoscalerResources implements ModelInterface, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-
     /**
     * Lower/Upper bounds on CPU allocation when scaling
      * @return AutoscalerCPUResources[]|null
@@ -51,7 +50,6 @@ final class AutoscalerResources implements ModelInterface, JsonSerializable
     {
         return $this->cpu;
     }
-
     /**
     * Lower/Upper bounds on Memory allocation when scaling
      * @return AutoscalerMemoryResources[]|null

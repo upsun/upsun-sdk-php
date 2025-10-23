@@ -37,7 +37,6 @@ final class UpdateSubscriptionUsageAlertsRequest implements ModelInterface, Json
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-
     /**
      * @return UpdateSubscriptionUsageAlertsRequestAlertsInner[]|null
      */

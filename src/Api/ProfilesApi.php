@@ -2,9 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Address;
-use Upsun\Model\Profile;
-use Upsun\Model\UpdateOrgProfileRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -30,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class ProfilesApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -68,13 +64,13 @@ final class ProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return Address
+     * @return \Upsun\Model\Address
      *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/get-org-address
      */
     public function getOrgAddress(
         string $organizationId
-    ): Address {
+    ): \Upsun\Model\Address {
         return $this->getOrgAddressWithHttpInfo(
             $organizationId
         );
@@ -83,13 +79,13 @@ final class ProfilesApi extends AbstractApi
     /**
      * Get address with HTTP Info
      *
-     * @return Address
+     * @return \Upsun\Model\Address
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getOrgAddressWithHttpInfo(
         string $organizationId
-    ): Address {
+    ): \Upsun\Model\Address {
         $request = $this->getOrgAddressRequest(
             $organizationId
         );
@@ -103,13 +99,13 @@ final class ProfilesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Address::class,
+                '\Upsun\Model\Address',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -128,12 +124,11 @@ final class ProfilesApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getOrgAddress'
             );
         }
-
         $resourcePath = '/organizations/{organization_id}/address';
         $formParams = [];
         $queryParams = [];
@@ -170,7 +165,6 @@ final class ProfilesApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -199,7 +193,6 @@ final class ProfilesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get profile
      *
@@ -208,13 +201,13 @@ final class ProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return Profile
+     * @return \Upsun\Model\Profile
      *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/get-org-profile
      */
     public function getOrgProfile(
         string $organizationId
-    ): Profile {
+    ): \Upsun\Model\Profile {
         return $this->getOrgProfileWithHttpInfo(
             $organizationId
         );
@@ -223,13 +216,13 @@ final class ProfilesApi extends AbstractApi
     /**
      * Get profile with HTTP Info
      *
-     * @return Profile
+     * @return \Upsun\Model\Profile
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getOrgProfileWithHttpInfo(
         string $organizationId
-    ): Profile {
+    ): \Upsun\Model\Profile {
         $request = $this->getOrgProfileRequest(
             $organizationId
         );
@@ -243,13 +236,13 @@ final class ProfilesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Profile::class,
+                '\Upsun\Model\Profile',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -268,12 +261,11 @@ final class ProfilesApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getOrgProfile'
             );
         }
-
         $resourcePath = '/organizations/{organization_id}/profile';
         $formParams = [];
         $queryParams = [];
@@ -310,7 +302,6 @@ final class ProfilesApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -339,7 +330,6 @@ final class ProfilesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update address
      *
@@ -348,14 +338,14 @@ final class ProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return Address
+     * @return \Upsun\Model\Address
      *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/update-org-address
      */
     public function updateOrgAddress(
         string $organizationId,
-        ?Address $address = null
-    ): Address {
+        ?\Upsun\Model\Address $address = null
+    ): \Upsun\Model\Address {
         return $this->updateOrgAddressWithHttpInfo(
             $organizationId,
             $address
@@ -365,14 +355,14 @@ final class ProfilesApi extends AbstractApi
     /**
      * Update address with HTTP Info
      *
-     * @return Address
+     * @return \Upsun\Model\Address
      *
      * @throws InvalidArgumentException|Exception
      */
     private function updateOrgAddressWithHttpInfo(
         string $organizationId,
-        ?Address $address = null
-    ): Address {
+        ?\Upsun\Model\Address $address = null
+    ): \Upsun\Model\Address {
         $request = $this->updateOrgAddressRequest(
             $organizationId,
             $address
@@ -387,13 +377,13 @@ final class ProfilesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Address::class,
+                '\Upsun\Model\Address',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -404,7 +394,7 @@ final class ProfilesApi extends AbstractApi
      */
     private function updateOrgAddressRequest(
         string $organizationId,
-        ?Address $address = null
+        ?\Upsun\Model\Address $address = null
     ): RequestInterface {
 
         // verify the required parameter 'organizationId' is set
@@ -413,7 +403,7 @@ final class ProfilesApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling updateOrgAddress'
             );
@@ -463,7 +453,6 @@ final class ProfilesApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -492,7 +481,6 @@ final class ProfilesApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
     /**
      * Update profile
      *
@@ -501,14 +489,14 @@ final class ProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return Profile
+     * @return \Upsun\Model\Profile
      *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/update-org-profile
      */
     public function updateOrgProfile(
         string $organizationId,
-        ?UpdateOrgProfileRequest $updateOrgProfileRequest = null
-    ): Profile {
+        ?\Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
+    ): \Upsun\Model\Profile {
         return $this->updateOrgProfileWithHttpInfo(
             $organizationId,
             $updateOrgProfileRequest
@@ -518,14 +506,14 @@ final class ProfilesApi extends AbstractApi
     /**
      * Update profile with HTTP Info
      *
-     * @return Profile
+     * @return \Upsun\Model\Profile
      *
      * @throws InvalidArgumentException|Exception
      */
     private function updateOrgProfileWithHttpInfo(
         string $organizationId,
-        ?UpdateOrgProfileRequest $updateOrgProfileRequest = null
-    ): Profile {
+        ?\Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
+    ): \Upsun\Model\Profile {
         $request = $this->updateOrgProfileRequest(
             $organizationId,
             $updateOrgProfileRequest
@@ -540,13 +528,13 @@ final class ProfilesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Profile::class,
+                '\Upsun\Model\Profile',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -557,7 +545,7 @@ final class ProfilesApi extends AbstractApi
      */
     private function updateOrgProfileRequest(
         string $organizationId,
-        ?UpdateOrgProfileRequest $updateOrgProfileRequest = null
+        ?\Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'organizationId' is set
@@ -566,7 +554,7 @@ final class ProfilesApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling updateOrgProfile'
             );
@@ -616,7 +604,6 @@ final class ProfilesApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

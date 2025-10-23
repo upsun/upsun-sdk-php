@@ -89,7 +89,6 @@ final class Vouchers implements ModelInterface, JsonSerializable
     {
         return $this->currency;
     }
-
     /**
     * Array of vouchers.
      * @return VouchersVouchersInner[]|null

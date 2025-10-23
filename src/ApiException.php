@@ -2,9 +2,6 @@
 
 namespace Upsun;
 
-use Throwable;
-use JsonException;
-use Exception;
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -40,10 +37,10 @@ class ApiException extends RequestException
         $message,
         RequestInterface $request,
         ?ResponseInterface $response = null,
-        ?Throwable $previous = null
+        ?\Throwable $previous = null
     ) {
         parent::__construct($message, $request, $previous);
-        if ($response !== null) {
+        if ($response) {
             $this->responseHeaders = $response->getHeaders();
             $this->responseBody = (string) $response->getBody();
             $this->code = $response->getStatusCode();
@@ -155,7 +152,7 @@ class ApiException extends RequestException
         try {
             $errorData = json_decode($this->responseBody, false, 512, JSON_THROW_ON_ERROR);
             $this->responseObject = ObjectSerializer::deserialize($errorData, Error::class, []);
-        } catch (JsonException | Exception $e) {
+        } catch (\JsonException | \Exception $e) {
             // Deserialization error, silently ignore
         }
     }

@@ -66,7 +66,6 @@ final class ProjectCarbon implements ModelInterface, JsonSerializable
     {
         return $this->meta;
     }
-
     /**
      * @return MetricsValue[]|null
      */

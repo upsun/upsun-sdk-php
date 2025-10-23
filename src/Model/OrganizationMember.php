@@ -12,7 +12,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class OrganizationMember implements ModelInterface, JsonSerializable
@@ -24,8 +23,8 @@ final class OrganizationMember implements ModelInterface, JsonSerializable
         private readonly ?array $permissions = [],
         private readonly ?string $level = null,
         private readonly ?bool $owner = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?OrganizationMemberLinks $links = null,
     ) {
     }
@@ -103,7 +102,7 @@ final class OrganizationMember implements ModelInterface, JsonSerializable
     /**
     * The date and time when the member was created.
     */
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
@@ -111,7 +110,7 @@ final class OrganizationMember implements ModelInterface, JsonSerializable
     /**
     * The date and time when the member was last updated.
     */
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

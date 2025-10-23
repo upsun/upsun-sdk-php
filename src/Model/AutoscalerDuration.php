@@ -21,17 +21,11 @@ final class AutoscalerDuration implements JsonSerializable
      * Possible values of this enum
      */
     public const NUMBER_60 = 60;
-
     public const NUMBER_120 = 120;
-
     public const NUMBER_300 = 300;
-
     public const NUMBER_600 = 600;
-
     public const NUMBER_1800 = 1800;
-
     public const NUMBER_3600 = 3600;
-
     private string $value;
 
     /**
@@ -41,10 +35,9 @@ final class AutoscalerDuration implements JsonSerializable
     {
         if (!in_array($value, self::getAllowableEnumValues(), true)) {
             throw new InvalidArgumentException(
-                sprintf("Invalid value '%s' for enum AutoscalerDuration", $value)
+                "Invalid value '{$value}' for enum AutoscalerDuration"
             );
         }
-
         $this->value = $value;
     }
 

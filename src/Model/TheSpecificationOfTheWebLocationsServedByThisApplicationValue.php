@@ -83,7 +83,6 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     {
         return $this->headers;
     }
-
     /**
      * @return SpecificOverridesValue[]
      */

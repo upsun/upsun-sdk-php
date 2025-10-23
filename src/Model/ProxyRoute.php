@@ -17,11 +17,11 @@ use JsonSerializable;
 final class ProxyRoute implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly string $id,
         private readonly array $attributes,
         private readonly string $type,
         private readonly TLSSettingsForTheRoute $tls,
         private readonly string $to,
+        private readonly ?string $id = null,
         private readonly ?bool $primary = null,
         private readonly ?string $productionUrl = null,
         private readonly ?TheConfigurationOfTheRedirects $redirects = null,
@@ -40,11 +40,11 @@ final class ProxyRoute implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'id' => $this->id,
             'attributes' => $this->attributes,
             'type' => $this->type,
             'tls' => $this->tls,
             'to' => $this->to,
+            'id' => $this->id,
             'primary' => $this->primary,
             'productionUrl' => $this->productionUrl,
             'redirects' => $this->redirects,
@@ -58,11 +58,6 @@ final class ProxyRoute implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 
     public function getAttributes(): array
@@ -83,6 +78,11 @@ final class ProxyRoute implements ModelInterface, JsonSerializable
     public function getTo(): string
     {
         return $this->to;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 
     public function getPrimary(): ?bool

@@ -46,7 +46,6 @@ final class ProjectSettingsPatch implements ModelInterface, JsonSerializable
     {
         return $this->initialize;
     }
-
     /**
      * @return DataRetentionConfigurationValue1[]|null
      */

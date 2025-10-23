@@ -49,7 +49,6 @@ final class OrganizationEstimationObjectSubscriptions implements ModelInterface,
     {
         return $this->total;
     }
-
     /**
     * The list of active subscriptions.
      * @return OrganizationEstimationObjectSubscriptionsListInner[]|null

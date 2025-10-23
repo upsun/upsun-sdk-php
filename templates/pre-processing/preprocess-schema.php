@@ -84,6 +84,12 @@ class OpenApiPreprocessor
                     $route['properties'][$propName] = $nullableProp;
                     $addedProperties[] = $propName;
                 } else {
+                    // Force 'id' property to be nullable
+                    if ($propName === 'id' && !($existingProperties[$propName]['nullable'] ?? false)) {
+                        $route['properties'][$propName]['nullable'] = true;
+                        $addedProperties[] = $propName . " (forced nullable)";
+                    }
+
                     // Check if this property is nullable in any other route type
                     foreach ($this->routeTypes as $otherRouteType) {
                         if ($otherRouteType === $routeType) {

@@ -2,9 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\AutoscalerSettings;
-use Upsun\Model\AutoscalerAlertPartial;
-use Upsun\Model\AutoscalerEmptyBody;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -30,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class AutoscalingApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -66,14 +62,14 @@ final class AutoscalingApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AutoscalerSettings
+     * @return \Upsun\Model\AutoscalerSettings
      *
      * @see https://docs.upsun.com/api/#tag/Autoscaling/operation/get-autoscaler-settings
      */
     public function getAutoscalerSettings(
         string $projectId,
         string $environmentId
-    ): AutoscalerSettings {
+    ): \Upsun\Model\AutoscalerSettings {
         return $this->getAutoscalerSettingsWithHttpInfo(
             $projectId,
             $environmentId
@@ -82,14 +78,14 @@ final class AutoscalingApi extends AbstractApi
 
     /**
      *
-     * @return AutoscalerSettings
+     * @return \Upsun\Model\AutoscalerSettings
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getAutoscalerSettingsWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AutoscalerSettings {
+    ): \Upsun\Model\AutoscalerSettings {
         $request = $this->getAutoscalerSettingsRequest(
             $projectId,
             $environmentId
@@ -104,13 +100,13 @@ final class AutoscalingApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AutoscalerSettings::class,
+                '\Upsun\Model\AutoscalerSettings',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -130,7 +126,7 @@ final class AutoscalingApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getAutoscalerSettings'
             );
@@ -142,12 +138,11 @@ final class AutoscalingApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling getAutoscalerSettings'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/autoscaling/settings';
         $formParams = [];
         $queryParams = [];
@@ -163,7 +158,6 @@ final class AutoscalingApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -193,7 +187,6 @@ final class AutoscalingApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -222,22 +215,21 @@ final class AutoscalingApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Modifies Autoscaler settings
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AutoscalerSettings
+     * @return \Upsun\Model\AutoscalerSettings
      *
      * @see https://docs.upsun.com/api/#tag/Autoscaling/operation/patch-autoscaler-settings
      */
     public function patchAutoscalerSettings(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
-    ): AutoscalerSettings {
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
+    ): \Upsun\Model\AutoscalerSettings {
         return $this->patchAutoscalerSettingsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -247,15 +239,15 @@ final class AutoscalingApi extends AbstractApi
 
     /**
      *
-     * @return AutoscalerSettings
+     * @return \Upsun\Model\AutoscalerSettings
      *
      * @throws InvalidArgumentException|Exception
      */
     private function patchAutoscalerSettingsWithHttpInfo(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
-    ): AutoscalerSettings {
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
+    ): \Upsun\Model\AutoscalerSettings {
         $request = $this->patchAutoscalerSettingsRequest(
             $projectId,
             $environmentId,
@@ -271,13 +263,13 @@ final class AutoscalingApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AutoscalerSettings::class,
+                '\Upsun\Model\AutoscalerSettings',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -289,7 +281,7 @@ final class AutoscalingApi extends AbstractApi
     private function patchAutoscalerSettingsRequest(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -298,7 +290,7 @@ final class AutoscalingApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling patchAutoscalerSettings'
             );
@@ -310,7 +302,7 @@ final class AutoscalingApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling patchAutoscalerSettings'
             );
@@ -331,7 +323,6 @@ final class AutoscalingApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -369,7 +360,6 @@ final class AutoscalingApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -398,7 +388,6 @@ final class AutoscalingApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
     /**
      * Sends an Autoscaler alert for processing
      *
@@ -412,8 +401,8 @@ final class AutoscalingApi extends AbstractApi
     public function postAutoscalerAlert(
         string $projectId,
         string $environmentId,
-        ?AutoscalerAlertPartial $autoscalerAlertPartial = null
-    ): AutoscalerEmptyBody {
+        ?\Upsun\Model\AutoscalerAlertPartial $autoscalerAlertPartial = null
+    ): \Upsun\Model\AutoscalerEmptyBody {
         return $this->postAutoscalerAlertWithHttpInfo(
             $projectId,
             $environmentId,
@@ -430,8 +419,8 @@ final class AutoscalingApi extends AbstractApi
     private function postAutoscalerAlertWithHttpInfo(
         string $projectId,
         string $environmentId,
-        ?AutoscalerAlertPartial $autoscalerAlertPartial = null
-    ): AutoscalerEmptyBody {
+        ?\Upsun\Model\AutoscalerAlertPartial $autoscalerAlertPartial = null
+    ): \Upsun\Model\AutoscalerEmptyBody {
         $request = $this->postAutoscalerAlertRequest(
             $projectId,
             $environmentId,
@@ -451,9 +440,9 @@ final class AutoscalingApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -465,7 +454,7 @@ final class AutoscalingApi extends AbstractApi
     private function postAutoscalerAlertRequest(
         string $projectId,
         string $environmentId,
-        ?AutoscalerAlertPartial $autoscalerAlertPartial = null
+        ?\Upsun\Model\AutoscalerAlertPartial $autoscalerAlertPartial = null
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -474,7 +463,7 @@ final class AutoscalingApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling postAutoscalerAlert'
             );
@@ -486,7 +475,7 @@ final class AutoscalingApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling postAutoscalerAlert'
             );
@@ -507,7 +496,6 @@ final class AutoscalingApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -545,7 +533,6 @@ final class AutoscalingApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -574,22 +561,21 @@ final class AutoscalingApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Updates Autoscaler settings
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return AutoscalerSettings
+     * @return \Upsun\Model\AutoscalerSettings
      *
      * @see https://docs.upsun.com/api/#tag/Autoscaling/operation/post-autoscaler-settings
      */
     public function postAutoscalerSettings(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
-    ): AutoscalerSettings {
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
+    ): \Upsun\Model\AutoscalerSettings {
         return $this->postAutoscalerSettingsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -599,15 +585,15 @@ final class AutoscalingApi extends AbstractApi
 
     /**
      *
-     * @return AutoscalerSettings
+     * @return \Upsun\Model\AutoscalerSettings
      *
      * @throws InvalidArgumentException|Exception
      */
     private function postAutoscalerSettingsWithHttpInfo(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
-    ): AutoscalerSettings {
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
+    ): \Upsun\Model\AutoscalerSettings {
         $request = $this->postAutoscalerSettingsRequest(
             $projectId,
             $environmentId,
@@ -623,13 +609,13 @@ final class AutoscalingApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AutoscalerSettings::class,
+                '\Upsun\Model\AutoscalerSettings',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -641,7 +627,7 @@ final class AutoscalingApi extends AbstractApi
     private function postAutoscalerSettingsRequest(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -650,7 +636,7 @@ final class AutoscalingApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling postAutoscalerSettings'
             );
@@ -662,7 +648,7 @@ final class AutoscalingApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling postAutoscalerSettings'
             );
@@ -683,7 +669,6 @@ final class AutoscalingApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -721,7 +706,6 @@ final class AutoscalingApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

@@ -37,7 +37,6 @@ final class UpdateUsageAlertsRequest implements ModelInterface, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-
     /**
      * @return Alert[]|null
      */

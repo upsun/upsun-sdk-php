@@ -58,7 +58,6 @@ final class VouchersVouchersInner implements ModelInterface, JsonSerializable
     {
         return $this->currency;
     }
-
     /**
      * @return VouchersVouchersInnerOrdersInner[]|null
      */

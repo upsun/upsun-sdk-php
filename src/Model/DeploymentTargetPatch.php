@@ -81,7 +81,6 @@ final class DeploymentTargetPatch implements ModelInterface, JsonSerializable
     {
         return $this->enterpriseEnvironmentsMapping;
     }
-
     /**
      * @return TheHostsOfTheDeploymentTargetInner1[]|null
      */

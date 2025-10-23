@@ -55,7 +55,6 @@ final class CreateProjectInviteRequest implements ModelInterface, JsonSerializab
     {
         return $this->role;
     }
-
     /**
      * @return CreateProjectInviteRequestPermissionsInner[]|null
      */
@@ -64,7 +63,6 @@ final class CreateProjectInviteRequest implements ModelInterface, JsonSerializab
     {
         return $this->permissions;
     }
-
     /**
      * @return CreateProjectInviteRequestEnvironmentsInner[]|null
      */

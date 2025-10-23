@@ -51,7 +51,6 @@ final class Tree implements ModelInterface, JsonSerializable
     {
         return $this->sha;
     }
-
     /**
      * @return TheTreeItemsInner[]
      */

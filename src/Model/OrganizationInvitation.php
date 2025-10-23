@@ -12,20 +12,19 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class OrganizationInvitation implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?DateTime $finishedAt = null,
+        private readonly ?\DateTime $finishedAt = null,
         private readonly ?string $id = null,
         private readonly ?string $state = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $email = null,
         private readonly ?OrganizationInvitationOwner $owner = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?array $permissions = [],
     ) {
     }
@@ -98,7 +97,7 @@ final class OrganizationInvitation implements ModelInterface, JsonSerializable
     /**
     * The date and time when the invitation was created.
     */
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
@@ -106,7 +105,7 @@ final class OrganizationInvitation implements ModelInterface, JsonSerializable
     /**
     * The date and time when the invitation was last updated.
     */
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -114,7 +113,7 @@ final class OrganizationInvitation implements ModelInterface, JsonSerializable
     /**
     * The date and time when the invitation was finished.
     */
-    public function getFinishedAt(): ?DateTime
+    public function getFinishedAt(): ?\DateTime
     {
         return $this->finishedAt;
     }

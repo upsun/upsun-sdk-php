@@ -2,10 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Region;
-use Upsun\Model\StringFilter;
-use Upsun\Model\ListRegions200Response;
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -31,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class RegionsApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -69,13 +64,13 @@ final class RegionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return Region
+     * @return \Upsun\Model\Region
      *
      * @see https://docs.upsun.com/api/#tag/Regions/operation/get-region
      */
     public function getRegion(
         string $regionId
-    ): Region {
+    ): \Upsun\Model\Region {
         return $this->getRegionWithHttpInfo(
             $regionId
         );
@@ -84,13 +79,13 @@ final class RegionsApi extends AbstractApi
     /**
      * Get region with HTTP Info
      *
-     * @return Region
+     * @return \Upsun\Model\Region
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getRegionWithHttpInfo(
         string $regionId
-    ): Region {
+    ): \Upsun\Model\Region {
         $request = $this->getRegionRequest(
             $regionId
         );
@@ -104,13 +99,13 @@ final class RegionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Region::class,
+                '\Upsun\Model\Region',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -129,12 +124,11 @@ final class RegionsApi extends AbstractApi
             || (is_array($regionId)
             && count($regionId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $regionId 
                 when calling getRegion'
             );
         }
-
         $resourcePath = '/regions/{region_id}';
         $formParams = [];
         $queryParams = [];
@@ -171,7 +165,6 @@ final class RegionsApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -200,7 +193,6 @@ final class RegionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List regions
      *
@@ -209,19 +201,19 @@ final class RegionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return ListRegions200Response
+     * @return \Upsun\Model\ListRegions200Response
      *
      * @see https://docs.upsun.com/api/#tag/Regions/operation/list-regions
      */
     public function listRegions(
-        ?StringFilter $filterAvailable = null,
-        ?StringFilter $filterPrivate = null,
-        ?StringFilter $filterZone = null,
+        ?\Upsun\Model\StringFilter $filterAvailable = null,
+        ?\Upsun\Model\StringFilter $filterPrivate = null,
+        ?\Upsun\Model\StringFilter $filterZone = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListRegions200Response {
+    ): \Upsun\Model\ListRegions200Response {
         return $this->listRegionsWithHttpInfo(
             $filterAvailable,
             $filterPrivate,
@@ -236,19 +228,19 @@ final class RegionsApi extends AbstractApi
     /**
      * List regions with HTTP Info
      *
-     * @return ListRegions200Response
+     * @return \Upsun\Model\ListRegions200Response
      *
      * @throws InvalidArgumentException|Exception
      */
     private function listRegionsWithHttpInfo(
-        ?StringFilter $filterAvailable = null,
-        ?StringFilter $filterPrivate = null,
-        ?StringFilter $filterZone = null,
+        ?\Upsun\Model\StringFilter $filterAvailable = null,
+        ?\Upsun\Model\StringFilter $filterPrivate = null,
+        ?\Upsun\Model\StringFilter $filterZone = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListRegions200Response {
+    ): \Upsun\Model\ListRegions200Response {
         $request = $this->listRegionsRequest(
             $filterAvailable,
             $filterPrivate,
@@ -268,13 +260,13 @@ final class RegionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ListRegions200Response::class,
+                '\Upsun\Model\ListRegions200Response',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -284,9 +276,9 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     private function listRegionsRequest(
-        ?StringFilter $filterAvailable = null,
-        ?StringFilter $filterPrivate = null,
-        ?StringFilter $filterZone = null,
+        ?\Upsun\Model\StringFilter $filterAvailable = null,
+        ?\Upsun\Model\StringFilter $filterPrivate = null,
+        ?\Upsun\Model\StringFilter $filterZone = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -299,14 +291,13 @@ final class RegionsApi extends AbstractApi
 
 
         if ($pageSize !== null && $pageSize > 100) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'invalid value for "$pageSize" when calling RegionsApi.listRegions, 
                 must be smaller than or equal to 100.'
             );
         }
-
         if ($pageSize !== null && $pageSize < 1) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'invalid value for "$pageSize" when calling RegionsApi.listRegions,
                 must be bigger than or equal to 1.'
             );
@@ -328,7 +319,7 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[available]'] = $filterAvailable instanceof DateTime
+                $queryParams['filter[available]'] = $filterAvailable instanceof \DateTime
                     ? $filterAvailable->format(DATE_ATOM)
                     : ($filterAvailable->getEq());
             }
@@ -343,7 +334,7 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[private]'] = $filterPrivate instanceof DateTime
+                $queryParams['filter[private]'] = $filterPrivate instanceof \DateTime
                     ? $filterPrivate->format(DATE_ATOM)
                     : ($filterPrivate->getEq());
             }
@@ -358,7 +349,7 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[zone]'] = $filterZone instanceof DateTime
+                $queryParams['filter[zone]'] = $filterZone instanceof \DateTime
                     ? $filterZone->format(DATE_ATOM)
                     : ($filterZone->getEq());
             }
@@ -373,7 +364,7 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize instanceof DateTime
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
                     ? $pageSize->format(DATE_ATOM)
                     : ($pageSize);
             }
@@ -388,7 +379,7 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore instanceof DateTime
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
                     ? $pageBefore->format(DATE_ATOM)
                     : ($pageBefore);
             }
@@ -403,7 +394,7 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter instanceof DateTime
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
                     ? $pageAfter->format(DATE_ATOM)
                     : ($pageAfter);
             }
@@ -418,7 +409,7 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort instanceof DateTime
+                $queryParams['sort'] = $sort instanceof \DateTime
                     ? $sort->format(DATE_ATOM)
                     : ($sort);
             }
@@ -447,7 +438,6 @@ final class RegionsApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

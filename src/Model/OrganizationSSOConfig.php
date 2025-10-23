@@ -14,7 +14,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
@@ -24,8 +23,8 @@ final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
         private readonly ?string $domain = null,
         private readonly ?string $organizationId = null,
         private readonly ?bool $enforced = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -86,7 +85,7 @@ final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
     /**
     * The date and time when the SSO configuration was created.
     */
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
@@ -94,7 +93,7 @@ final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
     /**
     * The date and time when the SSO configuration was last updated.
     */
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

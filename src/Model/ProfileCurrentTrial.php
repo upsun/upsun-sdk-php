@@ -14,7 +14,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class ProfileCurrentTrial implements ModelInterface, JsonSerializable
@@ -22,9 +21,9 @@ final class ProfileCurrentTrial implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly ?string $pendingVerification = null,
         private readonly ?bool $active = null,
-        private readonly ?DateTime $created = null,
+        private readonly ?\DateTime $created = null,
         private readonly ?string $description = null,
-        private readonly ?DateTime $expiration = null,
+        private readonly ?\DateTime $expiration = null,
         private readonly ?ProfileCurrentTrialCurrent $current = null,
         private readonly ?ProfileCurrentTrialSpend $spend = null,
         private readonly ?ProfileCurrentTrialSpendRemaining $spendRemaining = null,
@@ -72,7 +71,7 @@ final class ProfileCurrentTrial implements ModelInterface, JsonSerializable
     /**
     * The trial creation date.
     */
-    public function getCreated(): ?DateTime
+    public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
@@ -88,7 +87,7 @@ final class ProfileCurrentTrial implements ModelInterface, JsonSerializable
     /**
     * The trial expiration-date.
     */
-    public function getExpiration(): ?DateTime
+    public function getExpiration(): ?\DateTime
     {
         return $this->expiration;
     }

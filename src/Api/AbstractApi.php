@@ -2,10 +2,10 @@
 
 namespace Upsun\Api;
 
-use InvalidArgumentException;
 use Exception;
 use JsonException;
 use RuntimeException;
+use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClientFactory;
 use Http\Discovery\Psr17FactoryDiscovery;
@@ -17,6 +17,7 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriFactoryInterface;
+use Http\Client\Exception\HttpException;
 use Upsun\ApiException;
 use Upsun\ObjectSerializer;
 use Psr\Http\Message\UriInterface;
@@ -267,7 +268,7 @@ abstract class AbstractApi
     {
         // Parse generic type: array<string,\Upsun\Model\SomeModel>
         if (!preg_match('/^array<([^,]+),\s*(.+)>$/', $dataType, $matches)) {
-            throw new InvalidArgumentException('Invalid generic array type: ' . $dataType);
+            throw new \InvalidArgumentException("Invalid generic array type: $dataType");
         }
 
         $keyType = trim($matches[1]);
@@ -289,7 +290,6 @@ abstract class AbstractApi
                     $request
                 );
             }
-
             if ($keyType === 'int' && !is_int($key)) {
                 throw new ApiException(
                     "Expected integer key, got " . gettype($key),

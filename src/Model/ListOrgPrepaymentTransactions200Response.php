@@ -46,7 +46,6 @@ final class ListOrgPrepaymentTransactions200Response implements ModelInterface, 
     {
         return $this->count;
     }
-
     /**
      * @return PrepaymentTransactionObject[]|null
      */
