@@ -1,8 +1,7 @@
 > [!CAUTION]
-> **This project is owned by the Upsun Advocacy team. It is in an early stage of development [experimental] and should be used with caution by Upsun customers/community. <br /><br />
-> This project is not officially supported by Upsun and does not fall under any Support plans. Use this repository at your own risk — it is provided without guarantees or warranties!**
+> This project is currently in **Beta**, meaning features and APIs may evolve over time.
 >
-> Don’t hesitate to join our [Discord](https://discord.com/invite/platformsh) to share your thoughts about this project.
+> You’re welcome to share feedback or feature requests on our [Discord community](https://discord.gg/upsun).
 
 # Upsun SDK PHP
 
@@ -81,7 +80,7 @@ $response = $client->projects->update(<projectId>, $projectData);
 ### Example: Delete a project
 
 ```php
-$client->projects->delete(<organizationId>, <projectId>);
+$client->projects->delete(<projectId>);
 ```
 
 ---

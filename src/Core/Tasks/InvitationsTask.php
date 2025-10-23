@@ -2,8 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Exception;
-use InvalidArgumentException;
 use Upsun\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
@@ -24,18 +22,17 @@ use Upsun\UpsunClient;
 class InvitationsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly OrganizationInvitationsApi $orgInvApi,
         private readonly ProjectInvitationsApi $prjInvApi,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**
      * Cancels a pending invitation to an organization
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function cancelOrgInvite(string $organizationId, string $invitationId): void
     {
@@ -45,7 +42,7 @@ class InvitationsTask extends TaskBase
     /**
      * Invites user to an organization by email
      *
-     * @throws ApiException|Exception
+     * @throws ApiException
      */
     public function createOrgInvite(
         string $organizationId,
@@ -64,7 +61,7 @@ class InvitationsTask extends TaskBase
     /**
      * Lists invitations to an organization
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @return OrganizationInvitation[]
      */
@@ -89,8 +86,7 @@ class InvitationsTask extends TaskBase
     /**
      * Cancels a pending invitation to a project
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function cancelProjectInvite(string $projectId, string $invitationId): void
     {
@@ -100,8 +96,7 @@ class InvitationsTask extends TaskBase
     /**
      * Invites user to a project by email
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @param array{
      *     email: string,
      *     role?: string,
@@ -121,7 +116,7 @@ class InvitationsTask extends TaskBase
     /**
      * Lists invitations to a project
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @return ProjectInvitation[]
      */

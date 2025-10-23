@@ -3392,11 +3392,11 @@ final class ObjectOpenApiTypesMapper
         ],
 
         ProxyRoute::class => [
-            'id' => 'string',
             'attributes' => 'string[]',
             'type' => 'string',
             'tls' => TLSSettingsForTheRoute::class,
             'to' => 'string',
+            'id' => '?string',
             'primary' => '?bool',
             'production_url' => '?string',
             'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects',
@@ -3407,11 +3407,11 @@ final class ObjectOpenApiTypesMapper
         ],
 
         RedirectRoute::class => [
-            'id' => 'string',
             'attributes' => 'string[]',
             'type' => 'string',
             'tls' => TLSSettingsForTheRoute::class,
             'to' => 'string',
+            'id' => '?string',
             'primary' => '?bool',
             'production_url' => '?string',
             'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects',
@@ -3581,11 +3581,11 @@ final class ObjectOpenApiTypesMapper
         ],
 
         Route::class => [
-            'id' => 'string',
             'attributes' => 'string[]',
             'type' => 'string',
             'tls' => TLSSettingsForTheRoute::class,
             'to' => '?string',
+            'id' => '?string',
             'primary' => '?bool',
             'production_url' => '?string',
             'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects',
@@ -3603,11 +3603,11 @@ final class ObjectOpenApiTypesMapper
         ],
 
         RoutesValue::class => [
-            'id' => 'string',
             'attributes' => 'string[]',
             'type' => 'string',
             'tls' => TLSSettingsForTheRoute::class,
             'to' => '?string',
+            'id' => '?string',
             'primary' => '?bool',
             'production_url' => '?string',
             'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects',
@@ -3894,7 +3894,6 @@ final class ObjectOpenApiTypesMapper
             'restricted' => 'bool',
             'suspended' => 'bool',
             'user_licenses' => 'int',
-            'id' => 'string',
             'plan' => '?string',
             'environments' => '?int',
             'resources' => '?\Upsun\Model\ResourcesLimits',
@@ -4429,10 +4428,10 @@ final class ObjectOpenApiTypesMapper
         ],
 
         UpstreamRoute::class => [
-            'id' => 'string',
             'attributes' => 'string[]',
             'type' => 'string',
             'tls' => TLSSettingsForTheRoute::class,
+            'id' => '?string',
             'primary' => '?bool',
             'production_url' => '?string',
             'cache' => '?\Upsun\Model\CacheConfiguration',

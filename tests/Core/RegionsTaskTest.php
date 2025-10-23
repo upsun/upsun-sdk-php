@@ -180,7 +180,7 @@ class RegionsTaskTest extends BaseTestCase
             ));
 
         $result = $this->regionsTask->list(
-            filter_zone: $filters,
+            filterZone: $filters,
             pageSize: 2,
             pageBefore: 'prev',
             pageAfter: 'next',

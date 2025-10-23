@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Model\AcceptedResponse;
@@ -21,16 +20,16 @@ use Upsun\UpsunClient;
 class DomainsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly DomainManagementApi $api,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**
      * Adds a project (or environment) domain
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
      *     name: string,
@@ -59,7 +58,7 @@ class DomainsTask extends TaskBase
     /**
      * Deletes a project (or environment) domain
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function delete(string $projectId, string $domainId, ?string $environmentId = null): AcceptedResponse
     {
@@ -73,7 +72,7 @@ class DomainsTask extends TaskBase
     /**
      * Gets a project (or environment) domain
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $projectId, string $domainId, ?string $environmentId = null): Domain
     {
@@ -87,7 +86,7 @@ class DomainsTask extends TaskBase
     /**
      * Gets list of project (or environment) domains
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @return Domain[]
      */
@@ -103,7 +102,7 @@ class DomainsTask extends TaskBase
     /**
      * Updates a project (or environment) domain
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
      *     attributes?: array,

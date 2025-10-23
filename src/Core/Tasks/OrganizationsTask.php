@@ -5,8 +5,6 @@ namespace Upsun\Core\Tasks;
 use Upsun\Api\AddOnsApi;
 use Upsun\Model\ListOrgs200Response;
 use DateTime;
-use Exception;
-use InvalidArgumentException;
 use Upsun\ApiException;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MFAApi;
@@ -61,7 +59,7 @@ class OrganizationsTask extends TaskBase
     private const DEFAULT_UPSUN_PLAN = 'upsun/flexible';
 
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly OrganizationsApi $api,
         private readonly OrganizationProjectsApi $projectsApi,
         private readonly OrganizationMembersApi $membersApi,
@@ -74,14 +72,13 @@ class OrganizationsTask extends TaskBase
         private readonly VouchersApi $vouchersApi,
         private readonly AddOnsApi $addOnsApi,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**
      * Creates organization
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
      *     label: string,
@@ -93,15 +90,14 @@ class OrganizationsTask extends TaskBase
      */
     public function create(array $data): Organization
     {
-        $create_org_request = new CreateOrgRequest(...$data);
-        return $this->api->createOrg($create_org_request);
+        $createOrgRequest = new CreateOrgRequest(...$data);
+        return $this->api->createOrg($createOrgRequest);
     }
 
     /**
      * Deletes organization
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function delete(string $organizationId): void
     {
@@ -111,8 +107,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Gets organization
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $organizationId): Organization
     {
@@ -122,7 +117,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Lists organizations
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(
         ?array $filterId = null,
@@ -159,7 +154,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Lists user organizations
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listUserOrgs(
         string $userId,
@@ -190,7 +185,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Lists current user organizations
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listCurrentUserOrgs(
         ?array $filterId = null,
@@ -218,18 +213,17 @@ class OrganizationsTask extends TaskBase
     /**
      * Updates an organization
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function update(string $organizationId, ?array $updateOrgData = null): Organization
     {
-        $update_org_request = new UpdateOrgRequest(...$updateOrgData);
-        return $this->api->updateOrg($organizationId, $update_org_request);
+        $updateOrgRequest = new UpdateOrgRequest(...$updateOrgData);
+        return $this->api->updateOrg($organizationId, $updateOrgRequest);
     }
 
     /**
      * Gets Teams of the current organization (for current user)
      *
-     * @throws Exception
      * @throws ApiException
      */
     public function listTeams(
@@ -254,8 +248,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Gets a project of a specific organization
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function getProject(string $organizationId, string $projectId): OrganizationProject
     {
@@ -266,7 +259,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Lists projects from an organization
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjects(
         string $organizationId,
@@ -297,8 +290,9 @@ class OrganizationsTask extends TaskBase
     /**
      * Creates organization member
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     *
+     * @param ('read'|'write'|'admin')[]|null $permissions
      */
     public function createMember(
         string $organizationId,
@@ -315,7 +309,9 @@ class OrganizationsTask extends TaskBase
     /**
      * Updates organization member
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     *
+     * @param ('read'|'write'|'admin')[]|null $permissions
      */
     public function updateMember(
         string $organizationId,
@@ -331,8 +327,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Gets organization member
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function getMember(string $organizationId, string $userId): OrganizationMember
     {
@@ -342,7 +337,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Lists members of an organization
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listMembers(
         string $organizationId,
@@ -365,8 +360,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Delete an organization member
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function deleteMember(string $organizationId, string $userId): void
     {
@@ -376,8 +370,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Checks if the user is able to create a new project in the organization.
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function canCreateProject(string $organizationId): CanCreateNewOrgSubscription200Response
     {
@@ -387,7 +380,16 @@ class OrganizationsTask extends TaskBase
     /**
      * Creates a project
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @param array{
+     *     projectRegion: string,
+     *     plan?: string,
+     *     projectTitle?: string,
+     *     optionsUrl?: string,
+     *     defaultBranch?: string,
+     *     environments?: int,
+     *     storage?: int
+     * } $createProjectData
      */
     public function createProject(string $organizationId, array $createProjectData): Subscription
     {
@@ -397,17 +399,17 @@ class OrganizationsTask extends TaskBase
     /**
      * Deletes a project
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProject(string $organizationId, string $projectId): void
+    public function deleteProject(string $projectId): void
     {
-        $this->client->projects->delete($organizationId, $projectId);
+        $this->client->projects->delete($projectId);
     }
 
     /**
      * Estimates the price of a new project
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function estimateNewProject(
         string $organizationId,
@@ -429,7 +431,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Estimates the price of a project
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function estimateProject(
         string $organizationId,
@@ -453,7 +455,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Gets current usage for a project
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function getProjectUsage(
         string $organizationId,
@@ -472,7 +474,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Updates a project
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function updateProject(
         string $projectId,
@@ -484,7 +486,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Disables organization MFA enforcement
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function disableMfaEnforcement(string $organizationId): void
     {
@@ -494,7 +496,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Enables organization MFA enforcement
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function enableMfaEnforcement(string $organizationId): void
     {
@@ -504,7 +506,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Gets organization MFA settings
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function getMfaEnforcement(string $organizationId): OrganizationMFAEnforcement
     {
@@ -516,7 +518,7 @@ class OrganizationsTask extends TaskBase
      *
      * @return SendOrgMfaReminders200ResponseValue[]
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function sendMfaReminders(string $organizationId, ?array $userIds = null): array
     {
@@ -527,30 +529,30 @@ class OrganizationsTask extends TaskBase
     /**
      * Gets invoice
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getInvoice(string $invoice_id, string $organizationId): Invoice
+    public function getInvoice(string $invoiceId, string $organizationId): Invoice
     {
-        return $this->invoicesApi->getOrgInvoice($invoice_id, $organizationId);
+        return $this->invoicesApi->getOrgInvoice($invoiceId, $organizationId);
     }
 
     /**
      * Lists invoices
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listInvoices(
         string $organizationId,
         ?string $filterStatus = null,
-        ?string $filter_type = null,
-        ?string $filter_order_id = null,
+        ?string $filterType = null,
+        ?string $filterOrderId = null,
         ?int $page = null
     ): ListOrgInvoices200Response {
         return $this->invoicesApi->listOrgInvoices(
             $organizationId,
             $filterStatus,
-            $filter_type,
-            $filter_order_id,
+            $filterType,
+            $filterOrderId,
             $page
         );
     }
@@ -558,7 +560,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Creates confirmation credentials for 3D-Secure
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function createAuthorizationCredentials(
         string $organizationId,
@@ -570,7 +572,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Downloads an invoice.
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function downloadInvoice(string $token): string
     {
@@ -580,7 +582,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Gets order
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function getOrder(string $organizationId, string $orderId, ?string $mode = null): Order
     {
@@ -590,7 +592,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Lists orders
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listOrders(
         string $organizationId,
@@ -605,7 +607,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Gets address
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function getAddress(string $organizationId): Address
     {
@@ -615,7 +617,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Gets profile
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function getProfile(string $organizationId): Profile
     {
@@ -625,7 +627,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Updates address
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array|null{
      *     country?: string,
@@ -660,7 +662,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Updates profile
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array|null{
      *     defaultCatalog?: string,
@@ -673,7 +675,7 @@ class OrganizationsTask extends TaskBase
      */
     public function updateProfile(string $organizationId, ?array $data = null): Profile
     {
-        $update_org_profile_request = $data ? new UpdateOrgProfileRequest(
+        $updateOrgProfileRequest = $data ? new UpdateOrgProfileRequest(
             defaultCatalog: $data['defaultCatalog'],
             projectOptionsUrl: $data['projectOptionsUrl'],
             securityContact: $data['securityContact'],
@@ -681,13 +683,13 @@ class OrganizationsTask extends TaskBase
             vatNumber: $data['vatNumber'],
             billingContact: $data['billingContact'],
         ) : null;
-        return $this->profilesApi->updateOrgProfile($organizationId, $update_org_profile_request);
+        return $this->profilesApi->updateOrgProfile($organizationId, $updateOrgProfileRequest);
     }
 
     /**
      * Lists plan records
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listRecords(
         string $organizationId,
@@ -716,7 +718,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Lists usage records
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listUsageRecords(
         string $organizationId,
@@ -739,7 +741,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Applies voucher
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function applyVoucher(string $organizationId, string $code): void
     {
@@ -752,7 +754,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Lists vouchers
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listVouchers(string $organizationId): Vouchers
     {
@@ -763,7 +765,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Get Organization Addons
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function getAddons(string $organizationId): OrganizationAddonsObject
     {
@@ -773,7 +775,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Updates Organization Addons
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
      *     userManagement?: string,

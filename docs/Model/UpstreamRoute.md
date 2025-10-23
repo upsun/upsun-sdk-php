@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  |
 **attributes** | **array<string,string>** |  |
 **type** | **string** |  |
 **tls** | [**\Upsun\Model\TLSSettingsForTheRoute**](TLSSettingsForTheRoute.md) |  |
+**id** | **string** |  | [optional]
 **primary** | **bool** |  | [optional]
 **productionUrl** | **string** |  | [optional]
 **cache** | [**\Upsun\Model\CacheConfiguration**](CacheConfiguration.md) |  | [optional]

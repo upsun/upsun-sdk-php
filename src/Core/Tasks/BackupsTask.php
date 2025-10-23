@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Exception;
 use Upsun\ApiException;
 use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Model\AcceptedResponse;
@@ -22,16 +21,16 @@ use Upsun\UpsunClient;
 class BackupsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly EnvironmentBackupsApi $api,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**
      * Creates snapshot of environment
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function backup(
         string $projectId,
@@ -46,7 +45,6 @@ class BackupsTask extends TaskBase
      * Deletes an environment snapshot
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws Exception
      */
     public function delete(string $projectId, string $environmentId, string $backupId): AcceptedResponse
     {
@@ -57,7 +55,6 @@ class BackupsTask extends TaskBase
      * Gets an environment snapshot's info
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws Exception
      */
     public function get(string $projectId, string $environmentId, string $backupId): Backup
     {
@@ -68,7 +65,6 @@ class BackupsTask extends TaskBase
      * Gets an environment's snapshot list
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws Exception
      *
      * @return Backup[]
      */
@@ -81,7 +77,6 @@ class BackupsTask extends TaskBase
      * Restores an environment snapshot
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws Exception
      *
      * @param array{
      *     restoreCode: bool,

@@ -3397,11 +3397,11 @@ final class ObjectOpenApiFormatsMapper
         ],
 
         ProxyRoute::class => [
-            'id' => null,
             'attributes' => null,
             'type' => null,
             'tls' => null,
             'to' => null,
+            'id' => null,
             'primary' => null,
             'productionUrl' => null,
             'redirects' => null,
@@ -3412,11 +3412,11 @@ final class ObjectOpenApiFormatsMapper
         ],
 
         RedirectRoute::class => [
-            'id' => null,
             'attributes' => null,
             'type' => null,
             'tls' => null,
             'to' => null,
+            'id' => null,
             'primary' => null,
             'productionUrl' => null,
             'redirects' => null,
@@ -3586,11 +3586,11 @@ final class ObjectOpenApiFormatsMapper
         ],
 
         Route::class => [
-            'id' => null,
             'attributes' => null,
             'type' => null,
             'tls' => null,
             'to' => null,
+            'id' => null,
             'primary' => null,
             'productionUrl' => null,
             'redirects' => null,
@@ -3608,11 +3608,11 @@ final class ObjectOpenApiFormatsMapper
         ],
 
         RoutesValue::class => [
-            'id' => null,
             'attributes' => null,
             'type' => null,
             'tls' => null,
             'to' => null,
+            'id' => null,
             'primary' => null,
             'productionUrl' => null,
             'redirects' => null,
@@ -3899,7 +3899,6 @@ final class ObjectOpenApiFormatsMapper
             'restricted' => null,
             'suspended' => null,
             'userLicenses' => null,
-            'id' => null,
             'plan' => null,
             'environments' => null,
             'resources' => null,
@@ -4434,10 +4433,10 @@ final class ObjectOpenApiFormatsMapper
         ],
 
         UpstreamRoute::class => [
-            'id' => null,
             'attributes' => null,
             'type' => null,
             'tls' => null,
+            'id' => null,
             'primary' => null,
             'productionUrl' => null,
             'cache' => null,

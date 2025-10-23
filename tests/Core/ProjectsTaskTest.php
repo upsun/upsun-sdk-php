@@ -354,7 +354,6 @@ class ProjectsTaskTest extends BaseTestCase
      */
     public function testDelete()
     {
-        $orgId = 'test-org';
         $projectId = 'test-project';
 
         $fakeOrganizationProject = [
@@ -363,7 +362,7 @@ class ProjectsTaskTest extends BaseTestCase
                 'language' => 'php',
                 'framework' => 'symfony',
             ],
-            'title' => 'My Student Project',
+            'title' => 'My Test Project',
             'description' => 'This is a fake project for testing.',
             'owner' => 'user_123',
             'status' => [
@@ -373,7 +372,7 @@ class ProjectsTaskTest extends BaseTestCase
             'timezone' => 'Europe/Paris',
             'region' => 'eu-west-1',
             'repository' => [
-                'url' => 'git@github.com:student/project.git',
+                'url' => 'git@github.com:test/project.git',
                 'clientSshKey' => 'ssh-rsa AAAAB3Nza...fake',
             ],
             'subscription' => [
@@ -384,7 +383,6 @@ class ProjectsTaskTest extends BaseTestCase
                 'restricted' => false,
                 'suspended' => false,
                 'userLicenses' => 10,
-                'id' => 'sub_123456',
                 'plan' => 'pro',
                 'environments' => 3,
                 'resources' => [
@@ -410,10 +408,10 @@ class ProjectsTaskTest extends BaseTestCase
             ],
             'createdAt' => '2025-01-01T10:00:00Z',
             'updatedAt' => '2025-09-01T12:00:00Z',
-            'namespace' => 'student-namespace',
+            'namespace' => 'namespace',
             'organization' => 'org_987',
             'defaultBranch' => 'main',
-            'defaultDomain' => 'student-project.upsun.dev',
+            'defaultDomain' => 'project.upsun.dev',
         ];
 
         $this->httpClient
@@ -434,7 +432,7 @@ class ProjectsTaskTest extends BaseTestCase
                     ])
                 )
             );
-        $this->projectsTask->delete($orgId, $projectId);
+        $this->projectsTask->delete($projectId);
     }
 
     public function testGetCapabilities()
@@ -3119,7 +3117,6 @@ FAKE-CHAIN-CERT-DATA2
         ];
 
         $subscription = [
-            "id" => "sub_fake_123456",
             "status" => "active",
             "createdAt" => "2024-10-01T10:00:00Z",
             "updatedAt" => "2025-09-17T12:00:00Z",

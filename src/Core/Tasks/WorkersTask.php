@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Model\Deployment;
@@ -19,16 +18,16 @@ use Upsun\UpsunClient;
 class WorkersTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly DeploymentApi $api,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**
      * Lists workers of an environment
      *
-     * @throws ApiException|Exception
+     * @throws ApiException
      *
      * @return WorkersValue[]
      */

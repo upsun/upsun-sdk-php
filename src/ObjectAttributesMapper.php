@@ -3039,11 +3039,11 @@ final class ObjectAttributesMapper
             'applicationScope' => 'application_scope'
         ],
         ProxyRoute::class => [
-            'id' => 'id',
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
             'to' => 'to',
+            'id' => 'id',
             'primary' => 'primary',
             'productionUrl' => 'production_url',
             'redirects' => 'redirects',
@@ -3053,11 +3053,11 @@ final class ObjectAttributesMapper
             'sticky' => 'sticky'
         ],
         RedirectRoute::class => [
-            'id' => 'id',
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
             'to' => 'to',
+            'id' => 'id',
             'primary' => 'primary',
             'productionUrl' => 'production_url',
             'redirects' => 'redirects',
@@ -3202,11 +3202,11 @@ final class ObjectAttributesMapper
             'exclude' => 'exclude'
         ],
         Route::class => [
-            'id' => 'id',
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
             'to' => 'to',
+            'id' => 'id',
             'primary' => 'primary',
             'productionUrl' => 'production_url',
             'redirects' => 'redirects',
@@ -3222,11 +3222,11 @@ final class ObjectAttributesMapper
             'maxMemory' => 'max_memory'
         ],
         RoutesValue::class => [
-            'id' => 'id',
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
             'to' => 'to',
+            'id' => 'id',
             'primary' => 'primary',
             'productionUrl' => 'production_url',
             'redirects' => 'redirects',
@@ -3480,7 +3480,6 @@ final class ObjectAttributesMapper
             'restricted' => 'restricted',
             'suspended' => 'suspended',
             'userLicenses' => 'user_licenses',
-            'id' => 'id',
             'plan' => 'plan',
             'environments' => 'environments',
             'resources' => 'resources',
@@ -3943,10 +3942,10 @@ final class ObjectAttributesMapper
             'country' => 'country'
         ],
         UpstreamRoute::class => [
-            'id' => 'id',
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
+            'id' => 'id',
             'primary' => 'primary',
             'productionUrl' => 'production_url',
             'cache' => 'cache',

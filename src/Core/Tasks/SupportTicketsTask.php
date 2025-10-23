@@ -3,7 +3,6 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
-use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\SupportApi;
@@ -25,17 +24,17 @@ use Upsun\UpsunClient;
 class SupportTicketsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly DefaultApi $defaultApi,
         private readonly SupportApi $supportApi,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**
      * Lists support tickets
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(
         ?int $filterTicketId = null,
@@ -72,7 +71,7 @@ class SupportTicketsTask extends TaskBase
     /**
      * Creates a new support ticket
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array|null{
      *     subject: string,
@@ -99,12 +98,14 @@ class SupportTicketsTask extends TaskBase
      *
      * @return  ListTicketCategories200ResponseInner[]
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listCategories(?string $organizationId = null, ?string $projectId = null): array
     {
         $project = $projectId ? $this->client->projects->get($projectId) : null;
-        return $this->supportApi->listTicketCategories($project?->getSubscription()?->getId(), $organizationId);
+        $path = parse_url($project?->getSubscription()->getLicenseUri(), PHP_URL_PATH);
+        $subscriptionId = basename($path);
+        return $this->supportApi->listTicketCategories($subscriptionId, $organizationId);
     }
 
     /**
@@ -112,18 +113,20 @@ class SupportTicketsTask extends TaskBase
      *
      * @return ListTicketPriorities200ResponseInner[]
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listPriorities(?string $projectId = null, ?string $category = null): array
     {
         $project = $projectId ? $this->client->projects->get($projectId) : null;
-        return $this->supportApi->listTicketPriorities($project?->getSubscription()?->getId(), $category);
+        $path = parse_url($project?->getSubscription()->getLicenseUri(), PHP_URL_PATH);
+        $subscriptionId = basename($path);
+        return $this->supportApi->listTicketPriorities($subscriptionId, $category);
     }
 
     /**
      * Updates a ticket
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array|null{
      *     status?: string,
@@ -131,9 +134,9 @@ class SupportTicketsTask extends TaskBase
      *     collaboratorsReplace?: bool,
      * } $data
      */
-    public function update(string $ticket_id, ?array $data = null): Ticket
+    public function update(string $ticketId, ?array $data = null): Ticket
     {
         $updateTicketRequest = new UpdateTicketRequest(...$data);
-        return $this->supportApi->updateTicket($ticket_id, $updateTicketRequest);
+        return $this->supportApi->updateTicket($ticketId, $updateTicketRequest);
     }
 }

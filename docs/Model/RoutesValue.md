@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  |
 **attributes** | **array<string,string>** |  |
 **type** | **string** |  |
 **tls** | [**\Upsun\Model\TLSSettingsForTheRoute**](TLSSettingsForTheRoute.md) |  |
 **to** | **string** |  |
+**id** | **string** |  | [optional]
 **primary** | **bool** |  | [optional]
 **productionUrl** | **string** |  | [optional]
 **redirects** | [**\Upsun\Model\TheConfigurationOfTheRedirects**](TheConfigurationOfTheRedirects.md) |  | [optional]
