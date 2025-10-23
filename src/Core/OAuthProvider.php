@@ -11,7 +11,6 @@ use Nyholm\Psr7\Stream;
 class OAuthProvider
 {
     private ?string $accessToken = null;
-
     private int $tokenExpiry = 0;
 
     public function __construct(
@@ -60,8 +59,8 @@ class OAuthProvider
             $this->storeTokenData($data);
 
             return true;
-        } catch (ClientExceptionInterface $clientException) {
-            throw new Exception('Token exchange failed: ' . $clientException->getMessage());
+        } catch (ClientExceptionInterface $e) {
+            throw new Exception('Token exchange failed: ' . $e->getMessage());
         }
     }
 

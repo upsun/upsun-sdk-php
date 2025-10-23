@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Model\WebApplicationsValue;
@@ -27,7 +26,7 @@ class ApplicationsTask extends TaskBase
     /**
      * Lists applications of an environment
      *
-     * @throws ApiException|Exception
+     * @throws ApiException
      * @return WebApplicationsValue[]
      */
     public function list(string $projectId, string $environmentId): array
@@ -42,7 +41,7 @@ class ApplicationsTask extends TaskBase
     /**
      * Gets an environment's application
      *
-     * @throws ApiException|Exception
+     * @throws ApiException
      */
     public function get(string $projectId, string $environmentId, string $appId): ?WebApplicationsValue
     {

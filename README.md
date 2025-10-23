@@ -1,6 +1,5 @@
 > [!CAUTION]
-> **This project is developed and maintained by the Upsun Advocacy team. It is currently in **Beta**, meaning features and APIs may evolve over time. <br /><br />
-> While not yet part of Upsun’s officially supported products, this project is actively maintained internally and will continue to receive updates and improvements.**
+> This project is currently in **Beta**, meaning features and APIs may evolve over time.
 >
 > You’re welcome to share feedback or feature requests on our [Discord community](https://discord.gg/upsun).
 
@@ -81,7 +80,7 @@ $response = $client->projects->update(<projectId>, $projectData);
 ### Example: Delete a project
 
 ```php
-$client->projects->delete(<organizationId>, <projectId>);
+$client->projects->delete(<projectId>);
 ```
 
 ---

@@ -139,21 +139,4 @@ class ApiException extends RequestException
     {
         return $this->responseObject instanceof Error;
     }
-
-    /**
-     * Enriches the exception with a deserialized Error object if possible
-     */
-    public function enrichWithErrorObject(): void
-    {
-        if (!$this->responseBody) {
-            return;
-        }
-
-        try {
-            $errorData = json_decode($this->responseBody, false, 512, JSON_THROW_ON_ERROR);
-            $this->responseObject = ObjectSerializer::deserialize($errorData, Error::class, []);
-        } catch (\JsonException | \Exception $e) {
-            // Deserialization error, silently ignore
-        }
-    }
 }

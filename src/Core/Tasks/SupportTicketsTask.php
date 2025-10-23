@@ -3,7 +3,6 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
-use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\SupportApi;
@@ -35,7 +34,7 @@ class SupportTicketsTask extends TaskBase
     /**
      * Lists support tickets
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(
         ?int $filterTicketId = null,
@@ -72,7 +71,7 @@ class SupportTicketsTask extends TaskBase
     /**
      * Creates a new support ticket
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array|null{
      *     subject: string,
@@ -99,7 +98,7 @@ class SupportTicketsTask extends TaskBase
      *
      * @return  ListTicketCategories200ResponseInner[]
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listCategories(?string $organizationId = null, ?string $projectId = null): array
     {
@@ -114,7 +113,7 @@ class SupportTicketsTask extends TaskBase
      *
      * @return ListTicketPriorities200ResponseInner[]
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listPriorities(?string $projectId = null, ?string $category = null): array
     {
@@ -127,7 +126,7 @@ class SupportTicketsTask extends TaskBase
     /**
      * Updates a ticket
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array|null{
      *     status?: string,

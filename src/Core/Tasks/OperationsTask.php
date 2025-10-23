@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Exception;
 use Upsun\ApiException;
 use Upsun\Api\RuntimeOperationsApi;
 use Upsun\Model\AcceptedResponse;
@@ -28,7 +27,7 @@ class OperationsTask extends TaskBase
     /**
      * Executes a runtime operation
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
      *     service: string,

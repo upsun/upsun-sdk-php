@@ -2,8 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Exception;
-use InvalidArgumentException;
 use Upsun\ApiException;
 use Upsun\Api\RegionsApi;
 use Upsun\Model\ListRegions200Response;
@@ -30,8 +28,7 @@ class RegionsTask extends TaskBase
     /**
      * Gets a region
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $regionId): Region
     {
@@ -41,7 +38,7 @@ class RegionsTask extends TaskBase
     /**
      * List regions
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(
         ?array $filterAvailable = null,

@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Model\Deployment;
@@ -28,7 +27,7 @@ class WorkersTask extends TaskBase
     /**
      * Lists workers of an environment
      *
-     * @throws ApiException|Exception
+     * @throws ApiException
      *
      * @return WorkersValue[]
      */

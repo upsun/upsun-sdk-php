@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Exception;
 use Upsun\ApiException;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
@@ -30,7 +29,7 @@ class ActivitiesTask extends TaskBase
     /**
      * Cancels a project (or environment) activity
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function cancel(string $projectId, string $activityId, ?string $environmentId = null): AcceptedResponse
     {
@@ -48,7 +47,7 @@ class ActivitiesTask extends TaskBase
     /**
      * Gets a project (or environment) activity log entry
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $projectId, string $activityId, ?string $environmentId = null): Activity
     {
@@ -62,7 +61,7 @@ class ActivitiesTask extends TaskBase
     /**
      * Gets project (or environment) activity log
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @return Activity[]
      */

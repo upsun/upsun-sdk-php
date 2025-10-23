@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Exception;
 use Upsun\ApiException;
 use Upsun\Api\RoutingApi;
 use Upsun\Model\Route;
@@ -27,7 +26,7 @@ class RoutesTask extends TaskBase
     /**
      * Gets a route info
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $projectId, string $environmentId, string $routeId): Route
     {
@@ -37,7 +36,7 @@ class RoutesTask extends TaskBase
     /**
      * Lists routes
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(string $projectId, string $environmentId): ?array
     {
