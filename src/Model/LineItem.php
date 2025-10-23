@@ -111,6 +111,7 @@ final class LineItem implements ModelInterface, JsonSerializable
     {
         return $this->totalFormatted;
     }
+
     /**
     * The price components for the line item, keyed by type.
      * @return LineItemComponent[]|null

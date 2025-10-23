@@ -93,8 +93,8 @@ class OrganizationsTask extends TaskBase
      */
     public function create(array $data): Organization
     {
-        $create_org_request = new CreateOrgRequest(...$data);
-        return $this->api->createOrg($create_org_request);
+        $createOrgRequest = new CreateOrgRequest(...$data);
+        return $this->api->createOrg($createOrgRequest);
     }
 
     /**
@@ -222,8 +222,8 @@ class OrganizationsTask extends TaskBase
      */
     public function update(string $organizationId, ?array $updateOrgData = null): Organization
     {
-        $update_org_request = new UpdateOrgRequest(...$updateOrgData);
-        return $this->api->updateOrg($organizationId, $update_org_request);
+        $updateOrgRequest = new UpdateOrgRequest(...$updateOrgData);
+        return $this->api->updateOrg($organizationId, $updateOrgRequest);
     }
 
     /**
@@ -299,6 +299,8 @@ class OrganizationsTask extends TaskBase
      *
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param ('read'|'write'|'admin')[]|null $permissions
      */
     public function createMember(
         string $organizationId,
@@ -316,6 +318,8 @@ class OrganizationsTask extends TaskBase
      * Updates organization member
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param ('read'|'write'|'admin')[]|null $permissions
      */
     public function updateMember(
         string $organizationId,
@@ -388,6 +392,15 @@ class OrganizationsTask extends TaskBase
      * Creates a project
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @param array{
+     *     projectRegion: string,
+     *     plan?: string,
+     *     projectTitle?: string,
+     *     optionsUrl?: string,
+     *     defaultBranch?: string,
+     *     environments?: int,
+     *     storage?: int
+     * } $createProjectData
      */
     public function createProject(string $organizationId, array $createProjectData): Subscription
     {
@@ -399,9 +412,9 @@ class OrganizationsTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteProject(string $organizationId, string $projectId): void
+    public function deleteProject(string $projectId): void
     {
-        $this->client->projects->delete($organizationId, $projectId);
+        $this->client->projects->delete($projectId);
     }
 
     /**
@@ -529,9 +542,9 @@ class OrganizationsTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getInvoice(string $invoice_id, string $organizationId): Invoice
+    public function getInvoice(string $invoiceId, string $organizationId): Invoice
     {
-        return $this->invoicesApi->getOrgInvoice($invoice_id, $organizationId);
+        return $this->invoicesApi->getOrgInvoice($invoiceId, $organizationId);
     }
 
     /**
@@ -542,15 +555,15 @@ class OrganizationsTask extends TaskBase
     public function listInvoices(
         string $organizationId,
         ?string $filterStatus = null,
-        ?string $filter_type = null,
-        ?string $filter_order_id = null,
+        ?string $filterType = null,
+        ?string $filterOrderId = null,
         ?int $page = null
     ): ListOrgInvoices200Response {
         return $this->invoicesApi->listOrgInvoices(
             $organizationId,
             $filterStatus,
-            $filter_type,
-            $filter_order_id,
+            $filterType,
+            $filterOrderId,
             $page
         );
     }
@@ -673,7 +686,7 @@ class OrganizationsTask extends TaskBase
      */
     public function updateProfile(string $organizationId, ?array $data = null): Profile
     {
-        $update_org_profile_request = $data ? new UpdateOrgProfileRequest(
+        $updateOrgProfileRequest = $data ? new UpdateOrgProfileRequest(
             defaultCatalog: $data['defaultCatalog'],
             projectOptionsUrl: $data['projectOptionsUrl'],
             securityContact: $data['securityContact'],
@@ -681,7 +694,7 @@ class OrganizationsTask extends TaskBase
             vatNumber: $data['vatNumber'],
             billingContact: $data['billingContact'],
         ) : null;
-        return $this->profilesApi->updateOrgProfile($organizationId, $update_org_profile_request);
+        return $this->profilesApi->updateOrgProfile($organizationId, $updateOrgProfileRequest);
     }
 
     /**

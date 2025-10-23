@@ -14,20 +14,21 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Order implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?\DateTime $paidOn = null,
+        private readonly ?DateTime $paidOn = null,
         private readonly ?string $id = null,
         private readonly ?string $status = null,
         private readonly ?string $owner = null,
         private readonly ?Address $address = null,
         private readonly ?string $company = null,
         private readonly ?string $vatNumber = null,
-        private readonly ?\DateTime $billingPeriodStart = null,
-        private readonly ?\DateTime $billingPeriodEnd = null,
+        private readonly ?DateTime $billingPeriodStart = null,
+        private readonly ?DateTime $billingPeriodEnd = null,
         private readonly ?OrderBillingPeriodLabel $billingPeriodLabel = null,
         private readonly ?int $billingPeriodDuration = null,
         private readonly ?int $total = null,
@@ -35,7 +36,7 @@ final class Order implements ModelInterface, JsonSerializable
         private readonly ?Components $components = null,
         private readonly ?string $currency = null,
         private readonly ?string $invoiceUrl = null,
-        private readonly ?\DateTime $lastRefreshed = null,
+        private readonly ?DateTime $lastRefreshed = null,
         private readonly ?bool $invoiced = null,
         private readonly ?array $lineItems = [],
         private readonly ?OrderLinks $links = null,
@@ -129,7 +130,7 @@ final class Order implements ModelInterface, JsonSerializable
     /**
     * The time when the billing period of the order started.
     */
-    public function getBillingPeriodStart(): ?\DateTime
+    public function getBillingPeriodStart(): ?DateTime
     {
         return $this->billingPeriodStart;
     }
@@ -137,7 +138,7 @@ final class Order implements ModelInterface, JsonSerializable
     /**
     * The time when the billing period of the order ended.
     */
-    public function getBillingPeriodEnd(): ?\DateTime
+    public function getBillingPeriodEnd(): ?DateTime
     {
         return $this->billingPeriodEnd;
     }
@@ -161,7 +162,7 @@ final class Order implements ModelInterface, JsonSerializable
     /**
     * The time when the order was successfully charged.
     */
-    public function getPaidOn(): ?\DateTime
+    public function getPaidOn(): ?DateTime
     {
         return $this->paidOn;
     }
@@ -209,7 +210,7 @@ final class Order implements ModelInterface, JsonSerializable
     /**
     * The time when the order was last refreshed.
     */
-    public function getLastRefreshed(): ?\DateTime
+    public function getLastRefreshed(): ?DateTime
     {
         return $this->lastRefreshed;
     }
@@ -221,6 +222,7 @@ final class Order implements ModelInterface, JsonSerializable
     {
         return $this->invoiced;
     }
+
     /**
     * The line items that comprise the order.
      * @return LineItem[]|null

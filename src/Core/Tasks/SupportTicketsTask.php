@@ -135,9 +135,9 @@ class SupportTicketsTask extends TaskBase
      *     collaboratorsReplace?: bool,
      * } $data
      */
-    public function update(string $ticket_id, ?array $data = null): Ticket
+    public function update(string $ticketId, ?array $data = null): Ticket
     {
         $updateTicketRequest = new UpdateTicketRequest(...$data);
-        return $this->supportApi->updateTicket($ticket_id, $updateTicketRequest);
+        return $this->supportApi->updateTicket($ticketId, $updateTicketRequest);
     }
 }

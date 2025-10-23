@@ -2,6 +2,9 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\ConfirmPhoneNumberRequest;
+use Upsun\Model\VerifyPhoneNumberRequest;
+use Upsun\Model\VerifyPhoneNumber200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +30,7 @@ use Upsun\Core\OAuthProvider;
 final class PhoneNumberApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -69,7 +73,7 @@ final class PhoneNumberApi extends AbstractApi
     public function confirmPhoneNumber(
         string $sid,
         string $userId,
-        ?\Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
+        ?ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): void {
         $this->confirmPhoneNumberWithHttpInfo(
             $sid,
@@ -86,7 +90,7 @@ final class PhoneNumberApi extends AbstractApi
     private function confirmPhoneNumberWithHttpInfo(
         string $sid,
         string $userId,
-        ?\Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
+        ?ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): void {
         $request = $this->confirmPhoneNumberRequest(
             $sid,
@@ -101,9 +105,9 @@ final class PhoneNumberApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -115,7 +119,7 @@ final class PhoneNumberApi extends AbstractApi
     private function confirmPhoneNumberRequest(
         string $sid,
         string $userId,
-        ?\Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
+        ?ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'sid' is set
@@ -124,7 +128,7 @@ final class PhoneNumberApi extends AbstractApi
             || (is_array($sid)
             && count($sid) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $sid 
                 when calling confirmPhoneNumber'
             );
@@ -136,7 +140,7 @@ final class PhoneNumberApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling confirmPhoneNumber'
             );
@@ -157,6 +161,7 @@ final class PhoneNumberApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($userId !== null) {
             $resourcePath = str_replace(
@@ -194,6 +199,7 @@ final class PhoneNumberApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -222,6 +228,7 @@ final class PhoneNumberApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Verify phone number
      *
@@ -230,14 +237,14 @@ final class PhoneNumberApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\VerifyPhoneNumber200Response
+     * @return VerifyPhoneNumber200Response
      *
      * @see https://docs.upsun.com/api/#tag/PhoneNumber/operation/verify-phone-number
      */
     public function verifyPhoneNumber(
         string $userId,
-        ?\Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
-    ): \Upsun\Model\VerifyPhoneNumber200Response {
+        ?VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
+    ): VerifyPhoneNumber200Response {
         return $this->verifyPhoneNumberWithHttpInfo(
             $userId,
             $verifyPhoneNumberRequest
@@ -247,14 +254,14 @@ final class PhoneNumberApi extends AbstractApi
     /**
      * Verify phone number with HTTP Info
      *
-     * @return \Upsun\Model\VerifyPhoneNumber200Response
+     * @return VerifyPhoneNumber200Response
      *
      * @throws InvalidArgumentException|Exception
      */
     private function verifyPhoneNumberWithHttpInfo(
         string $userId,
-        ?\Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
-    ): \Upsun\Model\VerifyPhoneNumber200Response {
+        ?VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
+    ): VerifyPhoneNumber200Response {
         $request = $this->verifyPhoneNumberRequest(
             $userId,
             $verifyPhoneNumberRequest
@@ -269,13 +276,13 @@ final class PhoneNumberApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\VerifyPhoneNumber200Response',
+                VerifyPhoneNumber200Response::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -286,7 +293,7 @@ final class PhoneNumberApi extends AbstractApi
      */
     private function verifyPhoneNumberRequest(
         string $userId,
-        ?\Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
+        ?VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'userId' is set
@@ -295,7 +302,7 @@ final class PhoneNumberApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling verifyPhoneNumber'
             );
@@ -345,6 +352,7 @@ final class PhoneNumberApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

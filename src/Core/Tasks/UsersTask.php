@@ -174,8 +174,8 @@ class UsersTask extends TaskBase
      */
     public function update(string $userId, ?array $data = []): User
     {
-        $update_user_request = new UpdateUserRequest(...$data);
-        return $this->api->updateUser($userId, $update_user_request);
+        $updateUserRequest = new UpdateUserRequest(...$data);
+        return $this->api->updateUser($userId, $updateUserRequest);
     }
 
     /**
@@ -411,8 +411,8 @@ class UsersTask extends TaskBase
      */
     public function updateProfile(string $userId, ?array $data = []): Profile
     {
-        $update_profile_request = new UpdateProfileRequest(...$data);
-        return $this->profilesApi->updateProfile($userId, $update_profile_request);
+        $updateProfileRequest = new UpdateProfileRequest(...$data);
+        return $this->profilesApi->updateProfile($userId, $updateProfileRequest);
     }
 
     /**
@@ -431,9 +431,9 @@ class UsersTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function deleteApiToken(string $userId, string $token_id): void
+    public function deleteApiToken(string $userId, string $tokenId): void
     {
-        $this->tokensApi->deleteApiToken($userId, $token_id);
+        $this->tokensApi->deleteApiToken($userId, $tokenId);
     }
 
     /**
@@ -441,9 +441,9 @@ class UsersTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getApiToken(string $userId, string $token_id): APIToken
+    public function getApiToken(string $userId, string $tokenId): APIToken
     {
-        return $this->tokensApi->getApiToken($userId, $token_id);
+        return $this->tokensApi->getApiToken($userId, $tokenId);
     }
 
     /**

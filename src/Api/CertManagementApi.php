@@ -2,6 +2,10 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\CertificateCreateInput;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Certificate;
+use Upsun\Model\CertificatePatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +31,7 @@ use Upsun\Core\OAuthProvider;
 final class CertManagementApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -64,14 +69,14 @@ final class CertManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/create-projects-certificates
      */
     public function createProjectsCertificates(
         string $projectId,
-        \Upsun\Model\CertificateCreateInput $certificateCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        CertificateCreateInput $certificateCreateInput
+    ): AcceptedResponse {
         return $this->createProjectsCertificatesWithHttpInfo(
             $projectId,
             $certificateCreateInput
@@ -81,14 +86,14 @@ final class CertManagementApi extends AbstractApi
     /**
      * Add an SSL certificate with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function createProjectsCertificatesWithHttpInfo(
         string $projectId,
-        \Upsun\Model\CertificateCreateInput $certificateCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        CertificateCreateInput $certificateCreateInput
+    ): AcceptedResponse {
         $request = $this->createProjectsCertificatesRequest(
             $projectId,
             $certificateCreateInput
@@ -103,13 +108,13 @@ final class CertManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -120,7 +125,7 @@ final class CertManagementApi extends AbstractApi
      */
     private function createProjectsCertificatesRequest(
         string $projectId,
-        \Upsun\Model\CertificateCreateInput $certificateCreateInput
+        CertificateCreateInput $certificateCreateInput
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -129,7 +134,7 @@ final class CertManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling createProjectsCertificates'
             );
@@ -141,11 +146,12 @@ final class CertManagementApi extends AbstractApi
             || (is_array($certificateCreateInput)
             && count($certificateCreateInput) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $certificateCreateInput 
                 when calling createProjectsCertificates'
             );
         }
+
         $resourcePath = '/projects/{projectId}/certificates';
         $formParams = [];
         $queryParams = [];
@@ -190,6 +196,7 @@ final class CertManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -218,6 +225,7 @@ final class CertManagementApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Delete an SSL certificate
      *
@@ -226,14 +234,14 @@ final class CertManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/delete-projects-certificates
      */
     public function deleteProjectsCertificates(
         string $projectId,
         string $certificateId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->deleteProjectsCertificatesWithHttpInfo(
             $projectId,
             $certificateId
@@ -243,14 +251,14 @@ final class CertManagementApi extends AbstractApi
     /**
      * Delete an SSL certificate with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function deleteProjectsCertificatesWithHttpInfo(
         string $projectId,
         string $certificateId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->deleteProjectsCertificatesRequest(
             $projectId,
             $certificateId
@@ -265,13 +273,13 @@ final class CertManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -291,7 +299,7 @@ final class CertManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling deleteProjectsCertificates'
             );
@@ -303,11 +311,12 @@ final class CertManagementApi extends AbstractApi
             || (is_array($certificateId)
             && count($certificateId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $certificateId 
                 when calling deleteProjectsCertificates'
             );
         }
+
         $resourcePath = '/projects/{projectId}/certificates/{certificateId}';
         $formParams = [];
         $queryParams = [];
@@ -323,6 +332,7 @@ final class CertManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($certificateId !== null) {
             $resourcePath = str_replace(
@@ -352,6 +362,7 @@ final class CertManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -380,6 +391,7 @@ final class CertManagementApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
+
     /**
      * Get an SSL certificate
      *
@@ -388,14 +400,14 @@ final class CertManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Certificate
+     * @return Certificate
      *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/get-projects-certificates
      */
     public function getProjectsCertificates(
         string $projectId,
         string $certificateId
-    ): \Upsun\Model\Certificate {
+    ): Certificate {
         return $this->getProjectsCertificatesWithHttpInfo(
             $projectId,
             $certificateId
@@ -405,14 +417,14 @@ final class CertManagementApi extends AbstractApi
     /**
      * Get an SSL certificate with HTTP Info
      *
-     * @return \Upsun\Model\Certificate
+     * @return Certificate
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsCertificatesWithHttpInfo(
         string $projectId,
         string $certificateId
-    ): \Upsun\Model\Certificate {
+    ): Certificate {
         $request = $this->getProjectsCertificatesRequest(
             $projectId,
             $certificateId
@@ -427,13 +439,13 @@ final class CertManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Certificate',
+                Certificate::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -453,7 +465,7 @@ final class CertManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsCertificates'
             );
@@ -465,11 +477,12 @@ final class CertManagementApi extends AbstractApi
             || (is_array($certificateId)
             && count($certificateId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $certificateId 
                 when calling getProjectsCertificates'
             );
         }
+
         $resourcePath = '/projects/{projectId}/certificates/{certificateId}';
         $formParams = [];
         $queryParams = [];
@@ -485,6 +498,7 @@ final class CertManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($certificateId !== null) {
             $resourcePath = str_replace(
@@ -514,6 +528,7 @@ final class CertManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -542,6 +557,7 @@ final class CertManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get list of SSL certificates
      *
@@ -550,7 +566,7 @@ final class CertManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Certificate[]
+     * @return Certificate[]
      *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/list-projects-certificates
      */
@@ -565,7 +581,7 @@ final class CertManagementApi extends AbstractApi
     /**
      * Get list of SSL certificates with HTTP Info
      *
-     * @return \Upsun\Model\Certificate[]
+     * @return Certificate[]
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -589,9 +605,9 @@ final class CertManagementApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -610,11 +626,12 @@ final class CertManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsCertificates'
             );
         }
+
         $resourcePath = '/projects/{projectId}/certificates';
         $formParams = [];
         $queryParams = [];
@@ -651,6 +668,7 @@ final class CertManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -679,6 +697,7 @@ final class CertManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Update an SSL certificate
      *
@@ -687,15 +706,15 @@ final class CertManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/update-projects-certificates
      */
     public function updateProjectsCertificates(
         string $projectId,
         string $certificateId,
-        \Upsun\Model\CertificatePatch $certificatePatch
-    ): \Upsun\Model\AcceptedResponse {
+        CertificatePatch $certificatePatch
+    ): AcceptedResponse {
         return $this->updateProjectsCertificatesWithHttpInfo(
             $projectId,
             $certificateId,
@@ -706,15 +725,15 @@ final class CertManagementApi extends AbstractApi
     /**
      * Update an SSL certificate with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function updateProjectsCertificatesWithHttpInfo(
         string $projectId,
         string $certificateId,
-        \Upsun\Model\CertificatePatch $certificatePatch
-    ): \Upsun\Model\AcceptedResponse {
+        CertificatePatch $certificatePatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsCertificatesRequest(
             $projectId,
             $certificateId,
@@ -730,13 +749,13 @@ final class CertManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -748,7 +767,7 @@ final class CertManagementApi extends AbstractApi
     private function updateProjectsCertificatesRequest(
         string $projectId,
         string $certificateId,
-        \Upsun\Model\CertificatePatch $certificatePatch
+        CertificatePatch $certificatePatch
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -757,7 +776,7 @@ final class CertManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling updateProjectsCertificates'
             );
@@ -769,7 +788,7 @@ final class CertManagementApi extends AbstractApi
             || (is_array($certificateId)
             && count($certificateId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $certificateId 
                 when calling updateProjectsCertificates'
             );
@@ -781,11 +800,12 @@ final class CertManagementApi extends AbstractApi
             || (is_array($certificatePatch)
             && count($certificatePatch) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $certificatePatch 
                 when calling updateProjectsCertificates'
             );
         }
+
         $resourcePath = '/projects/{projectId}/certificates/{certificateId}';
         $formParams = [];
         $queryParams = [];
@@ -801,6 +821,7 @@ final class CertManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($certificateId !== null) {
             $resourcePath = str_replace(
@@ -838,6 +859,7 @@ final class CertManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

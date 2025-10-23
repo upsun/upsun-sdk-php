@@ -455,9 +455,9 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getType(string $projectId, string $environment_type_id): EnvironmentType
+    public function getType(string $projectId, string $environmentTypeId): EnvironmentType
     {
-        return $this->typeApi->getEnvironmentType($projectId, $environment_type_id);
+        return $this->typeApi->getEnvironmentType($projectId, $environmentTypeId);
     }
 
     /**

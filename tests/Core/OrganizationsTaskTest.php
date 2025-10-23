@@ -1387,7 +1387,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 )
             );
 
-        $this->organizationsTask->deleteProject($organizationId, $projectId);
+        $this->organizationsTask->deleteProject($projectId);
     }
 
     public function testUpdateProject()
@@ -1652,7 +1652,7 @@ class OrganizationsTaskTest extends BaseTestCase
             'changed' => '2025-09-10T12:00:00Z',
             'id' => 'inv_456',
             'invoiceNumber' => '2025-0001',
-            'type' => 'invoice', // ou 'credit_memo'
+            'type' => 'invoice', // or 'credit_memo'
             'orderId' => 'order_789',
             'status' => 'paid', // ex: paid, pending, canceled
             'owner' => '01J8Y7ZX9ABCDXY1234567PQRS',

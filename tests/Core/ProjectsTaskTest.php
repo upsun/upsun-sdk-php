@@ -3117,7 +3117,6 @@ FAKE-CHAIN-CERT-DATA2
         ];
 
         $subscription = [
-            "id" => "sub_fake_123456",
             "status" => "active",
             "createdAt" => "2024-10-01T10:00:00Z",
             "updatedAt" => "2025-09-17T12:00:00Z",

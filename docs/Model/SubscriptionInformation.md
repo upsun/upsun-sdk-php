@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **restricted** | **bool** |  |
 **suspended** | **bool** |  |
 **userLicenses** | **int** |  |
-**id** | **string** |  |
 **plan** | **string** |  | [optional]
 **environments** | **int** |  | [optional]
 **resources** | [**\Upsun\Model\ResourcesLimits**](ResourcesLimits.md) |  | [optional]

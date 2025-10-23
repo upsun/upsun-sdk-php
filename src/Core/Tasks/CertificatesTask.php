@@ -33,8 +33,8 @@ class CertificatesTask extends TaskBase
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
-     *     certificate?: string,
-     *     key?: string,
+     *     certificate: string,
+     *     key: string,
      *     chain?: array,
      *     isInvalid?: bool
      * } $options Configuration options

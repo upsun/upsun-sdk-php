@@ -109,7 +109,7 @@ class ProjectsTask extends TaskBase
      *     defaultBranch?: string,
      *     environments?: int,
      *     storage?: int
-     * } $projectData Update data
+     * } $projectData
      * @throws ApiException|Exception
      */
     public function create(string $organizationId, array $projectData): Subscription
@@ -158,8 +158,8 @@ class ProjectsTask extends TaskBase
      */
     public function update(string $projectId, array $data): AcceptedResponse
     {
-        $project_patch = new ProjectPatch(...$data);
-        return $this->api->updateProjects($projectId, $project_patch);
+        $projectPatch = new ProjectPatch(...$data);
+        return $this->api->updateProjects($projectId, $projectPatch);
     }
 
     /**
@@ -539,14 +539,11 @@ class ProjectsTask extends TaskBase
      *     project: string,
      *     serviceId: string,
      *     recipients: array,
-     *     routingKey: array,
+     *     routingKey: string,
      *     channel: string,
      *     licenseKey: string,
-     *     index: string,
      *     script: string,
-     *     states: string,
-     *     pruneBranches?: bool,
-     *     environmentInitResources?: string,
+     *     index: string,
      *     appCredentials?: array{
      *       key: string,
      *       secret: string
@@ -556,13 +553,18 @@ class ProjectsTask extends TaskBase
      *       clientKey: string,
      *       sharedSecret: string,
      *     },
+     *     fromAddress?: string,
+     *     sharedKey?: string,
+     *     fetchBranches?: bool,
+     *     pruneBranches?: bool,
+     *     environmentInitResources?: string,
      *     buildPullRequests?: bool,
      *     pullRequestsCloneParentData?: bool,
      *     resyncPullRequests?: bool,
      *     events?: array,
      *     environments?: array,
      *     excludedEnvironments?: array,
-     *     state?: array,
+     *     states?: array,
      *     result?: string,
      *     baseUrl?: string,
      *     buildDraftPullRequests?: bool,
@@ -570,11 +572,10 @@ class ProjectsTask extends TaskBase
      *     buildMergeRequests?: bool,
      *     buildWipMergeRequests?: bool,
      *     mergeRequestsCloneParentData?: bool,
-     *     fromAddress?: string,
-     *     sharedKey?: string,
      *     extra?: array,
      *     headers?: array,
      *     tlsVerify?: bool,
+     *     excludedServices?: array,
      *     sourcetype?: string,
      *     category?: string,
      *     host?: string,
@@ -610,6 +611,7 @@ class ProjectsTask extends TaskBase
                 new TheAddonCredentialInformationOptional1(...$data['addonCredentials']) : null,
             fromAddress: $data['fromAddress'] ?? null,
             sharedKey: $data['sharedKey'] ?? null,
+            fetchBranches: $data['fetchBranches'],
             pruneBranches: $data['pruneBranches'] ?? null,
             environmentInitResources: $data['environmentInitResources'] ?? null,
             buildPullRequests: $data['buildPullRequests'] ?? null,
@@ -618,7 +620,7 @@ class ProjectsTask extends TaskBase
             events: $data['events'] ?? null,
             environments: $data['environments'] ?? null,
             excludedEnvironments: $data['excludedEnvironments'] ?? null,
-            states: $data['state'] ?? null,
+            states: $data['states'] ?? null,
             result: $data['result'] ?? null,
             baseUrl: $data['baseUrl'] ?? null,
             buildDraftPullRequests: $data['buildDraftPullRequests'] ?? null,
@@ -629,6 +631,7 @@ class ProjectsTask extends TaskBase
             extra: $data['extra'] ?? null,
             headers: $data['headers'] ?? null,
             tlsVerify: $data['tlsVerify'] ?? null,
+            excludedServices: $data['excludedServices'] ?? null,
             sourcetype: $data['sourcetype'] ?? null,
             category: $data['category'] ?? null,
             host: $data['host'] ?? null,
@@ -686,14 +689,11 @@ class ProjectsTask extends TaskBase
      *     project: string,
      *     serviceId: string,
      *     recipients: array,
-     *     routingKey: array,
+     *     routingKey: string,
      *     channel: string,
      *     licenseKey: string,
-     *     index: string,
      *     script: string,
-     *     states: string,
-     *     pruneBranches?: bool,
-     *     environmentInitResources?: string,
+     *     index: string,
      *     appCredentials?: array{
      *       key: string,
      *       secret: string
@@ -703,13 +703,18 @@ class ProjectsTask extends TaskBase
      *       clientKey: string,
      *       sharedSecret: string,
      *     },
+     *     fromAddress?: string,
+     *     sharedKey?: string,
+     *     fetchBranches?: bool,
+     *     pruneBranches?: bool,
+     *     environmentInitResources?: string,
      *     buildPullRequests?: bool,
      *     pullRequestsCloneParentData?: bool,
      *     resyncPullRequests?: bool,
      *     events?: array,
      *     environments?: array,
      *     excludedEnvironments?: array,
-     *     state?: array,
+     *     states?: array,
      *     result?: string,
      *     baseUrl?: string,
      *     buildDraftPullRequests?: bool,
@@ -717,11 +722,10 @@ class ProjectsTask extends TaskBase
      *     buildMergeRequests?: bool,
      *     buildWipMergeRequests?: bool,
      *     mergeRequestsCloneParentData?: bool,
-     *     fromAddress?: string,
-     *     sharedKey?: string,
      *     extra?: array,
      *     headers?: array,
      *     tlsVerify?: bool,
+     *     excludedServices?: array,
      *     sourcetype?: string,
      *     category?: string,
      *     host?: string,
@@ -760,6 +764,7 @@ class ProjectsTask extends TaskBase
                 new TheAddonCredentialInformationOptional1(...$data['addonCredentials']) : null,
             fromAddress: $data['fromAddress'] ?? null,
             sharedKey: $data['sharedKey'] ?? null,
+            fetchBranches: $data['fetchBranches'],
             pruneBranches: $data['pruneBranches'] ?? null,
             environmentInitResources: $data['environmentInitResources'] ?? null,
             buildPullRequests: $data['buildPullRequests'] ?? null,
@@ -768,7 +773,7 @@ class ProjectsTask extends TaskBase
             events: $data['events'] ?? null,
             environments: $data['environments'] ?? null,
             excludedEnvironments: $data['excludedEnvironments'] ?? null,
-            states: $data['state'] ?? null,
+            states: $data['states'] ?? null,
             result: $data['result'] ?? null,
             baseUrl: $data['baseUrl'] ?? null,
             buildDraftPullRequests: $data['buildDraftPullRequests'] ?? null,
@@ -779,6 +784,7 @@ class ProjectsTask extends TaskBase
             extra: $data['extra'] ?? null,
             headers: $data['headers'] ?? null,
             tlsVerify: $data['tlsVerify'] ?? null,
+            excludedServices: $data['excludedServices'] ?? null,
             sourcetype: $data['sourcetype'] ?? null,
             category: $data['category'] ?? null,
             host: $data['host'] ?? null,
@@ -864,8 +870,8 @@ class ProjectsTask extends TaskBase
      * Adds an SSL certificate
      *
      * @param array{
-     *     certificate?: string,
-     *     key?: string,
+     *     certificate: string,
+     *     key: string,
      *     chain?: array,
      *     isInvalid?: bool
      * } $options Configuration options

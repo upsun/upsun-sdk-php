@@ -14,16 +14,17 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Invoice implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $relatedInvoiceId = null,
-        private readonly ?\DateTime $invoiceDate = null,
-        private readonly ?\DateTime $invoiceDue = null,
-        private readonly ?\DateTime $created = null,
-        private readonly ?\DateTime $changed = null,
+        private readonly ?DateTime $invoiceDate = null,
+        private readonly ?DateTime $invoiceDue = null,
+        private readonly ?DateTime $created = null,
+        private readonly ?DateTime $changed = null,
         private readonly ?string $id = null,
         private readonly ?string $invoiceNumber = null,
         private readonly ?string $type = null,
@@ -129,7 +130,7 @@ final class Invoice implements ModelInterface, JsonSerializable
     /**
     * The invoice date.
     */
-    public function getInvoiceDate(): ?\DateTime
+    public function getInvoiceDate(): ?DateTime
     {
         return $this->invoiceDate;
     }
@@ -137,7 +138,7 @@ final class Invoice implements ModelInterface, JsonSerializable
     /**
     * The invoice due date.
     */
-    public function getInvoiceDue(): ?\DateTime
+    public function getInvoiceDue(): ?DateTime
     {
         return $this->invoiceDue;
     }
@@ -145,7 +146,7 @@ final class Invoice implements ModelInterface, JsonSerializable
     /**
     * The time when the invoice was created.
     */
-    public function getCreated(): ?\DateTime
+    public function getCreated(): ?DateTime
     {
         return $this->created;
     }
@@ -153,7 +154,7 @@ final class Invoice implements ModelInterface, JsonSerializable
     /**
     * The time when the invoice was changed.
     */
-    public function getChanged(): ?\DateTime
+    public function getChanged(): ?DateTime
     {
         return $this->changed;
     }

@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class EnvironmentVariable implements ModelInterface, JsonSerializable
@@ -30,8 +31,8 @@ final class EnvironmentVariable implements ModelInterface, JsonSerializable
         private readonly bool $inherited,
         private readonly bool $isEnabled,
         private readonly bool $isInheritable,
-        private readonly ?\DateTime $createdAt,
-        private readonly ?\DateTime $updatedAt,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $value = null,
     ) {
     }
@@ -73,12 +74,12 @@ final class EnvironmentVariable implements ModelInterface, JsonSerializable
         return $this->id;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

@@ -46,6 +46,7 @@ final class HttpAccessPermissions implements ModelInterface, JsonSerializable
     {
         return $this->isEnabled;
     }
+
     /**
      * @return AddressGrantsInner[]
      */

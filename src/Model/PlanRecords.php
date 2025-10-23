@@ -14,19 +14,20 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class PlanRecords implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?\DateTime $end = null,
+        private readonly ?DateTime $end = null,
         private readonly ?string $id = null,
         private readonly ?string $owner = null,
         private readonly ?string $subscriptionId = null,
         private readonly ?string $sku = null,
         private readonly ?string $plan = null,
         private readonly ?array $options = [],
-        private readonly ?\DateTime $start = null,
+        private readonly ?DateTime $start = null,
         private readonly ?string $status = null,
     ) {
     }
@@ -104,7 +105,7 @@ final class PlanRecords implements ModelInterface, JsonSerializable
     /**
     * The start timestamp of this plan record (ISO 8601).
     */
-    public function getStart(): ?\DateTime
+    public function getStart(): ?DateTime
     {
         return $this->start;
     }
@@ -112,7 +113,7 @@ final class PlanRecords implements ModelInterface, JsonSerializable
     /**
     * The end timestamp of this plan record (ISO 8601).
     */
-    public function getEnd(): ?\DateTime
+    public function getEnd(): ?DateTime
     {
         return $this->end;
     }

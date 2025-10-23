@@ -2,6 +2,9 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\EnvironmentSourceOperationInput;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentSourceOperation;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +30,7 @@ use Upsun\Core\OAuthProvider;
 final class SourceOperationsApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -66,7 +70,7 @@ final class SourceOperationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\EnvironmentSourceOperation[]
+     * @return EnvironmentSourceOperation[]
      *
      * @see https://docs.upsun.com/api/#tag/Source-Operations/operation/list-projects-environments-source-operations
      */
@@ -83,7 +87,7 @@ final class SourceOperationsApi extends AbstractApi
     /**
      * List source operations with HTTP Info
      *
-     * @return \Upsun\Model\EnvironmentSourceOperation[]
+     * @return EnvironmentSourceOperation[]
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -109,9 +113,9 @@ final class SourceOperationsApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -131,7 +135,7 @@ final class SourceOperationsApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsEnvironmentsSourceOperations'
             );
@@ -143,11 +147,12 @@ final class SourceOperationsApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling listProjectsEnvironmentsSourceOperations'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/source-operations';
         $formParams = [];
         $queryParams = [];
@@ -163,6 +168,7 @@ final class SourceOperationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -192,6 +198,7 @@ final class SourceOperationsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -220,6 +227,7 @@ final class SourceOperationsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Trigger a source operation
      *
@@ -230,15 +238,15 @@ final class SourceOperationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Source-Operations/operation/run-source-operation
      */
     public function runSourceOperation(
         string $projectId,
         string $environmentId,
-        \Upsun\Model\EnvironmentSourceOperationInput $environmentSourceOperationInput
-    ): \Upsun\Model\AcceptedResponse {
+        EnvironmentSourceOperationInput $environmentSourceOperationInput
+    ): AcceptedResponse {
         return $this->runSourceOperationWithHttpInfo(
             $projectId,
             $environmentId,
@@ -249,15 +257,15 @@ final class SourceOperationsApi extends AbstractApi
     /**
      * Trigger a source operation with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function runSourceOperationWithHttpInfo(
         string $projectId,
         string $environmentId,
-        \Upsun\Model\EnvironmentSourceOperationInput $environmentSourceOperationInput
-    ): \Upsun\Model\AcceptedResponse {
+        EnvironmentSourceOperationInput $environmentSourceOperationInput
+    ): AcceptedResponse {
         $request = $this->runSourceOperationRequest(
             $projectId,
             $environmentId,
@@ -273,13 +281,13 @@ final class SourceOperationsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -291,7 +299,7 @@ final class SourceOperationsApi extends AbstractApi
     private function runSourceOperationRequest(
         string $projectId,
         string $environmentId,
-        \Upsun\Model\EnvironmentSourceOperationInput $environmentSourceOperationInput
+        EnvironmentSourceOperationInput $environmentSourceOperationInput
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -300,7 +308,7 @@ final class SourceOperationsApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling runSourceOperation'
             );
@@ -312,7 +320,7 @@ final class SourceOperationsApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling runSourceOperation'
             );
@@ -324,11 +332,12 @@ final class SourceOperationsApi extends AbstractApi
             || (is_array($environmentSourceOperationInput)
             && count($environmentSourceOperationInput) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentSourceOperationInput 
                 when calling runSourceOperation'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/source-operation';
         $formParams = [];
         $queryParams = [];
@@ -344,6 +353,7 @@ final class SourceOperationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -381,6 +391,7 @@ final class SourceOperationsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

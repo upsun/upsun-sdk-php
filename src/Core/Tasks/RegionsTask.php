@@ -44,9 +44,9 @@ class RegionsTask extends TaskBase
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function list(
-        ?array $filter_available = null,
-        ?array $filter_private = null,
-        ?array $filter_zone = null,
+        ?array $filterAvailable = null,
+        ?array $filterPrivate = null,
+        ?array $filterZone = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -54,9 +54,9 @@ class RegionsTask extends TaskBase
     ): ListRegions200Response {
 
         return $this->api->listRegions(
-            $filter_available !== null ? new StringFilter(...$this->normalizeFilter($filter_available)) : null,
-            $filter_private !== null ? new StringFilter(...$this->normalizeFilter($filter_private)) : null,
-            $filter_zone !== null ? new StringFilter(...$this->normalizeFilter($filter_zone)) : null,
+            $filterAvailable !== null ? new StringFilter(...$this->normalizeFilter($filterAvailable)) : null,
+            $filterPrivate !== null ? new StringFilter(...$this->normalizeFilter($filterPrivate)) : null,
+            $filterZone !== null ? new StringFilter(...$this->normalizeFilter($filterZone)) : null,
             $pageSize,
             $pageBefore,
             $pageAfter,

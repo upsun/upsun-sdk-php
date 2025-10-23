@@ -103,6 +103,7 @@ final class WorkersValue implements ModelInterface, JsonSerializable
     {
         return $this->access;
     }
+
     /**
      * @return TheRelationshipsOfTheApplicationToDefinedServicesValue[]
      */
@@ -116,6 +117,7 @@ final class WorkersValue implements ModelInterface, JsonSerializable
     {
         return $this->additionalHosts;
     }
+
     /**
      * @return FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]
      */
@@ -144,6 +146,7 @@ final class WorkersValue implements ModelInterface, JsonSerializable
     {
         return $this->containerProfile;
     }
+
     /**
      * @return OperationsThatCanBeTriggeredOnThisApplicationValue[]
      */

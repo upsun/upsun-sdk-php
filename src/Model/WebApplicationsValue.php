@@ -115,6 +115,7 @@ final class WebApplicationsValue implements ModelInterface, JsonSerializable
     {
         return $this->access;
     }
+
     /**
      * @return TheRelationshipsOfTheApplicationToDefinedServicesValue[]
      */
@@ -128,6 +129,7 @@ final class WebApplicationsValue implements ModelInterface, JsonSerializable
     {
         return $this->additionalHosts;
     }
+
     /**
      * @return FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]
      */
@@ -156,6 +158,7 @@ final class WebApplicationsValue implements ModelInterface, JsonSerializable
     {
         return $this->containerProfile;
     }
+
     /**
      * @return OperationsThatCanBeTriggeredOnThisApplicationValue[]
      */
@@ -209,6 +212,7 @@ final class WebApplicationsValue implements ModelInterface, JsonSerializable
     {
         return $this->hooks;
     }
+
     /**
      * @return ScheduledCronTasksExecutedByThisApplicationValue[]
      */

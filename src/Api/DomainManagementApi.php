@@ -2,6 +2,10 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\DomainCreateInput;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Domain;
+use Upsun\Model\DomainPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +31,7 @@ use Upsun\Core\OAuthProvider;
 final class DomainManagementApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -66,14 +71,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/create-projects-domains
      */
     public function createProjectsDomains(
         string $projectId,
-        \Upsun\Model\DomainCreateInput $domainCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        DomainCreateInput $domainCreateInput
+    ): AcceptedResponse {
         return $this->createProjectsDomainsWithHttpInfo(
             $projectId,
             $domainCreateInput
@@ -83,14 +88,14 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Add a project domain with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function createProjectsDomainsWithHttpInfo(
         string $projectId,
-        \Upsun\Model\DomainCreateInput $domainCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        DomainCreateInput $domainCreateInput
+    ): AcceptedResponse {
         $request = $this->createProjectsDomainsRequest(
             $projectId,
             $domainCreateInput
@@ -105,13 +110,13 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -122,7 +127,7 @@ final class DomainManagementApi extends AbstractApi
      */
     private function createProjectsDomainsRequest(
         string $projectId,
-        \Upsun\Model\DomainCreateInput $domainCreateInput
+        DomainCreateInput $domainCreateInput
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -131,7 +136,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling createProjectsDomains'
             );
@@ -143,11 +148,12 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($domainCreateInput)
             && count($domainCreateInput) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $domainCreateInput 
                 when calling createProjectsDomains'
             );
         }
+
         $resourcePath = '/projects/{projectId}/domains';
         $formParams = [];
         $queryParams = [];
@@ -192,6 +198,7 @@ final class DomainManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -220,6 +227,7 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Add an environment domain
      *
@@ -231,15 +239,15 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/create-projects-environments-domains
      */
     public function createProjectsEnvironmentsDomains(
         string $projectId,
         string $environmentId,
-        \Upsun\Model\DomainCreateInput $domainCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        DomainCreateInput $domainCreateInput
+    ): AcceptedResponse {
         return $this->createProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -250,15 +258,15 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Add an environment domain with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function createProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
         string $environmentId,
-        \Upsun\Model\DomainCreateInput $domainCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        DomainCreateInput $domainCreateInput
+    ): AcceptedResponse {
         $request = $this->createProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -274,13 +282,13 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -292,7 +300,7 @@ final class DomainManagementApi extends AbstractApi
     private function createProjectsEnvironmentsDomainsRequest(
         string $projectId,
         string $environmentId,
-        \Upsun\Model\DomainCreateInput $domainCreateInput
+        DomainCreateInput $domainCreateInput
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -301,7 +309,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling createProjectsEnvironmentsDomains'
             );
@@ -313,7 +321,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling createProjectsEnvironmentsDomains'
             );
@@ -325,11 +333,12 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($domainCreateInput)
             && count($domainCreateInput) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $domainCreateInput 
                 when calling createProjectsEnvironmentsDomains'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains';
         $formParams = [];
         $queryParams = [];
@@ -345,6 +354,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -382,6 +392,7 @@ final class DomainManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -410,6 +421,7 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Delete a project domain
      *
@@ -418,14 +430,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/delete-projects-domains
      */
     public function deleteProjectsDomains(
         string $projectId,
         string $domainId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->deleteProjectsDomainsWithHttpInfo(
             $projectId,
             $domainId
@@ -435,14 +447,14 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Delete a project domain with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function deleteProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->deleteProjectsDomainsRequest(
             $projectId,
             $domainId
@@ -457,13 +469,13 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -483,7 +495,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling deleteProjectsDomains'
             );
@@ -495,11 +507,12 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($domainId)
             && count($domainId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $domainId 
                 when calling deleteProjectsDomains'
             );
         }
+
         $resourcePath = '/projects/{projectId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
@@ -515,6 +528,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($domainId !== null) {
             $resourcePath = str_replace(
@@ -544,6 +558,7 @@ final class DomainManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -572,6 +587,7 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
+
     /**
      * Delete an environment domain
      *
@@ -580,7 +596,7 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/delete-projects-environments-domains
      */
@@ -588,7 +604,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->deleteProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -599,7 +615,7 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Delete an environment domain with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -607,7 +623,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->deleteProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -623,13 +639,13 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -650,7 +666,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling deleteProjectsEnvironmentsDomains'
             );
@@ -662,7 +678,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling deleteProjectsEnvironmentsDomains'
             );
@@ -674,11 +690,12 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($domainId)
             && count($domainId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $domainId 
                 when calling deleteProjectsEnvironmentsDomains'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
@@ -694,6 +711,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -702,6 +720,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($domainId !== null) {
             $resourcePath = str_replace(
@@ -731,6 +750,7 @@ final class DomainManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -759,6 +779,7 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
+
     /**
      * Get a project domain
      *
@@ -767,14 +788,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Domain
+     * @return Domain
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-domains
      */
     public function getProjectsDomains(
         string $projectId,
         string $domainId
-    ): \Upsun\Model\Domain {
+    ): Domain {
         return $this->getProjectsDomainsWithHttpInfo(
             $projectId,
             $domainId
@@ -784,14 +805,14 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get a project domain with HTTP Info
      *
-     * @return \Upsun\Model\Domain
+     * @return Domain
      *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId
-    ): \Upsun\Model\Domain {
+    ): Domain {
         $request = $this->getProjectsDomainsRequest(
             $projectId,
             $domainId
@@ -806,13 +827,13 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Domain',
+                Domain::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -832,7 +853,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsDomains'
             );
@@ -844,11 +865,12 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($domainId)
             && count($domainId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $domainId 
                 when calling getProjectsDomains'
             );
         }
+
         $resourcePath = '/projects/{projectId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
@@ -864,6 +886,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($domainId !== null) {
             $resourcePath = str_replace(
@@ -893,6 +916,7 @@ final class DomainManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -921,6 +945,7 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get an environment domain
      *
@@ -929,7 +954,7 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Domain
+     * @return Domain
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-environments-domains
      */
@@ -937,7 +962,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): \Upsun\Model\Domain {
+    ): Domain {
         return $this->getProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -948,7 +973,7 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get an environment domain with HTTP Info
      *
-     * @return \Upsun\Model\Domain
+     * @return Domain
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -956,7 +981,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): \Upsun\Model\Domain {
+    ): Domain {
         $request = $this->getProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -972,13 +997,13 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Domain',
+                Domain::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -999,7 +1024,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsEnvironmentsDomains'
             );
@@ -1011,7 +1036,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling getProjectsEnvironmentsDomains'
             );
@@ -1023,11 +1048,12 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($domainId)
             && count($domainId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $domainId 
                 when calling getProjectsEnvironmentsDomains'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
@@ -1043,6 +1069,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -1051,6 +1078,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($domainId !== null) {
             $resourcePath = str_replace(
@@ -1080,6 +1108,7 @@ final class DomainManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -1108,6 +1137,7 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get list of project domains
      *
@@ -1118,7 +1148,7 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Domain[]
+     * @return Domain[]
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-domains
      */
@@ -1133,7 +1163,7 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get list of project domains with HTTP Info
      *
-     * @return \Upsun\Model\Domain[]
+     * @return Domain[]
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -1157,9 +1187,9 @@ final class DomainManagementApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -1178,11 +1208,12 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsDomains'
             );
         }
+
         $resourcePath = '/projects/{projectId}/domains';
         $formParams = [];
         $queryParams = [];
@@ -1219,6 +1250,7 @@ final class DomainManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -1247,6 +1279,7 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get a list of environment domains
      *
@@ -1256,7 +1289,7 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Domain[]
+     * @return Domain[]
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-environments-domains
      */
@@ -1273,7 +1306,7 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get a list of environment domains with HTTP Info
      *
-     * @return \Upsun\Model\Domain[]
+     * @return Domain[]
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -1299,9 +1332,9 @@ final class DomainManagementApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -1321,7 +1354,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsEnvironmentsDomains'
             );
@@ -1333,11 +1366,12 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling listProjectsEnvironmentsDomains'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains';
         $formParams = [];
         $queryParams = [];
@@ -1353,6 +1387,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -1382,6 +1417,7 @@ final class DomainManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -1410,6 +1446,7 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Update a project domain
      *
@@ -1418,15 +1455,15 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/update-projects-domains
      */
     public function updateProjectsDomains(
         string $projectId,
         string $domainId,
-        \Upsun\Model\DomainPatch $domainPatch
-    ): \Upsun\Model\AcceptedResponse {
+        DomainPatch $domainPatch
+    ): AcceptedResponse {
         return $this->updateProjectsDomainsWithHttpInfo(
             $projectId,
             $domainId,
@@ -1437,15 +1474,15 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Update a project domain with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
     private function updateProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId,
-        \Upsun\Model\DomainPatch $domainPatch
-    ): \Upsun\Model\AcceptedResponse {
+        DomainPatch $domainPatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsDomainsRequest(
             $projectId,
             $domainId,
@@ -1461,13 +1498,13 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -1479,7 +1516,7 @@ final class DomainManagementApi extends AbstractApi
     private function updateProjectsDomainsRequest(
         string $projectId,
         string $domainId,
-        \Upsun\Model\DomainPatch $domainPatch
+        DomainPatch $domainPatch
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -1488,7 +1525,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling updateProjectsDomains'
             );
@@ -1500,7 +1537,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($domainId)
             && count($domainId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $domainId 
                 when calling updateProjectsDomains'
             );
@@ -1512,11 +1549,12 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($domainPatch)
             && count($domainPatch) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $domainPatch 
                 when calling updateProjectsDomains'
             );
         }
+
         $resourcePath = '/projects/{projectId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
@@ -1532,6 +1570,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($domainId !== null) {
             $resourcePath = str_replace(
@@ -1569,6 +1608,7 @@ final class DomainManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -1597,6 +1637,7 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
+
     /**
      * Update an environment domain
      *
@@ -1605,7 +1646,7 @@ final class DomainManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/update-projects-environments-domains
      */
@@ -1613,8 +1654,8 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId,
-        \Upsun\Model\DomainPatch $domainPatch
-    ): \Upsun\Model\AcceptedResponse {
+        DomainPatch $domainPatch
+    ): AcceptedResponse {
         return $this->updateProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1626,7 +1667,7 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Update an environment domain with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -1634,8 +1675,8 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId,
-        \Upsun\Model\DomainPatch $domainPatch
-    ): \Upsun\Model\AcceptedResponse {
+        DomainPatch $domainPatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -1652,13 +1693,13 @@ final class DomainManagementApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            $e->enrichWithErrorObject();
-            throw $e;
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
         }
     }
 
@@ -1671,7 +1712,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId,
-        \Upsun\Model\DomainPatch $domainPatch
+        DomainPatch $domainPatch
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -1680,7 +1721,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling updateProjectsEnvironmentsDomains'
             );
@@ -1692,7 +1733,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling updateProjectsEnvironmentsDomains'
             );
@@ -1704,7 +1745,7 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($domainId)
             && count($domainId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $domainId 
                 when calling updateProjectsEnvironmentsDomains'
             );
@@ -1716,11 +1757,12 @@ final class DomainManagementApi extends AbstractApi
             || (is_array($domainPatch)
             && count($domainPatch) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $domainPatch 
                 when calling updateProjectsEnvironmentsDomains'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
@@ -1736,6 +1778,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -1744,6 +1787,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($domainId !== null) {
             $resourcePath = str_replace(
@@ -1781,6 +1825,7 @@ final class DomainManagementApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

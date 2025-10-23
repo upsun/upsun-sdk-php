@@ -59,6 +59,7 @@ final class OrganizationProjectCarbon implements ModelInterface, JsonSerializabl
     {
         return $this->projectTitle;
     }
+
     /**
      * @return MetricsValue[]|null
      */

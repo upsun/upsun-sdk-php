@@ -60,6 +60,7 @@ final class EnvironmentInitializeInput implements ModelInterface, JsonSerializab
     {
         return $this->config;
     }
+
     /**
      * @return AListOfFilesToAddToTheRepositoryDuringInitializationInner[]
      */
