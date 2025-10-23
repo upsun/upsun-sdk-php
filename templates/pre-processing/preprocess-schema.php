@@ -218,7 +218,10 @@ class OpenApiPreprocessor
 
     /**
      * check if project.subscription.id field exists
-     * and raise an error to use it in the ProjectTask.delete function
+     * and raise an error to use it in the function
+     *  - ProjectTask.delete()
+     *  - SupportTicketTask.listCategories()
+     *  - SupportTicketTask.listPriorities()
      */
     public function checkProjectSubscriptionId(): void
     {
