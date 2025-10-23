@@ -2,6 +2,8 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\OrganizationAddonsObject;
+use Upsun\Model\UpdateOrgAddonsRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +29,7 @@ use Upsun\Core\OAuthProvider;
 final class AddOnsApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -57,13 +60,13 @@ final class AddOnsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\OrganizationAddonsObject
+     * @return OrganizationAddonsObject
      *
      * @see https://docs.upsun.com/api/#tag/Add-ons/operation/get-org-addons
      */
     public function getOrgAddons(
         string $organizationId
-    ): \Upsun\Model\OrganizationAddonsObject {
+    ): OrganizationAddonsObject {
         return $this->getOrgAddonsWithHttpInfo(
             $organizationId
         );
@@ -72,13 +75,13 @@ final class AddOnsApi extends AbstractApi
     /**
      * Get add-ons with HTTP Info
      *
-     * @return \Upsun\Model\OrganizationAddonsObject
+     * @return OrganizationAddonsObject
      *
      * @throws ApiException
      */
     private function getOrgAddonsWithHttpInfo(
         string $organizationId
-    ): \Upsun\Model\OrganizationAddonsObject {
+    ): OrganizationAddonsObject {
         $request = $this->getOrgAddonsRequest(
             $organizationId
         );
@@ -92,20 +95,20 @@ final class AddOnsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationAddonsObject',
+                OrganizationAddonsObject::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/addons'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -125,11 +128,12 @@ final class AddOnsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getOrgAddons'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/addons';
         $formParams = [];
         $queryParams = [];
@@ -166,6 +170,7 @@ final class AddOnsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -194,6 +199,7 @@ final class AddOnsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Update organization add-ons
      *
@@ -201,14 +207,14 @@ final class AddOnsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\OrganizationAddonsObject
+     * @return OrganizationAddonsObject
      *
      * @see https://docs.upsun.com/api/#tag/Add-ons/operation/update-org-addons
      */
     public function updateOrgAddons(
         string $organizationId,
-        \Upsun\Model\UpdateOrgAddonsRequest $updateOrgAddonsRequest
-    ): \Upsun\Model\OrganizationAddonsObject {
+        UpdateOrgAddonsRequest $updateOrgAddonsRequest
+    ): OrganizationAddonsObject {
         return $this->updateOrgAddonsWithHttpInfo(
             $organizationId,
             $updateOrgAddonsRequest
@@ -218,14 +224,14 @@ final class AddOnsApi extends AbstractApi
     /**
      * Update organization add-ons with HTTP Info
      *
-     * @return \Upsun\Model\OrganizationAddonsObject
+     * @return OrganizationAddonsObject
      *
      * @throws ApiException
      */
     private function updateOrgAddonsWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\UpdateOrgAddonsRequest $updateOrgAddonsRequest
-    ): \Upsun\Model\OrganizationAddonsObject {
+        UpdateOrgAddonsRequest $updateOrgAddonsRequest
+    ): OrganizationAddonsObject {
         $request = $this->updateOrgAddonsRequest(
             $organizationId,
             $updateOrgAddonsRequest
@@ -240,20 +246,20 @@ final class AddOnsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationAddonsObject',
+                OrganizationAddonsObject::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/addons'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -265,7 +271,7 @@ final class AddOnsApi extends AbstractApi
      */
     private function updateOrgAddonsRequest(
         string $organizationId,
-        \Upsun\Model\UpdateOrgAddonsRequest $updateOrgAddonsRequest
+        UpdateOrgAddonsRequest $updateOrgAddonsRequest
     ): RequestInterface {
 
         // verify the required parameter 'organizationId' is set
@@ -274,7 +280,7 @@ final class AddOnsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling updateOrgAddons'
             );
@@ -286,11 +292,12 @@ final class AddOnsApi extends AbstractApi
             || (is_array($updateOrgAddonsRequest)
             && count($updateOrgAddonsRequest) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $updateOrgAddonsRequest 
                 when calling updateOrgAddons'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/addons';
         $formParams = [];
         $queryParams = [];
@@ -335,6 +342,7 @@ final class AddOnsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

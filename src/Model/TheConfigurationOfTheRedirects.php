@@ -44,6 +44,7 @@ final class TheConfigurationOfTheRedirects implements ModelInterface, JsonSerial
     {
         return $this->expires;
     }
+
     /**
      * @return ThePathsToRedirectValue[]
      */

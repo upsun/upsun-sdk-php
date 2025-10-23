@@ -2,6 +2,10 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\ProjectVariableCreateInput;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\ProjectVariable;
+use Upsun\Model\ProjectVariablePatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +31,7 @@ use Upsun\Core\OAuthProvider;
 final class ProjectVariablesApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -59,14 +64,14 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/create-projects-variables
      */
     public function createProjectsVariables(
         string $projectId,
-        \Upsun\Model\ProjectVariableCreateInput $projectVariableCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        ProjectVariableCreateInput $projectVariableCreateInput
+    ): AcceptedResponse {
         return $this->createProjectsVariablesWithHttpInfo(
             $projectId,
             $projectVariableCreateInput
@@ -76,14 +81,14 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Add a project variable with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ApiException
      */
     private function createProjectsVariablesWithHttpInfo(
         string $projectId,
-        \Upsun\Model\ProjectVariableCreateInput $projectVariableCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        ProjectVariableCreateInput $projectVariableCreateInput
+    ): AcceptedResponse {
         $request = $this->createProjectsVariablesRequest(
             $projectId,
             $projectVariableCreateInput
@@ -98,20 +103,20 @@ final class ProjectVariablesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/variables'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -123,7 +128,7 @@ final class ProjectVariablesApi extends AbstractApi
      */
     private function createProjectsVariablesRequest(
         string $projectId,
-        \Upsun\Model\ProjectVariableCreateInput $projectVariableCreateInput
+        ProjectVariableCreateInput $projectVariableCreateInput
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -132,7 +137,7 @@ final class ProjectVariablesApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling createProjectsVariables'
             );
@@ -144,11 +149,12 @@ final class ProjectVariablesApi extends AbstractApi
             || (is_array($projectVariableCreateInput)
             && count($projectVariableCreateInput) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectVariableCreateInput 
                 when calling createProjectsVariables'
             );
         }
+
         $resourcePath = '/projects/{projectId}/variables';
         $formParams = [];
         $queryParams = [];
@@ -193,6 +199,7 @@ final class ProjectVariablesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -221,6 +228,7 @@ final class ProjectVariablesApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Delete a project variable
      *
@@ -228,14 +236,14 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/delete-projects-variables
      */
     public function deleteProjectsVariables(
         string $projectId,
         string $projectVariableId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->deleteProjectsVariablesWithHttpInfo(
             $projectId,
             $projectVariableId
@@ -245,14 +253,14 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Delete a project variable with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ApiException
      */
     private function deleteProjectsVariablesWithHttpInfo(
         string $projectId,
         string $projectVariableId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->deleteProjectsVariablesRequest(
             $projectId,
             $projectVariableId
@@ -267,20 +275,20 @@ final class ProjectVariablesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/variables/{projectVariableId}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -301,7 +309,7 @@ final class ProjectVariablesApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling deleteProjectsVariables'
             );
@@ -313,11 +321,12 @@ final class ProjectVariablesApi extends AbstractApi
             || (is_array($projectVariableId)
             && count($projectVariableId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectVariableId 
                 when calling deleteProjectsVariables'
             );
         }
+
         $resourcePath = '/projects/{projectId}/variables/{projectVariableId}';
         $formParams = [];
         $queryParams = [];
@@ -333,6 +342,7 @@ final class ProjectVariablesApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($projectVariableId !== null) {
             $resourcePath = str_replace(
@@ -362,6 +372,7 @@ final class ProjectVariablesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -390,6 +401,7 @@ final class ProjectVariablesApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
+
     /**
      * Get a project variable
      *
@@ -397,14 +409,14 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\ProjectVariable
+     * @return ProjectVariable
      *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/get-projects-variables
      */
     public function getProjectsVariables(
         string $projectId,
         string $projectVariableId
-    ): \Upsun\Model\ProjectVariable {
+    ): ProjectVariable {
         return $this->getProjectsVariablesWithHttpInfo(
             $projectId,
             $projectVariableId
@@ -414,14 +426,14 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Get a project variable with HTTP Info
      *
-     * @return \Upsun\Model\ProjectVariable
+     * @return ProjectVariable
      *
      * @throws ApiException
      */
     private function getProjectsVariablesWithHttpInfo(
         string $projectId,
         string $projectVariableId
-    ): \Upsun\Model\ProjectVariable {
+    ): ProjectVariable {
         $request = $this->getProjectsVariablesRequest(
             $projectId,
             $projectVariableId
@@ -436,20 +448,20 @@ final class ProjectVariablesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ProjectVariable',
+                ProjectVariable::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/variables/{projectVariableId}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -470,7 +482,7 @@ final class ProjectVariablesApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsVariables'
             );
@@ -482,11 +494,12 @@ final class ProjectVariablesApi extends AbstractApi
             || (is_array($projectVariableId)
             && count($projectVariableId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectVariableId 
                 when calling getProjectsVariables'
             );
         }
+
         $resourcePath = '/projects/{projectId}/variables/{projectVariableId}';
         $formParams = [];
         $queryParams = [];
@@ -502,6 +515,7 @@ final class ProjectVariablesApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($projectVariableId !== null) {
             $resourcePath = str_replace(
@@ -531,6 +545,7 @@ final class ProjectVariablesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -559,6 +574,7 @@ final class ProjectVariablesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get list of project variables
      *
@@ -566,7 +582,7 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\ProjectVariable[]
+     * @return ProjectVariable[]
      *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/list-projects-variables
      */
@@ -581,7 +597,7 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Get list of project variables with HTTP Info
      *
-     * @return \Upsun\Model\ProjectVariable[]
+     * @return ProjectVariable[]
      *
      * @throws ApiException
      */
@@ -605,16 +621,16 @@ final class ProjectVariablesApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/variables'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -634,11 +650,12 @@ final class ProjectVariablesApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsVariables'
             );
         }
+
         $resourcePath = '/projects/{projectId}/variables';
         $formParams = [];
         $queryParams = [];
@@ -675,6 +692,7 @@ final class ProjectVariablesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -703,6 +721,7 @@ final class ProjectVariablesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Update a project variable
      *
@@ -713,15 +732,15 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/update-projects-variables
      */
     public function updateProjectsVariables(
         string $projectId,
         string $projectVariableId,
-        \Upsun\Model\ProjectVariablePatch $projectVariablePatch
-    ): \Upsun\Model\AcceptedResponse {
+        ProjectVariablePatch $projectVariablePatch
+    ): AcceptedResponse {
         return $this->updateProjectsVariablesWithHttpInfo(
             $projectId,
             $projectVariableId,
@@ -732,15 +751,15 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Update a project variable with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ApiException
      */
     private function updateProjectsVariablesWithHttpInfo(
         string $projectId,
         string $projectVariableId,
-        \Upsun\Model\ProjectVariablePatch $projectVariablePatch
-    ): \Upsun\Model\AcceptedResponse {
+        ProjectVariablePatch $projectVariablePatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsVariablesRequest(
             $projectId,
             $projectVariableId,
@@ -756,20 +775,20 @@ final class ProjectVariablesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/variables/{projectVariableId}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -782,7 +801,7 @@ final class ProjectVariablesApi extends AbstractApi
     private function updateProjectsVariablesRequest(
         string $projectId,
         string $projectVariableId,
-        \Upsun\Model\ProjectVariablePatch $projectVariablePatch
+        ProjectVariablePatch $projectVariablePatch
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -791,7 +810,7 @@ final class ProjectVariablesApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling updateProjectsVariables'
             );
@@ -803,7 +822,7 @@ final class ProjectVariablesApi extends AbstractApi
             || (is_array($projectVariableId)
             && count($projectVariableId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectVariableId 
                 when calling updateProjectsVariables'
             );
@@ -815,11 +834,12 @@ final class ProjectVariablesApi extends AbstractApi
             || (is_array($projectVariablePatch)
             && count($projectVariablePatch) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectVariablePatch 
                 when calling updateProjectsVariables'
             );
         }
+
         $resourcePath = '/projects/{projectId}/variables/{projectVariableId}';
         $formParams = [];
         $queryParams = [];
@@ -835,6 +855,7 @@ final class ProjectVariablesApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($projectVariableId !== null) {
             $resourcePath = str_replace(
@@ -872,6 +893,7 @@ final class ProjectVariablesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

@@ -13,18 +13,19 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class APIToken implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?\DateTime $lastUsedAt = null,
+        private readonly ?DateTime $lastUsedAt = null,
         private readonly ?string $id = null,
         private readonly ?string $name = null,
         private readonly ?bool $mfaOnCreation = null,
         private readonly ?string $token = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
     ) {
     }
 
@@ -86,7 +87,7 @@ final class APIToken implements ModelInterface, JsonSerializable
     /**
     * The date and time when the token was created.
     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
@@ -94,7 +95,7 @@ final class APIToken implements ModelInterface, JsonSerializable
     /**
     * The date and time when the token was last updated.
     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
@@ -105,7 +106,7 @@ final class APIToken implements ModelInterface, JsonSerializable
     * API token is used, the derived access token may continue to be used until its expiry. This also applies to SSH
     * certificate(s) derived from the access token.
     */
-    public function getLastUsedAt(): ?\DateTime
+    public function getLastUsedAt(): ?DateTime
     {
         return $this->lastUsedAt;
     }

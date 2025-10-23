@@ -14,6 +14,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Alert implements ModelInterface, JsonSerializable
@@ -22,8 +23,8 @@ final class Alert implements ModelInterface, JsonSerializable
         private readonly ?string $id = null,
         private readonly ?bool $active = null,
         private readonly ?int $alertsSent = null,
-        private readonly ?\DateTime $lastAlertAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $lastAlertAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?object $config = null,
     ) {
     }
@@ -77,7 +78,7 @@ final class Alert implements ModelInterface, JsonSerializable
     /**
     * The time the last alert has been sent.
     */
-    public function getLastAlertAt(): ?\DateTime
+    public function getLastAlertAt(): ?DateTime
     {
         return $this->lastAlertAt;
     }
@@ -85,7 +86,7 @@ final class Alert implements ModelInterface, JsonSerializable
     /**
     * The time the alert has last been updated.
     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

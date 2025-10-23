@@ -2,6 +2,9 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\CertificateProvisioner;
+use Upsun\Model\CertificateProvisionerPatch;
+use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +30,7 @@ use Upsun\Core\OAuthProvider;
 final class CertificateProvisionerApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -54,14 +58,14 @@ final class CertificateProvisionerApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\CertificateProvisioner
+     * @return CertificateProvisioner
      *
      * @see https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/get-projects-provisioners
      */
     public function getProjectsProvisioners(
         string $projectId,
         string $certificateProvisionerDocumentId
-    ): \Upsun\Model\CertificateProvisioner {
+    ): CertificateProvisioner {
         return $this->getProjectsProvisionersWithHttpInfo(
             $projectId,
             $certificateProvisionerDocumentId
@@ -70,14 +74,14 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
-     * @return \Upsun\Model\CertificateProvisioner
+     * @return CertificateProvisioner
      *
      * @throws ApiException
      */
     private function getProjectsProvisionersWithHttpInfo(
         string $projectId,
         string $certificateProvisionerDocumentId
-    ): \Upsun\Model\CertificateProvisioner {
+    ): CertificateProvisioner {
         $request = $this->getProjectsProvisionersRequest(
             $projectId,
             $certificateProvisionerDocumentId
@@ -92,20 +96,20 @@ final class CertificateProvisionerApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\CertificateProvisioner',
+                CertificateProvisioner::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -126,7 +130,7 @@ final class CertificateProvisionerApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsProvisioners'
             );
@@ -138,11 +142,12 @@ final class CertificateProvisionerApi extends AbstractApi
             || (is_array($certificateProvisionerDocumentId)
             && count($certificateProvisionerDocumentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $certificateProvisionerDocumentId 
                 when calling getProjectsProvisioners'
             );
         }
+
         $resourcePath = '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}';
         $formParams = [];
         $queryParams = [];
@@ -158,6 +163,7 @@ final class CertificateProvisionerApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($certificateProvisionerDocumentId !== null) {
             $resourcePath = str_replace(
@@ -187,6 +193,7 @@ final class CertificateProvisionerApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -215,11 +222,12 @@ final class CertificateProvisionerApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\CertificateProvisioner[]
+     * @return CertificateProvisioner[]
      *
      * @see https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/list-projects-provisioners
      */
@@ -233,7 +241,7 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
-     * @return \Upsun\Model\CertificateProvisioner[]
+     * @return CertificateProvisioner[]
      *
      * @throws ApiException
      */
@@ -257,16 +265,16 @@ final class CertificateProvisionerApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/provisioners'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -286,11 +294,12 @@ final class CertificateProvisionerApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsProvisioners'
             );
         }
+
         $resourcePath = '/projects/{projectId}/provisioners';
         $formParams = [];
         $queryParams = [];
@@ -327,6 +336,7 @@ final class CertificateProvisionerApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -355,19 +365,20 @@ final class CertificateProvisionerApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/update-projects-provisioners
      */
     public function updateProjectsProvisioners(
         string $projectId,
         string $certificateProvisionerDocumentId,
-        \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch
-    ): \Upsun\Model\AcceptedResponse {
+        CertificateProvisionerPatch $certificateProvisionerPatch
+    ): AcceptedResponse {
         return $this->updateProjectsProvisionersWithHttpInfo(
             $projectId,
             $certificateProvisionerDocumentId,
@@ -377,15 +388,15 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ApiException
      */
     private function updateProjectsProvisionersWithHttpInfo(
         string $projectId,
         string $certificateProvisionerDocumentId,
-        \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch
-    ): \Upsun\Model\AcceptedResponse {
+        CertificateProvisionerPatch $certificateProvisionerPatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsProvisionersRequest(
             $projectId,
             $certificateProvisionerDocumentId,
@@ -401,20 +412,20 @@ final class CertificateProvisionerApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -427,7 +438,7 @@ final class CertificateProvisionerApi extends AbstractApi
     private function updateProjectsProvisionersRequest(
         string $projectId,
         string $certificateProvisionerDocumentId,
-        \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch
+        CertificateProvisionerPatch $certificateProvisionerPatch
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -436,7 +447,7 @@ final class CertificateProvisionerApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling updateProjectsProvisioners'
             );
@@ -448,7 +459,7 @@ final class CertificateProvisionerApi extends AbstractApi
             || (is_array($certificateProvisionerDocumentId)
             && count($certificateProvisionerDocumentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $certificateProvisionerDocumentId 
                 when calling updateProjectsProvisioners'
             );
@@ -460,11 +471,12 @@ final class CertificateProvisionerApi extends AbstractApi
             || (is_array($certificateProvisionerPatch)
             && count($certificateProvisionerPatch) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $certificateProvisionerPatch 
                 when calling updateProjectsProvisioners'
             );
         }
+
         $resourcePath = '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}';
         $formParams = [];
         $queryParams = [];
@@ -480,6 +492,7 @@ final class CertificateProvisionerApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($certificateProvisionerDocumentId !== null) {
             $resourcePath = str_replace(
@@ -517,6 +530,7 @@ final class CertificateProvisionerApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

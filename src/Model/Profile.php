@@ -14,6 +14,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Profile implements ModelInterface, JsonSerializable
@@ -36,8 +37,8 @@ final class Profile implements ModelInterface, JsonSerializable
         private readonly ?string $defaultCatalog = null,
         private readonly ?string $projectOptionsUrl = null,
         private readonly ?bool $marketing = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?string $billingContact = null,
         private readonly ?string $securityContact = null,
         private readonly ?ProfileCurrentTrial $currentTrial = null,
@@ -223,7 +224,7 @@ final class Profile implements ModelInterface, JsonSerializable
     /**
     * The timestamp representing when the user account was created.
     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
@@ -231,7 +232,7 @@ final class Profile implements ModelInterface, JsonSerializable
     /**
     * The timestamp representing when the user account was last modified.
     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

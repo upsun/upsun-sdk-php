@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\Connection;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +28,7 @@ use Upsun\Core\OAuthProvider;
 final class ConnectionsApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -90,16 +92,16 @@ final class ConnectionsApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/users/{user_id}/connections/{provider}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -120,7 +122,7 @@ final class ConnectionsApi extends AbstractApi
             || (is_array($provider)
             && count($provider) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $provider 
                 when calling deleteLoginConnection'
             );
@@ -132,11 +134,12 @@ final class ConnectionsApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling deleteLoginConnection'
             );
         }
+
         $resourcePath = '/users/{user_id}/connections/{provider}';
         $formParams = [];
         $queryParams = [];
@@ -152,6 +155,7 @@ final class ConnectionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($userId !== null) {
             $resourcePath = str_replace(
@@ -181,6 +185,7 @@ final class ConnectionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -209,6 +214,7 @@ final class ConnectionsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
+
     /**
      * Get a federated login connection
      *
@@ -216,14 +222,14 @@ final class ConnectionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\Connection
+     * @return Connection
      *
      * @see https://docs.upsun.com/api/#tag/Connections/operation/get-login-connection
      */
     public function getLoginConnection(
         string $provider,
         string $userId
-    ): \Upsun\Model\Connection {
+    ): Connection {
         return $this->getLoginConnectionWithHttpInfo(
             $provider,
             $userId
@@ -233,14 +239,14 @@ final class ConnectionsApi extends AbstractApi
     /**
      * Get a federated login connection with HTTP Info
      *
-     * @return \Upsun\Model\Connection
+     * @return Connection
      *
      * @throws ApiException
      */
     private function getLoginConnectionWithHttpInfo(
         string $provider,
         string $userId
-    ): \Upsun\Model\Connection {
+    ): Connection {
         $request = $this->getLoginConnectionRequest(
             $provider,
             $userId
@@ -255,20 +261,20 @@ final class ConnectionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Connection',
+                Connection::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/users/{user_id}/connections/{provider}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -289,7 +295,7 @@ final class ConnectionsApi extends AbstractApi
             || (is_array($provider)
             && count($provider) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $provider 
                 when calling getLoginConnection'
             );
@@ -301,11 +307,12 @@ final class ConnectionsApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling getLoginConnection'
             );
         }
+
         $resourcePath = '/users/{user_id}/connections/{provider}';
         $formParams = [];
         $queryParams = [];
@@ -321,6 +328,7 @@ final class ConnectionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($userId !== null) {
             $resourcePath = str_replace(
@@ -350,6 +358,7 @@ final class ConnectionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -378,6 +387,7 @@ final class ConnectionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * List federated login connections
      *
@@ -385,7 +395,7 @@ final class ConnectionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\Connection[]
+     * @return Connection[]
      *
      * @see https://docs.upsun.com/api/#tag/Connections/operation/list-login-connections
      */
@@ -400,7 +410,7 @@ final class ConnectionsApi extends AbstractApi
     /**
      * List federated login connections with HTTP Info
      *
-     * @return \Upsun\Model\Connection[]
+     * @return Connection[]
      *
      * @throws ApiException
      */
@@ -424,16 +434,16 @@ final class ConnectionsApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/users/{user_id}/connections'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -453,11 +463,12 @@ final class ConnectionsApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling listLoginConnections'
             );
         }
+
         $resourcePath = '/users/{user_id}/connections';
         $formParams = [];
         $queryParams = [];
@@ -494,6 +505,7 @@ final class ConnectionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

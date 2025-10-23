@@ -14,6 +14,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class TeamReference implements ModelInterface, JsonSerializable
@@ -24,8 +25,8 @@ final class TeamReference implements ModelInterface, JsonSerializable
         private readonly ?string $label = null,
         private readonly ?array $projectPermissions = [],
         private readonly ?TeamCounts $counts = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
     ) {
     }
 
@@ -89,7 +90,7 @@ final class TeamReference implements ModelInterface, JsonSerializable
     /**
     * The date and time when the team was created.
     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
@@ -97,7 +98,7 @@ final class TeamReference implements ModelInterface, JsonSerializable
     /**
     * The date and time when the team was last updated.
     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

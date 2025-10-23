@@ -2,6 +2,12 @@
 
 namespace Upsun\Api;
 
+use DateTime;
+use Upsun\Model\OrganizationReference;
+use Upsun\Model\ProjectReference;
+use Upsun\Model\RegionReference;
+use Upsun\Model\TeamReference;
+use Upsun\Model\UserReference;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +33,7 @@ use Upsun\Core\OAuthProvider;
 final class ReferencesApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -59,7 +66,7 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return array<string,\Upsun\Model\OrganizationReference>
+     * @return array<string, OrganizationReference>
      *
      * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-orgs
      */
@@ -76,7 +83,7 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced organizations with HTTP Info
      *
-     * @return array<string,\Upsun\Model\OrganizationReference>
+     * @return array<string, OrganizationReference>
      *
      * @throws ApiException
      */
@@ -102,16 +109,16 @@ final class ReferencesApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/ref/organizations'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -132,7 +139,7 @@ final class ReferencesApi extends AbstractApi
             || (is_array($in)
             && count($in) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $in 
                 when calling listReferencedOrgs'
             );
@@ -144,11 +151,12 @@ final class ReferencesApi extends AbstractApi
             || (is_array($sig)
             && count($sig) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $sig 
                 when calling listReferencedOrgs'
             );
         }
+
         $resourcePath = '/ref/organizations';
         $formParams = [];
         $queryParams = [];
@@ -163,7 +171,7 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in instanceof \DateTime
+                $queryParams['in'] = $in instanceof DateTime
                     ? $in->format(DATE_ATOM)
                     : ($in);
             }
@@ -178,7 +186,7 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig instanceof \DateTime
+                $queryParams['sig'] = $sig instanceof DateTime
                     ? $sig->format(DATE_ATOM)
                     : ($sig);
             }
@@ -207,6 +215,7 @@ final class ReferencesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -235,6 +244,7 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * List referenced projects
      *
@@ -244,7 +254,7 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return array<string,\Upsun\Model\ProjectReference>
+     * @return array<string, ProjectReference>
      *
      * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-projects
      */
@@ -261,7 +271,7 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced projects with HTTP Info
      *
-     * @return array<string,\Upsun\Model\ProjectReference>
+     * @return array<string, ProjectReference>
      *
      * @throws ApiException
      */
@@ -287,16 +297,16 @@ final class ReferencesApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/ref/projects'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -317,7 +327,7 @@ final class ReferencesApi extends AbstractApi
             || (is_array($in)
             && count($in) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $in 
                 when calling listReferencedProjects'
             );
@@ -329,11 +339,12 @@ final class ReferencesApi extends AbstractApi
             || (is_array($sig)
             && count($sig) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $sig 
                 when calling listReferencedProjects'
             );
         }
+
         $resourcePath = '/ref/projects';
         $formParams = [];
         $queryParams = [];
@@ -348,7 +359,7 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in instanceof \DateTime
+                $queryParams['in'] = $in instanceof DateTime
                     ? $in->format(DATE_ATOM)
                     : ($in);
             }
@@ -363,7 +374,7 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig instanceof \DateTime
+                $queryParams['sig'] = $sig instanceof DateTime
                     ? $sig->format(DATE_ATOM)
                     : ($sig);
             }
@@ -392,6 +403,7 @@ final class ReferencesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -420,6 +432,7 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * List referenced regions
      *
@@ -429,7 +442,7 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return array<string,\Upsun\Model\RegionReference>
+     * @return array<string, RegionReference>
      *
      * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-regions
      */
@@ -446,7 +459,7 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced regions with HTTP Info
      *
-     * @return array<string,\Upsun\Model\RegionReference>
+     * @return array<string, RegionReference>
      *
      * @throws ApiException
      */
@@ -472,16 +485,16 @@ final class ReferencesApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/ref/regions'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -502,7 +515,7 @@ final class ReferencesApi extends AbstractApi
             || (is_array($in)
             && count($in) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $in 
                 when calling listReferencedRegions'
             );
@@ -514,11 +527,12 @@ final class ReferencesApi extends AbstractApi
             || (is_array($sig)
             && count($sig) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $sig 
                 when calling listReferencedRegions'
             );
         }
+
         $resourcePath = '/ref/regions';
         $formParams = [];
         $queryParams = [];
@@ -533,7 +547,7 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in instanceof \DateTime
+                $queryParams['in'] = $in instanceof DateTime
                     ? $in->format(DATE_ATOM)
                     : ($in);
             }
@@ -548,7 +562,7 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig instanceof \DateTime
+                $queryParams['sig'] = $sig instanceof DateTime
                     ? $sig->format(DATE_ATOM)
                     : ($sig);
             }
@@ -577,6 +591,7 @@ final class ReferencesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -605,6 +620,7 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * List referenced teams
      *
@@ -614,7 +630,7 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return array<string,\Upsun\Model\TeamReference>
+     * @return array<string, TeamReference>
      *
      * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-teams
      */
@@ -631,7 +647,7 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced teams with HTTP Info
      *
-     * @return array<string,\Upsun\Model\TeamReference>
+     * @return array<string, TeamReference>
      *
      * @throws ApiException
      */
@@ -657,16 +673,16 @@ final class ReferencesApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/ref/teams'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -687,7 +703,7 @@ final class ReferencesApi extends AbstractApi
             || (is_array($in)
             && count($in) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $in 
                 when calling listReferencedTeams'
             );
@@ -699,11 +715,12 @@ final class ReferencesApi extends AbstractApi
             || (is_array($sig)
             && count($sig) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $sig 
                 when calling listReferencedTeams'
             );
         }
+
         $resourcePath = '/ref/teams';
         $formParams = [];
         $queryParams = [];
@@ -718,7 +735,7 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in instanceof \DateTime
+                $queryParams['in'] = $in instanceof DateTime
                     ? $in->format(DATE_ATOM)
                     : ($in);
             }
@@ -733,7 +750,7 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig instanceof \DateTime
+                $queryParams['sig'] = $sig instanceof DateTime
                     ? $sig->format(DATE_ATOM)
                     : ($sig);
             }
@@ -762,6 +779,7 @@ final class ReferencesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -790,6 +808,7 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * List referenced users
      *
@@ -799,7 +818,7 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return array<string,\Upsun\Model\UserReference>
+     * @return array<string, UserReference>
      *
      * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-users
      */
@@ -816,7 +835,7 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced users with HTTP Info
      *
-     * @return array<string,\Upsun\Model\UserReference>
+     * @return array<string, UserReference>
      *
      * @throws ApiException
      */
@@ -842,16 +861,16 @@ final class ReferencesApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/ref/users'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -872,7 +891,7 @@ final class ReferencesApi extends AbstractApi
             || (is_array($in)
             && count($in) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $in 
                 when calling listReferencedUsers'
             );
@@ -884,11 +903,12 @@ final class ReferencesApi extends AbstractApi
             || (is_array($sig)
             && count($sig) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $sig 
                 when calling listReferencedUsers'
             );
         }
+
         $resourcePath = '/ref/users';
         $formParams = [];
         $queryParams = [];
@@ -903,7 +923,7 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in instanceof \DateTime
+                $queryParams['in'] = $in instanceof DateTime
                     ? $in->format(DATE_ATOM)
                     : ($in);
             }
@@ -918,7 +938,7 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig instanceof \DateTime
+                $queryParams['sig'] = $sig instanceof DateTime
                     ? $sig->format(DATE_ATOM)
                     : ($sig);
             }
@@ -947,6 +967,7 @@ final class ReferencesApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

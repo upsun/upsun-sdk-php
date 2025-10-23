@@ -14,6 +14,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Subscription implements ModelInterface, JsonSerializable
@@ -21,8 +22,8 @@ final class Subscription implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $status = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?string $owner = null,
         private readonly ?OwnerInfo $ownerInfo = null,
         private readonly ?string $vendor = null,
@@ -105,7 +106,7 @@ final class Subscription implements ModelInterface, JsonSerializable
     /**
     * The date and time when the subscription was created.
     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
@@ -113,7 +114,7 @@ final class Subscription implements ModelInterface, JsonSerializable
     /**
     * The date and time when the subscription was last updated.
     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

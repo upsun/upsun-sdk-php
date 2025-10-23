@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Certificate implements ModelInterface, JsonSerializable
@@ -26,9 +27,9 @@ final class Certificate implements ModelInterface, JsonSerializable
         private readonly array $domains,
         private readonly array $authType,
         private readonly array $issuer,
-        private readonly \DateTime $expiresAt,
-        private readonly ?\DateTime $createdAt,
-        private readonly ?\DateTime $updatedAt,
+        private readonly DateTime $expiresAt,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
     ) {
     }
 
@@ -65,12 +66,12 @@ final class Certificate implements ModelInterface, JsonSerializable
         return $this->id;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
@@ -109,6 +110,7 @@ final class Certificate implements ModelInterface, JsonSerializable
     {
         return $this->authType;
     }
+
     /**
      * @return TheIssuerOfTheCertificateInner[]
      */
@@ -118,7 +120,7 @@ final class Certificate implements ModelInterface, JsonSerializable
         return $this->issuer;
     }
 
-    public function getExpiresAt(): \DateTime
+    public function getExpiresAt(): DateTime
     {
         return $this->expiresAt;
     }

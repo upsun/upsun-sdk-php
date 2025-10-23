@@ -2,6 +2,8 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\SystemInformation;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +29,7 @@ use Upsun\Core\OAuthProvider;
 final class SystemInformationApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -57,13 +60,13 @@ final class SystemInformationApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/System-Information/operation/action-projects-system-restart
      */
     public function actionProjectsSystemRestart(
         string $projectId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->actionProjectsSystemRestartWithHttpInfo(
             $projectId
         );
@@ -72,13 +75,13 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Restart the Git server with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ApiException
      */
     private function actionProjectsSystemRestartWithHttpInfo(
         string $projectId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->actionProjectsSystemRestartRequest(
             $projectId
         );
@@ -92,20 +95,20 @@ final class SystemInformationApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/system/restart'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -125,11 +128,12 @@ final class SystemInformationApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling actionProjectsSystemRestart'
             );
         }
+
         $resourcePath = '/projects/{projectId}/system/restart';
         $formParams = [];
         $queryParams = [];
@@ -166,6 +170,7 @@ final class SystemInformationApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -194,6 +199,7 @@ final class SystemInformationApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Get information about the Git server.
      *
@@ -201,13 +207,13 @@ final class SystemInformationApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\SystemInformation
+     * @return SystemInformation
      *
      * @see https://docs.upsun.com/api/#tag/System-Information/operation/get-projects-system
      */
     public function getProjectsSystem(
         string $projectId
-    ): \Upsun\Model\SystemInformation {
+    ): SystemInformation {
         return $this->getProjectsSystemWithHttpInfo(
             $projectId
         );
@@ -216,13 +222,13 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Get information about the Git server. with HTTP Info
      *
-     * @return \Upsun\Model\SystemInformation
+     * @return SystemInformation
      *
      * @throws ApiException
      */
     private function getProjectsSystemWithHttpInfo(
         string $projectId
-    ): \Upsun\Model\SystemInformation {
+    ): SystemInformation {
         $request = $this->getProjectsSystemRequest(
             $projectId
         );
@@ -236,20 +242,20 @@ final class SystemInformationApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\SystemInformation',
+                SystemInformation::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/system'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -269,11 +275,12 @@ final class SystemInformationApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsSystem'
             );
         }
+
         $resourcePath = '/projects/{projectId}/system';
         $formParams = [];
         $queryParams = [];
@@ -310,6 +317,7 @@ final class SystemInformationApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

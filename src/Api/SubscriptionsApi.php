@@ -2,6 +2,20 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\CanUpdateSubscription200Response;
+use DateTime;
+use Upsun\Model\CreateOrgSubscriptionRequest;
+use Upsun\Model\Subscription;
+use Upsun\Model\EstimationObject;
+use Upsun\Model\SubscriptionCurrentUsageObject;
+use Upsun\Model\GetSubscriptionUsageAlerts200Response;
+use Upsun\Model\StringFilter;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\ListOrgSubscriptions200Response;
+use Upsun\Model\SubscriptionAddonsObject;
+use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +41,7 @@ use Upsun\Core\OAuthProvider;
 final class SubscriptionsApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -56,13 +71,13 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\CanCreateNewOrgSubscription200Response
+     * @return CanCreateNewOrgSubscription200Response
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/can-create-new-org-subscription
      */
     public function canCreateNewOrgSubscription(
         string $organizationId
-    ): \Upsun\Model\CanCreateNewOrgSubscription200Response {
+    ): CanCreateNewOrgSubscription200Response {
         return $this->canCreateNewOrgSubscriptionWithHttpInfo(
             $organizationId
         );
@@ -71,13 +86,13 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Checks if the user is able to create a new project. with HTTP Info
      *
-     * @return \Upsun\Model\CanCreateNewOrgSubscription200Response
+     * @return CanCreateNewOrgSubscription200Response
      *
      * @throws ApiException
      */
     private function canCreateNewOrgSubscriptionWithHttpInfo(
         string $organizationId
-    ): \Upsun\Model\CanCreateNewOrgSubscription200Response {
+    ): CanCreateNewOrgSubscription200Response {
         $request = $this->canCreateNewOrgSubscriptionRequest(
             $organizationId
         );
@@ -91,20 +106,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\CanCreateNewOrgSubscription200Response',
+                CanCreateNewOrgSubscription200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/subscriptions/can-create'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -124,11 +139,12 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling canCreateNewOrgSubscription'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/subscriptions/can-create';
         $formParams = [];
         $queryParams = [];
@@ -165,6 +181,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -193,13 +210,14 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Checks if the user is able to update a project.
      *
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\CanUpdateSubscription200Response
+     * @return CanUpdateSubscription200Response
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/can-update-subscription
      */
@@ -209,7 +227,7 @@ final class SubscriptionsApi extends AbstractApi
         ?int $environments = null,
         ?int $storage = null,
         ?int $userLicenses = null
-    ): \Upsun\Model\CanUpdateSubscription200Response {
+    ): CanUpdateSubscription200Response {
         return $this->canUpdateSubscriptionWithHttpInfo(
             $subscriptionId,
             $plan,
@@ -222,7 +240,7 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Checks if the user is able to update a project. with HTTP Info
      *
-     * @return \Upsun\Model\CanUpdateSubscription200Response
+     * @return CanUpdateSubscription200Response
      *
      * @throws ApiException
      */
@@ -232,7 +250,7 @@ final class SubscriptionsApi extends AbstractApi
         ?int $environments = null,
         ?int $storage = null,
         ?int $userLicenses = null
-    ): \Upsun\Model\CanUpdateSubscription200Response {
+    ): CanUpdateSubscription200Response {
         $request = $this->canUpdateSubscriptionRequest(
             $subscriptionId,
             $plan,
@@ -250,20 +268,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\CanUpdateSubscription200Response',
+                CanUpdateSubscription200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/subscriptions/{subscriptionId}/can-update'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -287,7 +305,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($subscriptionId)
             && count($subscriptionId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $subscriptionId 
                 when calling canUpdateSubscription'
             );
@@ -310,7 +328,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['plan'] = $plan instanceof \DateTime
+                $queryParams['plan'] = $plan instanceof DateTime
                     ? $plan->format(DATE_ATOM)
                     : ($plan);
             }
@@ -325,7 +343,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['environments'] = $environments instanceof \DateTime
+                $queryParams['environments'] = $environments instanceof DateTime
                     ? $environments->format(DATE_ATOM)
                     : ($environments);
             }
@@ -340,7 +358,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['storage'] = $storage instanceof \DateTime
+                $queryParams['storage'] = $storage instanceof DateTime
                     ? $storage->format(DATE_ATOM)
                     : ($storage);
             }
@@ -355,7 +373,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['user_licenses'] = $userLicenses instanceof \DateTime
+                $queryParams['user_licenses'] = $userLicenses instanceof DateTime
                     ? $userLicenses->format(DATE_ATOM)
                     : ($userLicenses);
             }
@@ -392,6 +410,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -420,6 +439,7 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Create subscription
      *
@@ -427,14 +447,14 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\Subscription
+     * @return Subscription
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/create-org-subscription
      */
     public function createOrgSubscription(
         string $organizationId,
-        \Upsun\Model\CreateOrgSubscriptionRequest $createOrgSubscriptionRequest
-    ): \Upsun\Model\Subscription {
+        CreateOrgSubscriptionRequest $createOrgSubscriptionRequest
+    ): Subscription {
         return $this->createOrgSubscriptionWithHttpInfo(
             $organizationId,
             $createOrgSubscriptionRequest
@@ -444,14 +464,14 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create subscription with HTTP Info
      *
-     * @return \Upsun\Model\Subscription
+     * @return Subscription
      *
      * @throws ApiException
      */
     private function createOrgSubscriptionWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\CreateOrgSubscriptionRequest $createOrgSubscriptionRequest
-    ): \Upsun\Model\Subscription {
+        CreateOrgSubscriptionRequest $createOrgSubscriptionRequest
+    ): Subscription {
         $request = $this->createOrgSubscriptionRequest(
             $organizationId,
             $createOrgSubscriptionRequest
@@ -466,20 +486,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Subscription',
+                Subscription::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/subscriptions'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -491,7 +511,7 @@ final class SubscriptionsApi extends AbstractApi
      */
     private function createOrgSubscriptionRequest(
         string $organizationId,
-        \Upsun\Model\CreateOrgSubscriptionRequest $createOrgSubscriptionRequest
+        CreateOrgSubscriptionRequest $createOrgSubscriptionRequest
     ): RequestInterface {
 
         // verify the required parameter 'organizationId' is set
@@ -500,7 +520,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling createOrgSubscription'
             );
@@ -512,11 +532,12 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($createOrgSubscriptionRequest)
             && count($createOrgSubscriptionRequest) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $createOrgSubscriptionRequest 
                 when calling createOrgSubscription'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/subscriptions';
         $formParams = [];
         $queryParams = [];
@@ -561,6 +582,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -589,6 +611,7 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Delete subscription
      *
@@ -629,16 +652,16 @@ final class SubscriptionsApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/subscriptions/{subscription_id}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -659,7 +682,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling deleteOrgSubscription'
             );
@@ -671,11 +694,12 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($subscriptionId)
             && count($subscriptionId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $subscriptionId 
                 when calling deleteOrgSubscription'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}';
         $formParams = [];
         $queryParams = [];
@@ -691,6 +715,7 @@ final class SubscriptionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($subscriptionId !== null) {
             $resourcePath = str_replace(
@@ -720,6 +745,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -748,13 +774,14 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
+
     /**
      * Estimate the price of a new subscription
      *
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\EstimationObject
+     * @return EstimationObject
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/estimate-new-org-subscription
      */
@@ -765,7 +792,7 @@ final class SubscriptionsApi extends AbstractApi
         int $storage,
         int $userLicenses,
         ?string $format = null
-    ): \Upsun\Model\EstimationObject {
+    ): EstimationObject {
         return $this->estimateNewOrgSubscriptionWithHttpInfo(
             $organizationId,
             $plan,
@@ -779,7 +806,7 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Estimate the price of a new subscription with HTTP Info
      *
-     * @return \Upsun\Model\EstimationObject
+     * @return EstimationObject
      *
      * @throws ApiException
      */
@@ -790,7 +817,7 @@ final class SubscriptionsApi extends AbstractApi
         int $storage,
         int $userLicenses,
         ?string $format = null
-    ): \Upsun\Model\EstimationObject {
+    ): EstimationObject {
         $request = $this->estimateNewOrgSubscriptionRequest(
             $organizationId,
             $plan,
@@ -809,20 +836,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\EstimationObject',
+                EstimationObject::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/subscriptions/estimate'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -847,7 +874,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling estimateNewOrgSubscription'
             );
@@ -859,7 +886,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($plan)
             && count($plan) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $plan 
                 when calling estimateNewOrgSubscription'
             );
@@ -871,7 +898,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($environments)
             && count($environments) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environments 
                 when calling estimateNewOrgSubscription'
             );
@@ -883,7 +910,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($storage)
             && count($storage) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $storage 
                 when calling estimateNewOrgSubscription'
             );
@@ -895,7 +922,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($userLicenses)
             && count($userLicenses) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userLicenses 
                 when calling estimateNewOrgSubscription'
             );
@@ -915,7 +942,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['plan'] = $plan instanceof \DateTime
+                $queryParams['plan'] = $plan instanceof DateTime
                     ? $plan->format(DATE_ATOM)
                     : ($plan);
             }
@@ -930,7 +957,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['environments'] = $environments instanceof \DateTime
+                $queryParams['environments'] = $environments instanceof DateTime
                     ? $environments->format(DATE_ATOM)
                     : ($environments);
             }
@@ -945,7 +972,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['storage'] = $storage instanceof \DateTime
+                $queryParams['storage'] = $storage instanceof DateTime
                     ? $storage->format(DATE_ATOM)
                     : ($storage);
             }
@@ -960,7 +987,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['user_licenses'] = $userLicenses instanceof \DateTime
+                $queryParams['user_licenses'] = $userLicenses instanceof DateTime
                     ? $userLicenses->format(DATE_ATOM)
                     : ($userLicenses);
             }
@@ -975,7 +1002,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['format'] = $format instanceof \DateTime
+                $queryParams['format'] = $format instanceof DateTime
                     ? $format->format(DATE_ATOM)
                     : ($format);
             }
@@ -1012,6 +1039,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -1040,13 +1068,14 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Estimate the price of a subscription
      *
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\EstimationObject
+     * @return EstimationObject
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/estimate-org-subscription
      */
@@ -1058,7 +1087,7 @@ final class SubscriptionsApi extends AbstractApi
         ?int $storage = null,
         ?int $userLicenses = null,
         ?string $format = null
-    ): \Upsun\Model\EstimationObject {
+    ): EstimationObject {
         return $this->estimateOrgSubscriptionWithHttpInfo(
             $organizationId,
             $subscriptionId,
@@ -1073,7 +1102,7 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Estimate the price of a subscription with HTTP Info
      *
-     * @return \Upsun\Model\EstimationObject
+     * @return EstimationObject
      *
      * @throws ApiException
      */
@@ -1085,7 +1114,7 @@ final class SubscriptionsApi extends AbstractApi
         ?int $storage = null,
         ?int $userLicenses = null,
         ?string $format = null
-    ): \Upsun\Model\EstimationObject {
+    ): EstimationObject {
         $request = $this->estimateOrgSubscriptionRequest(
             $organizationId,
             $subscriptionId,
@@ -1105,20 +1134,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\EstimationObject',
+                EstimationObject::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/subscriptions/{subscription_id}/estimate'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -1144,7 +1173,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling estimateOrgSubscription'
             );
@@ -1156,7 +1185,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($subscriptionId)
             && count($subscriptionId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $subscriptionId 
                 when calling estimateOrgSubscription'
             );
@@ -1168,7 +1197,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($plan)
             && count($plan) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $plan 
                 when calling estimateOrgSubscription'
             );
@@ -1191,7 +1220,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['plan'] = $plan instanceof \DateTime
+                $queryParams['plan'] = $plan instanceof DateTime
                     ? $plan->format(DATE_ATOM)
                     : ($plan);
             }
@@ -1206,7 +1235,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['environments'] = $environments instanceof \DateTime
+                $queryParams['environments'] = $environments instanceof DateTime
                     ? $environments->format(DATE_ATOM)
                     : ($environments);
             }
@@ -1221,7 +1250,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['storage'] = $storage instanceof \DateTime
+                $queryParams['storage'] = $storage instanceof DateTime
                     ? $storage->format(DATE_ATOM)
                     : ($storage);
             }
@@ -1236,7 +1265,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['user_licenses'] = $userLicenses instanceof \DateTime
+                $queryParams['user_licenses'] = $userLicenses instanceof DateTime
                     ? $userLicenses->format(DATE_ATOM)
                     : ($userLicenses);
             }
@@ -1251,7 +1280,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['format'] = $format instanceof \DateTime
+                $queryParams['format'] = $format instanceof DateTime
                     ? $format->format(DATE_ATOM)
                     : ($format);
             }
@@ -1267,6 +1296,7 @@ final class SubscriptionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($subscriptionId !== null) {
             $resourcePath = str_replace(
@@ -1296,6 +1326,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -1324,6 +1355,7 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get subscription
      *
@@ -1331,14 +1363,14 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\Subscription
+     * @return Subscription
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-org-subscription
      */
     public function getOrgSubscription(
         string $organizationId,
         string $subscriptionId
-    ): \Upsun\Model\Subscription {
+    ): Subscription {
         return $this->getOrgSubscriptionWithHttpInfo(
             $organizationId,
             $subscriptionId
@@ -1348,14 +1380,14 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Get subscription with HTTP Info
      *
-     * @return \Upsun\Model\Subscription
+     * @return Subscription
      *
      * @throws ApiException
      */
     private function getOrgSubscriptionWithHttpInfo(
         string $organizationId,
         string $subscriptionId
-    ): \Upsun\Model\Subscription {
+    ): Subscription {
         $request = $this->getOrgSubscriptionRequest(
             $organizationId,
             $subscriptionId
@@ -1370,20 +1402,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Subscription',
+                Subscription::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/subscriptions/{subscription_id}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -1404,7 +1436,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getOrgSubscription'
             );
@@ -1416,11 +1448,12 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($subscriptionId)
             && count($subscriptionId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $subscriptionId 
                 when calling getOrgSubscription'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}';
         $formParams = [];
         $queryParams = [];
@@ -1436,6 +1469,7 @@ final class SubscriptionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($subscriptionId !== null) {
             $resourcePath = str_replace(
@@ -1465,6 +1499,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -1493,13 +1528,14 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get current usage for a subscription
      *
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\SubscriptionCurrentUsageObject
+     * @return SubscriptionCurrentUsageObject
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-org-subscription-current-usage
      */
@@ -1508,7 +1544,7 @@ final class SubscriptionsApi extends AbstractApi
         string $subscriptionId,
         ?string $usageGroups = null,
         ?bool $includeNotCharged = null
-    ): \Upsun\Model\SubscriptionCurrentUsageObject {
+    ): SubscriptionCurrentUsageObject {
         return $this->getOrgSubscriptionCurrentUsageWithHttpInfo(
             $organizationId,
             $subscriptionId,
@@ -1520,7 +1556,7 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Get current usage for a subscription with HTTP Info
      *
-     * @return \Upsun\Model\SubscriptionCurrentUsageObject
+     * @return SubscriptionCurrentUsageObject
      *
      * @throws ApiException
      */
@@ -1529,7 +1565,7 @@ final class SubscriptionsApi extends AbstractApi
         string $subscriptionId,
         ?string $usageGroups = null,
         ?bool $includeNotCharged = null
-    ): \Upsun\Model\SubscriptionCurrentUsageObject {
+    ): SubscriptionCurrentUsageObject {
         $request = $this->getOrgSubscriptionCurrentUsageRequest(
             $organizationId,
             $subscriptionId,
@@ -1546,20 +1582,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\SubscriptionCurrentUsageObject',
+                SubscriptionCurrentUsageObject::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/subscriptions/{subscription_id}/current_usage'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -1582,7 +1618,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getOrgSubscriptionCurrentUsage'
             );
@@ -1594,7 +1630,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($subscriptionId)
             && count($subscriptionId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $subscriptionId 
                 when calling getOrgSubscriptionCurrentUsage'
             );
@@ -1615,7 +1651,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['usage_groups'] = $usageGroups instanceof \DateTime
+                $queryParams['usage_groups'] = $usageGroups instanceof DateTime
                     ? $usageGroups->format(DATE_ATOM)
                     : ($usageGroups);
             }
@@ -1630,7 +1666,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['include_not_charged'] = $includeNotCharged instanceof \DateTime
+                $queryParams['include_not_charged'] = $includeNotCharged instanceof DateTime
                     ? $includeNotCharged->format(DATE_ATOM)
                     : ($includeNotCharged);
             }
@@ -1646,6 +1682,7 @@ final class SubscriptionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($subscriptionId !== null) {
             $resourcePath = str_replace(
@@ -1675,6 +1712,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -1703,6 +1741,7 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get usage alerts
      *
@@ -1710,14 +1749,14 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\GetSubscriptionUsageAlerts200Response
+     * @return GetSubscriptionUsageAlerts200Response
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-subscription-usage-alerts
      */
     public function getSubscriptionUsageAlerts(
         string $organizationId,
         string $subscriptionId
-    ): \Upsun\Model\GetSubscriptionUsageAlerts200Response {
+    ): GetSubscriptionUsageAlerts200Response {
         return $this->getSubscriptionUsageAlertsWithHttpInfo(
             $organizationId,
             $subscriptionId
@@ -1727,14 +1766,14 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Get usage alerts with HTTP Info
      *
-     * @return \Upsun\Model\GetSubscriptionUsageAlerts200Response
+     * @return GetSubscriptionUsageAlerts200Response
      *
      * @throws ApiException
      */
     private function getSubscriptionUsageAlertsWithHttpInfo(
         string $organizationId,
         string $subscriptionId
-    ): \Upsun\Model\GetSubscriptionUsageAlerts200Response {
+    ): GetSubscriptionUsageAlerts200Response {
         $request = $this->getSubscriptionUsageAlertsRequest(
             $organizationId,
             $subscriptionId
@@ -1749,20 +1788,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\GetSubscriptionUsageAlerts200Response',
+                GetSubscriptionUsageAlerts200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -1783,7 +1822,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getSubscriptionUsageAlerts'
             );
@@ -1795,11 +1834,12 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($subscriptionId)
             && count($subscriptionId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $subscriptionId 
                 when calling getSubscriptionUsageAlerts'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage';
         $formParams = [];
         $queryParams = [];
@@ -1815,6 +1855,7 @@ final class SubscriptionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($subscriptionId !== null) {
             $resourcePath = str_replace(
@@ -1844,6 +1885,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -1872,6 +1914,7 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * List subscriptions
      *
@@ -1879,7 +1922,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\ListOrgSubscriptions200Response
+     * @return ListOrgSubscriptions200Response
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/list-org-subscriptions
      */
@@ -1887,15 +1930,15 @@ final class SubscriptionsApi extends AbstractApi
         string $organizationId,
         ?string $filterStatus = null,
         ?string $filterId = null,
-        ?\Upsun\Model\StringFilter $filterProjectId = null,
-        ?\Upsun\Model\StringFilter $filterProjectTitle = null,
-        ?\Upsun\Model\StringFilter $filterRegion = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterProjectId = null,
+        ?StringFilter $filterProjectTitle = null,
+        ?StringFilter $filterRegion = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListOrgSubscriptions200Response {
+    ): ListOrgSubscriptions200Response {
         return $this->listOrgSubscriptionsWithHttpInfo(
             $organizationId,
             $filterStatus,
@@ -1914,7 +1957,7 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * List subscriptions with HTTP Info
      *
-     * @return \Upsun\Model\ListOrgSubscriptions200Response
+     * @return ListOrgSubscriptions200Response
      *
      * @throws ApiException
      */
@@ -1922,15 +1965,15 @@ final class SubscriptionsApi extends AbstractApi
         string $organizationId,
         ?string $filterStatus = null,
         ?string $filterId = null,
-        ?\Upsun\Model\StringFilter $filterProjectId = null,
-        ?\Upsun\Model\StringFilter $filterProjectTitle = null,
-        ?\Upsun\Model\StringFilter $filterRegion = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterProjectId = null,
+        ?StringFilter $filterProjectTitle = null,
+        ?StringFilter $filterRegion = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListOrgSubscriptions200Response {
+    ): ListOrgSubscriptions200Response {
         $request = $this->listOrgSubscriptionsRequest(
             $organizationId,
             $filterStatus,
@@ -1954,20 +1997,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgSubscriptions200Response',
+                ListOrgSubscriptions200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/subscriptions'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -1981,10 +2024,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organizationId,
         ?string $filterStatus = null,
         ?string $filterId = null,
-        ?\Upsun\Model\StringFilter $filterProjectId = null,
-        ?\Upsun\Model\StringFilter $filterProjectTitle = null,
-        ?\Upsun\Model\StringFilter $filterRegion = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterProjectId = null,
+        ?StringFilter $filterProjectTitle = null,
+        ?StringFilter $filterRegion = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -1997,7 +2040,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listOrgSubscriptions'
             );
@@ -2012,13 +2055,14 @@ final class SubscriptionsApi extends AbstractApi
 
 
         if ($pageSize !== null && $pageSize > 100) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'invalid value for "$pageSize" when calling SubscriptionsApi.listOrgSubscriptions, 
                 must be smaller than or equal to 100.'
             );
         }
+
         if ($pageSize !== null && $pageSize < 1) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'invalid value for "$pageSize" when calling SubscriptionsApi.listOrgSubscriptions,
                 must be bigger than or equal to 1.'
             );
@@ -2040,7 +2084,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                $queryParams['filter[status]'] = $filterStatus instanceof DateTime
                     ? $filterStatus->format(DATE_ATOM)
                     : ($filterStatus);
             }
@@ -2055,7 +2099,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filterId instanceof \DateTime
+                $queryParams['filter[id]'] = $filterId instanceof DateTime
                     ? $filterId->format(DATE_ATOM)
                     : ($filterId);
             }
@@ -2070,7 +2114,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[project_id]'] = $filterProjectId instanceof \DateTime
+                $queryParams['filter[project_id]'] = $filterProjectId instanceof DateTime
                     ? $filterProjectId->format(DATE_ATOM)
                     : ($filterProjectId->getEq());
             }
@@ -2085,7 +2129,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[project_title]'] = $filterProjectTitle instanceof \DateTime
+                $queryParams['filter[project_title]'] = $filterProjectTitle instanceof DateTime
                     ? $filterProjectTitle->format(DATE_ATOM)
                     : ($filterProjectTitle->getEq());
             }
@@ -2100,7 +2144,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[region]'] = $filterRegion instanceof \DateTime
+                $queryParams['filter[region]'] = $filterRegion instanceof DateTime
                     ? $filterRegion->format(DATE_ATOM)
                     : ($filterRegion->getEq());
             }
@@ -2115,7 +2159,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filterUpdatedAt instanceof \DateTime
+                $queryParams['filter[updated_at]'] = $filterUpdatedAt instanceof DateTime
                     ? $filterUpdatedAt->format(DATE_ATOM)
                     : ($filterUpdatedAt->getEq());
             }
@@ -2130,7 +2174,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                $queryParams['page[size]'] = $pageSize instanceof DateTime
                     ? $pageSize->format(DATE_ATOM)
                     : ($pageSize);
             }
@@ -2145,7 +2189,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                $queryParams['page[before]'] = $pageBefore instanceof DateTime
                     ? $pageBefore->format(DATE_ATOM)
                     : ($pageBefore);
             }
@@ -2160,7 +2204,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                $queryParams['page[after]'] = $pageAfter instanceof DateTime
                     ? $pageAfter->format(DATE_ATOM)
                     : ($pageAfter);
             }
@@ -2175,7 +2219,7 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort instanceof \DateTime
+                $queryParams['sort'] = $sort instanceof DateTime
                     ? $sort->format(DATE_ATOM)
                     : ($sort);
             }
@@ -2212,6 +2256,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -2240,20 +2285,21 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * List addons for a subscription
      *
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\SubscriptionAddonsObject
+     * @return SubscriptionAddonsObject
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/list-subscription-addons
      */
     public function listSubscriptionAddons(
         string $organizationId,
         string $subscriptionId
-    ): \Upsun\Model\SubscriptionAddonsObject {
+    ): SubscriptionAddonsObject {
         return $this->listSubscriptionAddonsWithHttpInfo(
             $organizationId,
             $subscriptionId
@@ -2263,14 +2309,14 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * List addons for a subscription with HTTP Info
      *
-     * @return \Upsun\Model\SubscriptionAddonsObject
+     * @return SubscriptionAddonsObject
      *
      * @throws ApiException
      */
     private function listSubscriptionAddonsWithHttpInfo(
         string $organizationId,
         string $subscriptionId
-    ): \Upsun\Model\SubscriptionAddonsObject {
+    ): SubscriptionAddonsObject {
         $request = $this->listSubscriptionAddonsRequest(
             $organizationId,
             $subscriptionId
@@ -2285,20 +2331,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\SubscriptionAddonsObject',
+                SubscriptionAddonsObject::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/subscriptions/{subscription_id}/addons'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -2319,7 +2365,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listSubscriptionAddons'
             );
@@ -2331,11 +2377,12 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($subscriptionId)
             && count($subscriptionId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $subscriptionId 
                 when calling listSubscriptionAddons'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}/addons';
         $formParams = [];
         $queryParams = [];
@@ -2351,6 +2398,7 @@ final class SubscriptionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($subscriptionId !== null) {
             $resourcePath = str_replace(
@@ -2380,6 +2428,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -2408,6 +2457,7 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Update subscription
      *
@@ -2415,15 +2465,15 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\Subscription
+     * @return Subscription
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/update-org-subscription
      */
     public function updateOrgSubscription(
         string $organizationId,
         string $subscriptionId,
-        ?\Upsun\Model\UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
-    ): \Upsun\Model\Subscription {
+        ?UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
+    ): Subscription {
         return $this->updateOrgSubscriptionWithHttpInfo(
             $organizationId,
             $subscriptionId,
@@ -2434,15 +2484,15 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Update subscription with HTTP Info
      *
-     * @return \Upsun\Model\Subscription
+     * @return Subscription
      *
      * @throws ApiException
      */
     private function updateOrgSubscriptionWithHttpInfo(
         string $organizationId,
         string $subscriptionId,
-        ?\Upsun\Model\UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
-    ): \Upsun\Model\Subscription {
+        ?UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
+    ): Subscription {
         $request = $this->updateOrgSubscriptionRequest(
             $organizationId,
             $subscriptionId,
@@ -2458,20 +2508,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Subscription',
+                Subscription::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/subscriptions/{subscription_id}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -2484,7 +2534,7 @@ final class SubscriptionsApi extends AbstractApi
     private function updateOrgSubscriptionRequest(
         string $organizationId,
         string $subscriptionId,
-        ?\Upsun\Model\UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
+        ?UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'organizationId' is set
@@ -2493,7 +2543,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling updateOrgSubscription'
             );
@@ -2505,7 +2555,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($subscriptionId)
             && count($subscriptionId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $subscriptionId 
                 when calling updateOrgSubscription'
             );
@@ -2526,6 +2576,7 @@ final class SubscriptionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($subscriptionId !== null) {
             $resourcePath = str_replace(
@@ -2563,6 +2614,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -2591,6 +2643,7 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
+
     /**
      * Update usage alerts.
      *
@@ -2598,15 +2651,15 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\GetSubscriptionUsageAlerts200Response
+     * @return GetSubscriptionUsageAlerts200Response
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/update-subscription-usage-alerts
      */
     public function updateSubscriptionUsageAlerts(
         string $organizationId,
         string $subscriptionId,
-        ?\Upsun\Model\UpdateSubscriptionUsageAlertsRequest $updateSubscriptionUsageAlertsRequest = null
-    ): \Upsun\Model\GetSubscriptionUsageAlerts200Response {
+        ?UpdateSubscriptionUsageAlertsRequest $updateSubscriptionUsageAlertsRequest = null
+    ): GetSubscriptionUsageAlerts200Response {
         return $this->updateSubscriptionUsageAlertsWithHttpInfo(
             $organizationId,
             $subscriptionId,
@@ -2617,15 +2670,15 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Update usage alerts. with HTTP Info
      *
-     * @return \Upsun\Model\GetSubscriptionUsageAlerts200Response
+     * @return GetSubscriptionUsageAlerts200Response
      *
      * @throws ApiException
      */
     private function updateSubscriptionUsageAlertsWithHttpInfo(
         string $organizationId,
         string $subscriptionId,
-        ?\Upsun\Model\UpdateSubscriptionUsageAlertsRequest $updateSubscriptionUsageAlertsRequest = null
-    ): \Upsun\Model\GetSubscriptionUsageAlerts200Response {
+        ?UpdateSubscriptionUsageAlertsRequest $updateSubscriptionUsageAlertsRequest = null
+    ): GetSubscriptionUsageAlerts200Response {
         $request = $this->updateSubscriptionUsageAlertsRequest(
             $organizationId,
             $subscriptionId,
@@ -2641,20 +2694,20 @@ final class SubscriptionsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\GetSubscriptionUsageAlerts200Response',
+                GetSubscriptionUsageAlerts200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -2667,7 +2720,7 @@ final class SubscriptionsApi extends AbstractApi
     private function updateSubscriptionUsageAlertsRequest(
         string $organizationId,
         string $subscriptionId,
-        ?\Upsun\Model\UpdateSubscriptionUsageAlertsRequest $updateSubscriptionUsageAlertsRequest = null
+        ?UpdateSubscriptionUsageAlertsRequest $updateSubscriptionUsageAlertsRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'organizationId' is set
@@ -2676,7 +2729,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling updateSubscriptionUsageAlerts'
             );
@@ -2688,7 +2741,7 @@ final class SubscriptionsApi extends AbstractApi
             || (is_array($subscriptionId)
             && count($subscriptionId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $subscriptionId 
                 when calling updateSubscriptionUsageAlerts'
             );
@@ -2709,6 +2762,7 @@ final class SubscriptionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($subscriptionId !== null) {
             $resourcePath = str_replace(
@@ -2746,6 +2800,7 @@ final class SubscriptionsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

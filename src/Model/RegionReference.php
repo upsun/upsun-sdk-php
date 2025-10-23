@@ -14,6 +14,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class RegionReference implements ModelInterface, JsonSerializable
@@ -30,8 +31,8 @@ final class RegionReference implements ModelInterface, JsonSerializable
         private readonly object $provider,
         private readonly object $datacenter,
         private readonly object $compliance,
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
+        private readonly DateTime $createdAt,
+        private readonly DateTime $updatedAt,
         private readonly ?bool $private = null,
         private readonly ?string $code = null,
         private readonly ?object $envimpact = null,
@@ -162,7 +163,7 @@ final class RegionReference implements ModelInterface, JsonSerializable
     /**
     * The date and time when the resource was created.
     */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
@@ -170,7 +171,7 @@ final class RegionReference implements ModelInterface, JsonSerializable
     /**
     * The date and time when the resource was last updated.
     */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }

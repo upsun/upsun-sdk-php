@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\ListPlans200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +28,7 @@ use Upsun\Core\OAuthProvider;
 final class PlansApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -57,12 +59,11 @@ final class PlansApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\ListPlans200Response
+     * @return ListPlans200Response
      *
      * @see https://docs.upsun.com/api/#tag/Plans/operation/list-plans
      */
-    public function listPlans(
-    ): \Upsun\Model\ListPlans200Response 
+    public function listPlans(): ListPlans200Response
     {
         return $this->listPlansWithHttpInfo(
         );
@@ -71,12 +72,11 @@ final class PlansApi extends AbstractApi
     /**
      * List available plans with HTTP Info
      *
-     * @return \Upsun\Model\ListPlans200Response
+     * @return ListPlans200Response
      *
      * @throws ApiException
      */
-    private function listPlansWithHttpInfo(
-    ): \Upsun\Model\ListPlans200Response 
+    private function listPlansWithHttpInfo(): ListPlans200Response
     {
         $request = $this->listPlansRequest(
         );
@@ -90,20 +90,20 @@ final class PlansApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListPlans200Response',
+                ListPlans200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/plans'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -113,8 +113,8 @@ final class PlansApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    private function listPlansRequest(
-    ): RequestInterface {
+    private function listPlansRequest(): RequestInterface
+    {
         $resourcePath = '/plans';
         $formParams = [];
         $queryParams = [];
@@ -143,6 +143,7 @@ final class PlansApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

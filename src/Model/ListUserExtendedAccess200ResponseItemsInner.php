@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterface, JsonSerializable
@@ -22,8 +23,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
         private readonly ?string $resourceType = null,
         private readonly ?string $organizationId = null,
         private readonly ?array $permissions = [],
-        private readonly ?\DateTime $grantedAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $grantedAt = null,
+        private readonly ?DateTime $updatedAt = null,
     ) {
     }
 
@@ -75,12 +76,12 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
         return $this->permissions;
     }
 
-    public function getGrantedAt(): ?\DateTime
+    public function getGrantedAt(): ?DateTime
     {
         return $this->grantedAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

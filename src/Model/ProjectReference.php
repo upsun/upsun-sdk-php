@@ -14,6 +14,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class ProjectReference implements ModelInterface, JsonSerializable
@@ -27,8 +28,8 @@ final class ProjectReference implements ModelInterface, JsonSerializable
         private readonly ProjectType $type,
         private readonly string $plan,
         private readonly ProjectStatus $status,
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
+        private readonly DateTime $createdAt,
+        private readonly DateTime $updatedAt,
     ) {
     }
 
@@ -125,7 +126,7 @@ final class ProjectReference implements ModelInterface, JsonSerializable
     /**
     * The date and time when the resource was created.
     */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
@@ -133,7 +134,7 @@ final class ProjectReference implements ModelInterface, JsonSerializable
     /**
     * The date and time when the resource was last updated.
     */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }

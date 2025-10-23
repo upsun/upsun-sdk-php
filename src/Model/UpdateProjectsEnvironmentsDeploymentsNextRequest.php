@@ -41,6 +41,7 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements ModelInt
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue[]|null
      */
@@ -49,6 +50,7 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements ModelInt
     {
         return $this->webapps;
     }
+
     /**
      * @return UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]|null
      */
@@ -57,6 +59,7 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements ModelInt
     {
         return $this->services;
     }
+
     /**
      * @return UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]|null
      */

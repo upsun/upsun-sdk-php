@@ -13,6 +13,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Connection implements ModelInterface, JsonSerializable
@@ -23,8 +24,8 @@ final class Connection implements ModelInterface, JsonSerializable
         private readonly ?bool $isMandatory = null,
         private readonly ?string $subject = null,
         private readonly ?string $emailAddress = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
     ) {
     }
 
@@ -94,7 +95,7 @@ final class Connection implements ModelInterface, JsonSerializable
     /**
     * The date and time when the connection was created.
     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
@@ -102,7 +103,7 @@ final class Connection implements ModelInterface, JsonSerializable
     /**
     * The date and time when the connection was last updated.
     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

@@ -39,6 +39,7 @@ final class ListOrgPlanRecords200Response implements ModelInterface, JsonSeriali
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return PlanRecords[]|null
      */

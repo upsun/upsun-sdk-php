@@ -46,6 +46,7 @@ final class ListOrgs200Response implements ModelInterface, JsonSerializable
     {
         return $this->count;
     }
+
     /**
      * @return Organization[]|null
      */

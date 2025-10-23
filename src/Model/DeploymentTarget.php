@@ -100,6 +100,7 @@ final class DeploymentTarget implements ModelInterface, JsonSerializable
     {
         return $this->sshHost;
     }
+
     /**
      * @return TheHostsOfTheDeploymentTargetInner[]|null
      */
@@ -143,6 +144,7 @@ final class DeploymentTarget implements ModelInterface, JsonSerializable
     {
         return $this->guardrailsPhase;
     }
+
     /**
      * @return MappingOfClustersToEnterpriseApplicationsValue[]
      */

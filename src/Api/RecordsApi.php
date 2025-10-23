@@ -2,6 +2,9 @@
 
 namespace Upsun\Api;
 
+use DateTime;
+use Upsun\Model\ListOrgPlanRecords200Response;
+use Upsun\Model\ListOrgUsageRecords200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +30,7 @@ use Upsun\Core\OAuthProvider;
 final class RecordsApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -57,7 +61,7 @@ final class RecordsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\ListOrgPlanRecords200Response
+     * @return ListOrgPlanRecords200Response
      *
      * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-plan-records
      */
@@ -66,12 +70,12 @@ final class RecordsApi extends AbstractApi
         ?string $filterSubscriptionId = null,
         ?string $filterPlan = null,
         ?string $filterStatus = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterEnd = null,
-        ?\DateTime $filterStartedAt = null,
-        ?\DateTime $filterEndedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterEnd = null,
+        ?DateTime $filterStartedAt = null,
+        ?DateTime $filterEndedAt = null,
         ?int $page = null
-    ): \Upsun\Model\ListOrgPlanRecords200Response {
+    ): ListOrgPlanRecords200Response {
         return $this->listOrgPlanRecordsWithHttpInfo(
             $organizationId,
             $filterSubscriptionId,
@@ -88,7 +92,7 @@ final class RecordsApi extends AbstractApi
     /**
      * List plan records with HTTP Info
      *
-     * @return \Upsun\Model\ListOrgPlanRecords200Response
+     * @return ListOrgPlanRecords200Response
      *
      * @throws ApiException
      */
@@ -97,12 +101,12 @@ final class RecordsApi extends AbstractApi
         ?string $filterSubscriptionId = null,
         ?string $filterPlan = null,
         ?string $filterStatus = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterEnd = null,
-        ?\DateTime $filterStartedAt = null,
-        ?\DateTime $filterEndedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterEnd = null,
+        ?DateTime $filterStartedAt = null,
+        ?DateTime $filterEndedAt = null,
         ?int $page = null
-    ): \Upsun\Model\ListOrgPlanRecords200Response {
+    ): ListOrgPlanRecords200Response {
         $request = $this->listOrgPlanRecordsRequest(
             $organizationId,
             $filterSubscriptionId,
@@ -124,20 +128,20 @@ final class RecordsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgPlanRecords200Response',
+                ListOrgPlanRecords200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/records/plan'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -152,10 +156,10 @@ final class RecordsApi extends AbstractApi
         ?string $filterSubscriptionId = null,
         ?string $filterPlan = null,
         ?string $filterStatus = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterEnd = null,
-        ?\DateTime $filterStartedAt = null,
-        ?\DateTime $filterEndedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterEnd = null,
+        ?DateTime $filterStartedAt = null,
+        ?DateTime $filterEndedAt = null,
         ?int $page = null
     ): RequestInterface {
 
@@ -165,7 +169,7 @@ final class RecordsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listOrgPlanRecords'
             );
@@ -192,7 +196,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[subscription_id]'] = $filterSubscriptionId instanceof \DateTime
+                $queryParams['filter[subscription_id]'] = $filterSubscriptionId instanceof DateTime
                     ? $filterSubscriptionId->format(DATE_ATOM)
                     : ($filterSubscriptionId);
             }
@@ -207,7 +211,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[plan]'] = $filterPlan instanceof \DateTime
+                $queryParams['filter[plan]'] = $filterPlan instanceof DateTime
                     ? $filterPlan->format(DATE_ATOM)
                     : ($filterPlan);
             }
@@ -222,7 +226,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                $queryParams['filter[status]'] = $filterStatus instanceof DateTime
                     ? $filterStatus->format(DATE_ATOM)
                     : ($filterStatus);
             }
@@ -237,7 +241,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[start]'] = $filterStart instanceof \DateTime
+                $queryParams['filter[start]'] = $filterStart instanceof DateTime
                     ? $filterStart->format(DATE_ATOM)
                     : ($filterStart);
             }
@@ -252,7 +256,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[end]'] = $filterEnd instanceof \DateTime
+                $queryParams['filter[end]'] = $filterEnd instanceof DateTime
                     ? $filterEnd->format(DATE_ATOM)
                     : ($filterEnd);
             }
@@ -267,7 +271,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[started_at]'] = $filterStartedAt instanceof \DateTime
+                $queryParams['filter[started_at]'] = $filterStartedAt instanceof DateTime
                     ? $filterStartedAt->format(DATE_ATOM)
                     : ($filterStartedAt);
             }
@@ -282,7 +286,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[ended_at]'] = $filterEndedAt instanceof \DateTime
+                $queryParams['filter[ended_at]'] = $filterEndedAt instanceof DateTime
                     ? $filterEndedAt->format(DATE_ATOM)
                     : ($filterEndedAt);
             }
@@ -297,7 +301,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page instanceof \DateTime
+                $queryParams['page'] = $page instanceof DateTime
                     ? $page->format(DATE_ATOM)
                     : ($page);
             }
@@ -334,6 +338,7 @@ final class RecordsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -362,6 +367,7 @@ final class RecordsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * List usage records
      *
@@ -369,7 +375,7 @@ final class RecordsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      *
-     * @return \Upsun\Model\ListOrgUsageRecords200Response
+     * @return ListOrgUsageRecords200Response
      *
      * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-usage-records
      */
@@ -377,10 +383,10 @@ final class RecordsApi extends AbstractApi
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterUsageGroup = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterStartedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterStartedAt = null,
         ?int $page = null
-    ): \Upsun\Model\ListOrgUsageRecords200Response {
+    ): ListOrgUsageRecords200Response {
         return $this->listOrgUsageRecordsWithHttpInfo(
             $organizationId,
             $filterSubscriptionId,
@@ -394,7 +400,7 @@ final class RecordsApi extends AbstractApi
     /**
      * List usage records with HTTP Info
      *
-     * @return \Upsun\Model\ListOrgUsageRecords200Response
+     * @return ListOrgUsageRecords200Response
      *
      * @throws ApiException
      */
@@ -402,10 +408,10 @@ final class RecordsApi extends AbstractApi
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterUsageGroup = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterStartedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterStartedAt = null,
         ?int $page = null
-    ): \Upsun\Model\ListOrgUsageRecords200Response {
+    ): ListOrgUsageRecords200Response {
         $request = $this->listOrgUsageRecordsRequest(
             $organizationId,
             $filterSubscriptionId,
@@ -424,20 +430,20 @@ final class RecordsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgUsageRecords200Response',
+                ListOrgUsageRecords200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/records/usage'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -451,8 +457,8 @@ final class RecordsApi extends AbstractApi
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterUsageGroup = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterStartedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterStartedAt = null,
         ?int $page = null
     ): RequestInterface {
 
@@ -462,7 +468,7 @@ final class RecordsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listOrgUsageRecords'
             );
@@ -486,7 +492,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[subscription_id]'] = $filterSubscriptionId instanceof \DateTime
+                $queryParams['filter[subscription_id]'] = $filterSubscriptionId instanceof DateTime
                     ? $filterSubscriptionId->format(DATE_ATOM)
                     : ($filterSubscriptionId);
             }
@@ -501,7 +507,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[usage_group]'] = $filterUsageGroup instanceof \DateTime
+                $queryParams['filter[usage_group]'] = $filterUsageGroup instanceof DateTime
                     ? $filterUsageGroup->format(DATE_ATOM)
                     : ($filterUsageGroup);
             }
@@ -516,7 +522,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[start]'] = $filterStart instanceof \DateTime
+                $queryParams['filter[start]'] = $filterStart instanceof DateTime
                     ? $filterStart->format(DATE_ATOM)
                     : ($filterStart);
             }
@@ -531,7 +537,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[started_at]'] = $filterStartedAt instanceof \DateTime
+                $queryParams['filter[started_at]'] = $filterStartedAt instanceof DateTime
                     ? $filterStartedAt->format(DATE_ATOM)
                     : ($filterStartedAt);
             }
@@ -546,7 +552,7 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page instanceof \DateTime
+                $queryParams['page'] = $page instanceof DateTime
                     ? $page->format(DATE_ATOM)
                     : ($page);
             }
@@ -583,6 +589,7 @@ final class RecordsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

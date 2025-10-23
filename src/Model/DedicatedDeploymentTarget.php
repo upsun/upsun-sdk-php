@@ -88,6 +88,7 @@ final class DedicatedDeploymentTarget implements ModelInterface, JsonSerializabl
     {
         return $this->sshHost;
     }
+
     /**
      * @return TheHostsOfTheDeploymentTargetInner[]|null
      */

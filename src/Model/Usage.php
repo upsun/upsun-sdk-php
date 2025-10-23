@@ -14,6 +14,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Usage implements ModelInterface, JsonSerializable
@@ -23,7 +24,7 @@ final class Usage implements ModelInterface, JsonSerializable
         private readonly ?string $subscriptionId = null,
         private readonly ?string $usageGroup = null,
         private readonly ?float $quantity = null,
-        private readonly ?\DateTime $start = null,
+        private readonly ?DateTime $start = null,
     ) {
     }
 
@@ -83,7 +84,7 @@ final class Usage implements ModelInterface, JsonSerializable
     /**
     * The start timestamp of this usage record (ISO 8601).
     */
-    public function getStart(): ?\DateTime
+    public function getStart(): ?DateTime
     {
         return $this->start;
     }

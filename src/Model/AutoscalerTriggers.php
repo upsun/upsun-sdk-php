@@ -45,6 +45,7 @@ final class AutoscalerTriggers implements ModelInterface, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
     * Settings for scaling based on CPU usage
      * @return AutoscalerCPUTrigger[]|null
@@ -54,6 +55,7 @@ final class AutoscalerTriggers implements ModelInterface, JsonSerializable
     {
         return $this->cpu;
     }
+
     /**
     * Settings for scaling based on Memory usage
      * @return AutoscalerMemoryTrigger[]|null
@@ -63,6 +65,7 @@ final class AutoscalerTriggers implements ModelInterface, JsonSerializable
     {
         return $this->memory;
     }
+
     /**
     * Settings for scaling based on CPU pressure
      * @return AutoscalerCPUPressureTrigger[]|null
@@ -72,6 +75,7 @@ final class AutoscalerTriggers implements ModelInterface, JsonSerializable
     {
         return $this->cpuPressure;
     }
+
     /**
     * Settings for scaling based on Memory pressure
      * @return AutoscalerMemoryPressureTrigger[]|null
