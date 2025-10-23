@@ -25,11 +25,11 @@ use Upsun\UpsunClient;
 class VariablesTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly ProjectVariablesApi $projectVariablesApi,
         private readonly EnvironmentVariablesApi $environmentVariablesApi,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**

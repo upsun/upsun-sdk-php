@@ -2964,7 +2964,6 @@ final class ObjectAttributesMapper
             'restricted' => 'restricted',
             'suspended' => 'suspended',
             'userLicenses' => 'user_licenses',
-            'id' => 'id',
             'plan' => 'plan',
             'environments' => 'environments',
             'resources' => 'resources',

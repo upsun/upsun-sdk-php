@@ -24,11 +24,11 @@ use Upsun\UpsunClient;
 class InvitationsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly OrganizationInvitationsApi $orgInvApi,
         private readonly ProjectInvitationsApi $prjInvApi,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**

@@ -21,10 +21,10 @@ use Upsun\UpsunClient;
 class DomainsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly DomainManagementApi $api,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**

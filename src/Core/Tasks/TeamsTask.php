@@ -29,11 +29,11 @@ use Upsun\UpsunClient;
 class TeamsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly TeamsApi $teamsApi,
         private readonly TeamAccessApi $accessApi,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**

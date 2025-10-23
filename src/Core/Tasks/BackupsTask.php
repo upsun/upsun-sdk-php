@@ -22,10 +22,10 @@ use Upsun\UpsunClient;
 class BackupsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly EnvironmentBackupsApi $api,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**

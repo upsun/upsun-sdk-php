@@ -50,7 +50,7 @@ use Upsun\UpsunClient;
 class UsersTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly UsersApi $api,
         private readonly UserProfilesApi $profilesApi,
         private readonly UserAccessApi $accessApi,
@@ -60,7 +60,7 @@ class UsersTask extends TaskBase
         private readonly MFAApi $mfaApi,
         private readonly PhoneNumberApi $phoneNumberApi,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**

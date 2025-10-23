@@ -16,7 +16,7 @@ use Upsun\UpsunClient;
 abstract class TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        protected UpsunClient $client,
     ) {
     }
 

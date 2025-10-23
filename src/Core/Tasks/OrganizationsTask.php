@@ -61,7 +61,7 @@ class OrganizationsTask extends TaskBase
     private const DEFAULT_UPSUN_PLAN = 'upsun/flexible';
 
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly OrganizationsApi $api,
         private readonly OrganizationProjectsApi $projectsApi,
         private readonly OrganizationMembersApi $membersApi,
@@ -74,7 +74,7 @@ class OrganizationsTask extends TaskBase
         private readonly VouchersApi $vouchersApi,
         private readonly AddOnsApi $addOnsApi,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**

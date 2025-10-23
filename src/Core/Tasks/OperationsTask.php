@@ -19,10 +19,10 @@ use Upsun\UpsunClient;
 class OperationsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly RuntimeOperationsApi $api
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**

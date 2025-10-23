@@ -20,11 +20,11 @@ use Upsun\UpsunClient;
 class ActivitiesTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly ProjectActivityApi $prjApi,
         private readonly EnvironmentActivityApi $envApi
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**

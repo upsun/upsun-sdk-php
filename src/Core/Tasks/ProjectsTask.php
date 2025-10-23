@@ -57,7 +57,7 @@ use Upsun\UpsunClient;
 class ProjectsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly ProjectApi $api,
         private readonly ProjectSettingsApi $settingsApi,
         private readonly DeploymentTargetApi $deploymentTargetApi,
@@ -66,7 +66,7 @@ class ProjectsTask extends TaskBase
         private readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi,
         private readonly SubscriptionsApi $subscriptionsApi,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**
@@ -75,11 +75,16 @@ class ProjectsTask extends TaskBase
      * @throws InvalidArgumentException|Exception
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function delete(string $organizationId, string $projectId): void
+    public function delete(string $projectId): void
     {
         $project = $this->get($projectId);
+        $path = parse_url($project->getSubscription()->getLicenseUri(), PHP_URL_PATH);
+        $subscriptionId = basename($path);
 
-        $this->subscriptionsApi->deleteOrgSubscription($organizationId, $project->getSubscription()->getId());
+        $this->subscriptionsApi->deleteOrgSubscription(
+            $project->getOrganization(),
+            $subscriptionId
+        );
     }
 
     /**

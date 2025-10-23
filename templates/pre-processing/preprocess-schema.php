@@ -217,28 +217,18 @@ class OpenApiPreprocessor
     }
 
     /**
-     * Add project.subscription.id field if not exist yet
-     * @todo remove if solved: https://lab.plat.farm/sdk/git/-/merge_requests/4006#note_2218419
+     * check if project.subscription.id field exists
+     * and raise an error to use it in the ProjectTask.delete function
      */
-    public function fixProjectSubscriptionId(): void
+    public function checkProjectSubscriptionId(): void
     {
         $project = &$this->schema['components']['schemas']['Project'];
 
-        // Add id property if missing
-        if (!isset($project['properties']['subscription']['properties']['id'])) {
-            $project['properties']['subscription']['properties']['id'] = [
-                'type' => 'string',
-                'title' => 'ID',
-            ];
-        } else {
+        // check if project.subscription.id has been introduced
+        if (isset($project['properties']['subscription']['properties']['id'])) {
             throw new Exception(
-                'Project.subscription.id already exists, please review your fixProjectSubscriptionId function'
+                'Project.subscription.id has been introduced, please review ProjectTask.delete function to use it'
             );
-        }
-
-        // Add id to required if not already there
-        if (!in_array('id', $project['properties']['subscription']['required'], true)) {
-            $project['properties']['subscription']['required'][] = 'id';
         }
     }
 
@@ -1032,6 +1022,9 @@ try {
 
     $preprocessor = new OpenApiPreprocessor($inputPath);
 
+    // check Project.subscription.id exists and raise an error to solve ProjectTask.delete
+    $preprocessor->checkProjectSubscriptionId();
+    
     // Main processing
     $preprocessor->makePropertiesNullable();
 
@@ -1041,8 +1034,6 @@ try {
     // Optional: clean required properties
     $preprocessor->cleanRequiredProperties();
 
-    // Add Project.subscription.id
-    $preprocessor->fixProjectSubscriptionId();
 
     // Add addons update path (PATCH)
     $preprocessor->addOrgAddonsPatch();
@@ -1052,7 +1043,7 @@ try {
 
     // Fix empty parameters
     $preprocessor->fixEmptyParameters();
-    
+
     // replace empty response object
     $preprocessor->replaceEmptyRefResponsesWithAccepted();
 

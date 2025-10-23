@@ -46,12 +46,12 @@ use Upsun\UpsunClient;
 class EnvironmentsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly EnvironmentApi $api,
         private readonly EnvironmentTypeApi $typeApi,
         private readonly DeploymentApi $deploymentApi,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**

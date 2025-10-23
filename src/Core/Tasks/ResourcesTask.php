@@ -19,10 +19,10 @@ use Upsun\UpsunClient;
 class ResourcesTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly DeploymentApi $api,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**

@@ -14,8 +14,8 @@ use Upsun\UpsunClient;
 class MountsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 }

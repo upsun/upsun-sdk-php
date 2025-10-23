@@ -25,11 +25,11 @@ use Upsun\UpsunClient;
 class SupportTicketsTask extends TaskBase
 {
     public function __construct(
-        public UpsunClient $client,
+        UpsunClient $client,
         private readonly DefaultApi $defaultApi,
         private readonly SupportApi $supportApi,
     ) {
-        parent::__construct($this->client);
+        parent::__construct($client);
     }
 
     /**
@@ -104,7 +104,9 @@ class SupportTicketsTask extends TaskBase
     public function listCategories(?string $organizationId = null, ?string $projectId = null): array
     {
         $project = $projectId ? $this->client->projects->get($projectId) : null;
-        return $this->supportApi->listTicketCategories($project?->getSubscription()?->getId(), $organizationId);
+        $path = parse_url($project?->getSubscription()->getLicenseUri(), PHP_URL_PATH);
+        $subscriptionId = basename($path);
+        return $this->supportApi->listTicketCategories($subscriptionId, $organizationId);
     }
 
     /**
@@ -117,7 +119,9 @@ class SupportTicketsTask extends TaskBase
     public function listPriorities(?string $projectId = null, ?string $category = null): array
     {
         $project = $projectId ? $this->client->projects->get($projectId) : null;
-        return $this->supportApi->listTicketPriorities($project?->getSubscription()?->getId(), $category);
+        $path = parse_url($project?->getSubscription()->getLicenseUri(), PHP_URL_PATH);
+        $subscriptionId = basename($path);
+        return $this->supportApi->listTicketPriorities($subscriptionId, $category);
     }
 
     /**
