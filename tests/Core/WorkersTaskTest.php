@@ -1,6 +1,6 @@
 <?php
 
-namespace Upsun\Test\Core;
+namespace Upsun\Tests\Core;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;

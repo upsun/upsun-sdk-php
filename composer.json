@@ -55,8 +55,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Upsun\\Test\\" : "tests/",
-            "Upsun\\Test\\Core\\" : "tests/Core/"
+            "Upsun\\Tests\\" : "tests/"
         }
     },
     "prefer-stable": true,
