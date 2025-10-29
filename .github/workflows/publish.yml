@@ -1,4 +1,4 @@
-name: Develop CI
+name: Publish Release
 
 on:
   release:
@@ -12,7 +12,7 @@ env:
 jobs:
   
   doc:
-    name: Generate Documentation
+    name: Generate release documentation
     runs-on: ubuntu-latest
 
     steps:
@@ -42,7 +42,7 @@ jobs:
         #   openapi-file: schema/openapispec-upsun-processed.json
 
   publish:
-    name: Build Project
+    name: Publish release to Packagist
     runs-on: ubuntu-latest
     needs: [ doc ]
 

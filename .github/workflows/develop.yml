@@ -2,7 +2,6 @@ name: Develop CI
 
 on:
   pull_request:
-  #push:
 
 env:
   # Define the primary PHP version for release, build, coverage uploads and badge generation
