@@ -3,7 +3,6 @@
 namespace Upsun\Tests\Core;
 
 use Nyholm\Psr7\Response;
-use PHPUnit\Framework\TestCase;
 use Upsun\Api\DeploymentApi;
 use Upsun\Core\Tasks\ApplicationsTask;
 use Upsun\UpsunClient;

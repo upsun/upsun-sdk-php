@@ -5,7 +5,6 @@ namespace Upsun\Tests\Core;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Api\AlertsApi;
 use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;

@@ -10,7 +10,6 @@ use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\RoutesTask;
 use Upsun\UpsunClient;
 use Upsun\Api\RoutingApi;
-use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Route;
 
 class RoutesTaskTest extends BaseTestCase

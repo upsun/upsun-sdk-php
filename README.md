@@ -13,7 +13,7 @@ For more information, read [the documentation](https://docs.upsun.com).
 Install the SDK via Composer:
 
 ```bash
-composer require Upsun/
+composer require upsun/upsun-sdk-php
 ```
 
 Then include Composer's autoloader in your PHP application:
