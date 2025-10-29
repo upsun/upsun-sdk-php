@@ -4,6 +4,10 @@ on:
   pull_request:
   #push:
 
+env:
+  # Define the primary PHP version for release, build, coverage uploads and badge generation
+  PRIMARY_PHP_VERSION: '8.4'
+
 jobs:
   quality:
     name: Lint and Format Check
@@ -18,11 +22,11 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-            php-version: '8.2'
+            php-version: ${{ env.PRIMARY_PHP_VERSION }}
             tools: composer
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: PHPCS fix on generated Model and Api classes in src
         run: |
@@ -66,7 +70,7 @@ jobs:
           extensions: mbstring, intl, json, curl
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run PHPUnit
         run: vendor/bin/phpunit
@@ -83,11 +87,11 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ env.PRIMARY_PHP_VERSION }}
           extensions: mbstring, intl, json, curl
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Generate PHP documentation (with docs generator)
         if: false
@@ -114,12 +118,12 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ env.PRIMARY_PHP_VERSION }}
           coverage: xdebug
           extensions: mbstring, intl, json, curl
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run PHPUnit with coverage
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
@@ -146,11 +150,11 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: ${{ env.PRIMARY_PHP_VERSION }}
           extensions: mbstring, intl, json, curl
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Build project
         if: false
