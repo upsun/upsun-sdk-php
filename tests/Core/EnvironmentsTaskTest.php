@@ -30,7 +30,6 @@ use Upsun\Model\EnvironmentType;
 use Upsun\Model\EnvironmentVariable;
 use Upsun\Model\ProjectVariable;
 use Upsun\Model\Route;
-use PHPUnit\Framework\TestCase;
 use Upsun\Core\Tasks\ActivitiesTask;
 use Upsun\Core\Tasks\BackupsTask;
 use Upsun\Core\Tasks\DomainsTask;

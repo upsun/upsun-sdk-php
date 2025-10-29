@@ -10,7 +10,6 @@ use Upsun\Api\DomainManagementApi;
 use Upsun\Configuration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
-use PHPUnit\Framework\TestCase;
 use Upsun\Core\Tasks\DomainsTask;
 use Upsun\UpsunClient;
 

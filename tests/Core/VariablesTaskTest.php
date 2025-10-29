@@ -5,19 +5,8 @@ namespace Upsun\Tests\Core;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Api\APITokensApi;
-use Upsun\Api\ConnectionsApi;
-use Upsun\Api\GrantsApi;
-use Upsun\Api\MFAApi;
-use Upsun\Api\PhoneNumberApi;
-use Upsun\Api\UserAccessApi;
-use Upsun\Api\UserProfilesApi;
-use Upsun\Api\UsersApi;
 use Upsun\Configuration;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\OAuthProvider;
-use Upsun\Core\Tasks\UsersTask;
 use Upsun\Core\Tasks\VariablesTask;
 use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\EnvironmentVariablesApi;
@@ -26,7 +15,6 @@ use Upsun\Model\ProjectVariable;
 use Upsun\Model\EnvironmentVariable;
 use Upsun\ApiException;
 use Upsun\UpsunClient;
-use Upsun\UpsunConfig;
 
 class VariablesTaskTest extends BaseTestCase
 {

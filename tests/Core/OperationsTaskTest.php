@@ -6,7 +6,6 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Configuration;
-use PHPUnit\Framework\TestCase;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\OperationsTask;
 use Upsun\Api\RuntimeOperationsApi;
