@@ -63,18 +63,12 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Run tests
-        if: false
         run: vendor/bin/phpunit --testdox
-
-      - name: Build project
-        if: false
-        run: composer run build
       
       - name: Publish to Packagist
-        # if: success()
-        if: false
+        if: success()
         run: |
           curl -X POST \
             -H "Content-Type: application/json" \
             -d '{"repository":{"url":"https://github.com/${{ github.repository }}"}}' \
-            "https://packagist.org/api/update-package?username=VOTRE_NOM_PACKAGIST&apiToken=${{ secrets.PACKAGIST_TOKEN }}"
+            "https://packagist.org/api/update-package?username=Theosakamg&apiToken=${{ secrets.PACKAGIST_TOKEN }}"
