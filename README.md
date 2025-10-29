@@ -1,7 +1,7 @@
 > [!CAUTION]
 > This project is currently in **Beta**, meaning features and APIs may evolve over time.
 >
-> You’re welcome to share feedback or feature requests on our [Discord community](https://discord.gg/upsun).
+> Please report bugs or request new features by creating a GitHub issue.
 
 # Upsun SDK PHP
 
