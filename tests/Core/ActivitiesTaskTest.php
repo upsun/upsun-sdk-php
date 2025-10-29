@@ -9,7 +9,6 @@ use Upsun\Api\ProjectActivityApi;
 use Upsun\Configuration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\Activity;
-use PHPUnit\Framework\TestCase;
 use Upsun\Core\Tasks\ActivitiesTask;
 use Upsun\UpsunClient;
 use Nyholm\Psr7\Factory\Psr17Factory;

@@ -34,7 +34,6 @@ use Upsun\Api\UsersApi;
 use Upsun\Api\VouchersApi;
 use Upsun\Configuration;
 use Upsun\Core\OAuthProvider;
-use Upsun\HeaderSelector;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Address;
 use Upsun\Model\CreateAuthorizationCredentials200Response;

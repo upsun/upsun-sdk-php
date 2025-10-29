@@ -63,7 +63,7 @@ abstract class BaseTestCase extends TestCase
             $actual,
             "Array size mismatch at $prefix"
         );
-        
+
         // Case objet
         foreach ($actual as $index => $object) {
             $this->assertObjectProperties(

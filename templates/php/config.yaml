@@ -16,12 +16,12 @@ additionalProperties:
   composerVendor: upsun
   basePath: https://api.upsun.com
   composerProject: upsun-sdk-php
-  licenseName: Apache-2.0
+  licenseName: MIT
   composerPackageName: upsun/upsun-sdk-php
   artifactUrl: https://github.com/upsun/upsun-sdk-php
-  developerOrganization: Upsun
+  developerOrganization: Upsun Advocacy Team
   developerOrganizationUrl: https://www.upsun.com
-  appDescription: The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands. For more information, read [the documentation](https://docs.upsun.com).
+  sdkDescription: The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands. For more information, read [the documentation](https://docs.upsun.com).
   escapedInvokerPackage: "Upsun\\"
   coreTestPath: ./tests/Core
   generateInterfaces: true
