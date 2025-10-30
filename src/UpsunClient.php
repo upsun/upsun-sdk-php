@@ -75,8 +75,8 @@ use Upsun\Core\Tasks\WorkersTask;
 /**
  * Upsun Client to interact with the API.
  *
- * @author    Upsun SDK Team
- * @license   Apache-2.0
+ * @author    Upsun Advocacy Team
+ * @license   MIT
  * @see       https://docs.upsun.com
  */
 class UpsunClient

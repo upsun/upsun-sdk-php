@@ -28,6 +28,7 @@ additionalProperties:
   generateInterfaces: true
   projectName: Upsun SDK PHP
   authorizationUrl: https://auth.upsun.com/oauth2/token
+  authorName: Upsun Advocacy Team
   basicUser: "platform-api-user"
   variableNamingConvention: "camelCase"
   parameterNamingConvention: "camelCase"
