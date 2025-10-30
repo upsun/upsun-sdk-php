@@ -1,4 +1,4 @@
-name: Develop CI
+name: PR Code review
 
 on:
   pull_request:
@@ -9,22 +9,22 @@ env:
 
 jobs:
   quality:
-    name: Lint and Format Check
+    name: Code Quality
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
             ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Set up PHP
+      - name: Set up runtime
         uses: shivammathur/setup-php@v2
         with:
             php-version: ${{ env.PRIMARY_PHP_VERSION }}
             tools: composer
 
-      - name: Install Composer dependencies
+      - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: PHPCS fix on generated Model and Api classes in src
@@ -46,7 +46,7 @@ jobs:
         # Need to check how to setup symfony insight properly
         if: false
         run: |
-          composer require --dev symfony/insight-cli
+          composer require --dev sensiolabs/insight-cli
           ./vendor/bin/insight analyze --level=minor --fail-on=critical
 
   tests:
@@ -61,7 +61,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up PHP
+      - name: Set up runtime
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
@@ -71,40 +71,14 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
-      - name: Run PHPUnit
+      - name: Run unit tests
         run: vendor/bin/phpunit
   
   doc:
-    name: Generate Documentation
-    runs-on: ubuntu-latest
-    needs: tests
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ env.PRIMARY_PHP_VERSION }}
-          extensions: mbstring, intl, json, curl
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
-
-      - name: Generate PHP documentation (with docs generator)
-        if: false
-        run: composer run docs
-
-      - name: Generate PHP documentation (with docs open-api-generator)
-        if: false
-        run: echo TODO
-        # uses: openapitools/openapi-generator-cli@v2
-        # with:
-        #   generator: php
-        #   config-file: templates/php/config.yaml
-        #   openapi-file: schema/openapispec-upsun-processed.json
-
+    uses: "./.github/actions/doc"
+    with:
+      default_runtime_version: ${{ env.PRIMARY_PHP_VERSION }}
+      
   coverage:
     name: Code Coverage Report
     runs-on: ubuntu-latest
@@ -114,7 +88,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up PHP
+      - name: Set up runtime
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ env.PRIMARY_PHP_VERSION }}
@@ -124,12 +98,11 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
-      - name: Run PHPUnit with coverage
+      - name: Run unit tests with coverage
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
 
       - name: Upload coverage to Codecov
-        # Do not publish coverage for now
-        #if: false
+        if: success()
         uses: codecov/codecov-action@v3
         with:
           files: coverage.xml
@@ -143,7 +116,8 @@ jobs:
     name: Build Project
     runs-on: ubuntu-latest
     needs: [ coverage, quality ]
-
+    # Deactivated as not necessary for PHP 
+    if: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -158,5 +132,4 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: Build project
-        if: false
         run: composer run build
