@@ -1,31 +1,31 @@
 name: Generate Documentation
 description: Generate documentation of the project
-inputs: 
-  default_runtime_version: 
+inputs:
+  default-runtime-version: 
     description: "Version used to setup runtime"
     required: true
     
 runs:
   using: "composite"
-  steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-  
+  steps:  
     - name: Set up runtime
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ input.default_runtime_version }}
+        php-version: ${{ inputs.default-runtime-version }}
         extensions: mbstring, intl, json, curl
   
     - name: Install dependencies
+      shell: bash
       run: composer install --prefer-dist --no-progress --no-interaction
   
     - name: Generate documentation (with docs generator)
       if: false
+      shell: bash
       run: composer run docs
   
     - name: Generate documentation (with docs open-api-generator)
       if: false
+      shell: bash
       run: echo TODO
       # uses: openapitools/openapi-generator-cli@v2
       # with:

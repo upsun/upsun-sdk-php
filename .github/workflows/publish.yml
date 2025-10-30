@@ -9,70 +9,31 @@ env:
   PRIMARY_PHP_VERSION: '8.4'
 
 jobs:
-  
   doc:
-    name: Generate documentation
+    name: Generate Documentation
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+      - uses: ./.github/actions/doc
         with:
-          php-version: ${{ env.PRIMARY_PHP_VERSION }}
-          extensions: mbstring, intl, json, curl
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
-
-      - name: Generate PHP documentation (with docs generator)
-        if: false
-        run: composer run docs
-
-      - name: Generate PHP documentation (with docs open-api-generator)
-        if: false
-        run: echo TODO
-        # uses: openapitools/openapi-generator-cli@v2
-        # with:
-        #   generator: php
-        #   config-file: templates/php/config.yaml
-        #   openapi-file: schema/openapispec-upsun-processed.json
-
+          default-runtime-version: ${{ env.PRIMARY_PHP_VERSION }}
+  
   coverage:
     name: Code Coverage Report
     runs-on: ubuntu-latest
-    needs: tests
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up runtime
-        uses: shivammathur/setup-php@v2
+      - uses: ./.github/actions/coverage
         with:
-          php-version: ${{ env.PRIMARY_PHP_VERSION }}
-          coverage: xdebug
-          extensions: mbstring, intl, json, curl
+          default-runtime-version: ${{ env.PRIMARY_PHP_VERSION }}
+          codecov-secret: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
-
-      - name: Run PHPUnit with coverage
-        run: vendor/bin/phpunit --coverage-clover=coverage.xml
-
-      - name: Upload coverage to Codecov
-        if: success()
-        uses: codecov/codecov-action@v3
-        with:
-          files: coverage.xml
-          flags: unittests
-          name: codecov-upsun-sdk-php
-          fail_ci_if_error: false
-          slug: upsun/upsun-sdk-php
-          token: ${{ secrets.CODECOV_TOKEN }}
-          
   publish:
     name: Publish release to Packagist
     runs-on: ubuntu-latest
@@ -82,19 +43,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up PHP
+      - name: Set up runtime
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ env.PRIMARY_PHP_VERSION }}
           extensions: mbstring, intl, json, curl
 
-      - name: Validate composer.json
+      - name: Validate dependency file
         run: composer validate --strict
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
-      - name: Run tests
+      - name: Run unit tests
         run: vendor/bin/phpunit --testdox
       
       - name: Publish to Packagist
