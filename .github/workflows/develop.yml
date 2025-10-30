@@ -129,14 +129,14 @@ jobs:
 
       - name: Upload coverage to Codecov
         # Do not publish coverage for now
-        if: false
+        #if: false
         uses: codecov/codecov-action@v3
         with:
           files: coverage.xml
           flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: true
-          
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   build:
     name: Build Project
