@@ -1,0 +1,38 @@
+name: Code Coverage Report
+description: Generate code coverage report and publish them
+inputs:
+  default-runtime-version:
+    description: "Version used to setup runtime"
+    required: true
+  codecov-secret:
+    description: "CodeCov secret token"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up runtime
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ inputs.default-runtime-version }}
+        coverage: xdebug
+        extensions: mbstring, intl, json, curl
+
+    - name: Install dependencies
+      shell: bash
+      run: composer install --prefer-dist --no-progress --no-interaction
+
+    - name: Run unit tests with coverage
+      shell: bash
+      run: vendor/bin/phpunit --coverage-clover=coverage.xml
+
+    - name: Upload coverage to Codecov
+      if: success()
+      uses: codecov/codecov-action@v3
+      with:
+        files: coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true
+        slug: upsun/upsun-sdk-php
+        token: ${{ inputs.codecov-secret }}
