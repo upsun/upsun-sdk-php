@@ -7,7 +7,19 @@ The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps 
 >
 > Please report bugs or request new features by creating a GitHub issue.
 
-# Upsun SDK PHP
+<p align="center">
+    <a href="https://github.com/upsun/upsun-sdk-php/issues">
+        <img src="https://img.shields.io/github/issues/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Issues" alt="Open issues" />
+    </a>&nbsp&nbsp
+    <a href="https://github.com/upsun/upsun-sdk-php/pulls">
+        <img src="https://img.shields.io/github/issues-pr/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Pull%20requests" alt="Open PRs" />
+    </a>&nbsp&nbsp
+    <a href="https://github.com/upsun/upsun-sdk-php/blob/master/LICENSE">
+        <img src="https://img.shields.io/static/v1?label=License&message=MIT&style=for-the-badge&labelColor=f4f2f3&color=ffd9d9" alt="License" />
+    </a>
+</p>
+
+<hr/>
 
 [![codecov](https://codecov.io/gh/upsun/upsun-sdk-php/graph/badge.svg?token=TOF5FTUFGV)](https://codecov.io/gh/upsun/upsun-sdk-php)
 
