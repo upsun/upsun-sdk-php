@@ -136,6 +136,7 @@ jobs:
           flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: true
+          slug: upsun/upsun-sdk-php  
           token: ${{ secrets.CODECOV_TOKEN }}
 
   build:

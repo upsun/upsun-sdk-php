@@ -1,3 +1,7 @@
+# Upsun SDK PHP
+
+The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.\nFor more information, read [the documentation](https://docs.upsun.com).
+
 > [!CAUTION]
 > This project is currently in **Beta**, meaning features and APIs may evolve over time.
 >
@@ -5,8 +9,9 @@
 
 # Upsun SDK PHP
 
-The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands. 
-For more information, read [the documentation](https://docs.upsun.com).
+[![codecov](https://codecov.io/gh/upsun/upsun-sdk-php/graph/badge.svg?token=TOF5FTUFGV)](https://codecov.io/gh/upsun/upsun-sdk-php)
+
+<hr/>
 
 ## Installation
 

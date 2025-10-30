@@ -22,6 +22,7 @@ additionalProperties:
   developerOrganization: Upsun Advocacy Team
   developerOrganizationUrl: https://www.upsun.com
   sdkDescription: The official Upsun SDK for PHP
+  sdkLongDescription: The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.\nFor more information, read [the documentation](https://docs.upsun.com).
   escapedInvokerPackage: "Upsun\\"
   coreTestPath: ./tests/Core
   generateInterfaces: true
