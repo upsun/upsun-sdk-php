@@ -54,6 +54,13 @@ use Upsun\Model\UpdateOrgRequest;
 use Upsun\Model\Vouchers;
 use Upsun\UpsunClient;
 
+/**
+ * OrganizationsTask class.
+ *
+ * @author    Upsun Advocacy Team
+ * @license   MIT
+ * @see       https://docs.upsun.com
+ */
 class OrganizationsTask extends TaskBase
 {
     private const DEFAULT_UPSUN_PLAN = 'upsun/flexible';

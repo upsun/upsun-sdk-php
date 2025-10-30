@@ -8,8 +8,8 @@ namespace Upsun;
  * Holds the default API and authentication endpoints, as well as the API token
  * used for authenticating with the Upsun API.
  *
- * @author    Upsun SDK Team
- * @license   Apache-2.0
+ * @author    Upsun Advocacy Team
+ * @license   MIT
  * @see       https://docs.upsun.com
  */
 final class UpsunConfig

@@ -24,7 +24,6 @@ The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps 
 [![codecov](https://codecov.io/gh/upsun/upsun-sdk-php/graph/badge.svg?token=TOF5FTUFGV)](https://codecov.io/gh/upsun/upsun-sdk-php)
 [![Packagist Version](https://img.shields.io/packagist/v/upsun/upsun-sdk-php?include_prereleases&label=packagist)](https://packagist.org/packages/upsun/upsun-sdk-php)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/upsun/upsun-sdk-php)](https://packagist.org/packages/upsun/upsun-sdk-php)
-[![Packagist License](https://img.shields.io/packagist/l/upsun/upsun-sdk-php)](https://packagist.org/packages/upsun/upsun-sdk-php)
 
 <hr/>
 

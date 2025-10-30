@@ -7,8 +7,8 @@ use Upsun\UpsunClient;
 /**
  * MountTask class.
  *
- * @author    Upsun SDK Team
- * @license   Apache-2.0
+ * @author    Upsun Advocacy Team
+ * @license   MIT
  * @see       https://docs.upsun.com
  */
 class MountsTask extends TaskBase
