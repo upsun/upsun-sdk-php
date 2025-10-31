@@ -2,8 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\ApiException;
 use Upsun\Api\RegionsApi;
 use Upsun\Model\ListRegions200Response;
 use Upsun\Model\Region;

@@ -2,8 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\ApiException;
 use Upsun\Api\RoutingApi;
 use Upsun\Model\Route;
 use Upsun\UpsunClient;

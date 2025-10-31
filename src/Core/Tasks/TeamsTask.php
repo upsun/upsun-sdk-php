@@ -2,8 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\ApiException;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
 use Upsun\Model\CreateTeamMemberRequest;

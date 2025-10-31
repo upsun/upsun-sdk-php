@@ -2,8 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;
@@ -23,7 +21,6 @@ use Upsun\Model\DeploymentTarget;
 use Upsun\Model\DeploymentTargetCreateInput;
 use Upsun\Model\DeploymentTargetPatch;
 use Upsun\Model\Domain;
-use Upsun\Model\Environment;
 use Upsun\Model\Integration;
 use Upsun\Model\IntegrationCreateInput;
 use Upsun\Model\IntegrationPatch;

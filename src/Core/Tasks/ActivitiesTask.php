@@ -2,8 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\ApiException;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Model\AcceptedResponse;

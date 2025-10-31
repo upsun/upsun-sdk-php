@@ -4,10 +4,8 @@ namespace Upsun\Api\Serializer;
 
 use DateTime;
 use DateTimeInterface;
-use Exception;
 use GuzzleHttp\Psr7\Utils;
 use InvalidArgumentException;
-use Psr\Http\Message\StreamInterface;
 use ReflectionClass;
 use SplFileObject;
 use stdClass;

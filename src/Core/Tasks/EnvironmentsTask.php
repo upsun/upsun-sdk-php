@@ -2,8 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentTypeApi;
@@ -19,12 +17,10 @@ use Upsun\Model\EnvironmentBranchInput;
 use Upsun\Model\EnvironmentInitializeInput;
 use Upsun\Model\EnvironmentMergeInput;
 use Upsun\Model\EnvironmentPatch;
-use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Model\EnvironmentSynchronizeInput;
 use Upsun\Model\EnvironmentType;
 use Upsun\Model\EnvironmentVariable;
 use Upsun\Model\HttpAccessPermissions1;
-use Upsun\Model\ProjectVariable;
 use Upsun\Model\Resources2;
 use Upsun\Model\Resources3;
 use Upsun\Model\Resources4;

@@ -3,8 +3,6 @@
 namespace Upsun\Core\Tasks;
 
 use BadMethodCallException;
-use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\ApiException;
 use Upsun\Api\ApiTokensApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\GrantsApi;
