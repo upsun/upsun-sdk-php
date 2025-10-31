@@ -7,7 +7,7 @@ use Upsun\Model\ListOrgs200Response;
 use DateTime;
 use Upsun\Api\ApiException;
 use Upsun\Api\InvoicesApi;
-use Upsun\Api\MFAApi;
+use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
 use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
@@ -72,7 +72,7 @@ class OrganizationsTask extends TaskBase
         private readonly OrganizationMembersApi $membersApi,
         private readonly SubscriptionsApi $subscriptionsApi,
         private readonly InvoicesApi $invoicesApi,
-        private readonly MFAApi $mfaApi,
+        private readonly MfaApi $mfaApi,
         private readonly OrdersApi $ordersApi,
         private readonly ProfilesApi $profilesApi,
         private readonly RecordsApi $recordsApi,

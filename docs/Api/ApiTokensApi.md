@@ -1,19 +1,19 @@
-# [Upsun\Api\APITokensApi](../src/Api/APITokensApi.php)
+# [Upsun\Api\ApiTokensApi](../src/Api/ApiTokensApi.php)
 
 All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description | Upsun API Doc |
 | ------------- | ------------- | ------------- | ------------- |
-| [**createApiToken()**](APITokensApi.md#createApiToken) | **POST** /users/{user_id}/api-tokens | Create an API token | https://docs.upsun.com/api/#tag/API-Tokens/operation/create-api-token |
-| [**deleteApiToken()**](APITokensApi.md#deleteApiToken) | **DELETE** /users/{user_id}/api-tokens/{token_id} | Delete an API token | https://docs.upsun.com/api/#tag/API-Tokens/operation/delete-api-token |
-| [**getApiToken()**](APITokensApi.md#getApiToken) | **GET** /users/{user_id}/api-tokens/{token_id} | Get an API token | https://docs.upsun.com/api/#tag/API-Tokens/operation/get-api-token |
-| [**listApiTokens()**](APITokensApi.md#listApiTokens) | **GET** /users/{user_id}/api-tokens | List a user&#39;s API tokens | https://docs.upsun.com/api/#tag/API-Tokens/operation/list-api-tokens |
+| [**createApiToken()**](ApiTokensApi.md#createApiToken) | **POST** /users/{user_id}/api-tokens | Create an API token | https://docs.upsun.com/api/#tag/Api-Tokens/operation/create-api-token |
+| [**deleteApiToken()**](ApiTokensApi.md#deleteApiToken) | **DELETE** /users/{user_id}/api-tokens/{token_id} | Delete an API token | https://docs.upsun.com/api/#tag/Api-Tokens/operation/delete-api-token |
+| [**getApiToken()**](ApiTokensApi.md#getApiToken) | **GET** /users/{user_id}/api-tokens/{token_id} | Get an API token | https://docs.upsun.com/api/#tag/Api-Tokens/operation/get-api-token |
+| [**listApiTokens()**](ApiTokensApi.md#listApiTokens) | **GET** /users/{user_id}/api-tokens | List a user&#39;s API tokens | https://docs.upsun.com/api/#tag/Api-Tokens/operation/list-api-tokens |
 
 
 ## `createApiToken()`
 
 ```php
-createApiToken($userId, $createApiTokenRequest): \Upsun\Model\APIToken
+createApiToken($userId, $createApiTokenRequest): \Upsun\Model\ApiToken
 ```
 
 Create an API token
@@ -28,7 +28,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\APITokensApi(
+$apiInstance = new Upsun\Api\ApiTokensApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -40,7 +40,7 @@ try {
     $result = $apiInstance->createApiToken($userId, $createApiTokenRequest);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling APITokensApi->createApiToken: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ApiTokensApi->createApiToken: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -53,7 +53,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\APIToken**](../Model/APIToken.md)
+[**\Upsun\Model\ApiToken**](../Model/ApiToken.md)
 
 ### Authorization
 
@@ -86,7 +86,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\APITokensApi(
+$apiInstance = new Upsun\Api\ApiTokensApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -97,7 +97,7 @@ $tokenId = 'tokenId_example'; // string | The ID of the token.
 try {
     $apiInstance->deleteApiToken($userId, $tokenId);
 } catch (Exception $e) {
-    echo 'Exception when calling APITokensApi->deleteApiToken: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ApiTokensApi->deleteApiToken: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -128,7 +128,7 @@ No authorization required
 ## `getApiToken()`
 
 ```php
-getApiToken($userId, $tokenId): \Upsun\Model\APIToken
+getApiToken($userId, $tokenId): \Upsun\Model\ApiToken
 ```
 
 Get an API token
@@ -143,7 +143,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\APITokensApi(
+$apiInstance = new Upsun\Api\ApiTokensApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -155,7 +155,7 @@ try {
     $result = $apiInstance->getApiToken($userId, $tokenId);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling APITokensApi->getApiToken: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ApiTokensApi->getApiToken: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -168,7 +168,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\APIToken**](../Model/APIToken.md)
+[**\Upsun\Model\ApiToken**](../Model/ApiToken.md)
 
 ### Authorization
 
@@ -186,7 +186,7 @@ No authorization required
 ## `listApiTokens()`
 
 ```php
-listApiTokens($userId): \Upsun\Model\APIToken[]
+listApiTokens($userId): \Upsun\Model\ApiToken[]
 ```
 
 List a user's API tokens
@@ -201,7 +201,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\APITokensApi(
+$apiInstance = new Upsun\Api\ApiTokensApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -212,7 +212,7 @@ try {
     $result = $apiInstance->listApiTokens($userId);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling APITokensApi->listApiTokens: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ApiTokensApi->listApiTokens: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -224,7 +224,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\APIToken[]**](../Model/APIToken.md)
+[**\Upsun\Model\ApiToken[]**](../Model/ApiToken.md)
 
 ### Authorization
 

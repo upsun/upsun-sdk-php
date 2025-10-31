@@ -1,17 +1,17 @@
-# [Upsun\Api\MFAApi](../src/Api/MFAApi.php)
+# [Upsun\Api\MfaApi](../src/Api/MfaApi.php)
 
 All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description | Upsun API Doc |
 | ------------- | ------------- | ------------- | ------------- |
-| [**confirmTotpEnrollment()**](MFAApi.md#confirmTotpEnrollment) | **POST** /users/{user_id}/totp | Confirm TOTP enrollment | https://docs.upsun.com/api/#tag/MFA/operation/confirm-totp-enrollment |
-| [**disableOrgMfaEnforcement()**](MFAApi.md#disableOrgMfaEnforcement) | **POST** /organizations/{organization_id}/mfa-enforcement/disable | Disable organization MFA enforcement | https://docs.upsun.com/api/#tag/MFA/operation/disable-org-mfa-enforcement |
-| [**enableOrgMfaEnforcement()**](MFAApi.md#enableOrgMfaEnforcement) | **POST** /organizations/{organization_id}/mfa-enforcement/enable | Enable organization MFA enforcement | https://docs.upsun.com/api/#tag/MFA/operation/enable-org-mfa-enforcement |
-| [**getOrgMfaEnforcement()**](MFAApi.md#getOrgMfaEnforcement) | **GET** /organizations/{organization_id}/mfa-enforcement | Get organization MFA settings | https://docs.upsun.com/api/#tag/MFA/operation/get-org-mfa-enforcement |
-| [**getTotpEnrollment()**](MFAApi.md#getTotpEnrollment) | **GET** /users/{user_id}/totp | Get information about TOTP enrollment | https://docs.upsun.com/api/#tag/MFA/operation/get-totp-enrollment |
-| [**recreateRecoveryCodes()**](MFAApi.md#recreateRecoveryCodes) | **POST** /users/{user_id}/codes | Re-create recovery codes | https://docs.upsun.com/api/#tag/MFA/operation/recreate-recovery-codes |
-| [**sendOrgMfaReminders()**](MFAApi.md#sendOrgMfaReminders) | **POST** /organizations/{organization_id}/mfa/remind | Send MFA reminders to organization members | https://docs.upsun.com/api/#tag/MFA/operation/send-org-mfa-reminders |
-| [**withdrawTotpEnrollment()**](MFAApi.md#withdrawTotpEnrollment) | **DELETE** /users/{user_id}/totp | Withdraw TOTP enrollment | https://docs.upsun.com/api/#tag/MFA/operation/withdraw-totp-enrollment |
+| [**confirmTotpEnrollment()**](MfaApi.md#confirmTotpEnrollment) | **POST** /users/{user_id}/totp | Confirm TOTP enrollment | https://docs.upsun.com/api/#tag/Mfa/operation/confirm-totp-enrollment |
+| [**disableOrgMfaEnforcement()**](MfaApi.md#disableOrgMfaEnforcement) | **POST** /organizations/{organization_id}/mfa-enforcement/disable | Disable organization MFA enforcement | https://docs.upsun.com/api/#tag/Mfa/operation/disable-org-mfa-enforcement |
+| [**enableOrgMfaEnforcement()**](MfaApi.md#enableOrgMfaEnforcement) | **POST** /organizations/{organization_id}/mfa-enforcement/enable | Enable organization MFA enforcement | https://docs.upsun.com/api/#tag/Mfa/operation/enable-org-mfa-enforcement |
+| [**getOrgMfaEnforcement()**](MfaApi.md#getOrgMfaEnforcement) | **GET** /organizations/{organization_id}/mfa-enforcement | Get organization MFA settings | https://docs.upsun.com/api/#tag/Mfa/operation/get-org-mfa-enforcement |
+| [**getTotpEnrollment()**](MfaApi.md#getTotpEnrollment) | **GET** /users/{user_id}/totp | Get information about TOTP enrollment | https://docs.upsun.com/api/#tag/Mfa/operation/get-totp-enrollment |
+| [**recreateRecoveryCodes()**](MfaApi.md#recreateRecoveryCodes) | **POST** /users/{user_id}/codes | Re-create recovery codes | https://docs.upsun.com/api/#tag/Mfa/operation/recreate-recovery-codes |
+| [**sendOrgMfaReminders()**](MfaApi.md#sendOrgMfaReminders) | **POST** /organizations/{organization_id}/mfa/remind | Send MFA reminders to organization members | https://docs.upsun.com/api/#tag/Mfa/operation/send-org-mfa-reminders |
+| [**withdrawTotpEnrollment()**](MfaApi.md#withdrawTotpEnrollment) | **DELETE** /users/{user_id}/totp | Withdraw TOTP enrollment | https://docs.upsun.com/api/#tag/Mfa/operation/withdraw-totp-enrollment |
 
 
 ## `confirmTotpEnrollment()`
@@ -32,7 +32,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\MFAApi(
+$apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -44,7 +44,7 @@ try {
     $result = $apiInstance->confirmTotpEnrollment($userId, $confirmTotpEnrollmentRequest);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MFAApi->confirmTotpEnrollment: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MfaApi->confirmTotpEnrollment: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -90,7 +90,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\MFAApi(
+$apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -100,7 +100,7 @@ $organizationId = 'organizationId_example'; // string | The ID of the organizati
 try {
     $apiInstance->disableOrgMfaEnforcement($organizationId);
 } catch (Exception $e) {
-    echo 'Exception when calling MFAApi->disableOrgMfaEnforcement: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MfaApi->disableOrgMfaEnforcement: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -145,7 +145,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\MFAApi(
+$apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -155,7 +155,7 @@ $organizationId = 'organizationId_example'; // string | The ID of the organizati
 try {
     $apiInstance->enableOrgMfaEnforcement($organizationId);
 } catch (Exception $e) {
-    echo 'Exception when calling MFAApi->enableOrgMfaEnforcement: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MfaApi->enableOrgMfaEnforcement: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -185,7 +185,7 @@ No authorization required
 ## `getOrgMfaEnforcement()`
 
 ```php
-getOrgMfaEnforcement($organizationId): \Upsun\Model\OrganizationMFAEnforcement
+getOrgMfaEnforcement($organizationId): \Upsun\Model\OrganizationMfaEnforcement
 ```
 
 Get organization MFA settings
@@ -200,7 +200,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\MFAApi(
+$apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -211,7 +211,7 @@ try {
     $result = $apiInstance->getOrgMfaEnforcement($organizationId);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MFAApi->getOrgMfaEnforcement: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MfaApi->getOrgMfaEnforcement: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -223,7 +223,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\OrganizationMFAEnforcement**](../Model/OrganizationMFAEnforcement.md)
+[**\Upsun\Model\OrganizationMfaEnforcement**](../Model/OrganizationMfaEnforcement.md)
 
 ### Authorization
 
@@ -256,7 +256,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\MFAApi(
+$apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -267,7 +267,7 @@ try {
     $result = $apiInstance->getTotpEnrollment($userId);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MFAApi->getTotpEnrollment: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MfaApi->getTotpEnrollment: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -312,7 +312,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\MFAApi(
+$apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -323,7 +323,7 @@ try {
     $result = $apiInstance->recreateRecoveryCodes($userId);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MFAApi->recreateRecoveryCodes: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MfaApi->recreateRecoveryCodes: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -368,7 +368,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\MFAApi(
+$apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -380,7 +380,7 @@ try {
     $result = $apiInstance->sendOrgMfaReminders($organizationId, $sendOrgMfaRemindersRequest);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MFAApi->sendOrgMfaReminders: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MfaApi->sendOrgMfaReminders: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -426,7 +426,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\MFAApi(
+$apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -436,7 +436,7 @@ $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 try {
     $apiInstance->withdrawTotpEnrollment($userId);
 } catch (Exception $e) {
-    echo 'Exception when calling MFAApi->withdrawTotpEnrollment: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MfaApi->withdrawTotpEnrollment: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

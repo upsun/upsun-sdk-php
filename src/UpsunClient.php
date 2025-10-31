@@ -7,7 +7,7 @@ use Psr\Http\Client\ClientInterface;
 use Symfony\Component\HttpClient\Psr18Client;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;
-use Upsun\Api\APITokensApi;
+use Upsun\Api\ApiTokensApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\DefaultApi;
@@ -21,7 +21,7 @@ use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Api\GrantsApi;
 use Upsun\Api\InvoicesApi;
-use Upsun\Api\MFAApi;
+use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\OrganizationMembersApi;
@@ -196,7 +196,7 @@ class UpsunClient
             new OrganizationMembersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new SubscriptionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new InvoicesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new MFAApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new MfaApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new OrdersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new ProfilesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new RecordsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
@@ -244,10 +244,10 @@ class UpsunClient
             new UsersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new UserProfilesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new UserAccessApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new APITokensApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new ApiTokensApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new ConnectionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new GrantsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new MFAApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new MfaApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new PhoneNumberApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->variables = new VariablesTask(

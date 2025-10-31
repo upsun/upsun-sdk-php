@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Low level SSHKey (auto-generated)
+ * Low level SshKey (auto-generated)
  *
  * The ssh key object.
  *
@@ -15,7 +15,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class SSHKey implements ModelInterface, JsonSerializable
+final class SshKey implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?int $keyId = null,

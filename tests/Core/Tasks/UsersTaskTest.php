@@ -7,17 +7,17 @@ use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
-use Upsun\Api\APITokensApi;
+use Upsun\Api\ApiTokensApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\GrantsApi;
-use Upsun\Api\MFAApi;
+use Upsun\Api\MfaApi;
 use Upsun\Api\PhoneNumberApi;
 use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\UsersTask;
-use Upsun\Model\APIToken;
+use Upsun\Model\ApiToken;
 use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\Connection;
 use Upsun\Model\GetAddress200Response;
@@ -54,10 +54,10 @@ class UsersTaskTest extends BaseTestCase
             new UsersApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new UserProfilesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new UserAccessApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new APITokensApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new ApiTokensApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new ConnectionsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new GrantsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new MFAApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new MfaApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new PhoneNumberApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
         ) extends UsersTask {
         };
@@ -1107,7 +1107,7 @@ class UsersTaskTest extends BaseTestCase
         $userId = 'user_123';
         $name = 'My Token';
         $result = $this->usersTask->createApiToken($userId, $name);
-        $this->assertInstanceOf(APIToken::class, $result);
+        $this->assertInstanceOf(ApiToken::class, $result);
         $this->assertObjectProperties($result, $tokenFake);
     }
 
@@ -1185,7 +1185,7 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $result = $this->usersTask->getApiToken($userId, $tokenId);
-        $this->assertInstanceOf(APIToken::class, $result);
+        $this->assertInstanceOf(ApiToken::class, $result);
         $this->assertObjectProperties($result, $tokenFake);
     }
 

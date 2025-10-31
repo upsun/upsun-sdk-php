@@ -1,18 +1,18 @@
-# [Upsun\Api\SSHKeysApi](../src/Api/SSHKeysApi.php)
+# [Upsun\Api\SshKeysApi](../src/Api/SshKeysApi.php)
 
 All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
 | Method | HTTP request | Description | Upsun API Doc |
 | ------------- | ------------- | ------------- | ------------- |
-| [**createSshKey()**](SSHKeysApi.md#createSshKey) | **POST** /ssh_keys | Add a new public SSH key to a user | https://docs.upsun.com/api/#tag/SSH-Keys/operation/create-ssh-key |
-| [**deleteSshKey()**](SSHKeysApi.md#deleteSshKey) | **DELETE** /ssh_keys/{key_id} | Delete an SSH key | https://docs.upsun.com/api/#tag/SSH-Keys/operation/delete-ssh-key |
-| [**getSshKey()**](SSHKeysApi.md#getSshKey) | **GET** /ssh_keys/{key_id} | Get an SSH key | https://docs.upsun.com/api/#tag/SSH-Keys/operation/get-ssh-key |
+| [**createSshKey()**](SshKeysApi.md#createSshKey) | **POST** /ssh_keys | Add a new public SSH key to a user | https://docs.upsun.com/api/#tag/Ssh-Keys/operation/create-ssh-key |
+| [**deleteSshKey()**](SshKeysApi.md#deleteSshKey) | **DELETE** /ssh_keys/{key_id} | Delete an SSH key | https://docs.upsun.com/api/#tag/Ssh-Keys/operation/delete-ssh-key |
+| [**getSshKey()**](SshKeysApi.md#getSshKey) | **GET** /ssh_keys/{key_id} | Get an SSH key | https://docs.upsun.com/api/#tag/Ssh-Keys/operation/get-ssh-key |
 
 
 ## `createSshKey()`
 
 ```php
-createSshKey($createSshKeyRequest): \Upsun\Model\SSHKey
+createSshKey($createSshKeyRequest): \Upsun\Model\SshKey
 ```
 
 Add a new public SSH key to a user
@@ -25,7 +25,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\SSHKeysApi(
+$apiInstance = new Upsun\Api\SshKeysApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -36,7 +36,7 @@ try {
     $result = $apiInstance->createSshKey($createSshKeyRequest);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SSHKeysApi->createSshKey: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SshKeysApi->createSshKey: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -48,7 +48,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\SSHKey**](../Model/SSHKey.md)
+[**\Upsun\Model\SshKey**](../Model/SshKey.md)
 
 ### Authorization
 
@@ -79,7 +79,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\SSHKeysApi(
+$apiInstance = new Upsun\Api\SshKeysApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -89,7 +89,7 @@ $keyId = 56; // int | The ID of the ssh key.
 try {
     $apiInstance->deleteSshKey($keyId);
 } catch (Exception $e) {
-    echo 'Exception when calling SSHKeysApi->deleteSshKey: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SshKeysApi->deleteSshKey: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -119,7 +119,7 @@ No authorization required
 ## `getSshKey()`
 
 ```php
-getSshKey($keyId): \Upsun\Model\SSHKey
+getSshKey($keyId): \Upsun\Model\SshKey
 ```
 
 Get an SSH key
@@ -132,7 +132,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Upsun\Api\SSHKeysApi(
+$apiInstance = new Upsun\Api\SshKeysApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
@@ -143,7 +143,7 @@ try {
     $result = $apiInstance->getSshKey($keyId);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SSHKeysApi->getSshKey: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SshKeysApi->getSshKey: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -155,7 +155,7 @@ try {
 
 ### Return type
 
-[**\Upsun\Model\SSHKey**](../Model/SSHKey.md)
+[**\Upsun\Model\SshKey**](../Model/SshKey.md)
 
 ### Authorization
 

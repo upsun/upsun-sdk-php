@@ -1,4 +1,4 @@
-# # OrganizationMFAEnforcement
+# # OrganizationMfaEnforcement
 
 ## Properties
 

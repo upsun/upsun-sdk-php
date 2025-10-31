@@ -3,17 +3,18 @@
 namespace Upsun\Core\Tasks;
 
 use BadMethodCallException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
-use Upsun\Api\APITokensApi;
+use Upsun\Api\ApiTokensApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\GrantsApi;
-use Upsun\Api\MFAApi;
+use Upsun\Api\MfaApi;
 use Upsun\Api\PhoneNumberApi;
 use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
 use Upsun\Model\Address;
-use Upsun\Model\APIToken;
+use Upsun\Model\ApiToken;
 use Upsun\Model\ConfirmPhoneNumberRequest;
 use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\ConfirmTotpEnrollmentRequest;
@@ -52,10 +53,10 @@ class UsersTask extends TaskBase
         private readonly UsersApi $api,
         private readonly UserProfilesApi $profilesApi,
         private readonly UserAccessApi $accessApi,
-        private readonly APITokensApi $tokensApi,
+        private readonly ApiTokensApi $tokensApi,
         private readonly ConnectionsApi $connectionsApi,
         private readonly GrantsApi $grantsApi,
-        private readonly MFAApi $mfaApi,
+        private readonly MfaApi $mfaApi,
         private readonly PhoneNumberApi $phoneNumberApi,
     ) {
         parent::__construct($client);
@@ -65,6 +66,7 @@ class UsersTask extends TaskBase
      * Get the current user
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function me(): User
     {
@@ -403,7 +405,7 @@ class UsersTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createApiToken(string $userId, string $name): APIToken
+    public function createApiToken(string $userId, string $name): ApiToken
     {
         $createApiTokenRequest = new CreateApiTokenRequest(name: $name);
         return $this->tokensApi->createApiToken($userId, $createApiTokenRequest);
@@ -424,7 +426,7 @@ class UsersTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function getApiToken(string $userId, string $tokenId): APIToken
+    public function getApiToken(string $userId, string $tokenId): ApiToken
     {
         return $this->tokensApi->getApiToken($userId, $tokenId);
     }
@@ -434,7 +436,7 @@ class UsersTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
-     * @return APIToken[]
+     * @return ApiToken[]
      */
     public function listApiTokens(string $userId): array
     {

@@ -38,7 +38,8 @@ additionalProperties:
   parameterNamingConvention: "camelCase"
   propertyNamingConvention: "camelCase"
   enumPropertyNaming: "camelCase"
-  modelPropertyNaming: "camelCase"
+  modelPropertyNaming: "PascalCase"
+  paramNaming: "camelCase"
   generateEnums: true
   enumClassPrefix: true
   sortModelPropertiesByRequiredFlag: true

@@ -3,7 +3,6 @@
 namespace Upsun\Api\Serializer;
 
 use Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner;
-use Upsun\Model\APIToken;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\AccessControlDefinitionForThisEnviromentInner;
 use Upsun\Model\Activity;
@@ -12,6 +11,7 @@ use Upsun\Model\AddressGrantsInner;
 use Upsun\Model\AddressMetadata;
 use Upsun\Model\AddressMetadataMetadata;
 use Upsun\Model\Alert;
+use Upsun\Model\ApiToken;
 use Upsun\Model\ApplyOrgVoucherRequest;
 use Upsun\Model\ArrayFilter;
 use Upsun\Model\AutoscalerAlertPartial;
@@ -300,12 +300,12 @@ use Upsun\Model\OrganizationLinksSelf;
 use Upsun\Model\OrganizationLinksSubscriptions;
 use Upsun\Model\OrganizationLinksUpdate;
 use Upsun\Model\OrganizationLinksVouchers;
-use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMemberLinks;
 use Upsun\Model\OrganizationMemberLinksDelete;
 use Upsun\Model\OrganizationMemberLinksSelf;
 use Upsun\Model\OrganizationMemberLinksUpdate;
+use Upsun\Model\OrganizationMfaEnforcement;
 use Upsun\Model\OrganizationProject;
 use Upsun\Model\OrganizationProjectCarbon;
 use Upsun\Model\OrganizationProjectLinks;
@@ -388,7 +388,6 @@ use Upsun\Model\Route;
 use Upsun\Model\RouterResourceSettingsForFlexPlan;
 use Upsun\Model\RoutesValue;
 use Upsun\Model\RuntimeOperations;
-use Upsun\Model\SSHKey;
 use Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue;
 use Upsun\Model\ScriptIntegration;
 use Upsun\Model\ScriptIntegrationConfigurations;
@@ -408,6 +407,7 @@ use Upsun\Model\SplunkIntegration;
 use Upsun\Model\SplunkIntegrationCreateInput;
 use Upsun\Model\SplunkIntegrationPatch;
 use Upsun\Model\SplunkLogForwardingIntegrationConfigurations;
+use Upsun\Model\SshKey;
 use Upsun\Model\Status;
 use Upsun\Model\StickyRoutingConfiguration;
 use Upsun\Model\StrictTransportSecurityOptions;
@@ -550,16 +550,6 @@ final class ApiObjectFormatsMapper
             'contents' => null
         ],
 
-        APIToken::class => [
-            'id' => 'uuid',
-            'name' => null,
-            'mfaOnCreation' => null,
-            'token' => null,
-            'createdAt' => 'date-time',
-            'updatedAt' => 'date-time',
-            'lastUsedAt' => 'date-time'
-        ],
-
         AcceptedResponse::class => [
             'status' => null,
             'code' => null
@@ -629,6 +619,16 @@ final class ApiObjectFormatsMapper
             'lastAlertAt' => 'date-time',
             'updatedAt' => 'date-time',
             'config' => null
+        ],
+
+        ApiToken::class => [
+            'id' => 'uuid',
+            'name' => null,
+            'mfaOnCreation' => null,
+            'token' => null,
+            'createdAt' => 'date-time',
+            'updatedAt' => 'date-time',
+            'lastUsedAt' => 'date-time'
         ],
 
         ApplyOrgVoucherRequest::class => [
@@ -2851,10 +2851,6 @@ final class ApiObjectFormatsMapper
             'href' => null
         ],
 
-        OrganizationMFAEnforcement::class => [
-            'enforceMfa' => null
-        ],
-
         OrganizationMember::class => [
             'id' => 'uuid',
             'organizationId' => 'ulid',
@@ -2885,6 +2881,10 @@ final class ApiObjectFormatsMapper
         OrganizationMemberLinksUpdate::class => [
             'href' => null,
             'method' => null
+        ],
+
+        OrganizationMfaEnforcement::class => [
+            'enforceMfa' => null
         ],
 
         OrganizationProject::class => [
@@ -3625,15 +3625,6 @@ final class ApiObjectFormatsMapper
             'enabled' => null
         ],
 
-        SSHKey::class => [
-            'keyId' => null,
-            'uid' => null,
-            'fingerprint' => null,
-            'title' => null,
-            'value' => null,
-            'changed' => null
-        ],
-
         ScheduledCronTasksExecutedByThisApplicationValue::class => [
             'spec' => null,
             'commands' => null,
@@ -3783,6 +3774,15 @@ final class ApiObjectFormatsMapper
         SplunkLogForwardingIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
+        ],
+
+        SshKey::class => [
+            'keyId' => null,
+            'uid' => null,
+            'fingerprint' => null,
+            'title' => null,
+            'value' => null,
+            'changed' => null
         ],
 
         Status::class => [

@@ -9,7 +9,7 @@ use Psr\Http\Client\ClientInterface;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
-use Upsun\Api\APITokensApi;
+use Upsun\Api\ApiTokensApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\DefaultApi;
@@ -23,7 +23,7 @@ use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Api\GrantsApi;
 use Upsun\Api\InvoicesApi;
-use Upsun\Api\MFAApi;
+use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\OrganizationMembersApi;
@@ -203,7 +203,7 @@ class ProjectsTaskTest extends BaseTestCase
             new OrganizationMembersApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new SubscriptionsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new InvoicesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new MFAApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new MfaApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new OrdersApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new ProfilesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new RecordsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
@@ -257,10 +257,10 @@ class ProjectsTaskTest extends BaseTestCase
             new UsersApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new UserProfilesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new UserAccessApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new APITokensApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new ApiTokensApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new ConnectionsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new GrantsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new MFAApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new MfaApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
             new PhoneNumberApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends UsersTask {
         };

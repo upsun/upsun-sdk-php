@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Low level OrganizationMFAEnforcement (auto-generated)
+ * Low level OrganizationMfaEnforcement (auto-generated)
  *
  * The MFA enforcement for the organization.
  *
@@ -15,7 +15,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OrganizationMFAEnforcement implements ModelInterface, JsonSerializable
+final class OrganizationMfaEnforcement implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?bool $enforceMfa = null,

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Low level APIToken (auto-generated)
+ * Low level ApiToken (auto-generated)
  *
  *
  * @author    Upsun Advocacy Team
@@ -15,7 +15,7 @@ namespace Upsun\Model;
 use DateTime;
 use JsonSerializable;
 
-final class APIToken implements ModelInterface, JsonSerializable
+final class ApiToken implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?DateTime $lastUsedAt = null,

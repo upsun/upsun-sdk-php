@@ -3,7 +3,6 @@
 namespace Upsun\Api\Serializer;
 
 use Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner;
-use Upsun\Model\APIToken;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\AccessControlDefinitionForThisEnviromentInner;
 use Upsun\Model\Activity;
@@ -12,6 +11,7 @@ use Upsun\Model\AddressGrantsInner;
 use Upsun\Model\AddressMetadata;
 use Upsun\Model\AddressMetadataMetadata;
 use Upsun\Model\Alert;
+use Upsun\Model\ApiToken;
 use Upsun\Model\ApplyOrgVoucherRequest;
 use Upsun\Model\ArrayFilter;
 use Upsun\Model\AutoscalerAlertPartial;
@@ -300,12 +300,12 @@ use Upsun\Model\OrganizationLinksSelf;
 use Upsun\Model\OrganizationLinksSubscriptions;
 use Upsun\Model\OrganizationLinksUpdate;
 use Upsun\Model\OrganizationLinksVouchers;
-use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMemberLinks;
 use Upsun\Model\OrganizationMemberLinksDelete;
 use Upsun\Model\OrganizationMemberLinksSelf;
 use Upsun\Model\OrganizationMemberLinksUpdate;
+use Upsun\Model\OrganizationMfaEnforcement;
 use Upsun\Model\OrganizationProject;
 use Upsun\Model\OrganizationProjectCarbon;
 use Upsun\Model\OrganizationProjectLinks;
@@ -388,7 +388,6 @@ use Upsun\Model\Route;
 use Upsun\Model\RouterResourceSettingsForFlexPlan;
 use Upsun\Model\RoutesValue;
 use Upsun\Model\RuntimeOperations;
-use Upsun\Model\SSHKey;
 use Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue;
 use Upsun\Model\ScriptIntegration;
 use Upsun\Model\ScriptIntegrationConfigurations;
@@ -408,6 +407,7 @@ use Upsun\Model\SplunkIntegration;
 use Upsun\Model\SplunkIntegrationCreateInput;
 use Upsun\Model\SplunkIntegrationPatch;
 use Upsun\Model\SplunkLogForwardingIntegrationConfigurations;
+use Upsun\Model\SshKey;
 use Upsun\Model\Status;
 use Upsun\Model\StickyRoutingConfiguration;
 use Upsun\Model\StrictTransportSecurityOptions;
@@ -547,15 +547,6 @@ final class ApiObjectAttributesMapper
             'mode' => 'mode',
             'contents' => 'contents'
         ],
-        APIToken::class => [
-            'id' => 'id',
-            'name' => 'name',
-            'mfaOnCreation' => 'mfa_on_creation',
-            'token' => 'token',
-            'createdAt' => 'created_at',
-            'updatedAt' => 'updated_at',
-            'lastUsedAt' => 'last_used_at'
-        ],
         AcceptedResponse::class => [
             'status' => 'status',
             'code' => 'code'
@@ -618,6 +609,15 @@ final class ApiObjectAttributesMapper
             'lastAlertAt' => 'last_alert_at',
             'updatedAt' => 'updated_at',
             'config' => 'config'
+        ],
+        ApiToken::class => [
+            'id' => 'id',
+            'name' => 'name',
+            'mfaOnCreation' => 'mfa_on_creation',
+            'token' => 'token',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'lastUsedAt' => 'last_used_at'
         ],
         ApplyOrgVoucherRequest::class => [
             'code' => 'code'
@@ -2551,9 +2551,6 @@ final class ApiObjectAttributesMapper
         OrganizationLinksVouchers::class => [
             'href' => 'href'
         ],
-        OrganizationMFAEnforcement::class => [
-            'enforceMfa' => 'enforce_mfa'
-        ],
         OrganizationMember::class => [
             'id' => 'id',
             'organizationId' => 'organization_id',
@@ -2580,6 +2577,9 @@ final class ApiObjectAttributesMapper
         OrganizationMemberLinksUpdate::class => [
             'href' => 'href',
             'method' => 'method'
+        ],
+        OrganizationMfaEnforcement::class => [
+            'enforceMfa' => 'enforce_mfa'
         ],
         OrganizationProject::class => [
             'id' => 'id',
@@ -3237,14 +3237,6 @@ final class ApiObjectAttributesMapper
         RuntimeOperations::class => [
             'enabled' => 'enabled'
         ],
-        SSHKey::class => [
-            'keyId' => 'key_id',
-            'uid' => 'uid',
-            'fingerprint' => 'fingerprint',
-            'title' => 'title',
-            'value' => 'value',
-            'changed' => 'changed'
-        ],
         ScheduledCronTasksExecutedByThisApplicationValue::class => [
             'spec' => 'spec',
             'commands' => 'commands',
@@ -3376,6 +3368,14 @@ final class ApiObjectAttributesMapper
         SplunkLogForwardingIntegrationConfigurations::class => [
             'enabled' => 'enabled',
             'role' => 'role'
+        ],
+        SshKey::class => [
+            'keyId' => 'key_id',
+            'uid' => 'uid',
+            'fingerprint' => 'fingerprint',
+            'title' => 'title',
+            'value' => 'value',
+            'changed' => 'changed'
         ],
         Status::class => [
             'code' => 'code',

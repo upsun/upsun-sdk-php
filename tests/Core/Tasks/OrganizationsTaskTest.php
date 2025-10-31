@@ -7,13 +7,12 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\AddOnsApi;
-use Upsun\Api\ApiConfiguration;
-use Upsun\Api\APITokensApi;
+use Upsun\Api\ApiTokensApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\GrantsApi;
 use Upsun\Api\InvoicesApi;
-use Upsun\Api\MFAApi;
+use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
 use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
@@ -33,6 +32,7 @@ use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
 use Upsun\Api\VouchersApi;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\OrganizationsTask;
 use Upsun\Core\Tasks\ProjectsTask;
@@ -101,7 +101,7 @@ class OrganizationsTaskTest extends BaseTestCase
             new ApiConfiguration()
         );
 
-        $apiTokensApi = new APITokensApi(
+        $apiTokensApi = new ApiTokensApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
@@ -122,7 +122,7 @@ class OrganizationsTaskTest extends BaseTestCase
             new ApiConfiguration()
         );
 
-        $mfaApi = new MFAApi(
+        $mfaApi = new MfaApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
@@ -268,7 +268,7 @@ class OrganizationsTaskTest extends BaseTestCase
             new ApiConfiguration()
         );
 
-        $mfaApi = new MFAApi(
+        $mfaApi = new MfaApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,

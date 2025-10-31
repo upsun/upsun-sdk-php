@@ -15,6 +15,8 @@ class OpenApiPreprocessor
     private array $schema;
     private array $routeTypes = ['ProxyRoute', 'RedirectRoute', 'UpstreamRoute'];
 
+    private int $refUpdateCount = 0;
+
     public function __construct(string $schemaPath)
     {
         if (!file_exists($schemaPath)) {
@@ -1000,15 +1002,107 @@ class OpenApiPreprocessor
                         $response['content']['application/json']['schema'] = [
                             '$ref' => '#/components/schemas/AcceptedResponse',
                         ];
-                        
-                        echo "🔄 Replaced empty \$ref $refName with AcceptedResponse for {$httpMethod} {$path} [$statusCode]\n";
+
+                        echo "🔄 Replaced empty \$ref $refName with AcceptedResponse
+                        for {$httpMethod} {$path} [$statusCode]\n";
                     }
                 }
             }
         }
     }
 
+    /**
+     * Iterates over all schemas and renames their keys to PascalCase
+     * Also updates all corresponding $ref references
+     */
+    public function normalizeSchemaNamesToPascalCase(): void
+    {
+        if (!isset($this->schema['components']['schemas'])) {
+            echo "⚠️ No schemas founded in components.schemas\n";
+            return;
+        }
 
+        $schemas = $this->schema['components']['schemas'];
+        $newSchemas = [];
+        $renameMap = [];
+
+        foreach ($schemas as $schemaName => $schemaDef) {
+            $pascalName = $this->toPascalCase($schemaName);
+
+            if ($pascalName !== $schemaName) {
+                $renameMap[$schemaName] = $pascalName;
+                echo "🔤 Rename schema '{$schemaName}' → '{$pascalName}'\n";
+            }
+
+            $newSchemas[$pascalName] = $schemaDef;
+        }
+
+        $this->schema['components']['schemas'] = $newSchemas;
+
+        if (!empty($renameMap)) {
+            $this->updateRefsRecursively($this->schema, $renameMap);
+            echo "✅ {$this->refUpdateCount} ref \$ref updated.\n";
+        }
+    }
+
+    /**
+     * Recursively updates all $ref references
+     * (in schemas, responses, parameters, paths, etc.)
+     */
+    private function updateRefsRecursively(array &$node, array $renameMap): void
+    {
+        foreach ($node as $key => &$value) {
+            if (is_array($value)) {
+                $this->updateRefsRecursively($value, $renameMap);
+            } elseif ($key === '$ref' && is_string($value)) {
+                foreach ($renameMap as $old => $new) {
+                    $oldRef = "#/components/schemas/{$old}";
+                    $newRef = "#/components/schemas/{$new}";
+                    if ($value === $oldRef) {
+                        $value = $newRef;
+                        $this->refUpdateCount++;
+                        echo "🔁 \$ref mis à jour : {$oldRef} → {$newRef}\n";
+                    }
+                }
+            }
+        }
+    }
+
+    public function fixTagsToPascalCase(): void
+    {
+        if (!isset($this->schema['paths'])) {
+            return;
+        }
+
+        foreach ($this->schema['paths'] as &$methods) {
+            foreach ($methods as &$operation) {
+                if (!isset($operation['tags']) || !is_array($operation['tags'])) {
+                    continue;
+                }
+
+                foreach ($operation['tags'] as $i => $tag) {
+                    $operation['tags'][$i] = $this->toPascalCase($tag);
+                }
+            }
+        }
+    }
+
+    /**
+     * Converts a string to PascalCase
+     * Examples:
+     *  - api_token → ApiToken
+     *  - user → User
+     *  - ApiToken → ApiToken
+     */
+    private function toPascalCase(string $name): string
+    {
+        $name = str_replace(['API'], 'Api', $name);
+        $name = str_replace(['SSH'], 'Ssh', $name);
+        $name = str_replace(['MFA'], 'Mfa', $name);
+        $name = str_replace(['TLS'], 'Tls', $name);
+        $name = str_replace(['VPN'], 'Vpn', $name);
+        return $name;
+    }
 }
 
 # Main script
@@ -1027,7 +1121,11 @@ try {
 
     // check Project.subscription.id exists and raise an error to solve ProjectTask.delete
     $preprocessor->checkProjectSubscriptionId();
-    
+
+    // Schema name in PascalCase
+    $preprocessor->normalizeSchemaNamesToPascalCase();
+    $preprocessor->fixTagsToPascalCase();
+
     // Main processing
     $preprocessor->makePropertiesNullable();
 
@@ -1036,7 +1134,6 @@ try {
 
     // Optional: clean required properties
     $preprocessor->cleanRequiredProperties();
-
 
     // Add addons update path (PATCH)
     $preprocessor->addOrgAddonsPatch();
@@ -1049,8 +1146,7 @@ try {
 
     // replace empty response object
     $preprocessor->replaceEmptyRefResponsesWithAccepted();
-
-
+    
     // Add deployment/next path for managing resources
     $preprocessor->addResourcePath();
 
