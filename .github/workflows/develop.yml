@@ -25,33 +25,10 @@ jobs:
             tools: composer
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
+        run: composer run install:ci
 
-      - name: Rector fix on generated Model and Api classes in src
-        run: |
-          composer run rector
-        continue-on-error: true
-
-      - name: PHPCS fix on generated Model and Api classes in src
-        if: false
-        run: |
-          composer run fix
-        continue-on-error: true
-
-      - name: Rector fix on generated Model and Api classes in src
-        if: false
-        run: |
-          composer run rector
-        continue-on-error: true
-
-      - name: PHP-CS-Fixer fix on generated Model and Api classes in src
-        if: false
-        run: |
-          composer run php-cs-fixer
-        continue-on-error: true
-
-      - name: Run PHP lint (phpcs) 
-        run: composer run lint
+      - name: Run PHP lint (phpcs, php-cs-fixer, rector) 
+        run: composer run lint:all
 
       - name: symfony-insight
         # Need to check how to setup symfony insight properly
@@ -80,10 +57,10 @@ jobs:
           extensions: mbstring, intl, json, curl
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
+        run: composer run install:ci
 
       - name: Run unit tests
-        run: vendor/bin/phpunit
+        run: composer run test:unit
   
   doc:
     name: Generate Documentation
@@ -129,7 +106,7 @@ jobs:
           extensions: mbstring, intl, json, curl
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
+        run: composer run install:ci
 
       - name: Build project
         run: composer run build

@@ -20,11 +20,11 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      run: composer install --prefer-dist --no-progress --no-interaction
-
+      run: composer run install:ci
+      
     - name: Run unit tests with coverage
       shell: bash
-      run: vendor/bin/phpunit --coverage-clover=coverage.xml
+      run: composer run test:coverage:ci
 
     - name: Upload coverage to Codecov
       if: success()

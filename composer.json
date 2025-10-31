@@ -70,6 +70,7 @@
     },
     "prefer-stable": true,
     "scripts": {
+        "install:ci": "composer install --prefer-dist --no-progress --no-interaction",
         "lint:phpcs": "./vendor/bin/phpcs --standard=phpcs.xml src/",
         "lint:phpcs:tests": "./vendor/bin/phpcs --standard=phpcs.xml tests/",
         "lint:rector": "./vendor/bin/rector process src --dry-run",
@@ -85,7 +86,8 @@
         "test:unit": "./vendor/bin/phpunit --testsuite=default",
         "test:coverage": "./vendor/bin/phpunit --coverage-text",
         "test:coverage:html": "./vendor/bin/phpunit --coverage-html coverage",
-        
+        "test:coverage:ci": "./vendor/bin/phpunit --coverage-clover=coverage.xml",
+
         "lint": [
             "@lint:phpcs",
             "@lint:php-cs-fixer"
