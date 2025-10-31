@@ -27,6 +27,11 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-interaction
 
+      - name: Rector fix on generated Model and Api classes in src
+        run: |
+          composer run rector
+        continue-on-error: true
+
       - name: PHPCS fix on generated Model and Api classes in src
         if: false
         run: |
@@ -37,6 +42,12 @@ jobs:
         if: false
         run: |
           composer run rector
+        continue-on-error: true
+
+      - name: PHP-CS-Fixer fix on generated Model and Api classes in src
+        if: false
+        run: |
+          composer run php-cs-fixer
         continue-on-error: true
 
       - name: Run PHP lint (phpcs) 
