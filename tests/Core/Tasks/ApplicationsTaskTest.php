@@ -5,6 +5,7 @@ namespace Upsun\Tests\Core\Tasks;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
+use stdClass;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\DeploymentApi;
 use Upsun\Core\OAuthProvider;
@@ -14,6 +15,7 @@ use Upsun\UpsunClient;
 class ApplicationsTaskTest extends BaseTestCase
 {
     private ApplicationsTask $applicationsTask;
+
     private ClientInterface $httpClient;
 
     protected function setUp(): void
@@ -54,8 +56,8 @@ class ApplicationsTaskTest extends BaseTestCase
                         "project_info" => [
                             "title" => "Test project",
                             "name" => "azertyuiop",
-                            'capabilities' => new \stdClass(),
-                            'settings' => new \stdClass()
+                            'capabilities' => new stdClass(),
+                            'settings' => new stdClass()
 
                         ],
                         "environment_info" => [
@@ -76,7 +78,7 @@ class ApplicationsTaskTest extends BaseTestCase
                         "http_access" => [
                             "is_enabled" => true,
                             "addresses" => [],
-                            "basic_auth" => new \stdClass(),
+                            "basic_auth" => new stdClass(),
                         ],
                         "enable_smtp" => true,
                         "restrict_robots" => true,
@@ -91,8 +93,8 @@ class ApplicationsTaskTest extends BaseTestCase
                             "user_licenses" => 1,
                             'subscription_management_uri' => 'subscription_management_uri'
                         ],
-                        "services" => new \stdClass(),
-                        "routes" => new \stdClass(),
+                        "services" => new stdClass(),
+                        "routes" => new stdClass(),
                         "webapps" => [
                             "app" => [
                                 "name" => "app",
@@ -148,8 +150,8 @@ class ApplicationsTaskTest extends BaseTestCase
                                 "slug_id" => "slug"
                             ]
                         ],
-                        "workers" => new \stdClass(),
-                        "container_profiles" => new \stdClass(),
+                        "workers" => new stdClass(),
+                        "container_profiles" => new stdClass(),
                         "created_at" => "2025-09-11T12:31:16+00:00",
                     ]
                 ])
@@ -197,8 +199,8 @@ class ApplicationsTaskTest extends BaseTestCase
                         "project_info" => [
                             "title" => "Test project",
                             "name" => "azertyuiop",
-                            'capabilities' => new \stdClass(),
-                            'settings' => new \stdClass()
+                            'capabilities' => new stdClass(),
+                            'settings' => new stdClass()
                         ],
                         "environment_info" => [
                             "name" => "main",
@@ -218,7 +220,7 @@ class ApplicationsTaskTest extends BaseTestCase
                         "http_access" => [
                             "is_enabled" => true,
                             "addresses" => [],
-                            "basic_auth" => new \stdClass(),
+                            "basic_auth" => new stdClass(),
                         ],
                         "enable_smtp" => true,
                         "restrict_robots" => true,
@@ -233,8 +235,8 @@ class ApplicationsTaskTest extends BaseTestCase
                             "user_licenses" => 1,
                             'subscription_management_uri' => 'subscription_management_uri'
                         ],
-                        "services" => new \stdClass(),
-                        "routes" => new \stdClass(),
+                        "services" => new stdClass(),
+                        "routes" => new stdClass(),
                         "webapps" => [
                             "app" => [
                                 "name" => "app",
@@ -290,8 +292,8 @@ class ApplicationsTaskTest extends BaseTestCase
                                 "slug_id" => "slug"
                             ]
                         ],
-                        "workers" => new \stdClass(),
-                        "container_profiles" => new \stdClass(),
+                        "workers" => new stdClass(),
+                        "container_profiles" => new stdClass(),
                         "created_at" => "2025-09-11T12:31:16+00:00",
                     ]
                 ])
@@ -320,8 +322,8 @@ class ApplicationsTaskTest extends BaseTestCase
                         "project_info" => [
                             "title" => "Test project",
                             "name" => "azertyuiop",
-                            'capabilities' => new \stdClass(),
-                            'settings' => new \stdClass()
+                            'capabilities' => new stdClass(),
+                            'settings' => new stdClass()
                         ],
                         "environment_info" => [
                             "name" => "main",
@@ -341,7 +343,7 @@ class ApplicationsTaskTest extends BaseTestCase
                         "http_access" => [
                             "is_enabled" => true,
                             "addresses" => [],
-                            "basic_auth" => new \stdClass(),
+                            "basic_auth" => new stdClass(),
                         ],
                         "enable_smtp" => true,
                         "restrict_robots" => true,
@@ -356,8 +358,8 @@ class ApplicationsTaskTest extends BaseTestCase
                             "user_licenses" => 1,
                             'subscription_management_uri' => 'subscription_management_uri'
                         ],
-                        "services" => new \stdClass(),
-                        "routes" => new \stdClass(),
+                        "services" => new stdClass(),
+                        "routes" => new stdClass(),
                         "webapps" => [
                             "anotherApp" => [
                                 "name" => "app",
@@ -413,8 +415,8 @@ class ApplicationsTaskTest extends BaseTestCase
                                 "slug_id" => "slug"
                             ]
                         ],
-                        "workers" => new \stdClass(),
-                        "container_profiles" => new \stdClass(),
+                        "workers" => new stdClass(),
+                        "container_profiles" => new stdClass(),
                         "created_at" => "2025-09-11T12:31:16+00:00",
                     ]
                 ])

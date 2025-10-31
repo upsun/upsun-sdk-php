@@ -3,6 +3,7 @@
 namespace Upsun\Tests;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use Upsun\UpsunConfig;
 
 /**
@@ -65,7 +66,7 @@ class UpsunConfigTest extends TestCase
     {
         $config = new UpsunConfig(apiToken: 'test-token');
 
-        $reflection = new \ReflectionClass(UpsunConfig::class);
+        $reflection = new ReflectionClass(UpsunConfig::class);
 
         $properties = [
             'base_url',
@@ -80,7 +81,7 @@ class UpsunConfigTest extends TestCase
             $property = $reflection->getProperty($propertyName);
             $this->assertTrue(
                 $property->isReadOnly(),
-                "Property {$propertyName} should be readonly"
+                sprintf('Property %s should be readonly', $propertyName)
             );
         }
     }
@@ -89,7 +90,7 @@ class UpsunConfigTest extends TestCase
     {
         $config = new UpsunConfig();
 
-        $reflection = new \ReflectionClass(UpsunConfig::class);
+        $reflection = new ReflectionClass(UpsunConfig::class);
 
         $properties = [
             'base_url',
@@ -104,14 +105,14 @@ class UpsunConfigTest extends TestCase
             $property = $reflection->getProperty($propertyName);
             $this->assertTrue(
                 $property->isPublic(),
-                "Property {$propertyName} should be public"
+                sprintf('Property %s should be public', $propertyName)
             );
         }
     }
 
     public function testClassIsFinal()
     {
-        $reflection = new \ReflectionClass(UpsunConfig::class);
+        $reflection = new ReflectionClass(UpsunConfig::class);
 
         $this->assertTrue(
             $reflection->isFinal(),

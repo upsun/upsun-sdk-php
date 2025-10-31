@@ -18,6 +18,7 @@ use Upsun\UpsunClient;
 class InvitationsTaskTest extends BaseTestCase
 {
     private readonly InvitationsTask $invitationTask;
+
     private ClientInterface $httpClient;
 
     protected function setUp(): void
@@ -97,7 +98,7 @@ class InvitationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCreateOrgInvite(): void
     {
@@ -137,7 +138,7 @@ class InvitationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCreateOrgInviteWithDefaultForce(): void
     {
@@ -198,7 +199,7 @@ class InvitationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testListOrgInvites(): void
     {
@@ -387,7 +388,7 @@ class InvitationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCreateProjectInvite(): void
     {

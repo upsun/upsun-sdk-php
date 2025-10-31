@@ -2,6 +2,7 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use BadMethodCallException;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
@@ -413,9 +414,9 @@ class UsersTaskTest extends BaseTestCase
             'grantedAt' => '2025-01-10T08:30:00Z',
             'updatedAt' => '2025-09-20T14:15:00Z',
             'links' => [
-                'self' => ['href' => "/users/{$userId}/projects/{$projectId}"],
-                'update' => ['href' => "/users/{$userId}/projects/{$projectId}/update"],
-                'delete' => ['href' => "/users/{$userId}/projects/{$projectId}/delete"],
+                'self' => ['href' => sprintf('/users/%s/projects/%s', $userId, $projectId)],
+                'update' => ['href' => sprintf('/users/%s/projects/%s/update', $userId, $projectId)],
+                'delete' => ['href' => sprintf('/users/%s/projects/%s/delete', $userId, $projectId)],
             ],
         ];
 
@@ -1661,7 +1662,7 @@ class UsersTaskTest extends BaseTestCase
 
     public function testCreateProfilePictureNotImplemented()
     {
-        $this->expectException(\BadMethodCallException::class);
+        $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage('Not implemented yet');
 
         $this->usersTask->createProfilePicture('123');

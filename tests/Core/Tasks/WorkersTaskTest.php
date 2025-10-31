@@ -5,6 +5,7 @@ namespace Upsun\Tests\Core\Tasks;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
+use stdClass;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
@@ -48,8 +49,8 @@ class WorkersTaskTest extends BaseTestCase
                 "project_info" => [
                     "title" => "Test project",
                     "name" => "azertyuiop",
-                    "capabilities" => new \stdClass(),
-                    "settings" => new \stdClass(),
+                    "capabilities" => new stdClass(),
+                    "settings" => new stdClass(),
                     "namespace" => null,
                     "organization" => null,
                 ],
@@ -65,7 +66,7 @@ class WorkersTaskTest extends BaseTestCase
                         "cluster_type" => "environment",
                         "deployment_type" => "production",
                     ],
-                    "links" => new \stdClass(),
+                    "links" => new stdClass(),
                 ],
                 "deployment_target" => "local",
                 "http_access" => [
@@ -88,8 +89,8 @@ class WorkersTaskTest extends BaseTestCase
                     "user_licenses" => 1,
                     "subscription_management_uri" => "subscription_management_uri",
                 ],
-                "services" => new \stdClass(),
-                "routes" => new \stdClass(),
+                "services" => new stdClass(),
+                "routes" => new stdClass(),
                 "webapps" => [
                     "anotherApp" => [
                         "name" => "app",
@@ -160,7 +161,7 @@ class WorkersTaskTest extends BaseTestCase
                         ],
                         "treeId" => "treeId1",
                         "appDir" => "/app",
-                        "runtime" => new \stdClass(),
+                        "runtime" => new stdClass(),
                         "worker" => [
                             "commands" => [
                                 "start" => "start-command",
@@ -200,12 +201,12 @@ class WorkersTaskTest extends BaseTestCase
                             "outbound" => []
                         ],
                         "containerProfile" => null,
-                        "endpoints" => new \stdClass(),
+                        "endpoints" => new stdClass(),
                         "stack" => [],
                         "instanceCount" => 2
                     ]
                 ],
-                "container_profiles" => new \stdClass(),
+                "container_profiles" => new stdClass(),
                 "created_at" => "2025-09-11T12:31:16+00:00",
                 "updated_at" => null,
                 "fingerprint" => null,

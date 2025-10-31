@@ -20,10 +20,15 @@ use Upsun\Core\OAuthProvider;
 class OAuthProviderTest extends TestCase
 {
     private ClientInterface $httpClient;
+
     private RequestFactoryInterface $requestFactory;
+
     private OAuthProvider $oauthProvider;
+
     private string $tokenEndpoint = 'https://auth.upsun.com/oauth2/token';
+
     private string $clientId = 'test-client-id';
+
     private string $clientSecret = 'test-api-token';
 
     protected function setUp(): void

@@ -4,6 +4,7 @@ namespace Upsun\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
+use ReflectionClass;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivitiesTask;
@@ -38,7 +39,9 @@ use Upsun\UpsunConfig;
 class UpsunClientTest extends TestCase
 {
     private UpsunClient $upsunClient;
+
     private UpsunConfig $upsunConfig;
+
     private ClientInterface $httpClient;
 
     protected function setUp(): void
@@ -214,7 +217,7 @@ class UpsunClientTest extends TestCase
 
     public function testAllTasksArePubliclyAccessible()
     {
-        $reflection = new \ReflectionClass(UpsunClient::class);
+        $reflection = new ReflectionClass(UpsunClient::class);
 
         $expectedPublicProperties = [
             'apiClient',
@@ -247,13 +250,13 @@ class UpsunClientTest extends TestCase
         foreach ($expectedPublicProperties as $propertyName) {
             $this->assertTrue(
                 $reflection->hasProperty($propertyName),
-                "Property {$propertyName} should exist"
+                sprintf('Property %s should exist', $propertyName)
             );
 
             $property = $reflection->getProperty($propertyName);
             $this->assertTrue(
                 $property->isPublic(),
-                "Property {$propertyName} should be public"
+                sprintf('Property %s should be public', $propertyName)
             );
         }
     }

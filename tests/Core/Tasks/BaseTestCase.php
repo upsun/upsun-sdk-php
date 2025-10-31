@@ -2,12 +2,13 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use DateTime;
 use PHPUnit\Framework\TestCase;
 
 abstract class BaseTestCase extends TestCase
 {
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     protected function assertObjectProperties(mixed $actual, mixed $expected, string $prefix = ''): void
     {
@@ -18,9 +19,11 @@ abstract class BaseTestCase extends TestCase
                 if (!method_exists($actual, $getter)) {
                     continue;
                 }
+
                 $propValue = $actual->$getter();
-                $this->assertObjectProperties($propValue, $value, "$prefix$key.");
+                $this->assertObjectProperties($propValue, $value, sprintf('%s%s.', $prefix, $key));
             }
+
             return;
         }
 
@@ -28,20 +31,22 @@ abstract class BaseTestCase extends TestCase
         if (is_array($actual) && is_iterable($expected)) {
             foreach ($actual as $idx => $item) {
                 $expectedItem = $expected[$idx] ?? $expected;
-                $this->assertObjectProperties($item, $expectedItem, "$prefix" . "[$idx].");
+                $this->assertObjectProperties($item, $expectedItem, $prefix . sprintf('[%s].', $idx));
             }
+
             return;
         }
 
         // Case DateTime
-        if ($actual instanceof \DateTime) {
-            if (!($expected instanceof \DateTime)) {
-                $expected = new \DateTime($expected);
+        if ($actual instanceof DateTime) {
+            if (!($expected instanceof DateTime)) {
+                $expected = new DateTime($expected);
             }
+
             $this->assertEquals(
                 $expected->getTimestamp(),
                 $actual->getTimestamp(),
-                "Failed asserting equality at $prefix"
+                'Failed asserting equality at ' . $prefix
             );
             return;
         }
@@ -49,7 +54,7 @@ abstract class BaseTestCase extends TestCase
         $this->assertEquals(
             $expected,
             $actual,
-            "Failed asserting equality at $prefix"
+            'Failed asserting equality at ' . $prefix
         );
     }
 
@@ -61,7 +66,7 @@ abstract class BaseTestCase extends TestCase
         $this->assertCount(
             count($expected),
             $actual,
-            "Array size mismatch at $prefix"
+            'Array size mismatch at ' . $prefix
         );
 
         // Case objet
@@ -69,7 +74,7 @@ abstract class BaseTestCase extends TestCase
             $this->assertObjectProperties(
                 $object,
                 $expected[$index],
-                $prefix . "[$index]."
+                $prefix . sprintf('[%s].', $index)
             );
         }
     }

@@ -37,7 +37,7 @@ class RegionsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testGetRegion(): void
     {
@@ -101,7 +101,7 @@ class RegionsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testListRegions(): void
     {

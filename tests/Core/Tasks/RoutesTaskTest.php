@@ -15,6 +15,7 @@ use Upsun\UpsunClient;
 class RoutesTaskTest extends BaseTestCase
 {
     private RoutesTask $routesTask;
+
     private ClientInterface $httpClient;
 
     protected function setUp(): void

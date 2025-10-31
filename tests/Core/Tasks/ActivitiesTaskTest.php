@@ -10,12 +10,12 @@ use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivitiesTask;
-use Upsun\Model\Activity;
 use Upsun\UpsunClient;
 
 class ActivitiesTaskTest extends BaseTestCase
 {
     private ActivitiesTask $activitiesTask;
+
     private ClientInterface $httpClient;
 
     protected function setUp(): void

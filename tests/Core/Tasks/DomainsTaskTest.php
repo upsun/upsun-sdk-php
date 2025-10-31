@@ -16,6 +16,7 @@ use Upsun\UpsunClient;
 class DomainsTaskTest extends BaseTestCase
 {
     private DomainsTask $domainsTask;
+
     private ClientInterface $httpClient;
 
     protected function setUp(): void

@@ -98,7 +98,7 @@ class TeamsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCreateError(): void
     {
@@ -132,7 +132,7 @@ class TeamsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCreateMember(): void
     {
@@ -181,7 +181,7 @@ class TeamsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testDeleteMember(): void
     {
@@ -204,7 +204,7 @@ class TeamsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testDeleteMemberError(): void
     {

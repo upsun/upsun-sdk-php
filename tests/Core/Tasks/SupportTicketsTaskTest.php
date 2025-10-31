@@ -2,6 +2,7 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use DateTime;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
@@ -27,6 +28,7 @@ use Upsun\UpsunClient;
 class SupportTicketsTaskTest extends BaseTestCase
 {
     private SupportTicketsTask $task;
+
     private ClientInterface $httpClient;
 
     protected function setUp(): void
@@ -62,8 +64,8 @@ class SupportTicketsTaskTest extends BaseTestCase
     public function testList(): void
     {
         $filterTicketId = 123;
-        $filterCreated = new \DateTime('2025-09-01T00:00:00Z');
-        $filterUpdated = new \DateTime('2025-09-24T12:00:00Z');
+        $filterCreated = new DateTime('2025-09-01T00:00:00Z');
+        $filterUpdated = new DateTime('2025-09-24T12:00:00Z');
         $filterType = 'bug';
         $filterPriority = 'high';
         $filterStatus = 'open';
@@ -71,7 +73,7 @@ class SupportTicketsTaskTest extends BaseTestCase
         $filterSubmitterId = 'user-789';
         $filterAssigneeId = 'user-101';
         $filterHasIncidents = true;
-        $filterDue = new \DateTime('2025-10-01T00:00:00Z');
+        $filterDue = new DateTime('2025-10-01T00:00:00Z');
         $search = 'urgent';
         $page = 1;
 
@@ -169,7 +171,7 @@ class SupportTicketsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testCreate(): void
     {
@@ -256,7 +258,7 @@ class SupportTicketsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testUpdate(): void
     {
@@ -426,7 +428,7 @@ class SupportTicketsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testListPriorities(): void
     {

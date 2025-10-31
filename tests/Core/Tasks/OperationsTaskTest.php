@@ -16,6 +16,7 @@ use Upsun\UpsunClient;
 class OperationsTaskTest extends BaseTestCase
 {
     private OperationsTask $operationsTask;
+
     private ClientInterface $httpClient;
 
     protected function setUp(): void
