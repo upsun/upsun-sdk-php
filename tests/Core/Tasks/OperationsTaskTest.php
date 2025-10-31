@@ -1,15 +1,15 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
+use Upsun\Api\ApiException;
+use Upsun\Api\RuntimeOperationsApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\OperationsTask;
-use Upsun\Api\RuntimeOperationsApi;
-use Upsun\Api\ApiException;
 use Upsun\Model\AcceptedResponse;
 use Upsun\UpsunClient;
 

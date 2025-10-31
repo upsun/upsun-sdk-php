@@ -1,10 +1,11 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\APITokensApi;
 use Upsun\Api\ConnectionsApi;
@@ -14,8 +15,8 @@ use Upsun\Api\PhoneNumberApi;
 use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
-use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
+use Upsun\Core\Tasks\UsersTask;
 use Upsun\Model\APIToken;
 use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\Connection;
@@ -30,7 +31,6 @@ use Upsun\Model\Profile;
 use Upsun\Model\User;
 use Upsun\Model\UserProjectAccess;
 use Upsun\Model\VerifyPhoneNumber200Response;
-use Upsun\Core\Tasks\UsersTask;
 use Upsun\UpsunClient;
 
 class UsersTaskTest extends BaseTestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
 use PHPUnit\Framework\TestCase;
 

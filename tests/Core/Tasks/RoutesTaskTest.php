@@ -1,16 +1,16 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
+use Upsun\Api\RoutingApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\RoutesTask;
-use Upsun\UpsunClient;
-use Upsun\Api\RoutingApi;
 use Upsun\Model\Route;
+use Upsun\UpsunClient;
 
 class RoutesTaskTest extends BaseTestCase
 {

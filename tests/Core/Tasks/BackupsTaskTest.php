@@ -1,6 +1,6 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -9,8 +9,8 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
 use Upsun\Core\Tasks\BackupsTask;
+use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Backup;
 use Upsun\UpsunClient;
 
