@@ -4,10 +4,13 @@ on:
     schedule:
         -   cron: '0 3 * * *'
     workflow_dispatch: ~
+
 permissions:
     contents: write
+
 env:
     DEFAULT_BRANCH: "main"
+
 jobs:
     check-and-update:
         runs-on: ubuntu-latest
@@ -21,24 +24,22 @@ jobs:
                 run: |
                     git config --global user.name "github-actions[bot]"
                     git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            
+
+            -   name: Remove existing Api and Model Classes
+                run: |
+                    composer run spec:clean
+
             -   name: Download and patch OpenAPI spec
                 run: |
                     echo "Download OpenAPI spec..."
-                    wget -O ./schema/openapispec-upsun.json https://docs.upsun.com/api/openapispec-upsun.json
+                    composer run spec:dl
 
                     echo "Patch OpenAPI spec..."
                     sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-upsun.json
 
-            -   name: Remove existing Api and Model Classes
-                run: |
-                    rm -Rf src/Api/*
-                    rm -Rf src/Model/*
-                    rm -Rf docs/*
-
             -   name: Pre-process OpenApi specs 
                 run: |
-                    php templates/pre-processing/preprocess-schema.php
+                    composer run spec:patch
             
             -   name: Generate code (php)
                 uses: openapitools/openapi-generator-cli@v2

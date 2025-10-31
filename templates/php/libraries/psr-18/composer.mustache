@@ -61,9 +61,60 @@
     },
     "prefer-stable": true,
     "scripts": {
-        "lint": "./vendor/bin/phpcs --standard=phpcs.xml src/",
-        "fix": "./vendor/bin/phpcbf --standard=phpcs.xml src/ || true",
-        "php-cs-fixer": "./vendor/bin/php-cs-fixer fix || true",
-        "rector": "./vendor/bin/rector process src || true"
+        "install:ci": "composer install --prefer-dist --no-progress --no-interaction",
+        "lint:phpcs": "./vendor/bin/phpcs --standard=phpcs.xml src/",
+        "lint:phpcs:tests": "./vendor/bin/phpcs --standard=phpcs.xml tests/",
+        "lint:rector": "./vendor/bin/rector process src --dry-run",
+        "lint:rector:tests": "./vendor/bin/rector process tests --dry-run",
+        "lint:php-cs-fixer": "./vendor/bin/php-cs-fixer fix --dry-run --diff",
+        
+        "fix:phpcbf": "./vendor/bin/phpcbf --standard=phpcs.xml src/ || true",
+        "fix:phpcbf:tests": "./vendor/bin/phpcbf --standard=phpcs.xml tests/ || true",
+        "fix:rector": "./vendor/bin/rector process src || true",
+        "fix:rector:tests": "./vendor/bin/rector process tests || true",
+        "fix:php-cs-fixer": "./vendor/bin/php-cs-fixer fix || true",
+        
+        "test:unit": "./vendor/bin/phpunit --testsuite=default",
+        "test:coverage": "./vendor/bin/phpunit --coverage-text",
+        "test:coverage:html": "./vendor/bin/phpunit --coverage-html coverage",
+        "test:coverage:ci": "./vendor/bin/phpunit --coverage-clover=coverage.xml",
+
+        "spec:clean": "rm -Rf src/Api/* ; rm -Rf src/Model/* ; rm -Rf docs/*",
+        "spec:dl": "wget -O ./schema/openapispec-upsun.json https://docs.upsun.com/api/openapispec-upsun.json",
+        "spec:patch": "php ./templates/pre-processing/preprocess-schema.php",
+        "spec:generate:all": "openapi-generator-cli generate -i ./schema/openapispec-upsun-processed.json -g php -o ./ --skip-overwrite -c ./templates/php/config.yaml ",
+
+        "lint": [
+            "@lint:phpcs",
+            "@lint:php-cs-fixer"
+        ],
+        "lint:all": [
+            "@lint:phpcs",
+            "@lint:phpcs:tests",
+            "@lint:php-cs-fixer",
+            "@lint:rector"
+        ],
+        "fix": [
+            "@fix:phpcbf",
+            "@fix:php-cs-fixer",
+            "@fix:rector"
+        ],
+        "fix:all": [
+            "@fix:phpcbf",
+            "@fix:phpcbf:tests",
+            "@fix:php-cs-fixer",
+            "@fix:rector",
+            "@fix:rector:tests"
+        ],
+        "test": "@test:unit",
+        "qa": [
+            "@lint:all",
+            "@test:unit"
+        ],
+        "qa:full": [
+            "@fix:all",
+            "@lint:all",
+            "@test:coverage"
+        ]
     }
 }
