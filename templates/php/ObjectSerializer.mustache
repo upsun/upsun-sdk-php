@@ -11,7 +11,7 @@ use Exception;
 use InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
 use GuzzleHttp\Psr7\Utils;
-use {{modelPackage}}\ModelInterface;
+use {{modelPackage}}\Model;
 use {{apiPackage}}\ApiConfiguration;
 
 /**
@@ -49,7 +49,7 @@ class ObjectSerializer
 
         if (is_object($data)) {
             $values = [];
-            if ($data instanceof ModelInterface) {
+            if ($data instanceof Model) {
                 $formats = ApiObjectFormatsMapper::openApiFormats($data->getModelName());
 
                 foreach (ApiObjectTypesMapper::openApiTypes($data->getModelName()) as $property => $openApiType) {
@@ -299,7 +299,7 @@ class ObjectSerializer
         }
 
         // Handle any class with array properties
-        if (class_exists($class) && is_subclass_of($class, ModelInterface::class)) {
+        if (class_exists($class) && is_subclass_of($class, Model::class)) {
             if (is_array($data)) {
                 $data = self::preprocessArrayProperties($data, $class);
             }

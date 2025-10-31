@@ -94,4 +94,7 @@ files:
     templateType: SupportingFiles
     destinationFilename: ApiHeaderSelector.php
     folder: src/Api/
-    
+  ModelInterface.mustache:
+    templateType: SupportingFiles
+    destinationFilename: Model.php
+    folder: src/Model/

@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Blob;
-use Upsun\Model\Commit;
-use Upsun\Model\Ref;
-use Upsun\Model\Tree;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Blob;
+use Upsun\Model\Commit;
+use Upsun\Model\Ref;
+use Upsun\Model\Tree;
 
 /**
  * Low level RepositoryApi (auto-generated)
@@ -59,10 +59,10 @@ final class RepositoryApi extends AbstractApi
      * read-only access to the contents of files in a repo. It returns the file in the `content` field of the response
      * object, encoded according to the format in the `encoding` field, e.g. `base64`.
      *
-     * @return Blob
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Blob
      *
      * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-blobs
      */
@@ -79,9 +79,9 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a blob object with HTTP Info
      *
-     * @return Blob
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Blob
      */
     private function getProjectsGitBlobsWithHttpInfo(
         string $projectId,
@@ -237,10 +237,10 @@ final class RepositoryApi extends AbstractApi
      * endpoint, while the tree state represented by this commit can be retrieved using the Get a tree object
      * (https://docs.upsun.com/api/#tag/Git-Repo/paths//projects/{projectId}/git/trees/{repositoryTreeId}/get) endpoint.
      *
-     * @return Commit
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Commit
      *
      * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-commits
      */
@@ -257,9 +257,9 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a commit object with HTTP Info
      *
-     * @return Commit
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Commit
      */
     private function getProjectsGitCommitsWithHttpInfo(
         string $projectId,
@@ -414,10 +414,10 @@ final class RepositoryApi extends AbstractApi
      * pattern. *NOTE: The `{repositoryRefId}` must be properly escaped.* That is, the ref `refs/heads/master` is
      * accessible via `/projects/{projectId}/git/refs/heads/master`.
      *
-     * @return Ref
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Ref
      *
      * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-refs
      */
@@ -434,9 +434,9 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a ref object with HTTP Info
      *
-     * @return Ref
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Ref
      */
     private function getProjectsGitRefsWithHttpInfo(
         string $projectId,
@@ -591,10 +591,10 @@ final class RepositoryApi extends AbstractApi
      * through their hashes. Files in the tree can be retrieved by the Get a blob object
      * (https://docs.upsun.com/api/#tag/Git-Repo/paths//projects/{projectId}/git/blobs/{repositoryBlobId}/get) endpoint.
      *
-     * @return Tree
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Tree
      *
      * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-trees
      */
@@ -611,9 +611,9 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a tree object with HTTP Info
      *
-     * @return Tree
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Tree
      */
     private function getProjectsGitTreesWithHttpInfo(
         string $projectId,
@@ -769,10 +769,10 @@ final class RepositoryApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Git-Repo/paths//projects/{projectId}/git/commits/{repositoryCommitId}/get)
      * endpoint to retrieve information about that specific commit.
      *
-     * @return Ref[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Ref[]
      *
      * @see https://docs.upsun.com/api/#tag/Repository/operation/list-projects-git-refs
      */
@@ -787,9 +787,9 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get list of repository refs with HTTP Info
      *
-     * @return Ref[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Ref[]
      */
     private function listProjectsGitRefsWithHttpInfo(
         string $projectId

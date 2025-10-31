@@ -2,22 +2,22 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateOrgMemberRequest;
-use Upsun\Model\OrganizationMember;
-use Upsun\Model\ArrayFilter;
-use Upsun\Model\ListOrgMembers200Response;
 use DateTime;
-use Upsun\Model\UpdateOrgMemberRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ArrayFilter;
+use Upsun\Model\CreateOrgMemberRequest;
+use Upsun\Model\ListOrgMembers200Response;
+use Upsun\Model\OrganizationMember;
+use Upsun\Model\UpdateOrgMemberRequest;
 
 /**
  * Low level OrganizationMembersApi (auto-generated)
@@ -59,10 +59,10 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * Creates a new organization member.
      *
-     * @return OrganizationMember
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationMember
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/create-org-member
      */
@@ -79,9 +79,9 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Create organization member with HTTP Info
      *
-     * @return OrganizationMember
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationMember
      */
     private function createOrgMemberWithHttpInfo(
         string $organizationId,
@@ -232,8 +232,8 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * Deletes the specified organization member.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/delete-org-member
      */
@@ -396,10 +396,10 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * Retrieves the specified organization member.
      *
-     * @return OrganizationMember
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationMember
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/get-org-member
      */
@@ -416,9 +416,9 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Get organization member with HTTP Info
      *
-     * @return OrganizationMember
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationMember
      */
     private function getOrgMemberWithHttpInfo(
         string $organizationId,
@@ -570,10 +570,10 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * Accessible to organization owners and members with the "manage members" permission.
      *
-     * @return ListOrgMembers200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListOrgMembers200Response
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/list-org-members
      */
@@ -598,9 +598,9 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * List organization members with HTTP Info
      *
-     * @return ListOrgMembers200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListOrgMembers200Response
      */
     private function listOrgMembersWithHttpInfo(
         string $organizationId,
@@ -837,10 +837,10 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * Updates the specified organization member.
      *
-     * @return OrganizationMember
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationMember
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/update-org-member
      */
@@ -859,9 +859,9 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Update organization member with HTTP Info
      *
-     * @return OrganizationMember
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationMember
      */
     private function updateOrgMemberWithHttpInfo(
         string $organizationId,

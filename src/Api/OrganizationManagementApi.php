@@ -2,21 +2,21 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\OrganizationEstimationObject;
-use Upsun\Model\OrganizationAlertConfig;
-use Upsun\Model\GetOrgPrepaymentInfo200Response;
-use Upsun\Model\ListOrgPrepaymentTransactions200Response;
-use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\GetOrgPrepaymentInfo200Response;
+use Upsun\Model\ListOrgPrepaymentTransactions200Response;
+use Upsun\Model\OrganizationAlertConfig;
+use Upsun\Model\OrganizationEstimationObject;
+use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
 
 /**
  * Low level OrganizationManagementApi (auto-generated)
@@ -58,10 +58,10 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * Estimates the total spend for the specified organization.
      *
-     * @return OrganizationEstimationObject
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationEstimationObject
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/estimate-org
      */
@@ -76,9 +76,9 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Estimate total spend with HTTP Info
      *
-     * @return OrganizationEstimationObject
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationEstimationObject
      */
     private function estimateOrgWithHttpInfo(
         string $organizationId
@@ -206,10 +206,10 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * Retrieves billing alert configuration for the specified organization.
      *
-     * @return OrganizationAlertConfig
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationAlertConfig
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/get-org-billing-alert-config
      */
@@ -224,9 +224,9 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Get billing alert configuration with HTTP Info
      *
-     * @return OrganizationAlertConfig
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationAlertConfig
      */
     private function getOrgBillingAlertConfigWithHttpInfo(
         string $organizationId
@@ -354,10 +354,10 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * Retrieves prepayment information for the specified organization, if applicable.
      *
-     * @return GetOrgPrepaymentInfo200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return GetOrgPrepaymentInfo200Response
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/get-org-prepayment-info
      */
@@ -372,9 +372,9 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Get organization prepayment information with HTTP Info
      *
-     * @return GetOrgPrepaymentInfo200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return GetOrgPrepaymentInfo200Response
      */
     private function getOrgPrepaymentInfoWithHttpInfo(
         string $organizationId
@@ -502,10 +502,10 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * Retrieves a list of prepayment transactions for the specified organization, if applicable.
      *
-     * @return ListOrgPrepaymentTransactions200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListOrgPrepaymentTransactions200Response
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/list-org-prepayment-transactions
      */
@@ -520,9 +520,9 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * List organization prepayment transactions with HTTP Info
      *
-     * @return ListOrgPrepaymentTransactions200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListOrgPrepaymentTransactions200Response
      */
     private function listOrgPrepaymentTransactionsWithHttpInfo(
         string $organizationId
@@ -650,10 +650,10 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * Updates billing alert configuration for the specified organization.
      *
-     * @return OrganizationAlertConfig
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationAlertConfig
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/update-org-billing-alert-config
      */
@@ -670,9 +670,9 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Update billing alert configuration with HTTP Info
      *
-     * @return OrganizationAlertConfig
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationAlertConfig
      */
     private function updateOrgBillingAlertConfigWithHttpInfo(
         string $organizationId,

@@ -2,17 +2,17 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Route;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Route;
 
 /**
  * Low level RoutingApi (auto-generated)
@@ -57,10 +57,10 @@ final class RoutingApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Routes/paths//projects/{projectId}/environments/{environmentId}/routes/get)
      * endpoint.
      *
-     * @return Route
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Route
      *
      * @see https://docs.upsun.com/api/#tag/Routing/operation/get-projects-environments-routes
      */
@@ -79,9 +79,9 @@ final class RoutingApi extends AbstractApi
     /**
      * Get a route's info with HTTP Info
      *
-     * @return Route
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Route
      */
     private function getProjectsEnvironmentsRoutesWithHttpInfo(
         string $projectId,
@@ -258,10 +258,10 @@ final class RoutingApi extends AbstractApi
      * Retrieve a list of objects containing route definitions for a specific environment. The definitions returned by
      * this endpoint are those present in an environment's `.upsun/config.yaml` file.
      *
-     * @return Route[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Route[]
      *
      * @see https://docs.upsun.com/api/#tag/Routing/operation/list-projects-environments-routes
      */
@@ -278,9 +278,9 @@ final class RoutingApi extends AbstractApi
     /**
      * Get list of routes with HTTP Info
      *
-     * @return Route[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Route[]
      */
     private function listProjectsEnvironmentsRoutesWithHttpInfo(
         string $projectId,

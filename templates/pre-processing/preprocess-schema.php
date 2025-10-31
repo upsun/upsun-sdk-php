@@ -292,7 +292,8 @@ class OpenApiPreprocessor
                     foreach ($operation['responses'] as $statusCode => $resp) {
                         // Only process success codes (2xx or default)
                         if (
-                            (!is_numeric($statusCode)
+                            (
+                                !is_numeric($statusCode)
                                 || $statusCode < 200
                                 || $statusCode > 299
                             ) && $statusCode !== 'default'
@@ -343,7 +344,7 @@ class OpenApiPreprocessor
 
                 // convert void|Error to null|Error
                 if (in_array('void', $returnTypes, true) && count($returnTypes) > 1) {
-                    $returnTypes = array_map(fn($t) => $t === 'void' ? 'null' : $t, $returnTypes);
+                    $returnTypes = array_map(fn ($t) => $t === 'void' ? 'null' : $t, $returnTypes);
                 }
 
                 $operation['x-return-types'] = array_values(array_unique($returnTypes));
@@ -781,7 +782,7 @@ class OpenApiPreprocessor
                         $propDefinition['x-isDateTime'] = true;
                         echo "  → {$schemaName}.{$propName} marked as DateTime\n";
                     } else {
-                        if (!array_key_exists('$ref', $propDefinition) && $propName != '_links') {
+                        if (!array_key_exists('$ref', $propDefinition) && $propName !== '_links') {
                             $propDefinition['x-isDateTime'] = false;
                         }
                     }
@@ -1146,7 +1147,7 @@ try {
 
     // replace empty response object
     $preprocessor->replaceEmptyRefResponsesWithAccepted();
-    
+
     // Add deployment/next path for managing resources
     $preprocessor->addResourcePath();
 

@@ -2,24 +2,24 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateOrgProjectRequest;
-use Upsun\Model\OrganizationProject;
-use Upsun\Model\StringFilter;
-use Upsun\Model\DateTimeFilter;
-use Upsun\Model\ListOrgProjects200Response;
 use DateTime;
-use Upsun\Model\ProjectCarbon;
-use Upsun\Model\UpdateOrgProjectRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CreateOrgProjectRequest;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\ListOrgProjects200Response;
+use Upsun\Model\OrganizationProject;
+use Upsun\Model\ProjectCarbon;
+use Upsun\Model\StringFilter;
+use Upsun\Model\UpdateOrgProjectRequest;
 
 /**
  * Low level OrganizationProjectsApi (auto-generated)
@@ -61,10 +61,10 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Creates a new project in the specified organization.
      *
-     * @return OrganizationProject
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationProject
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/create-org-project
      */
@@ -81,9 +81,9 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Create project with HTTP Info
      *
-     * @return OrganizationProject
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationProject
      */
     private function createOrgProjectWithHttpInfo(
         string $organizationId,
@@ -234,8 +234,8 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Deletes the specified project.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/delete-org-project
      */
@@ -398,10 +398,10 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Retrieves the specified project.
      *
-     * @return OrganizationProject
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationProject
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/get-org-project
      */
@@ -418,9 +418,9 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Get project with HTTP Info
      *
-     * @return OrganizationProject
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationProject
      */
     private function getOrgProjectWithHttpInfo(
         string $organizationId,
@@ -572,10 +572,10 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Retrieves a list of projects for the specified organization.
      *
-     * @return ListOrgProjects200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListOrgProjects200Response
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/list-org-projects
      */
@@ -608,9 +608,9 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * List projects with HTTP Info
      *
-     * @return ListOrgProjects200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListOrgProjects200Response
      */
     private function listOrgProjectsWithHttpInfo(
         string $organizationId,
@@ -923,10 +923,10 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Queries the carbon emission data for the specified project using the supplied parameters.
      *
-     * @return ProjectCarbon
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ProjectCarbon
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/query-project-carbon
      */
@@ -949,9 +949,9 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Query project carbon emissions metrics with HTTP Info
      *
-     * @return ProjectCarbon
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ProjectCarbon
      */
     private function queryProjectCarbonWithHttpInfo(
         string $organizationId,
@@ -1159,10 +1159,10 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Updates the specified project.
      *
-     * @return OrganizationProject
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationProject
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/update-org-project
      */
@@ -1181,9 +1181,9 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Update project with HTTP Info
      *
-     * @return OrganizationProject
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationProject
      */
     private function updateOrgProjectWithHttpInfo(
         string $organizationId,

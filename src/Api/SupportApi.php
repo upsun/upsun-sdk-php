@@ -2,22 +2,22 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateTicketRequest;
-use Upsun\Model\Ticket;
 use DateTime;
-use Upsun\Model\UpdateTicketRequest;
-use Upsun\Model\ListTicketCategories200ResponseInner;
-use Upsun\Model\ListTicketPriorities200ResponseInner;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\ListTicketCategories200ResponseInner;
+use Upsun\Model\ListTicketPriorities200ResponseInner;
+use Upsun\Model\Ticket;
+use Upsun\Model\UpdateTicketRequest;
 
 /**
  * Low level SupportApi (auto-generated)
@@ -58,10 +58,10 @@ final class SupportApi extends AbstractApi
      * Create a new support ticket
      *
      *
-     * @return Ticket
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Ticket
      *
      * @see https://docs.upsun.com/api/#tag/Support/operation/create-ticket
      */
@@ -76,9 +76,9 @@ final class SupportApi extends AbstractApi
     /**
      * Create a new support ticket with HTTP Info
      *
-     * @return Ticket
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Ticket
      */
     private function createTicketWithHttpInfo(
         ?CreateTicketRequest $createTicketRequest = null
@@ -193,10 +193,10 @@ final class SupportApi extends AbstractApi
      * List support ticket categories
      *
      *
-     * @return ListTicketCategories200ResponseInner[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListTicketCategories200ResponseInner[]
      *
      * @see https://docs.upsun.com/api/#tag/Support/operation/list-ticket-categories
      */
@@ -213,9 +213,9 @@ final class SupportApi extends AbstractApi
     /**
      * List support ticket categories with HTTP Info
      *
-     * @return ListTicketCategories200ResponseInner[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListTicketCategories200ResponseInner[]
      */
     private function listTicketCategoriesWithHttpInfo(
         ?string $subscriptionId = null,
@@ -356,10 +356,10 @@ final class SupportApi extends AbstractApi
      * List support ticket priorities
      *
      *
-     * @return ListTicketPriorities200ResponseInner[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListTicketPriorities200ResponseInner[]
      *
      * @see https://docs.upsun.com/api/#tag/Support/operation/list-ticket-priorities
      */
@@ -376,9 +376,9 @@ final class SupportApi extends AbstractApi
     /**
      * List support ticket priorities with HTTP Info
      *
-     * @return ListTicketPriorities200ResponseInner[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListTicketPriorities200ResponseInner[]
      */
     private function listTicketPrioritiesWithHttpInfo(
         ?string $subscriptionId = null,
@@ -519,10 +519,10 @@ final class SupportApi extends AbstractApi
      * Update a ticket
      *
      *
-     * @return Ticket
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Ticket
      *
      * @see https://docs.upsun.com/api/#tag/Support/operation/update-ticket
      */
@@ -539,9 +539,9 @@ final class SupportApi extends AbstractApi
     /**
      * Update a ticket with HTTP Info
      *
-     * @return Ticket
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Ticket
      */
     private function updateTicketWithHttpInfo(
         string $ticketId,

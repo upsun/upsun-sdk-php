@@ -2,28 +2,28 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\EnvironmentActivateInput;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\EnvironmentBranchInput;
-use Upsun\Model\VersionCreateInput;
-use Upsun\Model\EnvironmentDeployInput;
-use Upsun\Model\Environment;
-use Upsun\Model\Version;
-use Upsun\Model\EnvironmentInitializeInput;
-use Upsun\Model\EnvironmentMergeInput;
-use Upsun\Model\EnvironmentSynchronizeInput;
-use Upsun\Model\EnvironmentPatch;
-use Upsun\Model\VersionPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Environment;
+use Upsun\Model\EnvironmentActivateInput;
+use Upsun\Model\EnvironmentBranchInput;
+use Upsun\Model\EnvironmentDeployInput;
+use Upsun\Model\EnvironmentInitializeInput;
+use Upsun\Model\EnvironmentMergeInput;
+use Upsun\Model\EnvironmentPatch;
+use Upsun\Model\EnvironmentSynchronizeInput;
+use Upsun\Model\Version;
+use Upsun\Model\VersionCreateInput;
+use Upsun\Model\VersionPatch;
 
 /**
  * Low level EnvironmentApi (auto-generated)
@@ -65,10 +65,10 @@ final class EnvironmentApi extends AbstractApi
      *
      * Set the specified environment's status to active
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/activate-environment
      */
@@ -87,9 +87,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Activate an environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function activateEnvironmentWithHttpInfo(
         string $projectId,
@@ -264,10 +264,10 @@ final class EnvironmentApi extends AbstractApi
      *
      * Create a new environment as a branch of the current environment.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/branch-environment
      */
@@ -286,9 +286,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Branch an environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function branchEnvironmentWithHttpInfo(
         string $projectId,
@@ -465,10 +465,10 @@ final class EnvironmentApi extends AbstractApi
      * multiple versions exist, it means that multiple versions of an app are deployed. The deployment target type
      * denotes whether staged deployment is supported.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/create-projects-environments-versions
      */
@@ -487,9 +487,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Create versions associated with the environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function createProjectsEnvironmentsVersionsWithHttpInfo(
         string $projectId,
@@ -666,10 +666,10 @@ final class EnvironmentApi extends AbstractApi
      * can be reactivated later at any time; reactivating an environment will sync data from the parent environment and
      * redeploy. **NOTE: ALL DATA IN THIS ENVIRONMENT WILL BE IRREVOCABLY LOST**
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/deactivate-environment
      */
@@ -686,9 +686,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Deactivate an environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deactivateEnvironmentWithHttpInfo(
         string $projectId,
@@ -840,10 +840,10 @@ final class EnvironmentApi extends AbstractApi
      *
      * Delete a specified environment.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/delete-environment
      */
@@ -860,9 +860,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Delete an environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deleteEnvironmentWithHttpInfo(
         string $projectId,
@@ -1015,10 +1015,10 @@ final class EnvironmentApi extends AbstractApi
      * Delete the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if
      * the deployment target supports it).
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/delete-projects-environments-versions
      */
@@ -1037,9 +1037,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Delete the version with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deleteProjectsEnvironmentsVersionsWithHttpInfo(
         string $projectId,
@@ -1217,10 +1217,10 @@ final class EnvironmentApi extends AbstractApi
      * deployment](https://docs.upsun.com/learn/overview/build-deploy.html#manual-deployment) to release all the staged
      * changes
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/deploy-environment
      */
@@ -1239,9 +1239,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Deploy an environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deployEnvironmentWithHttpInfo(
         string $projectId,
@@ -1416,10 +1416,10 @@ final class EnvironmentApi extends AbstractApi
      *
      * Retrieve the details of a single existing environment.
      *
-     * @return Environment
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Environment
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/get-environment
      */
@@ -1436,9 +1436,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Get an environment with HTTP Info
      *
-     * @return Environment
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Environment
      */
     private function getEnvironmentWithHttpInfo(
         string $projectId,
@@ -1591,10 +1591,10 @@ final class EnvironmentApi extends AbstractApi
      * List the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if
      * the deployment target supports it).
      *
-     * @return Version
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Version
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/get-projects-environments-versions
      */
@@ -1613,9 +1613,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * List the version with HTTP Info
      *
-     * @return Version
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Version
      */
     private function getProjectsEnvironmentsVersionsWithHttpInfo(
         string $projectId,
@@ -1797,10 +1797,10 @@ final class EnvironmentApi extends AbstractApi
      * the `config` parameter that will be added to the contents of the first. This allows you to put your application
      * in one repository and the Upsun YAML configuration files in another.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/initialize-environment
      */
@@ -1819,9 +1819,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Initialize a new environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function initializeEnvironmentWithHttpInfo(
         string $projectId,
@@ -1996,10 +1996,10 @@ final class EnvironmentApi extends AbstractApi
      *
      * Retrieve a list of a project's existing environments and the information associated with each environment.
      *
-     * @return Environment[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Environment[]
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/list-projects-environments
      */
@@ -2014,9 +2014,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Get list of project environments with HTTP Info
      *
-     * @return Environment[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Environment[]
      */
     private function listProjectsEnvironmentsWithHttpInfo(
         string $projectId
@@ -2146,10 +2146,10 @@ final class EnvironmentApi extends AbstractApi
      * multiple versions exist, it means that multiple versions of an app are deployed. The deployment target type
      * denotes whether staged deployment is supported.
      *
-     * @return Version[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Version[]
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/list-projects-environments-versions
      */
@@ -2166,9 +2166,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * List versions associated with the environment with HTTP Info
      *
-     * @return Version[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Version[]
      */
     private function listProjectsEnvironmentsVersionsWithHttpInfo(
         string $projectId,
@@ -2322,10 +2322,10 @@ final class EnvironmentApi extends AbstractApi
      * into the parent branch, and the parent branch will be rebuilt and deployed with the new code changes, retaining
      * the existing data in the parent environment.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/merge-environment
      */
@@ -2344,9 +2344,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Merge an environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function mergeEnvironmentWithHttpInfo(
         string $projectId,
@@ -2525,10 +2525,10 @@ final class EnvironmentApi extends AbstractApi
      * manually at any time using this endpoint. Further information is available in our [public
      * documentation](https://docs.upsun.com/anchors/environments/paused/).
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/pause-environment
      */
@@ -2545,9 +2545,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Pause an environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function pauseEnvironmentWithHttpInfo(
         string $projectId,
@@ -2699,10 +2699,10 @@ final class EnvironmentApi extends AbstractApi
      *
      * Trigger the redeployment sequence of an environment.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/redeploy-environment
      */
@@ -2719,9 +2719,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Redeploy an environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function redeployEnvironmentWithHttpInfo(
         string $projectId,
@@ -2876,10 +2876,10 @@ final class EnvironmentApi extends AbstractApi
      * endpoint or the CLI as described in the [public
      * documentation](https://docs.upsun.com/anchors/environments/paused/).
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/resume-environment
      */
@@ -2896,9 +2896,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Resume a paused environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function resumeEnvironmentWithHttpInfo(
         string $projectId,
@@ -3052,10 +3052,10 @@ final class EnvironmentApi extends AbstractApi
      * Synchronization is only possible if a branch has no unmerged commits and it can be fast-forwarded. If data
      * synchronization is specified, the data in the environment will be overwritten with that of its parent.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/synchronize-environment
      */
@@ -3074,9 +3074,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Synchronize a child environment with its parent with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function synchronizeEnvironmentWithHttpInfo(
         string $projectId,
@@ -3251,10 +3251,10 @@ final class EnvironmentApi extends AbstractApi
      *
      * Update the details of a single existing environment.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/update-environment
      */
@@ -3273,9 +3273,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Update an environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateEnvironmentWithHttpInfo(
         string $projectId,
@@ -3451,10 +3451,10 @@ final class EnvironmentApi extends AbstractApi
      * Update the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if
      * the deployment target supports it).
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment/operation/update-projects-environments-versions
      */
@@ -3475,9 +3475,9 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Update the version with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsEnvironmentsVersionsWithHttpInfo(
         string $projectId,

@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\ConfirmPhoneNumberRequest;
-use Upsun\Model\VerifyPhoneNumberRequest;
-use Upsun\Model\VerifyPhoneNumber200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ConfirmPhoneNumberRequest;
+use Upsun\Model\VerifyPhoneNumber200Response;
+use Upsun\Model\VerifyPhoneNumberRequest;
 
 /**
  * Low level PhoneNumberApi (auto-generated)
@@ -56,8 +56,8 @@ final class PhoneNumberApi extends AbstractApi
      *
      * Confirms phone number using a verification code.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/PhoneNumber/operation/confirm-phone-number
      */
@@ -233,10 +233,10 @@ final class PhoneNumberApi extends AbstractApi
      *
      * Starts a phone number verification session.
      *
-     * @return VerifyPhoneNumber200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return VerifyPhoneNumber200Response
      *
      * @see https://docs.upsun.com/api/#tag/PhoneNumber/operation/verify-phone-number
      */
@@ -253,9 +253,9 @@ final class PhoneNumberApi extends AbstractApi
     /**
      * Verify phone number with HTTP Info
      *
-     * @return VerifyPhoneNumber200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return VerifyPhoneNumber200Response
      */
     private function verifyPhoneNumberWithHttpInfo(
         string $userId,

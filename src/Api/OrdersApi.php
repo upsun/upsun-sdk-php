@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateAuthorizationCredentials200Response;
 use DateTime;
-use Upsun\Model\Order;
-use Upsun\Model\ListOrgOrders200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CreateAuthorizationCredentials200Response;
+use Upsun\Model\ListOrgOrders200Response;
+use Upsun\Model\Order;
 
 /**
  * Low level OrdersApi (auto-generated)
@@ -57,10 +57,10 @@ final class OrdersApi extends AbstractApi
      *
      * Creates confirmation credentials for payments that require online authorization
      *
-     * @return CreateAuthorizationCredentials200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return CreateAuthorizationCredentials200Response
      *
      * @see https://docs.upsun.com/api/#tag/Orders/operation/create-authorization-credentials
      */
@@ -77,9 +77,9 @@ final class OrdersApi extends AbstractApi
     /**
      * Create confirmation credentials for for 3D-Secure with HTTP Info
      *
-     * @return CreateAuthorizationCredentials200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return CreateAuthorizationCredentials200Response
      */
     private function createAuthorizationCredentialsWithHttpInfo(
         string $organizationId,
@@ -230,8 +230,8 @@ final class OrdersApi extends AbstractApi
      * Download an invoice.
      *
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Orders/operation/download-invoice
      */
@@ -381,10 +381,10 @@ final class OrdersApi extends AbstractApi
      *
      * Retrieves an order for the specified organization.
      *
-     * @return Order
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Order
      *
      * @see https://docs.upsun.com/api/#tag/Orders/operation/get-org-order
      */
@@ -403,9 +403,9 @@ final class OrdersApi extends AbstractApi
     /**
      * Get order with HTTP Info
      *
-     * @return Order
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Order
      */
     private function getOrgOrderWithHttpInfo(
         string $organizationId,
@@ -575,10 +575,10 @@ final class OrdersApi extends AbstractApi
      *
      * Retrieves orders for the specified organization.
      *
-     * @return ListOrgOrders200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListOrgOrders200Response
      *
      * @see https://docs.upsun.com/api/#tag/Orders/operation/list-org-orders
      */
@@ -601,9 +601,9 @@ final class OrdersApi extends AbstractApi
     /**
      * List orders with HTTP Info
      *
-     * @return ListOrgOrders200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListOrgOrders200Response
      */
     private function listOrgOrdersWithHttpInfo(
         string $organizationId,

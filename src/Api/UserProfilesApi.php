@@ -2,23 +2,23 @@
 
 namespace Upsun\Api;
 
-use SplFileObject;
-use Upsun\Model\CreateProfilePicture200Response;
-use Upsun\Model\GetAddress200Response;
-use Upsun\Model\Profile;
-use Upsun\Model\ListProfiles200Response;
-use Upsun\Model\Address;
-use Upsun\Model\UpdateProfileRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use SplFileObject;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Address;
+use Upsun\Model\CreateProfilePicture200Response;
+use Upsun\Model\GetAddress200Response;
+use Upsun\Model\ListProfiles200Response;
+use Upsun\Model\Profile;
+use Upsun\Model\UpdateProfileRequest;
 
 /**
  * Low level UserProfilesApi (auto-generated)
@@ -59,10 +59,10 @@ final class UserProfilesApi extends AbstractApi
      * Create a user profile picture
      *
      *
-     * @return CreateProfilePicture200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return CreateProfilePicture200Response
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/create-profile-picture
      */
@@ -79,9 +79,9 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Create a user profile picture with HTTP Info
      *
-     * @return CreateProfilePicture200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return CreateProfilePicture200Response
      */
     private function createProfilePictureWithHttpInfo(
         string $uuid,
@@ -221,8 +221,8 @@ final class UserProfilesApi extends AbstractApi
      * Delete a user profile picture
      *
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/delete-profile-picture
      */
@@ -358,8 +358,8 @@ final class UserProfilesApi extends AbstractApi
      * Get a user address
      *
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/get-address
      */
@@ -501,10 +501,10 @@ final class UserProfilesApi extends AbstractApi
      * Get a single user profile
      *
      *
-     * @return Profile
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Profile
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/get-profile
      */
@@ -519,9 +519,9 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Get a single user profile with HTTP Info
      *
-     * @return Profile
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Profile
      */
     private function getProfileWithHttpInfo(
         string $userId
@@ -648,10 +648,10 @@ final class UserProfilesApi extends AbstractApi
      * List user profiles
      *
      *
-     * @return ListProfiles200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListProfiles200Response
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/list-profiles
      */
@@ -664,9 +664,9 @@ final class UserProfilesApi extends AbstractApi
     /**
      * List user profiles with HTTP Info
      *
-     * @return ListProfiles200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListProfiles200Response
      */
     private function listProfilesWithHttpInfo(): ListProfiles200Response
     {
@@ -770,8 +770,8 @@ final class UserProfilesApi extends AbstractApi
      *
      * Update a user address, supplying one or more key/value pairs to to change.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/update-address
      */
@@ -927,10 +927,10 @@ final class UserProfilesApi extends AbstractApi
      *
      * Update a user profile, supplying one or more key/value pairs to to change.
      *
-     * @return Profile
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Profile
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/update-profile
      */
@@ -947,9 +947,9 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Update a user profile with HTTP Info
      *
-     * @return Profile
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Profile
      */
     private function updateProfileWithHttpInfo(
         string $userId,

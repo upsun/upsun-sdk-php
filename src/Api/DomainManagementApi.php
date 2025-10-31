@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\DomainCreateInput;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Domain;
-use Upsun\Model\DomainPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Domain;
+use Upsun\Model\DomainCreateInput;
+use Upsun\Model\DomainPatch;
 
 /**
  * Low level DomainManagementApi (auto-generated)
@@ -59,10 +59,10 @@ final class DomainManagementApi extends AbstractApi
      * certificate, a certificate will [be provisioned for you via Let's
      * Encrypt.](https://docs.upsun.com/anchors/routes/https/certificates/)
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/create-projects-domains
      */
@@ -79,9 +79,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Add a project domain with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function createProjectsDomainsWithHttpInfo(
         string $projectId,
@@ -235,10 +235,10 @@ final class DomainManagementApi extends AbstractApi
      * blank without an object containing a PEM-encoded SSL certificate, a certificate will [be provisioned for you via
      * Let's Encrypt](https://docs.upsun.com/anchors/routes/https/certificates/).
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/create-projects-environments-domains
      */
@@ -257,9 +257,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Add an environment domain with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function createProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
@@ -434,10 +434,10 @@ final class DomainManagementApi extends AbstractApi
      *
      * Delete a single user-specified domain associated with a project.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/delete-projects-domains
      */
@@ -454,9 +454,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Delete a project domain with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deleteProjectsDomainsWithHttpInfo(
         string $projectId,
@@ -608,10 +608,10 @@ final class DomainManagementApi extends AbstractApi
      *
      * Delete a single user-specified domain associated with an environment.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/delete-projects-environments-domains
      */
@@ -630,9 +630,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Delete an environment domain with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deleteProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
@@ -808,10 +808,10 @@ final class DomainManagementApi extends AbstractApi
      *
      * Retrieve information about a single user-specified domain associated with a project.
      *
-     * @return Domain
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Domain
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-domains
      */
@@ -828,9 +828,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get a project domain with HTTP Info
      *
-     * @return Domain
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Domain
      */
     private function getProjectsDomainsWithHttpInfo(
         string $projectId,
@@ -982,10 +982,10 @@ final class DomainManagementApi extends AbstractApi
      *
      * Retrieve information about a single user-specified domain associated with an environment.
      *
-     * @return Domain
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Domain
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-environments-domains
      */
@@ -1004,9 +1004,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get an environment domain with HTTP Info
      *
-     * @return Domain
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Domain
      */
     private function getProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
@@ -1184,10 +1184,10 @@ final class DomainManagementApi extends AbstractApi
      * *not* return the domains automatically assigned to a project that appear under "Access site" on the user
      * interface.
      *
-     * @return Domain[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Domain[]
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-domains
      */
@@ -1202,9 +1202,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get list of project domains with HTTP Info
      *
-     * @return Domain[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Domain[]
      */
     private function listProjectsDomainsWithHttpInfo(
         string $projectId
@@ -1333,10 +1333,10 @@ final class DomainManagementApi extends AbstractApi
      * Retrieve a list of objects representing the user-specified domains associated with an environment. Note that this
      * does *not* return the `.platformsh.site` subdomains, which are automatically assigned to the environment.
      *
-     * @return Domain[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Domain[]
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-environments-domains
      */
@@ -1353,9 +1353,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get a list of environment domains with HTTP Info
      *
-     * @return Domain[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Domain[]
      */
     private function listProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
@@ -1507,10 +1507,10 @@ final class DomainManagementApi extends AbstractApi
      *
      * Update the information associated with a single user-specified domain associated with a project.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/update-projects-domains
      */
@@ -1529,9 +1529,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Update a project domain with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsDomainsWithHttpInfo(
         string $projectId,
@@ -1706,10 +1706,10 @@ final class DomainManagementApi extends AbstractApi
      *
      * Update the information associated with a single user-specified domain associated with an environment.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/update-projects-environments-domains
      */
@@ -1730,9 +1730,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Update an environment domain with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,

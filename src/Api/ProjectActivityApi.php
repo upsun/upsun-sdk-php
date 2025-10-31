@@ -2,18 +2,18 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Activity;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Activity;
 
 /**
  * Low level ProjectActivityApi (auto-generated)
@@ -57,10 +57,10 @@ final class ProjectActivityApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Project-Activity/paths//projects/{projectId}/activities/get) endpoint. Please
      * note that not all activities are cancelable.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/action-projects-activities-cancel
      */
@@ -77,9 +77,9 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Cancel a project activity with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function actionProjectsActivitiesCancelWithHttpInfo(
         string $projectId,
@@ -233,10 +233,10 @@ final class ProjectActivityApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Project-Activity/paths//projects/{projectId}/activities/get) endpoint. See the
      * documentation on that endpoint for details about the information this endpoint can return.
      *
-     * @return Activity
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Activity
      *
      * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/get-projects-activities
      */
@@ -253,9 +253,9 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Get a project activity log entry with HTTP Info
      *
-     * @return Activity
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Activity
      */
     private function getProjectsActivitiesWithHttpInfo(
         string $projectId,
@@ -418,10 +418,10 @@ final class ProjectActivityApi extends AbstractApi
      * removed from the project activity log, except the last 100 expired objects provided they are not of type
      * `environment.cron` or `environment.backup`.
      *
-     * @return Activity[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Activity[]
      *
      * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/list-projects-activities
      */
@@ -436,9 +436,9 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Get project activity log with HTTP Info
      *
-     * @return Activity[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Activity[]
      */
     private function listProjectsActivitiesWithHttpInfo(
         string $projectId

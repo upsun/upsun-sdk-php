@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\EnvironmentSourceOperationInput;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\EnvironmentSourceOperation;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentSourceOperation;
+use Upsun\Model\EnvironmentSourceOperationInput;
 
 /**
  * Low level SourceOperationsApi (auto-generated)
@@ -58,10 +58,10 @@ final class SourceOperationsApi extends AbstractApi
      * information on source code operations is [available in our user
      * documentation](https://docs.upsun.com/anchors/app/reference/source/operations/).
      *
-     * @return EnvironmentSourceOperation[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return EnvironmentSourceOperation[]
      *
      * @see https://docs.upsun.com/api/#tag/Source-Operations/operation/list-projects-environments-source-operations
      */
@@ -78,9 +78,9 @@ final class SourceOperationsApi extends AbstractApi
     /**
      * List source operations with HTTP Info
      *
-     * @return EnvironmentSourceOperation[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return EnvironmentSourceOperation[]
      */
     private function listProjectsEnvironmentsSourceOperationsWithHttpInfo(
         string $projectId,
@@ -234,10 +234,10 @@ final class SourceOperationsApi extends AbstractApi
      * `.upsun/config.yaml` configuration. More information on source code operations is [available in our user
      * documentation](https://docs.upsun.com/anchors/app/reference/source/operations/).
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Source-Operations/operation/run-source-operation
      */
@@ -256,9 +256,9 @@ final class SourceOperationsApi extends AbstractApi
     /**
      * Trigger a source operation with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function runSourceOperationWithHttpInfo(
         string $projectId,

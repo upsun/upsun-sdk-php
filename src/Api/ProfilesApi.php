@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Address;
-use Upsun\Model\Profile;
-use Upsun\Model\UpdateOrgProfileRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Address;
+use Upsun\Model\Profile;
+use Upsun\Model\UpdateOrgProfileRequest;
 
 /**
  * Low level ProfilesApi (auto-generated)
@@ -56,10 +56,10 @@ final class ProfilesApi extends AbstractApi
      *
      * Retrieves the address for the specified organization.
      *
-     * @return Address
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Address
      *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/get-org-address
      */
@@ -74,9 +74,9 @@ final class ProfilesApi extends AbstractApi
     /**
      * Get address with HTTP Info
      *
-     * @return Address
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Address
      */
     private function getOrgAddressWithHttpInfo(
         string $organizationId
@@ -204,10 +204,10 @@ final class ProfilesApi extends AbstractApi
      *
      * Retrieves the profile for the specified organization.
      *
-     * @return Profile
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Profile
      *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/get-org-profile
      */
@@ -222,9 +222,9 @@ final class ProfilesApi extends AbstractApi
     /**
      * Get profile with HTTP Info
      *
-     * @return Profile
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Profile
      */
     private function getOrgProfileWithHttpInfo(
         string $organizationId
@@ -352,10 +352,10 @@ final class ProfilesApi extends AbstractApi
      *
      * Updates the address for the specified organization.
      *
-     * @return Address
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Address
      *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/update-org-address
      */
@@ -372,9 +372,9 @@ final class ProfilesApi extends AbstractApi
     /**
      * Update address with HTTP Info
      *
-     * @return Address
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Address
      */
     private function updateOrgAddressWithHttpInfo(
         string $organizationId,
@@ -513,10 +513,10 @@ final class ProfilesApi extends AbstractApi
      *
      * Updates the profile for the specified organization.
      *
-     * @return Profile
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Profile
      *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/update-org-profile
      */
@@ -533,9 +533,9 @@ final class ProfilesApi extends AbstractApi
     /**
      * Update profile with HTTP Info
      *
-     * @return Profile
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Profile
      */
     private function updateOrgProfileWithHttpInfo(
         string $organizationId,

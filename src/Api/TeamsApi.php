@@ -2,26 +2,26 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateTeamRequest;
-use Upsun\Model\Team;
-use Upsun\Model\CreateTeamMemberRequest;
-use Upsun\Model\TeamMember;
-use Upsun\Model\ListTeamMembers200Response;
 use DateTime;
-use Upsun\Model\StringFilter;
-use Upsun\Model\DateTimeFilter;
-use Upsun\Model\ListTeams200Response;
-use Upsun\Model\UpdateTeamRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CreateTeamMemberRequest;
+use Upsun\Model\CreateTeamRequest;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\ListTeamMembers200Response;
+use Upsun\Model\ListTeams200Response;
+use Upsun\Model\StringFilter;
+use Upsun\Model\Team;
+use Upsun\Model\TeamMember;
+use Upsun\Model\UpdateTeamRequest;
 
 /**
  * Low level TeamsApi (auto-generated)
@@ -63,10 +63,10 @@ final class TeamsApi extends AbstractApi
      *
      * Creates a new team.
      *
-     * @return Team
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Team
      *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/create-team
      */
@@ -81,9 +81,9 @@ final class TeamsApi extends AbstractApi
     /**
      * Create team with HTTP Info
      *
-     * @return Team
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Team
      */
     private function createTeamWithHttpInfo(
         CreateTeamRequest $createTeamRequest
@@ -211,10 +211,10 @@ final class TeamsApi extends AbstractApi
      *
      * Creates a new team member.
      *
-     * @return TeamMember
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return TeamMember
      *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/create-team-member
      */
@@ -231,9 +231,9 @@ final class TeamsApi extends AbstractApi
     /**
      * Create team member with HTTP Info
      *
-     * @return TeamMember
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return TeamMember
      */
     private function createTeamMemberWithHttpInfo(
         string $teamId,
@@ -384,8 +384,8 @@ final class TeamsApi extends AbstractApi
      *
      * Deletes the specified team.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/delete-team
      */
@@ -522,8 +522,8 @@ final class TeamsApi extends AbstractApi
      *
      * Deletes the specified team member.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/delete-team-member
      */
@@ -686,10 +686,10 @@ final class TeamsApi extends AbstractApi
      *
      * Retrieves the specified team.
      *
-     * @return Team
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Team
      *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/get-team
      */
@@ -704,9 +704,9 @@ final class TeamsApi extends AbstractApi
     /**
      * Get team with HTTP Info
      *
-     * @return Team
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Team
      */
     private function getTeamWithHttpInfo(
         string $teamId
@@ -834,10 +834,10 @@ final class TeamsApi extends AbstractApi
      *
      * Retrieves the specified team member.
      *
-     * @return TeamMember
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return TeamMember
      *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/get-team-member
      */
@@ -854,9 +854,9 @@ final class TeamsApi extends AbstractApi
     /**
      * Get team member with HTTP Info
      *
-     * @return TeamMember
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return TeamMember
      */
     private function getTeamMemberWithHttpInfo(
         string $teamId,
@@ -1008,10 +1008,10 @@ final class TeamsApi extends AbstractApi
      *
      * Retrieves a list of users associated with a single team.
      *
-     * @return ListTeamMembers200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListTeamMembers200Response
      *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/list-team-members
      */
@@ -1032,9 +1032,9 @@ final class TeamsApi extends AbstractApi
     /**
      * List team members with HTTP Info
      *
-     * @return ListTeamMembers200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListTeamMembers200Response
      */
     private function listTeamMembersWithHttpInfo(
         string $teamId,
@@ -1218,10 +1218,10 @@ final class TeamsApi extends AbstractApi
      *
      * Retrieves a list of teams.
      *
-     * @return ListTeams200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListTeams200Response
      *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/list-teams
      */
@@ -1248,9 +1248,9 @@ final class TeamsApi extends AbstractApi
     /**
      * List teams with HTTP Info
      *
-     * @return ListTeams200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListTeams200Response
      */
     private function listTeamsWithHttpInfo(
         ?StringFilter $filterOrganizationId = null,
@@ -1502,10 +1502,10 @@ final class TeamsApi extends AbstractApi
      *
      * Retrieves teams that the specified user is a member of.
      *
-     * @return ListTeams200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListTeams200Response
      *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/list-user-teams
      */
@@ -1532,9 +1532,9 @@ final class TeamsApi extends AbstractApi
     /**
      * User teams with HTTP Info
      *
-     * @return ListTeams200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListTeams200Response
      */
     private function listUserTeamsWithHttpInfo(
         string $userId,
@@ -1790,10 +1790,10 @@ final class TeamsApi extends AbstractApi
      *
      * Updates the specified team.
      *
-     * @return Team
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Team
      *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/update-team
      */
@@ -1810,9 +1810,9 @@ final class TeamsApi extends AbstractApi
     /**
      * Update team with HTTP Info
      *
-     * @return Team
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Team
      */
     private function updateTeamWithHttpInfo(
         string $teamId,

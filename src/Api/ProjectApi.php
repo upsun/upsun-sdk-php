@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Project;
-use Upsun\Model\ProjectCapabilities;
-use Upsun\Model\ProjectPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Project;
+use Upsun\Model\ProjectCapabilities;
+use Upsun\Model\ProjectPatch;
 
 /**
  * Low level ProjectApi (auto-generated)
@@ -59,10 +59,10 @@ final class ProjectApi extends AbstractApi
      * build cache. More information on [clearing the build cache can be found in our user
      * documentation.](https://docs.upsun.com/anchors/troubleshoot/clear-build-cache/)
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project/operation/action-projects-clear-build-cache
      */
@@ -77,9 +77,9 @@ final class ProjectApi extends AbstractApi
     /**
      * Clear project build cache with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function actionProjectsClearBuildCacheWithHttpInfo(
         string $projectId
@@ -207,10 +207,10 @@ final class ProjectApi extends AbstractApi
      *
      * Retrieve the details of a single project.
      *
-     * @return Project
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Project
      *
      * @see https://docs.upsun.com/api/#tag/Project/operation/get-projects
      */
@@ -225,9 +225,9 @@ final class ProjectApi extends AbstractApi
     /**
      * Get a project with HTTP Info
      *
-     * @return Project
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Project
      */
     private function getProjectsWithHttpInfo(
         string $projectId
@@ -356,10 +356,10 @@ final class ProjectApi extends AbstractApi
      * Get a list of capabilities on a project, as defined by the billing system. For instance, one special capability
      * that could be defined on a project is large development environments.
      *
-     * @return ProjectCapabilities
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ProjectCapabilities
      *
      * @see https://docs.upsun.com/api/#tag/Project/operation/get-projects-capabilities
      */
@@ -374,9 +374,9 @@ final class ProjectApi extends AbstractApi
     /**
      * Get a project's capabilities with HTTP Info
      *
-     * @return ProjectCapabilities
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ProjectCapabilities
      */
     private function getProjectsCapabilitiesWithHttpInfo(
         string $projectId
@@ -504,10 +504,10 @@ final class ProjectApi extends AbstractApi
      *
      * Update the details of an existing project.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project/operation/update-projects
      */
@@ -524,9 +524,9 @@ final class ProjectApi extends AbstractApi
     /**
      * Update a project with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsWithHttpInfo(
         string $projectId,

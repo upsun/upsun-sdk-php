@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Deployment;
-use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
-use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Deployment;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
 
 /**
  * Low level DeploymentApi (auto-generated)
@@ -57,10 +57,10 @@ final class DeploymentApi extends AbstractApi
      * Retrieve a single deployment configuration with an id of `current`. This may be subject to change in the future.
      * Only `current` can be queried.
      *
-     * @return Deployment
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Deployment
      *
      * @see https://docs.upsun.com/api/#tag/Deployment/operation/get-projects-environments-deployments
      */
@@ -79,9 +79,9 @@ final class DeploymentApi extends AbstractApi
     /**
      * Get a single environment deployment with HTTP Info
      *
-     * @return Deployment
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Deployment
      */
     private function getProjectsEnvironmentsDeploymentsWithHttpInfo(
         string $projectId,
@@ -262,10 +262,10 @@ final class DeploymentApi extends AbstractApi
      * settings, etc. are included here. This endpoint currently returns a list containing a single deployment
      * configuration with an `id` of `current`. This may be subject to change in the future.
      *
-     * @return Deployment[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Deployment[]
      *
      * @see https://docs.upsun.com/api/#tag/Deployment/operation/list-projects-environments-deployments
      */
@@ -282,9 +282,9 @@ final class DeploymentApi extends AbstractApi
     /**
      * Get an environment's deployment information with HTTP Info
      *
-     * @return Deployment[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Deployment[]
      */
     private function listProjectsEnvironmentsDeploymentsWithHttpInfo(
         string $projectId,
@@ -436,10 +436,10 @@ final class DeploymentApi extends AbstractApi
      *
      * Update resources for either webapps, services, or workers in the next deployment.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Deployment/operation/update-projects-environments-deployments-next
      */
@@ -458,9 +458,9 @@ final class DeploymentApi extends AbstractApi
     /**
      * Update the next deployment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
         string $projectId,

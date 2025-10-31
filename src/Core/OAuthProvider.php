@@ -3,10 +3,10 @@
 namespace Upsun\Core;
 
 use Exception;
+use Nyholm\Psr7\Stream;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
-use Psr\Http\Client\ClientExceptionInterface;
-use Nyholm\Psr7\Stream;
 
 /**
  *  class (auto-generated)

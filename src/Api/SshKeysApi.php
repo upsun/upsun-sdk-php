@@ -2,18 +2,18 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateSshKeyRequest;
-use Upsun\Model\SshKey;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CreateSshKeyRequest;
+use Upsun\Model\SshKey;
 
 /**
  * Low level SshKeysApi (auto-generated)
@@ -54,10 +54,10 @@ final class SshKeysApi extends AbstractApi
      * Add a new public SSH key to a user
      *
      *
-     * @return SshKey
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return SshKey
      *
      * @see https://docs.upsun.com/api/#tag/Ssh-Keys/operation/create-ssh-key
      */
@@ -72,9 +72,9 @@ final class SshKeysApi extends AbstractApi
     /**
      * Add a new public SSH key to a user with HTTP Info
      *
-     * @return SshKey
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return SshKey
      */
     private function createSshKeyWithHttpInfo(
         ?CreateSshKeyRequest $createSshKeyRequest = null
@@ -189,8 +189,8 @@ final class SshKeysApi extends AbstractApi
      * Delete an SSH key
      *
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Ssh-Keys/operation/delete-ssh-key
      */
@@ -326,10 +326,10 @@ final class SshKeysApi extends AbstractApi
      * Get an SSH key
      *
      *
-     * @return SshKey
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return SshKey
      *
      * @see https://docs.upsun.com/api/#tag/Ssh-Keys/operation/get-ssh-key
      */
@@ -344,9 +344,9 @@ final class SshKeysApi extends AbstractApi
     /**
      * Get an SSH key with HTTP Info
      *
-     * @return SshKey
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return SshKey
      */
     private function getSshKeyWithHttpInfo(
         int $keyId

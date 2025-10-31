@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Invoice;
-use Upsun\Model\ListOrgInvoices200Response;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Invoice;
+use Upsun\Model\ListOrgInvoices200Response;
 
 /**
  * Low level InvoicesApi (auto-generated)
@@ -56,10 +56,10 @@ final class InvoicesApi extends AbstractApi
      *
      * Retrieves an invoice for the specified organization.
      *
-     * @return Invoice
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Invoice
      *
      * @see https://docs.upsun.com/api/#tag/Invoices/operation/get-org-invoice
      */
@@ -76,9 +76,9 @@ final class InvoicesApi extends AbstractApi
     /**
      * Get invoice with HTTP Info
      *
-     * @return Invoice
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Invoice
      */
     private function getOrgInvoiceWithHttpInfo(
         string $invoiceId,
@@ -230,10 +230,10 @@ final class InvoicesApi extends AbstractApi
      *
      * Retrieves a list of invoices for the specified organization.
      *
-     * @return ListOrgInvoices200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListOrgInvoices200Response
      *
      * @see https://docs.upsun.com/api/#tag/Invoices/operation/list-org-invoices
      */
@@ -256,9 +256,9 @@ final class InvoicesApi extends AbstractApi
     /**
      * List invoices with HTTP Info
      *
-     * @return ListOrgInvoices200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListOrgInvoices200Response
      */
     private function listOrgInvoicesWithHttpInfo(
         string $organizationId,

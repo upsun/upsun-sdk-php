@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\ProjectSettings;
-use Upsun\Model\ProjectSettingsPatch;
-use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\ProjectSettings;
+use Upsun\Model\ProjectSettingsPatch;
 
 /**
  * Low level ProjectSettingsApi (auto-generated)
@@ -56,10 +56,10 @@ final class ProjectSettingsApi extends AbstractApi
      *
      * Retrieve the global settings for a project.
      *
-     * @return ProjectSettings
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ProjectSettings
      *
      * @see https://docs.upsun.com/api/#tag/Project-Settings/operation/get-projects-settings
      */
@@ -74,9 +74,9 @@ final class ProjectSettingsApi extends AbstractApi
     /**
      * Get list of project settings with HTTP Info
      *
-     * @return ProjectSettings
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ProjectSettings
      */
     private function getProjectsSettingsWithHttpInfo(
         string $projectId
@@ -204,10 +204,10 @@ final class ProjectSettingsApi extends AbstractApi
      *
      * Update one or more project-level settings.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project-Settings/operation/update-projects-settings
      */
@@ -224,9 +224,9 @@ final class ProjectSettingsApi extends AbstractApi
     /**
      * Update a project setting with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsSettingsWithHttpInfo(
         string $projectId,

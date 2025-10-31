@@ -2,18 +2,18 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\GetUsageAlerts200Response;
-use Upsun\Model\UpdateUsageAlertsRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\GetUsageAlerts200Response;
+use Upsun\Model\UpdateUsageAlertsRequest;
 
 /**
  * Low level AlertsApi (auto-generated)
@@ -54,10 +54,10 @@ final class AlertsApi extends AbstractApi
      * Get usage alerts for a subscription
      *
      *
-     * @return GetUsageAlerts200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return GetUsageAlerts200Response
      *
      * @see https://docs.upsun.com/api/#tag/Alerts/operation/get-usage-alerts
      */
@@ -72,9 +72,9 @@ final class AlertsApi extends AbstractApi
     /**
      * Get usage alerts for a subscription with HTTP Info
      *
-     * @return GetUsageAlerts200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return GetUsageAlerts200Response
      */
     private function getUsageAlertsWithHttpInfo(
         string $subscriptionId
@@ -201,10 +201,10 @@ final class AlertsApi extends AbstractApi
      * Update usage alerts.
      *
      *
-     * @return GetUsageAlerts200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return GetUsageAlerts200Response
      *
      * @see https://docs.upsun.com/api/#tag/Alerts/operation/update-usage-alerts
      */
@@ -221,9 +221,9 @@ final class AlertsApi extends AbstractApi
     /**
      * Update usage alerts. with HTTP Info
      *
-     * @return GetUsageAlerts200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return GetUsageAlerts200Response
      */
     private function updateUsageAlertsWithHttpInfo(
         string $subscriptionId,

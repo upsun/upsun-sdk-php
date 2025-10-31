@@ -2,30 +2,30 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CanCreateNewOrgSubscription200Response;
-use Upsun\Model\CanUpdateSubscription200Response;
 use DateTime;
-use Upsun\Model\CreateOrgSubscriptionRequest;
-use Upsun\Model\Subscription;
-use Upsun\Model\EstimationObject;
-use Upsun\Model\SubscriptionCurrentUsageObject;
-use Upsun\Model\GetSubscriptionUsageAlerts200Response;
-use Upsun\Model\StringFilter;
-use Upsun\Model\DateTimeFilter;
-use Upsun\Model\ListOrgSubscriptions200Response;
-use Upsun\Model\SubscriptionAddonsObject;
-use Upsun\Model\UpdateOrgSubscriptionRequest;
-use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\CanUpdateSubscription200Response;
+use Upsun\Model\CreateOrgSubscriptionRequest;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\EstimationObject;
+use Upsun\Model\GetSubscriptionUsageAlerts200Response;
+use Upsun\Model\ListOrgSubscriptions200Response;
+use Upsun\Model\StringFilter;
+use Upsun\Model\Subscription;
+use Upsun\Model\SubscriptionAddonsObject;
+use Upsun\Model\SubscriptionCurrentUsageObject;
+use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
 
 /**
  * Low level SubscriptionsApi (auto-generated)
@@ -66,10 +66,10 @@ final class SubscriptionsApi extends AbstractApi
      * Checks if the user is able to create a new project.
      *
      *
-     * @return CanCreateNewOrgSubscription200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return CanCreateNewOrgSubscription200Response
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/can-create-new-org-subscription
      */
@@ -84,9 +84,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Checks if the user is able to create a new project. with HTTP Info
      *
-     * @return CanCreateNewOrgSubscription200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return CanCreateNewOrgSubscription200Response
      */
     private function canCreateNewOrgSubscriptionWithHttpInfo(
         string $organizationId
@@ -213,10 +213,10 @@ final class SubscriptionsApi extends AbstractApi
      * Checks if the user is able to update a project.
      *
      *
-     * @return CanUpdateSubscription200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return CanUpdateSubscription200Response
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/can-update-subscription
      */
@@ -239,9 +239,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Checks if the user is able to update a project. with HTTP Info
      *
-     * @return CanUpdateSubscription200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return CanUpdateSubscription200Response
      */
     private function canUpdateSubscriptionWithHttpInfo(
         string $subscriptionId,
@@ -444,10 +444,10 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Creates a subscription for the specified organization.
      *
-     * @return Subscription
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Subscription
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/create-org-subscription
      */
@@ -464,9 +464,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create subscription with HTTP Info
      *
-     * @return Subscription
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Subscription
      */
     private function createOrgSubscriptionWithHttpInfo(
         string $organizationId,
@@ -617,8 +617,8 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Deletes a subscription for the specified organization.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/delete-org-subscription
      */
@@ -780,10 +780,10 @@ final class SubscriptionsApi extends AbstractApi
      * Estimate the price of a new subscription
      *
      *
-     * @return EstimationObject
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return EstimationObject
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/estimate-new-org-subscription
      */
@@ -808,9 +808,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Estimate the price of a new subscription with HTTP Info
      *
-     * @return EstimationObject
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return EstimationObject
      */
     private function estimateNewOrgSubscriptionWithHttpInfo(
         string $organizationId,
@@ -1075,10 +1075,10 @@ final class SubscriptionsApi extends AbstractApi
      * Estimate the price of a subscription
      *
      *
-     * @return EstimationObject
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return EstimationObject
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/estimate-org-subscription
      */
@@ -1105,9 +1105,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Estimate the price of a subscription with HTTP Info
      *
-     * @return EstimationObject
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return EstimationObject
      */
     private function estimateOrgSubscriptionWithHttpInfo(
         string $organizationId,
@@ -1364,10 +1364,10 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Retrieves a subscription for the specified organization.
      *
-     * @return Subscription
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Subscription
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-org-subscription
      */
@@ -1384,9 +1384,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Get subscription with HTTP Info
      *
-     * @return Subscription
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Subscription
      */
     private function getOrgSubscriptionWithHttpInfo(
         string $organizationId,
@@ -1537,10 +1537,10 @@ final class SubscriptionsApi extends AbstractApi
      * Get current usage for a subscription
      *
      *
-     * @return SubscriptionCurrentUsageObject
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return SubscriptionCurrentUsageObject
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-org-subscription-current-usage
      */
@@ -1561,9 +1561,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Get current usage for a subscription with HTTP Info
      *
-     * @return SubscriptionCurrentUsageObject
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return SubscriptionCurrentUsageObject
      */
     private function getOrgSubscriptionCurrentUsageWithHttpInfo(
         string $organizationId,
@@ -1752,10 +1752,10 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Retrieves current and available usage alerts.
      *
-     * @return GetSubscriptionUsageAlerts200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return GetSubscriptionUsageAlerts200Response
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-subscription-usage-alerts
      */
@@ -1772,9 +1772,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Get usage alerts with HTTP Info
      *
-     * @return GetSubscriptionUsageAlerts200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return GetSubscriptionUsageAlerts200Response
      */
     private function getSubscriptionUsageAlertsWithHttpInfo(
         string $organizationId,
@@ -1926,10 +1926,10 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Retrieves subscriptions for the specified organization.
      *
-     * @return ListOrgSubscriptions200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListOrgSubscriptions200Response
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/list-org-subscriptions
      */
@@ -1964,9 +1964,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * List subscriptions with HTTP Info
      *
-     * @return ListOrgSubscriptions200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListOrgSubscriptions200Response
      */
     private function listOrgSubscriptionsWithHttpInfo(
         string $organizationId,
@@ -2297,10 +2297,10 @@ final class SubscriptionsApi extends AbstractApi
      * List addons for a subscription
      *
      *
-     * @return SubscriptionAddonsObject
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return SubscriptionAddonsObject
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/list-subscription-addons
      */
@@ -2317,9 +2317,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * List addons for a subscription with HTTP Info
      *
-     * @return SubscriptionAddonsObject
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return SubscriptionAddonsObject
      */
     private function listSubscriptionAddonsWithHttpInfo(
         string $organizationId,
@@ -2471,10 +2471,10 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Updates a subscription for the specified organization.
      *
-     * @return Subscription
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Subscription
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/update-org-subscription
      */
@@ -2493,9 +2493,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Update subscription with HTTP Info
      *
-     * @return Subscription
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Subscription
      */
     private function updateOrgSubscriptionWithHttpInfo(
         string $organizationId,
@@ -2658,10 +2658,10 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Updates usage alerts for a subscription.
      *
-     * @return GetSubscriptionUsageAlerts200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return GetSubscriptionUsageAlerts200Response
      *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/update-subscription-usage-alerts
      */
@@ -2680,9 +2680,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Update usage alerts. with HTTP Info
      *
-     * @return GetSubscriptionUsageAlerts200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return GetSubscriptionUsageAlerts200Response
      */
     private function updateSubscriptionUsageAlertsWithHttpInfo(
         string $organizationId,

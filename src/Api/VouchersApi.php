@@ -2,18 +2,18 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\ApplyOrgVoucherRequest;
-use Upsun\Model\Vouchers;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ApplyOrgVoucherRequest;
+use Upsun\Model\Vouchers;
 
 /**
  * Low level VouchersApi (auto-generated)
@@ -55,8 +55,8 @@ final class VouchersApi extends AbstractApi
      *
      * Applies a voucher for the specified organization, and refreshes the currently open order.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Vouchers/operation/apply-org-voucher
      */
@@ -218,10 +218,10 @@ final class VouchersApi extends AbstractApi
      *
      * Retrieves vouchers for the specified organization.
      *
-     * @return Vouchers
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Vouchers
      *
      * @see https://docs.upsun.com/api/#tag/Vouchers/operation/list-org-vouchers
      */
@@ -236,9 +236,9 @@ final class VouchersApi extends AbstractApi
     /**
      * List vouchers with HTTP Info
      *
-     * @return Vouchers
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Vouchers
      */
     private function listOrgVouchersWithHttpInfo(
         string $organizationId

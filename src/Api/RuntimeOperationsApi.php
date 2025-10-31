@@ -2,18 +2,18 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\EnvironmentOperationInput;
-use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentOperationInput;
 
 /**
  * Low level RuntimeOperationsApi (auto-generated)
@@ -58,10 +58,10 @@ final class RuntimeOperationsApi extends AbstractApi
      * configuration. More information on runtime operations is [available in our user
      * documentation](https://docs.upsun.com/anchors/app/runtime-operations/).
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Runtime-Operations/operation/run-operation
      */
@@ -82,9 +82,9 @@ final class RuntimeOperationsApi extends AbstractApi
     /**
      * Execute a runtime operation with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function runOperationWithHttpInfo(
         string $projectId,

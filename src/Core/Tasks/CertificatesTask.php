@@ -71,10 +71,10 @@ class CertificatesTask extends TaskBase
     /**
      * Gets list of SSL certificates
      *
-     * @return Certificate[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @return Certificate[]
      */
     public function list(string $projectId): array
     {

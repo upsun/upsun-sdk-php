@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Discount;
-use Upsun\Model\GetTypeAllowance200Response;
-use Upsun\Model\ListOrgDiscounts200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Discount;
+use Upsun\Model\GetTypeAllowance200Response;
+use Upsun\Model\ListOrgDiscounts200Response;
 
 /**
  * Low level DiscountsApi (auto-generated)
@@ -55,10 +55,10 @@ final class DiscountsApi extends AbstractApi
      * Get an organization discount
      *
      *
-     * @return Discount
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Discount
      *
      * @see https://docs.upsun.com/api/#tag/Discounts/operation/get-discount
      */
@@ -73,9 +73,9 @@ final class DiscountsApi extends AbstractApi
     /**
      * Get an organization discount with HTTP Info
      *
-     * @return Discount
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Discount
      */
     private function getDiscountWithHttpInfo(
         string $id
@@ -202,10 +202,10 @@ final class DiscountsApi extends AbstractApi
      * Get the value of the First Project Incentive discount
      *
      *
-     * @return GetTypeAllowance200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return GetTypeAllowance200Response
      *
      * @see https://docs.upsun.com/api/#tag/Discounts/operation/get-type-allowance
      */
@@ -218,9 +218,9 @@ final class DiscountsApi extends AbstractApi
     /**
      * Get the value of the First Project Incentive discount with HTTP Info
      *
-     * @return GetTypeAllowance200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return GetTypeAllowance200Response
      */
     private function getTypeAllowanceWithHttpInfo(): GetTypeAllowance200Response
     {
@@ -324,10 +324,10 @@ final class DiscountsApi extends AbstractApi
      *
      * Retrieves all applicable discounts granted to the specified organization.
      *
-     * @return ListOrgDiscounts200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListOrgDiscounts200Response
      *
      * @see https://docs.upsun.com/api/#tag/Discounts/operation/list-org-discounts
      */
@@ -342,9 +342,9 @@ final class DiscountsApi extends AbstractApi
     /**
      * List organization discounts with HTTP Info
      *
-     * @return ListOrgDiscounts200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListOrgDiscounts200Response
      */
     private function listOrgDiscountsWithHttpInfo(
         string $organizationId

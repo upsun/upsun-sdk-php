@@ -2,18 +2,18 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\OrganizationAddonsObject;
-use Upsun\Model\UpdateOrgAddonsRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\OrganizationAddonsObject;
+use Upsun\Model\UpdateOrgAddonsRequest;
 
 /**
  * Low level AddOnsApi (auto-generated)
@@ -55,10 +55,10 @@ final class AddOnsApi extends AbstractApi
      *
      * Retrieves information about the add-ons for an organization.
      *
-     * @return OrganizationAddonsObject
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationAddonsObject
      *
      * @see https://docs.upsun.com/api/#tag/Add-ons/operation/get-org-addons
      */
@@ -73,9 +73,9 @@ final class AddOnsApi extends AbstractApi
     /**
      * Get add-ons with HTTP Info
      *
-     * @return OrganizationAddonsObject
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationAddonsObject
      */
     private function getOrgAddonsWithHttpInfo(
         string $organizationId
@@ -203,10 +203,10 @@ final class AddOnsApi extends AbstractApi
      *
      * Updates the add-ons configuration for an organization.
      *
-     * @return OrganizationAddonsObject
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationAddonsObject
      *
      * @see https://docs.upsun.com/api/#tag/Add-ons/operation/update-org-addons
      */
@@ -223,9 +223,9 @@ final class AddOnsApi extends AbstractApi
     /**
      * Update organization add-ons with HTTP Info
      *
-     * @return OrganizationAddonsObject
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationAddonsObject
      */
     private function updateOrgAddonsWithHttpInfo(
         string $organizationId,

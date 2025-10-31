@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\UserProjectAccess;
-use Upsun\Model\ListProjectUserAccess200Response;
 use DateTime;
-use Upsun\Model\UpdateProjectUserAccessRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ListProjectUserAccess200Response;
+use Upsun\Model\UpdateProjectUserAccessRequest;
+use Upsun\Model\UserProjectAccess;
 
 /**
  * Low level UserAccessApi (auto-generated)
@@ -57,10 +57,10 @@ final class UserAccessApi extends AbstractApi
      *
      * Retrieves the user's permissions for the current project.
      *
-     * @return UserProjectAccess
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return UserProjectAccess
      *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/get-project-user-access
      */
@@ -77,9 +77,9 @@ final class UserAccessApi extends AbstractApi
     /**
      * Get user access for a project with HTTP Info
      *
-     * @return UserProjectAccess
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return UserProjectAccess
      */
     private function getProjectUserAccessWithHttpInfo(
         string $projectId,
@@ -231,10 +231,10 @@ final class UserAccessApi extends AbstractApi
      *
      * Retrieves the user's permissions for the current project.
      *
-     * @return UserProjectAccess
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return UserProjectAccess
      *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/get-user-project-access
      */
@@ -251,9 +251,9 @@ final class UserAccessApi extends AbstractApi
     /**
      * Get project access for a user with HTTP Info
      *
-     * @return UserProjectAccess
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return UserProjectAccess
      */
     private function getUserProjectAccessWithHttpInfo(
         string $userId,
@@ -405,8 +405,8 @@ final class UserAccessApi extends AbstractApi
      *
      * Grants one or more users access to a specific project.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/grant-project-user-access
      */
@@ -568,8 +568,8 @@ final class UserAccessApi extends AbstractApi
      *
      * Adds the user to one or more specified projects.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/grant-user-project-access
      */
@@ -731,10 +731,10 @@ final class UserAccessApi extends AbstractApi
      *
      * Returns a list of items representing the project access.
      *
-     * @return ListProjectUserAccess200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListProjectUserAccess200Response
      *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/list-project-user-access
      */
@@ -757,9 +757,9 @@ final class UserAccessApi extends AbstractApi
     /**
      * List user access for a project with HTTP Info
      *
-     * @return ListProjectUserAccess200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListProjectUserAccess200Response
      */
     private function listProjectUserAccessWithHttpInfo(
         string $projectId,
@@ -977,10 +977,10 @@ final class UserAccessApi extends AbstractApi
      *
      * Returns a list of items representing the user's project access.
      *
-     * @return ListProjectUserAccess200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListProjectUserAccess200Response
      *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/list-user-project-access
      */
@@ -1005,9 +1005,9 @@ final class UserAccessApi extends AbstractApi
     /**
      * List project access for a user with HTTP Info
      *
-     * @return ListProjectUserAccess200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListProjectUserAccess200Response
      */
     private function listUserProjectAccessWithHttpInfo(
         string $userId,
@@ -1244,8 +1244,8 @@ final class UserAccessApi extends AbstractApi
      *
      * Removes the user from the current project.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/remove-project-user-access
      */
@@ -1408,8 +1408,8 @@ final class UserAccessApi extends AbstractApi
      *
      * Removes the user from the current project.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/remove-user-project-access
      */
@@ -1572,8 +1572,8 @@ final class UserAccessApi extends AbstractApi
      *
      * Updates the user's permissions for the current project.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/update-project-user-access
      */
@@ -1749,8 +1749,8 @@ final class UserAccessApi extends AbstractApi
      *
      * Updates the user's permissions for the current project.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/update-user-project-access
      */

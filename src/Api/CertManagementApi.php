@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CertificateCreateInput;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Certificate;
-use Upsun\Model\CertificatePatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Certificate;
+use Upsun\Model\CertificateCreateInput;
+use Upsun\Model\CertificatePatch;
 
 /**
  * Low level CertManagementApi (auto-generated)
@@ -57,10 +57,10 @@ final class CertManagementApi extends AbstractApi
      *
      * Add a single SSL certificate to a project.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/create-projects-certificates
      */
@@ -77,9 +77,9 @@ final class CertManagementApi extends AbstractApi
     /**
      * Add an SSL certificate with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function createProjectsCertificatesWithHttpInfo(
         string $projectId,
@@ -230,10 +230,10 @@ final class CertManagementApi extends AbstractApi
      *
      * Delete a single SSL certificate associated with a project.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/delete-projects-certificates
      */
@@ -250,9 +250,9 @@ final class CertManagementApi extends AbstractApi
     /**
      * Delete an SSL certificate with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deleteProjectsCertificatesWithHttpInfo(
         string $projectId,
@@ -404,10 +404,10 @@ final class CertManagementApi extends AbstractApi
      *
      * Retrieve information about a single SSL certificate associated with a project.
      *
-     * @return Certificate
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Certificate
      *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/get-projects-certificates
      */
@@ -424,9 +424,9 @@ final class CertManagementApi extends AbstractApi
     /**
      * Get an SSL certificate with HTTP Info
      *
-     * @return Certificate
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Certificate
      */
     private function getProjectsCertificatesWithHttpInfo(
         string $projectId,
@@ -578,10 +578,10 @@ final class CertManagementApi extends AbstractApi
      *
      * Retrieve a list of objects representing the SSL certificates associated with a project.
      *
-     * @return Certificate[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Certificate[]
      *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/list-projects-certificates
      */
@@ -596,9 +596,9 @@ final class CertManagementApi extends AbstractApi
     /**
      * Get list of SSL certificates with HTTP Info
      *
-     * @return Certificate[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Certificate[]
      */
     private function listProjectsCertificatesWithHttpInfo(
         string $projectId
@@ -726,10 +726,10 @@ final class CertManagementApi extends AbstractApi
      *
      * Update a single SSL certificate associated with a project.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/update-projects-certificates
      */
@@ -748,9 +748,9 @@ final class CertManagementApi extends AbstractApi
     /**
      * Update an SSL certificate with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsCertificatesWithHttpInfo(
         string $projectId,

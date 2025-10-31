@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateProjectInviteRequest;
-use Upsun\Model\ProjectInvitation;
-use Upsun\Model\StringFilter;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CreateProjectInviteRequest;
+use Upsun\Model\ProjectInvitation;
+use Upsun\Model\StringFilter;
 
 /**
  * Low level ProjectInvitationsApi (auto-generated)
@@ -57,8 +57,8 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * Cancels the specified invitation.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Project-Invitations/operation/cancel-project-invite
      */
@@ -221,10 +221,10 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * Creates an invitation to a project for a user with the specified email address.
      *
-     * @return ProjectInvitation
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ProjectInvitation
      *
      * @see https://docs.upsun.com/api/#tag/Project-Invitations/operation/create-project-invite
      */
@@ -241,9 +241,9 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * Invite user to a project by email with HTTP Info
      *
-     * @return ProjectInvitation
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ProjectInvitation
      */
     private function createProjectInviteWithHttpInfo(
         string $projectId,
@@ -382,10 +382,10 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * Returns a list of invitations to a project.
      *
-     * @return ProjectInvitation[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ProjectInvitation[]
      *
      * @see https://docs.upsun.com/api/#tag/Project-Invitations/operation/list-project-invites
      */
@@ -410,9 +410,9 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * List invitations to a project with HTTP Info
      *
-     * @return ProjectInvitation[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ProjectInvitation[]
      */
     private function listProjectInvitesWithHttpInfo(
         string $projectId,

@@ -2,17 +2,17 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Connection;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Connection;
 
 /**
  * Low level ConnectionsApi (auto-generated)
@@ -54,8 +54,8 @@ final class ConnectionsApi extends AbstractApi
      *
      * Deletes the specified connection.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Connections/operation/delete-login-connection
      */
@@ -218,10 +218,10 @@ final class ConnectionsApi extends AbstractApi
      *
      * Retrieves the specified connection.
      *
-     * @return Connection
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Connection
      *
      * @see https://docs.upsun.com/api/#tag/Connections/operation/get-login-connection
      */
@@ -238,9 +238,9 @@ final class ConnectionsApi extends AbstractApi
     /**
      * Get a federated login connection with HTTP Info
      *
-     * @return Connection
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Connection
      */
     private function getLoginConnectionWithHttpInfo(
         string $provider,
@@ -392,10 +392,10 @@ final class ConnectionsApi extends AbstractApi
      *
      * Retrieves a list of connections associated with a single user.
      *
-     * @return Connection[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Connection[]
      *
      * @see https://docs.upsun.com/api/#tag/Connections/operation/list-login-connections
      */
@@ -410,9 +410,9 @@ final class ConnectionsApi extends AbstractApi
     /**
      * List federated login connections with HTTP Info
      *
-     * @return Connection[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Connection[]
      */
     private function listLoginConnectionsWithHttpInfo(
         string $userId

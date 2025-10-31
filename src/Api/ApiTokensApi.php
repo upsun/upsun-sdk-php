@@ -2,18 +2,18 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateApiTokenRequest;
-use Upsun\Model\ApiToken;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ApiToken;
+use Upsun\Model\CreateApiTokenRequest;
 
 /**
  * Low level ApiTokensApi (auto-generated)
@@ -55,10 +55,10 @@ final class ApiTokensApi extends AbstractApi
      *
      * Creates an API token
      *
-     * @return ApiToken
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ApiToken
      *
      * @see https://docs.upsun.com/api/#tag/Api-Tokens/operation/create-api-token
      */
@@ -75,9 +75,9 @@ final class ApiTokensApi extends AbstractApi
     /**
      * Create an API token with HTTP Info
      *
-     * @return ApiToken
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ApiToken
      */
     private function createApiTokenWithHttpInfo(
         string $userId,
@@ -216,8 +216,8 @@ final class ApiTokensApi extends AbstractApi
      *
      * Deletes an API token
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Api-Tokens/operation/delete-api-token
      */
@@ -380,10 +380,10 @@ final class ApiTokensApi extends AbstractApi
      *
      * Retrieves the specified API token.
      *
-     * @return ApiToken
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ApiToken
      *
      * @see https://docs.upsun.com/api/#tag/Api-Tokens/operation/get-api-token
      */
@@ -400,9 +400,9 @@ final class ApiTokensApi extends AbstractApi
     /**
      * Get an API token with HTTP Info
      *
-     * @return ApiToken
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ApiToken
      */
     private function getApiTokenWithHttpInfo(
         string $userId,
@@ -554,10 +554,10 @@ final class ApiTokensApi extends AbstractApi
      *
      * Retrieves a list of API tokens associated with a single user.
      *
-     * @return ApiToken[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ApiToken[]
      *
      * @see https://docs.upsun.com/api/#tag/Api-Tokens/operation/list-api-tokens
      */
@@ -572,9 +572,9 @@ final class ApiTokensApi extends AbstractApi
     /**
      * List a user's API tokens with HTTP Info
      *
-     * @return ApiToken[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ApiToken[]
      */
     private function listApiTokensWithHttpInfo(
         string $userId

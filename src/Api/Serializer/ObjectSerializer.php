@@ -2,17 +2,17 @@
 
 namespace Upsun\Api\Serializer;
 
-use ReflectionClass;
-use stdClass;
-use SplFileObject;
 use DateTime;
 use DateTimeInterface;
 use Exception;
+use GuzzleHttp\Psr7\Utils;
 use InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
-use GuzzleHttp\Psr7\Utils;
-use Upsun\Model\ModelInterface;
+use ReflectionClass;
+use SplFileObject;
+use stdClass;
 use Upsun\Api\ApiConfiguration;
+use Upsun\Model\Model;
 
 /**
  * ObjectSerializer Class Doc Comment
@@ -53,7 +53,7 @@ class ObjectSerializer
 
         if (is_object($data)) {
             $values = [];
-            if ($data instanceof ModelInterface) {
+            if ($data instanceof Model) {
                 $formats = ApiObjectFormatsMapper::openApiFormats($data->getModelName());
 
                 foreach (ApiObjectTypesMapper::openApiTypes($data->getModelName()) as $property => $openApiType) {
@@ -165,7 +165,7 @@ class ObjectSerializer
                 throw new InvalidArgumentException('Data must be an array to deserialize into ' . $class);
             }
 
-            return array_map(fn($item) => self::deserializeSimplifiedModel($item, $subClass), $data);
+            return array_map(fn ($item) => self::deserializeSimplifiedModel($item, $subClass), $data);
         }
 
         $fullClass = ltrim($class, '\\');
@@ -233,7 +233,7 @@ class ObjectSerializer
                 if (str_ends_with($typeName, '[]')) {
                     $subClass = substr($typeName, 0, -2);
                     $args[] = $value !== null
-                        ? array_map(fn($item) => self::deserializeSimplifiedModel($item, $subClass), (array)$value)
+                        ? array_map(fn ($item) => self::deserializeSimplifiedModel($item, $subClass), (array)$value)
                         : [];
                     continue;
                 }
@@ -264,7 +264,7 @@ class ObjectSerializer
                 } elseif ($typeName === 'DateTime') {
                     $args[] = $value !== null ? new DateTime($value) : null;
                 } elseif (class_exists($typeName)) {
-                    if (is_string($value) && in_array('getAllowableEnumValues', get_class_methods($typeName))) {
+                    if (is_string($value) && in_array('getAllowableEnumValues', get_class_methods($typeName), true)) {
                         // Generated Enum
                         $args[] = new $typeName($value);
                     } else {
@@ -303,7 +303,7 @@ class ObjectSerializer
         }
 
         // Handle any class with array properties
-        if (class_exists($class) && is_subclass_of($class, ModelInterface::class)) {
+        if (class_exists($class) && is_subclass_of($class, Model::class)) {
             if (is_array($data)) {
                 $data = self::preprocessArrayProperties($data, $class);
             }
@@ -447,13 +447,13 @@ class ObjectSerializer
 
         $castBool =
             ApiConfiguration::BOOLEAN_FORMAT_INT
-                == ApiConfiguration::getDefaultConfiguration()->getBooleanFormatForQueryString()
+                === ApiConfiguration::getDefaultConfiguration()->getBooleanFormatForQueryString()
             ? function ($v) {
                 return (int)$v;
             }
-            : function ($v) {
-                return $v ? 'true' : 'false';
-            };
+        : function ($v) {
+            return $v ? 'true' : 'false';
+        };
 
         $qs = '';
         foreach ($params as $k => $v) {

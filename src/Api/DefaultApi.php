@@ -3,19 +3,19 @@
 namespace Upsun\Api;
 
 use DateTime;
-use Upsun\Model\ListTickets200Response;
-use Upsun\Model\DateTimeFilter;
-use Upsun\Model\OrganizationCarbon;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\ListTickets200Response;
+use Upsun\Model\OrganizationCarbon;
 
 /**
  * Low level DefaultApi (auto-generated)
@@ -56,10 +56,10 @@ final class DefaultApi extends AbstractApi
      * List support tickets
      *
      *
-     * @return ListTickets200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListTickets200Response
      *
      * @see https://docs.upsun.com/api/#tag//operation/list-tickets
      */
@@ -98,9 +98,9 @@ final class DefaultApi extends AbstractApi
     /**
      * List support tickets with HTTP Info
      *
-     * @return ListTickets200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListTickets200Response
      */
     private function listTicketsWithHttpInfo(
         ?int $filterTicketId = null,
@@ -451,10 +451,10 @@ final class DefaultApi extends AbstractApi
      *
      * Queries the carbon emission data for all projects owned by the specified organiation.
      *
-     * @return OrganizationCarbon
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationCarbon
      *
      * @see https://docs.upsun.com/api/#tag//operation/query-organiation-carbon
      */
@@ -475,9 +475,9 @@ final class DefaultApi extends AbstractApi
     /**
      * Query project carbon emissions metrics for an entire organization with HTTP Info
      *
-     * @return OrganizationCarbon
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationCarbon
      */
     private function queryOrganiationCarbonWithHttpInfo(
         string $organizationId,

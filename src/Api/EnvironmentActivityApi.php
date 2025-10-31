@@ -2,18 +2,18 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Activity;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Activity;
 
 /**
  * Low level EnvironmentActivityApi (auto-generated)
@@ -57,10 +57,10 @@ final class EnvironmentActivityApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Activity/paths//projects/{projectId}/environments/{environmentId}/activities/get)
      * endpoint. Please note that not all activities are cancelable.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/action-projects-environments-activities-cancel
      */
@@ -79,9 +79,9 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Cancel an environment activity with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
         string $projectId,
@@ -260,10 +260,10 @@ final class EnvironmentActivityApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Activity/paths//projects/{projectId}/environments/{environmentId}/activities/get)
      * endpoint. See the documentation on that endpoint for details about the information this endpoint can return.
      *
-     * @return Activity
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Activity
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/get-projects-environments-activities
      */
@@ -282,9 +282,9 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Get an environment activity log entry with HTTP Info
      *
-     * @return Activity
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Activity
      */
     private function getProjectsEnvironmentsActivitiesWithHttpInfo(
         string $projectId,
@@ -468,10 +468,10 @@ final class EnvironmentActivityApi extends AbstractApi
      * `environment.push` action's `payload` can contain objects representing the `environment`, the specific `commits`
      * included in the push, and the `user` who pushed.
      *
-     * @return Activity[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Activity[]
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/list-projects-environments-activities
      */
@@ -488,9 +488,9 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Get environment activity log with HTTP Info
      *
-     * @return Activity[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Activity[]
      */
     private function listProjectsEnvironmentsActivitiesWithHttpInfo(
         string $projectId,

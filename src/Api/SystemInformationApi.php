@@ -2,18 +2,18 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\SystemInformation;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\SystemInformation;
 
 /**
  * Low level SystemInformationApi (auto-generated)
@@ -55,10 +55,10 @@ final class SystemInformationApi extends AbstractApi
      *
      * Force the Git server to restart.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/System-Information/operation/action-projects-system-restart
      */
@@ -73,9 +73,9 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Restart the Git server with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function actionProjectsSystemRestartWithHttpInfo(
         string $projectId
@@ -203,10 +203,10 @@ final class SystemInformationApi extends AbstractApi
      *
      * Output information for the project.
      *
-     * @return SystemInformation
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return SystemInformation
      *
      * @see https://docs.upsun.com/api/#tag/System-Information/operation/get-projects-system
      */
@@ -221,9 +221,9 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Get information about the Git server. with HTTP Info
      *
-     * @return SystemInformation
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return SystemInformation
      */
     private function getProjectsSystemWithHttpInfo(
         string $projectId

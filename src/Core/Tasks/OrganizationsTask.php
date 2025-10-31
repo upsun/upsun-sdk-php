@@ -2,10 +2,9 @@
 
 namespace Upsun\Core\Tasks;
 
+use DateTime;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\AddOnsApi;
-use Upsun\Model\ListOrgs200Response;
-use DateTime;
 use Upsun\Api\ApiException;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
@@ -33,6 +32,7 @@ use Upsun\Model\ListOrgMembers200Response;
 use Upsun\Model\ListOrgOrders200Response;
 use Upsun\Model\ListOrgPlanRecords200Response;
 use Upsun\Model\ListOrgProjects200Response;
+use Upsun\Model\ListOrgs200Response;
 use Upsun\Model\ListOrgUsageRecords200Response;
 use Upsun\Model\ListTeams200Response;
 use Upsun\Model\ListUserOrgs200Response;
@@ -549,10 +549,10 @@ class OrganizationsTask extends TaskBase
     /**
      * Sends MFA reminders to organization members
      *
-     * @return SendOrgMfaReminders200ResponseValue[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @return SendOrgMfaReminders200ResponseValue[]
      */
     public function sendMfaReminders(string $organizationId, ?array $userIds = null): array
     {

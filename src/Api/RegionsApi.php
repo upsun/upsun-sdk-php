@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Region;
-use Upsun\Model\StringFilter;
-use Upsun\Model\ListRegions200Response;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ListRegions200Response;
+use Upsun\Model\Region;
+use Upsun\Model\StringFilter;
 
 /**
  * Low level RegionsApi (auto-generated)
@@ -57,10 +57,10 @@ final class RegionsApi extends AbstractApi
      *
      * Retrieves the specified region.
      *
-     * @return Region
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Region
      *
      * @see https://docs.upsun.com/api/#tag/Regions/operation/get-region
      */
@@ -75,9 +75,9 @@ final class RegionsApi extends AbstractApi
     /**
      * Get region with HTTP Info
      *
-     * @return Region
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Region
      */
     private function getRegionWithHttpInfo(
         string $regionId
@@ -205,10 +205,10 @@ final class RegionsApi extends AbstractApi
      *
      * Retrieves a list of available regions.
      *
-     * @return ListRegions200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListRegions200Response
      *
      * @see https://docs.upsun.com/api/#tag/Regions/operation/list-regions
      */
@@ -235,9 +235,9 @@ final class RegionsApi extends AbstractApi
     /**
      * List regions with HTTP Info
      *
-     * @return ListRegions200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListRegions200Response
      */
     private function listRegionsWithHttpInfo(
         ?StringFilter $filterAvailable = null,

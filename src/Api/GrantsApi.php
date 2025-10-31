@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\StringFilter;
-use Upsun\Model\ListUserExtendedAccess200Response;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ListUserExtendedAccess200Response;
+use Upsun\Model\StringFilter;
 
 /**
  * Low level GrantsApi (auto-generated)
@@ -57,10 +57,10 @@ final class GrantsApi extends AbstractApi
      * List extended access of the given user, which includes both individual and team access to project and
      * organization.
      *
-     * @return ListUserExtendedAccess200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListUserExtendedAccess200Response
      *
      * @see https://docs.upsun.com/api/#tag/Grants/operation/list-user-extended-access
      */
@@ -81,9 +81,9 @@ final class GrantsApi extends AbstractApi
     /**
      * List extended access of a user with HTTP Info
      *
-     * @return ListUserExtendedAccess200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListUserExtendedAccess200Response
      */
     private function listUserExtendedAccessWithHttpInfo(
         string $userId,

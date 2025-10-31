@@ -3,18 +3,18 @@
 namespace Upsun\Api;
 
 use DateTime;
-use Upsun\Model\ListOrgPlanRecords200Response;
-use Upsun\Model\ListOrgUsageRecords200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ListOrgPlanRecords200Response;
+use Upsun\Model\ListOrgUsageRecords200Response;
 
 /**
  * Low level RecordsApi (auto-generated)
@@ -56,10 +56,10 @@ final class RecordsApi extends AbstractApi
      *
      * Retrieves plan records for the specified organization.
      *
-     * @return ListOrgPlanRecords200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListOrgPlanRecords200Response
      *
      * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-plan-records
      */
@@ -90,9 +90,9 @@ final class RecordsApi extends AbstractApi
     /**
      * List plan records with HTTP Info
      *
-     * @return ListOrgPlanRecords200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListOrgPlanRecords200Response
      */
     private function listOrgPlanRecordsWithHttpInfo(
         string $organizationId,
@@ -371,10 +371,10 @@ final class RecordsApi extends AbstractApi
      *
      * Retrieves usage records for the specified organization.
      *
-     * @return ListOrgUsageRecords200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListOrgUsageRecords200Response
      *
      * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-usage-records
      */
@@ -399,9 +399,9 @@ final class RecordsApi extends AbstractApi
     /**
      * List usage records with HTTP Info
      *
-     * @return ListOrgUsageRecords200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListOrgUsageRecords200Response
      */
     private function listOrgUsageRecordsWithHttpInfo(
         string $organizationId,

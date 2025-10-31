@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\EnvironmentBackupInput;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Backup;
-use Upsun\Model\EnvironmentRestoreInput;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Backup;
+use Upsun\Model\EnvironmentBackupInput;
+use Upsun\Model\EnvironmentRestoreInput;
 
 /**
  * Low level EnvironmentBackupsApi (auto-generated)
@@ -58,10 +58,10 @@ final class EnvironmentBackupsApi extends AbstractApi
      * Trigger a new backup of an environment to be created. See the
      * [Backups](https://docs.upsun.com/anchors/environments/backup/) section of the documentation for more information.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/backup-environment
      */
@@ -80,9 +80,9 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Create backup of environment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function backupEnvironmentWithHttpInfo(
         string $projectId,
@@ -259,10 +259,10 @@ final class EnvironmentBackupsApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Backups/paths//projects/{projectId}/environments/{environmentId}/backups/get)
      * endpoint.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/delete-projects-environments-backups
      */
@@ -281,9 +281,9 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Delete an environment backup with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deleteProjectsEnvironmentsBackupsWithHttpInfo(
         string $projectId,
@@ -462,10 +462,10 @@ final class EnvironmentBackupsApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Backups/paths//projects/{projectId}/environments/{environmentId}/backups/get)
      * endpoint.
      *
-     * @return Backup
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Backup
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/get-projects-environments-backups
      */
@@ -484,9 +484,9 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Get an environment backup's info with HTTP Info
      *
-     * @return Backup
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Backup
      */
     private function getProjectsEnvironmentsBackupsWithHttpInfo(
         string $projectId,
@@ -662,10 +662,10 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * Retrieve a list of objects representing backups of this environment.
      *
-     * @return Backup[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Backup[]
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/list-projects-environments-backups
      */
@@ -682,9 +682,9 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Get an environment's backup list with HTTP Info
      *
-     * @return Backup[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Backup[]
      */
     private function listProjectsEnvironmentsBackupsWithHttpInfo(
         string $projectId,
@@ -838,10 +838,10 @@ final class EnvironmentBackupsApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Backups/paths//projects/{projectId}/environments/{environmentId}/backups/get)
      * endpoint.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/restore-backup
      */
@@ -862,9 +862,9 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Restore an environment snapshot with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function restoreBackupWithHttpInfo(
         string $projectId,

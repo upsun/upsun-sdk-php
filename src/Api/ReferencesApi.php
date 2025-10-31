@@ -3,21 +3,21 @@
 namespace Upsun\Api;
 
 use DateTime;
+use Exception;
+use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Upsun\Api\Serializer\ObjectSerializer;
+use Upsun\Core\OAuthProvider;
 use Upsun\Model\OrganizationReference;
 use Upsun\Model\ProjectReference;
 use Upsun\Model\RegionReference;
 use Upsun\Model\TeamReference;
 use Upsun\Model\UserReference;
-use Exception;
-use GuzzleHttp\Psr7\MultipartStream;
-use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
-use Psr\Http\Client\ClientInterface;
-use Psr\Http\Message\RequestFactoryInterface;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
-use Upsun\Core\OAuthProvider;
 
 /**
  * Low level ReferencesApi (auto-generated)
@@ -61,10 +61,10 @@ final class ReferencesApi extends AbstractApi
      * The correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with
      * a key like <code>ref:organizations:0</code>.
      *
-     * @return array<string, OrganizationReference>
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return array<string, OrganizationReference>
      *
      * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-orgs
      */
@@ -81,9 +81,9 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced organizations with HTTP Info
      *
-     * @return array<string, OrganizationReference>
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return array<string, OrganizationReference>
      */
     private function listReferencedOrgsWithHttpInfo(
         string $in,
@@ -250,10 +250,10 @@ final class ReferencesApi extends AbstractApi
      * correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a
      * key like <code>ref:projects:0</code>.
      *
-     * @return array<string, ProjectReference>
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return array<string, ProjectReference>
      *
      * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-projects
      */
@@ -270,9 +270,9 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced projects with HTTP Info
      *
-     * @return array<string, ProjectReference>
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return array<string, ProjectReference>
      */
     private function listReferencedProjectsWithHttpInfo(
         string $in,
@@ -439,10 +439,10 @@ final class ReferencesApi extends AbstractApi
      * correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a
      * key like <code>ref:regions:0</code>.
      *
-     * @return array<string, RegionReference>
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return array<string, RegionReference>
      *
      * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-regions
      */
@@ -459,9 +459,9 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced regions with HTTP Info
      *
-     * @return array<string, RegionReference>
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return array<string, RegionReference>
      */
     private function listReferencedRegionsWithHttpInfo(
         string $in,
@@ -628,10 +628,10 @@ final class ReferencesApi extends AbstractApi
      * correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a
      * key like <code>ref:teams:0</code>.
      *
-     * @return array<string, TeamReference>
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return array<string, TeamReference>
      *
      * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-teams
      */
@@ -648,9 +648,9 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced teams with HTTP Info
      *
-     * @return array<string, TeamReference>
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return array<string, TeamReference>
      */
     private function listReferencedTeamsWithHttpInfo(
         string $in,
@@ -817,10 +817,10 @@ final class ReferencesApi extends AbstractApi
      * correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a
      * key like <code>ref:users:0</code>.
      *
-     * @return array<string, UserReference>
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return array<string, UserReference>
      *
      * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-users
      */
@@ -837,9 +837,9 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced users with HTTP Info
      *
-     * @return array<string, UserReference>
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return array<string, UserReference>
      */
     private function listReferencedUsersWithHttpInfo(
         string $in,

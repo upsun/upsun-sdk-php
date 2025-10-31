@@ -2,6 +2,15 @@
 {{#models}}
 {{#model}}
 
+namespace {{modelPackage}};
+
+{{^isEnum}}
+{{/isEnum}}
+{{#isEnum}}
+use InvalidArgumentException;
+{{/isEnum}}
+use JsonSerializable;
+
 /**
  * Low level {{classname}} (auto-generated)
 {{#description}}
@@ -13,11 +22,5 @@
  *
 {{> partial_internal_header }}
  */
-
-namespace {{modelPackage}};
-
-{{^isEnum}}
-{{/isEnum}}
-use JsonSerializable;
 {{#isEnum}}{{>model_enum}}{{/isEnum}}{{^isEnum}}{{>model_generic}}{{/isEnum}}
 {{/model}}{{/models}}

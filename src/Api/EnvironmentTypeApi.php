@@ -2,17 +2,17 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\EnvironmentType;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\EnvironmentType;
 
 /**
  * Low level EnvironmentTypeApi (auto-generated)
@@ -54,10 +54,10 @@ final class EnvironmentTypeApi extends AbstractApi
      *
      * Lists the endpoints used to retrieve info about the environment type.
      *
-     * @return EnvironmentType
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return EnvironmentType
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Type/operation/get-environment-type
      */
@@ -74,9 +74,9 @@ final class EnvironmentTypeApi extends AbstractApi
     /**
      * Get environment type links with HTTP Info
      *
-     * @return EnvironmentType
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return EnvironmentType
      */
     private function getEnvironmentTypeWithHttpInfo(
         string $projectId,
@@ -228,10 +228,10 @@ final class EnvironmentTypeApi extends AbstractApi
      *
      * List all available environment types
      *
-     * @return EnvironmentType[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return EnvironmentType[]
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Type/operation/list-projects-environment-types
      */
@@ -246,9 +246,9 @@ final class EnvironmentTypeApi extends AbstractApi
     /**
      * Get environment types with HTTP Info
      *
-     * @return EnvironmentType[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return EnvironmentType[]
      */
     private function listProjectsEnvironmentTypesWithHttpInfo(
         string $projectId

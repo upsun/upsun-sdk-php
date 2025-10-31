@@ -2,22 +2,22 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\User;
+use Exception;
+use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Upsun\Api\Serializer\ObjectSerializer;
+use Upsun\Core\OAuthProvider;
 use Upsun\Model\CurrentUser;
 use Upsun\Model\GetCurrentUserVerificationStatus200Response;
 use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
 use Upsun\Model\ResetEmailAddressRequest;
 use Upsun\Model\UpdateUserRequest;
-use Exception;
-use GuzzleHttp\Psr7\MultipartStream;
-use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
-use Psr\Http\Client\ClientInterface;
-use Psr\Http\Message\RequestFactoryInterface;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
-use Upsun\Core\OAuthProvider;
+use Upsun\Model\User;
 
 /**
  * Low level UsersApi (auto-generated)
@@ -59,10 +59,10 @@ final class UsersApi extends AbstractApi
      *
      * Retrieves the current user, determined from the used access token.
      *
-     * @return User
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return User
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user
      */
@@ -75,9 +75,9 @@ final class UsersApi extends AbstractApi
     /**
      * Get the current user with HTTP Info
      *
-     * @return User
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return User
      */
     private function getCurrentUserWithHttpInfo(): User
     {
@@ -181,10 +181,10 @@ final class UsersApi extends AbstractApi
      *
      * Retrieve information about the currently logged-in user (the user associated with the access token).
      *
-     * @return CurrentUser
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return CurrentUser
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-deprecated
      *
@@ -199,11 +199,11 @@ final class UsersApi extends AbstractApi
     /**
      * Get current logged-in user info with HTTP Info
      *
-     * @return CurrentUser
      *
      * @deprecated
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return CurrentUser
      */
     private function getCurrentUserDeprecatedWithHttpInfo(): CurrentUser
     {
@@ -309,10 +309,10 @@ final class UsersApi extends AbstractApi
      *
      * Find out if the current logged in user requires phone verification to create projects.
      *
-     * @return GetCurrentUserVerificationStatus200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return GetCurrentUserVerificationStatus200Response
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status
      */
@@ -325,9 +325,9 @@ final class UsersApi extends AbstractApi
     /**
      * Check if phone verification is required with HTTP Info
      *
-     * @return GetCurrentUserVerificationStatus200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return GetCurrentUserVerificationStatus200Response
      */
     private function getCurrentUserVerificationStatusWithHttpInfo(): GetCurrentUserVerificationStatus200Response
     {
@@ -431,10 +431,10 @@ final class UsersApi extends AbstractApi
      *
      * Find out if the current logged in user requires verification (phone or staff) to create projects.
      *
-     * @return GetCurrentUserVerificationStatusFull200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return GetCurrentUserVerificationStatusFull200Response
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status-full
      */
@@ -447,9 +447,9 @@ final class UsersApi extends AbstractApi
     /**
      * Check if verification is required with HTTP Info
      *
-     * @return GetCurrentUserVerificationStatusFull200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return GetCurrentUserVerificationStatusFull200Response
      */
     private function getCurrentUserVerificationStatusFullWithHttpInfo(): GetCurrentUserVerificationStatusFull200Response
     {
@@ -553,10 +553,10 @@ final class UsersApi extends AbstractApi
      *
      * Retrieves the specified user.
      *
-     * @return User
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return User
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-user
      */
@@ -571,9 +571,9 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user with HTTP Info
      *
-     * @return User
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return User
      */
     private function getUserWithHttpInfo(
         string $userId
@@ -701,10 +701,10 @@ final class UsersApi extends AbstractApi
      *
      * Retrieves a user matching the specified email address.
      *
-     * @return User
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return User
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-user-by-email-address
      */
@@ -719,9 +719,9 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user by email with HTTP Info
      *
-     * @return User
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return User
      */
     private function getUserByEmailAddressWithHttpInfo(
         string $email
@@ -849,10 +849,10 @@ final class UsersApi extends AbstractApi
      *
      * Retrieves a user matching the specified username.
      *
-     * @return User
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return User
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-user-by-username
      */
@@ -867,9 +867,9 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user by username with HTTP Info
      *
-     * @return User
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return User
      */
     private function getUserByUsernameWithHttpInfo(
         string $username
@@ -998,8 +998,8 @@ final class UsersApi extends AbstractApi
      * Requests a reset of the user's email address. A confirmation email will be sent to the new address when the
      * request is accepted.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/reset-email-address
      */
@@ -1150,8 +1150,8 @@ final class UsersApi extends AbstractApi
      * Requests a reset of the user's password. A password reset email will be sent to the user when the request is
      * accepted.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/reset-password
      */
@@ -1288,10 +1288,10 @@ final class UsersApi extends AbstractApi
      *
      * Updates the specified user.
      *
-     * @return User
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return User
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/update-user
      */
@@ -1308,9 +1308,9 @@ final class UsersApi extends AbstractApi
     /**
      * Update a user with HTTP Info
      *
-     * @return User
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return User
      */
     private function updateUserWithHttpInfo(
         string $userId,

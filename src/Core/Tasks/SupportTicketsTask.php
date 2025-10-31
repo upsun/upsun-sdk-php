@@ -99,10 +99,10 @@ class SupportTicketsTask extends TaskBase
     /**
      * Lists support ticket categories
      *
-     * @return  ListTicketCategories200ResponseInner[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @return  ListTicketCategories200ResponseInner[]
      */
     public function listCategories(?string $organizationId = null, ?string $projectId = null): array
     {
@@ -115,10 +115,10 @@ class SupportTicketsTask extends TaskBase
     /**
      * Lists support ticket priorities
      *
-     * @return ListTicketPriorities200ResponseInner[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @return ListTicketPriorities200ResponseInner[]
      */
     public function listPriorities(?string $projectId = null, ?string $category = null): array
     {

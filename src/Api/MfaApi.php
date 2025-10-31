@@ -2,22 +2,22 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\ConfirmTotpEnrollmentRequest;
-use Upsun\Model\ConfirmTotpEnrollment200Response;
-use Upsun\Model\OrganizationMfaEnforcement;
-use Upsun\Model\GetTotpEnrollment200Response;
-use Upsun\Model\SendOrgMfaRemindersRequest;
-use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ConfirmTotpEnrollment200Response;
+use Upsun\Model\ConfirmTotpEnrollmentRequest;
+use Upsun\Model\GetTotpEnrollment200Response;
+use Upsun\Model\OrganizationMfaEnforcement;
+use Upsun\Model\SendOrgMfaReminders200ResponseValue;
+use Upsun\Model\SendOrgMfaRemindersRequest;
 
 /**
  * Low level MfaApi (auto-generated)
@@ -59,10 +59,10 @@ final class MfaApi extends AbstractApi
      *
      * Confirms the given TOTP enrollment.
      *
-     * @return ConfirmTotpEnrollment200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ConfirmTotpEnrollment200Response
      *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/confirm-totp-enrollment
      */
@@ -79,9 +79,9 @@ final class MfaApi extends AbstractApi
     /**
      * Confirm TOTP enrollment with HTTP Info
      *
-     * @return ConfirmTotpEnrollment200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ConfirmTotpEnrollment200Response
      */
     private function confirmTotpEnrollmentWithHttpInfo(
         string $userId,
@@ -220,8 +220,8 @@ final class MfaApi extends AbstractApi
      *
      * Disables MFA enforcement for the specified organization.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/disable-org-mfa-enforcement
      */
@@ -358,8 +358,8 @@ final class MfaApi extends AbstractApi
      *
      * Enables MFA enforcement for the specified organization.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/enable-org-mfa-enforcement
      */
@@ -496,10 +496,10 @@ final class MfaApi extends AbstractApi
      *
      * Retrieves MFA settings for the specified organization.
      *
-     * @return OrganizationMfaEnforcement
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationMfaEnforcement
      *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/get-org-mfa-enforcement
      */
@@ -514,9 +514,9 @@ final class MfaApi extends AbstractApi
     /**
      * Get organization MFA settings with HTTP Info
      *
-     * @return OrganizationMfaEnforcement
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationMfaEnforcement
      */
     private function getOrgMfaEnforcementWithHttpInfo(
         string $organizationId
@@ -644,10 +644,10 @@ final class MfaApi extends AbstractApi
      *
      * Retrieves TOTP enrollment information.
      *
-     * @return GetTotpEnrollment200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return GetTotpEnrollment200Response
      *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/get-totp-enrollment
      */
@@ -662,9 +662,9 @@ final class MfaApi extends AbstractApi
     /**
      * Get information about TOTP enrollment with HTTP Info
      *
-     * @return GetTotpEnrollment200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return GetTotpEnrollment200Response
      */
     private function getTotpEnrollmentWithHttpInfo(
         string $userId
@@ -792,10 +792,10 @@ final class MfaApi extends AbstractApi
      *
      * Re-creates recovery codes for the MFA enrollment.
      *
-     * @return ConfirmTotpEnrollment200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ConfirmTotpEnrollment200Response
      *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/recreate-recovery-codes
      */
@@ -810,9 +810,9 @@ final class MfaApi extends AbstractApi
     /**
      * Re-create recovery codes with HTTP Info
      *
-     * @return ConfirmTotpEnrollment200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ConfirmTotpEnrollment200Response
      */
     private function recreateRecoveryCodesWithHttpInfo(
         string $userId
@@ -940,10 +940,10 @@ final class MfaApi extends AbstractApi
      *
      * Sends a reminder about setting up MFA to the specified organization members.
      *
-     * @return array<string, SendOrgMfaReminders200ResponseValue>
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return array<string, SendOrgMfaReminders200ResponseValue>
      *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/send-org-mfa-reminders
      */
@@ -960,9 +960,9 @@ final class MfaApi extends AbstractApi
     /**
      * Send MFA reminders to organization members with HTTP Info
      *
-     * @return array<string, SendOrgMfaReminders200ResponseValue>
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return array<string, SendOrgMfaReminders200ResponseValue>
      */
     private function sendOrgMfaRemindersWithHttpInfo(
         string $organizationId,
@@ -1101,8 +1101,8 @@ final class MfaApi extends AbstractApi
      *
      * Withdraws from the TOTP enrollment.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/withdraw-totp-enrollment
      */

@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\TeamProjectAccess;
-use Upsun\Model\ListProjectTeamAccess200Response;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ListProjectTeamAccess200Response;
+use Upsun\Model\TeamProjectAccess;
 
 /**
  * Low level TeamAccessApi (auto-generated)
@@ -56,10 +56,10 @@ final class TeamAccessApi extends AbstractApi
      *
      * Retrieves the team's permissions for the current project.
      *
-     * @return TeamProjectAccess
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return TeamProjectAccess
      *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/get-project-team-access
      */
@@ -76,9 +76,9 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Get team access for a project with HTTP Info
      *
-     * @return TeamProjectAccess
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return TeamProjectAccess
      */
     private function getProjectTeamAccessWithHttpInfo(
         string $projectId,
@@ -230,10 +230,10 @@ final class TeamAccessApi extends AbstractApi
      *
      * Retrieves the team's permissions for the current project.
      *
-     * @return TeamProjectAccess
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return TeamProjectAccess
      *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/get-team-project-access
      */
@@ -250,9 +250,9 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Get project access for a team with HTTP Info
      *
-     * @return TeamProjectAccess
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return TeamProjectAccess
      */
     private function getTeamProjectAccessWithHttpInfo(
         string $teamId,
@@ -404,8 +404,8 @@ final class TeamAccessApi extends AbstractApi
      *
      * Grants one or more team access to a specific project.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/grant-project-team-access
      */
@@ -567,8 +567,8 @@ final class TeamAccessApi extends AbstractApi
      *
      * Adds the team to one or more specified projects.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/grant-team-project-access
      */
@@ -730,10 +730,10 @@ final class TeamAccessApi extends AbstractApi
      *
      * Returns a list of items representing the project access.
      *
-     * @return ListProjectTeamAccess200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListProjectTeamAccess200Response
      *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/list-project-team-access
      */
@@ -756,9 +756,9 @@ final class TeamAccessApi extends AbstractApi
     /**
      * List team access for a project with HTTP Info
      *
-     * @return ListProjectTeamAccess200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListProjectTeamAccess200Response
      */
     private function listProjectTeamAccessWithHttpInfo(
         string $projectId,
@@ -976,10 +976,10 @@ final class TeamAccessApi extends AbstractApi
      *
      * Returns a list of items representing the team's project access.
      *
-     * @return ListProjectTeamAccess200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListProjectTeamAccess200Response
      *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/list-team-project-access
      */
@@ -1002,9 +1002,9 @@ final class TeamAccessApi extends AbstractApi
     /**
      * List project access for a team with HTTP Info
      *
-     * @return ListProjectTeamAccess200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListProjectTeamAccess200Response
      */
     private function listTeamProjectAccessWithHttpInfo(
         string $teamId,
@@ -1222,8 +1222,8 @@ final class TeamAccessApi extends AbstractApi
      *
      * Removes the team from the current project.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/remove-project-team-access
      */
@@ -1386,8 +1386,8 @@ final class TeamAccessApi extends AbstractApi
      *
      * Removes the team from the current project.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/remove-team-project-access
      */

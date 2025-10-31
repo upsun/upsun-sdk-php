@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\ProjectVariableCreateInput;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\ProjectVariable;
-use Upsun\Model\ProjectVariablePatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\ProjectVariable;
+use Upsun\Model\ProjectVariableCreateInput;
+use Upsun\Model\ProjectVariablePatch;
 
 /**
  * Low level ProjectVariablesApi (auto-generated)
@@ -59,10 +59,10 @@ final class ProjectVariablesApi extends AbstractApi
      * by the `is_json` boolean flag. See the [Variables](https://docs.upsun.com/anchors/variables/set/project/create/)
      * section in our documentation for more information.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/create-projects-variables
      */
@@ -79,9 +79,9 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Add a project variable with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function createProjectsVariablesWithHttpInfo(
         string $projectId,
@@ -232,10 +232,10 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * Delete a single user-defined project variable.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/delete-projects-variables
      */
@@ -252,9 +252,9 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Delete a project variable with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deleteProjectsVariablesWithHttpInfo(
         string $projectId,
@@ -406,10 +406,10 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * Retrieve a single user-defined project variable.
      *
-     * @return ProjectVariable
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ProjectVariable
      *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/get-projects-variables
      */
@@ -426,9 +426,9 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Get a project variable with HTTP Info
      *
-     * @return ProjectVariable
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ProjectVariable
      */
     private function getProjectsVariablesWithHttpInfo(
         string $projectId,
@@ -580,10 +580,10 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * Retrieve a list of objects representing the user-defined variables within a project.
      *
-     * @return ProjectVariable[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ProjectVariable[]
      *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/list-projects-variables
      */
@@ -598,9 +598,9 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Get list of project variables with HTTP Info
      *
-     * @return ProjectVariable[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ProjectVariable[]
      */
     private function listProjectsVariablesWithHttpInfo(
         string $projectId
@@ -731,10 +731,10 @@ final class ProjectVariablesApi extends AbstractApi
      * [Variables](https://docs.upsun.com/anchors/variables/set/project/create/) section in our documentation for more
      * information.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/update-projects-variables
      */
@@ -753,9 +753,9 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Update a project variable with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsVariablesWithHttpInfo(
         string $projectId,

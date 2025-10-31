@@ -461,10 +461,10 @@ class UsersTask extends TaskBase
     /**
      * Lists a user's API tokens
      *
-     * @return ApiToken[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @return ApiToken[]
      */
     public function listApiTokens(string $userId): array
     {
@@ -496,10 +496,10 @@ class UsersTask extends TaskBase
     /**
      * Lists federated login connections
      *
-     * @return Connection[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @return Connection[]
      */
     public function listLoginConnections(string $userId): array
     {

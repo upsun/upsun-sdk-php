@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\EnvironmentVariableCreateInput;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\EnvironmentVariable;
-use Upsun\Model\EnvironmentVariablePatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentVariable;
+use Upsun\Model\EnvironmentVariableCreateInput;
+use Upsun\Model\EnvironmentVariablePatch;
 
 /**
  * Low level EnvironmentVariablesApi (auto-generated)
@@ -61,10 +61,10 @@ final class EnvironmentVariablesApi extends AbstractApi
      * Variables](https://docs.upsun.com/anchors/variables/set/environment/create/) section in our documentation for
      * more information.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Variables/operation/create-projects-environments-variables
      */
@@ -83,9 +83,9 @@ final class EnvironmentVariablesApi extends AbstractApi
     /**
      * Add an environment variable with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function createProjectsEnvironmentsVariablesWithHttpInfo(
         string $projectId,
@@ -260,10 +260,10 @@ final class EnvironmentVariablesApi extends AbstractApi
      *
      * Delete a single user-defined environment variable.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Variables/operation/delete-projects-environments-variables
      */
@@ -282,9 +282,9 @@ final class EnvironmentVariablesApi extends AbstractApi
     /**
      * Delete an environment variable with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deleteProjectsEnvironmentsVariablesWithHttpInfo(
         string $projectId,
@@ -460,10 +460,10 @@ final class EnvironmentVariablesApi extends AbstractApi
      *
      * Retrieve a single user-defined environment variable.
      *
-     * @return EnvironmentVariable
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return EnvironmentVariable
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Variables/operation/get-projects-environments-variables
      */
@@ -482,9 +482,9 @@ final class EnvironmentVariablesApi extends AbstractApi
     /**
      * Get an environment variable with HTTP Info
      *
-     * @return EnvironmentVariable
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return EnvironmentVariable
      */
     private function getProjectsEnvironmentsVariablesWithHttpInfo(
         string $projectId,
@@ -660,10 +660,10 @@ final class EnvironmentVariablesApi extends AbstractApi
      *
      * Retrieve a list of objects representing the user-defined variables within an environment.
      *
-     * @return EnvironmentVariable[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return EnvironmentVariable[]
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Variables/operation/list-projects-environments-variables
      */
@@ -680,9 +680,9 @@ final class EnvironmentVariablesApi extends AbstractApi
     /**
      * Get list of environment variables with HTTP Info
      *
-     * @return EnvironmentVariable[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return EnvironmentVariable[]
      */
     private function listProjectsEnvironmentsVariablesWithHttpInfo(
         string $projectId,
@@ -837,10 +837,10 @@ final class EnvironmentVariablesApi extends AbstractApi
      * can be determined through the `is_inheritable` flag (default: true). See the
      * [Variables](https://docs.upsun.com/anchors/variables/) section in our documentation for more information.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Environment-Variables/operation/update-projects-environments-variables
      */
@@ -861,9 +861,9 @@ final class EnvironmentVariablesApi extends AbstractApi
     /**
      * Update an environment variable with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsEnvironmentsVariablesWithHttpInfo(
         string $projectId,

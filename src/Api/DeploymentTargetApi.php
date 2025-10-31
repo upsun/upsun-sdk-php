@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\DeploymentTargetCreateInput;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\DeploymentTarget;
-use Upsun\Model\DeploymentTargetPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\DeploymentTarget;
+use Upsun\Model\DeploymentTargetCreateInput;
+use Upsun\Model\DeploymentTargetPatch;
 
 /**
  * Low level DeploymentTargetApi (auto-generated)
@@ -57,10 +57,10 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * Set the deployment target information for a project.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/create-projects-deployments
      */
@@ -77,9 +77,9 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Create a project deployment target with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function createProjectsDeploymentsWithHttpInfo(
         string $projectId,
@@ -230,10 +230,10 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * Delete a single deployment target configuration associated with a specific project.
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/delete-projects-deployments
      */
@@ -250,9 +250,9 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Delete a single project deployment target with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deleteProjectsDeploymentsWithHttpInfo(
         string $projectId,
@@ -404,10 +404,10 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * Get a single deployment target configuration of a project.
      *
-     * @return DeploymentTarget
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return DeploymentTarget
      *
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/get-projects-deployments
      */
@@ -424,9 +424,9 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Get a single project deployment target with HTTP Info
      *
-     * @return DeploymentTarget
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return DeploymentTarget
      */
     private function getProjectsDeploymentsWithHttpInfo(
         string $projectId,
@@ -578,10 +578,10 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * The deployment target information for the project.
      *
-     * @return DeploymentTarget[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return DeploymentTarget[]
      *
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/list-projects-deployments
      */
@@ -596,9 +596,9 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Get project deployment target info with HTTP Info
      *
-     * @return DeploymentTarget[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return DeploymentTarget[]
      */
     private function listProjectsDeploymentsWithHttpInfo(
         string $projectId
@@ -725,10 +725,10 @@ final class DeploymentTargetApi extends AbstractApi
      * Update a project deployment
      *
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/update-projects-deployments
      */
@@ -747,9 +747,9 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Update a project deployment with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsDeploymentsWithHttpInfo(
         string $projectId,

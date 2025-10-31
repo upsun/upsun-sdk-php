@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\IntegrationCreateInput;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Integration;
-use Upsun\Model\IntegrationPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Integration;
+use Upsun\Model\IntegrationCreateInput;
+use Upsun\Model\IntegrationPatch;
 
 /**
  * Low level ThirdPartyIntegrationsApi (auto-generated)
@@ -56,10 +56,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * Integrate project with a third-party service
      *
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/create-projects-integrations
      */
@@ -76,9 +76,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Integrate project with a third-party service with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function createProjectsIntegrationsWithHttpInfo(
         string $projectId,
@@ -228,10 +228,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * Delete an existing third-party integration
      *
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/delete-projects-integrations
      */
@@ -248,9 +248,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Delete an existing third-party integration with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function deleteProjectsIntegrationsWithHttpInfo(
         string $projectId,
@@ -401,10 +401,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * Get information about an existing third-party integration
      *
      *
-     * @return Integration
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Integration
      *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/get-projects-integrations
      */
@@ -421,9 +421,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Get information about an existing third-party integration with HTTP Info
      *
-     * @return Integration
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Integration
      */
     private function getProjectsIntegrationsWithHttpInfo(
         string $projectId,
@@ -574,10 +574,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * Get list of existing integrations for a project
      *
      *
-     * @return Integration[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return Integration[]
      *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/list-projects-integrations
      */
@@ -592,9 +592,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Get list of existing integrations for a project with HTTP Info
      *
-     * @return Integration[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return Integration[]
      */
     private function listProjectsIntegrationsWithHttpInfo(
         string $projectId
@@ -721,10 +721,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * Update an existing third-party integration
      *
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/update-projects-integrations
      */
@@ -743,9 +743,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Update an existing third-party integration with HTTP Info
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsIntegrationsWithHttpInfo(
         string $projectId,

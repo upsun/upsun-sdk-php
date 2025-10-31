@@ -2,17 +2,17 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\ListPlans200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ListPlans200Response;
 
 /**
  * Low level PlansApi (auto-generated)
@@ -54,10 +54,10 @@ final class PlansApi extends AbstractApi
      *
      * Retrieve information about plans and pricing on Platform.sh.
      *
-     * @return ListPlans200Response
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return ListPlans200Response
      *
      * @see https://docs.upsun.com/api/#tag/Plans/operation/list-plans
      */
@@ -70,9 +70,9 @@ final class PlansApi extends AbstractApi
     /**
      * List available plans with HTTP Info
      *
-     * @return ListPlans200Response
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return ListPlans200Response
      */
     private function listPlansWithHttpInfo(): ListPlans200Response
     {

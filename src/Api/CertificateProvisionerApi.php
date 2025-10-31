@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CertificateProvisioner;
-use Upsun\Model\CertificateProvisionerPatch;
-use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\CertificateProvisioner;
+use Upsun\Model\CertificateProvisionerPatch;
 
 /**
  * Low level CertificateProvisionerApi (auto-generated)
@@ -53,10 +53,10 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
-     * @return CertificateProvisioner
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return CertificateProvisioner
      *
      * @see https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/get-projects-provisioners
      */
@@ -72,9 +72,9 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
-     * @return CertificateProvisioner
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return CertificateProvisioner
      */
     private function getProjectsProvisionersWithHttpInfo(
         string $projectId,
@@ -223,10 +223,10 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
-     * @return CertificateProvisioner[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return CertificateProvisioner[]
      *
      * @see https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/list-projects-provisioners
      */
@@ -240,9 +240,9 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
-     * @return CertificateProvisioner[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return CertificateProvisioner[]
      */
     private function listProjectsProvisionersWithHttpInfo(
         string $projectId
@@ -367,10 +367,10 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
-     * @return AcceptedResponse
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      *
      * @see https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/update-projects-provisioners
      */
@@ -388,9 +388,9 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
-     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function updateProjectsProvisionersWithHttpInfo(
         string $projectId,

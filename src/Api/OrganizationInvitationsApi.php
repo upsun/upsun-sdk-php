@@ -2,20 +2,20 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateOrgInviteRequest;
-use Upsun\Model\OrganizationInvitation;
-use Upsun\Model\StringFilter;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Upsun\Api\Serializer\ObjectSerializer;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use InvalidArgumentException;
+use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CreateOrgInviteRequest;
+use Upsun\Model\OrganizationInvitation;
+use Upsun\Model\StringFilter;
 
 /**
  * Low level OrganizationInvitationsApi (auto-generated)
@@ -57,8 +57,8 @@ final class OrganizationInvitationsApi extends AbstractApi
      *
      * Cancels the specified invitation.
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Invitations/operation/cancel-org-invite
      */
@@ -221,10 +221,10 @@ final class OrganizationInvitationsApi extends AbstractApi
      *
      * Creates an invitation to an organization for a user with the specified email address.
      *
-     * @return OrganizationInvitation
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationInvitation
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Invitations/operation/create-org-invite
      */
@@ -241,9 +241,9 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * Invite user to an organization by email with HTTP Info
      *
-     * @return OrganizationInvitation
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationInvitation
      */
     private function createOrgInviteWithHttpInfo(
         string $organizationId,
@@ -382,10 +382,10 @@ final class OrganizationInvitationsApi extends AbstractApi
      *
      * Returns a list of invitations to an organization.
      *
-     * @return OrganizationInvitation[]
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
+     * @throws ClientExceptionInterface
+     * @return OrganizationInvitation[]
      *
      * @see https://docs.upsun.com/api/#tag/Organization-Invitations/operation/list-org-invites
      */
@@ -410,9 +410,9 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * List invitations to an organization with HTTP Info
      *
-     * @return OrganizationInvitation[]
      *
      * @throws ApiException|ClientExceptionInterface
+     * @return OrganizationInvitation[]
      */
     private function listOrgInvitesWithHttpInfo(
         string $organizationId,
