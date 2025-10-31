@@ -1,0 +1,4702 @@
+<?php
+
+namespace Upsun\Api\Serializer;
+
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\AccessControlDefinitionForThisEnviromentInner;
+use Upsun\Model\Activity;
+use Upsun\Model\Address;
+use Upsun\Model\AddressGrantsInner;
+use Upsun\Model\AddressMetadata;
+use Upsun\Model\AddressMetadataMetadata;
+use Upsun\Model\Alert;
+use Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner;
+use Upsun\Model\ApiToken;
+use Upsun\Model\ApplyOrgVoucherRequest;
+use Upsun\Model\ArrayFilter;
+use Upsun\Model\AutoscalerAlertPartial;
+use Upsun\Model\AutoscalerCondition;
+use Upsun\Model\AutoscalerCPUPressureTrigger;
+use Upsun\Model\AutoscalerCPUResources;
+use Upsun\Model\AutoscalerCPUTrigger;
+use Upsun\Model\AutoscalerDuration;
+use Upsun\Model\AutoscalerInstances;
+use Upsun\Model\AutoscalerMemoryPressureTrigger;
+use Upsun\Model\AutoscalerMemoryResources;
+use Upsun\Model\AutoscalerMemoryTrigger;
+use Upsun\Model\AutoscalerResources;
+use Upsun\Model\AutoscalerScalingCooldown;
+use Upsun\Model\AutoscalerScalingFactor;
+use Upsun\Model\AutoscalerServiceSettings;
+use Upsun\Model\AutoscalerSettings;
+use Upsun\Model\AutoscalerTriggers;
+use Upsun\Model\Autoscaling;
+use Upsun\Model\Backup;
+use Upsun\Model\BitbucketIntegration;
+use Upsun\Model\BitbucketIntegrationConfigurations;
+use Upsun\Model\BitbucketIntegrationCreateInput;
+use Upsun\Model\BitbucketIntegrationPatch;
+use Upsun\Model\BitbucketServerIntegration;
+use Upsun\Model\BitbucketServerIntegrationConfigurations;
+use Upsun\Model\BitbucketServerIntegrationCreateInput;
+use Upsun\Model\BitbucketServerIntegrationPatch;
+use Upsun\Model\BlackfireEnvironmentsCredentialsValue;
+use Upsun\Model\BlackfireIntegration;
+use Upsun\Model\BlackfireIntegrationConfigurations;
+use Upsun\Model\BlackfireIntegrationCreateInput;
+use Upsun\Model\BlackfireIntegrationPatch;
+use Upsun\Model\Blob;
+use Upsun\Model\BuildResources;
+use Upsun\Model\BuildResources1;
+use Upsun\Model\BuildResources2;
+use Upsun\Model\CacheConfiguration;
+use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction;
+use Upsun\Model\CanUpdateSubscription200Response;
+use Upsun\Model\Certificate;
+use Upsun\Model\CertificateCreateInput;
+use Upsun\Model\CertificatePatch;
+use Upsun\Model\CertificateProvisioner;
+use Upsun\Model\CertificateProvisionerPatch;
+use Upsun\Model\CommandsInner;
+use Upsun\Model\CommandsToManageTheApplicationSLifecycle;
+use Upsun\Model\Commit;
+use Upsun\Model\Components;
+use Upsun\Model\Config;
+use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion;
+use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1;
+use Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP;
+use Upsun\Model\ConfigurationForPreFlightChecks;
+use Upsun\Model\ConfigurationForSupportingRequestBuffering;
+use Upsun\Model\ConfigurationOfAWorkerContainerInstance;
+use Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication;
+use Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication;
+use Upsun\Model\ConfirmPhoneNumberRequest;
+use Upsun\Model\ConfirmTotpEnrollment200Response;
+use Upsun\Model\ConfirmTotpEnrollmentRequest;
+use Upsun\Model\Connection;
+use Upsun\Model\ContainerProfilesValueValue;
+use Upsun\Model\CreateApiTokenRequest;
+use Upsun\Model\CreateAuthorizationCredentials200Response;
+use Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl;
+use Upsun\Model\CreateOrgInviteRequest;
+use Upsun\Model\CreateOrgMemberRequest;
+use Upsun\Model\CreateOrgProjectRequest;
+use Upsun\Model\CreateOrgRequest;
+use Upsun\Model\CreateOrgSubscriptionRequest;
+use Upsun\Model\CreateProfilePicture200Response;
+use Upsun\Model\CreateProjectInviteRequest;
+use Upsun\Model\CreateProjectInviteRequestEnvironmentsInner;
+use Upsun\Model\CreateProjectInviteRequestPermissionsInner;
+use Upsun\Model\CreateSshKeyRequest;
+use Upsun\Model\CreateTeamMemberRequest;
+use Upsun\Model\CreateTeamRequest;
+use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\CreateTicketRequestAttachmentsInner;
+use Upsun\Model\CurrencyAmount;
+use Upsun\Model\CurrencyAmountNullable;
+use Upsun\Model\CurrentUser;
+use Upsun\Model\CurrentUserCurrentTrialInner;
+use Upsun\Model\CurrentUserProjectsInner;
+use Upsun\Model\CustomDomains;
+use Upsun\Model\DataRetention;
+use Upsun\Model\DataRetentionConfigurationValue;
+use Upsun\Model\DataRetentionConfigurationValue1;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\DedicatedDeploymentTarget;
+use Upsun\Model\DedicatedDeploymentTargetCreateInput;
+use Upsun\Model\DedicatedDeploymentTargetPatch;
+use Upsun\Model\DefaultConfig;
+use Upsun\Model\DefaultConfig1;
+use Upsun\Model\Deployment;
+use Upsun\Model\DeploymentTarget;
+use Upsun\Model\DeploymentTargetCreateInput;
+use Upsun\Model\DeploymentTargetPatch;
+use Upsun\Model\Discount;
+use Upsun\Model\DiscountCommitment;
+use Upsun\Model\DiscountCommitmentAmount;
+use Upsun\Model\DiscountCommitmentNet;
+use Upsun\Model\DiscountDiscount;
+use Upsun\Model\Domain;
+use Upsun\Model\DomainCreateInput;
+use Upsun\Model\DomainPatch;
+use Upsun\Model\EmailIntegration;
+use Upsun\Model\EmailIntegrationCreateInput;
+use Upsun\Model\EmailIntegrationPatch;
+use Upsun\Model\EnterpriseDeploymentTarget;
+use Upsun\Model\EnterpriseDeploymentTargetCreateInput;
+use Upsun\Model\EnterpriseDeploymentTargetPatch;
+use Upsun\Model\Environment;
+use Upsun\Model\EnvironmentActivateInput;
+use Upsun\Model\EnvironmentBackupInput;
+use Upsun\Model\EnvironmentBranchInput;
+use Upsun\Model\EnvironmentDeployInput;
+use Upsun\Model\EnvironmentInfo;
+use Upsun\Model\EnvironmentInitializeInput;
+use Upsun\Model\EnvironmentMergeInput;
+use Upsun\Model\EnvironmentOperationInput;
+use Upsun\Model\EnvironmentPatch;
+use Upsun\Model\EnvironmentRestoreInput;
+use Upsun\Model\EnvironmentSourceOperation;
+use Upsun\Model\EnvironmentSourceOperationInput;
+use Upsun\Model\EnvironmentSynchronizeInput;
+use Upsun\Model\EnvironmentType;
+use Upsun\Model\EnvironmentVariable;
+use Upsun\Model\EnvironmentVariableCreateInput;
+use Upsun\Model\EnvironmentVariablePatch;
+use Upsun\Model\Error;
+use Upsun\Model\EstimationObject;
+use Upsun\Model\FastlyCDNIntegrationConfigurations;
+use Upsun\Model\FastlyIntegration;
+use Upsun\Model\FastlyIntegrationCreateInput;
+use Upsun\Model\FastlyIntegrationPatch;
+use Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue;
+use Upsun\Model\Firewall;
+use Upsun\Model\FoundationDeploymentTarget;
+use Upsun\Model\FoundationDeploymentTargetCreateInput;
+use Upsun\Model\FoundationDeploymentTargetPatch;
+use Upsun\Model\GetAddress200Response;
+use Upsun\Model\GetCurrentUserVerificationStatus200Response;
+use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
+use Upsun\Model\GetOrgPrepaymentInfo200Response;
+use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks;
+use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf;
+use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions;
+use Upsun\Model\GetSubscriptionUsageAlerts200Response;
+use Upsun\Model\GetTotpEnrollment200Response;
+use Upsun\Model\GetTypeAllowance200Response;
+use Upsun\Model\GetTypeAllowance200ResponseCurrencies;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD;
+use Upsun\Model\GetUsageAlerts200Response;
+use Upsun\Model\GithubIntegration;
+use Upsun\Model\GitHubIntegrationConfigurations;
+use Upsun\Model\GithubIntegrationCreateInput;
+use Upsun\Model\GithubIntegrationPatch;
+use Upsun\Model\GitLabIntegration;
+use Upsun\Model\GitLabIntegrationConfigurations;
+use Upsun\Model\GitLabIntegrationCreateInput;
+use Upsun\Model\GitLabIntegrationPatch;
+use Upsun\Model\GitServerConfiguration;
+use Upsun\Model\GoogleSSOConfig;
+use Upsun\Model\GrantProjectTeamAccessRequestInner;
+use Upsun\Model\GrantProjectUserAccessRequestInner;
+use Upsun\Model\GrantTeamProjectAccessRequestInner;
+use Upsun\Model\GrantUserProjectAccessRequestInner;
+use Upsun\Model\GuaranteedResources;
+use Upsun\Model\HalLinks;
+use Upsun\Model\HalLinksNext;
+use Upsun\Model\HalLinksPrevious;
+use Upsun\Model\HalLinksSelf;
+use Upsun\Model\HealthEmailNotificationIntegrationConfigurations;
+use Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations;
+use Upsun\Model\HealthSlackNotificationIntegrationConfigurations;
+use Upsun\Model\HealthWebHookIntegration;
+use Upsun\Model\HealthWebHookIntegrationCreateInput;
+use Upsun\Model\HealthWebHookIntegrationPatch;
+use Upsun\Model\HealthWebhookNotificationIntegrationConfigurations;
+use Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication;
+use Upsun\Model\HttpAccessPermissions;
+use Upsun\Model\HttpAccessPermissions1;
+use Upsun\Model\HTTPLogForwardingIntegrationConfigurations;
+use Upsun\Model\HttpLogIntegration;
+use Upsun\Model\HttpLogIntegrationCreateInput;
+use Upsun\Model\HttpLogIntegrationPatch;
+use Upsun\Model\ImagesValueValue;
+use Upsun\Model\Integration;
+use Upsun\Model\IntegrationCreateInput;
+use Upsun\Model\IntegrationPatch;
+use Upsun\Model\Integrations;
+use Upsun\Model\Invoice;
+use Upsun\Model\InvoicePDF;
+use Upsun\Model\LineItem;
+use Upsun\Model\LineItemComponent;
+use Upsun\Model\Link;
+use Upsun\Model\ListLinks;
+use Upsun\Model\ListOrgDiscounts200Response;
+use Upsun\Model\ListOrgInvoices200Response;
+use Upsun\Model\ListOrgMembers200Response;
+use Upsun\Model\ListOrgOrders200Response;
+use Upsun\Model\ListOrgPlanRecords200Response;
+use Upsun\Model\ListOrgPrepaymentTransactions200Response;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf;
+use Upsun\Model\ListOrgProjects200Response;
+use Upsun\Model\ListOrgs200Response;
+use Upsun\Model\ListOrgSubscriptions200Response;
+use Upsun\Model\ListOrgUsageRecords200Response;
+use Upsun\Model\ListPlans200Response;
+use Upsun\Model\ListProfiles200Response;
+use Upsun\Model\ListProjectTeamAccess200Response;
+use Upsun\Model\ListProjectUserAccess200Response;
+use Upsun\Model\ListRegions200Response;
+use Upsun\Model\ListTeamMembers200Response;
+use Upsun\Model\ListTeams200Response;
+use Upsun\Model\ListTicketCategories200ResponseInner;
+use Upsun\Model\ListTicketPriorities200ResponseInner;
+use Upsun\Model\ListTickets200Response;
+use Upsun\Model\ListUserExtendedAccess200Response;
+use Upsun\Model\ListUserExtendedAccess200ResponseItemsInner;
+use Upsun\Model\ListUserOrgs200Response;
+use Upsun\Model\LogsForwarding;
+use Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue;
+use Upsun\Model\Metrics;
+use Upsun\Model\MetricsMetadata;
+use Upsun\Model\MetricsValue;
+use Upsun\Model\NewRelicIntegration;
+use Upsun\Model\NewRelicIntegrationCreateInput;
+use Upsun\Model\NewRelicIntegrationPatch;
+use Upsun\Model\NewRelicLogForwardingIntegrationConfigurations;
+use Upsun\Model\OpenTelemetryLogForwardingIntegrationConfigurations;
+use Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue;
+use Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue;
+use Upsun\Model\Order;
+use Upsun\Model\OrderBillingPeriodLabel;
+use Upsun\Model\OrderLinks;
+use Upsun\Model\OrderLinksInvoices;
+use Upsun\Model\Organization;
+use Upsun\Model\OrganizationAddonsObject;
+use Upsun\Model\OrganizationAddonsObjectAvailable;
+use Upsun\Model\OrganizationAddonsObjectCurrent;
+use Upsun\Model\OrganizationAddonsObjectUpgradesAvailable;
+use Upsun\Model\OrganizationAlertConfig;
+use Upsun\Model\OrganizationAlertConfigConfig;
+use Upsun\Model\OrganizationAlertConfigConfigThreshold;
+use Upsun\Model\OrganizationCarbon;
+use Upsun\Model\OrganizationEstimationObject;
+use Upsun\Model\OrganizationEstimationObjectSubscriptions;
+use Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner;
+use Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage;
+use Upsun\Model\OrganizationEstimationObjectUserLicenses;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBase;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser;
+use Upsun\Model\OrganizationInvitation;
+use Upsun\Model\OrganizationInvitationOwner;
+use Upsun\Model\OrganizationLinks;
+use Upsun\Model\OrganizationLinksAddress;
+use Upsun\Model\OrganizationLinksApplyVoucher;
+use Upsun\Model\OrganizationLinksCreateMember;
+use Upsun\Model\OrganizationLinksCreateSubscription;
+use Upsun\Model\OrganizationLinksDelete;
+use Upsun\Model\OrganizationLinksEstimateSubscription;
+use Upsun\Model\OrganizationLinksMembers;
+use Upsun\Model\OrganizationLinksMfaEnforcement;
+use Upsun\Model\OrganizationLinksOrders;
+use Upsun\Model\OrganizationLinksPaymentSource;
+use Upsun\Model\OrganizationLinksProfile;
+use Upsun\Model\OrganizationLinksSelf;
+use Upsun\Model\OrganizationLinksSubscriptions;
+use Upsun\Model\OrganizationLinksUpdate;
+use Upsun\Model\OrganizationLinksVouchers;
+use Upsun\Model\OrganizationMember;
+use Upsun\Model\OrganizationMemberLinks;
+use Upsun\Model\OrganizationMemberLinksDelete;
+use Upsun\Model\OrganizationMemberLinksSelf;
+use Upsun\Model\OrganizationMemberLinksUpdate;
+use Upsun\Model\OrganizationMfaEnforcement;
+use Upsun\Model\OrganizationProject;
+use Upsun\Model\OrganizationProjectCarbon;
+use Upsun\Model\OrganizationProjectLinks;
+use Upsun\Model\OrganizationProjectLinksActivities;
+use Upsun\Model\OrganizationProjectLinksAddons;
+use Upsun\Model\OrganizationProjectLinksDelete;
+use Upsun\Model\OrganizationProjectLinksSelf;
+use Upsun\Model\OrganizationProjectLinksUpdate;
+use Upsun\Model\OrganizationReference;
+use Upsun\Model\OrganizationSSOConfig;
+use Upsun\Model\OutboundFirewall;
+use Upsun\Model\OutboundFirewallRestrictionsInner;
+use Upsun\Model\OwnerInfo;
+use Upsun\Model\PagerDutyIntegration;
+use Upsun\Model\PagerDutyIntegrationCreateInput;
+use Upsun\Model\PagerDutyIntegrationPatch;
+use Upsun\Model\PerServiceResourcesOverridesValue;
+use Upsun\Model\Plan;
+use Upsun\Model\PlanRecords;
+use Upsun\Model\PrepaymentObject;
+use Upsun\Model\PrepaymentObjectPrepayment;
+use Upsun\Model\PrepaymentObjectPrepaymentBalance;
+use Upsun\Model\PrepaymentTransactionObject;
+use Upsun\Model\PrepaymentTransactionObjectAmount;
+use Upsun\Model\ProdDomainStorage;
+use Upsun\Model\ProdDomainStorageCreateInput;
+use Upsun\Model\ProdDomainStoragePatch;
+use Upsun\Model\Profile;
+use Upsun\Model\ProfileCurrentTrial;
+use Upsun\Model\ProfileCurrentTrialCurrent;
+use Upsun\Model\ProfileCurrentTrialProjects;
+use Upsun\Model\ProfileCurrentTrialProjectsTotal;
+use Upsun\Model\ProfileCurrentTrialSpend;
+use Upsun\Model\ProfileCurrentTrialSpendRemaining;
+use Upsun\Model\Project;
+use Upsun\Model\ProjectCapabilities;
+use Upsun\Model\ProjectCarbon;
+use Upsun\Model\ProjectInfo;
+use Upsun\Model\ProjectInvitation;
+use Upsun\Model\ProjectInvitationEnvironmentsInner;
+use Upsun\Model\ProjectOptions;
+use Upsun\Model\ProjectOptionsDefaults;
+use Upsun\Model\ProjectOptionsEnforced;
+use Upsun\Model\ProjectPatch;
+use Upsun\Model\ProjectReference;
+use Upsun\Model\ProjectSettings;
+use Upsun\Model\ProjectSettingsPatch;
+use Upsun\Model\ProjectStatus;
+use Upsun\Model\ProjectType;
+use Upsun\Model\ProjectVariable;
+use Upsun\Model\ProjectVariableCreateInput;
+use Upsun\Model\ProjectVariablePatch;
+use Upsun\Model\ProxyRoute;
+use Upsun\Model\RedirectRoute;
+use Upsun\Model\Ref;
+use Upsun\Model\Region;
+use Upsun\Model\RegionDatacenter;
+use Upsun\Model\RegionEnvironmentalImpact;
+use Upsun\Model\RegionProvider;
+use Upsun\Model\RegionReference;
+use Upsun\Model\ReplacementDomainStorage;
+use Upsun\Model\ReplacementDomainStorageCreateInput;
+use Upsun\Model\ReplacementDomainStoragePatch;
+use Upsun\Model\RepositoryInformation;
+use Upsun\Model\ResetEmailAddressRequest;
+use Upsun\Model\ResourceConfig;
+use Upsun\Model\Resources;
+use Upsun\Model\Resources1;
+use Upsun\Model\Resources2;
+use Upsun\Model\Resources3;
+use Upsun\Model\Resources4;
+use Upsun\Model\Resources5;
+use Upsun\Model\Resources6;
+use Upsun\Model\ResourcesForDevelopmentEnvironments;
+use Upsun\Model\ResourcesForProductionEnvironments;
+use Upsun\Model\ResourcesLimits;
+use Upsun\Model\ResourcesOverridesValue;
+use Upsun\Model\RestrictedAndDeniedImageTypes;
+use Upsun\Model\Route;
+use Upsun\Model\RouterResourceSettingsForFlexPlan;
+use Upsun\Model\RoutesValue;
+use Upsun\Model\RuntimeOperations;
+use Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue;
+use Upsun\Model\ScriptIntegration;
+use Upsun\Model\ScriptIntegrationConfigurations;
+use Upsun\Model\ScriptIntegrationCreateInput;
+use Upsun\Model\ScriptIntegrationPatch;
+use Upsun\Model\SendOrgMfaReminders200ResponseValue;
+use Upsun\Model\SendOrgMfaRemindersRequest;
+use Upsun\Model\ServerSideIncludeConfiguration;
+use Upsun\Model\ServicesValue;
+use Upsun\Model\ServicesValue1;
+use Upsun\Model\SlackIntegration;
+use Upsun\Model\SlackIntegrationCreateInput;
+use Upsun\Model\SlackIntegrationPatch;
+use Upsun\Model\SourceOperations;
+use Upsun\Model\SpecificOverridesValue;
+use Upsun\Model\SplunkIntegration;
+use Upsun\Model\SplunkIntegrationCreateInput;
+use Upsun\Model\SplunkIntegrationPatch;
+use Upsun\Model\SplunkLogForwardingIntegrationConfigurations;
+use Upsun\Model\SshKey;
+use Upsun\Model\Status;
+use Upsun\Model\StickyRoutingConfiguration;
+use Upsun\Model\StrictTransportSecurityOptions;
+use Upsun\Model\StringFilter;
+use Upsun\Model\Subscription;
+use Upsun\Model\Subscription1;
+use Upsun\Model\SubscriptionAddonsObject;
+use Upsun\Model\SubscriptionAddonsObjectAvailable;
+use Upsun\Model\SubscriptionAddonsObjectCurrent;
+use Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable;
+use Upsun\Model\SubscriptionCurrentUsageObject;
+use Upsun\Model\SubscriptionInformation;
+use Upsun\Model\SumologicIntegration;
+use Upsun\Model\SumologicIntegrationCreateInput;
+use Upsun\Model\SumologicIntegrationPatch;
+use Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations;
+use Upsun\Model\SyslogIntegration;
+use Upsun\Model\SyslogIntegrationCreateInput;
+use Upsun\Model\SyslogIntegrationPatch;
+use Upsun\Model\SyslogLogForwardingIntegrationConfigurations;
+use Upsun\Model\SystemInformation;
+use Upsun\Model\Team;
+use Upsun\Model\TeamCounts;
+use Upsun\Model\TeamMember;
+use Upsun\Model\TeamProjectAccess;
+use Upsun\Model\TeamProjectAccessLinks;
+use Upsun\Model\TeamProjectAccessLinksDelete;
+use Upsun\Model\TeamProjectAccessLinksSelf;
+use Upsun\Model\TeamProjectAccessLinksUpdate;
+use Upsun\Model\TeamReference;
+use Upsun\Model\TheAddonCredentialInformationOptional;
+use Upsun\Model\TheAddonCredentialInformationOptional1;
+use Upsun\Model\TheBackupScheduleSpecificationInner;
+use Upsun\Model\TheBuildConfigurationOfTheApplication;
+use Upsun\Model\TheCommandsDefinition;
+use Upsun\Model\TheCommandsToManageTheWorker;
+use Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments;
+use Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue;
+use Upsun\Model\TheConfigurationOfTheRedirects;
+use Upsun\Model\TheContinuousProfilingConfiguration;
+use Upsun\Model\TheCronsDeploymentState;
+use Upsun\Model\TheDefaultResourcesForThisService;
+use Upsun\Model\TheDisksResources;
+use Upsun\Model\TheEnvironmentDeploymentState;
+use Upsun\Model\TheEnvironmentSizingConfiguration;
+use Upsun\Model\TheHostsOfTheDeploymentTargetInner;
+use Upsun\Model\TheHostsOfTheDeploymentTargetInner1;
+use Upsun\Model\TheInformationAboutTheAuthor;
+use Upsun\Model\TheInformationAboutTheCommitter;
+use Upsun\Model\TheIssuerOfTheCertificateInner;
+use Upsun\Model\TheMinimumResourcesForThisService;
+use Upsun\Model\TheOAuth2ConsumerInformationOptional;
+use Upsun\Model\TheOAuth2ConsumerInformationOptional1;
+use Upsun\Model\TheObjectTheReferencePointsTo;
+use Upsun\Model\ThePathsToRedirectValue;
+use Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue;
+use Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue;
+use Upsun\Model\TheTreeItemsInner;
+use Upsun\Model\TheVariablesApplyingToThisEnvironmentInner;
+use Upsun\Model\Ticket;
+use Upsun\Model\TicketJiraInner;
+use Upsun\Model\TLSSettingsForTheRoute;
+use Upsun\Model\Tree;
+use Upsun\Model\UpdateOrgAddonsRequest;
+use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
+use Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig;
+use Upsun\Model\UpdateOrgMemberRequest;
+use Upsun\Model\UpdateOrgProfileRequest;
+use Upsun\Model\UpdateOrgProjectRequest;
+use Upsun\Model\UpdateOrgRequest;
+use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\UpdateProfileRequest;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue;
+use Upsun\Model\UpdateProjectUserAccessRequest;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequestAlertsInner;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig;
+use Upsun\Model\UpdateTeamRequest;
+use Upsun\Model\UpdateTicketRequest;
+use Upsun\Model\UpdateUsageAlertsRequest;
+use Upsun\Model\UpdateUserRequest;
+use Upsun\Model\UpstreamRoute;
+use Upsun\Model\Usage;
+use Upsun\Model\UsageAlert;
+use Upsun\Model\UsageAlertConfig;
+use Upsun\Model\UsageAlertConfigThreshold;
+use Upsun\Model\UsageGroupCurrentUsageProperties;
+use Upsun\Model\User;
+use Upsun\Model\UserProjectAccess;
+use Upsun\Model\UserReference;
+use Upsun\Model\VerifyPhoneNumber200Response;
+use Upsun\Model\VerifyPhoneNumberRequest;
+use Upsun\Model\Version;
+use Upsun\Model\VersionCreateInput;
+use Upsun\Model\VersionPatch;
+use Upsun\Model\Vouchers;
+use Upsun\Model\VouchersLinks;
+use Upsun\Model\VouchersLinksSelf;
+use Upsun\Model\VouchersVouchersInner;
+use Upsun\Model\VouchersVouchersInnerOrdersInner;
+use Upsun\Model\VPNConfiguration;
+use Upsun\Model\WebApplicationsValue;
+use Upsun\Model\WebHookIntegration;
+use Upsun\Model\WebhookIntegrationConfigurations;
+use Upsun\Model\WebHookIntegrationCreateInput;
+use Upsun\Model\WebHookIntegrationPatch;
+use Upsun\Model\WorkersValue;
+
+/**
+ * Low level  (auto-generated)
+ *
+ * This model class is utilized by the ObjectSerializer for mapping JSON attribute types
+ * to their corresponding model properties during serialization/deserialization.
+ *
+ * @author    Upsun Advocacy Team
+ * @license   MIT
+ * @see       https://docs.upsun.com
+ * @generated This file was generated by OpenAPI Generator. Do not edit manually.
+ * @internal
+ */
+final class ApiObjectTypesMapper
+{
+    /**
+     * return openApi types mapping for a specific Class
+     */
+    public static function openApiTypes(string $classname): array
+    {
+        return self::$openApiTypes[$classname];
+    }
+
+    private static array $openApiTypes = [
+
+        AListOfFilesToAddToTheRepositoryDuringInitializationInner::class => [
+            'path' => 'string',
+            'mode' => 'int',
+            'contents' => 'string',
+        ],
+
+        AcceptedResponse::class => [
+            'status' => 'string',
+            'code' => 'int',
+        ],
+
+        AccessControlDefinitionForThisEnviromentInner::class => [
+            'entity_id' => 'string',
+            'role' => 'string',
+        ],
+
+        Activity::class => [
+            'id' => 'string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'parameters' => 'object',
+            'project' => 'string',
+            'state' => 'string',
+            'result' => '?string',
+            'started_at' => '?\DateTime',
+            'completed_at' => '?\DateTime',
+            'completion_percent' => 'int',
+            'cancelled_at' => '?\DateTime',
+            'timings' => 'float[]',
+            'log' => 'string',
+            'payload' => 'object',
+            'description' => '?string',
+            'text' => '?string',
+            'expires_at' => '?\DateTime',
+            'commands' => '\Upsun\Model\CommandsInner[]',
+            'integration' => '?string',
+            'environments' => 'string[]',
+        ],
+
+        Address::class => [
+            'country' => '?string',
+            'name_line' => '?string',
+            'premise' => '?string',
+            'sub_premise' => '?string',
+            'thoroughfare' => '?string',
+            'administrative_area' => '?string',
+            'sub_administrative_area' => '?string',
+            'locality' => '?string',
+            'dependent_locality' => '?string',
+            'postal_code' => '?string',
+        ],
+
+        AddressGrantsInner::class => [
+            'permission' => 'string',
+            'address' => 'string',
+        ],
+
+        AddressMetadata::class => [
+            'metadata' => '?\Upsun\Model\AddressMetadataMetadata',
+        ],
+
+        AddressMetadataMetadata::class => [
+            'required_fields' => 'string[]',
+            'field_labels' => '?object',
+            'show_vat' => '?bool',
+        ],
+
+        Alert::class => [
+            'id' => '?string',
+            'active' => '?bool',
+            'alerts_sent' => '?int',
+            'last_alert_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'config' => '?object',
+        ],
+
+        ApiToken::class => [
+            'id' => '?string',
+            'name' => '?string',
+            'mfa_on_creation' => '?bool',
+            'token' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'last_used_at' => '?\DateTime',
+        ],
+
+        ApplyOrgVoucherRequest::class => [
+            'code' => 'string',
+        ],
+
+        ArrayFilter::class => [
+            'eq' => '?string',
+            'ne' => '?string',
+            'in' => '?string',
+            'nin' => '?string',
+        ],
+
+        AutoscalerAlertPartial::class => [
+            'name' => 'string',
+            'service' => 'string',
+            'condition' => 'string',
+            'threshold' => 'float',
+            'value' => 'float',
+            'environment' => '?string',
+            'resource' => '?string',
+            'duration' => '\Upsun\Model\AutoscalerDuration[]',
+        ],
+
+        AutoscalerCPUPressureTrigger::class => [
+            'enabled' => '?bool',
+            'down' => '?\Upsun\Model\AutoscalerCondition',
+            'up' => '?\Upsun\Model\AutoscalerCondition',
+        ],
+
+        AutoscalerCPUResources::class => [
+            'min' => '?float',
+            'max' => '?float',
+        ],
+
+        AutoscalerCPUTrigger::class => [
+            'enabled' => '?bool',
+            'down' => '?\Upsun\Model\AutoscalerCondition',
+            'up' => '?\Upsun\Model\AutoscalerCondition',
+        ],
+
+        AutoscalerCondition::class => [
+            'threshold' => 'float',
+            'duration' => '?\Upsun\Model\AutoscalerDuration',
+            'enabled' => '?bool',
+        ],
+
+        AutoscalerDuration::class => [
+        ],
+
+        AutoscalerInstances::class => [
+            'min' => '?int',
+            'max' => '?int',
+        ],
+
+        AutoscalerMemoryPressureTrigger::class => [
+            'enabled' => '?bool',
+            'down' => '?\Upsun\Model\AutoscalerCondition',
+            'up' => '?\Upsun\Model\AutoscalerCondition',
+        ],
+
+        AutoscalerMemoryResources::class => [
+            'min' => '?int',
+            'max' => '?int',
+        ],
+
+        AutoscalerMemoryTrigger::class => [
+            'enabled' => '?bool',
+            'down' => '?\Upsun\Model\AutoscalerCondition',
+            'up' => '?\Upsun\Model\AutoscalerCondition',
+        ],
+
+        AutoscalerResources::class => [
+            'cpu' => '\Upsun\Model\AutoscalerCPUResources[]',
+            'memory' => '\Upsun\Model\AutoscalerMemoryResources[]',
+        ],
+
+        AutoscalerScalingCooldown::class => [
+            'up' => '?int',
+            'down' => '?int',
+        ],
+
+        AutoscalerScalingFactor::class => [
+            'up' => '?int',
+            'down' => '?int',
+        ],
+
+        AutoscalerServiceSettings::class => [
+            'triggers' => '?\Upsun\Model\AutoscalerTriggers',
+            'instances' => '?\Upsun\Model\AutoscalerInstances',
+            'resources' => '?\Upsun\Model\AutoscalerResources',
+            'scale_factor' => '?\Upsun\Model\AutoscalerScalingFactor',
+            'scale_cooldown' => '?\Upsun\Model\AutoscalerScalingCooldown',
+        ],
+
+        AutoscalerSettings::class => [
+            'services' => 'array&lt;string,\Upsun\Model\AutoscalerServiceSettings&gt;[]',
+        ],
+
+        AutoscalerTriggers::class => [
+            'cpu' => '\Upsun\Model\AutoscalerCPUTrigger[]',
+            'memory' => '\Upsun\Model\AutoscalerMemoryTrigger[]',
+            'cpu_pressure' => '\Upsun\Model\AutoscalerCPUPressureTrigger[]',
+            'memory_pressure' => '\Upsun\Model\AutoscalerMemoryPressureTrigger[]',
+        ],
+
+        Autoscaling::class => [
+            'enabled' => 'bool',
+        ],
+
+        Backup::class => [
+            'id' => 'string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'attributes' => 'string[]',
+            'status' => 'string',
+            'expires_at' => '?\DateTime',
+            'index' => '?int',
+            'commit_id' => 'string',
+            'environment' => 'string',
+            'safe' => 'bool',
+            'size_of_volumes' => '?int',
+            'size_used' => '?int',
+            'deployment' => '?string',
+            'restorable' => 'bool',
+            'automated' => 'bool',
+        ],
+
+        BitbucketIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'fetch_branches' => 'bool',
+            'prune_branches' => 'bool',
+            'environment_init_resources' => 'string',
+            'repository' => 'string',
+            'build_pull_requests' => 'bool',
+            'pull_requests_clone_parent_data' => 'bool',
+            'resync_pull_requests' => 'bool',
+            'id' => '?string',
+            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional',
+            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional',
+        ],
+
+        BitbucketIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        BitbucketIntegrationCreateInput::class => [
+            'type' => 'string',
+            'repository' => 'string',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional1',
+            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional1',
+            'build_pull_requests' => '?bool',
+            'pull_requests_clone_parent_data' => '?bool',
+            'resync_pull_requests' => '?bool',
+        ],
+
+        BitbucketIntegrationPatch::class => [
+            'type' => 'string',
+            'repository' => 'string',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional1',
+            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional1',
+            'build_pull_requests' => '?bool',
+            'pull_requests_clone_parent_data' => '?bool',
+            'resync_pull_requests' => '?bool',
+        ],
+
+        BitbucketServerIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'fetch_branches' => 'bool',
+            'prune_branches' => 'bool',
+            'environment_init_resources' => 'string',
+            'url' => 'string',
+            'username' => 'string',
+            'project' => 'string',
+            'repository' => 'string',
+            'build_pull_requests' => 'bool',
+            'pull_requests_clone_parent_data' => 'bool',
+            'id' => '?string',
+        ],
+
+        BitbucketServerIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        BitbucketServerIntegrationCreateInput::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'username' => 'string',
+            'token' => 'string',
+            'project' => 'string',
+            'repository' => 'string',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'build_pull_requests' => '?bool',
+            'pull_requests_clone_parent_data' => '?bool',
+        ],
+
+        BitbucketServerIntegrationPatch::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'username' => 'string',
+            'token' => 'string',
+            'project' => 'string',
+            'repository' => 'string',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'build_pull_requests' => '?bool',
+            'pull_requests_clone_parent_data' => '?bool',
+        ],
+
+        BlackfireEnvironmentsCredentialsValue::class => [
+            'server_uuid' => 'string',
+            'server_token' => 'string',
+        ],
+
+        BlackfireIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'environments_credentials' => '\Upsun\Model\BlackfireEnvironmentsCredentialsValue[]',
+            'continuous_profiling' => 'bool',
+            'id' => '?string',
+        ],
+
+        BlackfireIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        BlackfireIntegrationCreateInput::class => [
+            'type' => 'string',
+        ],
+
+        BlackfireIntegrationPatch::class => [
+            'type' => 'string',
+        ],
+
+        Blob::class => [
+            'id' => 'string',
+            'sha' => 'string',
+            'size' => 'int',
+            'encoding' => 'string',
+            'content' => 'string',
+        ],
+
+        BuildResources::class => [
+            'enabled' => 'bool',
+            'max_cpu' => 'float',
+            'max_memory' => 'int',
+        ],
+
+        BuildResources1::class => [
+            'cpu' => 'float',
+            'memory' => 'int',
+        ],
+
+        BuildResources2::class => [
+            'cpu' => '?float',
+            'memory' => '?int',
+        ],
+
+        CacheConfiguration::class => [
+            'enabled' => 'bool',
+            'default_ttl' => 'int',
+            'cookies' => 'string[]',
+            'headers' => 'string[]',
+        ],
+
+        CanCreateNewOrgSubscription200Response::class => [
+            'can_create' => '?bool',
+            'message' => '?string',
+            'required_action' => '?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction',
+        ],
+
+        CanCreateNewOrgSubscription200ResponseRequiredAction::class => [
+            'action' => '?string',
+            'type' => '?string',
+        ],
+
+        CanUpdateSubscription200Response::class => [
+            'can_update' => '?bool',
+            'message' => '?string',
+            'required_action' => '?object',
+        ],
+
+        Certificate::class => [
+            'id' => 'string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'certificate' => 'string',
+            'chain' => 'string[]',
+            'is_provisioned' => 'bool',
+            'is_invalid' => 'bool',
+            'is_root' => 'bool',
+            'domains' => 'string[]',
+            'auth_type' => 'string[]',
+            'issuer' => '\Upsun\Model\TheIssuerOfTheCertificateInner[]',
+            'expires_at' => '\DateTime',
+        ],
+
+        CertificateCreateInput::class => [
+            'certificate' => 'string',
+            'key' => 'string',
+            'chain' => 'string[]',
+            'is_invalid' => '?bool',
+        ],
+
+        CertificatePatch::class => [
+            'chain' => 'string[]',
+            'is_invalid' => '?bool',
+        ],
+
+        CertificateProvisioner::class => [
+            'id' => 'string',
+            'directory_url' => 'string',
+            'email' => 'string',
+            'eab_kid' => '?string',
+            'eab_hmac_key' => '?string',
+        ],
+
+        CertificateProvisionerPatch::class => [
+            'directory_url' => '?string',
+            'email' => '?string',
+            'eab_kid' => '?string',
+            'eab_hmac_key' => '?string',
+        ],
+
+        CommandsInner::class => [
+            'app' => 'string',
+            'type' => 'string',
+            'exit_code' => 'int',
+        ],
+
+        CommandsToManageTheApplicationSLifecycle::class => [
+            'pre_start' => '?string',
+            'start' => '?string',
+            'post_start' => '?string',
+        ],
+
+        Commit::class => [
+            'id' => 'string',
+            'sha' => 'string',
+            'author' => TheInformationAboutTheAuthor::class,
+            'committer' => TheInformationAboutTheCommitter::class,
+            'message' => 'string',
+            'tree' => 'string',
+            'parents' => 'string[]',
+        ],
+
+        Components::class => [
+            'voucher/vat/baseprice' => '?object',
+        ],
+
+        Config::class => [
+            'newrelic' => '?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations',
+            'sumologic' => '?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations',
+            'splunk' => '?\Upsun\Model\SplunkLogForwardingIntegrationConfigurations',
+            'httplog' => '?\Upsun\Model\HTTPLogForwardingIntegrationConfigurations',
+            'syslog' => '?\Upsun\Model\SyslogLogForwardingIntegrationConfigurations',
+            'webhook' => '?\Upsun\Model\WebhookIntegrationConfigurations',
+            'script' => '?\Upsun\Model\ScriptIntegrationConfigurations',
+            'github' => '?\Upsun\Model\GitHubIntegrationConfigurations',
+            'gitlab' => '?\Upsun\Model\GitLabIntegrationConfigurations',
+            'bitbucket' => '?\Upsun\Model\BitbucketIntegrationConfigurations',
+            'bitbucket_server' => '?\Upsun\Model\BitbucketServerIntegrationConfigurations',
+            'health.email' => '?\Upsun\Model\HealthEmailNotificationIntegrationConfigurations',
+            'health.webhook' => '?\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations',
+            'health.pagerduty' => '?\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations',
+            'health.slack' => '?\Upsun\Model\HealthSlackNotificationIntegrationConfigurations',
+            'cdn.fastly' => '?\Upsun\Model\FastlyCDNIntegrationConfigurations',
+            'blackfire' => '?\Upsun\Model\BlackfireIntegrationConfigurations',
+            'otlp' => '?\Upsun\Model\OpenTelemetryLogForwardingIntegrationConfigurations',
+        ],
+
+        ConfigurationAboutTheTrafficRoutedToThisVersion::class => [
+            'percentage' => 'int',
+        ],
+
+        ConfigurationAboutTheTrafficRoutedToThisVersion1::class => [
+            'percentage' => '?int',
+        ],
+
+        ConfigurationForAccessingThisApplicationViaHTTP::class => [
+            'locations' => '\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]',
+            'move_to_root' => 'bool',
+            'commands' => '?\Upsun\Model\CommandsToManageTheApplicationSLifecycle',
+            'upstream' => '?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication',
+            'document_root' => '?string',
+            'passthru' => '?string',
+            'index_files' => 'string[]',
+            'whitelist' => 'string[]',
+            'blacklist' => 'string[]',
+            'expires' => '?string',
+        ],
+
+        ConfigurationForPreFlightChecks::class => [
+            'enabled' => 'bool',
+            'ignored_rules' => 'string[]',
+        ],
+
+        ConfigurationForSupportingRequestBuffering::class => [
+            'enabled' => 'bool',
+            'max_request_size' => '?string',
+        ],
+
+        ConfigurationOfAWorkerContainerInstance::class => [
+            'commands' => TheCommandsToManageTheWorker::class,
+            'disk' => '?int',
+        ],
+
+        ConfigurationOnHowTheWebServerCommunicatesWithTheApplication::class => [
+            'socket_family' => 'string',
+            'protocol' => '?string',
+        ],
+
+        ConfigurationRelatedToTheSourceCodeOfTheApplication::class => [
+            'root' => '?string',
+            'operations' => '\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]',
+        ],
+
+        ConfirmPhoneNumberRequest::class => [
+            'code' => 'string',
+        ],
+
+        ConfirmTotpEnrollment200Response::class => [
+            'recovery_codes' => 'string[]',
+        ],
+
+        ConfirmTotpEnrollmentRequest::class => [
+            'secret' => 'string',
+            'passcode' => 'string',
+        ],
+
+        Connection::class => [
+            'provider' => '?string',
+            'provider_type' => '?string',
+            'is_mandatory' => '?bool',
+            'subject' => '?string',
+            'email_address' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+        ],
+
+        ContainerProfilesValueValue::class => [
+            'cpu' => 'float',
+            'memory' => 'int',
+            'cpu_type' => 'string',
+        ],
+
+        CreateApiTokenRequest::class => [
+            'name' => 'string',
+        ],
+
+        CreateAuthorizationCredentials200Response::class => [
+            'redirect_to_url' => '?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl',
+            'type' => '?string',
+        ],
+
+        CreateAuthorizationCredentials200ResponseRedirectToUrl::class => [
+            'return_url' => '?string',
+            'url' => '?string',
+        ],
+
+        CreateOrgInviteRequest::class => [
+            'email' => 'string',
+            'permissions' => 'string[]',
+            'force' => '?bool',
+        ],
+
+        CreateOrgMemberRequest::class => [
+            'user_id' => 'string',
+            'permissions' => 'string[]',
+        ],
+
+        CreateOrgProjectRequest::class => [
+            'region' => 'string',
+            'organization_id' => '?string',
+            'title' => '?string',
+            'type' => '?\Upsun\Model\ProjectType',
+            'plan' => '?string',
+            'default_branch' => '?string',
+            'cse_notes' => '?string',
+            'dedicated_tag' => '?string',
+        ],
+
+        CreateOrgRequest::class => [
+            'label' => 'string',
+            'type' => '?string',
+            'owner_id' => '?string',
+            'name' => '?string',
+            'country' => '?string',
+        ],
+
+        CreateOrgSubscriptionRequest::class => [
+            'project_region' => 'string',
+            'plan' => '?string',
+            'project_title' => '?string',
+            'options_url' => '?string',
+            'default_branch' => '?string',
+            'environments' => '?int',
+            'storage' => '?int',
+        ],
+
+        CreateProfilePicture200Response::class => [
+            'url' => '?string',
+        ],
+
+        CreateProjectInviteRequest::class => [
+            'email' => 'string',
+            'role' => '?string',
+            'permissions' => '\Upsun\Model\CreateProjectInviteRequestPermissionsInner[]',
+            'environments' => '\Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]',
+            'force' => '?bool',
+        ],
+
+        CreateProjectInviteRequestEnvironmentsInner::class => [
+            'id' => '?string',
+            'role' => '?string',
+        ],
+
+        CreateProjectInviteRequestPermissionsInner::class => [
+            'type' => '?string',
+            'role' => '?string',
+        ],
+
+        CreateSshKeyRequest::class => [
+            'value' => 'string',
+            'title' => '?string',
+            'uuid' => '?string',
+        ],
+
+        CreateTeamMemberRequest::class => [
+            'user_id' => 'string',
+        ],
+
+        CreateTeamRequest::class => [
+            'organization_id' => 'string',
+            'label' => 'string',
+            'project_permissions' => 'string[]',
+        ],
+
+        CreateTicketRequest::class => [
+            'subject' => 'string',
+            'description' => 'string',
+            'requester_id' => '?string',
+            'priority' => '?string',
+            'subscription_id' => '?string',
+            'organization_id' => '?string',
+            'affected_url' => '?string',
+            'followup_tid' => '?string',
+            'category' => '?string',
+            'attachments' => '\Upsun\Model\CreateTicketRequestAttachmentsInner[]',
+            'collaborator_ids' => 'string[]',
+        ],
+
+        CreateTicketRequestAttachmentsInner::class => [
+            'filename' => '?string',
+            'data' => '?string',
+        ],
+
+        CurrencyAmount::class => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency_code' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        CurrencyAmountNullable::class => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency_code' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        CurrentUser::class => [
+            'id' => '?string',
+            'uuid' => '?string',
+            'username' => '?string',
+            'display_name' => '?string',
+            'status' => '?int',
+            'mail' => '?string',
+            'ssh_keys' => '\Upsun\Model\SshKey[]',
+            'has_key' => '?bool',
+            'projects' => '\Upsun\Model\CurrentUserProjectsInner[]',
+            'sequence' => '?int',
+            'roles' => 'string[]',
+            'picture' => '?string',
+            'tickets' => '?object',
+            'trial' => '?bool',
+            'current_trial' => '\Upsun\Model\CurrentUserCurrentTrialInner[]',
+        ],
+
+        CurrentUserCurrentTrialInner::class => [
+            'created' => '?\DateTime',
+            'description' => '?string',
+            'spend_remaining' => '?string',
+            'expiration' => '?\DateTime',
+        ],
+
+        CurrentUserProjectsInner::class => [
+            'id' => '?string',
+            'name' => '?string',
+            'title' => '?string',
+            'cluster' => '?string',
+            'cluster_label' => '?string',
+            'region' => '?string',
+            'region_label' => '?string',
+            'uri' => '?string',
+            'endpoint' => '?string',
+            'license_id' => '?int',
+            'owner' => '?string',
+            'owner_info' => '?\Upsun\Model\OwnerInfo',
+            'plan' => '?string',
+            'subscription_id' => '?int',
+            'status' => '?string',
+            'vendor' => '?string',
+            'vendor_label' => '?string',
+            'vendor_website' => '?string',
+            'vendor_resources' => '?string',
+            'created_at' => '?\DateTime',
+        ],
+
+        CustomDomains::class => [
+            'enabled' => 'bool',
+            'environments_with_domains_limit' => 'int',
+        ],
+
+        DataRetention::class => [
+            'enabled' => 'bool',
+        ],
+
+        DataRetentionConfigurationValue::class => [
+            'max_backups' => 'int',
+            'default_config' => DefaultConfig::class,
+        ],
+
+        DataRetentionConfigurationValue1::class => [
+            'default_config' => DefaultConfig1::class,
+            'max_backups' => '?int',
+        ],
+
+        DateTimeFilter::class => [
+            'eq' => '?string',
+            'ne' => '?string',
+            'between' => '?string',
+            'gt' => '?string',
+            'gte' => '?string',
+            'lt' => '?string',
+            'lte' => '?string',
+        ],
+
+        DedicatedDeploymentTarget::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'deploy_host' => '?string',
+            'deploy_port' => '?int',
+            'ssh_host' => '?string',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
+            'auto_mounts' => 'bool',
+            'excluded_mounts' => 'string[]',
+            'enforced_mounts' => 'object',
+            'auto_crons' => 'bool',
+            'auto_nginx' => 'bool',
+            'maintenance_mode' => 'bool',
+            'guardrails_phase' => 'int',
+            'id' => '?string',
+        ],
+
+        DedicatedDeploymentTargetCreateInput::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'enforced_mounts' => '?object',
+        ],
+
+        DedicatedDeploymentTargetPatch::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'enforced_mounts' => '?object',
+        ],
+
+        DefaultConfig::class => [
+            'manual_count' => 'int',
+            'schedule' => '\Upsun\Model\TheBackupScheduleSpecificationInner[]',
+        ],
+
+        DefaultConfig1::class => [
+            'manual_count' => '?int',
+            'schedule' => '\Upsun\Model\TheBackupScheduleSpecificationInner[]',
+        ],
+
+        Deployment::class => [
+            'id' => 'string',
+            'cluster_name' => 'string',
+            'project_info' => ProjectInfo::class,
+            'environment_info' => EnvironmentInfo::class,
+            'deployment_target' => 'string',
+            'vpn' => '?\Upsun\Model\VPNConfiguration',
+            'http_access' => HttpAccessPermissions::class,
+            'enable_smtp' => 'bool',
+            'restrict_robots' => 'bool',
+            'variables' => '\Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]',
+            'access' => '\Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]',
+            'subscription' => Subscription1::class,
+            'services' => '\Upsun\Model\ServicesValue[]',
+            'routes' => '\Upsun\Model\RoutesValue[]',
+            'webapps' => '\Upsun\Model\WebApplicationsValue[]',
+            'workers' => '\Upsun\Model\WorkersValue[]',
+            'container_profiles' => 'array&lt;string,\Upsun\Model\ContainerProfilesValueValue&gt;[]',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'fingerprint' => '?string',
+        ],
+
+        DeploymentTarget::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'deploy_host' => '?string',
+            'deploy_port' => '?int',
+            'ssh_host' => '?string',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
+            'auto_mounts' => 'bool',
+            'excluded_mounts' => 'string[]',
+            'enforced_mounts' => 'object',
+            'auto_crons' => 'bool',
+            'auto_nginx' => 'bool',
+            'maintenance_mode' => 'bool',
+            'guardrails_phase' => 'int',
+            'docroots' => '\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]',
+            'site_urls' => 'object',
+            'ssh_hosts' => 'string[]',
+            'use_dedicated_grid' => 'bool',
+            'storage_type' => '?string',
+            'id' => '?string',
+            'enterprise_environments_mapping' => '?object',
+        ],
+
+        DeploymentTargetCreateInput::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'enforced_mounts' => '?object',
+            'site_urls' => '?object',
+            'ssh_hosts' => 'string[]',
+            'enterprise_environments_mapping' => '?object',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]',
+            'use_dedicated_grid' => '?bool',
+        ],
+
+        DeploymentTargetPatch::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'enforced_mounts' => '?object',
+            'site_urls' => '?object',
+            'ssh_hosts' => 'string[]',
+            'enterprise_environments_mapping' => '?object',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]',
+            'use_dedicated_grid' => '?bool',
+        ],
+
+        Discount::class => [
+            'id' => '?int',
+            'organization_id' => '?string',
+            'type' => '?string',
+            'type_label' => '?string',
+            'status' => '?string',
+            'commitment' => '?\Upsun\Model\DiscountCommitment',
+            'total_months' => '?int',
+            'discount' => '?\Upsun\Model\DiscountDiscount',
+            'config' => '?object',
+            'start_at' => '?\DateTime',
+            'end_at' => '?\DateTime',
+        ],
+
+        DiscountCommitment::class => [
+            'months' => '?int',
+            'amount' => '?\Upsun\Model\DiscountCommitmentAmount',
+            'net' => '?\Upsun\Model\DiscountCommitmentNet',
+        ],
+
+        DiscountCommitmentAmount::class => [
+            'monthly' => '?\Upsun\Model\CurrencyAmount',
+            'commitment_period' => '?\Upsun\Model\CurrencyAmount',
+            'contract_total' => '?\Upsun\Model\CurrencyAmount',
+        ],
+
+        DiscountCommitmentNet::class => [
+            'monthly' => '?\Upsun\Model\CurrencyAmount',
+            'commitment_period' => '?\Upsun\Model\CurrencyAmount',
+            'contract_total' => '?\Upsun\Model\CurrencyAmount',
+        ],
+
+        DiscountDiscount::class => [
+            'monthly' => '?\Upsun\Model\CurrencyAmount',
+            'commitment_period' => '?\Upsun\Model\CurrencyAmountNullable',
+            'contract_total' => '?\Upsun\Model\CurrencyAmountNullable',
+        ],
+
+        Domain::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'name' => 'string',
+            'attributes' => 'string[]',
+            'id' => '?string',
+            'project' => '?string',
+            'registered_name' => '?string',
+            'is_default' => '?bool',
+            'replacement_for' => '?string',
+        ],
+
+        DomainCreateInput::class => [
+            'name' => 'string',
+            'attributes' => 'string[]',
+            'is_default' => '?bool',
+            'replacement_for' => '?string',
+        ],
+
+        DomainPatch::class => [
+            'attributes' => 'string[]',
+            'is_default' => '?bool',
+        ],
+
+        EmailIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'from_address' => '?string',
+            'recipients' => 'string[]',
+            'id' => '?string',
+        ],
+
+        EmailIntegrationCreateInput::class => [
+            'type' => 'string',
+            'recipients' => 'string[]',
+            'from_address' => '?string',
+        ],
+
+        EmailIntegrationPatch::class => [
+            'type' => 'string',
+            'recipients' => 'string[]',
+            'from_address' => '?string',
+        ],
+
+        EnterpriseDeploymentTarget::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'deploy_host' => '?string',
+            'docroots' => '\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]',
+            'site_urls' => 'object',
+            'ssh_hosts' => 'string[]',
+            'maintenance_mode' => 'bool',
+            'id' => '?string',
+            'enterprise_environments_mapping' => '?object',
+        ],
+
+        EnterpriseDeploymentTargetCreateInput::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'site_urls' => '?object',
+            'ssh_hosts' => 'string[]',
+            'enterprise_environments_mapping' => '?object',
+        ],
+
+        EnterpriseDeploymentTargetPatch::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'site_urls' => '?object',
+            'ssh_hosts' => 'string[]',
+            'enterprise_environments_mapping' => '?object',
+        ],
+
+        Environment::class => [
+            'id' => 'string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'name' => 'string',
+            'machine_name' => 'string',
+            'title' => 'string',
+            'attributes' => 'string[]',
+            'type' => 'string',
+            'parent' => '?string',
+            'default_domain' => '?string',
+            'has_domains' => 'bool',
+            'clone_parent_on_create' => 'bool',
+            'deployment_target' => '?string',
+            'is_pr' => 'bool',
+            'has_remote' => 'bool',
+            'status' => 'string',
+            'http_access' => HttpAccessPermissions::class,
+            'enable_smtp' => 'bool',
+            'restrict_robots' => 'bool',
+            'edge_hostname' => 'string',
+            'deployment_state' => '?\Upsun\Model\TheEnvironmentDeploymentState',
+            'sizing' => '?\Upsun\Model\TheEnvironmentSizingConfiguration',
+            'resources_overrides' => '\Upsun\Model\ResourcesOverridesValue[]',
+            'max_instance_count' => '?int',
+            'last_active_at' => '?\DateTime',
+            'last_backup_at' => '?\DateTime',
+            'project' => 'string',
+            'is_main' => 'bool',
+            'is_dirty' => 'bool',
+            'has_staged_activities' => 'bool',
+            'can_rolling_deploy' => 'bool',
+            'has_code' => 'bool',
+            'head_commit' => '?string',
+            'merge_info' => TheCommitDistanceInfoBetweenParentAndChildEnvironments::class,
+            'has_deployment' => 'bool',
+            'supports_restrict_robots' => 'bool',
+        ],
+
+        EnvironmentActivateInput::class => [
+            'resources' => '?\Upsun\Model\Resources2',
+        ],
+
+        EnvironmentBackupInput::class => [
+            'safe' => 'bool',
+        ],
+
+        EnvironmentBranchInput::class => [
+            'title' => 'string',
+            'name' => 'string',
+            'clone_parent' => 'bool',
+            'type' => 'string',
+            'resources' => '?\Upsun\Model\Resources3',
+        ],
+
+        EnvironmentDeployInput::class => [
+            'strategy' => 'string',
+        ],
+
+        EnvironmentInfo::class => [
+            'name' => 'string',
+            'status' => 'string',
+            'is_main' => 'bool',
+            'is_production' => 'bool',
+            'constraints' => 'object',
+            'reference' => 'string',
+            'machine_name' => 'string',
+            'environment_type' => 'string',
+            'links' => 'object',
+        ],
+
+        EnvironmentInitializeInput::class => [
+            'profile' => 'string',
+            'repository' => 'string',
+            'config' => '?string',
+            'files' => '\Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]',
+            'resources' => '?\Upsun\Model\Resources4',
+        ],
+
+        EnvironmentMergeInput::class => [
+            'resources' => '?\Upsun\Model\Resources5',
+        ],
+
+        EnvironmentOperationInput::class => [
+            'service' => 'string',
+            'operation' => 'string',
+            'parameters' => 'string[]',
+        ],
+
+        EnvironmentPatch::class => [
+            'name' => '?string',
+            'title' => '?string',
+            'attributes' => 'string[]',
+            'type' => '?string',
+            'parent' => '?string',
+            'clone_parent_on_create' => '?bool',
+            'http_access' => '?\Upsun\Model\HttpAccessPermissions1',
+            'enable_smtp' => '?bool',
+            'restrict_robots' => '?bool',
+        ],
+
+        EnvironmentRestoreInput::class => [
+            'environment_name' => '?string',
+            'branch_from' => '?string',
+            'restore_code' => 'bool',
+            'restore_resources' => 'bool',
+            'resources' => '?\Upsun\Model\Resources6',
+        ],
+
+        EnvironmentSourceOperation::class => [
+            'id' => 'string',
+            'app' => 'string',
+            'operation' => 'string',
+            'command' => 'string',
+        ],
+
+        EnvironmentSourceOperationInput::class => [
+            'operation' => 'string',
+            'variables' => 'array&lt;string,mixed&gt;[]',
+        ],
+
+        EnvironmentSynchronizeInput::class => [
+            'synchronize_code' => 'bool',
+            'rebase' => 'bool',
+            'synchronize_data' => 'bool',
+            'synchronize_resources' => 'bool',
+        ],
+
+        EnvironmentType::class => [
+            'id' => 'string',
+            'attributes' => 'string[]',
+        ],
+
+        EnvironmentVariable::class => [
+            'id' => 'string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'name' => 'string',
+            'attributes' => 'string[]',
+            'is_json' => 'bool',
+            'is_sensitive' => 'bool',
+            'visible_build' => 'bool',
+            'visible_runtime' => 'bool',
+            'application_scope' => 'string[]',
+            'project' => 'string',
+            'environment' => 'string',
+            'inherited' => 'bool',
+            'is_enabled' => 'bool',
+            'is_inheritable' => 'bool',
+            'value' => '?string',
+        ],
+
+        EnvironmentVariableCreateInput::class => [
+            'name' => 'string',
+            'value' => 'string',
+            'attributes' => 'string[]',
+            'is_json' => '?bool',
+            'is_sensitive' => '?bool',
+            'visible_build' => '?bool',
+            'visible_runtime' => '?bool',
+            'application_scope' => 'string[]',
+            'is_enabled' => '?bool',
+            'is_inheritable' => '?bool',
+        ],
+
+        EnvironmentVariablePatch::class => [
+            'name' => '?string',
+            'attributes' => 'string[]',
+            'value' => '?string',
+            'is_json' => '?bool',
+            'is_sensitive' => '?bool',
+            'visible_build' => '?bool',
+            'visible_runtime' => '?bool',
+            'application_scope' => 'string[]',
+            'is_enabled' => '?bool',
+            'is_inheritable' => '?bool',
+        ],
+
+        Error::class => [
+            'status' => '?string',
+            'message' => '?string',
+            'code' => '?float',
+            'detail' => '?object',
+            'title' => '?string',
+        ],
+
+        EstimationObject::class => [
+            'plan' => '?string',
+            'user_licenses' => '?string',
+            'environments' => '?string',
+            'storage' => '?string',
+            'total' => '?string',
+            'options' => '?object',
+        ],
+
+        FastlyCDNIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        FastlyIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => 'string',
+            'service_id' => 'string',
+            'id' => '?string',
+        ],
+
+        FastlyIntegrationCreateInput::class => [
+            'type' => 'string',
+            'token' => 'string',
+            'service_id' => 'string',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => '?string',
+        ],
+
+        FastlyIntegrationPatch::class => [
+            'type' => 'string',
+            'token' => 'string',
+            'service_id' => 'string',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => '?string',
+        ],
+
+        FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue::class => [
+            'source' => 'string',
+            'source_path' => 'string',
+            'service' => '?string',
+        ],
+
+        Firewall::class => [
+            'outbound' => '\Upsun\Model\OutboundFirewallRestrictionsInner[]',
+        ],
+
+        FoundationDeploymentTarget::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
+            'use_dedicated_grid' => 'bool',
+            'storage_type' => '?string',
+            'id' => '?string',
+        ],
+
+        FoundationDeploymentTargetCreateInput::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]',
+            'use_dedicated_grid' => '?bool',
+        ],
+
+        FoundationDeploymentTargetPatch::class => [
+            'type' => 'string',
+            'name' => 'string',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]',
+            'use_dedicated_grid' => '?bool',
+        ],
+
+        GetAddress200Response::class => [
+            'country' => '?string',
+            'name_line' => '?string',
+            'premise' => '?string',
+            'sub_premise' => '?string',
+            'thoroughfare' => '?string',
+            'administrative_area' => '?string',
+            'sub_administrative_area' => '?string',
+            'locality' => '?string',
+            'dependent_locality' => '?string',
+            'postal_code' => '?string',
+            'metadata' => '?\Upsun\Model\AddressMetadataMetadata',
+        ],
+
+        GetCurrentUserVerificationStatus200Response::class => [
+            'verify_phone' => '?bool',
+        ],
+
+        GetCurrentUserVerificationStatusFull200Response::class => [
+            'state' => '?bool',
+            'type' => '?string',
+        ],
+
+        GetOrgPrepaymentInfo200Response::class => [
+            'prepayment' => '?\Upsun\Model\PrepaymentObject',
+            '_links' => '?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks',
+        ],
+
+        GetOrgPrepaymentInfo200ResponseLinks::class => [
+            'self' => '?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf',
+            'transactions' => '?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions',
+        ],
+
+        GetOrgPrepaymentInfo200ResponseLinksSelf::class => [
+            'href' => '?string',
+        ],
+
+        GetOrgPrepaymentInfo200ResponseLinksTransactions::class => [
+            'href' => '?string',
+        ],
+
+        GetSubscriptionUsageAlerts200Response::class => [
+            'current' => '\Upsun\Model\UsageAlert[]',
+            'available' => '\Upsun\Model\UsageAlert[]',
+        ],
+
+        GetTotpEnrollment200Response::class => [
+            'issuer' => '?string',
+            'account_name' => '?string',
+            'secret' => '?string',
+            'qr_code' => '?string',
+        ],
+
+        GetTypeAllowance200Response::class => [
+            'currencies' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrencies',
+        ],
+
+        GetTypeAllowance200ResponseCurrencies::class => [
+            'EUR' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR',
+            'USD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD',
+            'GBP' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP',
+            'AUD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD',
+            'CAD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD',
+        ],
+
+        GetTypeAllowance200ResponseCurrenciesAUD::class => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        GetTypeAllowance200ResponseCurrenciesCAD::class => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        GetTypeAllowance200ResponseCurrenciesEUR::class => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        GetTypeAllowance200ResponseCurrenciesGBP::class => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        GetTypeAllowance200ResponseCurrenciesUSD::class => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        GetUsageAlerts200Response::class => [
+            'available' => '\Upsun\Model\Alert[]',
+            'current' => '\Upsun\Model\Alert[]',
+        ],
+
+        GitHubIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        GitLabIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'fetch_branches' => 'bool',
+            'prune_branches' => 'bool',
+            'environment_init_resources' => 'string',
+            'base_url' => 'string',
+            'project' => 'string',
+            'build_merge_requests' => 'bool',
+            'build_wip_merge_requests' => 'bool',
+            'merge_requests_clone_parent_data' => 'bool',
+            'id' => '?string',
+        ],
+
+        GitLabIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        GitLabIntegrationCreateInput::class => [
+            'type' => 'string',
+            'token' => 'string',
+            'project' => 'string',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'base_url' => '?string',
+            'build_merge_requests' => '?bool',
+            'build_wip_merge_requests' => '?bool',
+            'merge_requests_clone_parent_data' => '?bool',
+        ],
+
+        GitLabIntegrationPatch::class => [
+            'type' => 'string',
+            'token' => 'string',
+            'project' => 'string',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'base_url' => '?string',
+            'build_merge_requests' => '?bool',
+            'build_wip_merge_requests' => '?bool',
+            'merge_requests_clone_parent_data' => '?bool',
+        ],
+
+        GitServerConfiguration::class => [
+            'push_size_hard_limit' => 'int',
+        ],
+
+        GithubIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'fetch_branches' => 'bool',
+            'prune_branches' => 'bool',
+            'environment_init_resources' => 'string',
+            'base_url' => '?string',
+            'repository' => 'string',
+            'build_pull_requests' => 'bool',
+            'build_draft_pull_requests' => 'bool',
+            'build_pull_requests_post_merge' => 'bool',
+            'pull_requests_clone_parent_data' => 'bool',
+            'token_type' => 'string',
+            'id' => '?string',
+        ],
+
+        GithubIntegrationCreateInput::class => [
+            'type' => 'string',
+            'token' => 'string',
+            'repository' => 'string',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'base_url' => '?string',
+            'build_pull_requests' => '?bool',
+            'build_draft_pull_requests' => '?bool',
+            'build_pull_requests_post_merge' => '?bool',
+            'pull_requests_clone_parent_data' => '?bool',
+        ],
+
+        GithubIntegrationPatch::class => [
+            'type' => 'string',
+            'token' => 'string',
+            'repository' => 'string',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'base_url' => '?string',
+            'build_pull_requests' => '?bool',
+            'build_draft_pull_requests' => '?bool',
+            'build_pull_requests_post_merge' => '?bool',
+            'pull_requests_clone_parent_data' => '?bool',
+        ],
+
+        GoogleSSOConfig::class => [
+            'provider_type' => '?string',
+            'domain' => '?string',
+        ],
+
+        GrantProjectTeamAccessRequestInner::class => [
+            'team_id' => 'string',
+        ],
+
+        GrantProjectUserAccessRequestInner::class => [
+            'user_id' => 'string',
+            'permissions' => 'string[]',
+            'auto_add_member' => '?bool',
+        ],
+
+        GrantTeamProjectAccessRequestInner::class => [
+            'project_id' => 'string',
+        ],
+
+        GrantUserProjectAccessRequestInner::class => [
+            'project_id' => 'string',
+            'permissions' => 'string[]',
+        ],
+
+        GuaranteedResources::class => [
+            'enabled' => 'bool',
+            'instance_limit' => 'int',
+        ],
+
+        HTTPLogForwardingIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        HalLinks::class => [
+            'self' => '?\Upsun\Model\HalLinksSelf',
+            'previous' => '?\Upsun\Model\HalLinksPrevious',
+            'next' => '?\Upsun\Model\HalLinksNext',
+        ],
+
+        HalLinksNext::class => [
+            'title' => '?string',
+            'href' => '?string',
+        ],
+
+        HalLinksPrevious::class => [
+            'title' => '?string',
+            'href' => '?string',
+        ],
+
+        HalLinksSelf::class => [
+            'title' => '?string',
+            'href' => '?string',
+        ],
+
+        HealthEmailNotificationIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        HealthPagerDutyNotificationIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        HealthSlackNotificationIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        HealthWebHookIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'url' => 'string',
+            'id' => '?string',
+        ],
+
+        HealthWebHookIntegrationCreateInput::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'shared_key' => '?string',
+        ],
+
+        HealthWebHookIntegrationPatch::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'shared_key' => '?string',
+        ],
+
+        HealthWebhookNotificationIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        HooksExecutedAtVariousPointInTheLifecycleOfTheApplication::class => [
+            'build' => '?string',
+            'deploy' => '?string',
+            'post_deploy' => '?string',
+        ],
+
+        HttpAccessPermissions::class => [
+            'is_enabled' => 'bool',
+            'addresses' => '\Upsun\Model\AddressGrantsInner[]',
+            'basic_auth' => 'string[]',
+        ],
+
+        HttpAccessPermissions1::class => [
+            'is_enabled' => '?bool',
+            'addresses' => '\Upsun\Model\AddressGrantsInner[]',
+            'basic_auth' => 'string[]',
+        ],
+
+        HttpLogIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'extra' => 'string[]',
+            'url' => 'string',
+            'headers' => 'string[]',
+            'tls_verify' => 'bool',
+            'excluded_services' => 'string[]',
+            'id' => '?string',
+        ],
+
+        HttpLogIntegrationCreateInput::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'extra' => 'string[]',
+            'headers' => 'string[]',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+        ],
+
+        HttpLogIntegrationPatch::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'extra' => 'string[]',
+            'headers' => 'string[]',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+        ],
+
+        ImagesValueValue::class => [
+            'available' => 'bool',
+        ],
+
+        Integration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'fetch_branches' => 'bool',
+            'prune_branches' => 'bool',
+            'environment_init_resources' => 'string',
+            'repository' => 'string',
+            'build_pull_requests' => 'bool',
+            'pull_requests_clone_parent_data' => 'bool',
+            'resync_pull_requests' => 'bool',
+            'url' => 'string',
+            'username' => 'string',
+            'project' => 'string',
+            'environments_credentials' => '\Upsun\Model\BlackfireEnvironmentsCredentialsValue[]',
+            'continuous_profiling' => 'bool',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => 'string',
+            'service_id' => 'string',
+            'base_url' => 'string',
+            'build_draft_pull_requests' => 'bool',
+            'build_pull_requests_post_merge' => 'bool',
+            'token_type' => 'string',
+            'build_merge_requests' => 'bool',
+            'build_wip_merge_requests' => 'bool',
+            'merge_requests_clone_parent_data' => 'bool',
+            'from_address' => '?string',
+            'recipients' => 'string[]',
+            'routing_key' => 'string',
+            'channel' => 'string',
+            'extra' => 'string[]',
+            'headers' => 'string[]',
+            'tls_verify' => 'bool',
+            'excluded_services' => 'string[]',
+            'script' => 'string',
+            'index' => 'string',
+            'sourcetype' => 'string',
+            'category' => 'string',
+            'host' => 'string',
+            'port' => 'int',
+            'protocol' => 'string',
+            'facility' => 'int',
+            'message_format' => 'string',
+            'shared_key' => '?string',
+            'id' => '?string',
+            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional',
+            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional',
+        ],
+
+        IntegrationCreateInput::class => [
+            'type' => 'string',
+            'repository' => 'string',
+            'url' => 'string',
+            'username' => 'string',
+            'token' => 'string',
+            'project' => 'string',
+            'service_id' => 'string',
+            'recipients' => 'string[]',
+            'routing_key' => 'string',
+            'channel' => 'string',
+            'license_key' => 'string',
+            'script' => 'string',
+            'index' => 'string',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional1',
+            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional1',
+            'build_pull_requests' => '?bool',
+            'pull_requests_clone_parent_data' => '?bool',
+            'resync_pull_requests' => '?bool',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => '?string',
+            'base_url' => '?string',
+            'build_draft_pull_requests' => '?bool',
+            'build_pull_requests_post_merge' => '?bool',
+            'build_merge_requests' => '?bool',
+            'build_wip_merge_requests' => '?bool',
+            'merge_requests_clone_parent_data' => '?bool',
+            'from_address' => '?string',
+            'shared_key' => '?string',
+            'extra' => 'string[]',
+            'headers' => 'string[]',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+            'sourcetype' => '?string',
+            'category' => '?string',
+            'host' => '?string',
+            'port' => '?int',
+            'protocol' => '?string',
+            'facility' => '?int',
+            'message_format' => '?string',
+            'auth_token' => '?string',
+            'auth_mode' => '?string',
+        ],
+
+        IntegrationPatch::class => [
+            'type' => 'string',
+            'repository' => 'string',
+            'url' => 'string',
+            'username' => 'string',
+            'token' => 'string',
+            'project' => 'string',
+            'service_id' => 'string',
+            'recipients' => 'string[]',
+            'routing_key' => 'string',
+            'channel' => 'string',
+            'license_key' => 'string',
+            'script' => 'string',
+            'index' => 'string',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional1',
+            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional1',
+            'build_pull_requests' => '?bool',
+            'pull_requests_clone_parent_data' => '?bool',
+            'resync_pull_requests' => '?bool',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => '?string',
+            'base_url' => '?string',
+            'build_draft_pull_requests' => '?bool',
+            'build_pull_requests_post_merge' => '?bool',
+            'build_merge_requests' => '?bool',
+            'build_wip_merge_requests' => '?bool',
+            'merge_requests_clone_parent_data' => '?bool',
+            'from_address' => '?string',
+            'shared_key' => '?string',
+            'extra' => 'string[]',
+            'headers' => 'string[]',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+            'sourcetype' => '?string',
+            'category' => '?string',
+            'host' => '?string',
+            'port' => '?int',
+            'protocol' => '?string',
+            'facility' => '?int',
+            'message_format' => '?string',
+            'auth_token' => '?string',
+            'auth_mode' => '?string',
+        ],
+
+        Integrations::class => [
+            'enabled' => 'bool',
+            'config' => '?\Upsun\Model\Config',
+            'allowed_integrations' => 'string[]',
+        ],
+
+        Invoice::class => [
+            'id' => '?string',
+            'invoice_number' => '?string',
+            'type' => '?string',
+            'order_id' => '?string',
+            'related_invoice_id' => '?string',
+            'status' => '?string',
+            'owner' => '?string',
+            'invoice_date' => '?\DateTime',
+            'invoice_due' => '?\DateTime',
+            'created' => '?\DateTime',
+            'changed' => '?\DateTime',
+            'company' => '?string',
+            'total' => '?float',
+            'address' => '?\Upsun\Model\Address',
+            'notes' => '?string',
+            'invoice_pdf' => '?\Upsun\Model\InvoicePDF',
+        ],
+
+        InvoicePDF::class => [
+            'url' => '?string',
+            'status' => '?string',
+        ],
+
+        LineItem::class => [
+            'type' => '?string',
+            'license_id' => '?float',
+            'project_id' => '?string',
+            'product' => '?string',
+            'sku' => '?string',
+            'total' => '?float',
+            'total_formatted' => '?string',
+            'components' => '\Upsun\Model\LineItemComponent[]',
+            'exclude_from_invoice' => '?bool',
+        ],
+
+        LineItemComponent::class => [
+            'amount' => '?float',
+            'amount_formatted' => '?string',
+            'display_title' => '?string',
+            'currency' => '?string',
+        ],
+
+        Link::class => [
+            'href' => '?string',
+        ],
+
+        ListLinks::class => [
+            'self' => '?\Upsun\Model\Link',
+            'previous' => '?\Upsun\Model\Link',
+            'next' => '?\Upsun\Model\Link',
+        ],
+
+        ListOrgDiscounts200Response::class => [
+            'items' => '\Upsun\Model\Discount[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListOrgInvoices200Response::class => [
+            'items' => '\Upsun\Model\Invoice[]',
+        ],
+
+        ListOrgMembers200Response::class => [
+            'count' => '?int',
+            'items' => '\Upsun\Model\OrganizationMember[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListOrgOrders200Response::class => [
+            'items' => '\Upsun\Model\Order[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListOrgPlanRecords200Response::class => [
+            'items' => '\Upsun\Model\PlanRecords[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListOrgPrepaymentTransactions200Response::class => [
+            'count' => '?int',
+            'transactions' => '\Upsun\Model\PrepaymentTransactionObject[]',
+            '_links' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks',
+        ],
+
+        ListOrgPrepaymentTransactions200ResponseLinks::class => [
+            'self' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf',
+            'previous' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious',
+            'next' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext',
+            'prepayment' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment',
+        ],
+
+        ListOrgPrepaymentTransactions200ResponseLinksNext::class => [
+            'href' => '?string',
+        ],
+
+        ListOrgPrepaymentTransactions200ResponseLinksPrepayment::class => [
+            'href' => '?string',
+        ],
+
+        ListOrgPrepaymentTransactions200ResponseLinksPrevious::class => [
+            'href' => '?string',
+        ],
+
+        ListOrgPrepaymentTransactions200ResponseLinksSelf::class => [
+            'href' => '?string',
+        ],
+
+        ListOrgProjects200Response::class => [
+            'items' => '\Upsun\Model\OrganizationProject[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListOrgSubscriptions200Response::class => [
+            'items' => '\Upsun\Model\Subscription[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListOrgUsageRecords200Response::class => [
+            'items' => '\Upsun\Model\Usage[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListOrgs200Response::class => [
+            'count' => '?int',
+            'items' => '\Upsun\Model\Organization[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListPlans200Response::class => [
+            'count' => '?int',
+            'plans' => '\Upsun\Model\Plan[]',
+            '_links' => '?\Upsun\Model\HalLinks',
+        ],
+
+        ListProfiles200Response::class => [
+            'count' => '?int',
+            'profiles' => '\Upsun\Model\Profile[]',
+            '_links' => '?\Upsun\Model\HalLinks',
+        ],
+
+        ListProjectTeamAccess200Response::class => [
+            'items' => '\Upsun\Model\TeamProjectAccess[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListProjectUserAccess200Response::class => [
+            'items' => '\Upsun\Model\UserProjectAccess[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListRegions200Response::class => [
+            'regions' => '\Upsun\Model\Region[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListTeamMembers200Response::class => [
+            'items' => '\Upsun\Model\TeamMember[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListTeams200Response::class => [
+            'items' => '\Upsun\Model\Team[]',
+            'count' => '?int',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListTicketCategories200ResponseInner::class => [
+            'id' => '?string',
+            'label' => '?string',
+        ],
+
+        ListTicketPriorities200ResponseInner::class => [
+            'id' => '?string',
+            'label' => '?string',
+            'short_description' => '?string',
+            'description' => '?string',
+        ],
+
+        ListTickets200Response::class => [
+            'count' => '?int',
+            'tickets' => '\Upsun\Model\Ticket[]',
+            '_links' => '?\Upsun\Model\HalLinks',
+        ],
+
+        ListUserExtendedAccess200Response::class => [
+            'items' => '\Upsun\Model\ListUserExtendedAccess200ResponseItemsInner[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        ListUserExtendedAccess200ResponseItemsInner::class => [
+            'user_id' => '?string',
+            'resource_id' => '?string',
+            'resource_type' => '?string',
+            'organization_id' => '?string',
+            'permissions' => 'string[]',
+            'granted_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+        ],
+
+        ListUserOrgs200Response::class => [
+            'items' => '\Upsun\Model\Organization[]',
+            '_links' => '?\Upsun\Model\ListLinks',
+        ],
+
+        LogsForwarding::class => [
+            'max_extra_payload_size' => 'int',
+        ],
+
+        MappingOfClustersToEnterpriseApplicationsValue::class => [
+            'active_docroot' => '?string',
+            'docroot_versions' => 'string[]',
+        ],
+
+        Metrics::class => [
+            'max_range' => 'string',
+        ],
+
+        MetricsMetadata::class => [
+            'from' => '?mixed',
+            'to' => '?mixed',
+            'interval' => '?mixed',
+            'units' => '?mixed',
+        ],
+
+        MetricsValue::class => [
+            'value' => '?mixed',
+            'start_time' => '?mixed',
+        ],
+
+        NewRelicIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'extra' => 'string[]',
+            'url' => 'string',
+            'tls_verify' => 'bool',
+            'excluded_services' => 'string[]',
+            'id' => '?string',
+        ],
+
+        NewRelicIntegrationCreateInput::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'license_key' => 'string',
+            'extra' => 'string[]',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+        ],
+
+        NewRelicIntegrationPatch::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'license_key' => 'string',
+            'extra' => 'string[]',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+        ],
+
+        NewRelicLogForwardingIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        OpenTelemetryLogForwardingIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        OperationsThatCanBeAppliedToTheSourceCodeValue::class => [
+            'command' => '?string',
+        ],
+
+        OperationsThatCanBeTriggeredOnThisApplicationValue::class => [
+            'commands' => TheCommandsDefinition::class,
+            'timeout' => '?int',
+            'role' => 'string',
+        ],
+
+        Order::class => [
+            'id' => '?string',
+            'status' => '?string',
+            'owner' => '?string',
+            'address' => '?\Upsun\Model\Address',
+            'company' => '?string',
+            'vat_number' => '?string',
+            'billing_period_start' => '?\DateTime',
+            'billing_period_end' => '?\DateTime',
+            'billing_period_label' => '?\Upsun\Model\OrderBillingPeriodLabel',
+            'billing_period_duration' => '?int',
+            'paid_on' => '?\DateTime',
+            'total' => '?int',
+            'total_formatted' => '?int',
+            'components' => '?\Upsun\Model\Components',
+            'currency' => '?string',
+            'invoice_url' => '?string',
+            'last_refreshed' => '?\DateTime',
+            'invoiced' => '?bool',
+            'line_items' => '\Upsun\Model\LineItem[]',
+            '_links' => '?\Upsun\Model\OrderLinks',
+        ],
+
+        OrderBillingPeriodLabel::class => [
+            'formatted' => '?string',
+            'month' => '?string',
+            'year' => '?string',
+            'next_month' => '?string',
+        ],
+
+        OrderLinks::class => [
+            'invoices' => '?\Upsun\Model\OrderLinksInvoices',
+        ],
+
+        OrderLinksInvoices::class => [
+            'href' => '?string',
+        ],
+
+        Organization::class => [
+            'id' => '?string',
+            'type' => '?string',
+            'owner_id' => '?string',
+            'namespace' => '?string',
+            'name' => '?string',
+            'label' => '?string',
+            'country' => '?string',
+            'capabilities' => 'string[]',
+            'vendor' => '?string',
+            'billing_account_id' => '?string',
+            'billing_legacy' => '?bool',
+            'status' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            '_links' => '?\Upsun\Model\OrganizationLinks',
+        ],
+
+        OrganizationAddonsObject::class => [
+            'available' => '?\Upsun\Model\OrganizationAddonsObjectAvailable',
+            'current' => '?\Upsun\Model\OrganizationAddonsObjectCurrent',
+            'upgrades_available' => '?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable',
+        ],
+
+        OrganizationAddonsObjectAvailable::class => [
+            'user_management' => 'float[]',
+            'support_level' => 'float[]',
+        ],
+
+        OrganizationAddonsObjectCurrent::class => [
+            'user_management' => 'float[]',
+            'support_level' => 'float[]',
+        ],
+
+        OrganizationAddonsObjectUpgradesAvailable::class => [
+            'user_management' => 'string[]',
+            'support_level' => 'string[]',
+        ],
+
+        OrganizationAlertConfig::class => [
+            'id' => '?string',
+            'active' => '?bool',
+            'alerts_sent' => '?float',
+            'last_alert_at' => '?string',
+            'updated_at' => '?string',
+            'config' => '?\Upsun\Model\OrganizationAlertConfigConfig',
+        ],
+
+        OrganizationAlertConfigConfig::class => [
+            'threshold' => '?\Upsun\Model\OrganizationAlertConfigConfigThreshold',
+            'mode' => '?string',
+        ],
+
+        OrganizationAlertConfigConfigThreshold::class => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency_code' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        OrganizationCarbon::class => [
+            'organization_id' => '?string',
+            'meta' => '?\Upsun\Model\MetricsMetadata',
+            'projects' => '\Upsun\Model\OrganizationProjectCarbon[]',
+            'total' => '?float',
+        ],
+
+        OrganizationEstimationObject::class => [
+            'total' => '?string',
+            'sub_total' => '?string',
+            'vouchers' => '?string',
+            'user_licenses' => '?\Upsun\Model\OrganizationEstimationObjectUserLicenses',
+            'user_management' => '?string',
+            'support_level' => '?string',
+            'subscriptions' => '?\Upsun\Model\OrganizationEstimationObjectSubscriptions',
+        ],
+
+        OrganizationEstimationObjectSubscriptions::class => [
+            'total' => '?string',
+            'list' => '\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]',
+        ],
+
+        OrganizationEstimationObjectSubscriptionsListInner::class => [
+            'license_id' => '?string',
+            'project_title' => '?string',
+            'total' => '?string',
+            'usage' => '?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage',
+        ],
+
+        OrganizationEstimationObjectSubscriptionsListInnerUsage::class => [
+            'cpu' => '?float',
+            'memory' => '?float',
+            'storage' => '?float',
+            'environments' => '?int',
+        ],
+
+        OrganizationEstimationObjectUserLicenses::class => [
+            'base' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase',
+            'user_management' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement',
+        ],
+
+        OrganizationEstimationObjectUserLicensesBase::class => [
+            'count' => '?int',
+            'total' => '?string',
+            'list' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList',
+        ],
+
+        OrganizationEstimationObjectUserLicensesBaseList::class => [
+            'admin_user' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser',
+            'viewer_user' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser',
+        ],
+
+        OrganizationEstimationObjectUserLicensesBaseListAdminUser::class => [
+            'count' => '?int',
+            'total' => '?string',
+        ],
+
+        OrganizationEstimationObjectUserLicensesBaseListViewerUser::class => [
+            'count' => '?int',
+            'total' => '?string',
+        ],
+
+        OrganizationEstimationObjectUserLicensesUserManagement::class => [
+            'count' => '?int',
+            'total' => '?string',
+            'list' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList',
+        ],
+
+        OrganizationEstimationObjectUserLicensesUserManagementList::class => [
+            'standard_management_user' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser',
+            'advanced_management_user' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser',
+        ],
+
+        OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser::class => [
+            'count' => '?int',
+            'total' => '?string',
+        ],
+
+        OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser::class => [
+            'count' => '?int',
+            'total' => '?string',
+        ],
+
+        OrganizationInvitation::class => [
+            'id' => '?string',
+            'state' => '?string',
+            'organization_id' => '?string',
+            'email' => '?string',
+            'owner' => '?\Upsun\Model\OrganizationInvitationOwner',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'finished_at' => '?\DateTime',
+            'permissions' => 'string[]',
+        ],
+
+        OrganizationInvitationOwner::class => [
+            'id' => '?string',
+            'display_name' => '?string',
+        ],
+
+        OrganizationLinks::class => [
+            'self' => '?\Upsun\Model\OrganizationLinksSelf',
+            'update' => '?\Upsun\Model\OrganizationLinksUpdate',
+            'delete' => '?\Upsun\Model\OrganizationLinksDelete',
+            'members' => '?\Upsun\Model\OrganizationLinksMembers',
+            'create-member' => '?\Upsun\Model\OrganizationLinksCreateMember',
+            'address' => '?\Upsun\Model\OrganizationLinksAddress',
+            'profile' => '?\Upsun\Model\OrganizationLinksProfile',
+            'payment-source' => '?\Upsun\Model\OrganizationLinksPaymentSource',
+            'orders' => '?\Upsun\Model\OrganizationLinksOrders',
+            'vouchers' => '?\Upsun\Model\OrganizationLinksVouchers',
+            'apply-voucher' => '?\Upsun\Model\OrganizationLinksApplyVoucher',
+            'subscriptions' => '?\Upsun\Model\OrganizationLinksSubscriptions',
+            'create-subscription' => '?\Upsun\Model\OrganizationLinksCreateSubscription',
+            'estimate-subscription' => '?\Upsun\Model\OrganizationLinksEstimateSubscription',
+            'mfa-enforcement' => '?\Upsun\Model\OrganizationLinksMfaEnforcement',
+        ],
+
+        OrganizationLinksAddress::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationLinksApplyVoucher::class => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        OrganizationLinksCreateMember::class => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        OrganizationLinksCreateSubscription::class => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        OrganizationLinksDelete::class => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        OrganizationLinksEstimateSubscription::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationLinksMembers::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationLinksMfaEnforcement::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationLinksOrders::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationLinksPaymentSource::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationLinksProfile::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationLinksSelf::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationLinksSubscriptions::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationLinksUpdate::class => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        OrganizationLinksVouchers::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationMember::class => [
+            'id' => '?string',
+            'organization_id' => '?string',
+            'user_id' => '?string',
+            'permissions' => 'string[]',
+            'level' => '?string',
+            'owner' => '?bool',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            '_links' => '?\Upsun\Model\OrganizationMemberLinks',
+        ],
+
+        OrganizationMemberLinks::class => [
+            'self' => '?\Upsun\Model\OrganizationMemberLinksSelf',
+            'update' => '?\Upsun\Model\OrganizationMemberLinksUpdate',
+            'delete' => '?\Upsun\Model\OrganizationMemberLinksDelete',
+        ],
+
+        OrganizationMemberLinksDelete::class => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        OrganizationMemberLinksSelf::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationMemberLinksUpdate::class => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        OrganizationMfaEnforcement::class => [
+            'enforce_mfa' => '?bool',
+        ],
+
+        OrganizationProject::class => [
+            'id' => '?string',
+            'organization_id' => '?string',
+            'subscription_id' => '?string',
+            'vendor' => '?string',
+            'region' => '?string',
+            'title' => '?string',
+            'type' => '?\Upsun\Model\ProjectType',
+            'plan' => '?string',
+            'timezone' => '?string',
+            'default_branch' => '?string',
+            'status' => '?\Upsun\Model\ProjectStatus',
+            'trial_plan' => '?bool',
+            'project_ui' => '?string',
+            'locked' => '?bool',
+            'cse_notes' => '?string',
+            'dedicated_tag' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            '_links' => '?\Upsun\Model\OrganizationProjectLinks',
+        ],
+
+        OrganizationProjectCarbon::class => [
+            'project_id' => '?string',
+            'project_title' => '?string',
+            'values' => '\Upsun\Model\MetricsValue[]',
+            'total' => '?float',
+        ],
+
+        OrganizationProjectLinks::class => [
+            'self' => '?\Upsun\Model\OrganizationProjectLinksSelf',
+            'update' => '?\Upsun\Model\OrganizationProjectLinksUpdate',
+            'delete' => '?\Upsun\Model\OrganizationProjectLinksDelete',
+            'activities' => '?\Upsun\Model\OrganizationProjectLinksActivities',
+            'addons' => '?\Upsun\Model\OrganizationProjectLinksAddons',
+        ],
+
+        OrganizationProjectLinksActivities::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationProjectLinksAddons::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationProjectLinksDelete::class => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        OrganizationProjectLinksSelf::class => [
+            'href' => '?string',
+        ],
+
+        OrganizationProjectLinksUpdate::class => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        OrganizationReference::class => [
+            'id' => '?string',
+            'type' => '?string',
+            'owner_id' => '?string',
+            'name' => '?string',
+            'label' => '?string',
+            'vendor' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+        ],
+
+        OrganizationSSOConfig::class => [
+            'provider_type' => '?string',
+            'domain' => '?string',
+            'organization_id' => '?string',
+            'enforced' => '?bool',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+        ],
+
+        OutboundFirewall::class => [
+            'enabled' => 'bool',
+        ],
+
+        OutboundFirewallRestrictionsInner::class => [
+            'protocol' => 'string',
+            'ips' => 'string[]',
+            'domains' => 'string[]',
+            'ports' => 'int[]',
+        ],
+
+        OwnerInfo::class => [
+            'type' => '?string',
+            'username' => '?string',
+            'display_name' => '?string',
+        ],
+
+        PagerDutyIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'routing_key' => 'string',
+            'id' => '?string',
+        ],
+
+        PagerDutyIntegrationCreateInput::class => [
+            'type' => 'string',
+            'routing_key' => 'string',
+        ],
+
+        PagerDutyIntegrationPatch::class => [
+            'type' => 'string',
+            'routing_key' => 'string',
+        ],
+
+        PerServiceResourcesOverridesValue::class => [
+            'cpu' => '?float',
+            'memory' => '?int',
+            'disk' => '?int',
+        ],
+
+        Plan::class => [
+            'name' => '?string',
+            'label' => '?string',
+        ],
+
+        PlanRecords::class => [
+            'id' => '?string',
+            'owner' => '?string',
+            'subscription_id' => '?string',
+            'sku' => '?string',
+            'plan' => '?string',
+            'options' => 'string[]',
+            'start' => '?\DateTime',
+            'end' => '?\DateTime',
+            'status' => '?string',
+        ],
+
+        PrepaymentObject::class => [
+            'prepayment' => '?\Upsun\Model\PrepaymentObjectPrepayment',
+        ],
+
+        PrepaymentObjectPrepayment::class => [
+            'organization_id' => '?string',
+            'balance' => '?\Upsun\Model\PrepaymentObjectPrepaymentBalance',
+            'last_updated_at' => '?string',
+            'sufficient' => '?bool',
+            'fallback' => '?string',
+        ],
+
+        PrepaymentObjectPrepaymentBalance::class => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency_code' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        PrepaymentTransactionObject::class => [
+            'order_id' => '?string',
+            'message' => '?string',
+            'status' => '?string',
+            'amount' => '?\Upsun\Model\PrepaymentTransactionObjectAmount',
+            'created' => '?string',
+            'updated' => '?string',
+            'expire_date' => '?string',
+        ],
+
+        PrepaymentTransactionObjectAmount::class => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency_code' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        ProdDomainStorage::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'name' => 'string',
+            'attributes' => 'string[]',
+            'id' => '?string',
+            'project' => '?string',
+            'registered_name' => '?string',
+            'is_default' => '?bool',
+        ],
+
+        ProdDomainStorageCreateInput::class => [
+            'name' => 'string',
+            'attributes' => 'string[]',
+            'is_default' => '?bool',
+        ],
+
+        ProdDomainStoragePatch::class => [
+            'attributes' => 'string[]',
+            'is_default' => '?bool',
+        ],
+
+        Profile::class => [
+            'id' => '?string',
+            'display_name' => '?string',
+            'email' => '?string',
+            'username' => '?string',
+            'type' => '?string',
+            'picture' => '?string',
+            'company_type' => '?string',
+            'company_name' => '?string',
+            'currency' => '?string',
+            'vat_number' => '?string',
+            'company_role' => '?string',
+            'website_url' => '?string',
+            'new_ui' => '?bool',
+            'ui_colorscheme' => '?string',
+            'default_catalog' => '?string',
+            'project_options_url' => '?string',
+            'marketing' => '?bool',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'billing_contact' => '?string',
+            'security_contact' => '?string',
+            'current_trial' => '?\Upsun\Model\ProfileCurrentTrial',
+            'invoiced' => '?bool',
+        ],
+
+        ProfileCurrentTrial::class => [
+            'active' => '?bool',
+            'created' => '?\DateTime',
+            'description' => '?string',
+            'expiration' => '?\DateTime',
+            'current' => '?\Upsun\Model\ProfileCurrentTrialCurrent',
+            'spend' => '?\Upsun\Model\ProfileCurrentTrialSpend',
+            'spend_remaining' => '?\Upsun\Model\ProfileCurrentTrialSpendRemaining',
+            'projects' => '?\Upsun\Model\ProfileCurrentTrialProjects',
+            'pending_verification' => '?string',
+            'model' => '?string',
+            'days_remaining' => '?int',
+        ],
+
+        ProfileCurrentTrialCurrent::class => [
+            'formatted' => '?string',
+            'amount' => '?string',
+            'currency' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        ProfileCurrentTrialProjects::class => [
+            'id' => '?string',
+            'name' => '?string',
+            'total' => '?\Upsun\Model\ProfileCurrentTrialProjectsTotal',
+        ],
+
+        ProfileCurrentTrialProjectsTotal::class => [
+            'amount' => '?int',
+            'currency_code' => '?string',
+            'currency_symbol' => '?string',
+            'formatted' => '?string',
+        ],
+
+        ProfileCurrentTrialSpend::class => [
+            'formatted' => '?string',
+            'amount' => '?string',
+            'currency' => '?string',
+            'currency_symbol' => '?string',
+        ],
+
+        ProfileCurrentTrialSpendRemaining::class => [
+            'formatted' => '?string',
+            'amount' => '?string',
+            'currency' => '?string',
+            'currency_symbol' => '?string',
+            'unlimited' => '?bool',
+        ],
+
+        Project::class => [
+            'id' => 'string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'attributes' => 'string[]',
+            'title' => 'string',
+            'description' => 'string',
+            'owner' => 'string',
+            'namespace' => '?string',
+            'organization' => '?string',
+            'default_branch' => '?string',
+            'status' => Status::class,
+            'timezone' => 'string',
+            'region' => 'string',
+            'repository' => RepositoryInformation::class,
+            'default_domain' => '?string',
+            'subscription' => SubscriptionInformation::class,
+        ],
+
+        ProjectCapabilities::class => [
+            'metrics' => Metrics::class,
+            'logs_forwarding' => LogsForwarding::class,
+            'guaranteed_resources' => GuaranteedResources::class,
+            'images' => 'array&lt;string,\Upsun\Model\ImagesValueValue&gt;[]',
+            'instance_limit' => 'int',
+            'build_resources' => BuildResources::class,
+            'data_retention' => DataRetention::class,
+            'autoscaling' => Autoscaling::class,
+            'custom_domains' => '?\Upsun\Model\CustomDomains',
+            'source_operations' => '?\Upsun\Model\SourceOperations',
+            'runtime_operations' => '?\Upsun\Model\RuntimeOperations',
+            'outbound_firewall' => '?\Upsun\Model\OutboundFirewall',
+            'integrations' => '?\Upsun\Model\Integrations',
+        ],
+
+        ProjectCarbon::class => [
+            'project_id' => '?string',
+            'project_title' => '?string',
+            'meta' => '?\Upsun\Model\MetricsMetadata',
+            'values' => '\Upsun\Model\MetricsValue[]',
+            'total' => '?float',
+        ],
+
+        ProjectInfo::class => [
+            'title' => 'string',
+            'name' => 'string',
+            'namespace' => '?string',
+            'organization' => '?string',
+            'capabilities' => 'object',
+            'settings' => 'object',
+        ],
+
+        ProjectInvitation::class => [
+            'id' => '?string',
+            'state' => '?string',
+            'project_id' => '?string',
+            'role' => '?string',
+            'email' => '?string',
+            'owner' => '?\Upsun\Model\OrganizationInvitationOwner',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'finished_at' => '?\DateTime',
+            'environments' => '\Upsun\Model\ProjectInvitationEnvironmentsInner[]',
+        ],
+
+        ProjectInvitationEnvironmentsInner::class => [
+            'id' => '?string',
+            'type' => '?string',
+            'role' => '?string',
+            'title' => '?string',
+        ],
+
+        ProjectOptions::class => [
+            'defaults' => '?\Upsun\Model\ProjectOptionsDefaults',
+            'enforced' => '?\Upsun\Model\ProjectOptionsEnforced',
+            'regions' => 'string[]',
+            'plans' => 'string[]',
+            'billing' => '?object',
+        ],
+
+        ProjectOptionsDefaults::class => [
+            'settings' => '?object',
+            'variables' => '?object',
+            'access' => '?object',
+            'capabilities' => '?object',
+        ],
+
+        ProjectOptionsEnforced::class => [
+            'settings' => '?object',
+            'capabilities' => '?object',
+        ],
+
+        ProjectPatch::class => [
+            'attributes' => 'string[]',
+            'title' => '?string',
+            'description' => '?string',
+            'default_branch' => '?string',
+            'timezone' => '?string',
+            'region' => '?string',
+            'default_domain' => '?string',
+        ],
+
+        ProjectReference::class => [
+            'id' => 'string',
+            'organization_id' => 'string',
+            'subscription_id' => 'string',
+            'region' => 'string',
+            'title' => 'string',
+            'type' => ProjectType::class,
+            'plan' => 'string',
+            'status' => ProjectStatus::class,
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+        ],
+
+        ProjectSettings::class => [
+            'initialize' => 'object',
+            'product_name' => 'string',
+            'product_code' => 'string',
+            'ui_uri_template' => 'string',
+            'variables_prefix' => 'string',
+            'bot_email' => 'string',
+            'application_config_file' => 'string',
+            'project_config_dir' => 'string',
+            'use_drupal_defaults' => 'bool',
+            'use_legacy_subdomains' => 'bool',
+            'development_service_size' => 'string',
+            'development_application_size' => 'string',
+            'enable_certificate_provisioning' => 'bool',
+            'certificate_style' => 'string',
+            'certificate_renewal_activity' => 'bool',
+            'development_domain_template' => '?string',
+            'enable_state_api_deployments' => 'bool',
+            'temporary_disk_size' => '?int',
+            'local_disk_size' => '?int',
+            'cron_minimum_interval' => 'int',
+            'cron_maximum_jitter' => 'int',
+            'cron_production_expiry_interval' => 'int',
+            'cron_non_production_expiry_interval' => 'int',
+            'concurrency_limits' => 'int[]',
+            'flexible_build_cache' => 'bool',
+            'strict_configuration' => 'bool',
+            'has_sleepy_crons' => 'bool',
+            'crons_in_git' => 'bool',
+            'custom_error_template' => '?string',
+            'app_error_page_template' => '?string',
+            'environment_name_strategy' => 'string',
+            'data_retention' => '\Upsun\Model\DataRetentionConfigurationValue[]',
+            'enable_codesource_integration_push' => 'bool',
+            'enforce_mfa' => 'bool',
+            'systemd' => 'bool',
+            'router_gen2' => 'bool',
+            'build_resources' => BuildResources1::class,
+            'outbound_restrictions_default_policy' => 'string',
+            'self_upgrade' => 'bool',
+            'additional_hosts' => 'string[]',
+            'max_allowed_routes' => 'int',
+            'max_allowed_redirects_paths' => 'int',
+            'enable_incremental_backups' => 'bool',
+            'sizing_api_enabled' => 'bool',
+            'enable_cache_grace_period' => 'bool',
+            'enable_zero_downtime_deployments' => 'bool',
+            'enable_admin_agent' => 'bool',
+            'certifier_url' => 'string',
+            'centralized_permissions' => 'bool',
+            'glue_server_max_request_size' => 'int',
+            'persistent_endpoints_ssh' => 'bool',
+            'persistent_endpoints_ssl_certificates' => 'bool',
+            'enable_disk_health_monitoring' => 'bool',
+            'enable_paused_environments' => 'bool',
+            'enable_unified_configuration' => 'bool',
+            'enable_routes_tracing' => 'bool',
+            'image_deployment_validation' => 'bool',
+            'support_generic_images' => 'bool',
+            'enable_github_app_token_exchange' => 'bool',
+            'continuous_profiling' => TheContinuousProfilingConfiguration::class,
+            'disable_agent_error_reporter' => 'bool',
+            'requires_domain_ownership' => 'bool',
+            'enable_guaranteed_resources' => 'bool',
+            'git_server' => GitServerConfiguration::class,
+            'activity_logs_max_size' => 'int',
+            'allow_manual_deployments' => 'bool',
+            'allow_rolling_deployments' => 'bool',
+            'allow_burst' => 'bool',
+            'router_resources' => RouterResourceSettingsForFlexPlan::class,
+        ],
+
+        ProjectSettingsPatch::class => [
+            'initialize' => '?object',
+            'data_retention' => '\Upsun\Model\DataRetentionConfigurationValue1[]',
+            'build_resources' => '?\Upsun\Model\BuildResources2',
+        ],
+
+        ProjectStatus::class => [
+        ],
+
+        ProjectType::class => [
+        ],
+
+        ProjectVariable::class => [
+            'id' => 'string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'name' => 'string',
+            'attributes' => 'string[]',
+            'is_json' => 'bool',
+            'is_sensitive' => 'bool',
+            'visible_build' => 'bool',
+            'visible_runtime' => 'bool',
+            'application_scope' => 'string[]',
+            'value' => '?string',
+        ],
+
+        ProjectVariableCreateInput::class => [
+            'name' => 'string',
+            'value' => 'string',
+            'attributes' => 'string[]',
+            'is_json' => '?bool',
+            'is_sensitive' => '?bool',
+            'visible_build' => '?bool',
+            'visible_runtime' => '?bool',
+            'application_scope' => 'string[]',
+        ],
+
+        ProjectVariablePatch::class => [
+            'name' => '?string',
+            'attributes' => 'string[]',
+            'value' => '?string',
+            'is_json' => '?bool',
+            'is_sensitive' => '?bool',
+            'visible_build' => '?bool',
+            'visible_runtime' => '?bool',
+            'application_scope' => 'string[]',
+        ],
+
+        ProxyRoute::class => [
+            'attributes' => 'string[]',
+            'type' => 'string',
+            'tls' => TLSSettingsForTheRoute::class,
+            'to' => 'string',
+            'id' => '?string',
+            'primary' => '?bool',
+            'production_url' => '?string',
+            'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects',
+            'cache' => '?\Upsun\Model\CacheConfiguration',
+            'ssi' => '?\Upsun\Model\ServerSideIncludeConfiguration',
+            'upstream' => '?string',
+            'sticky' => '?\Upsun\Model\StickyRoutingConfiguration',
+        ],
+
+        RedirectRoute::class => [
+            'attributes' => 'string[]',
+            'type' => 'string',
+            'tls' => TLSSettingsForTheRoute::class,
+            'to' => 'string',
+            'id' => '?string',
+            'primary' => '?bool',
+            'production_url' => '?string',
+            'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects',
+            'cache' => '?\Upsun\Model\CacheConfiguration',
+            'ssi' => '?\Upsun\Model\ServerSideIncludeConfiguration',
+            'upstream' => '?string',
+            'sticky' => '?\Upsun\Model\StickyRoutingConfiguration',
+        ],
+
+        Ref::class => [
+            'id' => 'string',
+            'ref' => 'string',
+            'object' => TheObjectTheReferencePointsTo::class,
+            'sha' => 'string',
+        ],
+
+        Region::class => [
+            'id' => '?string',
+            'label' => '?string',
+            'zone' => '?string',
+            'selection_label' => '?string',
+            'project_label' => '?string',
+            'timezone' => '?string',
+            'available' => '?bool',
+            'private' => '?bool',
+            'endpoint' => '?string',
+            'provider' => '?\Upsun\Model\RegionProvider',
+            'datacenter' => '?\Upsun\Model\RegionDatacenter',
+            'environmental_impact' => '?\Upsun\Model\RegionEnvironmentalImpact',
+        ],
+
+        RegionDatacenter::class => [
+            'name' => '?string',
+            'label' => '?string',
+            'location' => '?string',
+        ],
+
+        RegionEnvironmentalImpact::class => [
+            'zone' => '?string',
+            'carbon_intensity' => '?string',
+            'green' => '?bool',
+        ],
+
+        RegionProvider::class => [
+            'name' => '?string',
+            'logo' => '?string',
+        ],
+
+        RegionReference::class => [
+            'id' => 'string',
+            'label' => 'string',
+            'zone' => 'string',
+            'selection_label' => 'string',
+            'project_label' => 'string',
+            'timezone' => 'string',
+            'available' => 'bool',
+            'endpoint' => 'string',
+            'provider' => 'object',
+            'datacenter' => 'object',
+            'compliance' => 'object',
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'private' => '?bool',
+            'code' => '?string',
+            'envimpact' => '?object',
+        ],
+
+        ReplacementDomainStorage::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'name' => 'string',
+            'attributes' => 'string[]',
+            'id' => '?string',
+            'project' => '?string',
+            'registered_name' => '?string',
+            'replacement_for' => '?string',
+        ],
+
+        ReplacementDomainStorageCreateInput::class => [
+            'name' => 'string',
+            'attributes' => 'string[]',
+            'replacement_for' => '?string',
+        ],
+
+        ReplacementDomainStoragePatch::class => [
+            'attributes' => 'string[]',
+        ],
+
+        RepositoryInformation::class => [
+            'url' => 'string',
+            'client_ssh_key' => '?string',
+        ],
+
+        ResetEmailAddressRequest::class => [
+            'email_address' => 'string',
+        ],
+
+        ResourceConfig::class => [
+            'profile_size' => '?string',
+        ],
+
+        Resources::class => [
+            'base_memory' => '?int',
+            'memory_ratio' => '?int',
+            'profile_size' => '?string',
+            'minimum' => '?\Upsun\Model\TheMinimumResourcesForThisService',
+            'default' => '?\Upsun\Model\TheDefaultResourcesForThisService',
+            'disk' => '?\Upsun\Model\TheDisksResources',
+        ],
+
+        Resources1::class => [
+            'profile_size' => '?string',
+        ],
+
+        Resources2::class => [
+            'init' => '?string',
+        ],
+
+        Resources3::class => [
+            'init' => '?string',
+        ],
+
+        Resources4::class => [
+            'init' => '?string',
+        ],
+
+        Resources5::class => [
+            'init' => '?string',
+        ],
+
+        Resources6::class => [
+            'init' => '?string',
+        ],
+
+        ResourcesForDevelopmentEnvironments::class => [
+            'legacy_development' => 'bool',
+            'max_cpu' => '?float',
+            'max_memory' => '?int',
+            'max_environments' => '?int',
+        ],
+
+        ResourcesForProductionEnvironments::class => [
+            'legacy_development' => 'bool',
+            'max_cpu' => '?float',
+            'max_memory' => '?int',
+            'max_environments' => '?int',
+        ],
+
+        ResourcesLimits::class => [
+            'container_profiles' => 'bool',
+            'production' => ResourcesForProductionEnvironments::class,
+            'development' => ResourcesForDevelopmentEnvironments::class,
+        ],
+
+        ResourcesOverridesValue::class => [
+            'services' => '\Upsun\Model\PerServiceResourcesOverridesValue[]',
+            'starts_at' => '?\DateTime',
+            'ends_at' => '?\DateTime',
+            'redeployed_start' => 'bool',
+            'redeployed_end' => 'bool',
+        ],
+
+        RestrictedAndDeniedImageTypes::class => [
+            'only' => 'string[]',
+            'exclude' => 'string[]',
+        ],
+
+        Route::class => [
+            'attributes' => 'string[]',
+            'type' => 'string',
+            'tls' => TLSSettingsForTheRoute::class,
+            'to' => '?string',
+            'id' => '?string',
+            'primary' => '?bool',
+            'production_url' => '?string',
+            'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects',
+            'cache' => '?\Upsun\Model\CacheConfiguration',
+            'ssi' => '?\Upsun\Model\ServerSideIncludeConfiguration',
+            'upstream' => '?string',
+            'sticky' => '?\Upsun\Model\StickyRoutingConfiguration',
+        ],
+
+        RouterResourceSettingsForFlexPlan::class => [
+            'baseline_cpu' => 'float',
+            'baseline_memory' => 'int',
+            'max_cpu' => 'float',
+            'max_memory' => 'int',
+        ],
+
+        RoutesValue::class => [
+            'attributes' => 'string[]',
+            'type' => 'string',
+            'tls' => TLSSettingsForTheRoute::class,
+            'to' => '?string',
+            'id' => '?string',
+            'primary' => '?bool',
+            'production_url' => '?string',
+            'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects',
+            'cache' => '?\Upsun\Model\CacheConfiguration',
+            'ssi' => '?\Upsun\Model\ServerSideIncludeConfiguration',
+            'upstream' => '?string',
+            'sticky' => '?\Upsun\Model\StickyRoutingConfiguration',
+        ],
+
+        RuntimeOperations::class => [
+            'enabled' => 'bool',
+        ],
+
+        ScheduledCronTasksExecutedByThisApplicationValue::class => [
+            'spec' => 'string',
+            'commands' => TheCommandsDefinition::class,
+            'timeout' => 'int',
+            'shutdown_timeout' => '?int',
+            'cmd' => '?string',
+        ],
+
+        ScriptIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => 'string',
+            'script' => 'string',
+            'id' => '?string',
+        ],
+
+        ScriptIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        ScriptIntegrationCreateInput::class => [
+            'type' => 'string',
+            'script' => 'string',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => '?string',
+        ],
+
+        ScriptIntegrationPatch::class => [
+            'type' => 'string',
+            'script' => 'string',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => '?string',
+        ],
+
+        SendOrgMfaReminders200ResponseValue::class => [
+            'code' => '?int',
+            'message' => '?string',
+        ],
+
+        SendOrgMfaRemindersRequest::class => [
+            'user_ids' => 'string[]',
+        ],
+
+        ServerSideIncludeConfiguration::class => [
+            'enabled' => 'bool',
+        ],
+
+        ServicesValue::class => [
+            'type' => 'string',
+            'size' => 'string',
+            'disk' => '?int',
+            'access' => 'object',
+            'configuration' => 'object',
+            'relationships' => 'string[]',
+            'firewall' => '?\Upsun\Model\Firewall',
+            'resources' => '?\Upsun\Model\Resources',
+            'container_profile' => '?string',
+            'endpoints' => '?object',
+            'instance_count' => '?int',
+        ],
+
+        ServicesValue1::class => [
+            'resources' => '?\Upsun\Model\Resources1',
+            'instance_count' => '?int',
+            'disk' => '?int',
+        ],
+
+        SlackIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'channel' => 'string',
+            'id' => '?string',
+        ],
+
+        SlackIntegrationCreateInput::class => [
+            'type' => 'string',
+            'token' => 'string',
+            'channel' => 'string',
+        ],
+
+        SlackIntegrationPatch::class => [
+            'type' => 'string',
+            'token' => 'string',
+            'channel' => 'string',
+        ],
+
+        SourceOperations::class => [
+            'enabled' => 'bool',
+        ],
+
+        SpecificOverridesValue::class => [
+            'expires' => '?string',
+            'passthru' => '?string',
+            'scripts' => '?bool',
+            'allow' => '?bool',
+            'headers' => 'string[]',
+        ],
+
+        SplunkIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'extra' => 'string[]',
+            'url' => 'string',
+            'index' => 'string',
+            'sourcetype' => 'string',
+            'tls_verify' => 'bool',
+            'excluded_services' => 'string[]',
+            'id' => '?string',
+        ],
+
+        SplunkIntegrationCreateInput::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'index' => 'string',
+            'token' => 'string',
+            'extra' => 'string[]',
+            'sourcetype' => '?string',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+        ],
+
+        SplunkIntegrationPatch::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'index' => 'string',
+            'token' => 'string',
+            'extra' => 'string[]',
+            'sourcetype' => '?string',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+        ],
+
+        SplunkLogForwardingIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        SshKey::class => [
+            'key_id' => '?int',
+            'uid' => '?int',
+            'fingerprint' => '?string',
+            'title' => '?string',
+            'value' => '?string',
+            'changed' => '?string',
+        ],
+
+        Status::class => [
+            'code' => 'string',
+            'message' => 'string',
+        ],
+
+        StickyRoutingConfiguration::class => [
+            'enabled' => 'bool',
+        ],
+
+        StrictTransportSecurityOptions::class => [
+            'enabled' => '?bool',
+            'include_subdomains' => '?bool',
+            'preload' => '?bool',
+        ],
+
+        StringFilter::class => [
+            'eq' => '?string',
+            'ne' => '?string',
+            'in' => '?string',
+            'nin' => '?string',
+            'between' => '?string',
+            'contains' => '?string',
+            'starts' => '?string',
+            'ends' => '?string',
+        ],
+
+        Subscription::class => [
+            'id' => '?string',
+            'status' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'owner' => '?string',
+            'owner_info' => '?\Upsun\Model\OwnerInfo',
+            'vendor' => '?string',
+            'plan' => '?string',
+            'environments' => '?int',
+            'storage' => '?int',
+            'user_licenses' => '?int',
+            'project_id' => '?string',
+            'project_endpoint' => '?string',
+            'project_title' => '?string',
+            'project_region' => '?string',
+            'project_region_label' => '?string',
+            'project_ui' => '?string',
+            'project_options' => '?\Upsun\Model\ProjectOptions',
+            'agency_site' => '?bool',
+            'invoiced' => '?bool',
+            'hipaa' => '?bool',
+            'is_trial_plan' => '?bool',
+            'services' => 'object[]',
+            'green' => '?bool',
+        ],
+
+        Subscription1::class => [
+            'license_uri' => 'string',
+            'storage' => 'int',
+            'included_users' => 'int',
+            'subscription_management_uri' => 'string',
+            'restricted' => 'bool',
+            'suspended' => 'bool',
+            'user_licenses' => 'int',
+            'plan' => '?string',
+            'environments' => '?int',
+            'resources' => '?\Upsun\Model\ResourcesLimits',
+            'resource_validation_url' => '?string',
+            'image_types' => '?\Upsun\Model\RestrictedAndDeniedImageTypes',
+        ],
+
+        SubscriptionAddonsObject::class => [
+            'available' => '?\Upsun\Model\SubscriptionAddonsObjectAvailable',
+            'current' => '?\Upsun\Model\SubscriptionAddonsObjectCurrent',
+            'upgrades_available' => '?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable',
+        ],
+
+        SubscriptionAddonsObjectAvailable::class => [
+            'continuous_profiling' => 'float[]',
+            'project_support_level' => 'float[]',
+        ],
+
+        SubscriptionAddonsObjectCurrent::class => [
+            'continuous_profiling' => 'float[]',
+            'project_support_level' => 'float[]',
+        ],
+
+        SubscriptionAddonsObjectUpgradesAvailable::class => [
+            'continuous_profiling' => 'string[]',
+            'project_support_level' => 'string[]',
+        ],
+
+        SubscriptionCurrentUsageObject::class => [
+            'cpu_app' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'storage_app_services' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'memory_app' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'cpu_services' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'memory_services' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'backup_storage' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'build_cpu' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'build_memory' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'egress_bandwidth' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'ingress_requests' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'logs_fwd_content_size' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'fastly_bandwidth' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'fastly_requests' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+        ],
+
+        SubscriptionInformation::class => [
+            'license_uri' => 'string',
+            'storage' => 'int',
+            'included_users' => 'int',
+            'subscription_management_uri' => 'string',
+            'restricted' => 'bool',
+            'suspended' => 'bool',
+            'user_licenses' => 'int',
+            'plan' => '?string',
+            'environments' => '?int',
+            'resources' => '?\Upsun\Model\ResourcesLimits',
+            'resource_validation_url' => '?string',
+            'image_types' => '?\Upsun\Model\RestrictedAndDeniedImageTypes',
+        ],
+
+        SumoLogicLogForwardingIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        SumologicIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'extra' => 'string[]',
+            'url' => 'string',
+            'category' => 'string',
+            'tls_verify' => 'bool',
+            'excluded_services' => 'string[]',
+            'id' => '?string',
+        ],
+
+        SumologicIntegrationCreateInput::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'extra' => 'string[]',
+            'category' => '?string',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+        ],
+
+        SumologicIntegrationPatch::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'extra' => 'string[]',
+            'category' => '?string',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+        ],
+
+        SyslogIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'extra' => 'string[]',
+            'host' => 'string',
+            'port' => 'int',
+            'protocol' => 'string',
+            'facility' => 'int',
+            'message_format' => 'string',
+            'tls_verify' => 'bool',
+            'excluded_services' => 'string[]',
+            'id' => '?string',
+        ],
+
+        SyslogIntegrationCreateInput::class => [
+            'type' => 'string',
+            'extra' => 'string[]',
+            'host' => '?string',
+            'port' => '?int',
+            'protocol' => '?string',
+            'facility' => '?int',
+            'message_format' => '?string',
+            'auth_token' => '?string',
+            'auth_mode' => '?string',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+        ],
+
+        SyslogIntegrationPatch::class => [
+            'type' => 'string',
+            'extra' => 'string[]',
+            'host' => '?string',
+            'port' => '?int',
+            'protocol' => '?string',
+            'facility' => '?int',
+            'message_format' => '?string',
+            'auth_token' => '?string',
+            'auth_mode' => '?string',
+            'tls_verify' => '?bool',
+            'excluded_services' => 'string[]',
+        ],
+
+        SyslogLogForwardingIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        SystemInformation::class => [
+            'version' => 'string',
+            'image' => 'string',
+            'started_at' => '\DateTime',
+        ],
+
+        TLSSettingsForTheRoute::class => [
+            'strict_transport_security' => StrictTransportSecurityOptions::class,
+            'min_version' => '?string',
+            'client_authentication' => '?string',
+            'client_certificate_authorities' => 'string[]',
+        ],
+
+        Team::class => [
+            'id' => '?string',
+            'organization_id' => '?string',
+            'label' => '?string',
+            'project_permissions' => 'string[]',
+            'counts' => '?\Upsun\Model\TeamCounts',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+        ],
+
+        TeamCounts::class => [
+            'member_count' => '?int',
+            'project_count' => '?int',
+        ],
+
+        TeamMember::class => [
+            'team_id' => '?string',
+            'user_id' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+        ],
+
+        TeamProjectAccess::class => [
+            'team_id' => '?string',
+            'organization_id' => '?string',
+            'project_id' => '?string',
+            'project_title' => '?string',
+            'granted_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            '_links' => '?\Upsun\Model\TeamProjectAccessLinks',
+        ],
+
+        TeamProjectAccessLinks::class => [
+            'self' => '?\Upsun\Model\TeamProjectAccessLinksSelf',
+            'update' => '?\Upsun\Model\TeamProjectAccessLinksUpdate',
+            'delete' => '?\Upsun\Model\TeamProjectAccessLinksDelete',
+        ],
+
+        TeamProjectAccessLinksDelete::class => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        TeamProjectAccessLinksSelf::class => [
+            'href' => '?string',
+        ],
+
+        TeamProjectAccessLinksUpdate::class => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        TeamReference::class => [
+            'id' => '?string',
+            'organization_id' => '?string',
+            'label' => '?string',
+            'project_permissions' => 'string[]',
+            'counts' => '?\Upsun\Model\TeamCounts',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+        ],
+
+        TheAddonCredentialInformationOptional::class => [
+            'addon_key' => 'string',
+            'client_key' => 'string',
+        ],
+
+        TheAddonCredentialInformationOptional1::class => [
+            'addon_key' => 'string',
+            'client_key' => 'string',
+            'shared_secret' => 'string',
+        ],
+
+        TheBackupScheduleSpecificationInner::class => [
+            'interval' => 'string',
+            'count' => 'int',
+        ],
+
+        TheBuildConfigurationOfTheApplication::class => [
+            'flavor' => '?string',
+            'caches' => '\Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue[]',
+        ],
+
+        TheCommandsDefinition::class => [
+            'start' => 'string',
+            'stop' => '?string',
+        ],
+
+        TheCommandsToManageTheWorker::class => [
+            'start' => 'string',
+            'pre_start' => '?string',
+            'post_start' => '?string',
+        ],
+
+        TheCommitDistanceInfoBetweenParentAndChildEnvironments::class => [
+            'commits_ahead' => '?int',
+            'commits_behind' => '?int',
+            'parent_ref' => '?string',
+        ],
+
+        TheConfigurationOfPathsManagedByTheBuildCacheValue::class => [
+            'directory' => '?string',
+            'watch' => 'string[]',
+            'allow_stale' => 'bool',
+            'share_between_apps' => 'bool',
+        ],
+
+        TheConfigurationOfTheRedirects::class => [
+            'expires' => 'string',
+            'paths' => '\Upsun\Model\ThePathsToRedirectValue[]',
+        ],
+
+        TheContinuousProfilingConfiguration::class => [
+            'supported_runtimes' => 'string[]',
+        ],
+
+        TheCronsDeploymentState::class => [
+            'enabled' => 'bool',
+            'status' => 'string',
+        ],
+
+        TheDefaultResourcesForThisService::class => [
+            'cpu' => 'float',
+            'memory' => 'int',
+            'cpu_type' => 'string',
+            'disk' => '?int',
+            'profile_size' => '?string',
+        ],
+
+        TheDisksResources::class => [
+            'temporary' => '?int',
+            'instance' => '?int',
+            'storage' => '?int',
+        ],
+
+        TheEnvironmentDeploymentState::class => [
+            'last_deployment_successful' => 'bool',
+            'last_deployment_at' => '?\DateTime',
+            'last_autoscale_up_at' => '?\DateTime',
+            'last_autoscale_down_at' => '?\DateTime',
+            'crons' => TheCronsDeploymentState::class,
+        ],
+
+        TheEnvironmentSizingConfiguration::class => [
+            'services' => '\Upsun\Model\ServicesValue1[]',
+            'webapps' => '\Upsun\Model\ServicesValue1[]',
+            'workers' => '\Upsun\Model\ServicesValue1[]',
+        ],
+
+        TheHostsOfTheDeploymentTargetInner::class => [
+            'id' => '?string',
+            'type' => 'string',
+            'services' => 'string[]',
+        ],
+
+        TheHostsOfTheDeploymentTargetInner1::class => [
+            'id' => '?string',
+            'type' => 'string',
+            'services' => 'string[]',
+        ],
+
+        TheInformationAboutTheAuthor::class => [
+            'date' => '\DateTime',
+            'name' => 'string',
+            'email' => 'string',
+        ],
+
+        TheInformationAboutTheCommitter::class => [
+            'date' => '\DateTime',
+            'name' => 'string',
+            'email' => 'string',
+        ],
+
+        TheIssuerOfTheCertificateInner::class => [
+            'oid' => 'string',
+            'alias' => '?string',
+            'value' => 'string',
+        ],
+
+        TheMinimumResourcesForThisService::class => [
+            'cpu' => 'float',
+            'memory' => 'int',
+            'cpu_type' => 'string',
+            'disk' => '?int',
+            'profile_size' => '?string',
+        ],
+
+        TheOAuth2ConsumerInformationOptional::class => [
+            'key' => 'string',
+        ],
+
+        TheOAuth2ConsumerInformationOptional1::class => [
+            'key' => 'string',
+            'secret' => 'string',
+        ],
+
+        TheObjectTheReferencePointsTo::class => [
+            'type' => 'string',
+            'sha' => 'string',
+        ],
+
+        ThePathsToRedirectValue::class => [
+            'regexp' => 'bool',
+            'to' => 'string',
+            'prefix' => '?bool',
+            'append_suffix' => '?bool',
+            'code' => 'int',
+            'expires' => '?string',
+        ],
+
+        TheRelationshipsOfTheApplicationToDefinedServicesValue::class => [
+            'service' => '?string',
+            'endpoint' => '?string',
+        ],
+
+        TheSpecificationOfTheWebLocationsServedByThisApplicationValue::class => [
+            'root' => '?string',
+            'expires' => 'string',
+            'passthru' => 'string',
+            'scripts' => 'bool',
+            'allow' => 'bool',
+            'headers' => 'string[]',
+            'rules' => '\Upsun\Model\SpecificOverridesValue[]',
+            'index' => 'string[]',
+            'request_buffering' => '?\Upsun\Model\ConfigurationForSupportingRequestBuffering',
+        ],
+
+        TheTreeItemsInner::class => [
+            'path' => 'string',
+            'mode' => 'string',
+            'type' => 'string',
+            'sha' => '?string',
+        ],
+
+        TheVariablesApplyingToThisEnvironmentInner::class => [
+            'name' => 'string',
+            'is_sensitive' => 'bool',
+            'is_json' => 'bool',
+            'visible_build' => 'bool',
+            'visible_runtime' => 'bool',
+            'value' => '?string',
+        ],
+
+        Ticket::class => [
+            'ticket_id' => '?int',
+            'created' => '?\DateTime',
+            'updated' => '?\DateTime',
+            'type' => '?string',
+            'subject' => '?string',
+            'description' => '?string',
+            'priority' => '?string',
+            'followup_tid' => '?string',
+            'status' => '?string',
+            'recipient' => '?string',
+            'requester_id' => '?string',
+            'submitter_id' => '?string',
+            'assignee_id' => '?string',
+            'organization_id' => '?string',
+            'collaborator_ids' => 'string[]',
+            'has_incidents' => '?bool',
+            'due' => '?\DateTime',
+            'tags' => 'string[]',
+            'subscription_id' => '?string',
+            'ticket_group' => '?string',
+            'support_plan' => '?string',
+            'affected_url' => '?string',
+            'queue' => '?string',
+            'issue_type' => '?string',
+            'resolution_time' => '?\DateTime',
+            'response_time' => '?\DateTime',
+            'project_url' => '?string',
+            'region' => '?string',
+            'category' => '?string',
+            'environment' => '?string',
+            'ticket_sharing_status' => '?string',
+            'application_ticket_url' => '?string',
+            'infrastructure_ticket_url' => '?string',
+            'jira' => '\Upsun\Model\TicketJiraInner[]',
+            'zd_ticket_url' => '?string',
+        ],
+
+        TicketJiraInner::class => [
+            'id' => '?int',
+            'ticket_id' => '?int',
+            'issue_id' => '?int',
+            'issue_key' => '?string',
+            'created_at' => '?float',
+            'updated_at' => '?float',
+        ],
+
+        Tree::class => [
+            'id' => 'string',
+            'sha' => 'string',
+            'tree' => '\Upsun\Model\TheTreeItemsInner[]',
+        ],
+
+        UpdateOrgAddonsRequest::class => [
+            'user_management' => '?string',
+            'support_level' => '?string',
+        ],
+
+        UpdateOrgBillingAlertConfigRequest::class => [
+            'active' => '?bool',
+            'config' => '?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig',
+        ],
+
+        UpdateOrgBillingAlertConfigRequestConfig::class => [
+            'threshold' => '?int',
+            'mode' => '?string',
+        ],
+
+        UpdateOrgMemberRequest::class => [
+            'permissions' => 'string[]',
+        ],
+
+        UpdateOrgProfileRequest::class => [
+            'default_catalog' => '?string',
+            'project_options_url' => '?string',
+            'security_contact' => '?string',
+            'company_name' => '?string',
+            'vat_number' => '?string',
+            'billing_contact' => '?string',
+        ],
+
+        UpdateOrgProjectRequest::class => [
+            'title' => '?string',
+            'plan' => '?string',
+            'timezone' => '?string',
+            'cse_notes' => '?string',
+            'dedicated_tag' => '?string',
+        ],
+
+        UpdateOrgRequest::class => [
+            'name' => '?string',
+            'label' => '?string',
+            'country' => '?string',
+        ],
+
+        UpdateOrgSubscriptionRequest::class => [
+            'project_title' => '?string',
+            'plan' => '?string',
+            'timezone' => '?string',
+            'environments' => '?int',
+            'storage' => '?int',
+            'big_dev' => '?string',
+            'big_dev_service' => '?string',
+            'backups' => '?string',
+            'observability_suite' => '?string',
+            'blackfire' => '?string',
+            'continuous_profiling' => '?string',
+            'project_support_level' => '?string',
+        ],
+
+        UpdateProfileRequest::class => [
+            'display_name' => '?string',
+            'username' => '?string',
+            'current_password' => '?string',
+            'password' => '?string',
+            'company_type' => '?string',
+            'company_name' => '?string',
+            'vat_number' => '?string',
+            'company_role' => '?string',
+            'marketing' => '?bool',
+            'ui_colorscheme' => '?string',
+            'default_catalog' => '?string',
+            'project_options_url' => '?string',
+            'picture' => '?string',
+        ],
+
+        UpdateProjectUserAccessRequest::class => [
+            'permissions' => 'string[]',
+        ],
+
+        UpdateProjectsEnvironmentsDeploymentsNextRequest::class => [
+            'webapps' => '\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue[]',
+            'services' => '\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]',
+            'workers' => '\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]',
+        ],
+
+        UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue::class => [
+            'resources' => '?\Upsun\Model\ResourceConfig',
+            'instance_count' => '?int',
+            'disk' => '?int',
+        ],
+
+        UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue::class => [
+            'resources' => '?\Upsun\Model\ResourceConfig',
+            'instance_count' => '?int',
+            'disk' => '?int',
+        ],
+
+        UpdateSubscriptionUsageAlertsRequest::class => [
+            'alerts' => '\Upsun\Model\UpdateSubscriptionUsageAlertsRequestAlertsInner[]',
+        ],
+
+        UpdateSubscriptionUsageAlertsRequestAlertsInner::class => [
+            'id' => '?string',
+            'active' => '?bool',
+            'config' => '?\Upsun\Model\UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig',
+        ],
+
+        UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig::class => [
+            'threshold' => '?int',
+        ],
+
+        UpdateTeamRequest::class => [
+            'label' => '?string',
+            'project_permissions' => 'string[]',
+        ],
+
+        UpdateTicketRequest::class => [
+            'status' => '?string',
+            'collaborator_ids' => 'string[]',
+            'collaborators_replace' => '?bool',
+        ],
+
+        UpdateUsageAlertsRequest::class => [
+            'alerts' => '\Upsun\Model\Alert[]',
+        ],
+
+        UpdateUserRequest::class => [
+            'username' => '?string',
+            'first_name' => '?string',
+            'last_name' => '?string',
+            'picture' => '?string',
+            'company' => '?string',
+            'website' => '?string',
+            'country' => '?string',
+        ],
+
+        UpstreamRoute::class => [
+            'attributes' => 'string[]',
+            'type' => 'string',
+            'tls' => TLSSettingsForTheRoute::class,
+            'id' => '?string',
+            'primary' => '?bool',
+            'production_url' => '?string',
+            'cache' => '?\Upsun\Model\CacheConfiguration',
+            'ssi' => '?\Upsun\Model\ServerSideIncludeConfiguration',
+            'upstream' => '?string',
+            'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects',
+            'sticky' => '?\Upsun\Model\StickyRoutingConfiguration',
+            'to' => '?string',
+        ],
+
+        Usage::class => [
+            'id' => '?string',
+            'subscription_id' => '?string',
+            'usage_group' => '?string',
+            'quantity' => '?float',
+            'start' => '?\DateTime',
+        ],
+
+        UsageAlert::class => [
+            'id' => '?string',
+            'active' => '?bool',
+            'alerts_sent' => '?float',
+            'last_alert_at' => '?string',
+            'updated_at' => '?string',
+            'config' => '?\Upsun\Model\UsageAlertConfig',
+        ],
+
+        UsageAlertConfig::class => [
+            'threshold' => '?\Upsun\Model\UsageAlertConfigThreshold',
+        ],
+
+        UsageAlertConfigThreshold::class => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'unit' => '?string',
+        ],
+
+        UsageGroupCurrentUsageProperties::class => [
+            'title' => '?string',
+            'type' => '?bool',
+            'current_usage' => '?float',
+            'current_usage_formatted' => '?string',
+            'not_charged' => '?bool',
+            'free_quantity' => '?float',
+            'free_quantity_formatted' => '?string',
+            'daily_average' => '?float',
+            'daily_average_formatted' => '?string',
+        ],
+
+        User::class => [
+            'id' => 'string',
+            'deactivated' => 'bool',
+            'namespace' => 'string',
+            'username' => 'string',
+            'email' => 'string',
+            'email_verified' => 'bool',
+            'first_name' => 'string',
+            'last_name' => 'string',
+            'picture' => 'string',
+            'company' => 'string',
+            'website' => 'string',
+            'country' => 'string',
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'consented_at' => '?\DateTime',
+            'consent_method' => '?string',
+        ],
+
+        UserProjectAccess::class => [
+            'user_id' => '?string',
+            'organization_id' => '?string',
+            'project_id' => '?string',
+            'project_title' => '?string',
+            'permissions' => 'string[]',
+            'granted_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            '_links' => '?\Upsun\Model\TeamProjectAccessLinks',
+        ],
+
+        UserReference::class => [
+            'id' => '?string',
+            'username' => '?string',
+            'email' => '?string',
+            'first_name' => '?string',
+            'last_name' => '?string',
+            'picture' => '?string',
+            'mfa_enabled' => '?bool',
+            'sso_enabled' => '?bool',
+        ],
+
+        VPNConfiguration::class => [
+            'version' => 'int',
+            'aggressive' => 'string',
+            'modeconfig' => 'string',
+            'authentication' => 'string',
+            'gateway_ip' => 'string',
+            'identity' => '?string',
+            'second_identity' => '?string',
+            'remote_identity' => '?string',
+            'remote_subnets' => 'string[]',
+            'ike' => 'string',
+            'esp' => 'string',
+            'ikelifetime' => 'string',
+            'lifetime' => 'string',
+            'margintime' => 'string',
+        ],
+
+        VerifyPhoneNumber200Response::class => [
+            'sid' => '?string',
+        ],
+
+        VerifyPhoneNumberRequest::class => [
+            'channel' => 'string',
+            'phone_number' => 'string',
+        ],
+
+        Version::class => [
+            'id' => 'string',
+            'commit' => '?string',
+            'locked' => 'bool',
+            'routing' => ConfigurationAboutTheTrafficRoutedToThisVersion::class,
+        ],
+
+        VersionCreateInput::class => [
+            'routing' => '?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1',
+        ],
+
+        VersionPatch::class => [
+            'routing' => '?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1',
+        ],
+
+        Vouchers::class => [
+            'uuid' => '?string',
+            'vouchers_total' => '?string',
+            'vouchers_applied' => '?string',
+            'vouchers_remaining_balance' => '?string',
+            'currency' => '?string',
+            'vouchers' => '\Upsun\Model\VouchersVouchersInner[]',
+            '_links' => '?\Upsun\Model\VouchersLinks',
+        ],
+
+        VouchersLinks::class => [
+            'self' => '?\Upsun\Model\VouchersLinksSelf',
+        ],
+
+        VouchersLinksSelf::class => [
+            'href' => '?string',
+        ],
+
+        VouchersVouchersInner::class => [
+            'code' => '?string',
+            'amount' => '?string',
+            'currency' => '?string',
+            'orders' => '\Upsun\Model\VouchersVouchersInnerOrdersInner[]',
+        ],
+
+        VouchersVouchersInnerOrdersInner::class => [
+            'order_id' => '?string',
+            'status' => '?string',
+            'billing_period_start' => '?string',
+            'billing_period_end' => '?string',
+            'order_total' => '?string',
+            'order_discount' => '?string',
+            'currency' => '?string',
+        ],
+
+        WebApplicationsValue::class => [
+            'resources' => '?\Upsun\Model\Resources',
+            'size' => 'string',
+            'disk' => '?int',
+            'access' => 'string[]',
+            'relationships' => '\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]',
+            'additional_hosts' => 'string[]',
+            'mounts' => '\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]',
+            'timezone' => '?string',
+            'variables' => 'array&lt;string,mixed&gt;[]',
+            'firewall' => '?\Upsun\Model\Firewall',
+            'container_profile' => '?string',
+            'operations' => '\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]',
+            'name' => 'string',
+            'type' => 'string',
+            'preflight' => ConfigurationForPreFlightChecks::class,
+            'tree_id' => 'string',
+            'app_dir' => 'string',
+            'endpoints' => '?object',
+            'runtime' => 'object',
+            'web' => ConfigurationForAccessingThisApplicationViaHTTP::class,
+            'hooks' => HooksExecutedAtVariousPointInTheLifecycleOfTheApplication::class,
+            'crons' => '\Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue[]',
+            'source' => ConfigurationRelatedToTheSourceCodeOfTheApplication::class,
+            'build' => TheBuildConfigurationOfTheApplication::class,
+            'dependencies' => 'object[]',
+            'stack' => 'object[]',
+            'is_across_submodule' => 'bool',
+            'instance_count' => '?int',
+            'config_id' => 'string',
+            'slug_id' => 'string',
+        ],
+
+        WebHookIntegration::class => [
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'type' => 'string',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => 'string',
+            'shared_key' => '?string',
+            'url' => 'string',
+            'id' => '?string',
+        ],
+
+        WebHookIntegrationCreateInput::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => '?string',
+            'shared_key' => '?string',
+        ],
+
+        WebHookIntegrationPatch::class => [
+            'type' => 'string',
+            'url' => 'string',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => '?string',
+            'shared_key' => '?string',
+        ],
+
+        WebhookIntegrationConfigurations::class => [
+            'enabled' => '?bool',
+            'role' => '?string',
+        ],
+
+        WorkersValue::class => [
+            'resources' => '?\Upsun\Model\Resources',
+            'size' => 'string',
+            'disk' => '?int',
+            'access' => 'string[]',
+            'relationships' => '\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]',
+            'additional_hosts' => 'string[]',
+            'mounts' => '\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]',
+            'timezone' => '?string',
+            'variables' => 'array&lt;string,mixed&gt;[]',
+            'firewall' => '?\Upsun\Model\Firewall',
+            'container_profile' => '?string',
+            'operations' => '\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]',
+            'name' => 'string',
+            'type' => 'string',
+            'preflight' => ConfigurationForPreFlightChecks::class,
+            'tree_id' => 'string',
+            'app_dir' => 'string',
+            'endpoints' => '?object',
+            'runtime' => 'object',
+            'worker' => ConfigurationOfAWorkerContainerInstance::class,
+            'app' => 'string',
+            'stack' => 'object[]',
+            'instance_count' => '?int',
+            'slug_id' => 'string',
+        ],
+
+    ];
+}

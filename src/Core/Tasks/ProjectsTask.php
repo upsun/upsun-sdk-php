@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\ApiException;
 use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;
@@ -22,7 +21,6 @@ use Upsun\Model\DeploymentTarget;
 use Upsun\Model\DeploymentTargetCreateInput;
 use Upsun\Model\DeploymentTargetPatch;
 use Upsun\Model\Domain;
-use Upsun\Model\Environment;
 use Upsun\Model\Integration;
 use Upsun\Model\IntegrationCreateInput;
 use Upsun\Model\IntegrationPatch;
@@ -71,6 +69,7 @@ class ProjectsTask extends TaskBase
      * Deletes a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function delete(string $projectId): void
     {
@@ -88,6 +87,7 @@ class ProjectsTask extends TaskBase
      * Gets a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function get(string $projectId): Project
     {
@@ -106,7 +106,9 @@ class ProjectsTask extends TaskBase
      *     environments?: int,
      *     storage?: int
      * } $projectData
+     *
      * @throws ApiException
+     * @throws ClientExceptionInterface
      */
     public function create(string $organizationId, array $projectData): Subscription
     {
@@ -118,6 +120,7 @@ class ProjectsTask extends TaskBase
      * Checks if the user is able to create a new project in the organization.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function canCreate(string $organizationId): CanCreateNewOrgSubscription200Response
     {
@@ -128,6 +131,7 @@ class ProjectsTask extends TaskBase
      * Gets a project's capabilities
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getCapabilities(string $projectId): ProjectCapabilities
     {
@@ -146,7 +150,9 @@ class ProjectsTask extends TaskBase
      *   timezone?: string,
      *   region?: string
      * } $data
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function update(string $projectId, array $data): AcceptedResponse
     {
@@ -158,6 +164,7 @@ class ProjectsTask extends TaskBase
      * Cancels a pending invitation to a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function cancelInvite(string $projectId, string $invitationId): void
     {
@@ -174,7 +181,9 @@ class ProjectsTask extends TaskBase
      *     environments?: bool,
      *     force?: bool
      * } $data
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function createInvite(string $projectId, array $data): ProjectInvitation
     {
@@ -184,8 +193,10 @@ class ProjectsTask extends TaskBase
     /**
      * Lists invitations to a project
      *
-     * @return ProjectInvitation[]
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @return ProjectInvitation[]
      */
     public function listInvites(
         string $projectId,
@@ -209,6 +220,7 @@ class ProjectsTask extends TaskBase
      * Gets list of project settings
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getSettings(string $projectId): ProjectSettings
     {
@@ -224,8 +236,9 @@ class ProjectsTask extends TaskBase
      *     cpu?: float,
      *     memory?: int
      * } $data
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function updateSettings(string $projectId, array $data): AcceptedResponse
     {
@@ -244,6 +257,7 @@ class ProjectsTask extends TaskBase
      * Adds a project variable
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function createVariable(string $projectId, array $projectVariableCreateInput): AcceptedResponse
     {
@@ -254,6 +268,7 @@ class ProjectsTask extends TaskBase
      * Get a project variable
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getVariable(string $projectId, string $projectVariableId): ProjectVariable
     {
@@ -264,6 +279,7 @@ class ProjectsTask extends TaskBase
      * Deletes a project variable
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function deleteVariable(string $projectId, string $projectVariableId): AcceptedResponse
     {
@@ -273,8 +289,9 @@ class ProjectsTask extends TaskBase
     /**
      * Gets list of project variables
      *
-     * @return ProjectVariable[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @return ProjectVariable[]
      *
      */
     public function listVariables(string $projectId): array
@@ -294,8 +311,9 @@ class ProjectsTask extends TaskBase
      *     visibleBuild?: bool,
      *     visibleRuntime?: bool,
      * } $data
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function updateVariable(
         string $projectId,
@@ -312,9 +330,10 @@ class ProjectsTask extends TaskBase
     /**
      * Gets project activity log
      *
-     * @return Activity[]
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @return Activity[]
      */
     public function listActivities(string $projectId): array
     {
@@ -325,6 +344,7 @@ class ProjectsTask extends TaskBase
      * Gets a project activity log entry
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getActivity(string $projectId, string $activityId): Activity
     {
@@ -335,6 +355,7 @@ class ProjectsTask extends TaskBase
      * Cancels a project activity
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function cancelActivity(string $projectId, string $activityId): AcceptedResponse
     {
@@ -354,8 +375,9 @@ class ProjectsTask extends TaskBase
      *     enterpriseEnvironmentsMapping?: array,
      *     useDedicatedGrid?: bool,
      * } $data
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function createDeployment(string $projectId, array $data): AcceptedResponse
     {
@@ -376,6 +398,7 @@ class ProjectsTask extends TaskBase
      * Deletes a single project deployment target
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function deleteDeployment(string $projectId, string $deploymentTargetConfigurationId): AcceptedResponse
     {
@@ -386,6 +409,7 @@ class ProjectsTask extends TaskBase
      * Gets a single project deployment target
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getDeployment(string $projectId, string $deploymentTargetConfigurationId): DeploymentTarget
     {
@@ -395,9 +419,10 @@ class ProjectsTask extends TaskBase
     /**
      * Gets project deployment target info
      *
-     * @return DeploymentTarget[]
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @return DeploymentTarget[]
      */
     public function listDeployments(string $projectId): array
     {
@@ -417,8 +442,9 @@ class ProjectsTask extends TaskBase
      *     enterpriseEnvironmentsMapping?: array,
      *     useDedicatedGrid?: bool,
      * } $data
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function updateDeployment(
         string $projectId,
@@ -447,6 +473,7 @@ class ProjectsTask extends TaskBase
      * Gets a blob object
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getGitBlob(string $projectId, string $repositoryBlobId): Blob
     {
@@ -457,6 +484,7 @@ class ProjectsTask extends TaskBase
      * Gets a commit object
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getGitCommit(string $projectId, string $repositoryCommitId): Commit
     {
@@ -467,6 +495,7 @@ class ProjectsTask extends TaskBase
      * Gets a Git ref object
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getGitRef(string $projectId, string $repositoryRefId): Ref
     {
@@ -477,19 +506,20 @@ class ProjectsTask extends TaskBase
      * Gets a Git tree object
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getGitTree(string $projectId, string $repositoryTreeId): Tree
     {
         return $this->repositoryApi->getProjectsGitTrees($projectId, $repositoryTreeId);
     }
 
-
     /**
      * Gets list of repository refs
      *
-     * @return Ref[]
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @return Ref[]
      */
     public function listGitRefs(string $projectId): array
     {
@@ -500,6 +530,7 @@ class ProjectsTask extends TaskBase
      * Restarts the Git server
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function restartGitServer(string $projectId): AcceptedResponse
     {
@@ -510,6 +541,7 @@ class ProjectsTask extends TaskBase
      * Get information about the Git server.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getGitInfo(string $projectId): SystemInformation
     {
@@ -575,8 +607,9 @@ class ProjectsTask extends TaskBase
      *     authToken?: string,
      *     authMode?: string,
      * } $data
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function createIntegration(string $projectId, array $data): AcceptedResponse
     {
@@ -638,6 +671,7 @@ class ProjectsTask extends TaskBase
      * Deletes an existing third-party integration
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function deleteIntegration(string $projectId, string $integrationId): AcceptedResponse
     {
@@ -648,6 +682,7 @@ class ProjectsTask extends TaskBase
      * Gets information about an existing third-party integration
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getIntegration(string $projectId, string $integrationId): Integration
     {
@@ -657,9 +692,10 @@ class ProjectsTask extends TaskBase
     /**
      * Gets list of existing integrations for a project
      *
-     * @return Integration[]
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @return Integration[]
      */
     public function listIntegrations(string $projectId): array
     {
@@ -725,8 +761,9 @@ class ProjectsTask extends TaskBase
      *     authToken?: string,
      *     authMode?: string,
      * } $data
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function updateIntegration(
         string $projectId,
@@ -800,8 +837,9 @@ class ProjectsTask extends TaskBase
      *     isDefault?: bool,
      *     replacementFor?: string,
      * } $data
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function createDomain(string $projectId, array $data): AcceptedResponse
     {
@@ -812,6 +850,7 @@ class ProjectsTask extends TaskBase
      * Deletes a project domain
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function deleteDomain(string $projectId, string $domainId): AcceptedResponse
     {
@@ -822,6 +861,7 @@ class ProjectsTask extends TaskBase
      * Gets a project domain
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getDomain(string $projectId, string $domainId): Domain
     {
@@ -831,9 +871,10 @@ class ProjectsTask extends TaskBase
     /**
      * Gets list of project domains
      *
-     * @return Domain[]
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @return Domain[]
      */
     public function listDomains(string $projectId): array
     {
@@ -847,8 +888,9 @@ class ProjectsTask extends TaskBase
      *     attributes?: array,
      *     isDefault?: bool,
      * } $data
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function updateDomain(string $projectId, string $domainId, array $data): AcceptedResponse
     {
@@ -864,8 +906,9 @@ class ProjectsTask extends TaskBase
      *     chain?: array,
      *     isInvalid?: bool
      * } $options Configuration options
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function createCertificate(string $projectId, array $options): AcceptedResponse
     {
@@ -876,6 +919,7 @@ class ProjectsTask extends TaskBase
      * Deletes an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function deleteCertificate(string $projectId, string $certificateId): AcceptedResponse
     {
@@ -886,6 +930,7 @@ class ProjectsTask extends TaskBase
      * Gets an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getCertificate(string $projectId, string $certificateId): Certificate
     {
@@ -895,9 +940,10 @@ class ProjectsTask extends TaskBase
     /**
      * Gets list of SSL certificates
      *
-     * @return Certificate[]
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @return Certificate[]
      */
     public function listCertificates(string $projectId): array
     {
@@ -908,6 +954,7 @@ class ProjectsTask extends TaskBase
      * Updates an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function updateCertificate(
         string $projectId,
@@ -927,6 +974,7 @@ class ProjectsTask extends TaskBase
      * } $data
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function runOperation(
         string $projectId,
@@ -946,6 +994,7 @@ class ProjectsTask extends TaskBase
      * Gets team access for a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getProjectTeamAccess(string $projectId, string $teamId): TeamProjectAccess
     {
@@ -957,6 +1006,7 @@ class ProjectsTask extends TaskBase
      * Gets project access for a team
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getTeamProjectAccess(string $teamId, string $projectId): TeamProjectAccess
     {
@@ -967,6 +1017,7 @@ class ProjectsTask extends TaskBase
      * Grants team access to a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function grantProjectTeamAccess(string $projectId, array $grantProjectTeamAccessRequestInner): void
     {
@@ -977,6 +1028,7 @@ class ProjectsTask extends TaskBase
      * Grants project access to a team
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function grantTeamProjectAccess(string $teamId, array $data): void
     {
@@ -987,6 +1039,7 @@ class ProjectsTask extends TaskBase
      * Lists team access for a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function listProjectTeamAccess(
         string $projectId,
@@ -1002,6 +1055,7 @@ class ProjectsTask extends TaskBase
      * Lists project access for a team
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function listTeamProjectAccess(
         string $teamId,
@@ -1017,6 +1071,7 @@ class ProjectsTask extends TaskBase
      * Removes team access for a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function removeProjectTeamAccess(string $projectId, string $teamId): void
     {
@@ -1027,6 +1082,7 @@ class ProjectsTask extends TaskBase
      * Removes project access for a team
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function removeTeamProjectAccess(string $teamId, string $projectId): void
     {
@@ -1037,6 +1093,7 @@ class ProjectsTask extends TaskBase
      * Gets user access for a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getProjectUserAccess(string $projectId, string $userId): UserProjectAccess
     {
@@ -1047,6 +1104,7 @@ class ProjectsTask extends TaskBase
      * Grants user access to a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function grantProjectUserAccess(string $projectId, array $data): void
     {
@@ -1057,6 +1115,7 @@ class ProjectsTask extends TaskBase
      * Removes user access for a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function removeProjectUserAccess(string $projectId, string $userId): void
     {
@@ -1067,6 +1126,7 @@ class ProjectsTask extends TaskBase
      * Updates user access for a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function updateProjectUserAccess(
         string $projectId,
@@ -1080,6 +1140,7 @@ class ProjectsTask extends TaskBase
      * Lists user access for a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function listProjectUserAccess(
         string $projectId,
@@ -1094,9 +1155,10 @@ class ProjectsTask extends TaskBase
     /**
      * Lists environments of a project
      *
-     * @return Environment[]
-     * @throws ApiException
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @return Environment[]
      */
     public function listEnvironments(string $projectId): array
     {

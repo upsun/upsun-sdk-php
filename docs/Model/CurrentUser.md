@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **displayName** | **string** | The full name of the owner. | [optional]
 **status** | **int** | Status of the user. 0 &#x3D; blocked; 1 &#x3D; active. | [optional]
 **mail** | **string** | The email address of the owner. | [optional]
-**sshKeys** | [**\Upsun\Model\SSHKey[]**](SSHKey.md) | The list of user&#39;s public SSH keys. | [optional]
+**sshKeys** | [**\Upsun\Model\SshKey[]**](SshKey.md) | The list of user&#39;s public SSH keys. | [optional]
 **hasKey** | **bool** | The indicator whether the user has a public ssh key on file or not. | [optional]
 **projects** | [**\Upsun\Model\CurrentUserProjectsInner[]**](CurrentUserProjectsInner.md) |  | [optional]
 **sequence** | **int** | The sequential ID of the user. | [optional]

@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\ApiException;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Domain;
@@ -29,14 +28,15 @@ class DomainsTask extends TaskBase
     /**
      * Adds a project (or environment) domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     name: string,
      *     attributes?: array,
      *     isDefault?: bool,
      *     replacementFor?: string,
      * } $data
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function create(
         string $projectId,
@@ -59,6 +59,7 @@ class DomainsTask extends TaskBase
      * Deletes a project (or environment) domain
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function delete(string $projectId, string $domainId, ?string $environmentId = null): AcceptedResponse
     {
@@ -73,6 +74,7 @@ class DomainsTask extends TaskBase
      * Gets a project (or environment) domain
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function get(string $projectId, string $domainId, ?string $environmentId = null): Domain
     {
@@ -86,8 +88,9 @@ class DomainsTask extends TaskBase
     /**
      * Gets list of project (or environment) domains
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @return Domain[]
      */
     public function list(string $projectId, ?string $environmentId = null): array
@@ -102,12 +105,13 @@ class DomainsTask extends TaskBase
     /**
      * Updates a project (or environment) domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     attributes?: array,
      *     isDefault?: bool,
      * } $data
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function update(
         string $projectId,

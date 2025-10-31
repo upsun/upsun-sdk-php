@@ -3,7 +3,6 @@
 namespace Upsun\Core\Tasks;
 
 use Upsun\Api\DeploymentApi;
-use Upsun\ApiException;
 use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
 use Upsun\UpsunClient;
 
@@ -50,7 +49,8 @@ class ResourcesTask extends TaskBase
      *     }>
      * } $resourcesData Data specifying the new resources configuration for webapps, services, or workers
      *
-     * @throws ApiException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function update(
         string $projectId,

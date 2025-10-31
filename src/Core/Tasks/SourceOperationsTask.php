@@ -2,10 +2,8 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\ApiException;
 use Upsun\Api\SourceOperationsApi;
 use Upsun\Model\AcceptedResponse;
-use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Model\EnvironmentSourceOperationInput;
 use Upsun\UpsunClient;
 
@@ -28,8 +26,9 @@ class SourceOperationsTask extends TaskBase
     /**
      * Lists source operations
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @return EnvironmentSourceOperation[]
      */
     public function list(string $projectId, string $environmentId): array
@@ -40,12 +39,13 @@ class SourceOperationsTask extends TaskBase
     /**
      * Trigger a source operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     operation: string,
      *     variables: array,
      * } $data
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function run(
         string $projectId,

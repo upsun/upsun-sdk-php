@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\ApiException;
 use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Backup;
@@ -31,6 +30,7 @@ class BackupsTask extends TaskBase
      * Creates snapshot of environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function backup(
         string $projectId,
@@ -45,6 +45,7 @@ class BackupsTask extends TaskBase
      * Deletes an environment snapshot
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function delete(string $projectId, string $environmentId, string $backupId): AcceptedResponse
     {
@@ -55,6 +56,7 @@ class BackupsTask extends TaskBase
      * Gets an environment snapshot's info
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function get(string $projectId, string $environmentId, string $backupId): Backup
     {
@@ -64,8 +66,9 @@ class BackupsTask extends TaskBase
     /**
      * Gets an environment's snapshot list
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @return Backup[]
      */
     public function list(string $projectId, string $environmentId): array
@@ -76,8 +79,6 @@ class BackupsTask extends TaskBase
     /**
      * Restores an environment snapshot
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     restoreCode: bool,
      *     restoreResources: bool,
@@ -86,7 +87,8 @@ class BackupsTask extends TaskBase
      *     init?: string
      * } $options Configuration options for environment restoration
      *
-     * @see EnvironmentRestoreInput For detailed parameter descriptions
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function restore(
         string $projectId,

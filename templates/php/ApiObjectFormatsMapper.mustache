@@ -1,0 +1,34 @@
+<?php
+
+namespace {{apiPackage}}\Serializer;
+
+/**
+ * Low level {{classname}} (auto-generated)
+ *
+ * This model class is utilized by the ObjectSerializer for mapping JSON attribute format
+ * to their corresponding model properties during serialization/deserialization.
+ *
+{{> partial_internal_header }}
+ * @internal
+ */
+final class ApiObjectFormatsMapper
+{
+    /**
+     * Array of property to format mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openApiFormats(string $classname)
+    {
+        return self::$openApiFormats[$classname];
+    }
+
+    protected static $openApiFormats = [
+{{#models}}{{#model}}
+        '{{modelPackage}}\{{classname}}' => [
+            {{#vars}}'{{name}}' => {{#dataFormat}}'{{{.}}}'{{/dataFormat}}{{^dataFormat}}null{{/dataFormat}}{{^-last}},
+            {{/-last}}{{/vars}}
+        ],
+{{/model}}{{/models}}
+    ];
+}

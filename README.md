@@ -1,23 +1,20 @@
 # Upsun SDK PHP
 
-The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.\nFor more information, read [the documentation](https://docs.upsun.com).
+The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.
+
+For more information, read [the documentation](https://docs.upsun.com/api).
+
 
 > [!CAUTION]
 > This project is currently in **Beta**, meaning features and APIs may evolve over time.
 >
 > Please report bugs or request new features by creating a GitHub issue.
 
-<p align="center">
-    <a href="https://github.com/upsun/upsun-sdk-php/issues">
-        <img src="https://img.shields.io/github/issues/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Issues" alt="Open issues" />
-    </a>&nbsp&nbsp
-    <a href="https://github.com/upsun/upsun-sdk-php/pulls">
-        <img src="https://img.shields.io/github/issues-pr/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Pull%20requests" alt="Open PRs" />
-    </a>&nbsp&nbsp
-    <a href="https://github.com/upsun/upsun-sdk-php/blob/master/LICENSE">
-        <img src="https://img.shields.io/static/v1?label=License&message=MIT&style=for-the-badge&labelColor=f4f2f3&color=ffd9d9" alt="License" />
-    </a>
-</p>
+<hr/>
+
+[![Issues](https://img.shields.io/github/issues/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Issues)](https://github.com/upsun/upsun-sdk-php/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Pull%20requests)](https://github.com/upsun/upsun-sdk-php/pulls)
+[![License](https://img.shields.io/static/v1?label=License&message=MIT&style=for-the-badge&labelColor=f4f2f3&color=ffd9d9)](https://github.com/upsun/upsun-sdk-php/blob/master/LICENSE)
 
 <hr/>
 
@@ -153,14 +150,14 @@ All URIs are relative to *https://api.upsun.com*
 
 | Class | Method | HTTP request | Description | Upsun API Doc |
 | ------------ | ------------- | ------------- | ------------- | ------------- |
-| **APITokensApi** | [**createApiToken**](docs/Api/APITokensApi.md#createapitoken) | **POST** /users/{user_id}/api-tokens | Create an API token | https://docs.upsun.com/api/#tag/API-Tokens/operation/create-api-token |
-| **APITokensApi** | [**deleteApiToken**](docs/Api/APITokensApi.md#deleteapitoken) | **DELETE** /users/{user_id}/api-tokens/{token_id} | Delete an API token | https://docs.upsun.com/api/#tag/API-Tokens/operation/delete-api-token |
-| **APITokensApi** | [**getApiToken**](docs/Api/APITokensApi.md#getapitoken) | **GET** /users/{user_id}/api-tokens/{token_id} | Get an API token | https://docs.upsun.com/api/#tag/API-Tokens/operation/get-api-token |
-| **APITokensApi** | [**listApiTokens**](docs/Api/APITokensApi.md#listapitokens) | **GET** /users/{user_id}/api-tokens | List a user&#39;s API tokens | https://docs.upsun.com/api/#tag/API-Tokens/operation/list-api-tokens |
 | **AddOnsApi** | [**getOrgAddons**](docs/Api/AddOnsApi.md#getorgaddons) | **GET** /organizations/{organization_id}/addons | Get add-ons | https://docs.upsun.com/api/#tag/Add-ons/operation/get-org-addons |
 | **AddOnsApi** | [**updateOrgAddons**](docs/Api/AddOnsApi.md#updateorgaddons) | **PATCH** /organizations/{organization_id}/addons | Update organization add-ons | https://docs.upsun.com/api/#tag/Add-ons/operation/update-org-addons |
 | **AlertsApi** | [**getUsageAlerts**](docs/Api/AlertsApi.md#getusagealerts) | **GET** /alerts/subscriptions/{subscriptionId}/usage | Get usage alerts for a subscription | https://docs.upsun.com/api/#tag/Alerts/operation/get-usage-alerts |
 | **AlertsApi** | [**updateUsageAlerts**](docs/Api/AlertsApi.md#updateusagealerts) | **PATCH** /alerts/subscriptions/{subscriptionId}/usage | Update usage alerts. | https://docs.upsun.com/api/#tag/Alerts/operation/update-usage-alerts |
+| **ApiTokensApi** | [**createApiToken**](docs/Api/ApiTokensApi.md#createapitoken) | **POST** /users/{user_id}/api-tokens | Create an API token | https://docs.upsun.com/api/#tag/Api-Tokens/operation/create-api-token |
+| **ApiTokensApi** | [**deleteApiToken**](docs/Api/ApiTokensApi.md#deleteapitoken) | **DELETE** /users/{user_id}/api-tokens/{token_id} | Delete an API token | https://docs.upsun.com/api/#tag/Api-Tokens/operation/delete-api-token |
+| **ApiTokensApi** | [**getApiToken**](docs/Api/ApiTokensApi.md#getapitoken) | **GET** /users/{user_id}/api-tokens/{token_id} | Get an API token | https://docs.upsun.com/api/#tag/Api-Tokens/operation/get-api-token |
+| **ApiTokensApi** | [**listApiTokens**](docs/Api/ApiTokensApi.md#listapitokens) | **GET** /users/{user_id}/api-tokens | List a user&#39;s API tokens | https://docs.upsun.com/api/#tag/Api-Tokens/operation/list-api-tokens |
 | **AutoscalingApi** | [**getAutoscalerSettings**](docs/Api/AutoscalingApi.md#getautoscalersettings) | **GET** /projects/{projectId}/environments/{environmentId}/autoscaling/settings |  | https://docs.upsun.com/api/#tag/Autoscaling/operation/get-autoscaler-settings |
 | **AutoscalingApi** | [**patchAutoscalerSettings**](docs/Api/AutoscalingApi.md#patchautoscalersettings) | **PATCH** /projects/{projectId}/environments/{environmentId}/autoscaling/settings |  | https://docs.upsun.com/api/#tag/Autoscaling/operation/patch-autoscaler-settings |
 | **AutoscalingApi** | [**postAutoscalerAlert**](docs/Api/AutoscalingApi.md#postautoscaleralert) | **POST** /projects/{projectId}/environments/{environmentId}/autoscaling/alerts |  | https://docs.upsun.com/api/#tag/Autoscaling/operation/post-autoscaler-alert |
@@ -236,14 +233,14 @@ All URIs are relative to *https://api.upsun.com*
 | **GrantsApi** | [**listUserExtendedAccess**](docs/Api/GrantsApi.md#listuserextendedaccess) | **GET** /users/{user_id}/extended-access | List extended access of a user | https://docs.upsun.com/api/#tag/Grants/operation/list-user-extended-access |
 | **InvoicesApi** | [**getOrgInvoice**](docs/Api/InvoicesApi.md#getorginvoice) | **GET** /organizations/{organization_id}/invoices/{invoice_id} | Get invoice | https://docs.upsun.com/api/#tag/Invoices/operation/get-org-invoice |
 | **InvoicesApi** | [**listOrgInvoices**](docs/Api/InvoicesApi.md#listorginvoices) | **GET** /organizations/{organization_id}/invoices | List invoices | https://docs.upsun.com/api/#tag/Invoices/operation/list-org-invoices |
-| **MFAApi** | [**confirmTotpEnrollment**](docs/Api/MFAApi.md#confirmtotpenrollment) | **POST** /users/{user_id}/totp | Confirm TOTP enrollment | https://docs.upsun.com/api/#tag/MFA/operation/confirm-totp-enrollment |
-| **MFAApi** | [**disableOrgMfaEnforcement**](docs/Api/MFAApi.md#disableorgmfaenforcement) | **POST** /organizations/{organization_id}/mfa-enforcement/disable | Disable organization MFA enforcement | https://docs.upsun.com/api/#tag/MFA/operation/disable-org-mfa-enforcement |
-| **MFAApi** | [**enableOrgMfaEnforcement**](docs/Api/MFAApi.md#enableorgmfaenforcement) | **POST** /organizations/{organization_id}/mfa-enforcement/enable | Enable organization MFA enforcement | https://docs.upsun.com/api/#tag/MFA/operation/enable-org-mfa-enforcement |
-| **MFAApi** | [**getOrgMfaEnforcement**](docs/Api/MFAApi.md#getorgmfaenforcement) | **GET** /organizations/{organization_id}/mfa-enforcement | Get organization MFA settings | https://docs.upsun.com/api/#tag/MFA/operation/get-org-mfa-enforcement |
-| **MFAApi** | [**getTotpEnrollment**](docs/Api/MFAApi.md#gettotpenrollment) | **GET** /users/{user_id}/totp | Get information about TOTP enrollment | https://docs.upsun.com/api/#tag/MFA/operation/get-totp-enrollment |
-| **MFAApi** | [**recreateRecoveryCodes**](docs/Api/MFAApi.md#recreaterecoverycodes) | **POST** /users/{user_id}/codes | Re-create recovery codes | https://docs.upsun.com/api/#tag/MFA/operation/recreate-recovery-codes |
-| **MFAApi** | [**sendOrgMfaReminders**](docs/Api/MFAApi.md#sendorgmfareminders) | **POST** /organizations/{organization_id}/mfa/remind | Send MFA reminders to organization members | https://docs.upsun.com/api/#tag/MFA/operation/send-org-mfa-reminders |
-| **MFAApi** | [**withdrawTotpEnrollment**](docs/Api/MFAApi.md#withdrawtotpenrollment) | **DELETE** /users/{user_id}/totp | Withdraw TOTP enrollment | https://docs.upsun.com/api/#tag/MFA/operation/withdraw-totp-enrollment |
+| **MfaApi** | [**confirmTotpEnrollment**](docs/Api/MfaApi.md#confirmtotpenrollment) | **POST** /users/{user_id}/totp | Confirm TOTP enrollment | https://docs.upsun.com/api/#tag/Mfa/operation/confirm-totp-enrollment |
+| **MfaApi** | [**disableOrgMfaEnforcement**](docs/Api/MfaApi.md#disableorgmfaenforcement) | **POST** /organizations/{organization_id}/mfa-enforcement/disable | Disable organization MFA enforcement | https://docs.upsun.com/api/#tag/Mfa/operation/disable-org-mfa-enforcement |
+| **MfaApi** | [**enableOrgMfaEnforcement**](docs/Api/MfaApi.md#enableorgmfaenforcement) | **POST** /organizations/{organization_id}/mfa-enforcement/enable | Enable organization MFA enforcement | https://docs.upsun.com/api/#tag/Mfa/operation/enable-org-mfa-enforcement |
+| **MfaApi** | [**getOrgMfaEnforcement**](docs/Api/MfaApi.md#getorgmfaenforcement) | **GET** /organizations/{organization_id}/mfa-enforcement | Get organization MFA settings | https://docs.upsun.com/api/#tag/Mfa/operation/get-org-mfa-enforcement |
+| **MfaApi** | [**getTotpEnrollment**](docs/Api/MfaApi.md#gettotpenrollment) | **GET** /users/{user_id}/totp | Get information about TOTP enrollment | https://docs.upsun.com/api/#tag/Mfa/operation/get-totp-enrollment |
+| **MfaApi** | [**recreateRecoveryCodes**](docs/Api/MfaApi.md#recreaterecoverycodes) | **POST** /users/{user_id}/codes | Re-create recovery codes | https://docs.upsun.com/api/#tag/Mfa/operation/recreate-recovery-codes |
+| **MfaApi** | [**sendOrgMfaReminders**](docs/Api/MfaApi.md#sendorgmfareminders) | **POST** /organizations/{organization_id}/mfa/remind | Send MFA reminders to organization members | https://docs.upsun.com/api/#tag/Mfa/operation/send-org-mfa-reminders |
+| **MfaApi** | [**withdrawTotpEnrollment**](docs/Api/MfaApi.md#withdrawtotpenrollment) | **DELETE** /users/{user_id}/totp | Withdraw TOTP enrollment | https://docs.upsun.com/api/#tag/Mfa/operation/withdraw-totp-enrollment |
 | **OrdersApi** | [**createAuthorizationCredentials**](docs/Api/OrdersApi.md#createauthorizationcredentials) | **POST** /organizations/{organization_id}/orders/{order_id}/authorize | Create confirmation credentials for for 3D-Secure | https://docs.upsun.com/api/#tag/Orders/operation/create-authorization-credentials |
 | **OrdersApi** | [**downloadInvoice**](docs/Api/OrdersApi.md#downloadinvoice) | **GET** /orders/download | Download an invoice. | https://docs.upsun.com/api/#tag/Orders/operation/download-invoice |
 | **OrdersApi** | [**getOrgOrder**](docs/Api/OrdersApi.md#getorgorder) | **GET** /organizations/{organization_id}/orders/{order_id} | Get order | https://docs.upsun.com/api/#tag/Orders/operation/get-org-order |
@@ -314,11 +311,11 @@ All URIs are relative to *https://api.upsun.com*
 | **RoutingApi** | [**getProjectsEnvironmentsRoutes**](docs/Api/RoutingApi.md#getprojectsenvironmentsroutes) | **GET** /projects/{projectId}/environments/{environmentId}/routes/{routeId} | Get a route&#39;s info | https://docs.upsun.com/api/#tag/Routing/operation/get-projects-environments-routes |
 | **RoutingApi** | [**listProjectsEnvironmentsRoutes**](docs/Api/RoutingApi.md#listprojectsenvironmentsroutes) | **GET** /projects/{projectId}/environments/{environmentId}/routes | Get list of routes | https://docs.upsun.com/api/#tag/Routing/operation/list-projects-environments-routes |
 | **RuntimeOperationsApi** | [**runOperation**](docs/Api/RuntimeOperationsApi.md#runoperation) | **POST** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/operations | Execute a runtime operation | https://docs.upsun.com/api/#tag/Runtime-Operations/operation/run-operation |
-| **SSHKeysApi** | [**createSshKey**](docs/Api/SSHKeysApi.md#createsshkey) | **POST** /ssh_keys | Add a new public SSH key to a user | https://docs.upsun.com/api/#tag/SSH-Keys/operation/create-ssh-key |
-| **SSHKeysApi** | [**deleteSshKey**](docs/Api/SSHKeysApi.md#deletesshkey) | **DELETE** /ssh_keys/{key_id} | Delete an SSH key | https://docs.upsun.com/api/#tag/SSH-Keys/operation/delete-ssh-key |
-| **SSHKeysApi** | [**getSshKey**](docs/Api/SSHKeysApi.md#getsshkey) | **GET** /ssh_keys/{key_id} | Get an SSH key | https://docs.upsun.com/api/#tag/SSH-Keys/operation/get-ssh-key |
 | **SourceOperationsApi** | [**listProjectsEnvironmentsSourceOperations**](docs/Api/SourceOperationsApi.md#listprojectsenvironmentssourceoperations) | **GET** /projects/{projectId}/environments/{environmentId}/source-operations | List source operations | https://docs.upsun.com/api/#tag/Source-Operations/operation/list-projects-environments-source-operations |
 | **SourceOperationsApi** | [**runSourceOperation**](docs/Api/SourceOperationsApi.md#runsourceoperation) | **POST** /projects/{projectId}/environments/{environmentId}/source-operation | Trigger a source operation | https://docs.upsun.com/api/#tag/Source-Operations/operation/run-source-operation |
+| **SshKeysApi** | [**createSshKey**](docs/Api/SshKeysApi.md#createsshkey) | **POST** /ssh_keys | Add a new public SSH key to a user | https://docs.upsun.com/api/#tag/Ssh-Keys/operation/create-ssh-key |
+| **SshKeysApi** | [**deleteSshKey**](docs/Api/SshKeysApi.md#deletesshkey) | **DELETE** /ssh_keys/{key_id} | Delete an SSH key | https://docs.upsun.com/api/#tag/Ssh-Keys/operation/delete-ssh-key |
+| **SshKeysApi** | [**getSshKey**](docs/Api/SshKeysApi.md#getsshkey) | **GET** /ssh_keys/{key_id} | Get an SSH key | https://docs.upsun.com/api/#tag/Ssh-Keys/operation/get-ssh-key |
 | **SubscriptionsApi** | [**canCreateNewOrgSubscription**](docs/Api/SubscriptionsApi.md#cancreateneworgsubscription) | **GET** /organizations/{organization_id}/subscriptions/can-create | Checks if the user is able to create a new project. | https://docs.upsun.com/api/#tag/Subscriptions/operation/can-create-new-org-subscription |
 | **SubscriptionsApi** | [**canUpdateSubscription**](docs/Api/SubscriptionsApi.md#canupdatesubscription) | **GET** /subscriptions/{subscriptionId}/can-update | Checks if the user is able to update a project. | https://docs.upsun.com/api/#tag/Subscriptions/operation/can-update-subscription |
 | **SubscriptionsApi** | [**createOrgSubscription**](docs/Api/SubscriptionsApi.md#createorgsubscription) | **POST** /organizations/{organization_id}/subscriptions | Create subscription | https://docs.upsun.com/api/#tag/Subscriptions/operation/create-org-subscription |
@@ -394,7 +391,6 @@ All URIs are relative to *https://api.upsun.com*
 ## Models
 
 - [AListOfFilesToAddToTheRepositoryDuringInitializationInner](docs/Model/AListOfFilesToAddToTheRepositoryDuringInitializationInner.md)
-- [APIToken](docs/Model/APIToken.md)
 - [AcceptedResponse](docs/Model/AcceptedResponse.md)
 - [AccessControlDefinitionForThisEnviromentInner](docs/Model/AccessControlDefinitionForThisEnviromentInner.md)
 - [Activity](docs/Model/Activity.md)
@@ -403,6 +399,7 @@ All URIs are relative to *https://api.upsun.com*
 - [AddressMetadata](docs/Model/AddressMetadata.md)
 - [AddressMetadataMetadata](docs/Model/AddressMetadataMetadata.md)
 - [Alert](docs/Model/Alert.md)
+- [ApiToken](docs/Model/ApiToken.md)
 - [ApplyOrgVoucherRequest](docs/Model/ApplyOrgVoucherRequest.md)
 - [ArrayFilter](docs/Model/ArrayFilter.md)
 - [AutoscalerAlertPartial](docs/Model/AutoscalerAlertPartial.md)
@@ -691,12 +688,12 @@ All URIs are relative to *https://api.upsun.com*
 - [OrganizationLinksSubscriptions](docs/Model/OrganizationLinksSubscriptions.md)
 - [OrganizationLinksUpdate](docs/Model/OrganizationLinksUpdate.md)
 - [OrganizationLinksVouchers](docs/Model/OrganizationLinksVouchers.md)
-- [OrganizationMFAEnforcement](docs/Model/OrganizationMFAEnforcement.md)
 - [OrganizationMember](docs/Model/OrganizationMember.md)
 - [OrganizationMemberLinks](docs/Model/OrganizationMemberLinks.md)
 - [OrganizationMemberLinksDelete](docs/Model/OrganizationMemberLinksDelete.md)
 - [OrganizationMemberLinksSelf](docs/Model/OrganizationMemberLinksSelf.md)
 - [OrganizationMemberLinksUpdate](docs/Model/OrganizationMemberLinksUpdate.md)
+- [OrganizationMfaEnforcement](docs/Model/OrganizationMfaEnforcement.md)
 - [OrganizationProject](docs/Model/OrganizationProject.md)
 - [OrganizationProjectCarbon](docs/Model/OrganizationProjectCarbon.md)
 - [OrganizationProjectLinks](docs/Model/OrganizationProjectLinks.md)
@@ -779,7 +776,6 @@ All URIs are relative to *https://api.upsun.com*
 - [RouterResourceSettingsForFlexPlan](docs/Model/RouterResourceSettingsForFlexPlan.md)
 - [RoutesValue](docs/Model/RoutesValue.md)
 - [RuntimeOperations](docs/Model/RuntimeOperations.md)
-- [SSHKey](docs/Model/SSHKey.md)
 - [ScheduledCronTasksExecutedByThisApplicationValue](docs/Model/ScheduledCronTasksExecutedByThisApplicationValue.md)
 - [ScriptIntegration](docs/Model/ScriptIntegration.md)
 - [ScriptIntegrationConfigurations](docs/Model/ScriptIntegrationConfigurations.md)
@@ -799,6 +795,7 @@ All URIs are relative to *https://api.upsun.com*
 - [SplunkIntegrationCreateInput](docs/Model/SplunkIntegrationCreateInput.md)
 - [SplunkIntegrationPatch](docs/Model/SplunkIntegrationPatch.md)
 - [SplunkLogForwardingIntegrationConfigurations](docs/Model/SplunkLogForwardingIntegrationConfigurations.md)
+- [SshKey](docs/Model/SshKey.md)
 - [Status](docs/Model/Status.md)
 - [StickyRoutingConfiguration](docs/Model/StickyRoutingConfiguration.md)
 - [StrictTransportSecurityOptions](docs/Model/StrictTransportSecurityOptions.md)

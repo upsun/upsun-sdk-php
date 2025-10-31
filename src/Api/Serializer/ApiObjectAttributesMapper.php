@@ -1,0 +1,4190 @@
+<?php
+
+namespace Upsun\Api\Serializer;
+
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\AccessControlDefinitionForThisEnviromentInner;
+use Upsun\Model\Activity;
+use Upsun\Model\Address;
+use Upsun\Model\AddressGrantsInner;
+use Upsun\Model\AddressMetadata;
+use Upsun\Model\AddressMetadataMetadata;
+use Upsun\Model\Alert;
+use Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner;
+use Upsun\Model\ApiToken;
+use Upsun\Model\ApplyOrgVoucherRequest;
+use Upsun\Model\ArrayFilter;
+use Upsun\Model\AutoscalerAlertPartial;
+use Upsun\Model\AutoscalerCondition;
+use Upsun\Model\AutoscalerCPUPressureTrigger;
+use Upsun\Model\AutoscalerCPUResources;
+use Upsun\Model\AutoscalerCPUTrigger;
+use Upsun\Model\AutoscalerDuration;
+use Upsun\Model\AutoscalerInstances;
+use Upsun\Model\AutoscalerMemoryPressureTrigger;
+use Upsun\Model\AutoscalerMemoryResources;
+use Upsun\Model\AutoscalerMemoryTrigger;
+use Upsun\Model\AutoscalerResources;
+use Upsun\Model\AutoscalerScalingCooldown;
+use Upsun\Model\AutoscalerScalingFactor;
+use Upsun\Model\AutoscalerServiceSettings;
+use Upsun\Model\AutoscalerSettings;
+use Upsun\Model\AutoscalerTriggers;
+use Upsun\Model\Autoscaling;
+use Upsun\Model\Backup;
+use Upsun\Model\BitbucketIntegration;
+use Upsun\Model\BitbucketIntegrationConfigurations;
+use Upsun\Model\BitbucketIntegrationCreateInput;
+use Upsun\Model\BitbucketIntegrationPatch;
+use Upsun\Model\BitbucketServerIntegration;
+use Upsun\Model\BitbucketServerIntegrationConfigurations;
+use Upsun\Model\BitbucketServerIntegrationCreateInput;
+use Upsun\Model\BitbucketServerIntegrationPatch;
+use Upsun\Model\BlackfireEnvironmentsCredentialsValue;
+use Upsun\Model\BlackfireIntegration;
+use Upsun\Model\BlackfireIntegrationConfigurations;
+use Upsun\Model\BlackfireIntegrationCreateInput;
+use Upsun\Model\BlackfireIntegrationPatch;
+use Upsun\Model\Blob;
+use Upsun\Model\BuildResources;
+use Upsun\Model\BuildResources1;
+use Upsun\Model\BuildResources2;
+use Upsun\Model\CacheConfiguration;
+use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction;
+use Upsun\Model\CanUpdateSubscription200Response;
+use Upsun\Model\Certificate;
+use Upsun\Model\CertificateCreateInput;
+use Upsun\Model\CertificatePatch;
+use Upsun\Model\CertificateProvisioner;
+use Upsun\Model\CertificateProvisionerPatch;
+use Upsun\Model\CommandsInner;
+use Upsun\Model\CommandsToManageTheApplicationSLifecycle;
+use Upsun\Model\Commit;
+use Upsun\Model\Components;
+use Upsun\Model\Config;
+use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion;
+use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1;
+use Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP;
+use Upsun\Model\ConfigurationForPreFlightChecks;
+use Upsun\Model\ConfigurationForSupportingRequestBuffering;
+use Upsun\Model\ConfigurationOfAWorkerContainerInstance;
+use Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication;
+use Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication;
+use Upsun\Model\ConfirmPhoneNumberRequest;
+use Upsun\Model\ConfirmTotpEnrollment200Response;
+use Upsun\Model\ConfirmTotpEnrollmentRequest;
+use Upsun\Model\Connection;
+use Upsun\Model\ContainerProfilesValueValue;
+use Upsun\Model\CreateApiTokenRequest;
+use Upsun\Model\CreateAuthorizationCredentials200Response;
+use Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl;
+use Upsun\Model\CreateOrgInviteRequest;
+use Upsun\Model\CreateOrgMemberRequest;
+use Upsun\Model\CreateOrgProjectRequest;
+use Upsun\Model\CreateOrgRequest;
+use Upsun\Model\CreateOrgSubscriptionRequest;
+use Upsun\Model\CreateProfilePicture200Response;
+use Upsun\Model\CreateProjectInviteRequest;
+use Upsun\Model\CreateProjectInviteRequestEnvironmentsInner;
+use Upsun\Model\CreateProjectInviteRequestPermissionsInner;
+use Upsun\Model\CreateSshKeyRequest;
+use Upsun\Model\CreateTeamMemberRequest;
+use Upsun\Model\CreateTeamRequest;
+use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\CreateTicketRequestAttachmentsInner;
+use Upsun\Model\CurrencyAmount;
+use Upsun\Model\CurrencyAmountNullable;
+use Upsun\Model\CurrentUser;
+use Upsun\Model\CurrentUserCurrentTrialInner;
+use Upsun\Model\CurrentUserProjectsInner;
+use Upsun\Model\CustomDomains;
+use Upsun\Model\DataRetention;
+use Upsun\Model\DataRetentionConfigurationValue;
+use Upsun\Model\DataRetentionConfigurationValue1;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\DedicatedDeploymentTarget;
+use Upsun\Model\DedicatedDeploymentTargetCreateInput;
+use Upsun\Model\DedicatedDeploymentTargetPatch;
+use Upsun\Model\DefaultConfig;
+use Upsun\Model\DefaultConfig1;
+use Upsun\Model\Deployment;
+use Upsun\Model\DeploymentTarget;
+use Upsun\Model\DeploymentTargetCreateInput;
+use Upsun\Model\DeploymentTargetPatch;
+use Upsun\Model\Discount;
+use Upsun\Model\DiscountCommitment;
+use Upsun\Model\DiscountCommitmentAmount;
+use Upsun\Model\DiscountCommitmentNet;
+use Upsun\Model\DiscountDiscount;
+use Upsun\Model\Domain;
+use Upsun\Model\DomainCreateInput;
+use Upsun\Model\DomainPatch;
+use Upsun\Model\EmailIntegration;
+use Upsun\Model\EmailIntegrationCreateInput;
+use Upsun\Model\EmailIntegrationPatch;
+use Upsun\Model\EnterpriseDeploymentTarget;
+use Upsun\Model\EnterpriseDeploymentTargetCreateInput;
+use Upsun\Model\EnterpriseDeploymentTargetPatch;
+use Upsun\Model\Environment;
+use Upsun\Model\EnvironmentActivateInput;
+use Upsun\Model\EnvironmentBackupInput;
+use Upsun\Model\EnvironmentBranchInput;
+use Upsun\Model\EnvironmentDeployInput;
+use Upsun\Model\EnvironmentInfo;
+use Upsun\Model\EnvironmentInitializeInput;
+use Upsun\Model\EnvironmentMergeInput;
+use Upsun\Model\EnvironmentOperationInput;
+use Upsun\Model\EnvironmentPatch;
+use Upsun\Model\EnvironmentRestoreInput;
+use Upsun\Model\EnvironmentSourceOperation;
+use Upsun\Model\EnvironmentSourceOperationInput;
+use Upsun\Model\EnvironmentSynchronizeInput;
+use Upsun\Model\EnvironmentType;
+use Upsun\Model\EnvironmentVariable;
+use Upsun\Model\EnvironmentVariableCreateInput;
+use Upsun\Model\EnvironmentVariablePatch;
+use Upsun\Model\Error;
+use Upsun\Model\EstimationObject;
+use Upsun\Model\FastlyCDNIntegrationConfigurations;
+use Upsun\Model\FastlyIntegration;
+use Upsun\Model\FastlyIntegrationCreateInput;
+use Upsun\Model\FastlyIntegrationPatch;
+use Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue;
+use Upsun\Model\Firewall;
+use Upsun\Model\FoundationDeploymentTarget;
+use Upsun\Model\FoundationDeploymentTargetCreateInput;
+use Upsun\Model\FoundationDeploymentTargetPatch;
+use Upsun\Model\GetAddress200Response;
+use Upsun\Model\GetCurrentUserVerificationStatus200Response;
+use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
+use Upsun\Model\GetOrgPrepaymentInfo200Response;
+use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks;
+use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf;
+use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions;
+use Upsun\Model\GetSubscriptionUsageAlerts200Response;
+use Upsun\Model\GetTotpEnrollment200Response;
+use Upsun\Model\GetTypeAllowance200Response;
+use Upsun\Model\GetTypeAllowance200ResponseCurrencies;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD;
+use Upsun\Model\GetUsageAlerts200Response;
+use Upsun\Model\GithubIntegration;
+use Upsun\Model\GitHubIntegrationConfigurations;
+use Upsun\Model\GithubIntegrationCreateInput;
+use Upsun\Model\GithubIntegrationPatch;
+use Upsun\Model\GitLabIntegration;
+use Upsun\Model\GitLabIntegrationConfigurations;
+use Upsun\Model\GitLabIntegrationCreateInput;
+use Upsun\Model\GitLabIntegrationPatch;
+use Upsun\Model\GitServerConfiguration;
+use Upsun\Model\GoogleSSOConfig;
+use Upsun\Model\GrantProjectTeamAccessRequestInner;
+use Upsun\Model\GrantProjectUserAccessRequestInner;
+use Upsun\Model\GrantTeamProjectAccessRequestInner;
+use Upsun\Model\GrantUserProjectAccessRequestInner;
+use Upsun\Model\GuaranteedResources;
+use Upsun\Model\HalLinks;
+use Upsun\Model\HalLinksNext;
+use Upsun\Model\HalLinksPrevious;
+use Upsun\Model\HalLinksSelf;
+use Upsun\Model\HealthEmailNotificationIntegrationConfigurations;
+use Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations;
+use Upsun\Model\HealthSlackNotificationIntegrationConfigurations;
+use Upsun\Model\HealthWebHookIntegration;
+use Upsun\Model\HealthWebHookIntegrationCreateInput;
+use Upsun\Model\HealthWebHookIntegrationPatch;
+use Upsun\Model\HealthWebhookNotificationIntegrationConfigurations;
+use Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication;
+use Upsun\Model\HttpAccessPermissions;
+use Upsun\Model\HttpAccessPermissions1;
+use Upsun\Model\HTTPLogForwardingIntegrationConfigurations;
+use Upsun\Model\HttpLogIntegration;
+use Upsun\Model\HttpLogIntegrationCreateInput;
+use Upsun\Model\HttpLogIntegrationPatch;
+use Upsun\Model\ImagesValueValue;
+use Upsun\Model\Integration;
+use Upsun\Model\IntegrationCreateInput;
+use Upsun\Model\IntegrationPatch;
+use Upsun\Model\Integrations;
+use Upsun\Model\Invoice;
+use Upsun\Model\InvoicePDF;
+use Upsun\Model\LineItem;
+use Upsun\Model\LineItemComponent;
+use Upsun\Model\Link;
+use Upsun\Model\ListLinks;
+use Upsun\Model\ListOrgDiscounts200Response;
+use Upsun\Model\ListOrgInvoices200Response;
+use Upsun\Model\ListOrgMembers200Response;
+use Upsun\Model\ListOrgOrders200Response;
+use Upsun\Model\ListOrgPlanRecords200Response;
+use Upsun\Model\ListOrgPrepaymentTransactions200Response;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf;
+use Upsun\Model\ListOrgProjects200Response;
+use Upsun\Model\ListOrgs200Response;
+use Upsun\Model\ListOrgSubscriptions200Response;
+use Upsun\Model\ListOrgUsageRecords200Response;
+use Upsun\Model\ListPlans200Response;
+use Upsun\Model\ListProfiles200Response;
+use Upsun\Model\ListProjectTeamAccess200Response;
+use Upsun\Model\ListProjectUserAccess200Response;
+use Upsun\Model\ListRegions200Response;
+use Upsun\Model\ListTeamMembers200Response;
+use Upsun\Model\ListTeams200Response;
+use Upsun\Model\ListTicketCategories200ResponseInner;
+use Upsun\Model\ListTicketPriorities200ResponseInner;
+use Upsun\Model\ListTickets200Response;
+use Upsun\Model\ListUserExtendedAccess200Response;
+use Upsun\Model\ListUserExtendedAccess200ResponseItemsInner;
+use Upsun\Model\ListUserOrgs200Response;
+use Upsun\Model\LogsForwarding;
+use Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue;
+use Upsun\Model\Metrics;
+use Upsun\Model\MetricsMetadata;
+use Upsun\Model\MetricsValue;
+use Upsun\Model\NewRelicIntegration;
+use Upsun\Model\NewRelicIntegrationCreateInput;
+use Upsun\Model\NewRelicIntegrationPatch;
+use Upsun\Model\NewRelicLogForwardingIntegrationConfigurations;
+use Upsun\Model\OpenTelemetryLogForwardingIntegrationConfigurations;
+use Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue;
+use Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue;
+use Upsun\Model\Order;
+use Upsun\Model\OrderBillingPeriodLabel;
+use Upsun\Model\OrderLinks;
+use Upsun\Model\OrderLinksInvoices;
+use Upsun\Model\Organization;
+use Upsun\Model\OrganizationAddonsObject;
+use Upsun\Model\OrganizationAddonsObjectAvailable;
+use Upsun\Model\OrganizationAddonsObjectCurrent;
+use Upsun\Model\OrganizationAddonsObjectUpgradesAvailable;
+use Upsun\Model\OrganizationAlertConfig;
+use Upsun\Model\OrganizationAlertConfigConfig;
+use Upsun\Model\OrganizationAlertConfigConfigThreshold;
+use Upsun\Model\OrganizationCarbon;
+use Upsun\Model\OrganizationEstimationObject;
+use Upsun\Model\OrganizationEstimationObjectSubscriptions;
+use Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner;
+use Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage;
+use Upsun\Model\OrganizationEstimationObjectUserLicenses;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBase;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser;
+use Upsun\Model\OrganizationInvitation;
+use Upsun\Model\OrganizationInvitationOwner;
+use Upsun\Model\OrganizationLinks;
+use Upsun\Model\OrganizationLinksAddress;
+use Upsun\Model\OrganizationLinksApplyVoucher;
+use Upsun\Model\OrganizationLinksCreateMember;
+use Upsun\Model\OrganizationLinksCreateSubscription;
+use Upsun\Model\OrganizationLinksDelete;
+use Upsun\Model\OrganizationLinksEstimateSubscription;
+use Upsun\Model\OrganizationLinksMembers;
+use Upsun\Model\OrganizationLinksMfaEnforcement;
+use Upsun\Model\OrganizationLinksOrders;
+use Upsun\Model\OrganizationLinksPaymentSource;
+use Upsun\Model\OrganizationLinksProfile;
+use Upsun\Model\OrganizationLinksSelf;
+use Upsun\Model\OrganizationLinksSubscriptions;
+use Upsun\Model\OrganizationLinksUpdate;
+use Upsun\Model\OrganizationLinksVouchers;
+use Upsun\Model\OrganizationMember;
+use Upsun\Model\OrganizationMemberLinks;
+use Upsun\Model\OrganizationMemberLinksDelete;
+use Upsun\Model\OrganizationMemberLinksSelf;
+use Upsun\Model\OrganizationMemberLinksUpdate;
+use Upsun\Model\OrganizationMfaEnforcement;
+use Upsun\Model\OrganizationProject;
+use Upsun\Model\OrganizationProjectCarbon;
+use Upsun\Model\OrganizationProjectLinks;
+use Upsun\Model\OrganizationProjectLinksActivities;
+use Upsun\Model\OrganizationProjectLinksAddons;
+use Upsun\Model\OrganizationProjectLinksDelete;
+use Upsun\Model\OrganizationProjectLinksSelf;
+use Upsun\Model\OrganizationProjectLinksUpdate;
+use Upsun\Model\OrganizationReference;
+use Upsun\Model\OrganizationSSOConfig;
+use Upsun\Model\OutboundFirewall;
+use Upsun\Model\OutboundFirewallRestrictionsInner;
+use Upsun\Model\OwnerInfo;
+use Upsun\Model\PagerDutyIntegration;
+use Upsun\Model\PagerDutyIntegrationCreateInput;
+use Upsun\Model\PagerDutyIntegrationPatch;
+use Upsun\Model\PerServiceResourcesOverridesValue;
+use Upsun\Model\Plan;
+use Upsun\Model\PlanRecords;
+use Upsun\Model\PrepaymentObject;
+use Upsun\Model\PrepaymentObjectPrepayment;
+use Upsun\Model\PrepaymentObjectPrepaymentBalance;
+use Upsun\Model\PrepaymentTransactionObject;
+use Upsun\Model\PrepaymentTransactionObjectAmount;
+use Upsun\Model\ProdDomainStorage;
+use Upsun\Model\ProdDomainStorageCreateInput;
+use Upsun\Model\ProdDomainStoragePatch;
+use Upsun\Model\Profile;
+use Upsun\Model\ProfileCurrentTrial;
+use Upsun\Model\ProfileCurrentTrialCurrent;
+use Upsun\Model\ProfileCurrentTrialProjects;
+use Upsun\Model\ProfileCurrentTrialProjectsTotal;
+use Upsun\Model\ProfileCurrentTrialSpend;
+use Upsun\Model\ProfileCurrentTrialSpendRemaining;
+use Upsun\Model\Project;
+use Upsun\Model\ProjectCapabilities;
+use Upsun\Model\ProjectCarbon;
+use Upsun\Model\ProjectInfo;
+use Upsun\Model\ProjectInvitation;
+use Upsun\Model\ProjectInvitationEnvironmentsInner;
+use Upsun\Model\ProjectOptions;
+use Upsun\Model\ProjectOptionsDefaults;
+use Upsun\Model\ProjectOptionsEnforced;
+use Upsun\Model\ProjectPatch;
+use Upsun\Model\ProjectReference;
+use Upsun\Model\ProjectSettings;
+use Upsun\Model\ProjectSettingsPatch;
+use Upsun\Model\ProjectStatus;
+use Upsun\Model\ProjectType;
+use Upsun\Model\ProjectVariable;
+use Upsun\Model\ProjectVariableCreateInput;
+use Upsun\Model\ProjectVariablePatch;
+use Upsun\Model\ProxyRoute;
+use Upsun\Model\RedirectRoute;
+use Upsun\Model\Ref;
+use Upsun\Model\Region;
+use Upsun\Model\RegionDatacenter;
+use Upsun\Model\RegionEnvironmentalImpact;
+use Upsun\Model\RegionProvider;
+use Upsun\Model\RegionReference;
+use Upsun\Model\ReplacementDomainStorage;
+use Upsun\Model\ReplacementDomainStorageCreateInput;
+use Upsun\Model\ReplacementDomainStoragePatch;
+use Upsun\Model\RepositoryInformation;
+use Upsun\Model\ResetEmailAddressRequest;
+use Upsun\Model\ResourceConfig;
+use Upsun\Model\Resources;
+use Upsun\Model\Resources1;
+use Upsun\Model\Resources2;
+use Upsun\Model\Resources3;
+use Upsun\Model\Resources4;
+use Upsun\Model\Resources5;
+use Upsun\Model\Resources6;
+use Upsun\Model\ResourcesForDevelopmentEnvironments;
+use Upsun\Model\ResourcesForProductionEnvironments;
+use Upsun\Model\ResourcesLimits;
+use Upsun\Model\ResourcesOverridesValue;
+use Upsun\Model\RestrictedAndDeniedImageTypes;
+use Upsun\Model\Route;
+use Upsun\Model\RouterResourceSettingsForFlexPlan;
+use Upsun\Model\RoutesValue;
+use Upsun\Model\RuntimeOperations;
+use Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue;
+use Upsun\Model\ScriptIntegration;
+use Upsun\Model\ScriptIntegrationConfigurations;
+use Upsun\Model\ScriptIntegrationCreateInput;
+use Upsun\Model\ScriptIntegrationPatch;
+use Upsun\Model\SendOrgMfaReminders200ResponseValue;
+use Upsun\Model\SendOrgMfaRemindersRequest;
+use Upsun\Model\ServerSideIncludeConfiguration;
+use Upsun\Model\ServicesValue;
+use Upsun\Model\ServicesValue1;
+use Upsun\Model\SlackIntegration;
+use Upsun\Model\SlackIntegrationCreateInput;
+use Upsun\Model\SlackIntegrationPatch;
+use Upsun\Model\SourceOperations;
+use Upsun\Model\SpecificOverridesValue;
+use Upsun\Model\SplunkIntegration;
+use Upsun\Model\SplunkIntegrationCreateInput;
+use Upsun\Model\SplunkIntegrationPatch;
+use Upsun\Model\SplunkLogForwardingIntegrationConfigurations;
+use Upsun\Model\SshKey;
+use Upsun\Model\Status;
+use Upsun\Model\StickyRoutingConfiguration;
+use Upsun\Model\StrictTransportSecurityOptions;
+use Upsun\Model\StringFilter;
+use Upsun\Model\Subscription;
+use Upsun\Model\Subscription1;
+use Upsun\Model\SubscriptionAddonsObject;
+use Upsun\Model\SubscriptionAddonsObjectAvailable;
+use Upsun\Model\SubscriptionAddonsObjectCurrent;
+use Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable;
+use Upsun\Model\SubscriptionCurrentUsageObject;
+use Upsun\Model\SubscriptionInformation;
+use Upsun\Model\SumologicIntegration;
+use Upsun\Model\SumologicIntegrationCreateInput;
+use Upsun\Model\SumologicIntegrationPatch;
+use Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations;
+use Upsun\Model\SyslogIntegration;
+use Upsun\Model\SyslogIntegrationCreateInput;
+use Upsun\Model\SyslogIntegrationPatch;
+use Upsun\Model\SyslogLogForwardingIntegrationConfigurations;
+use Upsun\Model\SystemInformation;
+use Upsun\Model\Team;
+use Upsun\Model\TeamCounts;
+use Upsun\Model\TeamMember;
+use Upsun\Model\TeamProjectAccess;
+use Upsun\Model\TeamProjectAccessLinks;
+use Upsun\Model\TeamProjectAccessLinksDelete;
+use Upsun\Model\TeamProjectAccessLinksSelf;
+use Upsun\Model\TeamProjectAccessLinksUpdate;
+use Upsun\Model\TeamReference;
+use Upsun\Model\TheAddonCredentialInformationOptional;
+use Upsun\Model\TheAddonCredentialInformationOptional1;
+use Upsun\Model\TheBackupScheduleSpecificationInner;
+use Upsun\Model\TheBuildConfigurationOfTheApplication;
+use Upsun\Model\TheCommandsDefinition;
+use Upsun\Model\TheCommandsToManageTheWorker;
+use Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments;
+use Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue;
+use Upsun\Model\TheConfigurationOfTheRedirects;
+use Upsun\Model\TheContinuousProfilingConfiguration;
+use Upsun\Model\TheCronsDeploymentState;
+use Upsun\Model\TheDefaultResourcesForThisService;
+use Upsun\Model\TheDisksResources;
+use Upsun\Model\TheEnvironmentDeploymentState;
+use Upsun\Model\TheEnvironmentSizingConfiguration;
+use Upsun\Model\TheHostsOfTheDeploymentTargetInner;
+use Upsun\Model\TheHostsOfTheDeploymentTargetInner1;
+use Upsun\Model\TheInformationAboutTheAuthor;
+use Upsun\Model\TheInformationAboutTheCommitter;
+use Upsun\Model\TheIssuerOfTheCertificateInner;
+use Upsun\Model\TheMinimumResourcesForThisService;
+use Upsun\Model\TheOAuth2ConsumerInformationOptional;
+use Upsun\Model\TheOAuth2ConsumerInformationOptional1;
+use Upsun\Model\TheObjectTheReferencePointsTo;
+use Upsun\Model\ThePathsToRedirectValue;
+use Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue;
+use Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue;
+use Upsun\Model\TheTreeItemsInner;
+use Upsun\Model\TheVariablesApplyingToThisEnvironmentInner;
+use Upsun\Model\Ticket;
+use Upsun\Model\TicketJiraInner;
+use Upsun\Model\TLSSettingsForTheRoute;
+use Upsun\Model\Tree;
+use Upsun\Model\UpdateOrgAddonsRequest;
+use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
+use Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig;
+use Upsun\Model\UpdateOrgMemberRequest;
+use Upsun\Model\UpdateOrgProfileRequest;
+use Upsun\Model\UpdateOrgProjectRequest;
+use Upsun\Model\UpdateOrgRequest;
+use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\UpdateProfileRequest;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue;
+use Upsun\Model\UpdateProjectUserAccessRequest;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequestAlertsInner;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig;
+use Upsun\Model\UpdateTeamRequest;
+use Upsun\Model\UpdateTicketRequest;
+use Upsun\Model\UpdateUsageAlertsRequest;
+use Upsun\Model\UpdateUserRequest;
+use Upsun\Model\UpstreamRoute;
+use Upsun\Model\Usage;
+use Upsun\Model\UsageAlert;
+use Upsun\Model\UsageAlertConfig;
+use Upsun\Model\UsageAlertConfigThreshold;
+use Upsun\Model\UsageGroupCurrentUsageProperties;
+use Upsun\Model\User;
+use Upsun\Model\UserProjectAccess;
+use Upsun\Model\UserReference;
+use Upsun\Model\VerifyPhoneNumber200Response;
+use Upsun\Model\VerifyPhoneNumberRequest;
+use Upsun\Model\Version;
+use Upsun\Model\VersionCreateInput;
+use Upsun\Model\VersionPatch;
+use Upsun\Model\Vouchers;
+use Upsun\Model\VouchersLinks;
+use Upsun\Model\VouchersLinksSelf;
+use Upsun\Model\VouchersVouchersInner;
+use Upsun\Model\VouchersVouchersInnerOrdersInner;
+use Upsun\Model\VPNConfiguration;
+use Upsun\Model\WebApplicationsValue;
+use Upsun\Model\WebHookIntegration;
+use Upsun\Model\WebhookIntegrationConfigurations;
+use Upsun\Model\WebHookIntegrationCreateInput;
+use Upsun\Model\WebHookIntegrationPatch;
+use Upsun\Model\WorkersValue;
+
+/**
+ * Low level  (auto-generated)
+ *
+ * This model class is utilized by the ObjectSerializer for mapping JSON attributes
+ * to their corresponding model properties during serialization/deserialization.
+ *
+ * @author    Upsun Advocacy Team
+ * @license   MIT
+ * @see       https://docs.upsun.com
+ * @generated This file was generated by OpenAPI Generator. Do not edit manually.
+ * @internal
+ */
+final class ApiObjectAttributesMapper
+{
+    /**
+     * return json attribute mapping for a specific Class
+     */
+    public static function attributeMap(string $classname): array
+    {
+        return self::$attributeMap[$classname];
+    }
+
+    private static array $attributeMap = [
+
+        AListOfFilesToAddToTheRepositoryDuringInitializationInner::class => [
+            'path' => 'path',
+            'mode' => 'mode',
+            'contents' => 'contents'
+        ],
+        AcceptedResponse::class => [
+            'status' => 'status',
+            'code' => 'code'
+        ],
+        AccessControlDefinitionForThisEnviromentInner::class => [
+            'entityId' => 'entity_id',
+            'role' => 'role'
+        ],
+        Activity::class => [
+            'id' => 'id',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'parameters' => 'parameters',
+            'project' => 'project',
+            'state' => 'state',
+            'result' => 'result',
+            'startedAt' => 'started_at',
+            'completedAt' => 'completed_at',
+            'completionPercent' => 'completion_percent',
+            'cancelledAt' => 'cancelled_at',
+            'timings' => 'timings',
+            'log' => 'log',
+            'payload' => 'payload',
+            'description' => 'description',
+            'text' => 'text',
+            'expiresAt' => 'expires_at',
+            'commands' => 'commands',
+            'integration' => 'integration',
+            'environments' => 'environments'
+        ],
+        Address::class => [
+            'country' => 'country',
+            'nameLine' => 'name_line',
+            'premise' => 'premise',
+            'subPremise' => 'sub_premise',
+            'thoroughfare' => 'thoroughfare',
+            'administrativeArea' => 'administrative_area',
+            'subAdministrativeArea' => 'sub_administrative_area',
+            'locality' => 'locality',
+            'dependentLocality' => 'dependent_locality',
+            'postalCode' => 'postal_code'
+        ],
+        AddressGrantsInner::class => [
+            'permission' => 'permission',
+            'address' => 'address'
+        ],
+        AddressMetadata::class => [
+            'metadata' => 'metadata'
+        ],
+        AddressMetadataMetadata::class => [
+            'requiredFields' => 'required_fields',
+            'fieldLabels' => 'field_labels',
+            'showVat' => 'show_vat'
+        ],
+        Alert::class => [
+            'id' => 'id',
+            'active' => 'active',
+            'alertsSent' => 'alerts_sent',
+            'lastAlertAt' => 'last_alert_at',
+            'updatedAt' => 'updated_at',
+            'config' => 'config'
+        ],
+        ApiToken::class => [
+            'id' => 'id',
+            'name' => 'name',
+            'mfaOnCreation' => 'mfa_on_creation',
+            'token' => 'token',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'lastUsedAt' => 'last_used_at'
+        ],
+        ApplyOrgVoucherRequest::class => [
+            'code' => 'code'
+        ],
+        ArrayFilter::class => [
+            'eq' => 'eq',
+            'ne' => 'ne',
+            'in' => 'in',
+            'nin' => 'nin'
+        ],
+        AutoscalerAlertPartial::class => [
+            'name' => 'name',
+            'service' => 'service',
+            'condition' => 'condition',
+            'threshold' => 'threshold',
+            'value' => 'value',
+            'environment' => 'environment',
+            'resource' => 'resource',
+            'duration' => 'duration'
+        ],
+        AutoscalerCPUPressureTrigger::class => [
+            'enabled' => 'enabled',
+            'down' => 'down',
+            'up' => 'up'
+        ],
+        AutoscalerCPUResources::class => [
+            'min' => 'min',
+            'max' => 'max'
+        ],
+        AutoscalerCPUTrigger::class => [
+            'enabled' => 'enabled',
+            'down' => 'down',
+            'up' => 'up'
+        ],
+        AutoscalerCondition::class => [
+            'threshold' => 'threshold',
+            'duration' => 'duration',
+            'enabled' => 'enabled'
+        ],
+        AutoscalerDuration::class => [
+
+        ],
+        AutoscalerInstances::class => [
+            'min' => 'min',
+            'max' => 'max'
+        ],
+        AutoscalerMemoryPressureTrigger::class => [
+            'enabled' => 'enabled',
+            'down' => 'down',
+            'up' => 'up'
+        ],
+        AutoscalerMemoryResources::class => [
+            'min' => 'min',
+            'max' => 'max'
+        ],
+        AutoscalerMemoryTrigger::class => [
+            'enabled' => 'enabled',
+            'down' => 'down',
+            'up' => 'up'
+        ],
+        AutoscalerResources::class => [
+            'cpu' => 'cpu',
+            'memory' => 'memory'
+        ],
+        AutoscalerScalingCooldown::class => [
+            'up' => 'up',
+            'down' => 'down'
+        ],
+        AutoscalerScalingFactor::class => [
+            'up' => 'up',
+            'down' => 'down'
+        ],
+        AutoscalerServiceSettings::class => [
+            'triggers' => 'triggers',
+            'instances' => 'instances',
+            'resources' => 'resources',
+            'scaleFactor' => 'scale_factor',
+            'scaleCooldown' => 'scale_cooldown'
+        ],
+        AutoscalerSettings::class => [
+            'services' => 'services'
+        ],
+        AutoscalerTriggers::class => [
+            'cpu' => 'cpu',
+            'memory' => 'memory',
+            'cpuPressure' => 'cpu_pressure',
+            'memoryPressure' => 'memory_pressure'
+        ],
+        Autoscaling::class => [
+            'enabled' => 'enabled'
+        ],
+        Backup::class => [
+            'id' => 'id',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'attributes' => 'attributes',
+            'status' => 'status',
+            'expiresAt' => 'expires_at',
+            'index' => 'index',
+            'commitId' => 'commit_id',
+            'environment' => 'environment',
+            'safe' => 'safe',
+            'sizeOfVolumes' => 'size_of_volumes',
+            'sizeUsed' => 'size_used',
+            'deployment' => 'deployment',
+            'restorable' => 'restorable',
+            'automated' => 'automated'
+        ],
+        BitbucketIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'repository' => 'repository',
+            'buildPullRequests' => 'build_pull_requests',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'resyncPullRequests' => 'resync_pull_requests',
+            'id' => 'id',
+            'appCredentials' => 'app_credentials',
+            'addonCredentials' => 'addon_credentials'
+        ],
+        BitbucketIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        BitbucketIntegrationCreateInput::class => [
+            'type' => 'type',
+            'repository' => 'repository',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'appCredentials' => 'app_credentials',
+            'addonCredentials' => 'addon_credentials',
+            'buildPullRequests' => 'build_pull_requests',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'resyncPullRequests' => 'resync_pull_requests'
+        ],
+        BitbucketIntegrationPatch::class => [
+            'type' => 'type',
+            'repository' => 'repository',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'appCredentials' => 'app_credentials',
+            'addonCredentials' => 'addon_credentials',
+            'buildPullRequests' => 'build_pull_requests',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'resyncPullRequests' => 'resync_pull_requests'
+        ],
+        BitbucketServerIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'url' => 'url',
+            'username' => 'username',
+            'project' => 'project',
+            'repository' => 'repository',
+            'buildPullRequests' => 'build_pull_requests',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'id' => 'id'
+        ],
+        BitbucketServerIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        BitbucketServerIntegrationCreateInput::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'username' => 'username',
+            'token' => 'token',
+            'project' => 'project',
+            'repository' => 'repository',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'buildPullRequests' => 'build_pull_requests',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
+        ],
+        BitbucketServerIntegrationPatch::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'username' => 'username',
+            'token' => 'token',
+            'project' => 'project',
+            'repository' => 'repository',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'buildPullRequests' => 'build_pull_requests',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
+        ],
+        BlackfireEnvironmentsCredentialsValue::class => [
+            'serverUuid' => 'server_uuid',
+            'serverToken' => 'server_token'
+        ],
+        BlackfireIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'environmentsCredentials' => 'environments_credentials',
+            'continuousProfiling' => 'continuous_profiling',
+            'id' => 'id'
+        ],
+        BlackfireIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        BlackfireIntegrationCreateInput::class => [
+            'type' => 'type'
+        ],
+        BlackfireIntegrationPatch::class => [
+            'type' => 'type'
+        ],
+        Blob::class => [
+            'id' => 'id',
+            'sha' => 'sha',
+            'size' => 'size',
+            'encoding' => 'encoding',
+            'content' => 'content'
+        ],
+        BuildResources::class => [
+            'enabled' => 'enabled',
+            'maxCpu' => 'max_cpu',
+            'maxMemory' => 'max_memory'
+        ],
+        BuildResources1::class => [
+            'cpu' => 'cpu',
+            'memory' => 'memory'
+        ],
+        BuildResources2::class => [
+            'cpu' => 'cpu',
+            'memory' => 'memory'
+        ],
+        CacheConfiguration::class => [
+            'enabled' => 'enabled',
+            'defaultTtl' => 'default_ttl',
+            'cookies' => 'cookies',
+            'headers' => 'headers'
+        ],
+        CanCreateNewOrgSubscription200Response::class => [
+            'canCreate' => 'can_create',
+            'message' => 'message',
+            'requiredAction' => 'required_action'
+        ],
+        CanCreateNewOrgSubscription200ResponseRequiredAction::class => [
+            'action' => 'action',
+            'type' => 'type'
+        ],
+        CanUpdateSubscription200Response::class => [
+            'canUpdate' => 'can_update',
+            'message' => 'message',
+            'requiredAction' => 'required_action'
+        ],
+        Certificate::class => [
+            'id' => 'id',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'certificate' => 'certificate',
+            'chain' => 'chain',
+            'isProvisioned' => 'is_provisioned',
+            'isInvalid' => 'is_invalid',
+            'isRoot' => 'is_root',
+            'domains' => 'domains',
+            'authType' => 'auth_type',
+            'issuer' => 'issuer',
+            'expiresAt' => 'expires_at'
+        ],
+        CertificateCreateInput::class => [
+            'certificate' => 'certificate',
+            'key' => 'key',
+            'chain' => 'chain',
+            'isInvalid' => 'is_invalid'
+        ],
+        CertificatePatch::class => [
+            'chain' => 'chain',
+            'isInvalid' => 'is_invalid'
+        ],
+        CertificateProvisioner::class => [
+            'id' => 'id',
+            'directoryUrl' => 'directory_url',
+            'email' => 'email',
+            'eabKid' => 'eab_kid',
+            'eabHmacKey' => 'eab_hmac_key'
+        ],
+        CertificateProvisionerPatch::class => [
+            'directoryUrl' => 'directory_url',
+            'email' => 'email',
+            'eabKid' => 'eab_kid',
+            'eabHmacKey' => 'eab_hmac_key'
+        ],
+        CommandsInner::class => [
+            'app' => 'app',
+            'type' => 'type',
+            'exitCode' => 'exit_code'
+        ],
+        CommandsToManageTheApplicationSLifecycle::class => [
+            'preStart' => 'pre_start',
+            'start' => 'start',
+            'postStart' => 'post_start'
+        ],
+        Commit::class => [
+            'id' => 'id',
+            'sha' => 'sha',
+            'author' => 'author',
+            'committer' => 'committer',
+            'message' => 'message',
+            'tree' => 'tree',
+            'parents' => 'parents'
+        ],
+        Components::class => [
+            'voucherVatBaseprice' => 'voucher/vat/baseprice'
+        ],
+        Config::class => [
+            'newrelic' => 'newrelic',
+            'sumologic' => 'sumologic',
+            'splunk' => 'splunk',
+            'httplog' => 'httplog',
+            'syslog' => 'syslog',
+            'webhook' => 'webhook',
+            'script' => 'script',
+            'github' => 'github',
+            'gitlab' => 'gitlab',
+            'bitbucket' => 'bitbucket',
+            'bitbucketServer' => 'bitbucket_server',
+            'healthEmail' => 'health.email',
+            'healthWebhook' => 'health.webhook',
+            'healthPagerduty' => 'health.pagerduty',
+            'healthSlack' => 'health.slack',
+            'cdnFastly' => 'cdn.fastly',
+            'blackfire' => 'blackfire',
+            'otlp' => 'otlp'
+        ],
+        ConfigurationAboutTheTrafficRoutedToThisVersion::class => [
+            'percentage' => 'percentage'
+        ],
+        ConfigurationAboutTheTrafficRoutedToThisVersion1::class => [
+            'percentage' => 'percentage'
+        ],
+        ConfigurationForAccessingThisApplicationViaHTTP::class => [
+            'locations' => 'locations',
+            'moveToRoot' => 'move_to_root',
+            'commands' => 'commands',
+            'upstream' => 'upstream',
+            'documentRoot' => 'document_root',
+            'passthru' => 'passthru',
+            'indexFiles' => 'index_files',
+            'whitelist' => 'whitelist',
+            'blacklist' => 'blacklist',
+            'expires' => 'expires'
+        ],
+        ConfigurationForPreFlightChecks::class => [
+            'enabled' => 'enabled',
+            'ignoredRules' => 'ignored_rules'
+        ],
+        ConfigurationForSupportingRequestBuffering::class => [
+            'enabled' => 'enabled',
+            'maxRequestSize' => 'max_request_size'
+        ],
+        ConfigurationOfAWorkerContainerInstance::class => [
+            'commands' => 'commands',
+            'disk' => 'disk'
+        ],
+        ConfigurationOnHowTheWebServerCommunicatesWithTheApplication::class => [
+            'socketFamily' => 'socket_family',
+            'protocol' => 'protocol'
+        ],
+        ConfigurationRelatedToTheSourceCodeOfTheApplication::class => [
+            'root' => 'root',
+            'operations' => 'operations'
+        ],
+        ConfirmPhoneNumberRequest::class => [
+            'code' => 'code'
+        ],
+        ConfirmTotpEnrollment200Response::class => [
+            'recoveryCodes' => 'recovery_codes'
+        ],
+        ConfirmTotpEnrollmentRequest::class => [
+            'secret' => 'secret',
+            'passcode' => 'passcode'
+        ],
+        Connection::class => [
+            'provider' => 'provider',
+            'providerType' => 'provider_type',
+            'isMandatory' => 'is_mandatory',
+            'subject' => 'subject',
+            'emailAddress' => 'email_address',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at'
+        ],
+        ContainerProfilesValueValue::class => [
+            'cpu' => 'cpu',
+            'memory' => 'memory',
+            'cpuType' => 'cpu_type'
+        ],
+        CreateApiTokenRequest::class => [
+            'name' => 'name'
+        ],
+        CreateAuthorizationCredentials200Response::class => [
+            'redirectToUrl' => 'redirect_to_url',
+            'type' => 'type'
+        ],
+        CreateAuthorizationCredentials200ResponseRedirectToUrl::class => [
+            'returnUrl' => 'return_url',
+            'url' => 'url'
+        ],
+        CreateOrgInviteRequest::class => [
+            'email' => 'email',
+            'permissions' => 'permissions',
+            'force' => 'force'
+        ],
+        CreateOrgMemberRequest::class => [
+            'userId' => 'user_id',
+            'permissions' => 'permissions'
+        ],
+        CreateOrgProjectRequest::class => [
+            'region' => 'region',
+            'organizationId' => 'organization_id',
+            'title' => 'title',
+            'type' => 'type',
+            'plan' => 'plan',
+            'defaultBranch' => 'default_branch',
+            'cseNotes' => 'cse_notes',
+            'dedicatedTag' => 'dedicated_tag'
+        ],
+        CreateOrgRequest::class => [
+            'label' => 'label',
+            'type' => 'type',
+            'ownerId' => 'owner_id',
+            'name' => 'name',
+            'country' => 'country'
+        ],
+        CreateOrgSubscriptionRequest::class => [
+            'projectRegion' => 'project_region',
+            'plan' => 'plan',
+            'projectTitle' => 'project_title',
+            'optionsUrl' => 'options_url',
+            'defaultBranch' => 'default_branch',
+            'environments' => 'environments',
+            'storage' => 'storage'
+        ],
+        CreateProfilePicture200Response::class => [
+            'url' => 'url'
+        ],
+        CreateProjectInviteRequest::class => [
+            'email' => 'email',
+            'role' => 'role',
+            'permissions' => 'permissions',
+            'environments' => 'environments',
+            'force' => 'force'
+        ],
+        CreateProjectInviteRequestEnvironmentsInner::class => [
+            'id' => 'id',
+            'role' => 'role'
+        ],
+        CreateProjectInviteRequestPermissionsInner::class => [
+            'type' => 'type',
+            'role' => 'role'
+        ],
+        CreateSshKeyRequest::class => [
+            'value' => 'value',
+            'title' => 'title',
+            'uuid' => 'uuid'
+        ],
+        CreateTeamMemberRequest::class => [
+            'userId' => 'user_id'
+        ],
+        CreateTeamRequest::class => [
+            'organizationId' => 'organization_id',
+            'label' => 'label',
+            'projectPermissions' => 'project_permissions'
+        ],
+        CreateTicketRequest::class => [
+            'subject' => 'subject',
+            'description' => 'description',
+            'requesterId' => 'requester_id',
+            'priority' => 'priority',
+            'subscriptionId' => 'subscription_id',
+            'organizationId' => 'organization_id',
+            'affectedUrl' => 'affected_url',
+            'followupTid' => 'followup_tid',
+            'category' => 'category',
+            'attachments' => 'attachments',
+            'collaboratorIds' => 'collaborator_ids'
+        ],
+        CreateTicketRequestAttachmentsInner::class => [
+            'filename' => 'filename',
+            'data' => 'data'
+        ],
+        CurrencyAmount::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currencyCode' => 'currency_code',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        CurrencyAmountNullable::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currencyCode' => 'currency_code',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        CurrentUser::class => [
+            'id' => 'id',
+            'uuid' => 'uuid',
+            'username' => 'username',
+            'displayName' => 'display_name',
+            'status' => 'status',
+            'mail' => 'mail',
+            'sshKeys' => 'ssh_keys',
+            'hasKey' => 'has_key',
+            'projects' => 'projects',
+            'sequence' => 'sequence',
+            'roles' => 'roles',
+            'picture' => 'picture',
+            'tickets' => 'tickets',
+            'trial' => 'trial',
+            'currentTrial' => 'current_trial'
+        ],
+        CurrentUserCurrentTrialInner::class => [
+            'created' => 'created',
+            'description' => 'description',
+            'spendRemaining' => 'spend_remaining',
+            'expiration' => 'expiration'
+        ],
+        CurrentUserProjectsInner::class => [
+            'id' => 'id',
+            'name' => 'name',
+            'title' => 'title',
+            'cluster' => 'cluster',
+            'clusterLabel' => 'cluster_label',
+            'region' => 'region',
+            'regionLabel' => 'region_label',
+            'uri' => 'uri',
+            'endpoint' => 'endpoint',
+            'licenseId' => 'license_id',
+            'owner' => 'owner',
+            'ownerInfo' => 'owner_info',
+            'plan' => 'plan',
+            'subscriptionId' => 'subscription_id',
+            'status' => 'status',
+            'vendor' => 'vendor',
+            'vendorLabel' => 'vendor_label',
+            'vendorWebsite' => 'vendor_website',
+            'vendorResources' => 'vendor_resources',
+            'createdAt' => 'created_at'
+        ],
+        CustomDomains::class => [
+            'enabled' => 'enabled',
+            'environmentsWithDomainsLimit' => 'environments_with_domains_limit'
+        ],
+        DataRetention::class => [
+            'enabled' => 'enabled'
+        ],
+        DataRetentionConfigurationValue::class => [
+            'maxBackups' => 'max_backups',
+            'defaultConfig' => 'default_config'
+        ],
+        DataRetentionConfigurationValue1::class => [
+            'defaultConfig' => 'default_config',
+            'maxBackups' => 'max_backups'
+        ],
+        DateTimeFilter::class => [
+            'eq' => 'eq',
+            'ne' => 'ne',
+            'between' => 'between',
+            'gt' => 'gt',
+            'gte' => 'gte',
+            'lt' => 'lt',
+            'lte' => 'lte'
+        ],
+        DedicatedDeploymentTarget::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'deployHost' => 'deploy_host',
+            'deployPort' => 'deploy_port',
+            'sshHost' => 'ssh_host',
+            'hosts' => 'hosts',
+            'autoMounts' => 'auto_mounts',
+            'excludedMounts' => 'excluded_mounts',
+            'enforcedMounts' => 'enforced_mounts',
+            'autoCrons' => 'auto_crons',
+            'autoNginx' => 'auto_nginx',
+            'maintenanceMode' => 'maintenance_mode',
+            'guardrailsPhase' => 'guardrails_phase',
+            'id' => 'id'
+        ],
+        DedicatedDeploymentTargetCreateInput::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'enforcedMounts' => 'enforced_mounts'
+        ],
+        DedicatedDeploymentTargetPatch::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'enforcedMounts' => 'enforced_mounts'
+        ],
+        DefaultConfig::class => [
+            'manualCount' => 'manual_count',
+            'schedule' => 'schedule'
+        ],
+        DefaultConfig1::class => [
+            'manualCount' => 'manual_count',
+            'schedule' => 'schedule'
+        ],
+        Deployment::class => [
+            'id' => 'id',
+            'clusterName' => 'cluster_name',
+            'projectInfo' => 'project_info',
+            'environmentInfo' => 'environment_info',
+            'deploymentTarget' => 'deployment_target',
+            'vpn' => 'vpn',
+            'httpAccess' => 'http_access',
+            'enableSmtp' => 'enable_smtp',
+            'restrictRobots' => 'restrict_robots',
+            'variables' => 'variables',
+            'access' => 'access',
+            'subscription' => 'subscription',
+            'services' => 'services',
+            'routes' => 'routes',
+            'webapps' => 'webapps',
+            'workers' => 'workers',
+            'containerProfiles' => 'container_profiles',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'fingerprint' => 'fingerprint'
+        ],
+        DeploymentTarget::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'deployHost' => 'deploy_host',
+            'deployPort' => 'deploy_port',
+            'sshHost' => 'ssh_host',
+            'hosts' => 'hosts',
+            'autoMounts' => 'auto_mounts',
+            'excludedMounts' => 'excluded_mounts',
+            'enforcedMounts' => 'enforced_mounts',
+            'autoCrons' => 'auto_crons',
+            'autoNginx' => 'auto_nginx',
+            'maintenanceMode' => 'maintenance_mode',
+            'guardrailsPhase' => 'guardrails_phase',
+            'docroots' => 'docroots',
+            'siteUrls' => 'site_urls',
+            'sshHosts' => 'ssh_hosts',
+            'useDedicatedGrid' => 'use_dedicated_grid',
+            'storageType' => 'storage_type',
+            'id' => 'id',
+            'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
+        ],
+        DeploymentTargetCreateInput::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'enforcedMounts' => 'enforced_mounts',
+            'siteUrls' => 'site_urls',
+            'sshHosts' => 'ssh_hosts',
+            'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping',
+            'hosts' => 'hosts',
+            'useDedicatedGrid' => 'use_dedicated_grid'
+        ],
+        DeploymentTargetPatch::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'enforcedMounts' => 'enforced_mounts',
+            'siteUrls' => 'site_urls',
+            'sshHosts' => 'ssh_hosts',
+            'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping',
+            'hosts' => 'hosts',
+            'useDedicatedGrid' => 'use_dedicated_grid'
+        ],
+        Discount::class => [
+            'id' => 'id',
+            'organizationId' => 'organization_id',
+            'type' => 'type',
+            'typeLabel' => 'type_label',
+            'status' => 'status',
+            'commitment' => 'commitment',
+            'totalMonths' => 'total_months',
+            'discount' => 'discount',
+            'config' => 'config',
+            'startAt' => 'start_at',
+            'endAt' => 'end_at'
+        ],
+        DiscountCommitment::class => [
+            'months' => 'months',
+            'amount' => 'amount',
+            'net' => 'net'
+        ],
+        DiscountCommitmentAmount::class => [
+            'monthly' => 'monthly',
+            'commitmentPeriod' => 'commitment_period',
+            'contractTotal' => 'contract_total'
+        ],
+        DiscountCommitmentNet::class => [
+            'monthly' => 'monthly',
+            'commitmentPeriod' => 'commitment_period',
+            'contractTotal' => 'contract_total'
+        ],
+        DiscountDiscount::class => [
+            'monthly' => 'monthly',
+            'commitmentPeriod' => 'commitment_period',
+            'contractTotal' => 'contract_total'
+        ],
+        Domain::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'name' => 'name',
+            'attributes' => 'attributes',
+            'id' => 'id',
+            'project' => 'project',
+            'registeredName' => 'registered_name',
+            'isDefault' => 'is_default',
+            'replacementFor' => 'replacement_for'
+        ],
+        DomainCreateInput::class => [
+            'name' => 'name',
+            'attributes' => 'attributes',
+            'isDefault' => 'is_default',
+            'replacementFor' => 'replacement_for'
+        ],
+        DomainPatch::class => [
+            'attributes' => 'attributes',
+            'isDefault' => 'is_default'
+        ],
+        EmailIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'fromAddress' => 'from_address',
+            'recipients' => 'recipients',
+            'id' => 'id'
+        ],
+        EmailIntegrationCreateInput::class => [
+            'type' => 'type',
+            'recipients' => 'recipients',
+            'fromAddress' => 'from_address'
+        ],
+        EmailIntegrationPatch::class => [
+            'type' => 'type',
+            'recipients' => 'recipients',
+            'fromAddress' => 'from_address'
+        ],
+        EnterpriseDeploymentTarget::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'deployHost' => 'deploy_host',
+            'docroots' => 'docroots',
+            'siteUrls' => 'site_urls',
+            'sshHosts' => 'ssh_hosts',
+            'maintenanceMode' => 'maintenance_mode',
+            'id' => 'id',
+            'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
+        ],
+        EnterpriseDeploymentTargetCreateInput::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'siteUrls' => 'site_urls',
+            'sshHosts' => 'ssh_hosts',
+            'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
+        ],
+        EnterpriseDeploymentTargetPatch::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'siteUrls' => 'site_urls',
+            'sshHosts' => 'ssh_hosts',
+            'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
+        ],
+        Environment::class => [
+            'id' => 'id',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'name' => 'name',
+            'machineName' => 'machine_name',
+            'title' => 'title',
+            'attributes' => 'attributes',
+            'type' => 'type',
+            'parent' => 'parent',
+            'defaultDomain' => 'default_domain',
+            'hasDomains' => 'has_domains',
+            'cloneParentOnCreate' => 'clone_parent_on_create',
+            'deploymentTarget' => 'deployment_target',
+            'isPr' => 'is_pr',
+            'hasRemote' => 'has_remote',
+            'status' => 'status',
+            'httpAccess' => 'http_access',
+            'enableSmtp' => 'enable_smtp',
+            'restrictRobots' => 'restrict_robots',
+            'edgeHostname' => 'edge_hostname',
+            'deploymentState' => 'deployment_state',
+            'sizing' => 'sizing',
+            'resourcesOverrides' => 'resources_overrides',
+            'maxInstanceCount' => 'max_instance_count',
+            'lastActiveAt' => 'last_active_at',
+            'lastBackupAt' => 'last_backup_at',
+            'project' => 'project',
+            'isMain' => 'is_main',
+            'isDirty' => 'is_dirty',
+            'hasStagedActivities' => 'has_staged_activities',
+            'canRollingDeploy' => 'can_rolling_deploy',
+            'hasCode' => 'has_code',
+            'headCommit' => 'head_commit',
+            'mergeInfo' => 'merge_info',
+            'hasDeployment' => 'has_deployment',
+            'supportsRestrictRobots' => 'supports_restrict_robots'
+        ],
+        EnvironmentActivateInput::class => [
+            'resources' => 'resources'
+        ],
+        EnvironmentBackupInput::class => [
+            'safe' => 'safe'
+        ],
+        EnvironmentBranchInput::class => [
+            'title' => 'title',
+            'name' => 'name',
+            'cloneParent' => 'clone_parent',
+            'type' => 'type',
+            'resources' => 'resources'
+        ],
+        EnvironmentDeployInput::class => [
+            'strategy' => 'strategy'
+        ],
+        EnvironmentInfo::class => [
+            'name' => 'name',
+            'status' => 'status',
+            'isMain' => 'is_main',
+            'isProduction' => 'is_production',
+            'constraints' => 'constraints',
+            'reference' => 'reference',
+            'machineName' => 'machine_name',
+            'environmentType' => 'environment_type',
+            'links' => 'links'
+        ],
+        EnvironmentInitializeInput::class => [
+            'profile' => 'profile',
+            'repository' => 'repository',
+            'config' => 'config',
+            'files' => 'files',
+            'resources' => 'resources'
+        ],
+        EnvironmentMergeInput::class => [
+            'resources' => 'resources'
+        ],
+        EnvironmentOperationInput::class => [
+            'service' => 'service',
+            'operation' => 'operation',
+            'parameters' => 'parameters'
+        ],
+        EnvironmentPatch::class => [
+            'name' => 'name',
+            'title' => 'title',
+            'attributes' => 'attributes',
+            'type' => 'type',
+            'parent' => 'parent',
+            'cloneParentOnCreate' => 'clone_parent_on_create',
+            'httpAccess' => 'http_access',
+            'enableSmtp' => 'enable_smtp',
+            'restrictRobots' => 'restrict_robots'
+        ],
+        EnvironmentRestoreInput::class => [
+            'environmentName' => 'environment_name',
+            'branchFrom' => 'branch_from',
+            'restoreCode' => 'restore_code',
+            'restoreResources' => 'restore_resources',
+            'resources' => 'resources'
+        ],
+        EnvironmentSourceOperation::class => [
+            'id' => 'id',
+            'app' => 'app',
+            'operation' => 'operation',
+            'command' => 'command'
+        ],
+        EnvironmentSourceOperationInput::class => [
+            'operation' => 'operation',
+            'variables' => 'variables'
+        ],
+        EnvironmentSynchronizeInput::class => [
+            'synchronizeCode' => 'synchronize_code',
+            'rebase' => 'rebase',
+            'synchronizeData' => 'synchronize_data',
+            'synchronizeResources' => 'synchronize_resources'
+        ],
+        EnvironmentType::class => [
+            'id' => 'id',
+            'attributes' => 'attributes'
+        ],
+        EnvironmentVariable::class => [
+            'id' => 'id',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'name' => 'name',
+            'attributes' => 'attributes',
+            'isJson' => 'is_json',
+            'isSensitive' => 'is_sensitive',
+            'visibleBuild' => 'visible_build',
+            'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope',
+            'project' => 'project',
+            'environment' => 'environment',
+            'inherited' => 'inherited',
+            'isEnabled' => 'is_enabled',
+            'isInheritable' => 'is_inheritable',
+            'value' => 'value'
+        ],
+        EnvironmentVariableCreateInput::class => [
+            'name' => 'name',
+            'value' => 'value',
+            'attributes' => 'attributes',
+            'isJson' => 'is_json',
+            'isSensitive' => 'is_sensitive',
+            'visibleBuild' => 'visible_build',
+            'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope',
+            'isEnabled' => 'is_enabled',
+            'isInheritable' => 'is_inheritable'
+        ],
+        EnvironmentVariablePatch::class => [
+            'name' => 'name',
+            'attributes' => 'attributes',
+            'value' => 'value',
+            'isJson' => 'is_json',
+            'isSensitive' => 'is_sensitive',
+            'visibleBuild' => 'visible_build',
+            'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope',
+            'isEnabled' => 'is_enabled',
+            'isInheritable' => 'is_inheritable'
+        ],
+        Error::class => [
+            'status' => 'status',
+            'message' => 'message',
+            'code' => 'code',
+            'detail' => 'detail',
+            'title' => 'title'
+        ],
+        EstimationObject::class => [
+            'plan' => 'plan',
+            'userLicenses' => 'user_licenses',
+            'environments' => 'environments',
+            'storage' => 'storage',
+            'total' => 'total',
+            'options' => 'options'
+        ],
+        FastlyCDNIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        FastlyIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result',
+            'serviceId' => 'service_id',
+            'id' => 'id'
+        ],
+        FastlyIntegrationCreateInput::class => [
+            'type' => 'type',
+            'token' => 'token',
+            'serviceId' => 'service_id',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result'
+        ],
+        FastlyIntegrationPatch::class => [
+            'type' => 'type',
+            'token' => 'token',
+            'serviceId' => 'service_id',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result'
+        ],
+        FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue::class => [
+            'source' => 'source',
+            'sourcePath' => 'source_path',
+            'service' => 'service'
+        ],
+        Firewall::class => [
+            'outbound' => 'outbound'
+        ],
+        FoundationDeploymentTarget::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'hosts' => 'hosts',
+            'useDedicatedGrid' => 'use_dedicated_grid',
+            'storageType' => 'storage_type',
+            'id' => 'id'
+        ],
+        FoundationDeploymentTargetCreateInput::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'hosts' => 'hosts',
+            'useDedicatedGrid' => 'use_dedicated_grid'
+        ],
+        FoundationDeploymentTargetPatch::class => [
+            'type' => 'type',
+            'name' => 'name',
+            'hosts' => 'hosts',
+            'useDedicatedGrid' => 'use_dedicated_grid'
+        ],
+        GetAddress200Response::class => [
+            'country' => 'country',
+            'nameLine' => 'name_line',
+            'premise' => 'premise',
+            'subPremise' => 'sub_premise',
+            'thoroughfare' => 'thoroughfare',
+            'administrativeArea' => 'administrative_area',
+            'subAdministrativeArea' => 'sub_administrative_area',
+            'locality' => 'locality',
+            'dependentLocality' => 'dependent_locality',
+            'postalCode' => 'postal_code',
+            'metadata' => 'metadata'
+        ],
+        GetCurrentUserVerificationStatus200Response::class => [
+            'verifyPhone' => 'verify_phone'
+        ],
+        GetCurrentUserVerificationStatusFull200Response::class => [
+            'state' => 'state',
+            'type' => 'type'
+        ],
+        GetOrgPrepaymentInfo200Response::class => [
+            'prepayment' => 'prepayment',
+            'links' => '_links'
+        ],
+        GetOrgPrepaymentInfo200ResponseLinks::class => [
+            'self' => 'self',
+            'transactions' => 'transactions'
+        ],
+        GetOrgPrepaymentInfo200ResponseLinksSelf::class => [
+            'href' => 'href'
+        ],
+        GetOrgPrepaymentInfo200ResponseLinksTransactions::class => [
+            'href' => 'href'
+        ],
+        GetSubscriptionUsageAlerts200Response::class => [
+            'current' => 'current',
+            'available' => 'available'
+        ],
+        GetTotpEnrollment200Response::class => [
+            'issuer' => 'issuer',
+            'accountName' => 'account_name',
+            'secret' => 'secret',
+            'qrCode' => 'qr_code'
+        ],
+        GetTypeAllowance200Response::class => [
+            'currencies' => 'currencies'
+        ],
+        GetTypeAllowance200ResponseCurrencies::class => [
+            'eUR' => 'EUR',
+            'uSD' => 'USD',
+            'gBP' => 'GBP',
+            'aUD' => 'AUD',
+            'cAD' => 'CAD'
+        ],
+        GetTypeAllowance200ResponseCurrenciesAUD::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currency' => 'currency',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        GetTypeAllowance200ResponseCurrenciesCAD::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currency' => 'currency',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        GetTypeAllowance200ResponseCurrenciesEUR::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currency' => 'currency',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        GetTypeAllowance200ResponseCurrenciesGBP::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currency' => 'currency',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        GetTypeAllowance200ResponseCurrenciesUSD::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currency' => 'currency',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        GetUsageAlerts200Response::class => [
+            'available' => 'available',
+            'current' => 'current'
+        ],
+        GitHubIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        GitLabIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'baseUrl' => 'base_url',
+            'project' => 'project',
+            'buildMergeRequests' => 'build_merge_requests',
+            'buildWipMergeRequests' => 'build_wip_merge_requests',
+            'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data',
+            'id' => 'id'
+        ],
+        GitLabIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        GitLabIntegrationCreateInput::class => [
+            'type' => 'type',
+            'token' => 'token',
+            'project' => 'project',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'baseUrl' => 'base_url',
+            'buildMergeRequests' => 'build_merge_requests',
+            'buildWipMergeRequests' => 'build_wip_merge_requests',
+            'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data'
+        ],
+        GitLabIntegrationPatch::class => [
+            'type' => 'type',
+            'token' => 'token',
+            'project' => 'project',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'baseUrl' => 'base_url',
+            'buildMergeRequests' => 'build_merge_requests',
+            'buildWipMergeRequests' => 'build_wip_merge_requests',
+            'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data'
+        ],
+        GitServerConfiguration::class => [
+            'pushSizeHardLimit' => 'push_size_hard_limit'
+        ],
+        GithubIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'baseUrl' => 'base_url',
+            'repository' => 'repository',
+            'buildPullRequests' => 'build_pull_requests',
+            'buildDraftPullRequests' => 'build_draft_pull_requests',
+            'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'tokenType' => 'token_type',
+            'id' => 'id'
+        ],
+        GithubIntegrationCreateInput::class => [
+            'type' => 'type',
+            'token' => 'token',
+            'repository' => 'repository',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'baseUrl' => 'base_url',
+            'buildPullRequests' => 'build_pull_requests',
+            'buildDraftPullRequests' => 'build_draft_pull_requests',
+            'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
+        ],
+        GithubIntegrationPatch::class => [
+            'type' => 'type',
+            'token' => 'token',
+            'repository' => 'repository',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'baseUrl' => 'base_url',
+            'buildPullRequests' => 'build_pull_requests',
+            'buildDraftPullRequests' => 'build_draft_pull_requests',
+            'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
+        ],
+        GoogleSSOConfig::class => [
+            'providerType' => 'provider_type',
+            'domain' => 'domain'
+        ],
+        GrantProjectTeamAccessRequestInner::class => [
+            'teamId' => 'team_id'
+        ],
+        GrantProjectUserAccessRequestInner::class => [
+            'userId' => 'user_id',
+            'permissions' => 'permissions',
+            'autoAddMember' => 'auto_add_member'
+        ],
+        GrantTeamProjectAccessRequestInner::class => [
+            'projectId' => 'project_id'
+        ],
+        GrantUserProjectAccessRequestInner::class => [
+            'projectId' => 'project_id',
+            'permissions' => 'permissions'
+        ],
+        GuaranteedResources::class => [
+            'enabled' => 'enabled',
+            'instanceLimit' => 'instance_limit'
+        ],
+        HTTPLogForwardingIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        HalLinks::class => [
+            'self' => 'self',
+            'previous' => 'previous',
+            'next' => 'next'
+        ],
+        HalLinksNext::class => [
+            'title' => 'title',
+            'href' => 'href'
+        ],
+        HalLinksPrevious::class => [
+            'title' => 'title',
+            'href' => 'href'
+        ],
+        HalLinksSelf::class => [
+            'title' => 'title',
+            'href' => 'href'
+        ],
+        HealthEmailNotificationIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        HealthPagerDutyNotificationIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        HealthSlackNotificationIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        HealthWebHookIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'url' => 'url',
+            'id' => 'id'
+        ],
+        HealthWebHookIntegrationCreateInput::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'sharedKey' => 'shared_key'
+        ],
+        HealthWebHookIntegrationPatch::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'sharedKey' => 'shared_key'
+        ],
+        HealthWebhookNotificationIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        HooksExecutedAtVariousPointInTheLifecycleOfTheApplication::class => [
+            'build' => 'build',
+            'deploy' => 'deploy',
+            'postDeploy' => 'post_deploy'
+        ],
+        HttpAccessPermissions::class => [
+            'isEnabled' => 'is_enabled',
+            'addresses' => 'addresses',
+            'basicAuth' => 'basic_auth'
+        ],
+        HttpAccessPermissions1::class => [
+            'isEnabled' => 'is_enabled',
+            'addresses' => 'addresses',
+            'basicAuth' => 'basic_auth'
+        ],
+        HttpLogIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'extra' => 'extra',
+            'url' => 'url',
+            'headers' => 'headers',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'id' => 'id'
+        ],
+        HttpLogIntegrationCreateInput::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'extra' => 'extra',
+            'headers' => 'headers',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
+        ],
+        HttpLogIntegrationPatch::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'extra' => 'extra',
+            'headers' => 'headers',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
+        ],
+        ImagesValueValue::class => [
+            'available' => 'available'
+        ],
+        Integration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'repository' => 'repository',
+            'buildPullRequests' => 'build_pull_requests',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'resyncPullRequests' => 'resync_pull_requests',
+            'url' => 'url',
+            'username' => 'username',
+            'project' => 'project',
+            'environmentsCredentials' => 'environments_credentials',
+            'continuousProfiling' => 'continuous_profiling',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result',
+            'serviceId' => 'service_id',
+            'baseUrl' => 'base_url',
+            'buildDraftPullRequests' => 'build_draft_pull_requests',
+            'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
+            'tokenType' => 'token_type',
+            'buildMergeRequests' => 'build_merge_requests',
+            'buildWipMergeRequests' => 'build_wip_merge_requests',
+            'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data',
+            'fromAddress' => 'from_address',
+            'recipients' => 'recipients',
+            'routingKey' => 'routing_key',
+            'channel' => 'channel',
+            'extra' => 'extra',
+            'headers' => 'headers',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'script' => 'script',
+            'index' => 'index',
+            'sourcetype' => 'sourcetype',
+            'category' => 'category',
+            'host' => 'host',
+            'port' => 'port',
+            'protocol' => 'protocol',
+            'facility' => 'facility',
+            'messageFormat' => 'message_format',
+            'sharedKey' => 'shared_key',
+            'id' => 'id',
+            'appCredentials' => 'app_credentials',
+            'addonCredentials' => 'addon_credentials'
+        ],
+        IntegrationCreateInput::class => [
+            'type' => 'type',
+            'repository' => 'repository',
+            'url' => 'url',
+            'username' => 'username',
+            'token' => 'token',
+            'project' => 'project',
+            'serviceId' => 'service_id',
+            'recipients' => 'recipients',
+            'routingKey' => 'routing_key',
+            'channel' => 'channel',
+            'licenseKey' => 'license_key',
+            'script' => 'script',
+            'index' => 'index',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'appCredentials' => 'app_credentials',
+            'addonCredentials' => 'addon_credentials',
+            'buildPullRequests' => 'build_pull_requests',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'resyncPullRequests' => 'resync_pull_requests',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result',
+            'baseUrl' => 'base_url',
+            'buildDraftPullRequests' => 'build_draft_pull_requests',
+            'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
+            'buildMergeRequests' => 'build_merge_requests',
+            'buildWipMergeRequests' => 'build_wip_merge_requests',
+            'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data',
+            'fromAddress' => 'from_address',
+            'sharedKey' => 'shared_key',
+            'extra' => 'extra',
+            'headers' => 'headers',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'sourcetype' => 'sourcetype',
+            'category' => 'category',
+            'host' => 'host',
+            'port' => 'port',
+            'protocol' => 'protocol',
+            'facility' => 'facility',
+            'messageFormat' => 'message_format',
+            'authToken' => 'auth_token',
+            'authMode' => 'auth_mode'
+        ],
+        IntegrationPatch::class => [
+            'type' => 'type',
+            'repository' => 'repository',
+            'url' => 'url',
+            'username' => 'username',
+            'token' => 'token',
+            'project' => 'project',
+            'serviceId' => 'service_id',
+            'recipients' => 'recipients',
+            'routingKey' => 'routing_key',
+            'channel' => 'channel',
+            'licenseKey' => 'license_key',
+            'script' => 'script',
+            'index' => 'index',
+            'fetchBranches' => 'fetch_branches',
+            'pruneBranches' => 'prune_branches',
+            'environmentInitResources' => 'environment_init_resources',
+            'appCredentials' => 'app_credentials',
+            'addonCredentials' => 'addon_credentials',
+            'buildPullRequests' => 'build_pull_requests',
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'resyncPullRequests' => 'resync_pull_requests',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result',
+            'baseUrl' => 'base_url',
+            'buildDraftPullRequests' => 'build_draft_pull_requests',
+            'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
+            'buildMergeRequests' => 'build_merge_requests',
+            'buildWipMergeRequests' => 'build_wip_merge_requests',
+            'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data',
+            'fromAddress' => 'from_address',
+            'sharedKey' => 'shared_key',
+            'extra' => 'extra',
+            'headers' => 'headers',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'sourcetype' => 'sourcetype',
+            'category' => 'category',
+            'host' => 'host',
+            'port' => 'port',
+            'protocol' => 'protocol',
+            'facility' => 'facility',
+            'messageFormat' => 'message_format',
+            'authToken' => 'auth_token',
+            'authMode' => 'auth_mode'
+        ],
+        Integrations::class => [
+            'enabled' => 'enabled',
+            'config' => 'config',
+            'allowedIntegrations' => 'allowed_integrations'
+        ],
+        Invoice::class => [
+            'id' => 'id',
+            'invoiceNumber' => 'invoice_number',
+            'type' => 'type',
+            'orderId' => 'order_id',
+            'relatedInvoiceId' => 'related_invoice_id',
+            'status' => 'status',
+            'owner' => 'owner',
+            'invoiceDate' => 'invoice_date',
+            'invoiceDue' => 'invoice_due',
+            'created' => 'created',
+            'changed' => 'changed',
+            'company' => 'company',
+            'total' => 'total',
+            'address' => 'address',
+            'notes' => 'notes',
+            'invoicePdf' => 'invoice_pdf'
+        ],
+        InvoicePDF::class => [
+            'url' => 'url',
+            'status' => 'status'
+        ],
+        LineItem::class => [
+            'type' => 'type',
+            'licenseId' => 'license_id',
+            'projectId' => 'project_id',
+            'product' => 'product',
+            'sku' => 'sku',
+            'total' => 'total',
+            'totalFormatted' => 'total_formatted',
+            'components' => 'components',
+            'excludeFromInvoice' => 'exclude_from_invoice'
+        ],
+        LineItemComponent::class => [
+            'amount' => 'amount',
+            'amountFormatted' => 'amount_formatted',
+            'displayTitle' => 'display_title',
+            'currency' => 'currency'
+        ],
+        Link::class => [
+            'href' => 'href'
+        ],
+        ListLinks::class => [
+            'self' => 'self',
+            'previous' => 'previous',
+            'next' => 'next'
+        ],
+        ListOrgDiscounts200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListOrgInvoices200Response::class => [
+            'items' => 'items'
+        ],
+        ListOrgMembers200Response::class => [
+            'count' => 'count',
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListOrgOrders200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListOrgPlanRecords200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListOrgPrepaymentTransactions200Response::class => [
+            'count' => 'count',
+            'transactions' => 'transactions',
+            'links' => '_links'
+        ],
+        ListOrgPrepaymentTransactions200ResponseLinks::class => [
+            'self' => 'self',
+            'previous' => 'previous',
+            'next' => 'next',
+            'prepayment' => 'prepayment'
+        ],
+        ListOrgPrepaymentTransactions200ResponseLinksNext::class => [
+            'href' => 'href'
+        ],
+        ListOrgPrepaymentTransactions200ResponseLinksPrepayment::class => [
+            'href' => 'href'
+        ],
+        ListOrgPrepaymentTransactions200ResponseLinksPrevious::class => [
+            'href' => 'href'
+        ],
+        ListOrgPrepaymentTransactions200ResponseLinksSelf::class => [
+            'href' => 'href'
+        ],
+        ListOrgProjects200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListOrgSubscriptions200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListOrgUsageRecords200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListOrgs200Response::class => [
+            'count' => 'count',
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListPlans200Response::class => [
+            'count' => 'count',
+            'plans' => 'plans',
+            'links' => '_links'
+        ],
+        ListProfiles200Response::class => [
+            'count' => 'count',
+            'profiles' => 'profiles',
+            'links' => '_links'
+        ],
+        ListProjectTeamAccess200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListProjectUserAccess200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListRegions200Response::class => [
+            'regions' => 'regions',
+            'links' => '_links'
+        ],
+        ListTeamMembers200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListTeams200Response::class => [
+            'items' => 'items',
+            'count' => 'count',
+            'links' => '_links'
+        ],
+        ListTicketCategories200ResponseInner::class => [
+            'id' => 'id',
+            'label' => 'label'
+        ],
+        ListTicketPriorities200ResponseInner::class => [
+            'id' => 'id',
+            'label' => 'label',
+            'shortDescription' => 'short_description',
+            'description' => 'description'
+        ],
+        ListTickets200Response::class => [
+            'count' => 'count',
+            'tickets' => 'tickets',
+            'links' => '_links'
+        ],
+        ListUserExtendedAccess200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        ListUserExtendedAccess200ResponseItemsInner::class => [
+            'userId' => 'user_id',
+            'resourceId' => 'resource_id',
+            'resourceType' => 'resource_type',
+            'organizationId' => 'organization_id',
+            'permissions' => 'permissions',
+            'grantedAt' => 'granted_at',
+            'updatedAt' => 'updated_at'
+        ],
+        ListUserOrgs200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        LogsForwarding::class => [
+            'maxExtraPayloadSize' => 'max_extra_payload_size'
+        ],
+        MappingOfClustersToEnterpriseApplicationsValue::class => [
+            'activeDocroot' => 'active_docroot',
+            'docrootVersions' => 'docroot_versions'
+        ],
+        Metrics::class => [
+            'maxRange' => 'max_range'
+        ],
+        MetricsMetadata::class => [
+            'from' => 'from',
+            'to' => 'to',
+            'interval' => 'interval',
+            'units' => 'units'
+        ],
+        MetricsValue::class => [
+            'value' => 'value',
+            'startTime' => 'start_time'
+        ],
+        NewRelicIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'extra' => 'extra',
+            'url' => 'url',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'id' => 'id'
+        ],
+        NewRelicIntegrationCreateInput::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'licenseKey' => 'license_key',
+            'extra' => 'extra',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
+        ],
+        NewRelicIntegrationPatch::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'licenseKey' => 'license_key',
+            'extra' => 'extra',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
+        ],
+        NewRelicLogForwardingIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        OpenTelemetryLogForwardingIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        OperationsThatCanBeAppliedToTheSourceCodeValue::class => [
+            'command' => 'command'
+        ],
+        OperationsThatCanBeTriggeredOnThisApplicationValue::class => [
+            'commands' => 'commands',
+            'timeout' => 'timeout',
+            'role' => 'role'
+        ],
+        Order::class => [
+            'id' => 'id',
+            'status' => 'status',
+            'owner' => 'owner',
+            'address' => 'address',
+            'company' => 'company',
+            'vatNumber' => 'vat_number',
+            'billingPeriodStart' => 'billing_period_start',
+            'billingPeriodEnd' => 'billing_period_end',
+            'billingPeriodLabel' => 'billing_period_label',
+            'billingPeriodDuration' => 'billing_period_duration',
+            'paidOn' => 'paid_on',
+            'total' => 'total',
+            'totalFormatted' => 'total_formatted',
+            'components' => 'components',
+            'currency' => 'currency',
+            'invoiceUrl' => 'invoice_url',
+            'lastRefreshed' => 'last_refreshed',
+            'invoiced' => 'invoiced',
+            'lineItems' => 'line_items',
+            'links' => '_links'
+        ],
+        OrderBillingPeriodLabel::class => [
+            'formatted' => 'formatted',
+            'month' => 'month',
+            'year' => 'year',
+            'nextMonth' => 'next_month'
+        ],
+        OrderLinks::class => [
+            'invoices' => 'invoices'
+        ],
+        OrderLinksInvoices::class => [
+            'href' => 'href'
+        ],
+        Organization::class => [
+            'id' => 'id',
+            'type' => 'type',
+            'ownerId' => 'owner_id',
+            'namespace' => 'namespace',
+            'name' => 'name',
+            'label' => 'label',
+            'country' => 'country',
+            'capabilities' => 'capabilities',
+            'vendor' => 'vendor',
+            'billingAccountId' => 'billing_account_id',
+            'billingLegacy' => 'billing_legacy',
+            'status' => 'status',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'links' => '_links'
+        ],
+        OrganizationAddonsObject::class => [
+            'available' => 'available',
+            'current' => 'current',
+            'upgradesAvailable' => 'upgrades_available'
+        ],
+        OrganizationAddonsObjectAvailable::class => [
+            'userManagement' => 'user_management',
+            'supportLevel' => 'support_level'
+        ],
+        OrganizationAddonsObjectCurrent::class => [
+            'userManagement' => 'user_management',
+            'supportLevel' => 'support_level'
+        ],
+        OrganizationAddonsObjectUpgradesAvailable::class => [
+            'userManagement' => 'user_management',
+            'supportLevel' => 'support_level'
+        ],
+        OrganizationAlertConfig::class => [
+            'id' => 'id',
+            'active' => 'active',
+            'alertsSent' => 'alerts_sent',
+            'lastAlertAt' => 'last_alert_at',
+            'updatedAt' => 'updated_at',
+            'config' => 'config'
+        ],
+        OrganizationAlertConfigConfig::class => [
+            'threshold' => 'threshold',
+            'mode' => 'mode'
+        ],
+        OrganizationAlertConfigConfigThreshold::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currencyCode' => 'currency_code',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        OrganizationCarbon::class => [
+            'organizationId' => 'organization_id',
+            'meta' => 'meta',
+            'projects' => 'projects',
+            'total' => 'total'
+        ],
+        OrganizationEstimationObject::class => [
+            'total' => 'total',
+            'subTotal' => 'sub_total',
+            'vouchers' => 'vouchers',
+            'userLicenses' => 'user_licenses',
+            'userManagement' => 'user_management',
+            'supportLevel' => 'support_level',
+            'subscriptions' => 'subscriptions'
+        ],
+        OrganizationEstimationObjectSubscriptions::class => [
+            'total' => 'total',
+            'list' => 'list'
+        ],
+        OrganizationEstimationObjectSubscriptionsListInner::class => [
+            'licenseId' => 'license_id',
+            'projectTitle' => 'project_title',
+            'total' => 'total',
+            'usage' => 'usage'
+        ],
+        OrganizationEstimationObjectSubscriptionsListInnerUsage::class => [
+            'cpu' => 'cpu',
+            'memory' => 'memory',
+            'storage' => 'storage',
+            'environments' => 'environments'
+        ],
+        OrganizationEstimationObjectUserLicenses::class => [
+            'base' => 'base',
+            'userManagement' => 'user_management'
+        ],
+        OrganizationEstimationObjectUserLicensesBase::class => [
+            'count' => 'count',
+            'total' => 'total',
+            'list' => 'list'
+        ],
+        OrganizationEstimationObjectUserLicensesBaseList::class => [
+            'adminUser' => 'admin_user',
+            'viewerUser' => 'viewer_user'
+        ],
+        OrganizationEstimationObjectUserLicensesBaseListAdminUser::class => [
+            'count' => 'count',
+            'total' => 'total'
+        ],
+        OrganizationEstimationObjectUserLicensesBaseListViewerUser::class => [
+            'count' => 'count',
+            'total' => 'total'
+        ],
+        OrganizationEstimationObjectUserLicensesUserManagement::class => [
+            'count' => 'count',
+            'total' => 'total',
+            'list' => 'list'
+        ],
+        OrganizationEstimationObjectUserLicensesUserManagementList::class => [
+            'standardManagementUser' => 'standard_management_user',
+            'advancedManagementUser' => 'advanced_management_user'
+        ],
+        OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser::class => [
+            'count' => 'count',
+            'total' => 'total'
+        ],
+        OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser::class => [
+            'count' => 'count',
+            'total' => 'total'
+        ],
+        OrganizationInvitation::class => [
+            'id' => 'id',
+            'state' => 'state',
+            'organizationId' => 'organization_id',
+            'email' => 'email',
+            'owner' => 'owner',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'finishedAt' => 'finished_at',
+            'permissions' => 'permissions'
+        ],
+        OrganizationInvitationOwner::class => [
+            'id' => 'id',
+            'displayName' => 'display_name'
+        ],
+        OrganizationLinks::class => [
+            'self' => 'self',
+            'update' => 'update',
+            'delete' => 'delete',
+            'members' => 'members',
+            'createMember' => 'create-member',
+            'address' => 'address',
+            'profile' => 'profile',
+            'paymentSource' => 'payment-source',
+            'orders' => 'orders',
+            'vouchers' => 'vouchers',
+            'applyVoucher' => 'apply-voucher',
+            'subscriptions' => 'subscriptions',
+            'createSubscription' => 'create-subscription',
+            'estimateSubscription' => 'estimate-subscription',
+            'mfaEnforcement' => 'mfa-enforcement'
+        ],
+        OrganizationLinksAddress::class => [
+            'href' => 'href'
+        ],
+        OrganizationLinksApplyVoucher::class => [
+            'href' => 'href',
+            'method' => 'method'
+        ],
+        OrganizationLinksCreateMember::class => [
+            'href' => 'href',
+            'method' => 'method'
+        ],
+        OrganizationLinksCreateSubscription::class => [
+            'href' => 'href',
+            'method' => 'method'
+        ],
+        OrganizationLinksDelete::class => [
+            'href' => 'href',
+            'method' => 'method'
+        ],
+        OrganizationLinksEstimateSubscription::class => [
+            'href' => 'href'
+        ],
+        OrganizationLinksMembers::class => [
+            'href' => 'href'
+        ],
+        OrganizationLinksMfaEnforcement::class => [
+            'href' => 'href'
+        ],
+        OrganizationLinksOrders::class => [
+            'href' => 'href'
+        ],
+        OrganizationLinksPaymentSource::class => [
+            'href' => 'href'
+        ],
+        OrganizationLinksProfile::class => [
+            'href' => 'href'
+        ],
+        OrganizationLinksSelf::class => [
+            'href' => 'href'
+        ],
+        OrganizationLinksSubscriptions::class => [
+            'href' => 'href'
+        ],
+        OrganizationLinksUpdate::class => [
+            'href' => 'href',
+            'method' => 'method'
+        ],
+        OrganizationLinksVouchers::class => [
+            'href' => 'href'
+        ],
+        OrganizationMember::class => [
+            'id' => 'id',
+            'organizationId' => 'organization_id',
+            'userId' => 'user_id',
+            'permissions' => 'permissions',
+            'level' => 'level',
+            'owner' => 'owner',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'links' => '_links'
+        ],
+        OrganizationMemberLinks::class => [
+            'self' => 'self',
+            'update' => 'update',
+            'delete' => 'delete'
+        ],
+        OrganizationMemberLinksDelete::class => [
+            'href' => 'href',
+            'method' => 'method'
+        ],
+        OrganizationMemberLinksSelf::class => [
+            'href' => 'href'
+        ],
+        OrganizationMemberLinksUpdate::class => [
+            'href' => 'href',
+            'method' => 'method'
+        ],
+        OrganizationMfaEnforcement::class => [
+            'enforceMfa' => 'enforce_mfa'
+        ],
+        OrganizationProject::class => [
+            'id' => 'id',
+            'organizationId' => 'organization_id',
+            'subscriptionId' => 'subscription_id',
+            'vendor' => 'vendor',
+            'region' => 'region',
+            'title' => 'title',
+            'type' => 'type',
+            'plan' => 'plan',
+            'timezone' => 'timezone',
+            'defaultBranch' => 'default_branch',
+            'status' => 'status',
+            'trialPlan' => 'trial_plan',
+            'projectUi' => 'project_ui',
+            'locked' => 'locked',
+            'cseNotes' => 'cse_notes',
+            'dedicatedTag' => 'dedicated_tag',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'links' => '_links'
+        ],
+        OrganizationProjectCarbon::class => [
+            'projectId' => 'project_id',
+            'projectTitle' => 'project_title',
+            'values' => 'values',
+            'total' => 'total'
+        ],
+        OrganizationProjectLinks::class => [
+            'self' => 'self',
+            'update' => 'update',
+            'delete' => 'delete',
+            'activities' => 'activities',
+            'addons' => 'addons'
+        ],
+        OrganizationProjectLinksActivities::class => [
+            'href' => 'href'
+        ],
+        OrganizationProjectLinksAddons::class => [
+            'href' => 'href'
+        ],
+        OrganizationProjectLinksDelete::class => [
+            'href' => 'href',
+            'method' => 'method'
+        ],
+        OrganizationProjectLinksSelf::class => [
+            'href' => 'href'
+        ],
+        OrganizationProjectLinksUpdate::class => [
+            'href' => 'href',
+            'method' => 'method'
+        ],
+        OrganizationReference::class => [
+            'id' => 'id',
+            'type' => 'type',
+            'ownerId' => 'owner_id',
+            'name' => 'name',
+            'label' => 'label',
+            'vendor' => 'vendor',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at'
+        ],
+        OrganizationSSOConfig::class => [
+            'providerType' => 'provider_type',
+            'domain' => 'domain',
+            'organizationId' => 'organization_id',
+            'enforced' => 'enforced',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at'
+        ],
+        OutboundFirewall::class => [
+            'enabled' => 'enabled'
+        ],
+        OutboundFirewallRestrictionsInner::class => [
+            'protocol' => 'protocol',
+            'ips' => 'ips',
+            'domains' => 'domains',
+            'ports' => 'ports'
+        ],
+        OwnerInfo::class => [
+            'type' => 'type',
+            'username' => 'username',
+            'displayName' => 'display_name'
+        ],
+        PagerDutyIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'routingKey' => 'routing_key',
+            'id' => 'id'
+        ],
+        PagerDutyIntegrationCreateInput::class => [
+            'type' => 'type',
+            'routingKey' => 'routing_key'
+        ],
+        PagerDutyIntegrationPatch::class => [
+            'type' => 'type',
+            'routingKey' => 'routing_key'
+        ],
+        PerServiceResourcesOverridesValue::class => [
+            'cpu' => 'cpu',
+            'memory' => 'memory',
+            'disk' => 'disk'
+        ],
+        Plan::class => [
+            'name' => 'name',
+            'label' => 'label'
+        ],
+        PlanRecords::class => [
+            'id' => 'id',
+            'owner' => 'owner',
+            'subscriptionId' => 'subscription_id',
+            'sku' => 'sku',
+            'plan' => 'plan',
+            'options' => 'options',
+            'start' => 'start',
+            'end' => 'end',
+            'status' => 'status'
+        ],
+        PrepaymentObject::class => [
+            'prepayment' => 'prepayment'
+        ],
+        PrepaymentObjectPrepayment::class => [
+            'organizationId' => 'organization_id',
+            'balance' => 'balance',
+            'lastUpdatedAt' => 'last_updated_at',
+            'sufficient' => 'sufficient',
+            'fallback' => 'fallback'
+        ],
+        PrepaymentObjectPrepaymentBalance::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currencyCode' => 'currency_code',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        PrepaymentTransactionObject::class => [
+            'orderId' => 'order_id',
+            'message' => 'message',
+            'status' => 'status',
+            'amount' => 'amount',
+            'created' => 'created',
+            'updated' => 'updated',
+            'expireDate' => 'expire_date'
+        ],
+        PrepaymentTransactionObjectAmount::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currencyCode' => 'currency_code',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        ProdDomainStorage::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'name' => 'name',
+            'attributes' => 'attributes',
+            'id' => 'id',
+            'project' => 'project',
+            'registeredName' => 'registered_name',
+            'isDefault' => 'is_default'
+        ],
+        ProdDomainStorageCreateInput::class => [
+            'name' => 'name',
+            'attributes' => 'attributes',
+            'isDefault' => 'is_default'
+        ],
+        ProdDomainStoragePatch::class => [
+            'attributes' => 'attributes',
+            'isDefault' => 'is_default'
+        ],
+        Profile::class => [
+            'id' => 'id',
+            'displayName' => 'display_name',
+            'email' => 'email',
+            'username' => 'username',
+            'type' => 'type',
+            'picture' => 'picture',
+            'companyType' => 'company_type',
+            'companyName' => 'company_name',
+            'currency' => 'currency',
+            'vatNumber' => 'vat_number',
+            'companyRole' => 'company_role',
+            'websiteUrl' => 'website_url',
+            'newUi' => 'new_ui',
+            'uiColorscheme' => 'ui_colorscheme',
+            'defaultCatalog' => 'default_catalog',
+            'projectOptionsUrl' => 'project_options_url',
+            'marketing' => 'marketing',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'billingContact' => 'billing_contact',
+            'securityContact' => 'security_contact',
+            'currentTrial' => 'current_trial',
+            'invoiced' => 'invoiced'
+        ],
+        ProfileCurrentTrial::class => [
+            'active' => 'active',
+            'created' => 'created',
+            'description' => 'description',
+            'expiration' => 'expiration',
+            'current' => 'current',
+            'spend' => 'spend',
+            'spendRemaining' => 'spend_remaining',
+            'projects' => 'projects',
+            'pendingVerification' => 'pending_verification',
+            'model' => 'model',
+            'daysRemaining' => 'days_remaining'
+        ],
+        ProfileCurrentTrialCurrent::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currency' => 'currency',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        ProfileCurrentTrialProjects::class => [
+            'id' => 'id',
+            'name' => 'name',
+            'total' => 'total'
+        ],
+        ProfileCurrentTrialProjectsTotal::class => [
+            'amount' => 'amount',
+            'currencyCode' => 'currency_code',
+            'currencySymbol' => 'currency_symbol',
+            'formatted' => 'formatted'
+        ],
+        ProfileCurrentTrialSpend::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currency' => 'currency',
+            'currencySymbol' => 'currency_symbol'
+        ],
+        ProfileCurrentTrialSpendRemaining::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currency' => 'currency',
+            'currencySymbol' => 'currency_symbol',
+            'unlimited' => 'unlimited'
+        ],
+        Project::class => [
+            'id' => 'id',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'attributes' => 'attributes',
+            'title' => 'title',
+            'description' => 'description',
+            'owner' => 'owner',
+            'namespace' => 'namespace',
+            'organization' => 'organization',
+            'defaultBranch' => 'default_branch',
+            'status' => 'status',
+            'timezone' => 'timezone',
+            'region' => 'region',
+            'repository' => 'repository',
+            'defaultDomain' => 'default_domain',
+            'subscription' => 'subscription'
+        ],
+        ProjectCapabilities::class => [
+            'metrics' => 'metrics',
+            'logsForwarding' => 'logs_forwarding',
+            'guaranteedResources' => 'guaranteed_resources',
+            'images' => 'images',
+            'instanceLimit' => 'instance_limit',
+            'buildResources' => 'build_resources',
+            'dataRetention' => 'data_retention',
+            'autoscaling' => 'autoscaling',
+            'customDomains' => 'custom_domains',
+            'sourceOperations' => 'source_operations',
+            'runtimeOperations' => 'runtime_operations',
+            'outboundFirewall' => 'outbound_firewall',
+            'integrations' => 'integrations'
+        ],
+        ProjectCarbon::class => [
+            'projectId' => 'project_id',
+            'projectTitle' => 'project_title',
+            'meta' => 'meta',
+            'values' => 'values',
+            'total' => 'total'
+        ],
+        ProjectInfo::class => [
+            'title' => 'title',
+            'name' => 'name',
+            'namespace' => 'namespace',
+            'organization' => 'organization',
+            'capabilities' => 'capabilities',
+            'settings' => 'settings'
+        ],
+        ProjectInvitation::class => [
+            'id' => 'id',
+            'state' => 'state',
+            'projectId' => 'project_id',
+            'role' => 'role',
+            'email' => 'email',
+            'owner' => 'owner',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'finishedAt' => 'finished_at',
+            'environments' => 'environments'
+        ],
+        ProjectInvitationEnvironmentsInner::class => [
+            'id' => 'id',
+            'type' => 'type',
+            'role' => 'role',
+            'title' => 'title'
+        ],
+        ProjectOptions::class => [
+            'defaults' => 'defaults',
+            'enforced' => 'enforced',
+            'regions' => 'regions',
+            'plans' => 'plans',
+            'billing' => 'billing'
+        ],
+        ProjectOptionsDefaults::class => [
+            'settings' => 'settings',
+            'variables' => 'variables',
+            'access' => 'access',
+            'capabilities' => 'capabilities'
+        ],
+        ProjectOptionsEnforced::class => [
+            'settings' => 'settings',
+            'capabilities' => 'capabilities'
+        ],
+        ProjectPatch::class => [
+            'attributes' => 'attributes',
+            'title' => 'title',
+            'description' => 'description',
+            'defaultBranch' => 'default_branch',
+            'timezone' => 'timezone',
+            'region' => 'region',
+            'defaultDomain' => 'default_domain'
+        ],
+        ProjectReference::class => [
+            'id' => 'id',
+            'organizationId' => 'organization_id',
+            'subscriptionId' => 'subscription_id',
+            'region' => 'region',
+            'title' => 'title',
+            'type' => 'type',
+            'plan' => 'plan',
+            'status' => 'status',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at'
+        ],
+        ProjectSettings::class => [
+            'initialize' => 'initialize',
+            'productName' => 'product_name',
+            'productCode' => 'product_code',
+            'uiUriTemplate' => 'ui_uri_template',
+            'variablesPrefix' => 'variables_prefix',
+            'botEmail' => 'bot_email',
+            'applicationConfigFile' => 'application_config_file',
+            'projectConfigDir' => 'project_config_dir',
+            'useDrupalDefaults' => 'use_drupal_defaults',
+            'useLegacySubdomains' => 'use_legacy_subdomains',
+            'developmentServiceSize' => 'development_service_size',
+            'developmentApplicationSize' => 'development_application_size',
+            'enableCertificateProvisioning' => 'enable_certificate_provisioning',
+            'certificateStyle' => 'certificate_style',
+            'certificateRenewalActivity' => 'certificate_renewal_activity',
+            'developmentDomainTemplate' => 'development_domain_template',
+            'enableStateApiDeployments' => 'enable_state_api_deployments',
+            'temporaryDiskSize' => 'temporary_disk_size',
+            'localDiskSize' => 'local_disk_size',
+            'cronMinimumInterval' => 'cron_minimum_interval',
+            'cronMaximumJitter' => 'cron_maximum_jitter',
+            'cronProductionExpiryInterval' => 'cron_production_expiry_interval',
+            'cronNonProductionExpiryInterval' => 'cron_non_production_expiry_interval',
+            'concurrencyLimits' => 'concurrency_limits',
+            'flexibleBuildCache' => 'flexible_build_cache',
+            'strictConfiguration' => 'strict_configuration',
+            'hasSleepyCrons' => 'has_sleepy_crons',
+            'cronsInGit' => 'crons_in_git',
+            'customErrorTemplate' => 'custom_error_template',
+            'appErrorPageTemplate' => 'app_error_page_template',
+            'environmentNameStrategy' => 'environment_name_strategy',
+            'dataRetention' => 'data_retention',
+            'enableCodesourceIntegrationPush' => 'enable_codesource_integration_push',
+            'enforceMfa' => 'enforce_mfa',
+            'systemd' => 'systemd',
+            'routerGen2' => 'router_gen2',
+            'buildResources' => 'build_resources',
+            'outboundRestrictionsDefaultPolicy' => 'outbound_restrictions_default_policy',
+            'selfUpgrade' => 'self_upgrade',
+            'additionalHosts' => 'additional_hosts',
+            'maxAllowedRoutes' => 'max_allowed_routes',
+            'maxAllowedRedirectsPaths' => 'max_allowed_redirects_paths',
+            'enableIncrementalBackups' => 'enable_incremental_backups',
+            'sizingApiEnabled' => 'sizing_api_enabled',
+            'enableCacheGracePeriod' => 'enable_cache_grace_period',
+            'enableZeroDowntimeDeployments' => 'enable_zero_downtime_deployments',
+            'enableAdminAgent' => 'enable_admin_agent',
+            'certifierUrl' => 'certifier_url',
+            'centralizedPermissions' => 'centralized_permissions',
+            'glueServerMaxRequestSize' => 'glue_server_max_request_size',
+            'persistentEndpointsSsh' => 'persistent_endpoints_ssh',
+            'persistentEndpointsSslCertificates' => 'persistent_endpoints_ssl_certificates',
+            'enableDiskHealthMonitoring' => 'enable_disk_health_monitoring',
+            'enablePausedEnvironments' => 'enable_paused_environments',
+            'enableUnifiedConfiguration' => 'enable_unified_configuration',
+            'enableRoutesTracing' => 'enable_routes_tracing',
+            'imageDeploymentValidation' => 'image_deployment_validation',
+            'supportGenericImages' => 'support_generic_images',
+            'enableGithubAppTokenExchange' => 'enable_github_app_token_exchange',
+            'continuousProfiling' => 'continuous_profiling',
+            'disableAgentErrorReporter' => 'disable_agent_error_reporter',
+            'requiresDomainOwnership' => 'requires_domain_ownership',
+            'enableGuaranteedResources' => 'enable_guaranteed_resources',
+            'gitServer' => 'git_server',
+            'activityLogsMaxSize' => 'activity_logs_max_size',
+            'allowManualDeployments' => 'allow_manual_deployments',
+            'allowRollingDeployments' => 'allow_rolling_deployments',
+            'allowBurst' => 'allow_burst',
+            'routerResources' => 'router_resources'
+        ],
+        ProjectSettingsPatch::class => [
+            'initialize' => 'initialize',
+            'dataRetention' => 'data_retention',
+            'buildResources' => 'build_resources'
+        ],
+        ProjectStatus::class => [
+
+        ],
+        ProjectType::class => [
+
+        ],
+        ProjectVariable::class => [
+            'id' => 'id',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'name' => 'name',
+            'attributes' => 'attributes',
+            'isJson' => 'is_json',
+            'isSensitive' => 'is_sensitive',
+            'visibleBuild' => 'visible_build',
+            'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope',
+            'value' => 'value'
+        ],
+        ProjectVariableCreateInput::class => [
+            'name' => 'name',
+            'value' => 'value',
+            'attributes' => 'attributes',
+            'isJson' => 'is_json',
+            'isSensitive' => 'is_sensitive',
+            'visibleBuild' => 'visible_build',
+            'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope'
+        ],
+        ProjectVariablePatch::class => [
+            'name' => 'name',
+            'attributes' => 'attributes',
+            'value' => 'value',
+            'isJson' => 'is_json',
+            'isSensitive' => 'is_sensitive',
+            'visibleBuild' => 'visible_build',
+            'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope'
+        ],
+        ProxyRoute::class => [
+            'attributes' => 'attributes',
+            'type' => 'type',
+            'tls' => 'tls',
+            'to' => 'to',
+            'id' => 'id',
+            'primary' => 'primary',
+            'productionUrl' => 'production_url',
+            'redirects' => 'redirects',
+            'cache' => 'cache',
+            'ssi' => 'ssi',
+            'upstream' => 'upstream',
+            'sticky' => 'sticky'
+        ],
+        RedirectRoute::class => [
+            'attributes' => 'attributes',
+            'type' => 'type',
+            'tls' => 'tls',
+            'to' => 'to',
+            'id' => 'id',
+            'primary' => 'primary',
+            'productionUrl' => 'production_url',
+            'redirects' => 'redirects',
+            'cache' => 'cache',
+            'ssi' => 'ssi',
+            'upstream' => 'upstream',
+            'sticky' => 'sticky'
+        ],
+        Ref::class => [
+            'id' => 'id',
+            'ref' => 'ref',
+            'object' => 'object',
+            'sha' => 'sha'
+        ],
+        Region::class => [
+            'id' => 'id',
+            'label' => 'label',
+            'zone' => 'zone',
+            'selectionLabel' => 'selection_label',
+            'projectLabel' => 'project_label',
+            'timezone' => 'timezone',
+            'available' => 'available',
+            'private' => 'private',
+            'endpoint' => 'endpoint',
+            'provider' => 'provider',
+            'datacenter' => 'datacenter',
+            'environmentalImpact' => 'environmental_impact'
+        ],
+        RegionDatacenter::class => [
+            'name' => 'name',
+            'label' => 'label',
+            'location' => 'location'
+        ],
+        RegionEnvironmentalImpact::class => [
+            'zone' => 'zone',
+            'carbonIntensity' => 'carbon_intensity',
+            'green' => 'green'
+        ],
+        RegionProvider::class => [
+            'name' => 'name',
+            'logo' => 'logo'
+        ],
+        RegionReference::class => [
+            'id' => 'id',
+            'label' => 'label',
+            'zone' => 'zone',
+            'selectionLabel' => 'selection_label',
+            'projectLabel' => 'project_label',
+            'timezone' => 'timezone',
+            'available' => 'available',
+            'endpoint' => 'endpoint',
+            'provider' => 'provider',
+            'datacenter' => 'datacenter',
+            'compliance' => 'compliance',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'private' => 'private',
+            'code' => 'code',
+            'envimpact' => 'envimpact'
+        ],
+        ReplacementDomainStorage::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'name' => 'name',
+            'attributes' => 'attributes',
+            'id' => 'id',
+            'project' => 'project',
+            'registeredName' => 'registered_name',
+            'replacementFor' => 'replacement_for'
+        ],
+        ReplacementDomainStorageCreateInput::class => [
+            'name' => 'name',
+            'attributes' => 'attributes',
+            'replacementFor' => 'replacement_for'
+        ],
+        ReplacementDomainStoragePatch::class => [
+            'attributes' => 'attributes'
+        ],
+        RepositoryInformation::class => [
+            'url' => 'url',
+            'clientSshKey' => 'client_ssh_key'
+        ],
+        ResetEmailAddressRequest::class => [
+            'emailAddress' => 'email_address'
+        ],
+        ResourceConfig::class => [
+            'profileSize' => 'profile_size'
+        ],
+        Resources::class => [
+            'baseMemory' => 'base_memory',
+            'memoryRatio' => 'memory_ratio',
+            'profileSize' => 'profile_size',
+            'minimum' => 'minimum',
+            'default' => 'default',
+            'disk' => 'disk'
+        ],
+        Resources1::class => [
+            'profileSize' => 'profile_size'
+        ],
+        Resources2::class => [
+            'init' => 'init'
+        ],
+        Resources3::class => [
+            'init' => 'init'
+        ],
+        Resources4::class => [
+            'init' => 'init'
+        ],
+        Resources5::class => [
+            'init' => 'init'
+        ],
+        Resources6::class => [
+            'init' => 'init'
+        ],
+        ResourcesForDevelopmentEnvironments::class => [
+            'legacyDevelopment' => 'legacy_development',
+            'maxCpu' => 'max_cpu',
+            'maxMemory' => 'max_memory',
+            'maxEnvironments' => 'max_environments'
+        ],
+        ResourcesForProductionEnvironments::class => [
+            'legacyDevelopment' => 'legacy_development',
+            'maxCpu' => 'max_cpu',
+            'maxMemory' => 'max_memory',
+            'maxEnvironments' => 'max_environments'
+        ],
+        ResourcesLimits::class => [
+            'containerProfiles' => 'container_profiles',
+            'production' => 'production',
+            'development' => 'development'
+        ],
+        ResourcesOverridesValue::class => [
+            'services' => 'services',
+            'startsAt' => 'starts_at',
+            'endsAt' => 'ends_at',
+            'redeployedStart' => 'redeployed_start',
+            'redeployedEnd' => 'redeployed_end'
+        ],
+        RestrictedAndDeniedImageTypes::class => [
+            'only' => 'only',
+            'exclude' => 'exclude'
+        ],
+        Route::class => [
+            'attributes' => 'attributes',
+            'type' => 'type',
+            'tls' => 'tls',
+            'to' => 'to',
+            'id' => 'id',
+            'primary' => 'primary',
+            'productionUrl' => 'production_url',
+            'redirects' => 'redirects',
+            'cache' => 'cache',
+            'ssi' => 'ssi',
+            'upstream' => 'upstream',
+            'sticky' => 'sticky'
+        ],
+        RouterResourceSettingsForFlexPlan::class => [
+            'baselineCpu' => 'baseline_cpu',
+            'baselineMemory' => 'baseline_memory',
+            'maxCpu' => 'max_cpu',
+            'maxMemory' => 'max_memory'
+        ],
+        RoutesValue::class => [
+            'attributes' => 'attributes',
+            'type' => 'type',
+            'tls' => 'tls',
+            'to' => 'to',
+            'id' => 'id',
+            'primary' => 'primary',
+            'productionUrl' => 'production_url',
+            'redirects' => 'redirects',
+            'cache' => 'cache',
+            'ssi' => 'ssi',
+            'upstream' => 'upstream',
+            'sticky' => 'sticky'
+        ],
+        RuntimeOperations::class => [
+            'enabled' => 'enabled'
+        ],
+        ScheduledCronTasksExecutedByThisApplicationValue::class => [
+            'spec' => 'spec',
+            'commands' => 'commands',
+            'timeout' => 'timeout',
+            'shutdownTimeout' => 'shutdown_timeout',
+            'cmd' => 'cmd'
+        ],
+        ScriptIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result',
+            'script' => 'script',
+            'id' => 'id'
+        ],
+        ScriptIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        ScriptIntegrationCreateInput::class => [
+            'type' => 'type',
+            'script' => 'script',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result'
+        ],
+        ScriptIntegrationPatch::class => [
+            'type' => 'type',
+            'script' => 'script',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result'
+        ],
+        SendOrgMfaReminders200ResponseValue::class => [
+            'code' => 'code',
+            'message' => 'message'
+        ],
+        SendOrgMfaRemindersRequest::class => [
+            'userIds' => 'user_ids'
+        ],
+        ServerSideIncludeConfiguration::class => [
+            'enabled' => 'enabled'
+        ],
+        ServicesValue::class => [
+            'type' => 'type',
+            'size' => 'size',
+            'disk' => 'disk',
+            'access' => 'access',
+            'configuration' => 'configuration',
+            'relationships' => 'relationships',
+            'firewall' => 'firewall',
+            'resources' => 'resources',
+            'containerProfile' => 'container_profile',
+            'endpoints' => 'endpoints',
+            'instanceCount' => 'instance_count'
+        ],
+        ServicesValue1::class => [
+            'resources' => 'resources',
+            'instanceCount' => 'instance_count',
+            'disk' => 'disk'
+        ],
+        SlackIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'channel' => 'channel',
+            'id' => 'id'
+        ],
+        SlackIntegrationCreateInput::class => [
+            'type' => 'type',
+            'token' => 'token',
+            'channel' => 'channel'
+        ],
+        SlackIntegrationPatch::class => [
+            'type' => 'type',
+            'token' => 'token',
+            'channel' => 'channel'
+        ],
+        SourceOperations::class => [
+            'enabled' => 'enabled'
+        ],
+        SpecificOverridesValue::class => [
+            'expires' => 'expires',
+            'passthru' => 'passthru',
+            'scripts' => 'scripts',
+            'allow' => 'allow',
+            'headers' => 'headers'
+        ],
+        SplunkIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'extra' => 'extra',
+            'url' => 'url',
+            'index' => 'index',
+            'sourcetype' => 'sourcetype',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'id' => 'id'
+        ],
+        SplunkIntegrationCreateInput::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'index' => 'index',
+            'token' => 'token',
+            'extra' => 'extra',
+            'sourcetype' => 'sourcetype',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
+        ],
+        SplunkIntegrationPatch::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'index' => 'index',
+            'token' => 'token',
+            'extra' => 'extra',
+            'sourcetype' => 'sourcetype',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
+        ],
+        SplunkLogForwardingIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        SshKey::class => [
+            'keyId' => 'key_id',
+            'uid' => 'uid',
+            'fingerprint' => 'fingerprint',
+            'title' => 'title',
+            'value' => 'value',
+            'changed' => 'changed'
+        ],
+        Status::class => [
+            'code' => 'code',
+            'message' => 'message'
+        ],
+        StickyRoutingConfiguration::class => [
+            'enabled' => 'enabled'
+        ],
+        StrictTransportSecurityOptions::class => [
+            'enabled' => 'enabled',
+            'includeSubdomains' => 'include_subdomains',
+            'preload' => 'preload'
+        ],
+        StringFilter::class => [
+            'eq' => 'eq',
+            'ne' => 'ne',
+            'in' => 'in',
+            'nin' => 'nin',
+            'between' => 'between',
+            'contains' => 'contains',
+            'starts' => 'starts',
+            'ends' => 'ends'
+        ],
+        Subscription::class => [
+            'id' => 'id',
+            'status' => 'status',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'owner' => 'owner',
+            'ownerInfo' => 'owner_info',
+            'vendor' => 'vendor',
+            'plan' => 'plan',
+            'environments' => 'environments',
+            'storage' => 'storage',
+            'userLicenses' => 'user_licenses',
+            'projectId' => 'project_id',
+            'projectEndpoint' => 'project_endpoint',
+            'projectTitle' => 'project_title',
+            'projectRegion' => 'project_region',
+            'projectRegionLabel' => 'project_region_label',
+            'projectUi' => 'project_ui',
+            'projectOptions' => 'project_options',
+            'agencySite' => 'agency_site',
+            'invoiced' => 'invoiced',
+            'hipaa' => 'hipaa',
+            'isTrialPlan' => 'is_trial_plan',
+            'services' => 'services',
+            'green' => 'green'
+        ],
+        Subscription1::class => [
+            'licenseUri' => 'license_uri',
+            'storage' => 'storage',
+            'includedUsers' => 'included_users',
+            'subscriptionManagementUri' => 'subscription_management_uri',
+            'restricted' => 'restricted',
+            'suspended' => 'suspended',
+            'userLicenses' => 'user_licenses',
+            'plan' => 'plan',
+            'environments' => 'environments',
+            'resources' => 'resources',
+            'resourceValidationUrl' => 'resource_validation_url',
+            'imageTypes' => 'image_types'
+        ],
+        SubscriptionAddonsObject::class => [
+            'available' => 'available',
+            'current' => 'current',
+            'upgradesAvailable' => 'upgrades_available'
+        ],
+        SubscriptionAddonsObjectAvailable::class => [
+            'continuousProfiling' => 'continuous_profiling',
+            'projectSupportLevel' => 'project_support_level'
+        ],
+        SubscriptionAddonsObjectCurrent::class => [
+            'continuousProfiling' => 'continuous_profiling',
+            'projectSupportLevel' => 'project_support_level'
+        ],
+        SubscriptionAddonsObjectUpgradesAvailable::class => [
+            'continuousProfiling' => 'continuous_profiling',
+            'projectSupportLevel' => 'project_support_level'
+        ],
+        SubscriptionCurrentUsageObject::class => [
+            'cpuApp' => 'cpu_app',
+            'storageAppServices' => 'storage_app_services',
+            'memoryApp' => 'memory_app',
+            'cpuServices' => 'cpu_services',
+            'memoryServices' => 'memory_services',
+            'backupStorage' => 'backup_storage',
+            'buildCpu' => 'build_cpu',
+            'buildMemory' => 'build_memory',
+            'egressBandwidth' => 'egress_bandwidth',
+            'ingressRequests' => 'ingress_requests',
+            'logsFwdContentSize' => 'logs_fwd_content_size',
+            'fastlyBandwidth' => 'fastly_bandwidth',
+            'fastlyRequests' => 'fastly_requests'
+        ],
+        SubscriptionInformation::class => [
+            'licenseUri' => 'license_uri',
+            'storage' => 'storage',
+            'includedUsers' => 'included_users',
+            'subscriptionManagementUri' => 'subscription_management_uri',
+            'restricted' => 'restricted',
+            'suspended' => 'suspended',
+            'userLicenses' => 'user_licenses',
+            'plan' => 'plan',
+            'environments' => 'environments',
+            'resources' => 'resources',
+            'resourceValidationUrl' => 'resource_validation_url',
+            'imageTypes' => 'image_types'
+        ],
+        SumoLogicLogForwardingIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        SumologicIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'extra' => 'extra',
+            'url' => 'url',
+            'category' => 'category',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'id' => 'id'
+        ],
+        SumologicIntegrationCreateInput::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'extra' => 'extra',
+            'category' => 'category',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
+        ],
+        SumologicIntegrationPatch::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'extra' => 'extra',
+            'category' => 'category',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
+        ],
+        SyslogIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'extra' => 'extra',
+            'host' => 'host',
+            'port' => 'port',
+            'protocol' => 'protocol',
+            'facility' => 'facility',
+            'messageFormat' => 'message_format',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'id' => 'id'
+        ],
+        SyslogIntegrationCreateInput::class => [
+            'type' => 'type',
+            'extra' => 'extra',
+            'host' => 'host',
+            'port' => 'port',
+            'protocol' => 'protocol',
+            'facility' => 'facility',
+            'messageFormat' => 'message_format',
+            'authToken' => 'auth_token',
+            'authMode' => 'auth_mode',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
+        ],
+        SyslogIntegrationPatch::class => [
+            'type' => 'type',
+            'extra' => 'extra',
+            'host' => 'host',
+            'port' => 'port',
+            'protocol' => 'protocol',
+            'facility' => 'facility',
+            'messageFormat' => 'message_format',
+            'authToken' => 'auth_token',
+            'authMode' => 'auth_mode',
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
+        ],
+        SyslogLogForwardingIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        SystemInformation::class => [
+            'version' => 'version',
+            'image' => 'image',
+            'startedAt' => 'started_at'
+        ],
+        TLSSettingsForTheRoute::class => [
+            'strictTransportSecurity' => 'strict_transport_security',
+            'minVersion' => 'min_version',
+            'clientAuthentication' => 'client_authentication',
+            'clientCertificateAuthorities' => 'client_certificate_authorities'
+        ],
+        Team::class => [
+            'id' => 'id',
+            'organizationId' => 'organization_id',
+            'label' => 'label',
+            'projectPermissions' => 'project_permissions',
+            'counts' => 'counts',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at'
+        ],
+        TeamCounts::class => [
+            'memberCount' => 'member_count',
+            'projectCount' => 'project_count'
+        ],
+        TeamMember::class => [
+            'teamId' => 'team_id',
+            'userId' => 'user_id',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at'
+        ],
+        TeamProjectAccess::class => [
+            'teamId' => 'team_id',
+            'organizationId' => 'organization_id',
+            'projectId' => 'project_id',
+            'projectTitle' => 'project_title',
+            'grantedAt' => 'granted_at',
+            'updatedAt' => 'updated_at',
+            'links' => '_links'
+        ],
+        TeamProjectAccessLinks::class => [
+            'self' => 'self',
+            'update' => 'update',
+            'delete' => 'delete'
+        ],
+        TeamProjectAccessLinksDelete::class => [
+            'href' => 'href',
+            'method' => 'method'
+        ],
+        TeamProjectAccessLinksSelf::class => [
+            'href' => 'href'
+        ],
+        TeamProjectAccessLinksUpdate::class => [
+            'href' => 'href',
+            'method' => 'method'
+        ],
+        TeamReference::class => [
+            'id' => 'id',
+            'organizationId' => 'organization_id',
+            'label' => 'label',
+            'projectPermissions' => 'project_permissions',
+            'counts' => 'counts',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at'
+        ],
+        TheAddonCredentialInformationOptional::class => [
+            'addonKey' => 'addon_key',
+            'clientKey' => 'client_key'
+        ],
+        TheAddonCredentialInformationOptional1::class => [
+            'addonKey' => 'addon_key',
+            'clientKey' => 'client_key',
+            'sharedSecret' => 'shared_secret'
+        ],
+        TheBackupScheduleSpecificationInner::class => [
+            'interval' => 'interval',
+            'count' => 'count'
+        ],
+        TheBuildConfigurationOfTheApplication::class => [
+            'flavor' => 'flavor',
+            'caches' => 'caches'
+        ],
+        TheCommandsDefinition::class => [
+            'start' => 'start',
+            'stop' => 'stop'
+        ],
+        TheCommandsToManageTheWorker::class => [
+            'start' => 'start',
+            'preStart' => 'pre_start',
+            'postStart' => 'post_start'
+        ],
+        TheCommitDistanceInfoBetweenParentAndChildEnvironments::class => [
+            'commitsAhead' => 'commits_ahead',
+            'commitsBehind' => 'commits_behind',
+            'parentRef' => 'parent_ref'
+        ],
+        TheConfigurationOfPathsManagedByTheBuildCacheValue::class => [
+            'directory' => 'directory',
+            'watch' => 'watch',
+            'allowStale' => 'allow_stale',
+            'shareBetweenApps' => 'share_between_apps'
+        ],
+        TheConfigurationOfTheRedirects::class => [
+            'expires' => 'expires',
+            'paths' => 'paths'
+        ],
+        TheContinuousProfilingConfiguration::class => [
+            'supportedRuntimes' => 'supported_runtimes'
+        ],
+        TheCronsDeploymentState::class => [
+            'enabled' => 'enabled',
+            'status' => 'status'
+        ],
+        TheDefaultResourcesForThisService::class => [
+            'cpu' => 'cpu',
+            'memory' => 'memory',
+            'cpuType' => 'cpu_type',
+            'disk' => 'disk',
+            'profileSize' => 'profile_size'
+        ],
+        TheDisksResources::class => [
+            'temporary' => 'temporary',
+            'instance' => 'instance',
+            'storage' => 'storage'
+        ],
+        TheEnvironmentDeploymentState::class => [
+            'lastDeploymentSuccessful' => 'last_deployment_successful',
+            'lastDeploymentAt' => 'last_deployment_at',
+            'lastAutoscaleUpAt' => 'last_autoscale_up_at',
+            'lastAutoscaleDownAt' => 'last_autoscale_down_at',
+            'crons' => 'crons'
+        ],
+        TheEnvironmentSizingConfiguration::class => [
+            'services' => 'services',
+            'webapps' => 'webapps',
+            'workers' => 'workers'
+        ],
+        TheHostsOfTheDeploymentTargetInner::class => [
+            'id' => 'id',
+            'type' => 'type',
+            'services' => 'services'
+        ],
+        TheHostsOfTheDeploymentTargetInner1::class => [
+            'id' => 'id',
+            'type' => 'type',
+            'services' => 'services'
+        ],
+        TheInformationAboutTheAuthor::class => [
+            'date' => 'date',
+            'name' => 'name',
+            'email' => 'email'
+        ],
+        TheInformationAboutTheCommitter::class => [
+            'date' => 'date',
+            'name' => 'name',
+            'email' => 'email'
+        ],
+        TheIssuerOfTheCertificateInner::class => [
+            'oid' => 'oid',
+            'alias' => 'alias',
+            'value' => 'value'
+        ],
+        TheMinimumResourcesForThisService::class => [
+            'cpu' => 'cpu',
+            'memory' => 'memory',
+            'cpuType' => 'cpu_type',
+            'disk' => 'disk',
+            'profileSize' => 'profile_size'
+        ],
+        TheOAuth2ConsumerInformationOptional::class => [
+            'key' => 'key'
+        ],
+        TheOAuth2ConsumerInformationOptional1::class => [
+            'key' => 'key',
+            'secret' => 'secret'
+        ],
+        TheObjectTheReferencePointsTo::class => [
+            'type' => 'type',
+            'sha' => 'sha'
+        ],
+        ThePathsToRedirectValue::class => [
+            'regexp' => 'regexp',
+            'to' => 'to',
+            'prefix' => 'prefix',
+            'appendSuffix' => 'append_suffix',
+            'code' => 'code',
+            'expires' => 'expires'
+        ],
+        TheRelationshipsOfTheApplicationToDefinedServicesValue::class => [
+            'service' => 'service',
+            'endpoint' => 'endpoint'
+        ],
+        TheSpecificationOfTheWebLocationsServedByThisApplicationValue::class => [
+            'root' => 'root',
+            'expires' => 'expires',
+            'passthru' => 'passthru',
+            'scripts' => 'scripts',
+            'allow' => 'allow',
+            'headers' => 'headers',
+            'rules' => 'rules',
+            'index' => 'index',
+            'requestBuffering' => 'request_buffering'
+        ],
+        TheTreeItemsInner::class => [
+            'path' => 'path',
+            'mode' => 'mode',
+            'type' => 'type',
+            'sha' => 'sha'
+        ],
+        TheVariablesApplyingToThisEnvironmentInner::class => [
+            'name' => 'name',
+            'isSensitive' => 'is_sensitive',
+            'isJson' => 'is_json',
+            'visibleBuild' => 'visible_build',
+            'visibleRuntime' => 'visible_runtime',
+            'value' => 'value'
+        ],
+        Ticket::class => [
+            'ticketId' => 'ticket_id',
+            'created' => 'created',
+            'updated' => 'updated',
+            'type' => 'type',
+            'subject' => 'subject',
+            'description' => 'description',
+            'priority' => 'priority',
+            'followupTid' => 'followup_tid',
+            'status' => 'status',
+            'recipient' => 'recipient',
+            'requesterId' => 'requester_id',
+            'submitterId' => 'submitter_id',
+            'assigneeId' => 'assignee_id',
+            'organizationId' => 'organization_id',
+            'collaboratorIds' => 'collaborator_ids',
+            'hasIncidents' => 'has_incidents',
+            'due' => 'due',
+            'tags' => 'tags',
+            'subscriptionId' => 'subscription_id',
+            'ticketGroup' => 'ticket_group',
+            'supportPlan' => 'support_plan',
+            'affectedUrl' => 'affected_url',
+            'queue' => 'queue',
+            'issueType' => 'issue_type',
+            'resolutionTime' => 'resolution_time',
+            'responseTime' => 'response_time',
+            'projectUrl' => 'project_url',
+            'region' => 'region',
+            'category' => 'category',
+            'environment' => 'environment',
+            'ticketSharingStatus' => 'ticket_sharing_status',
+            'applicationTicketUrl' => 'application_ticket_url',
+            'infrastructureTicketUrl' => 'infrastructure_ticket_url',
+            'jira' => 'jira',
+            'zdTicketUrl' => 'zd_ticket_url'
+        ],
+        TicketJiraInner::class => [
+            'id' => 'id',
+            'ticketId' => 'ticket_id',
+            'issueId' => 'issue_id',
+            'issueKey' => 'issue_key',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at'
+        ],
+        Tree::class => [
+            'id' => 'id',
+            'sha' => 'sha',
+            'tree' => 'tree'
+        ],
+        UpdateOrgAddonsRequest::class => [
+            'userManagement' => 'user_management',
+            'supportLevel' => 'support_level'
+        ],
+        UpdateOrgBillingAlertConfigRequest::class => [
+            'active' => 'active',
+            'config' => 'config'
+        ],
+        UpdateOrgBillingAlertConfigRequestConfig::class => [
+            'threshold' => 'threshold',
+            'mode' => 'mode'
+        ],
+        UpdateOrgMemberRequest::class => [
+            'permissions' => 'permissions'
+        ],
+        UpdateOrgProfileRequest::class => [
+            'defaultCatalog' => 'default_catalog',
+            'projectOptionsUrl' => 'project_options_url',
+            'securityContact' => 'security_contact',
+            'companyName' => 'company_name',
+            'vatNumber' => 'vat_number',
+            'billingContact' => 'billing_contact'
+        ],
+        UpdateOrgProjectRequest::class => [
+            'title' => 'title',
+            'plan' => 'plan',
+            'timezone' => 'timezone',
+            'cseNotes' => 'cse_notes',
+            'dedicatedTag' => 'dedicated_tag'
+        ],
+        UpdateOrgRequest::class => [
+            'name' => 'name',
+            'label' => 'label',
+            'country' => 'country'
+        ],
+        UpdateOrgSubscriptionRequest::class => [
+            'projectTitle' => 'project_title',
+            'plan' => 'plan',
+            'timezone' => 'timezone',
+            'environments' => 'environments',
+            'storage' => 'storage',
+            'bigDev' => 'big_dev',
+            'bigDevService' => 'big_dev_service',
+            'backups' => 'backups',
+            'observabilitySuite' => 'observability_suite',
+            'blackfire' => 'blackfire',
+            'continuousProfiling' => 'continuous_profiling',
+            'projectSupportLevel' => 'project_support_level'
+        ],
+        UpdateProfileRequest::class => [
+            'displayName' => 'display_name',
+            'username' => 'username',
+            'currentPassword' => 'current_password',
+            'password' => 'password',
+            'companyType' => 'company_type',
+            'companyName' => 'company_name',
+            'vatNumber' => 'vat_number',
+            'companyRole' => 'company_role',
+            'marketing' => 'marketing',
+            'uiColorscheme' => 'ui_colorscheme',
+            'defaultCatalog' => 'default_catalog',
+            'projectOptionsUrl' => 'project_options_url',
+            'picture' => 'picture'
+        ],
+        UpdateProjectUserAccessRequest::class => [
+            'permissions' => 'permissions'
+        ],
+        UpdateProjectsEnvironmentsDeploymentsNextRequest::class => [
+            'webapps' => 'webapps',
+            'services' => 'services',
+            'workers' => 'workers'
+        ],
+        UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue::class => [
+            'resources' => 'resources',
+            'instanceCount' => 'instance_count',
+            'disk' => 'disk'
+        ],
+        UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue::class => [
+            'resources' => 'resources',
+            'instanceCount' => 'instance_count',
+            'disk' => 'disk'
+        ],
+        UpdateSubscriptionUsageAlertsRequest::class => [
+            'alerts' => 'alerts'
+        ],
+        UpdateSubscriptionUsageAlertsRequestAlertsInner::class => [
+            'id' => 'id',
+            'active' => 'active',
+            'config' => 'config'
+        ],
+        UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig::class => [
+            'threshold' => 'threshold'
+        ],
+        UpdateTeamRequest::class => [
+            'label' => 'label',
+            'projectPermissions' => 'project_permissions'
+        ],
+        UpdateTicketRequest::class => [
+            'status' => 'status',
+            'collaboratorIds' => 'collaborator_ids',
+            'collaboratorsReplace' => 'collaborators_replace'
+        ],
+        UpdateUsageAlertsRequest::class => [
+            'alerts' => 'alerts'
+        ],
+        UpdateUserRequest::class => [
+            'username' => 'username',
+            'firstName' => 'first_name',
+            'lastName' => 'last_name',
+            'picture' => 'picture',
+            'company' => 'company',
+            'website' => 'website',
+            'country' => 'country'
+        ],
+        UpstreamRoute::class => [
+            'attributes' => 'attributes',
+            'type' => 'type',
+            'tls' => 'tls',
+            'id' => 'id',
+            'primary' => 'primary',
+            'productionUrl' => 'production_url',
+            'cache' => 'cache',
+            'ssi' => 'ssi',
+            'upstream' => 'upstream',
+            'redirects' => 'redirects',
+            'sticky' => 'sticky',
+            'to' => 'to'
+        ],
+        Usage::class => [
+            'id' => 'id',
+            'subscriptionId' => 'subscription_id',
+            'usageGroup' => 'usage_group',
+            'quantity' => 'quantity',
+            'start' => 'start'
+        ],
+        UsageAlert::class => [
+            'id' => 'id',
+            'active' => 'active',
+            'alertsSent' => 'alerts_sent',
+            'lastAlertAt' => 'last_alert_at',
+            'updatedAt' => 'updated_at',
+            'config' => 'config'
+        ],
+        UsageAlertConfig::class => [
+            'threshold' => 'threshold'
+        ],
+        UsageAlertConfigThreshold::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'unit' => 'unit'
+        ],
+        UsageGroupCurrentUsageProperties::class => [
+            'title' => 'title',
+            'type' => 'type',
+            'currentUsage' => 'current_usage',
+            'currentUsageFormatted' => 'current_usage_formatted',
+            'notCharged' => 'not_charged',
+            'freeQuantity' => 'free_quantity',
+            'freeQuantityFormatted' => 'free_quantity_formatted',
+            'dailyAverage' => 'daily_average',
+            'dailyAverageFormatted' => 'daily_average_formatted'
+        ],
+        User::class => [
+            'id' => 'id',
+            'deactivated' => 'deactivated',
+            'namespace' => 'namespace',
+            'username' => 'username',
+            'email' => 'email',
+            'emailVerified' => 'email_verified',
+            'firstName' => 'first_name',
+            'lastName' => 'last_name',
+            'picture' => 'picture',
+            'company' => 'company',
+            'website' => 'website',
+            'country' => 'country',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'consentedAt' => 'consented_at',
+            'consentMethod' => 'consent_method'
+        ],
+        UserProjectAccess::class => [
+            'userId' => 'user_id',
+            'organizationId' => 'organization_id',
+            'projectId' => 'project_id',
+            'projectTitle' => 'project_title',
+            'permissions' => 'permissions',
+            'grantedAt' => 'granted_at',
+            'updatedAt' => 'updated_at',
+            'links' => '_links'
+        ],
+        UserReference::class => [
+            'id' => 'id',
+            'username' => 'username',
+            'email' => 'email',
+            'firstName' => 'first_name',
+            'lastName' => 'last_name',
+            'picture' => 'picture',
+            'mfaEnabled' => 'mfa_enabled',
+            'ssoEnabled' => 'sso_enabled'
+        ],
+        VPNConfiguration::class => [
+            'version' => 'version',
+            'aggressive' => 'aggressive',
+            'modeconfig' => 'modeconfig',
+            'authentication' => 'authentication',
+            'gatewayIp' => 'gateway_ip',
+            'identity' => 'identity',
+            'secondIdentity' => 'second_identity',
+            'remoteIdentity' => 'remote_identity',
+            'remoteSubnets' => 'remote_subnets',
+            'ike' => 'ike',
+            'esp' => 'esp',
+            'ikelifetime' => 'ikelifetime',
+            'lifetime' => 'lifetime',
+            'margintime' => 'margintime'
+        ],
+        VerifyPhoneNumber200Response::class => [
+            'sid' => 'sid'
+        ],
+        VerifyPhoneNumberRequest::class => [
+            'channel' => 'channel',
+            'phoneNumber' => 'phone_number'
+        ],
+        Version::class => [
+            'id' => 'id',
+            'commit' => 'commit',
+            'locked' => 'locked',
+            'routing' => 'routing'
+        ],
+        VersionCreateInput::class => [
+            'routing' => 'routing'
+        ],
+        VersionPatch::class => [
+            'routing' => 'routing'
+        ],
+        Vouchers::class => [
+            'uuid' => 'uuid',
+            'vouchersTotal' => 'vouchers_total',
+            'vouchersApplied' => 'vouchers_applied',
+            'vouchersRemainingBalance' => 'vouchers_remaining_balance',
+            'currency' => 'currency',
+            'vouchers' => 'vouchers',
+            'links' => '_links'
+        ],
+        VouchersLinks::class => [
+            'self' => 'self'
+        ],
+        VouchersLinksSelf::class => [
+            'href' => 'href'
+        ],
+        VouchersVouchersInner::class => [
+            'code' => 'code',
+            'amount' => 'amount',
+            'currency' => 'currency',
+            'orders' => 'orders'
+        ],
+        VouchersVouchersInnerOrdersInner::class => [
+            'orderId' => 'order_id',
+            'status' => 'status',
+            'billingPeriodStart' => 'billing_period_start',
+            'billingPeriodEnd' => 'billing_period_end',
+            'orderTotal' => 'order_total',
+            'orderDiscount' => 'order_discount',
+            'currency' => 'currency'
+        ],
+        WebApplicationsValue::class => [
+            'resources' => 'resources',
+            'size' => 'size',
+            'disk' => 'disk',
+            'access' => 'access',
+            'relationships' => 'relationships',
+            'additionalHosts' => 'additional_hosts',
+            'mounts' => 'mounts',
+            'timezone' => 'timezone',
+            'variables' => 'variables',
+            'firewall' => 'firewall',
+            'containerProfile' => 'container_profile',
+            'operations' => 'operations',
+            'name' => 'name',
+            'type' => 'type',
+            'preflight' => 'preflight',
+            'treeId' => 'tree_id',
+            'appDir' => 'app_dir',
+            'endpoints' => 'endpoints',
+            'runtime' => 'runtime',
+            'web' => 'web',
+            'hooks' => 'hooks',
+            'crons' => 'crons',
+            'source' => 'source',
+            'build' => 'build',
+            'dependencies' => 'dependencies',
+            'stack' => 'stack',
+            'isAcrossSubmodule' => 'is_across_submodule',
+            'instanceCount' => 'instance_count',
+            'configId' => 'config_id',
+            'slugId' => 'slug_id'
+        ],
+        WebHookIntegration::class => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result',
+            'sharedKey' => 'shared_key',
+            'url' => 'url',
+            'id' => 'id'
+        ],
+        WebHookIntegrationCreateInput::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result',
+            'sharedKey' => 'shared_key'
+        ],
+        WebHookIntegrationPatch::class => [
+            'type' => 'type',
+            'url' => 'url',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result',
+            'sharedKey' => 'shared_key'
+        ],
+        WebhookIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        WorkersValue::class => [
+            'resources' => 'resources',
+            'size' => 'size',
+            'disk' => 'disk',
+            'access' => 'access',
+            'relationships' => 'relationships',
+            'additionalHosts' => 'additional_hosts',
+            'mounts' => 'mounts',
+            'timezone' => 'timezone',
+            'variables' => 'variables',
+            'firewall' => 'firewall',
+            'containerProfile' => 'container_profile',
+            'operations' => 'operations',
+            'name' => 'name',
+            'type' => 'type',
+            'preflight' => 'preflight',
+            'treeId' => 'tree_id',
+            'appDir' => 'app_dir',
+            'endpoints' => 'endpoints',
+            'runtime' => 'runtime',
+            'worker' => 'worker',
+            'app' => 'app',
+            'stack' => 'stack',
+            'instanceCount' => 'instance_count',
+            'slugId' => 'slug_id'
+        ],
+    ];
+}

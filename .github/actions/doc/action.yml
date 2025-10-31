@@ -16,7 +16,7 @@ runs:
   
     - name: Install dependencies
       shell: bash
-      run: composer install --prefer-dist --no-progress --no-interaction
+      run: composer run install:ci
   
     - name: Generate documentation (with docs generator)
       if: false

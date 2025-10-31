@@ -12,7 +12,7 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     // enables automatic import of FQNs (Fully Qualified Names)
-    $rectorConfig->importNames();
+    $rectorConfig->importNames(true, true);
 
     // optional: removes unused "use" statements
     $rectorConfig->removeUnusedImports();

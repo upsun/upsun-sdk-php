@@ -25,22 +25,10 @@ jobs:
             tools: composer
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
+        run: composer run install:ci
 
-      - name: PHPCS fix on generated Model and Api classes in src
-        run: |
-          composer run fix
-        continue-on-error: true
-
-      - name: Rector fix on generated Model and Api classes in src
-        run: |
-          composer run rector
-        continue-on-error: true
-
-      - name: Run PHP lint (phpcs)
-        # Disabled for now (because need to fix line length issues on Model class name)
-        if: false  
-        run: composer run lint
+      - name: Run PHP lint (phpcs, php-cs-fixer, rector) 
+        run: composer run lint:all
 
       - name: symfony-insight
         # Need to check how to setup symfony insight properly
@@ -69,10 +57,10 @@ jobs:
           extensions: mbstring, intl, json, curl
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
+        run: composer run install:ci
 
       - name: Run unit tests
-        run: vendor/bin/phpunit
+        run: composer run test:unit
   
   doc:
     name: Generate Documentation
@@ -99,7 +87,7 @@ jobs:
       - uses: ./.github/actions/coverage
         with:
           default-runtime-version: ${{ env.PRIMARY_PHP_VERSION }}
-          codecov-secret: ${{ secrets.CODECOV_TOKEN }}
+          codecov-secret: ${{ secrets.CODECOV_TOKEN || 'Please define a CODECOV_TOKEN in your GitHub envVars' }}
 
   build:
     name: Build Project
@@ -118,7 +106,7 @@ jobs:
           extensions: mbstring, intl, json, curl
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
+        run: composer run install:ci
 
       - name: Build project
         run: composer run build

@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\ApiException;
 use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Api\ProjectVariablesApi;
 use Upsun\Model\AcceptedResponse;
@@ -34,8 +33,6 @@ class VariablesTask extends TaskBase
     /**
      * Adds a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     name: string,
      *     value: string,
@@ -45,6 +42,9 @@ class VariablesTask extends TaskBase
      *     visibleBuild?: bool,
      *     visibleRuntime?: bool,
      * } $data
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function createProjectVariable(string $projectId, array $data): AcceptedResponse
     {
@@ -56,6 +56,7 @@ class VariablesTask extends TaskBase
      * Deletes a project variable
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function deleteProjectVariable(string $projectId, string $projectVariableId): AcceptedResponse
     {
@@ -66,6 +67,7 @@ class VariablesTask extends TaskBase
      * Gets a project variable
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getProjectVariable(string $projectId, string $projectVariableId): ProjectVariable
     {
@@ -75,8 +77,9 @@ class VariablesTask extends TaskBase
     /**
      * Gets list of project variables
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @return ProjectVariable[]
      */
     public function listProjectVariables(string $projectId): array
@@ -87,8 +90,6 @@ class VariablesTask extends TaskBase
     /**
      * Updates a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     name?: string,
      *     attributes?: array,
@@ -98,6 +99,9 @@ class VariablesTask extends TaskBase
      *     visibleBuild?: bool,
      *     visibleRuntime?: bool,
      * } $data
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function updateProjectVariable(
         string $projectId,
@@ -115,8 +119,6 @@ class VariablesTask extends TaskBase
     /**
      * Adds an environment variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     name: string,
      *     value: string,
@@ -128,6 +130,9 @@ class VariablesTask extends TaskBase
      *     isEnabled?: bool,
      *     isInheritable?: bool,
      * } $data
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function createEnvironmentVariable(
         string $projectId,
@@ -146,6 +151,7 @@ class VariablesTask extends TaskBase
      * Deletes an environment variable
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function deleteEnvironmentVariable(
         string $projectId,
@@ -163,6 +169,7 @@ class VariablesTask extends TaskBase
      * Gets an environment variable
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getEnvironmentVariable(
         string $projectId,
@@ -179,8 +186,9 @@ class VariablesTask extends TaskBase
     /**
      * Lists environment variables
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @return EnvironmentVariable[]
      */
     public function listEnvironmentVariables(string $projectId, string $environmentId): array
@@ -190,8 +198,6 @@ class VariablesTask extends TaskBase
 
     /**
      * Updates an environment variable
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
      *     name?: string,
@@ -204,6 +210,9 @@ class VariablesTask extends TaskBase
      *     isEnabled?: bool,
      *     isInheritable?: bool,
      * } $data
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function updateEnvironmentVariable(
         string $projectId,
