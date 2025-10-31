@@ -28,18 +28,18 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: PHPCS fix on generated Model and Api classes in src
+        if: false
         run: |
           composer run fix
         continue-on-error: true
 
       - name: Rector fix on generated Model and Api classes in src
+        if: false
         run: |
           composer run rector
         continue-on-error: true
 
-      - name: Run PHP lint (phpcs)
-        # Disabled for now (because need to fix line length issues on Model class name)
-        if: false  
+      - name: Run PHP lint (phpcs) 
         run: composer run lint
 
       - name: symfony-insight
@@ -99,7 +99,7 @@ jobs:
       - uses: ./.github/actions/coverage
         with:
           default-runtime-version: ${{ env.PRIMARY_PHP_VERSION }}
-          codecov-secret: ${{ secrets.CODECOV_TOKEN || 'Please define a Codecov token' }}
+          codecov-secret: ${{ secrets.CODECOV_TOKEN || 'Please define a CODECOV_TOKEN in your GitHub envVars' }}
 
   build:
     name: Build Project
