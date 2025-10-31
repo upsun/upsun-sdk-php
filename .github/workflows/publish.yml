@@ -32,7 +32,7 @@ jobs:
       - uses: ./.github/actions/coverage
         with:
           default-runtime-version: ${{ env.PRIMARY_PHP_VERSION }}
-          codecov-secret: ${{ secrets.CODECOV_TOKEN }}
+          codecov-secret: ${{ secrets.CODECOV_TOKEN || 'Please define a Codecov token' }}
 
   publish:
     name: Publish release to Packagist
@@ -64,4 +64,4 @@ jobs:
           curl -X POST \
             -H "Content-Type: application/json" \
             -d '{"repository":{"url":"https://github.com/${{ github.repository }}"}}' \
-            "https://packagist.org/api/update-package?username=platformsh-devrel&apiToken=${{ secrets.PACKAGIST_TOKEN }}"
+            "https://packagist.org/api/update-package?username=platformsh-devrel&apiToken=${{ secrets.PACKAGIST_TOKEN || 'Please define a Packagist token' }}"
