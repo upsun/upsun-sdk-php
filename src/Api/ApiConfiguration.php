@@ -2,8 +2,6 @@
 
 namespace Upsun\Api;
 
-use InvalidArgumentException;
-
 /**
  * APIConfiguration holder for the Upsun API Client.
  *
@@ -21,16 +19,6 @@ final class ApiConfiguration
     public const BOOLEAN_FORMAT_INT = 'int';
 
     private static ?ApiConfiguration $defaultConfiguration = null;
-
-    /**
-     * Associate array to store API Token(s)
-     */
-    protected array $apiTokens = [];
-
-    /**
-     * Associate array to store API prefix (e.g. Bearer)
-     */
-    protected array $apiTokenPrefixes = [];
 
     /**
      * Access token for OAuth/Bearer authentication
@@ -70,59 +58,11 @@ final class ApiConfiguration
     /**
      * Debug file location (log to STDOUT by default)
      */
-    protected string $debugFile = 'php://output';
-
-    /**
-     * Debug file location (log to STDOUT by default)
-     */
     protected string $tempFolderPath;
 
     public function __construct()
     {
         $this->tempFolderPath = sys_get_temp_dir();
-    }
-
-    /**
-     * Sets API Token
-     */
-    public function setApiToken(string $apiTokenIdentifier, string $token): self
-    {
-        $this->apiTokens[$apiTokenIdentifier] = $token;
-        return $this;
-    }
-
-    /**
-     * Gets API token
-     */
-    public function getApiToken(string $apiTokenIdentifier): ?string
-    {
-        return $this->apiTokens[$apiTokenIdentifier] ?? null;
-    }
-
-    /**
-     * Sets the prefix for API token (e.g. Bearer)
-     */
-    public function setApiTokenPrefix(string $apiTokenIdentifier, string $prefix): self
-    {
-        $this->apiTokenPrefixes[$apiTokenIdentifier] = $prefix;
-        return $this;
-    }
-
-    /**
-     * Gets API token prefix
-     */
-    public function getApiTokenPrefix(string $apiTokenIdentifier): ?string
-    {
-        return $this->apiTokenPrefixes[$apiTokenIdentifier] ?? null;
-    }
-
-    /**
-     * Sets the access token for OAuth
-     */
-    public function setAccessToken(string $accessToken): self
-    {
-        $this->accessToken = $accessToken;
-        return $this;
     }
 
     /**
@@ -134,30 +74,11 @@ final class ApiConfiguration
     }
 
     /**
-     * Sets boolean format for query string.
-     */
-    public function setBooleanFormatForQueryString(string $booleanFormat): self
-    {
-        $this->booleanFormatForQueryString = $booleanFormat;
-
-        return $this;
-    }
-
-    /**
      * Gets boolean format for query string.
      */
     public function getBooleanFormatForQueryString(): string
     {
         return $this->booleanFormatForQueryString;
-    }
-
-    /**
-     * Sets the username for HTTP basic authentication
-     */
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-        return $this;
     }
 
     /**
@@ -178,14 +99,6 @@ final class ApiConfiguration
     }
 
     /**
-     * Gets the password for HTTP basic authentication
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    /**
      * Sets the host
      */
     public function setHost(string $host): self
@@ -203,17 +116,6 @@ final class ApiConfiguration
     }
 
     /**
-     * Sets the user agent of the api client
-     *
-     * @throws InvalidArgumentException
-     */
-    public function setUserAgent(string $userAgent): self
-    {
-        $this->userAgent = $userAgent;
-        return $this;
-    }
-
-    /**
      * Gets the user agent of the api client
      */
     public function getUserAgent(): string
@@ -227,40 +129,6 @@ final class ApiConfiguration
     public function setDebug(bool $debug): self
     {
         $this->debug = $debug;
-        return $this;
-    }
-
-    /**
-     * Gets the debug flag
-     */
-    public function getDebug(): bool
-    {
-        return $this->debug;
-    }
-
-    /**
-     * Sets the debug file
-     */
-    public function setDebugFile(string $debugFile): self
-    {
-        $this->debugFile = $debugFile;
-        return $this;
-    }
-
-    /**
-     * Gets the debug file
-     */
-    public function getDebugFile(): string
-    {
-        return $this->debugFile;
-    }
-
-    /**
-     * Sets the temp folder path
-     */
-    public function setTempFolderPath(string $tempFolderPath): self
-    {
-        $this->tempFolderPath = $tempFolderPath;
         return $this;
     }
 
@@ -282,116 +150,5 @@ final class ApiConfiguration
         }
 
         return self::$defaultConfiguration;
-    }
-
-    /**
-     * Sets the default configuration instance
-     */
-    public static function setDefaultConfiguration(ApiConfiguration $config): void
-    {
-        self::$defaultConfiguration = $config;
-    }
-
-    /**
-     * Gets the essential information for debugging
-     */
-    public static function toDebugReport(): string
-    {
-        $report  = 'PHP SDK (Upsun) Debug Report:' . PHP_EOL;
-        $report .= '    OS: ' . php_uname() . PHP_EOL;
-        $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
-        $report .= '    The version of the OpenAPI document: 1.0' . PHP_EOL;
-        $report .= '    Temp Folder Path: ' . self::getDefaultConfiguration()->getTempFolderPath() . PHP_EOL;
-
-        return $report;
-    }
-
-    /**
-     * Get API token (with prefix if set)
-     */
-    public function getApiTokenWithPrefix(string $apiTokenIdentifier): ?string
-    {
-        $prefix = $this->getApiTokenPrefix($apiTokenIdentifier);
-        $apiToken = $this->getApiToken($apiTokenIdentifier);
-
-        if ($apiToken === null) {
-            return null;
-        }
-
-        if ($prefix === null) {
-            $tokenWithPrefix = $apiToken;
-        } else {
-            $tokenWithPrefix = $prefix . ' ' . $apiToken;
-        }
-
-        return $tokenWithPrefix;
-    }
-
-    /**
-     * Returns an array of host settings
-     */
-    public function getHostSettings(): array
-    {
-        return [
-            [
-                "url" => "{schemes}://api.upsun.com",
-                "description" => "The Upsun.com API gateway",
-                "variables" => [
-                    "schemes" => [
-                        "description" => "No description provided",
-                        "default_value" => "https",
-                    ]
-                ]
-            ]
-        ];
-    }
-
-    /**
-    * Returns URL based on host settings, index and variables
-    */
-    public static function getHostString(array $hostSettings, int $hostIndex, ?array $variables = null): string
-    {
-        if (null === $variables) {
-            $variables = [];
-        }
-
-        // check array index out of bound
-        if ($hostIndex < 0 || $hostIndex >= count($hostSettings)) {
-            throw new InvalidArgumentException(
-                sprintf('Invalid index %d when selecting the host. Must be less than ', $hostIndex) . count($hostSettings)
-            );
-        }
-
-        $host = $hostSettings[$hostIndex];
-        $url = $host["url"];
-
-        // go through variable and assign a value
-        foreach ($host["variables"] ?? [] as $name => $variable) {
-            // check to see if it's in the variables provided by the user
-            if (array_key_exists($name, $variables)) {
-                // check to see if the value is in the enum
-                if (!isset($variable['enum_values']) || in_array($variables[$name], $variable["enum_values"], true)) {
-                    $url = str_replace("{" . $name . "}", $variables[$name], $url);
-                } else {
-                    throw new InvalidArgumentException(
-                        sprintf('The variable `%s` in the host URL has invalid value ', $name) . $variables[$name] . ". 
-                        Must be " . join(',', $variable["enum_values"]) . "."
-                    );
-                }
-            } else {
-                // use default value
-                $url = str_replace("{" . $name . "}", $variable["default_value"], $url);
-            }
-        }
-
-        return $url;
-    }
-
-    /**
-     * Returns URL based on the index and variables
-     */
-    public function getHostFromSettings(int $index, ?array $variables = null): string
-    {
-        return self::getHostString($this->getHostSettings(), $index, $variables);
     }
 }
