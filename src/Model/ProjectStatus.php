@@ -22,10 +22,15 @@ final class ProjectStatus implements JsonSerializable
      * Possible values of this enum
      */
     public const REQUESTED = 'requested';
+
     public const ACTIVE = 'active';
+
     public const FAILED = 'failed';
+
     public const SUSPENDED = 'suspended';
+
     public const DELETED = 'deleted';
+
     private string $value;
 
     /**
@@ -35,9 +40,10 @@ final class ProjectStatus implements JsonSerializable
     {
         if (!in_array($value, self::getAllowableEnumValues(), true)) {
             throw new InvalidArgumentException(
-                "Invalid value '{$value}' for enum ProjectStatus"
+                sprintf("Invalid value '%s' for enum ProjectStatus", $value)
             );
         }
+
         $this->value = $value;
     }
 

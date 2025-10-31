@@ -38,6 +38,7 @@ final class ListOrgSubscriptions200Response implements ModelInterface, JsonSeria
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return Subscription[]|null
      */

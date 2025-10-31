@@ -101,6 +101,7 @@ final class CreateTicketRequest implements ModelInterface, JsonSerializable
     {
         return $this->category;
     }
+
     /**
      * @return CreateTicketRequestAttachmentsInner[]|null
      */

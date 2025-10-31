@@ -38,6 +38,7 @@ final class GetSubscriptionUsageAlerts200Response implements ModelInterface, Jso
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return UsageAlert[]|null
      */
@@ -46,6 +47,7 @@ final class GetSubscriptionUsageAlerts200Response implements ModelInterface, Jso
     {
         return $this->current;
     }
+
     /**
      * @return UsageAlert[]|null
      */

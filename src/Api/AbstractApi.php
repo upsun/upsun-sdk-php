@@ -138,6 +138,7 @@ abstract class AbstractApi
                     $e
                 );
             }
+
             throw $e;
         } catch (Exception $e) {
             if (isset($request)) {
@@ -148,6 +149,7 @@ abstract class AbstractApi
                     $e
                 );
             }
+
             throw $e;
         }
     }

@@ -45,6 +45,7 @@ final class ListTickets200Response implements ModelInterface, JsonSerializable
     {
         return $this->count;
     }
+
     /**
      * @return Ticket[]|null
      */

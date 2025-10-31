@@ -2,6 +2,10 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\CreateOrgInviteRequest;
+use Upsun\Model\OrganizationInvitation;
+use Upsun\Model\StringFilter;
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -24,6 +28,7 @@ use Upsun\Core\OAuthProvider;
 final class OrganizationInvitationsApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
+
     private APIConfiguration $config;
 
     public function __construct(
@@ -88,16 +93,16 @@ final class OrganizationInvitationsApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/invitations/{invitation_id}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -118,7 +123,7 @@ final class OrganizationInvitationsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling cancelOrgInvite'
             );
@@ -130,11 +135,12 @@ final class OrganizationInvitationsApi extends AbstractApi
             || (is_array($invitationId)
             && count($invitationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $invitationId 
                 when calling cancelOrgInvite'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/invitations/{invitation_id}';
         $formParams = [];
         $queryParams = [];
@@ -150,6 +156,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($invitationId !== null) {
             $resourcePath = str_replace(
@@ -179,6 +186,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -207,12 +215,13 @@ final class OrganizationInvitationsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
+
     /**
      * Invite user to an organization by email
      *
      * Creates an invitation to an organization for a user with the specified email address.
      *
-     * @return \Upsun\Model\OrganizationInvitation
+     * @return OrganizationInvitation
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -221,8 +230,8 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     public function createOrgInvite(
         string $organizationId,
-        ?\Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
-    ): \Upsun\Model\OrganizationInvitation {
+        ?CreateOrgInviteRequest $createOrgInviteRequest = null
+    ): OrganizationInvitation {
         return $this->createOrgInviteWithHttpInfo(
             $organizationId,
             $createOrgInviteRequest
@@ -232,14 +241,14 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * Invite user to an organization by email with HTTP Info
      *
-     * @return \Upsun\Model\OrganizationInvitation
+     * @return OrganizationInvitation
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function createOrgInviteWithHttpInfo(
         string $organizationId,
-        ?\Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
-    ): \Upsun\Model\OrganizationInvitation {
+        ?CreateOrgInviteRequest $createOrgInviteRequest = null
+    ): OrganizationInvitation {
         $request = $this->createOrgInviteRequest(
             $organizationId,
             $createOrgInviteRequest
@@ -254,20 +263,20 @@ final class OrganizationInvitationsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationInvitation',
+                OrganizationInvitation::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/invitations'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -279,7 +288,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     private function createOrgInviteRequest(
         string $organizationId,
-        ?\Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
+        ?CreateOrgInviteRequest $createOrgInviteRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'organizationId' is set
@@ -288,7 +297,7 @@ final class OrganizationInvitationsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling createOrgInvite'
             );
@@ -338,6 +347,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -366,12 +376,13 @@ final class OrganizationInvitationsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * List invitations to an organization
      *
      * Returns a list of invitations to an organization.
      *
-     * @return \Upsun\Model\OrganizationInvitation[]
+     * @return OrganizationInvitation[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -380,7 +391,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     public function listOrgInvites(
         string $organizationId,
-        ?\Upsun\Model\StringFilter $filterState = null,
+        ?StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -399,13 +410,13 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * List invitations to an organization with HTTP Info
      *
-     * @return \Upsun\Model\OrganizationInvitation[]
+     * @return OrganizationInvitation[]
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function listOrgInvitesWithHttpInfo(
         string $organizationId,
-        ?\Upsun\Model\StringFilter $filterState = null,
+        ?StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -433,16 +444,16 @@ final class OrganizationInvitationsApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/invitations'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -454,7 +465,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     private function listOrgInvitesRequest(
         string $organizationId,
-        ?\Upsun\Model\StringFilter $filterState = null,
+        ?StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -467,7 +478,7 @@ final class OrganizationInvitationsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listOrgInvites'
             );
@@ -477,13 +488,14 @@ final class OrganizationInvitationsApi extends AbstractApi
 
 
         if ($pageSize !== null && $pageSize > 100) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'invalid value for "$pageSize" when calling OrganizationInvitationsApi.listOrgInvites, 
                 must be smaller than or equal to 100.'
             );
         }
+
         if ($pageSize !== null && $pageSize < 1) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'invalid value for "$pageSize" when calling OrganizationInvitationsApi.listOrgInvites,
                 must be bigger than or equal to 1.'
             );
@@ -505,7 +517,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[state]'] = $filterState instanceof \DateTime
+                $queryParams['filter[state]'] = $filterState instanceof DateTime
                     ? $filterState->format(DATE_ATOM)
                     : ($filterState->getEq());
             }
@@ -520,7 +532,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                $queryParams['page[size]'] = $pageSize instanceof DateTime
                     ? $pageSize->format(DATE_ATOM)
                     : ($pageSize);
             }
@@ -535,7 +547,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                $queryParams['page[before]'] = $pageBefore instanceof DateTime
                     ? $pageBefore->format(DATE_ATOM)
                     : ($pageBefore);
             }
@@ -550,7 +562,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                $queryParams['page[after]'] = $pageAfter instanceof DateTime
                     ? $pageAfter->format(DATE_ATOM)
                     : ($pageAfter);
             }
@@ -565,7 +577,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort instanceof \DateTime
+                $queryParams['sort'] = $sort instanceof DateTime
                     ? $sort->format(DATE_ATOM)
                     : ($sort);
             }
@@ -602,6 +614,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

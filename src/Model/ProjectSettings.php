@@ -327,6 +327,7 @@ final class ProjectSettings implements ModelInterface, JsonSerializable
     {
         return $this->environmentNameStrategy;
     }
+
     /**
      * @return DataRetentionConfigurationValue[]|null
      */

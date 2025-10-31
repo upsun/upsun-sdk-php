@@ -52,6 +52,7 @@ final class FoundationDeploymentTargetCreateInput implements ModelInterface, Jso
     {
         return $this->name;
     }
+
     /**
      * @return TheHostsOfTheDeploymentTargetInner1[]|null
      */

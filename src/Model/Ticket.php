@@ -13,14 +13,15 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Ticket implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?int $ticketId = null,
-        private readonly ?\DateTime $created = null,
-        private readonly ?\DateTime $updated = null,
+        private readonly ?DateTime $created = null,
+        private readonly ?DateTime $updated = null,
         private readonly ?string $type = null,
         private readonly ?string $subject = null,
         private readonly ?string $description = null,
@@ -34,7 +35,7 @@ final class Ticket implements ModelInterface, JsonSerializable
         private readonly ?string $organizationId = null,
         private readonly ?array $collaboratorIds = [],
         private readonly ?bool $hasIncidents = null,
-        private readonly ?\DateTime $due = null,
+        private readonly ?DateTime $due = null,
         private readonly ?array $tags = [],
         private readonly ?string $subscriptionId = null,
         private readonly ?string $ticketGroup = null,
@@ -42,8 +43,8 @@ final class Ticket implements ModelInterface, JsonSerializable
         private readonly ?string $affectedUrl = null,
         private readonly ?string $queue = null,
         private readonly ?string $issueType = null,
-        private readonly ?\DateTime $resolutionTime = null,
-        private readonly ?\DateTime $responseTime = null,
+        private readonly ?DateTime $resolutionTime = null,
+        private readonly ?DateTime $responseTime = null,
         private readonly ?string $projectUrl = null,
         private readonly ?string $region = null,
         private readonly ?string $category = null,
@@ -118,7 +119,7 @@ final class Ticket implements ModelInterface, JsonSerializable
     /**
     * The time when the support ticket was created.
     */
-    public function getCreated(): ?\DateTime
+    public function getCreated(): ?DateTime
     {
         return $this->created;
     }
@@ -126,7 +127,7 @@ final class Ticket implements ModelInterface, JsonSerializable
     /**
     * The time when the support ticket was updated.
     */
-    public function getUpdated(): ?\DateTime
+    public function getUpdated(): ?DateTime
     {
         return $this->updated;
     }
@@ -235,7 +236,7 @@ final class Ticket implements ModelInterface, JsonSerializable
     /**
     * A time that the ticket is due at.
     */
-    public function getDue(): ?\DateTime
+    public function getDue(): ?DateTime
     {
         return $this->due;
     }
@@ -296,7 +297,7 @@ final class Ticket implements ModelInterface, JsonSerializable
     /**
     * Maps to zendesk field 'Resolution Time'.
     */
-    public function getResolutionTime(): ?\DateTime
+    public function getResolutionTime(): ?DateTime
     {
         return $this->resolutionTime;
     }
@@ -304,7 +305,7 @@ final class Ticket implements ModelInterface, JsonSerializable
     /**
     * Maps to zendesk field 'Response Time (time from request to reply).
     */
-    public function getResponseTime(): ?\DateTime
+    public function getResponseTime(): ?DateTime
     {
         return $this->responseTime;
     }
@@ -364,6 +365,7 @@ final class Ticket implements ModelInterface, JsonSerializable
     {
         return $this->infrastructureTicketUrl;
     }
+
     /**
     * A list of JIRA issues related to the support ticket.
      * @return TicketJiraInner[]|null

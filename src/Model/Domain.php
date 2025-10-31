@@ -11,6 +11,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Domain implements ModelInterface, JsonSerializable
@@ -19,8 +20,8 @@ final class Domain implements ModelInterface, JsonSerializable
         private readonly string $type,
         private readonly string $name,
         private readonly array $attributes,
-        private readonly ?\DateTime $createdAt,
-        private readonly ?\DateTime $updatedAt,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
         private readonly ?string $project = null,
         private readonly ?string $registeredName = null,
@@ -55,12 +56,12 @@ final class Domain implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

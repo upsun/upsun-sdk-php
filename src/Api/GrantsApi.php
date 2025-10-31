@@ -2,6 +2,9 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\StringFilter;
+use Upsun\Model\ListUserExtendedAccess200Response;
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -24,6 +27,7 @@ use Upsun\Core\OAuthProvider;
 final class GrantsApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
+
     private APIConfiguration $config;
 
     public function __construct(
@@ -53,7 +57,7 @@ final class GrantsApi extends AbstractApi
      * List extended access of the given user, which includes both individual and team access to project and
      * organization.
      *
-     * @return \Upsun\Model\ListUserExtendedAccess200Response
+     * @return ListUserExtendedAccess200Response
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -62,10 +66,10 @@ final class GrantsApi extends AbstractApi
      */
     public function listUserExtendedAccess(
         string $userId,
-        ?\Upsun\Model\StringFilter $filterResourceType = null,
-        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
-        ?\Upsun\Model\StringFilter $filterPermissions = null
-    ): \Upsun\Model\ListUserExtendedAccess200Response {
+        ?StringFilter $filterResourceType = null,
+        ?StringFilter $filterOrganizationId = null,
+        ?StringFilter $filterPermissions = null
+    ): ListUserExtendedAccess200Response {
         return $this->listUserExtendedAccessWithHttpInfo(
             $userId,
             $filterResourceType,
@@ -77,16 +81,16 @@ final class GrantsApi extends AbstractApi
     /**
      * List extended access of a user with HTTP Info
      *
-     * @return \Upsun\Model\ListUserExtendedAccess200Response
+     * @return ListUserExtendedAccess200Response
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function listUserExtendedAccessWithHttpInfo(
         string $userId,
-        ?\Upsun\Model\StringFilter $filterResourceType = null,
-        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
-        ?\Upsun\Model\StringFilter $filterPermissions = null
-    ): \Upsun\Model\ListUserExtendedAccess200Response {
+        ?StringFilter $filterResourceType = null,
+        ?StringFilter $filterOrganizationId = null,
+        ?StringFilter $filterPermissions = null
+    ): ListUserExtendedAccess200Response {
         $request = $this->listUserExtendedAccessRequest(
             $userId,
             $filterResourceType,
@@ -103,20 +107,20 @@ final class GrantsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListUserExtendedAccess200Response',
+                ListUserExtendedAccess200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/users/{user_id}/extended-access'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -128,9 +132,9 @@ final class GrantsApi extends AbstractApi
      */
     private function listUserExtendedAccessRequest(
         string $userId,
-        ?\Upsun\Model\StringFilter $filterResourceType = null,
-        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
-        ?\Upsun\Model\StringFilter $filterPermissions = null
+        ?StringFilter $filterResourceType = null,
+        ?StringFilter $filterOrganizationId = null,
+        ?StringFilter $filterPermissions = null
     ): RequestInterface {
 
         // verify the required parameter 'userId' is set
@@ -139,7 +143,7 @@ final class GrantsApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling listUserExtendedAccess'
             );
@@ -161,7 +165,7 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[resource_type]'] = $filterResourceType instanceof \DateTime
+                $queryParams['filter[resource_type]'] = $filterResourceType instanceof DateTime
                     ? $filterResourceType->format(DATE_ATOM)
                     : ($filterResourceType->getEq());
             }
@@ -176,7 +180,7 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filterOrganizationId instanceof \DateTime
+                $queryParams['filter[organization_id]'] = $filterOrganizationId instanceof DateTime
                     ? $filterOrganizationId->format(DATE_ATOM)
                     : ($filterOrganizationId->getEq());
             }
@@ -191,7 +195,7 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[permissions]'] = $filterPermissions instanceof \DateTime
+                $queryParams['filter[permissions]'] = $filterPermissions instanceof DateTime
                     ? $filterPermissions->format(DATE_ATOM)
                     : ($filterPermissions->getEq());
             }
@@ -228,6 +232,7 @@ final class GrantsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

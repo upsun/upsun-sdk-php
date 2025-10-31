@@ -38,6 +38,7 @@ final class ListRegions200Response implements ModelInterface, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return Region[]|null
      */

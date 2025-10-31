@@ -11,6 +11,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class TeamMember implements ModelInterface, JsonSerializable
@@ -18,8 +19,8 @@ final class TeamMember implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly ?string $teamId = null,
         private readonly ?string $userId = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
     ) {
     }
 
@@ -62,7 +63,7 @@ final class TeamMember implements ModelInterface, JsonSerializable
     /**
     * The date and time when the team member was created.
     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
@@ -70,7 +71,7 @@ final class TeamMember implements ModelInterface, JsonSerializable
     /**
     * The date and time when the team member was last updated.
     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

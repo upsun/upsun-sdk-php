@@ -2,6 +2,10 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\DeploymentTargetCreateInput;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\DeploymentTarget;
+use Upsun\Model\DeploymentTargetPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -24,6 +28,7 @@ use Upsun\Core\OAuthProvider;
 final class DeploymentTargetApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
+
     private APIConfiguration $config;
 
     public function __construct(
@@ -52,7 +57,7 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * Set the deployment target information for a project.
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -61,8 +66,8 @@ final class DeploymentTargetApi extends AbstractApi
      */
     public function createProjectsDeployments(
         string $projectId,
-        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        DeploymentTargetCreateInput $deploymentTargetCreateInput
+    ): AcceptedResponse {
         return $this->createProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetCreateInput
@@ -72,14 +77,14 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Create a project deployment target with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function createProjectsDeploymentsWithHttpInfo(
         string $projectId,
-        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        DeploymentTargetCreateInput $deploymentTargetCreateInput
+    ): AcceptedResponse {
         $request = $this->createProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetCreateInput
@@ -94,20 +99,20 @@ final class DeploymentTargetApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/deployments'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -119,7 +124,7 @@ final class DeploymentTargetApi extends AbstractApi
      */
     private function createProjectsDeploymentsRequest(
         string $projectId,
-        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
+        DeploymentTargetCreateInput $deploymentTargetCreateInput
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -128,7 +133,7 @@ final class DeploymentTargetApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling createProjectsDeployments'
             );
@@ -140,11 +145,12 @@ final class DeploymentTargetApi extends AbstractApi
             || (is_array($deploymentTargetCreateInput)
             && count($deploymentTargetCreateInput) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $deploymentTargetCreateInput 
                 when calling createProjectsDeployments'
             );
         }
+
         $resourcePath = '/projects/{projectId}/deployments';
         $formParams = [];
         $queryParams = [];
@@ -189,6 +195,7 @@ final class DeploymentTargetApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -217,12 +224,13 @@ final class DeploymentTargetApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Delete a single project deployment target
      *
      * Delete a single deployment target configuration associated with a specific project.
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -232,7 +240,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function deleteProjectsDeployments(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->deleteProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetConfigurationId
@@ -242,14 +250,14 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Delete a single project deployment target with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function deleteProjectsDeploymentsWithHttpInfo(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->deleteProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetConfigurationId
@@ -264,20 +272,20 @@ final class DeploymentTargetApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -298,7 +306,7 @@ final class DeploymentTargetApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling deleteProjectsDeployments'
             );
@@ -310,11 +318,12 @@ final class DeploymentTargetApi extends AbstractApi
             || (is_array($deploymentTargetConfigurationId)
             && count($deploymentTargetConfigurationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $deploymentTargetConfigurationId 
                 when calling deleteProjectsDeployments'
             );
         }
+
         $resourcePath = '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}';
         $formParams = [];
         $queryParams = [];
@@ -330,6 +339,7 @@ final class DeploymentTargetApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($deploymentTargetConfigurationId !== null) {
             $resourcePath = str_replace(
@@ -359,6 +369,7 @@ final class DeploymentTargetApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -387,12 +398,13 @@ final class DeploymentTargetApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
+
     /**
      * Get a single project deployment target
      *
      * Get a single deployment target configuration of a project.
      *
-     * @return \Upsun\Model\DeploymentTarget
+     * @return DeploymentTarget
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -402,7 +414,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function getProjectsDeployments(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): \Upsun\Model\DeploymentTarget {
+    ): DeploymentTarget {
         return $this->getProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetConfigurationId
@@ -412,14 +424,14 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Get a single project deployment target with HTTP Info
      *
-     * @return \Upsun\Model\DeploymentTarget
+     * @return DeploymentTarget
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function getProjectsDeploymentsWithHttpInfo(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): \Upsun\Model\DeploymentTarget {
+    ): DeploymentTarget {
         $request = $this->getProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetConfigurationId
@@ -434,20 +446,20 @@ final class DeploymentTargetApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\DeploymentTarget',
+                DeploymentTarget::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -468,7 +480,7 @@ final class DeploymentTargetApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsDeployments'
             );
@@ -480,11 +492,12 @@ final class DeploymentTargetApi extends AbstractApi
             || (is_array($deploymentTargetConfigurationId)
             && count($deploymentTargetConfigurationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $deploymentTargetConfigurationId 
                 when calling getProjectsDeployments'
             );
         }
+
         $resourcePath = '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}';
         $formParams = [];
         $queryParams = [];
@@ -500,6 +513,7 @@ final class DeploymentTargetApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($deploymentTargetConfigurationId !== null) {
             $resourcePath = str_replace(
@@ -529,6 +543,7 @@ final class DeploymentTargetApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -557,12 +572,13 @@ final class DeploymentTargetApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get project deployment target info
      *
      * The deployment target information for the project.
      *
-     * @return \Upsun\Model\DeploymentTarget[]
+     * @return DeploymentTarget[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -580,7 +596,7 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Get project deployment target info with HTTP Info
      *
-     * @return \Upsun\Model\DeploymentTarget[]
+     * @return DeploymentTarget[]
      *
      * @throws ApiException|ClientExceptionInterface
      */
@@ -604,16 +620,16 @@ final class DeploymentTargetApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/deployments'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -633,11 +649,12 @@ final class DeploymentTargetApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsDeployments'
             );
         }
+
         $resourcePath = '/projects/{projectId}/deployments';
         $formParams = [];
         $queryParams = [];
@@ -674,6 +691,7 @@ final class DeploymentTargetApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -702,11 +720,12 @@ final class DeploymentTargetApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Update a project deployment
      *
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -716,8 +735,8 @@ final class DeploymentTargetApi extends AbstractApi
     public function updateProjectsDeployments(
         string $projectId,
         string $deploymentTargetConfigurationId,
-        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
-    ): \Upsun\Model\AcceptedResponse {
+        DeploymentTargetPatch $deploymentTargetPatch
+    ): AcceptedResponse {
         return $this->updateProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetConfigurationId,
@@ -728,15 +747,15 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Update a project deployment with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function updateProjectsDeploymentsWithHttpInfo(
         string $projectId,
         string $deploymentTargetConfigurationId,
-        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
-    ): \Upsun\Model\AcceptedResponse {
+        DeploymentTargetPatch $deploymentTargetPatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetConfigurationId,
@@ -752,20 +771,20 @@ final class DeploymentTargetApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -778,7 +797,7 @@ final class DeploymentTargetApi extends AbstractApi
     private function updateProjectsDeploymentsRequest(
         string $projectId,
         string $deploymentTargetConfigurationId,
-        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
+        DeploymentTargetPatch $deploymentTargetPatch
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -787,7 +806,7 @@ final class DeploymentTargetApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling updateProjectsDeployments'
             );
@@ -799,7 +818,7 @@ final class DeploymentTargetApi extends AbstractApi
             || (is_array($deploymentTargetConfigurationId)
             && count($deploymentTargetConfigurationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $deploymentTargetConfigurationId 
                 when calling updateProjectsDeployments'
             );
@@ -811,11 +830,12 @@ final class DeploymentTargetApi extends AbstractApi
             || (is_array($deploymentTargetPatch)
             && count($deploymentTargetPatch) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $deploymentTargetPatch 
                 when calling updateProjectsDeployments'
             );
         }
+
         $resourcePath = '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}';
         $formParams = [];
         $queryParams = [];
@@ -831,6 +851,7 @@ final class DeploymentTargetApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($deploymentTargetConfigurationId !== null) {
             $resourcePath = str_replace(
@@ -868,6 +889,7 @@ final class DeploymentTargetApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

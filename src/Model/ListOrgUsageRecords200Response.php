@@ -38,6 +38,7 @@ final class ListOrgUsageRecords200Response implements ModelInterface, JsonSerial
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return Usage[]|null
      */

@@ -36,6 +36,7 @@ final class ListOrgInvoices200Response implements ModelInterface, JsonSerializab
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return Invoice[]|null
      */

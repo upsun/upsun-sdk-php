@@ -45,6 +45,7 @@ final class ListPlans200Response implements ModelInterface, JsonSerializable
     {
         return $this->count;
     }
+
     /**
      * @return Plan[]|null
      */

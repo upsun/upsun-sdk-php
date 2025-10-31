@@ -11,6 +11,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class OrganizationProject implements ModelInterface, JsonSerializable
@@ -32,8 +33,8 @@ final class OrganizationProject implements ModelInterface, JsonSerializable
         private readonly ?bool $locked = null,
         private readonly ?string $cseNotes = null,
         private readonly ?string $dedicatedTag = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?OrganizationProjectLinks $links = null,
     ) {
     }
@@ -204,7 +205,7 @@ final class OrganizationProject implements ModelInterface, JsonSerializable
     /**
     * The date and time when the resource was created.
     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
@@ -212,7 +213,7 @@ final class OrganizationProject implements ModelInterface, JsonSerializable
     /**
     * The date and time when the resource was last updated.
     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

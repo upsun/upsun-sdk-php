@@ -38,6 +38,7 @@ final class ListProjectTeamAccess200Response implements ModelInterface, JsonSeri
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return TeamProjectAccess[]|null
      */

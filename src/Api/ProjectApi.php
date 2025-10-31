@@ -2,6 +2,10 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Project;
+use Upsun\Model\ProjectCapabilities;
+use Upsun\Model\ProjectPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -24,6 +28,7 @@ use Upsun\Core\OAuthProvider;
 final class ProjectApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
+
     private APIConfiguration $config;
 
     public function __construct(
@@ -54,7 +59,7 @@ final class ProjectApi extends AbstractApi
      * build cache. More information on [clearing the build cache can be found in our user
      * documentation.](https://docs.upsun.com/anchors/troubleshoot/clear-build-cache/)
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -63,7 +68,7 @@ final class ProjectApi extends AbstractApi
      */
     public function actionProjectsClearBuildCache(
         string $projectId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->actionProjectsClearBuildCacheWithHttpInfo(
             $projectId
         );
@@ -72,13 +77,13 @@ final class ProjectApi extends AbstractApi
     /**
      * Clear project build cache with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function actionProjectsClearBuildCacheWithHttpInfo(
         string $projectId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->actionProjectsClearBuildCacheRequest(
             $projectId
         );
@@ -92,20 +97,20 @@ final class ProjectApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/clear_build_cache'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -125,11 +130,12 @@ final class ProjectApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling actionProjectsClearBuildCache'
             );
         }
+
         $resourcePath = '/projects/{projectId}/clear_build_cache';
         $formParams = [];
         $queryParams = [];
@@ -166,6 +172,7 @@ final class ProjectApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -194,12 +201,13 @@ final class ProjectApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Get a project
      *
      * Retrieve the details of a single project.
      *
-     * @return \Upsun\Model\Project
+     * @return Project
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -208,7 +216,7 @@ final class ProjectApi extends AbstractApi
      */
     public function getProjects(
         string $projectId
-    ): \Upsun\Model\Project {
+    ): Project {
         return $this->getProjectsWithHttpInfo(
             $projectId
         );
@@ -217,13 +225,13 @@ final class ProjectApi extends AbstractApi
     /**
      * Get a project with HTTP Info
      *
-     * @return \Upsun\Model\Project
+     * @return Project
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function getProjectsWithHttpInfo(
         string $projectId
-    ): \Upsun\Model\Project {
+    ): Project {
         $request = $this->getProjectsRequest(
             $projectId
         );
@@ -237,20 +245,20 @@ final class ProjectApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Project',
+                Project::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -270,11 +278,12 @@ final class ProjectApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjects'
             );
         }
+
         $resourcePath = '/projects/{projectId}';
         $formParams = [];
         $queryParams = [];
@@ -311,6 +320,7 @@ final class ProjectApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -339,13 +349,14 @@ final class ProjectApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get a project's capabilities
      *
      * Get a list of capabilities on a project, as defined by the billing system. For instance, one special capability
      * that could be defined on a project is large development environments.
      *
-     * @return \Upsun\Model\ProjectCapabilities
+     * @return ProjectCapabilities
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -354,7 +365,7 @@ final class ProjectApi extends AbstractApi
      */
     public function getProjectsCapabilities(
         string $projectId
-    ): \Upsun\Model\ProjectCapabilities {
+    ): ProjectCapabilities {
         return $this->getProjectsCapabilitiesWithHttpInfo(
             $projectId
         );
@@ -363,13 +374,13 @@ final class ProjectApi extends AbstractApi
     /**
      * Get a project's capabilities with HTTP Info
      *
-     * @return \Upsun\Model\ProjectCapabilities
+     * @return ProjectCapabilities
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function getProjectsCapabilitiesWithHttpInfo(
         string $projectId
-    ): \Upsun\Model\ProjectCapabilities {
+    ): ProjectCapabilities {
         $request = $this->getProjectsCapabilitiesRequest(
             $projectId
         );
@@ -383,20 +394,20 @@ final class ProjectApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ProjectCapabilities',
+                ProjectCapabilities::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}/capabilities'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -416,11 +427,12 @@ final class ProjectApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsCapabilities'
             );
         }
+
         $resourcePath = '/projects/{projectId}/capabilities';
         $formParams = [];
         $queryParams = [];
@@ -457,6 +469,7 @@ final class ProjectApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -485,12 +498,13 @@ final class ProjectApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Update a project
      *
      * Update the details of an existing project.
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -499,8 +513,8 @@ final class ProjectApi extends AbstractApi
      */
     public function updateProjects(
         string $projectId,
-        \Upsun\Model\ProjectPatch $projectPatch
-    ): \Upsun\Model\AcceptedResponse {
+        ProjectPatch $projectPatch
+    ): AcceptedResponse {
         return $this->updateProjectsWithHttpInfo(
             $projectId,
             $projectPatch
@@ -510,14 +524,14 @@ final class ProjectApi extends AbstractApi
     /**
      * Update a project with HTTP Info
      *
-     * @return \Upsun\Model\AcceptedResponse
+     * @return AcceptedResponse
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function updateProjectsWithHttpInfo(
         string $projectId,
-        \Upsun\Model\ProjectPatch $projectPatch
-    ): \Upsun\Model\AcceptedResponse {
+        ProjectPatch $projectPatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsRequest(
             $projectId,
             $projectPatch
@@ -532,20 +546,20 @@ final class ProjectApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/projects/{projectId}'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -557,7 +571,7 @@ final class ProjectApi extends AbstractApi
      */
     private function updateProjectsRequest(
         string $projectId,
-        \Upsun\Model\ProjectPatch $projectPatch
+        ProjectPatch $projectPatch
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -566,7 +580,7 @@ final class ProjectApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling updateProjects'
             );
@@ -578,11 +592,12 @@ final class ProjectApi extends AbstractApi
             || (is_array($projectPatch)
             && count($projectPatch) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectPatch 
                 when calling updateProjects'
             );
         }
+
         $resourcePath = '/projects/{projectId}';
         $formParams = [];
         $queryParams = [];
@@ -627,6 +642,7 @@ final class ProjectApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

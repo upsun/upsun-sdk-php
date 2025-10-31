@@ -55,6 +55,7 @@ final class OrganizationCarbon implements ModelInterface, JsonSerializable
     {
         return $this->meta;
     }
+
     /**
      * @return OrganizationProjectCarbon[]|null
      */

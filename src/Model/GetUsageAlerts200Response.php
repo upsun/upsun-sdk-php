@@ -38,6 +38,7 @@ final class GetUsageAlerts200Response implements ModelInterface, JsonSerializabl
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return Alert[]|null
      */
@@ -46,6 +47,7 @@ final class GetUsageAlerts200Response implements ModelInterface, JsonSerializabl
     {
         return $this->available;
     }
+
     /**
      * @return Alert[]|null
      */

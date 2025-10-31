@@ -114,6 +114,7 @@ final class CurrentUser implements ModelInterface, JsonSerializable
     {
         return $this->mail;
     }
+
     /**
     * The list of user's public SSH keys.
      * @return SSHKey[]|null
@@ -131,6 +132,7 @@ final class CurrentUser implements ModelInterface, JsonSerializable
     {
         return $this->hasKey;
     }
+
     /**
      * @return CurrentUserProjectsInner[]|null
      */
@@ -176,6 +178,7 @@ final class CurrentUser implements ModelInterface, JsonSerializable
     {
         return $this->trial;
     }
+
     /**
      * @return CurrentUserCurrentTrialInner[]|null
      */

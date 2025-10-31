@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use Throwable;
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -36,10 +37,10 @@ class ApiException extends RequestException
         $message,
         RequestInterface $request,
         ?ResponseInterface $response = null,
-        ?\Throwable $previous = null
+        ?Throwable $previous = null
     ) {
         parent::__construct($message, $request, $previous);
-        if ($response) {
+        if ($response !== null) {
             $this->responseHeaders = $response->getHeaders();
             $this->responseBody = (string) $response->getBody();
             $this->code = $response->getStatusCode();

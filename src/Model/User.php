@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class User implements ModelInterface, JsonSerializable
@@ -29,9 +30,9 @@ final class User implements ModelInterface, JsonSerializable
         private readonly string $company,
         private readonly string $website,
         private readonly string $country,
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
-        private readonly ?\DateTime $consentedAt = null,
+        private readonly DateTime $createdAt,
+        private readonly DateTime $updatedAt,
+        private readonly ?DateTime $consentedAt = null,
         private readonly ?string $consentMethod = null,
     ) {
     }
@@ -167,7 +168,7 @@ final class User implements ModelInterface, JsonSerializable
     /**
     * The date and time when the user was created.
     */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
@@ -175,7 +176,7 @@ final class User implements ModelInterface, JsonSerializable
     /**
     * The date and time when the user was last updated.
     */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }
@@ -183,7 +184,7 @@ final class User implements ModelInterface, JsonSerializable
     /**
     * The date and time when the user consented to the Terms of Service.
     */
-    public function getConsentedAt(): ?\DateTime
+    public function getConsentedAt(): ?DateTime
     {
         return $this->consentedAt;
     }

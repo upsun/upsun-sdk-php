@@ -2,6 +2,12 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\ConfirmTotpEnrollmentRequest;
+use Upsun\Model\ConfirmTotpEnrollment200Response;
+use Upsun\Model\OrganizationMFAEnforcement;
+use Upsun\Model\GetTotpEnrollment200Response;
+use Upsun\Model\SendOrgMfaRemindersRequest;
+use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -24,6 +30,7 @@ use Upsun\Core\OAuthProvider;
 final class MFAApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
+
     private APIConfiguration $config;
 
     public function __construct(
@@ -52,7 +59,7 @@ final class MFAApi extends AbstractApi
      *
      * Confirms the given TOTP enrollment.
      *
-     * @return \Upsun\Model\ConfirmTotpEnrollment200Response
+     * @return ConfirmTotpEnrollment200Response
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -61,8 +68,8 @@ final class MFAApi extends AbstractApi
      */
     public function confirmTotpEnrollment(
         string $userId,
-        ?\Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
-    ): \Upsun\Model\ConfirmTotpEnrollment200Response {
+        ?ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
+    ): ConfirmTotpEnrollment200Response {
         return $this->confirmTotpEnrollmentWithHttpInfo(
             $userId,
             $confirmTotpEnrollmentRequest
@@ -72,14 +79,14 @@ final class MFAApi extends AbstractApi
     /**
      * Confirm TOTP enrollment with HTTP Info
      *
-     * @return \Upsun\Model\ConfirmTotpEnrollment200Response
+     * @return ConfirmTotpEnrollment200Response
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function confirmTotpEnrollmentWithHttpInfo(
         string $userId,
-        ?\Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
-    ): \Upsun\Model\ConfirmTotpEnrollment200Response {
+        ?ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
+    ): ConfirmTotpEnrollment200Response {
         $request = $this->confirmTotpEnrollmentRequest(
             $userId,
             $confirmTotpEnrollmentRequest
@@ -94,20 +101,20 @@ final class MFAApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ConfirmTotpEnrollment200Response',
+                ConfirmTotpEnrollment200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/users/{user_id}/totp'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -119,7 +126,7 @@ final class MFAApi extends AbstractApi
      */
     private function confirmTotpEnrollmentRequest(
         string $userId,
-        ?\Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
+        ?ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'userId' is set
@@ -128,7 +135,7 @@ final class MFAApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling confirmTotpEnrollment'
             );
@@ -178,6 +185,7 @@ final class MFAApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -206,6 +214,7 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Disable organization MFA enforcement
      *
@@ -243,16 +252,16 @@ final class MFAApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/mfa-enforcement/disable'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -272,11 +281,12 @@ final class MFAApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling disableOrgMfaEnforcement'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/mfa-enforcement/disable';
         $formParams = [];
         $queryParams = [];
@@ -313,6 +323,7 @@ final class MFAApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -341,6 +352,7 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Enable organization MFA enforcement
      *
@@ -378,16 +390,16 @@ final class MFAApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/mfa-enforcement/enable'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -407,11 +419,12 @@ final class MFAApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling enableOrgMfaEnforcement'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/mfa-enforcement/enable';
         $formParams = [];
         $queryParams = [];
@@ -448,6 +461,7 @@ final class MFAApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -476,12 +490,13 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Get organization MFA settings
      *
      * Retrieves MFA settings for the specified organization.
      *
-     * @return \Upsun\Model\OrganizationMFAEnforcement
+     * @return OrganizationMFAEnforcement
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -490,7 +505,7 @@ final class MFAApi extends AbstractApi
      */
     public function getOrgMfaEnforcement(
         string $organizationId
-    ): \Upsun\Model\OrganizationMFAEnforcement {
+    ): OrganizationMFAEnforcement {
         return $this->getOrgMfaEnforcementWithHttpInfo(
             $organizationId
         );
@@ -499,13 +514,13 @@ final class MFAApi extends AbstractApi
     /**
      * Get organization MFA settings with HTTP Info
      *
-     * @return \Upsun\Model\OrganizationMFAEnforcement
+     * @return OrganizationMFAEnforcement
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function getOrgMfaEnforcementWithHttpInfo(
         string $organizationId
-    ): \Upsun\Model\OrganizationMFAEnforcement {
+    ): OrganizationMFAEnforcement {
         $request = $this->getOrgMfaEnforcementRequest(
             $organizationId
         );
@@ -519,20 +534,20 @@ final class MFAApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationMFAEnforcement',
+                OrganizationMFAEnforcement::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/mfa-enforcement'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -552,11 +567,12 @@ final class MFAApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getOrgMfaEnforcement'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/mfa-enforcement';
         $formParams = [];
         $queryParams = [];
@@ -593,6 +609,7 @@ final class MFAApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -621,12 +638,13 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get information about TOTP enrollment
      *
      * Retrieves TOTP enrollment information.
      *
-     * @return \Upsun\Model\GetTotpEnrollment200Response
+     * @return GetTotpEnrollment200Response
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -635,7 +653,7 @@ final class MFAApi extends AbstractApi
      */
     public function getTotpEnrollment(
         string $userId
-    ): \Upsun\Model\GetTotpEnrollment200Response {
+    ): GetTotpEnrollment200Response {
         return $this->getTotpEnrollmentWithHttpInfo(
             $userId
         );
@@ -644,13 +662,13 @@ final class MFAApi extends AbstractApi
     /**
      * Get information about TOTP enrollment with HTTP Info
      *
-     * @return \Upsun\Model\GetTotpEnrollment200Response
+     * @return GetTotpEnrollment200Response
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function getTotpEnrollmentWithHttpInfo(
         string $userId
-    ): \Upsun\Model\GetTotpEnrollment200Response {
+    ): GetTotpEnrollment200Response {
         $request = $this->getTotpEnrollmentRequest(
             $userId
         );
@@ -664,20 +682,20 @@ final class MFAApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\GetTotpEnrollment200Response',
+                GetTotpEnrollment200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/users/{user_id}/totp'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -697,11 +715,12 @@ final class MFAApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling getTotpEnrollment'
             );
         }
+
         $resourcePath = '/users/{user_id}/totp';
         $formParams = [];
         $queryParams = [];
@@ -738,6 +757,7 @@ final class MFAApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -766,12 +786,13 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Re-create recovery codes
      *
      * Re-creates recovery codes for the MFA enrollment.
      *
-     * @return \Upsun\Model\ConfirmTotpEnrollment200Response
+     * @return ConfirmTotpEnrollment200Response
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -780,7 +801,7 @@ final class MFAApi extends AbstractApi
      */
     public function recreateRecoveryCodes(
         string $userId
-    ): \Upsun\Model\ConfirmTotpEnrollment200Response {
+    ): ConfirmTotpEnrollment200Response {
         return $this->recreateRecoveryCodesWithHttpInfo(
             $userId
         );
@@ -789,13 +810,13 @@ final class MFAApi extends AbstractApi
     /**
      * Re-create recovery codes with HTTP Info
      *
-     * @return \Upsun\Model\ConfirmTotpEnrollment200Response
+     * @return ConfirmTotpEnrollment200Response
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function recreateRecoveryCodesWithHttpInfo(
         string $userId
-    ): \Upsun\Model\ConfirmTotpEnrollment200Response {
+    ): ConfirmTotpEnrollment200Response {
         $request = $this->recreateRecoveryCodesRequest(
             $userId
         );
@@ -809,20 +830,20 @@ final class MFAApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ConfirmTotpEnrollment200Response',
+                ConfirmTotpEnrollment200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/users/{user_id}/codes'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -842,11 +863,12 @@ final class MFAApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling recreateRecoveryCodes'
             );
         }
+
         $resourcePath = '/users/{user_id}/codes';
         $formParams = [];
         $queryParams = [];
@@ -883,6 +905,7 @@ final class MFAApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -911,12 +934,13 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Send MFA reminders to organization members
      *
      * Sends a reminder about setting up MFA to the specified organization members.
      *
-     * @return array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>
+     * @return array<string, SendOrgMfaReminders200ResponseValue>
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -925,7 +949,7 @@ final class MFAApi extends AbstractApi
      */
     public function sendOrgMfaReminders(
         string $organizationId,
-        ?\Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
+        ?SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
     ): array {
         return $this->sendOrgMfaRemindersWithHttpInfo(
             $organizationId,
@@ -936,13 +960,13 @@ final class MFAApi extends AbstractApi
     /**
      * Send MFA reminders to organization members with HTTP Info
      *
-     * @return array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>
+     * @return array<string, SendOrgMfaReminders200ResponseValue>
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function sendOrgMfaRemindersWithHttpInfo(
         string $organizationId,
-        ?\Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
+        ?SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
     ): array {
         $request = $this->sendOrgMfaRemindersRequest(
             $organizationId,
@@ -962,16 +986,16 @@ final class MFAApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/organizations/{organization_id}/mfa/remind'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -983,7 +1007,7 @@ final class MFAApi extends AbstractApi
      */
     private function sendOrgMfaRemindersRequest(
         string $organizationId,
-        ?\Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
+        ?SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'organizationId' is set
@@ -992,7 +1016,7 @@ final class MFAApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling sendOrgMfaReminders'
             );
@@ -1042,6 +1066,7 @@ final class MFAApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -1070,6 +1095,7 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Withdraw TOTP enrollment
      *
@@ -1107,16 +1133,16 @@ final class MFAApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/users/{user_id}/totp'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -1136,11 +1162,12 @@ final class MFAApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling withdrawTotpEnrollment'
             );
         }
+
         $resourcePath = '/users/{user_id}/totp';
         $formParams = [];
         $queryParams = [];
@@ -1177,6 +1204,7 @@ final class MFAApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

@@ -43,6 +43,7 @@ final class DefaultConfig1 implements ModelInterface, JsonSerializable
     {
         return $this->manualCount;
     }
+
     /**
      * @return TheBackupScheduleSpecificationInner[]|null
      */

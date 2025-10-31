@@ -40,6 +40,7 @@ final class TheEnvironmentSizingConfiguration implements ModelInterface, JsonSer
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
     /**
      * @return ServicesValue1[]
      */
@@ -48,6 +49,7 @@ final class TheEnvironmentSizingConfiguration implements ModelInterface, JsonSer
     {
         return $this->services;
     }
+
     /**
      * @return ServicesValue1[]
      */
@@ -56,6 +58,7 @@ final class TheEnvironmentSizingConfiguration implements ModelInterface, JsonSer
     {
         return $this->webapps;
     }
+
     /**
      * @return ServicesValue1[]
      */

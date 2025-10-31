@@ -2,6 +2,8 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\GetUsageAlerts200Response;
+use Upsun\Model\UpdateUsageAlertsRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -24,6 +26,7 @@ use Upsun\Core\OAuthProvider;
 final class AlertsApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
+
     private APIConfiguration $config;
 
     public function __construct(
@@ -51,7 +54,7 @@ final class AlertsApi extends AbstractApi
      * Get usage alerts for a subscription
      *
      *
-     * @return \Upsun\Model\GetUsageAlerts200Response
+     * @return GetUsageAlerts200Response
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -60,7 +63,7 @@ final class AlertsApi extends AbstractApi
      */
     public function getUsageAlerts(
         string $subscriptionId
-    ): \Upsun\Model\GetUsageAlerts200Response {
+    ): GetUsageAlerts200Response {
         return $this->getUsageAlertsWithHttpInfo(
             $subscriptionId
         );
@@ -69,13 +72,13 @@ final class AlertsApi extends AbstractApi
     /**
      * Get usage alerts for a subscription with HTTP Info
      *
-     * @return \Upsun\Model\GetUsageAlerts200Response
+     * @return GetUsageAlerts200Response
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function getUsageAlertsWithHttpInfo(
         string $subscriptionId
-    ): \Upsun\Model\GetUsageAlerts200Response {
+    ): GetUsageAlerts200Response {
         $request = $this->getUsageAlertsRequest(
             $subscriptionId
         );
@@ -89,20 +92,20 @@ final class AlertsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\GetUsageAlerts200Response',
+                GetUsageAlerts200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/alerts/subscriptions/{subscriptionId}/usage'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -122,11 +125,12 @@ final class AlertsApi extends AbstractApi
             || (is_array($subscriptionId)
             && count($subscriptionId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $subscriptionId 
                 when calling getUsageAlerts'
             );
         }
+
         $resourcePath = '/alerts/subscriptions/{subscriptionId}/usage';
         $formParams = [];
         $queryParams = [];
@@ -163,6 +167,7 @@ final class AlertsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -191,11 +196,12 @@ final class AlertsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Update usage alerts.
      *
      *
-     * @return \Upsun\Model\GetUsageAlerts200Response
+     * @return GetUsageAlerts200Response
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response
@@ -204,8 +210,8 @@ final class AlertsApi extends AbstractApi
      */
     public function updateUsageAlerts(
         string $subscriptionId,
-        ?\Upsun\Model\UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
-    ): \Upsun\Model\GetUsageAlerts200Response {
+        ?UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
+    ): GetUsageAlerts200Response {
         return $this->updateUsageAlertsWithHttpInfo(
             $subscriptionId,
             $updateUsageAlertsRequest
@@ -215,14 +221,14 @@ final class AlertsApi extends AbstractApi
     /**
      * Update usage alerts. with HTTP Info
      *
-     * @return \Upsun\Model\GetUsageAlerts200Response
+     * @return GetUsageAlerts200Response
      *
      * @throws ApiException|ClientExceptionInterface
      */
     private function updateUsageAlertsWithHttpInfo(
         string $subscriptionId,
-        ?\Upsun\Model\UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
-    ): \Upsun\Model\GetUsageAlerts200Response {
+        ?UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
+    ): GetUsageAlerts200Response {
         $request = $this->updateUsageAlertsRequest(
             $subscriptionId,
             $updateUsageAlertsRequest
@@ -237,20 +243,20 @@ final class AlertsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\GetUsageAlerts200Response',
+                GetUsageAlerts200Response::class,
                 $request,
                 $response
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
-                    $e->getCode(),
+                    $exception->getCode(),
                     '/alerts/subscriptions/{subscriptionId}/usage'
                 ),
                 $request,
                 $response ?? null,
-                $e
+                $exception
             );
         }
     }
@@ -262,7 +268,7 @@ final class AlertsApi extends AbstractApi
      */
     private function updateUsageAlertsRequest(
         string $subscriptionId,
-        ?\Upsun\Model\UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
+        ?UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'subscriptionId' is set
@@ -271,7 +277,7 @@ final class AlertsApi extends AbstractApi
             || (is_array($subscriptionId)
             && count($subscriptionId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $subscriptionId 
                 when calling updateUsageAlerts'
             );
@@ -321,6 +327,7 @@ final class AlertsApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
