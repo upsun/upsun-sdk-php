@@ -5,14 +5,13 @@ namespace Upsun\Tests\Core;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\OrganizationInvitation;
 use Upsun\Model\ProjectInvitation;
-use PHPUnit\Framework\TestCase;
 use Upsun\Core\Tasks\InvitationsTask;
 use Upsun\UpsunClient;
 
@@ -33,14 +32,14 @@ class InvitationsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $projectInvitationApi = new ProjectInvitationsApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $upsunClient = $this->createMock(UpsunClient::class);

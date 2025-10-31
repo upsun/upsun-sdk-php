@@ -2,7 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentTypeApi;

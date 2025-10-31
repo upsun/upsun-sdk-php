@@ -14,11 +14,11 @@ use Upsun\Api\ProjectActivityApi;
 use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\SourceOperationsApi;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentTypeApi;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
@@ -53,28 +53,28 @@ class EnvironmentsTaskTest extends BaseTestCase
         $oauthProvider = $this->createMock(OAuthProvider::class);
         $upsunClient = $this->createMock(UpsunClient::class);
 
-        $environmentApi = new EnvironmentApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration());
+        $environmentApi = new EnvironmentApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration());
         $environmentTypeApi = new EnvironmentTypeApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
-        $deploymentApi = new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration());
+        $deploymentApi = new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration());
 
         // Activity Task init
         $projectActivityApi = new ProjectActivityApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $environmentActivityApi = new EnvironmentActivityApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $activitiesTask = new class (
@@ -90,7 +90,7 @@ class EnvironmentsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $backupsTask = new class (
@@ -105,14 +105,14 @@ class EnvironmentsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $projectVariablesApi = new ProjectVariablesApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $variablesTask = new class (
@@ -128,7 +128,7 @@ class EnvironmentsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $routesTask = new class (
@@ -143,7 +143,7 @@ class EnvironmentsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $domainsTask = new class (
@@ -158,7 +158,7 @@ class EnvironmentsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $sourcesTask = new class (

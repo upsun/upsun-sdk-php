@@ -3,7 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use BadMethodCallException;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\APITokensApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\GrantsApi;

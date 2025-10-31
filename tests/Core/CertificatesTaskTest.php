@@ -5,9 +5,9 @@ namespace Upsun\Tests\Core;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\CertManagementApi;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Certificate;
@@ -32,7 +32,7 @@ class CertificatesTaskTest extends BaseTestCase
 
         $this->task = new class (
             $upsunClient,
-            new CertManagementApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new CertManagementApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
         ) extends CertificatesTask {
         };
     }

@@ -2,7 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
 use Upsun\Model\CreateTeamMemberRequest;

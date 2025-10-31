@@ -6,7 +6,7 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\SourceOperationsApi;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Core\Tasks\SourceOperationsTask;
@@ -31,7 +31,7 @@ class SourceOperationsTaskTest extends BaseTestCase
 
         $this->task = new class (
             $upsunClient,
-            new SourceOperationsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new SourceOperationsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends SourceOperationsTask {
         };
     }

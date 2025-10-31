@@ -5,7 +5,7 @@ namespace Upsun\Core\Tasks;
 use Upsun\Api\AddOnsApi;
 use Upsun\Model\ListOrgs200Response;
 use DateTime;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MFAApi;
 use Upsun\Api\OrdersApi;

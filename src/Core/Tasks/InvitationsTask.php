@@ -2,7 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
 use Upsun\Model\CreateOrgInviteRequest;

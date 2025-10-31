@@ -5,7 +5,7 @@ namespace Upsun\Tests\Core;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\RoutesTask;
 use Upsun\UpsunClient;
@@ -29,7 +29,7 @@ class RoutesTaskTest extends BaseTestCase
 
         $this->routesTask = new class (
             $upsunClient,
-            new RoutingApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new RoutingApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends RoutesTask {
         };
     }

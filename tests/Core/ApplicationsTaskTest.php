@@ -7,7 +7,7 @@ use Upsun\Api\DeploymentApi;
 use Upsun\Core\Tasks\ApplicationsTask;
 use Upsun\UpsunClient;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Nyholm\Psr7\Factory\Psr17Factory;
 
@@ -28,7 +28,7 @@ class ApplicationsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $upsunClient = $this->createMock(UpsunClient::class);

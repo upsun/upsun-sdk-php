@@ -2,7 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\SourceOperationsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\EnvironmentSourceOperation;

@@ -15,6 +15,7 @@ additionalProperties:
   testsBasePath: tests
   composerVendor: upsun
   basePath: https://api.upsun.com
+  docUrl: https://docs.upsun.com
   composerProject: upsun-sdk-php
   licenseName: MIT
   composerPackageName: upsun/upsun-sdk-php
@@ -22,7 +23,10 @@ additionalProperties:
   developerOrganization: Upsun Advocacy Team
   developerOrganizationUrl: https://www.upsun.com
   sdkDescription: The official Upsun SDK for PHP
-  sdkLongDescription: The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.\nFor more information, read [the documentation](https://docs.upsun.com).
+  sdkLongDescription: |
+    The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.
+    
+    For more information, read [the documentation](https://docs.upsun.com/api).
   escapedInvokerPackage: "Upsun\\"
   coreTestPath: ./tests/Core
   generateInterfaces: true
@@ -38,7 +42,21 @@ additionalProperties:
   generateEnums: true
   enumClassPrefix: true
   sortModelPropertiesByRequiredFlag: true
-
+  composerAuthors: |
+    [
+            {
+                "name": "Florent HUCK",
+                "email": "florent.huck@upsun.com"
+            },
+            {
+                "name": "Mickael GAILLARD",
+                "email": "mickael.gaillard@upsun.com"
+            },
+            {
+                "name": "Upsun Advocacy Team",
+                "homepage": "https://www.upsun.com"
+            }
+        ],
 files:
   abstract_api.mustache:
     templateType: SupportingFiles
@@ -48,16 +66,31 @@ files:
     templateType: SupportingFiles
     destinationFilename: OAuthProvider.php
     folder: src/Core
-  ObjectAttributesMapper.mustache:
+  ApiObjectAttributesMapper.mustache:
     templateType: SupportingFiles
-    destinationFilename: ObjectAttributesMapper.php
-    folder: src/
-  ObjectOpenApiFormatsMapper.mustache:
+    destinationFilename: ApiObjectAttributesMapper.php
+    folder: src/Api/Serializer/
+  ApiObjectFormatsMapper.mustache:
     templateType: SupportingFiles
-    destinationFilename: ObjectOpenApiFormatsMapper.php
-    folder: src/
-  ObjectOpenApiTypesMapper.mustache:
+    destinationFilename: ApiObjectFormatsMapper.php
+    folder: src/Api/Serializer/
+  ApiObjectTypesMapper.mustache:
     templateType: SupportingFiles
-    destinationFilename: ObjectOpenApiTypesMapper.php
-    folder: src/
-
+    destinationFilename: ApiObjectTypesMapper.php
+    folder: src/Api/Serializer/
+  Configuration.mustache:
+    templateType: SupportingFiles
+    destinationFilename: src/Api/ApiConfiguration.php
+  ObjectSerializer.mustache:
+    templateType: SupportingFiles
+    destinationFilename: ObjectSerializer.php
+    folder: src/Api/Serializer/
+  ApiException.mustache:
+    templateType: SupportingFiles
+    destinationFilename: ApiException.php
+    folder: src/Api/
+  HeaderSelector.mustache:
+    templateType: SupportingFiles
+    destinationFilename: ApiHeaderSelector.php
+    folder: src/Api/
+    

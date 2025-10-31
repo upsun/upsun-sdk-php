@@ -3,7 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\SupportApi;
 use Upsun\Model\CreateTicketRequest;

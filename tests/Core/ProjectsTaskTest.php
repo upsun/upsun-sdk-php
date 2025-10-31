@@ -42,7 +42,7 @@ use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
 use Upsun\Api\VouchersApi;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\ProjectApi;
@@ -51,7 +51,7 @@ use Upsun\Api\RepositoryApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\SystemInformationApi;
 use Upsun\Api\ThirdPartyIntegrationsApi;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
@@ -117,66 +117,66 @@ class ProjectsTaskTest extends BaseTestCase
 
         $this->projectsTask = new class (
             $upsunClient,
-            new ProjectApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new ProjectSettingsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new DeploymentTargetApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new RepositoryApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new SystemInformationApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new ThirdPartyIntegrationsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new SubscriptionsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new ProjectApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new ProjectSettingsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new DeploymentTargetApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new RepositoryApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new SystemInformationApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new ThirdPartyIntegrationsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new SubscriptionsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
         ) extends ProjectsTask {
         };
 
         $upsunClient->invitations = new class (
             $upsunClient,
-            new OrganizationInvitationsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new ProjectInvitationsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new OrganizationInvitationsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new ProjectInvitationsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
         ) extends InvitationsTask {
         };
 
         $upsunClient->variables = new class (
             $upsunClient,
-            new ProjectVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new EnvironmentVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new ProjectVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new EnvironmentVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
         ) extends VariablesTask {
         };
 
         $upsunClient->activities = new class (
             $upsunClient,
-            new ProjectActivityApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new EnvironmentActivityApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new ProjectActivityApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new EnvironmentActivityApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends ActivitiesTask {
         };
 
         $upsunClient->applications = new class (
             $upsunClient,
-            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends ApplicationsTask {
         };
 
         $upsunClient->backups = new class (
             $upsunClient,
-            new EnvironmentBackupsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new EnvironmentBackupsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends BackupsTask {
         };
 
         $upsunClient->certificates = new class (
             $upsunClient,
-            new CertManagementApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new CertManagementApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends CertificatesTask {
         };
 
         $upsunClient->domains = new class (
             $upsunClient,
-            new DomainManagementApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new DomainManagementApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends DomainsTask {
         };
 
         $upsunClient->environments = new class (
             $upsunClient,
-            new EnvironmentApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new EnvironmentTypeApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new EnvironmentApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new EnvironmentTypeApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends EnvironmentsTask {
         };
 
@@ -192,23 +192,23 @@ class ProjectsTaskTest extends BaseTestCase
 
         $upsunClient->operations = new class (
             $upsunClient,
-            new RuntimeOperationsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new RuntimeOperationsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends OperationsTask {
         };
 
         $upsunClient->organizations = new class (
             $upsunClient,
-            new OrganizationsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new OrganizationProjectsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new OrganizationMembersApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new SubscriptionsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new InvoicesApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new MFAApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new OrdersApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new ProfilesApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new RecordsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new VouchersApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new AddOnsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new OrganizationsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new OrganizationProjectsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new OrganizationMembersApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new SubscriptionsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new InvoicesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new MFAApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new OrdersApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new ProfilesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new RecordsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new VouchersApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new AddOnsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends OrganizationsTask {
         };
 
@@ -216,58 +216,58 @@ class ProjectsTaskTest extends BaseTestCase
 
         $upsunClient->regions = new class (
             $upsunClient,
-            new RegionsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new RegionsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends RegionsTask {
         };
 
         $upsunClient->resources = new class (
             $upsunClient,
-            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends ResourcesTask {
         };
 
         $upsunClient->routes = new class (
             $upsunClient,
-            new RoutingApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new RoutingApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends RoutesTask {
         };
 
         $upsunClient->sourceOperations = new class (
             $upsunClient,
-            new SourceOperationsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new SourceOperationsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends SourceOperationsTask {
         };
 
         $upsunClient->teams = new class (
             $upsunClient,
-            new TeamsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new TeamAccessApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new TeamsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new TeamAccessApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends TeamsTask {
         };
 
         $upsunClient->supportTickets = new class (
             $upsunClient,
-            new DefaultApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new SupportApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new DefaultApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new SupportApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends SupportTicketsTask {
         };
 
         $upsunClient->users = new class (
             $upsunClient,
-            new UsersApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new UserProfilesApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new UserAccessApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new APITokensApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new ConnectionsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new GrantsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new MFAApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new PhoneNumberApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new UsersApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new UserProfilesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new UserAccessApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new APITokensApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new ConnectionsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new GrantsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new MFAApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new PhoneNumberApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends UsersTask {
         };
 
         $upsunClient->workers = new class (
             $upsunClient,
-            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends WorkersTask {
         };
     }

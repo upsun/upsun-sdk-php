@@ -5,13 +5,13 @@ namespace Upsun\Tests\Core;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\RegionsTask;
 use Upsun\UpsunClient;
 use Upsun\Api\RegionsApi;
 use Upsun\Model\Region;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 
 class RegionsTaskTest extends BaseTestCase
 {
@@ -31,7 +31,7 @@ class RegionsTaskTest extends BaseTestCase
 
         $this->regionsTask = new class (
             $upsunClient,
-            new RegionsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
+            new RegionsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration())
         ) extends RegionsTask {
         };
     }

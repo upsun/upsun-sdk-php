@@ -6,7 +6,7 @@ use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\Activity;
 use Upsun\Core\Tasks\ActivitiesTask;
@@ -30,14 +30,14 @@ class ActivitiesTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $environmentActivityApi = new EnvironmentActivityApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $upsunClient = $this->createMock(UpsunClient::class);

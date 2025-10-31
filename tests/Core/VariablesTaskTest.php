@@ -5,7 +5,7 @@ namespace Upsun\Tests\Core;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\VariablesTask;
 use Upsun\Api\ProjectVariablesApi;
@@ -13,7 +13,7 @@ use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\ProjectVariable;
 use Upsun\Model\EnvironmentVariable;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\UpsunClient;
 
 class VariablesTaskTest extends BaseTestCase
@@ -34,8 +34,8 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->variablesTask = new class (
             $upsunClient,
-            new ProjectVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new EnvironmentVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new ProjectVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new EnvironmentVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
         ) extends VariablesTask {
         };
     }

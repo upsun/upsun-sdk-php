@@ -32,7 +32,7 @@ use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
 use Upsun\Api\VouchersApi;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Address;
@@ -84,56 +84,56 @@ class OrganizationsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $userProfilesApi = new UserProfilesApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $userAccessApi = new UserAccessApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $apiTokensApi = new APITokensApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $connectionsApi = new ConnectionsApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $grantsApi = new GrantsApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $mfaApi = new MFAApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $phoneNumberApi = new PhoneNumberApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $usersTask = new class (
@@ -156,49 +156,49 @@ class OrganizationsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $projectSettingsApi = new ProjectSettingsApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $deploymentTargetApi = new DeploymentTargetApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $repositoryApi = new RepositoryApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $systemInfoApi = new SystemInformationApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $subscriptionsApi = new SubscriptionsApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $projectsTask = new class (
@@ -220,14 +220,14 @@ class OrganizationsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $teamAccessApi = new TeamAccessApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $teamsTask = new class (
@@ -244,70 +244,70 @@ class OrganizationsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $organizationProjectsApi = new OrganizationProjectsApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $organizationMembersApi = new OrganizationMembersApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $invoicesApi = new InvoicesApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $mfaApi = new MFAApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $ordersApi = new OrdersApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $profilesApi = new ProfilesApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $recordsApi = new RecordsApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $vouchersApi = new VouchersApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $addsOnApi = new AddOnsApi(
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $this->organizationsTask = new class (

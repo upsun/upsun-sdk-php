@@ -5,13 +5,13 @@ namespace Upsun\Tests\Core;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\WorkersTask;
 use Upsun\Api\DeploymentApi;
 use Upsun\Model\WorkersValue;
 use Upsun\UpsunClient;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 
 class WorkersTaskTest extends BaseTestCase
 {
@@ -31,7 +31,7 @@ class WorkersTaskTest extends BaseTestCase
 
         $this->workersTask = new class (
             $upsunClient,
-            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
         ) extends WorkersTask {
         };
     }

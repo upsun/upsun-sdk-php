@@ -2,7 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Backup;

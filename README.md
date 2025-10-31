@@ -1,23 +1,20 @@
 # Upsun SDK PHP
 
-The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.\nFor more information, read [the documentation](https://docs.upsun.com).
+The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.
+
+For more information, read [the documentation](https://docs.upsun.com/api).
+
 
 > [!CAUTION]
 > This project is currently in **Beta**, meaning features and APIs may evolve over time.
 >
 > Please report bugs or request new features by creating a GitHub issue.
 
-<p align="center">
-    <a href="https://github.com/upsun/upsun-sdk-php/issues">
-        <img src="https://img.shields.io/github/issues/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Issues" alt="Open issues" />
-    </a>&nbsp&nbsp
-    <a href="https://github.com/upsun/upsun-sdk-php/pulls">
-        <img src="https://img.shields.io/github/issues-pr/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Pull%20requests" alt="Open PRs" />
-    </a>&nbsp&nbsp
-    <a href="https://github.com/upsun/upsun-sdk-php/blob/master/LICENSE">
-        <img src="https://img.shields.io/static/v1?label=License&message=MIT&style=for-the-badge&labelColor=f4f2f3&color=ffd9d9" alt="License" />
-    </a>
-</p>
+<hr/>
+
+[![Issues](https://img.shields.io/github/issues/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Issues)](https://github.com/upsun/upsun-sdk-php/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Pull%20requests)](https://github.com/upsun/upsun-sdk-php/pulls)
+[![License](https://img.shields.io/static/v1?label=License&message=MIT&style=for-the-badge&labelColor=f4f2f3&color=ffd9d9)](https://github.com/upsun/upsun-sdk-php/blob/master/LICENSE)
 
 <hr/>
 

@@ -5,9 +5,9 @@ namespace Upsun\Tests\Core;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Api\DomainManagementApi;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Core\Tasks\DomainsTask;
@@ -30,7 +30,7 @@ class DomainsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $upsunClient = $this->createMock(UpsunClient::class);

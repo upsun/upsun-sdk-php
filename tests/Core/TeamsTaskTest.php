@@ -2,8 +2,8 @@
 
 namespace Upsun\Tests\Core;
 
-use Upsun\ApiException;
-use Upsun\Configuration;
+use Upsun\Api\ApiException;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Api\TeamsApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Model\{ListProjectTeamAccess200Response,
@@ -37,8 +37,8 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->task = new class (
             $upsunClient,
-            new TeamsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new TeamAccessApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new TeamsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new TeamAccessApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
         ) extends TeamsTask {
         };
     }
@@ -853,7 +853,7 @@ class TeamsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->expectException(\Upsun\ApiException::class);
+        $this->expectException(ApiException::class);
 
         $this->task->getTeamProjectAccess($teamId, $projectId);
     }
@@ -936,7 +936,7 @@ class TeamsTaskTest extends BaseTestCase
 
         $result = $this->task->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
 
-        $this->assertInstanceOf( ListProjectTeamAccess200Response::class, $result);
+        $this->assertInstanceOf(ListProjectTeamAccess200Response::class, $result);
         $this->assertCount(2, $result->getItems());
         $this->assertEquals($teamId, $result->getItems()[0]->getTeamId());
         $this->assertEquals('proj_001', $result->getItems()[0]->getProjectId());

@@ -5,8 +5,8 @@ namespace Upsun\Tests\Core;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Configuration;
-use Upsun\ApiException;
+use Upsun\Api\ApiConfiguration;
+use Upsun\Api\ApiException;
 use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
@@ -32,7 +32,7 @@ class BackupsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $upsunClient = $this->createMock(UpsunClient::class);

@@ -12,7 +12,7 @@ use Upsun\Api\RepositoryApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\SystemInformationApi;
 use Upsun\Api\ThirdPartyIntegrationsApi;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ProjectsTask;
 use Upsun\Core\Tasks\SupportTicketsTask;
@@ -41,20 +41,20 @@ class SupportTicketsTaskTest extends BaseTestCase
 
         $upsunClient->projects = new class (
             $upsunClient,
-            new ProjectApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new ProjectSettingsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new DeploymentTargetApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new RepositoryApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new SystemInformationApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new ThirdPartyIntegrationsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new SubscriptionsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new ProjectApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new ProjectSettingsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new DeploymentTargetApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new RepositoryApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new SystemInformationApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new ThirdPartyIntegrationsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new SubscriptionsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
         ) extends ProjectsTask {
         };
 
         $this->task = new class (
             $upsunClient,
-            new DefaultApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new SupportApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new DefaultApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new SupportApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
         ) extends SupportTicketsTask {
         };
     }

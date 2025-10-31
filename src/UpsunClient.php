@@ -6,6 +6,7 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Symfony\Component\HttpClient\Psr18Client;
 use Upsun\Api\AddOnsApi;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Api\APITokensApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
@@ -83,7 +84,7 @@ class UpsunClient
 {
     public ClientInterface $apiClient;
 
-    public Configuration $apiConfig;
+    public ApiConfiguration $apiConfig;
 
     public OAuthProvider $auth;
 
@@ -133,7 +134,7 @@ class UpsunClient
 
     public function __construct(protected UpsunConfig $upsunConfig)
     {
-        $this->apiConfig = Configuration::getDefaultConfiguration()
+        $this->apiConfig = ApiConfiguration::getDefaultConfiguration()
             ->setHost($this->upsunConfig->base_url);
 
         // Symfony HTTP client compatible PSR-18
@@ -149,7 +150,7 @@ class UpsunClient
             clientSecret: $this->upsunConfig->apiToken,
         );
 
-        // Initialize the commands tasks.
+        // Initialize the command tasks.
         $this->activities = new ActivitiesTask(
             $this,
             new ProjectActivityApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),

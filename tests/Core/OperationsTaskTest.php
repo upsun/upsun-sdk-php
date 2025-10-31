@@ -5,11 +5,11 @@ namespace Upsun\Tests\Core;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Configuration;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\OperationsTask;
 use Upsun\Api\RuntimeOperationsApi;
-use Upsun\ApiException;
+use Upsun\Api\ApiException;
 use Upsun\Model\AcceptedResponse;
 use Upsun\UpsunClient;
 
@@ -30,7 +30,7 @@ class OperationsTaskTest extends BaseTestCase
             $oauthProvider,
             $this->httpClient,
             $psr17Factory,
-            new Configuration()
+            new ApiConfiguration()
         );
 
         $upsunClient = $this->createMock(UpsunClient::class);
