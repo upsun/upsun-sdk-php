@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Model\Deployment;
@@ -27,9 +28,10 @@ class WorkersTask extends TaskBase
     /**
      * Lists workers of an environment
      *
-     * @throws ApiException
-     *
      * @return WorkersValue[]
+     *
+     * @throws ApiException
+     * @throws ClientExceptionInterface
      */
     public function list(string $projectId, string $environmentId): array
     {

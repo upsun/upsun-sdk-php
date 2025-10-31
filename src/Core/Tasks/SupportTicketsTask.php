@@ -3,6 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
+use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\SupportApi;
@@ -35,6 +36,7 @@ class SupportTicketsTask extends TaskBase
      * Lists support tickets
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function list(
         ?int $filterTicketId = null,
@@ -71,8 +73,6 @@ class SupportTicketsTask extends TaskBase
     /**
      * Creates a new support ticket
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array|null{
      *     subject: string,
      *     description: string,
@@ -86,6 +86,9 @@ class SupportTicketsTask extends TaskBase
      *     attachments?: array,
      *     collaboratorIds?: array,
      * } $data
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function create(?array $data = null): Ticket
     {
@@ -99,6 +102,7 @@ class SupportTicketsTask extends TaskBase
      * @return  ListTicketCategories200ResponseInner[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function listCategories(?string $organizationId = null, ?string $projectId = null): array
     {
@@ -114,6 +118,7 @@ class SupportTicketsTask extends TaskBase
      * @return ListTicketPriorities200ResponseInner[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function listPriorities(?string $projectId = null, ?string $category = null): array
     {
@@ -126,13 +131,14 @@ class SupportTicketsTask extends TaskBase
     /**
      * Updates a ticket
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array|null{
      *     status?: string,
      *     collaboratorIds?: array,
      *     collaboratorsReplace?: bool,
      * } $data
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function update(string $ticketId, ?array $data = null): Ticket
     {

@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\CertManagementApi;
 use Upsun\Model\AcceptedResponse;
@@ -29,14 +30,15 @@ class CertificatesTask extends TaskBase
     /**
      * Adds an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     certificate: string,
      *     key: string,
      *     chain?: array,
      *     isInvalid?: bool
      * } $options Configuration options
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function create(string $projectId, array $options = []): AcceptedResponse
     {
@@ -48,6 +50,7 @@ class CertificatesTask extends TaskBase
      * Deletes an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function delete(string $projectId, string $certificateId): AcceptedResponse
     {
@@ -58,6 +61,7 @@ class CertificatesTask extends TaskBase
      * Gets an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function get(string $projectId, string $certificateId): Certificate
     {
@@ -67,9 +71,10 @@ class CertificatesTask extends TaskBase
     /**
      * Gets list of SSL certificates
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @return Certificate[]
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function list(string $projectId): array
     {
@@ -79,12 +84,13 @@ class CertificatesTask extends TaskBase
     /**
      * Updates an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     chain?: array,
      *     isInvalid?: bool,
      * } $data
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function update(string $projectId, string $certificateId, array $data): AcceptedResponse
     {

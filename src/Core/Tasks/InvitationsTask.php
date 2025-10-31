@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
@@ -33,6 +34,7 @@ class InvitationsTask extends TaskBase
      * Cancels a pending invitation to an organization
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function cancelOrgInvite(string $organizationId, string $invitationId): void
     {
@@ -42,7 +44,8 @@ class InvitationsTask extends TaskBase
     /**
      * Invites user to an organization by email
      *
-     * @throws ApiException
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function createOrgInvite(
         string $organizationId,
@@ -61,9 +64,10 @@ class InvitationsTask extends TaskBase
     /**
      * Lists invitations to an organization
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @return OrganizationInvitation[]
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function listOrgInvites(
         string $organizationId,
@@ -87,6 +91,7 @@ class InvitationsTask extends TaskBase
      * Cancels a pending invitation to a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function cancelProjectInvite(string $projectId, string $invitationId): void
     {
@@ -96,7 +101,6 @@ class InvitationsTask extends TaskBase
     /**
      * Invites user to a project by email
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @param array{
      *     email: string,
      *     role?: string,
@@ -104,6 +108,9 @@ class InvitationsTask extends TaskBase
      *     environments?: bool,
      *     force?: bool
      * } $data
+     *
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function createProjectInvite(
         string $projectId,
@@ -116,9 +123,10 @@ class InvitationsTask extends TaskBase
     /**
      * Lists invitations to a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @return ProjectInvitation[]
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function listProjectInvites(
         string $projectId,

@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\RuntimeOperationsApi;
 use Upsun\Model\AcceptedResponse;
@@ -27,13 +28,14 @@ class OperationsTask extends TaskBase
     /**
      * Executes a runtime operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     service: string,
      *     operation: string,
      *     parameters: array
      * } $data
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function run(
         string $projectId,
