@@ -1,23 +1,23 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Api\ApiException;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
-use Upsun\Api\TeamsApi;
+use Upsun\Api\ApiException;
 use Upsun\Api\TeamAccessApi;
+use Upsun\Api\TeamsApi;
+use Upsun\Core\OAuthProvider;
+use Upsun\Core\Tasks\TeamsTask;
 use Upsun\Model\{ListProjectTeamAccess200Response,
     ListTeamMembers200Response,
     ListTeams200Response,
     Team,
     TeamMember,
     TeamProjectAccess};
-use Upsun\Core\Tasks\TeamsTask;
 use Upsun\UpsunClient;
-use Nyholm\Psr7\Factory\Psr17Factory;
-use Nyholm\Psr7\Response;
-use Psr\Http\Client\ClientInterface;
-use Upsun\Core\OAuthProvider;
 
 class TeamsTaskTest extends BaseTestCase
 {

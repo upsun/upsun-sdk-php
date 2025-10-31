@@ -1,18 +1,18 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
-use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
+use Upsun\Core\Tasks\InvitationsTask;
 use Upsun\Model\OrganizationInvitation;
 use Upsun\Model\ProjectInvitation;
-use Upsun\Core\Tasks\InvitationsTask;
 use Upsun\UpsunClient;
 
 class InvitationsTaskTest extends BaseTestCase

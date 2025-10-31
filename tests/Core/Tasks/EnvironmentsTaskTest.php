@@ -1,25 +1,32 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
+use Upsun\Api\ApiConfiguration;
+use Upsun\Api\ApiException;
+use Upsun\Api\DeploymentApi;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Api\EnvironmentActivityApi;
+use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentBackupsApi;
+use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\SourceOperationsApi;
-use Upsun\Api\ApiException;
-use Upsun\Api\DeploymentApi;
-use Upsun\Api\EnvironmentApi;
-use Upsun\Api\EnvironmentTypeApi;
-use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
+use Upsun\Core\Tasks\ActivitiesTask;
+use Upsun\Core\Tasks\BackupsTask;
+use Upsun\Core\Tasks\DomainsTask;
+use Upsun\Core\Tasks\EnvironmentsTask;
+use Upsun\Core\Tasks\RoutesTask;
+use Upsun\Core\Tasks\SourceOperationsTask;
+use Upsun\Core\Tasks\VariablesTask;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\Backup;
@@ -30,13 +37,6 @@ use Upsun\Model\EnvironmentType;
 use Upsun\Model\EnvironmentVariable;
 use Upsun\Model\ProjectVariable;
 use Upsun\Model\Route;
-use Upsun\Core\Tasks\ActivitiesTask;
-use Upsun\Core\Tasks\BackupsTask;
-use Upsun\Core\Tasks\DomainsTask;
-use Upsun\Core\Tasks\EnvironmentsTask;
-use Upsun\Core\Tasks\RoutesTask;
-use Upsun\Core\Tasks\SourceOperationsTask;
-use Upsun\Core\Tasks\VariablesTask;
 use Upsun\UpsunClient;
 
 class EnvironmentsTaskTest extends BaseTestCase

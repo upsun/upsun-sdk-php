@@ -1,28 +1,28 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
+use Upsun\Api\ApiConfiguration;
+use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\RepositoryApi;
 use Upsun\Api\SubscriptionsApi;
+use Upsun\Api\SupportApi;
 use Upsun\Api\SystemInformationApi;
 use Upsun\Api\ThirdPartyIntegrationsApi;
-use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ProjectsTask;
 use Upsun\Core\Tasks\SupportTicketsTask;
 use Upsun\Model\ListTicketCategories200ResponseInner;
 use Upsun\Model\ListTicketPriorities200ResponseInner;
-use Upsun\UpsunClient;
-use Upsun\Api\DefaultApi;
-use Upsun\Api\SupportApi;
-use Upsun\Model\Ticket;
 use Upsun\Model\ListTickets200Response;
+use Upsun\Model\Ticket;
+use Upsun\UpsunClient;
 
 class SupportTicketsTaskTest extends BaseTestCase
 {

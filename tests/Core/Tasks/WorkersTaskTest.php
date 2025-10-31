@@ -1,17 +1,17 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
+use Upsun\Api\ApiException;
+use Upsun\Api\DeploymentApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\WorkersTask;
-use Upsun\Api\DeploymentApi;
 use Upsun\Model\WorkersValue;
 use Upsun\UpsunClient;
-use Upsun\Api\ApiException;
 
 class WorkersTaskTest extends BaseTestCase
 {

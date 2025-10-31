@@ -14,8 +14,4 @@
             <directory>src/Core</directory>
         </include>
     </coverage>
-
-    <logging>
-        <log type="coverage-clover" target="coverage.xml"/>
-    </logging>
 </phpunit>

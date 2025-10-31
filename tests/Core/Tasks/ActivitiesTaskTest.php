@@ -1,17 +1,17 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
+use Upsun\Api\ApiConfiguration;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
-use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\Activity;
 use Upsun\Core\Tasks\ActivitiesTask;
+use Upsun\Model\Activity;
 use Upsun\UpsunClient;
-use Nyholm\Psr7\Factory\Psr17Factory;
 
 class ActivitiesTaskTest extends BaseTestCase
 {

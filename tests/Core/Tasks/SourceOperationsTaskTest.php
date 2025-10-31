@@ -1,17 +1,17 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Api\SourceOperationsApi;
 use Upsun\Api\ApiConfiguration;
+use Upsun\Api\SourceOperationsApi;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Core\Tasks\SourceOperationsTask;
-use Upsun\UpsunClient;
 use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentSourceOperation;
+use Upsun\UpsunClient;
 
 class SourceOperationsTaskTest extends BaseTestCase
 {

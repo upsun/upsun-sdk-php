@@ -1,19 +1,19 @@
 <?php
 
-namespace Upsun\Tests\Core;
+namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
+use Upsun\Api\ApiException;
+use Upsun\Api\EnvironmentVariablesApi;
+use Upsun\Api\ProjectVariablesApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\VariablesTask;
-use Upsun\Api\ProjectVariablesApi;
-use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Model\AcceptedResponse;
-use Upsun\Model\ProjectVariable;
 use Upsun\Model\EnvironmentVariable;
-use Upsun\Api\ApiException;
+use Upsun\Model\ProjectVariable;
 use Upsun\UpsunClient;
 
 class VariablesTaskTest extends BaseTestCase
