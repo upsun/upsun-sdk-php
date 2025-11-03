@@ -633,7 +633,14 @@ class TeamsTaskTest extends BaseTestCase
             ));
 
         // Call the method
-        $result = $this->task->update($teamId, $updateData);
+        $result = $this->task->update(
+            $teamId,
+            'Updated Team Label',
+            [
+                ['projectId' => 'proj_001', 'role' => 'admin'],
+                ['projectId' => 'proj_002', 'role' => 'viewer'],
+            ]
+        );
 
         // Assertions
         $this->assertInstanceOf(Team::class, $result);
@@ -649,12 +656,6 @@ class TeamsTaskTest extends BaseTestCase
     public function testUpdateTeamError(): void
     {
         $teamId = 'team_001';
-        $updateData = [
-            'label' => 'Updated Team Label',
-            'projectPermissions' => [
-                ['projectId' => 'proj_001', 'role' => 'admin'],
-            ]
-        ];
 
         // Mock API response with error
         $this->httpClient
@@ -671,7 +672,13 @@ class TeamsTaskTest extends BaseTestCase
         $this->expectException(ApiException::class);
 
         // Call the method
-        $this->task->update($teamId, $updateData);
+        $this->task->update($teamId,
+            'Updated Team Label',
+            [
+                ['projectId' => 'proj_001', 'role' => 'admin'],
+                ['projectId' => 'proj_002', 'role' => 'viewer'],
+            ]
+        );
     }
 
 
