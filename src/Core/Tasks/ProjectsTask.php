@@ -106,7 +106,7 @@ class ProjectsTask extends TaskBase
     public function create(
         string $organizationId,
         string $projectRegion,
-        ?string $projectTitle = null,
+        ?string $title = null,
         ?string $defaultBranch = null,
         ?string $plan = null,
         ?string $optionsUrl = null,
@@ -116,7 +116,7 @@ class ProjectsTask extends TaskBase
         $createProjectData = new CreateOrgSubscriptionRequest(
             projectRegion: $projectRegion,
             plan: $plan,
-            projectTitle: $projectTitle,
+            projectTitle: $title,
             optionsUrl: $optionsUrl,
             defaultBranch: $defaultBranch,
             environments: $environments,
