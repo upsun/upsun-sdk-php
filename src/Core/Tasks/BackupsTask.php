@@ -68,7 +68,6 @@ class BackupsTask extends TaskBase
     /**
      * Gets an environment's snapshot list
      *
-     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @return Backup[]
@@ -81,9 +80,8 @@ class BackupsTask extends TaskBase
     /**
      * Restores an environment snapshot
      *
-     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
      */
     public function restore(
         string $projectId,
@@ -102,6 +100,11 @@ class BackupsTask extends TaskBase
             branchFrom: $branchFrom,
             resources: new Resources6(init: $init),
         );
-        return $this->api->restoreBackup($projectId, $environmentId, $backupId, $environmentRestoreInput);
+        return $this->api->restoreBackup(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            backupId: $backupId,
+            environmentRestoreInput: $environmentRestoreInput
+        );
     }
 }

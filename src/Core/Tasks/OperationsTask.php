@@ -44,6 +44,11 @@ class OperationsTask extends TaskBase
             operation: $operation,
             parameters: $parameters
         );
-        return $this->api->runOperation($projectId, $environmentId, $deploymentId, $environmentOperationInput);
+        return $this->api->runOperation(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            deploymentId: $deploymentId,
+            environmentOperationInput: $environmentOperationInput
+        );
     }
 }

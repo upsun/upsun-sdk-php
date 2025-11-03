@@ -69,9 +69,9 @@ class ResourcesTask extends TaskBase
         );
 
         $this->api->updateProjectsEnvironmentsDeploymentsNext(
-            $projectId,
-            $environmentId,
-            $data
+            projectId: $projectId,
+            environmentId: $environmentId,
+            updateProjectsEnvironmentsDeploymentsNextRequest: $data
         );
     }
 }

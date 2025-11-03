@@ -38,7 +38,10 @@ class InvitationsTask extends TaskBase
      */
     public function cancelOrgInvite(string $organizationId, string $invitationId): void
     {
-        $this->orgInvApi->cancelOrgInvite($organizationId, $invitationId);
+        $this->orgInvApi->cancelOrgInvite(
+            organizationId: $organizationId,
+            invitationId: $invitationId
+        );
     }
 
     /**
@@ -58,12 +61,14 @@ class InvitationsTask extends TaskBase
             permissions: $permissions,
             force: $force,
         );
-        return $this->orgInvApi->createOrgInvite($organizationId, $inviteRequest);
+        return $this->orgInvApi->createOrgInvite(
+            organizationId: $organizationId,
+            createOrgInviteRequest: $inviteRequest
+        );
     }
 
     /**
      * Lists invitations to an organization
-     *
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -78,12 +83,12 @@ class InvitationsTask extends TaskBase
         ?string $sort = null
     ): array {
         return $this->orgInvApi->listOrgInvites(
-            $organizationId,
-            new StringFilter(...$this->normalizeFilter($filterState)),
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            organizationId: $organizationId,
+            filterState: new StringFilter(...$this->normalizeFilter($filterState)),
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 
@@ -95,7 +100,7 @@ class InvitationsTask extends TaskBase
      */
     public function cancelProjectInvite(string $projectId, string $invitationId): void
     {
-        $this->prjInvApi->cancelProjectInvite($projectId, $invitationId);
+        $this->prjInvApi->cancelProjectInvite(projectId: $projectId, invitationId: $invitationId);
     }
 
     /**
@@ -122,12 +127,14 @@ class InvitationsTask extends TaskBase
             environments: $environments,
             force: $force
         );
-        return $this->prjInvApi->createProjectInvite($projectId, $createProjectInviteRequest);
+        return $this->prjInvApi->createProjectInvite(
+            projectId: $projectId,
+            createProjectInviteRequest: $createProjectInviteRequest
+        );
     }
 
     /**
      * Lists invitations to a project
-     *
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -142,12 +149,12 @@ class InvitationsTask extends TaskBase
         ?string $sort = null
     ): array {
         return $this->prjInvApi->listProjectInvites(
-            $projectId,
-            new StringFilter(...$this->normalizeFilter($filterState)),
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            projectId: $projectId,
+            filterState: new StringFilter(...$this->normalizeFilter($filterState)),
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 }

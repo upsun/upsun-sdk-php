@@ -48,12 +48,15 @@ class DomainsTask extends TaskBase
             replacementFor: $replacementFor
         );
         if (!$environmentId) {
-            return $this->api->createProjectsDomains($projectId, $domainCreateInput);
+            return $this->api->createProjectsDomains(
+                projectId: $projectId,
+                domainCreateInput: $domainCreateInput
+            );
         } else {
             return $this->api->createProjectsEnvironmentsDomains(
-                $projectId,
-                $environmentId,
-                $domainCreateInput
+                projectId: $projectId,
+                environmentId: $environmentId,
+                domainCreateInput: $domainCreateInput
             );
         }
     }
@@ -67,9 +70,13 @@ class DomainsTask extends TaskBase
     public function delete(string $projectId, string $domainId, ?string $environmentId = null): AcceptedResponse
     {
         if (!$environmentId) {
-            return $this->api->deleteProjectsDomains($projectId, $domainId);
+            return $this->api->deleteProjectsDomains(projectId: $projectId, domainId: $domainId);
         } else {
-            return $this->api->deleteProjectsEnvironmentsDomains($projectId, $environmentId, $domainId);
+            return $this->api->deleteProjectsEnvironmentsDomains(
+                projectId: $projectId,
+                environmentId: $environmentId,
+                domainId: $domainId
+            );
         }
     }
 
@@ -82,15 +89,18 @@ class DomainsTask extends TaskBase
     public function get(string $projectId, string $domainId, ?string $environmentId = null): Domain
     {
         if (!$environmentId) {
-            return $this->api->getProjectsDomains($projectId, $domainId);
+            return $this->api->getProjectsDomains(projectId: $projectId, domainId: $domainId);
         } else {
-            return $this->api->getProjectsEnvironmentsDomains($projectId, $environmentId, $domainId);
+            return $this->api->getProjectsEnvironmentsDomains(
+                projectId: $projectId,
+                environmentId: $environmentId,
+                domainId: $domainId
+            );
         }
     }
 
     /**
      * Gets list of project (or environment) domains
-     *
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -99,9 +109,9 @@ class DomainsTask extends TaskBase
     public function list(string $projectId, ?string $environmentId = null): array
     {
         if (!$environmentId) {
-            return $this->api->listProjectsDomains($projectId);
+            return $this->api->listProjectsDomains(projectId: $projectId);
         } else {
-            return $this->api->listProjectsEnvironmentsDomains($projectId, $environmentId);
+            return $this->api->listProjectsEnvironmentsDomains(projectId: $projectId, environmentId: $environmentId);
         }
     }
 
@@ -123,13 +133,17 @@ class DomainsTask extends TaskBase
             isDefault: $isDefault
         );
         if (!$environmentId) {
-            return $this->api->updateProjectsDomains($projectId, $domainId, $domainPatch);
+            return $this->api->updateProjectsDomains(
+                projectId: $projectId,
+                domainId: $domainId,
+                domainPatch: $domainPatch
+            );
         } else {
             return $this->api->updateProjectsEnvironmentsDomains(
-                $projectId,
-                $environmentId,
-                $domainId,
-                $domainPatch
+                projectId: $projectId,
+                environmentId: $environmentId,
+                domainId: $domainId,
+                domainPatch: $domainPatch
             );
         }
     }

@@ -70,7 +70,10 @@ class VariablesTask extends TaskBase
      */
     public function deleteProjectVariable(string $projectId, string $projectVariableId): AcceptedResponse
     {
-        return $this->projectVariablesApi->deleteProjectsVariables($projectId, $projectVariableId);
+        return $this->projectVariablesApi->deleteProjectsVariables(
+            projectId: $projectId,
+            projectVariableId: $projectVariableId
+        );
     }
 
     /**
@@ -81,12 +84,14 @@ class VariablesTask extends TaskBase
      */
     public function getProjectVariable(string $projectId, string $projectVariableId): ProjectVariable
     {
-        return $this->projectVariablesApi->getProjectsVariables($projectId, $projectVariableId);
+        return $this->projectVariablesApi->getProjectsVariables(
+            projectId: $projectId,
+            projectVariableId: $projectVariableId
+        );
     }
 
     /**
      * Gets list of project variables
-     *
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -94,7 +99,7 @@ class VariablesTask extends TaskBase
      */
     public function listProjectVariables(string $projectId): array
     {
-        return $this->projectVariablesApi->listProjectsVariables($projectId);
+        return $this->projectVariablesApi->listProjectsVariables(projectId: $projectId);
     }
 
     /**
@@ -126,9 +131,9 @@ class VariablesTask extends TaskBase
             applicationScope: $applicationScope,
         );
         return $this->projectVariablesApi->updateProjectsVariables(
-            $projectId,
-            $projectVariableId,
-            $projectVariablePatch
+            projectId: $projectId,
+            projectVariableId: $projectVariableId,
+            projectVariablePatch: $projectVariablePatch
         );
     }
 
@@ -164,10 +169,10 @@ class VariablesTask extends TaskBase
             isEnabled: $isEnabled,
             isInheritable: $isInheritable
         );
-        return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
-            $projectId,
-            $environmentId,
-            $environmentVariableCreateInput
+        return $this->environmentVariablesApi->createProjectsEnvironmentsVariables(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            environmentVariableCreateInput: $environmentVariableCreateInput
         );
     }
 
@@ -183,9 +188,9 @@ class VariablesTask extends TaskBase
         string $variableId
     ): AcceptedResponse {
         return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
-            $projectId,
-            $environmentId,
-            $variableId
+            projectId: $projectId,
+            environmentId: $environmentId,
+            variableId: $variableId
         );
     }
 
@@ -201,15 +206,14 @@ class VariablesTask extends TaskBase
         string $variableId
     ): EnvironmentVariable {
         return $this->environmentVariablesApi->getProjectsEnvironmentsVariables(
-            $projectId,
-            $environmentId,
-            $variableId
+            projectId: $projectId,
+            environmentId: $environmentId,
+            variableId: $variableId
         );
     }
 
     /**
      * Lists environment variables
-     *
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -217,7 +221,10 @@ class VariablesTask extends TaskBase
      */
     public function listEnvironmentVariables(string $projectId, string $environmentId): array
     {
-        return $this->environmentVariablesApi->listProjectsEnvironmentsVariables($projectId, $environmentId);
+        return $this->environmentVariablesApi->listProjectsEnvironmentsVariables(
+            projectId: $projectId,
+            environmentId: $environmentId
+        );
     }
 
     /**
@@ -254,10 +261,10 @@ class VariablesTask extends TaskBase
             isInheritable: $isInheritable
         );
         return $this->environmentVariablesApi->updateProjectsEnvironmentsVariables(
-            $projectId,
-            $environmentId,
-            $variableId,
-            $environmentVariablePatch
+            projectId: $projectId,
+            environmentId: $environmentId,
+            variableId: $variableId,
+            environmentVariablePatch: $environmentVariablePatch
         );
     }
 }

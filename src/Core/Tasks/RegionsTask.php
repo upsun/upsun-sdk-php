@@ -34,7 +34,7 @@ class RegionsTask extends TaskBase
      */
     public function get(string $regionId): Region
     {
-        return $this->api->getRegion($regionId);
+        return $this->api->getRegion(regionId: $regionId);
     }
 
     /**
@@ -52,15 +52,15 @@ class RegionsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListRegions200Response {
-
         return $this->api->listRegions(
-            $filterAvailable !== null ? new StringFilter(...$this->normalizeFilter($filterAvailable)) : null,
-            $filterPrivate !== null ? new StringFilter(...$this->normalizeFilter($filterPrivate)) : null,
-            $filterZone !== null ? new StringFilter(...$this->normalizeFilter($filterZone)) : null,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            filterAvailable: $filterAvailable !== null ?
+                new StringFilter(...$this->normalizeFilter($filterAvailable)) : null,
+            filterPrivate: $filterPrivate !== null ? new StringFilter(...$this->normalizeFilter($filterPrivate)) : null,
+            filterZone: $filterZone !== null ? new StringFilter(...$this->normalizeFilter($filterZone)) : null,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 }

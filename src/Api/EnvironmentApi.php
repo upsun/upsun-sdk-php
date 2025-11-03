@@ -147,7 +147,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling activateEnvironment'
             );
         }
@@ -159,7 +159,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling activateEnvironment'
             );
         }
@@ -171,7 +171,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentActivateInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentActivateInput 
+                'Missing the required parameter $environmentActivateInput
                 when calling activateEnvironment'
             );
         }
@@ -346,7 +346,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling branchEnvironment'
             );
         }
@@ -358,7 +358,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling branchEnvironment'
             );
         }
@@ -370,7 +370,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentBranchInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentBranchInput 
+                'Missing the required parameter $environmentBranchInput
                 when calling branchEnvironment'
             );
         }
@@ -547,7 +547,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling createProjectsEnvironmentsVersions'
             );
         }
@@ -559,7 +559,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling createProjectsEnvironmentsVersions'
             );
         }
@@ -571,7 +571,7 @@ final class EnvironmentApi extends AbstractApi
             && count($versionCreateInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $versionCreateInput 
+                'Missing the required parameter $versionCreateInput
                 when calling createProjectsEnvironmentsVersions'
             );
         }
@@ -743,7 +743,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deactivateEnvironment'
             );
         }
@@ -755,7 +755,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling deactivateEnvironment'
             );
         }
@@ -917,7 +917,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deleteEnvironment'
             );
         }
@@ -929,7 +929,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling deleteEnvironment'
             );
         }
@@ -1097,7 +1097,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deleteProjectsEnvironmentsVersions'
             );
         }
@@ -1109,7 +1109,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling deleteProjectsEnvironmentsVersions'
             );
         }
@@ -1121,7 +1121,7 @@ final class EnvironmentApi extends AbstractApi
             && count($versionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $versionId 
+                'Missing the required parameter $versionId
                 when calling deleteProjectsEnvironmentsVersions'
             );
         }
@@ -1299,7 +1299,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deployEnvironment'
             );
         }
@@ -1311,7 +1311,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling deployEnvironment'
             );
         }
@@ -1323,7 +1323,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentDeployInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentDeployInput 
+                'Missing the required parameter $environmentDeployInput
                 when calling deployEnvironment'
             );
         }
@@ -1493,7 +1493,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getEnvironment'
             );
         }
@@ -1505,7 +1505,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling getEnvironment'
             );
         }
@@ -1673,7 +1673,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsEnvironmentsVersions'
             );
         }
@@ -1685,7 +1685,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling getProjectsEnvironmentsVersions'
             );
         }
@@ -1697,7 +1697,7 @@ final class EnvironmentApi extends AbstractApi
             && count($versionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $versionId 
+                'Missing the required parameter $versionId
                 when calling getProjectsEnvironmentsVersions'
             );
         }
@@ -1879,7 +1879,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling initializeEnvironment'
             );
         }
@@ -1891,7 +1891,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling initializeEnvironment'
             );
         }
@@ -1903,7 +1903,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentInitializeInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentInitializeInput 
+                'Missing the required parameter $environmentInitializeInput
                 when calling initializeEnvironment'
             );
         }
@@ -2068,7 +2068,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsEnvironments'
             );
         }
@@ -2223,7 +2223,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsEnvironmentsVersions'
             );
         }
@@ -2235,7 +2235,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsVersions'
             );
         }
@@ -2404,7 +2404,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling mergeEnvironment'
             );
         }
@@ -2416,7 +2416,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling mergeEnvironment'
             );
         }
@@ -2428,7 +2428,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentMergeInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentMergeInput 
+                'Missing the required parameter $environmentMergeInput
                 when calling mergeEnvironment'
             );
         }
@@ -2602,7 +2602,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling pauseEnvironment'
             );
         }
@@ -2614,7 +2614,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling pauseEnvironment'
             );
         }
@@ -2776,7 +2776,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling redeployEnvironment'
             );
         }
@@ -2788,7 +2788,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling redeployEnvironment'
             );
         }
@@ -2953,7 +2953,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling resumeEnvironment'
             );
         }
@@ -2965,7 +2965,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling resumeEnvironment'
             );
         }
@@ -3134,7 +3134,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling synchronizeEnvironment'
             );
         }
@@ -3146,7 +3146,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling synchronizeEnvironment'
             );
         }
@@ -3158,7 +3158,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentSynchronizeInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentSynchronizeInput 
+                'Missing the required parameter $environmentSynchronizeInput
                 when calling synchronizeEnvironment'
             );
         }
@@ -3333,7 +3333,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateEnvironment'
             );
         }
@@ -3345,7 +3345,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling updateEnvironment'
             );
         }
@@ -3357,7 +3357,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentPatch) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentPatch 
+                'Missing the required parameter $environmentPatch
                 when calling updateEnvironment'
             );
         }
@@ -3538,7 +3538,7 @@ final class EnvironmentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjectsEnvironmentsVersions'
             );
         }
@@ -3550,7 +3550,7 @@ final class EnvironmentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling updateProjectsEnvironmentsVersions'
             );
         }
@@ -3562,7 +3562,7 @@ final class EnvironmentApi extends AbstractApi
             && count($versionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $versionId 
+                'Missing the required parameter $versionId
                 when calling updateProjectsEnvironmentsVersions'
             );
         }
@@ -3574,7 +3574,7 @@ final class EnvironmentApi extends AbstractApi
             && count($versionPatch) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $versionPatch 
+                'Missing the required parameter $versionPatch
                 when calling updateProjectsEnvironmentsVersions'
             );
         }

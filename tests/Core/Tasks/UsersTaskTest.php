@@ -3,8 +3,10 @@
 namespace Upsun\Tests\Core\Tasks;
 
 use BadMethodCallException;
+use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
@@ -23,6 +25,7 @@ use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\Connection;
 use Upsun\Model\GetAddress200Response;
 use Upsun\Model\GetCurrentUserVerificationStatus200Response;
+use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
 use Upsun\Model\GetTotpEnrollment200Response;
 use Upsun\Model\ListProfiles200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
@@ -1688,11 +1691,473 @@ class UsersTaskTest extends BaseTestCase
         $this->usersTask->verifyPhoneNumber($userId, $data['channel'], $data['phoneNumber']);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateProfilePictureNotImplemented()
     {
         $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage('Not implemented yet');
 
         $this->usersTask->createProfilePicture('123');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetCurrentUserVerificationStatusFullSuccess(): void
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'state' => true,
+                    'type' => 'email'
+                ])
+            ));
+
+        $result = $this->usersTask->getCurrentUserVerificationStatusFull();
+
+        $this->assertEquals(
+            new GetCurrentUserVerificationStatusFull200Response(true, 'email'),
+            $result
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetCurrentUserVerificationStatusFullError(): void
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->usersTask->getCurrentUserVerificationStatusFull();
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGrantUserProjectAccessSuccess(): void
+    {
+        $userId = 'user123';
+        $data = [
+            'project_id' => 'project456',
+            'role' => 'developer'
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'success' => true,
+                    'message' => 'Access granted'
+                ])
+            ));
+        $this->expectNotToPerformAssertions();
+
+        $this->usersTask->grantUserProjectAccess($userId, $data);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGrantUserProjectAccessError(): void
+    {
+        $userId = 'user123';
+        $data = [
+            'project_id' => 'project456',
+            'role' => 'developer'
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403,
+                    'message' => 'Access denied'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->usersTask->grantUserProjectAccess($userId, $data);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGrantUserProjectAccessNotFound(): void
+    {
+        $userId = 'invalidUser';
+        $data = [
+            'project_id' => 'project456',
+            'role' => 'developer'
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'not_found',
+                    'code' => 404,
+                    'message' => 'User not found'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->usersTask->grantUserProjectAccess($userId, $data);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRemoveUserProjectAccessSuccess(): void
+    {
+        $userId = 'user123';
+        $projectId = 'project456';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'success' => true,
+                    'message' => 'Access removed'
+                ])
+            ));
+
+        $this->expectNotToPerformAssertions();
+
+        $this->usersTask->removeUserProjectAccess($userId, $projectId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRemoveUserProjectAccessError(): void
+    {
+        $userId = 'user123';
+        $projectId = 'project456';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403,
+                    'message' => 'Access denied'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->usersTask->removeUserProjectAccess($userId, $projectId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRemoveUserProjectAccessNotFound(): void
+    {
+        $userId = 'user123';
+        $projectId = 'invalidProject';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'not_found',
+                    'code' => 404,
+                    'message' => 'Project not found'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->usersTask->removeUserProjectAccess($userId, $projectId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRemoveUserProjectAccessAlreadyRemoved(): void
+    {
+        $userId = 'user123';
+        $projectId = 'project456';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                409,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'conflict',
+                    'code' => 409,
+                    'message' => 'User does not have access to this project'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->usersTask->removeUserProjectAccess($userId, $projectId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateUserProjectAccessSuccess(): void
+    {
+        $userId = 'user123';
+        $projectId = 'project456';
+        $permissions = ['read', 'write'];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'success' => true,
+                    'message' => 'Access updated'
+                ])
+            ));
+
+        $this->expectNotToPerformAssertions();
+
+        $this->usersTask->updateUserProjectAccess($userId, $projectId, $permissions);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateUserProjectAccessWithNullPermissions(): void
+    {
+        $userId = 'user123';
+        $projectId = 'project456';
+        $permissions = ['read', 'write'];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'success' => true,
+                    'message' => 'Access updated'
+                ])
+            ));
+
+        $this->expectNotToPerformAssertions();
+
+        $this->usersTask->updateUserProjectAccess($userId, $projectId, $permissions);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateUserProjectAccessError(): void
+    {
+        $userId = 'user123';
+        $projectId = 'project456';
+        $permissions = ['read', 'write'];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403,
+                    'message' => 'Access denied'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->usersTask->updateUserProjectAccess($userId, $projectId, $permissions);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateUserProjectAccessNotFound(): void
+    {
+        $userId = 'user123';
+        $projectId = 'invalidProject';
+        $permissions = ['read'];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'not_found',
+                    'code' => 404,
+                    'message' => 'Project or user not found'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->usersTask->updateUserProjectAccess($userId, $projectId, $permissions);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateUserProjectAccessInvalidPermissions(): void
+    {
+        $userId = 'user123';
+        $projectId = 'project456';
+        $permissions = ['invalid_permission'];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'bad_request',
+                    'code' => 400,
+                    'message' => 'Invalid permissions'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->usersTask->updateUserProjectAccess($userId, $projectId, $permissions);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testListApiTokensSuccess(): void
+    {
+        $userId = 'user123';
+        $fakeListApiToken = [
+            [
+                'id' => 'token1',
+                'name' => 'Production Token',
+                'token' => 'tok_abc123',
+                'mfa_on_creation' => true,
+                'created_at' => '2024-01-15T10:30:00Z',
+                'updated_at' => '2024-01-20T14:45:00Z',
+                'last_used_at' => '2024-01-25T08:20:00Z'
+            ],
+            [
+                'id' => 'token2',
+                'name' => 'Development Token',
+                'token' => 'tok_def456',
+                'mfa_on_creation' => false,
+                'created_at' => '2024-02-01T09:00:00Z',
+                'updated_at' => '2024-02-01T09:00:00Z',
+                'last_used_at' => null
+            ]
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeListApiToken)
+            ));
+
+        $result = $this->usersTask->listApiTokens($userId);
+
+        $this->assertIsArray($result);
+        $this->assertCount(2, $result);
+        $this->assertContainsOnlyInstancesOf(ApiToken::class, $result);
+
+        $this->assertContainsOnlyInstancesOf(ApiToken::class, $result);
+        $this->assertObjectProperties($result, $fakeListApiToken);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListApiTokensEmpty(): void
+    {
+        $userId = 'user123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([])
+            ));
+
+        $result = $this->usersTask->listApiTokens($userId);
+
+        $this->assertIsArray($result);
+        $this->assertEmpty($result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListApiTokensError(): void
+    {
+        $userId = 'user123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403,
+                    'message' => 'Access denied'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->usersTask->listApiTokens($userId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListApiTokensUserNotFound(): void
+    {
+        $userId = 'invalidUser';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'not_found',
+                    'code' => 404,
+                    'message' => 'User not found'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->usersTask->listApiTokens($userId);
     }
 }

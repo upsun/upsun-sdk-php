@@ -78,9 +78,9 @@ final class ProjectApi extends AbstractApi
      * Clear project build cache with HTTP Info
      *
      * @param string $projectId
-     * @return AcceptedResponse
      *
      * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      */
     private function actionProjectsClearBuildCacheWithHttpInfo(
         string $projectId

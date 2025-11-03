@@ -35,7 +35,10 @@ class SourceOperationsTask extends TaskBase
      */
     public function list(string $projectId, string $environmentId): array
     {
-        return $this->api->listProjectsEnvironmentsSourceOperations($projectId, $environmentId);
+        return $this->api->listProjectsEnvironmentsSourceOperations(
+            projectId: $projectId,
+            environmentId: $environmentId
+        );
     }
 
     /**
@@ -54,6 +57,10 @@ class SourceOperationsTask extends TaskBase
             operation: $operation,
             variables: $variables
         );
-        return $this->api->runSourceOperation($projectId, $environmentId, $environmentSourceOperationInput);
+        return $this->api->runSourceOperation(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            environmentSourceOperationInput: $environmentSourceOperationInput
+        );
     }
 }

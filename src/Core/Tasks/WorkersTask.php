@@ -28,15 +28,17 @@ class WorkersTask extends TaskBase
     /**
      * Lists workers of an environment
      *
-     *
      * @throws ApiException
      * @throws ClientExceptionInterface
      * @return WorkersValue[]
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $allDeployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
-        /** @var Deployment|false $deployment */
+        $allDeployments = $this->api->listProjectsEnvironmentsDeployments(
+            projectId: $projectId,
+            environmentId: $environmentId
+        );
+
         $deployment = reset($allDeployments);
 
         return $deployment?->getWorkers() ?? [];

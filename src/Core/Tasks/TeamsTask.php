@@ -52,7 +52,7 @@ class TeamsTask extends TaskBase
             label: $label,
             projectPermissions: $projectPermissions
         );
-        return $this->teamsApi->createTeam($createTeamRequest);
+        return $this->teamsApi->createTeam(createTeamRequest: $createTeamRequest);
     }
 
     /**
@@ -64,7 +64,7 @@ class TeamsTask extends TaskBase
     public function createMember(string $teamId, string $userId): TeamMember
     {
         $createTeamMemberRequest = new CreateTeamMemberRequest(userId: $userId);
-        return $this->teamsApi->createTeamMember($teamId, $createTeamMemberRequest);
+        return $this->teamsApi->createTeamMember(teamId: $teamId, createTeamMemberRequest: $createTeamMemberRequest);
     }
 
     /**
@@ -75,7 +75,7 @@ class TeamsTask extends TaskBase
      */
     public function delete(string $teamId): void
     {
-        $this->teamsApi->deleteTeam($teamId);
+        $this->teamsApi->deleteTeam(teamId: $teamId);
     }
 
     /**
@@ -86,7 +86,7 @@ class TeamsTask extends TaskBase
      */
     public function deleteMember(string $teamId, string $userId): void
     {
-        $this->teamsApi->deleteTeamMember($teamId, $userId);
+        $this->teamsApi->deleteTeamMember(teamId: $teamId, userId: $userId);
     }
 
     /**
@@ -97,7 +97,7 @@ class TeamsTask extends TaskBase
      */
     public function get(string $teamId): Team
     {
-        return $this->teamsApi->getTeam($teamId);
+        return $this->teamsApi->getTeam(teamId: $teamId);
     }
 
     /**
@@ -108,7 +108,7 @@ class TeamsTask extends TaskBase
      */
     public function getMember(string $teamId, string $userId): TeamMember
     {
-        return $this->teamsApi->getTeamMember($teamId, $userId);
+        return $this->teamsApi->getTeamMember(teamId: $teamId, userId: $userId);
     }
 
     /**
@@ -123,7 +123,12 @@ class TeamsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListTeamMembers200Response {
-        return $this->teamsApi->listTeamMembers($teamId, $pageBefore, $pageAfter, $sort);
+        return $this->teamsApi->listTeamMembers(
+            teamId: $teamId,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
     }
 
     /**
@@ -142,13 +147,13 @@ class TeamsTask extends TaskBase
         ?string $sort = null
     ): ListTeams200Response {
         return $this->teamsApi->listTeams(
-            new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
-            new StringFilter(...$this->normalizeFilter($filterId)),
-            new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            filterOrganizationId: new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
+            filterId: new StringFilter(...$this->normalizeFilter($filterId)),
+            filterUpdatedAt: new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 
@@ -168,13 +173,13 @@ class TeamsTask extends TaskBase
         ?string $sort = null
     ): ListTeams200Response {
         return $this->teamsApi->listUserTeams(
-            $userId,
-            new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
-            new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            userId: $userId,
+            filterOrganizationId: new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
+            filterUpdatedAt: new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 
@@ -193,7 +198,7 @@ class TeamsTask extends TaskBase
             label: $label,
             projectPermissions: $projectPermissions
         );
-        return $this->teamsApi->updateTeam($teamId, $updateTeamRequest);
+        return $this->teamsApi->updateTeam(teamId: $teamId, updateTeamRequest: $updateTeamRequest);
     }
 
     /**
@@ -204,7 +209,7 @@ class TeamsTask extends TaskBase
      */
     public function getProjectTeamAccess(string $projectId, string $teamId): TeamProjectAccess
     {
-        return $this->accessApi->getProjectTeamAccess($projectId, $teamId);
+        return $this->accessApi->getProjectTeamAccess(projectId: $projectId, teamId: $teamId);
     }
 
 
@@ -216,7 +221,7 @@ class TeamsTask extends TaskBase
      */
     public function getTeamProjectAccess(string $teamId, string $projectId): TeamProjectAccess
     {
-        return $this->accessApi->getTeamProjectAccess($teamId, $projectId);
+        return $this->accessApi->getTeamProjectAccess(teamId: $teamId, projectId: $projectId);
     }
 
     /**
@@ -227,7 +232,10 @@ class TeamsTask extends TaskBase
      */
     public function grantProjectTeamAccess(string $projectId, array $grantProjectTeamAccessRequestInner): void
     {
-        $this->accessApi->grantProjectTeamAccess($projectId, $grantProjectTeamAccessRequestInner);
+        $this->accessApi->grantProjectTeamAccess(
+            projectId: $projectId,
+            grantProjectTeamAccessRequestInner: $grantProjectTeamAccessRequestInner
+        );
     }
 
     /**
@@ -238,7 +246,7 @@ class TeamsTask extends TaskBase
      */
     public function grantTeamProjectAccess(string $teamId, array $data): void
     {
-        $this->accessApi->grantTeamProjectAccess($teamId, $data);
+        $this->accessApi->grantTeamProjectAccess(teamId: $teamId, grantTeamProjectAccessRequestInner: $data);
     }
 
     /**
@@ -254,7 +262,13 @@ class TeamsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListProjectTeamAccess200Response {
-        return $this->accessApi->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
+        return $this->accessApi->listProjectTeamAccess(
+            projectId: $projectId,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
     }
 
     /**
@@ -270,7 +284,13 @@ class TeamsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListProjectTeamAccess200Response {
-        return $this->accessApi->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
+        return $this->accessApi->listTeamProjectAccess(
+            teamId: $teamId,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
     }
 
     /**
@@ -281,7 +301,7 @@ class TeamsTask extends TaskBase
      */
     public function removeProjectTeamAccess(string $projectId, string $teamId): void
     {
-        $this->accessApi->removeProjectTeamAccess($projectId, $teamId);
+        $this->accessApi->removeProjectTeamAccess(projectId: $projectId, teamId: $teamId);
     }
 
     /**
@@ -292,6 +312,6 @@ class TeamsTask extends TaskBase
      */
     public function removeTeamProjectAccess(string $teamId, string $projectId): void
     {
-        $this->accessApi->removeTeamProjectAccess($teamId, $projectId);
+        $this->accessApi->removeTeamProjectAccess(teamId: $teamId, projectId: $projectId);
     }
 }

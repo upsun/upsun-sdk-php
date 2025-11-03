@@ -27,14 +27,16 @@ class ApplicationsTask extends TaskBase
     /**
      * Lists applications of an environment
      *
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @return WebApplicationsValue[]
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
+        $deployments = $this->api->listProjectsEnvironmentsDeployments(
+            projectId: $projectId,
+            environmentId: $environmentId
+        );
 
         $deployments = reset($deployments);
 
@@ -49,7 +51,7 @@ class ApplicationsTask extends TaskBase
      */
     public function get(string $projectId, string $environmentId, string $applicationId): ?WebApplicationsValue
     {
-        $applicationList = $this->list($projectId, $environmentId);
+        $applicationList = $this->list(projectId: $projectId, environmentId: $environmentId);
         return $applicationList[$applicationId] ?? null;
     }
 }

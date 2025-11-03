@@ -57,7 +57,10 @@ class CertificatesTask extends TaskBase
      */
     public function delete(string $projectId, string $certificateId): AcceptedResponse
     {
-        return $this->api->deleteProjectsCertificates($projectId, $certificateId);
+        return $this->api->deleteProjectsCertificates(
+            projectId: $projectId,
+            certificateId: $certificateId
+        );
     }
 
     /**
@@ -68,7 +71,7 @@ class CertificatesTask extends TaskBase
      */
     public function get(string $projectId, string $certificateId): Certificate
     {
-        return $this->api->getProjectsCertificates($projectId, $certificateId);
+        return $this->api->getProjectsCertificates(projectId: $projectId, certificateId: $certificateId);
     }
 
     /**
@@ -81,7 +84,7 @@ class CertificatesTask extends TaskBase
      */
     public function list(string $projectId): array
     {
-        return $this->api->listProjectsCertificates($projectId);
+        return $this->api->listProjectsCertificates(projectId: $projectId);
     }
 
     /**
@@ -100,6 +103,10 @@ class CertificatesTask extends TaskBase
             chain: $chain,
             isInvalid: $isInvalid
         );
-        return $this->api->updateProjectsCertificates($projectId, $certificateId, $certificatePatch);
+        return $this->api->updateProjectsCertificates(
+            projectId: $projectId,
+            certificateId: $certificateId,
+            certificatePatch: $certificatePatch
+        );
     }
 }

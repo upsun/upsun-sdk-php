@@ -32,7 +32,11 @@ class RoutesTask extends TaskBase
      */
     public function get(string $projectId, string $environmentId, string $routeId): Route
     {
-        return $this->api->getProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId);
+        return $this->api->getProjectsEnvironmentsRoutes(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            routeId: $routeId
+        );
     }
 
     /**
@@ -43,6 +47,6 @@ class RoutesTask extends TaskBase
      */
     public function list(string $projectId, string $environmentId): ?array
     {
-        return $this->api->listProjectsEnvironmentsRoutes($projectId, $environmentId);
+        return $this->api->listProjectsEnvironmentsRoutes(projectId: $projectId, environmentId: $environmentId);
     }
 }

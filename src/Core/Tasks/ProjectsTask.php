@@ -77,12 +77,11 @@ class ProjectsTask extends TaskBase
     public function delete(string $projectId): void
     {
         $project = $this->get($projectId);
-        $path = parse_url($project->getSubscription()->getLicenseUri(), PHP_URL_PATH);
-        $subscriptionId = basename($path);
+        $subscriptionId = $this->extractSubscriptionId(projectLicenceUri: $project->getSubscription()->getLicenseUri());
 
         $this->subscriptionsApi->deleteOrgSubscription(
-            $project->getOrganization(),
-            $subscriptionId
+            organizationId: $project->getOrganization(),
+            subscriptionId: $subscriptionId
         );
     }
 
@@ -94,7 +93,7 @@ class ProjectsTask extends TaskBase
      */
     public function get(string $projectId): Project
     {
-        return $this->api->getProjects($projectId);
+        return $this->api->getProjects(projectId: $projectId);
     }
 
     /**
@@ -122,7 +121,10 @@ class ProjectsTask extends TaskBase
             environments: $environments,
             storage: $storage
         );
-        return $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
+        return $this->subscriptionsApi->createOrgSubscription(
+            organizationId: $organizationId,
+            createOrgSubscriptionRequest: $createProjectData
+        );
     }
 
     /**
@@ -133,7 +135,7 @@ class ProjectsTask extends TaskBase
      */
     public function canCreate(string $organizationId): CanCreateNewOrgSubscription200Response
     {
-        return $this->subscriptionsApi->canCreateNewOrgSubscription($organizationId);
+        return $this->subscriptionsApi->canCreateNewOrgSubscription(organizationId: $organizationId);
     }
 
     /**
@@ -144,7 +146,7 @@ class ProjectsTask extends TaskBase
      */
     public function getCapabilities(string $projectId): ProjectCapabilities
     {
-        return $this->api->getProjectsCapabilities($projectId);
+        return $this->api->getProjectsCapabilities(projectId: $projectId);
     }
 
     /**
@@ -172,7 +174,7 @@ class ProjectsTask extends TaskBase
             timezone: $timezone,
             region: $region
         );
-        return $this->api->updateProjects($projectId, $projectPatch);
+        return $this->api->updateProjects(projectId: $projectId, projectPatch: $projectPatch);
     }
 
     /**
@@ -183,7 +185,7 @@ class ProjectsTask extends TaskBase
      */
     public function cancelInvite(string $projectId, string $invitationId): void
     {
-        $this->client->invitations->cancelProjectInvite($projectId, $invitationId);
+        $this->client->invitations->cancelProjectInvite(projectId: $projectId, invitationId: $invitationId);
     }
 
     /**
@@ -204,18 +206,17 @@ class ProjectsTask extends TaskBase
         ?bool $force = null,
     ): ProjectInvitation {
         return $this->client->invitations->createProjectInvite(
-            $projectId,
-            $email,
-            $role,
-            $permissions,
-            $environments,
-            $force
+            projectId: $projectId,
+            email: $email,
+            role: $role,
+            permissions: $permissions,
+            environments: $environments,
+            force: $force
         );
     }
 
     /**
      * Lists invitations to a project
-     *
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -230,12 +231,12 @@ class ProjectsTask extends TaskBase
         ?string $sort = null
     ): array {
         return $this->client->invitations->listProjectInvites(
-            $projectId,
-            $filterState,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            projectId: $projectId,
+            filterState: $filterState,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 
@@ -247,7 +248,7 @@ class ProjectsTask extends TaskBase
      */
     public function getSettings(string $projectId): ProjectSettings
     {
-        return $this->settingsApi->getProjectsSettings($projectId);
+        return $this->settingsApi->getProjectsSettings(projectId: $projectId);
     }
 
     /**
@@ -297,15 +298,15 @@ class ProjectsTask extends TaskBase
         ?array $applicationScope = [],
     ): AcceptedResponse {
         return $this->client->variables->createProjectVariable(
-            $projectId,
-            $name,
-            $value,
-            $attributes,
-            $isJson,
-            $isSensitive,
-            $visibleBuild,
-            $visibleRuntime,
-            $applicationScope
+            projectId: $projectId,
+            name: $name,
+            value: $value,
+            attributes: $attributes,
+            isJson: $isJson,
+            isSensitive: $isSensitive,
+            visibleBuild: $visibleBuild,
+            visibleRuntime: $visibleRuntime,
+            applicationScope: $applicationScope
         );
     }
 
@@ -317,7 +318,10 @@ class ProjectsTask extends TaskBase
      */
     public function getVariable(string $projectId, string $projectVariableId): ProjectVariable
     {
-        return $this->client->variables->getProjectVariable($projectId, $projectVariableId);
+        return $this->client->variables->getProjectVariable(
+            projectId: $projectId,
+            projectVariableId: $projectVariableId
+        );
     }
 
     /**
@@ -328,12 +332,14 @@ class ProjectsTask extends TaskBase
      */
     public function deleteVariable(string $projectId, string $projectVariableId): AcceptedResponse
     {
-        return $this->client->variables->deleteProjectVariable($projectId, $projectVariableId);
+        return $this->client->variables->deleteProjectVariable(
+            projectId: $projectId,
+            projectVariableId: $projectVariableId
+        );
     }
 
     /**
      * Gets list of project variables
-     *
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -341,7 +347,7 @@ class ProjectsTask extends TaskBase
      */
     public function listVariables(string $projectId): array
     {
-        return $this->client->variables->listProjectVariables($projectId);
+        return $this->client->variables->listProjectVariables(projectId: $projectId);
     }
 
     /**
@@ -363,22 +369,21 @@ class ProjectsTask extends TaskBase
         ?array $applicationScope = null,
     ): AcceptedResponse {
         return $this->client->variables->updateProjectVariable(
-            $projectId,
-            $projectVariableId,
-            $name,
-            $value,
-            $attributes,
-            $isJson,
-            $isSensitive,
-            $visibleBuild,
-            $visibleRuntime,
-            $applicationScope,
+            projectId: $projectId,
+            projectVariableId: $projectVariableId,
+            name: $name,
+            value: $value,
+            attributes: $attributes,
+            isJson: $isJson,
+            isSensitive: $isSensitive,
+            visibleBuild: $visibleBuild,
+            visibleRuntime: $visibleRuntime,
+            applicationScope: $applicationScope,
         );
     }
 
     /**
      * Gets project activity log
-     *
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -386,7 +391,7 @@ class ProjectsTask extends TaskBase
      */
     public function listActivities(string $projectId): array
     {
-        return $this->client->activities->list($projectId);
+        return $this->client->activities->list(projectId: $projectId);
     }
 
     /**
@@ -397,7 +402,7 @@ class ProjectsTask extends TaskBase
      */
     public function getActivity(string $projectId, string $activityId): Activity
     {
-        return $this->client->activities->get($projectId, $activityId);
+        return $this->client->activities->get(projectId: $projectId, activityId: $activityId);
     }
 
     /**
@@ -408,7 +413,7 @@ class ProjectsTask extends TaskBase
      */
     public function cancelActivity(string $projectId, string $activityId): AcceptedResponse
     {
-        return $this->client->activities->cancel($projectId, $activityId);
+        return $this->client->activities->cancel(projectId: $projectId, activityId: $activityId);
     }
 
     /**
@@ -438,7 +443,10 @@ class ProjectsTask extends TaskBase
             enterpriseEnvironmentsMapping: (object)$enterpriseEnvironmentsMapping,
             useDedicatedGrid: $useDedicatedGrid,
         );
-        return $this->deploymentTargetApi->createProjectsDeployments($projectId, $deploymentTargetCreateInput);
+        return $this->deploymentTargetApi->createProjectsDeployments(
+            projectId: $projectId,
+            deploymentTargetCreateInput: $deploymentTargetCreateInput
+        );
     }
 
     /**
@@ -449,7 +457,10 @@ class ProjectsTask extends TaskBase
      */
     public function deleteDeployment(string $projectId, string $deploymentTargetConfigurationId): AcceptedResponse
     {
-        return $this->deploymentTargetApi->deleteProjectsDeployments($projectId, $deploymentTargetConfigurationId);
+        return $this->deploymentTargetApi->deleteProjectsDeployments(
+            projectId: $projectId,
+            deploymentTargetConfigurationId: $deploymentTargetConfigurationId
+        );
     }
 
     /**
@@ -460,12 +471,14 @@ class ProjectsTask extends TaskBase
      */
     public function getDeployment(string $projectId, string $deploymentTargetConfigurationId): DeploymentTarget
     {
-        return $this->deploymentTargetApi->getProjectsDeployments($projectId, $deploymentTargetConfigurationId);
+        return $this->deploymentTargetApi->getProjectsDeployments(
+            projectId: $projectId,
+            deploymentTargetConfigurationId: $deploymentTargetConfigurationId
+        );
     }
 
     /**
      * Gets project deployment target info
-     *
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -473,7 +486,7 @@ class ProjectsTask extends TaskBase
      */
     public function listDeployments(string $projectId): array
     {
-        return $this->deploymentTargetApi->listProjectsDeployments($projectId);
+        return $this->deploymentTargetApi->listProjectsDeployments(projectId: $projectId);
     }
 
     /**
@@ -506,9 +519,9 @@ class ProjectsTask extends TaskBase
         );
 
         return $this->deploymentTargetApi->updateProjectsDeployments(
-            $projectId,
-            $deploymentTargetConfigurationId,
-            $deploymentTargetPatch
+            projectId: $projectId,
+            deploymentTargetConfigurationId: $deploymentTargetConfigurationId,
+            deploymentTargetPatch: $deploymentTargetPatch
         );
     }
 
@@ -520,7 +533,7 @@ class ProjectsTask extends TaskBase
      */
     public function getGitBlob(string $projectId, string $repositoryBlobId): Blob
     {
-        return $this->repositoryApi->getProjectsGitBlobs($projectId, $repositoryBlobId);
+        return $this->repositoryApi->getProjectsGitBlobs(projectId: $projectId, repositoryBlobId: $repositoryBlobId);
     }
 
     /**
@@ -531,7 +544,10 @@ class ProjectsTask extends TaskBase
      */
     public function getGitCommit(string $projectId, string $repositoryCommitId): Commit
     {
-        return $this->repositoryApi->getProjectsGitCommits($projectId, $repositoryCommitId);
+        return $this->repositoryApi->getProjectsGitCommits(
+            projectId: $projectId,
+            repositoryCommitId: $repositoryCommitId
+        );
     }
 
     /**
@@ -542,7 +558,10 @@ class ProjectsTask extends TaskBase
      */
     public function getGitRef(string $projectId, string $repositoryRefId): Ref
     {
-        return $this->repositoryApi->getProjectsGitRefs($projectId, $repositoryRefId);
+        return $this->repositoryApi->getProjectsGitRefs(
+            projectId: $projectId,
+            repositoryRefId: $repositoryRefId
+        );
     }
 
     /**
@@ -553,12 +572,14 @@ class ProjectsTask extends TaskBase
      */
     public function getGitTree(string $projectId, string $repositoryTreeId): Tree
     {
-        return $this->repositoryApi->getProjectsGitTrees($projectId, $repositoryTreeId);
+        return $this->repositoryApi->getProjectsGitTrees(
+            projectId: $projectId,
+            repositoryTreeId: $repositoryTreeId
+        );
     }
 
     /**
      * Gets list of repository refs
-     *
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -566,7 +587,7 @@ class ProjectsTask extends TaskBase
      */
     public function listGitRefs(string $projectId): array
     {
-        return $this->repositoryApi->listProjectsGitRefs($projectId);
+        return $this->repositoryApi->listProjectsGitRefs(projectId: $projectId);
     }
 
     /**
@@ -577,7 +598,7 @@ class ProjectsTask extends TaskBase
      */
     public function restartGitServer(string $projectId): AcceptedResponse
     {
-        return $this->systemInfoApi->actionProjectsSystemRestart($projectId);
+        return $this->systemInfoApi->actionProjectsSystemRestart(projectId: $projectId);
     }
 
     /**
@@ -588,7 +609,7 @@ class ProjectsTask extends TaskBase
      */
     public function getGitInfo(string $projectId): SystemInformation
     {
-        return $this->systemInfoApi->getProjectsSystem($projectId);
+        return $this->systemInfoApi->getProjectsSystem(projectId: $projectId);
     }
 
     /**
@@ -709,7 +730,10 @@ class ProjectsTask extends TaskBase
             authToken: $authToken,
             authMode: $authMode
         );
-        return $this->thirdPartyIntegrationsApi->createProjectsIntegrations($projectId, $integrationCreateInput);
+        return $this->thirdPartyIntegrationsApi->createProjectsIntegrations(
+            projectId: $projectId,
+            integrationCreateInput: $integrationCreateInput
+        );
     }
 
     /**
@@ -720,7 +744,10 @@ class ProjectsTask extends TaskBase
      */
     public function deleteIntegration(string $projectId, string $integrationId): AcceptedResponse
     {
-        return $this->thirdPartyIntegrationsApi->deleteProjectsIntegrations($projectId, $integrationId);
+        return $this->thirdPartyIntegrationsApi->deleteProjectsIntegrations(
+            projectId: $projectId,
+            integrationId: $integrationId
+        );
     }
 
     /**
@@ -731,12 +758,14 @@ class ProjectsTask extends TaskBase
      */
     public function getIntegration(string $projectId, string $integrationId): Integration
     {
-        return $this->thirdPartyIntegrationsApi->getProjectsIntegrations($projectId, $integrationId);
+        return $this->thirdPartyIntegrationsApi->getProjectsIntegrations(
+            projectId: $projectId,
+            integrationId: $integrationId
+        );
     }
 
     /**
      * Gets list of existing integrations for a project
-     *
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -744,7 +773,7 @@ class ProjectsTask extends TaskBase
      */
     public function listIntegrations(string $projectId): array
     {
-        return $this->thirdPartyIntegrationsApi->listProjectsIntegrations($projectId);
+        return $this->thirdPartyIntegrationsApi->listProjectsIntegrations(projectId: $projectId);
     }
 
     /**
@@ -867,9 +896,9 @@ class ProjectsTask extends TaskBase
             authMode: $authMode
         );
         return $this->thirdPartyIntegrationsApi->updateProjectsIntegrations(
-            $projectId,
-            $integrationId,
-            $integrationPatch
+            projectId: $projectId,
+            integrationId: $integrationId,
+            integrationPatch: $integrationPatch
         );
     }
 
@@ -886,7 +915,13 @@ class ProjectsTask extends TaskBase
         ?bool $isDefault = null,
         ?string $replacementFor = null
     ): AcceptedResponse {
-        return $this->client->domains->create($projectId, $name, $attributes, $isDefault, $replacementFor);
+        return $this->client->domains->create(
+            projectId: $projectId,
+            name: $name,
+            attributes: $attributes,
+            isDefault: $isDefault,
+            replacementFor: $replacementFor
+        );
     }
 
     /**
@@ -897,7 +932,7 @@ class ProjectsTask extends TaskBase
      */
     public function deleteDomain(string $projectId, string $domainId): AcceptedResponse
     {
-        return $this->client->domains->delete($projectId, $domainId);
+        return $this->client->domains->delete(projectId: $projectId, domainId: $domainId);
     }
 
     /**
@@ -908,7 +943,7 @@ class ProjectsTask extends TaskBase
      */
     public function getDomain(string $projectId, string $domainId): Domain
     {
-        return $this->client->domains->get($projectId, $domainId);
+        return $this->client->domains->get(projectId: $projectId, domainId: $domainId);
     }
 
     /**
@@ -921,7 +956,7 @@ class ProjectsTask extends TaskBase
      */
     public function listDomains(string $projectId): array
     {
-        return $this->client->domains->list($projectId);
+        return $this->client->domains->list(projectId: $projectId);
     }
 
     /**
@@ -936,7 +971,12 @@ class ProjectsTask extends TaskBase
         ?array $attributes,
         ?bool $isDefault
     ): AcceptedResponse {
-        return $this->client->domains->update($projectId, $domainId, $attributes, $isDefault);
+        return $this->client->domains->update(
+            projectId: $projectId,
+            domainId: $domainId,
+            attributes: $attributes,
+            isDefault: $isDefault
+        );
     }
 
     /**
@@ -953,11 +993,11 @@ class ProjectsTask extends TaskBase
         ?bool $isInvalid = null
     ): AcceptedResponse {
         return $this->client->certificates->create(
-            $projectId,
-            $certificate,
-            $key,
-            $chain,
-            $isInvalid
+            projectId: $projectId,
+            certificate: $certificate,
+            key: $key,
+            chain: $chain,
+            isInvalid: $isInvalid
         );
     }
 
@@ -969,7 +1009,7 @@ class ProjectsTask extends TaskBase
      */
     public function deleteCertificate(string $projectId, string $certificateId): AcceptedResponse
     {
-        return $this->client->certificates->delete($projectId, $certificateId);
+        return $this->client->certificates->delete(projectId: $projectId, certificateId: $certificateId);
     }
 
     /**
@@ -980,12 +1020,11 @@ class ProjectsTask extends TaskBase
      */
     public function getCertificate(string $projectId, string $certificateId): Certificate
     {
-        return $this->client->certificates->get($projectId, $certificateId);
+        return $this->client->certificates->get(projectId: $projectId, certificateId: $certificateId);
     }
 
     /**
      * Gets list of SSL certificates
-     *
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -993,7 +1032,7 @@ class ProjectsTask extends TaskBase
      */
     public function listCertificates(string $projectId): array
     {
-        return $this->client->certificates->list($projectId);
+        return $this->client->certificates->list(projectId: $projectId);
     }
 
     /**
@@ -1008,7 +1047,12 @@ class ProjectsTask extends TaskBase
         ?array $chain = null,
         ?bool $isInvalid = null,
     ): AcceptedResponse {
-        return $this->client->certificates->update($projectId, $certificateId, $chain, $isInvalid);
+        return $this->client->certificates->update(
+            projectId: $projectId,
+            certificateId: $certificateId,
+            chain: $chain,
+            isInvalid: $isInvalid
+        );
     }
 
     /**
@@ -1026,12 +1070,12 @@ class ProjectsTask extends TaskBase
         array $parameters
     ): AcceptedResponse {
         return $this->client->operations->run(
-            $projectId,
-            $environmentId,
-            $deploymentId,
-            $service,
-            $operation,
-            $parameters
+            projectId: $projectId,
+            environmentId: $environmentId,
+            deploymentId: $deploymentId,
+            service: $service,
+            operation: $operation,
+            parameters: $parameters
         );
     }
 
@@ -1043,9 +1087,8 @@ class ProjectsTask extends TaskBase
      */
     public function getProjectTeamAccess(string $projectId, string $teamId): TeamProjectAccess
     {
-        return $this->client->teams->getProjectTeamAccess($projectId, $teamId);
+        return $this->client->teams->getProjectTeamAccess(projectId: $projectId, teamId: $teamId);
     }
-
 
     /**
      * Gets project access for a team
@@ -1055,7 +1098,7 @@ class ProjectsTask extends TaskBase
      */
     public function getTeamProjectAccess(string $teamId, string $projectId): TeamProjectAccess
     {
-        return $this->client->teams->getTeamProjectAccess($teamId, $projectId);
+        return $this->client->teams->getTeamProjectAccess(teamId: $teamId, projectId: $projectId);
     }
 
     /**
@@ -1066,7 +1109,10 @@ class ProjectsTask extends TaskBase
      */
     public function grantProjectTeamAccess(string $projectId, array $grantProjectTeamAccessRequestInner): void
     {
-        $this->client->teams->grantProjectTeamAccess($projectId, $grantProjectTeamAccessRequestInner);
+        $this->client->teams->grantProjectTeamAccess(
+            projectId: $projectId,
+            grantProjectTeamAccessRequestInner: $grantProjectTeamAccessRequestInner
+        );
     }
 
     /**
@@ -1077,7 +1123,7 @@ class ProjectsTask extends TaskBase
      */
     public function grantTeamProjectAccess(string $teamId, array $data): void
     {
-        $this->client->teams->grantTeamProjectAccess($teamId, $data);
+        $this->client->teams->grantTeamProjectAccess(teamId: $teamId, data: $data);
     }
 
     /**
@@ -1093,7 +1139,13 @@ class ProjectsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListProjectTeamAccess200Response {
-        return $this->client->teams->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
+        return $this->client->teams->listProjectTeamAccess(
+            projectId: $projectId,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
     }
 
     /**
@@ -1109,7 +1161,13 @@ class ProjectsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListProjectTeamAccess200Response {
-        return $this->client->teams->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
+        return $this->client->teams->listTeamProjectAccess(
+            teamId: $teamId,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
     }
 
     /**
@@ -1120,7 +1178,7 @@ class ProjectsTask extends TaskBase
      */
     public function removeProjectTeamAccess(string $projectId, string $teamId): void
     {
-        $this->client->teams->removeProjectTeamAccess($projectId, $teamId);
+        $this->client->teams->removeProjectTeamAccess(projectId: $projectId, teamId: $teamId);
     }
 
     /**
@@ -1131,7 +1189,7 @@ class ProjectsTask extends TaskBase
      */
     public function removeTeamProjectAccess(string $teamId, string $projectId): void
     {
-        $this->client->teams->removeTeamProjectAccess($teamId, $projectId);
+        $this->client->teams->removeTeamProjectAccess(teamId: $teamId, projectId: $projectId);
     }
 
     /**
@@ -1142,7 +1200,7 @@ class ProjectsTask extends TaskBase
      */
     public function getProjectUserAccess(string $projectId, string $userId): UserProjectAccess
     {
-        return $this->client->users->getProjectUserAccess($projectId, $userId);
+        return $this->client->users->getProjectUserAccess(projectId: $projectId, userId: $userId);
     }
 
     /**
@@ -1153,7 +1211,10 @@ class ProjectsTask extends TaskBase
      */
     public function grantProjectUserAccess(string $projectId, array $data): void
     {
-        $this->client->users->grantProjectUserAccess($projectId, $data);
+        $this->client->users->grantProjectUserAccess(
+            projectId: $projectId,
+            grantProjectUserAccessRequestInner: $data
+        );
     }
 
     /**
@@ -1164,7 +1225,7 @@ class ProjectsTask extends TaskBase
      */
     public function removeProjectUserAccess(string $projectId, string $userId): void
     {
-        $this->client->users->removeProjectUserAccess($projectId, $userId);
+        $this->client->users->removeProjectUserAccess(projectId: $projectId, userId: $userId);
     }
 
     /**
@@ -1178,7 +1239,11 @@ class ProjectsTask extends TaskBase
         string $userId,
         ?array $permissions = null
     ): void {
-        $this->client->users->updateProjectUserAccess($projectId, $userId, $permissions);
+        $this->client->users->updateProjectUserAccess(
+            projectId: $projectId,
+            userId: $userId,
+            permissions: $permissions
+        );
     }
 
     /**
@@ -1194,7 +1259,13 @@ class ProjectsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListProjectUserAccess200Response {
-        return $this->client->users->listProjectUserAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
+        return $this->client->users->listProjectUserAccess(
+            projectId: $projectId,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
     }
 
     /**
@@ -1206,6 +1277,6 @@ class ProjectsTask extends TaskBase
      */
     public function listEnvironments(string $projectId): array
     {
-        return $this->client->environments->list($projectId);
+        return $this->client->environments->list(projectId: $projectId);
     }
 }

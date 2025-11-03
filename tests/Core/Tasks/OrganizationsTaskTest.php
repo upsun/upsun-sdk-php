@@ -9,6 +9,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;
+use Upsun\Api\ApiException;
 use Upsun\Api\ApiTokensApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\DeploymentTargetApi;
@@ -1554,13 +1555,79 @@ class OrganizationsTaskTest extends BaseTestCase
             'format' => 'format'
         ];
 
+
+        $fakeOrganizationProject = [
+            'id' => $prjId,
+            'attributes' => [
+                'language' => 'php',
+                'framework' => 'symfony',
+            ],
+            'title' => 'My Test Project',
+            'description' => 'This is a fake project for testing.',
+            'owner' => 'user_123',
+            'status' => [
+                'code' => 'active',
+                'message' => 'All systems operational',
+            ],
+            'timezone' => 'Europe/Paris',
+            'region' => 'eu-west-1',
+            'repository' => [
+                'url' => 'git@github.com:test/project.git',
+                'clientSshKey' => 'ssh-rsa AAAAB3Nza...fake',
+            ],
+            'subscription' => [
+                'licenseUri' => 'https://upsun.com/licenses/123',
+                'storage' => 10240,
+                'includedUsers' => 5,
+                'subscriptionManagementUri' => 'https://upsun.com/manage/123',
+                'restricted' => false,
+                'suspended' => false,
+                'userLicenses' => 10,
+                'plan' => 'pro',
+                'environments' => 3,
+                'resources' => [
+                    'containerProfiles' => true,
+                    'production' => [
+                        'legacyDevelopment' => false,
+                        'maxCpu' => 2.0,
+                        'maxMemory' => 4096,
+                        'maxEnvironments' => 5,
+                    ],
+                    'development' => [
+                        'legacyDevelopment' => true,
+                        'maxCpu' => 1.0,
+                        'maxMemory' => 2048,
+                        'maxEnvironments' => 10,
+                    ],
+                ],
+                'resourceValidationUrl' => 'https://upsun.com/resources/validate',
+                'imageTypes' => [
+                    'only' => ['php:8.2', 'node:18'],
+                    'exclude' => ['java:11'],
+                ],
+            ],
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-01T12:00:00Z',
+            'namespace' => 'namespace',
+            'organization' => 'org_987',
+            'defaultBranch' => 'main',
+            'defaultDomain' => 'project.upsun.dev',
+        ];
+
         $this->httpClient
             ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode($estimationObject)
-            ));
+            ->willReturnOnConsecutiveCalls(
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($fakeOrganizationProject)
+                ),
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($estimationObject)
+                )
+            );
 
         $response = $this->organizationsTask->estimateProject(
             $orgId,
@@ -1679,14 +1746,79 @@ class OrganizationsTaskTest extends BaseTestCase
             ],
         ];
 
+
+        $fakeOrganizationProject = [
+            'id' => $prjId,
+            'attributes' => [
+                'language' => 'php',
+                'framework' => 'symfony',
+            ],
+            'title' => 'My Test Project',
+            'description' => 'This is a fake project for testing.',
+            'owner' => 'user_123',
+            'status' => [
+                'code' => 'active',
+                'message' => 'All systems operational',
+            ],
+            'timezone' => 'Europe/Paris',
+            'region' => 'eu-west-1',
+            'repository' => [
+                'url' => 'git@github.com:test/project.git',
+                'clientSshKey' => 'ssh-rsa AAAAB3Nza...fake',
+            ],
+            'subscription' => [
+                'licenseUri' => 'https://upsun.com/licenses/123',
+                'storage' => 10240,
+                'includedUsers' => 5,
+                'subscriptionManagementUri' => 'https://upsun.com/manage/123',
+                'restricted' => false,
+                'suspended' => false,
+                'userLicenses' => 10,
+                'plan' => 'pro',
+                'environments' => 3,
+                'resources' => [
+                    'containerProfiles' => true,
+                    'production' => [
+                        'legacyDevelopment' => false,
+                        'maxCpu' => 2.0,
+                        'maxMemory' => 4096,
+                        'maxEnvironments' => 5,
+                    ],
+                    'development' => [
+                        'legacyDevelopment' => true,
+                        'maxCpu' => 1.0,
+                        'maxMemory' => 2048,
+                        'maxEnvironments' => 10,
+                    ],
+                ],
+                'resourceValidationUrl' => 'https://upsun.com/resources/validate',
+                'imageTypes' => [
+                    'only' => ['php:8.2', 'node:18'],
+                    'exclude' => ['java:11'],
+                ],
+            ],
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-01T12:00:00Z',
+            'namespace' => 'namespace',
+            'organization' => 'org_987',
+            'defaultBranch' => 'main',
+            'defaultDomain' => 'project.upsun.dev',
+        ];
+
         $this->httpClient
-            ->expects($this->once())
             ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode($currentUsageData)
-            ));
+            ->willReturnOnConsecutiveCalls(
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($fakeOrganizationProject)
+                ),
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($currentUsageData)
+                )
+            );
 
         $response = $this->organizationsTask->getProjectUsage(
             $orgId,
@@ -2607,15 +2739,81 @@ class OrganizationsTaskTest extends BaseTestCase
             ],
         ];
 
+        $fakeOrganizationProject = [
+            'id' => '123',
+            'attributes' => [
+                'language' => 'php',
+                'framework' => 'symfony',
+            ],
+            'title' => 'My Test Project',
+            'description' => 'This is a fake project for testing.',
+            'owner' => 'user_123',
+            'status' => [
+                'code' => 'active',
+                'message' => 'All systems operational',
+            ],
+            'timezone' => 'Europe/Paris',
+            'region' => 'eu-west-1',
+            'repository' => [
+                'url' => 'git@github.com:test/project.git',
+                'clientSshKey' => 'ssh-rsa AAAAB3Nza...fake',
+            ],
+            'subscription' => [
+                'licenseUri' => 'https://upsun.com/licenses/123',
+                'storage' => 10240,
+                'includedUsers' => 5,
+                'subscriptionManagementUri' => 'https://upsun.com/manage/123',
+                'restricted' => false,
+                'suspended' => false,
+                'userLicenses' => 10,
+                'plan' => 'pro',
+                'environments' => 3,
+                'resources' => [
+                    'containerProfiles' => true,
+                    'production' => [
+                        'legacyDevelopment' => false,
+                        'maxCpu' => 2.0,
+                        'maxMemory' => 4096,
+                        'maxEnvironments' => 5,
+                    ],
+                    'development' => [
+                        'legacyDevelopment' => true,
+                        'maxCpu' => 1.0,
+                        'maxMemory' => 2048,
+                        'maxEnvironments' => 10,
+                    ],
+                ],
+                'resourceValidationUrl' => 'https://upsun.com/resources/validate',
+                'imageTypes' => [
+                    'only' => ['php:8.2', 'node:18'],
+                    'exclude' => ['java:11'],
+                ],
+            ],
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-01T12:00:00Z',
+            'namespace' => 'namespace',
+            'organization' => 'org_987',
+            'defaultBranch' => 'main',
+            'defaultDomain' => 'project.upsun.dev',
+        ];
+
         $this->httpClient
             ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode($fakeListOrgPlanRecords200ResponseData)
-            ));
+            ->willReturnOnConsecutiveCalls(
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($fakeOrganizationProject)
+                ),
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($fakeListOrgPlanRecords200ResponseData)
+                )
+            );
 
-        $result = $this->organizationsTask->listRecords('org-123');
+
+        $result = $this->organizationsTask->listRecords('org-123', '123');
         $this->assertInstanceOf(ListOrgPlanRecords200Response::class, $result);
         $this->assertContainsOnlyInstancesOf(PlanRecords::class, $result->getItems());
         $this->assertObjectProperties($result, $fakeListOrgPlanRecords200ResponseData);
@@ -2692,11 +2890,6 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testUpdateAddons(): void
     {
-        $fakeUpdateOrgAddonsRequest = [
-            'userManagement' => 'standard', // or "enhanced"
-            'supportLevel'   => 'basic',    // or "premium"
-        ];
-
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
@@ -2741,5 +2934,49 @@ class OrganizationsTaskTest extends BaseTestCase
             ['basic' => 90],
             $result->getCurrent()->getSupportLevel()
         );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDownloadInvoiceSuccess(): void
+    {
+        $token = 'invoice-token-123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/pdf'],
+                'PDF-DATA-HERE'
+            ));
+
+        $result = $this->organizationsTask->downloadInvoice($token);
+
+        $this->assertIsString($result);
+        $this->assertEquals('PDF-DATA-HERE', $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDownloadInvoiceError(): void
+    {
+        $token = 'invoice-token-403';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->organizationsTask->downloadInvoice($token);
     }
 }

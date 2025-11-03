@@ -2996,4 +2996,340 @@ class EnvironmentsTaskTest extends BaseTestCase
 
         $this->environmentTask->activate($projectId, $environmentId, $init);
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeactivateSuccess(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
+
+        $result = $this->environmentTask->deactivate($projectId, $environmentId);
+
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeactivateError(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->environmentTask->deactivate($projectId, $environmentId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteVersionsSuccess(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+        $versionId = 'ver-789';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
+
+        $result = $this->environmentTask->deleteVersions($projectId, $environmentId, $versionId);
+
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteVersionsError(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+        $versionId = 'ver-789';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->environmentTask->deleteVersions($projectId, $environmentId, $versionId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRedeploySuccess(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
+
+        $result = $this->environmentTask->redeploy($projectId, $environmentId);
+
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRedeployUnauthorizedError(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->environmentTask->redeploy($projectId, $environmentId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testSynchronizeSuccess(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+        $synchronizeCode = false;
+        $rebase = false;
+        $synchronizeData = true;
+        $synchronizeResources = false;
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
+
+        $result = $this->environmentTask->synchronize(
+            $projectId,
+            $environmentId,
+            $synchronizeCode,
+            $rebase,
+            $synchronizeData,
+            $synchronizeResources
+        );
+
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testSynchronizeError(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+        $synchronizeCode = false;
+        $rebase = true;
+        $synchronizeData = false;
+        $synchronizeResources = true;
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->environmentTask->synchronize(
+            $projectId,
+            $environmentId,
+            $synchronizeCode,
+            $rebase,
+            $synchronizeData,
+            $synchronizeResources
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateVersionsSuccess(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+        $versionId = 'ver-789';
+        $percentage = 50;
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
+
+        $result = $this->environmentTask->updateVersions(
+            $projectId,
+            $environmentId,
+            $versionId,
+            $percentage
+        );
+
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateVersionsError(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+        $versionId = 'ver-789';
+        $percentage = 75;
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->environmentTask->updateVersions(
+            $projectId,
+            $environmentId,
+            $versionId,
+            $percentage
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteDomainSuccess(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+        $domainId = 'dom-789';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
+
+        $result = $this->environmentTask->deleteDomain(
+            $projectId,
+            $environmentId,
+            $domainId
+        );
+
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteDomainError(): void
+    {
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+        $domainId = 'dom-789';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->environmentTask->deleteDomain(
+            $projectId,
+            $environmentId,
+            $domainId
+        );
+    }
 }
