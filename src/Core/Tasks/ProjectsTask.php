@@ -197,9 +197,9 @@ class ProjectsTask extends TaskBase
      * Lists invitations to a project
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return ProjectInvitation[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listInvites(
         string $projectId,
@@ -292,10 +292,10 @@ class ProjectsTask extends TaskBase
     /**
      * Gets list of project variables
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return ProjectVariable[]
      *
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listVariables(string $projectId): array
     {
@@ -334,9 +334,9 @@ class ProjectsTask extends TaskBase
      * Gets project activity log
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Activity[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listActivities(string $projectId): array
     {
@@ -423,9 +423,9 @@ class ProjectsTask extends TaskBase
      * Gets project deployment target info
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return DeploymentTarget[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listDeployments(string $projectId): array
     {
@@ -520,9 +520,9 @@ class ProjectsTask extends TaskBase
      * Gets list of repository refs
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Ref[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listGitRefs(string $projectId): array
     {
@@ -696,9 +696,9 @@ class ProjectsTask extends TaskBase
      * Gets list of existing integrations for a project
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Integration[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listIntegrations(string $projectId): array
     {
@@ -875,9 +875,9 @@ class ProjectsTask extends TaskBase
      * Gets list of project domains
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Domain[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listDomains(string $projectId): array
     {
@@ -903,19 +903,23 @@ class ProjectsTask extends TaskBase
     /**
      * Adds an SSL certificate
      *
-     * @param array{
-     *     certificate: string,
-     *     key: string,
-     *     chain?: array,
-     *     isInvalid?: bool
-     * } $options Configuration options
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function createCertificate(string $projectId, array $options): AcceptedResponse
-    {
-        return $this->client->certificates->create($projectId, $options);
+    public function createCertificate(
+        string $projectId,
+        string $certificate,
+        string $key,
+        ?array $chain = null,
+        ?bool $isInvalid = null
+    ): AcceptedResponse {
+        return $this->client->certificates->create(
+            $projectId,
+            $certificate,
+            $key,
+            $chain,
+            $isInvalid
+        );
     }
 
     /**
@@ -944,9 +948,9 @@ class ProjectsTask extends TaskBase
      * Gets list of SSL certificates
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Certificate[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listCertificates(string $projectId): array
     {
@@ -962,9 +966,10 @@ class ProjectsTask extends TaskBase
     public function updateCertificate(
         string $projectId,
         string $certificateId,
-        array $certificatePatch
+        ?array $chain = null,
+        ?bool $isInvalid = null,
     ): AcceptedResponse {
-        return $this->client->certificates->update($projectId, $certificateId, $certificatePatch);
+        return $this->client->certificates->update($projectId, $certificateId, $chain, $isInvalid);
     }
 
     /**
@@ -1158,9 +1163,9 @@ class ProjectsTask extends TaskBase
     /**
      * Lists environments of a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Environment[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listEnvironments(string $projectId): array
     {

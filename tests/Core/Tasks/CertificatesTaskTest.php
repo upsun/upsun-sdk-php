@@ -40,13 +40,6 @@ class CertificatesTaskTest extends BaseTestCase
     public function testCreateCertificateSuccess()
     {
         $projectId = 'proj_123';
-        $options = [
-            'certificate' => 'cert-data',
-            'key' => 'key-data',
-            'chain' => ['chain1', 'chain2'],
-            'isInvalid' => false,
-        ];
-
         $fakeResponse = [
             'status' => 'accepted',
             'code' => 204,
@@ -60,7 +53,13 @@ class CertificatesTaskTest extends BaseTestCase
                 json_encode($fakeResponse)
             ));
 
-        $result = $this->task->create($projectId, $options);
+        $result = $this->task->create(
+            $projectId,
+            'cert-data',
+            'key-data',
+            ['chain1', 'chain2'],
+            false,
+        );
 
         $this->assertInstanceOf(AcceptedResponse::class, $result);
         $this->assertObjectProperties($result, $fakeResponse);
@@ -69,10 +68,6 @@ class CertificatesTaskTest extends BaseTestCase
     public function testCreateCertificateError()
     {
         $projectId = 'proj_123';
-        $options = [
-            'certificate' => 'cert-data',
-            'key' => 'key-data',
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -88,7 +83,11 @@ class CertificatesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->create($projectId, $options);
+        $this->task->create(
+            $projectId,
+            'cert-data',
+            'key-data'
+        );
     }
 
     public function testDeleteCertificateSuccess()

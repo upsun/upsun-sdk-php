@@ -2460,7 +2460,22 @@ MIIDdTCCAl2gAwIBAgIEb/2OBDANBgkqhkiG9w0BAQUFADB1MQswCQYDVQQGEwJV
                 ])
             ));
 
-        $result = $this->projectsTask->createCertificate($projectId, $fakeCertificateCreateInput);
+        $result = $this->projectsTask->createCertificate(
+            $projectId,
+            '-----BEGIN CERTIFICATE-----
+MIIDXTCCAkWgAwIBAgIJAK8kU8kXk9Z+MA0GC...
+-----END CERTIFICATE-----',
+            '-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASC...
+-----END PRIVATE KEY-----',
+            [
+        '-----BEGIN CERTIFICATE-----
+MIIDdTCCAl2gAwIBAgIEb/2OBDANBgkqhkiG9w0BAQUFADB1MQswCQYDVQQGEwJV
+...
+-----END CERTIFICATE-----',
+    ],
+            false,
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
@@ -4140,7 +4155,6 @@ FAKE-CHAIN-CERT-DATA2
     public function testCreateCertificateWithError()
     {
         $projectId = 'test-project';
-        $certData = ['certificate' => 'cert-data', 'key' => 'key-data'];
 
         $this->httpClient
             ->method('sendRequest')
@@ -4154,7 +4168,7 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->createCertificate($projectId, $certData);
+        $this->projectsTask->createCertificate($projectId, 'cert-data', 'key-data');
     }
 
     public function testDeleteCertificateWithError()
