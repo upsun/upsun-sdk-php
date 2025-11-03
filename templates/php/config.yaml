@@ -98,3 +98,7 @@ files:
     templateType: SupportingFiles
     destinationFilename: Model.php
     folder: src/Model/
+  READMEDOC.mustache:
+    templateType: SupportingFiles
+    destinationFilename: index.md
+    folder: docs/

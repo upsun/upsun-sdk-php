@@ -37,7 +37,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 ## Authentication
 
-You will need an [Upsun API token](https://docs.upsun.com/administration/cli/api-tokens.html) to use this SDK. 
+You will need an [Upsun API token](https://docs.upsun.com/administration/cli/api-tokens.html) to use this SDK.
 Store it securely, preferably in an environment variable.
 
 ```php
@@ -122,7 +122,7 @@ The SDK is built as follows:
 
 ### Regenerating API & Model classes
 
-API and Model classes are generated using [openapi-generator-cli](https://openapi-generator.tech) 
+API and Model classes are generated using [openapi-generator-cli](https://openapi-generator.tech)
 from the [Upsun OpenAPI spec](https://proxy.upsun.com/docs/openapispec-platformsh.json).
 
 ```bash
@@ -136,71 +136,19 @@ Contributions are welcome!<br>
 Please open a [pull request](https://github.com/{{composerPackageName}}/compare) or an [issue](https://github.com/{{composerPackageName}}/issues/new)
 for any improvements, bug fixes, or new features.
 
----
+## Full SDK Docs
 
-## API Endpoints
+To see the full SDK docs, for all API and Model classes, please see the [following link](./docs/index.md)
 
-All URIs are relative to *{{basePath}}*
-
-| Class | Method | HTTP request | Description | Upsun API Doc |
-| ------------ | ------------- | ------------- | ------------- | ------------- |
-{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}| **{{classname}}** | [**{{operationId}}**]({{apiDocPath}}/{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{summary}} | https://docs.upsun.com/api/#tag/{{vendorExtensions.x-tag-id-kebab}}/operation/{{vendorExtensions.x-property-id-kebab}} |
-{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
-## Models
-
-{{#models}}{{#model}}- [{{{classname}}}]({{modelDocPath}}/{{{classname}}}.md){{/model}}
-{{/models}}
-
-## Authorization
-{{^authMethods}}Endpoints do not require authorization.{{/authMethods}}
-{{#hasAuthMethods}}Authentication schemes defined for the API:{{/hasAuthMethods}}
-{{#authMethods}}
-### {{{name}}}
-{{#isApiKey}}
-
-- **Type**: API key
-- **API key parameter name**: {{{keyParamName}}}
-- **Location**: {{#isKeyInQuery}}URL query string{{/isKeyInQuery}}{{#isKeyInHeader}}HTTP header{{/isKeyInHeader}}
-
-{{/isApiKey}}
-{{#isBasic}}
-{{#isBasicBasic}}
-
-- **Type**: HTTP basic authentication
-{{/isBasicBasic}}
-{{#isBasicBearer}}
-
-- **Type**: Bearer authentication{{#bearerFormat}} ({{{.}}}){{/bearerFormat}}
-{{/isBasicBearer}}
-{{#isHttpSignature}}
-
-- **Type**: HTTP signature authentication
-{{/isHttpSignature}}
-{{/isBasic}}
-{{#isOAuth}}
-
-- **Type**: `OAuth`
-- **Flow**: `{{{flow}}}`
-- **Authorization URL**: `{{authorizationUrl}}`
-- **Scopes**: {{^scopes}}N/A{{/scopes}}
-{{#scopes}}
-    - **{{{scope}}}**: {{{description}}}
-{{/scopes}}
-{{/isOAuth}}
-
-{{/authMethods}}
 ## Tests
 
 To run the tests, use:
 
 ```bash
 composer install
-vendor/bin/phpunit
+composer run test
 ```
 
 ## License
 
-This project is licensed under the Apache 2.0 License. See the [LICENSE](./LICENSE) file for details.
-
-
-
+This project is licensed under the {{ licenseName }} License. See the [LICENSE](./LICENSE) file for details.

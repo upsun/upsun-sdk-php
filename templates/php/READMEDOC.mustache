@@ -1,0 +1,55 @@
+# {{projectName}} Doc
+
+---
+
+## API Endpoints
+
+All URIs are relative to *{{basePath}}*
+
+| Class | Method | HTTP request | Description | Upsun API Doc |
+| ------------ | ------------- | ------------- | ------------- | ------------- |
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}| **{{classname}}** | [**{{operationId}}**]({{apiDocPath}}/{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{summary}} | https://docs.upsun.com/api/#tag/{{vendorExtensions.x-tag-id-kebab}}/operation/{{vendorExtensions.x-property-id-kebab}} |
+{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
+## Models
+
+{{#models}}{{#model}}- [{{{classname}}}]({{modelDocPath}}/{{{classname}}}.md){{/model}}
+{{/models}}
+
+## Authorization
+{{^authMethods}}Endpoints do not require authorization.{{/authMethods}}
+{{#hasAuthMethods}}Authentication schemes defined for the API:{{/hasAuthMethods}}
+{{#authMethods}}
+    ### {{{name}}}
+    {{#isApiKey}}
+
+        - **Type**: API key
+        - **API key parameter name**: {{{keyParamName}}}
+        - **Location**: {{#isKeyInQuery}}URL query string{{/isKeyInQuery}}{{#isKeyInHeader}}HTTP header{{/isKeyInHeader}}
+
+    {{/isApiKey}}
+    {{#isBasic}}
+        {{#isBasicBasic}}
+
+            - **Type**: HTTP basic authentication
+        {{/isBasicBasic}}
+        {{#isBasicBearer}}
+
+            - **Type**: Bearer authentication{{#bearerFormat}} ({{{.}}}){{/bearerFormat}}
+        {{/isBasicBearer}}
+        {{#isHttpSignature}}
+
+            - **Type**: HTTP signature authentication
+        {{/isHttpSignature}}
+    {{/isBasic}}
+    {{#isOAuth}}
+
+        - **Type**: `OAuth`
+        - **Flow**: `{{{flow}}}`
+        - **Authorization URL**: `{{authorizationUrl}}`
+        - **Scopes**: {{^scopes}}N/A{{/scopes}}
+        {{#scopes}}
+            - **{{{scope}}}**: {{{description}}}
+        {{/scopes}}
+    {{/isOAuth}}
+
+{{/authMethods}}
