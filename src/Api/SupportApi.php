@@ -2,19 +2,21 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\Ticket;
 use DateTime;
+use Upsun\Model\UpdateTicketRequest;
+use InvalidArgumentException;
+use Upsun\Model\ListTicketCategories200ResponseInner;
+use Upsun\Model\ListTicketPriorities200ResponseInner;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CreateTicketRequest;
-use Upsun\Model\Ticket;
-use Upsun\Model\UpdateTicketRequest;
 
 /**
  * Low level SupportApi (auto-generated)

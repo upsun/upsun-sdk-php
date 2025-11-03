@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **logsForwarding** | [**\Upsun\Model\LogsForwarding**](LogsForwarding.md) |  |
 **guaranteedResources** | [**\Upsun\Model\GuaranteedResources**](GuaranteedResources.md) |  |
 **images** | **array<string,array<string,\Upsun\Model\ImagesValueValue>>** |  |
-**instanceLimit** | **int** |  |
+**instanceLimit** | **int** | Maximum number of instance per service |
 **buildResources** | [**\Upsun\Model\BuildResources**](BuildResources.md) |  |
 **dataRetention** | [**\Upsun\Model\DataRetention**](DataRetention.md) |  |
 **autoscaling** | [**\Upsun\Model\Autoscaling**](Autoscaling.md) |  |

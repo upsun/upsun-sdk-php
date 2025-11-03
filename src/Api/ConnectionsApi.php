@@ -2,16 +2,16 @@
 
 namespace Upsun\Api;
 
+use InvalidArgumentException;
+use Upsun\Model\Connection;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\Connection;
 
 /**
  * Low level ConnectionsApi (auto-generated)

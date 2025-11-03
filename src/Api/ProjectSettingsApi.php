@@ -2,18 +2,18 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\ProjectSettings;
+use InvalidArgumentException;
+use Upsun\Model\ProjectSettingsPatch;
+use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\ProjectSettings;
-use Upsun\Model\ProjectSettingsPatch;
 
 /**
  * Low level ProjectSettingsApi (auto-generated)

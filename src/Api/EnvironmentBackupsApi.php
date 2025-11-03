@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\EnvironmentBackupInput;
+use Upsun\Model\AcceptedResponse;
+use InvalidArgumentException;
+use Upsun\Model\Backup;
+use Upsun\Model\EnvironmentRestoreInput;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Backup;
-use Upsun\Model\EnvironmentBackupInput;
-use Upsun\Model\EnvironmentRestoreInput;
 
 /**
  * Low level EnvironmentBackupsApi (auto-generated)

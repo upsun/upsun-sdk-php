@@ -2,29 +2,29 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use InvalidArgumentException;
+use Upsun\Model\CanUpdateSubscription200Response;
 use DateTime;
+use Upsun\Model\CreateOrgSubscriptionRequest;
+use Upsun\Model\Subscription;
+use Upsun\Model\EstimationObject;
+use Upsun\Model\SubscriptionCurrentUsageObject;
+use Upsun\Model\GetSubscriptionUsageAlerts200Response;
+use Upsun\Model\StringFilter;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\ListOrgSubscriptions200Response;
+use Upsun\Model\SubscriptionAddonsObject;
+use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CanCreateNewOrgSubscription200Response;
-use Upsun\Model\CanUpdateSubscription200Response;
-use Upsun\Model\CreateOrgSubscriptionRequest;
-use Upsun\Model\DateTimeFilter;
-use Upsun\Model\EstimationObject;
-use Upsun\Model\GetSubscriptionUsageAlerts200Response;
-use Upsun\Model\ListOrgSubscriptions200Response;
-use Upsun\Model\StringFilter;
-use Upsun\Model\Subscription;
-use Upsun\Model\SubscriptionAddonsObject;
-use Upsun\Model\SubscriptionCurrentUsageObject;
-use Upsun\Model\UpdateOrgSubscriptionRequest;
-use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
 
 /**
  * Low level SubscriptionsApi (auto-generated)

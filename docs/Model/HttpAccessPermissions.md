@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**isEnabled** | **bool** |  |
+**isEnabled** | **bool** | Whether http_access control is enabled |
 **addresses** | [**\Upsun\Model\AddressGrantsInner[]**](AddressGrantsInner.md) |  |
 **basicAuth** | **array<string,string>** |  |
 

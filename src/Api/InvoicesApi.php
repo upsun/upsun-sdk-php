@@ -2,18 +2,18 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\Invoice;
+use InvalidArgumentException;
+use Upsun\Model\ListOrgInvoices200Response;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\Invoice;
-use Upsun\Model\ListOrgInvoices200Response;
 
 /**
  * Low level InvoicesApi (auto-generated)

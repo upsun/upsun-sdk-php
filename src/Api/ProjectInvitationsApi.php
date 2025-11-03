@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
+use InvalidArgumentException;
+use Upsun\Model\CreateProjectInviteRequest;
+use Upsun\Model\ProjectInvitation;
+use Upsun\Model\StringFilter;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CreateProjectInviteRequest;
-use Upsun\Model\ProjectInvitation;
-use Upsun\Model\StringFilter;
 
 /**
  * Low level ProjectInvitationsApi (auto-generated)

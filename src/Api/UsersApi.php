@@ -2,21 +2,21 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\User;
+use Upsun\Model\CurrentUser;
+use Upsun\Model\GetCurrentUserVerificationStatus200Response;
+use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
+use InvalidArgumentException;
+use Upsun\Model\ResetEmailAddressRequest;
+use Upsun\Model\UpdateUserRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CurrentUser;
-use Upsun\Model\GetCurrentUserVerificationStatus200Response;
-use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
-use Upsun\Model\ResetEmailAddressRequest;
-use Upsun\Model\UpdateUserRequest;
-use Upsun\Model\User;
 
 /**
  * Low level UsersApi (auto-generated)

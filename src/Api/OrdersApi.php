@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\CreateAuthorizationCredentials200Response;
+use InvalidArgumentException;
 use DateTime;
+use Upsun\Model\Order;
+use Upsun\Model\ListOrgOrders200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CreateAuthorizationCredentials200Response;
-use Upsun\Model\ListOrgOrders200Response;
-use Upsun\Model\Order;
 
 /**
  * Low level OrdersApi (auto-generated)

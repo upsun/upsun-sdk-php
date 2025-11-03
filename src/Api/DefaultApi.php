@@ -3,18 +3,18 @@
 namespace Upsun\Api;
 
 use DateTime;
+use Upsun\Model\ListTickets200Response;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\OrganizationCarbon;
+use InvalidArgumentException;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\DateTimeFilter;
-use Upsun\Model\ListTickets200Response;
-use Upsun\Model\OrganizationCarbon;
 
 /**
  * Low level DefaultApi (auto-generated)

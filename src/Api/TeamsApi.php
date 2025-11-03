@@ -2,25 +2,25 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\CreateTeamRequest;
+use Upsun\Model\Team;
+use InvalidArgumentException;
+use Upsun\Model\CreateTeamMemberRequest;
+use Upsun\Model\TeamMember;
+use Upsun\Model\ListTeamMembers200Response;
 use DateTime;
+use Upsun\Model\StringFilter;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\ListTeams200Response;
+use Upsun\Model\UpdateTeamRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CreateTeamMemberRequest;
-use Upsun\Model\CreateTeamRequest;
-use Upsun\Model\DateTimeFilter;
-use Upsun\Model\ListTeamMembers200Response;
-use Upsun\Model\ListTeams200Response;
-use Upsun\Model\StringFilter;
-use Upsun\Model\Team;
-use Upsun\Model\TeamMember;
-use Upsun\Model\UpdateTeamRequest;
 
 /**
  * Low level TeamsApi (auto-generated)

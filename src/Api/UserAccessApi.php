@@ -2,19 +2,19 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\UserProjectAccess;
+use InvalidArgumentException;
+use Upsun\Model\ListProjectUserAccess200Response;
 use DateTime;
+use Upsun\Model\UpdateProjectUserAccessRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\ListProjectUserAccess200Response;
-use Upsun\Model\UpdateProjectUserAccessRequest;
-use Upsun\Model\UserProjectAccess;
 
 /**
  * Low level UserAccessApi (auto-generated)

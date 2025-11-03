@@ -2,10 +2,15 @@
 
 namespace Upsun\Api;
 
+use InvalidArgumentException;
 use DateTime;
+use Upsun\Model\OrganizationReference;
+use Upsun\Model\ProjectReference;
+use Upsun\Model\RegionReference;
+use Upsun\Model\TeamReference;
+use Upsun\Model\UserReference;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;

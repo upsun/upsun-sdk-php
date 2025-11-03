@@ -2,17 +2,17 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\GetUsageAlerts200Response;
+use InvalidArgumentException;
+use Upsun\Model\UpdateUsageAlertsRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use InvalidArgumentException;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\GetUsageAlerts200Response;
-use Upsun\Model\UpdateUsageAlertsRequest;
 
 /**
  * Low level AlertsApi (auto-generated)
