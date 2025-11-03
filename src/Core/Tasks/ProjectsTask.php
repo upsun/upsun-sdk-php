@@ -106,10 +106,10 @@ class ProjectsTask extends TaskBase
     public function create(
         string $organizationId,
         string $projectRegion,
-        ?string $plan = null,
         ?string $projectTitle = null,
-        ?string $optionsUrl = null,
         ?string $defaultBranch = null,
+        ?string $plan = null,
+        ?string $optionsUrl = null,
         ?int $environments = null,
         ?int $storage = null,
     ): Subscription {
@@ -155,11 +155,11 @@ class ProjectsTask extends TaskBase
      */
     public function update(
         string $projectId,
+        ?string $title = null,
         ?string $defaultBranch = null,
+        ?string $description = null,
         ?string $defaultDomain = null,
         ?array $attributes = [],
-        ?string $title = null,
-        ?string $description = null,
         ?string $timezone = null,
         ?string $region = null,
     ): AcceptedResponse {

@@ -71,12 +71,10 @@ $project = $client->projects->get('<projectId>');
 ### Example: Create a project in a specific organization
 ```php
 $project = $client->projects->create(
-    <organizationId>,
-    [
-        'projectTitle' => 'Project title',
-        'projectRegion' => 'eu-5.platform.sh',
-        'defaultBranch' => 'main',
-    ]
+    '<organizationId>',
+    'eu-5.platform.sh',
+    'Project title',
+    'main',
 );
 ```
 
@@ -87,7 +85,11 @@ $projectData = [
     'title' => 'title',
     'description' => 'description'
 ];
-$response = $client->projects->update(<projectId>, $projectData);
+$response = $client->projects->update(
+    projectId: '<projectId>',
+    title: 'new Title',
+    description: 'Description'
+);
 ```
 
 ### Example: Delete a project
