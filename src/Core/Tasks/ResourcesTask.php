@@ -5,6 +5,7 @@ namespace Upsun\Core\Tasks;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
+use Upsun\Model\AcceptedResponse;
 use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
 use Upsun\UpsunClient;
 
@@ -61,14 +62,14 @@ class ResourcesTask extends TaskBase
         ?array $webapps = [],
         ?array $services = [],
         ?array $workers = [],
-    ): void {
+    ): AcceptedResponse {
         $data = new UpdateProjectsEnvironmentsDeploymentsNextRequest(
             webapps: $webapps,
             services: $services,
             workers: $workers,
         );
 
-        $this->api->updateProjectsEnvironmentsDeploymentsNext(
+        return $this->api->updateProjectsEnvironmentsDeploymentsNext(
             projectId: $projectId,
             environmentId: $environmentId,
             updateProjectsEnvironmentsDeploymentsNextRequest: $data
