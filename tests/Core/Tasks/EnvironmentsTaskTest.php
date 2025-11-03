@@ -3332,4 +3332,277 @@ class EnvironmentsTaskTest extends BaseTestCase
             $domainId
         );
     }
+
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testInitializeSuccess(): void
+    {
+        $projectId = 'project123';
+        $environmentId = 'env456';
+        $profile = 'production';
+        $repository = 'https://github.com/example/repo.git';
+        $fileMode = '0644';
+        $filePath = '/app/.platform.app.yaml';
+        $fileContents = 'name: myapp';
+        $config = 'custom-config';
+        $init = 1;
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                202,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200,
+                    'message' => 'Environment initialization queued'
+                ])
+            ));
+
+        $result = $this->environmentTask->initialize(
+            $projectId,
+            $environmentId,
+            $profile,
+            $repository,
+            $fileMode,
+            $filePath,
+            $fileContents,
+            $config,
+            $init
+        );
+
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertEquals('accepted', $result->getStatus());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testInitializeWithNullableParameters(): void
+    {
+        $projectId = 'project123';
+        $environmentId = 'env456';
+        $profile = 'development';
+        $repository = 'https://github.com/example/repo.git';
+        $fileMode = '0755';
+        $filePath = '/app/index.php';
+        $fileContents = '<?php echo "Hello";';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                202,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200,
+                    'message' => 'Environment initialization queued'
+                ])
+            ));
+
+        $result = $this->environmentTask->initialize(
+            $projectId,
+            $environmentId,
+            $profile,
+            $repository,
+            $fileMode,
+            $filePath,
+            $fileContents
+        );
+
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertEquals('accepted', $result->getStatus());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testInitializeWithConfigOnly(): void
+    {
+        $projectId = 'project123';
+        $environmentId = 'env456';
+        $profile = 'staging';
+        $repository = 'https://gitlab.com/example/repo.git';
+        $fileMode = '0644';
+        $filePath = '/config/settings.yml';
+        $fileContents = 'debug: true';
+        $config = 'staging-config';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                202,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200,
+                    'message' => 'Environment initialization queued'
+                ])
+            ));
+
+        $result = $this->environmentTask->initialize(
+            $projectId,
+            $environmentId,
+            $profile,
+            $repository,
+            $fileMode,
+            $filePath,
+            $fileContents,
+            $config
+        );
+
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertEquals('accepted', $result->getStatus());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testInitializeError(): void
+    {
+        $projectId = 'project123';
+        $environmentId = 'env456';
+        $profile = 'production';
+        $repository = 'https://github.com/example/repo.git';
+        $fileMode = '0644';
+        $filePath = '/app/.platform.app.yaml';
+        $fileContents = 'name: myapp';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403,
+                    'message' => 'Access denied'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->environmentTask->initialize(
+            $projectId,
+            $environmentId,
+            $profile,
+            $repository,
+            $fileMode,
+            $filePath,
+            $fileContents
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testInitializeNotFound(): void
+    {
+        $projectId = 'invalidProject';
+        $environmentId = 'env456';
+        $profile = 'production';
+        $repository = 'https://github.com/example/repo.git';
+        $fileMode = '0644';
+        $filePath = '/app/.platform.app.yaml';
+        $fileContents = 'name: myapp';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'not_found',
+                    'code' => 404,
+                    'message' => 'Project or environment not found'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->environmentTask->initialize(
+            $projectId,
+            $environmentId,
+            $profile,
+            $repository,
+            $fileMode,
+            $filePath,
+            $fileContents
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testInitializeInvalidRepository(): void
+    {
+        $projectId = 'project123';
+        $environmentId = 'env456';
+        $profile = 'production';
+        $repository = 'invalid-repo-url';
+        $fileMode = '0644';
+        $filePath = '/app/.platform.app.yaml';
+        $fileContents = 'name: myapp';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'bad_request',
+                    'code' => 400,
+                    'message' => 'Invalid repository URL'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->environmentTask->initialize(
+            $projectId,
+            $environmentId,
+            $profile,
+            $repository,
+            $fileMode,
+            $filePath,
+            $fileContents
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testInitializeConflict(): void
+    {
+        $projectId = 'project123';
+        $environmentId = 'env456';
+        $profile = 'production';
+        $repository = 'https://github.com/example/repo.git';
+        $fileMode = '0644';
+        $filePath = '/app/.platform.app.yaml';
+        $fileContents = 'name: myapp';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                409,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'conflict',
+                    'code' => 409,
+                    'message' => 'Environment already initialized'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->environmentTask->initialize(
+            $projectId,
+            $environmentId,
+            $profile,
+            $repository,
+            $fileMode,
+            $filePath,
+            $fileContents
+        );
+    }
 }
