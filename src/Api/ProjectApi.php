@@ -77,9 +77,10 @@ final class ProjectApi extends AbstractApi
     /**
      * Clear project build cache with HTTP Info
      *
-     *
-     * @throws ApiException|ClientExceptionInterface
+     * @param string $projectId
      * @return AcceptedResponse
+     *
+     * @throws ClientExceptionInterface
      */
     private function actionProjectsClearBuildCacheWithHttpInfo(
         string $projectId
@@ -131,7 +132,7 @@ final class ProjectApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling actionProjectsClearBuildCache'
             );
         }
@@ -279,7 +280,7 @@ final class ProjectApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjects'
             );
         }
@@ -428,7 +429,7 @@ final class ProjectApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsCapabilities'
             );
         }
@@ -581,7 +582,7 @@ final class ProjectApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjects'
             );
         }
@@ -593,7 +594,7 @@ final class ProjectApi extends AbstractApi
             && count($projectPatch) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectPatch 
+                'Missing the required parameter $projectPatch
                 when calling updateProjects'
             );
         }

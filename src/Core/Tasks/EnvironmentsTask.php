@@ -407,9 +407,9 @@ class EnvironmentsTask extends TaskBase
     public function backup(
         string $projectId,
         string $environmentId,
-        bool $safe
+        bool $isSafe
     ): AcceptedResponse {
-        return $this->client->backups->backup($projectId, $environmentId, $safe);
+        return $this->client->backups->backup($projectId, $environmentId, $isSafe);
     }
 
     /**

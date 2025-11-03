@@ -37,9 +37,9 @@ class BackupsTask extends TaskBase
     public function backup(
         string $projectId,
         string $environmentId,
-        bool $safe
+        bool $isSafe
     ): AcceptedResponse {
-        $environmentBackupInput = new EnvironmentBackupInput($safe);
+        $environmentBackupInput = new EnvironmentBackupInput($isSafe);
         return $this->api->backupEnvironment($projectId, $environmentId, $environmentBackupInput);
     }
 

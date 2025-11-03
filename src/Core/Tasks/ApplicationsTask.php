@@ -47,9 +47,9 @@ class ApplicationsTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function get(string $projectId, string $environmentId, string $appId): ?WebApplicationsValue
+    public function get(string $projectId, string $environmentId, string $applicationId): ?WebApplicationsValue
     {
-        $appList = $this->list($projectId, $environmentId);
-        return $appList[$appId] ?? null;
+        $applicationList = $this->list($projectId, $environmentId);
+        return $applicationList[$applicationId] ?? null;
     }
 }
