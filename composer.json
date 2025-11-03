@@ -76,13 +76,13 @@
         "lint:rector": "./vendor/bin/rector process src --dry-run",
         "lint:rector:tests": "./vendor/bin/rector process tests --dry-run",
         "lint:php-cs-fixer": "./vendor/bin/php-cs-fixer fix --dry-run --diff",
-        
+
         "fix:phpcbf": "./vendor/bin/phpcbf --standard=phpcs.xml src/ || true",
         "fix:phpcbf:tests": "./vendor/bin/phpcbf --standard=phpcs.xml tests/ || true",
         "fix:rector": "./vendor/bin/rector process src || true",
         "fix:rector:tests": "./vendor/bin/rector process tests || true",
         "fix:php-cs-fixer": "./vendor/bin/php-cs-fixer fix || true",
-        
+
         "test:unit": "./vendor/bin/phpunit --testsuite=default",
         "test:coverage": "./vendor/bin/phpunit --coverage-text",
         "test:coverage:html": "./vendor/bin/phpunit --coverage-html coverage",
@@ -102,28 +102,29 @@
             "@spec:generate",
             "@fix:all"
         ],
-        
         "lint": [
+            "@lint:rector",
             "@lint:phpcs",
             "@lint:php-cs-fixer"
         ],
         "lint:all": [
+            "@lint:rector",
+            "@lint:rector:tests",
             "@lint:phpcs",
             "@lint:phpcs:tests",
-            "@lint:php-cs-fixer",
-            "@lint:rector"
+            "@lint:php-cs-fixer"
         ],
         "fix": [
+            "@fix:rector",
             "@fix:phpcbf",
-            "@fix:php-cs-fixer",
-            "@fix:rector"
+            "@fix:php-cs-fixer"
         ],
         "fix:all": [
+            "@fix:rector",
+            "@fix:rector:tests",
             "@fix:phpcbf",
             "@fix:phpcbf:tests",
-            "@fix:php-cs-fixer",
-            "@fix:rector",
-            "@fix:rector:tests"
+            "@fix:php-cs-fixer"
         ],
         "test": "@test:unit",
         "qa": [
