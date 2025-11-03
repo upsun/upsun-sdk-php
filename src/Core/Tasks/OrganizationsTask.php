@@ -86,20 +86,23 @@ class OrganizationsTask extends TaskBase
     /**
      * Creates organization
      *
-     * @param array{
-     *     label: string,
-     *     type?: string,
-     *     ownerId?: string,
-     *     name?: string,
-     *     country?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function create(array $data): Organization
-    {
-        $createOrgRequest = new CreateOrgRequest(...$data);
+    public function create(
+        string $label,
+        ?string $type = null,
+        ?string $ownerId = null,
+        ?string $name = null,
+        ?string $country = null,
+    ): Organization {
+        $createOrgRequest = new CreateOrgRequest(
+            label: $label,
+            type: $type,
+            ownerId: $ownerId,
+            name: $name,
+            country: $country
+        );
         return $this->api->createOrg($createOrgRequest);
     }
 
@@ -230,9 +233,17 @@ class OrganizationsTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function update(string $organizationId, ?array $updateOrgData = null): Organization
-    {
-        $updateOrgRequest = new UpdateOrgRequest(...$updateOrgData);
+    public function update(
+        string $organizationId,
+        ?string $name = null,
+        ?string $label = null,
+        ?string $country = null,
+    ): Organization {
+        $updateOrgRequest = new UpdateOrgRequest(
+            name: $name,
+            label: $label,
+            country: $country
+        );
         return $this->api->updateOrg($organizationId, $updateOrgRequest);
     }
 
@@ -404,22 +415,29 @@ class OrganizationsTask extends TaskBase
     /**
      * Creates a project
      *
-     * @param array{
-     *     projectRegion: string,
-     *     plan?: string,
-     *     projectTitle?: string,
-     *     optionsUrl?: string,
-     *     defaultBranch?: string,
-     *     environments?: int,
-     *     storage?: int
-     * } $createProjectData
-     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProject(string $organizationId, array $createProjectData): Subscription
-    {
-        return $this->client->projects->create($organizationId, $createProjectData);
+    public function createProject(
+        string $organizationId,
+        string $projectRegion,
+        ?string $plan = null,
+        ?string $projectTitle = null,
+        ?string $optionsUrl = null,
+        ?string $defaultBranch = null,
+        ?int $environments = null,
+        ?int $storage = null,
+    ): Subscription {
+        return $this->client->projects->create(
+            $organizationId,
+            $projectRegion,
+            $plan,
+            $projectTitle,
+            $optionsUrl,
+            $defaultBranch,
+            $environments,
+            $storage
+        );
     }
 
     /**
@@ -509,9 +527,24 @@ class OrganizationsTask extends TaskBase
      */
     public function updateProject(
         string $projectId,
-        ?array $updateProjectData = null
+        ?string $defaultBranch = null,
+        ?string $defaultDomain = null,
+        ?array $attributes = [],
+        ?string $title = null,
+        ?string $description = null,
+        ?string $timezone = null,
+        ?string $region = null,
     ): AcceptedResponse {
-        return $this->client->projects->update($projectId, $updateProjectData);
+        return $this->client->projects->update(
+            $projectId,
+            $defaultBranch,
+            $defaultDomain,
+            $attributes,
+            $title,
+            $description,
+            $timezone,
+            $region
+        );
     }
 
     /**
@@ -670,64 +703,60 @@ class OrganizationsTask extends TaskBase
     /**
      * Updates address
      *
-     * @param array|null{
-     *     country?: string,
-     *     nameLine?: string,
-     *     premise?: string,
-     *     subPremise?: string,
-     *     thoroughfare?: string,
-     *     administrativeArea?: string,
-     *     subAdministrativeArea?: string,
-     *     locality?: string,
-     *     dependentLocality?: string,
-     *     postalCode?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function updateAddress(string $organizationId, ?array $data = null): Address
-    {
-        $address = $data ? new Address(
-            country: $data['country'],
-            nameLine: $data['nameLine'],
-            premise: $data['premise'],
-            subPremise: $data['subPremise'],
-            thoroughfare: $data['thoroughfare'],
-            administrativeArea: $data['administrativeArea'],
-            subAdministrativeArea: $data['subAdministrativeArea'],
-            locality: $data['locality'],
-            dependentLocality: $data['dependentLocality'],
-            postalCode: $data['postalCode'],
-        ) : null;
+    public function updateAddress(
+        string $organizationId,
+        ?string $country = null,
+        ?string $nameLine = null,
+        ?string $premise = null,
+        ?string $subPremise = null,
+        ?string $thoroughfare = null,
+        ?string $administrativeArea = null,
+        ?string $subAdministrativeArea = null,
+        ?string $locality = null,
+        ?string $dependentLocality = null,
+        ?string $postalCode = null,
+    ): Address {
+        $address = new Address(
+            country: $country,
+            nameLine: $nameLine,
+            premise: $premise,
+            subPremise: $subPremise,
+            thoroughfare: $thoroughfare,
+            administrativeArea: $administrativeArea,
+            subAdministrativeArea: $subAdministrativeArea,
+            locality: $locality,
+            dependentLocality: $dependentLocality,
+            postalCode: $postalCode,
+        );
         return $this->profilesApi->updateOrgAddress($organizationId, $address);
     }
 
     /**
      * Updates profile
      *
-     * @param array|null{
-     *     defaultCatalog?: string,
-     *     projectOptionsUrl?: string,
-     *     securityContact?: string,
-     *     companyName?: string,
-     *     vatNumber?: string,
-     *     billingContact?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function updateProfile(string $organizationId, ?array $data = null): Profile
-    {
-        $updateOrgProfileRequest = $data ? new UpdateOrgProfileRequest(
-            defaultCatalog: $data['defaultCatalog'],
-            projectOptionsUrl: $data['projectOptionsUrl'],
-            securityContact: $data['securityContact'],
-            companyName: $data['companyName'],
-            vatNumber: $data['vatNumber'],
-            billingContact: $data['billingContact'],
-        ) : null;
+    public function updateProfile(
+        string $organizationId,
+        ?string $defaultCatalog = null,
+        ?string $projectOptionsUrl = null,
+        ?string $securityContact = null,
+        ?string $companyName = null,
+        ?string $vatNumber = null,
+        ?string $billingContact = null,
+    ): Profile {
+        $updateOrgProfileRequest = new UpdateOrgProfileRequest(
+            defaultCatalog: $defaultCatalog,
+            projectOptionsUrl: $projectOptionsUrl,
+            securityContact: $securityContact,
+            companyName: $companyName,
+            vatNumber: $vatNumber,
+            billingContact: $billingContact,
+        );
         return $this->profilesApi->updateOrgProfile($organizationId, $updateOrgProfileRequest);
     }
 
@@ -810,7 +839,6 @@ class OrganizationsTask extends TaskBase
         return $this->vouchersApi->listOrgVouchers($organizationId);
     }
 
-
     /**
      * Get Organization Addons
      *
@@ -825,17 +853,18 @@ class OrganizationsTask extends TaskBase
     /**
      * Updates Organization Addons
      *
-     * @param array{
-     *     userManagement?: string,
-     *     supportLevel?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function updateAddons(string $organizationId, array $data): OrganizationAddonsObject
-    {
-        $updateOrgAddonsData = new UpdateOrgAddonsRequest(...$data);
+    public function updateAddons(
+        string $organizationId,
+        ?string $userManagement = null,
+        ?string $supportLevel = null,
+    ): OrganizationAddonsObject {
+        $updateOrgAddonsData = new UpdateOrgAddonsRequest(
+            userManagement: $userManagement,
+            supportLevel: $supportLevel
+        );
         return $this->addOnsApi->updateOrgAddons($organizationId, $updateOrgAddonsData);
     }
 }

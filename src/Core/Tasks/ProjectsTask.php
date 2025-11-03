@@ -100,22 +100,28 @@ class ProjectsTask extends TaskBase
     /**
      * Creates a project
      *
-     * @param array{
-     *     projectRegion: string,
-     *     plan?: string,
-     *     projectTitle?: string,
-     *     optionsUrl?: string,
-     *     defaultBranch?: string,
-     *     environments?: int,
-     *     storage?: int
-     * } $projectData
-     *
      * @throws ApiException
      * @throws ClientExceptionInterface
      */
-    public function create(string $organizationId, array $projectData): Subscription
-    {
-        $createProjectData = new CreateOrgSubscriptionRequest(...$projectData);
+    public function create(
+        string $organizationId,
+        string $projectRegion,
+        ?string $plan = null,
+        ?string $projectTitle = null,
+        ?string $optionsUrl = null,
+        ?string $defaultBranch = null,
+        ?int $environments = null,
+        ?int $storage = null,
+    ): Subscription {
+        $createProjectData = new CreateOrgSubscriptionRequest(
+            projectRegion: $projectRegion,
+            plan: $plan,
+            projectTitle: $projectTitle,
+            optionsUrl: $optionsUrl,
+            defaultBranch: $defaultBranch,
+            environments: $environments,
+            storage: $storage
+        );
         return $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
     }
 
@@ -144,22 +150,28 @@ class ProjectsTask extends TaskBase
     /**
      * Updates a project
      *
-     * @param array{
-     *   defaultBranch?: string,
-     *   defaultDomain?: string,
-     *   attributes?: array,
-     *   title?: string,
-     *   description?: string,
-     *   timezone?: string,
-     *   region?: string
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function update(string $projectId, array $data): AcceptedResponse
-    {
-        $projectPatch = new ProjectPatch(...$data);
+    public function update(
+        string $projectId,
+        ?string $defaultBranch = null,
+        ?string $defaultDomain = null,
+        ?array $attributes = [],
+        ?string $title = null,
+        ?string $description = null,
+        ?string $timezone = null,
+        ?string $region = null,
+    ): AcceptedResponse {
+        $projectPatch = new ProjectPatch(
+            defaultBranch: $defaultBranch,
+            defaultDomain: $defaultDomain,
+            attributes: $attributes,
+            title: $title,
+            description: $description,
+            timezone: $timezone,
+            region: $region
+        );
         return $this->api->updateProjects($projectId, $projectPatch);
     }
 

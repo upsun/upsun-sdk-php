@@ -523,20 +523,6 @@ class ProjectsTaskTest extends BaseTestCase
     {
         $projectId = 'test-project';
 
-        $fakeProjectPatch = [
-            'defaultBranch' => 'main',
-            'defaultDomain' => 'myproject.example.com',
-            'attributes' => [
-                'framework' => 'symfony',
-                'language' => 'php',
-                'version' => '8.2',
-            ],
-            'title' => 'My Project',
-            'description' => 'A sample project used for testing.',
-            'timezone' => 'UTC',
-            'region' => 'eu-central-1',
-        ];
-
         $this->httpClient
             ->expects($this->once())
             ->method('sendRequest')
@@ -549,7 +535,20 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->update($projectId, $fakeProjectPatch);
+        $result = $this->projectsTask->update(
+            $projectId,
+            'main',
+            'myproject.example.com',
+            [
+            'framework' => 'symfony',
+            'language' => 'php',
+            'version' => '8.2',
+            ],
+            'My Project',
+            'A sample project used for testing.',
+            'UTC',
+            'eu-central-1',
+        );
 
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
@@ -3170,16 +3169,6 @@ FAKE-CHAIN-CERT-DATA2
     {
         $orgId = 'org-123';
 
-        $projectData = [
-            'projectRegion' => 'fr-3.platform.sh',
-            "plan" => "upsun/flexible",
-            'projectTitle' => 'My Project',
-            'optionsUrl' => 'https://example.com/options',
-            'defaultBranch' => 'main',
-            'environments' => 3,
-            'storage' => 5000,
-        ];
-
         $subscription = [
             "status" => "active",
             "createdAt" => "2024-10-01T10:00:00Z",
@@ -3227,7 +3216,16 @@ FAKE-CHAIN-CERT-DATA2
                 ['Content-Type' => 'application/json'],
                 json_encode($subscription)
             ));
-        $result = $this->projectsTask->create($orgId, $projectData);
+        $result = $this->projectsTask->create(
+            $orgId,
+            'fr-3.platform.sh',
+            "upsun/flexible",
+            'My Project',
+            'https://example.com/options',
+            'main',
+            3,
+            5000,
+        );
         $this->assertInstanceOf(Subscription::class, $result);
         $this->assertObjectProperties($result, $subscription);
     }
@@ -3439,7 +3437,6 @@ FAKE-CHAIN-CERT-DATA2
     public function testUpdateWithError()
     {
         $projectId = 'test-project';
-        $projectData = ['title' => 'Updated Project'];
 
         $this->httpClient
             ->method('sendRequest')
@@ -3453,7 +3450,7 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->update($projectId, $projectData);
+        $this->projectsTask->update($projectId, 'Update Project');
     }
 
     public function testCancelInviteWithError()
@@ -4547,15 +4544,6 @@ FAKE-CHAIN-CERT-DATA2
     public function testCreateWithError()
     {
         $orgId = 'org-123';
-        $projectData = [
-            'projectRegion' => 'fr-3.platform.sh',
-            "plan" => "upsun/flexible",
-            'projectTitle' => 'My Project',
-            'optionsUrl' => 'https://example.com/options',
-            'defaultBranch' => 'main',
-            'environments' => 3,
-            'storage' => 5000,
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -4569,7 +4557,16 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->create($orgId, $projectData);
+        $this->projectsTask->create(
+            $orgId,
+            'fr-3.platform.sh',
+            "upsun/flexible",
+            'My Project',
+            'https://example.com/options',
+            'main',
+            3,
+            5000,
+        );
     }
 
     public function testListEnvironmentsWithError()

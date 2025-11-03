@@ -373,7 +373,13 @@ class OrganizationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->organizationsTask->create($data);
+        $result = $this->organizationsTask->create(
+            'My Org Label',
+            'flex',
+            'user_7890',
+            'My Organization',
+            'FR',
+        );
         $this->assertInstanceOf(Organization::class, $result);
         $this->assertEquals("org_123456", $result->getId());
         $this->assertEquals($data['name'], $result->getName());
@@ -760,7 +766,12 @@ class OrganizationsTaskTest extends BaseTestCase
             'country' => 'FR',
         ];
 
-        $result = $this->organizationsTask->update($orgId, $data);
+        $result = $this->organizationsTask->update(
+            $orgId,
+            $data['name'],
+            $data['label'],
+            $data['country'],
+        );
         $this->assertInstanceOf(Organization::class, $result);
         $this->assertEquals($data['name'], $result->getName());
         $this->assertEquals($data['label'], $result->getLabel());
@@ -1332,7 +1343,16 @@ class OrganizationsTaskTest extends BaseTestCase
                 )
             ));
 
-        $response = $this->organizationsTask->createProject($orgId, $data);
+        $response = $this->organizationsTask->createProject(
+            $orgId,
+            $data['projectRegion'],
+            $data['plan'],
+            $data['projectTitle'],
+            $data['optionsUrl'],
+            $data['defaultBranch'],
+            $data['environments'],
+            $data['storage'],
+        );
         $this->assertInstanceOf(Subscription::class, $response);
         $this->assertEquals($data['projectRegion'], $response->getProjectRegion());
     }
@@ -1455,7 +1475,16 @@ class OrganizationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->organizationsTask->updateProject($prjId, $data);
+        $response = $this->organizationsTask->updateProject(
+            $prjId,
+            $data['defaultBranch'],
+            $data['defaultDomain'],
+            $data['attributes'],
+            $data['title'],
+            $data['description'],
+            $data['timezone'],
+            $data['region'],
+        );
 
         $this->assertEquals(new AcceptedResponse('accepted', 200), $response);
     }
@@ -2406,7 +2435,19 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($fakeAddressData)
             ));
 
-        $result = $this->organizationsTask->updateAddress('org-123', $fakeAddressData);
+        $result = $this->organizationsTask->updateAddress(
+            'org-123',
+            $fakeAddressData['country'],
+            $fakeAddressData['nameLine'],
+            $fakeAddressData['premise'],
+            $fakeAddressData['subPremise'],
+            $fakeAddressData['thoroughfare'],
+            $fakeAddressData['administrativeArea'],
+            $fakeAddressData['subAdministrativeArea'],
+            $fakeAddressData['locality'],
+            $fakeAddressData['dependentLocality'],
+            $fakeAddressData['postalCode'],
+        );
         $this->assertInstanceOf(Address::class, $result);
         $this->assertObjectProperties($result, $fakeAddressData);
     }
@@ -2485,7 +2526,15 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->updateProfile('org-123', $fakeUpdateOrgProfileRequestData);
+        $result = $this->organizationsTask->updateProfile(
+            'org-123',
+            $fakeUpdateOrgProfileRequestData['defaultCatalog'],
+            $fakeUpdateOrgProfileRequestData['projectOptionsUrl'],
+            $fakeUpdateOrgProfileRequestData['securityContact'],
+            $fakeUpdateOrgProfileRequestData['companyName'],
+            $fakeUpdateOrgProfileRequestData['vatNumber'],
+            $fakeUpdateOrgProfileRequestData['billingContact'],
+        );
         $this->assertInstanceOf(Profile::class, $result);
         $this->assertObjectProperties($result, $data);
     }
@@ -2679,7 +2728,11 @@ class OrganizationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->organizationsTask->updateAddons('org-123', $fakeUpdateOrgAddonsRequest);
+        $result = $this->organizationsTask->updateAddons(
+            'org-123',
+            'standard',
+            'basic'
+        );
         $this->assertSame(
             ['standard' => 200],
             $result->getCurrent()->getUserManagement()
