@@ -9,7 +9,7 @@
     <!-- Slevomat Coding Standard Rules -->
     <!-- Namespace rules -->
     <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
-    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses"/>
+    <!-- <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses"/> -->
     <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash"/>
     
     <!-- Class rules -->

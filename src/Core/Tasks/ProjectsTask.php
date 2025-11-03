@@ -2,6 +2,8 @@
 
 namespace Upsun\Core\Tasks;
 
+use Psr\Http\Client\ClientExceptionInterface;
+use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;
@@ -11,6 +13,7 @@ use Upsun\Api\SystemInformationApi;
 use Upsun\Api\ThirdPartyIntegrationsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
+use Upsun\Model\AddonCredential1;
 use Upsun\Model\Blob;
 use Upsun\Model\BuildResources2;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
@@ -21,11 +24,13 @@ use Upsun\Model\DeploymentTarget;
 use Upsun\Model\DeploymentTargetCreateInput;
 use Upsun\Model\DeploymentTargetPatch;
 use Upsun\Model\Domain;
+use Upsun\Model\Environment;
 use Upsun\Model\Integration;
 use Upsun\Model\IntegrationCreateInput;
 use Upsun\Model\IntegrationPatch;
 use Upsun\Model\ListProjectTeamAccess200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
+use Upsun\Model\OAuth2Consumer1;
 use Upsun\Model\Project;
 use Upsun\Model\ProjectCapabilities;
 use Upsun\Model\ProjectInvitation;
@@ -37,8 +42,6 @@ use Upsun\Model\Ref;
 use Upsun\Model\Subscription;
 use Upsun\Model\SystemInformation;
 use Upsun\Model\TeamProjectAccess;
-use Upsun\Model\TheAddonCredentialInformationOptional1;
-use Upsun\Model\TheOAuth2ConsumerInformationOptional1;
 use Upsun\Model\Tree;
 use Upsun\Model\UserProjectAccess;
 use Upsun\UpsunClient;
@@ -628,9 +631,9 @@ class ProjectsTask extends TaskBase
             script: $data['script'],
             index: $data['index'],
             appCredentials: $data['appCredentials'] ?
-                new TheOAuth2ConsumerInformationOptional1(...$data['appCredentials']) : null,
+                new OAuth2Consumer1(...$data['appCredentials']) : null,
             addonCredentials: $data['addonCredentials'] ?
-                new TheAddonCredentialInformationOptional1(...$data['addonCredentials']) : null,
+                new AddonCredential1(...$data['addonCredentials']) : null,
             fromAddress: $data['fromAddress'] ?? null,
             sharedKey: $data['sharedKey'] ?? null,
             fetchBranches: $data['fetchBranches'],
@@ -785,9 +788,9 @@ class ProjectsTask extends TaskBase
             script: $data['script'],
             index: $data['index'],
             appCredentials: $data['appCredentials'] ?
-                new TheOAuth2ConsumerInformationOptional1(...$data['appCredentials']) : null,
+                new OAuth2Consumer1(...$data['appCredentials']) : null,
             addonCredentials: $data['addonCredentials'] ?
-                new TheAddonCredentialInformationOptional1(...$data['addonCredentials']) : null,
+                new AddonCredential1(...$data['addonCredentials']) : null,
             fromAddress: $data['fromAddress'] ?? null,
             sharedKey: $data['sharedKey'] ?? null,
             fetchBranches: $data['fetchBranches'],
@@ -1154,7 +1157,6 @@ class ProjectsTask extends TaskBase
 
     /**
      * Lists environments of a project
-     *
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface

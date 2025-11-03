@@ -2,8 +2,10 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;
@@ -327,7 +329,7 @@ class OrganizationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testCreateOrganization()
     {
@@ -381,6 +383,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertEquals($data['type'], $result->getType());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteOrganization()
     {
         $this->httpClient
@@ -397,6 +402,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->organizationsTask->delete('org_123');
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetOrganization()
     {
         $orgId = 'org_123';
@@ -438,7 +446,7 @@ class OrganizationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testListOrganizations()
     {
@@ -519,6 +527,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertEquals($organizations['items'][1]['name'], $result->getItems()[1]->getName());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListUserOrganizations()
     {
         $organizations = [
@@ -598,6 +609,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertEquals($organizations['items'][1]['name'], $result->getItems()[1]->getName());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListCurrentUserOrganizations()
     {
         $organizations = [
@@ -702,7 +716,7 @@ class OrganizationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testUpdateOrganization()
     {
@@ -753,6 +767,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertEquals($data['country'], $result->getCountry());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateMember()
     {
         $orgId = 'org_98765';
@@ -787,6 +804,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertEquals(['read', 'write', 'admin'], $result->getPermissions());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateMember()
     {
         $permissions = ['read', 'write', 'admin'];
@@ -819,6 +839,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertEquals(['read', 'write', 'admin'], $response->getPermissions());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetMember()
     {
         $orgId = 'org_98765';
@@ -854,6 +877,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertEquals(['read', 'write', 'admin'], $response->getPermissions());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListMembers()
     {
         $orgId = 'org_98765';
@@ -914,7 +940,7 @@ class OrganizationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testDeleteMember()
     {
@@ -933,7 +959,7 @@ class OrganizationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testListTeams()
     {
@@ -1006,6 +1032,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertEquals(['admin'], $teams[1]->getProjectPermissions());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetProject()
     {
         $orgId = 'fake-org-5678';
@@ -1074,6 +1103,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertEquals($orgId, $result->getOrganizationId());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListProjects()
     {
         $orgId = 'fake-org-5678';
@@ -1209,6 +1241,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertEquals($orgId, $projects[1]->getOrganizationId());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCanCreateProject()
     {
         $orgId = 'org_123';
@@ -1233,6 +1268,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertTrue($result->getCanCreate());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateProject()
     {
         $orgId = 'org-123';
@@ -1300,12 +1338,11 @@ class OrganizationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testDeleteProject()
     {
         $projectId = 'proj-1';
-        $organizationId = 'org-1';
 
         $fakeProject = [
             'id' => $projectId,
@@ -1388,6 +1425,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->organizationsTask->deleteProject($projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateProject()
     {
         $prjId = 'proj_1';
@@ -1420,6 +1460,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertEquals(new AcceptedResponse('accepted', 200), $response);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testEstimateNewProject()
     {
         $orgId = 'org_1';
@@ -1461,6 +1504,7 @@ class OrganizationsTaskTest extends BaseTestCase
     }
 
     /**
+     * @throws ClientExceptionInterface
      * @throws Exception
      */
     public function testEstimateProject()
@@ -1501,6 +1545,10 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($response, $estimationObject);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetProjectUsage()
     {
         $orgId = 'org_1';
@@ -1621,6 +1669,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($response, $currentUsageData);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDisableMfaEnforcement(): void
     {
         $orgId = 'org_1';
@@ -1640,6 +1691,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->organizationsTask->disableMfaEnforcement($orgId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetInvoice(): void
     {
         $invoiceData = [
@@ -1692,6 +1746,10 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $invoiceData);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetAddress(): void
     {
         $data = [
@@ -1721,6 +1779,10 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $data);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListUsageRecords(): void
     {
         $data = [
@@ -1774,6 +1836,10 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($response->getItems(), $data['items']);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListVouchers(): void
     {
         $data = [
@@ -1815,6 +1881,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $data);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testEnableMfaEnforcement(): void
     {
         $this->httpClient
@@ -1832,6 +1901,10 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->organizationsTask->enableMfaEnforcement('org-123');
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetMfaEnforcement(): void
     {
         $data = [
@@ -1852,6 +1925,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $data);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testSendMfaReminders(): void
     {
         $data = [
@@ -1891,6 +1967,10 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertContainsOnlyInstancesOf(SendOrgMfaReminders200ResponseValue::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListInvoices(): void
     {
         $data = [
@@ -1974,6 +2054,10 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $data);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testCreateAuthorizationCredentials(): void
     {
         $data = [
@@ -2000,29 +2084,10 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $data);
     }
 
-//    public function testDownloadInvoice(): void
-//    {
-//        $data = [
-//            'type' => 'redirect',
-//            'redirect_to_url' => [
-//                'return_url' => 'https://example.com/payment/return',
-//                'url' => 'https://api.platform.sh/api/platform/orders/download?token=eyJ0eXAiOiJKV1QiLCJhbGciO',
-//            ],
-//        ];
-//
-//        $this->httpClient
-//            ->expects($this->once())
-//            ->method('sendRequest')
-//            ->willReturn(new Response(
-//                200,
-//                ['Content-Type' => 'application/json'],
-//                json_encode($data)
-//            ));
-//
-//        $return = $this->organizationsTask->downloadInvoice('token_123');
-//        var_dump($return);
-//    }
-
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetOrder(): void
     {
         $data = [
@@ -2099,6 +2164,10 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $data);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListOrders(): void
     {
         $data = [
@@ -2247,6 +2316,7 @@ class OrganizationsTaskTest extends BaseTestCase
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testGetProfile(): void
     {
@@ -2343,6 +2413,7 @@ class OrganizationsTaskTest extends BaseTestCase
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testUpdateProfile(): void
     {
@@ -2419,6 +2490,10 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $data);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListRecords(): void
     {
         $fakeListOrgPlanRecords200ResponseData = [
@@ -2497,6 +2572,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $fakeListOrgPlanRecords200ResponseData);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testApplyVoucher(): void
     {
         $code = 'PROMO-2025-ABC';
@@ -2516,6 +2594,10 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->organizationsTask->applyVoucher('org-123', $code);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetAddons(): void
     {
         $addonsData = [
@@ -2556,6 +2638,9 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $addonsData);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateAddons(): void
     {
         $fakeUpdateOrgAddonsRequest = [

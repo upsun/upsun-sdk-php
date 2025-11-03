@@ -2,7 +2,11 @@
 
 namespace Upsun\Core\Tasks;
 
+use Psr\Http\Client\ClientExceptionInterface;
+use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
+use Upsun\Model\Deployment;
+use Upsun\Model\WorkersValue;
 use Upsun\UpsunClient;
 
 /**

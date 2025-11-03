@@ -27,8 +27,6 @@ Retrieves a list of organizations referenced by a trusted service. Clients canno
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ReferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -84,8 +82,6 @@ Retrieves a list of projects referenced by a trusted service. Clients cannot con
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\ReferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -143,8 +139,6 @@ Retrieves a list of regions referenced by a trusted service. Clients cannot cons
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ReferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -201,8 +195,6 @@ Retrieves a list of teams referenced by a trusted service. Clients cannot constr
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ReferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -258,8 +250,6 @@ Retrieves a list of users referenced by a trusted service. Clients cannot constr
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\ReferencesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

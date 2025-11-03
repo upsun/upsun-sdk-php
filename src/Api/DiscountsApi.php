@@ -3,11 +3,12 @@
 namespace Upsun\Api;
 
 use Upsun\Model\Discount;
-use InvalidArgumentException;
 use Upsun\Model\GetTypeAllowance200Response;
 use Upsun\Model\ListOrgDiscounts200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;

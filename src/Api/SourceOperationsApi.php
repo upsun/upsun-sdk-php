@@ -2,12 +2,13 @@
 
 namespace Upsun\Api;
 
-use InvalidArgumentException;
 use Upsun\Model\EnvironmentSourceOperationInput;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\EnvironmentSourceOperation;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;

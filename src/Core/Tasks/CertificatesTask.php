@@ -2,6 +2,8 @@
 
 namespace Upsun\Core\Tasks;
 
+use Psr\Http\Client\ClientExceptionInterface;
+use Upsun\Api\ApiException;
 use Upsun\Api\CertManagementApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Certificate;

@@ -3,11 +3,12 @@
 namespace Upsun\Api;
 
 use Upsun\Model\ConfirmPhoneNumberRequest;
-use InvalidArgumentException;
 use Upsun\Model\VerifyPhoneNumberRequest;
 use Upsun\Model\VerifyPhoneNumber200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;

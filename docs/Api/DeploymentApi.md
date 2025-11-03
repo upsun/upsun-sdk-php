@@ -25,8 +25,6 @@ Retrieve a single deployment configuration with an id of `current`. This may be 
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\DeploymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -85,8 +83,6 @@ Retrieve the read-only configuration of an environment's deployment. The returne
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\DeploymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -142,8 +138,6 @@ Update resources for either webapps, services, or workers in the next deployment
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\DeploymentApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

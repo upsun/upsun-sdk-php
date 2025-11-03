@@ -2,8 +2,10 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;
@@ -271,6 +273,10 @@ class ProjectsTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGet()
     {
         $prjId = 'test-project';
@@ -349,7 +355,7 @@ class ProjectsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testDelete()
     {
@@ -434,6 +440,10 @@ class ProjectsTaskTest extends BaseTestCase
         $this->projectsTask->delete($projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetCapabilities()
     {
         $projectId = 'test-project';
@@ -506,6 +516,9 @@ class ProjectsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $fakeCapabilities);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdate()
     {
         $projectId = 'test-project';
@@ -541,6 +554,9 @@ class ProjectsTaskTest extends BaseTestCase
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCancelInvite()
     {
         $projectId = 'test-project';
@@ -567,6 +583,7 @@ class ProjectsTaskTest extends BaseTestCase
     }
 
     /**
+     * @throws ClientExceptionInterface
      * @throws Exception
      */
     public function testCreateInvite()
@@ -633,6 +650,10 @@ class ProjectsTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $invitation);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListProjectInvites()
     {
         $projectId = 'test-project';
@@ -707,6 +728,10 @@ class ProjectsTaskTest extends BaseTestCase
         $this->assertObjectMatchesArray($result, $list);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetSettings()
     {
         $projectId = 'test-project';
@@ -782,6 +807,7 @@ class ProjectsTaskTest extends BaseTestCase
             ],
             'outbound_restrictions_default_policy' => 'allow',
             'self_upgrade' => true,
+            'selfUpgradeLatestMajor' => false,
             'additional_hosts' => [
                 'property1' => 'extra1.example.com',
                 'property2' => 'extra2.example.com',
@@ -841,6 +867,7 @@ class ProjectsTaskTest extends BaseTestCase
     }
 
     /**
+     * @throws ClientExceptionInterface
      * @throws Exception
      */
     public function testUpdateSettings()
@@ -892,7 +919,7 @@ class ProjectsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testCreateVariable()
     {
@@ -929,7 +956,7 @@ class ProjectsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testDeleteVariable()
     {
@@ -952,6 +979,10 @@ class ProjectsTaskTest extends BaseTestCase
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetVariable()
     {
         $projectId = 'test-project';
@@ -992,12 +1023,12 @@ class ProjectsTaskTest extends BaseTestCase
     }
 
     /**
+     * @throws ClientExceptionInterface
      * @throws Exception
      */
     public function testListVariables()
     {
         $projectId = 'test-project';
-        $expectedResponse = [['name' => 'VAR1', 'value' => 'value1']];
 
         $list = [
             [
@@ -1052,6 +1083,9 @@ class ProjectsTaskTest extends BaseTestCase
         $this->assertObjectMatchesArray($result, $list);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateVariable()
     {
         $projectId = 'test-project';
@@ -1141,6 +1175,7 @@ class ProjectsTaskTest extends BaseTestCase
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testListActivities()
     {
@@ -1233,6 +1268,9 @@ class ProjectsTaskTest extends BaseTestCase
         $this->assertObjectMatchesArray($result, $list);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCancelActivity()
     {
         $projectId = 'test-project';
@@ -1253,6 +1291,9 @@ class ProjectsTaskTest extends BaseTestCase
         $this->projectsTask->cancelActivity($projectId, $activityId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateDeployment()
     {
         $projectId = 'test-project';
@@ -1292,6 +1333,9 @@ class ProjectsTaskTest extends BaseTestCase
         $this->projectsTask->createDeployment($projectId, $data);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteDeployment()
     {
         $projectId = 'test-project';
@@ -1314,6 +1358,7 @@ class ProjectsTaskTest extends BaseTestCase
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testGetDeployment()
     {
@@ -1973,6 +2018,8 @@ class ProjectsTaskTest extends BaseTestCase
             'buildDraftPullRequests' => true,
             'buildPullRequestsPostMerge' => false,
             'tokenType' => 'bearer',
+            'rotateToken' => true,
+            'rotateTokenValidityInWeeks' => 2,
             'buildMergeRequests' => true,
             'buildWipMergeRequests' => false,
             'mergeRequestsCloneParentData' => true,
@@ -2046,6 +2093,8 @@ class ProjectsTaskTest extends BaseTestCase
                 'buildDraftPullRequests' => true,
                 'buildPullRequestsPostMerge' => false,
                 'tokenType' => 'bearer',
+                'rotateToken' => true,
+                'rotateTokenValidityInWeeks' => 2,
                 'buildMergeRequests' => true,
                 'buildWipMergeRequests' => false,
                 'mergeRequestsCloneParentData' => true,
@@ -2100,6 +2149,8 @@ class ProjectsTaskTest extends BaseTestCase
                 'buildDraftPullRequests' => true,
                 'buildPullRequestsPostMerge' => false,
                 'tokenType' => 'bearer',
+                'rotateToken' => true,
+                'rotateTokenValidityInWeeks' => 2,
                 'buildMergeRequests' => true,
                 'buildWipMergeRequests' => false,
                 'mergeRequestsCloneParentData' => true,
@@ -3167,6 +3218,9 @@ FAKE-CHAIN-CERT-DATA2
         $this->assertObjectProperties($result, $subscription);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListEnvironments()
     {
         $projectId = 'test-project';
@@ -3197,6 +3251,7 @@ FAKE-CHAIN-CERT-DATA2
                     'basic_auth' => []
                 ],
                 'enable_smtp' => true,
+                'supportsRollingDeployments' => false,
                 'restrict_robots' => true,
                 'edge_hostname' => 'main-bvxea6i-azertyuiop.eu-5.platformsh.site',
                 'deployment_state' => [
@@ -3257,6 +3312,7 @@ FAKE-CHAIN-CERT-DATA2
                     'basic_auth' => []
                 ],
                 'enable_smtp' => true,
+                'supportsRollingDeployments' => false,
                 'restrict_robots' => true,
                 'edge_hostname' => 'main-bvxea6i-azertyuiop.eu-5.platformsh.site',
                 'deployment_state' => [
@@ -3298,7 +3354,7 @@ FAKE-CHAIN-CERT-DATA2
             ->expects($this->once())
             ->method('sendRequest')
             ->willReturn(new Response(
-                204,
+                200,
                 ['Content-Type' => 'application/json'],
                 json_encode($list)
             ));

@@ -3,12 +3,13 @@
 namespace Upsun\Api;
 
 use Upsun\Model\Region;
-use InvalidArgumentException;
 use Upsun\Model\StringFilter;
 use Upsun\Model\ListRegions200Response;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;

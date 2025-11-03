@@ -12,10 +12,10 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     // enables automatic import of FQNs (Fully Qualified Names)
-    $rectorConfig->importNames(true, true);
+    $rectorConfig->importNames();
 
     // optional: removes unused "use" statements
-    $rectorConfig->removeUnusedImports();
+    //$rectorConfig->removeUnusedImports();
 
     $rectorConfig->sets([SetList::CODING_STYLE]);
 };

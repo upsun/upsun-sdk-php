@@ -3,9 +3,13 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
+use Psr\Http\Client\ClientExceptionInterface;
+use Upsun\Api\ApiException;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\SupportApi;
 use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\ListTicketCategories200ResponseInner;
+use Upsun\Model\ListTicketPriorities200ResponseInner;
 use Upsun\Model\ListTickets200Response;
 use Upsun\Model\Ticket;
 use Upsun\Model\UpdateTicketRequest;

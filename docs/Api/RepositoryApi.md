@@ -27,8 +27,6 @@ Retrieve, by hash, an object representing a blob in the repository backing a pro
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\RepositoryApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -84,8 +82,6 @@ Retrieve, by hash, an object representing a commit in the repository backing a p
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\RepositoryApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -143,8 +139,6 @@ Retrieve the details of a single `refs` object in the repository backing a proje
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\RepositoryApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -201,8 +195,6 @@ Retrieve, by hash, the tree state represented by a commit. The returned object's
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\RepositoryApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -258,8 +250,6 @@ Retrieve a list of `refs/_*` in the repository backing a project. This endpoint 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\RepositoryApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

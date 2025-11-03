@@ -25,8 +25,6 @@ Cancel a single activity as specified by an `id` returned by the [Get project ac
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ProjectActivityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -83,8 +81,6 @@ Retrieve a single activity log entry as specified by an `id` returned by the [Ge
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ProjectActivityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -140,8 +136,6 @@ Retrieve a project's activity log including logging actions in all environments 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\ProjectActivityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

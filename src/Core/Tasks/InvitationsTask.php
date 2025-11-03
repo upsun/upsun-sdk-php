@@ -2,6 +2,8 @@
 
 namespace Upsun\Core\Tasks;
 
+use Psr\Http\Client\ClientExceptionInterface;
+use Upsun\Api\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
 use Upsun\Model\CreateOrgInviteRequest;
@@ -107,8 +109,8 @@ class InvitationsTask extends TaskBase
      *     force?: bool
      * } $data
      *
-     * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function createProjectInvite(
         string $projectId,

@@ -4,7 +4,6 @@ namespace Upsun\Api;
 
 use Upsun\Model\EnvironmentActivateInput;
 use Upsun\Model\AcceptedResponse;
-use InvalidArgumentException;
 use Upsun\Model\EnvironmentBranchInput;
 use Upsun\Model\VersionCreateInput;
 use Upsun\Model\EnvironmentDeployInput;
@@ -17,6 +16,8 @@ use Upsun\Model\EnvironmentPatch;
 use Upsun\Model\VersionPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;

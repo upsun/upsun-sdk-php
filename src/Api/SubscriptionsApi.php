@@ -3,7 +3,6 @@
 namespace Upsun\Api;
 
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
-use InvalidArgumentException;
 use Upsun\Model\CanUpdateSubscription200Response;
 use DateTime;
 use Upsun\Model\CreateOrgSubscriptionRequest;
@@ -19,6 +18,8 @@ use Upsun\Model\UpdateOrgSubscriptionRequest;
 use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;

@@ -4,10 +4,11 @@ namespace Upsun\Api;
 
 use DateTime;
 use Upsun\Model\ListOrgPlanRecords200Response;
-use InvalidArgumentException;
 use Upsun\Model\ListOrgUsageRecords200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;

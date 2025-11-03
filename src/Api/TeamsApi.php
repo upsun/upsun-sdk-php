@@ -4,7 +4,6 @@ namespace Upsun\Api;
 
 use Upsun\Model\CreateTeamRequest;
 use Upsun\Model\Team;
-use InvalidArgumentException;
 use Upsun\Model\CreateTeamMemberRequest;
 use Upsun\Model\TeamMember;
 use Upsun\Model\ListTeamMembers200Response;
@@ -15,6 +14,8 @@ use Upsun\Model\ListTeams200Response;
 use Upsun\Model\UpdateTeamRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;

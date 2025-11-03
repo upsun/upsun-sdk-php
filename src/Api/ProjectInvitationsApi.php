@@ -2,13 +2,14 @@
 
 namespace Upsun\Api;
 
-use InvalidArgumentException;
 use Upsun\Model\CreateProjectInviteRequest;
 use Upsun\Model\ProjectInvitation;
 use Upsun\Model\StringFilter;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;

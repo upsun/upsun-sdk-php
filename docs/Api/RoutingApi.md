@@ -24,8 +24,6 @@ Get details of a route from an environment using the `id` of the entry retrieved
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\RoutingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -83,8 +81,6 @@ Retrieve a list of objects containing route definitions for a specific environme
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\RoutingApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

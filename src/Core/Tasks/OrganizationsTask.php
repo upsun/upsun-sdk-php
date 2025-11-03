@@ -3,7 +3,9 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
+use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\AddOnsApi;
+use Upsun\Api\ApiException;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
@@ -41,6 +43,7 @@ use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationProject;
 use Upsun\Model\Profile;
+use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
@@ -423,6 +426,7 @@ class OrganizationsTask extends TaskBase
      * Deletes a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function deleteProject(string $projectId): void
     {
@@ -656,6 +660,7 @@ class OrganizationsTask extends TaskBase
      * Gets profile
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     public function getProfile(string $organizationId): Profile
     {

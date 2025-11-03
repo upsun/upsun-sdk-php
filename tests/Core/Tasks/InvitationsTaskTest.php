@@ -4,6 +4,7 @@ namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
@@ -56,6 +57,9 @@ class InvitationsTaskTest extends BaseTestCase
 
     // Organization Invitation Tests
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCancelOrgInvite(): void
     {
         $organizationId = 'org-123';
@@ -76,6 +80,9 @@ class InvitationsTaskTest extends BaseTestCase
         $this->invitationTask->cancelOrgInvite($organizationId, $invitationId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCancelOrgInviteThrowsApiException(): void
     {
         $this->expectException(ApiException::class);
@@ -98,7 +105,7 @@ class InvitationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testCreateOrgInvite(): void
     {
@@ -138,7 +145,7 @@ class InvitationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testCreateOrgInviteWithDefaultForce(): void
     {
@@ -176,6 +183,9 @@ class InvitationsTaskTest extends BaseTestCase
         $this->invitationTask->createOrgInvite($organizationId, $email, $permissions, $force);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateOrgInviteReturnsError(): void
     {
         $this->expectException(ApiException::class);
@@ -199,7 +209,7 @@ class InvitationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testListOrgInvites(): void
     {
@@ -267,6 +277,9 @@ class InvitationsTaskTest extends BaseTestCase
         $this->assertEquals(['read', 'write', 'admin'], $result[1]->getPermissions());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListOrgInvitesWithParameters(): void
     {
         $organizationId = 'org-123';
@@ -347,6 +360,9 @@ class InvitationsTaskTest extends BaseTestCase
 
     // Project Invitation Tests
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCancelProjectInvite(): void
     {
         $projectId = 'project-123';
@@ -367,6 +383,9 @@ class InvitationsTaskTest extends BaseTestCase
         $this->invitationTask->cancelProjectInvite($projectId, $invitationId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCancelProjectInviteThrowsApiException(): void
     {
         $projectId = 'project-123';
@@ -388,7 +407,7 @@ class InvitationsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testCreateProjectInvite(): void
     {
@@ -447,6 +466,9 @@ class InvitationsTaskTest extends BaseTestCase
         $this->assertEquals("jane.doe@example.com", $result->getEmail());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateProjectInviteWithException(): void
     {
         $projectId = 'project-123';
@@ -478,6 +500,9 @@ class InvitationsTaskTest extends BaseTestCase
         $this->invitationTask->createProjectInvite($projectId, $userInvitationData);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListProjectInvites(): void
     {
         $projectId = 'project-123';
@@ -559,6 +584,9 @@ class InvitationsTaskTest extends BaseTestCase
         $this->assertEquals("john.test@example.com", $result[1]->getEmail());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListProjectInvitesWithParameters(): void
     {
         $projectId = 'project-123';
@@ -567,8 +595,6 @@ class InvitationsTaskTest extends BaseTestCase
         $pageBefore = 'cursor-before';
         $pageAfter = 'cursor-after';
         $sort = 'created_at';
-
-        $projectId = 'project-123';
 
         $this->httpClient
             ->expects($this->once())
@@ -654,6 +680,9 @@ class InvitationsTaskTest extends BaseTestCase
         $this->assertEquals("john.test@example.com", $result[1]->getEmail());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListProjectInvitesReturnsError(): void
     {
         $projectId = 'project-123';
@@ -672,6 +701,6 @@ class InvitationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->invitationTask->listProjectInvites($projectId);
+        $this->invitationTask->listProjectInvites($projectId);
     }
 }

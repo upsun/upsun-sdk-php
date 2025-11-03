@@ -2,8 +2,11 @@
 
 namespace Upsun\Core\Tasks;
 
+use Psr\Http\Client\ClientExceptionInterface;
+use Upsun\Api\ApiException;
 use Upsun\Api\SourceOperationsApi;
 use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Model\EnvironmentSourceOperationInput;
 use Upsun\UpsunClient;
 
@@ -25,7 +28,6 @@ class SourceOperationsTask extends TaskBase
 
     /**
      * Lists source operations
-     *
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface

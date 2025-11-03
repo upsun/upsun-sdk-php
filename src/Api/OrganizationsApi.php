@@ -4,7 +4,6 @@ namespace Upsun\Api;
 
 use Upsun\Model\CreateOrgRequest;
 use Upsun\Model\Organization;
-use InvalidArgumentException;
 use Upsun\Model\StringFilter;
 use Upsun\Model\ArrayFilter;
 use Upsun\Model\DateTimeFilter;
@@ -14,6 +13,8 @@ use Upsun\Model\ListUserOrgs200Response;
 use Upsun\Model\UpdateOrgRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
+use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;

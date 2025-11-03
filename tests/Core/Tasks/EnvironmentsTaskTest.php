@@ -2,8 +2,10 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
@@ -178,6 +180,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testActivate(): void
     {
         $projectId = 'project-123';
@@ -200,6 +205,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testBranch(): void
     {
         $projectId = 'project-123';
@@ -227,6 +235,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGet(): void
     {
         $projectId = 'project-123';
@@ -260,6 +271,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                         'addresses' => [],
                         'basic_auth' => []
                     ],
+                    'supportsRollingDeployments' => false,
                     'enable_smtp' => true,
                     'restrict_robots' => true,
                     'edge_hostname' => 'main-bvxea6i-azertyuiop.eu-5.platformsh.site',
@@ -304,6 +316,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals("production", $result->getType());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testList(): void
     {
         $projectId = 'project-123';
@@ -368,6 +383,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                         'has_staged_activities' => false,
                         'can_rolling_deploy' => false,
                         'has_code' => true,
+                        'supportsRollingDeployments' => false,
                         'head_commit' => 'azertyuiop',
                         'merge_info' => ['commits_ahead' => 0, 'commits_behind' => 0, 'parent_ref' => null],
                         'has_deployment' => true,
@@ -428,6 +444,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                         'has_staged_activities' => false,
                         'can_rolling_deploy' => false,
                         'has_code' => true,
+                        'supportsRollingDeployments' => false,
                         'head_commit' => 'azertyuiop',
                         'merge_info' => ['commits_ahead' => 0, 'commits_behind' => 0, 'parent_ref' => null],
                         'has_deployment' => true,
@@ -445,6 +462,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals("staging", $result[1]->getType());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDelete(): void
     {
         $projectId = 'project-123';
@@ -489,6 +509,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testMerge(): void
     {
         $projectId = 'project-123';
@@ -512,6 +535,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testPause(): void
     {
         $projectId = 'project-123';
@@ -533,6 +559,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testResume(): void
     {
         $projectId = 'project-123';
@@ -554,6 +583,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateVersions(): void
     {
         $projectId = 'project-123';
@@ -575,6 +607,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListVersions(): void
     {
         $projectId = 'project-123';
@@ -609,6 +644,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals("azertyuiop1235", $result[1]->getCommit());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetVersions(): void
     {
         $projectId = 'project-123';
@@ -632,6 +670,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals("azertyuiop1236", $result->getCommit());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListActivities(): void
     {
         $this->httpClient
@@ -672,6 +713,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals("proj-id-2", $response[1]->getProject());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetActivities(): void
     {
         $this->httpClient
@@ -701,6 +745,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals("proj-id-1", $response->getProject());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCancelActivity(): void
     {
         $this->httpClient
@@ -720,6 +767,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testBackup(): void
     {
         $this->httpClient
@@ -742,6 +792,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteBackup(): void
     {
         $this->httpClient
@@ -765,6 +818,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetBackup(): void
     {
         $projectId = 'proj-1';
@@ -800,6 +856,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals("completed", $result->getStatus());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRestore()
     {
         $this->httpClient
@@ -824,6 +883,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListBackups(): void
     {
         $this->httpClient
@@ -887,7 +949,7 @@ class EnvironmentsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testCreateProjectVariable(): void
     {
@@ -920,7 +982,7 @@ class EnvironmentsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testCreateEnvironmentVariable(): void
     {
@@ -956,7 +1018,7 @@ class EnvironmentsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testUpdateEnvironmentVariable(): void
     {
@@ -992,6 +1054,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetVariable(): void
     {
         $projectId = 'project-123';
@@ -1027,6 +1092,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($environmentId, $result->getEnvironment());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteEnvironmentVariable(): void
     {
         $projectId = 'project-123';
@@ -1051,7 +1119,7 @@ class EnvironmentsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testListEnvironmentVariables(): void
     {
@@ -1122,7 +1190,7 @@ class EnvironmentsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testListProjectVariables(): void
     {
@@ -1183,6 +1251,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals("env:proj2", $result[1]->getName());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetRoute(): void
     {
         $projectId = 'project-123';
@@ -1234,6 +1305,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertInstanceOf(Route::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListRoutes(): void
     {
         $projectId = 'project-123';
@@ -1323,7 +1397,7 @@ class EnvironmentsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testCreateEnvironmentDomain(): void
     {
@@ -1357,7 +1431,7 @@ class EnvironmentsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testCreateProjectDomain(): void
     {
@@ -1390,7 +1464,7 @@ class EnvironmentsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testGetDomain(): void
     {
@@ -1425,7 +1499,7 @@ class EnvironmentsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testUpdateDomain(): void
     {
@@ -1457,6 +1531,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListDomain(): void
     {
         $projectId = 'project-123';
@@ -1506,6 +1583,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertContainsOnlyInstancesOf(Domain::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetType(): void
     {
         $projectId = 'project-123';
@@ -1531,6 +1611,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertInstanceOf(EnvironmentType::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListTypes(): void
     {
         $projectId = 'project-123';
@@ -1575,6 +1658,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertContainsOnlyInstancesOf(EnvironmentType::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetDeployment(): void
     {
         $projectId = 'project-123';
@@ -1991,7 +2077,7 @@ class EnvironmentsTaskTest extends BaseTestCase
     }
 
     /**
-     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testListDeployments(): void
     {
@@ -2809,6 +2895,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals("fake-deploy-2-0001abcd2345efgh6789ijkl0123mnop4567qrst", $result[1]->getId());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRunSourceOperation(): void
     {
         $projectId = 'project-123';
@@ -2835,6 +2924,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListSourceOperation(): void
     {
         $projectId = 'project-123';
@@ -2876,6 +2968,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         $this->assertEquals("backup", $result[2]->getOperation());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testActivateThrowsApiException(): void
     {
         $projectId = 'project-123';
