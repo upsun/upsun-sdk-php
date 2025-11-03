@@ -216,10 +216,10 @@ class ProjectsTask extends TaskBase
     /**
      * Lists invitations to a project
      *
-     * @return ProjectInvitation[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return ProjectInvitation[]
      */
     public function listInvites(
         string $projectId,
@@ -334,10 +334,10 @@ class ProjectsTask extends TaskBase
     /**
      * Gets list of project variables
      *
-     * @return ProjectVariable[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return ProjectVariable[]
      */
     public function listVariables(string $projectId): array
     {
@@ -380,9 +380,9 @@ class ProjectsTask extends TaskBase
      * Gets project activity log
      *
      *
-     * @return Activity[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Activity[]
      */
     public function listActivities(string $projectId): array
     {
@@ -467,9 +467,9 @@ class ProjectsTask extends TaskBase
      * Gets project deployment target info
      *
      *
-     * @return DeploymentTarget[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return DeploymentTarget[]
      */
     public function listDeployments(string $projectId): array
     {
@@ -560,9 +560,9 @@ class ProjectsTask extends TaskBase
      * Gets list of repository refs
      *
      *
-     * @return Ref[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Ref[]
      */
     public function listGitRefs(string $projectId): array
     {
@@ -738,9 +738,9 @@ class ProjectsTask extends TaskBase
      * Gets list of existing integrations for a project
      *
      *
-     * @return Integration[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Integration[]
      */
     public function listIntegrations(string $projectId): array
     {
@@ -915,9 +915,9 @@ class ProjectsTask extends TaskBase
      * Gets list of project domains
      *
      *
-     * @return Domain[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Domain[]
      */
     public function listDomains(string $projectId): array
     {
@@ -987,9 +987,9 @@ class ProjectsTask extends TaskBase
      * Gets list of SSL certificates
      *
      *
-     * @return Certificate[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Certificate[]
      */
     public function listCertificates(string $projectId): array
     {
@@ -1200,9 +1200,9 @@ class ProjectsTask extends TaskBase
     /**
      * Lists environments of a project
      *
-     * @return Environment[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Environment[]
      */
     public function listEnvironments(string $projectId): array
     {

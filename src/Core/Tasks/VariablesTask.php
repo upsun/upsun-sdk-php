@@ -88,9 +88,9 @@ class VariablesTask extends TaskBase
      * Gets list of project variables
      *
      *
-     * @return ProjectVariable[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return ProjectVariable[]
      */
     public function listProjectVariables(string $projectId): array
     {
@@ -211,9 +211,9 @@ class VariablesTask extends TaskBase
      * Lists environment variables
      *
      *
-     * @return EnvironmentVariable[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return EnvironmentVariable[]
      */
     public function listEnvironmentVariables(string $projectId, string $environmentId): array
     {

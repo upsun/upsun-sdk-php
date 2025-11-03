@@ -69,9 +69,9 @@ class BackupsTask extends TaskBase
      * Gets an environment's snapshot list
      *
      *
-     * @return Backup[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Backup[]
      */
     public function list(string $projectId, string $environmentId): array
     {
@@ -81,9 +81,9 @@ class BackupsTask extends TaskBase
     /**
      * Restores an environment snapshot
      *
-     * @return AcceptedResponse
      *
      * @throws ClientExceptionInterface
+     * @return AcceptedResponse
      */
     public function restore(
         string $projectId,

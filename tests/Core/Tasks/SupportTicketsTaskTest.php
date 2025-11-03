@@ -338,7 +338,8 @@ class SupportTicketsTaskTest extends BaseTestCase
                 json_encode($ticket)
             ));
 
-        $result = $this->task->update('ticket-123',
+        $result = $this->task->update(
+            'ticket-123',
             $fakeTicketData['status'],
             $fakeTicketData['collaboratorIds'],
             $fakeTicketData['collaboratorsReplace'],

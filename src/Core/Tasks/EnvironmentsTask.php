@@ -201,10 +201,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets list of project environments
      *
-     * @return Environment[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Environment[]
      */
     public function list(string $projectId): array
     {
@@ -215,9 +215,9 @@ class EnvironmentsTask extends TaskBase
      * Lists versions associated with the environment
      *
      *
-     * @return Version[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Version[]
      */
     public function listVersions(string $projectId, string $environmentId): array
     {
@@ -388,10 +388,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets environment activity log
      *
-     * @return Activity[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Activity[]
      */
     public function listActivities(string $projectId, string $environmentId): array
     {
@@ -437,10 +437,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets an environment's snapshot list
      *
-     * @return Backup[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Backup[]
      */
     public function listBackups(string $projectId, string $environmentId): array
     {
@@ -488,10 +488,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets environment types
      *
-     * @return EnvironmentType[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return EnvironmentType[]
      */
     public function listTypes(string $projectId): array
     {
@@ -571,10 +571,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets list of Environment variables
      *
-     * @return EnvironmentVariable[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return EnvironmentVariable[]
      */
     public function listEnvironmentVariables(string $projectId, string $environmentId): array
     {
@@ -584,10 +584,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets list of Project variables
      *
-     * @return ProjectVariable[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return ProjectVariable[]
      */
     public function listProjectVariables(string $projectId): array
     {
@@ -642,10 +642,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets list of routes
      *
-     * @return Route[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Route[]
      */
     public function listRoutes(string $projectId, string $environmentId): array
     {
@@ -701,10 +701,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets a list of environment domains
      *
-     * @return Domain[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Domain[]
      */
     public function listDomains(string $projectId, string $environmentId): array
     {
@@ -741,10 +741,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets an environment's deployment information
      *
-     * @return Deployment[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return Deployment[]
      */
     public function listDeployments(string $projectId, string $environmentId): array
     {
@@ -754,10 +754,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Lists source operations
      *
-     * @return EnvironmentSourceOperation[]
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @return EnvironmentSourceOperation[]
      */
     public function listSourceOperations(string $projectId, string $environmentId): array
     {

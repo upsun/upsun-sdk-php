@@ -672,7 +672,8 @@ class TeamsTaskTest extends BaseTestCase
         $this->expectException(ApiException::class);
 
         // Call the method
-        $this->task->update($teamId,
+        $this->task->update(
+            $teamId,
             'Updated Team Label',
             [
                 ['projectId' => 'proj_001', 'role' => 'admin'],
