@@ -877,7 +877,8 @@ class EnvironmentsTaskTest extends BaseTestCase
             'prj',
             'env',
             'bkp',
-            ['restoreCode' => true, 'restoreResources' => true]
+            true,
+            true,
         );
 
         $this->assertEquals($acceptedResponse, $result);

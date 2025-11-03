@@ -64,10 +64,10 @@ class ActivitiesTask extends TaskBase
     /**
      * Gets project (or environment) activity log
      *
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Activity[]
+     *
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(string $projectId, ?string $environmentId = null): array
     {

@@ -27,10 +27,10 @@ class ApplicationsTask extends TaskBase
     /**
      * Lists applications of an environment
      *
+     * @return WebApplicationsValue[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return WebApplicationsValue[]
      */
     public function list(string $projectId, string $environmentId): array
     {

@@ -187,7 +187,8 @@ class BackupsTaskTest extends BaseTestCase
             'prj',
             'env',
             'bkp',
-            ['restoreCode' => true, 'restoreResources' => true]
+            true,
+            true
         );
 
         $this->assertEquals($acceptedResponse, $result);
@@ -212,7 +213,8 @@ class BackupsTaskTest extends BaseTestCase
             'prj-does-not-exist',
             'env',
             'bkp',
-            ['restoreCode' => true, 'restoreResources' => true]
+            true,
+            true
         );
     }
 }
