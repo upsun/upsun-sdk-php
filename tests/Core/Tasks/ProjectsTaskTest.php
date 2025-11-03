@@ -1294,26 +1294,6 @@ class ProjectsTaskTest extends BaseTestCase
     {
         $projectId = 'test-project';
 
-        $data = [
-            'type' => 'production',
-            'name' => 'Main Deployment Target',
-            'hosts' => ['host1.example.com', 'host2.example.com'],
-            'enforcedMounts' => (object)[
-                'mount1' => '/var/www/html',
-                'mount2' => '/var/log',
-            ],
-            'siteUrls' => (object)[
-                'primary' => 'https://www.example.com',
-                'secondary' => 'https://backup.example.com',
-            ],
-            'sshHosts' => ['ssh1.example.com', 'ssh2.example.com'],
-            'enterpriseEnvironmentsMapping' => (object)[
-                'env1' => 'production',
-                'env2' => 'staging',
-            ],
-            'useDedicatedGrid' => true,
-        ];
-
         $this->httpClient
             ->expects($this->once())
             ->method('sendRequest')
@@ -1326,7 +1306,26 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->projectsTask->createDeployment($projectId, $data);
+        $this->projectsTask->createDeployment(
+            $projectId,
+            'production',
+            'Main Deployment Target',
+            ['host1.example.com', 'host2.example.com'],
+            [
+                'mount1' => '/var/www/html',
+                'mount2' => '/var/log',
+            ],
+            [
+                'primary' => 'https://www.example.com',
+                'secondary' => 'https://backup.example.com',
+            ],
+            ['ssh1.example.com', 'ssh2.example.com'],
+            [
+                'env1' => 'production',
+                'env2' => 'staging',
+            ],
+            true,
+        );
     }
 
     /**
@@ -1612,37 +1611,6 @@ class ProjectsTaskTest extends BaseTestCase
     {
         $projectId = 'test-project';
         $deploymentId = 'deploy-123';
-        $deploymentData = [
-            'id' => 'deploy1',
-            'type' => 'dedicated',
-            'name' => 'Updated Deployment Target',
-            'hosts' => [
-                [
-                    'type' => 'core',
-                    'id' => 'host1',
-                    'services' => ['nginx', 'php']
-                ],
-                [
-                    'type' => 'secondary',
-                    'id' => 'host2',
-                    'services' => ['php', 'mysql']
-                ]
-            ],
-            'enforcedMounts' => (object)[
-                'mount1' => '/var/www/html',
-                'mount2' => '/var/log',
-            ],
-            'siteUrls' => (object)[
-                'primary' => 'https://www.example.com',
-                'secondary' => 'https://backup.example.com'
-            ],
-            'sshHosts' => ['ssh1.example.com', 'ssh2.example.com'],
-            'enterpriseEnvironmentsMapping' => (object)[
-                'env1' => 'production',
-                'env2' => 'staging'
-            ],
-            'useDedicatedGrid' => true
-        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -1656,7 +1624,38 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->projectsTask->updateDeployment($projectId, $deploymentId, $deploymentData);
+        $this->projectsTask->updateDeployment(
+            $projectId,
+            $deploymentId,
+            'dedicated',
+            'Updated Deployment Target',
+            ['ssh1.example.com', 'ssh2.example.com'],
+            [
+            [
+            'type' => 'core',
+            'id' => 'host1',
+            'services' => ['nginx', 'php']
+            ],
+            [
+            'type' => 'secondary',
+            'id' => 'host2',
+            'services' => ['php', 'mysql']
+            ]
+            ],
+            [
+            'mount1' => '/var/www/html',
+            'mount2' => '/var/log',
+            ],
+            [
+            'primary' => 'https://www.example.com',
+            'secondary' => 'https://backup.example.com'
+            ],
+            [
+            'env1' => 'production',
+            'env2' => 'staging'
+            ],
+            true
+        );
     }
 
     /**
@@ -1890,61 +1889,6 @@ class ProjectsTaskTest extends BaseTestCase
     public function testCreateIntegration()
     {
         $projectId = 'test-project';
-        $fakeIntegrationCreateInput = [
-            'type' => 'github',
-            'repository' => 'user/repo',
-            'url' => 'https://github.com/user/repo',
-            'username' => 'user',
-            'token' => 'ghp_exampletoken123',
-            'project' => 'project123',
-            'serviceId' => 'service-001',
-            'recipients' => ['dev@example.com', 'ops@example.com'],
-            'routingKey' => 'routing-key-001',
-            'channel' => '#notifications',
-            'licenseKey' => 'license-xyz-123',
-            'script' => 'deploy.sh',
-            'index' => 'main',
-            'appCredentials' => [
-                'key' => 'oauth-key-123',
-                'secret' => 'oauth-secret-456'
-            ],
-            'addonCredentials' => [
-                'addonKey' => 'addon-abc',
-                'clientKey' => 'client-xyz',
-                'sharedSecret' => 'shared-secret-789'
-            ],
-            'fromAddress' => 'noreply@example.com',
-            'sharedKey' => 'shared-key-001',
-            'fetchBranches' => true,
-            'pruneBranches' => false,
-            'environmentInitResources' => 'standard',
-            'buildPullRequests' => true,
-            'pullRequestsCloneParentData' => false,
-            'resyncPullRequests' => true,
-            'events' => ['push', 'pull_request'],
-            'environments' => ['dev', 'staging'],
-            'excludedEnvironments' => ['production'],
-            'states' => ['active', 'inactive'],
-            'result' => 'success',
-            'baseUrl' => 'https://api.example.com',
-            'buildDraftPullRequests' => true,
-            'buildPullRequestsPostMerge' => false,
-            'buildMergeRequests' => true,
-            'buildWipMergeRequests' => false,
-            'mergeRequestsCloneParentData' => true,
-            'extra' => ['option1' => 'value1'],
-            'headers' => ['X-Custom-Header' => 'value'],
-            'tlsVerify' => true,
-            'sourcetype' => 'github',
-            'category' => 'ci',
-            'host' => 'api.example.com',
-            'port' => 443,
-            'protocol' => 'https',
-            'facility' => 1,
-            'messageFormat' => 'json',
-            'authToken' => 'token-abc-123',
-            'authMode' => 'bearer'
-        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -1958,7 +1902,65 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->createIntegration($projectId, $fakeIntegrationCreateInput);
+        $result = $this->projectsTask->createIntegration(
+            $projectId,
+            'github',
+            'user/repo',
+            'https://github.com/user/repo',
+            'user',
+            'ghp_exampletoken123',
+            'project123',
+            'service-001',
+            ['dev@example.com', 'ops@example.com'],
+            'routing-key-001',
+            '#notifications',
+            'license-xyz-123',
+            'deploy.sh',
+            'main',
+            [
+            'key' => 'oauth-key-123',
+            'secret' => 'oauth-secret-456'
+            ],
+            [
+            'addonKey' => 'addon-abc',
+            'clientKey' => 'client-xyz',
+            'sharedSecret' => 'shared-secret-789'
+            ],
+            'noreply@example.com',
+            'shared-key-001',
+            true,
+            false,
+            'standard',
+            true,
+            false,
+            true,
+            ['push', 'pull_request'],
+            ['dev', 'staging'],
+            ['production'],
+            ['active', 'inactive'],
+            'success',
+            'https://api.example.com',
+            true,
+            false,
+            true,
+            false,
+            true,
+            true,
+            true,
+            ['option1' => 'value1'],
+            ['X-Custom-Header' => 'value'],
+            true,
+            [],
+            'github',
+            'ci',
+            'api.example.com',
+            443,
+            'https',
+            1,
+            'json',
+            'token-abc-123',
+            'bearer'
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
@@ -2193,65 +2195,13 @@ class ProjectsTaskTest extends BaseTestCase
         $this->assertObjectMatchesArray($result, $list);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateIntegration()
     {
         $projectId = 'test-project';
         $integrationId = 'integration-123';
-        $fakeIntegrationPatch = [
-            'type' => 'github',
-            'repository' => 'user/repo',
-            'url' => 'https://github.com/user/repo',
-            'username' => 'user',
-            'token' => 'ghp_exampletoken123',
-            'project' => 'project123',
-            'serviceId' => 'service-001',
-            'recipients' => ['dev@example.com', 'ops@example.com'],
-            'routingKey' => 'routing-key-001',
-            'channel' => '#notifications',
-            'licenseKey' => 'license-xyz-123',
-            'script' => 'deploy.sh',
-            'index' => 'main',
-            'appCredentials' => [
-                'key' => 'oauth-key-123',
-                'secret' => 'oauth-secret-456'
-            ],
-            'addonCredentials' => [
-                'addonKey' => 'addon-abc',
-                'clientKey' => 'client-xyz',
-                'sharedSecret' => 'shared-secret-789'
-            ],
-            'fromAddress' => 'noreply@example.com',
-            'sharedKey' => 'shared-key-001',
-            'fetchBranches' => true,
-            'pruneBranches' => false,
-            'environmentInitResources' => 'standard',
-            'buildPullRequests' => true,
-            'pullRequestsCloneParentData' => false,
-            'resyncPullRequests' => true,
-            'events' => ['push', 'pull_request'],
-            'environments' => ['dev', 'staging'],
-            'excludedEnvironments' => ['production'],
-            'states' => ['active', 'inactive'],
-            'result' => 'success',
-            'baseUrl' => 'https://api.example.com',
-            'buildDraftPullRequests' => true,
-            'buildPullRequestsPostMerge' => false,
-            'buildMergeRequests' => true,
-            'buildWipMergeRequests' => false,
-            'mergeRequestsCloneParentData' => true,
-            'extra' => ['option1' => 'value1'],
-            'headers' => ['X-Custom-Header' => 'value'],
-            'tlsVerify' => true,
-            'sourcetype' => 'github',
-            'category' => 'ci',
-            'host' => 'api.example.com',
-            'port' => 443,
-            'protocol' => 'https',
-            'facility' => 1,
-            'messageFormat' => 'json',
-            'authToken' => 'token-abc-123',
-            'authMode' => 'bearer'
-        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -2265,7 +2215,66 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->updateIntegration($projectId, $integrationId, $fakeIntegrationPatch);
+        $result = $this->projectsTask->updateIntegration(
+            $projectId,
+            $integrationId,
+            'github',
+            'user/repo',
+            'https://github.com/user/repo',
+            'user',
+            'ghp_exampletoken123',
+            'project123',
+            'service-001',
+            ['dev@example.com', 'ops@example.com'],
+            'routing-key-001',
+            '#notifications',
+            'license-xyz-123',
+            'deploy.sh',
+            'main',
+            [
+                'key' => 'oauth-key-123',
+                'secret' => 'oauth-secret-456'
+            ],
+            [
+                'addonKey' => 'addon-abc',
+                'clientKey' => 'client-xyz',
+                'sharedSecret' => 'shared-secret-789'
+            ],
+            'noreply@example.com',
+            'shared-key-001',
+            true,
+            false,
+            'standard',
+            true,
+            false,
+            true,
+            ['push', 'pull_request'],
+            ['dev', 'staging'],
+            ['production'],
+            ['active', 'inactive'],
+            'success',
+            'https://api.example.com',
+            true,
+            false,
+            true,
+            false,
+            true,
+            true,
+            true,
+            ['option1' => 'value1'],
+            ['X-Custom-Header' => 'value'],
+            true,
+            [],
+            'github',
+            'ci',
+            'api.example.com',
+            443,
+            'https',
+            1,
+            'json',
+            'token-abc-123',
+            'bearer'
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
@@ -2407,7 +2416,6 @@ class ProjectsTaskTest extends BaseTestCase
     {
         $projectId = 'test-project';
         $domainId = 'domain-123';
-        $domainData = ['attributes' => [], "isDefault" => true];
 
         $this->httpClient
             ->expects($this->once())
@@ -2421,28 +2429,13 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->updateDomain($projectId, $domainId, $domainData);
+        $result = $this->projectsTask->updateDomain($projectId, $domainId, [], true);
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
     public function testCreateCertificate()
     {
         $projectId = 'test-project';
-        $fakeCertificateCreateInput = [
-            'certificate' => '-----BEGIN CERTIFICATE-----
-MIIDXTCCAkWgAwIBAgIJAK8kU8kXk9Z+MA0GC...
------END CERTIFICATE-----',
-            'key' => '-----BEGIN PRIVATE KEY-----
-MIIEvQIBADANBgkqhkiG9w0BAQEFAASC...
------END PRIVATE KEY-----',
-            'chain' => [
-                '-----BEGIN CERTIFICATE-----
-MIIDdTCCAl2gAwIBAgIEb/2OBDANBgkqhkiG9w0BAQUFADB1MQswCQYDVQQGEwJV
-...
------END CERTIFICATE-----',
-            ],
-            'isInvalid' => false,
-        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -3558,25 +3551,6 @@ FAKE-CHAIN-CERT-DATA2
     public function testCreateDeploymentWithError()
     {
         $projectId = 'test-project';
-        $data = [
-            'type' => 'production',
-            'name' => 'Main Deployment Target',
-            'hosts' => ['host1.example.com', 'host2.example.com'],
-            'enforcedMounts' => (object)[
-                'mount1' => '/var/www/html',
-                'mount2' => '/var/log',
-            ],
-            'siteUrls' => (object)[
-                'primary' => 'https://www.example.com',
-                'secondary' => 'https://backup.example.com',
-            ],
-            'sshHosts' => ['ssh1.example.com', 'ssh2.example.com'],
-            'enterpriseEnvironmentsMapping' => (object)[
-                'env1' => 'production',
-                'env2' => 'staging',
-            ],
-            'useDedicatedGrid' => true,
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -3590,7 +3564,26 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->createDeployment($projectId, $data);
+        $this->projectsTask->createDeployment(
+            $projectId,
+            'production',
+            'Main Deployment Target',
+            ['host1.example.com', 'host2.example.com'],
+            [
+            'mount1' => '/var/www/html',
+            'mount2' => '/var/log',
+            ],
+            [
+            'primary' => 'https://www.example.com',
+            'secondary' => 'https://backup.example.com',
+            ],
+            ['ssh1.example.com', 'ssh2.example.com'],
+            [
+            'env1' => 'production',
+            'env2' => 'staging',
+            ],
+            true,
+        );
     }
 
     public function testDeleteDeploymentWithError()
@@ -3699,7 +3692,38 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->updateDeployment($projectId, $deploymentId, $deploymentData);
+        $this->projectsTask->updateDeployment(
+            $projectId,
+            $deploymentId,
+            'dedicated',
+            'Updated Deployment Target',
+            [
+            [
+            'type' => 'core',
+            'id' => 'host1',
+            'services' => ['nginx', 'php']
+            ],
+            [
+            'type' => 'secondary',
+            'id' => 'host2',
+            'services' => ['php', 'mysql']
+            ]
+            ],
+            [
+            'mount1' => '/var/www/html',
+            'mount2' => '/var/log',
+            ],
+            [
+            'primary' => 'https://www.example.com',
+            'secondary' => 'https://backup.example.com'
+            ],
+            ['ssh1.example.com', 'ssh2.example.com'],
+            [
+            'env1' => 'production',
+            'env2' => 'staging'
+            ],
+            true
+        );
     }
 
     public function testGetGitBlobWithError()
@@ -3842,61 +3866,6 @@ FAKE-CHAIN-CERT-DATA2
     public function testCreateIntegrationWithError()
     {
         $projectId = 'test-project';
-        $fakeIntegrationCreateInput = [
-            'type' => 'github',
-            'repository' => 'user/repo',
-            'url' => 'https://github.com/user/repo',
-            'username' => 'user',
-            'token' => 'ghp_exampletoken123',
-            'project' => 'project123',
-            'serviceId' => 'service-001',
-            'recipients' => ['dev@example.com', 'ops@example.com'],
-            'routingKey' => 'routing-key-001',
-            'channel' => '#notifications',
-            'licenseKey' => 'license-xyz-123',
-            'script' => 'deploy.sh',
-            'index' => 'main',
-            'appCredentials' => [
-                'key' => 'oauth-key-123',
-                'secret' => 'oauth-secret-456'
-            ],
-            'addonCredentials' => [
-                'addonKey' => 'addon-abc',
-                'clientKey' => 'client-xyz',
-                'sharedSecret' => 'shared-secret-789'
-            ],
-            'fromAddress' => 'noreply@example.com',
-            'sharedKey' => 'shared-key-001',
-            'fetchBranches' => true,
-            'pruneBranches' => false,
-            'environmentInitResources' => 'standard',
-            'buildPullRequests' => true,
-            'pullRequestsCloneParentData' => false,
-            'resyncPullRequests' => true,
-            'events' => ['push', 'pull_request'],
-            'environments' => ['dev', 'staging'],
-            'excludedEnvironments' => ['production'],
-            'states' => ['active', 'inactive'],
-            'result' => 'success',
-            'baseUrl' => 'https://api.example.com',
-            'buildDraftPullRequests' => true,
-            'buildPullRequestsPostMerge' => false,
-            'buildMergeRequests' => true,
-            'buildWipMergeRequests' => false,
-            'mergeRequestsCloneParentData' => true,
-            'extra' => ['option1' => 'value1'],
-            'headers' => ['X-Custom-Header' => 'value'],
-            'tlsVerify' => true,
-            'sourcetype' => 'github',
-            'category' => 'ci',
-            'host' => 'api.example.com',
-            'port' => 443,
-            'protocol' => 'https',
-            'facility' => 1,
-            'messageFormat' => 'json',
-            'authToken' => 'token-abc-123',
-            'authMode' => 'bearer'
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -3910,7 +3879,65 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->createIntegration($projectId, $fakeIntegrationCreateInput);
+        $this->projectsTask->createIntegration(
+            $projectId,
+            'github',
+            'user/repo',
+            'https://github.com/user/repo',
+            'user',
+            'ghp_exampletoken123',
+            'project123',
+            'service-001',
+            ['dev@example.com', 'ops@example.com'],
+            'routing-key-001',
+            '#notifications',
+            'license-xyz-123',
+            'deploy.sh',
+            'main',
+            [
+                'key' => 'oauth-key-123',
+                'secret' => 'oauth-secret-456'
+            ],
+            [
+                'addonKey' => 'addon-abc',
+                'clientKey' => 'client-xyz',
+                'sharedSecret' => 'shared-secret-789'
+            ],
+            'noreply@example.com',
+            'shared-key-001',
+            true,
+            false,
+            'standard',
+            true,
+            false,
+            true,
+            ['push', 'pull_request'],
+            ['dev', 'staging'],
+            ['production'],
+            ['active', 'inactive'],
+            'success',
+            'https://api.example.com',
+            true,
+            false,
+            true,
+            false,
+            true,
+            true,
+            true,
+            ['option1' => 'value1'],
+            ['X-Custom-Header' => 'value'],
+            true,
+            [],
+            'github',
+            'ci',
+            'api.example.com',
+            443,
+            'https',
+            1,
+            'json',
+            'token-abc-123',
+            'bearer'
+        );
     }
 
     public function testDeleteIntegrationWithError()
@@ -3976,61 +4003,6 @@ FAKE-CHAIN-CERT-DATA2
     {
         $projectId = 'test-project';
         $integrationId = 'integration-123';
-        $fakeIntegrationPatch = [
-            'type' => 'github',
-            'repository' => 'user/repo',
-            'url' => 'https://github.com/user/repo',
-            'username' => 'user',
-            'token' => 'ghp_exampletoken123',
-            'project' => 'project123',
-            'serviceId' => 'service-001',
-            'recipients' => ['dev@example.com', 'ops@example.com'],
-            'routingKey' => 'routing-key-001',
-            'channel' => '#notifications',
-            'licenseKey' => 'license-xyz-123',
-            'script' => 'deploy.sh',
-            'index' => 'main',
-            'appCredentials' => [
-                'key' => 'oauth-key-123',
-                'secret' => 'oauth-secret-456'
-            ],
-            'addonCredentials' => [
-                'addonKey' => 'addon-abc',
-                'clientKey' => 'client-xyz',
-                'sharedSecret' => 'shared-secret-789'
-            ],
-            'fromAddress' => 'noreply@example.com',
-            'sharedKey' => 'shared-key-001',
-            'fetchBranches' => true,
-            'pruneBranches' => false,
-            'environmentInitResources' => 'standard',
-            'buildPullRequests' => true,
-            'pullRequestsCloneParentData' => false,
-            'resyncPullRequests' => true,
-            'events' => ['push', 'pull_request'],
-            'environments' => ['dev', 'staging'],
-            'excludedEnvironments' => ['production'],
-            'states' => ['active', 'inactive'],
-            'result' => 'success',
-            'baseUrl' => 'https://api.example.com',
-            'buildDraftPullRequests' => true,
-            'buildPullRequestsPostMerge' => false,
-            'buildMergeRequests' => true,
-            'buildWipMergeRequests' => false,
-            'mergeRequestsCloneParentData' => true,
-            'extra' => ['option1' => 'value1'],
-            'headers' => ['X-Custom-Header' => 'value'],
-            'tlsVerify' => true,
-            'sourcetype' => 'github',
-            'category' => 'ci',
-            'host' => 'api.example.com',
-            'port' => 443,
-            'protocol' => 'https',
-            'facility' => 1,
-            'messageFormat' => 'json',
-            'authToken' => 'token-abc-123',
-            'authMode' => 'bearer'
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -4044,7 +4016,66 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->updateIntegration($projectId, $integrationId, $fakeIntegrationPatch);
+        $this->projectsTask->updateIntegration(
+            $projectId,
+            $integrationId,
+            'github',
+            'user/repo',
+            'https://github.com/user/repo',
+            'user',
+            'ghp_exampletoken123',
+            'project123',
+            'service-001',
+            ['dev@example.com', 'ops@example.com'],
+            'routing-key-001',
+            '#notifications',
+            'license-xyz-123',
+            'deploy.sh',
+            'main',
+            [
+                'key' => 'oauth-key-123',
+                'secret' => 'oauth-secret-456'
+            ],
+            [
+                'addonKey' => 'addon-abc',
+                'clientKey' => 'client-xyz',
+                'sharedSecret' => 'shared-secret-789'
+            ],
+            'noreply@example.com',
+            'shared-key-001',
+            true,
+            false,
+            'standard',
+            true,
+            false,
+            true,
+            ['push', 'pull_request'],
+            ['dev', 'staging'],
+            ['production'],
+            ['active', 'inactive'],
+            'success',
+            'https://api.example.com',
+            true,
+            false,
+            true,
+            false,
+            true,
+            true,
+            true,
+            ['option1' => 'value1'],
+            ['X-Custom-Header' => 'value'],
+            true,
+            [],
+            'github',
+            'ci',
+            'api.example.com',
+            443,
+            'https',
+            1,
+            'json',
+            'token-abc-123',
+            'bearer'
+        );
     }
 
     public function testCreateDomainWithError()
@@ -4143,7 +4174,7 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->updateDomain($projectId, $domainId, $domainData);
+        $this->projectsTask->updateDomain($projectId, $domainId, [], true);
     }
 
     public function testCreateCertificateWithError()
