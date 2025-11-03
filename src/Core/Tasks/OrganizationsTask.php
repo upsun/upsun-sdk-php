@@ -527,23 +527,23 @@ class OrganizationsTask extends TaskBase
      */
     public function updateProject(
         string $projectId,
+        ?string $title = null,
         ?string $defaultBranch = null,
+        ?string $description = null,
         ?string $defaultDomain = null,
         ?array $attributes = [],
-        ?string $title = null,
-        ?string $description = null,
         ?string $timezone = null,
         ?string $region = null,
     ): AcceptedResponse {
         return $this->client->projects->update(
             $projectId,
+            $title,
             $defaultBranch,
+            $description,
             $defaultDomain,
             $attributes,
-            $title,
-            $description,
             $timezone,
-            $region
+            $region,
         );
     }
 

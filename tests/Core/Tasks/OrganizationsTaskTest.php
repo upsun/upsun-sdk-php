@@ -1477,11 +1477,11 @@ class OrganizationsTaskTest extends BaseTestCase
 
         $response = $this->organizationsTask->updateProject(
             $prjId,
+            $data['title'],
             $data['defaultBranch'],
+            $data['description'],
             $data['defaultDomain'],
             $data['attributes'],
-            $data['title'],
-            $data['description'],
             $data['timezone'],
             $data['region'],
         );

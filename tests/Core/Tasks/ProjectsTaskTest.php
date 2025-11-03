@@ -539,13 +539,13 @@ class ProjectsTaskTest extends BaseTestCase
             $projectId,
             'main',
             'myproject.example.com',
+            'My Project',
+            'A sample project used for testing.',
             [
             'framework' => 'symfony',
             'language' => 'php',
             'version' => '8.2',
             ],
-            'My Project',
-            'A sample project used for testing.',
             'UTC',
             'eu-central-1',
         );
@@ -3649,36 +3649,6 @@ FAKE-CHAIN-CERT-DATA2
     {
         $projectId = 'test-project';
         $deploymentId = 'deploy-123';
-        $deploymentData = [
-            'type' => 'dedicated',
-            'name' => 'Updated Deployment Target',
-            'hosts' => [
-                [
-                    'type' => 'core',
-                    'id' => 'host1',
-                    'services' => ['nginx', 'php']
-                ],
-                [
-                    'type' => 'secondary',
-                    'id' => 'host2',
-                    'services' => ['php', 'mysql']
-                ]
-            ],
-            'enforcedMounts' => (object)[
-                'mount1' => '/var/www/html',
-                'mount2' => '/var/log',
-            ],
-            'siteUrls' => (object)[
-                'primary' => 'https://www.example.com',
-                'secondary' => 'https://backup.example.com'
-            ],
-            'sshHosts' => ['ssh1.example.com', 'ssh2.example.com'],
-            'enterpriseEnvironmentsMapping' => (object)[
-                'env1' => 'production',
-                'env2' => 'staging'
-            ],
-            'useDedicatedGrid' => true
-        ];
 
         $this->httpClient
             ->method('sendRequest')
