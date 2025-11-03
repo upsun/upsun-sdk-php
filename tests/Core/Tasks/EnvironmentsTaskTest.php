@@ -212,12 +212,6 @@ class EnvironmentsTaskTest extends BaseTestCase
     {
         $projectId = 'project-123';
         $environmentId = 'env-456';
-        $input = [
-            'title' => 'Feature Branch',
-            'name' => 'feature-branch',
-            'cloneParent' => true,
-            'type' => 'staging'
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -230,7 +224,14 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->branch($projectId, $environmentId, $input);
+        $result = $this->environmentTask->branch(
+            $projectId,
+            $environmentId,
+            'Feature Branch',
+            'feature-branch',
+            true,
+            'staging'
+        );
 
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
@@ -490,7 +491,6 @@ class EnvironmentsTaskTest extends BaseTestCase
     {
         $projectId = 'project-123';
         $environmentId = 'env-456';
-        $patch = ['title' => 'Updated Environment'];
 
         $this->httpClient
             ->method('sendRequest')
@@ -503,7 +503,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->update($projectId, $environmentId, $patch);
+        $result = $this->environmentTask->update($projectId, $environmentId, 'Updated Environment');
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);
@@ -955,15 +955,6 @@ class EnvironmentsTaskTest extends BaseTestCase
     public function testCreateProjectVariable(): void
     {
         $projectId = 'project-123';
-        $input = [
-            'name' => 'API_KEY',
-            'value' => 'secret',
-            'attributes' => [],
-            'isJson' => false,
-            'isSensitive' => true,
-            'visibleBuild' => true,
-            'visibleRuntime' => false,
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -976,7 +967,17 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->createVariable($projectId, $input);
+        $result = $this->environmentTask->createVariable(
+            $projectId,
+            'API_KEY',
+            'secret',
+            [],
+            false,
+            true,
+            true,
+            false,
+            ['app1', 'app2'],
+        );
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);
@@ -989,17 +990,6 @@ class EnvironmentsTaskTest extends BaseTestCase
     {
         $projectId = 'project-123';
         $environmentId = 'env-456';
-        $input = [
-            'name' => 'API_KEY',
-            'value' => 'secret',
-            'attributes' => [],
-            'isJson' => false,
-            'isSensitive' => true,
-            'visibleBuild' => true,
-            'visibleRuntime' => false,
-            'isEnabled' => true,
-            'isInheritable' => false
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -1012,7 +1002,20 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->createVariable($projectId, $input, $environmentId);
+        $result = $this->environmentTask->createVariable(
+            $projectId,
+            'API_KEY',
+            'secret',
+            [],
+            false,
+            true,
+            true,
+            false,
+            ['app1', 'app2'],
+            true,
+            false,
+            $environmentId
+        );
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);
@@ -1026,17 +1029,6 @@ class EnvironmentsTaskTest extends BaseTestCase
         $projectId = 'project-123';
         $environmentId = 'env-456';
         $variableId = 'var-1';
-        $input = [
-            'name' => 'API_KEY',
-            'value' => 'secret',
-            'attributes' => [],
-            'isJson' => false,
-            'isSensitive' => true,
-            'visibleBuild' => true,
-            'visibleRuntime' => false,
-            'isEnabled' => true,
-            'isInheritable' => false
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -1049,7 +1041,19 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->updateVariable($projectId, $environmentId, $variableId, $input);
+        $result = $this->environmentTask->updateVariable(
+            $projectId,
+            $environmentId,
+            $variableId,
+            'API_KEY',
+            'secret',
+            [],
+            false,
+            true,
+            true,
+            false,
+            ['app1', 'app2']
+        );
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);
@@ -1454,8 +1458,8 @@ class EnvironmentsTaskTest extends BaseTestCase
             $projectId,
             'domain-1',
             [
-            'version' => '8.2',
-            'engine' => 'php-fpm',
+                'version' => '8.2',
+                'engine' => 'php-fpm',
             ],
             true,
             null

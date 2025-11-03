@@ -926,19 +926,6 @@ class ProjectsTaskTest extends BaseTestCase
 
         $projectId = 'test-project';
 
-        $data = [
-            'name' => 'env:API_KEY',
-            'value' => '123456789abcdef',
-            'attributes' => [
-                'description' => 'API key for third-party service',
-                'scope' => 'project',
-            ],
-            'isJson' => false,
-            'isSensitive' => true,
-            'visibleBuild' => true,
-            'visibleRuntime' => false,
-        ];
-
         $this->httpClient
             ->expects($this->once())
             ->method('sendRequest')
@@ -951,7 +938,20 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->createVariable($projectId, $data);
+        $result = $this->projectsTask->createVariable(
+            $projectId,
+            'env:API_KEY',
+            '123456789abcdef',
+            [
+            'description' => 'API key for third-party service',
+            'scope' => 'project',
+            ],
+            false,
+            true,
+            true,
+            false,
+            ['app1', 'app2'],
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
@@ -1090,18 +1090,6 @@ class ProjectsTaskTest extends BaseTestCase
     {
         $projectId = 'test-project';
         $variableId = 'var-123';
-        $variableData = [
-            'name' => 'API_KEY_UPDATED',
-            'attributes' => [
-                'property1' => 'updated-metadata',
-                'property2' => 'additional-info',
-            ],
-            'value' => 'abcdef123456789',
-            'isJson' => true,
-            'isSensitive' => true,
-            'visibleBuild' => false,
-            'visibleRuntime' => true,
-        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -1115,7 +1103,21 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->updateVariable($projectId, $variableId, $variableData);
+        $result = $this->projectsTask->updateVariable(
+            $projectId,
+            $variableId,
+            'API_KEY_UPDATED',
+            'abcdef123456789',
+            [
+            'property1' => 'updated-metadata',
+            'property2' => 'additional-info',
+            ],
+            true,
+            true,
+            false,
+            true,
+            ['app1', 'app2'],
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 

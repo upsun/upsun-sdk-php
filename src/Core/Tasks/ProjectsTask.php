@@ -233,24 +233,27 @@ class ProjectsTask extends TaskBase
     /**
      * Updates a project setting
      *
-     * @param array{
-     *     dataRetention?: array,
-     *     initialize: string,
-     *     cpu?: float,
-     *     memory?: int
-     * } $data
+     * @param null|array{
+     *     step: string,
+     *     status: string
+     * } $initialize
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function updateSettings(string $projectId, array $data): AcceptedResponse
-    {
+    public function updateSettings(
+        string $projectId,
+        ?array $initialize = null,
+        ?array $dataRetention = null,
+        ?float $cpu = null,
+        ?int $memory = null
+    ): AcceptedResponse {
         $projectSettingsPatch = new ProjectSettingsPatch(
-            dataRetention: $data['dataRetention'] ?? null,
-            initialize: $data['initialize'] ?? null,
-            buildResources: $data['cpu'] || $data['memory'] ? new BuildResources2(
-                cpu: $data['cpu'] ?? null,
-                memory: $data['memory'] ?? null,
+            dataRetention: $dataRetention,
+            initialize: (object)$initialize,
+            buildResources: $cpu || $memory ? new BuildResources2(
+                cpu: $cpu ?? null,
+                memory: $memory ?? null,
             ) : null,
         );
         return $this->settingsApi->updateProjectsSettings($projectId, $projectSettingsPatch);
@@ -262,9 +265,28 @@ class ProjectsTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function createVariable(string $projectId, array $projectVariableCreateInput): AcceptedResponse
-    {
-        return $this->client->variables->createProjectVariable($projectId, $projectVariableCreateInput);
+    public function createVariable(
+        string $projectId,
+        string $name,
+        string $value,
+        ?array $attributes = [],
+        ?bool $isJson = null,
+        ?bool $isSensitive = null,
+        ?bool $visibleBuild = null,
+        ?bool $visibleRuntime = null,
+        ?array $applicationScope = [],
+    ): AcceptedResponse {
+        return $this->client->variables->createProjectVariable(
+            $projectId,
+            $name,
+            $value,
+            $attributes,
+            $isJson,
+            $isSensitive,
+            $visibleBuild,
+            $visibleRuntime,
+            $applicationScope
+        );
     }
 
     /**
@@ -305,28 +327,32 @@ class ProjectsTask extends TaskBase
     /**
      * Updates a project variable
      *
-     * @param array{
-     *     name?: string,
-     *     attributes?: array,
-     *     value?: string,
-     *     isJson?: bool,
-     *     isSensitive?: bool,
-     *     visibleBuild?: bool,
-     *     visibleRuntime?: bool,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function updateVariable(
         string $projectId,
         string $projectVariableId,
-        array $data
+        ?string $name = null,
+        ?string $value = null,
+        ?array $attributes = null,
+        ?bool $isJson = null,
+        ?bool $isSensitive = null,
+        ?bool $visibleBuild = null,
+        ?bool $visibleRuntime = null,
+        ?array $applicationScope = null,
     ): AcceptedResponse {
         return $this->client->variables->updateProjectVariable(
             $projectId,
             $projectVariableId,
-            $data
+            $name,
+            $value,
+            $attributes,
+            $isJson,
+            $isSensitive,
+            $visibleBuild,
+            $visibleRuntime,
+            $applicationScope,
         );
     }
 

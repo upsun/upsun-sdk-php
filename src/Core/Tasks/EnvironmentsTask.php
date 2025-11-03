@@ -73,28 +73,24 @@ class EnvironmentsTask extends TaskBase
     /**
      * Branchs an environment
      *
-     * @param array{
-     *     title: string,
-     *     name: string,
-     *     cloneParent: bool,
-     *     type: string,
-     *     init?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function branch(
         string $projectId,
         string $environmentId,
-        array $data
+        string $title,
+        string $name,
+        bool $cloneParent,
+        string $type,
+        ?string $init = null,
     ): AcceptedResponse {
         $environmentBranchInput = new EnvironmentBranchInput(
-            title: $data['title'],
-            name: $data['name'],
-            cloneParent: $data['cloneParent'],
-            type: $data['type'],
-            resources: new Resources3($data['init'] ?? null),
+            title: $title,
+            name: $name,
+            cloneParent: $cloneParent,
+            type: $type,
+            resources: new Resources3($init),
         );
         return $this->api->branchEnvironment($projectId, $environmentId, $environmentBranchInput);
     }
@@ -174,32 +170,30 @@ class EnvironmentsTask extends TaskBase
     /**
      * Initializes a new environment
      *
-     * @param array{
-     *     profile: string,
-     *     repository: string,
-     *     files: array{
-     *       mode: string,
-     *       path: string,
-     *       contents: string
-     *     },
-     *     config?: string,
-     *     init?: int,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function initialize(
         string $projectId,
         string $environmentId,
-        array $data
+        string $profile,
+        string $repository,
+        string $fileMode,
+        string $filePath,
+        string $fileContents,
+        ?string $config = null,
+        ?int $init = null,
     ): AcceptedResponse {
         $environmentInitializeInput = new EnvironmentInitializeInput(
-            profile: $data['profile'],
-            repository: $data['repository'],
-            files: $data['files'],
-            config: $data['config'] ?? null,
-            resources: new Resources4(init: $data['init'] ?? null),
+            profile: $profile,
+            repository: $repository,
+            files: [
+                $fileMode,
+                $filePath,
+                $fileContents
+            ],
+            config: $config,
+            resources: new Resources4(init: $init),
         );
         return $this->api->initializeEnvironment($projectId, $environmentId, $environmentInitializeInput);
     }
@@ -207,10 +201,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets list of project environments
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Environment[]
      *
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(string $projectId): array
     {
@@ -221,9 +215,9 @@ class EnvironmentsTask extends TaskBase
      * Lists versions associated with the environment
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Version[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listVersions(string $projectId, string $environmentId): array
     {
@@ -280,66 +274,68 @@ class EnvironmentsTask extends TaskBase
     /**
      * Synchronizes a child environment with its parent
      *
-     * @param array{
-     *     synchronizeCode: bool,
-     *     rebase: bool,
-     *     synchronizeData: bool,
-     *     synchronizeResources: bool,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function synchronize(
         string $projectId,
         string $environmentId,
-        array $data
+        bool $synchronizeCode,
+        bool $rebase,
+        bool $synchronizeData,
+        bool $synchronizeResources,
     ): AcceptedResponse {
-        $environmentSynchronizeInput = new EnvironmentSynchronizeInput(...$data);
+        $environmentSynchronizeInput = new EnvironmentSynchronizeInput(
+            synchronizeCode: $synchronizeCode,
+            rebase: $rebase,
+            synchronizeData: $synchronizeData,
+            synchronizeResources: $synchronizeResources
+        );
         return $this->api->synchronizeEnvironment($projectId, $environmentId, $environmentSynchronizeInput);
     }
 
     /**
      * Updates an environment
      *
-     * @param array{
-     *     parent?: string,
-     *     name?: string,
-     *     title?: string,
-     *     attributes?: array,
-     *     type?: string,
-     *     cloneParentOnCreate?: bool,
-     *     httpAccess?: array{
-     *        isEnabled?: bool,
-     *        addresses?: array{
-     *          permission: string,
-     *          address: string,
-     *        },
-     *        basicAuth?: array
-     *     },
-     *     enableSmtp?: bool,
-     *     restrictRobots?: bool,
-     * } $data
+     * @param null|array{
+     *   isEnabled?: bool,
+     *   addresses?: array{
+     *     permission: string,
+     *     address: string,
+     *   },
+     *   basicAuth?: array
+     * } $httpAccess
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function update(string $projectId, string $environmentId, array $data): AcceptedResponse
-    {
+    public function update(
+        string $projectId,
+        string $environmentId,
+        ?string $parent = null,
+        ?string $name = null,
+        ?string $title = null,
+        ?array $attributes = null,
+        ?string $type = null,
+        ?bool $cloneParentOnCreate = null,
+        ?array $httpAccess = null,
+        ?bool $enableSmtp = null,
+        ?bool $restrictRobots = null,
+    ): AcceptedResponse {
         $environmentPatch = new EnvironmentPatch(
-            parent: $data['parent'] ?? null,
-            name: $data['name'] ?? null,
-            title: $data['title'] ?? null,
-            attributes: $data['attributes'] ?? [],
-            type: $data['type'] ?? null,
-            cloneParentOnCreate: $data['cloneParentOnCreate'] ?? null,
-            httpAccess: isset($data['httpAccess']) ? new HttpAccessPermissions1(
-                isEnabled: $data['httpAccess']['isEnabled'] ?? null,
-                addresses: $data['httpAccess']['addresses'] ?? null,
-                basicAuth: $data['httpAccess']['basicAuth'] ?? null
+            parent: $parent,
+            name: $name,
+            title: $title,
+            attributes: $attributes,
+            type: $type,
+            cloneParentOnCreate: $cloneParentOnCreate,
+            httpAccess: isset($httpAccess) ? new HttpAccessPermissions1(
+                isEnabled: $httpAccess['isEnabled'] ?? null,
+                addresses: $httpAccess['addresses'] ?? null,
+                basicAuth: $httpAccess['basicAuth'] ?? null
             ) : null,
-            enableSmtp: $data['enableSmtp'] ?? null,
-            restrictRobots: $data['restrictRobots'] ?? null
+            enableSmtp: $enableSmtp,
+            restrictRobots: $restrictRobots
         );
         return $this->api->updateEnvironment($projectId, $environmentId, $environmentPatch);
     }
@@ -393,9 +389,9 @@ class EnvironmentsTask extends TaskBase
      * Gets environment activity log
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Activity[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listActivities(string $projectId, string $environmentId): array
     {
@@ -441,10 +437,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets an environment's snapshot list
      *
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Backup[]
+     *
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listBackups(string $projectId, string $environmentId): array
     {
@@ -495,9 +491,9 @@ class EnvironmentsTask extends TaskBase
      * Gets environment types
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return EnvironmentType[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listTypes(string $projectId): array
     {
@@ -512,17 +508,43 @@ class EnvironmentsTask extends TaskBase
      */
     public function createVariable(
         string $projectId,
-        array $environmentVariableCreateInput,
+        string $name,
+        string $value,
+        ?array $attributes = null,
+        ?bool $isJson = null,
+        ?bool $isSensitive = null,
+        ?bool $visibleBuild = null,
+        ?bool $visibleRuntime = null,
+        ?array $applicationScope = null,
+        ?bool $isEnabled = null,
+        ?bool $isInheritable = null,
         ?string $environmentId = null
     ): AcceptedResponse {
-        return ($environmentId ? $this->client->variables->createEnvironmentVariable(
-            $projectId,
-            $environmentId,
-            $environmentVariableCreateInput
-        ) : $this->client->variables->createProjectVariable(
-            $projectId,
-            $environmentVariableCreateInput
-        )
+        return ($environmentId ?
+            $this->client->variables->createEnvironmentVariable(
+                $projectId,
+                $environmentId,
+                $name,
+                $value,
+                $attributes,
+                $isJson,
+                $isSensitive,
+                $visibleBuild,
+                $visibleRuntime,
+                $applicationScope,
+                $isEnabled,
+                $isInheritable,
+            ) : $this->client->variables->createProjectVariable(
+                $projectId,
+                $name,
+                $value,
+                $attributes,
+                $isJson,
+                $isSensitive,
+                $visibleBuild,
+                $visibleRuntime,
+                $applicationScope,
+            )
         );
     }
 
@@ -552,9 +574,9 @@ class EnvironmentsTask extends TaskBase
      * Gets list of Environment variables
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return EnvironmentVariable[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listEnvironmentVariables(string $projectId, string $environmentId): array
     {
@@ -565,9 +587,9 @@ class EnvironmentsTask extends TaskBase
      * Gets list of Project variables
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return ProjectVariable[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectVariables(string $projectId): array
     {
@@ -577,18 +599,6 @@ class EnvironmentsTask extends TaskBase
     /**
      * Updates an environment variable
      *
-     * @param array{
-     *     name?: string,
-     *     value?: string,
-     *     attributes?: array,
-     *     isJson?: bool,
-     *     isSensitive?: bool,
-     *     visibleBuild?: bool,
-     *     visibleRuntime?: bool,
-     *     isEnabled?: bool,
-     *     isInheritable?: bool,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
@@ -596,13 +606,27 @@ class EnvironmentsTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $variableId,
-        array $data
+        ?string $name = null,
+        ?string $value = null,
+        ?array $attributes = null,
+        ?bool $isJson = null,
+        ?bool $isSensitive = null,
+        ?bool $visibleBuild = null,
+        ?bool $visibleRuntime = null,
+        ?array $applicationScope = null,
     ): AcceptedResponse {
         return $this->client->variables->updateEnvironmentVariable(
             $projectId,
             $environmentId,
             $variableId,
-            $data
+            $name,
+            $value,
+            $attributes,
+            $isJson,
+            $isSensitive,
+            $visibleBuild,
+            $visibleRuntime,
+            $applicationScope,
         );
     }
 
@@ -621,9 +645,9 @@ class EnvironmentsTask extends TaskBase
      * Gets list of routes
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Route[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listRoutes(string $projectId, string $environmentId): array
     {
@@ -680,9 +704,9 @@ class EnvironmentsTask extends TaskBase
      * Gets a list of environment domains
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Domain[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listDomains(string $projectId, string $environmentId): array
     {
@@ -724,9 +748,9 @@ class EnvironmentsTask extends TaskBase
      * Gets an environment's deployment information
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Deployment[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listDeployments(string $projectId, string $environmentId): array
     {
@@ -737,9 +761,9 @@ class EnvironmentsTask extends TaskBase
      * Lists source operations
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return EnvironmentSourceOperation[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listSourceOperations(string $projectId, string $environmentId): array
     {

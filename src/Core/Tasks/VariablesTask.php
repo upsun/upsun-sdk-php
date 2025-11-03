@@ -35,22 +35,30 @@ class VariablesTask extends TaskBase
     /**
      * Adds a project variable
      *
-     * @param array{
-     *     name: string,
-     *     value: string,
-     *     attributes?: array,
-     *     isJson?: bool,
-     *     isSensitive?: bool,
-     *     visibleBuild?: bool,
-     *     visibleRuntime?: bool,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function createProjectVariable(string $projectId, array $data): AcceptedResponse
-    {
-        $projectVariableCreateInput = new ProjectVariableCreateInput(...$data);
+    public function createProjectVariable(
+        string $projectId,
+        string $name,
+        string $value,
+        ?array $attributes = [],
+        ?bool $isJson = null,
+        ?bool $isSensitive = null,
+        ?bool $visibleBuild = null,
+        ?bool $visibleRuntime = null,
+        ?array $applicationScope = [],
+    ): AcceptedResponse {
+        $projectVariableCreateInput = new ProjectVariableCreateInput(
+            name: $name,
+            value: $value,
+            attributes: $attributes,
+            isJson: $isJson,
+            isSensitive: $isSensitive,
+            visibleBuild: $visibleBuild,
+            visibleRuntime: $visibleRuntime,
+            applicationScope: $applicationScope
+        );
         return $this->projectVariablesApi->createProjectsVariables($projectId, $projectVariableCreateInput);
     }
 
@@ -80,9 +88,9 @@ class VariablesTask extends TaskBase
      * Gets list of project variables
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return ProjectVariable[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectVariables(string $projectId): array
     {
@@ -92,25 +100,31 @@ class VariablesTask extends TaskBase
     /**
      * Updates a project variable
      *
-     * @param array{
-     *     name?: string,
-     *     attributes?: array,
-     *     value?: string,
-     *     isJson?: bool,
-     *     isSensitive?: bool,
-     *     visibleBuild?: bool,
-     *     visibleRuntime?: bool,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function updateProjectVariable(
         string $projectId,
         string $projectVariableId,
-        array $data
+        ?string $name = null,
+        ?string $value = null,
+        ?array $attributes = null,
+        ?bool $isJson = null,
+        ?bool $isSensitive = null,
+        ?bool $visibleBuild = null,
+        ?bool $visibleRuntime = null,
+        ?array $applicationScope = null,
     ): AcceptedResponse {
-        $projectVariablePatch = new ProjectVariablePatch(...$data);
+        $projectVariablePatch = new ProjectVariablePatch(
+            name: $name,
+            attributes: $attributes,
+            value: $value,
+            isJson: $isJson,
+            isSensitive: $isSensitive,
+            visibleBuild: $visibleBuild,
+            visibleRuntime: $visibleRuntime,
+            applicationScope: $applicationScope,
+        );
         return $this->projectVariablesApi->updateProjectsVariables(
             $projectId,
             $projectVariableId,
@@ -121,27 +135,35 @@ class VariablesTask extends TaskBase
     /**
      * Adds an environment variable
      *
-     * @param array{
-     *     name: string,
-     *     value: string,
-     *     attributes?: array,
-     *     isJson?: bool,
-     *     isSensitive?: bool,
-     *     visibleBuild?: bool,
-     *     visibleRuntime?: bool,
-     *     isEnabled?: bool,
-     *     isInheritable?: bool,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function createEnvironmentVariable(
         string $projectId,
         string $environmentId,
-        array $data
+        string $name,
+        string $value,
+        ?array $attributes = null,
+        ?bool $isJson = null,
+        ?bool $isSensitive = null,
+        ?bool $visibleBuild = null,
+        ?bool $visibleRuntime = null,
+        ?array $applicationScope = null,
+        ?bool $isEnabled = null,
+        ?bool $isInheritable = null,
     ): AcceptedResponse {
-        $environmentVariableCreateInput = new EnvironmentVariableCreateInput(...$data);
+        $environmentVariableCreateInput = new EnvironmentVariableCreateInput(
+            name: $name,
+            value: $value,
+            attributes: $attributes,
+            isJson: $isJson,
+            isSensitive: $isSensitive,
+            visibleBuild: $visibleBuild,
+            visibleRuntime: $visibleRuntime,
+            applicationScope: $applicationScope,
+            isEnabled: $isEnabled,
+            isInheritable: $isInheritable
+        );
         return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
             $projectId,
             $environmentId,
@@ -189,9 +211,9 @@ class VariablesTask extends TaskBase
      * Lists environment variables
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return EnvironmentVariable[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function listEnvironmentVariables(string $projectId, string $environmentId): array
     {
@@ -201,18 +223,6 @@ class VariablesTask extends TaskBase
     /**
      * Updates an environment variable
      *
-     * @param array{
-     *     name?: string,
-     *     value?: string,
-     *     attributes?: array,
-     *     isJson?: bool,
-     *     isSensitive?: bool,
-     *     visibleBuild?: bool,
-     *     visibleRuntime?: bool,
-     *     isEnabled?: bool,
-     *     isInheritable?: bool,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
@@ -220,9 +230,29 @@ class VariablesTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $variableId,
-        array $data
+        string $name,
+        string $value,
+        ?array $attributes = null,
+        ?bool $isJson = null,
+        ?bool $isSensitive = null,
+        ?bool $visibleBuild = null,
+        ?bool $visibleRuntime = null,
+        ?array $applicationScope = null,
+        ?bool $isEnabled = null,
+        ?bool $isInheritable = null,
     ): AcceptedResponse {
-        $environmentVariablePatch = new EnvironmentVariablePatch(...$data);
+        $environmentVariablePatch = new EnvironmentVariablePatch(
+            name: $name,
+            attributes: $attributes,
+            value: $value,
+            isJson: $isJson,
+            isSensitive: $isSensitive,
+            visibleBuild: $visibleBuild,
+            visibleRuntime: $visibleRuntime,
+            applicationScope: $applicationScope,
+            isEnabled: $isEnabled,
+            isInheritable: $isInheritable
+        );
         return $this->environmentVariablesApi->updateProjectsEnvironmentsVariables(
             $projectId,
             $environmentId,
