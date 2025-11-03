@@ -1983,16 +1983,81 @@ class OrganizationsTaskTest extends BaseTestCase
             ],
         ];
 
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode($data)
-            ));
 
-        $response = $this->organizationsTask->listUsageRecords('org-123');
+        $fakeOrganizationProject = [
+            'id' => '123',
+            'attributes' => [
+                'language' => 'php',
+                'framework' => 'symfony',
+            ],
+            'title' => 'My Test Project',
+            'description' => 'This is a fake project for testing.',
+            'owner' => 'user_123',
+            'status' => [
+                'code' => 'active',
+                'message' => 'All systems operational',
+            ],
+            'timezone' => 'Europe/Paris',
+            'region' => 'eu-west-1',
+            'repository' => [
+                'url' => 'git@github.com:test/project.git',
+                'clientSshKey' => 'ssh-rsa AAAAB3Nza...fake',
+            ],
+            'subscription' => [
+                'licenseUri' => 'https://upsun.com/licenses/123',
+                'storage' => 10240,
+                'includedUsers' => 5,
+                'subscriptionManagementUri' => 'https://upsun.com/manage/123',
+                'restricted' => false,
+                'suspended' => false,
+                'userLicenses' => 10,
+                'plan' => 'pro',
+                'environments' => 3,
+                'resources' => [
+                    'containerProfiles' => true,
+                    'production' => [
+                        'legacyDevelopment' => false,
+                        'maxCpu' => 2.0,
+                        'maxMemory' => 4096,
+                        'maxEnvironments' => 5,
+                    ],
+                    'development' => [
+                        'legacyDevelopment' => true,
+                        'maxCpu' => 1.0,
+                        'maxMemory' => 2048,
+                        'maxEnvironments' => 10,
+                    ],
+                ],
+                'resourceValidationUrl' => 'https://upsun.com/resources/validate',
+                'imageTypes' => [
+                    'only' => ['php:8.2', 'node:18'],
+                    'exclude' => ['java:11'],
+                ],
+            ],
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-01T12:00:00Z',
+            'namespace' => 'namespace',
+            'organization' => 'org_987',
+            'defaultBranch' => 'main',
+            'defaultDomain' => 'project.upsun.dev',
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturnOnConsecutiveCalls(
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($fakeOrganizationProject)
+                ),
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($data)
+                )
+            );
+
+        $response = $this->organizationsTask->listUsageRecords('org-123', '123');
         $this->assertInstanceOf(ListOrgUsageRecords200Response::class, $response);
         $this->assertObjectProperties($response->getItems(), $data['items']);
     }

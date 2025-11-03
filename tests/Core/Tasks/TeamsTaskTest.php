@@ -973,4 +973,93 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->task->listTeamProjectAccess($teamId);
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteSuccess(): void
+    {
+        $teamId = 'team123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                ''
+            ));
+
+        $this->expectNotToPerformAssertions();
+
+        $this->task->delete($teamId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteError(): void
+    {
+        $teamId = 'team123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403,
+                    'message' => 'Access denied'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->task->delete($teamId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteNotFound(): void
+    {
+        $teamId = 'invalidTeam';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'not_found',
+                    'code' => 404,
+                    'message' => 'Team not found'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->task->delete($teamId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteConflict(): void
+    {
+        $teamId = 'team123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                409,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'conflict',
+                    'code' => 409,
+                    'message' => 'Team cannot be deleted because it has active members or projects'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+        $this->task->delete($teamId);
+    }
 }
