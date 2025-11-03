@@ -198,7 +198,6 @@ class UsersTaskTest extends BaseTestCase
 
     public function testUpdateSuccess()
     {
-        $updateData = ['firstName' => 'Jane', 'lastName' => 'Smith'];
         $userFake = [
             'id' => 'user_123',
             'deactivated' => false,
@@ -226,7 +225,16 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($userFake)
             ));
 
-        $result = $this->usersTask->update('user_123', $updateData);
+        $result = $this->usersTask->update(
+            'user_123',
+            $userFake['username'],
+            $userFake['firstName'],
+            $userFake['lastName'],
+            $userFake['picture'],
+            $userFake['company'],
+            $userFake['website'],
+            $userFake['country'],
+        );
         $this->assertInstanceOf(User::class, $result);
         $this->assertObjectProperties($result, $userFake);
     }
@@ -1000,7 +1008,19 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $userId = 'user_123';
-        $result = $this->usersTask->updateAddress($userId, $addressFake);
+        $result = $this->usersTask->updateAddress(
+            $userId,
+            'US',
+            'John Doe',
+            '123',
+            'Apt 4',
+            'Main St',
+            'CA',
+            'Santa Clara',
+            'San Jose',
+            null,
+            '95131',
+        );
         $this->assertInstanceOf(GetAddress200Response::class, $result);
         $this->assertObjectProperties($result, $addressFake);
     }
@@ -1021,11 +1041,7 @@ class UsersTaskTest extends BaseTestCase
         $this->expectException(ApiException::class);
 
         $userId = 'user_123';
-        $addressFake = [
-            'country' => 'US',
-            'nameLine' => 'John Doe'
-        ];
-        $this->usersTask->updateAddress($userId, $addressFake);
+        $this->usersTask->updateAddress($userId, 'US', 'John Doe');
     }
 
 
@@ -1056,7 +1072,22 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $userId = 'user_123';
-        $result = $this->usersTask->updateProfile($userId, $profileFake);
+        $result = $this->usersTask->updateProfile(
+            $userId,
+            $profileFake['displayName'],
+            $profileFake['username'],
+            $profileFake['currentPassword'],
+            $profileFake['password'],
+            $profileFake['companyType'],
+            $profileFake['companyName'],
+            $profileFake['vatNumber'],
+            $profileFake['companyRole'],
+            $profileFake['marketing'],
+            $profileFake['uiColorscheme'],
+            $profileFake['defaultCatalog'],
+            $profileFake['projectOptionsUrl'],
+            $profileFake['picture'],
+        );
         $this->assertInstanceOf(Profile::class, $result);
         $this->assertObjectProperties($result, $profileFake);
     }
@@ -1077,11 +1108,8 @@ class UsersTaskTest extends BaseTestCase
         $this->expectException(ApiException::class);
 
         $userId = 'user_123';
-        $profileFake = [
-            'displayName' => 'John Doe',
-            'username' => 'john_doe'
-        ];
-        $this->usersTask->updateProfile($userId, $profileFake);
+
+        $this->usersTask->updateProfile($userId, 'John Doe', 'john_doe');
     }
 
 
@@ -1422,7 +1450,7 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($responseFake)
             ));
 
-        $result = $this->usersTask->confirmTotpEnrollment($userId, $requestData);
+        $result = $this->usersTask->confirmTotpEnrollment($userId, $requestData['secret'], $requestData['passcode']);
         $this->assertInstanceOf(ConfirmTotpEnrollment200Response::class, $result);
         $this->assertObjectProperties($result, $responseFake);
     }
@@ -1445,7 +1473,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->confirmTotpEnrollment($userId, $requestData);
+        $this->usersTask->confirmTotpEnrollment($userId, $requestData['secret'], $requestData['passcode']);
     }
 
     public function testGetTotpEnrollmentSuccess()
@@ -1631,7 +1659,7 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($verifyPhoneNumberFake)
             ));
 
-        $result = $this->usersTask->verifyPhoneNumber($userId, $data);
+        $result = $this->usersTask->verifyPhoneNumber($userId, $data['channel'], $data['phoneNumber']);
         $this->assertInstanceOf(VerifyPhoneNumber200Response::class, $result);
         $this->assertObjectProperties($result, $verifyPhoneNumberFake);
     }
@@ -1657,7 +1685,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->verifyPhoneNumber($userId, $data);
+        $this->usersTask->verifyPhoneNumber($userId, $data['channel'], $data['phoneNumber']);
     }
 
     public function testCreateProfilePictureNotImplemented()

@@ -158,22 +158,28 @@ class UsersTask extends TaskBase
     /**
      * Updates a user
      *
-     * @param array|null{
-     *   username?: string,
-     *   firstName?: string,
-     *   lastName?: string,
-     *   picture?: string,
-     *   company?: string,
-     *   website?: string,
-     *   country?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function update(string $userId, ?array $data = []): User
-    {
-        $updateUserRequest = new UpdateUserRequest(...$data);
+    public function update(
+        string $userId,
+        ?string $username = null,
+        ?string $firstName = null,
+        ?string $lastName = null,
+        ?string $picture = null,
+        ?string $company = null,
+        ?string $website = null,
+        ?string $country = null,
+    ): User {
+        $updateUserRequest = new UpdateUserRequest(
+            username: $username,
+            firstName: $firstName,
+            lastName: $lastName,
+            picture: $picture,
+            company: $company,
+            website: $website,
+            country: $country
+        );
         return $this->api->updateUser($userId, $updateUserRequest);
     }
 
@@ -374,53 +380,74 @@ class UsersTask extends TaskBase
     /**
      * Updates a user address
      *
-     * @param array|null{
-     *     country?: string,
-     *     nameLine?: string,
-     *     premise?: string,
-     *     subPremise?: string,
-     *     thoroughfare?: string,
-     *     administrativeArea?: string,
-     *     subAdministrativeArea?: string,
-     *     locality?: string,
-     *     dependentLocality?: string,
-     *     postalCode?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function updateAddress(string $userId, ?array $data = null): GetAddress200Response
-    {
-        $address = $data ? new Address(...$data) : null;
+    public function updateAddress(
+        string $userId,
+        ?string $country = null,
+        ?string $nameLine = null,
+        ?string $premise = null,
+        ?string $subPremise = null,
+        ?string $thoroughfare = null,
+        ?string $administrativeArea = null,
+        ?string $subAdministrativeArea = null,
+        ?string $locality = null,
+        ?string $dependentLocality = null,
+        ?string $postalCode = null,
+    ): GetAddress200Response {
+        $address = new Address(
+            country: $country,
+            nameLine: $nameLine,
+            premise: $premise,
+            subPremise: $subPremise,
+            thoroughfare: $thoroughfare,
+            administrativeArea: $administrativeArea,
+            subAdministrativeArea: $subAdministrativeArea,
+            locality: $locality,
+            dependentLocality: $dependentLocality,
+            postalCode: $postalCode
+        );
         return $this->profilesApi->updateAddress($userId, $address);
     }
 
     /**
      * Updates a user profile
      *
-     * @param array|null{
-     *     displayName?: string,
-     *     username?: string,
-     *     currentPassword?: string,
-     *     password?: string,
-     *     companyType?: string,
-     *     companyName?: string,
-     *     vatNumber?: string,
-     *     companyRole?: string,
-     *     marketing?: bool,
-     *     uiColorscheme?: string,
-     *     defaultCatalog?: string,
-     *     projectOptionsUrl?: string,
-     *     picture?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function updateProfile(string $userId, ?array $data = []): Profile
-    {
-        $updateProfileRequest = new UpdateProfileRequest(...$data);
+    public function updateProfile(
+        string $userId,
+        ?string $displayName = null,
+        ?string $username = null,
+        ?string $currentPassword = null,
+        ?string $password = null,
+        ?string $companyType = null,
+        ?string $companyName = null,
+        ?string $vatNumber = null,
+        ?string $companyRole = null,
+        ?bool $marketing = null,
+        ?string $uiColorscheme = null,
+        ?string $defaultCatalog = null,
+        ?string $projectOptionsUrl = null,
+        ?string $picture = null,
+    ): Profile {
+        $updateProfileRequest = new UpdateProfileRequest(
+            displayName: $displayName,
+            username: $username,
+            currentPassword: $currentPassword,
+            password: $password,
+            companyType: $companyType,
+            companyName: $companyName,
+            vatNumber: $vatNumber,
+            companyRole: $companyRole,
+            marketing: $marketing,
+            uiColorscheme: $uiColorscheme,
+            defaultCatalog: $defaultCatalog,
+            projectOptionsUrl: $projectOptionsUrl,
+            picture: $picture
+        );
         return $this->profilesApi->updateProfile($userId, $updateProfileRequest);
     }
 
@@ -529,19 +556,18 @@ class UsersTask extends TaskBase
     /**
      * Confirms TOTP enrollment
      *
-     * @param array{
-     *     secret: string,
-     *     passCode: string
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function confirmTotpEnrollment(
         string $userId,
-        array $data
+        string $secret,
+        string $passCode
     ): ConfirmTotpEnrollment200Response {
-        $confirmTotpEnrollmentRequest = new ConfirmTotpEnrollmentRequest(...$data);
+        $confirmTotpEnrollmentRequest = new ConfirmTotpEnrollmentRequest(
+            secret: $secret,
+            passcode: $passCode
+        );
         return $this->mfaApi->confirmTotpEnrollment($userId, $confirmTotpEnrollmentRequest);
     }
 
@@ -593,19 +619,18 @@ class UsersTask extends TaskBase
     /**
      * Verifies phone number
      *
-     * @param array{
-     *     channel: string,
-     *     phoneNumber: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function verifyPhoneNumber(
         string $userId,
-        array $data
+        string $channel,
+        string $phoneNumber,
     ): VerifyPhoneNumber200Response {
-        $verifyPhoneNumberRequest = new VerifyPhoneNumberRequest(...$data);
+        $verifyPhoneNumberRequest = new VerifyPhoneNumberRequest(
+            channel: $channel,
+            phoneNumber: $phoneNumber
+        );
         return $this->phoneNumberApi->verifyPhoneNumber($userId, $verifyPhoneNumberRequest);
     }
 }
