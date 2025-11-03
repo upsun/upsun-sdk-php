@@ -2,6 +2,10 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
          colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnFailure="false"
          bootstrap="vendor/autoload.php">
     <testsuites>
         <testsuite name="default">
@@ -14,4 +18,8 @@
             <directory>src/Core</directory>
         </include>
     </coverage>
+
+    <php>
+        <ini name="error_reporting" value="E_ALL"/>
+    </php>
 </phpunit>
