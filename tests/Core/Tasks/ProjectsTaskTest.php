@@ -2276,15 +2276,6 @@ class ProjectsTaskTest extends BaseTestCase
     public function testCreateDomain()
     {
         $projectId = 'test-project';
-        $domainData = [
-            'name' => 'example.com',
-            'attributes' => [
-                'ssl' => 'enabled',
-                'region' => 'eu',
-            ],
-            'isDefault' => true,
-            'replacementFor' => null,
-        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -2298,7 +2289,16 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->createDomain($projectId, $domainData);
+        $result = $this->projectsTask->createDomain(
+            $projectId,
+            'example.com',
+            [
+            'ssl' => 'enabled',
+            'region' => 'eu',
+            ],
+            true,
+            null
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
@@ -2469,11 +2469,11 @@ MIIDXTCCAkWgAwIBAgIJAK8kU8kXk9Z+MA0GC...
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASC...
 -----END PRIVATE KEY-----',
             [
-        '-----BEGIN CERTIFICATE-----
+            '-----BEGIN CERTIFICATE-----
 MIIDdTCCAl2gAwIBAgIEb/2OBDANBgkqhkiG9w0BAQUFADB1MQswCQYDVQQGEwJV
 ...
 -----END CERTIFICATE-----',
-    ],
+            ],
             false,
         );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
@@ -4055,7 +4055,6 @@ FAKE-CHAIN-CERT-DATA2
     public function testCreateDomainWithError()
     {
         $projectId = '-1';
-        $domainData = ['name' => 'example.com'];
 
         $this->httpClient
             ->method('sendRequest')
@@ -4069,7 +4068,7 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->createDomain($projectId, $domainData);
+        $this->projectsTask->createDomain($projectId, 'example.com');
     }
 
     public function testDeleteDomainWithError()

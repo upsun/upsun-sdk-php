@@ -834,19 +834,17 @@ class ProjectsTask extends TaskBase
     /**
      * Adds a project domain
      *
-     * @param array{
-     *     name: string,
-     *     attributes?: array,
-     *     isDefault?: bool,
-     *     replacementFor?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function createDomain(string $projectId, array $data): AcceptedResponse
-    {
-        return $this->client->domains->create($projectId, $data);
+    public function createDomain(
+        string $projectId,
+        string $name,
+        ?array $attributes = null,
+        ?bool $isDefault = null,
+        ?string $replacementFor = null
+    ): AcceptedResponse {
+        return $this->client->domains->create($projectId, $name, $attributes, $isDefault, $replacementFor);
     }
 
     /**

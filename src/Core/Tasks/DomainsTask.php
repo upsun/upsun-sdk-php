@@ -30,22 +30,23 @@ class DomainsTask extends TaskBase
     /**
      * Adds a project (or environment) domain
      *
-     * @param array{
-     *     name: string,
-     *     attributes?: array,
-     *     isDefault?: bool,
-     *     replacementFor?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function create(
         string $projectId,
-        array $data = [],
+        string $name,
+        ?array $attributes = null,
+        ?bool $isDefault = null,
+        ?string $replacementFor = null,
         ?string $environmentId = null
     ): AcceptedResponse {
-        $domainCreateInput = new DomainCreateInput(...$data);
+        $domainCreateInput = new DomainCreateInput(
+            name: $name,
+            attributes: $attributes,
+            isDefault: $isDefault,
+            replacementFor: $replacementFor
+        );
         if (!$environmentId) {
             return $this->api->createProjectsDomains($projectId, $domainCreateInput);
         } else {
@@ -91,9 +92,9 @@ class DomainsTask extends TaskBase
      * Gets list of project (or environment) domains
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
      * @return Domain[]
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
     public function list(string $projectId, ?string $environmentId = null): array
     {
@@ -107,21 +108,20 @@ class DomainsTask extends TaskBase
     /**
      * Updates a project (or environment) domain
      *
-     * @param array{
-     *     attributes?: array,
-     *     isDefault?: bool,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function update(
         string $projectId,
         string $domainId,
-        array $data,
+        ?array $attributes = null,
+        ?bool $isDefault = null,
         ?string $environmentId = null
     ): AcceptedResponse {
-        $domainPatch = new DomainPatch(...$data);
+        $domainPatch = new DomainPatch(
+            attributes: $attributes,
+            isDefault: $isDefault
+        );
         if (!$environmentId) {
             return $this->api->updateProjectsDomains($projectId, $domainId, $domainPatch);
         } else {

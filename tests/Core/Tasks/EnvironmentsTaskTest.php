@@ -1404,15 +1404,6 @@ class EnvironmentsTaskTest extends BaseTestCase
     {
         $projectId = 'project-123';
         $environmentId = 'env-456';
-        $input = [
-            'name' => 'domain-1',
-            'attributes' => [
-                'version' => '8.2',
-                'engine' => 'php-fpm',
-            ],
-            'isDefault' => true,
-            'replacementFor' => null,
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -1425,7 +1416,17 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->createDomain($projectId, $input, $environmentId);
+        $result = $this->environmentTask->createDomain(
+            $projectId,
+            'domain-1',
+            [
+                'version' => '8.2',
+                'engine' => 'php-fpm',
+            ],
+            true,
+            null,
+            $environmentId
+        );
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);
@@ -1437,15 +1438,6 @@ class EnvironmentsTaskTest extends BaseTestCase
     public function testCreateProjectDomain(): void
     {
         $projectId = 'project-123';
-        $input = [
-            'name' => 'domain-1',
-            'attributes' => [
-                'version' => '8.2',
-                'engine' => 'php-fpm',
-            ],
-            'isDefault' => true,
-            'replacementFor' => null,
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -1458,7 +1450,16 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->createDomain($projectId, $input);
+        $result = $this->environmentTask->createDomain(
+            $projectId,
+            'domain-1',
+            [
+            'version' => '8.2',
+            'engine' => 'php-fpm',
+            ],
+            true,
+            null
+        );
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);

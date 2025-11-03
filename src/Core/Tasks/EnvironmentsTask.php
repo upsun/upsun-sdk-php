@@ -633,22 +633,25 @@ class EnvironmentsTask extends TaskBase
     /**
      * Adds an environment domain
      *
-     * @param array{
-     *     name: string,
-     *     attributes?: array,
-     *     isDefault?: bool,
-     *     replacementFor?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function createDomain(
         string $projectId,
-        array $data,
+        string $name,
+        ?array $attributes = null,
+        ?bool $isDefault = null,
+        ?string $replacementFor = null,
         ?string $environmentId = null,
     ): AcceptedResponse {
-        return $this->client->domains->create($projectId, $data, $environmentId);
+        return $this->client->domains->create(
+            $projectId,
+            $name,
+            $attributes,
+            $isDefault,
+            $replacementFor,
+            $environmentId
+        );
     }
 
     /**

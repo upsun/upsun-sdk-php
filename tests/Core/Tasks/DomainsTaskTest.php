@@ -46,15 +46,6 @@ class DomainsTaskTest extends BaseTestCase
     public function testCreateWithoutEnvironment(): void
     {
         $projectId = 'proj-1';
-        $input = [
-            'name' => 'example.com',
-            'attributes' => [
-                'ssl' => 'enabled',
-                'region' => 'eu',
-            ],
-            'isDefault' => true,
-            'replacementFor' => null,
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -67,7 +58,16 @@ class DomainsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->domainsTask->create($projectId, $input);
+        $result = $this->domainsTask->create(
+            $projectId,
+            'example.com',
+            [
+                'ssl' => 'enabled',
+                'region' => 'eu',
+            ],
+            true,
+            null,
+        );
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
@@ -75,15 +75,6 @@ class DomainsTaskTest extends BaseTestCase
     {
         $projectId = 'proj-1';
         $envId = 'env-1';
-        $input = [
-            'name' => 'example.com',
-            'attributes' => [
-                'ssl' => 'enabled',
-                'region' => 'eu',
-            ],
-            'isDefault' => true,
-            'replacementFor' => null,
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -96,7 +87,17 @@ class DomainsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->domainsTask->create($projectId, $input, $envId);
+        $result = $this->domainsTask->create(
+            $projectId,
+            'example.com',
+            [
+                'ssl' => 'enabled',
+                'region' => 'eu',
+            ],
+            true,
+            null,
+            $envId
+        );
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
@@ -323,7 +324,7 @@ class DomainsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->domainsTask->update($projectId, $domainId, ['attributes' => [], "isDefault" => true]);
+        $result = $this->domainsTask->update($projectId, $domainId, [], true);
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
@@ -344,7 +345,7 @@ class DomainsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->domainsTask->update($projectId, $domainId, ['attributes' => [], "isDefault" => true], $envId);
+        $result = $this->domainsTask->update($projectId, $domainId, [], true, $envId);
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
@@ -366,6 +367,6 @@ class DomainsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->domainsTask->create($projectId, $input);
+        $result = $this->domainsTask->create($projectId, 'name');
     }
 }
