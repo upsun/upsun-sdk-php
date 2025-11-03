@@ -2694,11 +2694,6 @@ FAKE-CHAIN-CERT-DATA2
         $projectId = 'test-project';
         $environmentId = 'env-123';
         $deploymentId = 'deploy-123';
-        $operationData = [
-            'service' => 'database',
-            'operation' => 'backup',
-            'parameters' => []
-        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -2712,7 +2707,14 @@ FAKE-CHAIN-CERT-DATA2
                 ])
             ));
 
-        $result = $this->projectsTask->runOperation($projectId, $environmentId, $deploymentId, $operationData);
+        $result = $this->projectsTask->runOperation(
+            $projectId,
+            $environmentId,
+            $deploymentId,
+            'clear-cache',
+            'cache-service',
+            []
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
@@ -4261,11 +4263,6 @@ FAKE-CHAIN-CERT-DATA2
         $projectId = 'test-project';
         $environmentId = 'env-123';
         $deploymentId = 'deploy-123';
-        $operationData = [
-            'service' => 'database',
-            'operation' => 'backup',
-            'parameters' => [],
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -4279,7 +4276,14 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->runOperation($projectId, $environmentId, $deploymentId, $operationData);
+        $this->projectsTask->runOperation(
+            $projectId,
+            $environmentId,
+            $deploymentId,
+            'clear-cache',
+            'cache-service',
+            []
+        );
     }
 
     public function testGetProjectTeamAccessWithError()

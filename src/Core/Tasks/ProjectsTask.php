@@ -1007,12 +1007,6 @@ class ProjectsTask extends TaskBase
     /**
      * Executes a runtime operation
      *
-     * @param array{
-     *     service: string,
-     *     operation: string,
-     *     parameters: array
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
@@ -1020,13 +1014,17 @@ class ProjectsTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        array $data
+        string $service,
+        string $operation,
+        array $parameters
     ): AcceptedResponse {
         return $this->client->operations->run(
             $projectId,
             $environmentId,
             $deploymentId,
-            $data
+            $service,
+            $operation,
+            $parameters
         );
     }
 

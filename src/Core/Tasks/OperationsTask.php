@@ -28,12 +28,6 @@ class OperationsTask extends TaskBase
     /**
      * Executes a runtime operation
      *
-     * @param array{
-     *     service: string,
-     *     operation: string,
-     *     parameters: array
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
@@ -41,9 +35,15 @@ class OperationsTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        array $data
+        string $service,
+        string $operation,
+        array $parameters
     ): AcceptedResponse {
-        $environmentOperationInput = new EnvironmentOperationInput(...$data);
+        $environmentOperationInput = new EnvironmentOperationInput(
+            service: $service,
+            operation: $operation,
+            parameters: $parameters
+        );
         return $this->api->runOperation($projectId, $environmentId, $deploymentId, $environmentOperationInput);
     }
 }
