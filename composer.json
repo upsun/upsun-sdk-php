@@ -91,7 +91,17 @@
         "spec:clean": "rm -Rf src/Api/* ; rm -Rf src/Model/* ; rm -Rf docs/*",
         "spec:dl": "wget -O ./schema/openapispec-upsun.json https://docs.upsun.com/api/openapispec-upsun.json",
         "spec:patch": "php ./templates/pre-processing/preprocess-schema.php",
-        "spec:generate:all": "openapi-generator-cli generate -i ./schema/openapispec-upsun-processed.json -g php -o ./ --skip-overwrite -c ./templates/php/config.yaml ",
+
+        "spec:generate:install": "npm install -g @openapitools/openapi-generator-cli",
+        "spec:generate": "npx openapi-generator-cli generate -c templates/php/config.yaml",
+
+        "spec:full": [
+            "@spec:clean",
+            "@spec:dl",
+            "@spec:patch",
+            "@spec:generate",
+            "@fix:all"
+        ],
 
         "lint": [
             "@lint:phpcs",

@@ -129,11 +129,8 @@ API and Model classes are generated using [openapi-generator-cli](https://openap
 from the [Upsun OpenAPI spec](https://proxy.upsun.com/docs/openapispec-platformsh.json).
 
 ```bash
-npm install @openapitools/openapi-generator-cli --save-dev
-php templates/pre-processing/preprocess-schema.php
-npx openapi-generator-cli generate -c templates/php/config.yaml
-composer run fix
-composer run rector
+composer run spec:install
+composer run spec:full
 ```
 
 ## Contributing
