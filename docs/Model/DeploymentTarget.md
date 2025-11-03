@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **string** |  |
-**name** | **string** |  |
-**deployHost** | **string** |  |
-**deployPort** | **int** |  |
-**sshHost** | **string** |  |
-**hosts** | [**\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]**](TheHostsOfTheDeploymentTargetInner.md) |  |
-**autoMounts** | **bool** |  |
-**excludedMounts** | **string[]** |  |
-**enforcedMounts** | **object** |  |
-**autoCrons** | **bool** |  |
-**autoNginx** | **bool** |  |
-**maintenanceMode** | **bool** |  |
-**guardrailsPhase** | **int** |  |
-**docroots** | [**array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>**](MappingOfClustersToEnterpriseApplicationsValue.md) |  |
+**type** | **string** | The type of the deployment target. |
+**name** | **string** | The name of the deployment target. |
+**deployHost** | **string** | The host to deploy to. |
+**deployPort** | **int** | The port to deploy to. |
+**sshHost** | **string** | The host to use to SSH to app containers. |
+**hosts** | [**\Upsun\Model\HostsInner[]**](HostsInner.md) | The hosts of the deployment target. |
+**autoMounts** | **bool** | Whether to take application mounts from the pushed data or the deployment target. |
+**excludedMounts** | **string[]** | Directories that should not be mounted |
+**enforcedMounts** | **object** | Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount). |
+**autoCrons** | **bool** | Whether to take application crons from the pushed data or the deployment target. |
+**autoNginx** | **bool** | Whether to take application crons from the pushed data or the deployment target. |
+**maintenanceMode** | **bool** | Whether to perform deployments or not |
+**guardrailsPhase** | **int** | which phase of guardrails are we in |
+**docroots** | [**array<string,\Upsun\Model\DocrootsValue>**](DocrootsValue.md) | Mapping of clusters to Enterprise applications |
 **siteUrls** | **object** |  |
-**sshHosts** | **string[]** |  |
-**useDedicatedGrid** | **bool** |  |
-**storageType** | **string** |  |
-**id** | **string** |  | [optional]
-**enterpriseEnvironmentsMapping** | **object** |  | [optional]
+**sshHosts** | **string[]** | List of SSH Hosts. |
+**useDedicatedGrid** | **bool** | When true, the deployment will be pinned to Grid hosts dedicated to the environment using this deployment target.  Dedicated Grid hosts must be created prior to deploying the environment.  The constraints that will be set are as follows:  * &#x60;cluster_type&#x60; is set to &#x60;environment-custom&#x60;. * &#x60;cluster&#x60; is set to the environment&#39;s cluster name. |
+**storageType** | **string** | The storage type. |
+**id** | **string** | The identifier of FoundationDeploymentTarget | [optional]
+**enterpriseEnvironmentsMapping** | **object** | Mapping of clusters to Enterprise applications | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

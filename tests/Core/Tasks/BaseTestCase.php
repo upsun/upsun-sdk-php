@@ -3,6 +3,7 @@
 namespace Upsun\Tests\Core\Tasks;
 
 use DateTime;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 abstract class BaseTestCase extends TestCase
@@ -60,6 +61,7 @@ abstract class BaseTestCase extends TestCase
 
     /**
      * Compare list of objects (ex: Activity[]) with expected
+     * @throws Exception
      */
     protected function assertObjectMatchesArray(array $actual, array $expected, string $prefix = ''): void
     {

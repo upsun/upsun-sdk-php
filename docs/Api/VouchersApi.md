@@ -24,8 +24,6 @@ Applies a voucher for the specified organization, and refreshes the currently op
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\VouchersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -80,8 +78,6 @@ Retrieves vouchers for the specified organization.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\VouchersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

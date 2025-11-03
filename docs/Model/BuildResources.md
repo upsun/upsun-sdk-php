@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**enabled** | **bool** |  |
+**enabled** | **bool** | If true, build resources can be modified. |
 **maxCpu** | **float** |  |
 **maxMemory** | **int** |  |
 

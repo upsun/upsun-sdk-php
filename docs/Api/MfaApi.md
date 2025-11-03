@@ -30,8 +30,6 @@ Confirms the given TOTP enrollment.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -88,8 +86,6 @@ Disables MFA enforcement for the specified organization.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -143,8 +139,6 @@ Enables MFA enforcement for the specified organization.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -197,8 +191,6 @@ Retrieves MFA settings for the specified organization.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -254,8 +246,6 @@ Retrieves TOTP enrollment information.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -310,8 +300,6 @@ Re-creates recovery codes for the MFA enrollment.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -365,8 +353,6 @@ Sends a reminder about setting up MFA to the specified organization members.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -423,8 +409,6 @@ Withdraws from the TOTP enrollment.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\MfaApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

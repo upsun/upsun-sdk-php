@@ -5,6 +5,7 @@ namespace Upsun\Api;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
@@ -15,6 +16,7 @@ use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\ConfirmTotpEnrollmentRequest;
 use Upsun\Model\GetTotpEnrollment200Response;
 use Upsun\Model\OrganizationMfaEnforcement;
+use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\SendOrgMfaRemindersRequest;
 
 /**

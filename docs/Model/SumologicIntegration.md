@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**createdAt** | **\DateTime** |  |
-**updatedAt** | **\DateTime** |  |
+**createdAt** | **\DateTime** | The creation date |
+**updatedAt** | **\DateTime** | The update date |
 **type** | **string** |  |
-**extra** | **array<string,string>** |  |
+**extra** | **array<string,string>** | Arbitrary key/value pairs to include with forwarded logs |
 **url** | **string** |  |
-**category** | **string** |  |
-**tlsVerify** | **bool** |  |
-**excludedServices** | **string[]** |  |
-**id** | **string** |  | [optional]
+**category** | **string** | The Category used to easy filtering (sent as X-Sumo-Category header) |
+**tlsVerify** | **bool** | Enable/Disable HTTPS certificate verification |
+**excludedServices** | **string[]** | Comma separated list of service and application names to exclude from logging |
+**id** | **string** | The identifier of SumologicIntegration | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

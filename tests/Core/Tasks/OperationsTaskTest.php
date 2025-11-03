@@ -4,6 +4,7 @@ namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
@@ -43,6 +44,9 @@ class OperationsTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRun(): void
     {
         $projectId = 'project-1';
@@ -70,6 +74,9 @@ class OperationsTaskTest extends BaseTestCase
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRunThrowsApiException(): void
     {
         $projectId = 'project-1';

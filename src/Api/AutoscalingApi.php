@@ -5,14 +5,13 @@ namespace Upsun\Api;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AutoscalerAlertPartial;
-use Upsun\Model\AutoscalerEmptyBody;
 use Upsun\Model\AutoscalerSettings;
 
 /**
@@ -403,190 +402,6 @@ final class AutoscalingApi extends AbstractApi
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
-    }
-
-    /**
-     * Sends an Autoscaler alert for processing
-     *
-     *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
-     * @return object
-     *
-     * @see https://docs.upsun.com/api/#tag/Autoscaling/operation/post-autoscaler-alert
-     */
-    public function postAutoscalerAlert(
-        string $projectId,
-        string $environmentId,
-        ?AutoscalerAlertPartial $autoscalerAlertPartial = null
-    ): AutoscalerEmptyBody {
-        return $this->postAutoscalerAlertWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $autoscalerAlertPartial
-        );
-    }
-
-    /**
-     *
-     *
-     * @throws ApiException|ClientExceptionInterface
-     * @return object
-     */
-    private function postAutoscalerAlertWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        ?AutoscalerAlertPartial $autoscalerAlertPartial = null
-    ): AutoscalerEmptyBody {
-        $request = $this->postAutoscalerAlertRequest(
-            $projectId,
-            $environmentId,
-            $autoscalerAlertPartial
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders(),
-                $request->getBody()
-            );
-
-            return $this->handleResponseWithDataType(
-                'object',
-                $request,
-                $response
-            );
-        } catch (Exception $exception) {
-            throw new ApiException(
-                sprintf(
-                    '[%d] Error connecting to the API (%s)',
-                    $exception->getCode(),
-                    '/projects/{projectId}/environments/{environmentId}/autoscaling/alerts'
-                ),
-                $request,
-                $response ?? null,
-                $exception
-            );
-        }
-    }
-
-    /**
-     * Create request for operation 'postAutoscalerAlert'
-     *
-     * @throws InvalidArgumentException
-     */
-    private function postAutoscalerAlertRequest(
-        string $projectId,
-        string $environmentId,
-        ?AutoscalerAlertPartial $autoscalerAlertPartial = null
-    ): RequestInterface {
-
-        // verify the required parameter 'projectId' is set
-        if (
-            $projectId === null
-            || (is_array($projectId)
-            && count($projectId) === 0)
-        ) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
-                when calling postAutoscalerAlert'
-            );
-        }
-
-        // verify the required parameter 'environmentId' is set
-        if (
-            $environmentId === null
-            || (is_array($environmentId)
-            && count($environmentId) === 0)
-        ) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
-                when calling postAutoscalerAlert'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/autoscaling/alerts';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-        // path params
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-
-        // path params
-        if ($environmentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environmentId),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            'application/json',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($autoscalerAlertPartial)) {
-            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($autoscalerAlertPartial)
-                );
-            } else {
-                $httpBody = $autoscalerAlertPartial;
-            }
-        } elseif ($formParams !== []) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 
     /**

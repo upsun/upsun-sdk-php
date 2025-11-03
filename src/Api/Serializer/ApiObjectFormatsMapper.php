@@ -3,18 +3,19 @@
 namespace Upsun\Api\Serializer;
 
 use Upsun\Model\AcceptedResponse;
-use Upsun\Model\AccessControlDefinitionForThisEnviromentInner;
+use Upsun\Model\AccessControlInner;
 use Upsun\Model\Activity;
+use Upsun\Model\AddonCredential;
+use Upsun\Model\AddonCredential1;
 use Upsun\Model\Address;
 use Upsun\Model\AddressGrantsInner;
 use Upsun\Model\AddressMetadata;
 use Upsun\Model\AddressMetadataMetadata;
 use Upsun\Model\Alert;
-use Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner;
 use Upsun\Model\ApiToken;
 use Upsun\Model\ApplyOrgVoucherRequest;
 use Upsun\Model\ArrayFilter;
-use Upsun\Model\AutoscalerAlertPartial;
+use Upsun\Model\Author;
 use Upsun\Model\AutoscalerCondition;
 use Upsun\Model\AutoscalerCPUPressureTrigger;
 use Upsun\Model\AutoscalerCPUResources;
@@ -32,20 +33,21 @@ use Upsun\Model\AutoscalerSettings;
 use Upsun\Model\AutoscalerTriggers;
 use Upsun\Model\Autoscaling;
 use Upsun\Model\Backup;
+use Upsun\Model\Bitbucket;
 use Upsun\Model\BitbucketIntegration;
-use Upsun\Model\BitbucketIntegrationConfigurations;
 use Upsun\Model\BitbucketIntegrationCreateInput;
 use Upsun\Model\BitbucketIntegrationPatch;
+use Upsun\Model\BitbucketServer;
 use Upsun\Model\BitbucketServerIntegration;
-use Upsun\Model\BitbucketServerIntegrationConfigurations;
 use Upsun\Model\BitbucketServerIntegrationCreateInput;
 use Upsun\Model\BitbucketServerIntegrationPatch;
-use Upsun\Model\BlackfireEnvironmentsCredentialsValue;
+use Upsun\Model\Blackfire;
 use Upsun\Model\BlackfireIntegration;
-use Upsun\Model\BlackfireIntegrationConfigurations;
 use Upsun\Model\BlackfireIntegrationCreateInput;
 use Upsun\Model\BlackfireIntegrationPatch;
 use Upsun\Model\Blob;
+use Upsun\Model\BuildCachesValue;
+use Upsun\Model\BuildConfiguration;
 use Upsun\Model\BuildResources;
 use Upsun\Model\BuildResources1;
 use Upsun\Model\BuildResources2;
@@ -58,24 +60,20 @@ use Upsun\Model\CertificateCreateInput;
 use Upsun\Model\CertificatePatch;
 use Upsun\Model\CertificateProvisioner;
 use Upsun\Model\CertificateProvisionerPatch;
+use Upsun\Model\Commands;
+use Upsun\Model\Commands1;
+use Upsun\Model\Commands2;
 use Upsun\Model\CommandsInner;
-use Upsun\Model\CommandsToManageTheApplicationSLifecycle;
 use Upsun\Model\Commit;
+use Upsun\Model\Committer;
 use Upsun\Model\Components;
 use Upsun\Model\Config;
-use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion;
-use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1;
-use Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP;
-use Upsun\Model\ConfigurationForPreFlightChecks;
-use Upsun\Model\ConfigurationForSupportingRequestBuffering;
-use Upsun\Model\ConfigurationOfAWorkerContainerInstance;
-use Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication;
-use Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication;
 use Upsun\Model\ConfirmPhoneNumberRequest;
 use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\ConfirmTotpEnrollmentRequest;
 use Upsun\Model\Connection;
 use Upsun\Model\ContainerProfilesValueValue;
+use Upsun\Model\ContinuousProfilingConfiguration;
 use Upsun\Model\CreateApiTokenRequest;
 use Upsun\Model\CreateAuthorizationCredentials200Response;
 use Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl;
@@ -93,6 +91,8 @@ use Upsun\Model\CreateTeamMemberRequest;
 use Upsun\Model\CreateTeamRequest;
 use Upsun\Model\CreateTicketRequest;
 use Upsun\Model\CreateTicketRequestAttachmentsInner;
+use Upsun\Model\CronsDeploymentState;
+use Upsun\Model\CronsValue;
 use Upsun\Model\CurrencyAmount;
 use Upsun\Model\CurrencyAmountNullable;
 use Upsun\Model\CurrentUser;
@@ -108,15 +108,21 @@ use Upsun\Model\DedicatedDeploymentTargetCreateInput;
 use Upsun\Model\DedicatedDeploymentTargetPatch;
 use Upsun\Model\DefaultConfig;
 use Upsun\Model\DefaultConfig1;
+use Upsun\Model\DefaultResources;
 use Upsun\Model\Deployment;
+use Upsun\Model\DeploymentHostsInner;
+use Upsun\Model\DeploymentState;
 use Upsun\Model\DeploymentTarget;
 use Upsun\Model\DeploymentTargetCreateInput;
 use Upsun\Model\DeploymentTargetPatch;
+use Upsun\Model\DevelopmentResources;
 use Upsun\Model\Discount;
 use Upsun\Model\DiscountCommitment;
 use Upsun\Model\DiscountCommitmentAmount;
 use Upsun\Model\DiscountCommitmentNet;
 use Upsun\Model\DiscountDiscount;
+use Upsun\Model\DiskResources;
+use Upsun\Model\DocrootsValue;
 use Upsun\Model\Domain;
 use Upsun\Model\DomainCreateInput;
 use Upsun\Model\DomainPatch;
@@ -137,6 +143,7 @@ use Upsun\Model\EnvironmentMergeInput;
 use Upsun\Model\EnvironmentOperationInput;
 use Upsun\Model\EnvironmentPatch;
 use Upsun\Model\EnvironmentRestoreInput;
+use Upsun\Model\EnvironmentsCredentialsValue;
 use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Model\EnvironmentSourceOperationInput;
 use Upsun\Model\EnvironmentSynchronizeInput;
@@ -144,13 +151,14 @@ use Upsun\Model\EnvironmentType;
 use Upsun\Model\EnvironmentVariable;
 use Upsun\Model\EnvironmentVariableCreateInput;
 use Upsun\Model\EnvironmentVariablePatch;
+use Upsun\Model\EnvironmentVariablesInner;
 use Upsun\Model\Error;
 use Upsun\Model\EstimationObject;
-use Upsun\Model\FastlyCDNIntegrationConfigurations;
+use Upsun\Model\FastlyCDN;
 use Upsun\Model\FastlyIntegration;
 use Upsun\Model\FastlyIntegrationCreateInput;
 use Upsun\Model\FastlyIntegrationPatch;
-use Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue;
+use Upsun\Model\FilesInner;
 use Upsun\Model\Firewall;
 use Upsun\Model\FoundationDeploymentTarget;
 use Upsun\Model\FoundationDeploymentTargetCreateInput;
@@ -172,12 +180,12 @@ use Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR;
 use Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP;
 use Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD;
 use Upsun\Model\GetUsageAlerts200Response;
+use Upsun\Model\GitHub;
 use Upsun\Model\GithubIntegration;
-use Upsun\Model\GitHubIntegrationConfigurations;
 use Upsun\Model\GithubIntegrationCreateInput;
 use Upsun\Model\GithubIntegrationPatch;
+use Upsun\Model\GitLab;
 use Upsun\Model\GitLabIntegration;
-use Upsun\Model\GitLabIntegrationConfigurations;
 use Upsun\Model\GitLabIntegrationCreateInput;
 use Upsun\Model\GitLabIntegrationPatch;
 use Upsun\Model\GitServerConfiguration;
@@ -191,27 +199,31 @@ use Upsun\Model\HalLinks;
 use Upsun\Model\HalLinksNext;
 use Upsun\Model\HalLinksPrevious;
 use Upsun\Model\HalLinksSelf;
-use Upsun\Model\HealthEmailNotificationIntegrationConfigurations;
-use Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations;
-use Upsun\Model\HealthSlackNotificationIntegrationConfigurations;
+use Upsun\Model\HealthEmail;
+use Upsun\Model\HealthPagerDuty;
+use Upsun\Model\HealthSlack;
+use Upsun\Model\HealthWebHook;
 use Upsun\Model\HealthWebHookIntegration;
 use Upsun\Model\HealthWebHookIntegrationCreateInput;
 use Upsun\Model\HealthWebHookIntegrationPatch;
-use Upsun\Model\HealthWebhookNotificationIntegrationConfigurations;
-use Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication;
+use Upsun\Model\Hooks;
+use Upsun\Model\HostsInner;
 use Upsun\Model\HttpAccessPermissions;
 use Upsun\Model\HttpAccessPermissions1;
-use Upsun\Model\HTTPLogForwardingIntegrationConfigurations;
+use Upsun\Model\HttpAccessPermissions2;
+use Upsun\Model\HTTPLogForwarding;
 use Upsun\Model\HttpLogIntegration;
 use Upsun\Model\HttpLogIntegrationCreateInput;
 use Upsun\Model\HttpLogIntegrationPatch;
 use Upsun\Model\ImagesValueValue;
+use Upsun\Model\ImageTypeRestrictions;
 use Upsun\Model\Integration;
 use Upsun\Model\IntegrationCreateInput;
 use Upsun\Model\IntegrationPatch;
 use Upsun\Model\Integrations;
 use Upsun\Model\Invoice;
 use Upsun\Model\InvoicePDF;
+use Upsun\Model\IssuerInner;
 use Upsun\Model\LineItem;
 use Upsun\Model\LineItemComponent;
 use Upsun\Model\Link;
@@ -231,7 +243,6 @@ use Upsun\Model\ListOrgProjects200Response;
 use Upsun\Model\ListOrgs200Response;
 use Upsun\Model\ListOrgSubscriptions200Response;
 use Upsun\Model\ListOrgUsageRecords200Response;
-use Upsun\Model\ListPlans200Response;
 use Upsun\Model\ListProfiles200Response;
 use Upsun\Model\ListProjectTeamAccess200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
@@ -245,17 +256,20 @@ use Upsun\Model\ListUserExtendedAccess200Response;
 use Upsun\Model\ListUserExtendedAccess200ResponseItemsInner;
 use Upsun\Model\ListUserOrgs200Response;
 use Upsun\Model\LogsForwarding;
-use Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue;
+use Upsun\Model\MergeInfo;
 use Upsun\Model\Metrics;
 use Upsun\Model\MetricsMetadata;
 use Upsun\Model\MetricsValue;
+use Upsun\Model\MinimumResources;
+use Upsun\Model\MountsValue;
+use Upsun\Model\NewRelic;
 use Upsun\Model\NewRelicIntegration;
 use Upsun\Model\NewRelicIntegrationCreateInput;
 use Upsun\Model\NewRelicIntegrationPatch;
-use Upsun\Model\NewRelicLogForwardingIntegrationConfigurations;
-use Upsun\Model\OpenTelemetryLogForwardingIntegrationConfigurations;
-use Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue;
-use Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue;
+use Upsun\Model\OAuth2Consumer;
+use Upsun\Model\OAuth2Consumer1;
+use Upsun\Model\OpenTelemetry;
+use Upsun\Model\OperationsValue;
 use Upsun\Model\Order;
 use Upsun\Model\OrderBillingPeriodLabel;
 use Upsun\Model\OrderLinks;
@@ -322,17 +336,19 @@ use Upsun\Model\OwnerInfo;
 use Upsun\Model\PagerDutyIntegration;
 use Upsun\Model\PagerDutyIntegrationCreateInput;
 use Upsun\Model\PagerDutyIntegrationPatch;
-use Upsun\Model\PerServiceResourcesOverridesValue;
-use Upsun\Model\Plan;
+use Upsun\Model\PathValue;
 use Upsun\Model\PlanRecords;
+use Upsun\Model\PreflightChecks;
 use Upsun\Model\PrepaymentObject;
 use Upsun\Model\PrepaymentObjectPrepayment;
 use Upsun\Model\PrepaymentObjectPrepaymentBalance;
 use Upsun\Model\PrepaymentTransactionObject;
 use Upsun\Model\PrepaymentTransactionObjectAmount;
+use Upsun\Model\PreServiceResourcesOverridesValue;
 use Upsun\Model\ProdDomainStorage;
 use Upsun\Model\ProdDomainStorageCreateInput;
 use Upsun\Model\ProdDomainStoragePatch;
+use Upsun\Model\ProductionResources;
 use Upsun\Model\Profile;
 use Upsun\Model\ProfileCurrentTrial;
 use Upsun\Model\ProfileCurrentTrialCurrent;
@@ -341,6 +357,14 @@ use Upsun\Model\ProfileCurrentTrialProjectsTotal;
 use Upsun\Model\ProfileCurrentTrialSpend;
 use Upsun\Model\ProfileCurrentTrialSpendRemaining;
 use Upsun\Model\Project;
+use Upsun\Model\ProjectAddon;
+use Upsun\Model\ProjectAddonBase;
+use Upsun\Model\ProjectAddonBaseLinks;
+use Upsun\Model\ProjectAddonBaseLinksDelete;
+use Upsun\Model\ProjectAddonBaseLinksSelf;
+use Upsun\Model\ProjectAddonBaseLinksUpdate;
+use Upsun\Model\ProjectAddonWithQuantityFields;
+use Upsun\Model\ProjectAddonWithSkuFields;
 use Upsun\Model\ProjectCapabilities;
 use Upsun\Model\ProjectCarbon;
 use Upsun\Model\ProjectInfo;
@@ -359,6 +383,7 @@ use Upsun\Model\ProjectVariable;
 use Upsun\Model\ProjectVariableCreateInput;
 use Upsun\Model\ProjectVariablePatch;
 use Upsun\Model\ProxyRoute;
+use Upsun\Model\RedirectConfiguration;
 use Upsun\Model\RedirectRoute;
 use Upsun\Model\Ref;
 use Upsun\Model\Region;
@@ -370,6 +395,7 @@ use Upsun\Model\ReplacementDomainStorage;
 use Upsun\Model\ReplacementDomainStorageCreateInput;
 use Upsun\Model\ReplacementDomainStoragePatch;
 use Upsun\Model\RepositoryInformation;
+use Upsun\Model\RequestBuffering;
 use Upsun\Model\ResetEmailAddressRequest;
 use Upsun\Model\ResourceConfig;
 use Upsun\Model\Resources;
@@ -379,37 +405,40 @@ use Upsun\Model\Resources3;
 use Upsun\Model\Resources4;
 use Upsun\Model\Resources5;
 use Upsun\Model\Resources6;
-use Upsun\Model\ResourcesForDevelopmentEnvironments;
-use Upsun\Model\ResourcesForProductionEnvironments;
 use Upsun\Model\ResourcesLimits;
 use Upsun\Model\ResourcesOverridesValue;
-use Upsun\Model\RestrictedAndDeniedImageTypes;
 use Upsun\Model\Route;
-use Upsun\Model\RouterResourceSettingsForFlexPlan;
+use Upsun\Model\RouterResources;
 use Upsun\Model\RoutesValue;
+use Upsun\Model\Routing;
+use Upsun\Model\Routing1;
 use Upsun\Model\RuntimeOperations;
-use Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue;
+use Upsun\Model\ScheduleInner;
+use Upsun\Model\Script;
 use Upsun\Model\ScriptIntegration;
-use Upsun\Model\ScriptIntegrationConfigurations;
 use Upsun\Model\ScriptIntegrationCreateInput;
 use Upsun\Model\ScriptIntegrationPatch;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\SendOrgMfaRemindersRequest;
-use Upsun\Model\ServerSideIncludeConfiguration;
+use Upsun\Model\ServiceRelationshipsValue;
 use Upsun\Model\ServicesValue;
 use Upsun\Model\ServicesValue1;
+use Upsun\Model\Sizing;
 use Upsun\Model\SlackIntegration;
 use Upsun\Model\SlackIntegrationCreateInput;
 use Upsun\Model\SlackIntegrationPatch;
+use Upsun\Model\SourceCodeConfiguration;
 use Upsun\Model\SourceOperations;
+use Upsun\Model\SourceOperationsValue;
 use Upsun\Model\SpecificOverridesValue;
+use Upsun\Model\Splunk;
 use Upsun\Model\SplunkIntegration;
 use Upsun\Model\SplunkIntegrationCreateInput;
 use Upsun\Model\SplunkIntegrationPatch;
-use Upsun\Model\SplunkLogForwardingIntegrationConfigurations;
 use Upsun\Model\SshKey;
+use Upsun\Model\SSIConfiguration;
 use Upsun\Model\Status;
-use Upsun\Model\StickyRoutingConfiguration;
+use Upsun\Model\StickyConfiguration;
 use Upsun\Model\StrictTransportSecurityOptions;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
@@ -420,14 +449,14 @@ use Upsun\Model\SubscriptionAddonsObjectCurrent;
 use Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable;
 use Upsun\Model\SubscriptionCurrentUsageObject;
 use Upsun\Model\SubscriptionInformation;
+use Upsun\Model\SumoLogic;
 use Upsun\Model\SumologicIntegration;
 use Upsun\Model\SumologicIntegrationCreateInput;
 use Upsun\Model\SumologicIntegrationPatch;
-use Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations;
+use Upsun\Model\Syslog;
 use Upsun\Model\SyslogIntegration;
 use Upsun\Model\SyslogIntegrationCreateInput;
 use Upsun\Model\SyslogIntegrationPatch;
-use Upsun\Model\SyslogLogForwardingIntegrationConfigurations;
 use Upsun\Model\SystemInformation;
 use Upsun\Model\Team;
 use Upsun\Model\TeamCounts;
@@ -438,39 +467,11 @@ use Upsun\Model\TeamProjectAccessLinksDelete;
 use Upsun\Model\TeamProjectAccessLinksSelf;
 use Upsun\Model\TeamProjectAccessLinksUpdate;
 use Upsun\Model\TeamReference;
-use Upsun\Model\TheAddonCredentialInformationOptional;
-use Upsun\Model\TheAddonCredentialInformationOptional1;
-use Upsun\Model\TheBackupScheduleSpecificationInner;
-use Upsun\Model\TheBuildConfigurationOfTheApplication;
-use Upsun\Model\TheCommandsDefinition;
-use Upsun\Model\TheCommandsToManageTheWorker;
-use Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments;
-use Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue;
-use Upsun\Model\TheConfigurationOfTheRedirects;
-use Upsun\Model\TheContinuousProfilingConfiguration;
-use Upsun\Model\TheCronsDeploymentState;
-use Upsun\Model\TheDefaultResourcesForThisService;
-use Upsun\Model\TheDisksResources;
-use Upsun\Model\TheEnvironmentDeploymentState;
-use Upsun\Model\TheEnvironmentSizingConfiguration;
-use Upsun\Model\TheHostsOfTheDeploymentTargetInner;
-use Upsun\Model\TheHostsOfTheDeploymentTargetInner1;
-use Upsun\Model\TheInformationAboutTheAuthor;
-use Upsun\Model\TheInformationAboutTheCommitter;
-use Upsun\Model\TheIssuerOfTheCertificateInner;
-use Upsun\Model\TheMinimumResourcesForThisService;
-use Upsun\Model\TheOAuth2ConsumerInformationOptional;
-use Upsun\Model\TheOAuth2ConsumerInformationOptional1;
-use Upsun\Model\TheObjectTheReferencePointsTo;
-use Upsun\Model\ThePathsToRedirectValue;
-use Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue;
-use Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue;
-use Upsun\Model\TheTreeItemsInner;
-use Upsun\Model\TheVariablesApplyingToThisEnvironmentInner;
 use Upsun\Model\Ticket;
 use Upsun\Model\TicketJiraInner;
-use Upsun\Model\TLSSettingsForTheRoute;
+use Upsun\Model\TLSSettings;
 use Upsun\Model\Tree;
+use Upsun\Model\TreeItemsInner;
 use Upsun\Model\UpdateOrgAddonsRequest;
 use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
 use Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig;
@@ -491,6 +492,7 @@ use Upsun\Model\UpdateTeamRequest;
 use Upsun\Model\UpdateTicketRequest;
 use Upsun\Model\UpdateUsageAlertsRequest;
 use Upsun\Model\UpdateUserRequest;
+use Upsun\Model\UpstreamConfiguration;
 use Upsun\Model\UpstreamRoute;
 use Upsun\Model\Usage;
 use Upsun\Model\UsageAlert;
@@ -512,10 +514,13 @@ use Upsun\Model\VouchersVouchersInner;
 use Upsun\Model\VouchersVouchersInnerOrdersInner;
 use Upsun\Model\VPNConfiguration;
 use Upsun\Model\WebApplicationsValue;
+use Upsun\Model\WebConfiguration;
+use Upsun\Model\Webhook;
 use Upsun\Model\WebHookIntegration;
-use Upsun\Model\WebhookIntegrationConfigurations;
 use Upsun\Model\WebHookIntegrationCreateInput;
 use Upsun\Model\WebHookIntegrationPatch;
+use Upsun\Model\WebLocationsValue;
+use Upsun\Model\WorkerConfiguration;
 use Upsun\Model\WorkersValue;
 
 /**
@@ -544,18 +549,12 @@ final class ApiObjectFormatsMapper
 
     protected static $openApiFormats = [
 
-        AListOfFilesToAddToTheRepositoryDuringInitializationInner::class => [
-            'path' => null,
-            'mode' => null,
-            'contents' => null
-        ],
-
         AcceptedResponse::class => [
             'status' => null,
             'code' => null
         ],
 
-        AccessControlDefinitionForThisEnviromentInner::class => [
+        AccessControlInner::class => [
             'entityId' => null,
             'role' => null
         ],
@@ -582,6 +581,17 @@ final class ApiObjectFormatsMapper
             'commands' => null,
             'integration' => null,
             'environments' => null
+        ],
+
+        AddonCredential::class => [
+            'addonKey' => null,
+            'clientKey' => null
+        ],
+
+        AddonCredential1::class => [
+            'addonKey' => null,
+            'clientKey' => null,
+            'sharedSecret' => null
         ],
 
         Address::class => [
@@ -642,15 +652,10 @@ final class ApiObjectFormatsMapper
             'nin' => null
         ],
 
-        AutoscalerAlertPartial::class => [
+        Author::class => [
+            'date' => 'date-time',
             'name' => null,
-            'service' => null,
-            'condition' => null,
-            'threshold' => null,
-            'value' => null,
-            'environment' => null,
-            'resource' => null,
-            'duration' => null
+            'email' => null
         ],
 
         AutoscalerCPUPressureTrigger::class => [
@@ -758,6 +763,11 @@ final class ApiObjectFormatsMapper
             'automated' => null
         ],
 
+        Bitbucket::class => [
+            'enabled' => null,
+            'role' => null
+        ],
+
         BitbucketIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
@@ -772,11 +782,6 @@ final class ApiObjectFormatsMapper
             'id' => null,
             'appCredentials' => null,
             'addonCredentials' => null
-        ],
-
-        BitbucketIntegrationConfigurations::class => [
-            'enabled' => null,
-            'role' => null
         ],
 
         BitbucketIntegrationCreateInput::class => [
@@ -805,6 +810,11 @@ final class ApiObjectFormatsMapper
             'resyncPullRequests' => null
         ],
 
+        BitbucketServer::class => [
+            'enabled' => null,
+            'role' => null
+        ],
+
         BitbucketServerIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
@@ -819,11 +829,6 @@ final class ApiObjectFormatsMapper
             'buildPullRequests' => null,
             'pullRequestsCloneParentData' => null,
             'id' => null
-        ],
-
-        BitbucketServerIntegrationConfigurations::class => [
-            'enabled' => null,
-            'role' => null
         ],
 
         BitbucketServerIntegrationCreateInput::class => [
@@ -854,9 +859,9 @@ final class ApiObjectFormatsMapper
             'pullRequestsCloneParentData' => null
         ],
 
-        BlackfireEnvironmentsCredentialsValue::class => [
-            'serverUuid' => null,
-            'serverToken' => null
+        Blackfire::class => [
+            'enabled' => null,
+            'role' => null
         ],
 
         BlackfireIntegration::class => [
@@ -866,11 +871,6 @@ final class ApiObjectFormatsMapper
             'environmentsCredentials' => null,
             'continuousProfiling' => null,
             'id' => null
-        ],
-
-        BlackfireIntegrationConfigurations::class => [
-            'enabled' => null,
-            'role' => null
         ],
 
         BlackfireIntegrationCreateInput::class => [
@@ -887,6 +887,18 @@ final class ApiObjectFormatsMapper
             'size' => null,
             'encoding' => null,
             'content' => null
+        ],
+
+        BuildCachesValue::class => [
+            'directory' => null,
+            'watch' => null,
+            'allowStale' => null,
+            'shareBetweenApps' => null
+        ],
+
+        BuildConfiguration::class => [
+            'flavor' => null,
+            'caches' => null
         ],
 
         BuildResources::class => [
@@ -971,16 +983,27 @@ final class ApiObjectFormatsMapper
             'eabHmacKey' => null
         ],
 
+        Commands::class => [
+            'start' => null,
+            'stop' => null
+        ],
+
+        Commands1::class => [
+            'preStart' => null,
+            'start' => null,
+            'postStart' => null
+        ],
+
+        Commands2::class => [
+            'start' => null,
+            'preStart' => null,
+            'postStart' => null
+        ],
+
         CommandsInner::class => [
             'app' => null,
             'type' => null,
             'exitCode' => null
-        ],
-
-        CommandsToManageTheApplicationSLifecycle::class => [
-            'preStart' => null,
-            'start' => null,
-            'postStart' => null
         ],
 
         Commit::class => [
@@ -991,6 +1014,12 @@ final class ApiObjectFormatsMapper
             'message' => null,
             'tree' => null,
             'parents' => null
+        ],
+
+        Committer::class => [
+            'date' => 'date-time',
+            'name' => null,
+            'email' => null
         ],
 
         Components::class => [
@@ -1015,53 +1044,7 @@ final class ApiObjectFormatsMapper
             'healthSlack' => null,
             'cdnFastly' => null,
             'blackfire' => null,
-            'otlp' => null
-        ],
-
-        ConfigurationAboutTheTrafficRoutedToThisVersion::class => [
-            'percentage' => null
-        ],
-
-        ConfigurationAboutTheTrafficRoutedToThisVersion1::class => [
-            'percentage' => null
-        ],
-
-        ConfigurationForAccessingThisApplicationViaHTTP::class => [
-            'locations' => null,
-            'moveToRoot' => null,
-            'commands' => null,
-            'upstream' => null,
-            'documentRoot' => null,
-            'passthru' => null,
-            'indexFiles' => null,
-            'whitelist' => null,
-            'blacklist' => null,
-            'expires' => null
-        ],
-
-        ConfigurationForPreFlightChecks::class => [
-            'enabled' => null,
-            'ignoredRules' => null
-        ],
-
-        ConfigurationForSupportingRequestBuffering::class => [
-            'enabled' => null,
-            'maxRequestSize' => null
-        ],
-
-        ConfigurationOfAWorkerContainerInstance::class => [
-            'commands' => null,
-            'disk' => null
-        ],
-
-        ConfigurationOnHowTheWebServerCommunicatesWithTheApplication::class => [
-            'socketFamily' => null,
-            'protocol' => null
-        ],
-
-        ConfigurationRelatedToTheSourceCodeOfTheApplication::class => [
-            'root' => null,
-            'operations' => null
+            'otlplog' => null
         ],
 
         ConfirmPhoneNumberRequest::class => [
@@ -1091,6 +1074,10 @@ final class ApiObjectFormatsMapper
             'cpu' => 'float',
             'memory' => null,
             'cpuType' => null
+        ],
+
+        ContinuousProfilingConfiguration::class => [
+            'supportedRuntimes' => null
         ],
 
         CreateApiTokenRequest::class => [
@@ -1202,6 +1189,19 @@ final class ApiObjectFormatsMapper
         CreateTicketRequestAttachmentsInner::class => [
             'filename' => null,
             'data' => null
+        ],
+
+        CronsDeploymentState::class => [
+            'enabled' => null,
+            'status' => null
+        ],
+
+        CronsValue::class => [
+            'spec' => null,
+            'commands' => null,
+            'timeout' => null,
+            'shutdownTimeout' => null,
+            'cmd' => null
         ],
 
         CurrencyAmount::class => [
@@ -1334,6 +1334,14 @@ final class ApiObjectFormatsMapper
             'schedule' => null
         ],
 
+        DefaultResources::class => [
+            'cpu' => 'float',
+            'memory' => null,
+            'cpuType' => null,
+            'disk' => null,
+            'profileSize' => null
+        ],
+
         Deployment::class => [
             'id' => null,
             'clusterName' => null,
@@ -1355,6 +1363,20 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'fingerprint' => null
+        ],
+
+        DeploymentHostsInner::class => [
+            'id' => null,
+            'type' => null,
+            'services' => null
+        ],
+
+        DeploymentState::class => [
+            'lastDeploymentSuccessful' => null,
+            'lastDeploymentAt' => 'date-time',
+            'lastAutoscaleUpAt' => 'date-time',
+            'lastAutoscaleDownAt' => 'date-time',
+            'crons' => null
         ],
 
         DeploymentTarget::class => [
@@ -1402,6 +1424,13 @@ final class ApiObjectFormatsMapper
             'useDedicatedGrid' => null
         ],
 
+        DevelopmentResources::class => [
+            'legacyDevelopment' => null,
+            'maxCpu' => 'float',
+            'maxMemory' => null,
+            'maxEnvironments' => null
+        ],
+
         Discount::class => [
             'id' => null,
             'organizationId' => null,
@@ -1438,6 +1467,17 @@ final class ApiObjectFormatsMapper
             'monthly' => null,
             'commitmentPeriod' => null,
             'contractTotal' => null
+        ],
+
+        DiskResources::class => [
+            'temporary' => null,
+            'instance' => null,
+            'storage' => null
+        ],
+
+        DocrootsValue::class => [
+            'activeDocroot' => null,
+            'docrootVersions' => null
         ],
 
         Domain::class => [
@@ -1546,6 +1586,7 @@ final class ApiObjectFormatsMapper
             'isDirty' => null,
             'hasStagedActivities' => null,
             'canRollingDeploy' => null,
+            'supportsRollingDeployments' => null,
             'hasCode' => null,
             'headCommit' => null,
             'mergeInfo' => null,
@@ -1692,6 +1733,20 @@ final class ApiObjectFormatsMapper
             'isInheritable' => null
         ],
 
+        EnvironmentVariablesInner::class => [
+            'name' => null,
+            'isSensitive' => null,
+            'isJson' => null,
+            'visibleBuild' => null,
+            'visibleRuntime' => null,
+            'value' => null
+        ],
+
+        EnvironmentsCredentialsValue::class => [
+            'serverUuid' => null,
+            'serverToken' => null
+        ],
+
         Error::class => [
             'status' => null,
             'message' => null,
@@ -1709,7 +1764,7 @@ final class ApiObjectFormatsMapper
             'options' => null
         ],
 
-        FastlyCDNIntegrationConfigurations::class => [
+        FastlyCDN::class => [
             'enabled' => null,
             'role' => null
         ],
@@ -1749,10 +1804,10 @@ final class ApiObjectFormatsMapper
             'result' => null
         ],
 
-        FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue::class => [
-            'source' => null,
-            'sourcePath' => null,
-            'service' => null
+        FilesInner::class => [
+            'path' => null,
+            'mode' => null,
+            'contents' => null
         ],
 
         Firewall::class => [
@@ -1887,7 +1942,12 @@ final class ApiObjectFormatsMapper
             'current' => null
         ],
 
-        GitHubIntegrationConfigurations::class => [
+        GitHub::class => [
+            'enabled' => null,
+            'role' => null
+        ],
+
+        GitLab::class => [
             'enabled' => null,
             'role' => null
         ],
@@ -1899,17 +1959,15 @@ final class ApiObjectFormatsMapper
             'fetchBranches' => null,
             'pruneBranches' => null,
             'environmentInitResources' => null,
+            'tokenExpiresAt' => 'date-time',
+            'rotateToken' => null,
+            'rotateTokenValidityInWeeks' => null,
             'baseUrl' => null,
             'project' => null,
             'buildMergeRequests' => null,
             'buildWipMergeRequests' => null,
             'mergeRequestsCloneParentData' => null,
             'id' => null
-        ],
-
-        GitLabIntegrationConfigurations::class => [
-            'enabled' => null,
-            'role' => null
         ],
 
         GitLabIntegrationCreateInput::class => [
@@ -1919,6 +1977,8 @@ final class ApiObjectFormatsMapper
             'fetchBranches' => null,
             'pruneBranches' => null,
             'environmentInitResources' => null,
+            'rotateToken' => null,
+            'rotateTokenValidityInWeeks' => null,
             'baseUrl' => null,
             'buildMergeRequests' => null,
             'buildWipMergeRequests' => null,
@@ -1932,6 +1992,8 @@ final class ApiObjectFormatsMapper
             'fetchBranches' => null,
             'pruneBranches' => null,
             'environmentInitResources' => null,
+            'rotateToken' => null,
+            'rotateTokenValidityInWeeks' => null,
             'baseUrl' => null,
             'buildMergeRequests' => null,
             'buildWipMergeRequests' => null,
@@ -2016,7 +2078,7 @@ final class ApiObjectFormatsMapper
             'instanceLimit' => null
         ],
 
-        HTTPLogForwardingIntegrationConfigurations::class => [
+        HTTPLogForwarding::class => [
             'enabled' => null,
             'role' => null
         ],
@@ -2042,17 +2104,22 @@ final class ApiObjectFormatsMapper
             'href' => null
         ],
 
-        HealthEmailNotificationIntegrationConfigurations::class => [
+        HealthEmail::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        HealthPagerDutyNotificationIntegrationConfigurations::class => [
+        HealthPagerDuty::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        HealthSlackNotificationIntegrationConfigurations::class => [
+        HealthSlack::class => [
+            'enabled' => null,
+            'role' => null
+        ],
+
+        HealthWebHook::class => [
             'enabled' => null,
             'role' => null
         ],
@@ -2077,15 +2144,16 @@ final class ApiObjectFormatsMapper
             'sharedKey' => null
         ],
 
-        HealthWebhookNotificationIntegrationConfigurations::class => [
-            'enabled' => null,
-            'role' => null
-        ],
-
-        HooksExecutedAtVariousPointInTheLifecycleOfTheApplication::class => [
+        Hooks::class => [
             'build' => null,
             'deploy' => null,
             'postDeploy' => null
+        ],
+
+        HostsInner::class => [
+            'id' => null,
+            'type' => null,
+            'services' => null
         ],
 
         HttpAccessPermissions::class => [
@@ -2095,6 +2163,12 @@ final class ApiObjectFormatsMapper
         ],
 
         HttpAccessPermissions1::class => [
+            'isEnabled' => null,
+            'addresses' => null,
+            'basicAuth' => null
+        ],
+
+        HttpAccessPermissions2::class => [
             'isEnabled' => null,
             'addresses' => null,
             'basicAuth' => null
@@ -2130,6 +2204,11 @@ final class ApiObjectFormatsMapper
             'excludedServices' => null
         ],
 
+        ImageTypeRestrictions::class => [
+            'only' => null,
+            'exclude' => null
+        ],
+
         ImagesValueValue::class => [
             'available' => null
         ],
@@ -2160,6 +2239,9 @@ final class ApiObjectFormatsMapper
             'buildDraftPullRequests' => null,
             'buildPullRequestsPostMerge' => null,
             'tokenType' => null,
+            'tokenExpiresAt' => 'date-time',
+            'rotateToken' => null,
+            'rotateTokenValidityInWeeks' => null,
             'buildMergeRequests' => null,
             'buildWipMergeRequests' => null,
             'mergeRequestsCloneParentData' => null,
@@ -2216,6 +2298,8 @@ final class ApiObjectFormatsMapper
             'baseUrl' => null,
             'buildDraftPullRequests' => null,
             'buildPullRequestsPostMerge' => null,
+            'rotateToken' => null,
+            'rotateTokenValidityInWeeks' => null,
             'buildMergeRequests' => null,
             'buildWipMergeRequests' => null,
             'mergeRequestsCloneParentData' => null,
@@ -2266,6 +2350,8 @@ final class ApiObjectFormatsMapper
             'baseUrl' => null,
             'buildDraftPullRequests' => null,
             'buildPullRequestsPostMerge' => null,
+            'rotateToken' => null,
+            'rotateTokenValidityInWeeks' => null,
             'buildMergeRequests' => null,
             'buildWipMergeRequests' => null,
             'mergeRequestsCloneParentData' => null,
@@ -2314,6 +2400,12 @@ final class ApiObjectFormatsMapper
         InvoicePDF::class => [
             'url' => null,
             'status' => null
+        ],
+
+        IssuerInner::class => [
+            'oid' => null,
+            'alias' => null,
+            'value' => null
         ],
 
         LineItem::class => [
@@ -2420,12 +2512,6 @@ final class ApiObjectFormatsMapper
             'links' => null
         ],
 
-        ListPlans200Response::class => [
-            'count' => null,
-            'plans' => null,
-            'links' => null
-        ],
-
         ListProfiles200Response::class => [
             'count' => null,
             'profiles' => null,
@@ -2500,9 +2586,10 @@ final class ApiObjectFormatsMapper
             'maxExtraPayloadSize' => null
         ],
 
-        MappingOfClustersToEnterpriseApplicationsValue::class => [
-            'activeDocroot' => null,
-            'docrootVersions' => null
+        MergeInfo::class => [
+            'commitsAhead' => null,
+            'commitsBehind' => null,
+            'parentRef' => null
         ],
 
         Metrics::class => [
@@ -2519,6 +2606,25 @@ final class ApiObjectFormatsMapper
         MetricsValue::class => [
             'value' => null,
             'startTime' => null
+        ],
+
+        MinimumResources::class => [
+            'cpu' => 'float',
+            'memory' => null,
+            'cpuType' => null,
+            'disk' => null,
+            'profileSize' => null
+        ],
+
+        MountsValue::class => [
+            'source' => null,
+            'sourcePath' => null,
+            'service' => null
+        ],
+
+        NewRelic::class => [
+            'enabled' => null,
+            'role' => null
         ],
 
         NewRelicIntegration::class => [
@@ -2550,21 +2656,26 @@ final class ApiObjectFormatsMapper
             'excludedServices' => null
         ],
 
-        NewRelicLogForwardingIntegrationConfigurations::class => [
+        OAuth2Consumer::class => [
+            'key' => null
+        ],
+
+        OAuth2Consumer1::class => [
+            'key' => null,
+            'secret' => null
+        ],
+
+        \Upsun\Model\Object::class => [
+            'type' => null,
+            'sha' => null
+        ],
+
+        OpenTelemetry::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        OpenTelemetryLogForwardingIntegrationConfigurations::class => [
-            'enabled' => null,
-            'role' => null
-        ],
-
-        OperationsThatCanBeAppliedToTheSourceCodeValue::class => [
-            'command' => null
-        ],
-
-        OperationsThatCanBeTriggeredOnThisApplicationValue::class => [
+        OperationsValue::class => [
             'commands' => null,
             'timeout' => null,
             'role' => null
@@ -3001,15 +3112,13 @@ final class ApiObjectFormatsMapper
             'routingKey' => null
         ],
 
-        PerServiceResourcesOverridesValue::class => [
-            'cpu' => 'float',
-            'memory' => null,
-            'disk' => null
-        ],
-
-        Plan::class => [
-            'name' => null,
-            'label' => null
+        PathValue::class => [
+            'regexp' => null,
+            'to' => null,
+            'prefix' => null,
+            'appendSuffix' => null,
+            'code' => null,
+            'expires' => null
         ],
 
         PlanRecords::class => [
@@ -3022,6 +3131,17 @@ final class ApiObjectFormatsMapper
             'start' => 'date-time',
             'end' => 'date-time',
             'status' => null
+        ],
+
+        PreServiceResourcesOverridesValue::class => [
+            'cpu' => 'float',
+            'memory' => null,
+            'disk' => null
+        ],
+
+        PreflightChecks::class => [
+            'enabled' => null,
+            'ignoredRules' => null
         ],
 
         PrepaymentObject::class => [
@@ -3081,6 +3201,13 @@ final class ApiObjectFormatsMapper
         ProdDomainStoragePatch::class => [
             'attributes' => null,
             'isDefault' => null
+        ],
+
+        ProductionResources::class => [
+            'legacyDevelopment' => null,
+            'maxCpu' => 'float',
+            'maxMemory' => null,
+            'maxEnvironments' => null
         ],
 
         Profile::class => [
@@ -3175,6 +3302,54 @@ final class ApiObjectFormatsMapper
             'repository' => null,
             'defaultDomain' => null,
             'subscription' => null
+        ],
+
+        ProjectAddon::class => [
+            'id' => null,
+            'type' => null,
+            'sku' => null,
+            'quantity' => null,
+            'projectId' => null,
+            'createdAt' => 'date-time',
+            'updatedAt' => 'date-time',
+            'links' => null
+        ],
+
+        ProjectAddonBase::class => [
+            'id' => null,
+            'type' => null,
+            'projectId' => null,
+            'createdAt' => 'date-time',
+            'updatedAt' => 'date-time',
+            'links' => null
+        ],
+
+        ProjectAddonBaseLinks::class => [
+            'self' => null,
+            'update' => null,
+            'delete' => null
+        ],
+
+        ProjectAddonBaseLinksDelete::class => [
+            'href' => null,
+            'method' => null
+        ],
+
+        ProjectAddonBaseLinksSelf::class => [
+            'href' => null
+        ],
+
+        ProjectAddonBaseLinksUpdate::class => [
+            'href' => null,
+            'method' => null
+        ],
+
+        ProjectAddonWithQuantityFields::class => [
+            'quantity' => null
+        ],
+
+        ProjectAddonWithSkuFields::class => [
+            'sku' => null
         ],
 
         ProjectCapabilities::class => [
@@ -3313,6 +3488,7 @@ final class ApiObjectFormatsMapper
             'buildResources' => null,
             'outboundRestrictionsDefaultPolicy' => null,
             'selfUpgrade' => null,
+            'selfUpgradeLatestMajor' => null,
             'additionalHosts' => null,
             'maxAllowedRoutes' => null,
             'maxAllowedRedirectsPaths' => null,
@@ -3408,6 +3584,11 @@ final class ApiObjectFormatsMapper
             'ssi' => null,
             'upstream' => null,
             'sticky' => null
+        ],
+
+        RedirectConfiguration::class => [
+            'expires' => null,
+            'paths' => null
         ],
 
         RedirectRoute::class => [
@@ -3510,6 +3691,11 @@ final class ApiObjectFormatsMapper
             'clientSshKey' => null
         ],
 
+        RequestBuffering::class => [
+            'enabled' => null,
+            'maxRequestSize' => null
+        ],
+
         ResetEmailAddressRequest::class => [
             'emailAddress' => 'email'
         ],
@@ -3551,20 +3737,6 @@ final class ApiObjectFormatsMapper
             'init' => null
         ],
 
-        ResourcesForDevelopmentEnvironments::class => [
-            'legacyDevelopment' => null,
-            'maxCpu' => 'float',
-            'maxMemory' => null,
-            'maxEnvironments' => null
-        ],
-
-        ResourcesForProductionEnvironments::class => [
-            'legacyDevelopment' => null,
-            'maxCpu' => 'float',
-            'maxMemory' => null,
-            'maxEnvironments' => null
-        ],
-
         ResourcesLimits::class => [
             'containerProfiles' => null,
             'production' => null,
@@ -3577,11 +3749,6 @@ final class ApiObjectFormatsMapper
             'endsAt' => 'date-time',
             'redeployedStart' => null,
             'redeployedEnd' => null
-        ],
-
-        RestrictedAndDeniedImageTypes::class => [
-            'only' => null,
-            'exclude' => null
         ],
 
         Route::class => [
@@ -3599,7 +3766,7 @@ final class ApiObjectFormatsMapper
             'sticky' => null
         ],
 
-        RouterResourceSettingsForFlexPlan::class => [
+        RouterResources::class => [
             'baselineCpu' => 'float',
             'baselineMemory' => null,
             'maxCpu' => 'float',
@@ -3621,16 +3788,30 @@ final class ApiObjectFormatsMapper
             'sticky' => null
         ],
 
+        Routing::class => [
+            'percentage' => null
+        ],
+
+        Routing1::class => [
+            'percentage' => null
+        ],
+
         RuntimeOperations::class => [
             'enabled' => null
         ],
 
-        ScheduledCronTasksExecutedByThisApplicationValue::class => [
-            'spec' => null,
-            'commands' => null,
-            'timeout' => null,
-            'shutdownTimeout' => null,
-            'cmd' => null
+        SSIConfiguration::class => [
+            'enabled' => null
+        ],
+
+        ScheduleInner::class => [
+            'interval' => null,
+            'count' => null
+        ],
+
+        Script::class => [
+            'enabled' => null,
+            'role' => null
         ],
 
         ScriptIntegration::class => [
@@ -3644,11 +3825,6 @@ final class ApiObjectFormatsMapper
             'result' => null,
             'script' => null,
             'id' => null
-        ],
-
-        ScriptIntegrationConfigurations::class => [
-            'enabled' => null,
-            'role' => null
         ],
 
         ScriptIntegrationCreateInput::class => [
@@ -3680,8 +3856,9 @@ final class ApiObjectFormatsMapper
             'userIds' => 'uuid'
         ],
 
-        ServerSideIncludeConfiguration::class => [
-            'enabled' => null
+        ServiceRelationshipsValue::class => [
+            'service' => null,
+            'endpoint' => null
         ],
 
         ServicesValue::class => [
@@ -3704,6 +3881,12 @@ final class ApiObjectFormatsMapper
             'disk' => null
         ],
 
+        Sizing::class => [
+            'services' => null,
+            'webapps' => null,
+            'workers' => null
+        ],
+
         SlackIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
@@ -3724,8 +3907,17 @@ final class ApiObjectFormatsMapper
             'channel' => null
         ],
 
+        SourceCodeConfiguration::class => [
+            'root' => null,
+            'operations' => null
+        ],
+
         SourceOperations::class => [
             'enabled' => null
+        ],
+
+        SourceOperationsValue::class => [
+            'command' => null
         ],
 
         SpecificOverridesValue::class => [
@@ -3734,6 +3926,11 @@ final class ApiObjectFormatsMapper
             'scripts' => null,
             'allow' => null,
             'headers' => null
+        ],
+
+        Splunk::class => [
+            'enabled' => null,
+            'role' => null
         ],
 
         SplunkIntegration::class => [
@@ -3771,11 +3968,6 @@ final class ApiObjectFormatsMapper
             'excludedServices' => null
         ],
 
-        SplunkLogForwardingIntegrationConfigurations::class => [
-            'enabled' => null,
-            'role' => null
-        ],
-
         SshKey::class => [
             'keyId' => null,
             'uid' => null,
@@ -3790,7 +3982,7 @@ final class ApiObjectFormatsMapper
             'message' => null
         ],
 
-        StickyRoutingConfiguration::class => [
+        StickyConfiguration::class => [
             'enabled' => null
         ],
 
@@ -3905,7 +4097,7 @@ final class ApiObjectFormatsMapper
             'imageTypes' => null
         ],
 
-        SumoLogicLogForwardingIntegrationConfigurations::class => [
+        SumoLogic::class => [
             'enabled' => null,
             'role' => null
         ],
@@ -3938,6 +4130,11 @@ final class ApiObjectFormatsMapper
             'category' => null,
             'tlsVerify' => null,
             'excludedServices' => null
+        ],
+
+        Syslog::class => [
+            'enabled' => null,
+            'role' => null
         ],
 
         SyslogIntegration::class => [
@@ -3983,18 +4180,13 @@ final class ApiObjectFormatsMapper
             'excludedServices' => null
         ],
 
-        SyslogLogForwardingIntegrationConfigurations::class => [
-            'enabled' => null,
-            'role' => null
-        ],
-
         SystemInformation::class => [
             'version' => null,
             'image' => null,
             'startedAt' => 'date-time'
         ],
 
-        TLSSettingsForTheRoute::class => [
+        TLSSettings::class => [
             'strictTransportSecurity' => null,
             'minVersion' => null,
             'clientAuthentication' => null,
@@ -4063,187 +4255,6 @@ final class ApiObjectFormatsMapper
             'updatedAt' => 'date-time'
         ],
 
-        TheAddonCredentialInformationOptional::class => [
-            'addonKey' => null,
-            'clientKey' => null
-        ],
-
-        TheAddonCredentialInformationOptional1::class => [
-            'addonKey' => null,
-            'clientKey' => null,
-            'sharedSecret' => null
-        ],
-
-        TheBackupScheduleSpecificationInner::class => [
-            'interval' => null,
-            'count' => null
-        ],
-
-        TheBuildConfigurationOfTheApplication::class => [
-            'flavor' => null,
-            'caches' => null
-        ],
-
-        TheCommandsDefinition::class => [
-            'start' => null,
-            'stop' => null
-        ],
-
-        TheCommandsToManageTheWorker::class => [
-            'start' => null,
-            'preStart' => null,
-            'postStart' => null
-        ],
-
-        TheCommitDistanceInfoBetweenParentAndChildEnvironments::class => [
-            'commitsAhead' => null,
-            'commitsBehind' => null,
-            'parentRef' => null
-        ],
-
-        TheConfigurationOfPathsManagedByTheBuildCacheValue::class => [
-            'directory' => null,
-            'watch' => null,
-            'allowStale' => null,
-            'shareBetweenApps' => null
-        ],
-
-        TheConfigurationOfTheRedirects::class => [
-            'expires' => null,
-            'paths' => null
-        ],
-
-        TheContinuousProfilingConfiguration::class => [
-            'supportedRuntimes' => null
-        ],
-
-        TheCronsDeploymentState::class => [
-            'enabled' => null,
-            'status' => null
-        ],
-
-        TheDefaultResourcesForThisService::class => [
-            'cpu' => 'float',
-            'memory' => null,
-            'cpuType' => null,
-            'disk' => null,
-            'profileSize' => null
-        ],
-
-        TheDisksResources::class => [
-            'temporary' => null,
-            'instance' => null,
-            'storage' => null
-        ],
-
-        TheEnvironmentDeploymentState::class => [
-            'lastDeploymentSuccessful' => null,
-            'lastDeploymentAt' => 'date-time',
-            'lastAutoscaleUpAt' => 'date-time',
-            'lastAutoscaleDownAt' => 'date-time',
-            'crons' => null
-        ],
-
-        TheEnvironmentSizingConfiguration::class => [
-            'services' => null,
-            'webapps' => null,
-            'workers' => null
-        ],
-
-        TheHostsOfTheDeploymentTargetInner::class => [
-            'id' => null,
-            'type' => null,
-            'services' => null
-        ],
-
-        TheHostsOfTheDeploymentTargetInner1::class => [
-            'id' => null,
-            'type' => null,
-            'services' => null
-        ],
-
-        TheInformationAboutTheAuthor::class => [
-            'date' => 'date-time',
-            'name' => null,
-            'email' => null
-        ],
-
-        TheInformationAboutTheCommitter::class => [
-            'date' => 'date-time',
-            'name' => null,
-            'email' => null
-        ],
-
-        TheIssuerOfTheCertificateInner::class => [
-            'oid' => null,
-            'alias' => null,
-            'value' => null
-        ],
-
-        TheMinimumResourcesForThisService::class => [
-            'cpu' => 'float',
-            'memory' => null,
-            'cpuType' => null,
-            'disk' => null,
-            'profileSize' => null
-        ],
-
-        TheOAuth2ConsumerInformationOptional::class => [
-            'key' => null
-        ],
-
-        TheOAuth2ConsumerInformationOptional1::class => [
-            'key' => null,
-            'secret' => null
-        ],
-
-        TheObjectTheReferencePointsTo::class => [
-            'type' => null,
-            'sha' => null
-        ],
-
-        ThePathsToRedirectValue::class => [
-            'regexp' => null,
-            'to' => null,
-            'prefix' => null,
-            'appendSuffix' => null,
-            'code' => null,
-            'expires' => null
-        ],
-
-        TheRelationshipsOfTheApplicationToDefinedServicesValue::class => [
-            'service' => null,
-            'endpoint' => null
-        ],
-
-        TheSpecificationOfTheWebLocationsServedByThisApplicationValue::class => [
-            'root' => null,
-            'expires' => null,
-            'passthru' => null,
-            'scripts' => null,
-            'allow' => null,
-            'headers' => null,
-            'rules' => null,
-            'index' => null,
-            'requestBuffering' => null
-        ],
-
-        TheTreeItemsInner::class => [
-            'path' => null,
-            'mode' => null,
-            'type' => null,
-            'sha' => null
-        ],
-
-        TheVariablesApplyingToThisEnvironmentInner::class => [
-            'name' => null,
-            'isSensitive' => null,
-            'isJson' => null,
-            'visibleBuild' => null,
-            'visibleRuntime' => null,
-            'value' => null
-        ],
-
         Ticket::class => [
             'ticketId' => null,
             'created' => 'date-time',
@@ -4295,6 +4306,13 @@ final class ApiObjectFormatsMapper
             'id' => null,
             'sha' => null,
             'tree' => null
+        ],
+
+        TreeItemsInner::class => [
+            'path' => null,
+            'mode' => null,
+            'type' => null,
+            'sha' => null
         ],
 
         UpdateOrgAddonsRequest::class => [
@@ -4429,6 +4447,11 @@ final class ApiObjectFormatsMapper
             'company' => null,
             'website' => 'uri',
             'country' => null
+        ],
+
+        UpstreamConfiguration::class => [
+            'socketFamily' => null,
+            'protocol' => null
         ],
 
         UpstreamRoute::class => [
@@ -4635,6 +4658,19 @@ final class ApiObjectFormatsMapper
             'slugId' => null
         ],
 
+        WebConfiguration::class => [
+            'locations' => null,
+            'moveToRoot' => null,
+            'commands' => null,
+            'upstream' => null,
+            'documentRoot' => null,
+            'passthru' => null,
+            'indexFiles' => null,
+            'whitelist' => null,
+            'blacklist' => null,
+            'expires' => null
+        ],
+
         WebHookIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
@@ -4671,9 +4707,26 @@ final class ApiObjectFormatsMapper
             'sharedKey' => null
         ],
 
-        WebhookIntegrationConfigurations::class => [
+        WebLocationsValue::class => [
+            'root' => null,
+            'expires' => null,
+            'passthru' => null,
+            'scripts' => null,
+            'allow' => null,
+            'headers' => null,
+            'rules' => null,
+            'index' => null,
+            'requestBuffering' => null
+        ],
+
+        Webhook::class => [
             'enabled' => null,
             'role' => null
+        ],
+
+        WorkerConfiguration::class => [
+            'commands' => null,
+            'disk' => null
         ],
 
         WorkersValue::class => [

@@ -25,8 +25,6 @@ Cancels the specified invitation.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\OrganizationInvitationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -81,8 +79,6 @@ Creates an invitation to an organization for a user with the specified email add
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\OrganizationInvitationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -139,8 +135,6 @@ Returns a list of invitations to an organization.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\OrganizationInvitationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

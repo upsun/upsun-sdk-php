@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**createdAt** | **\DateTime** |  |
-**updatedAt** | **\DateTime** |  |
+**createdAt** | **\DateTime** | The creation date |
+**updatedAt** | **\DateTime** | The update date |
 **type** | **string** |  |
-**routingKey** | **string** |  |
-**id** | **string** |  | [optional]
+**routingKey** | **string** | The PagerDuty routing key |
+**id** | **string** | The identifier of PagerDutyIntegration | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

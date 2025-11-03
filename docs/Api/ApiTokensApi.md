@@ -26,8 +26,6 @@ Creates an API token
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ApiTokensApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -84,8 +82,6 @@ Deletes an API token
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ApiTokensApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -140,8 +136,6 @@ Retrieves the specified API token.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\ApiTokensApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -198,8 +192,6 @@ Retrieves a list of API tokens associated with a single user.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\ApiTokensApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

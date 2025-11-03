@@ -24,8 +24,6 @@ Confirms phone number using a verification code.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\PhoneNumberApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -82,8 +80,6 @@ Starts a phone number verification session.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\PhoneNumberApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

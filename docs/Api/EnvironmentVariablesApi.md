@@ -27,8 +27,6 @@ Add a variable to an environment. The `value` can be either a string or a JSON o
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -86,8 +84,6 @@ Delete a single user-defined environment variable.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -147,8 +143,6 @@ Retrieve a single user-defined environment variable.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -207,8 +201,6 @@ Retrieve a list of objects representing the user-defined variables within an env
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -264,8 +256,6 @@ Update a single user-defined environment variable. The `value` can be either a s
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

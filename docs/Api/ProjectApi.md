@@ -26,8 +26,6 @@ On rare occasions, a project's build cache can become corrupted. This endpoint w
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ProjectApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -81,8 +79,6 @@ Retrieve the details of a single project.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\ProjectApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -138,8 +134,6 @@ Get a list of capabilities on a project, as defined by the billing system. For i
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ProjectApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -193,8 +187,6 @@ Update the details of an existing project.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\ProjectApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

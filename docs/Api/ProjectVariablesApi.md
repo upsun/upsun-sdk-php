@@ -27,8 +27,6 @@ Add a variable to a project. The `value` can be either a string or a JSON object
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ProjectVariablesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -84,8 +82,6 @@ Delete a single user-defined project variable.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\ProjectVariablesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -143,8 +139,6 @@ Retrieve a single user-defined project variable.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ProjectVariablesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -201,8 +195,6 @@ Retrieve a list of objects representing the user-defined variables within a proj
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\ProjectVariablesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -256,8 +248,6 @@ Update a single user-defined project variable. The `value` can be either a strin
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\ProjectVariablesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

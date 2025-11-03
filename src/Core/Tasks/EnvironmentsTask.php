@@ -2,13 +2,14 @@
 
 namespace Upsun\Core\Tasks;
 
+use Psr\Http\Client\ClientExceptionInterface;
+use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\Backup;
-use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1;
 use Upsun\Model\Deployment;
 use Upsun\Model\Domain;
 use Upsun\Model\Environment;
@@ -17,15 +18,18 @@ use Upsun\Model\EnvironmentBranchInput;
 use Upsun\Model\EnvironmentInitializeInput;
 use Upsun\Model\EnvironmentMergeInput;
 use Upsun\Model\EnvironmentPatch;
+use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Model\EnvironmentSynchronizeInput;
 use Upsun\Model\EnvironmentType;
 use Upsun\Model\EnvironmentVariable;
 use Upsun\Model\HttpAccessPermissions1;
+use Upsun\Model\ProjectVariable;
 use Upsun\Model\Resources2;
 use Upsun\Model\Resources3;
 use Upsun\Model\Resources4;
 use Upsun\Model\Resources5;
 use Upsun\Model\Route;
+use Upsun\Model\Routing1;
 use Upsun\Model\Version;
 use Upsun\Model\VersionCreateInput;
 use Upsun\Model\VersionPatch;
@@ -107,7 +111,7 @@ class EnvironmentsTask extends TaskBase
         ?int $percentage = null
     ): AcceptedResponse {
         $versionCreateInput = new VersionCreateInput(
-            new ConfigurationAboutTheTrafficRoutedToThisVersion1(percentage: $percentage)
+            new Routing1(percentage: $percentage)
         );
         return $this->api->createProjectsEnvironmentsVersions($projectId, $environmentId, $versionCreateInput);
     }
@@ -204,6 +208,7 @@ class EnvironmentsTask extends TaskBase
      * Gets list of project environments
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @return Environment[]
      *
      */
@@ -352,7 +357,7 @@ class EnvironmentsTask extends TaskBase
         ?int $percentage = null
     ): AcceptedResponse {
         $versionPatch = new VersionPatch(
-            $percentage ? new ConfigurationAboutTheTrafficRoutedToThisVersion1(percentage: $percentage) : null
+            $percentage ? new Routing1(percentage: $percentage) : null
         );
         return $this->api->updateProjectsEnvironmentsVersions(
             $projectId,

@@ -24,8 +24,6 @@ Lists all the source operations, defined in `.upsun/config.yaml`, that are avail
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\SourceOperationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -81,8 +79,6 @@ This endpoint triggers a source code operation as defined in the `source.operati
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\SourceOperationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

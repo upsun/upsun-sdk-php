@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**createdAt** | **\DateTime** |  |
-**updatedAt** | **\DateTime** |  |
+**createdAt** | **\DateTime** | The creation date |
+**updatedAt** | **\DateTime** | The update date |
 **type** | **string** |  |
-**environmentsCredentials** | [**array<string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue>**](BlackfireEnvironmentsCredentialsValue.md) |  |
-**continuousProfiling** | **bool** |  |
-**id** | **string** |  | [optional]
+**environmentsCredentials** | [**array<string,\Upsun\Model\EnvironmentsCredentialsValue>**](EnvironmentsCredentialsValue.md) | Blackfire environments credentials |
+**continuousProfiling** | **bool** | Whether continuous profiling is enabled for the project |
+**id** | **string** | The identifier of BlackfireIntegration | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

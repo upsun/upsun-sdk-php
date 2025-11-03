@@ -27,8 +27,6 @@ Trigger a new backup of an environment to be created. See the [Backups](https://
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -86,8 +84,6 @@ Delete a specific backup from an environment using the `id` of the entry retriev
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -147,8 +143,6 @@ Get the details of a specific backup from an environment using the `id` of the e
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -207,8 +201,6 @@ Retrieve a list of objects representing backups of this environment.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -264,8 +256,6 @@ Restore a specific backup from an environment using the `id` of the entry retrie
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.

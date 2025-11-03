@@ -2,8 +2,10 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
@@ -101,6 +103,7 @@ class RegionsTaskTest extends BaseTestCase
     }
 
     /**
+     * @throws ClientExceptionInterface
      * @throws Exception
      */
     public function testListRegions(): void

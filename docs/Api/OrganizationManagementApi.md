@@ -27,8 +27,6 @@ Estimates the total spend for the specified organization.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\OrganizationManagementApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -82,8 +80,6 @@ Retrieves billing alert configuration for the specified organization.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\OrganizationManagementApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -139,8 +135,6 @@ Retrieves prepayment information for the specified organization, if applicable.
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\OrganizationManagementApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -195,8 +189,6 @@ Retrieves a list of prepayment transactions for the specified organization, if a
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
 $apiInstance = new Upsun\Api\OrganizationManagementApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -250,8 +242,6 @@ Updates billing alert configuration for the specified organization.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-
 
 $apiInstance = new Upsun\Api\OrganizationManagementApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
