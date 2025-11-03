@@ -73,36 +73,45 @@ class SupportTicketsTask extends TaskBase
     /**
      * Creates a new support ticket
      *
-     * @param array|null{
-     *     subject: string,
-     *     description: string,
-     *     requestId?: string,
-     *     priority?: string,
-     *     subscriptionId?: string,
-     *     organizationId?: string,
-     *     affectedUrl?: string,
-     *     followupTid?: string,
-     *     category?: string,
-     *     attachments?: array,
-     *     collaboratorIds?: array,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function create(?array $data = null): Ticket
-    {
-        $createTicketRequest = new CreateTicketRequest(...$data);
+    public function create(
+        string $subject,
+        string $description,
+        ?string $requesterId = null,
+        ?string $priority = null,
+        ?string $subscriptionId = null,
+        ?string $organizationId = null,
+        ?string $affectedUrl = null,
+        ?string $followupTid = null,
+        ?string $category = null,
+        ?array $attachments = [],
+        ?array $collaboratorIds = [],
+    ): Ticket {
+        $createTicketRequest = new CreateTicketRequest(
+            subject: $subject,
+            description: $description,
+            requesterId: $requesterId,
+            priority: $priority,
+            subscriptionId: $subscriptionId,
+            organizationId: $organizationId,
+            affectedUrl: $affectedUrl,
+            followupTid: $followupTid,
+            category: $category,
+            attachments: $attachments,
+            collaboratorIds: $collaboratorIds
+        );
         return $this->supportApi->createTicket($createTicketRequest);
     }
 
     /**
      * Lists support ticket categories
      *
+     * @return  ListTicketCategories200ResponseInner[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return  ListTicketCategories200ResponseInner[]
      */
     public function listCategories(?string $organizationId = null, ?string $projectId = null): array
     {
@@ -115,10 +124,10 @@ class SupportTicketsTask extends TaskBase
     /**
      * Lists support ticket priorities
      *
+     * @return ListTicketPriorities200ResponseInner[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListTicketPriorities200ResponseInner[]
      */
     public function listPriorities(?string $projectId = null, ?string $category = null): array
     {
@@ -131,18 +140,20 @@ class SupportTicketsTask extends TaskBase
     /**
      * Updates a ticket
      *
-     * @param array|null{
-     *     status?: string,
-     *     collaboratorIds?: array,
-     *     collaboratorsReplace?: bool,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function update(string $ticketId, ?array $data = null): Ticket
-    {
-        $updateTicketRequest = new UpdateTicketRequest(...$data);
+    public function update(
+        string $ticketId,
+        ?string $status = null,
+        ?array $collaboratorIds = [],
+        ?bool $collaboratorsReplace = null,
+    ): Ticket {
+        $updateTicketRequest = new UpdateTicketRequest(
+            status: $status,
+            collaboratorIds: $collaboratorIds,
+            collaboratorsReplace:  $collaboratorsReplace,
+        );
         return $this->supportApi->updateTicket($ticketId, $updateTicketRequest);
     }
 }

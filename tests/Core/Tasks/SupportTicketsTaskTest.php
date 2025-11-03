@@ -182,6 +182,7 @@ class SupportTicketsTaskTest extends BaseTestCase
             'description' => 'Users report that login fails with 500 error.',
             'priority' => 'high',
             'subscriptionId' => 'sub-001',
+            'requestId' => 'req1',
             'organizationId' => 'org-001',
             'affectedUrl' => 'https://example.com/login',
             'followupTid' => 'ticket-001',
@@ -254,7 +255,19 @@ class SupportTicketsTaskTest extends BaseTestCase
                 json_encode($ticket)
             ));
 
-        $result = $this->task->create($fakeTicketData);
+        $result = $this->task->create(
+            $fakeTicketData['subject'],
+            $fakeTicketData['description'],
+            $fakeTicketData['requestId'],
+            $fakeTicketData['priority'],
+            $fakeTicketData['subscriptionId'],
+            $fakeTicketData['organizationId'],
+            $fakeTicketData['affectedUrl'],
+            $fakeTicketData['followupTid'],
+            $fakeTicketData['category'],
+            $fakeTicketData['attachments'],
+            $fakeTicketData['collaboratorIds'],
+        );
         $this->assertInstanceOf(Ticket::class, $result);
         $this->assertObjectProperties($result, $fakeTicketData);
     }
@@ -325,7 +338,11 @@ class SupportTicketsTaskTest extends BaseTestCase
                 json_encode($ticket)
             ));
 
-        $result = $this->task->update('ticket-123', $fakeTicketData);
+        $result = $this->task->update('ticket-123',
+            $fakeTicketData['status'],
+            $fakeTicketData['collaboratorIds'],
+            $fakeTicketData['collaboratorsReplace'],
+        );
         $this->assertInstanceOf(Ticket::class, $result);
         $this->assertObjectProperties($result, $fakeTicketData);
     }
