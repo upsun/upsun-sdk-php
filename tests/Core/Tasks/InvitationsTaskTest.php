@@ -413,17 +413,6 @@ class InvitationsTaskTest extends BaseTestCase
     {
         $projectId = 'project-123';
 
-        $userInvitationData = [
-            'email'       => 'jane.doe@example.com',
-            'role'        => 'admin',
-            'permissions' => ['read', 'write', 'admin'],
-            'environments' => [
-                ['id' => 'env_001', 'name' => 'production'],
-                ['id' => 'env_002', 'name' => 'staging'],
-            ],
-            'force'       => true,
-        ];
-
         $this->httpClient
             ->expects($this->once())
             ->method('sendRequest')
@@ -459,7 +448,17 @@ class InvitationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->invitationTask->createProjectInvite($projectId, $userInvitationData);
+        $result = $this->invitationTask->createProjectInvite(
+            $projectId,
+            'jane.doe@example.com',
+            'admin',
+            ['read', 'write', 'admin'],
+            [
+                ['id' => 'env_001', 'name' => 'production'],
+                ['id' => 'env_002', 'name' => 'staging'],
+            ],
+            true,
+        );
         $this->assertInstanceOf(ProjectInvitation::class, $result);
         $this->assertEquals("invite_987654", $result->getId());
         $this->assertEquals("proj_12345", $result->getProjectId());
@@ -474,17 +473,6 @@ class InvitationsTaskTest extends BaseTestCase
         $projectId = 'project-123';
         $this->expectException(ApiException::class);
 
-        $userInvitationData = [
-            'email'       => 'jane.doe@example.com',
-            'role'        => 'admin',
-            'permissions' => ['read', 'write', 'admin'],
-            'environments' => [
-                ['id' => 'env_001', 'name' => 'production'],
-                ['id' => 'env_002', 'name' => 'staging'],
-            ],
-            'force'       => true,
-        ];
-
         $this->httpClient
             ->expects($this->once())
             ->method('sendRequest')
@@ -497,7 +485,17 @@ class InvitationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->invitationTask->createProjectInvite($projectId, $userInvitationData);
+        $this->invitationTask->createProjectInvite(
+            $projectId,
+            'jane.doe@example.com',
+            'admin',
+            ['read', 'write', 'admin'],
+            [
+            ['id' => 'env_001', 'name' => 'production'],
+            ['id' => 'env_002', 'name' => 'staging'],
+            ],
+            true,
+        );
     }
 
     /**

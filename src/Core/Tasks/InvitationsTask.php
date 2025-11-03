@@ -101,32 +101,37 @@ class InvitationsTask extends TaskBase
     /**
      * Invites user to a project by email
      *
-     * @param array{
-     *     email: string,
-     *     role?: string,
-     *     permissions?: array,
-     *     environments?: bool,
-     *     force?: bool
-     * } $data
+     * @param array<int, 'read'|'write'|'admin'>|null $permissions
+     * @param array<int, array{id: string, name: string}>|null $environments
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function createProjectInvite(
         string $projectId,
-        array $data
+        string $email,
+        ?string $role = null,
+        ?array $permissions = null,
+        ?array $environments = null,
+        ?bool $force = null,
     ): ProjectInvitation {
-        $createProjectInviteRequest = new CreateProjectInviteRequest(...$data);
+        $createProjectInviteRequest = new CreateProjectInviteRequest(
+            email: $email,
+            role: $role,
+            permissions: $permissions,
+            environments: $environments,
+            force: $force
+        );
         return $this->prjInvApi->createProjectInvite($projectId, $createProjectInviteRequest);
     }
 
     /**
      * Lists invitations to a project
      *
+     * @return ProjectInvitation[]
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ProjectInvitation[]
      */
     public function listProjectInvites(
         string $projectId,

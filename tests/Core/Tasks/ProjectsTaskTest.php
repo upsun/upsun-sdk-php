@@ -615,27 +615,6 @@ class ProjectsTaskTest extends BaseTestCase
             ],
         ];
 
-        $fakeCreateProjectInviteRequest = [
-            'email' => 'invite@example.com',
-            'role' => 'developer',
-            'permissions' => [
-                'read',
-                'write',
-                'deploy',
-            ],
-            'environments' => [
-                [
-                    'id' => 'env_123',
-                    'name' => 'staging',
-                ],
-                [
-                    'id' => 'env_456',
-                    'name' => 'production',
-                ],
-            ],
-            'force' => true,
-        ];
-
         $this->httpClient
             ->expects($this->once())
             ->method('sendRequest')
@@ -645,7 +624,23 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($invitation)
             ));
 
-        $result = $this->projectsTask->createInvite($projectId, $fakeCreateProjectInviteRequest);
+        $result = $this->projectsTask->createInvite(
+            $projectId,
+            'invite@example.com',
+            'developer',
+            ['read', 'write', 'deploy'],
+            [
+                [
+                    'id' => 'env_123',
+                    'name' => 'staging',
+                ],
+                [
+                    'id' => 'env_456',
+                    'name' => 'production',
+                ],
+            ],
+            true,
+        );
         $this->assertInstanceOf(ProjectInvitation::class, $result);
         $this->assertObjectProperties($result, $invitation);
     }
@@ -3482,7 +3477,6 @@ FAKE-CHAIN-CERT-DATA2
     public function testCreateInviteWithError()
     {
         $projectId = 'test-project';
-        $request = ['email' => 'test'];
 
         $this->httpClient
             ->method('sendRequest')
@@ -3496,7 +3490,7 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->createInvite($projectId, $request);
+        $this->projectsTask->createInvite($projectId, 'test@test.fr');
     }
 
     public function testGetSettingsWithError()
