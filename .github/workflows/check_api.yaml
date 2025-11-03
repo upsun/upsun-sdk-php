@@ -1,0 +1,66 @@
+name: Check OpenAPI Spec Update
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch: ~
+
+permissions:
+  contents: write
+
+env:
+  DEFAULT_BRANCH: "main"
+
+jobs:
+  check-and-update:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'upsun' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install OpenApiGenerator CLI
+        run: composer run spec:generate:install
+
+      - name: Remove existing Api and Model Classes
+        run: composer run spec:clean
+
+      - name: Download and patch OpenAPI spec
+        run: |
+          echo "Download OpenAPI spec..."
+          composer run spec:dl
+
+          echo "Patch OpenAPI spec..."
+          sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-upsun.json
+
+      - name: Pre-process OpenApi specs
+        run: composer run spec:patch
+
+      - name: Generate Client/Model/Tests code (php)
+        run: composer run spec:generate
+
+      - name: Create Pull Request if changes
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
+          commit-message: "Update OpenAPI spec"
+          body: "This PR updates the OpenAPI spec from the upstream source and applies formatting changes."
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          draft: false
+          delete-branch: false
+          branch: update-openapi-spec
+          title: "[API-BOT] Update OpenAPI spec and regenerate SDK"
+          base: main
+          labels: |
+            report
+            automated pr
+          add-paths: |
+            src/
+            tests/
+            docs/
