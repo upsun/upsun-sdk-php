@@ -46,7 +46,6 @@ jobs:
         run: composer run spec:generate
 
       - name: Create Pull Request if changes
-        if: false
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
