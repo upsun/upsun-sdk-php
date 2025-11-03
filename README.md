@@ -84,10 +84,6 @@ $project = $client->projects->create(
 ### Example: Update a project
 
 ```php
-$projectData = [
-    'title' => 'title',
-    'description' => 'description'
-];
 $response = $client->projects->update(
     projectId: '<projectId>',
     title: 'new Title',
@@ -98,7 +94,7 @@ $response = $client->projects->update(
 ### Example: Delete a project
 
 ```php
-$client->projects->delete(<projectId>);
+$client->projects->delete('<projectId>');
 ```
 
 ---
