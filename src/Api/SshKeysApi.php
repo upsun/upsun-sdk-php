@@ -2,8 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateSshKeyRequest;
-use Upsun\Model\SshKey;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -14,6 +12,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CreateSshKeyRequest;
+use Upsun\Model\SshKey;
 
 /**
  * Low level SshKeysApi (auto-generated)

@@ -2,10 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Blob;
-use Upsun\Model\Commit;
-use Upsun\Model\Ref;
-use Upsun\Model\Tree;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -16,6 +12,10 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Blob;
+use Upsun\Model\Commit;
+use Upsun\Model\Ref;
+use Upsun\Model\Tree;
 
 /**
  * Low level RepositoryApi (auto-generated)

@@ -2,18 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\EnvironmentActivateInput;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\EnvironmentBranchInput;
-use Upsun\Model\VersionCreateInput;
-use Upsun\Model\EnvironmentDeployInput;
-use Upsun\Model\Environment;
-use Upsun\Model\Version;
-use Upsun\Model\EnvironmentInitializeInput;
-use Upsun\Model\EnvironmentMergeInput;
-use Upsun\Model\EnvironmentSynchronizeInput;
-use Upsun\Model\EnvironmentPatch;
-use Upsun\Model\VersionPatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -24,6 +12,18 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Environment;
+use Upsun\Model\EnvironmentActivateInput;
+use Upsun\Model\EnvironmentBranchInput;
+use Upsun\Model\EnvironmentDeployInput;
+use Upsun\Model\EnvironmentInitializeInput;
+use Upsun\Model\EnvironmentMergeInput;
+use Upsun\Model\EnvironmentPatch;
+use Upsun\Model\EnvironmentSynchronizeInput;
+use Upsun\Model\Version;
+use Upsun\Model\VersionCreateInput;
+use Upsun\Model\VersionPatch;
 
 /**
  * Low level EnvironmentApi (auto-generated)

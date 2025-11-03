@@ -2,9 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\ConfirmPhoneNumberRequest;
-use Upsun\Model\VerifyPhoneNumberRequest;
-use Upsun\Model\VerifyPhoneNumber200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -15,6 +12,9 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ConfirmPhoneNumberRequest;
+use Upsun\Model\VerifyPhoneNumber200Response;
+use Upsun\Model\VerifyPhoneNumberRequest;
 
 /**
  * Low level PhoneNumberApi (auto-generated)

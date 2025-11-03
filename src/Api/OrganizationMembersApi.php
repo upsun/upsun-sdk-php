@@ -2,12 +2,7 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateOrgMemberRequest;
-use Upsun\Model\OrganizationMember;
-use Upsun\Model\ArrayFilter;
-use Upsun\Model\ListOrgMembers200Response;
 use DateTime;
-use Upsun\Model\UpdateOrgMemberRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -18,6 +13,11 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ArrayFilter;
+use Upsun\Model\CreateOrgMemberRequest;
+use Upsun\Model\ListOrgMembers200Response;
+use Upsun\Model\OrganizationMember;
+use Upsun\Model\UpdateOrgMemberRequest;
 
 /**
  * Low level OrganizationMembersApi (auto-generated)

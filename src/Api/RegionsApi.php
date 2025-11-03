@@ -2,9 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Region;
-use Upsun\Model\StringFilter;
-use Upsun\Model\ListRegions200Response;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
@@ -16,6 +13,9 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ListRegions200Response;
+use Upsun\Model\Region;
+use Upsun\Model\StringFilter;
 
 /**
  * Low level RegionsApi (auto-generated)

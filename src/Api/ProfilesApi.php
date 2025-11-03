@@ -2,9 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Address;
-use Upsun\Model\Profile;
-use Upsun\Model\UpdateOrgProfileRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -15,6 +12,9 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Address;
+use Upsun\Model\Profile;
+use Upsun\Model\UpdateOrgProfileRequest;
 
 /**
  * Low level ProfilesApi (auto-generated)

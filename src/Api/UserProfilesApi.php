@@ -2,13 +2,6 @@
 
 namespace Upsun\Api;
 
-use SplFileObject;
-use Upsun\Model\CreateProfilePicture200Response;
-use Upsun\Model\GetAddress200Response;
-use Upsun\Model\Profile;
-use Upsun\Model\ListProfiles200Response;
-use Upsun\Model\Address;
-use Upsun\Model\UpdateProfileRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -17,8 +10,15 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use SplFileObject;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Address;
+use Upsun\Model\CreateProfilePicture200Response;
+use Upsun\Model\GetAddress200Response;
+use Upsun\Model\ListProfiles200Response;
+use Upsun\Model\Profile;
+use Upsun\Model\UpdateProfileRequest;
 
 /**
  * Low level UserProfilesApi (auto-generated)

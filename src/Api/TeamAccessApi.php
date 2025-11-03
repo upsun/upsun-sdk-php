@@ -2,8 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\TeamProjectAccess;
-use Upsun\Model\ListProjectTeamAccess200Response;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
@@ -15,6 +13,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ListProjectTeamAccess200Response;
+use Upsun\Model\TeamProjectAccess;
 
 /**
  * Low level TeamAccessApi (auto-generated)

@@ -2,10 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\ProjectVariableCreateInput;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\ProjectVariable;
-use Upsun\Model\ProjectVariablePatch;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -16,6 +12,10 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\ProjectVariable;
+use Upsun\Model\ProjectVariableCreateInput;
+use Upsun\Model\ProjectVariablePatch;
 
 /**
  * Low level ProjectVariablesApi (auto-generated)

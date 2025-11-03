@@ -2,10 +2,10 @@
 
 namespace Upsun\Api;
 
-use Throwable;
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Throwable;
 use Upsun\Model\Error;
 
 /**
