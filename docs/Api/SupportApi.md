@@ -25,7 +25,6 @@ Create a new support ticket
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\SupportApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -77,7 +76,6 @@ List support ticket categories
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\SupportApi(
@@ -135,7 +133,6 @@ List support ticket priorities
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\SupportApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -189,7 +186,6 @@ Update a ticket
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\SupportApi(

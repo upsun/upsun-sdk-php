@@ -25,7 +25,6 @@ Retrieves information about the add-ons for an organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\AddOnsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -79,7 +78,6 @@ Updates the add-ons configuration for an organization.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\AddOnsApi(

@@ -28,7 +28,6 @@ Create a user profile picture
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\UserProfilesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -84,7 +83,6 @@ Delete a user profile picture
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\UserProfilesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -135,7 +133,6 @@ Get a user address
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\UserProfilesApi(
@@ -191,7 +188,6 @@ Get a single user profile
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\UserProfilesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -245,7 +241,6 @@ List user profiles
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\UserProfilesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -296,7 +291,6 @@ Update a user address, supplying one or more key/value pairs to to change.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\UserProfilesApi(
@@ -354,7 +348,6 @@ Update a user profile, supplying one or more key/value pairs to to change.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\UserProfilesApi(

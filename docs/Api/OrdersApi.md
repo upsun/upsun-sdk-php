@@ -27,7 +27,6 @@ Creates confirmation credentials for payments that require online authorization
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\OrdersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -83,7 +82,6 @@ Download an invoice.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\OrdersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -136,7 +134,6 @@ Retrieves an order for the specified organization.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\OrdersApi(
@@ -196,7 +193,6 @@ Retrieves orders for the specified organization.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\OrdersApi(

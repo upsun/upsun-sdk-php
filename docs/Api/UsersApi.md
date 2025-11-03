@@ -33,7 +33,6 @@ Retrieves the current user, determined from the used access token.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -84,7 +83,6 @@ Retrieve information about the currently logged-in user (the user associated wit
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\UsersApi(
@@ -139,7 +137,6 @@ Find out if the current logged in user requires phone verification to create pro
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -192,7 +189,6 @@ Find out if the current logged in user requires verification (phone or staff) to
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -243,7 +239,6 @@ Retrieves the specified user.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\UsersApi(
@@ -301,7 +296,6 @@ Retrieves a user matching the specified email address.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -357,7 +351,6 @@ Retrieves a user matching the specified username.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -411,7 +404,6 @@ Requests a reset of the user's email address. A confirmation email will be sent 
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\UsersApi(
@@ -470,7 +462,6 @@ Requests a reset of the user's password. A password reset email will be sent to 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -523,7 +514,6 @@ Updates the specified user.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\UsersApi(

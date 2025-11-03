@@ -33,7 +33,6 @@ Add a single domain to a project. If the `ssl` field is left blank without an ob
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\DomainManagementApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -89,7 +88,6 @@ Add a single domain to an environment. If the environment is not production, the
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
@@ -151,7 +149,6 @@ Delete a single user-specified domain associated with a project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\DomainManagementApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -207,7 +204,6 @@ Delete a single user-specified domain associated with an environment.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
@@ -269,7 +265,6 @@ Retrieve information about a single user-specified domain associated with a proj
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\DomainManagementApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -325,7 +320,6 @@ Retrieve information about a single user-specified domain associated with an env
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
@@ -387,7 +381,6 @@ Retrieve a list of objects representing the user-specified domains associated wi
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\DomainManagementApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -441,7 +434,6 @@ Retrieve a list of objects representing the user-specified domains associated wi
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
@@ -501,7 +493,6 @@ Update the information associated with a single user-specified domain associated
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\DomainManagementApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -559,7 +550,6 @@ Update the information associated with a single user-specified domain associated
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(

@@ -26,7 +26,6 @@ Cancel a single activity as specified by an `id` returned by the [Get environmen
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\EnvironmentActivityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -86,7 +85,6 @@ Retrieve a single environment activity entry as specified by an `id` returned by
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\EnvironmentActivityApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -144,7 +142,6 @@ Retrieve an environment's activity log. This returns a list of object with recor
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\EnvironmentActivityApi(

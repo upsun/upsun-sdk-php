@@ -28,7 +28,6 @@ Creates a new organization member.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\OrganizationMembersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -84,7 +83,6 @@ Deletes the specified organization member.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\OrganizationMembersApi(
@@ -143,7 +141,6 @@ Retrieves the specified organization member.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-
 $apiInstance = new Upsun\Api\OrganizationMembersApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
@@ -199,7 +196,6 @@ Accessible to organization owners and members with the \"manage members\" permis
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\OrganizationMembersApi(
@@ -265,7 +261,6 @@ Updates the specified organization member.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-
 
 
 $apiInstance = new Upsun\Api\OrganizationMembersApi(

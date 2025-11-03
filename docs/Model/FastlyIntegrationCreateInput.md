@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  |
-**token** | **string** |  |
+**token** | **string** | Fastly API Token |
 **serviceId** | **string** |  |
-**events** | **string[]** |  | [optional]
-**environments** | **string[]** |  | [optional]
-**excludedEnvironments** | **string[]** |  | [optional]
-**states** | **string[]** |  | [optional]
-**result** | **string** |  | [optional]
+**events** | **string[]** | Events to execute the hook on | [optional]
+**environments** | **string[]** | The environments to execute the hook on | [optional]
+**excludedEnvironments** | **string[]** | The environments to not execute the hook on | [optional]
+**states** | **string[]** | Events to execute the hook on | [optional]
+**result** | **string** | Result to execute the hook on | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
