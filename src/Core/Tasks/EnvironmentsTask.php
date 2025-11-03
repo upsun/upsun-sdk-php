@@ -388,8 +388,8 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets environment activity log
      *
-     *
      * @return Activity[]
+     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -450,8 +450,6 @@ class EnvironmentsTask extends TaskBase
     /**
      * Restores an environment snapshot
      *
-     * @return AcceptedResponse
-     *
      * @throws ClientExceptionInterface
      */
     public function restoreBackup(
@@ -490,8 +488,8 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets environment types
      *
-     *
      * @return EnvironmentType[]
+     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -573,8 +571,8 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets list of Environment variables
      *
-     *
      * @return EnvironmentVariable[]
+     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -586,8 +584,8 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets list of Project variables
      *
-     *
      * @return ProjectVariable[]
+     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -644,8 +642,8 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets list of routes
      *
-     *
      * @return Route[]
+     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -703,8 +701,8 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets a list of environment domains
      *
-     *
      * @return Domain[]
+     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -716,11 +714,6 @@ class EnvironmentsTask extends TaskBase
     /**
      * Updates an environment domain
      *
-     * @param array{
-     *     attributes?: array,
-     *     isDefault?: bool,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
@@ -728,9 +721,10 @@ class EnvironmentsTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $domainId,
-        array $data
+        ?array $attributes = null,
+        ?bool $isDefault = null,
     ): AcceptedResponse {
-        return $this->client->domains->update($projectId, $domainId, $data, $environmentId);
+        return $this->client->domains->update($projectId, $domainId, $attributes, $isDefault, $environmentId);
     }
 
     /**
@@ -747,8 +741,8 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets an environment's deployment information
      *
-     *
      * @return Deployment[]
+     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -760,8 +754,8 @@ class EnvironmentsTask extends TaskBase
     /**
      * Lists source operations
      *
-     *
      * @return EnvironmentSourceOperation[]
+     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
@@ -773,19 +767,15 @@ class EnvironmentsTask extends TaskBase
     /**
      * Triggers a source operation
      *
-     * @param array{
-     *     operation: string,
-     *     variables: array,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function runSourceOperation(
         string $projectId,
         string $environmentId,
-        array $data
+        string $operation,
+        array $variables,
     ): AcceptedResponse {
-        return $this->client->sourceOperations->run($projectId, $environmentId, $data);
+        return $this->client->sourceOperations->run($projectId, $environmentId, $operation, $variables);
     }
 }

@@ -1512,13 +1512,6 @@ class EnvironmentsTaskTest extends BaseTestCase
         $projectId = 'project-123';
         $environmentId = 'env-123';
         $domainId = 'domain-123';
-        $input = [
-            'attributes' => [
-                'version' => '8.2',
-                'engine' => 'php-fpm',
-            ],
-            'isDefault' => true
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -1531,7 +1524,16 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->updateDomain($projectId, $environmentId, $domainId, $input);
+        $result = $this->environmentTask->updateDomain(
+            $projectId,
+            $environmentId,
+            $domainId,
+            [
+            'version' => '8.2',
+            'engine' => 'php-fpm',
+            ],
+            true
+        );
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);
@@ -2908,10 +2910,6 @@ class EnvironmentsTaskTest extends BaseTestCase
     {
         $projectId = 'project-123';
         $environmentId = 'env-456';
-        $input = [
-            'operation' => 'sync',
-            'variables' => []
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -2924,7 +2922,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->runSourceOperation($projectId, $environmentId, $input);
+        $result = $this->environmentTask->runSourceOperation($projectId, $environmentId, 'sync', []);
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);

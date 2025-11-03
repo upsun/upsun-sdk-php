@@ -40,10 +40,6 @@ class SourceOperationsTaskTest extends BaseTestCase
     {
         $projectId = 'project-123';
         $environmentId = 'env-456';
-        $input = [
-            'operation' => 'sync',
-            'variables' => []
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -56,7 +52,7 @@ class SourceOperationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->task->run($projectId, $environmentId, $input);
+        $result = $this->task->run($projectId, $environmentId, 'sync', []);
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);

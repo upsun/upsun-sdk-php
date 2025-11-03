@@ -41,20 +41,19 @@ class SourceOperationsTask extends TaskBase
     /**
      * Trigger a source operation
      *
-     * @param array{
-     *     operation: string,
-     *     variables: array,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
     public function run(
         string $projectId,
         string $environmentId,
-        array $data
+        string $operation,
+        array $variables
     ): AcceptedResponse {
-        $environmentSourceOperationInput = new EnvironmentSourceOperationInput(...$data);
+        $environmentSourceOperationInput = new EnvironmentSourceOperationInput(
+            operation: $operation,
+            variables: $variables
+        );
         return $this->api->runSourceOperation($projectId, $environmentId, $environmentSourceOperationInput);
     }
 }
