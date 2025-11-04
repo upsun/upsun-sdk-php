@@ -2,6 +2,7 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -279,7 +280,7 @@ class DomainsTaskTest extends BaseTestCase
 
     /**
      * @throws ClientExceptionInterface
-     * @throws \Exception
+     * @throws Exception
      */
     public function testListWithEnvironment(): void
     {

@@ -2186,7 +2186,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectNotToPerformAssertions();
 
-        $this->usersTask->updateUserProjectAccess(userId: $userId,projectId: $projectId, permissions: $permissions);
+        $this->usersTask->updateUserProjectAccess(userId: $userId, projectId: $projectId, permissions: $permissions);
     }
 
     /**
