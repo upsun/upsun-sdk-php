@@ -5,6 +5,7 @@ namespace Upsun\Tests;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionObject;
 use Upsun\UpsunConfig;
 
 /**
@@ -93,7 +94,8 @@ class UpsunConfigTest extends TestCase
      */
     public function testPropertiesArePublic()
     {
-        $reflection = new ReflectionClass(UpsunConfig::class);
+        $config = new UpsunConfig();
+        $reflection = new ReflectionObject($config);
 
         $properties = [
             'base_url',

@@ -4421,7 +4421,7 @@ FAKE-CHAIN-CERT-DATA2
             projectId: $projectId,
             domainId: $domainId,
             attributes: [],
-            isDefault:true
+            isDefault: true
         );
     }
 
@@ -4548,7 +4548,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->updateCertificate(projectId: $projectId, certificateId: $certId, chain: $certData);
+        $this->projectsTask->updateCertificate(
+            projectId: $projectId,
+            certificateId: $certId,
+            chain: $certData['chain'],
+            isInvalid: $certData['isInvalid'],
+        );
     }
 
     /**
