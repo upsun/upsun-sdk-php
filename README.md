@@ -117,7 +117,7 @@ The SDK is built as follows:
 * Which generates:
   * PHP **Models** (in `src/Model/`)
   * PHP **APIs** (in `src/Api/`)
-* Higher-level PHP **Tasks** (in `src/Tasks/`)
+* Higher-level PHP (Facade) oriented **Tasks** (in `src/Core/Tasks/`)
 
 ![Architecture of the SDK](./assets/images/sdk-schema.png)
 
