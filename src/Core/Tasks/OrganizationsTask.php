@@ -86,21 +86,24 @@ class OrganizationsTask extends TaskBase
     /**
      * Creates organization
      *
-     * @param array{
-     *     label: string,
-     *     type?: string,
-     *     ownerId?: string,
-     *     name?: string,
-     *     country?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function create(array $data): Organization
-    {
-        $createOrgRequest = new CreateOrgRequest(...$data);
-        return $this->api->createOrg($createOrgRequest);
+    public function create(
+        string $label,
+        ?string $type = null,
+        ?string $ownerId = null,
+        ?string $name = null,
+        ?string $country = null,
+    ): Organization {
+        $createOrgRequest = new CreateOrgRequest(
+            label: $label,
+            type: $type,
+            ownerId: $ownerId,
+            name: $name,
+            country: $country
+        );
+        return $this->api->createOrg(createOrgRequest: $createOrgRequest);
     }
 
     /**
@@ -111,7 +114,7 @@ class OrganizationsTask extends TaskBase
      */
     public function delete(string $organizationId): void
     {
-        $this->api->deleteOrg($organizationId);
+        $this->api->deleteOrg(organizationId: $organizationId);
     }
 
     /**
@@ -122,7 +125,7 @@ class OrganizationsTask extends TaskBase
      */
     public function get(string $organizationId): Organization
     {
-        return $this->api->getOrg($organizationId);
+        return $this->api->getOrg(organizationId: $organizationId);
     }
 
     /**
@@ -147,19 +150,19 @@ class OrganizationsTask extends TaskBase
         ?string $sort = null
     ): ListOrgs200Response {
         return $this->api->listOrgs(
-            new StringFilter(...$this->normalizeFilter($filterId)),
-            new StringFilter(...$this->normalizeFilter($filterType)),
-            new StringFilter(...$this->normalizeFilter($filterOwnerId)),
-            new StringFilter(...$this->normalizeFilter($filterName)),
-            new StringFilter(...$this->normalizeFilter($filterLabel)),
-            new StringFilter(...$this->normalizeFilter($filterVendor)),
-            new ArrayFilter(...$this->normalizeFilter($filterCapabilities)),
-            new StringFilter(...$this->normalizeFilter($filterStatus)),
-            new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            filterId: new StringFilter(...$this->normalizeFilter($filterId)),
+            filterType: new StringFilter(...$this->normalizeFilter($filterType)),
+            filterOwnerId: new StringFilter(...$this->normalizeFilter($filterOwnerId)),
+            filterName: new StringFilter(...$this->normalizeFilter($filterName)),
+            filterLabel: new StringFilter(...$this->normalizeFilter($filterLabel)),
+            filterVendor: new StringFilter(...$this->normalizeFilter($filterVendor)),
+            filterCapabilities: new ArrayFilter(...$this->normalizeFilter($filterCapabilities)),
+            filterStatus: new StringFilter(...$this->normalizeFilter($filterStatus)),
+            filterUpdatedAt: new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 
@@ -182,16 +185,16 @@ class OrganizationsTask extends TaskBase
         ?string $sort = null
     ): ListUserOrgs200Response {
         return $this->api->listUserOrgs(
-            $userId,
-            new StringFilter(...$this->normalizeFilter($filterId)),
-            new StringFilter(...$this->normalizeFilter($filterType)),
-            new StringFilter(...$this->normalizeFilter($filterVendor)),
-            new StringFilter(...$this->normalizeFilter($filterStatus)),
-            new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            userId: $userId,
+            filterId: new StringFilter(...$this->normalizeFilter($filterId)),
+            filterType: new StringFilter(...$this->normalizeFilter($filterType)),
+            filterVendor: new StringFilter(...$this->normalizeFilter($filterVendor)),
+            filterStatus: new StringFilter(...$this->normalizeFilter($filterStatus)),
+            filterUpdatedAt: new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 
@@ -212,15 +215,15 @@ class OrganizationsTask extends TaskBase
         ?string $sort = null
     ): ListUserOrgs200Response {
         return $this->listUserOrgs(
-            $this->client->users->me()->getId(),
-            $filterId,
-            $filterVendor,
-            $filterStatus,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            userId: $this->client->users->me()->getId(),
+            filterId: $filterId,
+            filterVendor: $filterVendor,
+            filterStatus: $filterStatus,
+            filterUpdatedAt: $filterUpdatedAt,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 
@@ -230,10 +233,18 @@ class OrganizationsTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function update(string $organizationId, ?array $updateOrgData = null): Organization
-    {
-        $updateOrgRequest = new UpdateOrgRequest(...$updateOrgData);
-        return $this->api->updateOrg($organizationId, $updateOrgRequest);
+    public function update(
+        string $organizationId,
+        ?string $name = null,
+        ?string $label = null,
+        ?string $country = null,
+    ): Organization {
+        $updateOrgRequest = new UpdateOrgRequest(
+            name: $name,
+            label: $label,
+            country: $country
+        );
+        return $this->api->updateOrg(organizationId: $organizationId, updateOrgRequest: $updateOrgRequest);
     }
 
     /**
@@ -251,13 +262,13 @@ class OrganizationsTask extends TaskBase
         ?string $sort = null
     ): ListTeams200Response {
         return $this->client->teams->list(
-            $organizationId ? ['eq' => $organizationId] : null,
-            null,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            filterOrganizationId: $organizationId ? ['eq' => $organizationId] : null,
+            filterId: null,
+            filterUpdatedAt: $filterUpdatedAt,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 
@@ -269,7 +280,7 @@ class OrganizationsTask extends TaskBase
      */
     public function getProject(string $organizationId, string $projectId): OrganizationProject
     {
-        return $this->projectsApi->getOrgProject($organizationId, $projectId);
+        return $this->projectsApi->getOrgProject(organizationId: $organizationId, projectId: $projectId);
     }
 
 
@@ -293,15 +304,15 @@ class OrganizationsTask extends TaskBase
     ): ListOrgProjects200Response {
         return $this->projectsApi->listOrgProjects(
             $organizationId,
-            $filterId ? new StringFilter(...$this->normalizeFilter($filterId)) : null,
-            $filterTitle ? new StringFilter(...$this->normalizeFilter($filterTitle)) : null,
-            $filterStatus ? new StringFilter(...$this->normalizeFilter($filterStatus)) : null,
-            $filterUpdatedAt ? new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)) : null,
-            $filterCreatedAt ? new DateTimeFilter(...$this->normalizeFilter($filterCreatedAt)) : null,
-            $pageSize ?? null,
-            $pageBefore ?? null,
-            $pageAfter ?? null,
-            $sort ?? null
+            filterId: $filterId ? new StringFilter(...$this->normalizeFilter($filterId)) : null,
+            filterTitle: $filterTitle ? new StringFilter(...$this->normalizeFilter($filterTitle)) : null,
+            filterStatus: $filterStatus ? new StringFilter(...$this->normalizeFilter($filterStatus)) : null,
+            filterUpdatedAt: $filterUpdatedAt ? new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)) : null,
+            filterCreatedAt: $filterCreatedAt ? new DateTimeFilter(...$this->normalizeFilter($filterCreatedAt)) : null,
+            pageSize: $pageSize ?? null,
+            pageBefore: $pageBefore ?? null,
+            pageAfter: $pageAfter ?? null,
+            sort: $sort ?? null
         );
     }
 
@@ -322,7 +333,10 @@ class OrganizationsTask extends TaskBase
             userId: $userId,
             permissions: $permissions ?? null
         );
-        return $this->membersApi->createOrgMember($organizationId, $createOrgMemberRequest);
+        return $this->membersApi->createOrgMember(
+            organizationId: $organizationId,
+            createOrgMemberRequest: $createOrgMemberRequest
+        );
     }
 
     /**
@@ -341,7 +355,11 @@ class OrganizationsTask extends TaskBase
         $updateOrgMemberRequest = $permissions ? new UpdateOrgMemberRequest(
             permissions: $permissions
         ) : null;
-        return $this->membersApi->updateOrgMember($organizationId, $userId, $updateOrgMemberRequest);
+        return $this->membersApi->updateOrgMember(
+            organizationId: $organizationId,
+            userId: $userId,
+            updateOrgMemberRequest: $updateOrgMemberRequest
+        );
     }
 
     /**
@@ -352,7 +370,7 @@ class OrganizationsTask extends TaskBase
      */
     public function getMember(string $organizationId, string $userId): OrganizationMember
     {
-        return $this->membersApi->getOrgMember($organizationId, $userId);
+        return $this->membersApi->getOrgMember(organizationId: $organizationId, userId: $userId);
     }
 
     /**
@@ -370,12 +388,13 @@ class OrganizationsTask extends TaskBase
         ?string $sort = null
     ): ListOrgMembers200Response {
         return $this->membersApi->listOrgMembers(
-            $organizationId,
-            $filterPermissions ? new ArrayFilter(...$this->normalizeFilter($filterPermissions)) : null,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            organizationId: $organizationId,
+            filterPermissions: $filterPermissions ?
+                new ArrayFilter(...$this->normalizeFilter($filterPermissions)) : null,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 
@@ -387,7 +406,7 @@ class OrganizationsTask extends TaskBase
      */
     public function deleteMember(string $organizationId, string $userId): void
     {
-        $this->membersApi->deleteOrgMember($organizationId, $userId);
+        $this->membersApi->deleteOrgMember(organizationId: $organizationId, userId: $userId);
     }
 
     /**
@@ -398,28 +417,35 @@ class OrganizationsTask extends TaskBase
      */
     public function canCreateProject(string $organizationId): CanCreateNewOrgSubscription200Response
     {
-        return $this->client->projects->canCreate($organizationId);
+        return $this->client->projects->canCreate(organizationId: $organizationId);
     }
 
     /**
      * Creates a project
      *
-     * @param array{
-     *     projectRegion: string,
-     *     plan?: string,
-     *     projectTitle?: string,
-     *     optionsUrl?: string,
-     *     defaultBranch?: string,
-     *     environments?: int,
-     *     storage?: int
-     * } $createProjectData
-     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      */
-    public function createProject(string $organizationId, array $createProjectData): Subscription
-    {
-        return $this->client->projects->create($organizationId, $createProjectData);
+    public function createProject(
+        string $organizationId,
+        string $projectRegion,
+        ?string $plan = null,
+        ?string $title = null,
+        ?string $optionsUrl = null,
+        ?string $defaultBranch = null,
+        ?int $environments = null,
+        ?int $storage = null,
+    ): Subscription {
+        return $this->client->projects->create(
+            organizationId: $organizationId,
+            projectRegion: $projectRegion,
+            title: $title,
+            defaultBranch: $defaultBranch,
+            plan: $plan,
+            optionsUrl: $optionsUrl,
+            environments: $environments,
+            storage: $storage
+        );
     }
 
     /**
@@ -447,12 +473,12 @@ class OrganizationsTask extends TaskBase
         ?string $format = null
     ): EstimationObject {
         return $this->subscriptionsApi->estimateNewOrgSubscription(
-            $organizationId,
-            self::DEFAULT_UPSUN_PLAN,
-            $environments,
-            $storage,
-            $userLicenses,
-            $format
+            organizationId: $organizationId,
+            plan: self::DEFAULT_UPSUN_PLAN,
+            environments: $environments,
+            storage: $storage,
+            userLicenses: $userLicenses,
+            format: $format
         );
     }
 
@@ -470,14 +496,17 @@ class OrganizationsTask extends TaskBase
         ?int $userLicenses = 1,
         ?string $format = null
     ): EstimationObject {
+        $project = $this->client->projects->get($projectId);
+        $subscriptionId = $this->extractSubscriptionId($project->getSubscription()->getLicenseUri());
+
         return $this->subscriptionsApi->estimateOrgSubscription(
-            $organizationId,
-            $projectId,
-            self::DEFAULT_UPSUN_PLAN,
-            $environments,
-            $storage,
-            $userLicenses,
-            $format
+            organizationId: $organizationId,
+            subscriptionId: $subscriptionId,
+            plan: self::DEFAULT_UPSUN_PLAN,
+            environments: $environments,
+            storage: $storage,
+            userLicenses: $userLicenses,
+            format: $format
         );
     }
 
@@ -493,11 +522,14 @@ class OrganizationsTask extends TaskBase
         ?string $usageGroups = null,
         ?bool $includeNotCharged = null
     ): SubscriptionCurrentUsageObject {
+        $project = $this->client->projects->get($projectId);
+        $subscriptionId = $this->extractSubscriptionId($project->getSubscription()->getLicenseUri());
+
         return $this->subscriptionsApi->getOrgSubscriptionCurrentUsage(
-            $organizationId,
-            $projectId,
-            $usageGroups,
-            $includeNotCharged
+            organizationId: $organizationId,
+            subscriptionId: $subscriptionId,
+            usageGroups: $usageGroups,
+            includeNotCharged: $includeNotCharged
         );
     }
 
@@ -509,9 +541,24 @@ class OrganizationsTask extends TaskBase
      */
     public function updateProject(
         string $projectId,
-        ?array $updateProjectData = null
+        ?string $title = null,
+        ?string $defaultBranch = null,
+        ?string $description = null,
+        ?string $defaultDomain = null,
+        ?array $attributes = [],
+        ?string $timezone = null,
+        ?string $region = null,
     ): AcceptedResponse {
-        return $this->client->projects->update($projectId, $updateProjectData);
+        return $this->client->projects->update(
+            projectId: $projectId,
+            title: $title,
+            defaultBranch: $defaultBranch,
+            description: $description,
+            defaultDomain: $defaultDomain,
+            attributes: $attributes,
+            timezone: $timezone,
+            region: $region,
+        );
     }
 
     /**
@@ -522,7 +569,7 @@ class OrganizationsTask extends TaskBase
      */
     public function disableMfaEnforcement(string $organizationId): void
     {
-        $this->mfaApi->disableOrgMfaEnforcement($organizationId);
+        $this->mfaApi->disableOrgMfaEnforcement(organizationId: $organizationId);
     }
 
     /**
@@ -533,7 +580,7 @@ class OrganizationsTask extends TaskBase
      */
     public function enableMfaEnforcement(string $organizationId): void
     {
-        $this->mfaApi->enableOrgMfaEnforcement($organizationId);
+        $this->mfaApi->enableOrgMfaEnforcement(organizationId: $organizationId);
     }
 
     /**
@@ -544,12 +591,11 @@ class OrganizationsTask extends TaskBase
      */
     public function getMfaEnforcement(string $organizationId): OrganizationMFAEnforcement
     {
-        return $this->mfaApi->getOrgMfaEnforcement($organizationId);
+        return $this->mfaApi->getOrgMfaEnforcement(organizationId: $organizationId);
     }
 
     /**
      * Sends MFA reminders to organization members
-     *
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -558,7 +604,10 @@ class OrganizationsTask extends TaskBase
     public function sendMfaReminders(string $organizationId, ?array $userIds = null): array
     {
         $sendOrgMfaRemindersRequest = new SendOrgMfaRemindersRequest(userIds: $userIds);
-        return $this->mfaApi->sendOrgMfaReminders($organizationId, $sendOrgMfaRemindersRequest);
+        return $this->mfaApi->sendOrgMfaReminders(
+            organizationId: $organizationId,
+            sendOrgMfaRemindersRequest: $sendOrgMfaRemindersRequest
+        );
     }
 
     /**
@@ -569,7 +618,7 @@ class OrganizationsTask extends TaskBase
      */
     public function getInvoice(string $invoiceId, string $organizationId): Invoice
     {
-        return $this->invoicesApi->getOrgInvoice($invoiceId, $organizationId);
+        return $this->invoicesApi->getOrgInvoice(invoiceId: $invoiceId, organizationId: $organizationId);
     }
 
     /**
@@ -586,11 +635,11 @@ class OrganizationsTask extends TaskBase
         ?int $page = null
     ): ListOrgInvoices200Response {
         return $this->invoicesApi->listOrgInvoices(
-            $organizationId,
-            $filterStatus,
-            $filterType,
-            $filterOrderId,
-            $page
+            organizationId: $organizationId,
+            filterStatus: $filterStatus,
+            filterType: $filterType,
+            filterOrderId: $filterOrderId,
+            page: $page
         );
     }
 
@@ -604,7 +653,7 @@ class OrganizationsTask extends TaskBase
         string $organizationId,
         string $orderId
     ): CreateAuthorizationCredentials200Response {
-        return $this->ordersApi->createAuthorizationCredentials($organizationId, $orderId);
+        return $this->ordersApi->createAuthorizationCredentials(organizationId: $organizationId, orderId: $orderId);
     }
 
     /**
@@ -615,7 +664,7 @@ class OrganizationsTask extends TaskBase
      */
     public function downloadInvoice(string $token): string
     {
-        return $this->ordersApi->downloadInvoice($token);
+        return $this->ordersApi->downloadInvoice(token: $token);
     }
 
     /**
@@ -626,7 +675,7 @@ class OrganizationsTask extends TaskBase
      */
     public function getOrder(string $organizationId, string $orderId, ?string $mode = null): Order
     {
-        return $this->ordersApi->getOrgOrder($organizationId, $orderId, $mode);
+        return $this->ordersApi->getOrgOrder(organizationId: $organizationId, orderId: $orderId, mode: $mode);
     }
 
     /**
@@ -642,7 +691,13 @@ class OrganizationsTask extends TaskBase
         ?int $page = null,
         ?string $mode = null
     ): ListOrgOrders200Response {
-        return $this->ordersApi->listOrgOrders($organizationId, $filterStatus, $filterTotal, $page, $mode);
+        return $this->ordersApi->listOrgOrders(
+            organizationId: $organizationId,
+            filterStatus: $filterStatus,
+            filterTotal: $filterTotal,
+            page: $page,
+            mode: $mode
+        );
     }
 
     /**
@@ -653,7 +708,7 @@ class OrganizationsTask extends TaskBase
      */
     public function getAddress(string $organizationId): Address
     {
-        return $this->profilesApi->getOrgAddress($organizationId);
+        return $this->profilesApi->getOrgAddress(organizationId: $organizationId);
     }
 
     /**
@@ -664,71 +719,70 @@ class OrganizationsTask extends TaskBase
      */
     public function getProfile(string $organizationId): Profile
     {
-        return $this->profilesApi->getOrgProfile($organizationId);
+        return $this->profilesApi->getOrgProfile(organizationId: $organizationId);
     }
 
     /**
      * Updates address
      *
-     * @param array|null{
-     *     country?: string,
-     *     nameLine?: string,
-     *     premise?: string,
-     *     subPremise?: string,
-     *     thoroughfare?: string,
-     *     administrativeArea?: string,
-     *     subAdministrativeArea?: string,
-     *     locality?: string,
-     *     dependentLocality?: string,
-     *     postalCode?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function updateAddress(string $organizationId, ?array $data = null): Address
-    {
-        $address = $data ? new Address(
-            country: $data['country'],
-            nameLine: $data['nameLine'],
-            premise: $data['premise'],
-            subPremise: $data['subPremise'],
-            thoroughfare: $data['thoroughfare'],
-            administrativeArea: $data['administrativeArea'],
-            subAdministrativeArea: $data['subAdministrativeArea'],
-            locality: $data['locality'],
-            dependentLocality: $data['dependentLocality'],
-            postalCode: $data['postalCode'],
-        ) : null;
-        return $this->profilesApi->updateOrgAddress($organizationId, $address);
+    public function updateAddress(
+        string $organizationId,
+        ?string $country = null,
+        ?string $nameLine = null,
+        ?string $premise = null,
+        ?string $subPremise = null,
+        ?string $thoroughfare = null,
+        ?string $administrativeArea = null,
+        ?string $subAdministrativeArea = null,
+        ?string $locality = null,
+        ?string $dependentLocality = null,
+        ?string $postalCode = null,
+    ): Address {
+        $address = new Address(
+            country: $country,
+            nameLine: $nameLine,
+            premise: $premise,
+            subPremise: $subPremise,
+            thoroughfare: $thoroughfare,
+            administrativeArea: $administrativeArea,
+            subAdministrativeArea: $subAdministrativeArea,
+            locality: $locality,
+            dependentLocality: $dependentLocality,
+            postalCode: $postalCode,
+        );
+        return $this->profilesApi->updateOrgAddress(organizationId: $organizationId, address: $address);
     }
 
     /**
      * Updates profile
      *
-     * @param array|null{
-     *     defaultCatalog?: string,
-     *     projectOptionsUrl?: string,
-     *     securityContact?: string,
-     *     companyName?: string,
-     *     vatNumber?: string,
-     *     billingContact?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function updateProfile(string $organizationId, ?array $data = null): Profile
-    {
-        $updateOrgProfileRequest = $data ? new UpdateOrgProfileRequest(
-            defaultCatalog: $data['defaultCatalog'],
-            projectOptionsUrl: $data['projectOptionsUrl'],
-            securityContact: $data['securityContact'],
-            companyName: $data['companyName'],
-            vatNumber: $data['vatNumber'],
-            billingContact: $data['billingContact'],
-        ) : null;
-        return $this->profilesApi->updateOrgProfile($organizationId, $updateOrgProfileRequest);
+    public function updateProfile(
+        string $organizationId,
+        ?string $defaultCatalog = null,
+        ?string $projectOptionsUrl = null,
+        ?string $securityContact = null,
+        ?string $companyName = null,
+        ?string $vatNumber = null,
+        ?string $billingContact = null,
+    ): Profile {
+        $updateOrgProfileRequest = new UpdateOrgProfileRequest(
+            defaultCatalog: $defaultCatalog,
+            projectOptionsUrl: $projectOptionsUrl,
+            securityContact: $securityContact,
+            companyName: $companyName,
+            vatNumber: $vatNumber,
+            billingContact: $billingContact,
+        );
+        return $this->profilesApi->updateOrgProfile(
+            organizationId: $organizationId,
+            updateOrgProfileRequest: $updateOrgProfileRequest
+        );
     }
 
     /**
@@ -748,16 +802,23 @@ class OrganizationsTask extends TaskBase
         ?DateTime $filterEndedAt = null,
         ?int $page = null
     ): ListOrgPlanRecords200Response {
+
+        $subscriptionId = null;
+        if ($filterProjectId) {
+            $project = $this->client->projects->get($filterProjectId);
+            $subscriptionId = $this->extractSubscriptionId($project->getSubscription()->getLicenseUri());
+        }
+
         return $this->recordsApi->listOrgPlanRecords(
-            $organizationId,
-            $filterProjectId,
-            $filterPlan,
-            $filterStatus,
-            $filterStart,
-            $filterEnd,
-            $filterStartedAt,
-            $filterEndedAt,
-            $page
+            organizationId: $organizationId,
+            filterSubscriptionId: $subscriptionId,
+            filterPlan: $filterPlan,
+            filterStatus: $filterStatus,
+            filterStart: $filterStart,
+            filterEnd: $filterEnd,
+            filterStartedAt: $filterStartedAt,
+            filterEndedAt: $filterEndedAt,
+            page: $page
         );
     }
 
@@ -775,13 +836,19 @@ class OrganizationsTask extends TaskBase
         ?DateTime $filterStartedAt = null,
         ?int $page = null
     ): ListOrgUsageRecords200Response {
+        $subscriptionId = null;
+        if ($filterProjectId) {
+            $project = $this->client->projects->get($filterProjectId);
+            $subscriptionId = $this->extractSubscriptionId($project->getSubscription()->getLicenseUri());
+        }
+
         return $this->recordsApi->listOrgUsageRecords(
-            $organizationId,
-            $filterProjectId,
-            $filterUsageGroup,
-            $filterStart,
-            $filterStartedAt,
-            $page
+            organizationId: $organizationId,
+            filterSubscriptionId: $subscriptionId,
+            filterUsageGroup: $filterUsageGroup,
+            filterStart: $filterStart,
+            filterStartedAt: $filterStartedAt,
+            page: $page
         );
     }
 
@@ -796,7 +863,10 @@ class OrganizationsTask extends TaskBase
         $applyOrgVoucherRequest = new ApplyOrgVoucherRequest(
             code: $code
         );
-        $this->vouchersApi->applyOrgVoucher($organizationId, $applyOrgVoucherRequest);
+        $this->vouchersApi->applyOrgVoucher(
+            organizationId: $organizationId,
+            applyOrgVoucherRequest: $applyOrgVoucherRequest
+        );
     }
 
     /**
@@ -807,9 +877,8 @@ class OrganizationsTask extends TaskBase
      */
     public function listVouchers(string $organizationId): Vouchers
     {
-        return $this->vouchersApi->listOrgVouchers($organizationId);
+        return $this->vouchersApi->listOrgVouchers(organizationId: $organizationId);
     }
-
 
     /**
      * Get Organization Addons
@@ -819,23 +888,27 @@ class OrganizationsTask extends TaskBase
      */
     public function getAddons(string $organizationId): OrganizationAddonsObject
     {
-        return $this->addOnsApi->getOrgAddons($organizationId);
+        return $this->addOnsApi->getOrgAddons(organizationId: $organizationId);
     }
 
     /**
      * Updates Organization Addons
      *
-     * @param array{
-     *     userManagement?: string,
-     *     supportLevel?: string,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function updateAddons(string $organizationId, array $data): OrganizationAddonsObject
-    {
-        $updateOrgAddonsData = new UpdateOrgAddonsRequest(...$data);
-        return $this->addOnsApi->updateOrgAddons($organizationId, $updateOrgAddonsData);
+    public function updateAddons(
+        string $organizationId,
+        ?string $userManagement = null,
+        ?string $supportLevel = null,
+    ): OrganizationAddonsObject {
+        $updateOrgAddonsData = new UpdateOrgAddonsRequest(
+            userManagement: $userManagement,
+            supportLevel: $supportLevel
+        );
+        return $this->addOnsApi->updateOrgAddons(
+            organizationId: $organizationId,
+            updateOrgAddonsRequest: $updateOrgAddonsData
+        );
     }
 }

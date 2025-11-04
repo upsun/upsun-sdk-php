@@ -37,9 +37,9 @@ class BackupsTask extends TaskBase
     public function backup(
         string $projectId,
         string $environmentId,
-        bool $safe
+        bool $isSafe
     ): AcceptedResponse {
-        $environmentBackupInput = new EnvironmentBackupInput($safe);
+        $environmentBackupInput = new EnvironmentBackupInput($isSafe);
         return $this->api->backupEnvironment($projectId, $environmentId, $environmentBackupInput);
     }
 
@@ -68,9 +68,8 @@ class BackupsTask extends TaskBase
     /**
      * Gets an environment's snapshot list
      *
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @return Backup[]
      */
     public function list(string $projectId, string $environmentId): array
@@ -81,14 +80,6 @@ class BackupsTask extends TaskBase
     /**
      * Restores an environment snapshot
      *
-     * @param array{
-     *     restoreCode: bool,
-     *     restoreResources: bool,
-     *     environmentName?: string,
-     *     branchFrom?: string,
-     *     init?: string
-     * } $options Configuration options for environment restoration
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
@@ -96,15 +87,24 @@ class BackupsTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $backupId,
-        array $options
+        bool $restoreCode,
+        bool $restoreResources,
+        ?string $environmentName = null,
+        ?string $branchFrom = null,
+        ?string $init = null,
     ): AcceptedResponse {
         $environmentRestoreInput = new EnvironmentRestoreInput(
-            restoreCode: $options['restoreCode'],
-            restoreResources: $options['restoreResources'],
-            environmentName: $options['environmentName'] ?? null,
-            branchFrom: $options['branchFrom'] ?? null,
-            resources: new Resources6(init: $options['init'] ?? null),
+            restoreCode: $restoreCode,
+            restoreResources: $restoreResources,
+            environmentName: $environmentName,
+            branchFrom: $branchFrom,
+            resources: new Resources6(init: $init),
         );
-        return $this->api->restoreBackup($projectId, $environmentId, $backupId, $environmentRestoreInput);
+        return $this->api->restoreBackup(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            backupId: $backupId,
+            environmentRestoreInput: $environmentRestoreInput
+        );
     }
 }

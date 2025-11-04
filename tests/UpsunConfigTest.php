@@ -4,6 +4,8 @@ namespace Upsun\Tests;
 
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
+use ReflectionException;
+use ReflectionObject;
 use Upsun\UpsunConfig;
 
 /**
@@ -62,10 +64,11 @@ class UpsunConfigTest extends TestCase
         $this->assertEquals('oauth2/token', $config->refresh_endpoint);
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function testPropertiesAreReadonly()
     {
-        $config = new UpsunConfig(apiToken: 'test-token');
-
         $reflection = new ReflectionClass(UpsunConfig::class);
 
         $properties = [
@@ -86,11 +89,13 @@ class UpsunConfigTest extends TestCase
         }
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function testPropertiesArePublic()
     {
         $config = new UpsunConfig();
-
-        $reflection = new ReflectionClass(UpsunConfig::class);
+        $reflection = new ReflectionObject($config);
 
         $properties = [
             'base_url',
@@ -139,12 +144,12 @@ class UpsunConfigTest extends TestCase
     {
         // Test that named parameters work in any order
         $config = new UpsunConfig(
-            clientId: 'client-123',
-            apiToken: 'token-456',
-            auth_url: 'https://auth.custom.com',
             base_url: 'https://api.custom.com',
+            auth_url: 'https://auth.custom.com',
+            apiToken: 'token-456',
+            token_endpoint: 'token/endpoint',
             refresh_endpoint: 'refresh/endpoint',
-            token_endpoint: 'token/endpoint'
+            clientId: 'client-123'
         );
 
         $this->assertEquals('https://api.custom.com', $config->base_url);

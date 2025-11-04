@@ -2,8 +2,10 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
@@ -37,16 +39,13 @@ class CertificatesTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testCreateCertificateSuccess()
     {
         $projectId = 'proj_123';
-        $options = [
-            'certificate' => 'cert-data',
-            'key' => 'key-data',
-            'chain' => ['chain1', 'chain2'],
-            'isInvalid' => false,
-        ];
-
         $fakeResponse = [
             'status' => 'accepted',
             'code' => 204,
@@ -60,19 +59,24 @@ class CertificatesTaskTest extends BaseTestCase
                 json_encode($fakeResponse)
             ));
 
-        $result = $this->task->create($projectId, $options);
+        $result = $this->task->create(
+            projectId: $projectId,
+            certificate: 'cert-data',
+            key: 'key-data',
+            chain: ['chain1', 'chain2'],
+            isInvalid: false,
+        );
 
         $this->assertInstanceOf(AcceptedResponse::class, $result);
         $this->assertObjectProperties($result, $fakeResponse);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateCertificateError()
     {
         $projectId = 'proj_123';
-        $options = [
-            'certificate' => 'cert-data',
-            'key' => 'key-data',
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -88,9 +92,17 @@ class CertificatesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->create($projectId, $options);
+        $this->task->create(
+            projectId: $projectId,
+            certificate: 'cert-data',
+            key: 'key-data'
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testDeleteCertificateSuccess()
     {
         $projectId = 'proj_123';
@@ -109,12 +121,15 @@ class CertificatesTaskTest extends BaseTestCase
                 json_encode($fakeResponse)
             ));
 
-        $result = $this->task->delete($projectId, $certificateId);
+        $result = $this->task->delete(projectId: $projectId, certificateId: $certificateId);
 
         $this->assertInstanceOf(AcceptedResponse::class, $result);
         $this->assertObjectProperties($result, $fakeResponse);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteCertificateError()
     {
         $projectId = 'proj_123';
@@ -134,9 +149,13 @@ class CertificatesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->delete($projectId, $certificateId);
+        $this->task->delete(projectId: $projectId, certificateId: $certificateId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetCertificateSuccess()
     {
         $projectId = 'proj_123';
@@ -167,12 +186,15 @@ class CertificatesTaskTest extends BaseTestCase
                 json_encode($fakeCertificate)
             ));
 
-        $result = $this->task->get($projectId, $certificateId);
+        $result = $this->task->get(projectId: $projectId, certificateId: $certificateId);
 
         $this->assertInstanceOf(Certificate::class, $result);
         $this->assertObjectProperties($result, $fakeCertificate);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetCertificateError()
     {
         $projectId = 'proj_123';
@@ -192,9 +214,13 @@ class CertificatesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->get($projectId, $certificateId);
+        $this->task->get(projectId: $projectId, certificateId: $certificateId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListCertificatesSuccess()
     {
         $projectId = 'proj_123';
@@ -242,13 +268,16 @@ class CertificatesTaskTest extends BaseTestCase
                 json_encode($fakeCertificates)
             ));
 
-        $result = $this->task->list($projectId);
+        $result = $this->task->list(projectId: $projectId);
 
         $this->assertIsArray($result);
         $this->assertContainsOnlyInstancesOf(Certificate::class, $result);
         $this->assertObjectMatchesArray($result, $fakeCertificates);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListCertificatesError()
     {
         $projectId = 'proj_123';
@@ -267,9 +296,13 @@ class CertificatesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->list($projectId);
+        $this->task->list(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testUpdateCertificateSuccess()
     {
         $projectId = 'proj_123';
@@ -292,12 +325,15 @@ class CertificatesTaskTest extends BaseTestCase
                 json_encode($fakeResponse)
             ));
 
-        $result = $this->task->update($projectId, $certificateId, $data);
+        $result = $this->task->update(projectId: $projectId, certificateId: $certificateId, chain: $data);
 
         $this->assertInstanceOf(AcceptedResponse::class, $result);
         $this->assertObjectProperties($result, $fakeResponse);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateCertificateError()
     {
         $projectId = 'proj_123';
@@ -321,6 +357,6 @@ class CertificatesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->update($projectId, $certificateId, $data);
+        $this->task->update(projectId: $projectId, certificateId: $certificateId, chain: $data);
     }
 }

@@ -39,9 +39,9 @@ class ActivitiesTask extends TaskBase
             return $this->prjApi->actionProjectsActivitiesCancel($projectId, $activityId);
         } else {
             return $this->envApi->actionProjectsEnvironmentsActivitiesCancel(
-                $projectId,
-                $environmentId,
-                $activityId
+                projectId: $projectId,
+                environmentId: $environmentId,
+                activityId: $activityId
             );
         }
     }
@@ -55,26 +55,35 @@ class ActivitiesTask extends TaskBase
     public function get(string $projectId, string $activityId, ?string $environmentId = null): Activity
     {
         if (!$environmentId) {
-            return $this->prjApi->getProjectsActivities($projectId, $activityId);
+            return $this->prjApi->getProjectsActivities(
+                projectId: $projectId,
+                activityId: $activityId
+            );
         } else {
-            return $this->envApi->getProjectsEnvironmentsActivities($projectId, $environmentId, $activityId);
+            return $this->envApi->getProjectsEnvironmentsActivities(
+                projectId: $projectId,
+                environmentId: $environmentId,
+                activityId: $activityId
+            );
         }
     }
 
     /**
      * Gets project (or environment) activity log
      *
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @return Activity[]
      */
     public function list(string $projectId, ?string $environmentId = null): array
     {
         if (!$environmentId) {
-            return $this->prjApi->listProjectsActivities($projectId);
+            return $this->prjApi->listProjectsActivities(projectId: $projectId);
         } else {
-            return $this->envApi->listProjectsEnvironmentsActivities($projectId, $environmentId);
+            return $this->envApi->listProjectsEnvironmentsActivities(
+                projectId: $projectId,
+                environmentId: $environmentId
+            );
         }
     }
 }

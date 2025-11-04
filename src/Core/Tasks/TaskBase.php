@@ -4,6 +4,7 @@ namespace Upsun\Core\Tasks;
 
 use DateTime;
 use DateTimeInterface;
+use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\UpsunClient;
 
 /**
@@ -36,5 +37,16 @@ abstract class TaskBase
 
         // string or int
         return ['eq' => (string) $value];
+    }
+
+    /**
+     * Get SubscriptionId of a Project Licence Uri
+     *
+     * @throws ClientExceptionInterface
+     */
+    protected function extractSubscriptionId(string $projectLicenceUri): string
+    {
+        $path = parse_url($projectLicenceUri, PHP_URL_PATH);
+        return basename($path);
     }
 }

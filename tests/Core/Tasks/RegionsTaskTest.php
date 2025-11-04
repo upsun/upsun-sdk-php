@@ -40,6 +40,7 @@ class RegionsTaskTest extends BaseTestCase
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testGetRegion(): void
     {
@@ -80,11 +81,14 @@ class RegionsTaskTest extends BaseTestCase
                 json_encode($fakeRegion)
             ));
 
-        $result = $this->regionsTask->get($regionId);
+        $result = $this->regionsTask->get(regionId: $regionId);
         $this->assertInstanceOf(Region::class, $result);
         $this->assertObjectProperties($result, $fakeRegion);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetRegionThrowsApiException(): void
     {
         $this->httpClient
@@ -99,7 +103,7 @@ class RegionsTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->regionsTask->get('invalid-region');
+        $this->regionsTask->get(regionId: 'invalid-region');
     }
 
     /**
@@ -194,6 +198,9 @@ class RegionsTaskTest extends BaseTestCase
         $this->assertObjectMatchesArray($result->getRegions(), $list['regions']);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListRegionsThrowsApiException(): void
     {
         $this->httpClient

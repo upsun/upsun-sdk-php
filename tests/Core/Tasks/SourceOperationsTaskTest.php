@@ -2,8 +2,10 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\SourceOperationsApi;
@@ -36,14 +38,13 @@ class SourceOperationsTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRun(): void
     {
         $projectId = 'project-123';
         $environmentId = 'env-456';
-        $input = [
-            'operation' => 'sync',
-            'variables' => []
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -56,12 +57,21 @@ class SourceOperationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->task->run($projectId, $environmentId, $input);
+        $result = $this->task->run(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            operation: 'sync',
+            variables: []
+        );
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testList(): void
     {
         $projectId = 'project-123';
@@ -95,7 +105,7 @@ class SourceOperationsTaskTest extends BaseTestCase
                 json_encode($fakeEnvironmentOperations)
             ));
 
-        $result = $this->task->list($projectId, $environmentId);
+        $result = $this->task->list(projectId: $projectId, environmentId: $environmentId);
 
         $this->assertContainsOnlyInstancesOf(EnvironmentSourceOperation::class, $result);
         $this->assertObjectMatchesArray($result, $fakeEnvironmentOperations);

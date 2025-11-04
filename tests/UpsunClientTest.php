@@ -5,6 +5,7 @@ namespace Upsun\Tests;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
 use ReflectionClass;
+use ReflectionException;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivitiesTask;
@@ -215,6 +216,9 @@ class UpsunClientTest extends TestCase
         $this->assertEquals('custom-token', $customClient->getToken());
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function testAllTasksArePubliclyAccessible()
     {
         $reflection = new ReflectionClass(UpsunClient::class);

@@ -5,6 +5,7 @@ namespace Upsun\Core\Tasks;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
+use Upsun\Model\AcceptedResponse;
 use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
 use Upsun\UpsunClient;
 
@@ -27,29 +28,30 @@ class ResourcesTask extends TaskBase
     /**
      * Update resources for a deployment
      *
-     * @param array{
-     *     webapps?: array<string, array{
-     *         resources?: array{
-     *             profile_size?: string
-     *         },
-     *         disk?: int,
-     *         instance_count?: int
-     *     }>,
-     *     services?: array<string, array{
-     *         resources?: array{
-     *             profile_size?: string,
-     *         },
-     *         disk?: int,
-     *         instance_count?: int
-     *     }>,
-     *     workers?: array<string, array{
-     *         resources?: array{
-     *             profile_size?: string,
-     *         },
-     *         disk?: int,
-     *         instance_count?: int
-     *     }>
-     * } $resourcesData Data specifying the new resources configuration for webapps, services, or workers
+     * @param null|array{
+     *   webapps?: array<string, array{
+     *     resources?: array{
+     *       profile_size?: string
+     *     },
+     *     disk?: int,
+     *     instance_count?: int
+     *   }> $webapps
+     *
+     * @param null|array<string, array{
+     *   resources?: array{
+     *     profile_size?: string,
+     *   },
+     *   disk?: int,
+     *   instance_count?: int
+     * }> $services
+     *
+     * @param null|array<string, array{
+     *   resources?: array{
+     *     profile_size?: string,
+     *   },
+     *   disk?: int,
+     *   instance_count?: int
+     * }> $workers
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -57,18 +59,20 @@ class ResourcesTask extends TaskBase
     public function update(
         string $projectId,
         string $environmentId,
-        array $resourcesData
-    ): void {
+        ?array $webapps = [],
+        ?array $services = [],
+        ?array $workers = [],
+    ): AcceptedResponse {
         $data = new UpdateProjectsEnvironmentsDeploymentsNextRequest(
-            webapps: $resourcesData['webapps'] ?? null,
-            services: $resourcesData['services'] ?? null,
-            workers: $resourcesData['workers'] ?? null,
+            webapps: $webapps,
+            services: $services,
+            workers: $workers,
         );
 
-        $this->api->updateProjectsEnvironmentsDeploymentsNext(
-            $projectId,
-            $environmentId,
-            $data
+        return $this->api->updateProjectsEnvironmentsDeploymentsNext(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            updateProjectsEnvironmentsDeploymentsNextRequest: $data
         );
     }
 }

@@ -35,16 +35,14 @@ class SourceOperationsTask extends TaskBase
      */
     public function list(string $projectId, string $environmentId): array
     {
-        return $this->api->listProjectsEnvironmentsSourceOperations($projectId, $environmentId);
+        return $this->api->listProjectsEnvironmentsSourceOperations(
+            projectId: $projectId,
+            environmentId: $environmentId
+        );
     }
 
     /**
      * Trigger a source operation
-     *
-     * @param array{
-     *     operation: string,
-     *     variables: array,
-     * } $data
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -52,9 +50,17 @@ class SourceOperationsTask extends TaskBase
     public function run(
         string $projectId,
         string $environmentId,
-        array $data
+        string $operation,
+        array $variables
     ): AcceptedResponse {
-        $environmentSourceOperationInput = new EnvironmentSourceOperationInput(...$data);
-        return $this->api->runSourceOperation($projectId, $environmentId, $environmentSourceOperationInput);
+        $environmentSourceOperationInput = new EnvironmentSourceOperationInput(
+            operation: $operation,
+            variables: $variables
+        );
+        return $this->api->runSourceOperation(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            environmentSourceOperationInput: $environmentSourceOperationInput
+        );
     }
 }

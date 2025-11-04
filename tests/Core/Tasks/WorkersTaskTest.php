@@ -2,8 +2,10 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use stdClass;
 use Upsun\Api\ApiConfiguration;
@@ -37,6 +39,10 @@ class WorkersTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListWorkersSuccess()
     {
         $projectId = 'proj_123';
@@ -221,13 +227,16 @@ class WorkersTaskTest extends BaseTestCase
                 json_encode($deploymentsFake)
             ));
 
-        $result = $this->workersTask->list($projectId, $environmentId);
+        $result = $this->workersTask->list(projectId: $projectId, environmentId: $environmentId);
         $this->assertIsArray($result);
         $this->assertNotEmpty($result);
         $this->assertContainsOnlyInstancesOf(WorkersValue::class, $result);
         $this->assertObjectMatchesArray($result, $deploymentsFake[0]['workers']);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListWorkersError()
     {
         $projectId = 'proj_123';
@@ -246,6 +255,6 @@ class WorkersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->workersTask->list($projectId, $environmentId);
+        $this->workersTask->list(projectId: $projectId, environmentId: $environmentId);
     }
 }

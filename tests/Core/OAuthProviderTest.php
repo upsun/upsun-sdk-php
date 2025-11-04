@@ -45,6 +45,9 @@ class OAuthProviderTest extends TestCase
         );
     }
 
+    /**
+     * @throws Exception
+     */
     public function testExchangeCodeForTokenSuccess()
     {
         $responseBody = json_encode([
@@ -152,6 +155,9 @@ class OAuthProviderTest extends TestCase
         $this->oauthProvider->exchangeCodeForToken();
     }
 
+    /**
+     * @throws Exception
+     */
     public function testGetAuthorizationReturnsValidToken()
     {
         $responseBody = json_encode([
@@ -168,6 +174,9 @@ class OAuthProviderTest extends TestCase
         $this->assertEquals('Bearer valid-token-abc', $authorization);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testEnsureValidTokenRequestsNewTokenWhenNoneExists()
     {
         $responseBody = json_encode([
@@ -191,6 +200,9 @@ class OAuthProviderTest extends TestCase
         $this->assertEquals('Bearer new-token-123', $authorization);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testEnsureValidTokenRefreshesExpiredToken()
     {
         // First request: get initial token with short expiry
@@ -221,6 +233,9 @@ class OAuthProviderTest extends TestCase
         $this->assertEquals('Bearer refreshed-token', $authorization);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testEnsureValidTokenWithinBufferPeriodRefreshesToken()
     {
         // Token that expires in less than 60 seconds (buffer period)
@@ -249,6 +264,9 @@ class OAuthProviderTest extends TestCase
         $this->assertEquals('Bearer fresh-token', $authorization);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testGetAuthorizationDoesNotRefreshValidToken()
     {
         $responseBody = json_encode([
@@ -271,6 +289,9 @@ class OAuthProviderTest extends TestCase
         $this->assertEquals('Bearer long-lived-token', $auth2);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testConstructorWithDifferentParameters()
     {
         $customProvider = new OAuthProvider(
@@ -302,6 +323,9 @@ class OAuthProviderTest extends TestCase
         $this->assertTrue($result);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testAuthorizationHeaderFormat()
     {
         $responseBody = json_encode([
@@ -326,6 +350,9 @@ class OAuthProviderTest extends TestCase
         $this->oauthProvider->exchangeCodeForToken();
     }
 
+    /**
+     * @throws Exception
+     */
     public function testExchangeCodeForTokenWithMissingExpiresIn()
     {
         $firstResponse = json_encode([

@@ -4,13 +4,13 @@ namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivitiesTask;
-use Upsun\Model\Activity;
 use Upsun\UpsunClient;
 
 class ActivitiesTaskTest extends BaseTestCase
@@ -51,6 +51,9 @@ class ActivitiesTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCancelProjectActivity()
     {
         $this->httpClient
@@ -65,11 +68,17 @@ class ActivitiesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->activitiesTask->cancel("proj-id", "act-213");
+        $response = $this->activitiesTask->cancel(
+            projectId: "proj-id",
+            activityId:  "act-213"
+        );
 
         $this->assertNotEmpty($response);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetProjectActivity()
     {
         $this->httpClient
@@ -92,12 +101,15 @@ class ActivitiesTaskTest extends BaseTestCase
                 )
             ));
 
-        $activity = $this->activitiesTask->get("proj-id", "act-213");
+        $activity = $this->activitiesTask->get(projectId: "proj-id", activityId: "act-213");
 
         $this->assertNotEmpty($activity);
         $this->assertEquals("proj-id", $activity->getProject());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCancelEnvironmentActivity()
     {
         $this->httpClient
@@ -112,12 +124,18 @@ class ActivitiesTaskTest extends BaseTestCase
                 ])
             ));
 
-        /** @var Activity $activity */
-        $response = $this->activitiesTask->cancel("proj-id", "act-213", "env-123");
+        $response = $this->activitiesTask->cancel(
+            projectId: "proj-id",
+            activityId: "act-213",
+            environmentId: "env-123"
+        );
 
         $this->assertNotEmpty($response);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetEnvironmentActivity()
     {
         $this->httpClient
@@ -140,13 +158,19 @@ class ActivitiesTaskTest extends BaseTestCase
                 )
             ));
 
-        /** @var Activity $activity */
-        $activity = $this->activitiesTask->get("proj-id", "act-213", "env-123");
+        $activity = $this->activitiesTask->get(
+            projectId: "proj-id",
+            activityId: "act-213",
+            environmentId: "env-123"
+        );
 
         $this->assertNotEmpty($activity);
         $this->assertEquals("proj-id", $activity->getProject());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListProjectActivities()
     {
         $this->httpClient
@@ -180,14 +204,16 @@ class ActivitiesTaskTest extends BaseTestCase
                 ])
             ));
 
-        /** @var Activity $activity */
-        $response = $this->activitiesTask->list("proj-id");
+        $response = $this->activitiesTask->list(projectId: "proj-id");
 
         $this->assertNotEmpty($response);
         $this->assertEquals("proj-id-1", $response[0]->getProject());
         $this->assertEquals("proj-id-2", $response[1]->getProject());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListEnvironmentActivities()
     {
         $this->httpClient
@@ -221,8 +247,7 @@ class ActivitiesTaskTest extends BaseTestCase
                 ])
             ));
 
-        /** @var Activity $activity */
-        $response = $this->activitiesTask->list("proj-id", "env-id");
+        $response = $this->activitiesTask->list(projectId: "proj-id", environmentId: "env-id");
 
         $this->assertNotEmpty($response);
         $this->assertEquals("proj-id-1", $response[0]->getProject());

@@ -63,6 +63,10 @@ class SupportTicketsTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testList(): void
     {
         $filterTicketId = 123;
@@ -152,19 +156,19 @@ class SupportTicketsTaskTest extends BaseTestCase
             ));
 
         $result = $this->task->list(
-            $filterTicketId,
-            $filterCreated,
-            $filterUpdated,
-            $filterType,
-            $filterPriority,
-            $filterStatus,
-            $filterRequesterId,
-            $filterSubmitterId,
-            $filterAssigneeId,
-            $filterHasIncidents,
-            $filterDue,
-            $search,
-            $page
+            filterTicketId: $filterTicketId,
+            filterCreated: $filterCreated,
+            filterUpdated: $filterUpdated,
+            filterType: $filterType,
+            filterPriority: $filterPriority,
+            filterStatus: $filterStatus,
+            filterRequesterId: $filterRequesterId,
+            filterSubmitterId: $filterSubmitterId,
+            filterAssigneeId: $filterAssigneeId,
+            filterHasIncidents: $filterHasIncidents,
+            filterDue: $filterDue,
+            search: $search,
+            page: $page
         );
 
         $this->assertInstanceOf(ListTickets200Response::class, $result);
@@ -182,6 +186,7 @@ class SupportTicketsTaskTest extends BaseTestCase
             'description' => 'Users report that login fails with 500 error.',
             'priority' => 'high',
             'subscriptionId' => 'sub-001',
+            'requestId' => 'req1',
             'organizationId' => 'org-001',
             'affectedUrl' => 'https://example.com/login',
             'followupTid' => 'ticket-001',
@@ -254,13 +259,26 @@ class SupportTicketsTaskTest extends BaseTestCase
                 json_encode($ticket)
             ));
 
-        $result = $this->task->create($fakeTicketData);
+        $result = $this->task->create(
+            subject: $fakeTicketData['subject'],
+            description: $fakeTicketData['description'],
+            requesterId: $fakeTicketData['requestId'],
+            priority: $fakeTicketData['priority'],
+            subscriptionId: $fakeTicketData['subscriptionId'],
+            organizationId: $fakeTicketData['organizationId'],
+            affectedUrl: $fakeTicketData['affectedUrl'],
+            followupTid: $fakeTicketData['followupTid'],
+            category: $fakeTicketData['category'],
+            attachments: $fakeTicketData['attachments'],
+            collaboratorIds: $fakeTicketData['collaboratorIds'],
+        );
         $this->assertInstanceOf(Ticket::class, $result);
         $this->assertObjectProperties($result, $fakeTicketData);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testUpdate(): void
     {
@@ -325,11 +343,20 @@ class SupportTicketsTaskTest extends BaseTestCase
                 json_encode($ticket)
             ));
 
-        $result = $this->task->update('ticket-123', $fakeTicketData);
+        $result = $this->task->update(
+            ticketId: 'ticket-123',
+            status: $fakeTicketData['status'],
+            collaboratorIds: $fakeTicketData['collaboratorIds'],
+            collaboratorsReplace: $fakeTicketData['collaboratorsReplace'],
+        );
         $this->assertInstanceOf(Ticket::class, $result);
         $this->assertObjectProperties($result, $fakeTicketData);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListCategories(): void
     {
         $projId = 'project-123';
@@ -424,13 +451,14 @@ class SupportTicketsTaskTest extends BaseTestCase
                 )
             );
 
-        $result = $this->task->listCategories($orgId, $projId);
+        $result = $this->task->listCategories(organizationId: $orgId, projectId: $projId);
         $this->assertContainsOnlyInstancesOf(ListTicketCategories200ResponseInner::class, $result);
         $this->assertObjectMatchesArray($result, $ticketCategories);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testListPriorities(): void
     {
@@ -538,7 +566,7 @@ class SupportTicketsTaskTest extends BaseTestCase
                 )
             );
 
-        $result = $this->task->listPriorities($projId, $priority);
+        $result = $this->task->listPriorities(projectId: $projId, category: $priority);
         $this->assertContainsOnlyInstancesOf(ListTicketPriorities200ResponseInner::class, $result);
         $this->assertObjectMatchesArray($result, $ticketPriorities);
     }

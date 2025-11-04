@@ -30,19 +30,22 @@ class CertificatesTask extends TaskBase
     /**
      * Adds an SSL certificate
      *
-     * @param array{
-     *     certificate: string,
-     *     key: string,
-     *     chain?: array,
-     *     isInvalid?: bool
-     * } $options Configuration options
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function create(string $projectId, array $options = []): AcceptedResponse
-    {
-        $certificateCreateInput = new CertificateCreateInput(...$options);
+    public function create(
+        string $projectId,
+        string $certificate,
+        string $key,
+        ?array $chain = null,
+        ?bool $isInvalid = null,
+    ): AcceptedResponse {
+        $certificateCreateInput = new CertificateCreateInput(
+            certificate: $certificate,
+            key: $key,
+            chain: $chain,
+            isInvalid: $isInvalid
+        );
         return $this->api->createProjectsCertificates($projectId, $certificateCreateInput);
     }
 
@@ -54,7 +57,10 @@ class CertificatesTask extends TaskBase
      */
     public function delete(string $projectId, string $certificateId): AcceptedResponse
     {
-        return $this->api->deleteProjectsCertificates($projectId, $certificateId);
+        return $this->api->deleteProjectsCertificates(
+            projectId: $projectId,
+            certificateId: $certificateId
+        );
     }
 
     /**
@@ -65,36 +71,42 @@ class CertificatesTask extends TaskBase
      */
     public function get(string $projectId, string $certificateId): Certificate
     {
-        return $this->api->getProjectsCertificates($projectId, $certificateId);
+        return $this->api->getProjectsCertificates(projectId: $projectId, certificateId: $certificateId);
     }
 
     /**
      * Gets list of SSL certificates
      *
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @return Certificate[]
      */
     public function list(string $projectId): array
     {
-        return $this->api->listProjectsCertificates($projectId);
+        return $this->api->listProjectsCertificates(projectId: $projectId);
     }
 
     /**
      * Updates an SSL certificate
      *
-     * @param array{
-     *     chain?: array,
-     *     isInvalid?: bool,
-     * } $data
-     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function update(string $projectId, string $certificateId, array $data): AcceptedResponse
-    {
-        $certificatePatch = new CertificatePatch(...$data);
-        return $this->api->updateProjectsCertificates($projectId, $certificateId, $certificatePatch);
+    public function update(
+        string $projectId,
+        string $certificateId,
+        ?array $chain = null,
+        ?bool $isInvalid = null,
+    ): AcceptedResponse {
+        $certificatePatch = new CertificatePatch(
+            chain: $chain,
+            isInvalid: $isInvalid
+        );
+        return $this->api->updateProjectsCertificates(
+            projectId: $projectId,
+            certificateId: $certificateId,
+            certificatePatch: $certificatePatch
+        );
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -77,7 +78,7 @@ class InvitationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->invitationTask->cancelOrgInvite($organizationId, $invitationId);
+        $this->invitationTask->cancelOrgInvite(organizationId: $organizationId, invitationId: $invitationId);
     }
 
     /**
@@ -100,12 +101,14 @@ class InvitationsTaskTest extends BaseTestCase
                     'code' => 403
                 ])
             ));
+        $this->expectException(ApiException::class);
 
-        $this->invitationTask->cancelOrgInvite($organizationId, $invitationId);
+        $this->invitationTask->cancelOrgInvite(organizationId: $organizationId, invitationId: $invitationId);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testCreateOrgInvite(): void
     {
@@ -113,39 +116,46 @@ class InvitationsTaskTest extends BaseTestCase
         $email = 'test@example.com';
         $permissions = ['read', 'write'];
         $force = false;
-
+        $data = [
+            'finishedAt'     => '2025-09-16T10:15:30+00:00',
+            'id'             => 'invite_123456',
+            'state'          => 'pending',
+            'organizationId' => 'org_78910',
+            'email'          => 'user@example.com',
+            'owner'          => [
+                'id'    => 'owner_42',
+                'name'  => 'Alice Dupont',
+                'email' => 'alice.dupont@example.com',
+            ],
+            'createdAt'      => '2025-09-10T08:00:00+00:00',
+            'updatedAt'      => '2025-09-12T09:30:00+00:00',
+            'permissions'    => [
+                'read',
+                'write',
+            ],
+        ];
         $this->httpClient
             ->expects($this->once())
             ->method('sendRequest')
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode([
-                    'finishedAt'     => '2025-09-16T10:15:30+00:00',
-                    'id'             => 'invite_123456',
-                    'state'          => 'pending',
-                    'organizationId' => 'org_78910',
-                    'email'          => 'user@example.com',
-                    'owner'          => [
-                        'id'    => 'owner_42',
-                        'name'  => 'Alice Dupont',
-                        'email' => 'alice.dupont@example.com',
-                    ],
-                    'createdAt'      => '2025-09-10T08:00:00+00:00',
-                    'updatedAt'      => '2025-09-12T09:30:00+00:00',
-                    'permissions'    => [
-                        'read',
-                        'write',
-                    ],
-                ])
+                json_encode($data)
             ));
 
-        $response = $this->invitationTask->createOrgInvite($organizationId, $email, $permissions, $force);
+        $response = $this->invitationTask->createOrgInvite(
+            organizationId: $organizationId,
+            email: $email,
+            permissions: $permissions,
+            force: $force
+        );
         $this->assertInstanceOf(OrganizationInvitation::class, $response);
+        $this->assertObjectProperties($response, $data);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testCreateOrgInviteWithDefaultForce(): void
     {
@@ -153,6 +163,24 @@ class InvitationsTaskTest extends BaseTestCase
         $email = 'test@example.com';
         $permissions = ['read', 'write'];
         $force = true;
+        $data = [
+            'finishedAt'     => '2025-09-16T10:15:30+00:00',
+            'id'             => 'invite_123456',
+            'state'          => 'pending',
+            'organizationId' => 'org_78910',
+            'email'          => 'user@example.com',
+            'owner'          => [
+                'id'    => 'owner_42',
+                'name'  => 'Alice Dupont',
+                'email' => 'alice.dupont@example.com',
+            ],
+            'createdAt'      => '2025-09-10T08:00:00+00:00',
+            'updatedAt'      => '2025-09-12T09:30:00+00:00',
+            'permissions'    => [
+                'read',
+                'write',
+            ],
+        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -160,27 +188,18 @@ class InvitationsTaskTest extends BaseTestCase
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode([
-                    'finishedAt'     => '2025-09-16T10:15:30+00:00',
-                    'id'             => 'invite_123456',
-                    'state'          => 'pending',
-                    'organizationId' => 'org_78910',
-                    'email'          => 'user@example.com',
-                    'owner'          => [
-                        'id'    => 'owner_42',
-                        'name'  => 'Alice Dupont',
-                        'email' => 'alice.dupont@example.com',
-                    ],
-                    'createdAt'      => '2025-09-10T08:00:00+00:00',
-                    'updatedAt'      => '2025-09-12T09:30:00+00:00',
-                    'permissions'    => [
-                        'read',
-                        'write',
-                    ],
-                ])
+                json_encode($data)
             ));
 
-        $this->invitationTask->createOrgInvite($organizationId, $email, $permissions, $force);
+        $result = $this->invitationTask->createOrgInvite(
+            organizationId: $organizationId,
+            email: $email,
+            permissions: $permissions,
+            force: $force
+        );
+
+        $this->assertInstanceOf(OrganizationInvitation::class, $result);
+        $this->assertObjectProperties($result, $data);
     }
 
     /**
@@ -205,80 +224,78 @@ class InvitationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->invitationTask->createOrgInvite($organizationId, $email, $permissions);
+        $this->invitationTask->createOrgInvite(
+            organizationId: $organizationId,
+            email: $email,
+            permissions: $permissions
+        );
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testListOrgInvites(): void
     {
         $organizationId = 'org-123';
+        $list = [
+            [
+                'finishedAt'     => '2025-09-16T10:15:30+00:00',
+                'id'             => 'invite_123456',
+                'state'          => 'pending',
+                'organizationId' => 'org_78910',
+                'email'          => 'user@example.com',
+                'owner'          => [
+                    'id'    => 'owner_42',
+                    'name'  => 'Anne Onyme',
+                    'email' => 'anne.onyme@example.com',
+                ],
+                'createdAt'      => '2025-09-10T08:00:00+00:00',
+                'updatedAt'      => '2025-09-12T09:30:00+00:00',
+                'permissions'    => [
+                    'read',
+                    'write',
+                ]
+            ],
+            [
+                'finishedAt'     => '2025-09-16T10:15:30+00:00',
+                'id'             => 'invite_789123',
+                'state'          => 'pending',
+                'organizationId' => 'org_78910',
+                'email'          => 'user2@example.com',
+                'owner'          => [
+                    'id'    => 'owner_43',
+                    'name'  => 'Alice Dupont',
+                    'email' => 'alice.dupont@example.com',
+                ],
+                'createdAt'      => '2025-09-10T08:00:00+00:00',
+                'updatedAt'      => '2025-09-12T09:30:00+00:00',
+                'permissions'    => [
+                    'read',
+                    'write',
+                    'admin'
+                ]
+            ]
+        ];
 
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode([
-                    [
-                        'finishedAt'     => '2025-09-16T10:15:30+00:00',
-                        'id'             => 'invite_123456',
-                        'state'          => 'pending',
-                        'organizationId' => 'org_78910',
-                        'email'          => 'user@example.com',
-                        'owner'          => [
-                            'id'    => 'owner_42',
-                            'name'  => 'Anne Onyme',
-                            'email' => 'anne.onyme@example.com',
-                        ],
-                        'createdAt'      => '2025-09-10T08:00:00+00:00',
-                        'updatedAt'      => '2025-09-12T09:30:00+00:00',
-                        'permissions'    => [
-                            'read',
-                            'write',
-                        ]
-                    ],
-                    [
-                        'finishedAt'     => '2025-09-16T10:15:30+00:00',
-                        'id'             => 'invite_789123',
-                        'state'          => 'pending',
-                        'organizationId' => 'org_78910',
-                        'email'          => 'user2@example.com',
-                        'owner'          => [
-                            'id'    => 'owner_43',
-                            'name'  => 'Alice Dupont',
-                            'email' => 'alice.dupont@example.com',
-                        ],
-                        'createdAt'      => '2025-09-10T08:00:00+00:00',
-                        'updatedAt'      => '2025-09-12T09:30:00+00:00',
-                        'permissions'    => [
-                            'read',
-                            'write',
-                            'admin'
-                        ]
-                    ]
-                ])
+                json_encode($list)
             ));
 
-        $result = $this->invitationTask->listOrgInvites($organizationId);
+        $result = $this->invitationTask->listOrgInvites(organizationId: $organizationId);
 
         $this->assertIsArray($result);
         $this->assertContainsOnlyInstancesOf(OrganizationInvitation::class, $result);
-
-        $this->assertEquals("invite_123456", $result[0]->getId());
-        $this->assertEquals("org_78910", $result[0]->getOrganizationId());
-        $this->assertEquals("user@example.com", $result[0]->getEmail());
-        $this->assertEquals(['read', 'write'], $result[0]->getPermissions());
-
-        $this->assertEquals("invite_789123", $result[1]->getId());
-        $this->assertEquals("org_78910", $result[1]->getOrganizationId());
-        $this->assertEquals("user2@example.com", $result[1]->getEmail());
-        $this->assertEquals(['read', 'write', 'admin'], $result[1]->getPermissions());
+        $this->assertObjectMatchesArray($result, $list);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testListOrgInvitesWithParameters(): void
     {
@@ -289,73 +306,66 @@ class InvitationsTaskTest extends BaseTestCase
         $pageAfter = 'cursor-after';
         $sort = 'created_at';
 
+        $list = [
+            [
+                'finishedAt'     => '2025-09-16T10:15:30+00:00',
+                'id'             => 'invite_789123',
+                'state'          => 'pending',
+                'organizationId' => 'org_78910',
+                'email'          => 'user2@example.com',
+                'owner'          => [
+                    'id'    => 'owner_43',
+                    'name'  => 'Alice Dupont',
+                    'email' => 'alice.dupont@example.com',
+                ],
+                'createdAt'      => '2025-09-10T07:00:00+00:00',
+                'updatedAt'      => '2025-09-12T08:30:00+00:00',
+                'permissions'    => [
+                    'read',
+                    'write',
+                    'admin'
+                ]
+            ],
+            [
+                'finishedAt'     => '2025-09-16T10:15:30+00:00',
+                'id'             => 'invite_123456',
+                'state'          => 'pending',
+                'organizationId' => 'org_78910',
+                'email'          => 'user@example.com',
+                'owner'          => [
+                    'id'    => 'owner_42',
+                    'name'  => 'Anne Onyme',
+                    'email' => 'anne.onyme@example.com',
+                ],
+                'createdAt'      => '2025-09-10T08:00:00+00:00',
+                'updatedAt'      => '2025-09-12T09:30:00+00:00',
+                'permissions'    => [
+                    'read',
+                    'write',
+                ]
+            ]
+        ];
+
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode([
-                    [
-                        'finishedAt'     => '2025-09-16T10:15:30+00:00',
-                        'id'             => 'invite_789123',
-                        'state'          => 'pending',
-                        'organizationId' => 'org_78910',
-                        'email'          => 'user2@example.com',
-                        'owner'          => [
-                            'id'    => 'owner_43',
-                            'name'  => 'Alice Dupont',
-                            'email' => 'alice.dupont@example.com',
-                        ],
-                        'createdAt'      => '2025-09-10T07:00:00+00:00',
-                        'updatedAt'      => '2025-09-12T08:30:00+00:00',
-                        'permissions'    => [
-                            'read',
-                            'write',
-                            'admin'
-                        ]
-                    ],
-                    [
-                        'finishedAt'     => '2025-09-16T10:15:30+00:00',
-                        'id'             => 'invite_123456',
-                        'state'          => 'pending',
-                        'organizationId' => 'org_78910',
-                        'email'          => 'user@example.com',
-                        'owner'          => [
-                            'id'    => 'owner_42',
-                            'name'  => 'Anne Onyme',
-                            'email' => 'anne.onyme@example.com',
-                        ],
-                        'createdAt'      => '2025-09-10T08:00:00+00:00',
-                        'updatedAt'      => '2025-09-12T09:30:00+00:00',
-                        'permissions'    => [
-                            'read',
-                            'write',
-                        ]
-                    ]
-                ])
+                json_encode($list)
             ));
 
         $result = $this->invitationTask->listOrgInvites(
-            $organizationId,
-            $filterState,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            organizationId: $organizationId,
+            filterState: $filterState,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
 
         $this->assertIsArray($result);
         $this->assertContainsOnlyInstancesOf(OrganizationInvitation::class, $result);
-
-        $this->assertEquals("invite_789123", $result[0]->getId());
-        $this->assertEquals("org_78910", $result[0]->getOrganizationId());
-        $this->assertEquals("user2@example.com", $result[0]->getEmail());
-        $this->assertEquals(['read', 'write', 'admin'], $result[0]->getPermissions());
-
-        $this->assertEquals("invite_123456", $result[1]->getId());
-        $this->assertEquals("org_78910", $result[1]->getOrganizationId());
-        $this->assertEquals("user@example.com", $result[1]->getEmail());
-        $this->assertEquals(['read', 'write'], $result[1]->getPermissions());
+        $this->assertObjectMatchesArray($result, $list);
     }
 
     // Project Invitation Tests
@@ -380,7 +390,7 @@ class InvitationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->invitationTask->cancelProjectInvite($projectId, $invitationId);
+        $this->invitationTask->cancelProjectInvite(projectId: $projectId, invitationId: $invitationId);
     }
 
     /**
@@ -403,25 +413,42 @@ class InvitationsTaskTest extends BaseTestCase
                 ])
             ));
         $this->expectException(ApiException::class);
-        $this->invitationTask->cancelProjectInvite($projectId, $invitationId);
+        $this->invitationTask->cancelProjectInvite(projectId: $projectId, invitationId: $invitationId);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testCreateProjectInvite(): void
     {
         $projectId = 'project-123';
-
-        $userInvitationData = [
-            'email'       => 'jane.doe@example.com',
+        $data = [
+            'finishedAt'  => '2025-09-16T10:15:30+00:00',
+            'id'          => 'invite_987654',
+            'state'       => 'pending',
+            'projectId'   => 'proj_12345',
             'role'        => 'admin',
-            'permissions' => ['read', 'write', 'admin'],
-            'environments' => [
-                ['id' => 'env_001', 'name' => 'production'],
-                ['id' => 'env_002', 'name' => 'staging'],
+            'email'       => 'jane.doe@example.com',
+            'owner'       => [
+                'id'    => 'owner_001',
+                'name'  => 'John Doe',
+                'email' => 'john.doe@example.com',
             ],
-            'force'       => true,
+            'createdAt'   => '2025-09-10T08:00:00+00:00',
+            'updatedAt'   => '2025-09-12T09:30:00+00:00',
+            'environments' => [
+                [
+                    'id'   => 'env_001',
+                    'name' => 'production',
+                    'type' => 'main',
+                ],
+                [
+                    'id'   => 'env_002',
+                    'name' => 'staging',
+                    'type' => 'preprod',
+                ],
+            ],
         ];
 
         $this->httpClient
@@ -430,40 +457,23 @@ class InvitationsTaskTest extends BaseTestCase
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode([
-                    'finishedAt'  => '2025-09-16T10:15:30+00:00',
-                    'id'          => 'invite_987654',
-                    'state'       => 'pending',
-                    'projectId'   => 'proj_12345',
-                    'role'        => 'admin',
-                    'email'       => 'jane.doe@example.com',
-                    'owner'       => [
-                        'id'    => 'owner_001',
-                        'name'  => 'John Doe',
-                        'email' => 'john.doe@example.com',
-                    ],
-                    'createdAt'   => '2025-09-10T08:00:00+00:00',
-                    'updatedAt'   => '2025-09-12T09:30:00+00:00',
-                    'environments' => [
-                        [
-                            'id'   => 'env_001',
-                            'name' => 'production',
-                            'type' => 'main',
-                        ],
-                        [
-                            'id'   => 'env_002',
-                            'name' => 'staging',
-                            'type' => 'preprod',
-                        ],
-                    ],
-                ])
+                json_encode($data)
             ));
 
-        $result = $this->invitationTask->createProjectInvite($projectId, $userInvitationData);
+        $result = $this->invitationTask->createProjectInvite(
+            projectId: $projectId,
+            email: 'jane.doe@example.com',
+            role: 'admin',
+            permissions: ['read', 'write', 'admin'],
+            environments: [
+                ['id' => 'env_001', 'name' => 'production'],
+                ['id' => 'env_002', 'name' => 'staging'],
+            ],
+            force: true,
+        );
+
         $this->assertInstanceOf(ProjectInvitation::class, $result);
-        $this->assertEquals("invite_987654", $result->getId());
-        $this->assertEquals("proj_12345", $result->getProjectId());
-        $this->assertEquals("jane.doe@example.com", $result->getEmail());
+        $this->assertObjectProperties($result, $data);
     }
 
     /**
@@ -472,18 +482,6 @@ class InvitationsTaskTest extends BaseTestCase
     public function testCreateProjectInviteWithException(): void
     {
         $projectId = 'project-123';
-        $this->expectException(ApiException::class);
-
-        $userInvitationData = [
-            'email'       => 'jane.doe@example.com',
-            'role'        => 'admin',
-            'permissions' => ['read', 'write', 'admin'],
-            'environments' => [
-                ['id' => 'env_001', 'name' => 'production'],
-                ['id' => 'env_002', 'name' => 'staging'],
-            ],
-            'force'       => true,
-        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -497,15 +495,84 @@ class InvitationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->invitationTask->createProjectInvite($projectId, $userInvitationData);
+        $this->expectException(ApiException::class);
+
+        $this->invitationTask->createProjectInvite(
+            projectId: $projectId,
+            email: 'jane.doe@example.com',
+            role: 'admin',
+            permissions: ['read', 'write', 'admin'],
+            environments: [
+                ['id' => 'env_001', 'name' => 'production'],
+                ['id' => 'env_002', 'name' => 'staging'],
+            ],
+            force: true,
+        );
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testListProjectInvites(): void
     {
         $projectId = 'project-123';
+        $list = [
+            [
+                'finishedAt'  => '2025-09-16T10:15:30+00:00',
+                'id'          => 'invite_987654',
+                'state'       => 'pending',
+                'projectId'   => 'proj_12345',
+                'role'        => 'admin',
+                'email'       => 'jane.doe@example.com',
+                'owner'       => [
+                    'id'    => 'owner_001',
+                    'name'  => 'John Doe',
+                    'email' => 'john.doe@example.com',
+                ],
+                'createdAt'   => '2025-09-10T08:00:00+00:00',
+                'updatedAt'   => '2025-09-12T09:30:00+00:00',
+                'environments' => [
+                    [
+                        'id'   => 'env_001',
+                        'name' => 'production',
+                        'type' => 'main',
+                    ],
+                    [
+                        'id'   => 'env_002',
+                        'name' => 'staging',
+                        'type' => 'preprod',
+                    ],
+                ],
+            ],
+            [
+                'finishedAt'  => '2025-09-16T10:15:30+00:00',
+                'id'          => 'invite_12345',
+                'state'       => 'pending',
+                'projectId'   => 'proj_12345',
+                'role'        => 'contributor',
+                'email'       => 'john.test@example.com',
+                'owner'       => [
+                    'id'    => 'owner_001',
+                    'name'  => 'John Doe',
+                    'email' => 'john.doe@example.com',
+                ],
+                'createdAt'   => '2025-09-10T08:00:00+00:00',
+                'updatedAt'   => '2025-09-12T09:30:00+00:00',
+                'environments' => [
+                    [
+                        'id'   => 'env_001',
+                        'name' => 'production',
+                        'type' => 'main',
+                    ],
+                    [
+                        'id'   => 'env_002',
+                        'name' => 'staging',
+                        'type' => 'preprod',
+                    ],
+                ],
+            ]
+        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -513,79 +580,18 @@ class InvitationsTaskTest extends BaseTestCase
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode([
-                    [
-                        'finishedAt'  => '2025-09-16T10:15:30+00:00',
-                        'id'          => 'invite_987654',
-                        'state'       => 'pending',
-                        'projectId'   => 'proj_12345',
-                        'role'        => 'admin',
-                        'email'       => 'jane.doe@example.com',
-                        'owner'       => [
-                            'id'    => 'owner_001',
-                            'name'  => 'John Doe',
-                            'email' => 'john.doe@example.com',
-                        ],
-                        'createdAt'   => '2025-09-10T08:00:00+00:00',
-                        'updatedAt'   => '2025-09-12T09:30:00+00:00',
-                        'environments' => [
-                            [
-                                'id'   => 'env_001',
-                                'name' => 'production',
-                                'type' => 'main',
-                            ],
-                            [
-                                'id'   => 'env_002',
-                                'name' => 'staging',
-                                'type' => 'preprod',
-                            ],
-                        ],
-                    ],
-                    [
-                        'finishedAt'  => '2025-09-16T10:15:30+00:00',
-                        'id'          => 'invite_12345',
-                        'state'       => 'pending',
-                        'projectId'   => 'proj_12345',
-                        'role'        => 'contributor',
-                        'email'       => 'john.test@example.com',
-                        'owner'       => [
-                            'id'    => 'owner_001',
-                            'name'  => 'John Doe',
-                            'email' => 'john.doe@example.com',
-                        ],
-                        'createdAt'   => '2025-09-10T08:00:00+00:00',
-                        'updatedAt'   => '2025-09-12T09:30:00+00:00',
-                        'environments' => [
-                            [
-                                'id'   => 'env_001',
-                                'name' => 'production',
-                                'type' => 'main',
-                            ],
-                            [
-                                'id'   => 'env_002',
-                                'name' => 'staging',
-                                'type' => 'preprod',
-                            ],
-                        ],
-                    ]
-                ])
+                json_encode($list)
             ));
 
-        $result = $this->invitationTask->listProjectInvites($projectId);
+        $result = $this->invitationTask->listProjectInvites(projectId: $projectId);
         $this->assertIsArray($result);
         $this->assertContainsOnlyInstancesOf(ProjectInvitation::class, $result);
-
-        $this->assertEquals("invite_987654", $result[0]->getId());
-        $this->assertEquals("proj_12345", $result[0]->getProjectId());
-        $this->assertEquals("jane.doe@example.com", $result[0]->getEmail());
-
-        $this->assertEquals("invite_12345", $result[1]->getId());
-        $this->assertEquals("proj_12345", $result[1]->getProjectId());
-        $this->assertEquals("john.test@example.com", $result[1]->getEmail());
+        $this->assertObjectMatchesArray($result, $list);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testListProjectInvitesWithParameters(): void
     {
@@ -595,6 +601,62 @@ class InvitationsTaskTest extends BaseTestCase
         $pageBefore = 'cursor-before';
         $pageAfter = 'cursor-after';
         $sort = 'created_at';
+        $list = [
+            [
+                'finishedAt'  => '2025-09-16T10:15:30+00:00',
+                'id'          => 'invite_987654',
+                'state'       => 'pending',
+                'projectId'   => 'proj_12345',
+                'role'        => 'admin',
+                'email'       => 'jane.doe@example.com',
+                'owner'       => [
+                    'id'    => 'owner_001',
+                    'name'  => 'John Doe',
+                    'email' => 'john.doe@example.com',
+                ],
+                'createdAt'   => '2025-09-10T08:00:00+00:00',
+                'updatedAt'   => '2025-09-12T09:30:00+00:00',
+                'environments' => [
+                    [
+                        'id'   => 'env_001',
+                        'name' => 'production',
+                        'type' => 'main',
+                    ],
+                    [
+                        'id'   => 'env_002',
+                        'name' => 'staging',
+                        'type' => 'preprod',
+                    ],
+                ],
+            ],
+            [
+                'finishedAt'  => '2025-09-16T10:15:30+00:00',
+                'id'          => 'invite_12345',
+                'state'       => 'pending',
+                'projectId'   => 'proj_12345',
+                'role'        => 'contributor',
+                'email'       => 'john.test@example.com',
+                'owner'       => [
+                    'id'    => 'owner_001',
+                    'name'  => 'John Doe',
+                    'email' => 'john.doe@example.com',
+                ],
+                'createdAt'   => '2025-09-10T08:00:00+00:00',
+                'updatedAt'   => '2025-09-12T09:30:00+00:00',
+                'environments' => [
+                    [
+                        'id'   => 'env_001',
+                        'name' => 'production',
+                        'type' => 'main',
+                    ],
+                    [
+                        'id'   => 'env_002',
+                        'name' => 'staging',
+                        'type' => 'preprod',
+                    ],
+                ],
+            ]
+        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -602,82 +664,21 @@ class InvitationsTaskTest extends BaseTestCase
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode([
-                    [
-                        'finishedAt'  => '2025-09-16T10:15:30+00:00',
-                        'id'          => 'invite_987654',
-                        'state'       => 'pending',
-                        'projectId'   => 'proj_12345',
-                        'role'        => 'admin',
-                        'email'       => 'jane.doe@example.com',
-                        'owner'       => [
-                            'id'    => 'owner_001',
-                            'name'  => 'John Doe',
-                            'email' => 'john.doe@example.com',
-                        ],
-                        'createdAt'   => '2025-09-10T08:00:00+00:00',
-                        'updatedAt'   => '2025-09-12T09:30:00+00:00',
-                        'environments' => [
-                            [
-                                'id'   => 'env_001',
-                                'name' => 'production',
-                                'type' => 'main',
-                            ],
-                            [
-                                'id'   => 'env_002',
-                                'name' => 'staging',
-                                'type' => 'preprod',
-                            ],
-                        ],
-                    ],
-                    [
-                        'finishedAt'  => '2025-09-16T10:15:30+00:00',
-                        'id'          => 'invite_12345',
-                        'state'       => 'pending',
-                        'projectId'   => 'proj_12345',
-                        'role'        => 'contributor',
-                        'email'       => 'john.test@example.com',
-                        'owner'       => [
-                            'id'    => 'owner_001',
-                            'name'  => 'John Doe',
-                            'email' => 'john.doe@example.com',
-                        ],
-                        'createdAt'   => '2025-09-10T08:00:00+00:00',
-                        'updatedAt'   => '2025-09-12T09:30:00+00:00',
-                        'environments' => [
-                            [
-                                'id'   => 'env_001',
-                                'name' => 'production',
-                                'type' => 'main',
-                            ],
-                            [
-                                'id'   => 'env_002',
-                                'name' => 'staging',
-                                'type' => 'preprod',
-                            ],
-                        ],
-                    ]
-                ])
+                json_encode($list)
             ));
 
         $result = $this->invitationTask->listProjectInvites(
-            $projectId,
-            $filterState,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            projectId: $projectId,
+            filterState: $filterState,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
+
         $this->assertIsArray($result);
         $this->assertContainsOnlyInstancesOf(ProjectInvitation::class, $result);
-
-        $this->assertEquals("invite_987654", $result[0]->getId());
-        $this->assertEquals("proj_12345", $result[0]->getProjectId());
-        $this->assertEquals("jane.doe@example.com", $result[0]->getEmail());
-
-        $this->assertEquals("invite_12345", $result[1]->getId());
-        $this->assertEquals("proj_12345", $result[1]->getProjectId());
-        $this->assertEquals("john.test@example.com", $result[1]->getEmail());
+        $this->assertObjectMatchesArray($result, $list);
     }
 
     /**
@@ -701,6 +702,6 @@ class InvitationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->invitationTask->listProjectInvites($projectId);
+        $this->invitationTask->listProjectInvites(projectId: $projectId);
     }
 }

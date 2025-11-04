@@ -4,6 +4,7 @@ namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
@@ -44,6 +45,9 @@ class BackupsTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testBackup()
     {
         $this->httpClient
@@ -60,12 +64,15 @@ class BackupsTaskTest extends BaseTestCase
         $projectId = 'proj-1';
         $envId = 'env-1';
 
-        $result = $this->backupsTask->backup($projectId, $envId, true);
+        $result = $this->backupsTask->backup(projectId: $projectId, environmentId: $envId, isSafe: true);
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDelete()
     {
         $this->httpClient
@@ -83,10 +90,13 @@ class BackupsTaskTest extends BaseTestCase
         $envId = 'env-1';
         $backupId = 'backup-1';
 
-        $result = $this->backupsTask->delete($projectId, $envId, $backupId);
+        $result = $this->backupsTask->delete(projectId: $projectId, environmentId: $envId, backupId: $backupId);
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGet()
     {
         $this->httpClient
@@ -112,10 +122,13 @@ class BackupsTaskTest extends BaseTestCase
                     "deployment" => "deployment-id"
                 ])
             ));
-        $backup = $this->backupsTask->get('prj', 'env', 'bkp');
+        $backup = $this->backupsTask->get(projectId: 'prj', environmentId: 'env', backupId: 'bkp');
         $this->assertEquals("backup-1", $backup->getId());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testList()
     {
         $this->httpClient
@@ -161,7 +174,7 @@ class BackupsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->backupsTask->list('prj', 'env');
+        $result = $this->backupsTask->list(projectId: 'prj', environmentId: 'env');
 
         $this->assertIsArray($result);
         $this->assertContainsOnlyInstancesOf(Backup::class, $result);
@@ -169,6 +182,9 @@ class BackupsTaskTest extends BaseTestCase
         $this->assertEquals("backup-2", $result[1]->getId());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRestoreCallsApi()
     {
         $this->httpClient
@@ -184,15 +200,19 @@ class BackupsTaskTest extends BaseTestCase
         $acceptedResponse = new AcceptedResponse('accepted', 200);
 
         $result = $this->backupsTask->restore(
-            'prj',
-            'env',
-            'bkp',
-            ['restoreCode' => true, 'restoreResources' => true]
+            projectId: 'prj',
+            environmentId: 'env',
+            backupId: 'bkp',
+            restoreCode: true,
+            restoreResources: true
         );
 
         $this->assertEquals($acceptedResponse, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRestoreThrowsApiException()
     {
         $this->expectException(ApiException::class);
@@ -209,10 +229,11 @@ class BackupsTaskTest extends BaseTestCase
             ));
 
         $this->backupsTask->restore(
-            'prj-does-not-exist',
-            'env',
-            'bkp',
-            ['restoreCode' => true, 'restoreResources' => true]
+            projectId: 'prj-does-not-exist',
+            environmentId: 'env',
+            backupId: 'bkp',
+            restoreCode: true,
+            restoreResources: true
         );
     }
 }

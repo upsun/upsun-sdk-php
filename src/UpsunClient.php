@@ -135,7 +135,7 @@ class UpsunClient
     public function __construct(protected UpsunConfig $upsunConfig)
     {
         $this->apiConfig = ApiConfiguration::getDefaultConfiguration()
-            ->setHost($this->upsunConfig->base_url);
+            ->setHost(host: $this->upsunConfig->base_url);
 
         // Symfony HTTP client compatible PSR-18
         $this->apiClient = new Psr18Client();
@@ -143,8 +143,8 @@ class UpsunClient
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
 
         $this->auth = new OAuthProvider(
-            $this->apiClient, // Symfony PSR-18 client
-            $requestFactory,
+            httpClient: $this->apiClient, // Symfony PSR-18 client
+            requestFactory: $requestFactory,
             tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
             clientId: $this->upsunConfig->clientId,
             clientSecret: $this->upsunConfig->apiToken,

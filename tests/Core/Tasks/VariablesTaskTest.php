@@ -2,8 +2,10 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
@@ -40,18 +42,13 @@ class VariablesTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testCreateProjectVariableSuccess()
     {
         $projectId = 'proj_123';
-        $data = [
-            'name' => 'VAR_NAME',
-            'value' => 'value123',
-            'attributes' => ['attr1' => 'val1'],
-            'isJson' => false,
-            'isSensitive' => true,
-            'visibleBuild' => true,
-            'visibleRuntime' => false,
-        ];
 
         $fakeResponse = [
             'status' => 'accepted',
@@ -66,18 +63,26 @@ class VariablesTaskTest extends BaseTestCase
                 json_encode($fakeResponse)
             ));
 
-        $result = $this->variablesTask->createProjectVariable($projectId, $data);
+        $result = $this->variablesTask->createProjectVariable(
+            projectId: $projectId,
+            name: 'VAR_NAME',
+            value: 'value123',
+            attributes: ['attr1' => 'val1'],
+            isJson: false,
+            isSensitive: true,
+            visibleBuild: true,
+            visibleRuntime: false,
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
         $this->assertObjectProperties($result, $fakeResponse);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateProjectVariableError()
     {
         $projectId = 'proj_123';
-        $data = [
-            'name' => 'VAR_NAME',
-            'value' => 'value123'
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -93,9 +98,17 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->createProjectVariable($projectId, $data);
+        $this->variablesTask->createProjectVariable(
+            projectId: $projectId,
+            name: 'VAR_NAME',
+            value: 'value123'
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testDeleteProjectVariableSuccess()
     {
         $projectId = 'proj_123';
@@ -114,11 +127,17 @@ class VariablesTaskTest extends BaseTestCase
                 json_encode($fakeResponse)
             ));
 
-        $result = $this->variablesTask->deleteProjectVariable($projectId, $projectVariableId);
+        $result = $this->variablesTask->deleteProjectVariable(
+            projectId: $projectId,
+            projectVariableId: $projectVariableId
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
         $this->assertObjectProperties($result, $fakeResponse);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteProjectVariableError()
     {
         $projectId = 'proj_123';
@@ -138,9 +157,13 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->deleteProjectVariable($projectId, $projectVariableId);
+        $this->variablesTask->deleteProjectVariable(projectId: $projectId, projectVariableId: $projectVariableId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetProjectVariableSuccess()
     {
         $projectId = 'proj_123';
@@ -167,11 +190,17 @@ class VariablesTaskTest extends BaseTestCase
                 json_encode($variableFake)
             ));
 
-        $result = $this->variablesTask->getProjectVariable($projectId, $projectVariableId);
+        $result = $this->variablesTask->getProjectVariable(
+            projectId: $projectId,
+            projectVariableId: $projectVariableId
+        );
         $this->assertInstanceOf(ProjectVariable::class, $result);
         $this->assertObjectProperties($result, $variableFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetProjectVariableError()
     {
         $projectId = 'proj_123';
@@ -191,10 +220,13 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->getProjectVariable($projectId, $projectVariableId);
+        $this->variablesTask->getProjectVariable(projectId: $projectId, projectVariableId: $projectVariableId);
     }
 
-
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListProjectVariablesSuccess()
     {
         $projectId = 'proj_123';
@@ -234,12 +266,15 @@ class VariablesTaskTest extends BaseTestCase
                 json_encode($variablesFake)
             ));
 
-        $result = $this->variablesTask->listProjectVariables($projectId);
+        $result = $this->variablesTask->listProjectVariables(projectId: $projectId);
         $this->assertIsArray($result);
         $this->assertContainsOnlyInstancesOf(ProjectVariable::class, $result);
         $this->assertObjectMatchesArray($result, $variablesFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListProjectVariablesError()
     {
         $projectId = 'proj_123';
@@ -258,22 +293,17 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->listProjectVariables($projectId);
+        $this->variablesTask->listProjectVariables(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testUpdateProjectVariableSuccess()
     {
         $projectId = 'proj_123';
         $variableId = 'var_456';
-        $data = [
-            'name' => 'VAR_UPDATED',
-            'value' => 'new_value',
-            'attributes' => ['attr1' => 'val1'],
-            'isJson' => true,
-            'isSensitive' => false,
-            'visibleBuild' => false,
-            'visibleRuntime' => true,
-        ];
 
         $fakeResponse = [
             'status' => 'accepted',
@@ -288,19 +318,29 @@ class VariablesTaskTest extends BaseTestCase
                 json_encode($fakeResponse)
             ));
 
-        $result = $this->variablesTask->updateProjectVariable($projectId, $variableId, $data);
+        $result = $this->variablesTask->updateProjectVariable(
+            projectId: $projectId,
+            projectVariableId: $variableId,
+            name: 'VAR_UPDATED',
+            value: 'new_value',
+            attributes: ['attr1' => 'val1'],
+            isJson: true,
+            isSensitive: false,
+            visibleBuild: false,
+            visibleRuntime: true,
+            applicationScope: ['app1', 'app2'],
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
         $this->assertObjectProperties($result, $fakeResponse);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateProjectVariableError()
     {
         $projectId = 'proj_123';
         $variableId = 'var_456';
-        $data = [
-            'name' => 'VAR_UPDATED',
-            'value' => 'new_value'
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -316,24 +356,22 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->updateProjectVariable($projectId, $variableId, $data);
+        $this->variablesTask->updateProjectVariable(
+            projectId: $projectId,
+            projectVariableId: $variableId,
+            name: 'VAR_UPDATED',
+            value: 'new_value'
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testCreateEnvironmentVariableSuccess()
     {
         $projectId = 'proj_123';
         $environmentId = 'env_456';
-        $data = [
-            'name' => 'ENV_VAR',
-            'value' => 'value123',
-            'attributes' => ['attr1' => 'val1'],
-            'isJson' => false,
-            'isSensitive' => true,
-            'visibleBuild' => true,
-            'visibleRuntime' => false,
-            'isEnabled' => true,
-            'isInheritable' => false,
-        ];
 
         $fakeResponse = [
             'status' => 'accepted',
@@ -348,19 +386,31 @@ class VariablesTaskTest extends BaseTestCase
                 json_encode($fakeResponse)
             ));
 
-        $result = $this->variablesTask->createEnvironmentVariable($projectId, $environmentId, $data);
+        $result = $this->variablesTask->createEnvironmentVariable(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            name: 'ENV_VAR',
+            value: 'value123',
+            attributes: ['attr1' => 'val1'],
+            isJson: false,
+            isSensitive: true,
+            visibleBuild: true,
+            visibleRuntime: false,
+            applicationScope: ['app1', 'app2'],
+            isEnabled: true,
+            isInheritable: false,
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
         $this->assertObjectProperties($result, $fakeResponse);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateEnvironmentVariableError()
     {
         $projectId = 'proj_123';
         $environmentId = 'env_456';
-        $data = [
-            'name' => 'ENV_VAR',
-            'value' => 'value123'
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -376,10 +426,19 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->createEnvironmentVariable($projectId, $environmentId, $data);
+        $this->variablesTask->createEnvironmentVariable(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            name: 'ENV_VAR',
+            value: 'value123'
+        );
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testDeleteEnvironmentVariableSuccess()
     {
         $projectId = 'proj_123';
@@ -399,11 +458,18 @@ class VariablesTaskTest extends BaseTestCase
                 json_encode($fakeResponse)
             ));
 
-        $result = $this->variablesTask->deleteEnvironmentVariable($projectId, $environmentId, $variableId);
+        $result = $this->variablesTask->deleteEnvironmentVariable(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            variableId: $variableId
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
         $this->assertObjectProperties($result, $fakeResponse);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteEnvironmentVariableError()
     {
         $projectId = 'proj_123';
@@ -424,10 +490,18 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->deleteEnvironmentVariable($projectId, $environmentId, $variableId);
+        $this->variablesTask->deleteEnvironmentVariable(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            variableId: $variableId
+        );
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetEnvironmentVariableSuccess()
     {
         $projectId = 'proj_123';
@@ -460,11 +534,18 @@ class VariablesTaskTest extends BaseTestCase
                 json_encode($variableFake)
             ));
 
-        $result = $this->variablesTask->getEnvironmentVariable($projectId, $environmentId, $variableId);
+        $result = $this->variablesTask->getEnvironmentVariable(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            variableId: $variableId
+        );
         $this->assertInstanceOf(EnvironmentVariable::class, $result);
         $this->assertObjectProperties($result, $variableFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetEnvironmentVariableError()
     {
         $projectId = 'proj_123';
@@ -485,9 +566,17 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->getEnvironmentVariable($projectId, $environmentId, $variableId);
+        $this->variablesTask->getEnvironmentVariable(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            variableId: $variableId
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListEnvironmentVariablesSuccess()
     {
         $projectId = 'proj_123';
@@ -538,12 +627,18 @@ class VariablesTaskTest extends BaseTestCase
                 json_encode($variablesFake)
             ));
 
-        $result = $this->variablesTask->listEnvironmentVariables($projectId, $environmentId);
+        $result = $this->variablesTask->listEnvironmentVariables(
+            projectId: $projectId,
+            environmentId: $environmentId
+        );
         $this->assertIsArray($result);
         $this->assertContainsOnlyInstancesOf(EnvironmentVariable::class, $result);
         $this->assertObjectMatchesArray($result, $variablesFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListEnvironmentVariablesError()
     {
         $projectId = 'proj_123';
@@ -563,25 +658,21 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->listEnvironmentVariables($projectId, $environmentId);
+        $this->variablesTask->listEnvironmentVariables(
+            projectId: $projectId,
+            environmentId: $environmentId
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testUpdateEnvironmentVariableSuccess()
     {
         $projectId = 'proj_123';
         $environmentId = 'env_456';
         $variableId = 'var_789';
-        $data = [
-            'name' => 'VAR_NAME_UPDATED',
-            'value' => 'newValue',
-            'attributes' => ['attr' => 'val'],
-            'isJson' => false,
-            'isSensitive' => true,
-            'visibleBuild' => true,
-            'visibleRuntime' => false,
-            'isEnabled' => true,
-            'isInheritable' => false,
-        ];
 
         $fakeResponse = [
             'status' => 'accepted',
@@ -596,31 +687,33 @@ class VariablesTaskTest extends BaseTestCase
                 json_encode($fakeResponse)
             ));
 
-        $result = $this->variablesTask->updateEnvironmentVariable($projectId, $environmentId, $variableId, $data);
+        $result = $this->variablesTask->updateEnvironmentVariable(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            variableId: $variableId,
+            name: 'VAR_NAME_UPDATED',
+            value: 'newValue',
+            attributes: ['attr' => 'val'],
+            isJson: false,
+            isSensitive: true,
+            visibleBuild: true,
+            visibleRuntime: false,
+            applicationScope: ['app1', 'app2'],
+            isEnabled: true,
+            isInheritable: false,
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
         $this->assertObjectProperties($result, $fakeResponse);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateEnvironmentVariableError()
     {
         $projectId = 'proj_123';
         $environmentId = 'env_456';
         $variableId = 'var_789';
-        $data = [
-            'name' => 'VAR_NAME_UPDATED',
-            'attributes' => [
-                'origin' => 'test',
-                'custom' => 'fake-attribute'
-            ],
-            'value' => 'newValue',
-            'isJson' => false,
-            'isSensitive' => true,
-            'visibleBuild' => true,
-            'visibleRuntime' => false,
-            'applicationScope' => ['app1', 'app2'],
-            'isEnabled' => true,
-            'isInheritable' => false,
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -636,6 +729,23 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->updateEnvironmentVariable($projectId, $environmentId, $variableId, $data);
+        $this->variablesTask->updateEnvironmentVariable(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            variableId: $variableId,
+            name: 'VAR_NAME_UPDATED',
+            value: 'newValue',
+            attributes: [
+            'origin' => 'test',
+            'custom' => 'fake-attribute'
+            ],
+            isJson: false,
+            isSensitive: true,
+            visibleBuild: true,
+            visibleRuntime: false,
+            applicationScope: ['app1', 'app2'],
+            isEnabled: true,
+            isInheritable: false,
+        );
     }
 }
