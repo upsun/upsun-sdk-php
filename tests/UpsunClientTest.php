@@ -215,6 +215,9 @@ class UpsunClientTest extends TestCase
         $this->assertEquals('custom-token', $customClient->getToken());
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     public function testAllTasksArePubliclyAccessible()
     {
         $reflection = new ReflectionClass(UpsunClient::class);

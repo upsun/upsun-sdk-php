@@ -67,6 +67,10 @@ class UsersTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testMeSuccess()
     {
         $userFake = [
@@ -101,6 +105,9 @@ class UsersTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $userFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testMeError()
     {
         $this->httpClient
@@ -116,6 +123,10 @@ class UsersTaskTest extends BaseTestCase
         $this->usersTask->me();
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetSuccess()
     {
         $userFake = [
@@ -145,11 +156,14 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($userFake)
             ));
 
-        $result = $this->usersTask->get('user_123');
+        $result = $this->usersTask->get(id: 'user_123');
         $this->assertInstanceOf(User::class, $result);
         $this->assertObjectProperties($result, $userFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetError()
     {
         $this->httpClient
@@ -162,9 +176,13 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->get('invalid_user');
+        $this->usersTask->get(id: 'invalid_user');
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetByEmailAddressSuccess()
     {
         $userFake = [
@@ -194,11 +212,15 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($userFake)
             ));
 
-        $result = $this->usersTask->getByEmailAddress('john.doe@example.com');
+        $result = $this->usersTask->getByEmailAddress(email: 'john.doe@example.com');
         $this->assertInstanceOf(User::class, $result);
         $this->assertObjectProperties($result, $userFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testUpdateSuccess()
     {
         $userFake = [
@@ -229,29 +251,35 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $result = $this->usersTask->update(
-            'user_123',
-            $userFake['username'],
-            $userFake['firstName'],
-            $userFake['lastName'],
-            $userFake['picture'],
-            $userFake['company'],
-            $userFake['website'],
-            $userFake['country'],
+            userId: 'user_123',
+            username: $userFake['username'],
+            firstName: $userFake['firstName'],
+            lastName: $userFake['lastName'],
+            picture: $userFake['picture'],
+            company: $userFake['company'],
+            website: $userFake['website'],
+            country: $userFake['country'],
         );
         $this->assertInstanceOf(User::class, $result);
         $this->assertObjectProperties($result, $userFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testResetPasswordSuccess()
     {
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(204));
 
-        $this->usersTask->resetPassword('user_123');
+        $this->usersTask->resetPassword(userId: 'user_123');
         $this->assertTrue(true); // Just ensures no exception is thrown
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testResetEmailAddressSuccess()
     {
         $email = 'new@example.com';
@@ -260,7 +288,7 @@ class UsersTaskTest extends BaseTestCase
             ->method('sendRequest')
             ->willReturn(new Response(204));
 
-        $this->usersTask->resetEmailAddress('user_123', $email);
+        $this->usersTask->resetEmailAddress(userId: 'user_123', emailAddress: $email);
         $this->assertTrue(true);
     }
 
@@ -283,6 +311,9 @@ class UsersTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $responseFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetCurrentUserVerificationStatusError()
     {
         $this->httpClient
@@ -298,7 +329,10 @@ class UsersTaskTest extends BaseTestCase
         $this->usersTask->getCurrentUserVerificationStatus();
     }
 
-
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetByUsernameSuccess()
     {
         $username = 'john_doe';
@@ -330,11 +364,14 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($userFake)
             ));
 
-        $result = $this->usersTask->getByUsername($username);
+        $result = $this->usersTask->getByUsername(username: $username);
         $this->assertInstanceOf(User::class, $result);
         $this->assertObjectProperties($result, $userFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetByUsernameError()
     {
         $username = 'john_doe';
@@ -353,9 +390,13 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->getByUsername($username);
+        $this->usersTask->getByUsername(username: $username);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetProjectUserAccessSuccess()
     {
         $projectId = 'proj_123';
@@ -384,11 +425,14 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($accessFake)
             ));
 
-        $result = $this->usersTask->getProjectUserAccess($projectId, $userId);
+        $result = $this->usersTask->getProjectUserAccess(projectId: $projectId, userId: $userId);
         $this->assertInstanceOf(UserProjectAccess::class, $result);
         $this->assertObjectProperties($result, $accessFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetProjectUserAccessError()
     {
         $projectId = 'proj_123';
@@ -408,9 +452,13 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->getProjectUserAccess($projectId, $userId);
+        $this->usersTask->getProjectUserAccess(projectId: $projectId, userId: $userId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetUserProjectAccessSuccess()
     {
         $userId = 'user_123';
@@ -439,11 +487,14 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($accessFake)
             ));
 
-        $result = $this->usersTask->getUserProjectAccess($userId, $projectId);
+        $result = $this->usersTask->getUserProjectAccess(userId: $userId, projectId: $projectId);
         $this->assertInstanceOf(UserProjectAccess::class, $result);
         $this->assertObjectProperties($result, $accessFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetUserProjectAccessError()
     {
         $userId = 'user_123';
@@ -463,9 +514,12 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->getUserProjectAccess($userId, $projectId);
+        $this->usersTask->getUserProjectAccess(userId: $userId, projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGrantProjectUserAccessSuccess()
     {
         $projectId = 'proj_123';
@@ -488,12 +542,18 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         // Call the method
-        $this->usersTask->grantProjectUserAccess($projectId, $grantRequestFake);
+        $this->usersTask->grantProjectUserAccess(
+            projectId: $projectId,
+            grantProjectUserAccessRequestInner: $grantRequestFake
+        );
 
         // If no exception, the test is successful
         $this->assertTrue(true);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGrantProjectUserAccessError()
     {
         $projectId = 'proj_123';
@@ -518,9 +578,16 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->grantProjectUserAccess($projectId, $grantRequestFake);
+        $this->usersTask->grantProjectUserAccess(
+            projectId: $projectId,
+            grantProjectUserAccessRequestInner: $grantRequestFake
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListProjectUserAccessSuccess()
     {
         $projectId = 'proj_123';
@@ -564,11 +631,14 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($responseFake)
             ));
 
-        $result = $this->usersTask->listProjectUserAccess($projectId);
+        $result = $this->usersTask->listProjectUserAccess(projectId: $projectId);
         $this->assertInstanceOf(ListProjectUserAccess200Response::class, $result);
         $this->assertObjectProperties($result, $responseFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListProjectUserAccessError()
     {
         $projectId = 'proj_123';
@@ -587,9 +657,13 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->listProjectUserAccess($projectId);
+        $this->usersTask->listProjectUserAccess(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListUserProjectAccessSuccess()
     {
         $userId = 'user_123';
@@ -633,11 +707,14 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($responseFake)
             ));
 
-        $result = $this->usersTask->listUserProjectAccess($userId);
+        $result = $this->usersTask->listUserProjectAccess(userId: $userId);
         $this->assertInstanceOf(ListProjectUserAccess200Response::class, $result);
         $this->assertObjectProperties($result, $responseFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListUserProjectAccessError()
     {
         $userId = 'user_123';
@@ -656,9 +733,12 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->listUserProjectAccess($userId);
+        $this->usersTask->listUserProjectAccess(userId: $userId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRemoveProjectUserAccessSuccess()
     {
         $projectId = 'proj_123';
@@ -672,11 +752,14 @@ class UsersTaskTest extends BaseTestCase
                 null
             ));
 
-        $this->usersTask->removeProjectUserAccess($projectId, $userId);
+        $this->usersTask->removeProjectUserAccess(projectId: $projectId, userId: $userId);
 
         $this->assertTrue(true);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRemoveProjectUserAccessError()
     {
         $projectId = 'proj_123';
@@ -696,10 +779,13 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->removeProjectUserAccess($projectId, $userId);
+        $this->usersTask->removeProjectUserAccess(projectId: $projectId, userId: $userId);
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateProjectUserAccessSuccess()
     {
         $projectId = 'proj_123';
@@ -714,11 +800,14 @@ class UsersTaskTest extends BaseTestCase
                 null
             ));
 
-        $this->usersTask->updateProjectUserAccess($projectId, $userId, $permissions);
+        $this->usersTask->updateProjectUserAccess(projectId: $projectId, userId: $userId, permissions: $permissions);
 
         $this->assertTrue(true);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateProjectUserAccessError()
     {
         $projectId = 'proj_123';
@@ -739,9 +828,12 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->updateProjectUserAccess($projectId, $userId, $permissions);
+        $this->usersTask->updateProjectUserAccess(projectId: $projectId, userId: $userId, permissions: $permissions);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteProfilePictureSuccess()
     {
         $uuid = 'uuid_123';
@@ -754,11 +846,14 @@ class UsersTaskTest extends BaseTestCase
                 null
             ));
 
-        $this->usersTask->deleteProfilePicture($uuid);
+        $this->usersTask->deleteProfilePicture(uuid: $uuid);
 
         $this->assertTrue(true);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteProfilePictureError()
     {
         $uuid = 'uuid_123';
@@ -777,10 +872,14 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->deleteProfilePicture($uuid);
+        $this->usersTask->deleteProfilePicture(uuid: $uuid);
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetAddressSuccess()
     {
         $addressFake = [
@@ -810,11 +909,14 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $userId = 'user_123';
-        $result = $this->usersTask->getAddress($userId);
+        $result = $this->usersTask->getAddress(userId: $userId);
         $this->assertInstanceOf(GetAddress200Response::class, $result);
         $this->assertObjectProperties($result, $addressFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetAddressError()
     {
         $this->httpClient
@@ -831,10 +933,14 @@ class UsersTaskTest extends BaseTestCase
         $this->expectException(ApiException::class);
 
         $userId = 'user_123';
-        $this->usersTask->getAddress($userId);
+        $this->usersTask->getAddress(userId: $userId);
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetProfileSuccess()
     {
         $userId = 'user_123';
@@ -903,11 +1009,14 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($profileFake)
             ));
 
-        $result = $this->usersTask->getProfile($userId);
+        $result = $this->usersTask->getProfile(userId: $userId);
         $this->assertInstanceOf(Profile::class, $result);
         $this->assertObjectProperties($result, $profileFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetProfileError()
     {
         $userId = 'user_123';
@@ -925,10 +1034,14 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->getProfile($userId);
+        $this->usersTask->getProfile(userId: $userId);
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListProfilesSuccess()
     {
         $profilesFake = [
@@ -969,6 +1082,9 @@ class UsersTaskTest extends BaseTestCase
         $this->assertObjectProperties($result, $responseFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListProfilesError()
     {
         $this->httpClient
@@ -987,6 +1103,10 @@ class UsersTaskTest extends BaseTestCase
         $this->usersTask->listProfiles();
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testUpdateAddressSuccess()
     {
         $addressFake = [
@@ -1012,22 +1132,25 @@ class UsersTaskTest extends BaseTestCase
 
         $userId = 'user_123';
         $result = $this->usersTask->updateAddress(
-            $userId,
-            'US',
-            'John Doe',
-            '123',
-            'Apt 4',
-            'Main St',
-            'CA',
-            'Santa Clara',
-            'San Jose',
-            null,
-            '95131',
+            userId: $userId,
+            country: 'US',
+            nameLine: 'John Doe',
+            premise: '123',
+            subPremise: 'Apt 4',
+            thoroughfare: 'Main St',
+            administrativeArea: 'CA',
+            subAdministrativeArea: 'Santa Clara',
+            locality: 'San Jose',
+            dependentLocality: null,
+            postalCode: '95131',
         );
         $this->assertInstanceOf(GetAddress200Response::class, $result);
         $this->assertObjectProperties($result, $addressFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateAddressError()
     {
         $this->httpClient
@@ -1044,10 +1167,13 @@ class UsersTaskTest extends BaseTestCase
         $this->expectException(ApiException::class);
 
         $userId = 'user_123';
-        $this->usersTask->updateAddress($userId, 'US', 'John Doe');
+        $this->usersTask->updateAddress(userId: $userId, country: 'US', nameLine: 'John Doe');
     }
 
-
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testUpdateProfileSuccess()
     {
         $profileFake = [
@@ -1076,25 +1202,28 @@ class UsersTaskTest extends BaseTestCase
 
         $userId = 'user_123';
         $result = $this->usersTask->updateProfile(
-            $userId,
-            $profileFake['displayName'],
-            $profileFake['username'],
-            $profileFake['currentPassword'],
-            $profileFake['password'],
-            $profileFake['companyType'],
-            $profileFake['companyName'],
-            $profileFake['vatNumber'],
-            $profileFake['companyRole'],
-            $profileFake['marketing'],
-            $profileFake['uiColorscheme'],
-            $profileFake['defaultCatalog'],
-            $profileFake['projectOptionsUrl'],
-            $profileFake['picture'],
+            userId: $userId,
+            displayName: $profileFake['displayName'],
+            username: $profileFake['username'],
+            currentPassword: $profileFake['currentPassword'],
+            password: $profileFake['password'],
+            companyType: $profileFake['companyType'],
+            companyName: $profileFake['companyName'],
+            vatNumber: $profileFake['vatNumber'],
+            companyRole: $profileFake['companyRole'],
+            marketing: $profileFake['marketing'],
+            uiColorscheme: $profileFake['uiColorscheme'],
+            defaultCatalog: $profileFake['defaultCatalog'],
+            projectOptionsUrl: $profileFake['projectOptionsUrl'],
+            picture: $profileFake['picture'],
         );
         $this->assertInstanceOf(Profile::class, $result);
         $this->assertObjectProperties($result, $profileFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateProfileError()
     {
         $this->httpClient
@@ -1112,10 +1241,14 @@ class UsersTaskTest extends BaseTestCase
 
         $userId = 'user_123';
 
-        $this->usersTask->updateProfile($userId, 'John Doe', 'john_doe');
+        $this->usersTask->updateProfile(userId: $userId, displayName: 'John Doe', username: 'john_doe');
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testCreateApiTokenSuccess()
     {
         $tokenFake = [
@@ -1138,11 +1271,14 @@ class UsersTaskTest extends BaseTestCase
 
         $userId = 'user_123';
         $name = 'My Token';
-        $result = $this->usersTask->createApiToken($userId, $name);
+        $result = $this->usersTask->createApiToken(userId: $userId, name: $name);
         $this->assertInstanceOf(ApiToken::class, $result);
         $this->assertObjectProperties($result, $tokenFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateApiTokenError()
     {
         $this->httpClient
@@ -1160,7 +1296,7 @@ class UsersTaskTest extends BaseTestCase
 
         $userId = 'user_123';
         $name = 'My Token';
-        $this->usersTask->createApiToken($userId, $name);
+        $this->usersTask->createApiToken(userId: $userId, name: $name);
     }
 
 
@@ -1174,9 +1310,12 @@ class UsersTaskTest extends BaseTestCase
             ->method('sendRequest')
             ->willReturn(new Response(204));
 
-        $this->usersTask->deleteApiToken($userId, $tokenId);
+        $this->usersTask->deleteApiToken(userId: $userId, tokenId: $tokenId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteApiTokenError()
     {
         $this->httpClient
@@ -1191,9 +1330,12 @@ class UsersTaskTest extends BaseTestCase
 
         $userId = 'user_123';
         $tokenId = 'token_123';
-        $this->usersTask->deleteApiToken($userId, $tokenId);
+        $this->usersTask->deleteApiToken(userId: $userId, tokenId: $tokenId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetApiTokenSuccess()
     {
         $userId = 'user_123';
@@ -1216,11 +1358,14 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($tokenFake)
             ));
 
-        $result = $this->usersTask->getApiToken($userId, $tokenId);
+        $result = $this->usersTask->getApiToken(userId: $userId, tokenId: $tokenId);
         $this->assertInstanceOf(ApiToken::class, $result);
         $this->assertObjectProperties($result, $tokenFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetApiTokenError()
     {
         $this->httpClient
@@ -1235,10 +1380,13 @@ class UsersTaskTest extends BaseTestCase
 
         $userId = 'user_123';
         $tokenId = 'token_123';
-        $this->usersTask->getApiToken($userId, $tokenId);
+        $this->usersTask->getApiToken(userId: $userId, tokenId: $tokenId);
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteLoginConnectionSuccess()
     {
         $provider = 'google';
@@ -1249,9 +1397,12 @@ class UsersTaskTest extends BaseTestCase
             ->method('sendRequest')
             ->willReturn(new Response(204));
 
-        $this->usersTask->deleteLoginConnection($provider, $userId);
+        $this->usersTask->deleteLoginConnection(provider: $provider, userId: $userId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteLoginConnectionError()
     {
         $provider = 'google';
@@ -1267,9 +1418,12 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->deleteLoginConnection($provider, $userId);
+        $this->usersTask->deleteLoginConnection(provider: $provider, userId: $userId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetLoginConnectionSuccess()
     {
         $provider = 'google';
@@ -1292,7 +1446,7 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($connectionFake)
             ));
 
-        $result = $this->usersTask->getLoginConnection($provider, $userId);
+        $result = $this->usersTask->getLoginConnection(provider: $provider, userId: $userId);
         $this->assertInstanceOf(Connection::class, $result);
         $this->assertObjectProperties($result, $connectionFake);
     }
@@ -1312,10 +1466,13 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->getLoginConnection($provider, $userId);
+        $this->usersTask->getLoginConnection(provider: $provider, userId: $userId);
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListLoginConnectionsSuccess()
     {
         $userId = 'user_123';
@@ -1348,7 +1505,7 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($connectionsFake)
             ));
 
-        $result = $this->usersTask->listLoginConnections($userId);
+        $result = $this->usersTask->listLoginConnections(userId: $userId);
         $this->assertIsArray($result);
         foreach ($result as $i => $connection) {
             $this->assertInstanceOf(Connection::class, $connection);
@@ -1356,6 +1513,9 @@ class UsersTaskTest extends BaseTestCase
         }
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListLoginConnectionsError()
     {
         $userId = 'user_123';
@@ -1370,10 +1530,13 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->listLoginConnections($userId);
+        $this->usersTask->listLoginConnections(userId: $userId);
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListExtendedAccessSuccess()
     {
         $userId = 'user_123';
@@ -1408,7 +1571,7 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($extendedAccessFake)
             ));
 
-        $result = $this->usersTask->listExtendedAccess($userId);
+        $result = $this->usersTask->listExtendedAccess(userId: $userId);
         $this->assertInstanceOf(ListUserExtendedAccess200Response::class, $result);
         $this->assertContainsOnlyInstancesOf(
             ListUserExtendedAccess200ResponseItemsInner::class,
@@ -1434,6 +1597,9 @@ class UsersTaskTest extends BaseTestCase
         $this->usersTask->listExtendedAccess($userId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testConfirmTotpEnrollmentSuccess()
     {
         $userId = 'user_123';
@@ -1453,11 +1619,18 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($responseFake)
             ));
 
-        $result = $this->usersTask->confirmTotpEnrollment($userId, $requestData['secret'], $requestData['passcode']);
+        $result = $this->usersTask->confirmTotpEnrollment(
+            userId: $userId,
+            secret: $requestData['secret'],
+            passCode: $requestData['passcode']
+        );
         $this->assertInstanceOf(ConfirmTotpEnrollment200Response::class, $result);
         $this->assertObjectProperties($result, $responseFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testConfirmTotpEnrollmentError()
     {
         $userId = 'user_123';
@@ -1476,9 +1649,16 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->confirmTotpEnrollment($userId, $requestData['secret'], $requestData['passcode']);
+        $this->usersTask->confirmTotpEnrollment(
+            userId: $userId,
+            secret: $requestData['secret'],
+            passCode: $requestData['passcode']
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetTotpEnrollmentSuccess()
     {
         $userId = 'user_123';
@@ -1497,12 +1677,15 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($totpFake)
             ));
 
-        $result = $this->usersTask->getTotpEnrollment($userId);
+        $result = $this->usersTask->getTotpEnrollment(userId: $userId);
 
         $this->assertInstanceOf(GetTotpEnrollment200Response::class, $result);
         $this->assertObjectProperties($result, $totpFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetTotpEnrollmentError()
     {
         $userId = 'user_123';
@@ -1520,9 +1703,12 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->getTotpEnrollment($userId);
+        $this->usersTask->getTotpEnrollment(userId: $userId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRecreateRecoveryCodesSuccess()
     {
         $userId = 'user_123';
@@ -1538,11 +1724,14 @@ class UsersTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->usersTask->recreateRecoveryCodes($userId);
+        $this->usersTask->recreateRecoveryCodes(userId: $userId);
 
         $this->assertTrue(true);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRecreateRecoveryCodesError()
     {
         $userId = 'user_123';
@@ -1560,10 +1749,13 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->recreateRecoveryCodes($userId);
+        $this->usersTask->recreateRecoveryCodes(userId: $userId);
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testWithdrawTotpEnrollmentSuccess()
     {
         $userId = 'user_123';
@@ -1576,11 +1768,14 @@ class UsersTaskTest extends BaseTestCase
                 null
             ));
 
-        $this->usersTask->withdrawTotpEnrollment($userId);
+        $this->usersTask->withdrawTotpEnrollment(userId: $userId);
 
         $this->assertTrue(true);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testWithdrawTotpEnrollmentError()
     {
         $userId = 'user_123';
@@ -1598,10 +1793,13 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->withdrawTotpEnrollment($userId);
+        $this->usersTask->withdrawTotpEnrollment(userId: $userId);
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testConfirmPhoneNumberSuccess()
     {
         $sid = 'sid_123';
@@ -1616,11 +1814,14 @@ class UsersTaskTest extends BaseTestCase
                 null
             ));
 
-        $this->usersTask->confirmPhoneNumber($sid, $userId, $code);
+        $this->usersTask->confirmPhoneNumber(sid: $sid, userId: $userId, code: $code);
 
         $this->assertTrue(true);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testConfirmPhoneNumberError()
     {
         $sid = 'sid_123';
@@ -1640,9 +1841,13 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->confirmPhoneNumber($sid, $userId, $code);
+        $this->usersTask->confirmPhoneNumber(sid: $sid, userId: $userId, code: $code);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testVerifyPhoneNumberSuccess()
     {
         $userId = 'user_123';
@@ -1662,11 +1867,18 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($verifyPhoneNumberFake)
             ));
 
-        $result = $this->usersTask->verifyPhoneNumber($userId, $data['channel'], $data['phoneNumber']);
+        $result = $this->usersTask->verifyPhoneNumber(
+            userId: $userId,
+            channel: $data['channel'],
+            phoneNumber: $data['phoneNumber']
+        );
         $this->assertInstanceOf(VerifyPhoneNumber200Response::class, $result);
         $this->assertObjectProperties($result, $verifyPhoneNumberFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testVerifyPhoneNumberError()
     {
         $userId = 'user_123';
@@ -1688,7 +1900,11 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->verifyPhoneNumber($userId, $data['channel'], $data['phoneNumber']);
+        $this->usersTask->verifyPhoneNumber(
+            userId: $userId,
+            channel: $data['channel'],
+            phoneNumber: $data['phoneNumber']
+        );
     }
 
     /**
@@ -1699,7 +1915,7 @@ class UsersTaskTest extends BaseTestCase
         $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage('Not implemented yet');
 
-        $this->usersTask->createProfilePicture('123');
+        $this->usersTask->createProfilePicture(uuid: '123');
     }
 
     /**
@@ -1770,7 +1986,7 @@ class UsersTaskTest extends BaseTestCase
             ));
         $this->expectNotToPerformAssertions();
 
-        $this->usersTask->grantUserProjectAccess($userId, $data);
+        $this->usersTask->grantUserProjectAccess(userId: $userId, data: $data);
     }
 
     /**
@@ -1797,7 +2013,7 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->grantUserProjectAccess($userId, $data);
+        $this->usersTask->grantUserProjectAccess(userId: $userId, data: $data);
     }
 
     /**
@@ -1824,7 +2040,7 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->grantUserProjectAccess($userId, $data);
+        $this->usersTask->grantUserProjectAccess(userId: $userId, data: $data);
     }
 
     /**
@@ -1848,7 +2064,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectNotToPerformAssertions();
 
-        $this->usersTask->removeUserProjectAccess($userId, $projectId);
+        $this->usersTask->removeUserProjectAccess(userId: $userId, projectId: $projectId);
     }
 
     /**
@@ -1872,7 +2088,7 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->removeUserProjectAccess($userId, $projectId);
+        $this->usersTask->removeUserProjectAccess(userId: $userId, projectId: $projectId);
     }
 
     /**
@@ -1896,7 +2112,7 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->removeUserProjectAccess($userId, $projectId);
+        $this->usersTask->removeUserProjectAccess(userId: $userId, projectId: $projectId);
     }
 
     /**
@@ -1920,7 +2136,7 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->removeUserProjectAccess($userId, $projectId);
+        $this->usersTask->removeUserProjectAccess(userId: $userId, projectId: $projectId);
     }
 
     /**
@@ -1945,7 +2161,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectNotToPerformAssertions();
 
-        $this->usersTask->updateUserProjectAccess($userId, $projectId, $permissions);
+        $this->usersTask->updateUserProjectAccess(userId: $userId, projectId: $projectId, permissions: $permissions);
     }
 
     /**
@@ -1970,7 +2186,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectNotToPerformAssertions();
 
-        $this->usersTask->updateUserProjectAccess($userId, $projectId, $permissions);
+        $this->usersTask->updateUserProjectAccess(userId: $userId,projectId: $projectId, permissions: $permissions);
     }
 
     /**
@@ -1995,7 +2211,7 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->updateUserProjectAccess($userId, $projectId, $permissions);
+        $this->usersTask->updateUserProjectAccess(userId: $userId, projectId: $projectId, permissions: $permissions);
     }
 
     /**
@@ -2020,7 +2236,7 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->updateUserProjectAccess($userId, $projectId, $permissions);
+        $this->usersTask->updateUserProjectAccess(userId: $userId, projectId: $projectId, permissions: $permissions);
     }
 
     /**
@@ -2045,7 +2261,7 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->updateUserProjectAccess($userId, $projectId, $permissions);
+        $this->usersTask->updateUserProjectAccess(userId: $userId, projectId: $projectId, permissions: $permissions);
     }
 
     /**
@@ -2084,7 +2300,7 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($fakeListApiToken)
             ));
 
-        $result = $this->usersTask->listApiTokens($userId);
+        $result = $this->usersTask->listApiTokens(userId: $userId);
 
         $this->assertIsArray($result);
         $this->assertCount(2, $result);
@@ -2135,7 +2351,7 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->listApiTokens($userId);
+        $this->usersTask->listApiTokens(userId: $userId);
     }
 
     /**
@@ -2158,6 +2374,6 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->listApiTokens($userId);
+        $this->usersTask->listApiTokens(userId: $userId);
     }
 }

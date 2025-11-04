@@ -90,7 +90,13 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update($projectId, $environmentId, $webapps, $services, $workers);
+        $response = $this->resourcesTask->update(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            webapps: $webapps,
+            services: $services,
+            workers: $workers
+        );
         $this->assertEquals(new AcceptedResponse('accepted', 200), $response);
     }
 
@@ -113,7 +119,10 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update($projectId, $environmentId);
+        $response = $this->resourcesTask->update(
+            projectId: $projectId,
+            environmentId: $environmentId
+        );
         $this->assertEquals(new AcceptedResponse('accepted', 200), $response);
     }
 
@@ -145,7 +154,11 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update($projectId, $environmentId, $webapps);
+        $response = $this->resourcesTask->update(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            webapps: $webapps
+        );
         $this->assertEquals(new AcceptedResponse('accepted', 200), $response);
     }
 
@@ -178,7 +191,12 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update($projectId, $environmentId, $webapps, $services);
+        $response = $this->resourcesTask->update(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            webapps: $webapps,
+            services: $services
+        );
         $this->assertEquals(new AcceptedResponse('accepted', 200), $response);
     }
 
@@ -210,7 +228,7 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update($projectId, $environmentId, $webapps);
+        $this->resourcesTask->update(projectId: $projectId, environmentId: $environmentId, webapps: $webapps);
     }
 
     /**
@@ -234,7 +252,7 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update($projectId, $environmentId);
+        $this->resourcesTask->update(projectId: $projectId, environmentId: $environmentId);
     }
 
     /**
@@ -265,7 +283,11 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update($projectId, $environmentId, $webapps);
+        $this->resourcesTask->update(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            webapps: $webapps
+        );
     }
 
     /**
@@ -297,6 +319,10 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update($projectId, $environmentId, $webapps);
+        $this->resourcesTask->update(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            webapps: $webapps
+        );
     }
 }

@@ -4,6 +4,7 @@ namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\RoutingApi;
@@ -35,6 +36,10 @@ class RoutesTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws \Exception
+     */
     public function testGet(): void
     {
         $fakeRoute = [
@@ -93,11 +98,19 @@ class RoutesTaskTest extends BaseTestCase
                 json_encode($fakeRoute)
             ));
 
-        $result = $this->routesTask->get('proj1', 'env1', 'route1');
+        $result = $this->routesTask->get(
+            projectId: 'proj1',
+            environmentId: 'env1',
+            routeId: 'route1'
+        );
         $this->assertInstanceOf(Route::class, $result);
         $this->assertObjectProperties($result, $fakeRoute);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws \Exception
+     */
     public function testList(): void
     {
         $list = [
@@ -205,7 +218,7 @@ class RoutesTaskTest extends BaseTestCase
                 json_encode($list)
             ));
 
-        $result = $this->routesTask->list('proj1', 'env1');
+        $result = $this->routesTask->list(projectId: 'proj1', environmentId: 'env1');
         $this->assertContainsOnlyInstancesOf(Route::class, $result);
         $this->assertObjectMatchesArray($result, $list);
     }

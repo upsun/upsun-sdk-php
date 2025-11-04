@@ -45,6 +45,9 @@ class TeamsTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreate(): void
     {
         $orgId = 'org_123456';
@@ -90,7 +93,7 @@ class TeamsTaskTest extends BaseTestCase
                 json_encode($teamFake)
             ));
 
-        $result = $this->task->create($orgId, $label, $projectPermissions);
+        $result = $this->task->create(organizationId: $orgId, label: $label, projectPermissions: $projectPermissions);
         $this->assertEquals($orgId, $result->getOrganizationId());
         $this->assertEquals($label, $result->getLabel());
         $this->assertEquals(
@@ -130,11 +133,12 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->create($orgId, $label, $projectPermissions);
+        $this->task->create(organizationId: $orgId, label: $label, projectPermissions: $projectPermissions);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testCreateMember(): void
     {
@@ -156,11 +160,14 @@ class TeamsTaskTest extends BaseTestCase
                 json_encode($teamMemberFake)
             ));
 
-        $result = $this->task->createMember($teamId, $userId);
+        $result = $this->task->createMember(teamId: $teamId, userId: $userId);
         $this->assertSame($teamId, $result->getTeamId());
         $this->assertSame($userId, $result->getUserId());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateMemberError(): void
     {
         $userId = 'user-123';
@@ -179,11 +186,12 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->createMember($teamId, $userId);
+        $this->task->createMember(teamId: $teamId, userId: $userId);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testDeleteMember(): void
     {
@@ -202,11 +210,12 @@ class TeamsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->task->deleteMember($teamId, $userId);
+        $this->task->deleteMember(teamId: $teamId, userId: $userId);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testDeleteMemberError(): void
     {
@@ -227,9 +236,13 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->deleteMember($teamId, $userId);
+        $this->task->deleteMember(teamId: $teamId, userId: $userId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGet(): void
     {
         $teamId = 'team-123';
@@ -263,11 +276,14 @@ class TeamsTaskTest extends BaseTestCase
                 json_encode($teamFake)
             ));
 
-        $result = $this->task->get($teamId);
+        $result = $this->task->get(teamId: $teamId);
         $this->assertInstanceOf(Team::class, $result);
         $this->assertObjectProperties($result, $teamFake);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetError(): void
     {
         $teamId = 'team-123';
@@ -285,9 +301,13 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->get($teamId);
+        $this->task->get(teamId: $teamId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testList(): void
     {
         $list = [
@@ -366,19 +386,22 @@ class TeamsTaskTest extends BaseTestCase
         $sort = 'createdAt:desc';
 
         $result = $this->task->list(
-            $filterOrganizationId,
-            $filterId,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            filterOrganizationId: $filterOrganizationId,
+            filterId: $filterId,
+            filterUpdatedAt: $filterUpdatedAt,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
         $this->assertInstanceOf(ListTeams200Response::class, $result);
         $this->assertContainsOnlyInstancesOf(Team::class, $result->getItems());
         $this->assertObjectMatchesArray($result->getItems(), $list['items']);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListError(): void
     {
         $this->httpClient
@@ -403,16 +426,20 @@ class TeamsTaskTest extends BaseTestCase
         $sort = 'createdAt:desc';
 
         $this->task->list(
-            $filterOrganizationId,
-            $filterId,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            filterOrganizationId: $filterOrganizationId,
+            filterId: $filterId,
+            filterUpdatedAt: $filterUpdatedAt,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListMembers(): void
     {
         $teamId = 'team_001';
@@ -456,14 +483,21 @@ class TeamsTaskTest extends BaseTestCase
                 json_encode($fakeResponse)
             ));
 
-        $result = $this->task->listMembers($teamId, $pageBefore, $pageAfter, $sort);
+        $result = $this->task->listMembers(
+            teamId: $teamId,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
 
         $this->assertInstanceOf(ListTeamMembers200Response::class, $result);
         $this->assertContainsOnlyInstancesOf(TeamMember::class, $result->getItems());
         $this->assertObjectMatchesArray($result->getItems(), $fakeResponse['items']);
     }
 
-
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListMembersError(): void
     {
         $teamId = 'team_001';
@@ -484,9 +518,18 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->listMembers($teamId, $pageBefore, $pageAfter, $sort);
+        $this->task->listMembers(
+            teamId: $teamId,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListUserTeams(): void
     {
         $userId = 'user_123';
@@ -547,13 +590,13 @@ class TeamsTaskTest extends BaseTestCase
 
         // Call the method
         $result = $this->task->listUserTeams(
-            $userId,
-            $filterOrganizationId,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            userId: $userId,
+            filterOrganizationId: $filterOrganizationId,
+            filterUpdatedAt: $filterUpdatedAt,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
 
         // Assertions
@@ -562,7 +605,9 @@ class TeamsTaskTest extends BaseTestCase
         $this->assertObjectMatchesArray($result->getItems(), $fakeResponse['items']);
     }
 
-
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListUserTeamsError(): void
     {
         $userId = 'user_123';
@@ -589,16 +634,19 @@ class TeamsTaskTest extends BaseTestCase
 
         // Call the method
         $this->task->listUserTeams(
-            $userId,
-            $filterOrganizationId,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            userId: $userId,
+            filterOrganizationId: $filterOrganizationId,
+            filterUpdatedAt: $filterUpdatedAt,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
         );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateTeamSuccess(): void
     {
         $teamId = 'team_001';
@@ -634,9 +682,9 @@ class TeamsTaskTest extends BaseTestCase
 
         // Call the method
         $result = $this->task->update(
-            $teamId,
-            'Updated Team Label',
-            [
+            teamId: $teamId,
+            label: 'Updated Team Label',
+            projectPermissions: [
                 ['projectId' => 'proj_001', 'role' => 'admin'],
                 ['projectId' => 'proj_002', 'role' => 'viewer'],
             ]
@@ -653,6 +701,9 @@ class TeamsTaskTest extends BaseTestCase
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateTeamError(): void
     {
         $teamId = 'team_001';
@@ -673,9 +724,9 @@ class TeamsTaskTest extends BaseTestCase
 
         // Call the method
         $this->task->update(
-            $teamId,
-            'Updated Team Label',
-            [
+            teamId: $teamId,
+            label: 'Updated Team Label',
+            projectPermissions: [
                 ['projectId' => 'proj_001', 'role' => 'admin'],
                 ['projectId' => 'proj_002', 'role' => 'viewer'],
             ]
@@ -683,6 +734,9 @@ class TeamsTaskTest extends BaseTestCase
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetMemberSuccess(): void
     {
         $teamId = 'team_001';
@@ -706,7 +760,7 @@ class TeamsTaskTest extends BaseTestCase
             ));
 
         // Call the method
-        $result = $this->task->getMember($teamId, $userId);
+        $result = $this->task->getMember(teamId: $teamId, userId: $userId);
 
         // Assertions
         $this->assertInstanceOf(TeamMember::class, $result);
@@ -714,6 +768,9 @@ class TeamsTaskTest extends BaseTestCase
         $this->assertEquals($userId, $result->getUserId());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetMemberError(): void
     {
         $teamId = 'team_001';
@@ -729,9 +786,12 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->getMember($teamId, $userId);
+        $this->task->getMember(teamId: $teamId, userId: $userId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetProjectTeamAccessSuccess(): void
     {
         $projectId = 'proj_001';
@@ -768,7 +828,7 @@ class TeamsTaskTest extends BaseTestCase
                 json_encode($teamProjectAccessFake)
             ));
 
-        $result = $this->task->getProjectTeamAccess($projectId, $teamId);
+        $result = $this->task->getProjectTeamAccess(projectId: $projectId, teamId: $teamId);
 
         $this->assertInstanceOf(TeamProjectAccess::class, $result);
         $this->assertEquals($teamId, $result->getTeamId());
@@ -777,6 +837,9 @@ class TeamsTaskTest extends BaseTestCase
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetProjectTeamAccessError(): void
     {
         $projectId = 'proj_001';
@@ -795,9 +858,12 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->getProjectTeamAccess($projectId, $teamId);
+        $this->task->getProjectTeamAccess(projectId: $projectId, teamId: $teamId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetTeamProjectAccessSuccess(): void
     {
         $teamId = 'team_001';
@@ -834,7 +900,7 @@ class TeamsTaskTest extends BaseTestCase
                 json_encode($teamProjectAccessFake)
             ));
 
-        $result = $this->task->getTeamProjectAccess($teamId, $projectId);
+        $result = $this->task->getTeamProjectAccess(teamId: $teamId, projectId: $projectId);
 
         $this->assertInstanceOf(TeamProjectAccess::class, $result);
         $this->assertEquals($teamId, $result->getTeamId());
@@ -846,6 +912,9 @@ class TeamsTaskTest extends BaseTestCase
         );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetTeamProjectAccessError(): void
     {
         $teamId = 'team_001';
@@ -865,9 +934,12 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->getTeamProjectAccess($teamId, $projectId);
+        $this->task->getTeamProjectAccess(teamId: $teamId, projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListTeamProjectAccessSuccess(): void
     {
         $teamId = 'team_001';
@@ -944,7 +1016,13 @@ class TeamsTaskTest extends BaseTestCase
                 json_encode($listTeamProjectAccessFake)
             ));
 
-        $result = $this->task->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
+        $result = $this->task->listTeamProjectAccess(
+            teamId: $teamId,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
 
         $this->assertInstanceOf(ListProjectTeamAccess200Response::class, $result);
         $this->assertCount(2, $result->getItems());
@@ -953,6 +1031,9 @@ class TeamsTaskTest extends BaseTestCase
         $this->assertEquals('Awesome Project', $result->getItems()[0]->getProjectTitle());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListTeamProjectAccessError(): void
     {
         $teamId = 'team_001';
@@ -971,7 +1052,7 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->task->listTeamProjectAccess($teamId);
+        $this->task->listTeamProjectAccess(teamId: $teamId);
     }
 
     /**
@@ -991,7 +1072,7 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->expectNotToPerformAssertions();
 
-        $this->task->delete($teamId);
+        $this->task->delete(teamId: $teamId);
     }
 
     /**
@@ -1014,7 +1095,7 @@ class TeamsTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->task->delete($teamId);
+        $this->task->delete(teamId: $teamId);
     }
 
     /**
@@ -1037,7 +1118,7 @@ class TeamsTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->task->delete($teamId);
+        $this->task->delete(teamId: $teamId);
     }
 
     /**
@@ -1060,6 +1141,6 @@ class TeamsTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->task->delete($teamId);
+        $this->task->delete(teamId: $teamId);
     }
 }

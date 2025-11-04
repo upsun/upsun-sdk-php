@@ -4,6 +4,7 @@ namespace Upsun\Tests\Core\Tasks;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use stdClass;
 use Upsun\Api\ApiConfiguration;
@@ -42,6 +43,9 @@ class ApplicationsTaskTest extends BaseTestCase
         };
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListReturnsWebappsArray(): void
     {
         $this->httpClient
@@ -160,7 +164,7 @@ class ApplicationsTaskTest extends BaseTestCase
         $projectId = 'vjfwze4eacnle';
         $envId = 'main';
 
-        $result = $this->applicationsTask->list($projectId, $envId);
+        $result = $this->applicationsTask->list(projectId: $projectId, environmentId: $envId);
 
         $this->assertNotEmpty($result);
         $this->assertArrayHasKey('app', $result);
@@ -168,6 +172,9 @@ class ApplicationsTaskTest extends BaseTestCase
     }
 
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListReturnsEmptyArrayIfNoDeployment(): void
     {
         $this->httpClient
@@ -181,10 +188,13 @@ class ApplicationsTaskTest extends BaseTestCase
         $projectId = 'proj-1';
         $envId = 'env-1';
 
-        $result = $this->applicationsTask->list($projectId, $envId);
+        $result = $this->applicationsTask->list(projectId: $projectId, environmentId: $envId);
         $this->assertSame([], $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetReturnsWebApplicationWhenAvailable(): void
     {
         $this->httpClient
@@ -302,12 +312,15 @@ class ApplicationsTaskTest extends BaseTestCase
         $projectId = 'azertyuiop';
         $envId = 'main';
 
-        $result = $this->applicationsTask->get($projectId, $envId, 'app');
+        $result = $this->applicationsTask->get(projectId: $projectId, environmentId: $envId, applicationId: 'app');
 
         $this->assertNotNull($result);
         $this->assertEquals('app', $result->getName());
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetReturnsNullWhenAppNotFound(): void
     {
         $this->httpClient
@@ -426,7 +439,7 @@ class ApplicationsTaskTest extends BaseTestCase
         $envId = 'main';
         $app = 'app';
 
-        $result = $this->applicationsTask->get($projectId, $envId, $app);
+        $result = $this->applicationsTask->get(projectId: $projectId, environmentId: $envId, applicationId: $app);
 
         $this->assertNull($result);
     }

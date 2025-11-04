@@ -65,12 +65,12 @@ class OperationsTaskTest extends BaseTestCase
             ));
 
         $result = $this->operationsTask->run(
-            $projectId,
-            $environmentId,
-            $deploymentId,
-            'clear-cache',
-            'cache-service',
-            []
+            projectId: $projectId,
+            environmentId: $environmentId,
+            deploymentId: $deploymentId,
+            service: 'clear-cache',
+            operation: 'cache-service',
+            parameters: []
         );
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
@@ -85,11 +85,6 @@ class OperationsTaskTest extends BaseTestCase
         $projectId = 'project-1';
         $environmentId = 'env-1';
         $deploymentId = 'deploy-1';
-        $inputArray = [
-            'operation' => 'unknown-operation',
-            'service' => 'cache-service',
-            'parameters' => []
-        ];
 
         $this->expectException(ApiException::class);
 
@@ -104,13 +99,16 @@ class OperationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->operationsTask->run(
-            $projectId,
-            $environmentId,
-            $deploymentId,
-            'clear-cache',
-            'cache-service',
-            []
+        $result = $this->operationsTask->run(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            deploymentId: $deploymentId,
+            service: 'clear-cache',
+            operation: 'cache-service',
+            parameters: []
         );
+
+        $acceptedResponse = new AcceptedResponse('accepted', 200);
+        $this->assertEquals($acceptedResponse, $result);
     }
 }

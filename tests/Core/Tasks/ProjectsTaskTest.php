@@ -349,7 +349,7 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($projectFake)
             ));
 
-        $result = $this->projectsTask->get($prjId);
+        $result = $this->projectsTask->get(projectId: $prjId);
         $this->assertInstanceOf(Project::class, $result);
         $this->assertObjectProperties($result, $projectFake);
     }
@@ -437,7 +437,7 @@ class ProjectsTaskTest extends BaseTestCase
                     ])
                 )
             );
-        $this->projectsTask->delete($projectId);
+        $this->projectsTask->delete(projectId: $projectId);
     }
 
     /**
@@ -511,7 +511,7 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($fakeCapabilities)
             ));
 
-        $result = $this->projectsTask->getCapabilities($projectId);
+        $result = $this->projectsTask->getCapabilities(projectId: $projectId);
         $this->assertInstanceOf(ProjectCapabilities::class, $result);
         $this->assertObjectProperties($result, $fakeCapabilities);
     }
@@ -536,18 +536,18 @@ class ProjectsTaskTest extends BaseTestCase
             ));
 
         $result = $this->projectsTask->update(
-            $projectId,
-            'main',
-            'myproject.example.com',
-            'My Project',
-            'A sample project used for testing.',
-            [
-            'framework' => 'symfony',
-            'language' => 'php',
-            'version' => '8.2',
+            projectId: $projectId,
+            title: 'My Project',
+            defaultBranch: 'main',
+            description: 'A sample project used for testing.',
+            defaultDomain: 'myproject.example.com',
+            attributes: [
+                'framework' => 'symfony',
+                'language' => 'php',
+                'version' => '8.2',
             ],
-            'UTC',
-            'eu-central-1',
+            timezone: 'UTC',
+            region: 'eu-central-1',
         );
 
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
@@ -578,7 +578,7 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->projectsTask->cancelInvite($projectId, $invitationId);
+        $this->projectsTask->cancelInvite(projectId: $projectId, invitationId: $invitationId);
     }
 
     /**
@@ -624,11 +624,11 @@ class ProjectsTaskTest extends BaseTestCase
             ));
 
         $result = $this->projectsTask->createInvite(
-            $projectId,
-            'invite@example.com',
-            'developer',
-            ['read', 'write', 'deploy'],
-            [
+            projectId: $projectId,
+            email: 'invite@example.com',
+            role: 'developer',
+            permissions: ['read', 'write', 'deploy'],
+            environments: [
                 [
                     'id' => 'env_123',
                     'name' => 'staging',
@@ -638,7 +638,7 @@ class ProjectsTaskTest extends BaseTestCase
                     'name' => 'production',
                 ],
             ],
-            true,
+            force: true,
         );
         $this->assertInstanceOf(ProjectInvitation::class, $result);
         $this->assertObjectProperties($result, $invitation);
@@ -717,7 +717,14 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($list)
             ));
 
-        $result = $this->projectsTask->listInvites($projectId, $filterState, $pageSize, $pageBefore, $pageAfter, $sort);
+        $result = $this->projectsTask->listInvites(
+            projectId: $projectId,
+            filterState: $filterState,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
         $this->assertContainsOnlyInstancesOf(ProjectInvitation::class, $result);
         $this->assertObjectMatchesArray($result, $list);
     }
@@ -855,7 +862,7 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($fakeConfig)
             ));
 
-        $result = $this->projectsTask->getSettings($projectId);
+        $result = $this->projectsTask->getSettings(projectId: $projectId);
         $this->assertInstanceOf(ProjectSettings::class, $result);
         $this->assertObjectProperties($result, $fakeConfig);
     }
@@ -887,7 +894,7 @@ class ProjectsTaskTest extends BaseTestCase
                     ],
                 ],
             ],
-            'initialize' => (object)[
+            'initialize' => [
                 'step' => 'prepare',
                 'status' => 'pending',
             ],
@@ -908,7 +915,13 @@ class ProjectsTaskTest extends BaseTestCase
             ));
 
 
-        $result = $this->projectsTask->updateSettings($projectId, $data);
+        $result = $this->projectsTask->updateSettings(
+            projectId: $projectId,
+            initialize: $data['initialize'],
+            dataRetention: $data['dataRetention'],
+            cpu: $data['cpu'],
+            memory: $data['memory']
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
@@ -933,18 +946,18 @@ class ProjectsTaskTest extends BaseTestCase
             ));
 
         $result = $this->projectsTask->createVariable(
-            $projectId,
-            'env:API_KEY',
-            '123456789abcdef',
-            [
-            'description' => 'API key for third-party service',
-            'scope' => 'project',
+            projectId: $projectId,
+            name: 'env:API_KEY',
+            value: '123456789abcdef',
+            attributes: [
+                'description' => 'API key for third-party service',
+                'scope' => 'project',
             ],
-            false,
-            true,
-            true,
-            false,
-            ['app1', 'app2'],
+            isJson: false,
+            isSensitive: true,
+            visibleBuild: true,
+            visibleRuntime: false,
+            applicationScope: ['app1', 'app2'],
         );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
@@ -969,7 +982,7 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->deleteVariable($projectId, $variableId);
+        $result = $this->projectsTask->deleteVariable(projectId: $projectId, projectVariableId: $variableId);
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
@@ -1011,7 +1024,7 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($variable)
             ));
 
-        $result = $this->projectsTask->getVariable($projectId, $variableId);
+        $result = $this->projectsTask->getVariable(projectId: $projectId, projectVariableId: $variableId);
         $this->assertInstanceOf(ProjectVariable::class, $result);
         $this->assertObjectProperties($result, $variable);
     }
@@ -1072,7 +1085,7 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($list)
             ));
 
-        $result = $this->projectsTask->listVariables($projectId);
+        $result = $this->projectsTask->listVariables(projectId: $projectId);
         $this->assertContainsOnlyInstancesOf(ProjectVariable::class, $result);
         $this->assertObjectMatchesArray($result, $list);
     }
@@ -1098,23 +1111,27 @@ class ProjectsTaskTest extends BaseTestCase
             ));
 
         $result = $this->projectsTask->updateVariable(
-            $projectId,
-            $variableId,
-            'API_KEY_UPDATED',
-            'abcdef123456789',
-            [
-            'property1' => 'updated-metadata',
-            'property2' => 'additional-info',
+            projectId: $projectId,
+            projectVariableId: $variableId,
+            name: 'API_KEY_UPDATED',
+            value: 'abcdef123456789',
+            attributes: [
+                'property1' => 'updated-metadata',
+                'property2' => 'additional-info',
             ],
-            true,
-            true,
-            false,
-            true,
-            ['app1', 'app2'],
+            isJson: true,
+            isSensitive: true,
+            visibleBuild: false,
+            visibleRuntime: true,
+            applicationScope: ['app1', 'app2'],
         );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetActivity()
     {
         $projectId = 'test-project';
@@ -1164,7 +1181,7 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($fakeActivity)
             ));
 
-        $result = $this->projectsTask->getActivity($projectId, $activityId);
+        $result = $this->projectsTask->getActivity(projectId: $projectId, activityId: $activityId);
         $this->assertInstanceOf(Activity::class, $result);
         $this->assertObjectProperties($result, $fakeActivity);
     }
@@ -1258,7 +1275,7 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($list)
             ));
 
-        $result = $this->projectsTask->listActivities($projectId);
+        $result = $this->projectsTask->listActivities(projectId: $projectId);
 
         $this->assertContainsOnlyInstancesOf(Activity::class, $result);
         $this->assertObjectMatchesArray($result, $list);
@@ -1284,7 +1301,8 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->projectsTask->cancelActivity($projectId, $activityId);
+        $response = $this->projectsTask->cancelActivity(projectId: $projectId, activityId: $activityId);
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $response);
     }
 
     /**
@@ -1307,24 +1325,24 @@ class ProjectsTaskTest extends BaseTestCase
             ));
 
         $this->projectsTask->createDeployment(
-            $projectId,
-            'production',
-            'Main Deployment Target',
-            ['host1.example.com', 'host2.example.com'],
-            [
+            projectId: $projectId,
+            type: 'production',
+            name: 'Main Deployment Target',
+            hosts: ['host1.example.com', 'host2.example.com'],
+            enforcedMounts: [
                 'mount1' => '/var/www/html',
                 'mount2' => '/var/log',
             ],
-            [
+            siteUrls: [
                 'primary' => 'https://www.example.com',
                 'secondary' => 'https://backup.example.com',
             ],
-            ['ssh1.example.com', 'ssh2.example.com'],
-            [
+            sshHosts: ['ssh1.example.com', 'ssh2.example.com'],
+            enterpriseEnvironmentsMapping: [
                 'env1' => 'production',
                 'env2' => 'staging',
             ],
-            true,
+            useDedicatedGrid: true,
         );
     }
 
@@ -1348,7 +1366,11 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->projectsTask->deleteDeployment($projectId, $deploymentId);
+        $result = $this->projectsTask->deleteDeployment(
+            projectId: $projectId,
+            deploymentTargetConfigurationId: $deploymentId
+        );
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
     /**
@@ -1440,11 +1462,18 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($deploymentTarget)
             ));
 
-        $result = $this->projectsTask->getDeployment($projectId, $deploymentId);
+        $result = $this->projectsTask->getDeployment(
+            projectId: $projectId,
+            deploymentTargetConfigurationId: $deploymentId
+        );
         $this->assertInstanceOf(DeploymentTarget::class, $result);
         $this->assertObjectProperties($result, $deploymentTarget);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListDeployments()
     {
         $projectId = 'test-project';
@@ -1602,11 +1631,14 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($list)
             ));
 
-        $result = $this->projectsTask->listDeployments($projectId);
+        $result = $this->projectsTask->listDeployments(projectId: $projectId);
         $this->assertContainsOnlyInstancesOf(DeploymentTarget::class, $result);
         $this->assertObjectMatchesArray($result, $list);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateDeployment()
     {
         $projectId = 'test-project';
@@ -1624,42 +1656,44 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->projectsTask->updateDeployment(
-            $projectId,
-            $deploymentId,
-            'dedicated',
-            'Updated Deployment Target',
-            ['ssh1.example.com', 'ssh2.example.com'],
-            [
-            [
-            'type' => 'core',
-            'id' => 'host1',
-            'services' => ['nginx', 'php']
+        $result = $this->projectsTask->updateDeployment(
+            projectId: $projectId,
+            deploymentTargetConfigurationId: $deploymentId,
+            type: 'dedicated',
+            name: 'Updated Deployment Target',
+            hosts: ['ssh1.example.com', 'ssh2.example.com'],
+            enforcedMounts: [
+                'mount1' => '/var/www/html',
+                'mount2' => '/var/log',
             ],
-            [
-            'type' => 'secondary',
-            'id' => 'host2',
-            'services' => ['php', 'mysql']
-            ]
+            siteUrls: [
+                [
+                    'type' => 'core',
+                    'id' => 'host1',
+                    'services' => ['nginx', 'php']
+                ],
+                [
+                    'type' => 'secondary',
+                    'id' => 'host2',
+                    'services' => ['php', 'mysql']
+                ]
             ],
-            [
-            'mount1' => '/var/www/html',
-            'mount2' => '/var/log',
+            sshHosts: [
+                'primary' => 'https://www.example.com',
+                'secondary' => 'https://backup.example.com'
             ],
-            [
-            'primary' => 'https://www.example.com',
-            'secondary' => 'https://backup.example.com'
+            enterpriseEnvironmentsMapping: [
+                'env1' => 'production',
+                'env2' => 'staging'
             ],
-            [
-            'env1' => 'production',
-            'env2' => 'staging'
-            ],
-            true
+            useDedicatedGrid: true
         );
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testGetGitBlob()
     {
@@ -1683,11 +1717,15 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($fakeBlob)
             ));
 
-        $result = $this->projectsTask->getGitBlob($projectId, $blobId);
+        $result = $this->projectsTask->getGitBlob(projectId: $projectId, repositoryBlobId: $blobId);
         $this->assertInstanceOf(Blob::class, $result);
         $this->assertObjectProperties($result, $fakeBlob);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetGitCommit()
     {
         $projectId = 'test-project';
@@ -1721,11 +1759,15 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($fakeCommit)
             ));
 
-        $result = $this->projectsTask->getGitCommit($projectId, $commitId);
+        $result = $this->projectsTask->getGitCommit(projectId: $projectId, repositoryCommitId: $commitId);
         $this->assertInstanceOf(Commit::class, $result);
         $this->assertObjectProperties($result, $fakeCommit);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetGitRef()
     {
         $projectId = 'test-project';
@@ -1749,11 +1791,15 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($fakeRef)
             ));
 
-        $result = $this->projectsTask->getGitRef($projectId, $refId);
+        $result = $this->projectsTask->getGitRef(projectId: $projectId, repositoryRefId: $refId);
         $this->assertInstanceOf(Ref::class, $result);
         $this->assertObjectProperties($result, $fakeRef);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetGitTree()
     {
         $projectId = 'test-project';
@@ -1792,13 +1838,14 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($fakeTree)
             ));
 
-        $result = $this->projectsTask->getGitTree($projectId, $treeId);
+        $result = $this->projectsTask->getGitTree(projectId: $projectId, repositoryTreeId: $treeId);
         $this->assertInstanceOf(Tree::class, $result);
         $this->assertObjectProperties($result, $fakeTree);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testListGitRefs(): void
     {
@@ -1834,13 +1881,14 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($list)
             ));
 
-        $result = $this->projectsTask->listGitRefs($projectId);
+        $result = $this->projectsTask->listGitRefs(projectId: $projectId);
         $this->assertContainsOnlyInstancesOf(Ref::class, $result);
         $this->assertObjectMatchesArray($result, $list);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testRestartGitServer()
     {
@@ -1858,10 +1906,14 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->restartGitServer($projectId);
+        $result = $this->projectsTask->restartGitServer(projectId: $projectId);
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetGitInfo()
     {
         $projectId = 'test-project';
@@ -1881,11 +1933,14 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($fakeSystemInformationString)
             ));
 
-        $result = $this->projectsTask->getGitInfo($projectId);
+        $result = $this->projectsTask->getGitInfo(projectId: $projectId);
         $this->assertInstanceOf(SystemInformation::class, $result);
         $this->assertObjectProperties($result, $fakeSystemInformationString);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateIntegration()
     {
         $projectId = 'test-project';
@@ -1903,67 +1958,70 @@ class ProjectsTaskTest extends BaseTestCase
             ));
 
         $result = $this->projectsTask->createIntegration(
-            $projectId,
-            'github',
-            'user/repo',
-            'https://github.com/user/repo',
-            'user',
-            'ghp_exampletoken123',
-            'project123',
-            'service-001',
-            ['dev@example.com', 'ops@example.com'],
-            'routing-key-001',
-            '#notifications',
-            'license-xyz-123',
-            'deploy.sh',
-            'main',
-            [
-            'key' => 'oauth-key-123',
-            'secret' => 'oauth-secret-456'
+            projectId: $projectId,
+            type: 'github',
+            repository: 'user/repo',
+            url: 'https://github.com/user/repo',
+            username: 'user',
+            token: 'ghp_exampletoken123',
+            project: 'project123',
+            serviceId: 'service-001',
+            recipients: ['dev@example.com', 'ops@example.com'],
+            routingKey: 'routing-key-001',
+            channel: '#notifications',
+            licenseKey: 'license-xyz-123',
+            script: 'deploy.sh',
+            index: 'main',
+            appCredentials: [
+                'key' => 'oauth-key-123',
+                'secret' => 'oauth-secret-456'
             ],
-            [
-            'addonKey' => 'addon-abc',
-            'clientKey' => 'client-xyz',
-            'sharedSecret' => 'shared-secret-789'
+            addonCredentials: [
+                'addonKey' => 'addon-abc',
+                'clientKey' => 'client-xyz',
+                'sharedSecret' => 'shared-secret-789'
             ],
-            'noreply@example.com',
-            'shared-key-001',
-            true,
-            false,
-            'standard',
-            true,
-            false,
-            true,
-            ['push', 'pull_request'],
-            ['dev', 'staging'],
-            ['production'],
-            ['active', 'inactive'],
-            'success',
-            'https://api.example.com',
-            true,
-            false,
-            true,
-            false,
-            true,
-            true,
-            true,
-            ['option1' => 'value1'],
-            ['X-Custom-Header' => 'value'],
-            true,
-            [],
-            'github',
-            'ci',
-            'api.example.com',
-            443,
-            'https',
-            1,
-            'json',
-            'token-abc-123',
-            'bearer'
+            fromAddress: 'noreply@example.com',
+            sharedKey: 'shared-key-001',
+            fetchBranches: true,
+            pruneBranches: false,
+            environmentInitResources: 'standard',
+            buildPullRequests: true,
+            pullRequestsCloneParentData: false,
+            resyncPullRequests: true,
+            events: ['push', 'pull_request'],
+            environments: ['dev', 'staging'],
+            excludedEnvironments: ['production'],
+            states: ['active', 'inactive'],
+            result: 'success',
+            baseUrl: 'https://api.example.com',
+            buildDraftPullRequests: true,
+            buildPullRequestsPostMerge: false,
+            rotateToken: true,
+            rotateTokenValidityInWeeks: false,
+            buildMergeRequests: true,
+            buildWipMergeRequests: true,
+            mergeRequestsCloneParentData: true,
+            extra: ['option1' => 'value1'],
+            headers: ['X-Custom-Header' => 'value'],
+            tlsVerify: true,
+            excludedServices: ['mysql'],
+            sourceType: 'github',
+            category: 'ci',
+            host: 'api.example.com',
+            port: 443,
+            protocol: 'https',
+            facility: 1,
+            messageFormat: 'json',
+            authToken: 'token-abc-123',
+            authMode: 'bearer'
         );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteIntegration()
     {
         $projectId = 'test-project';
@@ -1981,12 +2039,13 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->deleteIntegration($projectId, $integrationId);
+        $result = $this->projectsTask->deleteIntegration(projectId: $projectId, integrationId: $integrationId);
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testGetIntegration()
     {
@@ -2058,11 +2117,15 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($fakeIntegration)
             ));
 
-        $result = $this->projectsTask->getIntegration($projectId, $integrationId);
+        $result = $this->projectsTask->getIntegration(projectId: $projectId, integrationId: $integrationId);
         $this->assertInstanceOf(Integration::class, $result);
         $this->assertObjectProperties($result, $fakeIntegration);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListIntegrations()
     {
         $projectId = 'test-project';
@@ -2190,7 +2253,7 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($list)
             ));
 
-        $result = $this->projectsTask->listIntegrations($projectId);
+        $result = $this->projectsTask->listIntegrations(projectId: $projectId);
         $this->assertContainsOnlyInstancesOf(Integration::class, $result);
         $this->assertObjectMatchesArray($result, $list);
     }
@@ -2216,68 +2279,71 @@ class ProjectsTaskTest extends BaseTestCase
             ));
 
         $result = $this->projectsTask->updateIntegration(
-            $projectId,
-            $integrationId,
-            'github',
-            'user/repo',
-            'https://github.com/user/repo',
-            'user',
-            'ghp_exampletoken123',
-            'project123',
-            'service-001',
-            ['dev@example.com', 'ops@example.com'],
-            'routing-key-001',
-            '#notifications',
-            'license-xyz-123',
-            'deploy.sh',
-            'main',
-            [
+            projectId: $projectId,
+            integrationId: $integrationId,
+            type: 'github',
+            repository: 'user/repo',
+            url: 'https://github.com/user/repo',
+            username: 'user',
+            token: 'ghp_exampletoken123',
+            project: 'project123',
+            serviceId: 'service-001',
+            recipients: ['dev@example.com', 'ops@example.com'],
+            routingKey: 'routing-key-001',
+            channel: '#notifications',
+            licenseKey: 'license-xyz-123',
+            script: 'deploy.sh',
+            index: 'main',
+            appCredentials: [
                 'key' => 'oauth-key-123',
                 'secret' => 'oauth-secret-456'
             ],
-            [
+            addonCredentials: [
                 'addonKey' => 'addon-abc',
                 'clientKey' => 'client-xyz',
                 'sharedSecret' => 'shared-secret-789'
             ],
-            'noreply@example.com',
-            'shared-key-001',
-            true,
-            false,
-            'standard',
-            true,
-            false,
-            true,
-            ['push', 'pull_request'],
-            ['dev', 'staging'],
-            ['production'],
-            ['active', 'inactive'],
-            'success',
-            'https://api.example.com',
-            true,
-            false,
-            true,
-            false,
-            true,
-            true,
-            true,
-            ['option1' => 'value1'],
-            ['X-Custom-Header' => 'value'],
-            true,
-            [],
-            'github',
-            'ci',
-            'api.example.com',
-            443,
-            'https',
-            1,
-            'json',
-            'token-abc-123',
-            'bearer'
+            fromAddress: 'noreply@example.com',
+            sharedKey: 'shared-key-001',
+            fetchBranches: true,
+            pruneBranches: false,
+            environmentInitResources: 'standard',
+            buildPullRequests: true,
+            pullRequestsCloneParentData: false,
+            resyncPullRequests: true,
+            events: ['push', 'pull_request'],
+            environments: ['dev', 'staging'],
+            excludedEnvironments: ['production'],
+            states: ['active', 'inactive'],
+            result: 'success',
+            baseUrl: 'https://api.example.com',
+            buildDraftPullRequests: true,
+            buildPullRequestsPostMerge: false,
+            rotateToken: true,
+            rotateTokenValidityInWeeks: false,
+            buildMergeRequests: true,
+            buildWipMergeRequests: true,
+            mergeRequestsCloneParentData: true,
+            extra: ['option1' => 'value1'],
+            headers: ['X-Custom-Header' => 'value'],
+            tlsVerify: true,
+            excludedServices: ['mysql'],
+            sourceType: 'github',
+            category: 'ci',
+            host: 'api.example.com',
+            port: 443,
+            protocol: 'https',
+            facility: 1,
+            messageFormat: 'json',
+            authToken: 'token-abc-123',
+            authMode: 'bearer'
         );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateDomain()
     {
         $projectId = 'test-project';
@@ -2295,18 +2361,21 @@ class ProjectsTaskTest extends BaseTestCase
             ));
 
         $result = $this->projectsTask->createDomain(
-            $projectId,
-            'example.com',
-            [
-            'ssl' => 'enabled',
-            'region' => 'eu',
+            projectId: $projectId,
+            name: 'example.com',
+            attributes: [
+                'ssl' => 'enabled',
+                'region' => 'eu',
             ],
-            true,
-            null
+            isDefault: true,
+            replacementFor: 'previous.com'
         );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteDomain()
     {
         $projectId = 'test-project';
@@ -2324,12 +2393,13 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->deleteDomain($projectId, $domainId);
+        $result = $this->projectsTask->deleteDomain(projectId: $projectId, domainId: $domainId);
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testGetDomain()
     {
@@ -2359,11 +2429,15 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($domain)
             ));
 
-        $result = $this->projectsTask->getDomain($projectId, $domainId);
+        $result = $this->projectsTask->getDomain(projectId: $projectId, domainId: $domainId);
         $this->assertInstanceOf(Domain::class, $result);
         $this->assertObjectProperties($result, $domain);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListDomains()
     {
         $projectId = 'test-project';
@@ -2407,11 +2481,14 @@ class ProjectsTaskTest extends BaseTestCase
                 json_encode($list)
             ));
 
-        $result = $this->projectsTask->listDomains($projectId);
+        $result = $this->projectsTask->listDomains(projectId: $projectId);
         $this->assertContainsOnlyInstancesOf(Domain::class, $result);
         $this->assertObjectMatchesArray($result, $list);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateDomain()
     {
         $projectId = 'test-project';
@@ -2429,10 +2506,18 @@ class ProjectsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->projectsTask->updateDomain($projectId, $domainId, [], true);
+        $result = $this->projectsTask->updateDomain(
+            projectId: $projectId,
+            domainId: $domainId,
+            attributes: [],
+            isDefault: true
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateCertificate()
     {
         $projectId = 'test-project';
@@ -2450,24 +2535,27 @@ class ProjectsTaskTest extends BaseTestCase
             ));
 
         $result = $this->projectsTask->createCertificate(
-            $projectId,
-            '-----BEGIN CERTIFICATE-----
+            projectId: $projectId,
+            certificate: '-----BEGIN CERTIFICATE-----
 MIIDXTCCAkWgAwIBAgIJAK8kU8kXk9Z+MA0GC...
 -----END CERTIFICATE-----',
-            '-----BEGIN PRIVATE KEY-----
+            key: '-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASC...
 -----END PRIVATE KEY-----',
-            [
-            '-----BEGIN CERTIFICATE-----
+            chain: [
+                '-----BEGIN CERTIFICATE-----
 MIIDdTCCAl2gAwIBAgIEb/2OBDANBgkqhkiG9w0BAQUFADB1MQswCQYDVQQGEwJV
 ...
 -----END CERTIFICATE-----',
             ],
-            false,
+            isInvalid: false,
         );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteCertificate()
     {
         $projectId = 'test-project';
@@ -2485,10 +2573,14 @@ MIIDdTCCAl2gAwIBAgIEb/2OBDANBgkqhkiG9w0BAQUFADB1MQswCQYDVQQGEwJV
                 ])
             ));
 
-        $result = $this->projectsTask->deleteCertificate($projectId, $certId);
+        $result = $this->projectsTask->deleteCertificate(projectId: $projectId, certificateId: $certId);
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetCertificate()
     {
         $projectId = 'test-project';
@@ -2544,11 +2636,15 @@ FAKE-CHAIN-CERT-DATA
                 json_encode($fakeCertificate)
             ));
 
-        $result = $this->projectsTask->getCertificate($projectId, $certId);
+        $result = $this->projectsTask->getCertificate(projectId: $projectId, certificateId: $certId);
         $this->assertInstanceOf(Certificate::class, $result);
         $this->assertObjectProperties($result, $fakeCertificate);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListCertificates()
     {
         $projectId = 'test-project';
@@ -2647,11 +2743,14 @@ FAKE-CHAIN-CERT-DATA2
                 json_encode($list)
             ));
 
-        $result = $this->projectsTask->listCertificates($projectId);
+        $result = $this->projectsTask->listCertificates(projectId: $projectId);
         $this->assertContainsOnlyInstancesOf(Certificate::class, $result);
         $this->assertObjectMatchesArray($result, $list);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateCertificate()
     {
         $projectId = 'test-project';
@@ -2677,10 +2776,18 @@ FAKE-CHAIN-CERT-DATA2
                 ])
             ));
 
-        $result = $this->projectsTask->updateCertificate($projectId, $certId, $certData);
+        $result = $this->projectsTask->updateCertificate(
+            projectId: $projectId,
+            certificateId: $certId,
+            chain: $certData['chain'],
+            isInvalid: $certData['isInvalid']
+        );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRunOperation()
     {
         $projectId = 'test-project';
@@ -2700,16 +2807,20 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $result = $this->projectsTask->runOperation(
-            $projectId,
-            $environmentId,
-            $deploymentId,
-            'clear-cache',
-            'cache-service',
-            []
+            projectId: $projectId,
+            environmentId: $environmentId,
+            deploymentId: $deploymentId,
+            service: 'clear-cache',
+            operation: 'cache-service',
+            parameters: []
         );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetProjectTeamAccess()
     {
         $projectId = 'test-project';
@@ -2744,13 +2855,14 @@ FAKE-CHAIN-CERT-DATA2
                 json_encode($fakeTeamProjectAccess)
             ));
 
-        $result = $this->projectsTask->getProjectTeamAccess($projectId, $teamId);
+        $result = $this->projectsTask->getProjectTeamAccess(projectId: $projectId, teamId: $teamId);
         $this->assertInstanceOf(TeamProjectAccess::class, $result);
         $this->assertObjectProperties($result, $fakeTeamProjectAccess);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testGetTeamProjectAccess()
     {
@@ -2785,13 +2897,14 @@ FAKE-CHAIN-CERT-DATA2
                 json_encode($fakeTeamProjectAccess)
             ));
 
-        $result = $this->projectsTask->getTeamProjectAccess($teamId, $projectId);
+        $result = $this->projectsTask->getTeamProjectAccess(teamId: $teamId, projectId: $projectId);
         $this->assertInstanceOf(TeamProjectAccess::class, $result);
         $this->assertObjectProperties($result, $fakeTeamProjectAccess);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testGrantProjectTeamAccess()
     {
@@ -2813,16 +2926,19 @@ FAKE-CHAIN-CERT-DATA2
                 ])
             ));
 
-        $this->projectsTask->grantProjectTeamAccess($projectId, $fakeTeamProjectAccessList);
+        $this->projectsTask->grantProjectTeamAccess(
+            projectId: $projectId,
+            grantProjectTeamAccessRequestInner: $fakeTeamProjectAccessList
+        );
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testGrantTeamProjectAccess()
     {
         $teamId = 'team-123';
-        $request = [['role' => 'admin']];
 
         $fakeProjectTeamAccessList = [
             ['projectId' => 'proj-123'],
@@ -2841,9 +2957,13 @@ FAKE-CHAIN-CERT-DATA2
                 ])
             ));
 
-        $this->projectsTask->grantTeamProjectAccess($teamId, $fakeProjectTeamAccessList);
+        $this->projectsTask->grantTeamProjectAccess(teamId: $teamId, data: $fakeProjectTeamAccessList);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListProjectTeamAccess()
     {
         $projectId = 'test-project';
@@ -2897,12 +3017,22 @@ FAKE-CHAIN-CERT-DATA2
                 json_encode($fakeListTeamProjectAccess)
             ));
 
-        $result = $this->projectsTask->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
+        $result = $this->projectsTask->listProjectTeamAccess(
+            projectId: $projectId,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
         $this->assertInstanceOf(ListProjectTeamAccess200Response::class, $result);
         $this->assertObjectMatchesArray($result->getItems(), $fakeListTeamProjectAccess['items']);
         $this->assertObjectProperties($result->getLinks(), $fakeListTeamProjectAccess['links']);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListTeamProjectAccess()
     {
         $teamId = 'team-123';
@@ -2956,12 +3086,21 @@ FAKE-CHAIN-CERT-DATA2
                 json_encode($fakeListTeamProjectAccess)
             ));
 
-        $result = $this->projectsTask->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
+        $result = $this->projectsTask->listTeamProjectAccess(
+            teamId: $teamId,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
         $this->assertInstanceOf(ListProjectTeamAccess200Response::class, $result);
         $this->assertObjectMatchesArray($result->getItems(), $fakeListTeamProjectAccess['items']);
         $this->assertObjectProperties($result->getLinks(), $fakeListTeamProjectAccess['links']);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRemoveProjectTeamAccess()
     {
         $projectId = 'test-project';
@@ -2979,9 +3118,12 @@ FAKE-CHAIN-CERT-DATA2
                 ])
             ));
 
-        $this->projectsTask->removeProjectTeamAccess($projectId, $teamId);
+        $this->projectsTask->removeProjectTeamAccess(projectId: $projectId, teamId: $teamId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRemoveTeamProjectAccess()
     {
         $teamId = 'team-123';
@@ -2999,9 +3141,13 @@ FAKE-CHAIN-CERT-DATA2
                 ])
             ));
 
-        $this->projectsTask->removeTeamProjectAccess($teamId, $projectId);
+        $this->projectsTask->removeTeamProjectAccess(teamId: $teamId, projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testGetProjectUserAccess()
     {
         $projectId = 'test-project';
@@ -3031,11 +3177,14 @@ FAKE-CHAIN-CERT-DATA2
                 json_encode($fakeProjectUserAccess)
             ));
 
-        $result = $this->projectsTask->getProjectUserAccess($projectId, $userId);
+        $result = $this->projectsTask->getProjectUserAccess(projectId: $projectId, userId: $userId);
         $this->assertInstanceOf(UserProjectAccess::class, $result);
         $this->assertObjectProperties($result, $fakeProjectUserAccess);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGrantProjectUserAccess()
     {
         $projectId = 'test-project';
@@ -3060,9 +3209,12 @@ FAKE-CHAIN-CERT-DATA2
                 ])
             ));
 
-        $this->projectsTask->grantProjectUserAccess($projectId, $data);
+        $this->projectsTask->grantProjectUserAccess(projectId: $projectId, data: $data);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRemoveProjectUserAccess()
     {
         $projectId = 'test-project';
@@ -3080,9 +3232,12 @@ FAKE-CHAIN-CERT-DATA2
                 ])
             ));
 
-        $this->projectsTask->removeProjectUserAccess($projectId, $userId);
+        $this->projectsTask->removeProjectUserAccess(projectId: $projectId, userId: $userId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateProjectUserAccess()
     {
         $projectId = 'test-project';
@@ -3103,9 +3258,17 @@ FAKE-CHAIN-CERT-DATA2
                 ])
             ));
 
-        $this->projectsTask->updateProjectUserAccess($projectId, $userId, $fakePermissions);
+        $this->projectsTask->updateProjectUserAccess(
+            projectId: $projectId,
+            userId: $userId,
+            permissions: $fakePermissions
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testListProjectUserAccess()
     {
         $projectId = 'test-project';
@@ -3115,34 +3278,36 @@ FAKE-CHAIN-CERT-DATA2
         $sort = 'created_at';
 
         $fakeUserProjectAccessList = [
-            [
-                'userId' => 'user-123',
-                'organizationId' => 'org-456',
-                'projectId' => 'proj-789',
-                'projectTitle' => 'Awesome Project',
-                'permissions' => ['read', 'write', 'admin'],
-                'grantedAt' => '2025-09-24T10:00:00Z',
-                'updatedAt' => '2025-09-24T12:30:00Z',
-                'links' => [
-                    'self' => ['href' => 'https://api.example.com/self'],
-                    'update' => ['href' => 'https://api.example.com/update'],
-                    'delete' => ['href' => 'https://api.example.com/delete'],
+            'items' => [
+                [
+                    'userId' => 'user-123',
+                    'organizationId' => 'org-456',
+                    'projectId' => 'proj-789',
+                    'projectTitle' => 'Awesome Project',
+                    'permissions' => ['read', 'write', 'admin'],
+                    'grantedAt' => '2025-09-24T10:00:00Z',
+                    'updatedAt' => '2025-09-24T12:30:00Z',
+                    'links' => [
+                        'self' => ['href' => 'https://api.example.com/self'],
+                        'update' => ['href' => 'https://api.example.com/update'],
+                        'delete' => ['href' => 'https://api.example.com/delete'],
+                    ],
                 ],
-            ],
-            [
-                'userId' => 'user-234',
-                'organizationId' => 'org-567',
-                'projectId' => 'proj-890',
-                'projectTitle' => 'Another Project',
-                'permissions' => ['read'],
-                'grantedAt' => '2025-09-20T09:00:00Z',
-                'updatedAt' => '2025-09-21T14:15:00Z',
-                'links' => [
-                    'self' => ['href' => 'https://api.example.com/self2'],
-                    'update' => ['href' => 'https://api.example.com/update2'],
-                    'delete' => ['href' => 'https://api.example.com/delete2'],
+                [
+                    'userId' => 'user-234',
+                    'organizationId' => 'org-567',
+                    'projectId' => 'proj-890',
+                    'projectTitle' => 'Another Project',
+                    'permissions' => ['read'],
+                    'grantedAt' => '2025-09-20T09:00:00Z',
+                    'updatedAt' => '2025-09-21T14:15:00Z',
+                    'links' => [
+                        'self' => ['href' => 'https://api.example.com/self2'],
+                        'update' => ['href' => 'https://api.example.com/update2'],
+                        'delete' => ['href' => 'https://api.example.com/delete2'],
+                    ],
                 ],
-            ],
+            ]
         ];
 
         $this->httpClient
@@ -3154,10 +3319,23 @@ FAKE-CHAIN-CERT-DATA2
                 json_encode($fakeUserProjectAccessList)
             ));
 
-        $result = $this->projectsTask->listProjectUserAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
+        $result = $this->projectsTask->listProjectUserAccess(
+            projectId: $projectId,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
         $this->assertInstanceOf(ListProjectUserAccess200Response::class, $result);
+        $this->assertIsArray($result->getItems());
+        $this->assertContainsOnlyInstancesOf(UserProjectAccess::class, $result->getItems());
+        $this->assertObjectMatchesArray($result->getItems(), $fakeUserProjectAccessList['items']);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
     public function testCreate()
     {
         $orgId = 'org-123';
@@ -3210,14 +3388,14 @@ FAKE-CHAIN-CERT-DATA2
                 json_encode($subscription)
             ));
         $result = $this->projectsTask->create(
-            $orgId,
-            'fr-3.platform.sh',
-            "upsun/flexible",
-            'My Project',
-            'https://example.com/options',
-            'main',
-            3,
-            5000,
+            organizationId: $orgId,
+            projectRegion: 'fr-3.platform.sh',
+            title: 'My Project',
+            defaultBranch: 'main',
+            plan: "upsun/flexible",
+            optionsUrl: 'https://example.com/options',
+            environments: 3,
+            storage: 5000,
         );
         $this->assertInstanceOf(Subscription::class, $result);
         $this->assertObjectProperties($result, $subscription);
@@ -3225,6 +3403,7 @@ FAKE-CHAIN-CERT-DATA2
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testListEnvironments()
     {
@@ -3363,14 +3542,16 @@ FAKE-CHAIN-CERT-DATA2
                 ['Content-Type' => 'application/json'],
                 json_encode($list)
             ));
-        $result = $this->projectsTask->listEnvironments($projectId);
+        $result = $this->projectsTask->listEnvironments(projectId: $projectId);
         $this->assertContainsOnlyInstancesOf(Environment::class, $result);
         $this->assertObjectMatchesArray($result, $list);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteWithError()
     {
-        $orgId = 'test-org-with-no-right';
         $projectId = 'test-project-with-no-right';
 
         $this->httpClient
@@ -3386,9 +3567,12 @@ FAKE-CHAIN-CERT-DATA2
 
         $this->expectException(ApiException::class);
 
-        $this->projectsTask->delete($orgId, $projectId);
+        $this->projectsTask->delete(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetWithError()
     {
         $projectId = 'test-project';
@@ -3405,9 +3589,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->get($projectId);
+        $this->projectsTask->get(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetCapabilitiesWithError()
     {
         $projectId = 'test-project';
@@ -3424,9 +3611,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getCapabilities($projectId);
+        $this->projectsTask->getCapabilities(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateWithError()
     {
         $projectId = 'test-project';
@@ -3443,9 +3633,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->update($projectId, 'Update Project');
+        $this->projectsTask->update(projectId: $projectId, title: 'Update Project');
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCancelInviteWithError()
     {
         $projectId = '-1';
@@ -3463,9 +3656,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->cancelInvite($projectId, $invitationId);
+        $this->projectsTask->cancelInvite(projectId: $projectId, invitationId: $invitationId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateInviteWithError()
     {
         $projectId = 'test-project';
@@ -3482,9 +3678,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->createInvite($projectId, 'test@test.fr');
+        $this->projectsTask->createInvite(projectId: $projectId, email: 'test@test.fr');
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetSettingsWithError()
     {
         $projectId = 'test-project';
@@ -3501,9 +3700,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getSettings($projectId);
+        $this->projectsTask->getSettings(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateSettingsWithError()
     {
         $projectId = 'test-project';
@@ -3526,7 +3728,7 @@ FAKE-CHAIN-CERT-DATA2
                     ],
                 ],
             ],
-            'initialize' => (object)[
+            'initialize' => [
                 'step' => 'prepare',
                 'status' => 'pending',
             ],
@@ -3545,9 +3747,18 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->updateSettings($projectId, $data);
+        $this->projectsTask->updateSettings(
+            projectId: $projectId,
+            initialize: $data['initialize'],
+            dataRetention: $data['dataRetention'],
+            cpu: $data['cpu'],
+            memory: $data['memory']
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateDeploymentWithError()
     {
         $projectId = 'test-project';
@@ -3565,27 +3776,30 @@ FAKE-CHAIN-CERT-DATA2
 
         $this->expectException(ApiException::class);
         $this->projectsTask->createDeployment(
-            $projectId,
-            'production',
-            'Main Deployment Target',
-            ['host1.example.com', 'host2.example.com'],
-            [
-            'mount1' => '/var/www/html',
-            'mount2' => '/var/log',
+            projectId: $projectId,
+            type: 'production',
+            name: 'Main Deployment Target',
+            hosts: ['host1.example.com', 'host2.example.com'],
+            enforcedMounts: [
+                'mount1' => '/var/www/html',
+                'mount2' => '/var/log',
             ],
-            [
-            'primary' => 'https://www.example.com',
-            'secondary' => 'https://backup.example.com',
+            siteUrls: [
+                'primary' => 'https://www.example.com',
+                'secondary' => 'https://backup.example.com',
             ],
-            ['ssh1.example.com', 'ssh2.example.com'],
-            [
-            'env1' => 'production',
-            'env2' => 'staging',
+            sshHosts: ['ssh1.example.com', 'ssh2.example.com'],
+            enterpriseEnvironmentsMapping: [
+                'env1' => 'production',
+                'env2' => 'staging',
             ],
-            true,
+            useDedicatedGrid: true,
         );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteDeploymentWithError()
     {
         $projectId = 'test-project';
@@ -3603,9 +3817,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->deleteDeployment($projectId, $deploymentId);
+        $this->projectsTask->deleteDeployment(projectId: $projectId, deploymentTargetConfigurationId: $deploymentId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetDeploymentWithError()
     {
         $projectId = 'test-project';
@@ -3623,9 +3840,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getDeployment($projectId, $deploymentId);
+        $this->projectsTask->getDeployment(projectId: $projectId, deploymentTargetConfigurationId: $deploymentId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListDeploymentsWithError()
     {
         $projectId = 'test-project';
@@ -3642,9 +3862,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->listDeployments($projectId);
+        $this->projectsTask->listDeployments(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateDeploymentWithError()
     {
         $projectId = 'test-project';
@@ -3663,39 +3886,42 @@ FAKE-CHAIN-CERT-DATA2
 
         $this->expectException(ApiException::class);
         $this->projectsTask->updateDeployment(
-            $projectId,
-            $deploymentId,
-            'dedicated',
-            'Updated Deployment Target',
-            [
-            [
-            'type' => 'core',
-            'id' => 'host1',
-            'services' => ['nginx', 'php']
+            projectId: $projectId,
+            deploymentTargetConfigurationId: $deploymentId,
+            type: 'dedicated',
+            name: 'Updated Deployment Target',
+            hosts: [
+                [
+                    'type' => 'core',
+                    'id' => 'host1',
+                    'services' => ['nginx', 'php']
+                ],
+                [
+                    'type' => 'secondary',
+                    'id' => 'host2',
+                    'services' => ['php', 'mysql']
+                ]
             ],
-            [
-            'type' => 'secondary',
-            'id' => 'host2',
-            'services' => ['php', 'mysql']
-            ]
+            enforcedMounts: [
+                'mount1' => '/var/www/html',
+                'mount2' => '/var/log',
             ],
-            [
-            'mount1' => '/var/www/html',
-            'mount2' => '/var/log',
+            siteUrls: [
+                'primary' => 'https://www.example.com',
+                'secondary' => 'https://backup.example.com'
             ],
-            [
-            'primary' => 'https://www.example.com',
-            'secondary' => 'https://backup.example.com'
+            sshHosts: ['ssh1.example.com', 'ssh2.example.com'],
+            enterpriseEnvironmentsMapping: [
+                'env1' => 'production',
+                'env2' => 'staging'
             ],
-            ['ssh1.example.com', 'ssh2.example.com'],
-            [
-            'env1' => 'production',
-            'env2' => 'staging'
-            ],
-            true
+            useDedicatedGrid: true
         );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetGitBlobWithError()
     {
         $projectId = 'test-project';
@@ -3713,9 +3939,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getGitBlob($projectId, $blobId);
+        $this->projectsTask->getGitBlob(projectId: $projectId, repositoryBlobId: $blobId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetGitCommitWithError()
     {
         $projectId = 'test-project';
@@ -3733,9 +3962,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getGitCommit($projectId, $commitId);
+        $this->projectsTask->getGitCommit(projectId: $projectId, repositoryCommitId: $commitId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetGitRefWithError()
     {
         $projectId = 'test-project';
@@ -3753,9 +3985,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getGitRef($projectId, $refId);
+        $this->projectsTask->getGitRef(projectId: $projectId, repositoryRefId: $refId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetGitTreeWithError()
     {
         $projectId = 'test-project';
@@ -3773,9 +4008,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getGitTree($projectId, $treeId);
+        $this->projectsTask->getGitTree(projectId: $projectId, repositoryTreeId: $treeId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListGitRefsWithError()
     {
         $projectId = 'test-project';
@@ -3792,9 +4030,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->listGitRefs($projectId);
+        $this->projectsTask->listGitRefs(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRestartGitServerWithError()
     {
         $projectId = 'test-project';
@@ -3811,9 +4052,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->restartGitServer($projectId);
+        $this->projectsTask->restartGitServer(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetGitInfoWithError()
     {
         $projectId = 'test-project';
@@ -3830,9 +4074,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getGitInfo($projectId);
+        $this->projectsTask->getGitInfo(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateIntegrationWithError()
     {
         $projectId = 'test-project';
@@ -3850,66 +4097,69 @@ FAKE-CHAIN-CERT-DATA2
 
         $this->expectException(ApiException::class);
         $this->projectsTask->createIntegration(
-            $projectId,
-            'github',
-            'user/repo',
-            'https://github.com/user/repo',
-            'user',
-            'ghp_exampletoken123',
-            'project123',
-            'service-001',
-            ['dev@example.com', 'ops@example.com'],
-            'routing-key-001',
-            '#notifications',
-            'license-xyz-123',
-            'deploy.sh',
-            'main',
-            [
+            projectId: $projectId,
+            type: 'github',
+            repository: 'user/repo',
+            url: 'https://github.com/user/repo',
+            username: 'user',
+            token: 'ghp_exampletoken123',
+            project: 'project123',
+            serviceId: 'service-001',
+            recipients: ['dev@example.com', 'ops@example.com'],
+            routingKey: 'routing-key-001',
+            channel: '#notifications',
+            licenseKey: 'license-xyz-123',
+            script: 'deploy.sh',
+            index: 'main',
+            appCredentials: [
                 'key' => 'oauth-key-123',
                 'secret' => 'oauth-secret-456'
             ],
-            [
+            addonCredentials: [
                 'addonKey' => 'addon-abc',
                 'clientKey' => 'client-xyz',
                 'sharedSecret' => 'shared-secret-789'
             ],
-            'noreply@example.com',
-            'shared-key-001',
-            true,
-            false,
-            'standard',
-            true,
-            false,
-            true,
-            ['push', 'pull_request'],
-            ['dev', 'staging'],
-            ['production'],
-            ['active', 'inactive'],
-            'success',
-            'https://api.example.com',
-            true,
-            false,
-            true,
-            false,
-            true,
-            true,
-            true,
-            ['option1' => 'value1'],
-            ['X-Custom-Header' => 'value'],
-            true,
-            [],
-            'github',
-            'ci',
-            'api.example.com',
-            443,
-            'https',
-            1,
-            'json',
-            'token-abc-123',
-            'bearer'
+            fromAddress: 'noreply@example.com',
+            sharedKey: 'shared-key-001',
+            fetchBranches: true,
+            pruneBranches: false,
+            environmentInitResources: 'standard',
+            buildPullRequests: true,
+            pullRequestsCloneParentData: false,
+            resyncPullRequests: true,
+            events: ['push', 'pull_request'],
+            environments: ['dev', 'staging'],
+            excludedEnvironments: ['production'],
+            states: ['active', 'inactive'],
+            result: 'success',
+            baseUrl: 'https://api.example.com',
+            buildDraftPullRequests: true,
+            buildPullRequestsPostMerge: false,
+            rotateToken: true,
+            rotateTokenValidityInWeeks: false,
+            buildMergeRequests: true,
+            buildWipMergeRequests: true,
+            mergeRequestsCloneParentData: true,
+            extra: ['option1' => 'value1'],
+            headers: ['X-Custom-Header' => 'value'],
+            tlsVerify: true,
+            excludedServices: ['mysql'],
+            sourceType: 'github',
+            category: 'ci',
+            host: 'api.example.com',
+            port: 443,
+            protocol: 'https',
+            facility: 1,
+            messageFormat: 'json',
+            authToken: 'token-abc-123',
+            authMode: 'bearer'
         );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteIntegrationWithError()
     {
         $projectId = 'test-project';
@@ -3927,9 +4177,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->deleteIntegration($projectId, $integrationId);
+        $this->projectsTask->deleteIntegration(projectId: $projectId, integrationId: $integrationId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetIntegrationWithError()
     {
         $projectId = 'test-project';
@@ -3950,6 +4203,9 @@ FAKE-CHAIN-CERT-DATA2
         $this->projectsTask->getIntegration($projectId, $integrationId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListIntegrationsWithError()
     {
         $projectId = 'test-project';
@@ -3969,6 +4225,9 @@ FAKE-CHAIN-CERT-DATA2
         $this->projectsTask->listIntegrations($projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateIntegrationWithError()
     {
         $projectId = 'test-project';
@@ -3987,67 +4246,70 @@ FAKE-CHAIN-CERT-DATA2
 
         $this->expectException(ApiException::class);
         $this->projectsTask->updateIntegration(
-            $projectId,
-            $integrationId,
-            'github',
-            'user/repo',
-            'https://github.com/user/repo',
-            'user',
-            'ghp_exampletoken123',
-            'project123',
-            'service-001',
-            ['dev@example.com', 'ops@example.com'],
-            'routing-key-001',
-            '#notifications',
-            'license-xyz-123',
-            'deploy.sh',
-            'main',
-            [
+            projectId: $projectId,
+            integrationId: $integrationId,
+            type: 'github',
+            repository: 'user/repo',
+            url: 'https://github.com/user/repo',
+            username: 'user',
+            token: 'ghp_exampletoken123',
+            project: 'project123',
+            serviceId: 'service-001',
+            recipients: ['dev@example.com', 'ops@example.com'],
+            routingKey: 'routing-key-001',
+            channel: '#notifications',
+            licenseKey: 'license-xyz-123',
+            script: 'deploy.sh',
+            index: 'main',
+            appCredentials: [
                 'key' => 'oauth-key-123',
                 'secret' => 'oauth-secret-456'
             ],
-            [
+            addonCredentials: [
                 'addonKey' => 'addon-abc',
                 'clientKey' => 'client-xyz',
                 'sharedSecret' => 'shared-secret-789'
             ],
-            'noreply@example.com',
-            'shared-key-001',
-            true,
-            false,
-            'standard',
-            true,
-            false,
-            true,
-            ['push', 'pull_request'],
-            ['dev', 'staging'],
-            ['production'],
-            ['active', 'inactive'],
-            'success',
-            'https://api.example.com',
-            true,
-            false,
-            true,
-            false,
-            true,
-            true,
-            true,
-            ['option1' => 'value1'],
-            ['X-Custom-Header' => 'value'],
-            true,
-            [],
-            'github',
-            'ci',
-            'api.example.com',
-            443,
-            'https',
-            1,
-            'json',
-            'token-abc-123',
-            'bearer'
+            fromAddress: 'noreply@example.com',
+            sharedKey: 'shared-key-001',
+            fetchBranches: true,
+            pruneBranches: false,
+            environmentInitResources: 'standard',
+            buildPullRequests: true,
+            pullRequestsCloneParentData: false,
+            resyncPullRequests: true,
+            events: ['push', 'pull_request'],
+            environments: ['dev', 'staging'],
+            excludedEnvironments: ['production'],
+            states: ['active', 'inactive'],
+            result: 'success',
+            baseUrl: 'https://api.example.com',
+            buildDraftPullRequests: true,
+            buildPullRequestsPostMerge: false,
+            rotateToken: true,
+            rotateTokenValidityInWeeks: false,
+            buildMergeRequests: true,
+            buildWipMergeRequests: true,
+            mergeRequestsCloneParentData: true,
+            extra: ['option1' => 'value1'],
+            headers: ['X-Custom-Header' => 'value'],
+            tlsVerify: true,
+            excludedServices: ['mysql'],
+            sourceType: 'github',
+            category: 'ci',
+            host: 'api.example.com',
+            port: 443,
+            protocol: 'https',
+            facility: 1,
+            messageFormat: 'json',
+            authToken: 'token-abc-123',
+            authMode: 'bearer'
         );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateDomainWithError()
     {
         $projectId = '-1';
@@ -4064,9 +4326,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->createDomain($projectId, 'example.com');
+        $this->projectsTask->createDomain(projectId: $projectId, name: 'example.com');
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteDomainWithError()
     {
         $projectId = 'test-project';
@@ -4084,9 +4349,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->deleteDomain($projectId, $domainId);
+        $this->projectsTask->deleteDomain(projectId: $projectId, domainId: $domainId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetDomainWithError()
     {
         $projectId = 'test-project';
@@ -4104,9 +4372,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getDomain($projectId, $domainId);
+        $this->projectsTask->getDomain(projectId: $projectId, domainId: $domainId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListDomainsWithError()
     {
         $projectId = 'test-project';
@@ -4123,14 +4394,16 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->listDomains($projectId);
+        $this->projectsTask->listDomains(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateDomainWithError()
     {
         $projectId = 'test-project';
         $domainId = 'domain-123';
-        $domainData = ['attributes' => [], "isDefault" => true];
 
         $this->httpClient
             ->method('sendRequest')
@@ -4144,9 +4417,17 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->updateDomain($projectId, $domainId, [], true);
+        $this->projectsTask->updateDomain(
+            projectId: $projectId,
+            domainId: $domainId,
+            attributes: [],
+            isDefault:true
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateCertificateWithError()
     {
         $projectId = 'test-project';
@@ -4163,9 +4444,16 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->createCertificate($projectId, 'cert-data', 'key-data');
+        $this->projectsTask->createCertificate(
+            projectId: $projectId,
+            certificate: 'cert-data',
+            key: 'key-data'
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testDeleteCertificateWithError()
     {
         $projectId = 'test-project';
@@ -4183,9 +4471,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->deleteCertificate($projectId, $certId);
+        $this->projectsTask->deleteCertificate(projectId: $projectId, certificateId: $certId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetCertificateWithError()
     {
         $projectId = 'test-project';
@@ -4203,11 +4494,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getCertificate($projectId, $certId);
+        $this->projectsTask->getCertificate(projectId: $projectId, certificateId: $certId);
     }
 
     /**
      * @throws Exception
+     * @throws ClientExceptionInterface
      */
     public function testListCertificatesWithError()
     {
@@ -4225,9 +4517,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->listCertificates($projectId);
+        $this->projectsTask->listCertificates(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateCertificateWithError()
     {
         $projectId = 'test-project';
@@ -4253,9 +4548,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->updateCertificate($projectId, $certId, $certData);
+        $this->projectsTask->updateCertificate(projectId: $projectId, certificateId: $certId, chain: $certData);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRunOperationWithError()
     {
         $projectId = 'test-project';
@@ -4275,15 +4573,18 @@ FAKE-CHAIN-CERT-DATA2
 
         $this->expectException(ApiException::class);
         $this->projectsTask->runOperation(
-            $projectId,
-            $environmentId,
-            $deploymentId,
-            'clear-cache',
-            'cache-service',
-            []
+            projectId: $projectId,
+            environmentId: $environmentId,
+            deploymentId: $deploymentId,
+            service: 'clear-cache',
+            operation: 'cache-service',
+            parameters: []
         );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetProjectTeamAccessWithError()
     {
         $projectId = 'test-project';
@@ -4301,9 +4602,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getProjectTeamAccess($projectId, $teamId);
+        $this->projectsTask->getProjectTeamAccess(projectId: $projectId, teamId: $teamId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetTeamProjectAccessWithError()
     {
         $teamId = 'team-123';
@@ -4321,9 +4625,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getTeamProjectAccess($teamId, $projectId);
+        $this->projectsTask->getTeamProjectAccess(teamId: $teamId, projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGrantProjectTeamAccessWithError()
     {
         $projectId = 'test-project';
@@ -4341,9 +4648,15 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->grantProjectTeamAccess($projectId, $request);
+        $this->projectsTask->grantProjectTeamAccess(
+            projectId: $projectId,
+            grantProjectTeamAccessRequestInner: $request
+        );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGrantTeamProjectAccessWithError()
     {
         $teamId = 'team-123';
@@ -4361,9 +4674,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->grantTeamProjectAccess($teamId, $request);
+        $this->projectsTask->grantTeamProjectAccess(teamId: $teamId, data: $request);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListProjectTeamAccessWithError()
     {
         $projectId = 'test-project';
@@ -4380,9 +4696,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->listProjectTeamAccess($projectId);
+        $this->projectsTask->listProjectTeamAccess(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListTeamProjectAccessWithError()
     {
         $teamId = 'team-123';
@@ -4399,9 +4718,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->listTeamProjectAccess($teamId);
+        $this->projectsTask->listTeamProjectAccess(teamId: $teamId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRemoveProjectTeamAccessWithError()
     {
         $projectId = 'test-project';
@@ -4419,9 +4741,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->removeProjectTeamAccess($projectId, $teamId);
+        $this->projectsTask->removeProjectTeamAccess(projectId: $projectId, teamId: $teamId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRemoveTeamProjectAccessWithError()
     {
         $teamId = 'team-123';
@@ -4439,9 +4764,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->removeTeamProjectAccess($teamId, $projectId);
+        $this->projectsTask->removeTeamProjectAccess(teamId: $teamId, projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetProjectUserAccessWithError()
     {
         $projectId = 'test-project';
@@ -4459,9 +4787,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->getProjectUserAccess($projectId, $userId);
+        $this->projectsTask->getProjectUserAccess(projectId: $projectId, userId: $userId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGrantProjectUserAccessWithError()
     {
         $projectId = 'test-project';
@@ -4479,9 +4810,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->grantProjectUserAccess($projectId, $request);
+        $this->projectsTask->grantProjectUserAccess(projectId: $projectId, data: $request);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testRemoveProjectUserAccessWithError()
     {
         $projectId = 'test-project';
@@ -4499,9 +4833,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->removeProjectUserAccess($projectId, $userId);
+        $this->projectsTask->removeProjectUserAccess(projectId: $projectId, userId: $userId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdateProjectUserAccessWithError()
     {
         $projectId = 'test-project';
@@ -4520,9 +4857,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->updateProjectUserAccess($projectId, $userId, $request);
+        $this->projectsTask->updateProjectUserAccess(projectId: $projectId, userId: $userId, permissions: $request);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListProjectUserAccessWithError()
     {
         $projectId = 'test-project';
@@ -4539,9 +4879,12 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->listProjectUserAccess($projectId);
+        $this->projectsTask->listProjectUserAccess(projectId: $projectId);
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateWithError()
     {
         $orgId = 'org-123';
@@ -4559,17 +4902,20 @@ FAKE-CHAIN-CERT-DATA2
 
         $this->expectException(ApiException::class);
         $this->projectsTask->create(
-            $orgId,
-            'fr-3.platform.sh',
-            "upsun/flexible",
-            'My Project',
-            'https://example.com/options',
-            'main',
-            3,
-            5000,
+            organizationId: $orgId,
+            projectRegion: 'fr-3.platform.sh',
+            title: 'My Project',
+            defaultBranch: 'main',
+            plan: "upsun/flexible",
+            optionsUrl: 'https://example.com/options',
+            environments: 3,
+            storage: 5000,
         );
     }
 
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testListEnvironmentsWithError()
     {
         $projectId = 'test-project';
@@ -4586,6 +4932,6 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectsTask->listEnvironments($projectId);
+        $this->projectsTask->listEnvironments(projectId: $projectId);
     }
 }

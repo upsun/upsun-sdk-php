@@ -61,6 +61,7 @@ abstract class BaseTestCase extends TestCase
 
     /**
      * Compare list of objects (ex: Activity[]) with expected
+     *
      * @throws Exception
      */
     protected function assertObjectMatchesArray(array $actual, array $expected, string $prefix = ''): void

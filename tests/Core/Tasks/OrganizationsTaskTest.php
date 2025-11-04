@@ -49,6 +49,7 @@ use Upsun\Model\Invoice;
 use Upsun\Model\ListOrgInvoices200Response;
 use Upsun\Model\ListOrgOrders200Response;
 use Upsun\Model\ListOrgPlanRecords200Response;
+use Upsun\Model\ListOrgs200Response;
 use Upsun\Model\ListOrgUsageRecords200Response;
 use Upsun\Model\Order;
 use Upsun\Model\Organization;
@@ -331,15 +332,53 @@ class OrganizationsTaskTest extends BaseTestCase
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testCreateOrganization()
     {
         $data = [
-            'ownerId' => 'user_7890',
-            'label' => 'My Org Label',
-            'name' => 'My Organization',
+            'id' => 'org_' . bin2hex(random_bytes(8)),
+            'type' => 'enterprise',
+            'ownerId' => 'user_' . bin2hex(random_bytes(8)),
+            'namespace' => 'acme-corp',
+            'name' => 'ACME Corporation',
+            'label' => 'ACME Corp - Innovation Division',
             'country' => 'FR',
-            'type' => 'enterprise'
+            'capabilities' => [
+                'api_access',
+                'advanced_analytics',
+                'custom_branding',
+                'sso_integration',
+                'priority_support'
+            ],
+            'vendor' => 'stripe',
+            'billingAccountId' => 'ba_' . bin2hex(random_bytes(12)),
+            'billingLegacy' => false,
+            'status' => 'active',
+            'createdAt' => '2023-06-15 10:30:00',
+            'updatedAt' => '2025-11-01 14:22:33',
+            'links' => [
+                'self' => ['href' => 'https://api.example.com/v1/organizations/org_abc123'],
+                'update' => ['href' => 'https://api.example.com/v1/organizations/org_abc123', 'method' => 'PUT'],
+                'delete' => ['href' => 'https://api.example.com/v1/organizations/org_abc123', 'method' => 'DELETE'],
+                'members' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/members'],
+                'createMember' => ['href' => 'https://api.example.com/v1/org/org_abc123/members', 'method' => 'POST'],
+                'address' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/address'],
+                'profile' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/profile'],
+                'paymentSource' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/payment-source'],
+                'orders' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/orders'],
+                'vouchers' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/vouchers'],
+                'applyVoucher' => [
+                    'href' => 'https://api.example.com/v1/org/abc123/vouchers/apply', 'method' => 'POST'],
+                'subscriptions' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions'],
+                'createSubscription' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions', 'method' => 'POST'],
+                'estimateSubscription' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions/estimate',
+                    'method' => 'POST'
+                ],
+                'mfaEnforcement' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/mfa-enforcement'],
+            ]
         ];
 
         $this->httpClient
@@ -348,46 +387,19 @@ class OrganizationsTaskTest extends BaseTestCase
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode([
-                    'id' => 'org_123456',
-                    'type' => 'enterprise',
-                    'ownerId' => 'user_7890',
-                    'namespace' => 'upsun',
-                    'name' => 'My Organization',
-                    'label' => 'My Org Label',
-                    'country' => 'FR',
-                    'capabilities' => [
-                        'projects' => true,
-                        'teams' => true,
-                        'billing' => false,
-                        'integrations' => ['github', 'gitlab'],
-                    ],
-                    'vendor' => 'Upsun Inc.',
-                    'status' => 'active',
-                    'createdAt' => '2025-09-10T08:00:00+00:00',
-                    'updatedAt' => '2025-09-12T09:30:00+00:00',
-                    'links' => [
-                        'self' => 'https://api.upsun.com/organizations/org_123456',
-                        'edit' => '/organizations/org_123456/edit',
-                        'access' => '/organizations/org_123456/access',
-                    ],
-                ])
+                json_encode($data)
             ));
 
         $result = $this->organizationsTask->create(
-            'My Org Label',
-            'flex',
-            'user_7890',
-            'My Organization',
-            'FR',
+            label: 'My Org Label',
+            type: 'flex',
+            ownerId: 'user_7890',
+            name: 'My Organization',
+            country: 'FR',
         );
+
         $this->assertInstanceOf(Organization::class, $result);
-        $this->assertEquals("org_123456", $result->getId());
-        $this->assertEquals($data['name'], $result->getName());
-        $this->assertEquals($data['label'], $result->getLabel());
-        $this->assertEquals($data['ownerId'], $result->getOwnerId());
-        $this->assertEquals($data['country'], $result->getCountry());
-        $this->assertEquals($data['type'], $result->getType());
+        $this->assertObjectProperties($result, $data);
     }
 
     /**
@@ -406,54 +418,77 @@ class OrganizationsTaskTest extends BaseTestCase
                     'code' => 200
                 ])
             ));
-        $this->organizationsTask->delete('org_123');
+        $this->organizationsTask->delete(organizationId: 'org_123');
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testGetOrganization()
     {
         $orgId = 'org_123';
+        $data = [
+            'id' => 'org_' . bin2hex(random_bytes(8)),
+            'type' => 'enterprise',
+            'ownerId' => 'user_' . bin2hex(random_bytes(8)),
+            'namespace' => 'acme-corp',
+            'name' => 'ACME Corporation',
+            'label' => 'ACME Corp - Innovation Division',
+            'country' => 'FR',
+            'capabilities' => [
+                'api_access',
+                'advanced_analytics',
+                'custom_branding',
+                'sso_integration',
+                'priority_support'
+            ],
+            'vendor' => 'stripe',
+            'billingAccountId' => 'ba_' . bin2hex(random_bytes(12)),
+            'billingLegacy' => false,
+            'status' => 'active',
+            'createdAt' => '2023-06-15 10:30:00',
+            'updatedAt' => '2025-11-01 14:22:33',
+            'links' => [
+                'self' => ['href' => 'https://api.example.com/v1/organizations/org_abc123'],
+                'update' => ['href' => 'https://api.example.com/v1/organizations/org_abc123', 'method' => 'PUT'],
+                'delete' => ['href' => 'https://api.example.com/v1/organizations/org_abc123', 'method' => 'DELETE'],
+                'members' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/members'],
+                'createMember' => ['href' => 'https://api.example.com/v1/org/org_abc123/members', 'method' => 'POST'],
+                'address' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/address'],
+                'profile' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/profile'],
+                'paymentSource' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/payment-source'],
+                'orders' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/orders'],
+                'vouchers' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/vouchers'],
+                'applyVoucher' => [
+                    'href' => 'https://api.example.com/v1/org/abc123/vouchers/apply', 'method' => 'POST'],
+                'subscriptions' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions'],
+                'createSubscription' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions', 'method' => 'POST'],
+                'estimateSubscription' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions/estimate',
+                    'method' => 'POST'
+                ],
+                'mfaEnforcement' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/mfa-enforcement'],
+            ]
+        ];
 
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode([
-                    'id' => 'org_654321',
-                    'type' => 'startup',
-                    'ownerId' => 'user_9876',
-                    'namespace' => 'devhub',
-                    'name' => 'DevHub Organization',
-                    'label' => 'DevHub Org',
-                    'country' => 'US',
-                    'capabilities' => [
-                        'projects' => true,
-                        'teams' => false,
-                        'billing' => false,
-                        'integrations' => ['bitbucket'],
-                    ],
-                    'vendor' => 'DevHub Ltd.',
-                    'status' => 'suspended',
-                    'createdAt' => '2025-08-01T10:20:00+00:00',
-                    'updatedAt' => '2025-09-05T15:00:00+00:00',
-                    'links' => [
-                        'self' => 'https://api.upsun.com/organizations/org_654321',
-                        'edit' => '/organizations/org_654321/edit',
-                        'access' => '/organizations/org_654321/access',
-                    ],
-                ])
+                json_encode($data)
             ));
 
-        $result = $this->organizationsTask->get($orgId);
-        $this->assertEquals("org_654321", $result->getId());
-        $this->assertEquals("user_9876", $result->getOwnerId());
+        $result = $this->organizationsTask->get(organizationId: $orgId);
+        $this->assertInstanceOf(Organization::class, $result);
+        $this->assertObjectProperties($result, $data);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testListOrganizations()
     {
@@ -466,52 +501,110 @@ class OrganizationsTaskTest extends BaseTestCase
             ],
             'items' => [
                 [
-                    'id' => 'org_123456',
+                    'id' => 'org_' . bin2hex(random_bytes(8)),
                     'type' => 'enterprise',
-                    'ownerId' => 'user_7890',
-                    'namespace' => 'upsun',
-                    'name' => 'My First Organization',
-                    'label' => 'First Org',
+                    'ownerId' => 'user_' . bin2hex(random_bytes(8)),
+                    'namespace' => 'acme-corp',
+                    'name' => 'ACME Corporation',
+                    'label' => 'ACME Corp - Innovation Division',
                     'country' => 'FR',
                     'capabilities' => [
-                        'projects' => true,
-                        'teams' => true,
-                        'billing' => true,
-                        'integrations' => ['github', 'gitlab'],
+                        'api_access',
+                        'advanced_analytics',
+                        'custom_branding',
+                        'sso_integration',
+                        'priority_support'
                     ],
-                    'vendor' => 'Upsun Inc.',
+                    'vendor' => 'stripe',
+                    'billingAccountId' => 'ba_' . bin2hex(random_bytes(12)),
+                    'billingLegacy' => false,
                     'status' => 'active',
-                    'createdAt' => '2025-09-10T08:00:00+00:00',
-                    'updatedAt' => '2025-09-12T09:30:00+00:00',
+                    'createdAt' => '2023-06-15 10:30:00',
+                    'updatedAt' => '2025-11-01 14:22:33',
                     'links' => [
-                        'self' => 'https://api.upsun.com/organizations/org_123456',
-                        'edit' => '/organizations/org_123456/edit',
-                        'access' => '/organizations/org_123456/access',
-                    ],
+                        'self' => ['href' => 'https://api.example.com/v1/organizations/org_abc123'],
+                        'update' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'PUT'],
+                        'delete' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'DELETE'],
+                        'members' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/members'],
+                        'createMember' => ['href' => 'https://api.example.com/v1/org/org_abc123/members',
+                            'method' => 'POST'],
+                        'address' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/address'],
+                        'profile' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/profile'],
+                        'paymentSource' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/payment-source'
+                        ],
+                        'orders' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/orders'],
+                        'vouchers' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/vouchers'],
+                        'applyVoucher' => [
+                            'href' => 'https://api.example.com/v1/org/abc123/vouchers/apply', 'method' => 'POST'],
+                        'subscriptions' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions'
+                        ],
+                        'createSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions',
+                            'method' => 'POST'
+                        ],
+                        'estimateSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions/estimate',
+                            'method' => 'POST'
+                        ],
+                        'mfaEnforcement' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/mfa-enforcement'
+                        ],
+                    ]
                 ],
                 [
-                    'id' => 'org_654321',
-                    'type' => 'startup',
-                    'ownerId' => 'user_9876',
-                    'namespace' => 'devhub',
-                    'name' => 'DevHub Organization',
-                    'label' => 'DevHub Org',
-                    'country' => 'US',
+                    'id' => 'org_' . bin2hex(random_bytes(8)),
+                    'type' => 'enterprise',
+                    'ownerId' => 'user_' . bin2hex(random_bytes(8)),
+                    'namespace' => 'acme-corp',
+                    'name' => 'ACME Corporation',
+                    'label' => 'ACME Corp - Innovation Division',
+                    'country' => 'FR',
                     'capabilities' => [
-                        'projects' => true,
-                        'teams' => false,
-                        'billing' => false,
-                        'integrations' => ['bitbucket'],
+                        'api_access',
+                        'advanced_analytics',
+                        'custom_branding',
+                        'sso_integration',
+                        'priority_support'
                     ],
-                    'vendor' => 'DevHub Ltd.',
-                    'status' => 'suspended',
-                    'createdAt' => '2025-08-01T10:20:00+00:00',
-                    'updatedAt' => '2025-09-05T15:00:00+00:00',
+                    'vendor' => 'stripe',
+                    'billingAccountId' => 'ba_' . bin2hex(random_bytes(12)),
+                    'billingLegacy' => false,
+                    'status' => 'active',
+                    'createdAt' => '2023-06-15 10:30:00',
+                    'updatedAt' => '2025-11-01 14:22:33',
                     'links' => [
-                        'self' => 'https://api.upsun.com/organizations/org_654321',
-                        'edit' => '/organizations/org_654321/edit',
-                        'access' => '/organizations/org_654321/access',
-                    ],
+                        'self' => ['href' => 'https://api.example.com/v1/organizations/org_abc123'],
+                        'update' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'PUT'],
+                        'delete' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'DELETE'],
+                        'members' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/members'],
+                        'createMember' => ['href' => 'https://api.example.com/v1/org/org_abc123/members',
+                            'method' => 'POST'],
+                        'address' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/address'],
+                        'profile' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/profile'],
+                        'paymentSource' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/payment-source'],
+                        'orders' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/orders'],
+                        'vouchers' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/vouchers'],
+                        'applyVoucher' => [
+                            'href' => 'https://api.example.com/v1/org/abc123/vouchers/apply', 'method' => 'POST'],
+                        'subscriptions' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions'],
+                        'createSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions',
+                            'method' => 'POST'],
+                        'estimateSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions/estimate',
+                            'method' => 'POST'
+                        ],
+                        'mfaEnforcement' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/mfa-enforcement'],
+                    ]
                 ]
             ],
         ];
@@ -526,12 +619,9 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $result = $this->organizationsTask->list();
-        $this->assertEquals($organizations['items'][0]['id'], $result->getItems()[0]->getId());
-        $this->assertEquals($organizations['items'][0]['ownerId'], $result->getItems()[0]->getOwnerId());
-        $this->assertEquals($organizations['items'][0]['name'], $result->getItems()[0]->getName());
-        $this->assertEquals($organizations['items'][1]['id'], $result->getItems()[1]->getId());
-        $this->assertEquals($organizations['items'][1]['ownerId'], $result->getItems()[1]->getOwnerId());
-        $this->assertEquals($organizations['items'][1]['name'], $result->getItems()[1]->getName());
+        $this->assertIsArray($result->getItems());
+        $this->assertContainsOnlyInstancesOf(Organization::class, $result->getItems());
+        $this->assertObjectMatchesArray($result->getItems(), $organizations['items']);
     }
 
     /**
@@ -540,6 +630,7 @@ class OrganizationsTaskTest extends BaseTestCase
     public function testListUserOrganizations()
     {
         $organizations = [
+            'count' => 2,
             'links' => [
                 'self' => ['href' => 'href'],
                 'previous' => ['href' => 'href'],
@@ -547,52 +638,110 @@ class OrganizationsTaskTest extends BaseTestCase
             ],
             'items' => [
                 [
-                    'id' => 'org_123456',
+                    'id' => 'org_' . bin2hex(random_bytes(8)),
                     'type' => 'enterprise',
-                    'ownerId' => 'user_9876',
-                    'namespace' => 'upsun',
-                    'name' => 'My First Organization',
-                    'label' => 'First Org',
+                    'ownerId' => 'user_' . bin2hex(random_bytes(8)),
+                    'namespace' => 'acme-corp',
+                    'name' => 'ACME Corporation',
+                    'label' => 'ACME Corp - Innovation Division',
                     'country' => 'FR',
                     'capabilities' => [
-                        'projects' => true,
-                        'teams' => true,
-                        'billing' => true,
-                        'integrations' => ['github', 'gitlab'],
+                        'api_access',
+                        'advanced_analytics',
+                        'custom_branding',
+                        'sso_integration',
+                        'priority_support'
                     ],
-                    'vendor' => 'Upsun Inc.',
+                    'vendor' => 'stripe',
+                    'billingAccountId' => 'ba_' . bin2hex(random_bytes(12)),
+                    'billingLegacy' => false,
                     'status' => 'active',
-                    'createdAt' => '2025-09-10T08:00:00+00:00',
-                    'updatedAt' => '2025-09-12T09:30:00+00:00',
+                    'createdAt' => '2023-06-15 10:30:00',
+                    'updatedAt' => '2025-11-01 14:22:33',
                     'links' => [
-                        'self' => 'https://api.upsun.com/organizations/org_123456',
-                        'edit' => '/organizations/org_123456/edit',
-                        'access' => '/organizations/org_123456/access',
-                    ],
+                        'self' => ['href' => 'https://api.example.com/v1/organizations/org_abc123'],
+                        'update' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'PUT'],
+                        'delete' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'DELETE'],
+                        'members' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/members'],
+                        'createMember' => ['href' => 'https://api.example.com/v1/org/org_abc123/members',
+                            'method' => 'POST'],
+                        'address' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/address'],
+                        'profile' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/profile'],
+                        'paymentSource' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/payment-source'
+                        ],
+                        'orders' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/orders'],
+                        'vouchers' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/vouchers'],
+                        'applyVoucher' => [
+                            'href' => 'https://api.example.com/v1/org/abc123/vouchers/apply', 'method' => 'POST'],
+                        'subscriptions' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions'
+                        ],
+                        'createSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions',
+                            'method' => 'POST'
+                        ],
+                        'estimateSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions/estimate',
+                            'method' => 'POST'
+                        ],
+                        'mfaEnforcement' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/mfa-enforcement'
+                        ],
+                    ]
                 ],
                 [
-                    'id' => 'org_654321',
-                    'type' => 'startup',
-                    'ownerId' => 'user_9876',
-                    'namespace' => 'devhub',
-                    'name' => 'DevHub Organization',
-                    'label' => 'DevHub Org',
-                    'country' => 'US',
+                    'id' => 'org_' . bin2hex(random_bytes(8)),
+                    'type' => 'enterprise',
+                    'ownerId' => 'user_' . bin2hex(random_bytes(8)),
+                    'namespace' => 'acme-corp',
+                    'name' => 'ACME Corporation',
+                    'label' => 'ACME Corp - Innovation Division',
+                    'country' => 'FR',
                     'capabilities' => [
-                        'projects' => true,
-                        'teams' => false,
-                        'billing' => false,
-                        'integrations' => ['bitbucket'],
+                        'api_access',
+                        'advanced_analytics',
+                        'custom_branding',
+                        'sso_integration',
+                        'priority_support'
                     ],
-                    'vendor' => 'DevHub Ltd.',
-                    'status' => 'suspended',
-                    'createdAt' => '2025-08-01T10:20:00+00:00',
-                    'updatedAt' => '2025-09-05T15:00:00+00:00',
+                    'vendor' => 'stripe',
+                    'billingAccountId' => 'ba_' . bin2hex(random_bytes(12)),
+                    'billingLegacy' => false,
+                    'status' => 'active',
+                    'createdAt' => '2023-06-15 10:30:00',
+                    'updatedAt' => '2025-11-01 14:22:33',
                     'links' => [
-                        'self' => 'https://api.upsun.com/organizations/org_654321',
-                        'edit' => '/organizations/org_654321/edit',
-                        'access' => '/organizations/org_654321/access',
-                    ],
+                        'self' => ['href' => 'https://api.example.com/v1/organizations/org_abc123'],
+                        'update' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'PUT'],
+                        'delete' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'DELETE'],
+                        'members' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/members'],
+                        'createMember' => ['href' => 'https://api.example.com/v1/org/org_abc123/members',
+                            'method' => 'POST'],
+                        'address' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/address'],
+                        'profile' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/profile'],
+                        'paymentSource' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/payment-source'],
+                        'orders' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/orders'],
+                        'vouchers' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/vouchers'],
+                        'applyVoucher' => [
+                            'href' => 'https://api.example.com/v1/org/abc123/vouchers/apply', 'method' => 'POST'],
+                        'subscriptions' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions'],
+                        'createSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions',
+                            'method' => 'POST'],
+                        'estimateSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions/estimate',
+                            'method' => 'POST'
+                        ],
+                        'mfaEnforcement' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/mfa-enforcement'],
+                    ]
                 ]
             ],
         ];
@@ -607,13 +756,10 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $ownerId = 'user_9876';
-        $result = $this->organizationsTask->listUserOrgs($ownerId);
-        $this->assertEquals($organizations['items'][0]['id'], $result->getItems()[0]->getId());
-        $this->assertEquals($ownerId, $result->getItems()[0]->getOwnerId());
-        $this->assertEquals($organizations['items'][0]['name'], $result->getItems()[0]->getName());
-        $this->assertEquals($organizations['items'][1]['id'], $result->getItems()[1]->getId());
-        $this->assertEquals($ownerId, $result->getItems()[1]->getOwnerId());
-        $this->assertEquals($organizations['items'][1]['name'], $result->getItems()[1]->getName());
+        $result = $this->organizationsTask->listUserOrgs(userId: $ownerId);
+        $this->assertIsArray($result->getItems());
+        $this->assertContainsOnlyInstancesOf(Organization::class, $result->getItems());
+        $this->assertObjectMatchesArray($result->getItems(), $organizations['items']);
     }
 
     /**
@@ -622,6 +768,7 @@ class OrganizationsTaskTest extends BaseTestCase
     public function testListCurrentUserOrganizations()
     {
         $organizations = [
+            'count' => 2,
             'links' => [
                 'self' => ['href' => 'href'],
                 'previous' => ['href' => 'href'],
@@ -629,52 +776,110 @@ class OrganizationsTaskTest extends BaseTestCase
             ],
             'items' => [
                 [
-                    'id' => 'org_123456',
+                    'id' => 'org_' . bin2hex(random_bytes(8)),
                     'type' => 'enterprise',
-                    'ownerId' => 'user_9876',
-                    'namespace' => 'upsun',
-                    'name' => 'My First Organization',
-                    'label' => 'First Org',
+                    'ownerId' => 'user_' . bin2hex(random_bytes(8)),
+                    'namespace' => 'acme-corp',
+                    'name' => 'ACME Corporation',
+                    'label' => 'ACME Corp - Innovation Division',
                     'country' => 'FR',
                     'capabilities' => [
-                        'projects' => true,
-                        'teams' => true,
-                        'billing' => true,
-                        'integrations' => ['github', 'gitlab'],
+                        'api_access',
+                        'advanced_analytics',
+                        'custom_branding',
+                        'sso_integration',
+                        'priority_support'
                     ],
-                    'vendor' => 'Upsun Inc.',
+                    'vendor' => 'stripe',
+                    'billingAccountId' => 'ba_' . bin2hex(random_bytes(12)),
+                    'billingLegacy' => false,
                     'status' => 'active',
-                    'createdAt' => '2025-09-10T08:00:00+00:00',
-                    'updatedAt' => '2025-09-12T09:30:00+00:00',
+                    'createdAt' => '2023-06-15 10:30:00',
+                    'updatedAt' => '2025-11-01 14:22:33',
                     'links' => [
-                        'self' => 'https://api.upsun.com/organizations/org_123456',
-                        'edit' => '/organizations/org_123456/edit',
-                        'access' => '/organizations/org_123456/access',
-                    ],
+                        'self' => ['href' => 'https://api.example.com/v1/organizations/org_abc123'],
+                        'update' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'PUT'],
+                        'delete' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'DELETE'],
+                        'members' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/members'],
+                        'createMember' => ['href' => 'https://api.example.com/v1/org/org_abc123/members',
+                            'method' => 'POST'],
+                        'address' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/address'],
+                        'profile' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/profile'],
+                        'paymentSource' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/payment-source'
+                        ],
+                        'orders' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/orders'],
+                        'vouchers' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/vouchers'],
+                        'applyVoucher' => [
+                            'href' => 'https://api.example.com/v1/org/abc123/vouchers/apply', 'method' => 'POST'],
+                        'subscriptions' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions'
+                        ],
+                        'createSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions',
+                            'method' => 'POST'
+                        ],
+                        'estimateSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions/estimate',
+                            'method' => 'POST'
+                        ],
+                        'mfaEnforcement' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/mfa-enforcement'
+                        ],
+                    ]
                 ],
                 [
-                    'id' => 'org_654321',
-                    'type' => 'startup',
-                    'ownerId' => 'user_9876',
-                    'namespace' => 'devhub',
-                    'name' => 'DevHub Organization',
-                    'label' => 'DevHub Org',
-                    'country' => 'US',
+                    'id' => 'org_' . bin2hex(random_bytes(8)),
+                    'type' => 'enterprise',
+                    'ownerId' => 'user_' . bin2hex(random_bytes(8)),
+                    'namespace' => 'acme-corp',
+                    'name' => 'ACME Corporation',
+                    'label' => 'ACME Corp - Innovation Division',
+                    'country' => 'FR',
                     'capabilities' => [
-                        'projects' => true,
-                        'teams' => false,
-                        'billing' => false,
-                        'integrations' => ['bitbucket'],
+                        'api_access',
+                        'advanced_analytics',
+                        'custom_branding',
+                        'sso_integration',
+                        'priority_support'
                     ],
-                    'vendor' => 'DevHub Ltd.',
-                    'status' => 'suspended',
-                    'createdAt' => '2025-08-01T10:20:00+00:00',
-                    'updatedAt' => '2025-09-05T15:00:00+00:00',
+                    'vendor' => 'stripe',
+                    'billingAccountId' => 'ba_' . bin2hex(random_bytes(12)),
+                    'billingLegacy' => false,
+                    'status' => 'active',
+                    'createdAt' => '2023-06-15 10:30:00',
+                    'updatedAt' => '2025-11-01 14:22:33',
                     'links' => [
-                        'self' => 'https://api.upsun.com/organizations/org_654321',
-                        'edit' => '/organizations/org_654321/edit',
-                        'access' => '/organizations/org_654321/access',
-                    ],
+                        'self' => ['href' => 'https://api.example.com/v1/organizations/org_abc123'],
+                        'update' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'PUT'],
+                        'delete' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                            'method' => 'DELETE'],
+                        'members' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/members'],
+                        'createMember' => ['href' => 'https://api.example.com/v1/org/org_abc123/members',
+                            'method' => 'POST'],
+                        'address' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/address'],
+                        'profile' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/profile'],
+                        'paymentSource' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/payment-source'],
+                        'orders' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/orders'],
+                        'vouchers' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/vouchers'],
+                        'applyVoucher' => [
+                            'href' => 'https://api.example.com/v1/org/abc123/vouchers/apply', 'method' => 'POST'],
+                        'subscriptions' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions'],
+                        'createSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions',
+                            'method' => 'POST'],
+                        'estimateSubscription' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions/estimate',
+                            'method' => 'POST'
+                        ],
+                        'mfaEnforcement' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/mfa-enforcement'],
+                    ]
                 ]
             ],
         ];
@@ -714,92 +919,131 @@ class OrganizationsTaskTest extends BaseTestCase
 
         $ownerId = 'user_9876';
         $result = $this->organizationsTask->listCurrentUserOrgs();
-        $this->assertEquals($organizations['items'][0]['id'], $result->getItems()[0]->getId());
-        $this->assertEquals($ownerId, $result->getItems()[0]->getOwnerId());
-        $this->assertEquals($organizations['items'][0]['name'], $result->getItems()[0]->getName());
-        $this->assertEquals($organizations['items'][1]['id'], $result->getItems()[1]->getId());
-        $this->assertEquals($ownerId, $result->getItems()[1]->getOwnerId());
-        $this->assertEquals($organizations['items'][1]['name'], $result->getItems()[1]->getName());
+        $this->assertIsArray($result->getItems());
+        $this->assertContainsOnlyInstancesOf(Organization::class, $result->getItems());
+        $this->assertObjectMatchesArray($result->getItems(), $organizations['items']);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testUpdateOrganization()
     {
 
         $orgId = 'project-123';
+        $data = [
+            'id' => 'org_' . bin2hex(random_bytes(8)),
+            'type' => 'enterprise',
+            'ownerId' => 'user_' . bin2hex(random_bytes(8)),
+            'namespace' => 'acme-corp',
+            'name' => 'ACME Corporation',
+            'label' => 'ACME Corp - Innovation Division',
+            'country' => 'FR',
+            'capabilities' => [
+                'api_access',
+                'advanced_analytics',
+                'custom_branding',
+                'sso_integration',
+                'priority_support'
+            ],
+            'vendor' => 'stripe',
+            'billingAccountId' => 'ba_' . bin2hex(random_bytes(12)),
+            'billingLegacy' => false,
+            'status' => 'active',
+            'createdAt' => '2023-06-15 10:30:00',
+            'updatedAt' => '2025-11-01 14:22:33',
+            'links' => [
+                'self' => ['href' => 'https://api.example.com/v1/organizations/org_abc123'],
+                'update' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                    'method' => 'PUT'],
+                'delete' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
+                    'method' => 'DELETE'],
+                'members' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/members'],
+                'createMember' => ['href' => 'https://api.example.com/v1/org/org_abc123/members',
+                    'method' => 'POST'],
+                'address' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/address'],
+                'profile' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/profile'],
+                'paymentSource' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/payment-source'],
+                'orders' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/orders'],
+                'vouchers' => ['href' => 'https://api.example.com/v1/organizations/org_abc123/vouchers'],
+                'applyVoucher' => [
+                    'href' => 'https://api.example.com/v1/org/abc123/vouchers/apply', 'method' => 'POST'],
+                'subscriptions' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions'],
+                'createSubscription' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions',
+                    'method' => 'POST'],
+                'estimateSubscription' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/subscriptions/estimate',
+                    'method' => 'POST'
+                ],
+                'mfaEnforcement' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/mfa-enforcement'],
+            ]
+        ];
 
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode([
-                    'id' => 'org_654321',
-                    'type' => 'startup',
-                    'ownerId' => 'user_9876',
-                    'namespace' => 'devhub',
-                    'name' => 'upsun-cloud',
-                    'label' => 'Upsun Cloud Europe',
-                    'country' => 'FR',
-                    'capabilities' => [
-                        'projects' => true,
-                        'teams' => false,
-                        'billing' => false,
-                        'integrations' => ['bitbucket'],
-                    ],
-                    'vendor' => 'DevHub Ltd.',
-                    'status' => 'suspended',
-                    'createdAt' => '2025-08-01T10:20:00+00:00',
-                    'updatedAt' => '2025-09-05T15:00:00+00:00',
-                    'links' => [
-                        'self' => 'https://api.upsun.com/organizations/org_654321',
-                        'edit' => '/organizations/org_654321/edit',
-                        'access' => '/organizations/org_654321/access',
-                    ],
-                ])
+                json_encode($data)
             ));
 
-        $data = [
-            'name' => 'upsun-cloud',
-            'label' => 'Upsun Cloud Europe',
-            'country' => 'FR',
-        ];
-
         $result = $this->organizationsTask->update(
-            $orgId,
-            $data['name'],
-            $data['label'],
-            $data['country'],
+            organizationId: $orgId,
+            name: $data['name'],
+            label: $data['label'],
+            country: $data['country'],
         );
+
         $this->assertInstanceOf(Organization::class, $result);
-        $this->assertEquals($data['name'], $result->getName());
-        $this->assertEquals($data['label'], $result->getLabel());
-        $this->assertEquals($data['country'], $result->getCountry());
+        $this->assertObjectProperties($result, $data);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testCreateMember()
     {
         $orgId = 'org_98765';
         $userId = 'user_54321';
         $permissions = ['read', 'write', 'admin'];
+
         $organizationMemberData = [
-            'id' => 'member_12345',
-            'organizationId' => 'org_98765',
-            'userId' => 'user_54321',
-            'permissions' => ['read', 'write', 'admin'],
-            'level' => 'maintainer',
-            'owner' => true,
-            'createdAt' => '2025-01-15T08:00:00+00:00',
-            'updatedAt' => '2025-09-10T14:20:00+00:00',
-            'links' => [
-                'self' => 'https://api.upsun.com/orgs/org_98765/members/member_12345',
-                'user' => 'https://api.upsun.com/users/user_54321',
+            'id' => 'mem_' . bin2hex(random_bytes(8)),
+            'organizationId' => 'org_' . bin2hex(random_bytes(8)),
+            'userId' => 'user_' . bin2hex(random_bytes(8)),
+            'permissions' => [
+                'organization.read',
+                'organization.write',
+                'members.read',
+                'members.invite',
+                'billing.read',
+                'subscriptions.manage',
+                'projects.create',
+                'projects.delete'
             ],
+            'level' => 'admin',
+            'owner' => false,
+            'createdAt' => '2024-03-20 09:15:42',
+            'updatedAt' => '2025-10-28 16:45:18',
+            'links' => [
+                'self' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789'
+                ],
+                'update' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789',
+                    'method' => 'PATCH'
+                ],
+                'delete' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789',
+                    'method' => 'DELETE'
+                ],
+            ]
         ];
 
         $this->httpClient
@@ -810,10 +1054,13 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($organizationMemberData)
             ));
 
-        $result = $this->organizationsTask->createMember($orgId, $userId, $permissions);
+        $result = $this->organizationsTask->createMember(
+            organizationId: $orgId,
+            userId: $userId,
+            permissions: $permissions
+        );
         $this->assertInstanceOf(OrganizationMember::class, $result);
-        $this->assertEquals($userId, $result->getUserId());
-        $this->assertEquals(['read', 'write', 'admin'], $result->getPermissions());
+        $this->assertObjectProperties($result, $organizationMemberData);
     }
 
     /**
@@ -824,18 +1071,36 @@ class OrganizationsTaskTest extends BaseTestCase
         $permissions = ['read', 'write', 'admin'];
 
         $organizationMemberData = [
-            'id' => 'member_12345',
-            'organizationId' => 'org_98765',
-            'userId' => 'user_54321',
-            'permissions' => ['read', 'write', 'admin'],
-            'level' => 'maintainer',
-            'owner' => true,
-            'createdAt' => '2025-01-15T08:00:00+00:00',
-            'updatedAt' => '2025-09-10T14:20:00+00:00',
-            'links' => [
-                'self' => 'https://api.upsun.com/orgs/org_98765/members/member_12345',
-                'user' => 'https://api.upsun.com/users/user_54321',
+            'id' => 'mem_' . bin2hex(random_bytes(8)),
+            'organizationId' => 'org_' . bin2hex(random_bytes(8)),
+            'userId' => 'user_' . bin2hex(random_bytes(8)),
+            'permissions' => [
+                'organization.read',
+                'organization.write',
+                'members.read',
+                'members.invite',
+                'billing.read',
+                'subscriptions.manage',
+                'projects.create',
+                'projects.delete'
             ],
+            'level' => 'admin',
+            'owner' => false,
+            'createdAt' => '2024-03-20 09:15:42',
+            'updatedAt' => '2025-10-28 16:45:18',
+            'links' => [
+                'self' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789'
+                ],
+                'update' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789',
+                    'method' => 'PATCH'
+                ],
+                'delete' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789',
+                    'method' => 'DELETE'
+                ],
+            ]
         ];
 
         $this->httpClient
@@ -846,13 +1111,18 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($organizationMemberData)
             ));
 
-        $response = $this->organizationsTask->updateMember('org_123', 'user_1', $permissions);
+        $response = $this->organizationsTask->updateMember(
+            organizationId: 'org_123',
+            userId: 'user_1',
+            permissions: $permissions
+        );
         $this->assertInstanceOf(OrganizationMember::class, $response);
-        $this->assertEquals(['read', 'write', 'admin'], $response->getPermissions());
+        $this->assertObjectProperties($response, $organizationMemberData);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testGetMember()
     {
@@ -860,18 +1130,36 @@ class OrganizationsTaskTest extends BaseTestCase
         $userId = 'user_54321';
 
         $organizationMemberData = [
-            'id' => 'member_12345',
-            'organizationId' => 'org_98765',
-            'userId' => 'user_54321',
-            'permissions' => ['read', 'write', 'admin'],
-            'level' => 'admin',
-            'owner' => true,
-            'createdAt' => '2025-01-15T08:00:00+00:00',
-            'updatedAt' => '2025-09-10T14:20:00+00:00',
-            'links' => [
-                'self' => 'https://api.upsun.com/orgs/org_98765/members/member_12345',
-                'user' => 'https://api.upsun.com/users/user_54321',
+            'id' => 'mem_' . bin2hex(random_bytes(8)),
+            'organizationId' => 'org_' . bin2hex(random_bytes(8)),
+            'userId' => 'user_' . bin2hex(random_bytes(8)),
+            'permissions' => [
+                'organization.read',
+                'organization.write',
+                'members.read',
+                'members.invite',
+                'billing.read',
+                'subscriptions.manage',
+                'projects.create',
+                'projects.delete'
             ],
+            'level' => 'admin',
+            'owner' => false,
+            'createdAt' => '2024-03-20 09:15:42',
+            'updatedAt' => '2025-10-28 16:45:18',
+            'links' => [
+                'self' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789'
+                ],
+                'update' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789',
+                    'method' => 'PATCH'
+                ],
+                'delete' => [
+                    'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789',
+                    'method' => 'DELETE'
+                ],
+            ]
         ];
 
         $this->httpClient
@@ -882,15 +1170,14 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($organizationMemberData)
             ));
 
-        $response = $this->organizationsTask->getMember($orgId, $userId);
-        $this->assertInstanceOf(OrganizationMember::class, $response);
-        $this->assertEquals($userId, $response->getUserId());
-        $this->assertEquals($orgId, $response->getOrganizationId());
-        $this->assertEquals(['read', 'write', 'admin'], $response->getPermissions());
+        $result = $this->organizationsTask->getMember(organizationId: $orgId, userId: $userId);
+        $this->assertInstanceOf(OrganizationMember::class, $result);
+        $this->assertObjectProperties($result, $organizationMemberData);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testListMembers()
     {
@@ -900,32 +1187,68 @@ class OrganizationsTaskTest extends BaseTestCase
             "count" => 1,
             "items" => [
                 [
-                    'id' => 'member_12345',
-                    'organizationId' => 'org_98765',
-                    'userId' => 'user_54321',
-                    'permissions' => ['read', 'write', 'admin'],
-                    'level' => 'admin',
-                    'owner' => true,
-                    'createdAt' => '2025-01-15T08:00:00+00:00',
-                    'updatedAt' => '2025-09-10T14:20:00+00:00',
-                    'links' => [
-                        'self' => 'https://api.upsun.com/orgs/org_98765/members/member_12345',
-                        'user' => 'https://api.upsun.com/users/user_54321',
+                    'id' => 'mem_' . bin2hex(random_bytes(8)),
+                    'organizationId' => 'org_' . bin2hex(random_bytes(8)),
+                    'userId' => 'user_' . bin2hex(random_bytes(8)),
+                    'permissions' => [
+                        'organization.read',
+                        'organization.write',
+                        'members.read',
+                        'members.invite',
+                        'billing.read',
+                        'subscriptions.manage',
+                        'projects.create',
+                        'projects.delete'
                     ],
+                    'level' => 'admin',
+                    'owner' => false,
+                    'createdAt' => '2024-03-20 09:15:42',
+                    'updatedAt' => '2025-10-28 16:45:18',
+                    'links' => [
+                        'self' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789'
+                        ],
+                        'update' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789',
+                            'method' => 'PATCH'
+                        ],
+                        'delete' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789',
+                            'method' => 'DELETE'
+                        ],
+                    ]
                 ],
                 [
-                    'id' => 'member_67890',
-                    'organizationId' => 'org_98765',
-                    'userId' => 'user_54321',
-                    'permissions' => ['read', 'write'],
-                    'level' => 'maintainer',
-                    'owner' => true,
-                    'createdAt' => '2025-01-15T08:00:00+00:00',
-                    'updatedAt' => '2025-09-10T14:20:00+00:00',
-                    'links' => [
-                        'self' => 'https://api.upsun.com/orgs/org_98765/members/member_12345',
-                        'user' => 'https://api.upsun.com/users/user_54321',
+                    'id' => 'mem_' . bin2hex(random_bytes(8)),
+                    'organizationId' => 'org_' . bin2hex(random_bytes(8)),
+                    'userId' => 'user_' . bin2hex(random_bytes(8)),
+                    'permissions' => [
+                        'organization.read',
+                        'organization.write',
+                        'members.read',
+                        'members.invite',
+                        'billing.read',
+                        'subscriptions.manage',
+                        'projects.create',
+                        'projects.delete'
                     ],
+                    'level' => 'admin',
+                    'owner' => false,
+                    'createdAt' => '2024-03-20 09:15:42',
+                    'updatedAt' => '2025-10-28 16:45:18',
+                    'links' => [
+                        'self' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789'
+                        ],
+                        'update' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789',
+                            'method' => 'PATCH'
+                        ],
+                        'delete' => [
+                            'href' => 'https://api.example.com/v1/organizations/org_abc123/members/mem_xyz789',
+                            'method' => 'DELETE'
+                        ],
+                    ]
                 ]
             ],
             "_links" => [
@@ -942,13 +1265,10 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($organizationMembersData)
             ));
 
-        $response = $this->organizationsTask->listMembers($orgId);
-        $members = $response->getItems();
-        $this->assertContainsOnlyInstancesOf(OrganizationMember::class, $members);
-        $this->assertEquals($orgId, $members[0]->getOrganizationId());
-        $this->assertEquals(['read', 'write', 'admin'], $members[0]->getPermissions());
-        $this->assertEquals($orgId, $members[1]->getOrganizationId());
-        $this->assertEquals(['read', 'write'], $members[1]->getPermissions());
+        $result = $this->organizationsTask->listMembers(organizationId: $orgId);
+        $this->assertIsArray($result->getItems());
+        $this->assertContainsOnlyInstancesOf(OrganizationMember::class, $result->getItems());
+        $this->assertObjectMatchesArray($result->getItems(), $organizationMembersData['items']);
     }
 
     /**
@@ -967,15 +1287,63 @@ class OrganizationsTaskTest extends BaseTestCase
                     'code' => 204
                 ])
             ));
-        $this->organizationsTask->deleteMember('org_123', 'user_1');
+        $this->organizationsTask->deleteMember(organizationId: 'org_123', userId: 'user_1');
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testListTeams()
     {
         $orgId = 'fake-org-id-5678';
+        $list = [
+            "count" => 1,
+            "items" => [
+                [
+                    "_links" => [
+                        "self" => [
+                            "href" => "/teams/fake-team-id-1234"
+                        ]
+                    ],
+                    "counts" => [
+                        "member_count" => 5,
+                        "project_count" => 12
+                    ],
+                    "id" => "fake-team-id-1234",
+                    "label" => "Observability Team",
+                    "organization_id" => "fake-org-id-5678",
+                    "project_permissions" => [
+                        "admin",
+                        "production:admin",
+                        "staging:contributor",
+                        "development:viewer"
+                    ],
+                    "created_at" => "2023-10-05T13:30:43.073757Z",
+                    "updated_at" => "2023-11-15T09:22:18.451321Z"
+                ],
+                [
+                    "_links" => ["self" => ["href" => "/teams/fake-team-id-5678"]],
+                    "counts" => [
+                        "member_count" => 5,
+                        "project_count" => 12
+                    ],
+                    "id" => "fake-team-id-5678",
+                    "label" => "Observability Team",
+                    "organization_id" => "fake-org-id-5678",
+                    "project_permissions" => [
+                        "admin",
+                    ],
+                    "created_at" => "2023-10-05T13:30:43.073757Z",
+                    "updated_at" => "2023-11-15T09:22:18.451321Z"
+                ]
+            ],
+            "_links" => [
+                "next" => ["href" => "href"],
+                "ref:organizations:0" => ["href" => "href"],
+                "self" => ["href" => "href"]
+            ]
+        ];
 
         $this->httpClient
             ->expects($this->once())
@@ -983,140 +1351,88 @@ class OrganizationsTaskTest extends BaseTestCase
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode([
-                    "count" => 1,
-                    "items" => [
-                        [
-                            "_links" => [
-                                "self" => [
-                                    "href" => "/teams/fake-team-id-1234"
-                                ]
-                            ],
-                            "counts" => [
-                                "member_count" => 5,
-                                "project_count" => 12
-                            ],
-                            "id" => "fake-team-id-1234",
-                            "label" => "Observability Team",
-                            "organization_id" => "fake-org-id-5678",
-                            "project_permissions" => [
-                                "admin",
-                                "production:admin",
-                                "staging:contributor",
-                                "development:viewer"
-                            ],
-                            "created_at" => "2023-10-05T13:30:43.073757Z",
-                            "updated_at" => "2023-11-15T09:22:18.451321Z"
-                        ],
-                        [
-                            "_links" => ["self" => ["href" => "/teams/fake-team-id-5678"]],
-                            "counts" => [
-                                "member_count" => 5,
-                                "project_count" => 12
-                            ],
-                            "id" => "fake-team-id-5678",
-                            "label" => "Observability Team",
-                            "organization_id" => "fake-org-id-5678",
-                            "project_permissions" => [
-                                "admin",
-                            ],
-                            "created_at" => "2023-10-05T13:30:43.073757Z",
-                            "updated_at" => "2023-11-15T09:22:18.451321Z"
-                        ]
-                    ],
-                    "_links" => [
-                        "next" => ["href" => "href"],
-                        "ref:organizations:0" => ["href" => "href"],
-                        "self" => ["href" => "href"]
-                    ]
-                ])
+                json_encode($list)
             ));
 
-        $response = $this->organizationsTask->listTeams($orgId);
-        $teams = $response->getItems();
-        $this->assertContainsOnlyInstancesOf(Team::class, $teams);
-        $this->assertEquals($orgId, $teams[0]->getOrganizationId());
-        $this->assertEquals(
-            ["admin", "production:admin", "staging:contributor", "development:viewer"],
-            $teams[0]->getProjectPermissions()
-        );
-        $this->assertEquals($orgId, $teams[1]->getOrganizationId());
-        $this->assertEquals(['admin'], $teams[1]->getProjectPermissions());
+        $result = $this->organizationsTask->listTeams(organizationId: $orgId);
+        $this->assertIsArray($result->getItems());
+        $this->assertContainsOnlyInstancesOf(Team::class, $result->getItems());
+        $this->assertObjectMatchesArray($result->getItems(), $list['items']);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testGetProject()
     {
         $orgId = 'fake-org-5678';
         $projectId = 'fake-proj-1234';
+        $data = [
+            "id" => "fake-proj-1234",
+            "organization_id" => "fake-org-5678",
+            "subscription_id" => "999999",
+            "vendor" => "upsun",
+            "region" => "us.platform.sh",
+            "title" => "Demo Project",
+            "plan" => "upsun/flexible",
+            "default_branch" => "main",
+            "status" => "active",
+            "timezone" => "America/New_York",
+            "options_url" => "",
+            "agency_site" => false,
+            "support_tier" => "upsun_standard",
+            "options_custom" => [
+                "initialize" => [
+                    "profile" => "demo",
+                    "repository" => "https://github.com/platformsh/demo-cmd.git"
+                ]
+            ],
+            "trial_plan" => false,
+            "project_ui" => "https://console.upsun.com/fake-org-5678/fake-proj-1234",
+            "created_at" => "2023-10-24T16:34:45Z",
+            "updated_at" => "2025-04-08T11:12:55.802313Z",
+            "_links" => [
+                "activities" => [
+                    "href" => "/organizations/fake-org-5678/projects/fake-proj-1234/activities"
+                ],
+                "addons" => [
+                    "href" => "/organizations/fake-org-5678/projects/fake-proj-1234/addons"
+                ],
+                "api" => [
+                    "href" => "/projects/fake-proj-1234"
+                ],
+                "self" => [
+                    "href" => "/organizations/fake-org-5678/projects/fake-proj-1234"
+                ],
+                "subscription" => [
+                    "href" => "/organizations/fake-org-5678/subscriptions/999999"
+                ]
+            ],
+            "type" => "grid",
+            "locked" => false,
+            "cse_notes" => "",
+            "fastly_service_ids" => [],
+            "edgee_org_id" => "",
+            "edgee_project_id" => ""
+        ];
 
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode(
-                    [
-                        "id" => "fake-proj-1234",
-                        "organization_id" => "fake-org-5678",
-                        "subscription_id" => "999999",
-                        "vendor" => "upsun",
-                        "region" => "us.platform.sh",
-                        "title" => "Demo Project",
-                        "plan" => "upsun/flexible",
-                        "default_branch" => "main",
-                        "status" => "active",
-                        "timezone" => "America/New_York",
-                        "options_url" => "",
-                        "agency_site" => false,
-                        "support_tier" => "upsun_standard",
-                        "options_custom" => [
-                            "initialize" => [
-                                "profile" => "demo",
-                                "repository" => "https://github.com/platformsh/demo-cmd.git"
-                            ]
-                        ],
-                        "trial_plan" => false,
-                        "project_ui" => "https://console.upsun.com/fake-org-5678/fake-proj-1234",
-                        "created_at" => "2023-10-24T16:34:45Z",
-                        "updated_at" => "2025-04-08T11:12:55.802313Z",
-                        "_links" => [
-                            "activities" => [
-                                "href" => "/organizations/fake-org-5678/projects/fake-proj-1234/activities"
-                            ],
-                            "addons" => [
-                                "href" => "/organizations/fake-org-5678/projects/fake-proj-1234/addons"
-                            ],
-                            "api" => [
-                                "href" => "/projects/fake-proj-1234"
-                            ],
-                            "self" => [
-                                "href" => "/organizations/fake-org-5678/projects/fake-proj-1234"
-                            ],
-                            "subscription" => [
-                                "href" => "/organizations/fake-org-5678/subscriptions/999999"
-                            ]
-                        ],
-                        "type" => "grid",
-                        "locked" => false,
-                        "cse_notes" => "",
-                        "fastly_service_ids" => [],
-                        "edgee_org_id" => "",
-                        "edgee_project_id" => ""
-                    ]
-                )
+                json_encode($data)
             ));
 
-        $result = $this->organizationsTask->getProject($orgId, $projectId);
+        $result = $this->organizationsTask->getProject(organizationId: $orgId, projectId: $projectId);
         $this->assertInstanceOf(OrganizationProject::class, $result);
-        $this->assertEquals($projectId, $result->getId());
-        $this->assertEquals($orgId, $result->getOrganizationId());
+        $this->assertObjectProperties($result, $data);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testListProjects()
     {
@@ -1243,14 +1559,11 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($orgProjectList)
             ));
 
-        $response = $this->organizationsTask->listProjects($orgId);
+        $response = $this->organizationsTask->listProjects(organizationId: $orgId);
         $projects = $response->getItems();
         $this->assertIsArray($projects);
         $this->assertContainsOnlyInstancesOf(OrganizationProject::class, $projects);
-        $this->assertEquals("fake-proj-1234", $projects[0]->getId());
-        $this->assertEquals($orgId, $projects[0]->getOrganizationId());
-        $this->assertEquals("fake-proj-5678", $projects[1]->getId());
-        $this->assertEquals($orgId, $projects[1]->getOrganizationId());
+        $this->assertObjectMatchesArray($projects, $projects);
     }
 
     /**
@@ -1275,7 +1588,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 )
             ));
 
-        $result = $this->organizationsTask->canCreateProject($orgId);
+        $result = $this->organizationsTask->canCreateProject(organizationId: $orgId);
         $this->assertInstanceOf(CanCreateNewOrgSubscription200Response::class, $result);
         $this->assertTrue($result->getCanCreate());
     }
@@ -1345,17 +1658,21 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $response = $this->organizationsTask->createProject(
-            $orgId,
-            $data['projectRegion'],
-            $data['plan'],
-            $data['projectTitle'],
-            $data['optionsUrl'],
-            $data['defaultBranch'],
-            $data['environments'],
-            $data['storage'],
+            organizationId: $orgId,
+            projectRegion: $data['projectRegion'],
+            plan: $data['plan'],
+            title: $data['projectTitle'],
+            optionsUrl: $data['optionsUrl'],
+            defaultBranch: $data['defaultBranch'],
+            environments: $data['environments'],
+            storage: $data['storage'],
         );
         $this->assertInstanceOf(Subscription::class, $response);
         $this->assertEquals($data['projectRegion'], $response->getProjectRegion());
+        $this->assertEquals($data['plan'], $response->getPlan());
+        $this->assertEquals($data['projectTitle'], $response->getProjectTitle());
+        $this->assertEquals($data['environments'], $response->getEnvironments());
+        $this->assertEquals($data['storage'], $response->getStorage());
     }
 
     /**
@@ -1443,7 +1760,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 )
             );
 
-        $this->organizationsTask->deleteProject($projectId);
+        $this->organizationsTask->deleteProject(projectId: $projectId);
     }
 
     /**
@@ -1477,14 +1794,14 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $response = $this->organizationsTask->updateProject(
-            $prjId,
-            $data['title'],
-            $data['defaultBranch'],
-            $data['description'],
-            $data['defaultDomain'],
-            $data['attributes'],
-            $data['timezone'],
-            $data['region'],
+            projectId: $prjId,
+            title: $data['title'],
+            defaultBranch: $data['defaultBranch'],
+            description: $data['description'],
+            defaultDomain: $data['defaultDomain'],
+            attributes: $data['attributes'],
+            timezone: $data['timezone'],
+            region: $data['region'],
         );
 
         $this->assertEquals(new AcceptedResponse('accepted', 200), $response);
@@ -1519,11 +1836,11 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $response = $this->organizationsTask->estimateNewProject(
-            $orgId,
-            $estimationObject['environments'],
-            $estimationObject['storage'],
-            $estimationObject['userLicenses'],
-            $estimationObject['format'],
+            organizationId: $orgId,
+            environments: $estimationObject['environments'],
+            storage: $estimationObject['storage'],
+            userLicenses: $estimationObject['userLicenses'],
+            format: $estimationObject['format'],
         );
         $this->assertInstanceOf(EstimationObject::class, $response);
         $this->assertEquals($estimationObject['plan'], $response->getPlan());
@@ -1630,12 +1947,12 @@ class OrganizationsTaskTest extends BaseTestCase
             );
 
         $response = $this->organizationsTask->estimateProject(
-            $orgId,
-            $prjId,
-            $estimationObject['environments'],
-            $estimationObject['storage'],
-            $estimationObject['userLicenses'],
-            $estimationObject['format'],
+            organizationId: $orgId,
+            projectId: $prjId,
+            environments: $estimationObject['environments'],
+            storage: $estimationObject['storage'],
+            userLicenses: $estimationObject['userLicenses'],
+            format: $estimationObject['format'],
         );
         $this->assertInstanceOf(EstimationObject::class, $response);
         $this->assertObjectProperties($response, $estimationObject);
@@ -1821,10 +2138,10 @@ class OrganizationsTaskTest extends BaseTestCase
             );
 
         $response = $this->organizationsTask->getProjectUsage(
-            $orgId,
-            $prjId,
-            'usageGroups',
-            true
+            organizationId: $orgId,
+            projectId: $prjId,
+            usageGroups: 'usageGroups',
+            includeNotCharged: true
         );
         $this->assertInstanceOf(SubscriptionCurrentUsageObject::class, $response);
         $this->assertObjectProperties($response, $currentUsageData);
@@ -1849,11 +2166,12 @@ class OrganizationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->organizationsTask->disableMfaEnforcement($orgId);
+        $this->organizationsTask->disableMfaEnforcement(organizationId: $orgId);
     }
 
     /**
      * @throws ClientExceptionInterface
+     * @throws Exception
      */
     public function testGetInvoice(): void
     {
@@ -1900,8 +2218,8 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $result = $this->organizationsTask->getInvoice(
-            $invoiceData['id'],
-            'org-123'
+            invoiceId: $invoiceData['id'],
+            organizationId: 'org-123'
         );
         $this->assertInstanceOf(Invoice::class, $result);
         $this->assertObjectProperties($result, $invoiceData);
@@ -1935,7 +2253,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->getAddress('org-123');
+        $result = $this->organizationsTask->getAddress(organizationId: 'org-123');
         $this->assertInstanceOf(Address::class, $result);
         $this->assertObjectProperties($result, $data);
     }
@@ -1982,7 +2300,6 @@ class OrganizationsTaskTest extends BaseTestCase
                 'next' => '/organizations/org_1/usage-records?page=2',
             ],
         ];
-
 
         $fakeOrganizationProject = [
             'id' => '123',
@@ -2057,7 +2374,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 )
             );
 
-        $response = $this->organizationsTask->listUsageRecords('org-123', '123');
+        $response = $this->organizationsTask->listUsageRecords(organizationId: 'org-123', filterProjectId: '123');
         $this->assertInstanceOf(ListOrgUsageRecords200Response::class, $response);
         $this->assertObjectProperties($response->getItems(), $data['items']);
     }
@@ -2102,7 +2419,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->listVouchers('org-123');
+        $result = $this->organizationsTask->listVouchers(organizationId: 'org-123');
         $this->assertInstanceOf(Vouchers::class, $result);
         $this->assertObjectProperties($result, $data);
     }
@@ -2124,7 +2441,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->organizationsTask->enableMfaEnforcement('org-123');
+        $this->organizationsTask->enableMfaEnforcement(organizationId: 'org-123');
     }
 
     /**
@@ -2146,7 +2463,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->getMfaEnforcement('org-123');
+        $result = $this->organizationsTask->getMfaEnforcement(organizationId: 'org-123');
         $this->assertInstanceOf(OrganizationMFAEnforcement::class, $result);
         $this->assertObjectProperties($result, $data);
     }
@@ -2181,8 +2498,8 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $result = $this->organizationsTask->sendMfaReminders(
-            'org-123',
-            [
+            organizationId: 'org-123',
+            userIds: [
                 'userIds' => [
                     'user-123-abc',
                     'user-456-def',
@@ -2203,7 +2520,7 @@ class OrganizationsTaskTest extends BaseTestCase
             [
                 'id' => 'inv_001',
                 'invoice_number' => '2025-0001',
-                'type' => 'invoice', // ou 'credit_memo'
+                'type' => 'invoice', // or 'credit_memo'
                 'order_id' => 'order_123',
                 'related_invoice_id' => null,
                 'status' => 'paid',
@@ -2274,7 +2591,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode(['items' => $data])
             ));
 
-        $result = $this->organizationsTask->listInvoices('org-123');
+        $result = $this->organizationsTask->listInvoices(organizationId: 'org-123');
         $this->assertInstanceOf(ListOrgInvoices200Response::class, $result);
         $this->assertContainsOnlyInstancesOf(Invoice::class, $result->getItems());
         $this->assertObjectProperties($result, $data);
@@ -2305,7 +2622,7 @@ class OrganizationsTaskTest extends BaseTestCase
 
         $orgId = 'org-1';
         $orderId = 'order-1';
-        $result = $this->organizationsTask->createAuthorizationCredentials($orgId, $orderId);
+        $result = $this->organizationsTask->createAuthorizationCredentials(organizationId: $orgId, orderId: $orderId);
         $this->assertInstanceOf(CreateAuthorizationCredentials200Response::class, $result);
         $this->assertObjectProperties($result, $data);
     }
@@ -2385,7 +2702,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->getOrder('org-123', 'order-001');
+        $result = $this->organizationsTask->getOrder(organizationId: 'org-123', orderId: 'order-001');
         $this->assertInstanceOf(Order::class, $result);
         $this->assertObjectProperties($result, $data);
     }
@@ -2534,7 +2851,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->listOrders('org-123', 'completed');
+        $result = $this->organizationsTask->listOrders(organizationId: 'org-123', filterStatus: 'completed');
         $this->assertInstanceOf(ListOrgOrders200Response::class, $result);
         $this->assertContainsOnlyInstancesOf(Order::class, $result->getItems());
         $this->assertObjectProperties($result, $data);
@@ -2604,7 +2921,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->getProfile('org-123');
+        $result = $this->organizationsTask->getProfile(organizationId: 'org-123');
         $this->assertInstanceOf(Profile::class, $result);
         $this->assertObjectProperties($result, $data);
     }
@@ -2633,17 +2950,17 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $result = $this->organizationsTask->updateAddress(
-            'org-123',
-            $fakeAddressData['country'],
-            $fakeAddressData['nameLine'],
-            $fakeAddressData['premise'],
-            $fakeAddressData['subPremise'],
-            $fakeAddressData['thoroughfare'],
-            $fakeAddressData['administrativeArea'],
-            $fakeAddressData['subAdministrativeArea'],
-            $fakeAddressData['locality'],
-            $fakeAddressData['dependentLocality'],
-            $fakeAddressData['postalCode'],
+            organizationId: 'org-123',
+            country: $fakeAddressData['country'],
+            nameLine: $fakeAddressData['nameLine'],
+            premise: $fakeAddressData['premise'],
+            subPremise: $fakeAddressData['subPremise'],
+            thoroughfare: $fakeAddressData['thoroughfare'],
+            administrativeArea: $fakeAddressData['administrativeArea'],
+            subAdministrativeArea: $fakeAddressData['subAdministrativeArea'],
+            locality: $fakeAddressData['locality'],
+            dependentLocality: $fakeAddressData['dependentLocality'],
+            postalCode: $fakeAddressData['postalCode'],
         );
         $this->assertInstanceOf(Address::class, $result);
         $this->assertObjectProperties($result, $fakeAddressData);
@@ -2724,13 +3041,13 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $result = $this->organizationsTask->updateProfile(
-            'org-123',
-            $fakeUpdateOrgProfileRequestData['defaultCatalog'],
-            $fakeUpdateOrgProfileRequestData['projectOptionsUrl'],
-            $fakeUpdateOrgProfileRequestData['securityContact'],
-            $fakeUpdateOrgProfileRequestData['companyName'],
-            $fakeUpdateOrgProfileRequestData['vatNumber'],
-            $fakeUpdateOrgProfileRequestData['billingContact'],
+            organizationId: 'org-123',
+            defaultCatalog: $fakeUpdateOrgProfileRequestData['defaultCatalog'],
+            projectOptionsUrl: $fakeUpdateOrgProfileRequestData['projectOptionsUrl'],
+            securityContact: $fakeUpdateOrgProfileRequestData['securityContact'],
+            companyName: $fakeUpdateOrgProfileRequestData['companyName'],
+            vatNumber: $fakeUpdateOrgProfileRequestData['vatNumber'],
+            billingContact: $fakeUpdateOrgProfileRequestData['billingContact'],
         );
         $this->assertInstanceOf(Profile::class, $result);
         $this->assertObjectProperties($result, $data);
@@ -2878,7 +3195,7 @@ class OrganizationsTaskTest extends BaseTestCase
             );
 
 
-        $result = $this->organizationsTask->listRecords('org-123', '123');
+        $result = $this->organizationsTask->listRecords(organizationId: 'org-123', filterProjectId: '123');
         $this->assertInstanceOf(ListOrgPlanRecords200Response::class, $result);
         $this->assertContainsOnlyInstancesOf(PlanRecords::class, $result->getItems());
         $this->assertObjectProperties($result, $fakeListOrgPlanRecords200ResponseData);
@@ -2903,7 +3220,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->organizationsTask->applyVoucher('org-123', $code);
+        $this->organizationsTask->applyVoucher(organizationId: 'org-123', code: $code);
     }
 
     /**
@@ -2945,7 +3262,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($addonsData)
             ));
 
-        $result = $this->organizationsTask->getAddons('org-123');
+        $result = $this->organizationsTask->getAddons(organizationId: 'org-123');
         $this->assertInstanceOf(OrganizationAddonsObject::class, $result);
         $this->assertObjectProperties($result, $addonsData);
     }
@@ -2987,9 +3304,9 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $result = $this->organizationsTask->updateAddons(
-            'org-123',
-            'standard',
-            'basic'
+            organizationId: 'org-123',
+            userManagement: 'standard',
+            supportLevel: 'basic'
         );
         $this->assertSame(
             ['standard' => 200],
@@ -3016,7 +3333,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 'PDF-DATA-HERE'
             ));
 
-        $result = $this->organizationsTask->downloadInvoice($token);
+        $result = $this->organizationsTask->downloadInvoice(token: $token);
 
         $this->assertIsString($result);
         $this->assertEquals('PDF-DATA-HERE', $result);
@@ -3042,6 +3359,6 @@ class OrganizationsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->organizationsTask->downloadInvoice($token);
+        $this->organizationsTask->downloadInvoice(token: $token);
     }
 }
