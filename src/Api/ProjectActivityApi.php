@@ -57,11 +57,11 @@ final class ProjectActivityApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Project-Activity/paths//projects/{projectId}/activities/get) endpoint. Please
      * note that not all activities are cancelable.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/action-projects-activities-cancel
      */
     public function actionProjectsActivitiesCancel(
@@ -77,10 +77,12 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Cancel a project activity with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function actionProjectsActivitiesCancelWithHttpInfo(
         string $projectId,
         string $activityId
@@ -120,6 +122,9 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Create request for operation 'actionProjectsActivitiesCancel'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function actionProjectsActivitiesCancelRequest(
@@ -134,7 +139,7 @@ final class ProjectActivityApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling actionProjectsActivitiesCancel'
             );
         }
@@ -146,7 +151,7 @@ final class ProjectActivityApi extends AbstractApi
             && count($activityId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $activityId 
+                'Missing the required parameter $activityId
                 when calling actionProjectsActivitiesCancel'
             );
         }
@@ -233,11 +238,11 @@ final class ProjectActivityApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Project-Activity/paths//projects/{projectId}/activities/get) endpoint. See the
      * documentation on that endpoint for details about the information this endpoint can return.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Activity
-     *
      * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/get-projects-activities
      */
     public function getProjectsActivities(
@@ -253,10 +258,12 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Get a project activity log entry with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Activity
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsActivitiesWithHttpInfo(
         string $projectId,
         string $activityId
@@ -296,6 +303,9 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsActivities'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsActivitiesRequest(
@@ -310,7 +320,7 @@ final class ProjectActivityApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsActivities'
             );
         }
@@ -322,7 +332,7 @@ final class ProjectActivityApi extends AbstractApi
             && count($activityId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $activityId 
+                'Missing the required parameter $activityId
                 when calling getProjectsActivities'
             );
         }
@@ -419,10 +429,10 @@ final class ProjectActivityApi extends AbstractApi
      * `environment.cron` or `environment.backup`.
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Activity[]
      *
+     * @return Activity[]
      * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/list-projects-activities
      */
     public function listProjectsActivities(
@@ -437,7 +447,9 @@ final class ProjectActivityApi extends AbstractApi
      * Get project activity log with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return Activity[]
      */
     private function listProjectsActivitiesWithHttpInfo(
@@ -477,6 +489,8 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsActivities'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsActivitiesRequest(
@@ -490,7 +504,7 @@ final class ProjectActivityApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsActivities'
             );
         }

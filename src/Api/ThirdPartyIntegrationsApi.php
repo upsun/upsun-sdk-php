@@ -56,11 +56,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * Integrate project with a third-party service
      *
      *
+     * @param IntegrationCreateInput $integrationCreateInput
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/create-projects-integrations
      */
     public function createProjectsIntegrations(
@@ -76,9 +76,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Integrate project with a third-party service with HTTP Info
      *
+     * @param IntegrationCreateInput $integrationCreateInput
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function createProjectsIntegrationsWithHttpInfo(
         string $projectId,
@@ -119,6 +121,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Create request for operation 'createProjectsIntegrations'
      *
+     * @param IntegrationCreateInput $integrationCreateInput
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function createProjectsIntegrationsRequest(
@@ -133,7 +138,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling createProjectsIntegrations'
             );
         }
@@ -145,7 +150,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             && count($integrationCreateInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $integrationCreateInput 
+                'Missing the required parameter $integrationCreateInput
                 when calling createProjectsIntegrations'
             );
         }
@@ -228,11 +233,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * Delete an existing third-party integration
      *
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/delete-projects-integrations
      */
     public function deleteProjectsIntegrations(
@@ -248,10 +253,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Delete an existing third-party integration with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteProjectsIntegrationsWithHttpInfo(
         string $projectId,
         string $integrationId
@@ -291,6 +298,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Create request for operation 'deleteProjectsIntegrations'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function deleteProjectsIntegrationsRequest(
@@ -305,7 +315,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deleteProjectsIntegrations'
             );
         }
@@ -317,7 +327,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             && count($integrationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $integrationId 
+                'Missing the required parameter $integrationId
                 when calling deleteProjectsIntegrations'
             );
         }
@@ -401,11 +411,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * Get information about an existing third-party integration
      *
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Integration
-     *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/get-projects-integrations
      */
     public function getProjectsIntegrations(
@@ -421,10 +431,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Get information about an existing third-party integration with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Integration
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsIntegrationsWithHttpInfo(
         string $projectId,
         string $integrationId
@@ -464,6 +476,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsIntegrations'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsIntegrationsRequest(
@@ -478,7 +493,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsIntegrations'
             );
         }
@@ -490,7 +505,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             && count($integrationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $integrationId 
+                'Missing the required parameter $integrationId
                 when calling getProjectsIntegrations'
             );
         }
@@ -575,10 +590,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      *
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Integration[]
      *
+     * @return Integration[]
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/list-projects-integrations
      */
     public function listProjectsIntegrations(
@@ -593,7 +608,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * Get list of existing integrations for a project with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return Integration[]
      */
     private function listProjectsIntegrationsWithHttpInfo(
@@ -633,6 +650,8 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsIntegrations'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsIntegrationsRequest(
@@ -646,7 +665,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsIntegrations'
             );
         }
@@ -721,11 +740,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * Update an existing third-party integration
      *
      *
+     * @param IntegrationPatch $integrationPatch
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/update-projects-integrations
      */
     public function updateProjectsIntegrations(
@@ -743,9 +762,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Update an existing third-party integration with HTTP Info
      *
+     * @param IntegrationPatch $integrationPatch
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function updateProjectsIntegrationsWithHttpInfo(
         string $projectId,
@@ -788,6 +809,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Create request for operation 'updateProjectsIntegrations'
      *
+     * @param IntegrationPatch $integrationPatch
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function updateProjectsIntegrationsRequest(
@@ -803,7 +827,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjectsIntegrations'
             );
         }
@@ -815,7 +839,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             && count($integrationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $integrationId 
+                'Missing the required parameter $integrationId
                 when calling updateProjectsIntegrations'
             );
         }
@@ -827,7 +851,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             && count($integrationPatch) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $integrationPatch 
+                'Missing the required parameter $integrationPatch
                 when calling updateProjectsIntegrations'
             );
         }

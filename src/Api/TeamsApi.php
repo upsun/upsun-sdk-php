@@ -63,11 +63,10 @@ final class TeamsApi extends AbstractApi
      *
      * Creates a new team.
      *
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Team
-     *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/create-team
      */
     public function createTeam(
@@ -81,10 +80,11 @@ final class TeamsApi extends AbstractApi
     /**
      * Create team with HTTP Info
      *
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Team
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createTeamWithHttpInfo(
         CreateTeamRequest $createTeamRequest
     ): Team {
@@ -122,6 +122,8 @@ final class TeamsApi extends AbstractApi
     /**
      * Create request for operation 'createTeam'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function createTeamRequest(
@@ -135,7 +137,7 @@ final class TeamsApi extends AbstractApi
             && count($createTeamRequest) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $createTeamRequest 
+                'Missing the required parameter $createTeamRequest
                 when calling createTeam'
             );
         }
@@ -211,11 +213,12 @@ final class TeamsApi extends AbstractApi
      *
      * Creates a new team member.
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return TeamMember
-     *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/create-team-member
      */
     public function createTeamMember(
@@ -231,10 +234,13 @@ final class TeamsApi extends AbstractApi
     /**
      * Create team member with HTTP Info
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return TeamMember
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createTeamMemberWithHttpInfo(
         string $teamId,
         CreateTeamMemberRequest $createTeamMemberRequest
@@ -274,6 +280,10 @@ final class TeamsApi extends AbstractApi
     /**
      * Create request for operation 'createTeamMember'
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function createTeamMemberRequest(
@@ -288,7 +298,7 @@ final class TeamsApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling createTeamMember'
             );
         }
@@ -300,7 +310,7 @@ final class TeamsApi extends AbstractApi
             && count($createTeamMemberRequest) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $createTeamMemberRequest 
+                'Missing the required parameter $createTeamMemberRequest
                 when calling createTeamMember'
             );
         }
@@ -384,9 +394,11 @@ final class TeamsApi extends AbstractApi
      *
      * Deletes the specified team.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $teamId
+     *         The ID of the team. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Teams/operation/delete-team
      */
     public function deleteTeam(
@@ -400,8 +412,12 @@ final class TeamsApi extends AbstractApi
     /**
      * Delete team with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteTeamWithHttpInfo(
         string $teamId
     ): void {
@@ -433,6 +449,9 @@ final class TeamsApi extends AbstractApi
     /**
      * Create request for operation 'deleteTeam'
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function deleteTeamRequest(
@@ -446,7 +465,7 @@ final class TeamsApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling deleteTeam'
             );
         }
@@ -522,9 +541,13 @@ final class TeamsApi extends AbstractApi
      *
      * Deletes the specified team member.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Teams/operation/delete-team-member
      */
     public function deleteTeamMember(
@@ -540,8 +563,14 @@ final class TeamsApi extends AbstractApi
     /**
      * Delete team member with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteTeamMemberWithHttpInfo(
         string $teamId,
         string $userId
@@ -575,6 +604,11 @@ final class TeamsApi extends AbstractApi
     /**
      * Create request for operation 'deleteTeamMember'
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function deleteTeamMemberRequest(
@@ -589,7 +623,7 @@ final class TeamsApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling deleteTeamMember'
             );
         }
@@ -601,7 +635,7 @@ final class TeamsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling deleteTeamMember'
             );
         }
@@ -686,11 +720,11 @@ final class TeamsApi extends AbstractApi
      *
      * Retrieves the specified team.
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Team
-     *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/get-team
      */
     public function getTeam(
@@ -704,10 +738,12 @@ final class TeamsApi extends AbstractApi
     /**
      * Get team with HTTP Info
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Team
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getTeamWithHttpInfo(
         string $teamId
     ): Team {
@@ -745,6 +781,9 @@ final class TeamsApi extends AbstractApi
     /**
      * Create request for operation 'getTeam'
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getTeamRequest(
@@ -758,7 +797,7 @@ final class TeamsApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling getTeam'
             );
         }
@@ -834,11 +873,13 @@ final class TeamsApi extends AbstractApi
      *
      * Retrieves the specified team member.
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return TeamMember
-     *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/get-team-member
      */
     public function getTeamMember(
@@ -854,10 +895,14 @@ final class TeamsApi extends AbstractApi
     /**
      * Get team member with HTTP Info
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return TeamMember
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getTeamMemberWithHttpInfo(
         string $teamId,
         string $userId
@@ -897,6 +942,11 @@ final class TeamsApi extends AbstractApi
     /**
      * Create request for operation 'getTeamMember'
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getTeamMemberRequest(
@@ -911,7 +961,7 @@ final class TeamsApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling getTeamMember'
             );
         }
@@ -923,7 +973,7 @@ final class TeamsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling getTeamMember'
             );
         }
@@ -1008,11 +1058,17 @@ final class TeamsApi extends AbstractApi
      *
      * Retrieves a list of users associated with a single team.
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListTeamMembers200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/list-team-members
      */
     public function listTeamMembers(
@@ -1032,10 +1088,18 @@ final class TeamsApi extends AbstractApi
     /**
      * List team members with HTTP Info
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListTeamMembers200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listTeamMembersWithHttpInfo(
         string $teamId,
         ?string $pageBefore = null,
@@ -1079,6 +1143,15 @@ final class TeamsApi extends AbstractApi
     /**
      * Create request for operation 'listTeamMembers'
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listTeamMembersRequest(
@@ -1095,7 +1168,7 @@ final class TeamsApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling listTeamMembers'
             );
         }
@@ -1218,11 +1291,23 @@ final class TeamsApi extends AbstractApi
      *
      * Retrieves a list of teams.
      *
+     * @param StringFilter|null $filterOrganizationId
+     *         Allows filtering by `organization_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListTeams200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/list-teams
      */
     public function listTeams(
@@ -1248,9 +1333,23 @@ final class TeamsApi extends AbstractApi
     /**
      * List teams with HTTP Info
      *
+     * @param StringFilter|null $filterOrganizationId
+     *         Allows filtering by `organization_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListTeams200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listTeamsWithHttpInfo(
         ?StringFilter $filterOrganizationId = null,
@@ -1301,6 +1400,21 @@ final class TeamsApi extends AbstractApi
     /**
      * Create request for operation 'listTeams'
      *
+     * @param StringFilter|null $filterOrganizationId
+     *         Allows filtering by `organization_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listTeamsRequest(
@@ -1320,7 +1434,7 @@ final class TeamsApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling TeamsApi.listTeams, 
+                'invalid value for "$pageSize" when calling TeamsApi.listTeams,
                 must be smaller than or equal to 100.'
             );
         }
@@ -1502,11 +1616,23 @@ final class TeamsApi extends AbstractApi
      *
      * Retrieves teams that the specified user is a member of.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param StringFilter|null $filterOrganizationId
+     *         Allows filtering by `organization_id` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListTeams200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/list-user-teams
      */
     public function listUserTeams(
@@ -1532,9 +1658,23 @@ final class TeamsApi extends AbstractApi
     /**
      * User teams with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param StringFilter|null $filterOrganizationId
+     *         Allows filtering by `organization_id` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListTeams200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listUserTeamsWithHttpInfo(
         string $userId,
@@ -1585,6 +1725,21 @@ final class TeamsApi extends AbstractApi
     /**
      * Create request for operation 'listUserTeams'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param StringFilter|null $filterOrganizationId
+     *         Allows filtering by `organization_id` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listUserTeamsRequest(
@@ -1604,7 +1759,7 @@ final class TeamsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling listUserTeams'
             );
         }
@@ -1615,7 +1770,7 @@ final class TeamsApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling TeamsApi.listUserTeams, 
+                'invalid value for "$pageSize" when calling TeamsApi.listUserTeams,
                 must be smaller than or equal to 100.'
             );
         }
@@ -1790,11 +1945,12 @@ final class TeamsApi extends AbstractApi
      *
      * Updates the specified team.
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Team
-     *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/update-team
      */
     public function updateTeam(
@@ -1810,10 +1966,13 @@ final class TeamsApi extends AbstractApi
     /**
      * Update team with HTTP Info
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Team
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateTeamWithHttpInfo(
         string $teamId,
         ?UpdateTeamRequest $updateTeamRequest = null
@@ -1853,6 +2012,10 @@ final class TeamsApi extends AbstractApi
     /**
      * Create request for operation 'updateTeam'
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateTeamRequest(
@@ -1867,7 +2030,7 @@ final class TeamsApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling updateTeam'
             );
         }

@@ -59,11 +59,10 @@ final class ProjectApi extends AbstractApi
      * build cache. More information on [clearing the build cache can be found in our user
      * documentation.](https://docs.upsun.com/anchors/troubleshoot/clear-build-cache/)
      *
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Project/operation/action-projects-clear-build-cache
      */
     public function actionProjectsClearBuildCache(
@@ -77,11 +76,11 @@ final class ProjectApi extends AbstractApi
     /**
      * Clear project build cache with HTTP Info
      *
-     * @param string $projectId
+
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+    */
     private function actionProjectsClearBuildCacheWithHttpInfo(
         string $projectId
     ): AcceptedResponse {
@@ -118,6 +117,8 @@ final class ProjectApi extends AbstractApi
 
     /**
      * Create request for operation 'actionProjectsClearBuildCache'
+     *
+
      *
      * @throws InvalidArgumentException
      */
@@ -208,11 +209,10 @@ final class ProjectApi extends AbstractApi
      *
      * Retrieve the details of a single project.
      *
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Project
-     *
      * @see https://docs.upsun.com/api/#tag/Project/operation/get-projects
      */
     public function getProjects(
@@ -226,10 +226,11 @@ final class ProjectApi extends AbstractApi
     /**
      * Get a project with HTTP Info
      *
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Project
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsWithHttpInfo(
         string $projectId
     ): Project {
@@ -266,6 +267,8 @@ final class ProjectApi extends AbstractApi
 
     /**
      * Create request for operation 'getProjects'
+     *
+
      *
      * @throws InvalidArgumentException
      */
@@ -357,11 +360,10 @@ final class ProjectApi extends AbstractApi
      * Get a list of capabilities on a project, as defined by the billing system. For instance, one special capability
      * that could be defined on a project is large development environments.
      *
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ProjectCapabilities
-     *
      * @see https://docs.upsun.com/api/#tag/Project/operation/get-projects-capabilities
      */
     public function getProjectsCapabilities(
@@ -375,10 +377,11 @@ final class ProjectApi extends AbstractApi
     /**
      * Get a project's capabilities with HTTP Info
      *
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ProjectCapabilities
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsCapabilitiesWithHttpInfo(
         string $projectId
     ): ProjectCapabilities {
@@ -415,6 +418,8 @@ final class ProjectApi extends AbstractApi
 
     /**
      * Create request for operation 'getProjectsCapabilities'
+     *
+
      *
      * @throws InvalidArgumentException
      */
@@ -505,11 +510,11 @@ final class ProjectApi extends AbstractApi
      *
      * Update the details of an existing project.
      *
+     * @param ProjectPatch $projectPatch
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Project/operation/update-projects
      */
     public function updateProjects(
@@ -525,9 +530,11 @@ final class ProjectApi extends AbstractApi
     /**
      * Update a project with HTTP Info
      *
+     * @param ProjectPatch $projectPatch
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function updateProjectsWithHttpInfo(
         string $projectId,
@@ -567,6 +574,9 @@ final class ProjectApi extends AbstractApi
 
     /**
      * Create request for operation 'updateProjects'
+     *
+     * @param ProjectPatch $projectPatch
+     *          (required)
      *
      * @throws InvalidArgumentException
      */

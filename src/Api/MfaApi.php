@@ -16,7 +16,6 @@ use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\ConfirmTotpEnrollmentRequest;
 use Upsun\Model\GetTotpEnrollment200Response;
 use Upsun\Model\OrganizationMfaEnforcement;
-use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\SendOrgMfaRemindersRequest;
 
 /**
@@ -59,11 +58,13 @@ final class MfaApi extends AbstractApi
      *
      * Confirms the given TOTP enrollment.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param ConfirmTotpEnrollmentRequest|null $confirmTotpEnrollmentRequest
+     *          (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ConfirmTotpEnrollment200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/confirm-totp-enrollment
      */
     public function confirmTotpEnrollment(
@@ -79,9 +80,13 @@ final class MfaApi extends AbstractApi
     /**
      * Confirm TOTP enrollment with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param ConfirmTotpEnrollmentRequest|null $confirmTotpEnrollmentRequest
+     *          (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ConfirmTotpEnrollment200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function confirmTotpEnrollmentWithHttpInfo(
         string $userId,
@@ -122,6 +127,11 @@ final class MfaApi extends AbstractApi
     /**
      * Create request for operation 'confirmTotpEnrollment'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param ConfirmTotpEnrollmentRequest|null $confirmTotpEnrollmentRequest
+     *          (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function confirmTotpEnrollmentRequest(
@@ -136,7 +146,7 @@ final class MfaApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling confirmTotpEnrollment'
             );
         }
@@ -220,9 +230,11 @@ final class MfaApi extends AbstractApi
      *
      * Disables MFA enforcement for the specified organization.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/disable-org-mfa-enforcement
      */
     public function disableOrgMfaEnforcement(
@@ -236,8 +248,12 @@ final class MfaApi extends AbstractApi
     /**
      * Disable organization MFA enforcement with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function disableOrgMfaEnforcementWithHttpInfo(
         string $organizationId
     ): void {
@@ -269,6 +285,9 @@ final class MfaApi extends AbstractApi
     /**
      * Create request for operation 'disableOrgMfaEnforcement'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function disableOrgMfaEnforcementRequest(
@@ -282,7 +301,7 @@ final class MfaApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling disableOrgMfaEnforcement'
             );
         }
@@ -358,9 +377,11 @@ final class MfaApi extends AbstractApi
      *
      * Enables MFA enforcement for the specified organization.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/enable-org-mfa-enforcement
      */
     public function enableOrgMfaEnforcement(
@@ -374,8 +395,12 @@ final class MfaApi extends AbstractApi
     /**
      * Enable organization MFA enforcement with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function enableOrgMfaEnforcementWithHttpInfo(
         string $organizationId
     ): void {
@@ -407,6 +432,9 @@ final class MfaApi extends AbstractApi
     /**
      * Create request for operation 'enableOrgMfaEnforcement'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function enableOrgMfaEnforcementRequest(
@@ -420,7 +448,7 @@ final class MfaApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling enableOrgMfaEnforcement'
             );
         }
@@ -496,11 +524,11 @@ final class MfaApi extends AbstractApi
      *
      * Retrieves MFA settings for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationMfaEnforcement
-     *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/get-org-mfa-enforcement
      */
     public function getOrgMfaEnforcement(
@@ -514,10 +542,12 @@ final class MfaApi extends AbstractApi
     /**
      * Get organization MFA settings with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationMfaEnforcement
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgMfaEnforcementWithHttpInfo(
         string $organizationId
     ): OrganizationMfaEnforcement {
@@ -555,6 +585,9 @@ final class MfaApi extends AbstractApi
     /**
      * Create request for operation 'getOrgMfaEnforcement'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgMfaEnforcementRequest(
@@ -568,7 +601,7 @@ final class MfaApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgMfaEnforcement'
             );
         }
@@ -644,11 +677,11 @@ final class MfaApi extends AbstractApi
      *
      * Retrieves TOTP enrollment information.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return GetTotpEnrollment200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/get-totp-enrollment
      */
     public function getTotpEnrollment(
@@ -662,10 +695,12 @@ final class MfaApi extends AbstractApi
     /**
      * Get information about TOTP enrollment with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return GetTotpEnrollment200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getTotpEnrollmentWithHttpInfo(
         string $userId
     ): GetTotpEnrollment200Response {
@@ -703,6 +738,9 @@ final class MfaApi extends AbstractApi
     /**
      * Create request for operation 'getTotpEnrollment'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getTotpEnrollmentRequest(
@@ -716,7 +754,7 @@ final class MfaApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling getTotpEnrollment'
             );
         }
@@ -792,11 +830,11 @@ final class MfaApi extends AbstractApi
      *
      * Re-creates recovery codes for the MFA enrollment.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ConfirmTotpEnrollment200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/recreate-recovery-codes
      */
     public function recreateRecoveryCodes(
@@ -810,10 +848,12 @@ final class MfaApi extends AbstractApi
     /**
      * Re-create recovery codes with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ConfirmTotpEnrollment200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function recreateRecoveryCodesWithHttpInfo(
         string $userId
     ): ConfirmTotpEnrollment200Response {
@@ -851,6 +891,9 @@ final class MfaApi extends AbstractApi
     /**
      * Create request for operation 'recreateRecoveryCodes'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function recreateRecoveryCodesRequest(
@@ -864,7 +907,7 @@ final class MfaApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling recreateRecoveryCodes'
             );
         }
@@ -940,11 +983,12 @@ final class MfaApi extends AbstractApi
      *
      * Sends a reminder about setting up MFA to the specified organization members.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return array<string, SendOrgMfaReminders200ResponseValue>
-     *
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/send-org-mfa-reminders
      */
     public function sendOrgMfaReminders(
@@ -960,10 +1004,13 @@ final class MfaApi extends AbstractApi
     /**
      * Send MFA reminders to organization members with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return array<string, SendOrgMfaReminders200ResponseValue>
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function sendOrgMfaRemindersWithHttpInfo(
         string $organizationId,
         ?SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
@@ -1003,6 +1050,10 @@ final class MfaApi extends AbstractApi
     /**
      * Create request for operation 'sendOrgMfaReminders'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function sendOrgMfaRemindersRequest(
@@ -1017,7 +1068,7 @@ final class MfaApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling sendOrgMfaReminders'
             );
         }
@@ -1101,9 +1152,11 @@ final class MfaApi extends AbstractApi
      *
      * Withdraws from the TOTP enrollment.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Mfa/operation/withdraw-totp-enrollment
      */
     public function withdrawTotpEnrollment(
@@ -1117,8 +1170,12 @@ final class MfaApi extends AbstractApi
     /**
      * Withdraw TOTP enrollment with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function withdrawTotpEnrollmentWithHttpInfo(
         string $userId
     ): void {
@@ -1150,6 +1207,9 @@ final class MfaApi extends AbstractApi
     /**
      * Create request for operation 'withdrawTotpEnrollment'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function withdrawTotpEnrollmentRequest(
@@ -1163,7 +1223,7 @@ final class MfaApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling withdrawTotpEnrollment'
             );
         }

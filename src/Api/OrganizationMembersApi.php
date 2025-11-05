@@ -59,11 +59,12 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * Creates a new organization member.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationMember
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/create-org-member
      */
     public function createOrgMember(
@@ -79,10 +80,13 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Create organization member with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationMember
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createOrgMemberWithHttpInfo(
         string $organizationId,
         CreateOrgMemberRequest $createOrgMemberRequest
@@ -122,6 +126,10 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Create request for operation 'createOrgMember'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function createOrgMemberRequest(
@@ -136,7 +144,7 @@ final class OrganizationMembersApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling createOrgMember'
             );
         }
@@ -148,7 +156,7 @@ final class OrganizationMembersApi extends AbstractApi
             && count($createOrgMemberRequest) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $createOrgMemberRequest 
+                'Missing the required parameter $createOrgMemberRequest
                 when calling createOrgMember'
             );
         }
@@ -232,9 +240,13 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * Deletes the specified organization member.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/delete-org-member
      */
     public function deleteOrgMember(
@@ -250,8 +262,14 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Delete organization member with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteOrgMemberWithHttpInfo(
         string $organizationId,
         string $userId
@@ -285,6 +303,11 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Create request for operation 'deleteOrgMember'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function deleteOrgMemberRequest(
@@ -299,7 +322,7 @@ final class OrganizationMembersApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling deleteOrgMember'
             );
         }
@@ -311,7 +334,7 @@ final class OrganizationMembersApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling deleteOrgMember'
             );
         }
@@ -396,11 +419,13 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * Retrieves the specified organization member.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationMember
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/get-org-member
      */
     public function getOrgMember(
@@ -416,10 +441,14 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Get organization member with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationMember
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgMemberWithHttpInfo(
         string $organizationId,
         string $userId
@@ -459,6 +488,11 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Create request for operation 'getOrgMember'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgMemberRequest(
@@ -473,7 +507,7 @@ final class OrganizationMembersApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgMember'
             );
         }
@@ -485,7 +519,7 @@ final class OrganizationMembersApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling getOrgMember'
             );
         }
@@ -570,11 +604,21 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * Accessible to organization owners and members with the "manage members" permission.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param ArrayFilter|null $filterPermissions
+     *         Allows filtering by `permissions` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListOrgMembers200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/list-org-members
      */
     public function listOrgMembers(
@@ -598,9 +642,21 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * List organization members with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param ArrayFilter|null $filterPermissions
+     *         Allows filtering by `permissions` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListOrgMembers200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listOrgMembersWithHttpInfo(
         string $organizationId,
@@ -649,6 +705,19 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Create request for operation 'listOrgMembers'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param ArrayFilter|null $filterPermissions
+     *         Allows filtering by `permissions` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `created_at`, `updated_at`. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgMembersRequest(
@@ -667,7 +736,7 @@ final class OrganizationMembersApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listOrgMembers'
             );
         }
@@ -677,7 +746,7 @@ final class OrganizationMembersApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling OrganizationMembersApi.listOrgMembers, 
+                'invalid value for "$pageSize" when calling OrganizationMembersApi.listOrgMembers,
                 must be smaller than or equal to 100.'
             );
         }
@@ -837,11 +906,14 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * Updates the specified organization member.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationMember
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/update-org-member
      */
     public function updateOrgMember(
@@ -859,10 +931,15 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Update organization member with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationMember
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateOrgMemberWithHttpInfo(
         string $organizationId,
         string $userId,
@@ -904,6 +981,12 @@ final class OrganizationMembersApi extends AbstractApi
     /**
      * Create request for operation 'updateOrgMember'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateOrgMemberRequest(
@@ -919,7 +1002,7 @@ final class OrganizationMembersApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling updateOrgMember'
             );
         }
@@ -931,7 +1014,7 @@ final class OrganizationMembersApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling updateOrgMember'
             );
         }

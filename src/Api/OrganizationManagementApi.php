@@ -58,11 +58,11 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * Estimates the total spend for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationEstimationObject
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/estimate-org
      */
     public function estimateOrg(
@@ -76,10 +76,12 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Estimate total spend with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationEstimationObject
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function estimateOrgWithHttpInfo(
         string $organizationId
     ): OrganizationEstimationObject {
@@ -117,6 +119,9 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Create request for operation 'estimateOrg'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function estimateOrgRequest(
@@ -130,7 +135,7 @@ final class OrganizationManagementApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling estimateOrg'
             );
         }
@@ -206,11 +211,11 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * Retrieves billing alert configuration for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationAlertConfig
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/get-org-billing-alert-config
      */
     public function getOrgBillingAlertConfig(
@@ -224,10 +229,12 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Get billing alert configuration with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationAlertConfig
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgBillingAlertConfigWithHttpInfo(
         string $organizationId
     ): OrganizationAlertConfig {
@@ -265,6 +272,9 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Create request for operation 'getOrgBillingAlertConfig'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgBillingAlertConfigRequest(
@@ -278,7 +288,7 @@ final class OrganizationManagementApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgBillingAlertConfig'
             );
         }
@@ -354,11 +364,11 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * Retrieves prepayment information for the specified organization, if applicable.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return GetOrgPrepaymentInfo200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/get-org-prepayment-info
      */
     public function getOrgPrepaymentInfo(
@@ -372,10 +382,12 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Get organization prepayment information with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return GetOrgPrepaymentInfo200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgPrepaymentInfoWithHttpInfo(
         string $organizationId
     ): GetOrgPrepaymentInfo200Response {
@@ -413,6 +425,9 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Create request for operation 'getOrgPrepaymentInfo'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgPrepaymentInfoRequest(
@@ -426,7 +441,7 @@ final class OrganizationManagementApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgPrepaymentInfo'
             );
         }
@@ -502,11 +517,11 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * Retrieves a list of prepayment transactions for the specified organization, if applicable.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListOrgPrepaymentTransactions200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/list-org-prepayment-transactions
      */
     public function listOrgPrepaymentTransactions(
@@ -520,10 +535,12 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * List organization prepayment transactions with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListOrgPrepaymentTransactions200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listOrgPrepaymentTransactionsWithHttpInfo(
         string $organizationId
     ): ListOrgPrepaymentTransactions200Response {
@@ -561,6 +578,9 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Create request for operation 'listOrgPrepaymentTransactions'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgPrepaymentTransactionsRequest(
@@ -574,7 +594,7 @@ final class OrganizationManagementApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listOrgPrepaymentTransactions'
             );
         }
@@ -650,11 +670,12 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * Updates billing alert configuration for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationAlertConfig
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/update-org-billing-alert-config
      */
     public function updateOrgBillingAlertConfig(
@@ -670,10 +691,13 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Update billing alert configuration with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationAlertConfig
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateOrgBillingAlertConfigWithHttpInfo(
         string $organizationId,
         ?UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
@@ -713,6 +737,10 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Create request for operation 'updateOrgBillingAlertConfig'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateOrgBillingAlertConfigRequest(
@@ -727,7 +755,7 @@ final class OrganizationManagementApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling updateOrgBillingAlertConfig'
             );
         }

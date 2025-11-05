@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\DeadCode\Rector\ClassMethod\RemoveUselessParamTagRector;
+use Rector\DeadCode\Rector\Property\RemoveUselessVarTagRector;
 use Rector\Set\ValueObject\SetList;
 
 return static function (RectorConfig $rectorConfig): void {
@@ -18,4 +20,11 @@ return static function (RectorConfig $rectorConfig): void {
     //$rectorConfig->removeUnusedImports();
 
     $rectorConfig->sets([SetList::CODING_STYLE]);
+
+    // Skip rules that remove @author tags
+    $rectorConfig->skip([
+        // This rule remove PHPDoc tags, including @author --> deactivated
+        RemoveUselessParamTagRector::class,
+        RemoveUselessVarTagRector::class,
+    ]);
 };

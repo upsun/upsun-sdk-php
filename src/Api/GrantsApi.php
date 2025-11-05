@@ -57,11 +57,17 @@ final class GrantsApi extends AbstractApi
      * List extended access of the given user, which includes both individual and team access to project and
      * organization.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param StringFilter|null $filterResourceType
+     *         Allows filtering by `resource_type` (project or organization) using one or more operators. (optional)
+     * @param StringFilter|null $filterOrganizationId
+     *         Allows filtering by `organization_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterPermissions
+     *         Allows filtering by `permissions` using one or more operators. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListUserExtendedAccess200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Grants/operation/list-user-extended-access
      */
     public function listUserExtendedAccess(
@@ -81,9 +87,17 @@ final class GrantsApi extends AbstractApi
     /**
      * List extended access of a user with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param StringFilter|null $filterResourceType
+     *         Allows filtering by `resource_type` (project or organization) using one or more operators. (optional)
+     * @param StringFilter|null $filterOrganizationId
+     *         Allows filtering by `organization_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterPermissions
+     *         Allows filtering by `permissions` using one or more operators. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListUserExtendedAccess200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listUserExtendedAccessWithHttpInfo(
         string $userId,
@@ -128,6 +142,15 @@ final class GrantsApi extends AbstractApi
     /**
      * Create request for operation 'listUserExtendedAccess'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param StringFilter|null $filterResourceType
+     *         Allows filtering by `resource_type` (project or organization) using one or more operators. (optional)
+     * @param StringFilter|null $filterOrganizationId
+     *         Allows filtering by `organization_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterPermissions
+     *         Allows filtering by `permissions` using one or more operators. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listUserExtendedAccessRequest(
@@ -144,7 +167,7 @@ final class GrantsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling listUserExtendedAccess'
             );
         }

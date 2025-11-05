@@ -54,9 +54,13 @@ final class ConnectionsApi extends AbstractApi
      *
      * Deletes the specified connection.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $provider
+     *         The name of the federation provider. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Connections/operation/delete-login-connection
      */
     public function deleteLoginConnection(
@@ -72,8 +76,14 @@ final class ConnectionsApi extends AbstractApi
     /**
      * Delete a federated login connection with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $provider
+     *         The name of the federation provider. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteLoginConnectionWithHttpInfo(
         string $provider,
         string $userId
@@ -107,6 +117,11 @@ final class ConnectionsApi extends AbstractApi
     /**
      * Create request for operation 'deleteLoginConnection'
      *
+     * @param  string $provider
+     *         The name of the federation provider. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function deleteLoginConnectionRequest(
@@ -121,7 +136,7 @@ final class ConnectionsApi extends AbstractApi
             && count($provider) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $provider 
+                'Missing the required parameter $provider
                 when calling deleteLoginConnection'
             );
         }
@@ -133,7 +148,7 @@ final class ConnectionsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling deleteLoginConnection'
             );
         }
@@ -218,11 +233,13 @@ final class ConnectionsApi extends AbstractApi
      *
      * Retrieves the specified connection.
      *
+     * @param  string $provider
+     *         The name of the federation provider. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Connection
-     *
      * @see https://docs.upsun.com/api/#tag/Connections/operation/get-login-connection
      */
     public function getLoginConnection(
@@ -238,10 +255,14 @@ final class ConnectionsApi extends AbstractApi
     /**
      * Get a federated login connection with HTTP Info
      *
+     * @param  string $provider
+     *         The name of the federation provider. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Connection
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getLoginConnectionWithHttpInfo(
         string $provider,
         string $userId
@@ -281,6 +302,11 @@ final class ConnectionsApi extends AbstractApi
     /**
      * Create request for operation 'getLoginConnection'
      *
+     * @param  string $provider
+     *         The name of the federation provider. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getLoginConnectionRequest(
@@ -295,7 +321,7 @@ final class ConnectionsApi extends AbstractApi
             && count($provider) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $provider 
+                'Missing the required parameter $provider
                 when calling getLoginConnection'
             );
         }
@@ -307,7 +333,7 @@ final class ConnectionsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling getLoginConnection'
             );
         }
@@ -392,11 +418,13 @@ final class ConnectionsApi extends AbstractApi
      *
      * Retrieves a list of connections associated with a single user.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Connection[]
      *
+     * @return Connection[]
      * @see https://docs.upsun.com/api/#tag/Connections/operation/list-login-connections
      */
     public function listLoginConnections(
@@ -410,8 +438,12 @@ final class ConnectionsApi extends AbstractApi
     /**
      * List federated login connections with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return Connection[]
      */
     private function listLoginConnectionsWithHttpInfo(
@@ -451,6 +483,9 @@ final class ConnectionsApi extends AbstractApi
     /**
      * Create request for operation 'listLoginConnections'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function listLoginConnectionsRequest(
@@ -464,7 +499,7 @@ final class ConnectionsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling listLoginConnections'
             );
         }

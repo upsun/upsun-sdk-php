@@ -53,11 +53,11 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return CertificateProvisioner
-     *
      * @see https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/get-projects-provisioners
      */
     public function getProjectsProvisioners(
@@ -72,10 +72,12 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return CertificateProvisioner
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsProvisionersWithHttpInfo(
         string $projectId,
         string $certificateProvisionerDocumentId
@@ -115,6 +117,9 @@ final class CertificateProvisionerApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsProvisioners'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsProvisionersRequest(
@@ -129,7 +134,7 @@ final class CertificateProvisionerApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsProvisioners'
             );
         }
@@ -141,7 +146,7 @@ final class CertificateProvisionerApi extends AbstractApi
             && count($certificateProvisionerDocumentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $certificateProvisionerDocumentId 
+                'Missing the required parameter $certificateProvisionerDocumentId
                 when calling getProjectsProvisioners'
             );
         }
@@ -224,10 +229,10 @@ final class CertificateProvisionerApi extends AbstractApi
     /**
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return CertificateProvisioner[]
      *
+     * @return CertificateProvisioner[]
      * @see https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/list-projects-provisioners
      */
     public function listProjectsProvisioners(
@@ -241,7 +246,9 @@ final class CertificateProvisionerApi extends AbstractApi
     /**
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return CertificateProvisioner[]
      */
     private function listProjectsProvisionersWithHttpInfo(
@@ -281,6 +288,8 @@ final class CertificateProvisionerApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsProvisioners'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsProvisionersRequest(
@@ -294,7 +303,7 @@ final class CertificateProvisionerApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsProvisioners'
             );
         }
@@ -367,11 +376,11 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
+     * @param CertificateProvisionerPatch $certificateProvisionerPatch
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/CertificateProvisioner/operation/update-projects-provisioners
      */
     public function updateProjectsProvisioners(
@@ -388,9 +397,11 @@ final class CertificateProvisionerApi extends AbstractApi
 
     /**
      *
+     * @param CertificateProvisionerPatch $certificateProvisionerPatch
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function updateProjectsProvisionersWithHttpInfo(
         string $projectId,
@@ -433,6 +444,9 @@ final class CertificateProvisionerApi extends AbstractApi
     /**
      * Create request for operation 'updateProjectsProvisioners'
      *
+     * @param CertificateProvisionerPatch $certificateProvisionerPatch
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function updateProjectsProvisionersRequest(
@@ -448,7 +462,7 @@ final class CertificateProvisionerApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjectsProvisioners'
             );
         }
@@ -460,7 +474,7 @@ final class CertificateProvisionerApi extends AbstractApi
             && count($certificateProvisionerDocumentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $certificateProvisionerDocumentId 
+                'Missing the required parameter $certificateProvisionerDocumentId
                 when calling updateProjectsProvisioners'
             );
         }
@@ -472,7 +486,7 @@ final class CertificateProvisionerApi extends AbstractApi
             && count($certificateProvisionerPatch) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $certificateProvisionerPatch 
+                'Missing the required parameter $certificateProvisionerPatch
                 when calling updateProjectsProvisioners'
             );
         }

@@ -55,11 +55,11 @@ final class DiscountsApi extends AbstractApi
      * Get an organization discount
      *
      *
+     * @param  string $id
+     *         The ID of the organization discount (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Discount
-     *
      * @see https://docs.upsun.com/api/#tag/Discounts/operation/get-discount
      */
     public function getDiscount(
@@ -73,10 +73,12 @@ final class DiscountsApi extends AbstractApi
     /**
      * Get an organization discount with HTTP Info
      *
+     * @param  string $id
+     *         The ID of the organization discount (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Discount
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getDiscountWithHttpInfo(
         string $id
     ): Discount {
@@ -114,6 +116,9 @@ final class DiscountsApi extends AbstractApi
     /**
      * Create request for operation 'getDiscount'
      *
+     * @param  string $id
+     *         The ID of the organization discount (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getDiscountRequest(
@@ -127,7 +132,7 @@ final class DiscountsApi extends AbstractApi
             && count($id) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $id 
+                'Missing the required parameter $id
                 when calling getDiscount'
             );
         }
@@ -202,11 +207,8 @@ final class DiscountsApi extends AbstractApi
      * Get the value of the First Project Incentive discount
      *
      *
-     *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return GetTypeAllowance200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Discounts/operation/get-type-allowance
      */
     public function getTypeAllowance(): GetTypeAllowance200Response
@@ -218,10 +220,9 @@ final class DiscountsApi extends AbstractApi
     /**
      * Get the value of the First Project Incentive discount with HTTP Info
      *
-     *
-     * @throws ApiException|ClientExceptionInterface
-     * @return GetTypeAllowance200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getTypeAllowanceWithHttpInfo(): GetTypeAllowance200Response
     {
         $request = $this->getTypeAllowanceRequest(
@@ -324,11 +325,11 @@ final class DiscountsApi extends AbstractApi
      *
      * Retrieves all applicable discounts granted to the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListOrgDiscounts200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Discounts/operation/list-org-discounts
      */
     public function listOrgDiscounts(
@@ -342,10 +343,12 @@ final class DiscountsApi extends AbstractApi
     /**
      * List organization discounts with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListOrgDiscounts200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listOrgDiscountsWithHttpInfo(
         string $organizationId
     ): ListOrgDiscounts200Response {
@@ -383,6 +386,9 @@ final class DiscountsApi extends AbstractApi
     /**
      * Create request for operation 'listOrgDiscounts'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgDiscountsRequest(
@@ -396,7 +402,7 @@ final class DiscountsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listOrgDiscounts'
             );
         }

@@ -57,11 +57,11 @@ final class RegionsApi extends AbstractApi
      *
      * Retrieves the specified region.
      *
+     * @param  string $regionId
+     *         The ID of the region. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Region
-     *
      * @see https://docs.upsun.com/api/#tag/Regions/operation/get-region
      */
     public function getRegion(
@@ -75,10 +75,12 @@ final class RegionsApi extends AbstractApi
     /**
      * Get region with HTTP Info
      *
+     * @param  string $regionId
+     *         The ID of the region. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Region
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getRegionWithHttpInfo(
         string $regionId
     ): Region {
@@ -116,6 +118,9 @@ final class RegionsApi extends AbstractApi
     /**
      * Create request for operation 'getRegion'
      *
+     * @param  string $regionId
+     *         The ID of the region. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getRegionRequest(
@@ -129,7 +134,7 @@ final class RegionsApi extends AbstractApi
             && count($regionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $regionId 
+                'Missing the required parameter $regionId
                 when calling getRegion'
             );
         }
@@ -205,11 +210,23 @@ final class RegionsApi extends AbstractApi
      *
      * Retrieves a list of available regions.
      *
+     * @param StringFilter|null $filterAvailable
+     *         Allows filtering by `available` using one or more operators. (optional)
+     * @param StringFilter|null $filterPrivate
+     *         Allows filtering by `private` using one or more operators. (optional)
+     * @param StringFilter|null $filterZone
+     *         Allows filtering by `zone` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `id`, `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListRegions200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Regions/operation/list-regions
      */
     public function listRegions(
@@ -235,9 +252,23 @@ final class RegionsApi extends AbstractApi
     /**
      * List regions with HTTP Info
      *
+     * @param StringFilter|null $filterAvailable
+     *         Allows filtering by `available` using one or more operators. (optional)
+     * @param StringFilter|null $filterPrivate
+     *         Allows filtering by `private` using one or more operators. (optional)
+     * @param StringFilter|null $filterZone
+     *         Allows filtering by `zone` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `id`, `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListRegions200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listRegionsWithHttpInfo(
         ?StringFilter $filterAvailable = null,
@@ -288,6 +319,21 @@ final class RegionsApi extends AbstractApi
     /**
      * Create request for operation 'listRegions'
      *
+     * @param StringFilter|null $filterAvailable
+     *         Allows filtering by `available` using one or more operators. (optional)
+     * @param StringFilter|null $filterPrivate
+     *         Allows filtering by `private` using one or more operators. (optional)
+     * @param StringFilter|null $filterZone
+     *         Allows filtering by `zone` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `id`, `created_at`, `updated_at`. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listRegionsRequest(
@@ -307,7 +353,7 @@ final class RegionsApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling RegionsApi.listRegions, 
+                'invalid value for "$pageSize" when calling RegionsApi.listRegions,
                 must be smaller than or equal to 100.'
             );
         }

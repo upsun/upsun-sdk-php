@@ -54,11 +54,11 @@ final class AlertsApi extends AbstractApi
      * Get usage alerts for a subscription
      *
      *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return GetUsageAlerts200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Alerts/operation/get-usage-alerts
      */
     public function getUsageAlerts(
@@ -72,10 +72,12 @@ final class AlertsApi extends AbstractApi
     /**
      * Get usage alerts for a subscription with HTTP Info
      *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return GetUsageAlerts200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getUsageAlertsWithHttpInfo(
         string $subscriptionId
     ): GetUsageAlerts200Response {
@@ -113,6 +115,9 @@ final class AlertsApi extends AbstractApi
     /**
      * Create request for operation 'getUsageAlerts'
      *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getUsageAlertsRequest(
@@ -126,7 +131,7 @@ final class AlertsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $subscriptionId 
+                'Missing the required parameter $subscriptionId
                 when calling getUsageAlerts'
             );
         }
@@ -201,11 +206,12 @@ final class AlertsApi extends AbstractApi
      * Update usage alerts.
      *
      *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return GetUsageAlerts200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Alerts/operation/update-usage-alerts
      */
     public function updateUsageAlerts(
@@ -221,10 +227,13 @@ final class AlertsApi extends AbstractApi
     /**
      * Update usage alerts. with HTTP Info
      *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return GetUsageAlerts200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateUsageAlertsWithHttpInfo(
         string $subscriptionId,
         ?UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
@@ -264,6 +273,10 @@ final class AlertsApi extends AbstractApi
     /**
      * Create request for operation 'updateUsageAlerts'
      *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateUsageAlertsRequest(
@@ -278,7 +291,7 @@ final class AlertsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $subscriptionId 
+                'Missing the required parameter $subscriptionId
                 when calling updateUsageAlerts'
             );
         }

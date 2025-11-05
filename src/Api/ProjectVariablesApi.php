@@ -59,11 +59,11 @@ final class ProjectVariablesApi extends AbstractApi
      * by the `is_json` boolean flag. See the [Variables](https://docs.upsun.com/anchors/variables/set/project/create/)
      * section in our documentation for more information.
      *
+     * @param ProjectVariableCreateInput $projectVariableCreateInput
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/create-projects-variables
      */
     public function createProjectsVariables(
@@ -79,9 +79,11 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Add a project variable with HTTP Info
      *
+     * @param ProjectVariableCreateInput $projectVariableCreateInput
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function createProjectsVariablesWithHttpInfo(
         string $projectId,
@@ -122,6 +124,9 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Create request for operation 'createProjectsVariables'
      *
+     * @param ProjectVariableCreateInput $projectVariableCreateInput
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function createProjectsVariablesRequest(
@@ -136,7 +141,7 @@ final class ProjectVariablesApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling createProjectsVariables'
             );
         }
@@ -148,7 +153,7 @@ final class ProjectVariablesApi extends AbstractApi
             && count($projectVariableCreateInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectVariableCreateInput 
+                'Missing the required parameter $projectVariableCreateInput
                 when calling createProjectsVariables'
             );
         }
@@ -232,11 +237,11 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * Delete a single user-defined project variable.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/delete-projects-variables
      */
     public function deleteProjectsVariables(
@@ -252,10 +257,12 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Delete a project variable with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteProjectsVariablesWithHttpInfo(
         string $projectId,
         string $projectVariableId
@@ -295,6 +302,9 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Create request for operation 'deleteProjectsVariables'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function deleteProjectsVariablesRequest(
@@ -309,7 +319,7 @@ final class ProjectVariablesApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deleteProjectsVariables'
             );
         }
@@ -321,7 +331,7 @@ final class ProjectVariablesApi extends AbstractApi
             && count($projectVariableId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectVariableId 
+                'Missing the required parameter $projectVariableId
                 when calling deleteProjectsVariables'
             );
         }
@@ -406,11 +416,11 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * Retrieve a single user-defined project variable.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ProjectVariable
-     *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/get-projects-variables
      */
     public function getProjectsVariables(
@@ -426,10 +436,12 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Get a project variable with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ProjectVariable
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsVariablesWithHttpInfo(
         string $projectId,
         string $projectVariableId
@@ -469,6 +481,9 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsVariables'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsVariablesRequest(
@@ -483,7 +498,7 @@ final class ProjectVariablesApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsVariables'
             );
         }
@@ -495,7 +510,7 @@ final class ProjectVariablesApi extends AbstractApi
             && count($projectVariableId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectVariableId 
+                'Missing the required parameter $projectVariableId
                 when calling getProjectsVariables'
             );
         }
@@ -581,10 +596,10 @@ final class ProjectVariablesApi extends AbstractApi
      * Retrieve a list of objects representing the user-defined variables within a project.
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ProjectVariable[]
      *
+     * @return ProjectVariable[]
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/list-projects-variables
      */
     public function listProjectsVariables(
@@ -599,7 +614,9 @@ final class ProjectVariablesApi extends AbstractApi
      * Get list of project variables with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return ProjectVariable[]
      */
     private function listProjectsVariablesWithHttpInfo(
@@ -639,6 +656,8 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsVariables'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsVariablesRequest(
@@ -652,7 +671,7 @@ final class ProjectVariablesApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsVariables'
             );
         }
@@ -731,11 +750,11 @@ final class ProjectVariablesApi extends AbstractApi
      * [Variables](https://docs.upsun.com/anchors/variables/set/project/create/) section in our documentation for more
      * information.
      *
+     * @param ProjectVariablePatch $projectVariablePatch
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/update-projects-variables
      */
     public function updateProjectsVariables(
@@ -753,9 +772,11 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Update a project variable with HTTP Info
      *
+     * @param ProjectVariablePatch $projectVariablePatch
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function updateProjectsVariablesWithHttpInfo(
         string $projectId,
@@ -798,6 +819,9 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Create request for operation 'updateProjectsVariables'
      *
+     * @param ProjectVariablePatch $projectVariablePatch
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function updateProjectsVariablesRequest(
@@ -813,7 +837,7 @@ final class ProjectVariablesApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjectsVariables'
             );
         }
@@ -825,7 +849,7 @@ final class ProjectVariablesApi extends AbstractApi
             && count($projectVariableId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectVariableId 
+                'Missing the required parameter $projectVariableId
                 when calling updateProjectsVariables'
             );
         }
@@ -837,7 +861,7 @@ final class ProjectVariablesApi extends AbstractApi
             && count($projectVariablePatch) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectVariablePatch 
+                'Missing the required parameter $projectVariablePatch
                 when calling updateProjectsVariables'
             );
         }

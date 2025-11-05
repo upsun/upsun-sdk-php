@@ -57,11 +57,13 @@ final class UserAccessApi extends AbstractApi
      *
      * Retrieves the user's permissions for the current project.
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return UserProjectAccess
-     *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/get-project-user-access
      */
     public function getProjectUserAccess(
@@ -77,10 +79,14 @@ final class UserAccessApi extends AbstractApi
     /**
      * Get user access for a project with HTTP Info
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return UserProjectAccess
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectUserAccessWithHttpInfo(
         string $projectId,
         string $userId
@@ -120,6 +126,11 @@ final class UserAccessApi extends AbstractApi
     /**
      * Create request for operation 'getProjectUserAccess'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectUserAccessRequest(
@@ -134,7 +145,7 @@ final class UserAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectUserAccess'
             );
         }
@@ -146,7 +157,7 @@ final class UserAccessApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling getProjectUserAccess'
             );
         }
@@ -231,11 +242,13 @@ final class UserAccessApi extends AbstractApi
      *
      * Retrieves the user's permissions for the current project.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return UserProjectAccess
-     *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/get-user-project-access
      */
     public function getUserProjectAccess(
@@ -251,10 +264,14 @@ final class UserAccessApi extends AbstractApi
     /**
      * Get project access for a user with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return UserProjectAccess
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getUserProjectAccessWithHttpInfo(
         string $userId,
         string $projectId
@@ -294,6 +311,11 @@ final class UserAccessApi extends AbstractApi
     /**
      * Create request for operation 'getUserProjectAccess'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getUserProjectAccessRequest(
@@ -308,7 +330,7 @@ final class UserAccessApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling getUserProjectAccess'
             );
         }
@@ -320,7 +342,7 @@ final class UserAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getUserProjectAccess'
             );
         }
@@ -405,9 +427,12 @@ final class UserAccessApi extends AbstractApi
      *
      * Grants one or more users access to a specific project.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/grant-project-user-access
      */
     public function grantProjectUserAccess(
@@ -423,8 +448,13 @@ final class UserAccessApi extends AbstractApi
     /**
      * Grant user access to a project with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function grantProjectUserAccessWithHttpInfo(
         string $projectId,
         array $grantProjectUserAccessRequestInner
@@ -458,6 +488,10 @@ final class UserAccessApi extends AbstractApi
     /**
      * Create request for operation 'grantProjectUserAccess'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function grantProjectUserAccessRequest(
@@ -472,7 +506,7 @@ final class UserAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling grantProjectUserAccess'
             );
         }
@@ -484,7 +518,7 @@ final class UserAccessApi extends AbstractApi
             && $grantProjectUserAccessRequestInner === [])
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $grantProjectUserAccessRequestInner 
+                'Missing the required parameter $grantProjectUserAccessRequestInner
                 when calling grantProjectUserAccess'
             );
         }
@@ -568,9 +602,12 @@ final class UserAccessApi extends AbstractApi
      *
      * Adds the user to one or more specified projects.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $userId
+     *         The ID of the user. (required)
+
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/grant-user-project-access
      */
     public function grantUserProjectAccess(
@@ -586,8 +623,13 @@ final class UserAccessApi extends AbstractApi
     /**
      * Grant project access to a user with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $userId
+     *         The ID of the user. (required)
+
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function grantUserProjectAccessWithHttpInfo(
         string $userId,
         array $grantUserProjectAccessRequestInner
@@ -621,6 +663,10 @@ final class UserAccessApi extends AbstractApi
     /**
      * Create request for operation 'grantUserProjectAccess'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function grantUserProjectAccessRequest(
@@ -635,7 +681,7 @@ final class UserAccessApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling grantUserProjectAccess'
             );
         }
@@ -647,7 +693,7 @@ final class UserAccessApi extends AbstractApi
             && $grantUserProjectAccessRequestInner === [])
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $grantUserProjectAccessRequestInner 
+                'Missing the required parameter $grantUserProjectAccessRequestInner
                 when calling grantUserProjectAccess'
             );
         }
@@ -731,11 +777,19 @@ final class UserAccessApi extends AbstractApi
      *
      * Returns a list of items representing the project access.
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `granted_at`, `updated_at`. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListProjectUserAccess200Response
-     *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/list-project-user-access
      */
     public function listProjectUserAccess(
@@ -757,10 +811,20 @@ final class UserAccessApi extends AbstractApi
     /**
      * List user access for a project with HTTP Info
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `granted_at`, `updated_at`. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListProjectUserAccess200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listProjectUserAccessWithHttpInfo(
         string $projectId,
         ?int $pageSize = null,
@@ -806,6 +870,17 @@ final class UserAccessApi extends AbstractApi
     /**
      * Create request for operation 'listProjectUserAccess'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `granted_at`, `updated_at`. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectUserAccessRequest(
@@ -823,7 +898,7 @@ final class UserAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectUserAccess'
             );
         }
@@ -832,7 +907,7 @@ final class UserAccessApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 200) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling UserAccessApi.listProjectUserAccess, 
+                'invalid value for "$pageSize" when calling UserAccessApi.listProjectUserAccess,
                 must be smaller than or equal to 200.'
             );
         }
@@ -977,11 +1052,21 @@ final class UserAccessApi extends AbstractApi
      *
      * Returns a list of items representing the user's project access.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string|null $filterOrganizationId
+     *         Allows filtering by `organization_id`. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `project_title`, `granted_at`, `updated_at`. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListProjectUserAccess200Response
-     *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/list-user-project-access
      */
     public function listUserProjectAccess(
@@ -1005,10 +1090,22 @@ final class UserAccessApi extends AbstractApi
     /**
      * List project access for a user with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string|null $filterOrganizationId
+     *         Allows filtering by `organization_id`. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `project_title`, `granted_at`, `updated_at`. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListProjectUserAccess200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listUserProjectAccessWithHttpInfo(
         string $userId,
         ?string $filterOrganizationId = null,
@@ -1056,6 +1153,19 @@ final class UserAccessApi extends AbstractApi
     /**
      * Create request for operation 'listUserProjectAccess'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string|null $filterOrganizationId
+     *         Allows filtering by `organization_id`. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `project_title`, `granted_at`, `updated_at`. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listUserProjectAccessRequest(
@@ -1074,7 +1184,7 @@ final class UserAccessApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling listUserProjectAccess'
             );
         }
@@ -1084,7 +1194,7 @@ final class UserAccessApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 200) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling UserAccessApi.listUserProjectAccess, 
+                'invalid value for "$pageSize" when calling UserAccessApi.listUserProjectAccess,
                 must be smaller than or equal to 200.'
             );
         }
@@ -1244,9 +1354,13 @@ final class UserAccessApi extends AbstractApi
      *
      * Removes the user from the current project.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/remove-project-user-access
      */
     public function removeProjectUserAccess(
@@ -1262,8 +1376,14 @@ final class UserAccessApi extends AbstractApi
     /**
      * Remove user access for a project with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function removeProjectUserAccessWithHttpInfo(
         string $projectId,
         string $userId
@@ -1297,6 +1417,11 @@ final class UserAccessApi extends AbstractApi
     /**
      * Create request for operation 'removeProjectUserAccess'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function removeProjectUserAccessRequest(
@@ -1311,7 +1436,7 @@ final class UserAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling removeProjectUserAccess'
             );
         }
@@ -1323,7 +1448,7 @@ final class UserAccessApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling removeProjectUserAccess'
             );
         }
@@ -1408,9 +1533,13 @@ final class UserAccessApi extends AbstractApi
      *
      * Removes the user from the current project.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/remove-user-project-access
      */
     public function removeUserProjectAccess(
@@ -1426,8 +1555,14 @@ final class UserAccessApi extends AbstractApi
     /**
      * Remove project access for a user with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function removeUserProjectAccessWithHttpInfo(
         string $userId,
         string $projectId
@@ -1461,6 +1596,11 @@ final class UserAccessApi extends AbstractApi
     /**
      * Create request for operation 'removeUserProjectAccess'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function removeUserProjectAccessRequest(
@@ -1475,7 +1615,7 @@ final class UserAccessApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling removeUserProjectAccess'
             );
         }
@@ -1487,7 +1627,7 @@ final class UserAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling removeUserProjectAccess'
             );
         }
@@ -1572,9 +1712,14 @@ final class UserAccessApi extends AbstractApi
      *
      * Updates the user's permissions for the current project.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/update-project-user-access
      */
     public function updateProjectUserAccess(
@@ -1592,8 +1737,15 @@ final class UserAccessApi extends AbstractApi
     /**
      * Update user access for a project with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateProjectUserAccessWithHttpInfo(
         string $projectId,
         string $userId,
@@ -1629,6 +1781,12 @@ final class UserAccessApi extends AbstractApi
     /**
      * Create request for operation 'updateProjectUserAccess'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateProjectUserAccessRequest(
@@ -1644,7 +1802,7 @@ final class UserAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjectUserAccess'
             );
         }
@@ -1656,7 +1814,7 @@ final class UserAccessApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling updateProjectUserAccess'
             );
         }
@@ -1749,9 +1907,14 @@ final class UserAccessApi extends AbstractApi
      *
      * Updates the user's permissions for the current project.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/update-user-project-access
      */
     public function updateUserProjectAccess(
@@ -1769,8 +1932,15 @@ final class UserAccessApi extends AbstractApi
     /**
      * Update project access for a user with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateUserProjectAccessWithHttpInfo(
         string $userId,
         string $projectId,
@@ -1806,6 +1976,12 @@ final class UserAccessApi extends AbstractApi
     /**
      * Create request for operation 'updateUserProjectAccess'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateUserProjectAccessRequest(
@@ -1821,7 +1997,7 @@ final class UserAccessApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling updateUserProjectAccess'
             );
         }
@@ -1833,7 +2009,7 @@ final class UserAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateUserProjectAccess'
             );
         }

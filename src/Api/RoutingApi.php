@@ -57,11 +57,12 @@ final class RoutingApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Routes/paths//projects/{projectId}/environments/{environmentId}/routes/get)
      * endpoint.
      *
+
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Route
-     *
      * @see https://docs.upsun.com/api/#tag/Routing/operation/get-projects-environments-routes
      */
     public function getProjectsEnvironmentsRoutes(
@@ -79,10 +80,13 @@ final class RoutingApi extends AbstractApi
     /**
      * Get a route's info with HTTP Info
      *
+
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Route
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsEnvironmentsRoutesWithHttpInfo(
         string $projectId,
         string $environmentId,
@@ -124,6 +128,10 @@ final class RoutingApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsEnvironmentsRoutes'
      *
+
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsEnvironmentsRoutesRequest(
@@ -139,7 +147,7 @@ final class RoutingApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsEnvironmentsRoutes'
             );
         }
@@ -151,7 +159,7 @@ final class RoutingApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling getProjectsEnvironmentsRoutes'
             );
         }
@@ -163,7 +171,7 @@ final class RoutingApi extends AbstractApi
             && count($routeId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $routeId 
+                'Missing the required parameter $routeId
                 when calling getProjectsEnvironmentsRoutes'
             );
         }
@@ -259,10 +267,10 @@ final class RoutingApi extends AbstractApi
      * this endpoint are those present in an environment's `.upsun/config.yaml` file.
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Route[]
      *
+     * @return Route[]
      * @see https://docs.upsun.com/api/#tag/Routing/operation/list-projects-environments-routes
      */
     public function listProjectsEnvironmentsRoutes(
@@ -279,7 +287,9 @@ final class RoutingApi extends AbstractApi
      * Get list of routes with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return Route[]
      */
     private function listProjectsEnvironmentsRoutesWithHttpInfo(
@@ -321,6 +331,9 @@ final class RoutingApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsEnvironmentsRoutes'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsEnvironmentsRoutesRequest(
@@ -335,7 +348,7 @@ final class RoutingApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsEnvironmentsRoutes'
             );
         }
@@ -347,7 +360,7 @@ final class RoutingApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsRoutes'
             );
         }

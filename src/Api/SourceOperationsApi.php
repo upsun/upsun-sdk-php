@@ -59,10 +59,10 @@ final class SourceOperationsApi extends AbstractApi
      * documentation](https://docs.upsun.com/anchors/app/reference/source/operations/).
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return EnvironmentSourceOperation[]
      *
+     * @return EnvironmentSourceOperation[]
      * @see https://docs.upsun.com/api/#tag/Source-Operations/operation/list-projects-environments-source-operations
      */
     public function listProjectsEnvironmentsSourceOperations(
@@ -79,7 +79,9 @@ final class SourceOperationsApi extends AbstractApi
      * List source operations with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return EnvironmentSourceOperation[]
      */
     private function listProjectsEnvironmentsSourceOperationsWithHttpInfo(
@@ -121,6 +123,9 @@ final class SourceOperationsApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsEnvironmentsSourceOperations'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsEnvironmentsSourceOperationsRequest(
@@ -135,7 +140,7 @@ final class SourceOperationsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsEnvironmentsSourceOperations'
             );
         }
@@ -147,7 +152,7 @@ final class SourceOperationsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsSourceOperations'
             );
         }
@@ -234,11 +239,11 @@ final class SourceOperationsApi extends AbstractApi
      * `.upsun/config.yaml` configuration. More information on source code operations is [available in our user
      * documentation](https://docs.upsun.com/anchors/app/reference/source/operations/).
      *
+     * @param EnvironmentSourceOperationInput $environmentSourceOperationInput
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Source-Operations/operation/run-source-operation
      */
     public function runSourceOperation(
@@ -256,9 +261,11 @@ final class SourceOperationsApi extends AbstractApi
     /**
      * Trigger a source operation with HTTP Info
      *
+     * @param EnvironmentSourceOperationInput $environmentSourceOperationInput
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function runSourceOperationWithHttpInfo(
         string $projectId,
@@ -301,6 +308,9 @@ final class SourceOperationsApi extends AbstractApi
     /**
      * Create request for operation 'runSourceOperation'
      *
+     * @param EnvironmentSourceOperationInput $environmentSourceOperationInput
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function runSourceOperationRequest(
@@ -316,7 +326,7 @@ final class SourceOperationsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling runSourceOperation'
             );
         }
@@ -328,7 +338,7 @@ final class SourceOperationsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling runSourceOperation'
             );
         }
@@ -340,7 +350,7 @@ final class SourceOperationsApi extends AbstractApi
             && count($environmentSourceOperationInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentSourceOperationInput 
+                'Missing the required parameter $environmentSourceOperationInput
                 when calling runSourceOperation'
             );
         }

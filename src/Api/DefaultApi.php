@@ -56,11 +56,35 @@ final class DefaultApi extends AbstractApi
      * List support tickets
      *
      *
+     * @param  int|null $filterTicketId
+     *         The ID of the ticket. (optional)
+     * @param DateTime|null $filterCreated
+     *         ISO dateformat expected. The time when the support ticket was created. (optional)
+     * @param DateTime|null $filterUpdated
+     *         ISO dateformat expected. The time when the support ticket was updated. (optional)
+     * @param  string|null $filterType
+     *         The type of the support ticket. (optional)
+     * @param  string|null $filterPriority
+     *         The priority of the support ticket. (optional)
+     * @param  string|null $filterStatus
+     *         The status of the support ticket. (optional)
+     * @param  string|null $filterRequesterId
+     *         UUID of the ticket requester. Converted from the ZID value. (optional)
+     * @param  string|null $filterSubmitterId
+     *         UUID of the ticket submitter. Converted from the ZID value. (optional)
+     * @param  string|null $filterAssigneeId
+     *         UUID of the ticket assignee. Converted from the ZID value. (optional)
+     * @param  bool|null $filterHasIncidents
+     *         Whether or not this ticket has incidents. (optional)
+     * @param DateTime|null $filterDue
+     *         ISO dateformat expected. A time that the ticket is due at. (optional)
+     * @param  string|null $search
+     *         Search string for the ticket subject and description. (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListTickets200Response
-     *
      * @see https://docs.upsun.com/api/#tag//operation/list-tickets
      */
     public function listTickets(
@@ -98,9 +122,35 @@ final class DefaultApi extends AbstractApi
     /**
      * List support tickets with HTTP Info
      *
+     * @param  int|null $filterTicketId
+     *         The ID of the ticket. (optional)
+     * @param DateTime|null $filterCreated
+     *         ISO dateformat expected. The time when the support ticket was created. (optional)
+     * @param DateTime|null $filterUpdated
+     *         ISO dateformat expected. The time when the support ticket was updated. (optional)
+     * @param  string|null $filterType
+     *         The type of the support ticket. (optional)
+     * @param  string|null $filterPriority
+     *         The priority of the support ticket. (optional)
+     * @param  string|null $filterStatus
+     *         The status of the support ticket. (optional)
+     * @param  string|null $filterRequesterId
+     *         UUID of the ticket requester. Converted from the ZID value. (optional)
+     * @param  string|null $filterSubmitterId
+     *         UUID of the ticket submitter. Converted from the ZID value. (optional)
+     * @param  string|null $filterAssigneeId
+     *         UUID of the ticket assignee. Converted from the ZID value. (optional)
+     * @param  bool|null $filterHasIncidents
+     *         Whether or not this ticket has incidents. (optional)
+     * @param DateTime|null $filterDue
+     *         ISO dateformat expected. A time that the ticket is due at. (optional)
+     * @param  string|null $search
+     *         Search string for the ticket subject and description. (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListTickets200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listTicketsWithHttpInfo(
         ?int $filterTicketId = null,
@@ -162,6 +212,33 @@ final class DefaultApi extends AbstractApi
 
     /**
      * Create request for operation 'listTickets'
+     *
+     * @param  int|null $filterTicketId
+     *         The ID of the ticket. (optional)
+     * @param DateTime|null $filterCreated
+     *         ISO dateformat expected. The time when the support ticket was created. (optional)
+     * @param DateTime|null $filterUpdated
+     *         ISO dateformat expected. The time when the support ticket was updated. (optional)
+     * @param  string|null $filterType
+     *         The type of the support ticket. (optional)
+     * @param  string|null $filterPriority
+     *         The priority of the support ticket. (optional)
+     * @param  string|null $filterStatus
+     *         The status of the support ticket. (optional)
+     * @param  string|null $filterRequesterId
+     *         UUID of the ticket requester. Converted from the ZID value. (optional)
+     * @param  string|null $filterSubmitterId
+     *         UUID of the ticket submitter. Converted from the ZID value. (optional)
+     * @param  string|null $filterAssigneeId
+     *         UUID of the ticket assignee. Converted from the ZID value. (optional)
+     * @param  bool|null $filterHasIncidents
+     *         Whether or not this ticket has incidents. (optional)
+     * @param DateTime|null $filterDue
+     *         ISO dateformat expected. A time that the ticket is due at. (optional)
+     * @param  string|null $search
+     *         Search string for the ticket subject and description. (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
      *
      * @throws InvalidArgumentException
      */
@@ -451,11 +528,17 @@ final class DefaultApi extends AbstractApi
      *
      * Queries the carbon emission data for all projects owned by the specified organiation.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param DateTimeFilter|null $from
+     *         The start of the time frame for the query. Inclusive. (optional)
+     * @param DateTimeFilter|null $to
+     *         The end of the time frame for the query. Exclusive. (optional)
+     * @param  string|null $interval
+     *         The interval by which the query groups the results. of the time frame for the query. Exclusive. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationCarbon
-     *
      * @see https://docs.upsun.com/api/#tag//operation/query-organiation-carbon
      */
     public function queryOrganiationCarbon(
@@ -475,9 +558,17 @@ final class DefaultApi extends AbstractApi
     /**
      * Query project carbon emissions metrics for an entire organization with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param DateTimeFilter|null $from
+     *         The start of the time frame for the query. Inclusive. (optional)
+     * @param DateTimeFilter|null $to
+     *         The end of the time frame for the query. Exclusive. (optional)
+     * @param  string|null $interval
+     *         The interval by which the query groups the results. of the time frame for the query. Exclusive. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationCarbon
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function queryOrganiationCarbonWithHttpInfo(
         string $organizationId,
@@ -522,6 +613,15 @@ final class DefaultApi extends AbstractApi
     /**
      * Create request for operation 'queryOrganiationCarbon'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param DateTimeFilter|null $from
+     *         The start of the time frame for the query. Inclusive. (optional)
+     * @param DateTimeFilter|null $to
+     *         The end of the time frame for the query. Exclusive. (optional)
+     * @param  string|null $interval
+     *         The interval by which the query groups the results. of the time frame for the query. Exclusive. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function queryOrganiationCarbonRequest(
@@ -538,7 +638,7 @@ final class DefaultApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling queryOrganiationCarbon'
             );
         }

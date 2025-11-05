@@ -57,11 +57,13 @@ final class OrdersApi extends AbstractApi
      *
      * Creates confirmation credentials for payments that require online authorization
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $orderId
+     *         The ID of the order. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return CreateAuthorizationCredentials200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Orders/operation/create-authorization-credentials
      */
     public function createAuthorizationCredentials(
@@ -77,10 +79,14 @@ final class OrdersApi extends AbstractApi
     /**
      * Create confirmation credentials for for 3D-Secure with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $orderId
+     *         The ID of the order. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return CreateAuthorizationCredentials200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createAuthorizationCredentialsWithHttpInfo(
         string $organizationId,
         string $orderId
@@ -120,6 +126,11 @@ final class OrdersApi extends AbstractApi
     /**
      * Create request for operation 'createAuthorizationCredentials'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $orderId
+     *         The ID of the order. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function createAuthorizationCredentialsRequest(
@@ -134,7 +145,7 @@ final class OrdersApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling createAuthorizationCredentials'
             );
         }
@@ -146,7 +157,7 @@ final class OrdersApi extends AbstractApi
             && count($orderId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $orderId 
+                'Missing the required parameter $orderId
                 when calling createAuthorizationCredentials'
             );
         }
@@ -230,9 +241,11 @@ final class OrdersApi extends AbstractApi
      * Download an invoice.
      *
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $token
+     *         JWT for invoice. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Orders/operation/download-invoice
      */
     public function downloadInvoice(
@@ -246,8 +259,12 @@ final class OrdersApi extends AbstractApi
     /**
      * Download an invoice. with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $token
+     *         JWT for invoice. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function downloadInvoiceWithHttpInfo(
         string $token
     ): string {
@@ -285,6 +302,9 @@ final class OrdersApi extends AbstractApi
     /**
      * Create request for operation 'downloadInvoice'
      *
+     * @param  string $token
+     *         JWT for invoice. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function downloadInvoiceRequest(
@@ -298,7 +318,7 @@ final class OrdersApi extends AbstractApi
             && count($token) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $token 
+                'Missing the required parameter $token
                 when calling downloadInvoice'
             );
         }
@@ -381,11 +401,15 @@ final class OrdersApi extends AbstractApi
      *
      * Retrieves an order for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $orderId
+     *         The ID of the order. (required)
+     * @param  string|null $mode
+     *         The output mode. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Order
-     *
      * @see https://docs.upsun.com/api/#tag/Orders/operation/get-org-order
      */
     public function getOrgOrder(
@@ -403,10 +427,16 @@ final class OrdersApi extends AbstractApi
     /**
      * Get order with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $orderId
+     *         The ID of the order. (required)
+     * @param  string|null $mode
+     *         The output mode. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Order
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgOrderWithHttpInfo(
         string $organizationId,
         string $orderId,
@@ -448,6 +478,13 @@ final class OrdersApi extends AbstractApi
     /**
      * Create request for operation 'getOrgOrder'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $orderId
+     *         The ID of the order. (required)
+     * @param  string|null $mode
+     *         The output mode. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgOrderRequest(
@@ -463,7 +500,7 @@ final class OrdersApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgOrder'
             );
         }
@@ -475,7 +512,7 @@ final class OrdersApi extends AbstractApi
             && count($orderId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $orderId 
+                'Missing the required parameter $orderId
                 when calling getOrgOrder'
             );
         }
@@ -575,11 +612,19 @@ final class OrdersApi extends AbstractApi
      *
      * Retrieves orders for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterStatus
+     *         The status of the order. (optional)
+     * @param  int|null $filterTotal
+     *         The total of the order. (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
+     * @param  string|null $mode
+     *         The output mode. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListOrgOrders200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Orders/operation/list-org-orders
      */
     public function listOrgOrders(
@@ -601,10 +646,20 @@ final class OrdersApi extends AbstractApi
     /**
      * List orders with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterStatus
+     *         The status of the order. (optional)
+     * @param  int|null $filterTotal
+     *         The total of the order. (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
+     * @param  string|null $mode
+     *         The output mode. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListOrgOrders200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listOrgOrdersWithHttpInfo(
         string $organizationId,
         ?string $filterStatus = null,
@@ -650,6 +705,17 @@ final class OrdersApi extends AbstractApi
     /**
      * Create request for operation 'listOrgOrders'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterStatus
+     *         The status of the order. (optional)
+     * @param  int|null $filterTotal
+     *         The total of the order. (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
+     * @param  string|null $mode
+     *         The output mode. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgOrdersRequest(
@@ -667,7 +733,7 @@ final class OrdersApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listOrgOrders'
             );
         }

@@ -57,11 +57,11 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * Set the deployment target information for a project.
      *
+     * @param DeploymentTargetCreateInput $deploymentTargetCreateInput
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/create-projects-deployments
      */
     public function createProjectsDeployments(
@@ -77,9 +77,11 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Create a project deployment target with HTTP Info
      *
+     * @param DeploymentTargetCreateInput $deploymentTargetCreateInput
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function createProjectsDeploymentsWithHttpInfo(
         string $projectId,
@@ -120,6 +122,9 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Create request for operation 'createProjectsDeployments'
      *
+     * @param DeploymentTargetCreateInput $deploymentTargetCreateInput
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function createProjectsDeploymentsRequest(
@@ -134,7 +139,7 @@ final class DeploymentTargetApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling createProjectsDeployments'
             );
         }
@@ -146,7 +151,7 @@ final class DeploymentTargetApi extends AbstractApi
             && count($deploymentTargetCreateInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $deploymentTargetCreateInput 
+                'Missing the required parameter $deploymentTargetCreateInput
                 when calling createProjectsDeployments'
             );
         }
@@ -230,11 +235,11 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * Delete a single deployment target configuration associated with a specific project.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/delete-projects-deployments
      */
     public function deleteProjectsDeployments(
@@ -250,10 +255,12 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Delete a single project deployment target with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteProjectsDeploymentsWithHttpInfo(
         string $projectId,
         string $deploymentTargetConfigurationId
@@ -293,6 +300,9 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Create request for operation 'deleteProjectsDeployments'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function deleteProjectsDeploymentsRequest(
@@ -307,7 +317,7 @@ final class DeploymentTargetApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deleteProjectsDeployments'
             );
         }
@@ -319,7 +329,7 @@ final class DeploymentTargetApi extends AbstractApi
             && count($deploymentTargetConfigurationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $deploymentTargetConfigurationId 
+                'Missing the required parameter $deploymentTargetConfigurationId
                 when calling deleteProjectsDeployments'
             );
         }
@@ -404,11 +414,11 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * Get a single deployment target configuration of a project.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return DeploymentTarget
-     *
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/get-projects-deployments
      */
     public function getProjectsDeployments(
@@ -424,10 +434,12 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Get a single project deployment target with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return DeploymentTarget
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsDeploymentsWithHttpInfo(
         string $projectId,
         string $deploymentTargetConfigurationId
@@ -467,6 +479,9 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsDeployments'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsDeploymentsRequest(
@@ -481,7 +496,7 @@ final class DeploymentTargetApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsDeployments'
             );
         }
@@ -493,7 +508,7 @@ final class DeploymentTargetApi extends AbstractApi
             && count($deploymentTargetConfigurationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $deploymentTargetConfigurationId 
+                'Missing the required parameter $deploymentTargetConfigurationId
                 when calling getProjectsDeployments'
             );
         }
@@ -579,10 +594,10 @@ final class DeploymentTargetApi extends AbstractApi
      * The deployment target information for the project.
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return DeploymentTarget[]
      *
+     * @return DeploymentTarget[]
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/list-projects-deployments
      */
     public function listProjectsDeployments(
@@ -597,7 +612,9 @@ final class DeploymentTargetApi extends AbstractApi
      * Get project deployment target info with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return DeploymentTarget[]
      */
     private function listProjectsDeploymentsWithHttpInfo(
@@ -637,6 +654,8 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsDeployments'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsDeploymentsRequest(
@@ -650,7 +669,7 @@ final class DeploymentTargetApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsDeployments'
             );
         }
@@ -725,11 +744,11 @@ final class DeploymentTargetApi extends AbstractApi
      * Update a project deployment
      *
      *
+     * @param DeploymentTargetPatch $deploymentTargetPatch
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/update-projects-deployments
      */
     public function updateProjectsDeployments(
@@ -747,9 +766,11 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Update a project deployment with HTTP Info
      *
+     * @param DeploymentTargetPatch $deploymentTargetPatch
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function updateProjectsDeploymentsWithHttpInfo(
         string $projectId,
@@ -792,6 +813,9 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Create request for operation 'updateProjectsDeployments'
      *
+     * @param DeploymentTargetPatch $deploymentTargetPatch
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function updateProjectsDeploymentsRequest(
@@ -807,7 +831,7 @@ final class DeploymentTargetApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjectsDeployments'
             );
         }
@@ -819,7 +843,7 @@ final class DeploymentTargetApi extends AbstractApi
             && count($deploymentTargetConfigurationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $deploymentTargetConfigurationId 
+                'Missing the required parameter $deploymentTargetConfigurationId
                 when calling updateProjectsDeployments'
             );
         }
@@ -831,7 +855,7 @@ final class DeploymentTargetApi extends AbstractApi
             && count($deploymentTargetPatch) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $deploymentTargetPatch 
+                'Missing the required parameter $deploymentTargetPatch
                 when calling updateProjectsDeployments'
             );
         }

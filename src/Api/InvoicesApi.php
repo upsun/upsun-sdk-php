@@ -56,11 +56,13 @@ final class InvoicesApi extends AbstractApi
      *
      * Retrieves an invoice for the specified organization.
      *
+     * @param  string $invoiceId
+     *         The ID of the invoice. (required)
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Invoice
-     *
      * @see https://docs.upsun.com/api/#tag/Invoices/operation/get-org-invoice
      */
     public function getOrgInvoice(
@@ -76,10 +78,14 @@ final class InvoicesApi extends AbstractApi
     /**
      * Get invoice with HTTP Info
      *
+     * @param  string $invoiceId
+     *         The ID of the invoice. (required)
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Invoice
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgInvoiceWithHttpInfo(
         string $invoiceId,
         string $organizationId
@@ -119,6 +125,11 @@ final class InvoicesApi extends AbstractApi
     /**
      * Create request for operation 'getOrgInvoice'
      *
+     * @param  string $invoiceId
+     *         The ID of the invoice. (required)
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgInvoiceRequest(
@@ -133,7 +144,7 @@ final class InvoicesApi extends AbstractApi
             && count($invoiceId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $invoiceId 
+                'Missing the required parameter $invoiceId
                 when calling getOrgInvoice'
             );
         }
@@ -145,7 +156,7 @@ final class InvoicesApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgInvoice'
             );
         }
@@ -230,11 +241,19 @@ final class InvoicesApi extends AbstractApi
      *
      * Retrieves a list of invoices for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterStatus
+     *         The status of the invoice. (optional)
+     * @param  string|null $filterType
+     *         The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. (optional)
+     * @param  string|null $filterOrderId
+     *         The order id of Invoice. (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListOrgInvoices200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Invoices/operation/list-org-invoices
      */
     public function listOrgInvoices(
@@ -256,10 +275,20 @@ final class InvoicesApi extends AbstractApi
     /**
      * List invoices with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterStatus
+     *         The status of the invoice. (optional)
+     * @param  string|null $filterType
+     *         The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. (optional)
+     * @param  string|null $filterOrderId
+     *         The order id of Invoice. (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListOrgInvoices200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listOrgInvoicesWithHttpInfo(
         string $organizationId,
         ?string $filterStatus = null,
@@ -305,6 +334,17 @@ final class InvoicesApi extends AbstractApi
     /**
      * Create request for operation 'listOrgInvoices'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterStatus
+     *         The status of the invoice. (optional)
+     * @param  string|null $filterType
+     *         The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. (optional)
+     * @param  string|null $filterOrderId
+     *         The order id of Invoice. (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgInvoicesRequest(
@@ -322,7 +362,7 @@ final class InvoicesApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listOrgInvoices'
             );
         }

@@ -59,11 +59,8 @@ final class UsersApi extends AbstractApi
      *
      * Retrieves the current user, determined from the used access token.
      *
-     *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return User
-     *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user
      */
     public function getCurrentUser(): User
@@ -75,10 +72,9 @@ final class UsersApi extends AbstractApi
     /**
      * Get the current user with HTTP Info
      *
-     *
-     * @throws ApiException|ClientExceptionInterface
-     * @return User
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getCurrentUserWithHttpInfo(): User
     {
         $request = $this->getCurrentUserRequest(
@@ -181,11 +177,8 @@ final class UsersApi extends AbstractApi
      *
      * Retrieve information about the currently logged-in user (the user associated with the access token).
      *
-     *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return CurrentUser
-     *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-deprecated
      *
      * @deprecated
@@ -199,12 +192,11 @@ final class UsersApi extends AbstractApi
     /**
      * Get current logged-in user info with HTTP Info
      *
-     *
      * @deprecated
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return CurrentUser
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getCurrentUserDeprecatedWithHttpInfo(): CurrentUser
     {
         $request = $this->getCurrentUserDeprecatedRequest(
@@ -309,11 +301,8 @@ final class UsersApi extends AbstractApi
      *
      * Find out if the current logged in user requires phone verification to create projects.
      *
-     *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return GetCurrentUserVerificationStatus200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status
      */
     public function getCurrentUserVerificationStatus(): GetCurrentUserVerificationStatus200Response
@@ -325,10 +314,9 @@ final class UsersApi extends AbstractApi
     /**
      * Check if phone verification is required with HTTP Info
      *
-     *
-     * @throws ApiException|ClientExceptionInterface
-     * @return GetCurrentUserVerificationStatus200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getCurrentUserVerificationStatusWithHttpInfo(): GetCurrentUserVerificationStatus200Response
     {
         $request = $this->getCurrentUserVerificationStatusRequest(
@@ -431,11 +419,8 @@ final class UsersApi extends AbstractApi
      *
      * Find out if the current logged in user requires verification (phone or staff) to create projects.
      *
-     *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return GetCurrentUserVerificationStatusFull200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status-full
      */
     public function getCurrentUserVerificationStatusFull(): GetCurrentUserVerificationStatusFull200Response
@@ -447,10 +432,9 @@ final class UsersApi extends AbstractApi
     /**
      * Check if verification is required with HTTP Info
      *
-     *
-     * @throws ApiException|ClientExceptionInterface
-     * @return GetCurrentUserVerificationStatusFull200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getCurrentUserVerificationStatusFullWithHttpInfo(): GetCurrentUserVerificationStatusFull200Response
     {
         $request = $this->getCurrentUserVerificationStatusFullRequest(
@@ -553,11 +537,11 @@ final class UsersApi extends AbstractApi
      *
      * Retrieves the specified user.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return User
-     *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-user
      */
     public function getUser(
@@ -571,10 +555,12 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return User
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getUserWithHttpInfo(
         string $userId
     ): User {
@@ -612,6 +598,9 @@ final class UsersApi extends AbstractApi
     /**
      * Create request for operation 'getUser'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getUserRequest(
@@ -625,7 +614,7 @@ final class UsersApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling getUser'
             );
         }
@@ -701,11 +690,11 @@ final class UsersApi extends AbstractApi
      *
      * Retrieves a user matching the specified email address.
      *
+     * @param  string $email
+     *         The user's email address. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return User
-     *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-user-by-email-address
      */
     public function getUserByEmailAddress(
@@ -719,10 +708,12 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user by email with HTTP Info
      *
+     * @param  string $email
+     *         The user's email address. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return User
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getUserByEmailAddressWithHttpInfo(
         string $email
     ): User {
@@ -760,6 +751,9 @@ final class UsersApi extends AbstractApi
     /**
      * Create request for operation 'getUserByEmailAddress'
      *
+     * @param  string $email
+     *         The user's email address. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getUserByEmailAddressRequest(
@@ -773,7 +767,7 @@ final class UsersApi extends AbstractApi
             && count($email) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $email 
+                'Missing the required parameter $email
                 when calling getUserByEmailAddress'
             );
         }
@@ -849,11 +843,11 @@ final class UsersApi extends AbstractApi
      *
      * Retrieves a user matching the specified username.
      *
+     * @param  string $username
+     *         The user's username. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return User
-     *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-user-by-username
      */
     public function getUserByUsername(
@@ -867,10 +861,12 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user by username with HTTP Info
      *
+     * @param  string $username
+     *         The user's username. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return User
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getUserByUsernameWithHttpInfo(
         string $username
     ): User {
@@ -908,6 +904,9 @@ final class UsersApi extends AbstractApi
     /**
      * Create request for operation 'getUserByUsername'
      *
+     * @param  string $username
+     *         The user's username. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getUserByUsernameRequest(
@@ -921,7 +920,7 @@ final class UsersApi extends AbstractApi
             && count($username) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $username 
+                'Missing the required parameter $username
                 when calling getUserByUsername'
             );
         }
@@ -998,9 +997,13 @@ final class UsersApi extends AbstractApi
      * Requests a reset of the user's email address. A confirmation email will be sent to the new address when the
      * request is accepted.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param ResetEmailAddressRequest|null $resetEmailAddressRequest
+     *          (optional)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Users/operation/reset-email-address
      */
     public function resetEmailAddress(
@@ -1016,7 +1019,13 @@ final class UsersApi extends AbstractApi
     /**
      * Reset email address with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param ResetEmailAddressRequest|null $resetEmailAddressRequest
+     *          (optional)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function resetEmailAddressWithHttpInfo(
         string $userId,
@@ -1051,6 +1060,11 @@ final class UsersApi extends AbstractApi
     /**
      * Create request for operation 'resetEmailAddress'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param ResetEmailAddressRequest|null $resetEmailAddressRequest
+     *          (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function resetEmailAddressRequest(
@@ -1065,7 +1079,7 @@ final class UsersApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling resetEmailAddress'
             );
         }
@@ -1150,9 +1164,11 @@ final class UsersApi extends AbstractApi
      * Requests a reset of the user's password. A password reset email will be sent to the user when the request is
      * accepted.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Users/operation/reset-password
      */
     public function resetPassword(
@@ -1166,8 +1182,12 @@ final class UsersApi extends AbstractApi
     /**
      * Reset user password with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function resetPasswordWithHttpInfo(
         string $userId
     ): void {
@@ -1199,6 +1219,9 @@ final class UsersApi extends AbstractApi
     /**
      * Create request for operation 'resetPassword'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function resetPasswordRequest(
@@ -1212,7 +1235,7 @@ final class UsersApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling resetPassword'
             );
         }
@@ -1288,11 +1311,12 @@ final class UsersApi extends AbstractApi
      *
      * Updates the specified user.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return User
-     *
      * @see https://docs.upsun.com/api/#tag/Users/operation/update-user
      */
     public function updateUser(
@@ -1308,10 +1332,13 @@ final class UsersApi extends AbstractApi
     /**
      * Update a user with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return User
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateUserWithHttpInfo(
         string $userId,
         ?UpdateUserRequest $updateUserRequest = null
@@ -1351,6 +1378,10 @@ final class UsersApi extends AbstractApi
     /**
      * Create request for operation 'updateUser'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateUserRequest(
@@ -1365,7 +1396,7 @@ final class UsersApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling updateUser'
             );
         }

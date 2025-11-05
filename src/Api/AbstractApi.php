@@ -101,7 +101,9 @@ abstract class AbstractApi
     }
 
     /**
-     * @throws ApiException|Exception|ClientExceptionInterface
+     * @throws ApiException
+     * @throws Exception
+     * @throws ClientExceptionInterface
      */
     protected function sendAuthenticatedRequest(
         string $method,
@@ -219,7 +221,8 @@ abstract class AbstractApi
      * @template T
      * @param class-string<T>|string $dataType Fully-qualified class name, or scalar type like "string", "array"
      *
-     * @throws ApiException|Exception
+     * @throws ApiException
+     * @throws Exception
      * @return T
      */
     protected function handleResponseWithDataType(

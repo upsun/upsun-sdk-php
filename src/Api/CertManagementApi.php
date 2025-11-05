@@ -57,11 +57,11 @@ final class CertManagementApi extends AbstractApi
      *
      * Add a single SSL certificate to a project.
      *
+     * @param CertificateCreateInput $certificateCreateInput
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/create-projects-certificates
      */
     public function createProjectsCertificates(
@@ -77,9 +77,11 @@ final class CertManagementApi extends AbstractApi
     /**
      * Add an SSL certificate with HTTP Info
      *
+     * @param CertificateCreateInput $certificateCreateInput
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function createProjectsCertificatesWithHttpInfo(
         string $projectId,
@@ -120,6 +122,9 @@ final class CertManagementApi extends AbstractApi
     /**
      * Create request for operation 'createProjectsCertificates'
      *
+     * @param CertificateCreateInput $certificateCreateInput
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function createProjectsCertificatesRequest(
@@ -134,7 +139,7 @@ final class CertManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling createProjectsCertificates'
             );
         }
@@ -146,7 +151,7 @@ final class CertManagementApi extends AbstractApi
             && count($certificateCreateInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $certificateCreateInput 
+                'Missing the required parameter $certificateCreateInput
                 when calling createProjectsCertificates'
             );
         }
@@ -230,11 +235,11 @@ final class CertManagementApi extends AbstractApi
      *
      * Delete a single SSL certificate associated with a project.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/delete-projects-certificates
      */
     public function deleteProjectsCertificates(
@@ -250,10 +255,12 @@ final class CertManagementApi extends AbstractApi
     /**
      * Delete an SSL certificate with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteProjectsCertificatesWithHttpInfo(
         string $projectId,
         string $certificateId
@@ -293,6 +300,9 @@ final class CertManagementApi extends AbstractApi
     /**
      * Create request for operation 'deleteProjectsCertificates'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function deleteProjectsCertificatesRequest(
@@ -307,7 +317,7 @@ final class CertManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deleteProjectsCertificates'
             );
         }
@@ -319,7 +329,7 @@ final class CertManagementApi extends AbstractApi
             && count($certificateId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $certificateId 
+                'Missing the required parameter $certificateId
                 when calling deleteProjectsCertificates'
             );
         }
@@ -404,11 +414,11 @@ final class CertManagementApi extends AbstractApi
      *
      * Retrieve information about a single SSL certificate associated with a project.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Certificate
-     *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/get-projects-certificates
      */
     public function getProjectsCertificates(
@@ -424,10 +434,12 @@ final class CertManagementApi extends AbstractApi
     /**
      * Get an SSL certificate with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Certificate
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsCertificatesWithHttpInfo(
         string $projectId,
         string $certificateId
@@ -467,6 +479,9 @@ final class CertManagementApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsCertificates'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsCertificatesRequest(
@@ -481,7 +496,7 @@ final class CertManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsCertificates'
             );
         }
@@ -493,7 +508,7 @@ final class CertManagementApi extends AbstractApi
             && count($certificateId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $certificateId 
+                'Missing the required parameter $certificateId
                 when calling getProjectsCertificates'
             );
         }
@@ -579,10 +594,10 @@ final class CertManagementApi extends AbstractApi
      * Retrieve a list of objects representing the SSL certificates associated with a project.
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Certificate[]
      *
+     * @return Certificate[]
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/list-projects-certificates
      */
     public function listProjectsCertificates(
@@ -597,7 +612,9 @@ final class CertManagementApi extends AbstractApi
      * Get list of SSL certificates with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return Certificate[]
      */
     private function listProjectsCertificatesWithHttpInfo(
@@ -637,6 +654,8 @@ final class CertManagementApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsCertificates'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsCertificatesRequest(
@@ -650,7 +669,7 @@ final class CertManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsCertificates'
             );
         }
@@ -726,11 +745,11 @@ final class CertManagementApi extends AbstractApi
      *
      * Update a single SSL certificate associated with a project.
      *
+     * @param CertificatePatch $certificatePatch
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/update-projects-certificates
      */
     public function updateProjectsCertificates(
@@ -748,9 +767,11 @@ final class CertManagementApi extends AbstractApi
     /**
      * Update an SSL certificate with HTTP Info
      *
+     * @param CertificatePatch $certificatePatch
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function updateProjectsCertificatesWithHttpInfo(
         string $projectId,
@@ -793,6 +814,9 @@ final class CertManagementApi extends AbstractApi
     /**
      * Create request for operation 'updateProjectsCertificates'
      *
+     * @param CertificatePatch $certificatePatch
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function updateProjectsCertificatesRequest(
@@ -808,7 +832,7 @@ final class CertManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjectsCertificates'
             );
         }
@@ -820,7 +844,7 @@ final class CertManagementApi extends AbstractApi
             && count($certificateId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $certificateId 
+                'Missing the required parameter $certificateId
                 when calling updateProjectsCertificates'
             );
         }
@@ -832,7 +856,7 @@ final class CertManagementApi extends AbstractApi
             && count($certificatePatch) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $certificatePatch 
+                'Missing the required parameter $certificatePatch
                 when calling updateProjectsCertificates'
             );
         }

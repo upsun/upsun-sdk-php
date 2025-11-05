@@ -62,11 +62,10 @@ final class OrganizationsApi extends AbstractApi
      *
      * Creates a new organization.
      *
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Organization
-     *
      * @see https://docs.upsun.com/api/#tag/Organizations/operation/create-org
      */
     public function createOrg(
@@ -80,10 +79,11 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Create organization with HTTP Info
      *
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Organization
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createOrgWithHttpInfo(
         CreateOrgRequest $createOrgRequest
     ): Organization {
@@ -121,6 +121,8 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Create request for operation 'createOrg'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function createOrgRequest(
@@ -134,7 +136,7 @@ final class OrganizationsApi extends AbstractApi
             && count($createOrgRequest) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $createOrgRequest 
+                'Missing the required parameter $createOrgRequest
                 when calling createOrg'
             );
         }
@@ -210,9 +212,11 @@ final class OrganizationsApi extends AbstractApi
      *
      * Deletes the specified organization.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Organizations/operation/delete-org
      */
     public function deleteOrg(
@@ -226,8 +230,12 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Delete organization with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteOrgWithHttpInfo(
         string $organizationId
     ): void {
@@ -259,6 +267,9 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Create request for operation 'deleteOrg'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function deleteOrgRequest(
@@ -272,7 +283,7 @@ final class OrganizationsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling deleteOrg'
             );
         }
@@ -348,11 +359,11 @@ final class OrganizationsApi extends AbstractApi
      *
      * Retrieves the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Organization
-     *
      * @see https://docs.upsun.com/api/#tag/Organizations/operation/get-org
      */
     public function getOrg(
@@ -366,10 +377,12 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Get organization with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Organization
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgWithHttpInfo(
         string $organizationId
     ): Organization {
@@ -407,6 +420,9 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Create request for operation 'getOrg'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgRequest(
@@ -420,7 +436,7 @@ final class OrganizationsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrg'
             );
         }
@@ -496,11 +512,35 @@ final class OrganizationsApi extends AbstractApi
      *
      * Non-admin users will only see organizations they are members of.
      *
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param StringFilter|null $filterType
+     *         Allows filtering by `type` using one or more operators. (optional)
+     * @param StringFilter|null $filterOwnerId
+     *         Allows filtering by `owner_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterName
+     *         Allows filtering by `name` using one or more operators. (optional)
+     * @param StringFilter|null $filterLabel
+     *         Allows filtering by `label` using one or more operators. (optional)
+     * @param StringFilter|null $filterVendor
+     *         Allows filtering by `vendor` using one or more operators. (optional)
+     * @param ArrayFilter|null $filterCapabilities
+     *         Allows filtering by `capabilites` using one or more operators. (optional)
+     * @param StringFilter|null $filterStatus
+     *         Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListOrgs200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Organizations/operation/list-orgs
      */
     public function listOrgs(
@@ -538,9 +578,35 @@ final class OrganizationsApi extends AbstractApi
     /**
      * List organizations with HTTP Info
      *
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param StringFilter|null $filterType
+     *         Allows filtering by `type` using one or more operators. (optional)
+     * @param StringFilter|null $filterOwnerId
+     *         Allows filtering by `owner_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterName
+     *         Allows filtering by `name` using one or more operators. (optional)
+     * @param StringFilter|null $filterLabel
+     *         Allows filtering by `label` using one or more operators. (optional)
+     * @param StringFilter|null $filterVendor
+     *         Allows filtering by `vendor` using one or more operators. (optional)
+     * @param ArrayFilter|null $filterCapabilities
+     *         Allows filtering by `capabilites` using one or more operators. (optional)
+     * @param StringFilter|null $filterStatus
+     *         Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListOrgs200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listOrgsWithHttpInfo(
         ?StringFilter $filterId = null,
@@ -603,6 +669,33 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Create request for operation 'listOrgs'
      *
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param StringFilter|null $filterType
+     *         Allows filtering by `type` using one or more operators. (optional)
+     * @param StringFilter|null $filterOwnerId
+     *         Allows filtering by `owner_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterName
+     *         Allows filtering by `name` using one or more operators. (optional)
+     * @param StringFilter|null $filterLabel
+     *         Allows filtering by `label` using one or more operators. (optional)
+     * @param StringFilter|null $filterVendor
+     *         Allows filtering by `vendor` using one or more operators. (optional)
+     * @param ArrayFilter|null $filterCapabilities
+     *         Allows filtering by `capabilites` using one or more operators. (optional)
+     * @param StringFilter|null $filterStatus
+     *         Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgsRequest(
@@ -634,7 +727,7 @@ final class OrganizationsApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling OrganizationsApi.listOrgs, 
+                'invalid value for "$pageSize" when calling OrganizationsApi.listOrgs,
                 must be smaller than or equal to 100.'
             );
         }
@@ -906,11 +999,29 @@ final class OrganizationsApi extends AbstractApi
      *
      * Retrieves organizations that the specified user is a member of.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param StringFilter|null $filterType
+     *         Allows filtering by `type` using one or more operators. (optional)
+     * @param StringFilter|null $filterVendor
+     *         Allows filtering by `vendor` using one or more operators. (optional)
+     * @param StringFilter|null $filterStatus
+     *         Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListUserOrgs200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Organizations/operation/list-user-orgs
      */
     public function listUserOrgs(
@@ -942,9 +1053,29 @@ final class OrganizationsApi extends AbstractApi
     /**
      * User organizations with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param StringFilter|null $filterType
+     *         Allows filtering by `type` using one or more operators. (optional)
+     * @param StringFilter|null $filterVendor
+     *         Allows filtering by `vendor` using one or more operators. (optional)
+     * @param StringFilter|null $filterStatus
+     *         Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListUserOrgs200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listUserOrgsWithHttpInfo(
         string $userId,
@@ -1001,6 +1132,27 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Create request for operation 'listUserOrgs'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param StringFilter|null $filterType
+     *         Allows filtering by `type` using one or more operators. (optional)
+     * @param StringFilter|null $filterVendor
+     *         Allows filtering by `vendor` using one or more operators. (optional)
+     * @param StringFilter|null $filterStatus
+     *         Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listUserOrgsRequest(
@@ -1023,7 +1175,7 @@ final class OrganizationsApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling listUserOrgs'
             );
         }
@@ -1037,7 +1189,7 @@ final class OrganizationsApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling OrganizationsApi.listUserOrgs, 
+                'invalid value for "$pageSize" when calling OrganizationsApi.listUserOrgs,
                 must be smaller than or equal to 100.'
             );
         }
@@ -1257,11 +1409,12 @@ final class OrganizationsApi extends AbstractApi
      *
      * Updates the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Organization
-     *
      * @see https://docs.upsun.com/api/#tag/Organizations/operation/update-org
      */
     public function updateOrg(
@@ -1277,10 +1430,13 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Update organization with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Organization
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateOrgWithHttpInfo(
         string $organizationId,
         ?UpdateOrgRequest $updateOrgRequest = null
@@ -1320,6 +1476,10 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Create request for operation 'updateOrg'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateOrgRequest(
@@ -1334,7 +1494,7 @@ final class OrganizationsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling updateOrg'
             );
         }

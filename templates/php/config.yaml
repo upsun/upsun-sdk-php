@@ -25,7 +25,7 @@ additionalProperties:
   sdkDescription: The official Upsun SDK for PHP
   sdkLongDescription: |
     The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.
-    
+
     For more information, read [the documentation](https://docs.upsun.com/api).
   escapedInvokerPackage: "Upsun\\"
   coreTestPath: ./tests/Core
@@ -102,3 +102,6 @@ files:
     templateType: SupportingFiles
     destinationFilename: index.md
     folder: docs/
+  api_doc.mustache:
+    templateType: SupportingFiles
+    folder: docs-openapi/

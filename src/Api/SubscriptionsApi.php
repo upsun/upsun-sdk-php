@@ -66,11 +66,11 @@ final class SubscriptionsApi extends AbstractApi
      * Checks if the user is able to create a new project.
      *
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return CanCreateNewOrgSubscription200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/can-create-new-org-subscription
      */
     public function canCreateNewOrgSubscription(
@@ -84,10 +84,12 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Checks if the user is able to create a new project. with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return CanCreateNewOrgSubscription200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function canCreateNewOrgSubscriptionWithHttpInfo(
         string $organizationId
     ): CanCreateNewOrgSubscription200Response {
@@ -125,6 +127,9 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'canCreateNewOrgSubscription'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function canCreateNewOrgSubscriptionRequest(
@@ -138,7 +143,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling canCreateNewOrgSubscription'
             );
         }
@@ -213,11 +218,19 @@ final class SubscriptionsApi extends AbstractApi
      * Checks if the user is able to update a project.
      *
      *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
+     * @param  string|null $plan
+     *         The plan type of the subscription. (optional)
+     * @param  int|null $environments
+     *         The number of environments which can be provisioned on the project. (optional)
+     * @param  int|null $storage
+     *         The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values. (optional)
+     * @param  int|null $userLicenses
+     *         The number of user licenses. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return CanUpdateSubscription200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/can-update-subscription
      */
     public function canUpdateSubscription(
@@ -239,10 +252,20 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Checks if the user is able to update a project. with HTTP Info
      *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
+     * @param  string|null $plan
+     *         The plan type of the subscription. (optional)
+     * @param  int|null $environments
+     *         The number of environments which can be provisioned on the project. (optional)
+     * @param  int|null $storage
+     *         The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values. (optional)
+     * @param  int|null $userLicenses
+     *         The number of user licenses. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return CanUpdateSubscription200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function canUpdateSubscriptionWithHttpInfo(
         string $subscriptionId,
         ?string $plan = null,
@@ -288,6 +311,17 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'canUpdateSubscription'
      *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
+     * @param  string|null $plan
+     *         The plan type of the subscription. (optional)
+     * @param  int|null $environments
+     *         The number of environments which can be provisioned on the project. (optional)
+     * @param  int|null $storage
+     *         The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values. (optional)
+     * @param  int|null $userLicenses
+     *         The number of user licenses. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function canUpdateSubscriptionRequest(
@@ -305,7 +339,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $subscriptionId 
+                'Missing the required parameter $subscriptionId
                 when calling canUpdateSubscription'
             );
         }
@@ -444,11 +478,12 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Creates a subscription for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Subscription
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/create-org-subscription
      */
     public function createOrgSubscription(
@@ -464,10 +499,13 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create subscription with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Subscription
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createOrgSubscriptionWithHttpInfo(
         string $organizationId,
         CreateOrgSubscriptionRequest $createOrgSubscriptionRequest
@@ -507,6 +545,10 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'createOrgSubscription'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function createOrgSubscriptionRequest(
@@ -521,7 +563,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling createOrgSubscription'
             );
         }
@@ -533,7 +575,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($createOrgSubscriptionRequest) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $createOrgSubscriptionRequest 
+                'Missing the required parameter $createOrgSubscriptionRequest
                 when calling createOrgSubscription'
             );
         }
@@ -617,9 +659,13 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Deletes a subscription for the specified organization.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/delete-org-subscription
      */
     public function deleteOrgSubscription(
@@ -635,8 +681,14 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Delete subscription with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteOrgSubscriptionWithHttpInfo(
         string $organizationId,
         string $subscriptionId
@@ -670,6 +722,11 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'deleteOrgSubscription'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function deleteOrgSubscriptionRequest(
@@ -684,7 +741,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling deleteOrgSubscription'
             );
         }
@@ -696,7 +753,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $subscriptionId 
+                'Missing the required parameter $subscriptionId
                 when calling deleteOrgSubscription'
             );
         }
@@ -780,11 +837,21 @@ final class SubscriptionsApi extends AbstractApi
      * Estimate the price of a new subscription
      *
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $plan
+     *         The plan type of the subscription. (required)
+     * @param  int $environments
+     *         The maximum number of environments which can be provisioned on the project. (required)
+     * @param  int $storage
+     *         The total storage available to each environment, in MiB. (required)
+     * @param  int $userLicenses
+     *         The number of user licenses. (required)
+     * @param  string|null $format
+     *         The format of the estimation output. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return EstimationObject
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/estimate-new-org-subscription
      */
     public function estimateNewOrgSubscription(
@@ -808,10 +875,22 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Estimate the price of a new subscription with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $plan
+     *         The plan type of the subscription. (required)
+     * @param  int $environments
+     *         The maximum number of environments which can be provisioned on the project. (required)
+     * @param  int $storage
+     *         The total storage available to each environment, in MiB. (required)
+     * @param  int $userLicenses
+     *         The number of user licenses. (required)
+     * @param  string|null $format
+     *         The format of the estimation output. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return EstimationObject
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function estimateNewOrgSubscriptionWithHttpInfo(
         string $organizationId,
         string $plan,
@@ -859,6 +938,19 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'estimateNewOrgSubscription'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $plan
+     *         The plan type of the subscription. (required)
+     * @param  int $environments
+     *         The maximum number of environments which can be provisioned on the project. (required)
+     * @param  int $storage
+     *         The total storage available to each environment, in MiB. (required)
+     * @param  int $userLicenses
+     *         The number of user licenses. (required)
+     * @param  string|null $format
+     *         The format of the estimation output. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function estimateNewOrgSubscriptionRequest(
@@ -877,7 +969,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling estimateNewOrgSubscription'
             );
         }
@@ -889,7 +981,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($plan) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $plan 
+                'Missing the required parameter $plan
                 when calling estimateNewOrgSubscription'
             );
         }
@@ -901,7 +993,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($environments) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environments 
+                'Missing the required parameter $environments
                 when calling estimateNewOrgSubscription'
             );
         }
@@ -913,7 +1005,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($storage) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $storage 
+                'Missing the required parameter $storage
                 when calling estimateNewOrgSubscription'
             );
         }
@@ -925,7 +1017,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($userLicenses) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userLicenses 
+                'Missing the required parameter $userLicenses
                 when calling estimateNewOrgSubscription'
             );
         }
@@ -1075,11 +1167,23 @@ final class SubscriptionsApi extends AbstractApi
      * Estimate the price of a subscription
      *
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+     * @param  string $plan
+     *         The plan type of the subscription. (required)
+     * @param  int|null $environments
+     *         The maximum number of environments which can be provisioned on the project. (optional)
+     * @param  int|null $storage
+     *         The total storage available to each environment, in MiB. (optional)
+     * @param  int|null $userLicenses
+     *         The number of user licenses. (optional)
+     * @param  string|null $format
+     *         The format of the estimation output. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return EstimationObject
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/estimate-org-subscription
      */
     public function estimateOrgSubscription(
@@ -1105,10 +1209,24 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Estimate the price of a subscription with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+     * @param  string $plan
+     *         The plan type of the subscription. (required)
+     * @param  int|null $environments
+     *         The maximum number of environments which can be provisioned on the project. (optional)
+     * @param  int|null $storage
+     *         The total storage available to each environment, in MiB. (optional)
+     * @param  int|null $userLicenses
+     *         The number of user licenses. (optional)
+     * @param  string|null $format
+     *         The format of the estimation output. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return EstimationObject
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function estimateOrgSubscriptionWithHttpInfo(
         string $organizationId,
         string $subscriptionId,
@@ -1158,6 +1276,21 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'estimateOrgSubscription'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+     * @param  string $plan
+     *         The plan type of the subscription. (required)
+     * @param  int|null $environments
+     *         The maximum number of environments which can be provisioned on the project. (optional)
+     * @param  int|null $storage
+     *         The total storage available to each environment, in MiB. (optional)
+     * @param  int|null $userLicenses
+     *         The number of user licenses. (optional)
+     * @param  string|null $format
+     *         The format of the estimation output. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function estimateOrgSubscriptionRequest(
@@ -1177,7 +1310,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling estimateOrgSubscription'
             );
         }
@@ -1189,7 +1322,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $subscriptionId 
+                'Missing the required parameter $subscriptionId
                 when calling estimateOrgSubscription'
             );
         }
@@ -1201,7 +1334,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($plan) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $plan 
+                'Missing the required parameter $plan
                 when calling estimateOrgSubscription'
             );
         }
@@ -1364,11 +1497,13 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Retrieves a subscription for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Subscription
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-org-subscription
      */
     public function getOrgSubscription(
@@ -1384,10 +1519,14 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Get subscription with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Subscription
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgSubscriptionWithHttpInfo(
         string $organizationId,
         string $subscriptionId
@@ -1427,6 +1566,11 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'getOrgSubscription'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgSubscriptionRequest(
@@ -1441,7 +1585,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgSubscription'
             );
         }
@@ -1453,7 +1597,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $subscriptionId 
+                'Missing the required parameter $subscriptionId
                 when calling getOrgSubscription'
             );
         }
@@ -1537,11 +1681,17 @@ final class SubscriptionsApi extends AbstractApi
      * Get current usage for a subscription
      *
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+     * @param  string|null $usageGroups
+     *         A list of usage groups to retrieve current usage for. (optional)
+     * @param  bool|null $includeNotCharged
+     *         Whether to include not charged usage groups. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return SubscriptionCurrentUsageObject
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-org-subscription-current-usage
      */
     public function getOrgSubscriptionCurrentUsage(
@@ -1561,10 +1711,18 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Get current usage for a subscription with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+     * @param  string|null $usageGroups
+     *         A list of usage groups to retrieve current usage for. (optional)
+     * @param  bool|null $includeNotCharged
+     *         Whether to include not charged usage groups. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return SubscriptionCurrentUsageObject
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgSubscriptionCurrentUsageWithHttpInfo(
         string $organizationId,
         string $subscriptionId,
@@ -1608,6 +1766,15 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'getOrgSubscriptionCurrentUsage'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+     * @param  string|null $usageGroups
+     *         A list of usage groups to retrieve current usage for. (optional)
+     * @param  bool|null $includeNotCharged
+     *         Whether to include not charged usage groups. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgSubscriptionCurrentUsageRequest(
@@ -1624,7 +1791,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgSubscriptionCurrentUsage'
             );
         }
@@ -1636,7 +1803,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $subscriptionId 
+                'Missing the required parameter $subscriptionId
                 when calling getOrgSubscriptionCurrentUsage'
             );
         }
@@ -1752,11 +1919,13 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Retrieves current and available usage alerts.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return GetSubscriptionUsageAlerts200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-subscription-usage-alerts
      */
     public function getSubscriptionUsageAlerts(
@@ -1772,10 +1941,14 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Get usage alerts with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return GetSubscriptionUsageAlerts200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getSubscriptionUsageAlertsWithHttpInfo(
         string $organizationId,
         string $subscriptionId
@@ -1815,6 +1988,11 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'getSubscriptionUsageAlerts'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getSubscriptionUsageAlertsRequest(
@@ -1829,7 +2007,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getSubscriptionUsageAlerts'
             );
         }
@@ -1841,7 +2019,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $subscriptionId 
+                'Missing the required parameter $subscriptionId
                 when calling getSubscriptionUsageAlerts'
             );
         }
@@ -1926,11 +2104,31 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Retrieves subscriptions for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string|null $filterStatus
+     *         The status of the subscription. (optional)
+     * @param  string|null $filterId
+     *         Machine name of the region. (optional)
+     * @param StringFilter|null $filterProjectId
+     *         Allows filtering by `project_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterProjectTitle
+     *         Allows filtering by `project_title` using one or more operators. (optional)
+     * @param StringFilter|null $filterRegion
+     *         Allows filtering by `region` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListOrgSubscriptions200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/list-org-subscriptions
      */
     public function listOrgSubscriptions(
@@ -1964,9 +2162,31 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * List subscriptions with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string|null $filterStatus
+     *         The status of the subscription. (optional)
+     * @param  string|null $filterId
+     *         Machine name of the region. (optional)
+     * @param StringFilter|null $filterProjectId
+     *         Allows filtering by `project_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterProjectTitle
+     *         Allows filtering by `project_title` using one or more operators. (optional)
+     * @param StringFilter|null $filterRegion
+     *         Allows filtering by `region` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListOrgSubscriptions200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listOrgSubscriptionsWithHttpInfo(
         string $organizationId,
@@ -2025,6 +2245,29 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'listOrgSubscriptions'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string|null $filterStatus
+     *         The status of the subscription. (optional)
+     * @param  string|null $filterId
+     *         Machine name of the region. (optional)
+     * @param StringFilter|null $filterProjectId
+     *         Allows filtering by `project_id` using one or more operators. (optional)
+     * @param StringFilter|null $filterProjectTitle
+     *         Allows filtering by `project_title` using one or more operators. (optional)
+     * @param StringFilter|null $filterRegion
+     *         Allows filtering by `region` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgSubscriptionsRequest(
@@ -2048,7 +2291,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listOrgSubscriptions'
             );
         }
@@ -2063,7 +2306,7 @@ final class SubscriptionsApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling SubscriptionsApi.listOrgSubscriptions, 
+                'invalid value for "$pageSize" when calling SubscriptionsApi.listOrgSubscriptions,
                 must be smaller than or equal to 100.'
             );
         }
@@ -2297,11 +2540,13 @@ final class SubscriptionsApi extends AbstractApi
      * List addons for a subscription
      *
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return SubscriptionAddonsObject
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/list-subscription-addons
      */
     public function listSubscriptionAddons(
@@ -2317,10 +2562,14 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * List addons for a subscription with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return SubscriptionAddonsObject
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listSubscriptionAddonsWithHttpInfo(
         string $organizationId,
         string $subscriptionId
@@ -2360,6 +2609,11 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'listSubscriptionAddons'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function listSubscriptionAddonsRequest(
@@ -2374,7 +2628,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listSubscriptionAddons'
             );
         }
@@ -2386,7 +2640,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $subscriptionId 
+                'Missing the required parameter $subscriptionId
                 when calling listSubscriptionAddons'
             );
         }
@@ -2471,11 +2725,14 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Updates a subscription for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Subscription
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/update-org-subscription
      */
     public function updateOrgSubscription(
@@ -2493,10 +2750,15 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Update subscription with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Subscription
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateOrgSubscriptionWithHttpInfo(
         string $organizationId,
         string $subscriptionId,
@@ -2538,6 +2800,12 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'updateOrgSubscription'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateOrgSubscriptionRequest(
@@ -2553,7 +2821,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling updateOrgSubscription'
             );
         }
@@ -2565,7 +2833,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $subscriptionId 
+                'Missing the required parameter $subscriptionId
                 when calling updateOrgSubscription'
             );
         }
@@ -2658,11 +2926,14 @@ final class SubscriptionsApi extends AbstractApi
      *
      * Updates usage alerts for a subscription.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return GetSubscriptionUsageAlerts200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/update-subscription-usage-alerts
      */
     public function updateSubscriptionUsageAlerts(
@@ -2680,10 +2951,15 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Update usage alerts. with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return GetSubscriptionUsageAlerts200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateSubscriptionUsageAlertsWithHttpInfo(
         string $organizationId,
         string $subscriptionId,
@@ -2725,6 +3001,12 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create request for operation 'updateSubscriptionUsageAlerts'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string $subscriptionId
+     *         The ID of the subscription. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateSubscriptionUsageAlertsRequest(
@@ -2740,7 +3022,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling updateSubscriptionUsageAlerts'
             );
         }
@@ -2752,7 +3034,7 @@ final class SubscriptionsApi extends AbstractApi
             && count($subscriptionId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $subscriptionId 
+                'Missing the required parameter $subscriptionId
                 when calling updateSubscriptionUsageAlerts'
             );
         }
