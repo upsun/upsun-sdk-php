@@ -4,10 +4,10 @@ namespace Upsun\Coverage;
 
 require 'vendor/autoload.php';
 
-use Upsun\Coverage\Collector\ApiMethodCall;
-use Upsun\Coverage\Collector\FacadeMethodCall;
 use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
+use Upsun\Coverage\Collector\ApiMethodCall;
+use Upsun\Coverage\Collector\FacadeMethodCall;
 
 function scanDirectory($directory, $parser, $traverser)
 {
@@ -32,7 +32,7 @@ function scanDirectory($directory, $parser, $traverser)
     $phpFiles = new \RegexIterator($iterator, '/^.+\.php$/i');
 
     foreach ($phpFiles as $file) {
-        if (in_array($file->getPathName(), $excludedClasses)) {
+        if (in_array($file->getPathName(), $excludedClasses, true)) {
             continue;
         }
 
