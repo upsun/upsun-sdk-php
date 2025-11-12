@@ -51,7 +51,8 @@
         "rector/rector": "*",
         "squizlabs/php_codesniffer": "^3.13",
         "slevomat/coding-standard": "^8.22",
-        "phpdocumentor/shim": "^3.8"
+        "phpdocumentor/shim": "^3.8",
+        "nikic/php-parser": "^5.6"
     },
     "config": {
         "allow-plugins": {
@@ -61,7 +62,10 @@
         }
     },
     "autoload": {
-        "psr-4": { "Upsun\\" : "src/" }
+        "psr-4": {
+          "Upsun\\" : "src/",
+          "Upsun\\Coverage\\": "templates/Coverage/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
@@ -95,8 +99,8 @@
         "spec:generate:install": "npm install -g @openapitools/openapi-generator-cli",
         "spec:generate": "npx openapi-generator-cli generate -c templates/php/config.yaml",
 
-        "doc:md:generate": "vendor/bin/phpdoc -c phpdoc.markdown.xml",
-        "doc:html:generate": "vendor/bin/phpdoc -c phpdoc.html.xml",
+        "doc:generate:md": "vendor/bin/phpdoc -c phpdoc.markdown.xml",
+        "doc:generate:html": "vendor/bin/phpdoc -c phpdoc.html.xml",
 
         "spec:full": [
             "@spec:clean",
@@ -141,8 +145,8 @@
         ],
 
         "doc:full": [
-          "@doc:md:generate",
-          "@doc:html:generate"
+          "@doc:generate:md",
+          "@doc:generate:html"
         ]
     }
 }
