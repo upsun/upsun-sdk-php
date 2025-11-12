@@ -65,9 +65,11 @@ jobs:
           echo "invalid=$(jq -r '.invalid_facade_calls | length' api-coverage.json)" >> $GITHUB_OUTPUT
           echo "coverage=$(jq -r '.coverage_percentage' api-coverage.json)" >> $GITHUB_OUTPUT
 
-          echo "body<<EOF" >> $GITHUB_OUTPUT
-          jq . api-coverage.json >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          {
+              echo "json<<JSONEOF"
+              jq '.' api-coverage.json
+              echo "JSONEOF"
+          } >> $GITHUB_OUTPUT
 
       - name: Create Pull Request if changes
         uses: peter-evans/create-pull-request@v6
@@ -87,9 +89,7 @@ jobs:
 
             <details>
             <summary>📋 Full JSON report</summary>
-            ```json
-            ${{ steps.coverage.outputs.body }}
-            ```
+            <pre><code class="language-json">${{ steps.coverage.outputs.json }}</code></pre>
             </details>
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
           draft: false
