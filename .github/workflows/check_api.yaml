@@ -10,6 +10,8 @@ permissions:
 
 env:
   DEFAULT_BRANCH: "main"
+  # Define the primary PHP version for release, build, coverage uploads and badge generation
+  PRIMARY_PHP_VERSION: '8.4'
 
 jobs:
   check-and-update:
@@ -31,13 +33,8 @@ jobs:
       - name: Remove existing Api and Model Classes
         run: composer run spec:clean
 
-      - name: Download and patch OpenAPI spec
-        run: |
-          echo "Download OpenAPI spec..."
-          composer run spec:dl
-
-          echo "Patch OpenAPI spec..."
-          sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-upsun.json
+      - name: Download OpenAPI spec
+        run: composer run spec:dl
 
       - name: Pre-process OpenApi specs
         run: composer run spec:patch
@@ -45,12 +42,48 @@ jobs:
       - name: Generate Client/Model/Tests code (php)
         run: composer run spec:generate
 
+      - name: Fix all generated API and Model classes
+        run: composer run fix:all
+
+      - uses: ./.github/actions/doc
+        with:
+          default-runtime-version: ${{ env.PRIMARY_PHP_VERSION }}
+
+      - name: Run API vs Facade coverage analysis
+        run: php templates/Coverage/CheckApiCoverage.php
+
+      - name: Read coverage report
+        id: coverage
+        run: |
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          cat api-coverage.json | jq . >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Create Pull Request if changes
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
           commit-message: "Update OpenAPI spec"
-          body: "This PR updates the OpenAPI spec from the upstream source and applies formatting changes."
+          body: |
+            This PR updates the OpenAPI spec from the upstream source and applies formatting changes.
+
+            🧾 **API Coverage Report**
+
+            - Total API methods: $(jq '.total_api_methods' api-coverage.json)
+            - Called from facades: $(jq '.called_methods' api-coverage.json)
+            - Unmapped API methods: $(jq '.unmapped_methods | length' api-coverage.json)
+            - Invalid Facade API calls: $(jq '.invalid_facade_calls | length' api-coverage.json)
+            - Coverage: $(jq '.coverage_percentage' api-coverage.json)%
+
+            <details>
+            <summary>📋 Full JSON report</summary>
+
+            ```json
+            ${{ steps.coverage.outputs.body }}
+            ```
+            </details>
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
           draft: false
           delete-branch: false

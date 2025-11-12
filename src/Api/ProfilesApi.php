@@ -56,11 +56,11 @@ final class ProfilesApi extends AbstractApi
      *
      * Retrieves the address for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Address
-     *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/get-org-address
      */
     public function getOrgAddress(
@@ -74,10 +74,12 @@ final class ProfilesApi extends AbstractApi
     /**
      * Get address with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Address
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgAddressWithHttpInfo(
         string $organizationId
     ): Address {
@@ -115,6 +117,9 @@ final class ProfilesApi extends AbstractApi
     /**
      * Create request for operation 'getOrgAddress'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgAddressRequest(
@@ -128,7 +133,7 @@ final class ProfilesApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgAddress'
             );
         }
@@ -204,11 +209,11 @@ final class ProfilesApi extends AbstractApi
      *
      * Retrieves the profile for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Profile
-     *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/get-org-profile
      */
     public function getOrgProfile(
@@ -222,10 +227,12 @@ final class ProfilesApi extends AbstractApi
     /**
      * Get profile with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Profile
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgProfileWithHttpInfo(
         string $organizationId
     ): Profile {
@@ -263,6 +270,9 @@ final class ProfilesApi extends AbstractApi
     /**
      * Create request for operation 'getOrgProfile'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgProfileRequest(
@@ -276,7 +286,7 @@ final class ProfilesApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgProfile'
             );
         }
@@ -352,11 +362,12 @@ final class ProfilesApi extends AbstractApi
      *
      * Updates the address for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Address
-     *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/update-org-address
      */
     public function updateOrgAddress(
@@ -372,10 +383,13 @@ final class ProfilesApi extends AbstractApi
     /**
      * Update address with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Address
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateOrgAddressWithHttpInfo(
         string $organizationId,
         ?Address $address = null
@@ -415,6 +429,10 @@ final class ProfilesApi extends AbstractApi
     /**
      * Create request for operation 'updateOrgAddress'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateOrgAddressRequest(
@@ -429,7 +447,7 @@ final class ProfilesApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling updateOrgAddress'
             );
         }
@@ -513,11 +531,12 @@ final class ProfilesApi extends AbstractApi
      *
      * Updates the profile for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Profile
-     *
      * @see https://docs.upsun.com/api/#tag/Profiles/operation/update-org-profile
      */
     public function updateOrgProfile(
@@ -533,10 +552,13 @@ final class ProfilesApi extends AbstractApi
     /**
      * Update profile with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Profile
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateOrgProfileWithHttpInfo(
         string $organizationId,
         ?UpdateOrgProfileRequest $updateOrgProfileRequest = null
@@ -576,6 +598,10 @@ final class ProfilesApi extends AbstractApi
     /**
      * Create request for operation 'updateOrgProfile'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateOrgProfileRequest(
@@ -590,7 +616,7 @@ final class ProfilesApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling updateOrgProfile'
             );
         }

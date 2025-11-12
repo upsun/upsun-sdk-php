@@ -54,11 +54,10 @@ final class SshKeysApi extends AbstractApi
      * Add a new public SSH key to a user
      *
      *
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return SshKey
-     *
      * @see https://docs.upsun.com/api/#tag/Ssh-Keys/operation/create-ssh-key
      */
     public function createSshKey(
@@ -72,10 +71,11 @@ final class SshKeysApi extends AbstractApi
     /**
      * Add a new public SSH key to a user with HTTP Info
      *
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return SshKey
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createSshKeyWithHttpInfo(
         ?CreateSshKeyRequest $createSshKeyRequest = null
     ): SshKey {
@@ -112,6 +112,8 @@ final class SshKeysApi extends AbstractApi
 
     /**
      * Create request for operation 'createSshKey'
+     *
+
      *
      * @throws InvalidArgumentException
      */
@@ -189,9 +191,11 @@ final class SshKeysApi extends AbstractApi
      * Delete an SSH key
      *
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  int $keyId
+     *         The ID of the ssh key. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Ssh-Keys/operation/delete-ssh-key
      */
     public function deleteSshKey(
@@ -205,8 +209,12 @@ final class SshKeysApi extends AbstractApi
     /**
      * Delete an SSH key with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  int $keyId
+     *         The ID of the ssh key. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteSshKeyWithHttpInfo(
         int $keyId
     ): void {
@@ -238,6 +246,9 @@ final class SshKeysApi extends AbstractApi
     /**
      * Create request for operation 'deleteSshKey'
      *
+     * @param  int $keyId
+     *         The ID of the ssh key. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function deleteSshKeyRequest(
@@ -251,7 +262,7 @@ final class SshKeysApi extends AbstractApi
             && count($keyId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $keyId 
+                'Missing the required parameter $keyId
                 when calling deleteSshKey'
             );
         }
@@ -326,11 +337,11 @@ final class SshKeysApi extends AbstractApi
      * Get an SSH key
      *
      *
+     * @param  int $keyId
+     *         The ID of the ssh key. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return SshKey
-     *
      * @see https://docs.upsun.com/api/#tag/Ssh-Keys/operation/get-ssh-key
      */
     public function getSshKey(
@@ -344,10 +355,12 @@ final class SshKeysApi extends AbstractApi
     /**
      * Get an SSH key with HTTP Info
      *
+     * @param  int $keyId
+     *         The ID of the ssh key. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return SshKey
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getSshKeyWithHttpInfo(
         int $keyId
     ): SshKey {
@@ -385,6 +398,9 @@ final class SshKeysApi extends AbstractApi
     /**
      * Create request for operation 'getSshKey'
      *
+     * @param  int $keyId
+     *         The ID of the ssh key. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getSshKeyRequest(
@@ -398,7 +414,7 @@ final class SshKeysApi extends AbstractApi
             && count($keyId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $keyId 
+                'Missing the required parameter $keyId
                 when calling getSshKey'
             );
         }

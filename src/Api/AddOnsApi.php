@@ -55,11 +55,11 @@ final class AddOnsApi extends AbstractApi
      *
      * Retrieves information about the add-ons for an organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationAddonsObject
-     *
      * @see https://docs.upsun.com/api/#tag/Add-ons/operation/get-org-addons
      */
     public function getOrgAddons(
@@ -73,10 +73,12 @@ final class AddOnsApi extends AbstractApi
     /**
      * Get add-ons with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationAddonsObject
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgAddonsWithHttpInfo(
         string $organizationId
     ): OrganizationAddonsObject {
@@ -114,6 +116,9 @@ final class AddOnsApi extends AbstractApi
     /**
      * Create request for operation 'getOrgAddons'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgAddonsRequest(
@@ -127,7 +132,7 @@ final class AddOnsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgAddons'
             );
         }
@@ -203,11 +208,12 @@ final class AddOnsApi extends AbstractApi
      *
      * Updates the add-ons configuration for an organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationAddonsObject
-     *
      * @see https://docs.upsun.com/api/#tag/Add-ons/operation/update-org-addons
      */
     public function updateOrgAddons(
@@ -223,10 +229,13 @@ final class AddOnsApi extends AbstractApi
     /**
      * Update organization add-ons with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationAddonsObject
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateOrgAddonsWithHttpInfo(
         string $organizationId,
         UpdateOrgAddonsRequest $updateOrgAddonsRequest
@@ -266,6 +275,10 @@ final class AddOnsApi extends AbstractApi
     /**
      * Create request for operation 'updateOrgAddons'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateOrgAddonsRequest(
@@ -280,7 +293,7 @@ final class AddOnsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling updateOrgAddons'
             );
         }
@@ -292,7 +305,7 @@ final class AddOnsApi extends AbstractApi
             && count($updateOrgAddonsRequest) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $updateOrgAddonsRequest 
+                'Missing the required parameter $updateOrgAddonsRequest
                 when calling updateOrgAddons'
             );
         }

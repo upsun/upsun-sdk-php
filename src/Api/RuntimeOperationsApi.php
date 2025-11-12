@@ -58,11 +58,11 @@ final class RuntimeOperationsApi extends AbstractApi
      * configuration. More information on runtime operations is [available in our user
      * documentation](https://docs.upsun.com/anchors/app/runtime-operations/).
      *
+     * @param EnvironmentOperationInput $environmentOperationInput
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Runtime-Operations/operation/run-operation
      */
     public function runOperation(
@@ -82,9 +82,11 @@ final class RuntimeOperationsApi extends AbstractApi
     /**
      * Execute a runtime operation with HTTP Info
      *
+     * @param EnvironmentOperationInput $environmentOperationInput
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function runOperationWithHttpInfo(
         string $projectId,
@@ -129,6 +131,9 @@ final class RuntimeOperationsApi extends AbstractApi
     /**
      * Create request for operation 'runOperation'
      *
+     * @param EnvironmentOperationInput $environmentOperationInput
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function runOperationRequest(
@@ -145,7 +150,7 @@ final class RuntimeOperationsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling runOperation'
             );
         }
@@ -157,7 +162,7 @@ final class RuntimeOperationsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling runOperation'
             );
         }
@@ -169,7 +174,7 @@ final class RuntimeOperationsApi extends AbstractApi
             && count($deploymentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $deploymentId 
+                'Missing the required parameter $deploymentId
                 when calling runOperation'
             );
         }
@@ -181,7 +186,7 @@ final class RuntimeOperationsApi extends AbstractApi
             && count($environmentOperationInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentOperationInput 
+                'Missing the required parameter $environmentOperationInput
                 when calling runOperation'
             );
         }

@@ -52,11 +52,13 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Retrieves Autoscaler settings
      *
+     * @param  string $projectId
+     *         A string that uniquely identifies the project (required)
+     * @param  string $environmentId
+     *         A string that uniquely identifies the project environment (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AutoscalerSettings
-     *
      * @see https://docs.upsun.com/api/#tag/Autoscaling/operation/get-autoscaler-settings
      */
     public function getAutoscalerSettings(
@@ -71,10 +73,14 @@ final class AutoscalingApi extends AbstractApi
 
     /**
      *
+     * @param  string $projectId
+     *         A string that uniquely identifies the project (required)
+     * @param  string $environmentId
+     *         A string that uniquely identifies the project environment (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AutoscalerSettings
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getAutoscalerSettingsWithHttpInfo(
         string $projectId,
         string $environmentId
@@ -114,6 +120,11 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Create request for operation 'getAutoscalerSettings'
      *
+     * @param  string $projectId
+     *         A string that uniquely identifies the project (required)
+     * @param  string $environmentId
+     *         A string that uniquely identifies the project environment (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getAutoscalerSettingsRequest(
@@ -128,7 +139,7 @@ final class AutoscalingApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getAutoscalerSettings'
             );
         }
@@ -140,7 +151,7 @@ final class AutoscalingApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling getAutoscalerSettings'
             );
         }
@@ -223,11 +234,15 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Modifies Autoscaler settings
      *
+     * @param  string $projectId
+     *         A string that uniquely identifies the project (required)
+     * @param  string $environmentId
+     *         A string that uniquely identifies the project environment (required)
+     * @param AutoscalerSettings|null $autoscalerSettings
+     *         Settings to modify (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AutoscalerSettings
-     *
      * @see https://docs.upsun.com/api/#tag/Autoscaling/operation/patch-autoscaler-settings
      */
     public function patchAutoscalerSettings(
@@ -244,9 +259,15 @@ final class AutoscalingApi extends AbstractApi
 
     /**
      *
+     * @param  string $projectId
+     *         A string that uniquely identifies the project (required)
+     * @param  string $environmentId
+     *         A string that uniquely identifies the project environment (required)
+     * @param AutoscalerSettings|null $autoscalerSettings
+     *         Settings to modify (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AutoscalerSettings
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function patchAutoscalerSettingsWithHttpInfo(
         string $projectId,
@@ -289,6 +310,13 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Create request for operation 'patchAutoscalerSettings'
      *
+     * @param  string $projectId
+     *         A string that uniquely identifies the project (required)
+     * @param  string $environmentId
+     *         A string that uniquely identifies the project environment (required)
+     * @param AutoscalerSettings|null $autoscalerSettings
+     *         Settings to modify (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function patchAutoscalerSettingsRequest(
@@ -304,7 +332,7 @@ final class AutoscalingApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling patchAutoscalerSettings'
             );
         }
@@ -316,7 +344,7 @@ final class AutoscalingApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling patchAutoscalerSettings'
             );
         }
@@ -407,11 +435,15 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Updates Autoscaler settings
      *
+     * @param  string $projectId
+     *         A string that uniquely identifies the project (required)
+     * @param  string $environmentId
+     *         A string that uniquely identifies the project environment (required)
+     * @param AutoscalerSettings|null $autoscalerSettings
+     *         Settings to update (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AutoscalerSettings
-     *
      * @see https://docs.upsun.com/api/#tag/Autoscaling/operation/post-autoscaler-settings
      */
     public function postAutoscalerSettings(
@@ -428,9 +460,15 @@ final class AutoscalingApi extends AbstractApi
 
     /**
      *
+     * @param  string $projectId
+     *         A string that uniquely identifies the project (required)
+     * @param  string $environmentId
+     *         A string that uniquely identifies the project environment (required)
+     * @param AutoscalerSettings|null $autoscalerSettings
+     *         Settings to update (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AutoscalerSettings
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function postAutoscalerSettingsWithHttpInfo(
         string $projectId,
@@ -473,6 +511,13 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Create request for operation 'postAutoscalerSettings'
      *
+     * @param  string $projectId
+     *         A string that uniquely identifies the project (required)
+     * @param  string $environmentId
+     *         A string that uniquely identifies the project environment (required)
+     * @param AutoscalerSettings|null $autoscalerSettings
+     *         Settings to update (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function postAutoscalerSettingsRequest(
@@ -488,7 +533,7 @@ final class AutoscalingApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling postAutoscalerSettings'
             );
         }
@@ -500,7 +545,7 @@ final class AutoscalingApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling postAutoscalerSettings'
             );
         }

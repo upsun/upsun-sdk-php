@@ -61,11 +61,12 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Creates a new project in the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationProject
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/create-org-project
      */
     public function createOrgProject(
@@ -81,10 +82,13 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Create project with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationProject
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createOrgProjectWithHttpInfo(
         string $organizationId,
         CreateOrgProjectRequest $createOrgProjectRequest
@@ -124,6 +128,10 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Create request for operation 'createOrgProject'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function createOrgProjectRequest(
@@ -138,7 +146,7 @@ final class OrganizationProjectsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling createOrgProject'
             );
         }
@@ -150,7 +158,7 @@ final class OrganizationProjectsApi extends AbstractApi
             && count($createOrgProjectRequest) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $createOrgProjectRequest 
+                'Missing the required parameter $createOrgProjectRequest
                 when calling createOrgProject'
             );
         }
@@ -234,9 +242,13 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Deletes the specified project.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/delete-org-project
      */
     public function deleteOrgProject(
@@ -252,8 +264,14 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Delete project with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteOrgProjectWithHttpInfo(
         string $organizationId,
         string $projectId
@@ -287,6 +305,11 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Create request for operation 'deleteOrgProject'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function deleteOrgProjectRequest(
@@ -301,7 +324,7 @@ final class OrganizationProjectsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling deleteOrgProject'
             );
         }
@@ -313,7 +336,7 @@ final class OrganizationProjectsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deleteOrgProject'
             );
         }
@@ -398,11 +421,13 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Retrieves the specified project.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationProject
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/get-org-project
      */
     public function getOrgProject(
@@ -418,10 +443,14 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Get project with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationProject
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getOrgProjectWithHttpInfo(
         string $organizationId,
         string $projectId
@@ -461,6 +490,11 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Create request for operation 'getOrgProject'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getOrgProjectRequest(
@@ -475,7 +509,7 @@ final class OrganizationProjectsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling getOrgProject'
             );
         }
@@ -487,7 +521,7 @@ final class OrganizationProjectsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getOrgProject'
             );
         }
@@ -572,11 +606,29 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Retrieves a list of projects for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param StringFilter|null $filterTitle
+     *         Allows filtering by `title` using one or more operators. (optional)
+     * @param StringFilter|null $filterStatus
+     *         Allows filtering by `status` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterCreatedAt
+     *         Allows filtering by `created_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `id`, `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListOrgProjects200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/list-org-projects
      */
     public function listOrgProjects(
@@ -608,9 +660,29 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * List projects with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param StringFilter|null $filterTitle
+     *         Allows filtering by `title` using one or more operators. (optional)
+     * @param StringFilter|null $filterStatus
+     *         Allows filtering by `status` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterCreatedAt
+     *         Allows filtering by `created_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `id`, `created_at`, `updated_at`. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListOrgProjects200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listOrgProjectsWithHttpInfo(
         string $organizationId,
@@ -667,6 +739,27 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Create request for operation 'listOrgProjects'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param StringFilter|null $filterId
+     *         Allows filtering by `id` using one or more operators. (optional)
+     * @param StringFilter|null $filterTitle
+     *         Allows filtering by `title` using one or more operators. (optional)
+     * @param StringFilter|null $filterStatus
+     *         Allows filtering by `status` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param DateTimeFilter|null $filterCreatedAt
+     *         Allows filtering by `created_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `id`, `created_at`, `updated_at`. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgProjectsRequest(
@@ -689,7 +782,7 @@ final class OrganizationProjectsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listOrgProjects'
             );
         }
@@ -703,7 +796,7 @@ final class OrganizationProjectsApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling OrganizationProjectsApi.listOrgProjects, 
+                'invalid value for "$pageSize" when calling OrganizationProjectsApi.listOrgProjects,
                 must be smaller than or equal to 100.'
             );
         }
@@ -923,11 +1016,19 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Queries the carbon emission data for the specified project using the supplied parameters.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param DateTimeFilter|null $from
+     *         The start of the time frame for the query. Inclusive. (optional)
+     * @param DateTimeFilter|null $to
+     *         The end of the time frame for the query. Exclusive. (optional)
+     * @param  string|null $interval
+     *         The interval by which the query groups the results. of the time frame for the query. Exclusive. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ProjectCarbon
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/query-project-carbon
      */
     public function queryProjectCarbon(
@@ -949,9 +1050,19 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Query project carbon emissions metrics with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param DateTimeFilter|null $from
+     *         The start of the time frame for the query. Inclusive. (optional)
+     * @param DateTimeFilter|null $to
+     *         The end of the time frame for the query. Exclusive. (optional)
+     * @param  string|null $interval
+     *         The interval by which the query groups the results. of the time frame for the query. Exclusive. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ProjectCarbon
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function queryProjectCarbonWithHttpInfo(
         string $organizationId,
@@ -998,6 +1109,17 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Create request for operation 'queryProjectCarbon'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param DateTimeFilter|null $from
+     *         The start of the time frame for the query. Inclusive. (optional)
+     * @param DateTimeFilter|null $to
+     *         The end of the time frame for the query. Exclusive. (optional)
+     * @param  string|null $interval
+     *         The interval by which the query groups the results. of the time frame for the query. Exclusive. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function queryProjectCarbonRequest(
@@ -1015,7 +1137,7 @@ final class OrganizationProjectsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling queryProjectCarbon'
             );
         }
@@ -1027,7 +1149,7 @@ final class OrganizationProjectsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling queryProjectCarbon'
             );
         }
@@ -1159,11 +1281,14 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * Updates the specified project.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationProject
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/update-org-project
      */
     public function updateOrgProject(
@@ -1181,10 +1306,15 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Update project with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationProject
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateOrgProjectWithHttpInfo(
         string $organizationId,
         string $projectId,
@@ -1226,6 +1356,12 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Create request for operation 'updateOrgProject'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateOrgProjectRequest(
@@ -1241,7 +1377,7 @@ final class OrganizationProjectsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling updateOrgProject'
             );
         }
@@ -1253,7 +1389,7 @@ final class OrganizationProjectsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateOrgProject'
             );
         }

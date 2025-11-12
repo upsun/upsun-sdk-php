@@ -55,9 +55,12 @@ final class VouchersApi extends AbstractApi
      *
      * Applies a voucher for the specified organization, and refreshes the currently open order.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Vouchers/operation/apply-org-voucher
      */
     public function applyOrgVoucher(
@@ -73,8 +76,13 @@ final class VouchersApi extends AbstractApi
     /**
      * Apply voucher with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function applyOrgVoucherWithHttpInfo(
         string $organizationId,
         ApplyOrgVoucherRequest $applyOrgVoucherRequest
@@ -108,6 +116,10 @@ final class VouchersApi extends AbstractApi
     /**
      * Create request for operation 'applyOrgVoucher'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function applyOrgVoucherRequest(
@@ -122,7 +134,7 @@ final class VouchersApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling applyOrgVoucher'
             );
         }
@@ -134,7 +146,7 @@ final class VouchersApi extends AbstractApi
             && count($applyOrgVoucherRequest) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $applyOrgVoucherRequest 
+                'Missing the required parameter $applyOrgVoucherRequest
                 when calling applyOrgVoucher'
             );
         }
@@ -218,11 +230,11 @@ final class VouchersApi extends AbstractApi
      *
      * Retrieves vouchers for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Vouchers
-     *
      * @see https://docs.upsun.com/api/#tag/Vouchers/operation/list-org-vouchers
      */
     public function listOrgVouchers(
@@ -236,10 +248,12 @@ final class VouchersApi extends AbstractApi
     /**
      * List vouchers with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Vouchers
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listOrgVouchersWithHttpInfo(
         string $organizationId
     ): Vouchers {
@@ -277,6 +291,9 @@ final class VouchersApi extends AbstractApi
     /**
      * Create request for operation 'listOrgVouchers'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgVouchersRequest(
@@ -290,7 +307,7 @@ final class VouchersApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listOrgVouchers'
             );
         }

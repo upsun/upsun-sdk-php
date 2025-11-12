@@ -56,9 +56,14 @@ final class PhoneNumberApi extends AbstractApi
      *
      * Confirms phone number using a verification code.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $sid
+     *         The session ID obtained from `POST /users/{user_id}/phonenumber`. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/PhoneNumber/operation/confirm-phone-number
      */
     public function confirmPhoneNumber(
@@ -76,8 +81,15 @@ final class PhoneNumberApi extends AbstractApi
     /**
      * Confirm phone number with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $sid
+     *         The session ID obtained from `POST /users/{user_id}/phonenumber`. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function confirmPhoneNumberWithHttpInfo(
         string $sid,
         string $userId,
@@ -113,6 +125,12 @@ final class PhoneNumberApi extends AbstractApi
     /**
      * Create request for operation 'confirmPhoneNumber'
      *
+     * @param  string $sid
+     *         The session ID obtained from `POST /users/{user_id}/phonenumber`. (required)
+     * @param  string $userId
+     *         The ID of the user. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function confirmPhoneNumberRequest(
@@ -128,7 +146,7 @@ final class PhoneNumberApi extends AbstractApi
             && count($sid) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $sid 
+                'Missing the required parameter $sid
                 when calling confirmPhoneNumber'
             );
         }
@@ -140,7 +158,7 @@ final class PhoneNumberApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling confirmPhoneNumber'
             );
         }
@@ -233,11 +251,12 @@ final class PhoneNumberApi extends AbstractApi
      *
      * Starts a phone number verification session.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return VerifyPhoneNumber200Response
-     *
      * @see https://docs.upsun.com/api/#tag/PhoneNumber/operation/verify-phone-number
      */
     public function verifyPhoneNumber(
@@ -253,10 +272,13 @@ final class PhoneNumberApi extends AbstractApi
     /**
      * Verify phone number with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return VerifyPhoneNumber200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function verifyPhoneNumberWithHttpInfo(
         string $userId,
         ?VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
@@ -296,6 +318,10 @@ final class PhoneNumberApi extends AbstractApi
     /**
      * Create request for operation 'verifyPhoneNumber'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function verifyPhoneNumberRequest(
@@ -310,7 +336,7 @@ final class PhoneNumberApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling verifyPhoneNumber'
             );
         }

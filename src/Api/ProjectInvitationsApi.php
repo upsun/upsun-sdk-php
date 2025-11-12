@@ -57,9 +57,13 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * Cancels the specified invitation.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $invitationId
+     *         The ID of the invitation. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Project-Invitations/operation/cancel-project-invite
      */
     public function cancelProjectInvite(
@@ -75,8 +79,14 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * Cancel a pending invitation to a project with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $invitationId
+     *         The ID of the invitation. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function cancelProjectInviteWithHttpInfo(
         string $projectId,
         string $invitationId
@@ -110,6 +120,11 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * Create request for operation 'cancelProjectInvite'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $invitationId
+     *         The ID of the invitation. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function cancelProjectInviteRequest(
@@ -124,7 +139,7 @@ final class ProjectInvitationsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling cancelProjectInvite'
             );
         }
@@ -136,7 +151,7 @@ final class ProjectInvitationsApi extends AbstractApi
             && count($invitationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $invitationId 
+                'Missing the required parameter $invitationId
                 when calling cancelProjectInvite'
             );
         }
@@ -221,11 +236,12 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * Creates an invitation to a project for a user with the specified email address.
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ProjectInvitation
-     *
      * @see https://docs.upsun.com/api/#tag/Project-Invitations/operation/create-project-invite
      */
     public function createProjectInvite(
@@ -241,10 +257,13 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * Invite user to a project by email with HTTP Info
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ProjectInvitation
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createProjectInviteWithHttpInfo(
         string $projectId,
         ?CreateProjectInviteRequest $createProjectInviteRequest = null
@@ -284,6 +303,10 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * Create request for operation 'createProjectInvite'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function createProjectInviteRequest(
@@ -298,7 +321,7 @@ final class ProjectInvitationsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling createProjectInvite'
             );
         }
@@ -382,11 +405,23 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * Returns a list of invitations to a project.
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param StringFilter|null $filterState
+     *         Allows filtering by `state` of the invtations: \"pending\" (default), \"error\". (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ProjectInvitation[]
      *
+     * @return ProjectInvitation[]
      * @see https://docs.upsun.com/api/#tag/Project-Invitations/operation/list-project-invites
      */
     public function listProjectInvites(
@@ -410,8 +445,22 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * List invitations to a project with HTTP Info
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param StringFilter|null $filterState
+     *         Allows filtering by `state` of the invtations: \"pending\" (default), \"error\". (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return ProjectInvitation[]
      */
     private function listProjectInvitesWithHttpInfo(
@@ -461,6 +510,19 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * Create request for operation 'listProjectInvites'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param StringFilter|null $filterState
+     *         Allows filtering by `state` of the invtations: \"pending\" (default), \"error\". (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectInvitesRequest(
@@ -479,7 +541,7 @@ final class ProjectInvitationsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectInvites'
             );
         }
@@ -489,7 +551,7 @@ final class ProjectInvitationsApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling ProjectInvitationsApi.listProjectInvites, 
+                'invalid value for "$pageSize" when calling ProjectInvitationsApi.listProjectInvites,
                 must be smaller than or equal to 100.'
             );
         }

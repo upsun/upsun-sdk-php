@@ -58,11 +58,11 @@ final class EnvironmentBackupsApi extends AbstractApi
      * Trigger a new backup of an environment to be created. See the
      * [Backups](https://docs.upsun.com/anchors/environments/backup/) section of the documentation for more information.
      *
+     * @param EnvironmentBackupInput $environmentBackupInput
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/backup-environment
      */
     public function backupEnvironment(
@@ -80,9 +80,11 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Create backup of environment with HTTP Info
      *
+     * @param EnvironmentBackupInput $environmentBackupInput
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function backupEnvironmentWithHttpInfo(
         string $projectId,
@@ -125,6 +127,9 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Create request for operation 'backupEnvironment'
      *
+     * @param EnvironmentBackupInput $environmentBackupInput
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function backupEnvironmentRequest(
@@ -140,7 +145,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling backupEnvironment'
             );
         }
@@ -152,7 +157,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling backupEnvironment'
             );
         }
@@ -164,7 +169,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentBackupInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentBackupInput 
+                'Missing the required parameter $environmentBackupInput
                 when calling backupEnvironment'
             );
         }
@@ -259,11 +264,12 @@ final class EnvironmentBackupsApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Backups/paths//projects/{projectId}/environments/{environmentId}/backups/get)
      * endpoint.
      *
+
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/delete-projects-environments-backups
      */
     public function deleteProjectsEnvironmentsBackups(
@@ -281,10 +287,13 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Delete an environment backup with HTTP Info
      *
+
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteProjectsEnvironmentsBackupsWithHttpInfo(
         string $projectId,
         string $environmentId,
@@ -326,6 +335,10 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Create request for operation 'deleteProjectsEnvironmentsBackups'
      *
+
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function deleteProjectsEnvironmentsBackupsRequest(
@@ -341,7 +354,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deleteProjectsEnvironmentsBackups'
             );
         }
@@ -353,7 +366,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling deleteProjectsEnvironmentsBackups'
             );
         }
@@ -365,7 +378,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($backupId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $backupId 
+                'Missing the required parameter $backupId
                 when calling deleteProjectsEnvironmentsBackups'
             );
         }
@@ -462,11 +475,12 @@ final class EnvironmentBackupsApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Backups/paths//projects/{projectId}/environments/{environmentId}/backups/get)
      * endpoint.
      *
+
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Backup
-     *
      * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/get-projects-environments-backups
      */
     public function getProjectsEnvironmentsBackups(
@@ -484,10 +498,13 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Get an environment backup's info with HTTP Info
      *
+
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Backup
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsEnvironmentsBackupsWithHttpInfo(
         string $projectId,
         string $environmentId,
@@ -529,6 +546,10 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsEnvironmentsBackups'
      *
+
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsEnvironmentsBackupsRequest(
@@ -544,7 +565,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsEnvironmentsBackups'
             );
         }
@@ -556,7 +577,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling getProjectsEnvironmentsBackups'
             );
         }
@@ -568,7 +589,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($backupId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $backupId 
+                'Missing the required parameter $backupId
                 when calling getProjectsEnvironmentsBackups'
             );
         }
@@ -663,10 +684,10 @@ final class EnvironmentBackupsApi extends AbstractApi
      * Retrieve a list of objects representing backups of this environment.
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Backup[]
      *
+     * @return Backup[]
      * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/list-projects-environments-backups
      */
     public function listProjectsEnvironmentsBackups(
@@ -683,7 +704,9 @@ final class EnvironmentBackupsApi extends AbstractApi
      * Get an environment's backup list with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return Backup[]
      */
     private function listProjectsEnvironmentsBackupsWithHttpInfo(
@@ -725,6 +748,9 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsEnvironmentsBackups'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsEnvironmentsBackupsRequest(
@@ -739,7 +765,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsEnvironmentsBackups'
             );
         }
@@ -751,7 +777,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsBackups'
             );
         }
@@ -838,11 +864,11 @@ final class EnvironmentBackupsApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Backups/paths//projects/{projectId}/environments/{environmentId}/backups/get)
      * endpoint.
      *
+     * @param EnvironmentRestoreInput $environmentRestoreInput
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/restore-backup
      */
     public function restoreBackup(
@@ -862,9 +888,11 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Restore an environment snapshot with HTTP Info
      *
+     * @param EnvironmentRestoreInput $environmentRestoreInput
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function restoreBackupWithHttpInfo(
         string $projectId,
@@ -909,6 +937,9 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Create request for operation 'restoreBackup'
      *
+     * @param EnvironmentRestoreInput $environmentRestoreInput
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function restoreBackupRequest(
@@ -925,7 +956,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling restoreBackup'
             );
         }
@@ -937,7 +968,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling restoreBackup'
             );
         }
@@ -949,7 +980,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($backupId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $backupId 
+                'Missing the required parameter $backupId
                 when calling restoreBackup'
             );
         }
@@ -961,7 +992,7 @@ final class EnvironmentBackupsApi extends AbstractApi
             && count($environmentRestoreInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentRestoreInput 
+                'Missing the required parameter $environmentRestoreInput
                 when calling restoreBackup'
             );
         }

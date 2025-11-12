@@ -59,11 +59,11 @@ final class RepositoryApi extends AbstractApi
      * read-only access to the contents of files in a repo. It returns the file in the `content` field of the response
      * object, encoded according to the format in the `encoding` field, e.g. `base64`.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Blob
-     *
      * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-blobs
      */
     public function getProjectsGitBlobs(
@@ -79,10 +79,12 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a blob object with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Blob
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsGitBlobsWithHttpInfo(
         string $projectId,
         string $repositoryBlobId
@@ -122,6 +124,9 @@ final class RepositoryApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsGitBlobs'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsGitBlobsRequest(
@@ -136,7 +141,7 @@ final class RepositoryApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsGitBlobs'
             );
         }
@@ -148,7 +153,7 @@ final class RepositoryApi extends AbstractApi
             && count($repositoryBlobId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $repositoryBlobId 
+                'Missing the required parameter $repositoryBlobId
                 when calling getProjectsGitBlobs'
             );
         }
@@ -237,11 +242,11 @@ final class RepositoryApi extends AbstractApi
      * endpoint, while the tree state represented by this commit can be retrieved using the Get a tree object
      * (https://docs.upsun.com/api/#tag/Git-Repo/paths//projects/{projectId}/git/trees/{repositoryTreeId}/get) endpoint.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Commit
-     *
      * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-commits
      */
     public function getProjectsGitCommits(
@@ -257,10 +262,12 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a commit object with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Commit
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsGitCommitsWithHttpInfo(
         string $projectId,
         string $repositoryCommitId
@@ -300,6 +307,9 @@ final class RepositoryApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsGitCommits'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsGitCommitsRequest(
@@ -314,7 +324,7 @@ final class RepositoryApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsGitCommits'
             );
         }
@@ -326,7 +336,7 @@ final class RepositoryApi extends AbstractApi
             && count($repositoryCommitId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $repositoryCommitId 
+                'Missing the required parameter $repositoryCommitId
                 when calling getProjectsGitCommits'
             );
         }
@@ -414,11 +424,11 @@ final class RepositoryApi extends AbstractApi
      * pattern. *NOTE: The `{repositoryRefId}` must be properly escaped.* That is, the ref `refs/heads/master` is
      * accessible via `/projects/{projectId}/git/refs/heads/master`.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Ref
-     *
      * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-refs
      */
     public function getProjectsGitRefs(
@@ -434,10 +444,12 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a ref object with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Ref
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsGitRefsWithHttpInfo(
         string $projectId,
         string $repositoryRefId
@@ -477,6 +489,9 @@ final class RepositoryApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsGitRefs'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsGitRefsRequest(
@@ -491,7 +506,7 @@ final class RepositoryApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsGitRefs'
             );
         }
@@ -503,7 +518,7 @@ final class RepositoryApi extends AbstractApi
             && count($repositoryRefId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $repositoryRefId 
+                'Missing the required parameter $repositoryRefId
                 when calling getProjectsGitRefs'
             );
         }
@@ -591,11 +606,11 @@ final class RepositoryApi extends AbstractApi
      * through their hashes. Files in the tree can be retrieved by the Get a blob object
      * (https://docs.upsun.com/api/#tag/Git-Repo/paths//projects/{projectId}/git/blobs/{repositoryBlobId}/get) endpoint.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Tree
-     *
      * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-trees
      */
     public function getProjectsGitTrees(
@@ -611,10 +626,12 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a tree object with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Tree
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsGitTreesWithHttpInfo(
         string $projectId,
         string $repositoryTreeId
@@ -654,6 +671,9 @@ final class RepositoryApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsGitTrees'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsGitTreesRequest(
@@ -668,7 +688,7 @@ final class RepositoryApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsGitTrees'
             );
         }
@@ -680,7 +700,7 @@ final class RepositoryApi extends AbstractApi
             && count($repositoryTreeId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $repositoryTreeId 
+                'Missing the required parameter $repositoryTreeId
                 when calling getProjectsGitTrees'
             );
         }
@@ -770,10 +790,10 @@ final class RepositoryApi extends AbstractApi
      * endpoint to retrieve information about that specific commit.
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Ref[]
      *
+     * @return Ref[]
      * @see https://docs.upsun.com/api/#tag/Repository/operation/list-projects-git-refs
      */
     public function listProjectsGitRefs(
@@ -788,7 +808,9 @@ final class RepositoryApi extends AbstractApi
      * Get list of repository refs with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return Ref[]
      */
     private function listProjectsGitRefsWithHttpInfo(
@@ -828,6 +850,8 @@ final class RepositoryApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsGitRefs'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsGitRefsRequest(
@@ -841,7 +865,7 @@ final class RepositoryApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsGitRefs'
             );
         }

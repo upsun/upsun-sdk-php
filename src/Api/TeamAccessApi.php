@@ -56,11 +56,13 @@ final class TeamAccessApi extends AbstractApi
      *
      * Retrieves the team's permissions for the current project.
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $teamId
+     *         The ID of the team. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return TeamProjectAccess
-     *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/get-project-team-access
      */
     public function getProjectTeamAccess(
@@ -76,10 +78,14 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Get team access for a project with HTTP Info
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $teamId
+     *         The ID of the team. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return TeamProjectAccess
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectTeamAccessWithHttpInfo(
         string $projectId,
         string $teamId
@@ -119,6 +125,11 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Create request for operation 'getProjectTeamAccess'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectTeamAccessRequest(
@@ -133,7 +144,7 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectTeamAccess'
             );
         }
@@ -145,7 +156,7 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling getProjectTeamAccess'
             );
         }
@@ -230,11 +241,13 @@ final class TeamAccessApi extends AbstractApi
      *
      * Retrieves the team's permissions for the current project.
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return TeamProjectAccess
-     *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/get-team-project-access
      */
     public function getTeamProjectAccess(
@@ -250,10 +263,14 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Get project access for a team with HTTP Info
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return TeamProjectAccess
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getTeamProjectAccessWithHttpInfo(
         string $teamId,
         string $projectId
@@ -293,6 +310,11 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Create request for operation 'getTeamProjectAccess'
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getTeamProjectAccessRequest(
@@ -307,7 +329,7 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling getTeamProjectAccess'
             );
         }
@@ -319,7 +341,7 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getTeamProjectAccess'
             );
         }
@@ -404,9 +426,12 @@ final class TeamAccessApi extends AbstractApi
      *
      * Grants one or more team access to a specific project.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/grant-project-team-access
      */
     public function grantProjectTeamAccess(
@@ -422,8 +447,13 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Grant team access to a project with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function grantProjectTeamAccessWithHttpInfo(
         string $projectId,
         array $grantProjectTeamAccessRequestInner
@@ -457,6 +487,10 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Create request for operation 'grantProjectTeamAccess'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function grantProjectTeamAccessRequest(
@@ -471,7 +505,7 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling grantProjectTeamAccess'
             );
         }
@@ -483,7 +517,7 @@ final class TeamAccessApi extends AbstractApi
             && $grantProjectTeamAccessRequestInner === [])
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $grantProjectTeamAccessRequestInner 
+                'Missing the required parameter $grantProjectTeamAccessRequestInner
                 when calling grantProjectTeamAccess'
             );
         }
@@ -567,9 +601,12 @@ final class TeamAccessApi extends AbstractApi
      *
      * Adds the team to one or more specified projects.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $teamId
+     *         The ID of the team. (required)
+
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/grant-team-project-access
      */
     public function grantTeamProjectAccess(
@@ -585,8 +622,13 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Grant project access to a team with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $teamId
+     *         The ID of the team. (required)
+
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function grantTeamProjectAccessWithHttpInfo(
         string $teamId,
         array $grantTeamProjectAccessRequestInner
@@ -620,6 +662,10 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Create request for operation 'grantTeamProjectAccess'
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function grantTeamProjectAccessRequest(
@@ -634,7 +680,7 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling grantTeamProjectAccess'
             );
         }
@@ -646,7 +692,7 @@ final class TeamAccessApi extends AbstractApi
             && $grantTeamProjectAccessRequestInner === [])
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $grantTeamProjectAccessRequestInner 
+                'Missing the required parameter $grantTeamProjectAccessRequestInner
                 when calling grantTeamProjectAccess'
             );
         }
@@ -730,11 +776,19 @@ final class TeamAccessApi extends AbstractApi
      *
      * Returns a list of items representing the project access.
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `granted_at`, `updated_at`. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListProjectTeamAccess200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/list-project-team-access
      */
     public function listProjectTeamAccess(
@@ -756,10 +810,20 @@ final class TeamAccessApi extends AbstractApi
     /**
      * List team access for a project with HTTP Info
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `granted_at`, `updated_at`. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListProjectTeamAccess200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listProjectTeamAccessWithHttpInfo(
         string $projectId,
         ?int $pageSize = null,
@@ -805,6 +869,17 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Create request for operation 'listProjectTeamAccess'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `granted_at`, `updated_at`. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectTeamAccessRequest(
@@ -822,7 +897,7 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectTeamAccess'
             );
         }
@@ -831,7 +906,7 @@ final class TeamAccessApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 200) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling TeamAccessApi.listProjectTeamAccess, 
+                'invalid value for "$pageSize" when calling TeamAccessApi.listProjectTeamAccess,
                 must be smaller than or equal to 200.'
             );
         }
@@ -976,11 +1051,19 @@ final class TeamAccessApi extends AbstractApi
      *
      * Returns a list of items representing the team's project access.
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `project_title`, `granted_at`, `updated_at`. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListProjectTeamAccess200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/list-team-project-access
      */
     public function listTeamProjectAccess(
@@ -1002,10 +1085,20 @@ final class TeamAccessApi extends AbstractApi
     /**
      * List project access for a team with HTTP Info
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `project_title`, `granted_at`, `updated_at`. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListProjectTeamAccess200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listTeamProjectAccessWithHttpInfo(
         string $teamId,
         ?int $pageSize = null,
@@ -1051,6 +1144,17 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Create request for operation 'listTeamProjectAccess'
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `project_title`, `granted_at`, `updated_at`. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listTeamProjectAccessRequest(
@@ -1068,7 +1172,7 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling listTeamProjectAccess'
             );
         }
@@ -1077,7 +1181,7 @@ final class TeamAccessApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 200) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling TeamAccessApi.listTeamProjectAccess, 
+                'invalid value for "$pageSize" when calling TeamAccessApi.listTeamProjectAccess,
                 must be smaller than or equal to 200.'
             );
         }
@@ -1222,9 +1326,13 @@ final class TeamAccessApi extends AbstractApi
      *
      * Removes the team from the current project.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $teamId
+     *         The ID of the team. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/remove-project-team-access
      */
     public function removeProjectTeamAccess(
@@ -1240,8 +1348,14 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Remove team access for a project with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function removeProjectTeamAccessWithHttpInfo(
         string $projectId,
         string $teamId
@@ -1275,6 +1389,11 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Create request for operation 'removeProjectTeamAccess'
      *
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function removeProjectTeamAccessRequest(
@@ -1289,7 +1408,7 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling removeProjectTeamAccess'
             );
         }
@@ -1301,7 +1420,7 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling removeProjectTeamAccess'
             );
         }
@@ -1386,9 +1505,13 @@ final class TeamAccessApi extends AbstractApi
      *
      * Removes the team from the current project.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/remove-team-project-access
      */
     public function removeTeamProjectAccess(
@@ -1404,8 +1527,14 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Remove project access for a team with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function removeTeamProjectAccessWithHttpInfo(
         string $teamId,
         string $projectId
@@ -1439,6 +1568,11 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Create request for operation 'removeTeamProjectAccess'
      *
+     * @param  string $teamId
+     *         The ID of the team. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function removeTeamProjectAccessRequest(
@@ -1453,7 +1587,7 @@ final class TeamAccessApi extends AbstractApi
             && count($teamId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $teamId 
+                'Missing the required parameter $teamId
                 when calling removeTeamProjectAccess'
             );
         }
@@ -1465,7 +1599,7 @@ final class TeamAccessApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling removeTeamProjectAccess'
             );
         }

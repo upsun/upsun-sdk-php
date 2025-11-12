@@ -57,11 +57,12 @@ final class DeploymentApi extends AbstractApi
      * Retrieve a single deployment configuration with an id of `current`. This may be subject to change in the future.
      * Only `current` can be queried.
      *
+
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Deployment
-     *
      * @see https://docs.upsun.com/api/#tag/Deployment/operation/get-projects-environments-deployments
      */
     public function getProjectsEnvironmentsDeployments(
@@ -79,10 +80,13 @@ final class DeploymentApi extends AbstractApi
     /**
      * Get a single environment deployment with HTTP Info
      *
+
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Deployment
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsEnvironmentsDeploymentsWithHttpInfo(
         string $projectId,
         string $environmentId,
@@ -124,6 +128,10 @@ final class DeploymentApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsEnvironmentsDeployments'
      *
+
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsEnvironmentsDeploymentsRequest(
@@ -139,7 +147,7 @@ final class DeploymentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsEnvironmentsDeployments'
             );
         }
@@ -151,7 +159,7 @@ final class DeploymentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling getProjectsEnvironmentsDeployments'
             );
         }
@@ -163,7 +171,7 @@ final class DeploymentApi extends AbstractApi
             && count($deploymentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $deploymentId 
+                'Missing the required parameter $deploymentId
                 when calling getProjectsEnvironmentsDeployments'
             );
         }
@@ -263,10 +271,10 @@ final class DeploymentApi extends AbstractApi
      * configuration with an `id` of `current`. This may be subject to change in the future.
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Deployment[]
      *
+     * @return Deployment[]
      * @see https://docs.upsun.com/api/#tag/Deployment/operation/list-projects-environments-deployments
      */
     public function listProjectsEnvironmentsDeployments(
@@ -283,7 +291,9 @@ final class DeploymentApi extends AbstractApi
      * Get an environment's deployment information with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return Deployment[]
      */
     private function listProjectsEnvironmentsDeploymentsWithHttpInfo(
@@ -325,6 +335,9 @@ final class DeploymentApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsEnvironmentsDeployments'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsEnvironmentsDeploymentsRequest(
@@ -339,7 +352,7 @@ final class DeploymentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsEnvironmentsDeployments'
             );
         }
@@ -351,7 +364,7 @@ final class DeploymentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsDeployments'
             );
         }
@@ -436,11 +449,12 @@ final class DeploymentApi extends AbstractApi
      *
      * Update resources for either webapps, services, or workers in the next deployment.
      *
+
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Deployment/operation/update-projects-environments-deployments-next
      */
     public function updateProjectsEnvironmentsDeploymentsNext(
@@ -458,10 +472,13 @@ final class DeploymentApi extends AbstractApi
     /**
      * Update the next deployment with HTTP Info
      *
+
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
         string $projectId,
         string $environmentId,
@@ -503,6 +520,10 @@ final class DeploymentApi extends AbstractApi
     /**
      * Create request for operation 'updateProjectsEnvironmentsDeploymentsNext'
      *
+
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateProjectsEnvironmentsDeploymentsNextRequest(
@@ -518,7 +539,7 @@ final class DeploymentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjectsEnvironmentsDeploymentsNext'
             );
         }
@@ -530,7 +551,7 @@ final class DeploymentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling updateProjectsEnvironmentsDeploymentsNext'
             );
         }
@@ -542,7 +563,7 @@ final class DeploymentApi extends AbstractApi
             && count($updateProjectsEnvironmentsDeploymentsNextRequest) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $updateProjectsEnvironmentsDeploymentsNextRequest 
+                'Missing the required parameter $updateProjectsEnvironmentsDeploymentsNextRequest
                 when calling updateProjectsEnvironmentsDeploymentsNext'
             );
         }

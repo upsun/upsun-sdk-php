@@ -56,11 +56,27 @@ final class RecordsApi extends AbstractApi
      *
      * Retrieves plan records for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterSubscriptionId
+     *         The ID of the subscription (optional)
+     * @param  string|null $filterPlan
+     *         The plan type of the subscription. (optional)
+     * @param  string|null $filterStatus
+     *         The status of the plan record. (optional)
+     * @param DateTime|null $filterStart
+     *         The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)
+     * @param DateTime|null $filterEnd
+     *         The end of the observation period for the record. E.g. filter[end]=2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 (optional)
+     * @param DateTime|null $filterStartedAt
+     *         The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
+     * @param DateTime|null $filterEndedAt
+     *         The record's end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListOrgPlanRecords200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-plan-records
      */
     public function listOrgPlanRecords(
@@ -90,9 +106,27 @@ final class RecordsApi extends AbstractApi
     /**
      * List plan records with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterSubscriptionId
+     *         The ID of the subscription (optional)
+     * @param  string|null $filterPlan
+     *         The plan type of the subscription. (optional)
+     * @param  string|null $filterStatus
+     *         The status of the plan record. (optional)
+     * @param DateTime|null $filterStart
+     *         The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)
+     * @param DateTime|null $filterEnd
+     *         The end of the observation period for the record. E.g. filter[end]=2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 (optional)
+     * @param DateTime|null $filterStartedAt
+     *         The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
+     * @param DateTime|null $filterEndedAt
+     *         The record's end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListOrgPlanRecords200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listOrgPlanRecordsWithHttpInfo(
         string $organizationId,
@@ -147,6 +181,25 @@ final class RecordsApi extends AbstractApi
     /**
      * Create request for operation 'listOrgPlanRecords'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterSubscriptionId
+     *         The ID of the subscription (optional)
+     * @param  string|null $filterPlan
+     *         The plan type of the subscription. (optional)
+     * @param  string|null $filterStatus
+     *         The status of the plan record. (optional)
+     * @param DateTime|null $filterStart
+     *         The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)
+     * @param DateTime|null $filterEnd
+     *         The end of the observation period for the record. E.g. filter[end]=2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 (optional)
+     * @param DateTime|null $filterStartedAt
+     *         The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
+     * @param DateTime|null $filterEndedAt
+     *         The record's end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgPlanRecordsRequest(
@@ -168,7 +221,7 @@ final class RecordsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listOrgPlanRecords'
             );
         }
@@ -371,11 +424,21 @@ final class RecordsApi extends AbstractApi
      *
      * Retrieves usage records for the specified organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterSubscriptionId
+     *         The ID of the subscription (optional)
+     * @param  string|null $filterUsageGroup
+     *         Filter records by the type of usage. (optional)
+     * @param DateTime|null $filterStart
+     *         The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)
+     * @param DateTime|null $filterStartedAt
+     *         The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListOrgUsageRecords200Response
-     *
      * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-usage-records
      */
     public function listOrgUsageRecords(
@@ -399,9 +462,21 @@ final class RecordsApi extends AbstractApi
     /**
      * List usage records with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterSubscriptionId
+     *         The ID of the subscription (optional)
+     * @param  string|null $filterUsageGroup
+     *         Filter records by the type of usage. (optional)
+     * @param DateTime|null $filterStart
+     *         The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)
+     * @param DateTime|null $filterStartedAt
+     *         The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListOrgUsageRecords200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function listOrgUsageRecordsWithHttpInfo(
         string $organizationId,
@@ -450,6 +525,19 @@ final class RecordsApi extends AbstractApi
     /**
      * Create request for operation 'listOrgUsageRecords'
      *
+     * @param  string $organizationId
+     *         The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)
+     * @param  string|null $filterSubscriptionId
+     *         The ID of the subscription (optional)
+     * @param  string|null $filterUsageGroup
+     *         Filter records by the type of usage. (optional)
+     * @param DateTime|null $filterStart
+     *         The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)
+     * @param DateTime|null $filterStartedAt
+     *         The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgUsageRecordsRequest(
@@ -468,7 +556,7 @@ final class RecordsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listOrgUsageRecords'
             );
         }

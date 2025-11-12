@@ -55,11 +55,10 @@ final class SystemInformationApi extends AbstractApi
      *
      * Force the Git server to restart.
      *
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/System-Information/operation/action-projects-system-restart
      */
     public function actionProjectsSystemRestart(
@@ -73,10 +72,11 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Restart the Git server with HTTP Info
      *
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function actionProjectsSystemRestartWithHttpInfo(
         string $projectId
     ): AcceptedResponse {
@@ -114,6 +114,8 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Create request for operation 'actionProjectsSystemRestart'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function actionProjectsSystemRestartRequest(
@@ -127,7 +129,7 @@ final class SystemInformationApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling actionProjectsSystemRestart'
             );
         }
@@ -203,11 +205,10 @@ final class SystemInformationApi extends AbstractApi
      *
      * Output information for the project.
      *
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return SystemInformation
-     *
      * @see https://docs.upsun.com/api/#tag/System-Information/operation/get-projects-system
      */
     public function getProjectsSystem(
@@ -221,10 +222,11 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Get information about the Git server. with HTTP Info
      *
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return SystemInformation
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsSystemWithHttpInfo(
         string $projectId
     ): SystemInformation {
@@ -262,6 +264,8 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsSystem'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsSystemRequest(
@@ -275,7 +279,7 @@ final class SystemInformationApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsSystem'
             );
         }

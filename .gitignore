@@ -1,5 +1,5 @@
 # ref: https://github.com/github/gitignore/blob/master/Composer.gitignore
-.env 
+.env
 .travis.yml
 composer.phar
 /vendor/
@@ -16,6 +16,7 @@ composer.lock
 # PHPUnit cache
 .phpunit.result.cache
 test/
+docs-openapi/
 
 openapitools.json
 .openapi-generator/

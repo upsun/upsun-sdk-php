@@ -59,11 +59,11 @@ final class DomainManagementApi extends AbstractApi
      * certificate, a certificate will [be provisioned for you via Let's
      * Encrypt.](https://docs.upsun.com/anchors/routes/https/certificates/)
      *
+     * @param DomainCreateInput $domainCreateInput
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/create-projects-domains
      */
     public function createProjectsDomains(
@@ -79,9 +79,11 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Add a project domain with HTTP Info
      *
+     * @param DomainCreateInput $domainCreateInput
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function createProjectsDomainsWithHttpInfo(
         string $projectId,
@@ -122,6 +124,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Create request for operation 'createProjectsDomains'
      *
+     * @param DomainCreateInput $domainCreateInput
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function createProjectsDomainsRequest(
@@ -136,7 +141,7 @@ final class DomainManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling createProjectsDomains'
             );
         }
@@ -148,7 +153,7 @@ final class DomainManagementApi extends AbstractApi
             && count($domainCreateInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $domainCreateInput 
+                'Missing the required parameter $domainCreateInput
                 when calling createProjectsDomains'
             );
         }
@@ -235,11 +240,11 @@ final class DomainManagementApi extends AbstractApi
      * blank without an object containing a PEM-encoded SSL certificate, a certificate will [be provisioned for you via
      * Let's Encrypt](https://docs.upsun.com/anchors/routes/https/certificates/).
      *
+     * @param DomainCreateInput $domainCreateInput
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/create-projects-environments-domains
      */
     public function createProjectsEnvironmentsDomains(
@@ -257,9 +262,11 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Add an environment domain with HTTP Info
      *
+     * @param DomainCreateInput $domainCreateInput
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function createProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
@@ -302,6 +309,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Create request for operation 'createProjectsEnvironmentsDomains'
      *
+     * @param DomainCreateInput $domainCreateInput
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function createProjectsEnvironmentsDomainsRequest(
@@ -317,7 +327,7 @@ final class DomainManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling createProjectsEnvironmentsDomains'
             );
         }
@@ -329,7 +339,7 @@ final class DomainManagementApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling createProjectsEnvironmentsDomains'
             );
         }
@@ -341,7 +351,7 @@ final class DomainManagementApi extends AbstractApi
             && count($domainCreateInput) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $domainCreateInput 
+                'Missing the required parameter $domainCreateInput
                 when calling createProjectsEnvironmentsDomains'
             );
         }
@@ -434,11 +444,11 @@ final class DomainManagementApi extends AbstractApi
      *
      * Delete a single user-specified domain associated with a project.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/delete-projects-domains
      */
     public function deleteProjectsDomains(
@@ -454,10 +464,12 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Delete a project domain with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId
@@ -497,6 +509,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Create request for operation 'deleteProjectsDomains'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function deleteProjectsDomainsRequest(
@@ -511,7 +526,7 @@ final class DomainManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deleteProjectsDomains'
             );
         }
@@ -523,7 +538,7 @@ final class DomainManagementApi extends AbstractApi
             && count($domainId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $domainId 
+                'Missing the required parameter $domainId
                 when calling deleteProjectsDomains'
             );
         }
@@ -608,11 +623,12 @@ final class DomainManagementApi extends AbstractApi
      *
      * Delete a single user-specified domain associated with an environment.
      *
+
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/delete-projects-environments-domains
      */
     public function deleteProjectsEnvironmentsDomains(
@@ -630,10 +646,13 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Delete an environment domain with HTTP Info
      *
+
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
         string $environmentId,
@@ -675,6 +694,10 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Create request for operation 'deleteProjectsEnvironmentsDomains'
      *
+
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function deleteProjectsEnvironmentsDomainsRequest(
@@ -690,7 +713,7 @@ final class DomainManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling deleteProjectsEnvironmentsDomains'
             );
         }
@@ -702,7 +725,7 @@ final class DomainManagementApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling deleteProjectsEnvironmentsDomains'
             );
         }
@@ -714,7 +737,7 @@ final class DomainManagementApi extends AbstractApi
             && count($domainId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $domainId 
+                'Missing the required parameter $domainId
                 when calling deleteProjectsEnvironmentsDomains'
             );
         }
@@ -808,11 +831,11 @@ final class DomainManagementApi extends AbstractApi
      *
      * Retrieve information about a single user-specified domain associated with a project.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Domain
-     *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-domains
      */
     public function getProjectsDomains(
@@ -828,10 +851,12 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get a project domain with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Domain
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId
@@ -871,6 +896,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsDomains'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsDomainsRequest(
@@ -885,7 +913,7 @@ final class DomainManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsDomains'
             );
         }
@@ -897,7 +925,7 @@ final class DomainManagementApi extends AbstractApi
             && count($domainId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $domainId 
+                'Missing the required parameter $domainId
                 when calling getProjectsDomains'
             );
         }
@@ -982,11 +1010,12 @@ final class DomainManagementApi extends AbstractApi
      *
      * Retrieve information about a single user-specified domain associated with an environment.
      *
+
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Domain
-     *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-environments-domains
      */
     public function getProjectsEnvironmentsDomains(
@@ -1004,10 +1033,13 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get an environment domain with HTTP Info
      *
+
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Domain
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
         string $environmentId,
@@ -1049,6 +1081,10 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsEnvironmentsDomains'
      *
+
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsEnvironmentsDomainsRequest(
@@ -1064,7 +1100,7 @@ final class DomainManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsEnvironmentsDomains'
             );
         }
@@ -1076,7 +1112,7 @@ final class DomainManagementApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling getProjectsEnvironmentsDomains'
             );
         }
@@ -1088,7 +1124,7 @@ final class DomainManagementApi extends AbstractApi
             && count($domainId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $domainId 
+                'Missing the required parameter $domainId
                 when calling getProjectsEnvironmentsDomains'
             );
         }
@@ -1185,10 +1221,10 @@ final class DomainManagementApi extends AbstractApi
      * interface.
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Domain[]
      *
+     * @return Domain[]
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-domains
      */
     public function listProjectsDomains(
@@ -1203,7 +1239,9 @@ final class DomainManagementApi extends AbstractApi
      * Get list of project domains with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return Domain[]
      */
     private function listProjectsDomainsWithHttpInfo(
@@ -1243,6 +1281,8 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsDomains'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsDomainsRequest(
@@ -1256,7 +1296,7 @@ final class DomainManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsDomains'
             );
         }
@@ -1334,10 +1374,10 @@ final class DomainManagementApi extends AbstractApi
      * does *not* return the `.platformsh.site` subdomains, which are automatically assigned to the environment.
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Domain[]
      *
+     * @return Domain[]
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-environments-domains
      */
     public function listProjectsEnvironmentsDomains(
@@ -1354,7 +1394,9 @@ final class DomainManagementApi extends AbstractApi
      * Get a list of environment domains with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return Domain[]
      */
     private function listProjectsEnvironmentsDomainsWithHttpInfo(
@@ -1396,6 +1438,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsEnvironmentsDomains'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsEnvironmentsDomainsRequest(
@@ -1410,7 +1455,7 @@ final class DomainManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsEnvironmentsDomains'
             );
         }
@@ -1422,7 +1467,7 @@ final class DomainManagementApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsDomains'
             );
         }
@@ -1507,11 +1552,11 @@ final class DomainManagementApi extends AbstractApi
      *
      * Update the information associated with a single user-specified domain associated with a project.
      *
+     * @param DomainPatch $domainPatch
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/update-projects-domains
      */
     public function updateProjectsDomains(
@@ -1529,9 +1574,11 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Update a project domain with HTTP Info
      *
+     * @param DomainPatch $domainPatch
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function updateProjectsDomainsWithHttpInfo(
         string $projectId,
@@ -1574,6 +1621,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Create request for operation 'updateProjectsDomains'
      *
+     * @param DomainPatch $domainPatch
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function updateProjectsDomainsRequest(
@@ -1589,7 +1639,7 @@ final class DomainManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjectsDomains'
             );
         }
@@ -1601,7 +1651,7 @@ final class DomainManagementApi extends AbstractApi
             && count($domainId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $domainId 
+                'Missing the required parameter $domainId
                 when calling updateProjectsDomains'
             );
         }
@@ -1613,7 +1663,7 @@ final class DomainManagementApi extends AbstractApi
             && count($domainPatch) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $domainPatch 
+                'Missing the required parameter $domainPatch
                 when calling updateProjectsDomains'
             );
         }
@@ -1706,11 +1756,11 @@ final class DomainManagementApi extends AbstractApi
      *
      * Update the information associated with a single user-specified domain associated with an environment.
      *
+     * @param DomainPatch $domainPatch
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/update-projects-environments-domains
      */
     public function updateProjectsEnvironmentsDomains(
@@ -1730,9 +1780,11 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Update an environment domain with HTTP Info
      *
+     * @param DomainPatch $domainPatch
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function updateProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
@@ -1777,6 +1829,9 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Create request for operation 'updateProjectsEnvironmentsDomains'
      *
+     * @param DomainPatch $domainPatch
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function updateProjectsEnvironmentsDomainsRequest(
@@ -1793,7 +1848,7 @@ final class DomainManagementApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjectsEnvironmentsDomains'
             );
         }
@@ -1805,7 +1860,7 @@ final class DomainManagementApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling updateProjectsEnvironmentsDomains'
             );
         }
@@ -1817,7 +1872,7 @@ final class DomainManagementApi extends AbstractApi
             && count($domainId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $domainId 
+                'Missing the required parameter $domainId
                 when calling updateProjectsEnvironmentsDomains'
             );
         }
@@ -1829,7 +1884,7 @@ final class DomainManagementApi extends AbstractApi
             && count($domainPatch) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $domainPatch 
+                'Missing the required parameter $domainPatch
                 when calling updateProjectsEnvironmentsDomains'
             );
         }

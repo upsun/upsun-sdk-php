@@ -56,11 +56,10 @@ final class ProjectSettingsApi extends AbstractApi
      *
      * Retrieve the global settings for a project.
      *
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ProjectSettings
-     *
      * @see https://docs.upsun.com/api/#tag/Project-Settings/operation/get-projects-settings
      */
     public function getProjectsSettings(
@@ -74,10 +73,11 @@ final class ProjectSettingsApi extends AbstractApi
     /**
      * Get list of project settings with HTTP Info
      *
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ProjectSettings
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsSettingsWithHttpInfo(
         string $projectId
     ): ProjectSettings {
@@ -115,6 +115,8 @@ final class ProjectSettingsApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsSettings'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsSettingsRequest(
@@ -128,7 +130,7 @@ final class ProjectSettingsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsSettings'
             );
         }
@@ -204,11 +206,11 @@ final class ProjectSettingsApi extends AbstractApi
      *
      * Update one or more project-level settings.
      *
+     * @param ProjectSettingsPatch $projectSettingsPatch
+     *          (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Project-Settings/operation/update-projects-settings
      */
     public function updateProjectsSettings(
@@ -224,9 +226,11 @@ final class ProjectSettingsApi extends AbstractApi
     /**
      * Update a project setting with HTTP Info
      *
+     * @param ProjectSettingsPatch $projectSettingsPatch
+     *          (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function updateProjectsSettingsWithHttpInfo(
         string $projectId,
@@ -267,6 +271,9 @@ final class ProjectSettingsApi extends AbstractApi
     /**
      * Create request for operation 'updateProjectsSettings'
      *
+     * @param ProjectSettingsPatch $projectSettingsPatch
+     *          (required)
+     *
      * @throws InvalidArgumentException
      */
     private function updateProjectsSettingsRequest(
@@ -281,7 +288,7 @@ final class ProjectSettingsApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling updateProjectsSettings'
             );
         }
@@ -293,7 +300,7 @@ final class ProjectSettingsApi extends AbstractApi
             && count($projectSettingsPatch) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectSettingsPatch 
+                'Missing the required parameter $projectSettingsPatch
                 when calling updateProjectsSettings'
             );
         }

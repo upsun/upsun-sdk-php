@@ -2,8 +2,8 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Upsun\UpsunConfig;
 use Upsun\UpsunClient;
+use Upsun\UpsunConfig;
 
 $config = new UpsunConfig(apiToken: getenv('UPSUN_API_TOKEN'));
 $client = new UpsunClient($config);

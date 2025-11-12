@@ -59,11 +59,13 @@ final class UserProfilesApi extends AbstractApi
      * Create a user profile picture
      *
      *
+     * @param  string $uuid
+     *         The uuid of the user (required)
+     * @param SplFileObject|null $file
+     *         The image file to upload. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return CreateProfilePicture200Response
-     *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/create-profile-picture
      */
     public function createProfilePicture(
@@ -79,9 +81,13 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Create a user profile picture with HTTP Info
      *
+     * @param  string $uuid
+     *         The uuid of the user (required)
+     * @param SplFileObject|null $file
+     *         The image file to upload. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return CreateProfilePicture200Response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      */
     private function createProfilePictureWithHttpInfo(
         string $uuid,
@@ -122,6 +128,11 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Create request for operation 'createProfilePicture'
      *
+     * @param  string $uuid
+     *         The uuid of the user (required)
+     * @param SplFileObject|null $file
+     *         The image file to upload. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function createProfilePictureRequest(
@@ -136,7 +147,7 @@ final class UserProfilesApi extends AbstractApi
             && count($uuid) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $uuid 
+                'Missing the required parameter $uuid
                 when calling createProfilePicture'
             );
         }
@@ -221,9 +232,11 @@ final class UserProfilesApi extends AbstractApi
      * Delete a user profile picture
      *
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $uuid
+     *         The uuid of the user (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/delete-profile-picture
      */
     public function deleteProfilePicture(
@@ -237,8 +250,12 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Delete a user profile picture with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $uuid
+     *         The uuid of the user (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteProfilePictureWithHttpInfo(
         string $uuid
     ): void {
@@ -270,6 +287,9 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Create request for operation 'deleteProfilePicture'
      *
+     * @param  string $uuid
+     *         The uuid of the user (required)
+     *
      * @throws InvalidArgumentException
      */
     private function deleteProfilePictureRequest(
@@ -283,7 +303,7 @@ final class UserProfilesApi extends AbstractApi
             && count($uuid) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $uuid 
+                'Missing the required parameter $uuid
                 when calling deleteProfilePicture'
             );
         }
@@ -358,9 +378,11 @@ final class UserProfilesApi extends AbstractApi
      * Get a user address
      *
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $userId
+     *         The UUID of the user (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/get-address
      */
     public function getAddress(
@@ -374,8 +396,12 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Get a user address with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $userId
+     *         The UUID of the user (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getAddressWithHttpInfo(
         string $userId
     ): GetAddress200Response {
@@ -413,6 +439,9 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Create request for operation 'getAddress'
      *
+     * @param  string $userId
+     *         The UUID of the user (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getAddressRequest(
@@ -426,7 +455,7 @@ final class UserProfilesApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling getAddress'
             );
         }
@@ -501,11 +530,11 @@ final class UserProfilesApi extends AbstractApi
      * Get a single user profile
      *
      *
+     * @param  string $userId
+     *         The UUID of the user (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Profile
-     *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/get-profile
      */
     public function getProfile(
@@ -519,10 +548,12 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Get a single user profile with HTTP Info
      *
+     * @param  string $userId
+     *         The UUID of the user (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Profile
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProfileWithHttpInfo(
         string $userId
     ): Profile {
@@ -560,6 +591,9 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Create request for operation 'getProfile'
      *
+     * @param  string $userId
+     *         The UUID of the user (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getProfileRequest(
@@ -573,7 +607,7 @@ final class UserProfilesApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling getProfile'
             );
         }
@@ -648,11 +682,8 @@ final class UserProfilesApi extends AbstractApi
      * List user profiles
      *
      *
-     *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListProfiles200Response
-     *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/list-profiles
      */
     public function listProfiles(): ListProfiles200Response
@@ -664,10 +695,9 @@ final class UserProfilesApi extends AbstractApi
     /**
      * List user profiles with HTTP Info
      *
-     *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ListProfiles200Response
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function listProfilesWithHttpInfo(): ListProfiles200Response
     {
         $request = $this->listProfilesRequest(
@@ -770,9 +800,12 @@ final class UserProfilesApi extends AbstractApi
      *
      * Update a user address, supplying one or more key/value pairs to to change.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $userId
+     *         The UUID of the user (required)
+
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/update-address
      */
     public function updateAddress(
@@ -788,8 +821,13 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Update a user address with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $userId
+     *         The UUID of the user (required)
+
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateAddressWithHttpInfo(
         string $userId,
         ?Address $address = null
@@ -829,6 +867,10 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Create request for operation 'updateAddress'
      *
+     * @param  string $userId
+     *         The UUID of the user (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateAddressRequest(
@@ -843,7 +885,7 @@ final class UserProfilesApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling updateAddress'
             );
         }
@@ -927,11 +969,12 @@ final class UserProfilesApi extends AbstractApi
      *
      * Update a user profile, supplying one or more key/value pairs to to change.
      *
+     * @param  string $userId
+     *         The UUID of the user (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Profile
-     *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/update-profile
      */
     public function updateProfile(
@@ -947,10 +990,13 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Update a user profile with HTTP Info
      *
+     * @param  string $userId
+     *         The UUID of the user (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Profile
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateProfileWithHttpInfo(
         string $userId,
         ?UpdateProfileRequest $updateProfileRequest = null
@@ -990,6 +1036,10 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Create request for operation 'updateProfile'
      *
+     * @param  string $userId
+     *         The UUID of the user (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateProfileRequest(
@@ -1004,7 +1054,7 @@ final class UserProfilesApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling updateProfile'
             );
         }

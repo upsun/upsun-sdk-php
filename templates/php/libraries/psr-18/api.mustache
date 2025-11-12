@@ -53,20 +53,20 @@ use {{invokerPackage}}\Core\OAuthProvider;
 {{#vendorExtensions.x-description}}
      * {{{.}}}
 {{/vendorExtensions.x-description}}
+{{#allParams}}
+     {{#-first}}
+     *
+     {{/-first}}
+    {{#description}} * @param  {{{dataType}}}{{^required}}|null{{/required}} ${{paramName}}{{#description}}
+     *         {{{.}}}{{/description}}{{^description}} {{paramName}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}{{/description}}
+{{/allParams}}
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
 {{#vendorExtensions.x-return-types-displayReturn}}
      *
      * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}
 {{/vendorExtensions.x-return-types-displayReturn}}
-{{^vendorExtensions.x-return-types-displayReturn}}
-{{#vendorExtensions.x-phpdoc.return}}
-     *
-     * @return {{{returnType}}}
-{{/vendorExtensions.x-phpdoc.return}}
-{{/vendorExtensions.x-return-types-displayReturn}}
-     *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
-     *
      * @see {{docUrl}}/api/#tag/{{vendorExtensions.x-tag-id-kebab}}/operation/{{vendorExtensions.x-property-id-kebab}}
 {{#vendorExtensions.x-deprecated}}
      *
@@ -86,23 +86,25 @@ use {{invokerPackage}}\Core\OAuthProvider;
 {{#summary}}
      * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{{.}}} with HTTP Info
 {{/summary}}
-{{#vendorExtensions.x-return-types-displayReturn}}
-     *
-     * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}
-{{/vendorExtensions.x-return-types-displayReturn}}
-{{^vendorExtensions.x-return-types-displayReturn}}
-{{#vendorExtensions.x-phpdoc.return}}
-     *
-     * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}
-{{/vendorExtensions.x-phpdoc.return}}
-{{/vendorExtensions.x-return-types-displayReturn}}
 {{#vendorExtensions.x-deprecated}}
      *
      * @deprecated
 {{/vendorExtensions.x-deprecated}}
+{{#allParams}}
+    {{#-first}}
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+    {{/-first}}
+    {{#description}} * @param  {{{dataType}}}{{^required}}|null{{/required}} ${{paramName}}{{#description}}
+     *         {{{.}}}{{/description}}{{^description}} {{paramName}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}{{/description}}
+{{/allParams}}
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+{{#vendorExtensions.x-return-types-displayReturn}}
+     *
+     * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}
+{{/vendorExtensions.x-return-types-displayReturn}}
+    */
     private function {{operationId}}WithHttpInfo({{#allParams}}
         {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{#isNullable}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/isNullable}}{{^isNullable}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isNullable}}{{^-last}},{{/-last}}{{/allParams}}
     ){{#returnContainer}}: array{{/returnContainer}}{{^returnContainer}}{{#vendorExtensions.x-return-types-union}}: {{{.}}}{{/vendorExtensions.x-return-types-union}}{{^vendorExtensions.x-return-types-union}}: {{#vendorExtensions.x-returnable}}{{{returnType}}}{{/vendorExtensions.x-returnable}}{{^vendorExtensions.x-returnable}}void{{/vendorExtensions.x-returnable}}{{/vendorExtensions.x-return-types-union}}{{/returnContainer}} {{#allParams}}{{/allParams}}{{^allParams}}
@@ -140,6 +142,13 @@ use {{invokerPackage}}\Core\OAuthProvider;
 
     /**
      * Create request for operation '{{{operationId}}}'
+{{#allParams}}
+    {{#-first}}
+     *
+    {{/-first}}
+    {{#description}} * @param  {{{dataType}}}{{^required}}|null{{/required}} ${{paramName}}{{#description}}
+     *         {{{.}}}{{/description}}{{^description}} {{paramName}}{{/description}} {{#required}}(required){{/required}}{{^required}}(optional{{#defaultValue}}, default to {{{.}}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}{{/description}}
+{{/allParams}}
      *
      * @throws InvalidArgumentException
 {{#vendorExtensions.x-deprecated}}
@@ -158,28 +167,28 @@ use {{invokerPackage}}\Core\OAuthProvider;
             && count(${{paramName}}) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter ${{paramName}} 
+                'Missing the required parameter ${{paramName}}
                 when calling {{operationId}}'
             );
         }{{/required}}{{/isNullable}}
 {{#hasValidation}}{{#maxLength}}
         if ({{^required}}${{paramName}} !== null && {{/required}}strlen(${{paramName}}) > {{maxLength}}) {
             throw new \InvalidArgumentException(
-                'invalid length for "${{paramName}}" when calling {{classname}}.{{operationId}}, 
+                'invalid length for "${{paramName}}" when calling {{classname}}.{{operationId}},
                 must be smaller than or equal to {{maxLength}}.'
             );
         }{{/maxLength}}
         {{#minLength}}
         if ({{^required}}${{paramName}} !== null && {{/required}}strlen(${{paramName}}) < {{minLength}}) {
             throw new \InvalidArgumentException(
-                'invalid length for "${{paramName}}" when calling {{classname}}.{{operationId}}, 
+                'invalid length for "${{paramName}}" when calling {{classname}}.{{operationId}},
                 must be bigger than or equal to {{minLength}}.'
             );
         }{{/minLength}}
         {{#maximum}}
         if ({{^required}}${{paramName}} !== null && {{/required}}${{paramName}} >{{#exclusiveMaximum}}={{/exclusiveMaximum}} {{maximum}}) {
             throw new \InvalidArgumentException(
-                'invalid value for "${{paramName}}" when calling {{classname}}.{{operationId}}, 
+                'invalid value for "${{paramName}}" when calling {{classname}}.{{operationId}},
                 must be smaller than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{maximum}}.'
             );
         }

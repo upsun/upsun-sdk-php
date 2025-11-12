@@ -57,11 +57,12 @@ final class EnvironmentActivityApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Activity/paths//projects/{projectId}/environments/{environmentId}/activities/get)
      * endpoint. Please note that not all activities are cancelable.
      *
+
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return AcceptedResponse
-     *
      * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/action-projects-environments-activities-cancel
      */
     public function actionProjectsEnvironmentsActivitiesCancel(
@@ -79,10 +80,13 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Cancel an environment activity with HTTP Info
      *
+
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return AcceptedResponse
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
         string $projectId,
         string $environmentId,
@@ -124,6 +128,10 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Create request for operation 'actionProjectsEnvironmentsActivitiesCancel'
      *
+
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function actionProjectsEnvironmentsActivitiesCancelRequest(
@@ -139,7 +147,7 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling actionProjectsEnvironmentsActivitiesCancel'
             );
         }
@@ -151,7 +159,7 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling actionProjectsEnvironmentsActivitiesCancel'
             );
         }
@@ -163,7 +171,7 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($activityId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $activityId 
+                'Missing the required parameter $activityId
                 when calling actionProjectsEnvironmentsActivitiesCancel'
             );
         }
@@ -260,11 +268,12 @@ final class EnvironmentActivityApi extends AbstractApi
      * (https://docs.upsun.com/api/#tag/Environment-Activity/paths//projects/{projectId}/environments/{environmentId}/activities/get)
      * endpoint. See the documentation on that endpoint for details about the information this endpoint can return.
      *
+
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Activity
-     *
      * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/get-projects-environments-activities
      */
     public function getProjectsEnvironmentsActivities(
@@ -282,10 +291,13 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Get an environment activity log entry with HTTP Info
      *
+
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Activity
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getProjectsEnvironmentsActivitiesWithHttpInfo(
         string $projectId,
         string $environmentId,
@@ -327,6 +339,10 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Create request for operation 'getProjectsEnvironmentsActivities'
      *
+
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getProjectsEnvironmentsActivitiesRequest(
@@ -342,7 +358,7 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getProjectsEnvironmentsActivities'
             );
         }
@@ -354,7 +370,7 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling getProjectsEnvironmentsActivities'
             );
         }
@@ -366,7 +382,7 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($activityId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $activityId 
+                'Missing the required parameter $activityId
                 when calling getProjectsEnvironmentsActivities'
             );
         }
@@ -469,10 +485,10 @@ final class EnvironmentActivityApi extends AbstractApi
      * included in the push, and the `user` who pushed.
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Activity[]
      *
+     * @return Activity[]
      * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/list-projects-environments-activities
      */
     public function listProjectsEnvironmentsActivities(
@@ -489,7 +505,9 @@ final class EnvironmentActivityApi extends AbstractApi
      * Get environment activity log with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return Activity[]
      */
     private function listProjectsEnvironmentsActivitiesWithHttpInfo(
@@ -531,6 +549,9 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsEnvironmentsActivities'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsEnvironmentsActivitiesRequest(
@@ -545,7 +566,7 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsEnvironmentsActivities'
             );
         }
@@ -557,7 +578,7 @@ final class EnvironmentActivityApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId 
+                'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsActivities'
             );
         }

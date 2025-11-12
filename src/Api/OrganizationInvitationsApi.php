@@ -57,9 +57,13 @@ final class OrganizationInvitationsApi extends AbstractApi
      *
      * Cancels the specified invitation.
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $invitationId
+     *         The ID of the invitation. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Organization-Invitations/operation/cancel-org-invite
      */
     public function cancelOrgInvite(
@@ -75,8 +79,14 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * Cancel a pending invitation to an organization with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $invitationId
+     *         The ID of the invitation. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function cancelOrgInviteWithHttpInfo(
         string $organizationId,
         string $invitationId
@@ -110,6 +120,11 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * Create request for operation 'cancelOrgInvite'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $invitationId
+     *         The ID of the invitation. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function cancelOrgInviteRequest(
@@ -124,7 +139,7 @@ final class OrganizationInvitationsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling cancelOrgInvite'
             );
         }
@@ -136,7 +151,7 @@ final class OrganizationInvitationsApi extends AbstractApi
             && count($invitationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $invitationId 
+                'Missing the required parameter $invitationId
                 when calling cancelOrgInvite'
             );
         }
@@ -221,11 +236,12 @@ final class OrganizationInvitationsApi extends AbstractApi
      *
      * Creates an invitation to an organization for a user with the specified email address.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationInvitation
-     *
      * @see https://docs.upsun.com/api/#tag/Organization-Invitations/operation/create-org-invite
      */
     public function createOrgInvite(
@@ -241,10 +257,13 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * Invite user to an organization by email with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return OrganizationInvitation
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createOrgInviteWithHttpInfo(
         string $organizationId,
         ?CreateOrgInviteRequest $createOrgInviteRequest = null
@@ -284,6 +303,10 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * Create request for operation 'createOrgInvite'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function createOrgInviteRequest(
@@ -298,7 +321,7 @@ final class OrganizationInvitationsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling createOrgInvite'
             );
         }
@@ -382,11 +405,23 @@ final class OrganizationInvitationsApi extends AbstractApi
      *
      * Returns a list of invitations to an organization.
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param StringFilter|null $filterState
+     *         Allows filtering by `state` of the invtations: \"pending\" (default), \"error\". (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return OrganizationInvitation[]
      *
+     * @return OrganizationInvitation[]
      * @see https://docs.upsun.com/api/#tag/Organization-Invitations/operation/list-org-invites
      */
     public function listOrgInvites(
@@ -410,8 +445,22 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * List invitations to an organization with HTTP Info
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param StringFilter|null $filterState
+     *         Allows filtering by `state` of the invtations: \"pending\" (default), \"error\". (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return OrganizationInvitation[]
      */
     private function listOrgInvitesWithHttpInfo(
@@ -461,6 +510,19 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * Create request for operation 'listOrgInvites'
      *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param StringFilter|null $filterState
+     *         Allows filtering by `state` of the invtations: \"pending\" (default), \"error\". (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort
+     *         Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)
+     *
      * @throws InvalidArgumentException
      */
     private function listOrgInvitesRequest(
@@ -479,7 +541,7 @@ final class OrganizationInvitationsApi extends AbstractApi
             && count($organizationId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId 
+                'Missing the required parameter $organizationId
                 when calling listOrgInvites'
             );
         }
@@ -489,7 +551,7 @@ final class OrganizationInvitationsApi extends AbstractApi
 
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
-                'invalid value for "$pageSize" when calling OrganizationInvitationsApi.listOrgInvites, 
+                'invalid value for "$pageSize" when calling OrganizationInvitationsApi.listOrgInvites,
                 must be smaller than or equal to 100.'
             );
         }

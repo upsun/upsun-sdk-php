@@ -54,11 +54,11 @@ final class EnvironmentTypeApi extends AbstractApi
      *
      * Lists the endpoints used to retrieve info about the environment type.
      *
+
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return EnvironmentType
-     *
      * @see https://docs.upsun.com/api/#tag/Environment-Type/operation/get-environment-type
      */
     public function getEnvironmentType(
@@ -74,10 +74,12 @@ final class EnvironmentTypeApi extends AbstractApi
     /**
      * Get environment type links with HTTP Info
      *
+
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return EnvironmentType
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getEnvironmentTypeWithHttpInfo(
         string $projectId,
         string $environmentTypeId
@@ -117,6 +119,9 @@ final class EnvironmentTypeApi extends AbstractApi
     /**
      * Create request for operation 'getEnvironmentType'
      *
+
+
+     *
      * @throws InvalidArgumentException
      */
     private function getEnvironmentTypeRequest(
@@ -131,7 +136,7 @@ final class EnvironmentTypeApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling getEnvironmentType'
             );
         }
@@ -143,7 +148,7 @@ final class EnvironmentTypeApi extends AbstractApi
             && count($environmentTypeId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $environmentTypeId 
+                'Missing the required parameter $environmentTypeId
                 when calling getEnvironmentType'
             );
         }
@@ -229,10 +234,10 @@ final class EnvironmentTypeApi extends AbstractApi
      * List all available environment types
      *
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return EnvironmentType[]
      *
+     * @return EnvironmentType[]
      * @see https://docs.upsun.com/api/#tag/Environment-Type/operation/list-projects-environment-types
      */
     public function listProjectsEnvironmentTypes(
@@ -247,7 +252,9 @@ final class EnvironmentTypeApi extends AbstractApi
      * Get environment types with HTTP Info
      *
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return EnvironmentType[]
      */
     private function listProjectsEnvironmentTypesWithHttpInfo(
@@ -287,6 +294,8 @@ final class EnvironmentTypeApi extends AbstractApi
     /**
      * Create request for operation 'listProjectsEnvironmentTypes'
      *
+
+     *
      * @throws InvalidArgumentException
      */
     private function listProjectsEnvironmentTypesRequest(
@@ -300,7 +309,7 @@ final class EnvironmentTypeApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $projectId 
+                'Missing the required parameter $projectId
                 when calling listProjectsEnvironmentTypes'
             );
         }

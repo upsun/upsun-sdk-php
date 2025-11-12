@@ -55,11 +55,12 @@ final class ApiTokensApi extends AbstractApi
      *
      * Creates an API token
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ApiToken
-     *
      * @see https://docs.upsun.com/api/#tag/Api-Tokens/operation/create-api-token
      */
     public function createApiToken(
@@ -75,10 +76,13 @@ final class ApiTokensApi extends AbstractApi
     /**
      * Create an API token with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ApiToken
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createApiTokenWithHttpInfo(
         string $userId,
         ?CreateApiTokenRequest $createApiTokenRequest = null
@@ -118,6 +122,10 @@ final class ApiTokensApi extends AbstractApi
     /**
      * Create request for operation 'createApiToken'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function createApiTokenRequest(
@@ -132,7 +140,7 @@ final class ApiTokensApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling createApiToken'
             );
         }
@@ -216,9 +224,13 @@ final class ApiTokensApi extends AbstractApi
      *
      * Deletes an API token
      *
-     * @throws ApiException on non-2xx response
-     * @throws ClientExceptionInterface
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $tokenId
+     *         The ID of the token. (required)
      *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Api-Tokens/operation/delete-api-token
      */
     public function deleteApiToken(
@@ -234,8 +246,14 @@ final class ApiTokensApi extends AbstractApi
     /**
      * Delete an API token with HTTP Info
      *
-     * @throws ApiException|ClientExceptionInterface
-     */
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $tokenId
+     *         The ID of the token. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function deleteApiTokenWithHttpInfo(
         string $userId,
         string $tokenId
@@ -269,6 +287,11 @@ final class ApiTokensApi extends AbstractApi
     /**
      * Create request for operation 'deleteApiToken'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $tokenId
+     *         The ID of the token. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function deleteApiTokenRequest(
@@ -283,7 +306,7 @@ final class ApiTokensApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling deleteApiToken'
             );
         }
@@ -295,7 +318,7 @@ final class ApiTokensApi extends AbstractApi
             && count($tokenId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $tokenId 
+                'Missing the required parameter $tokenId
                 when calling deleteApiToken'
             );
         }
@@ -380,11 +403,13 @@ final class ApiTokensApi extends AbstractApi
      *
      * Retrieves the specified API token.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $tokenId
+     *         The ID of the token. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ApiToken
-     *
      * @see https://docs.upsun.com/api/#tag/Api-Tokens/operation/get-api-token
      */
     public function getApiToken(
@@ -400,10 +425,14 @@ final class ApiTokensApi extends AbstractApi
     /**
      * Get an API token with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $tokenId
+     *         The ID of the token. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return ApiToken
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function getApiTokenWithHttpInfo(
         string $userId,
         string $tokenId
@@ -443,6 +472,11 @@ final class ApiTokensApi extends AbstractApi
     /**
      * Create request for operation 'getApiToken'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     * @param  string $tokenId
+     *         The ID of the token. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function getApiTokenRequest(
@@ -457,7 +491,7 @@ final class ApiTokensApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling getApiToken'
             );
         }
@@ -469,7 +503,7 @@ final class ApiTokensApi extends AbstractApi
             && count($tokenId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $tokenId 
+                'Missing the required parameter $tokenId
                 when calling getApiToken'
             );
         }
@@ -554,11 +588,13 @@ final class ApiTokensApi extends AbstractApi
      *
      * Retrieves a list of API tokens associated with a single user.
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ApiToken[]
      *
+     * @return ApiToken[]
      * @see https://docs.upsun.com/api/#tag/Api-Tokens/operation/list-api-tokens
      */
     public function listApiTokens(
@@ -572,8 +608,12 @@ final class ApiTokensApi extends AbstractApi
     /**
      * List a user's API tokens with HTTP Info
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return ApiToken[]
      */
     private function listApiTokensWithHttpInfo(
@@ -613,6 +653,9 @@ final class ApiTokensApi extends AbstractApi
     /**
      * Create request for operation 'listApiTokens'
      *
+     * @param  string $userId
+     *         The ID of the user. (required)
+     *
      * @throws InvalidArgumentException
      */
     private function listApiTokensRequest(
@@ -626,7 +669,7 @@ final class ApiTokensApi extends AbstractApi
             && count($userId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $userId 
+                'Missing the required parameter $userId
                 when calling listApiTokens'
             );
         }

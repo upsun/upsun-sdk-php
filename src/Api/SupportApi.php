@@ -58,11 +58,10 @@ final class SupportApi extends AbstractApi
      * Create a new support ticket
      *
      *
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Ticket
-     *
      * @see https://docs.upsun.com/api/#tag/Support/operation/create-ticket
      */
     public function createTicket(
@@ -76,10 +75,11 @@ final class SupportApi extends AbstractApi
     /**
      * Create a new support ticket with HTTP Info
      *
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Ticket
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function createTicketWithHttpInfo(
         ?CreateTicketRequest $createTicketRequest = null
     ): Ticket {
@@ -116,6 +116,8 @@ final class SupportApi extends AbstractApi
 
     /**
      * Create request for operation 'createTicket'
+     *
+
      *
      * @throws InvalidArgumentException
      */
@@ -193,11 +195,15 @@ final class SupportApi extends AbstractApi
      * List support ticket categories
      *
      *
+     * @param  string|null $subscriptionId
+     *         The ID of the subscription the ticket should be related to (optional)
+     * @param  string|null $organizationId
+     *         The ID of the organization the ticket should be related to (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListTicketCategories200ResponseInner[]
      *
+     * @return ListTicketCategories200ResponseInner[]
      * @see https://docs.upsun.com/api/#tag/Support/operation/list-ticket-categories
      */
     public function listTicketCategories(
@@ -213,8 +219,14 @@ final class SupportApi extends AbstractApi
     /**
      * List support ticket categories with HTTP Info
      *
+     * @param  string|null $subscriptionId
+     *         The ID of the subscription the ticket should be related to (optional)
+     * @param  string|null $organizationId
+     *         The ID of the organization the ticket should be related to (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return ListTicketCategories200ResponseInner[]
      */
     private function listTicketCategoriesWithHttpInfo(
@@ -255,6 +267,11 @@ final class SupportApi extends AbstractApi
 
     /**
      * Create request for operation 'listTicketCategories'
+     *
+     * @param  string|null $subscriptionId
+     *         The ID of the subscription the ticket should be related to (optional)
+     * @param  string|null $organizationId
+     *         The ID of the organization the ticket should be related to (optional)
      *
      * @throws InvalidArgumentException
      */
@@ -356,11 +373,15 @@ final class SupportApi extends AbstractApi
      * List support ticket priorities
      *
      *
+     * @param  string|null $subscriptionId
+     *         The ID of the subscription the ticket should be related to (optional)
+     * @param  string|null $category
+     *         The category of the support ticket. (optional)
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return ListTicketPriorities200ResponseInner[]
      *
+     * @return ListTicketPriorities200ResponseInner[]
      * @see https://docs.upsun.com/api/#tag/Support/operation/list-ticket-priorities
      */
     public function listTicketPriorities(
@@ -376,8 +397,14 @@ final class SupportApi extends AbstractApi
     /**
      * List support ticket priorities with HTTP Info
      *
+     * @param  string|null $subscriptionId
+     *         The ID of the subscription the ticket should be related to (optional)
+     * @param  string|null $category
+     *         The category of the support ticket. (optional)
      *
-     * @throws ApiException|ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
      * @return ListTicketPriorities200ResponseInner[]
      */
     private function listTicketPrioritiesWithHttpInfo(
@@ -418,6 +445,11 @@ final class SupportApi extends AbstractApi
 
     /**
      * Create request for operation 'listTicketPriorities'
+     *
+     * @param  string|null $subscriptionId
+     *         The ID of the subscription the ticket should be related to (optional)
+     * @param  string|null $category
+     *         The category of the support ticket. (optional)
      *
      * @throws InvalidArgumentException
      */
@@ -519,11 +551,12 @@ final class SupportApi extends AbstractApi
      * Update a ticket
      *
      *
+     * @param  string $ticketId
+     *         The ID of the ticket (required)
+
      *
-     * @throws ApiException on non-2xx response
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return Ticket
-     *
      * @see https://docs.upsun.com/api/#tag/Support/operation/update-ticket
      */
     public function updateTicket(
@@ -539,10 +572,13 @@ final class SupportApi extends AbstractApi
     /**
      * Update a ticket with HTTP Info
      *
+     * @param  string $ticketId
+     *         The ID of the ticket (required)
+
      *
-     * @throws ApiException|ClientExceptionInterface
-     * @return Ticket
-     */
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
     private function updateTicketWithHttpInfo(
         string $ticketId,
         ?UpdateTicketRequest $updateTicketRequest = null
@@ -582,6 +618,10 @@ final class SupportApi extends AbstractApi
     /**
      * Create request for operation 'updateTicket'
      *
+     * @param  string $ticketId
+     *         The ID of the ticket (required)
+
+     *
      * @throws InvalidArgumentException
      */
     private function updateTicketRequest(
@@ -596,7 +636,7 @@ final class SupportApi extends AbstractApi
             && count($ticketId) === 0)
         ) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $ticketId 
+                'Missing the required parameter $ticketId
                 when calling updateTicket'
             );
         }
