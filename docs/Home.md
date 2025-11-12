@@ -6,10 +6,12 @@
 
 #### Classes
 
-| Class                                           | Description                            |
-|-------------------------------------------------|----------------------------------------|
-| [`UpsunClient`](./classes/Upsun/UpsunClient.md) | Upsun Client to interact with the API. |
-| [`UpsunConfig`](./classes/Upsun/UpsunConfig.md) | Upsun Configuration class.             |
+| Class                                                       | Description                            |
+|-------------------------------------------------------------|----------------------------------------|
+| [`DebugPlugin`](./classes/Upsun/DebugPlugin.md)             | DebugPlugin Class Doc                  |
+| [`FormDataProcessor`](./classes/Upsun/FormDataProcessor.md) | FormDataProcessor Class Doc Comment    |
+| [`UpsunClient`](./classes/Upsun/UpsunClient.md)             | Upsun Client to interact with the API. |
+| [`UpsunConfig`](./classes/Upsun/UpsunConfig.md)             | Upsun Configuration class.             |
 
 ### \Upsun\Api
 
@@ -20,7 +22,9 @@
 | [`AbstractApi`](./classes/Upsun/Api/AbstractApi.md)                               | AbstractApi                                           |
 | [`AddOnsApi`](./classes/Upsun/Api/AddOnsApi.md)                                   | Low level AddOnsApi (auto-generated)                  |
 | [`AlertsApi`](./classes/Upsun/Api/AlertsApi.md)                                   | Low level AlertsApi (auto-generated)                  |
+| [`ApiConfiguration`](./classes/Upsun/Api/ApiConfiguration.md)                     | APIConfiguration holder for the Upsun API Client.     |
 | [`ApiException`](./classes/Upsun/Api/ApiException.md)                             | Low level  (auto-generated)                           |
+| [`ApiHeaderSelector`](./classes/Upsun/Api/ApiHeaderSelector.md)                   | HeaderSelector Class Doc Comment                      |
 | [`ApiTokensApi`](./classes/Upsun/Api/ApiTokensApi.md)                             | Low level ApiTokensApi (auto-generated)               |
 | [`AutoscalingApi`](./classes/Upsun/Api/AutoscalingApi.md)                         | Low level AutoscalingApi (auto-generated)             |
 | [`CertificateProvisionerApi`](./classes/Upsun/Api/CertificateProvisionerApi.md)   | Low level CertificateProvisionerApi (auto-generated)  |
@@ -70,6 +74,17 @@
 | [`UserProfilesApi`](./classes/Upsun/Api/UserProfilesApi.md)                       | Low level UserProfilesApi (auto-generated)            |
 | [`UsersApi`](./classes/Upsun/Api/UsersApi.md)                                     | Low level UsersApi (auto-generated)                   |
 | [`VouchersApi`](./classes/Upsun/Api/VouchersApi.md)                               | Low level VouchersApi (auto-generated)                |
+
+### \Upsun\Api\Serializer
+
+#### Classes
+
+| Class                                                                                      | Description                        |
+|--------------------------------------------------------------------------------------------|------------------------------------|
+| [`ApiObjectAttributesMapper`](./classes/Upsun/Api/Serializer/ApiObjectAttributesMapper.md) | Low level  (auto-generated)        |
+| [`ApiObjectFormatsMapper`](./classes/Upsun/Api/Serializer/ApiObjectFormatsMapper.md)       | Low level  (auto-generated)        |
+| [`ApiObjectTypesMapper`](./classes/Upsun/Api/Serializer/ApiObjectTypesMapper.md)           | Low level  (auto-generated)        |
+| [`ObjectSerializer`](./classes/Upsun/Api/Serializer/ObjectSerializer.md)                   | ObjectSerializer Class Doc Comment |
 
 ### \Upsun\Core
 
