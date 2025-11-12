@@ -55,10 +55,14 @@ jobs:
       - name: Read coverage report
         id: coverage
         run: |
+          echo "total=$(jq -r '.total_api_methods' api-coverage.json)" >> $GITHUB_OUTPUT
+          echo "called=$(jq -r '.called_methods' api-coverage.json)" >> $GITHUB_OUTPUT
+          echo "unmapped=$(jq -r '.unmapped_methods | length' api-coverage.json)" >> $GITHUB_OUTPUT
+          echo "invalid=$(jq -r '.invalid_facade_calls | length' api-coverage.json)" >> $GITHUB_OUTPUT
+          echo "coverage=$(jq -r '.coverage_percentage' api-coverage.json)" >> $GITHUB_OUTPUT
+
           echo "body<<EOF" >> $GITHUB_OUTPUT
-          echo "\`\`\`" >> $GITHUB_OUTPUT
-          cat api-coverage.json | jq . >> $GITHUB_OUTPUT
-          echo "\`\`\`" >> $GITHUB_OUTPUT
+          jq . api-coverage.json >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create Pull Request if changes
@@ -71,15 +75,14 @@ jobs:
 
             🧾 **API Coverage Report**
 
-            - Total API methods: $(jq '.total_api_methods' api-coverage.json)
-            - Called from facades: $(jq '.called_methods' api-coverage.json)
-            - Unmapped API methods: $(jq '.unmapped_methods | length' api-coverage.json)
-            - Invalid Facade API calls: $(jq '.invalid_facade_calls | length' api-coverage.json)
-            - Coverage: $(jq '.coverage_percentage' api-coverage.json)%
+            - Total API methods: ${{ steps.coverage.outputs.total }}
+            - Called from facades: ${{ steps.coverage.outputs.called }}
+            - Unmapped API methods: ${{ steps.coverage.outputs.unmapped }}
+            - Invalid Facade API calls: ${{ steps.coverage.outputs.invalid }}
+            - Coverage: ${{ steps.coverage.outputs.coverage }}%
 
             <details>
             <summary>📋 Full JSON report</summary>
-
             ```json
             ${{ steps.coverage.outputs.body }}
             ```
