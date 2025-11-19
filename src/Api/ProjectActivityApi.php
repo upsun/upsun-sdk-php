@@ -137,7 +137,9 @@ final class ProjectActivityApi extends AbstractApi
                 'Missing the required parameter $activityId
                 when calling actionProjectsActivitiesCancel'
             );
-        }        $resourcePath = '/projects/{projectId}/activities/{activityId}/cancel';
+        }
+
+        $resourcePath = '/projects/{projectId}/activities/{activityId}/cancel';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -299,7 +301,9 @@ final class ProjectActivityApi extends AbstractApi
                 'Missing the required parameter $activityId
                 when calling getProjectsActivities'
             );
-        }        $resourcePath = '/projects/{projectId}/activities/{activityId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/activities/{activityId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -462,7 +466,9 @@ final class ProjectActivityApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling listProjectsActivities'
             );
-        }        $resourcePath = '/projects/{projectId}/activities';
+        }
+
+        $resourcePath = '/projects/{projectId}/activities';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

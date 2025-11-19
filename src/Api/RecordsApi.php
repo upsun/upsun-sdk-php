@@ -245,7 +245,9 @@ final class RecordsApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling listOrgPlanRecords'
             );
-        }        $resourcePath = '/organizations/{organization_id}/records/plan';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/records/plan';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -564,7 +566,9 @@ final class RecordsApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling listOrgUsageRecords'
             );
-        }        $resourcePath = '/organizations/{organization_id}/records/usage';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/records/usage';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

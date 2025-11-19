@@ -149,7 +149,9 @@ final class EnvironmentActivityApi extends AbstractApi
                 'Missing the required parameter $activityId
                 when calling actionProjectsEnvironmentsActivitiesCancel'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities/{activityId}/cancel';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities/{activityId}/cancel';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -333,7 +335,9 @@ final class EnvironmentActivityApi extends AbstractApi
                 'Missing the required parameter $activityId
                 when calling getProjectsEnvironmentsActivities'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities/{activityId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities/{activityId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -514,7 +518,9 @@ final class EnvironmentActivityApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsActivities'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

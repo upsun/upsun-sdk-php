@@ -23,24 +23,20 @@ class DomainsTaskTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $psr17Factory = new Psr17Factory();
-
         $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $oauthProvider = $this->createMock(OAuthProvider::class);
-
-        $domainApi = new DomainManagementApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
 
         $upsunClient = $this->createMock(UpsunClient::class);
 
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
+            $this->httpClient,
+            new Psr17Factory(),
+            new ApiConfiguration()
+        ];
+
         $this->domainsTask = new class (
             $upsunClient,
-            $domainApi
+            new DomainManagementApi(...$apiClassParams),
         ) extends DomainsTask {
         };
     }

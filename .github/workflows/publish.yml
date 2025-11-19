@@ -12,7 +12,7 @@ jobs:
   doc:
     name: Generate Documentation
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,7 +20,7 @@ jobs:
       - uses: ./.github/actions/doc
         with:
           default-runtime-version: ${{ env.PRIMARY_PHP_VERSION }}
-  
+
   coverage:
     name: Code Coverage Report
     runs-on: ubuntu-latest
@@ -33,6 +33,7 @@ jobs:
         with:
           default-runtime-version: ${{ env.PRIMARY_PHP_VERSION }}
           codecov-secret: ${{ secrets.CODECOV_TOKEN || 'Please define a CODECOV_TOKEN in your GitHub envVars' }}
+          github-secret: ${{ secrets.OPENAPI_WORKFLOW_TOKEN || 'Please define a OPENAPI_WORKFLOW_TOKEN in your GitHub envVars' }}
 
   publish:
     name: Publish release to Packagist
@@ -57,7 +58,7 @@ jobs:
 
       - name: Run unit tests
         run: vendor/bin/phpunit --testdox
-      
+
       - name: Publish to Packagist
         if: success()
         run: |

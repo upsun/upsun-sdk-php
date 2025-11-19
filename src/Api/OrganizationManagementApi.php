@@ -135,7 +135,9 @@ final class OrganizationManagementApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling estimateOrg'
             );
-        }        $resourcePath = '/organizations/{organization_id}/estimate';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/estimate';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -283,7 +285,9 @@ final class OrganizationManagementApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling getOrgBillingAlertConfig'
             );
-        }        $resourcePath = '/organizations/{organization_id}/alerts/billing';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/alerts/billing';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -428,7 +432,9 @@ final class OrganizationManagementApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling getOrgPrepaymentInfo'
             );
-        }        $resourcePath = '/organizations/{organization_id}/prepayment';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/prepayment';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -573,7 +579,9 @@ final class OrganizationManagementApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling listOrgPrepaymentTransactions'
             );
-        }        $resourcePath = '/organizations/{organization_id}/prepayment/transactions';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/prepayment/transactions';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -726,7 +734,9 @@ final class OrganizationManagementApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling updateOrgBillingAlertConfig'
             );
-        }        $resourcePath = '/organizations/{organization_id}/alerts/billing';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/alerts/billing';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

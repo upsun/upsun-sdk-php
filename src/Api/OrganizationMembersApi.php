@@ -145,7 +145,9 @@ final class OrganizationMembersApi extends AbstractApi
                 'Missing the required parameter $createOrgMemberRequest
                 when calling createOrgMember'
             );
-        }        $resourcePath = '/organizations/{organization_id}/members';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/members';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -310,7 +312,9 @@ final class OrganizationMembersApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling deleteOrgMember'
             );
-        }        $resourcePath = '/organizations/{organization_id}/members/{user_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/members/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -485,7 +489,9 @@ final class OrganizationMembersApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling getOrgMember'
             );
-        }        $resourcePath = '/organizations/{organization_id}/members/{user_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/members/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -931,7 +937,9 @@ final class OrganizationMembersApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling updateOrgMember'
             );
-        }        $resourcePath = '/organizations/{organization_id}/members/{user_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/members/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

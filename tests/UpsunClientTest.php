@@ -41,13 +41,9 @@ class UpsunClientTest extends TestCase
 {
     private UpsunClient $upsunClient;
 
-    private UpsunConfig $upsunConfig;
-
-    private ClientInterface $httpClient;
-
     protected function setUp(): void
     {
-        $this->upsunConfig = new UpsunConfig(
+        $upsunConfig = new UpsunConfig(
             base_url: 'https://api.upsun.com',
             auth_url: 'https://auth.upsun.com',
             apiToken: 'test-api-token',
@@ -55,9 +51,7 @@ class UpsunClientTest extends TestCase
             clientId: 'test-client-id'
         );
 
-        $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $this->upsunClient = new UpsunClient($this->upsunConfig);
+        $this->upsunClient = new UpsunClient($upsunConfig);
     }
 
     public function testConstructorInitializesApiConfiguration()

@@ -24,17 +24,20 @@ class WorkersTaskTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $psr17Factory = new Psr17Factory();
-
         $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $oauthProvider = $this->createMock(OAuthProvider::class);
 
         $upsunClient = $this->createMock(UpsunClient::class);
 
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
+            $this->httpClient,
+            new Psr17Factory(),
+            new ApiConfiguration()
+        ];
+
         $this->workersTask = new class (
             $upsunClient,
-            new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new DeploymentApi(...$apiClassParams),
         ) extends WorkersTask {
         };
     }

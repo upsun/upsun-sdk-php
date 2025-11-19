@@ -141,7 +141,9 @@ final class SourceOperationsApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsSourceOperations'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/source-operations';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/source-operations';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -318,7 +320,9 @@ final class SourceOperationsApi extends AbstractApi
                 'Missing the required parameter $environmentSourceOperationInput
                 when calling runSourceOperation'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/source-operation';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/source-operation';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

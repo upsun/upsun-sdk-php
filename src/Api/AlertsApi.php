@@ -128,7 +128,9 @@ final class AlertsApi extends AbstractApi
                 'Missing the required parameter $subscriptionId
                 when calling getUsageAlerts'
             );
-        }        $resourcePath = '/alerts/subscriptions/{subscriptionId}/usage';
+        }
+
+        $resourcePath = '/alerts/subscriptions/{subscriptionId}/usage';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -277,7 +279,9 @@ final class AlertsApi extends AbstractApi
                 'Missing the required parameter $subscriptionId
                 when calling updateUsageAlerts'
             );
-        }        $resourcePath = '/alerts/subscriptions/{subscriptionId}/usage';
+        }
+
+        $resourcePath = '/alerts/subscriptions/{subscriptionId}/usage';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

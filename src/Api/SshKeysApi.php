@@ -249,7 +249,9 @@ final class SshKeysApi extends AbstractApi
                 'Missing the required parameter $keyId
                 when calling deleteSshKey'
             );
-        }        $resourcePath = '/ssh_keys/{key_id}';
+        }
+
+        $resourcePath = '/ssh_keys/{key_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -390,7 +392,9 @@ final class SshKeysApi extends AbstractApi
                 'Missing the required parameter $keyId
                 when calling getSshKey'
             );
-        }        $resourcePath = '/ssh_keys/{key_id}';
+        }
+
+        $resourcePath = '/ssh_keys/{key_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

@@ -140,7 +140,9 @@ final class MfaApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling confirmTotpEnrollment'
             );
-        }        $resourcePath = '/users/{user_id}/totp';
+        }
+
+        $resourcePath = '/users/{user_id}/totp';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -287,7 +289,9 @@ final class MfaApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling disableOrgMfaEnforcement'
             );
-        }        $resourcePath = '/organizations/{organization_id}/mfa-enforcement/disable';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/mfa-enforcement/disable';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -426,7 +430,9 @@ final class MfaApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling enableOrgMfaEnforcement'
             );
-        }        $resourcePath = '/organizations/{organization_id}/mfa-enforcement/enable';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/mfa-enforcement/enable';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -574,7 +580,9 @@ final class MfaApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling getOrgMfaEnforcement'
             );
-        }        $resourcePath = '/organizations/{organization_id}/mfa-enforcement';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/mfa-enforcement';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -719,7 +727,9 @@ final class MfaApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling getTotpEnrollment'
             );
-        }        $resourcePath = '/users/{user_id}/totp';
+        }
+
+        $resourcePath = '/users/{user_id}/totp';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -864,7 +874,9 @@ final class MfaApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling recreateRecoveryCodes'
             );
-        }        $resourcePath = '/users/{user_id}/codes';
+        }
+
+        $resourcePath = '/users/{user_id}/codes';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1014,7 +1026,9 @@ final class MfaApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling sendOrgMfaReminders'
             );
-        }        $resourcePath = '/organizations/{organization_id}/mfa/remind';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/mfa/remind';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1161,7 +1175,9 @@ final class MfaApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling withdrawTotpEnrollment'
             );
-        }        $resourcePath = '/users/{user_id}/totp';
+        }
+
+        $resourcePath = '/users/{user_id}/totp';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

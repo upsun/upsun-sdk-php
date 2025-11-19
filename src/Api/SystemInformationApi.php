@@ -123,7 +123,9 @@ final class SystemInformationApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling actionProjectsSystemRestart'
             );
-        }        $resourcePath = '/projects/{projectId}/system/restart';
+        }
+
+        $resourcePath = '/projects/{projectId}/system/restart';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -262,7 +264,9 @@ final class SystemInformationApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling getProjectsSystem'
             );
-        }        $resourcePath = '/projects/{projectId}/system';
+        }
+
+        $resourcePath = '/projects/{projectId}/system';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

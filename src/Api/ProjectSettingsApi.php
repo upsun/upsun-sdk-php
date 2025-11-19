@@ -124,7 +124,9 @@ final class ProjectSettingsApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling getProjectsSettings'
             );
-        }        $resourcePath = '/projects/{projectId}/settings';
+        }
+
+        $resourcePath = '/projects/{projectId}/settings';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -278,7 +280,9 @@ final class ProjectSettingsApi extends AbstractApi
                 'Missing the required parameter $projectSettingsPatch
                 when calling updateProjectsSettings'
             );
-        }        $resourcePath = '/projects/{projectId}/settings';
+        }
+
+        $resourcePath = '/projects/{projectId}/settings';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

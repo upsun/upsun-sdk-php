@@ -588,7 +588,9 @@ final class SupportApi extends AbstractApi
                 'Missing the required parameter $ticketId
                 when calling updateTicket'
             );
-        }        $resourcePath = '/tickets/{ticket_id}';
+        }
+
+        $resourcePath = '/tickets/{ticket_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

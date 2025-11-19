@@ -599,7 +599,9 @@ final class UsersApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling getUser'
             );
-        }        $resourcePath = '/users/{user_id}';
+        }
+
+        $resourcePath = '/users/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -741,7 +743,9 @@ final class UsersApi extends AbstractApi
                 'Missing the required parameter $email
                 when calling getUserByEmailAddress'
             );
-        }        $resourcePath = '/users/email={email}';
+        }
+
+        $resourcePath = '/users/email={email}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -883,7 +887,9 @@ final class UsersApi extends AbstractApi
                 'Missing the required parameter $username
                 when calling getUserByUsername'
             );
-        }        $resourcePath = '/users/username={username}';
+        }
+
+        $resourcePath = '/users/username={username}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1031,7 +1037,9 @@ final class UsersApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling resetEmailAddress'
             );
-        }        $resourcePath = '/users/{user_id}/emailaddress';
+        }
+
+        $resourcePath = '/users/{user_id}/emailaddress';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1179,7 +1187,9 @@ final class UsersApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling resetPassword'
             );
-        }        $resourcePath = '/users/{user_id}/resetpassword';
+        }
+
+        $resourcePath = '/users/{user_id}/resetpassword';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1329,7 +1339,9 @@ final class UsersApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling updateUser'
             );
-        }        $resourcePath = '/users/{user_id}';
+        }
+
+        $resourcePath = '/users/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

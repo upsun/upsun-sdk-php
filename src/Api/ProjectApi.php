@@ -127,7 +127,9 @@ final class ProjectApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling actionProjectsClearBuildCache'
             );
-        }        $resourcePath = '/projects/{projectId}/clear_build_cache';
+        }
+
+        $resourcePath = '/projects/{projectId}/clear_build_cache';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -266,7 +268,9 @@ final class ProjectApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling getProjects'
             );
-        }        $resourcePath = '/projects/{projectId}';
+        }
+
+        $resourcePath = '/projects/{projectId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -406,7 +410,9 @@ final class ProjectApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling getProjectsCapabilities'
             );
-        }        $resourcePath = '/projects/{projectId}/capabilities';
+        }
+
+        $resourcePath = '/projects/{projectId}/capabilities';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -560,7 +566,9 @@ final class ProjectApi extends AbstractApi
                 'Missing the required parameter $projectPatch
                 when calling updateProjects'
             );
-        }        $resourcePath = '/projects/{projectId}';
+        }
+
+        $resourcePath = '/projects/{projectId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

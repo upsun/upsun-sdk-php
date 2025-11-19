@@ -139,7 +139,9 @@ final class RepositoryApi extends AbstractApi
                 'Missing the required parameter $repositoryBlobId
                 when calling getProjectsGitBlobs'
             );
-        }        $resourcePath = '/projects/{projectId}/git/blobs/{repositoryBlobId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/git/blobs/{repositoryBlobId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -303,7 +305,9 @@ final class RepositoryApi extends AbstractApi
                 'Missing the required parameter $repositoryCommitId
                 when calling getProjectsGitCommits'
             );
-        }        $resourcePath = '/projects/{projectId}/git/commits/{repositoryCommitId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/git/commits/{repositoryCommitId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -466,7 +470,9 @@ final class RepositoryApi extends AbstractApi
                 'Missing the required parameter $repositoryRefId
                 when calling getProjectsGitRefs'
             );
-        }        $resourcePath = '/projects/{projectId}/git/refs/{repositoryRefId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/git/refs/{repositoryRefId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -629,7 +635,9 @@ final class RepositoryApi extends AbstractApi
                 'Missing the required parameter $repositoryTreeId
                 when calling getProjectsGitTrees'
             );
-        }        $resourcePath = '/projects/{projectId}/git/trees/{repositoryTreeId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/git/trees/{repositoryTreeId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -785,7 +793,9 @@ final class RepositoryApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling listProjectsGitRefs'
             );
-        }        $resourcePath = '/projects/{projectId}/git/refs';
+        }
+
+        $resourcePath = '/projects/{projectId}/git/refs';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

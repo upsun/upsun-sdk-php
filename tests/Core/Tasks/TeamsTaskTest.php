@@ -29,18 +29,21 @@ class TeamsTaskTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $psr17Factory = new Psr17Factory();
-
         $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $oauthProvider = $this->createMock(OAuthProvider::class);
 
         $upsunClient = $this->createMock(UpsunClient::class);
 
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
+            $this->httpClient,
+            new Psr17Factory(),
+            new ApiConfiguration()
+        ];
+
         $this->task = new class (
             $upsunClient,
-            new TeamsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new TeamAccessApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new TeamsApi(...$apiClassParams),
+            new TeamAccessApi(...$apiClassParams),
         ) extends TeamsTask {
         };
     }

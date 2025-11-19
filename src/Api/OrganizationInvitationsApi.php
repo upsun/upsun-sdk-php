@@ -143,7 +143,9 @@ final class OrganizationInvitationsApi extends AbstractApi
                 'Missing the required parameter $invitationId
                 when calling cancelOrgInvite'
             );
-        }        $resourcePath = '/organizations/{organization_id}/invitations/{invitation_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/invitations/{invitation_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -302,7 +304,9 @@ final class OrganizationInvitationsApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling createOrgInvite'
             );
-        }        $resourcePath = '/organizations/{organization_id}/invitations';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/invitations';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

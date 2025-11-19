@@ -153,7 +153,9 @@ final class EnvironmentBackupsApi extends AbstractApi
                 'Missing the required parameter $environmentBackupInput
                 when calling backupEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/backup';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/backup';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -335,7 +337,9 @@ final class EnvironmentBackupsApi extends AbstractApi
                 'Missing the required parameter $backupId
                 when calling deleteProjectsEnvironmentsBackups'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups/{backupId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups/{backupId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -519,7 +523,9 @@ final class EnvironmentBackupsApi extends AbstractApi
                 'Missing the required parameter $backupId
                 when calling getProjectsEnvironmentsBackups'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups/{backupId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups/{backupId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -692,7 +698,9 @@ final class EnvironmentBackupsApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsBackups'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -881,7 +889,9 @@ final class EnvironmentBackupsApi extends AbstractApi
                 'Missing the required parameter $environmentRestoreInput
                 when calling restoreBackup'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups/{backupId}/restore';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/backups/{backupId}/restore';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

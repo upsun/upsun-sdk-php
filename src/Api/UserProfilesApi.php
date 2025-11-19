@@ -138,7 +138,9 @@ final class UserProfilesApi extends AbstractApi
                 'Missing the required parameter $uuid
                 when calling createProfilePicture'
             );
-        }        $resourcePath = '/profile/{uuid}/picture';
+        }
+
+        $resourcePath = '/profile/{uuid}/picture';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -283,7 +285,9 @@ final class UserProfilesApi extends AbstractApi
                 'Missing the required parameter $uuid
                 when calling deleteProfilePicture'
             );
-        }        $resourcePath = '/profile/{uuid}/picture';
+        }
+
+        $resourcePath = '/profile/{uuid}/picture';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -427,7 +431,9 @@ final class UserProfilesApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling getAddress'
             );
-        }        $resourcePath = '/profiles/{userId}/address';
+        }
+
+        $resourcePath = '/profiles/{userId}/address';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -571,7 +577,9 @@ final class UserProfilesApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling getProfile'
             );
-        }        $resourcePath = '/profiles/{userId}';
+        }
+
+        $resourcePath = '/profiles/{userId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -835,7 +843,9 @@ final class UserProfilesApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling updateAddress'
             );
-        }        $resourcePath = '/profiles/{userId}/address';
+        }
+
+        $resourcePath = '/profiles/{userId}/address';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -993,7 +1003,9 @@ final class UserProfilesApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling updateProfile'
             );
-        }        $resourcePath = '/profiles/{userId}';
+        }
+
+        $resourcePath = '/profiles/{userId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

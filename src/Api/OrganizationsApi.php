@@ -130,7 +130,9 @@ final class OrganizationsApi extends AbstractApi
                 'Missing the required parameter $createOrgRequest
                 when calling createOrg'
             );
-        }        $resourcePath = '/organizations';
+        }
+
+        $resourcePath = '/organizations';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -267,7 +269,9 @@ final class OrganizationsApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling deleteOrg'
             );
-        }        $resourcePath = '/organizations/{organization_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -415,7 +419,9 @@ final class OrganizationsApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling getOrg'
             );
-        }        $resourcePath = '/organizations/{organization_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1320,7 +1326,9 @@ final class OrganizationsApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling updateOrg'
             );
-        }        $resourcePath = '/organizations/{organization_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

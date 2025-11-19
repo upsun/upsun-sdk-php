@@ -25,38 +25,24 @@ class InvitationsTaskTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $psr17Factory = new Psr17Factory();
-
         $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $oauthProvider = $this->createMock(OAuthProvider::class);
-
-        $orgInvitationApi = new OrganizationInvitationsApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
-
-        $projectInvitationApi = new ProjectInvitationsApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
 
         $upsunClient = $this->createMock(UpsunClient::class);
 
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
+            $this->httpClient,
+            new Psr17Factory(),
+            new ApiConfiguration()
+        ];
+
         $this->invitationTask = new class (
             $upsunClient,
-            $orgInvitationApi,
-            $projectInvitationApi
+            new OrganizationInvitationsApi(...$apiClassParams),
+            new ProjectInvitationsApi(...$apiClassParams),
         ) extends InvitationsTask {
         };
     }
-
-
-    // Organization Invitation Tests
 
     /**
      * @throws ClientExceptionInterface

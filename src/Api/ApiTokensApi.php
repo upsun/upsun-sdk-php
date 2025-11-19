@@ -134,7 +134,9 @@ final class ApiTokensApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling createApiToken'
             );
-        }        $resourcePath = '/users/{user_id}/api-tokens';
+        }
+
+        $resourcePath = '/users/{user_id}/api-tokens';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -296,7 +298,9 @@ final class ApiTokensApi extends AbstractApi
                 'Missing the required parameter $tokenId
                 when calling deleteApiToken'
             );
-        }        $resourcePath = '/users/{user_id}/api-tokens/{token_id}';
+        }
+
+        $resourcePath = '/users/{user_id}/api-tokens/{token_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -465,7 +469,9 @@ final class ApiTokensApi extends AbstractApi
                 'Missing the required parameter $tokenId
                 when calling getApiToken'
             );
-        }        $resourcePath = '/users/{user_id}/api-tokens/{token_id}';
+        }
+
+        $resourcePath = '/users/{user_id}/api-tokens/{token_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -623,7 +629,9 @@ final class ApiTokensApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling listApiTokens'
             );
-        }        $resourcePath = '/users/{user_id}/api-tokens';
+        }
+
+        $resourcePath = '/users/{user_id}/api-tokens';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

@@ -149,7 +149,9 @@ final class UserAccessApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling getProjectUserAccess'
             );
-        }        $resourcePath = '/projects/{project_id}/user-access/{user_id}';
+        }
+
+        $resourcePath = '/projects/{project_id}/user-access/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -321,7 +323,9 @@ final class UserAccessApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling getUserProjectAccess'
             );
-        }        $resourcePath = '/users/{user_id}/project-access/{project_id}';
+        }
+
+        $resourcePath = '/users/{user_id}/project-access/{project_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -481,7 +485,9 @@ final class UserAccessApi extends AbstractApi
                 'Missing the required parameter $grantProjectUserAccessRequestInner
                 when calling grantProjectUserAccess'
             );
-        }        $resourcePath = '/projects/{project_id}/user-access';
+        }
+
+        $resourcePath = '/projects/{project_id}/user-access';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -640,7 +646,9 @@ final class UserAccessApi extends AbstractApi
                 'Missing the required parameter $grantUserProjectAccessRequestInner
                 when calling grantUserProjectAccess'
             );
-        }        $resourcePath = '/users/{user_id}/project-access';
+        }
+
+        $resourcePath = '/users/{user_id}/project-access';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1316,7 +1324,9 @@ final class UserAccessApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling removeProjectUserAccess'
             );
-        }        $resourcePath = '/projects/{project_id}/user-access/{user_id}';
+        }
+
+        $resourcePath = '/projects/{project_id}/user-access/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1482,7 +1492,9 @@ final class UserAccessApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling removeUserProjectAccess'
             );
-        }        $resourcePath = '/users/{user_id}/project-access/{project_id}';
+        }
+
+        $resourcePath = '/users/{user_id}/project-access/{project_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1653,7 +1665,9 @@ final class UserAccessApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling updateProjectUserAccess'
             );
-        }        $resourcePath = '/projects/{project_id}/user-access/{user_id}';
+        }
+
+        $resourcePath = '/projects/{project_id}/user-access/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1832,7 +1846,9 @@ final class UserAccessApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling updateUserProjectAccess'
             );
-        }        $resourcePath = '/users/{user_id}/project-access/{project_id}';
+        }
+
+        $resourcePath = '/users/{user_id}/project-access/{project_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

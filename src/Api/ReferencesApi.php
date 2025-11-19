@@ -146,7 +146,9 @@ final class ReferencesApi extends AbstractApi
                 'Missing the required parameter $sig
                 when calling listReferencedOrgs'
             );
-        }        $resourcePath = '/ref/organizations';
+        }
+
+        $resourcePath = '/ref/organizations';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -325,7 +327,9 @@ final class ReferencesApi extends AbstractApi
                 'Missing the required parameter $sig
                 when calling listReferencedProjects'
             );
-        }        $resourcePath = '/ref/projects';
+        }
+
+        $resourcePath = '/ref/projects';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -504,7 +508,9 @@ final class ReferencesApi extends AbstractApi
                 'Missing the required parameter $sig
                 when calling listReferencedRegions'
             );
-        }        $resourcePath = '/ref/regions';
+        }
+
+        $resourcePath = '/ref/regions';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -683,7 +689,9 @@ final class ReferencesApi extends AbstractApi
                 'Missing the required parameter $sig
                 when calling listReferencedTeams'
             );
-        }        $resourcePath = '/ref/teams';
+        }
+
+        $resourcePath = '/ref/teams';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -862,7 +870,9 @@ final class ReferencesApi extends AbstractApi
                 'Missing the required parameter $sig
                 when calling listReferencedUsers'
             );
-        }        $resourcePath = '/ref/users';
+        }
+
+        $resourcePath = '/ref/users';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

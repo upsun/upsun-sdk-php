@@ -140,7 +140,9 @@ final class DeploymentTargetApi extends AbstractApi
                 'Missing the required parameter $deploymentTargetCreateInput
                 when calling createProjectsDeployments'
             );
-        }        $resourcePath = '/projects/{projectId}/deployments';
+        }
+
+        $resourcePath = '/projects/{projectId}/deployments';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -299,7 +301,9 @@ final class DeploymentTargetApi extends AbstractApi
                 'Missing the required parameter $deploymentTargetConfigurationId
                 when calling deleteProjectsDeployments'
             );
-        }        $resourcePath = '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -459,7 +463,9 @@ final class DeploymentTargetApi extends AbstractApi
                 'Missing the required parameter $deploymentTargetConfigurationId
                 when calling getProjectsDeployments'
             );
-        }        $resourcePath = '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -611,7 +617,9 @@ final class DeploymentTargetApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling listProjectsDeployments'
             );
-        }        $resourcePath = '/projects/{projectId}/deployments';
+        }
+
+        $resourcePath = '/projects/{projectId}/deployments';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -776,7 +784,9 @@ final class DeploymentTargetApi extends AbstractApi
                 'Missing the required parameter $deploymentTargetPatch
                 when calling updateProjectsDeployments'
             );
-        }        $resourcePath = '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/deployments/{deploymentTargetConfigurationId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

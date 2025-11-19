@@ -140,7 +140,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling canCreateNewOrgSubscription'
             );
-        }        $resourcePath = '/organizations/{organization_id}/subscriptions/can-create';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/subscriptions/can-create';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -331,7 +333,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $subscriptionId
                 when calling canUpdateSubscription'
             );
-        }        $resourcePath = '/subscriptions/{subscriptionId}/can-update';
+        }
+
+        $resourcePath = '/subscriptions/{subscriptionId}/can-update';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -540,7 +544,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $createOrgSubscriptionRequest
                 when calling createOrgSubscription'
             );
-        }        $resourcePath = '/organizations/{organization_id}/subscriptions';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/subscriptions';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -705,7 +711,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $subscriptionId
                 when calling deleteOrgSubscription'
             );
-        }        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -926,7 +934,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $userLicenses
                 when calling estimateNewOrgSubscription'
             );
-        }        $resourcePath = '/organizations/{organization_id}/subscriptions/estimate';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/subscriptions/estimate';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1200,7 +1210,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $plan
                 when calling estimateOrgSubscription'
             );
-        }        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}/estimate';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}/estimate';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1437,7 +1449,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $subscriptionId
                 when calling getOrgSubscription'
             );
-        }        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1624,7 +1638,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $subscriptionId
                 when calling getOrgSubscriptionCurrentUsage'
             );
-        }        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}/current_usage';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}/current_usage';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1825,7 +1841,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $subscriptionId
                 when calling getSubscriptionUsageAlerts'
             );
-        }        $resourcePath = '/organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2409,7 +2427,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $subscriptionId
                 when calling listSubscriptionAddons'
             );
-        }        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}/addons';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}/addons';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2586,7 +2606,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $subscriptionId
                 when calling updateOrgSubscription'
             );
-        }        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/subscriptions/{subscription_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2774,7 +2796,9 @@ final class SubscriptionsApi extends AbstractApi
                 'Missing the required parameter $subscriptionId
                 when calling updateSubscriptionUsageAlerts'
             );
-        }        $resourcePath = '/organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

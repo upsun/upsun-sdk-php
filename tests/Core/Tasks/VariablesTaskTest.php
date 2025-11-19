@@ -26,18 +26,21 @@ class VariablesTaskTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $psr17Factory = new Psr17Factory();
-
         $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $oauthProvider = $this->createMock(OAuthProvider::class);
 
         $upsunClient = $this->createMock(UpsunClient::class);
 
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
+            $this->httpClient,
+            new Psr17Factory(),
+            new ApiConfiguration()
+        ];
+
         $this->variablesTask = new class (
             $upsunClient,
-            new ProjectVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new EnvironmentVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new ProjectVariablesApi(...$apiClassParams),
+            new EnvironmentVariablesApi(...$apiClassParams),
         ) extends VariablesTask {
         };
     }

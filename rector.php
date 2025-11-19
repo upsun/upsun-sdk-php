@@ -20,7 +20,5 @@ return RectorConfig::configure()
         removeUnusedImports: false
     )
     ->withRules([
-        // Une règle bidon juste pour activer le traitement
-        // Elle ne fera rien si vous n'avez pas de promoted properties
         RemoveUnusedPromotedPropertyRector::class,
     ]);

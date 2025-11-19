@@ -142,7 +142,9 @@ final class DomainManagementApi extends AbstractApi
                 'Missing the required parameter $domainCreateInput
                 when calling createProjectsDomains'
             );
-        }        $resourcePath = '/projects/{projectId}/domains';
+        }
+
+        $resourcePath = '/projects/{projectId}/domains';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -319,7 +321,9 @@ final class DomainManagementApi extends AbstractApi
                 'Missing the required parameter $domainCreateInput
                 when calling createProjectsEnvironmentsDomains'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -487,7 +491,9 @@ final class DomainManagementApi extends AbstractApi
                 'Missing the required parameter $domainId
                 when calling deleteProjectsDomains'
             );
-        }        $resourcePath = '/projects/{projectId}/domains/{domainId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -659,7 +665,9 @@ final class DomainManagementApi extends AbstractApi
                 'Missing the required parameter $domainId
                 when calling deleteProjectsEnvironmentsDomains'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains/{domainId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -828,7 +836,9 @@ final class DomainManagementApi extends AbstractApi
                 'Missing the required parameter $domainId
                 when calling getProjectsDomains'
             );
-        }        $resourcePath = '/projects/{projectId}/domains/{domainId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1000,7 +1010,9 @@ final class DomainManagementApi extends AbstractApi
                 'Missing the required parameter $domainId
                 when calling getProjectsEnvironmentsDomains'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains/{domainId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1163,7 +1175,9 @@ final class DomainManagementApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling listProjectsDomains'
             );
-        }        $resourcePath = '/projects/{projectId}/domains';
+        }
+
+        $resourcePath = '/projects/{projectId}/domains';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1319,7 +1333,9 @@ final class DomainManagementApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsDomains'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1494,7 +1510,9 @@ final class DomainManagementApi extends AbstractApi
                 'Missing the required parameter $domainPatch
                 when calling updateProjectsDomains'
             );
-        }        $resourcePath = '/projects/{projectId}/domains/{domainId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1689,7 +1707,9 @@ final class DomainManagementApi extends AbstractApi
                 'Missing the required parameter $domainPatch
                 when calling updateProjectsEnvironmentsDomains'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains/{domainId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/domains/{domainId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

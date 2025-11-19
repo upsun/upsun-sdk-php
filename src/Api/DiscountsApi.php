@@ -129,7 +129,9 @@ final class DiscountsApi extends AbstractApi
                 'Missing the required parameter $id
                 when calling getDiscount'
             );
-        }        $resourcePath = '/discounts/{id}';
+        }
+
+        $resourcePath = '/discounts/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -391,7 +393,9 @@ final class DiscountsApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling listOrgDiscounts'
             );
-        }        $resourcePath = '/organizations/{organization_id}/discounts';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/discounts';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

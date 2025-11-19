@@ -225,6 +225,7 @@ class OpenApiPreprocessor
      *  - ProjectTask.delete()
      *  - SupportTicketTask.listCategories()
      *  - SupportTicketTask.listPriorities()
+     * @throws Exception
      */
     public function checkProjectSubscriptionId(): void
     {
@@ -779,7 +780,6 @@ class OpenApiPreprocessor
                         && ($propDefinition['format'] ?? '') === 'date-time'
                     ) {
                         $propDefinition['x-isDateTime'] = true;
-                        echo "  → {$schemaName}.{$propName} marked as DateTime\n";
                     } else {
                         if (!array_key_exists('$ref', $propDefinition) && $propName !== '_links') {
                             $propDefinition['x-isDateTime'] = false;

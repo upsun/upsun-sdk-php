@@ -156,7 +156,9 @@ final class EnvironmentVariablesApi extends AbstractApi
                 'Missing the required parameter $environmentVariableCreateInput
                 when calling createProjectsEnvironmentsVariables'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/variables';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/variables';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -336,7 +338,9 @@ final class EnvironmentVariablesApi extends AbstractApi
                 'Missing the required parameter $variableId
                 when calling deleteProjectsEnvironmentsVariables'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/variables/{variableId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/variables/{variableId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -517,7 +521,9 @@ final class EnvironmentVariablesApi extends AbstractApi
                 'Missing the required parameter $variableId
                 when calling getProjectsEnvironmentsVariables'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/variables/{variableId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/variables/{variableId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -690,7 +696,9 @@ final class EnvironmentVariablesApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsVariables'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/variables';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/variables';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -880,7 +888,9 @@ final class EnvironmentVariablesApi extends AbstractApi
                 'Missing the required parameter $environmentVariablePatch
                 when calling updateProjectsEnvironmentsVariables'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/variables/{variableId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/variables/{variableId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

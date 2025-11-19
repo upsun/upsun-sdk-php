@@ -149,7 +149,9 @@ final class DeploymentApi extends AbstractApi
                 'Missing the required parameter $deploymentId
                 when calling getProjectsEnvironmentsDeployments'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -327,7 +329,9 @@ final class DeploymentApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsDeployments'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -499,7 +503,9 @@ final class DeploymentApi extends AbstractApi
                 'Missing the required parameter $updateProjectsEnvironmentsDeploymentsNextRequest
                 when calling updateProjectsEnvironmentsDeploymentsNext'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/next';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/next';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

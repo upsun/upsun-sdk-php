@@ -148,7 +148,9 @@ final class TeamAccessApi extends AbstractApi
                 'Missing the required parameter $teamId
                 when calling getProjectTeamAccess'
             );
-        }        $resourcePath = '/projects/{project_id}/team-access/{team_id}';
+        }
+
+        $resourcePath = '/projects/{project_id}/team-access/{team_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -320,7 +322,9 @@ final class TeamAccessApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling getTeamProjectAccess'
             );
-        }        $resourcePath = '/teams/{team_id}/project-access/{project_id}';
+        }
+
+        $resourcePath = '/teams/{team_id}/project-access/{project_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -480,7 +484,9 @@ final class TeamAccessApi extends AbstractApi
                 'Missing the required parameter $grantProjectTeamAccessRequestInner
                 when calling grantProjectTeamAccess'
             );
-        }        $resourcePath = '/projects/{project_id}/team-access';
+        }
+
+        $resourcePath = '/projects/{project_id}/team-access';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -639,7 +645,9 @@ final class TeamAccessApi extends AbstractApi
                 'Missing the required parameter $grantTeamProjectAccessRequestInner
                 when calling grantTeamProjectAccess'
             );
-        }        $resourcePath = '/teams/{team_id}/project-access';
+        }
+
+        $resourcePath = '/teams/{team_id}/project-access';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1294,7 +1302,9 @@ final class TeamAccessApi extends AbstractApi
                 'Missing the required parameter $teamId
                 when calling removeProjectTeamAccess'
             );
-        }        $resourcePath = '/projects/{project_id}/team-access/{team_id}';
+        }
+
+        $resourcePath = '/projects/{project_id}/team-access/{team_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1460,7 +1470,9 @@ final class TeamAccessApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling removeTeamProjectAccess'
             );
-        }        $resourcePath = '/teams/{team_id}/project-access/{project_id}';
+        }
+
+        $resourcePath = '/teams/{team_id}/project-access/{project_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

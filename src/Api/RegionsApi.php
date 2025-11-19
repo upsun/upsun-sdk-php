@@ -131,7 +131,9 @@ final class RegionsApi extends AbstractApi
                 'Missing the required parameter $regionId
                 when calling getRegion'
             );
-        }        $resourcePath = '/regions/{region_id}';
+        }
+
+        $resourcePath = '/regions/{region_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

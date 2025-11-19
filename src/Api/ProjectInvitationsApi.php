@@ -143,7 +143,9 @@ final class ProjectInvitationsApi extends AbstractApi
                 'Missing the required parameter $invitationId
                 when calling cancelProjectInvite'
             );
-        }        $resourcePath = '/projects/{project_id}/invitations/{invitation_id}';
+        }
+
+        $resourcePath = '/projects/{project_id}/invitations/{invitation_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -302,7 +304,9 @@ final class ProjectInvitationsApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling createProjectInvite'
             );
-        }        $resourcePath = '/projects/{project_id}/invitations';
+        }
+
+        $resourcePath = '/projects/{project_id}/invitations';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

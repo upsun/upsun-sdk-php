@@ -134,7 +134,9 @@ final class EnvironmentTypeApi extends AbstractApi
                 'Missing the required parameter $environmentTypeId
                 when calling getEnvironmentType'
             );
-        }        $resourcePath = '/projects/{projectId}/environment-types/{environmentTypeId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environment-types/{environmentTypeId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -286,7 +288,9 @@ final class EnvironmentTypeApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling listProjectsEnvironmentTypes'
             );
-        }        $resourcePath = '/projects/{projectId}/environment-types';
+        }
+
+        $resourcePath = '/projects/{projectId}/environment-types';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

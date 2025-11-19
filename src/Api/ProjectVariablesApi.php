@@ -142,7 +142,9 @@ final class ProjectVariablesApi extends AbstractApi
                 'Missing the required parameter $projectVariableCreateInput
                 when calling createProjectsVariables'
             );
-        }        $resourcePath = '/projects/{projectId}/variables';
+        }
+
+        $resourcePath = '/projects/{projectId}/variables';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -301,7 +303,9 @@ final class ProjectVariablesApi extends AbstractApi
                 'Missing the required parameter $projectVariableId
                 when calling deleteProjectsVariables'
             );
-        }        $resourcePath = '/projects/{projectId}/variables/{projectVariableId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/variables/{projectVariableId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -461,7 +465,9 @@ final class ProjectVariablesApi extends AbstractApi
                 'Missing the required parameter $projectVariableId
                 when calling getProjectsVariables'
             );
-        }        $resourcePath = '/projects/{projectId}/variables/{projectVariableId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/variables/{projectVariableId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -613,7 +619,9 @@ final class ProjectVariablesApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling listProjectsVariables'
             );
-        }        $resourcePath = '/projects/{projectId}/variables';
+        }
+
+        $resourcePath = '/projects/{projectId}/variables';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -782,7 +790,9 @@ final class ProjectVariablesApi extends AbstractApi
                 'Missing the required parameter $projectVariablePatch
                 when calling updateProjectsVariables'
             );
-        }        $resourcePath = '/projects/{projectId}/variables/{projectVariableId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/variables/{projectVariableId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

@@ -131,7 +131,9 @@ final class TeamsApi extends AbstractApi
                 'Missing the required parameter $createTeamRequest
                 when calling createTeam'
             );
-        }        $resourcePath = '/teams';
+        }
+
+        $resourcePath = '/teams';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -286,7 +288,9 @@ final class TeamsApi extends AbstractApi
                 'Missing the required parameter $createTeamMemberRequest
                 when calling createTeamMember'
             );
-        }        $resourcePath = '/teams/{team_id}/members';
+        }
+
+        $resourcePath = '/teams/{team_id}/members';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -433,7 +437,9 @@ final class TeamsApi extends AbstractApi
                 'Missing the required parameter $teamId
                 when calling deleteTeam'
             );
-        }        $resourcePath = '/teams/{team_id}';
+        }
+
+        $resourcePath = '/teams/{team_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -590,7 +596,9 @@ final class TeamsApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling deleteTeamMember'
             );
-        }        $resourcePath = '/teams/{team_id}/members/{user_id}';
+        }
+
+        $resourcePath = '/teams/{team_id}/members/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -744,7 +752,9 @@ final class TeamsApi extends AbstractApi
                 'Missing the required parameter $teamId
                 when calling getTeam'
             );
-        }        $resourcePath = '/teams/{team_id}';
+        }
+
+        $resourcePath = '/teams/{team_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -907,7 +917,9 @@ final class TeamsApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling getTeamMember'
             );
-        }        $resourcePath = '/teams/{team_id}/members/{user_id}';
+        }
+
+        $resourcePath = '/teams/{team_id}/members/{user_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1085,7 +1097,9 @@ final class TeamsApi extends AbstractApi
                 'Missing the required parameter $teamId
                 when calling listTeamMembers'
             );
-        }        $resourcePath = '/teams/{team_id}/members';
+        }
+
+        $resourcePath = '/teams/{team_id}/members';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1840,7 +1854,9 @@ final class TeamsApi extends AbstractApi
                 'Missing the required parameter $teamId
                 when calling updateTeam'
             );
-        }        $resourcePath = '/teams/{team_id}';
+        }
+
+        $resourcePath = '/teams/{team_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

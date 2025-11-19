@@ -139,7 +139,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 'Missing the required parameter $integrationCreateInput
                 when calling createProjectsIntegrations'
             );
-        }        $resourcePath = '/projects/{projectId}/integrations';
+        }
+
+        $resourcePath = '/projects/{projectId}/integrations';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -297,7 +299,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 'Missing the required parameter $integrationId
                 when calling deleteProjectsIntegrations'
             );
-        }        $resourcePath = '/projects/{projectId}/integrations/{integrationId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/integrations/{integrationId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -456,7 +460,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 'Missing the required parameter $integrationId
                 when calling getProjectsIntegrations'
             );
-        }        $resourcePath = '/projects/{projectId}/integrations/{integrationId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/integrations/{integrationId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -607,7 +613,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling listProjectsIntegrations'
             );
-        }        $resourcePath = '/projects/{projectId}/integrations';
+        }
+
+        $resourcePath = '/projects/{projectId}/integrations';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -772,7 +780,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 'Missing the required parameter $integrationPatch
                 when calling updateProjectsIntegrations'
             );
-        }        $resourcePath = '/projects/{projectId}/integrations/{integrationId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/integrations/{integrationId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

@@ -147,7 +147,9 @@ final class OrganizationProjectsApi extends AbstractApi
                 'Missing the required parameter $createOrgProjectRequest
                 when calling createOrgProject'
             );
-        }        $resourcePath = '/organizations/{organization_id}/projects';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/projects';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -312,7 +314,9 @@ final class OrganizationProjectsApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling deleteOrgProject'
             );
-        }        $resourcePath = '/organizations/{organization_id}/projects/{project_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/projects/{project_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -484,7 +488,9 @@ final class OrganizationProjectsApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling getOrgProject'
             );
-        }        $resourcePath = '/organizations/{organization_id}/projects/{project_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/projects/{project_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1042,7 +1048,9 @@ final class OrganizationProjectsApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling queryProjectCarbon'
             );
-        }        $resourcePath = '/organizations/{organization_id}/projects/{project_id}/metrics/carbon';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/projects/{project_id}/metrics/carbon';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1258,7 +1266,9 @@ final class OrganizationProjectsApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling updateOrgProject'
             );
-        }        $resourcePath = '/organizations/{organization_id}/projects/{project_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/projects/{project_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

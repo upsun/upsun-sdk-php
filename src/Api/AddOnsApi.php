@@ -132,7 +132,9 @@ final class AddOnsApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling getOrgAddons'
             );
-        }        $resourcePath = '/organizations/{organization_id}/addons';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/addons';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -292,7 +294,9 @@ final class AddOnsApi extends AbstractApi
                 'Missing the required parameter $updateOrgAddonsRequest
                 when calling updateOrgAddons'
             );
-        }        $resourcePath = '/organizations/{organization_id}/addons';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/addons';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

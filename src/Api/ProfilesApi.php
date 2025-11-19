@@ -133,7 +133,9 @@ final class ProfilesApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling getOrgAddress'
             );
-        }        $resourcePath = '/organizations/{organization_id}/address';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/address';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -281,7 +283,9 @@ final class ProfilesApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling getOrgProfile'
             );
-        }        $resourcePath = '/organizations/{organization_id}/profile';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/profile';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -431,7 +435,9 @@ final class ProfilesApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling updateOrgAddress'
             );
-        }        $resourcePath = '/organizations/{organization_id}/address';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/address';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -589,7 +595,9 @@ final class ProfilesApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling updateOrgProfile'
             );
-        }        $resourcePath = '/organizations/{organization_id}/profile';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/profile';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

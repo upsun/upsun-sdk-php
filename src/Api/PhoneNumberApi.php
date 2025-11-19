@@ -144,7 +144,9 @@ final class PhoneNumberApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling confirmPhoneNumber'
             );
-        }        $resourcePath = '/users/{user_id}/phonenumber/{sid}';
+        }
+
+        $resourcePath = '/users/{user_id}/phonenumber/{sid}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -311,7 +313,9 @@ final class PhoneNumberApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling verifyPhoneNumber'
             );
-        }        $resourcePath = '/users/{user_id}/phonenumber';
+        }
+
+        $resourcePath = '/users/{user_id}/phonenumber';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

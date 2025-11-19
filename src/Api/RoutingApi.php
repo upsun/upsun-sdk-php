@@ -149,7 +149,9 @@ final class RoutingApi extends AbstractApi
                 'Missing the required parameter $routeId
                 when calling getProjectsEnvironmentsRoutes'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/routes/{routeId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/routes/{routeId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -323,7 +325,9 @@ final class RoutingApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsRoutes'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/routes';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/routes';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

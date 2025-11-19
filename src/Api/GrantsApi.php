@@ -155,7 +155,9 @@ final class GrantsApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling listUserExtendedAccess'
             );
-        }        $resourcePath = '/users/{user_id}/extended-access';
+        }
+
+        $resourcePath = '/users/{user_id}/extended-access';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

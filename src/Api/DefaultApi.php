@@ -593,7 +593,9 @@ final class DefaultApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling queryOrganiationCarbon'
             );
-        }        $resourcePath = '/organizations/{organization_id}/metrics/carbon';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/metrics/carbon';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

@@ -137,7 +137,9 @@ final class ConnectionsApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling deleteLoginConnection'
             );
-        }        $resourcePath = '/users/{user_id}/connections/{provider}';
+        }
+
+        $resourcePath = '/users/{user_id}/connections/{provider}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -306,7 +308,9 @@ final class ConnectionsApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling getLoginConnection'
             );
-        }        $resourcePath = '/users/{user_id}/connections/{provider}';
+        }
+
+        $resourcePath = '/users/{user_id}/connections/{provider}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -464,7 +468,9 @@ final class ConnectionsApi extends AbstractApi
                 'Missing the required parameter $userId
                 when calling listLoginConnections'
             );
-        }        $resourcePath = '/users/{user_id}/connections';
+        }
+
+        $resourcePath = '/users/{user_id}/connections';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

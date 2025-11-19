@@ -152,7 +152,9 @@ final class OrdersApi extends AbstractApi
                 'Missing the required parameter $orderId
                 when calling createAuthorizationCredentials'
             );
-        }        $resourcePath = '/organizations/{organization_id}/orders/{order_id}/authorize';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/orders/{order_id}/authorize';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -302,7 +304,9 @@ final class OrdersApi extends AbstractApi
                 'Missing the required parameter $token
                 when calling downloadInvoice'
             );
-        }        $resourcePath = '/orders/download';
+        }
+
+        $resourcePath = '/orders/download';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -482,7 +486,9 @@ final class OrdersApi extends AbstractApi
                 'Missing the required parameter $orderId
                 when calling getOrgOrder'
             );
-        }        $resourcePath = '/organizations/{organization_id}/orders/{order_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/orders/{order_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -696,7 +702,9 @@ final class OrdersApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling listOrgOrders'
             );
-        }        $resourcePath = '/organizations/{organization_id}/orders';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/orders';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

@@ -137,7 +137,9 @@ final class AutoscalingApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling getAutoscalerSettings'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/autoscaling/settings';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/autoscaling/settings';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -308,7 +310,9 @@ final class AutoscalingApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling patchAutoscalerSettings'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/autoscaling/settings';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/autoscaling/settings';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -487,7 +491,9 @@ final class AutoscalingApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling postAutoscalerSettings'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/autoscaling/settings';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/autoscaling/settings';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

@@ -132,7 +132,9 @@ final class CertificateProvisionerApi extends AbstractApi
                 'Missing the required parameter $certificateProvisionerDocumentId
                 when calling getProjectsProvisioners'
             );
-        }        $resourcePath = '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -280,7 +282,9 @@ final class CertificateProvisionerApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling listProjectsProvisioners'
             );
-        }        $resourcePath = '/projects/{projectId}/provisioners';
+        }
+
+        $resourcePath = '/projects/{projectId}/provisioners';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -442,7 +446,9 @@ final class CertificateProvisionerApi extends AbstractApi
                 'Missing the required parameter $certificateProvisionerPatch
                 when calling updateProjectsProvisioners'
             );
-        }        $resourcePath = '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

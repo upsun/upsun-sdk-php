@@ -135,7 +135,9 @@ final class VouchersApi extends AbstractApi
                 'Missing the required parameter $applyOrgVoucherRequest
                 when calling applyOrgVoucher'
             );
-        }        $resourcePath = '/organizations/{organization_id}/vouchers/apply';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/vouchers/apply';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -291,7 +293,9 @@ final class VouchersApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling listOrgVouchers'
             );
-        }        $resourcePath = '/organizations/{organization_id}/vouchers';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/vouchers';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

@@ -35,30 +35,33 @@ class SupportTicketsTaskTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $psr17Factory = new Psr17Factory();
-
         $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $oauthProvider = $this->createMock(OAuthProvider::class);
 
         $upsunClient = $this->createMock(UpsunClient::class);
 
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
+            $this->httpClient,
+            new Psr17Factory(),
+            new ApiConfiguration()
+        ];
+
         $upsunClient->projects = new class (
             $upsunClient,
-            new ProjectApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new ProjectSettingsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new DeploymentTargetApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new RepositoryApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new SystemInformationApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new ThirdPartyIntegrationsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new SubscriptionsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new ProjectApi(...$apiClassParams),
+            new ProjectSettingsApi(...$apiClassParams),
+            new DeploymentTargetApi(...$apiClassParams),
+            new RepositoryApi(...$apiClassParams),
+            new SystemInformationApi(...$apiClassParams),
+            new ThirdPartyIntegrationsApi(...$apiClassParams),
+            new SubscriptionsApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
 
         $this->task = new class (
             $upsunClient,
-            new DefaultApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new SupportApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new DefaultApi(...$apiClassParams),
+            new SupportApi(...$apiClassParams),
         ) extends SupportTicketsTask {
         };
     }

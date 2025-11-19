@@ -23,24 +23,20 @@ class BackupsTaskTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $psr17Factory = new Psr17Factory();
-
         $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $oauthProvider = $this->createMock(OAuthProvider::class);
-
-        $environmentBackupApi = new EnvironmentBackupsApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
 
         $upsunClient = $this->createMock(UpsunClient::class);
 
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
+            $this->httpClient,
+            new Psr17Factory(),
+            new ApiConfiguration()
+        ];
+
         $this->backupsTask = new class (
             $upsunClient,
-            $environmentBackupApi
+            new EnvironmentBackupsApi(...$apiClassParams),
         ) extends BackupsTask {
         };
     }

@@ -151,7 +151,9 @@ final class InvoicesApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling getOrgInvoice'
             );
-        }        $resourcePath = '/organizations/{organization_id}/invoices/{invoice_id}';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/invoices/{invoice_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -355,7 +357,9 @@ final class InvoicesApi extends AbstractApi
                 'Missing the required parameter $organizationId
                 when calling listOrgInvoices'
             );
-        }        $resourcePath = '/organizations/{organization_id}/invoices';
+        }
+
+        $resourcePath = '/organizations/{organization_id}/invoices';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

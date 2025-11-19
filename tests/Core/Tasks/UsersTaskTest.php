@@ -45,24 +45,27 @@ class UsersTaskTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $psr17Factory = new Psr17Factory();
-
         $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $oauthProvider = $this->createMock(OAuthProvider::class);
 
         $upsunClient = $this->createMock(UpsunClient::class);
 
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
+            $this->httpClient,
+            new Psr17Factory(),
+            new ApiConfiguration()
+        ];
+
         $this->usersTask = new class (
             $upsunClient,
-            new UsersApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new UserProfilesApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new UserAccessApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new ApiTokensApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new ConnectionsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new GrantsApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new MfaApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
-            new PhoneNumberApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration()),
+            new UsersApi(...$apiClassParams),
+            new UserProfilesApi(...$apiClassParams),
+            new UserAccessApi(...$apiClassParams),
+            new ApiTokensApi(...$apiClassParams),
+            new ConnectionsApi(...$apiClassParams),
+            new GrantsApi(...$apiClassParams),
+            new MfaApi(...$apiClassParams),
+            new PhoneNumberApi(...$apiClassParams),
         ) extends UsersTask {
         };
     }

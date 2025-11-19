@@ -165,7 +165,9 @@ final class RuntimeOperationsApi extends AbstractApi
                 'Missing the required parameter $environmentOperationInput
                 when calling runOperation'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/operations';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/operations';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

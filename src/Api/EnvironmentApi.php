@@ -160,7 +160,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentActivateInput
                 when calling activateEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/activate';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/activate';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -343,7 +345,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentBranchInput
                 when calling branchEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/branch';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/branch';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -528,7 +532,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $versionCreateInput
                 when calling createProjectsEnvironmentsVersions'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -698,7 +704,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling deactivateEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deactivate';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deactivate';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -858,7 +866,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling deleteEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1031,7 +1041,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $versionId
                 when calling deleteProjectsEnvironmentsVersions'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1217,7 +1229,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentDeployInput
                 when calling deployEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deploy';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deploy';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1385,7 +1399,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling getEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1558,7 +1574,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $versionId
                 when calling getProjectsEnvironmentsVersions'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1748,7 +1766,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentInitializeInput
                 when calling initializeEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/initialize';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/initialize';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1908,7 +1928,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling listProjectsEnvironments'
             );
-        }        $resourcePath = '/projects/{projectId}/environments';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2065,7 +2087,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling listProjectsEnvironmentsVersions'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2242,7 +2266,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentMergeInput
                 when calling mergeEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/merge';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/merge';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2414,7 +2440,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling pauseEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/pause';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/pause';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2574,7 +2602,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling redeployEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/redeploy';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/redeploy';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2737,7 +2767,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentId
                 when calling resumeEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/resume';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/resume';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2914,7 +2946,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentSynchronizeInput
                 when calling synchronizeEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/synchronize';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/synchronize';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3097,7 +3131,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $environmentPatch
                 when calling updateEnvironment'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3293,7 +3329,9 @@ final class EnvironmentApi extends AbstractApi
                 'Missing the required parameter $versionPatch
                 when calling updateProjectsEnvironmentsVersions'
             );
-        }        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

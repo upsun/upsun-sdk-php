@@ -140,7 +140,9 @@ final class CertManagementApi extends AbstractApi
                 'Missing the required parameter $certificateCreateInput
                 when calling createProjectsCertificates'
             );
-        }        $resourcePath = '/projects/{projectId}/certificates';
+        }
+
+        $resourcePath = '/projects/{projectId}/certificates';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -299,7 +301,9 @@ final class CertManagementApi extends AbstractApi
                 'Missing the required parameter $certificateId
                 when calling deleteProjectsCertificates'
             );
-        }        $resourcePath = '/projects/{projectId}/certificates/{certificateId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/certificates/{certificateId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -459,7 +463,9 @@ final class CertManagementApi extends AbstractApi
                 'Missing the required parameter $certificateId
                 when calling getProjectsCertificates'
             );
-        }        $resourcePath = '/projects/{projectId}/certificates/{certificateId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/certificates/{certificateId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -611,7 +617,9 @@ final class CertManagementApi extends AbstractApi
                 'Missing the required parameter $projectId
                 when calling listProjectsCertificates'
             );
-        }        $resourcePath = '/projects/{projectId}/certificates';
+        }
+
+        $resourcePath = '/projects/{projectId}/certificates';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -777,7 +785,9 @@ final class CertManagementApi extends AbstractApi
                 'Missing the required parameter $certificatePatch
                 when calling updateProjectsCertificates'
             );
-        }        $resourcePath = '/projects/{projectId}/certificates/{certificateId}';
+        }
+
+        $resourcePath = '/projects/{projectId}/certificates/{certificateId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
