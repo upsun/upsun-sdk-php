@@ -1,7 +1,6 @@
 # OrganizationAddonsObjectCurrent
 
 Low level OrganizationAddonsObjectCurrent (auto-generated)
-
 The list of existing add-ons and their current values.
 
 ***

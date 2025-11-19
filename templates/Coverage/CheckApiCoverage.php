@@ -4,8 +4,12 @@ namespace Upsun\Coverage;
 
 require 'vendor/autoload.php';
 
+use Exception;
 use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RegexIterator;
 use Upsun\Coverage\Collector\ApiMethodCall;
 use Upsun\Coverage\Collector\FacadeMethodCall;
 
@@ -27,9 +31,9 @@ function scanDirectory($directory, $parser, $traverser)
         return;
     }
 
-    $directoryIterator = new \RecursiveDirectoryIterator($directory);
-    $iterator = new \RecursiveIteratorIterator($directoryIterator);
-    $phpFiles = new \RegexIterator($iterator, '/^.+\.php$/i');
+    $directoryIterator = new RecursiveDirectoryIterator($directory);
+    $iterator = new RecursiveIteratorIterator($directoryIterator);
+    $phpFiles = new RegexIterator($iterator, '/^.+\.php$/i');
 
     foreach ($phpFiles as $file) {
         if (in_array($file->getPathName(), $excludedClasses, true)) {
@@ -40,7 +44,7 @@ function scanDirectory($directory, $parser, $traverser)
         try {
             $ast = $parser->parse($code);
             $traverser->traverse($ast);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo "Error parsing {$file->getPathname()}: {$e->getMessage()}\n";
         }
     }

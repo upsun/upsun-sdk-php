@@ -1,7 +1,6 @@
 # RegionDatacenter
 
 Low level RegionDatacenter (auto-generated)
-
 Information about the region provider data center.
 
 ***

@@ -1,7 +1,6 @@
 # DiscountCommitment
 
 Low level DiscountCommitment (auto-generated)
-
 The minimum commitment associated with the discount (if applicable).
 
 ***

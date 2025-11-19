@@ -1698,9 +1698,4 @@ protected extractSubscriptionId(string $projectLicenceUri): string
 |----------------------|------------|-------------|
 | `$projectLicenceUri` | **string** |             |
 
-**Throws:**
-
-- [`ClientExceptionInterface`](https://www.php-fig.org/psr/psr-18/#clientexceptioninterface) 
-
-
 ***

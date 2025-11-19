@@ -1,7 +1,6 @@
 # OrganizationAlertConfig
 
 Low level OrganizationAlertConfig (auto-generated)
-
 The alert configuration for an organization.
 
 ***

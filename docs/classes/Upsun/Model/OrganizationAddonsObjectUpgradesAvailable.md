@@ -1,7 +1,6 @@
 # OrganizationAddonsObjectUpgradesAvailable
 
 Low level OrganizationAddonsObjectUpgradesAvailable (auto-generated)
-
 The upgrades available for current add-ons.
 
 ***

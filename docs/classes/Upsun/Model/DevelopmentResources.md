@@ -1,7 +1,6 @@
 # DevelopmentResources
 
 Low level DevelopmentResources (auto-generated)
-
 Resources for development environments
 
 ***

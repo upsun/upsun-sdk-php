@@ -1,7 +1,6 @@
 # HealthEmail
 
 Low level HealthEmail (auto-generated)
-
 Health Email notification integration configurations
 
 ***

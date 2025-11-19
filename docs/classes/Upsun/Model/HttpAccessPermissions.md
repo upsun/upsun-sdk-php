@@ -1,7 +1,6 @@
 # HttpAccessPermissions
 
 Low level HttpAccessPermissions (auto-generated)
-
 The permissions of the HTTP access
 
 ***

@@ -1,7 +1,6 @@
 # OrganizationEstimationObjectSubscriptions
 
 Low level OrganizationEstimationObjectSubscriptions (auto-generated)
-
 An estimation of subscriptions cost.
 
 ***

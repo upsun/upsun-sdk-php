@@ -1,7 +1,6 @@
 # LineItemComponent
 
 Low level LineItemComponent (auto-generated)
-
 A price component for a line item.
 
 ***

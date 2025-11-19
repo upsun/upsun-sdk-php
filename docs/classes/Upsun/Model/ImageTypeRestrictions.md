@@ -1,7 +1,6 @@
 # ImageTypeRestrictions
 
 Low level ImageTypeRestrictions (auto-generated)
-
 Restricted and denied image types
 
 ***

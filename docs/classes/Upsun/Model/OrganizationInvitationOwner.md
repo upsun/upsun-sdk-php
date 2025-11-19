@@ -1,7 +1,6 @@
 # OrganizationInvitationOwner
 
 Low level OrganizationInvitationOwner (auto-generated)
-
 The inviter.
 
 ***

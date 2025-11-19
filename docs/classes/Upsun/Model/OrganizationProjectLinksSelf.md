@@ -1,7 +1,6 @@
 # OrganizationProjectLinksSelf
 
 Low level OrganizationProjectLinksSelf (auto-generated)
-
 Link to the current project.
 
 ***

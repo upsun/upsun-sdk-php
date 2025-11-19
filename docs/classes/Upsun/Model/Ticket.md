@@ -1,7 +1,6 @@
 # Ticket
 
 Low level Ticket (auto-generated)
-
 The support ticket object.
 
 ***

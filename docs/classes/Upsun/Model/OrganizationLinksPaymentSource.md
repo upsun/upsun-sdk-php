@@ -1,7 +1,6 @@
 # OrganizationLinksPaymentSource
 
 Low level OrganizationLinksPaymentSource (auto-generated)
-
 Link to the current organization's payment source.
 
 ***

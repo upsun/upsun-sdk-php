@@ -1,7 +1,6 @@
 # MergeInfo
 
 Low level MergeInfo (auto-generated)
-
 The commit distance info between parent and child environments
 
 ***

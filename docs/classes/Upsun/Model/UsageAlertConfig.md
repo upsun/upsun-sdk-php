@@ -1,7 +1,6 @@
 # UsageAlertConfig
 
 Low level UsageAlertConfig (auto-generated)
-
 Configuration for the usage alert.
 
 ***

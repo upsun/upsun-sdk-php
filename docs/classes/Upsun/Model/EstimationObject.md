@@ -1,7 +1,6 @@
 # EstimationObject
 
 Low level EstimationObject (auto-generated)
-
 A price estimate object.
 
 ***

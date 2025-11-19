@@ -1,7 +1,6 @@
 # ProjectStatus
 
 Low level ProjectStatus (auto-generated)
-
 The status of the project.
 
 ***

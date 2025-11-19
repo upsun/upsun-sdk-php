@@ -1,7 +1,6 @@
 # CurrencyAmount
 
 Low level CurrencyAmount (auto-generated)
-
 Currency amount with detailed components.
 
 ***

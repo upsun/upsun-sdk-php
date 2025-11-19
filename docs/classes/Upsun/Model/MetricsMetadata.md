@@ -19,7 +19,7 @@ Low level MetricsMetadata (auto-generated)
 ### from
 
 ```php
-private ?mixed $from
+private mixed $from
 ```
 
 ***
@@ -27,7 +27,7 @@ private ?mixed $from
 ### to
 
 ```php
-private ?mixed $to
+private mixed $to
 ```
 
 ***
@@ -35,7 +35,7 @@ private ?mixed $to
 ### interval
 
 ```php
-private ?mixed $interval
+private mixed $interval
 ```
 
 ***
@@ -43,7 +43,7 @@ private ?mixed $interval
 ### units
 
 ```php
-private ?mixed $units
+private mixed $units
 ```
 
 ***
@@ -53,17 +53,17 @@ private ?mixed $units
 ### __construct
 
 ```php
-public __construct(?mixed $from = null, ?mixed $to = null, ?mixed $interval = null, ?mixed $units = null): mixed
+public __construct(mixed $from = null, mixed $to = null, mixed $interval = null, mixed $units = null): mixed
 ```
 
 **Parameters:**
 
-| Parameter   | Type       | Description |
-|-------------|------------|-------------|
-| `$from`     | **?mixed** |             |
-| `$to`       | **?mixed** |             |
-| `$interval` | **?mixed** |             |
-| `$units`    | **?mixed** |             |
+| Parameter   | Type      | Description |
+|-------------|-----------|-------------|
+| `$from`     | **mixed** |             |
+| `$to`       | **mixed** |             |
+| `$interval` | **mixed** |             |
+| `$units`    | **mixed** |             |
 
 ***
 
@@ -98,7 +98,7 @@ public __toString(): string
 The value used to calculate the lower bound of the temporal query. Inclusive.
 
 ```php
-public getFrom(): ?mixed
+public getFrom(): mixed
 ```
 
 ***
@@ -108,7 +108,7 @@ public getFrom(): ?mixed
 The truncated value used to calculate the upper bound of the temporal query. Exclusive.
 
 ```php
-public getTo(): ?mixed
+public getTo(): mixed
 ```
 
 ***
@@ -118,7 +118,7 @@ public getTo(): ?mixed
 The interval used to group the metric values.
 
 ```php
-public getInterval(): ?mixed
+public getInterval(): mixed
 ```
 
 ***
@@ -128,7 +128,7 @@ public getInterval(): ?mixed
 The units associated with the provided values.
 
 ```php
-public getUnits(): ?mixed
+public getUnits(): mixed
 ```
 
 ***

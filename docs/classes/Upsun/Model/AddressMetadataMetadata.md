@@ -1,7 +1,6 @@
 # AddressMetadataMetadata
 
 Low level AddressMetadataMetadata (auto-generated)
-
 Address field metadata.
 
 ***

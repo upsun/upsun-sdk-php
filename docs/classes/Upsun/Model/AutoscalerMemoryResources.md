@@ -1,7 +1,6 @@
 # AutoscalerMemoryResources
 
 Low level AutoscalerMemoryResources (auto-generated)
-
 Memory scaling settings
 
 ***

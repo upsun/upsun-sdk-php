@@ -1,7 +1,6 @@
 # SubscriptionAddonsObjectAvailable
 
 Low level SubscriptionAddonsObjectAvailable (auto-generated)
-
 The list of available addons.
 
 ***

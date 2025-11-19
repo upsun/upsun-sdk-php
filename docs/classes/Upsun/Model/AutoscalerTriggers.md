@@ -1,7 +1,6 @@
 # AutoscalerTriggers
 
 Low level AutoscalerTriggers (auto-generated)
-
 Scaling triggers settings
 
 ***

@@ -1,7 +1,6 @@
 # Object
 
 Low level Object (auto-generated)
-
 The object the reference points to
 
 ***

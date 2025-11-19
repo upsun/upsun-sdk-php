@@ -359,13 +359,13 @@ Returns a list of items representing the project access.
 
 **Parameters:**
 
-| Parameter     | Type             | Description                                                                                                                                             |
-|---------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$projectId`  | **string**       | The ID of the project. (required)                                                                                                                       |
-| `$pageSize`   | **int\|null**    | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`       | **string\|null** | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `granted_at`, `updated_at`. (optional)               |
+| Parameter     | Type             | Description                       |
+|---------------|------------------|-----------------------------------|
+| `$projectId`  | **string**       | The ID of the project. (required) |
+| `$pageSize`   | **int\|null**    | (optional)                        |
+| `$pageBefore` | **string\|null** | (optional)                        |
+| `$pageAfter`  | **string\|null** | (optional)                        |
+| `$sort`       | **string\|null** | (optional)                        |
 
 **Throws:**
 
@@ -389,13 +389,13 @@ private listProjectTeamAccessWithHttpInfo(string $projectId, int|null $pageSize 
 
 **Parameters:**
 
-| Parameter     | Type             | Description                                                                                                                                             |
-|---------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$projectId`  | **string**       | The ID of the project. (required)                                                                                                                       |
-| `$pageSize`   | **int\|null**    | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`       | **string\|null** | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `granted_at`, `updated_at`. (optional)               |
+| Parameter     | Type             | Description                       |
+|---------------|------------------|-----------------------------------|
+| `$projectId`  | **string**       | The ID of the project. (required) |
+| `$pageSize`   | **int\|null**    | (optional)                        |
+| `$pageBefore` | **string\|null** | (optional)                        |
+| `$pageAfter`  | **string\|null** | (optional)                        |
+| `$sort`       | **string\|null** | (optional)                        |
 
 **Throws:**
 
@@ -415,13 +415,13 @@ private listProjectTeamAccessRequest(string $projectId, int|null $pageSize = nul
 
 **Parameters:**
 
-| Parameter     | Type             | Description                                                                                                                                             |
-|---------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$projectId`  | **string**       | The ID of the project. (required)                                                                                                                       |
-| `$pageSize`   | **int\|null**    | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`       | **string\|null** | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `granted_at`, `updated_at`. (optional)               |
+| Parameter     | Type             | Description                       |
+|---------------|------------------|-----------------------------------|
+| `$projectId`  | **string**       | The ID of the project. (required) |
+| `$pageSize`   | **int\|null**    | (optional)                        |
+| `$pageBefore` | **string\|null** | (optional)                        |
+| `$pageAfter`  | **string\|null** | (optional)                        |
+| `$sort`       | **string\|null** | (optional)                        |
 
 **Throws:**
 
@@ -442,13 +442,13 @@ Returns a list of items representing the team's project access.
 
 **Parameters:**
 
-| Parameter     | Type             | Description                                                                                                                                                |
-|---------------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$teamId`     | **string**       | The ID of the team. (required)                                                                                                                             |
-| `$pageSize`   | **int\|null**    | Determines the number of items to show. (optional)                                                                                                         |
-| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$sort`       | **string\|null** | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `project_title`, `granted_at`, `updated_at`. (optional) |
+| Parameter     | Type             | Description                    |
+|---------------|------------------|--------------------------------|
+| `$teamId`     | **string**       | The ID of the team. (required) |
+| `$pageSize`   | **int\|null**    | (optional)                     |
+| `$pageBefore` | **string\|null** | (optional)                     |
+| `$pageAfter`  | **string\|null** | (optional)                     |
+| `$sort`       | **string\|null** | (optional)                     |
 
 **Throws:**
 
@@ -472,13 +472,13 @@ private listTeamProjectAccessWithHttpInfo(string $teamId, int|null $pageSize = n
 
 **Parameters:**
 
-| Parameter     | Type             | Description                                                                                                                                                |
-|---------------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$teamId`     | **string**       | The ID of the team. (required)                                                                                                                             |
-| `$pageSize`   | **int\|null**    | Determines the number of items to show. (optional)                                                                                                         |
-| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$sort`       | **string\|null** | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `project_title`, `granted_at`, `updated_at`. (optional) |
+| Parameter     | Type             | Description                    |
+|---------------|------------------|--------------------------------|
+| `$teamId`     | **string**       | The ID of the team. (required) |
+| `$pageSize`   | **int\|null**    | (optional)                     |
+| `$pageBefore` | **string\|null** | (optional)                     |
+| `$pageAfter`  | **string\|null** | (optional)                     |
+| `$sort`       | **string\|null** | (optional)                     |
 
 **Throws:**
 
@@ -498,13 +498,13 @@ private listTeamProjectAccessRequest(string $teamId, int|null $pageSize = null, 
 
 **Parameters:**
 
-| Parameter     | Type             | Description                                                                                                                                                |
-|---------------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$teamId`     | **string**       | The ID of the team. (required)                                                                                                                             |
-| `$pageSize`   | **int\|null**    | Determines the number of items to show. (optional)                                                                                                         |
-| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$sort`       | **string\|null** | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `project_title`, `granted_at`, `updated_at`. (optional) |
+| Parameter     | Type             | Description                    |
+|---------------|------------------|--------------------------------|
+| `$teamId`     | **string**       | The ID of the team. (required) |
+| `$pageSize`   | **int\|null**    | (optional)                     |
+| `$pageBefore` | **string\|null** | (optional)                     |
+| `$pageAfter`  | **string\|null** | (optional)                     |
+| `$sort`       | **string\|null** | (optional)                     |
 
 **Throws:**
 

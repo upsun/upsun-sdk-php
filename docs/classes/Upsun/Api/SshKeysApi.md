@@ -130,9 +130,9 @@ public deleteSshKey(int $keyId): void
 
 **Parameters:**
 
-| Parameter | Type    | Description                       |
-|-----------|---------|-----------------------------------|
-| `$keyId`  | **int** | The ID of the ssh key. (required) |
+| Parameter | Type    | Description |
+|-----------|---------|-------------|
+| `$keyId`  | **int** | (required)  |
 
 **Throws:**
 
@@ -156,9 +156,9 @@ private deleteSshKeyWithHttpInfo(int $keyId): void
 
 **Parameters:**
 
-| Parameter | Type    | Description                       |
-|-----------|---------|-----------------------------------|
-| `$keyId`  | **int** | The ID of the ssh key. (required) |
+| Parameter | Type    | Description |
+|-----------|---------|-------------|
+| `$keyId`  | **int** | (required)  |
 
 **Throws:**
 
@@ -178,9 +178,9 @@ private deleteSshKeyRequest(int $keyId): \Psr\Http\Message\RequestInterface
 
 **Parameters:**
 
-| Parameter | Type    | Description                       |
-|-----------|---------|-----------------------------------|
-| `$keyId`  | **int** | The ID of the ssh key. (required) |
+| Parameter | Type    | Description |
+|-----------|---------|-------------|
+| `$keyId`  | **int** | (required)  |
 
 **Throws:**
 
@@ -199,9 +199,9 @@ public getSshKey(int $keyId): \Upsun\Model\SshKey
 
 **Parameters:**
 
-| Parameter | Type    | Description                       |
-|-----------|---------|-----------------------------------|
-| `$keyId`  | **int** | The ID of the ssh key. (required) |
+| Parameter | Type    | Description |
+|-----------|---------|-------------|
+| `$keyId`  | **int** | (required)  |
 
 **Throws:**
 
@@ -225,9 +225,9 @@ private getSshKeyWithHttpInfo(int $keyId): \Upsun\Model\SshKey
 
 **Parameters:**
 
-| Parameter | Type    | Description                       |
-|-----------|---------|-----------------------------------|
-| `$keyId`  | **int** | The ID of the ssh key. (required) |
+| Parameter | Type    | Description |
+|-----------|---------|-------------|
+| `$keyId`  | **int** | (required)  |
 
 **Throws:**
 
@@ -247,9 +247,9 @@ private getSshKeyRequest(int $keyId): \Psr\Http\Message\RequestInterface
 
 **Parameters:**
 
-| Parameter | Type    | Description                       |
-|-----------|---------|-----------------------------------|
-| `$keyId`  | **int** | The ID of the ssh key. (required) |
+| Parameter | Type    | Description |
+|-----------|---------|-------------|
+| `$keyId`  | **int** | (required)  |
 
 **Throws:**
 

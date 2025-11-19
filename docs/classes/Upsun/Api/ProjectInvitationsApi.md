@@ -211,14 +211,14 @@ Returns a list of invitations to a project.
 
 **Parameters:**
 
-| Parameter      | Type                                | Description                                                                                                                                             |
-|----------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$projectId`   | **string**                          | The ID of the project. (required)                                                                                                                       |
-| `$filterState` | **\Upsun\Model\StringFilter\|null** | Allows filtering by `state` of the invtations: \"pending\" (default), \"error\". (optional)                                                             |
-| `$pageSize`    | **int\|null**                       | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`  | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`   | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`        | **string\|null**                    | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter      | Type                                | Description                       |
+|----------------|-------------------------------------|-----------------------------------|
+| `$projectId`   | **string**                          | The ID of the project. (required) |
+| `$filterState` | **\Upsun\Model\StringFilter\|null** | (optional)                        |
+| `$pageSize`    | **int\|null**                       | (optional)                        |
+| `$pageBefore`  | **string\|null**                    | (optional)                        |
+| `$pageAfter`   | **string\|null**                    | (optional)                        |
+| `$sort`        | **string\|null**                    | (optional)                        |
 
 **Throws:**
 
@@ -242,14 +242,14 @@ private listProjectInvitesWithHttpInfo(string $projectId, \Upsun\Model\StringFil
 
 **Parameters:**
 
-| Parameter      | Type                                | Description                                                                                                                                             |
-|----------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$projectId`   | **string**                          | The ID of the project. (required)                                                                                                                       |
-| `$filterState` | **\Upsun\Model\StringFilter\|null** | Allows filtering by `state` of the invtations: \"pending\" (default), \"error\". (optional)                                                             |
-| `$pageSize`    | **int\|null**                       | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`  | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`   | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`        | **string\|null**                    | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter      | Type                                | Description                       |
+|----------------|-------------------------------------|-----------------------------------|
+| `$projectId`   | **string**                          | The ID of the project. (required) |
+| `$filterState` | **\Upsun\Model\StringFilter\|null** | (optional)                        |
+| `$pageSize`    | **int\|null**                       | (optional)                        |
+| `$pageBefore`  | **string\|null**                    | (optional)                        |
+| `$pageAfter`   | **string\|null**                    | (optional)                        |
+| `$sort`        | **string\|null**                    | (optional)                        |
 
 **Throws:**
 
@@ -269,14 +269,14 @@ private listProjectInvitesRequest(string $projectId, \Upsun\Model\StringFilter|n
 
 **Parameters:**
 
-| Parameter      | Type                                | Description                                                                                                                                             |
-|----------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$projectId`   | **string**                          | The ID of the project. (required)                                                                                                                       |
-| `$filterState` | **\Upsun\Model\StringFilter\|null** | Allows filtering by `state` of the invtations: \"pending\" (default), \"error\". (optional)                                                             |
-| `$pageSize`    | **int\|null**                       | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`  | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`   | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`        | **string\|null**                    | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter      | Type                                | Description                       |
+|----------------|-------------------------------------|-----------------------------------|
+| `$projectId`   | **string**                          | The ID of the project. (required) |
+| `$filterState` | **\Upsun\Model\StringFilter\|null** | (optional)                        |
+| `$pageSize`    | **int\|null**                       | (optional)                        |
+| `$pageBefore`  | **string\|null**                    | (optional)                        |
+| `$pageAfter`   | **string\|null**                    | (optional)                        |
+| `$sort`        | **string\|null**                    | (optional)                        |
 
 **Throws:**
 

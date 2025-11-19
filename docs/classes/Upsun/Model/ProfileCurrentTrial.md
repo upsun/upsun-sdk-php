@@ -1,7 +1,6 @@
 # ProfileCurrentTrial
 
 Low level ProfileCurrentTrial (auto-generated)
-
 The current trial for the profile.
 
 ***

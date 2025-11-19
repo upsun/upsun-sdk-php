@@ -1,7 +1,7 @@
 final class {{classname}} implements Model, JsonSerializable
 {
     public function __construct(
-    {{#vars}}    
+    {{#vars}}
       {{#required}}
       {{^isNullable}}
       {{#isContainer}}
@@ -16,7 +16,7 @@ final class {{classname}} implements Model, JsonSerializable
               {{/isDateTime}}
       {{/isContainer}}
       {{/isNullable}}
-      {{/required}}      
+      {{/required}}
     {{/vars}}
     {{#vars}}
       {{#isNullable}}
@@ -28,10 +28,10 @@ final class {{classname}} implements Model, JsonSerializable
         private readonly ?\DateTime ${{name}}{{^required}} = null{{/required}},
           {{/isDateTime}}
           {{^isDateTime}}
-        private readonly ?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}}{{^required}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}}{{/required}},
+        private readonly {{#isAnyType}}mixed{{/isAnyType}}{{^isAnyType}}?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isAnyType}} ${{name}}{{^required}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}}{{/required}},
           {{/isDateTime}}
       {{/isContainer}}
-      {{/isNullable}}      
+      {{/isNullable}}
     {{/vars}}
     {{#vars}}
     {{^required}}
@@ -44,11 +44,11 @@ final class {{classname}} implements Model, JsonSerializable
         private readonly ?\DateTime ${{name}} = null,
       {{/isDateTime}}
       {{^isDateTime}}
-        private readonly ?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+        private readonly {{#isAnyType}}mixed{{/isAnyType}}{{^isAnyType}}?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isAnyType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
       {{/isDateTime}}
     {{/isContainer}}
-    {{/isNullable}}      
-    {{/required}}      
+    {{/isNullable}}
+    {{/required}}
     {{/vars}}
     ) {
     }
@@ -73,19 +73,23 @@ final class {{classname}} implements Model, JsonSerializable
     }
 {{#vars}}
 {{#isContainer}}
-  {{#items.isModel}}
-    /**
+{{#items.isModel}}
+    {{^-first}}
+
+    {{/-first}}
+   /**
 {{#vendorExtensions.x-description}}
     * {{{.}}}
 {{/vendorExtensions.x-description}}
-     * @return {{{items.openApiType}}}[]{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
-     */
-  {{/items.isModel}}
-{{/isContainer}}{{^isContainer}}{{#vendorExtensions.x-description.0}}
-    /**{{/vendorExtensions.x-description.0}}{{#vendorExtensions.x-description}}
+    * @return {{{items.openApiType}}}[]{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
+    */{{/items.isModel}}
+{{/isContainer}}
+{{^isContainer}}{{#vendorExtensions.x-description.0}}
+   /**{{/vendorExtensions.x-description.0}}{{#vendorExtensions.x-description}}
     * {{{.}}}{{/vendorExtensions.x-description}}{{#vendorExtensions.x-description.0}}
-    */{{/vendorExtensions.x-description.0}}{{/isContainer}}
-    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#openApiType}}{{#isDateTime}}\DateTime{{/isDateTime}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isNumber}}float{{/isNumber}}{{#isInteger}}int{{/isInteger}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{^isDateTime}}{{{openApiType}}}{{/isDateTime}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isContainer}}
+    */{{/vendorExtensions.x-description.0}}
+{{/isContainer}}
+    public function {{{getter}}}(): {{#isAnyType}}mixed{{/isAnyType}}{{^isAnyType}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#openApiType}}{{#isDateTime}}\DateTime{{/isDateTime}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isNumber}}float{{/isNumber}}{{#isInteger}}int{{/isInteger}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{^isDateTime}}{{{openApiType}}}{{/isDateTime}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isContainer}}{{/isAnyType}}
     {
         return $this->{{{name}}};
     }

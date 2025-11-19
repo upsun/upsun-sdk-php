@@ -1,7 +1,6 @@
 # Discount
 
 Low level Discount (auto-generated)
-
 The discount object.
 
 ***

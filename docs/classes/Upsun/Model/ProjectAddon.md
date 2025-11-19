@@ -1,7 +1,6 @@
 # ProjectAddon
 
 Low level ProjectAddon (auto-generated)
-
 Project add-on. Uses discriminator on `type` to select field shape.
 
 ***

@@ -1,7 +1,6 @@
 # HealthSlack
 
 Low level HealthSlack (auto-generated)
-
 Health Slack notification integration configurations
 
 ***

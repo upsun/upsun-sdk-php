@@ -1,7 +1,6 @@
 # OrganizationProjectLinksActivities
 
 Low level OrganizationProjectLinksActivities (auto-generated)
-
 Link to the project's activities.
 
 ***

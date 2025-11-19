@@ -1,7 +1,6 @@
 # ProjectAddonBaseLinksSelf
 
 Low level ProjectAddonBaseLinksSelf (auto-generated)
-
 Link to the current add-on.
 
 ***

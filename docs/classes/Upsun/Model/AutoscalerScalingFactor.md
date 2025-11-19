@@ -1,7 +1,6 @@
 # AutoscalerScalingFactor
 
 Low level AutoscalerScalingFactor (auto-generated)
-
 Scaling factor settings
 
 ***

@@ -1,7 +1,6 @@
 # ProfileCurrentTrialProjects
 
 Low level ProfileCurrentTrialProjects (auto-generated)
-
 Projects active under trial
 
 ***

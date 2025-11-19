@@ -1,7 +1,6 @@
 # RepositoryInformation
 
 Low level RepositoryInformation (auto-generated)
-
 The repository information of the project
 
 ***

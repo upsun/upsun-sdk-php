@@ -1,7 +1,6 @@
 # CurrencyAmountNullable
 
 Low level CurrencyAmountNullable (auto-generated)
-
 Currency amount with detailed components.
 
 ***

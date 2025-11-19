@@ -1,7 +1,6 @@
 # SubscriptionAddonsObject
 
 Low level SubscriptionAddonsObject (auto-generated)
-
 The list of available and current addons for the license.
 
 ***

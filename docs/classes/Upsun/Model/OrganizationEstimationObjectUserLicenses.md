@@ -1,7 +1,6 @@
 # OrganizationEstimationObjectUserLicenses
 
 Low level OrganizationEstimationObjectUserLicenses (auto-generated)
-
 An estimation of user licenses cost.
 
 ***

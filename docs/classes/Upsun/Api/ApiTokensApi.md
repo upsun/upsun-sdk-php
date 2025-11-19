@@ -137,10 +137,10 @@ Deletes an API token
 
 **Parameters:**
 
-| Parameter  | Type       | Description                     |
-|------------|------------|---------------------------------|
-| `$userId`  | **string** | The ID of the user. (required)  |
-| `$tokenId` | **string** | The ID of the token. (required) |
+| Parameter  | Type       | Description                    |
+|------------|------------|--------------------------------|
+| `$userId`  | **string** | The ID of the user. (required) |
+| `$tokenId` | **string** | (required)                     |
 
 **Throws:**
 
@@ -164,10 +164,10 @@ private deleteApiTokenWithHttpInfo(string $userId, string $tokenId): void
 
 **Parameters:**
 
-| Parameter  | Type       | Description                     |
-|------------|------------|---------------------------------|
-| `$userId`  | **string** | The ID of the user. (required)  |
-| `$tokenId` | **string** | The ID of the token. (required) |
+| Parameter  | Type       | Description                    |
+|------------|------------|--------------------------------|
+| `$userId`  | **string** | The ID of the user. (required) |
+| `$tokenId` | **string** | (required)                     |
 
 **Throws:**
 
@@ -187,10 +187,10 @@ private deleteApiTokenRequest(string $userId, string $tokenId): \Psr\Http\Messag
 
 **Parameters:**
 
-| Parameter  | Type       | Description                     |
-|------------|------------|---------------------------------|
-| `$userId`  | **string** | The ID of the user. (required)  |
-| `$tokenId` | **string** | The ID of the token. (required) |
+| Parameter  | Type       | Description                    |
+|------------|------------|--------------------------------|
+| `$userId`  | **string** | The ID of the user. (required) |
+| `$tokenId` | **string** | (required)                     |
 
 **Throws:**
 
@@ -211,10 +211,10 @@ Retrieves the specified API token.
 
 **Parameters:**
 
-| Parameter  | Type       | Description                     |
-|------------|------------|---------------------------------|
-| `$userId`  | **string** | The ID of the user. (required)  |
-| `$tokenId` | **string** | The ID of the token. (required) |
+| Parameter  | Type       | Description                    |
+|------------|------------|--------------------------------|
+| `$userId`  | **string** | The ID of the user. (required) |
+| `$tokenId` | **string** | (required)                     |
 
 **Throws:**
 
@@ -238,10 +238,10 @@ private getApiTokenWithHttpInfo(string $userId, string $tokenId): \Upsun\Model\A
 
 **Parameters:**
 
-| Parameter  | Type       | Description                     |
-|------------|------------|---------------------------------|
-| `$userId`  | **string** | The ID of the user. (required)  |
-| `$tokenId` | **string** | The ID of the token. (required) |
+| Parameter  | Type       | Description                    |
+|------------|------------|--------------------------------|
+| `$userId`  | **string** | The ID of the user. (required) |
+| `$tokenId` | **string** | (required)                     |
 
 **Throws:**
 
@@ -261,10 +261,10 @@ private getApiTokenRequest(string $userId, string $tokenId): \Psr\Http\Message\R
 
 **Parameters:**
 
-| Parameter  | Type       | Description                     |
-|------------|------------|---------------------------------|
-| `$userId`  | **string** | The ID of the user. (required)  |
-| `$tokenId` | **string** | The ID of the token. (required) |
+| Parameter  | Type       | Description                    |
+|------------|------------|--------------------------------|
+| `$userId`  | **string** | The ID of the user. (required) |
+| `$tokenId` | **string** | (required)                     |
 
 **Throws:**
 

@@ -1,7 +1,6 @@
 # Blackfire
 
 Low level Blackfire (auto-generated)
-
 Blackfire integration configurations
 
 ***

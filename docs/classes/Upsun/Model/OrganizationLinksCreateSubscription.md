@@ -1,7 +1,6 @@
 # OrganizationLinksCreateSubscription
 
 Low level OrganizationLinksCreateSubscription (auto-generated)
-
 Link for creating a new organization subscription.
 
 ***

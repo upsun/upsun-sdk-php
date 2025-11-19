@@ -74,7 +74,7 @@ public listTickets(int|null $filterTicketId = null, \DateTime|null $filterCreate
 | `$filterAssigneeId`   | **string\|null**    | UUID of the ticket assignee. Converted from the ZID value. (optional)             |
 | `$filterHasIncidents` | **bool\|null**      | Whether or not this ticket has incidents. (optional)                              |
 | `$filterDue`          | **\DateTime\|null** | ISO dateformat expected. A time that the ticket is due at. (optional)             |
-| `$search`             | **string\|null**    | Search string for the ticket subject and description. (optional)                  |
+| `$search`             | **string\|null**    | (optional)                                                                        |
 | `$page`               | **int\|null**       | Page to be displayed. Defaults to 1. (optional)                                   |
 
 **Throws:**
@@ -112,7 +112,7 @@ private listTicketsWithHttpInfo(int|null $filterTicketId = null, \DateTime|null 
 | `$filterAssigneeId`   | **string\|null**    | UUID of the ticket assignee. Converted from the ZID value. (optional)             |
 | `$filterHasIncidents` | **bool\|null**      | Whether or not this ticket has incidents. (optional)                              |
 | `$filterDue`          | **\DateTime\|null** | ISO dateformat expected. A time that the ticket is due at. (optional)             |
-| `$search`             | **string\|null**    | Search string for the ticket subject and description. (optional)                  |
+| `$search`             | **string\|null**    | (optional)                                                                        |
 | `$page`               | **int\|null**       | Page to be displayed. Defaults to 1. (optional)                                   |
 
 **Throws:**
@@ -146,7 +146,7 @@ private listTicketsRequest(int|null $filterTicketId = null, \DateTime|null $filt
 | `$filterAssigneeId`   | **string\|null**    | UUID of the ticket assignee. Converted from the ZID value. (optional)             |
 | `$filterHasIncidents` | **bool\|null**      | Whether or not this ticket has incidents. (optional)                              |
 | `$filterDue`          | **\DateTime\|null** | ISO dateformat expected. A time that the ticket is due at. (optional)             |
-| `$search`             | **string\|null**    | Search string for the ticket subject and description. (optional)                  |
+| `$search`             | **string\|null**    | (optional)                                                                        |
 | `$page`               | **int\|null**       | Page to be displayed. Defaults to 1. (optional)                                   |
 
 **Throws:**
@@ -173,7 +173,8 @@ Queries the carbon emission data for all projects owned by the specified organia
 | `$organizationId` | **string**                            | The ID of the organization. (required)                                                                     |
 | `$from`           | **\Upsun\Model\DateTimeFilter\|null** | The start of the time frame for the query. Inclusive. (optional)                                           |
 | `$to`             | **\Upsun\Model\DateTimeFilter\|null** | The end of the time frame for the query. Exclusive. (optional)                                             |
-| `$interval`       | **string\|null**                      | The interval by which the query groups the results. of the time frame for the query. Exclusive. (optional) |
+| `$interval`       | **string\|null**                      | The interval by which the query groups the results. of the time frame for the
+query. Exclusive. (optional) |
 
 **Throws:**
 
@@ -202,7 +203,8 @@ private queryOrganiationCarbonWithHttpInfo(string $organizationId, \Upsun\Model\
 | `$organizationId` | **string**                            | The ID of the organization. (required)                                                                     |
 | `$from`           | **\Upsun\Model\DateTimeFilter\|null** | The start of the time frame for the query. Inclusive. (optional)                                           |
 | `$to`             | **\Upsun\Model\DateTimeFilter\|null** | The end of the time frame for the query. Exclusive. (optional)                                             |
-| `$interval`       | **string\|null**                      | The interval by which the query groups the results. of the time frame for the query. Exclusive. (optional) |
+| `$interval`       | **string\|null**                      | The interval by which the query groups the results. of the time frame for the
+query. Exclusive. (optional) |
 
 **Throws:**
 
@@ -227,7 +229,8 @@ private queryOrganiationCarbonRequest(string $organizationId, \Upsun\Model\DateT
 | `$organizationId` | **string**                            | The ID of the organization. (required)                                                                     |
 | `$from`           | **\Upsun\Model\DateTimeFilter\|null** | The start of the time frame for the query. Inclusive. (optional)                                           |
 | `$to`             | **\Upsun\Model\DateTimeFilter\|null** | The end of the time frame for the query. Exclusive. (optional)                                             |
-| `$interval`       | **string\|null**                      | The interval by which the query groups the results. of the time frame for the query. Exclusive. (optional) |
+| `$interval`       | **string\|null**                      | The interval by which the query groups the results. of the time frame for the
+query. Exclusive. (optional) |
 
 **Throws:**
 

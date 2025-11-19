@@ -1,7 +1,6 @@
 # ProjectReference
 
 Low level ProjectReference (auto-generated)
-
 The referenced project, or null if it no longer exists.
 
 ***

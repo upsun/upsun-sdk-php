@@ -1,7 +1,6 @@
 # ProductionResources
 
 Low level ProductionResources (auto-generated)
-
 Resources for production environments
 
 ***

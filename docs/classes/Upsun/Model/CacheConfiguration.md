@@ -1,7 +1,6 @@
 # CacheConfiguration
 
 Low level CacheConfiguration (auto-generated)
-
 Cache configuration.
 
 ***

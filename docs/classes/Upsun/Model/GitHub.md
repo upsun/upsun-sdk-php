@@ -1,7 +1,6 @@
 # GitHub
 
 Low level GitHub (auto-generated)
-
 GitHub integration configurations
 
 ***

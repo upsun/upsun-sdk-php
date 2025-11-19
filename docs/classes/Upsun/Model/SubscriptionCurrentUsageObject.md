@@ -1,7 +1,6 @@
 # SubscriptionCurrentUsageObject
 
 Low level SubscriptionCurrentUsageObject (auto-generated)
-
 A subscription's usage group current usage object.
 
 ***

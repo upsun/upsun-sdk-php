@@ -63,10 +63,11 @@ Creates confirmation credentials for payments that require online authorization
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$orderId`        | **string** | The ID of the order. (required)                                                                            |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$orderId`        | **string** | The ID of the order. (required)                                                                        |
 
 **Throws:**
 
@@ -90,10 +91,11 @@ private createAuthorizationCredentialsWithHttpInfo(string $organizationId, strin
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$orderId`        | **string** | The ID of the order. (required)                                                                            |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$orderId`        | **string** | The ID of the order. (required)                                                                        |
 
 **Throws:**
 
@@ -113,10 +115,11 @@ private createAuthorizationCredentialsRequest(string $organizationId, string $or
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$orderId`        | **string** | The ID of the order. (required)                                                                            |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$orderId`        | **string** | The ID of the order. (required)                                                                        |
 
 **Throws:**
 
@@ -135,9 +138,9 @@ public downloadInvoice(string $token): string
 
 **Parameters:**
 
-| Parameter | Type       | Description                 |
-|-----------|------------|-----------------------------|
-| `$token`  | **string** | JWT for invoice. (required) |
+| Parameter | Type       | Description |
+|-----------|------------|-------------|
+| `$token`  | **string** | (required)  |
 
 **Throws:**
 
@@ -161,9 +164,9 @@ private downloadInvoiceWithHttpInfo(string $token): string
 
 **Parameters:**
 
-| Parameter | Type       | Description                 |
-|-----------|------------|-----------------------------|
-| `$token`  | **string** | JWT for invoice. (required) |
+| Parameter | Type       | Description |
+|-----------|------------|-------------|
+| `$token`  | **string** | (required)  |
 
 **Throws:**
 
@@ -183,9 +186,9 @@ private downloadInvoiceRequest(string $token): \Psr\Http\Message\RequestInterfac
 
 **Parameters:**
 
-| Parameter | Type       | Description                 |
-|-----------|------------|-----------------------------|
-| `$token`  | **string** | JWT for invoice. (required) |
+| Parameter | Type       | Description |
+|-----------|------------|-------------|
+| `$token`  | **string** | (required)  |
 
 **Throws:**
 
@@ -206,11 +209,12 @@ Retrieves an order for the specified organization.
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                                                |
-|-------------------|------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$orderId`        | **string**       | The ID of the order. (required)                                                                            |
-| `$mode`           | **string\|null** | The output mode. (optional)                                                                                |
+| Parameter         | Type             | Description                                                                                            |
+|-------------------|------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$orderId`        | **string**       | The ID of the order. (required)                                                                        |
+| `$mode`           | **string\|null** | The output mode. (optional)                                                                            |
 
 **Throws:**
 
@@ -234,11 +238,12 @@ private getOrgOrderWithHttpInfo(string $organizationId, string $orderId, string|
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                                                |
-|-------------------|------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$orderId`        | **string**       | The ID of the order. (required)                                                                            |
-| `$mode`           | **string\|null** | The output mode. (optional)                                                                                |
+| Parameter         | Type             | Description                                                                                            |
+|-------------------|------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$orderId`        | **string**       | The ID of the order. (required)                                                                        |
+| `$mode`           | **string\|null** | The output mode. (optional)                                                                            |
 
 **Throws:**
 
@@ -258,11 +263,12 @@ private getOrgOrderRequest(string $organizationId, string $orderId, string|null 
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                                                |
-|-------------------|------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$orderId`        | **string**       | The ID of the order. (required)                                                                            |
-| `$mode`           | **string\|null** | The output mode. (optional)                                                                                |
+| Parameter         | Type             | Description                                                                                            |
+|-------------------|------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$orderId`        | **string**       | The ID of the order. (required)                                                                        |
+| `$mode`           | **string\|null** | The output mode. (optional)                                                                            |
 
 **Throws:**
 
@@ -283,13 +289,14 @@ Retrieves orders for the specified organization.
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                                                |
-|-------------------|------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$filterStatus`   | **string\|null** | The status of the order. (optional)                                                                        |
-| `$filterTotal`    | **int\|null**    | The total of the order. (optional)                                                                         |
-| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                            |
-| `$mode`           | **string\|null** | The output mode. (optional)                                                                                |
+| Parameter         | Type             | Description                                                                                            |
+|-------------------|------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$filterStatus`   | **string\|null** | The status of the order. (optional)                                                                    |
+| `$filterTotal`    | **int\|null**    | The total of the order. (optional)                                                                     |
+| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                        |
+| `$mode`           | **string\|null** | The output mode. (optional)                                                                            |
 
 **Throws:**
 
@@ -313,13 +320,14 @@ private listOrgOrdersWithHttpInfo(string $organizationId, string|null $filterSta
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                                                |
-|-------------------|------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$filterStatus`   | **string\|null** | The status of the order. (optional)                                                                        |
-| `$filterTotal`    | **int\|null**    | The total of the order. (optional)                                                                         |
-| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                            |
-| `$mode`           | **string\|null** | The output mode. (optional)                                                                                |
+| Parameter         | Type             | Description                                                                                            |
+|-------------------|------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$filterStatus`   | **string\|null** | The status of the order. (optional)                                                                    |
+| `$filterTotal`    | **int\|null**    | The total of the order. (optional)                                                                     |
+| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                        |
+| `$mode`           | **string\|null** | The output mode. (optional)                                                                            |
 
 **Throws:**
 
@@ -339,13 +347,14 @@ private listOrgOrdersRequest(string $organizationId, string|null $filterStatus =
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                                                |
-|-------------------|------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$filterStatus`   | **string\|null** | The status of the order. (optional)                                                                        |
-| `$filterTotal`    | **int\|null**    | The total of the order. (optional)                                                                         |
-| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                            |
-| `$mode`           | **string\|null** | The output mode. (optional)                                                                                |
+| Parameter         | Type             | Description                                                                                            |
+|-------------------|------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$filterStatus`   | **string\|null** | The status of the order. (optional)                                                                    |
+| `$filterTotal`    | **int\|null**    | The total of the order. (optional)                                                                     |
+| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                        |
+| `$mode`           | **string\|null** | The output mode. (optional)                                                                            |
 
 **Throws:**
 

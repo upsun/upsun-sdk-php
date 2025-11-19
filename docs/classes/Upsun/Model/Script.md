@@ -1,7 +1,6 @@
 # Script
 
 Low level Script (auto-generated)
-
 Script integration configurations
 
 ***

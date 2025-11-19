@@ -1,7 +1,6 @@
 # OrganizationLinksUpdate
 
 Low level OrganizationLinksUpdate (auto-generated)
-
 Link for updating the current organization.
 
 ***

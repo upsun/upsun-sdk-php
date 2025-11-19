@@ -1,7 +1,6 @@
 # Webhook
 
 Low level Webhook (auto-generated)
-
 Webhook integration configurations
 
 ***

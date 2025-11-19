@@ -1,7 +1,6 @@
 # OrganizationAlertConfigConfigThreshold
 
 Low level OrganizationAlertConfigConfigThreshold (auto-generated)
-
 Data regarding threshold spend.
 
 ***

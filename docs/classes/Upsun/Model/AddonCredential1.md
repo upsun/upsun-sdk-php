@@ -1,7 +1,6 @@
 # AddonCredential1
 
 Low level AddonCredential1 (auto-generated)
-
 The addon credential information (optional).
 
 ***

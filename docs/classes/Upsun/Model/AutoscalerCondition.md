@@ -1,7 +1,6 @@
 # AutoscalerCondition
 
 Low level AutoscalerCondition (auto-generated)
-
 Trigger condition settings
 
 ***

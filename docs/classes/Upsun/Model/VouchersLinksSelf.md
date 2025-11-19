@@ -1,7 +1,6 @@
 # VouchersLinksSelf
 
 Low level VouchersLinksSelf (auto-generated)
-
 Link to the current resource.
 
 ***

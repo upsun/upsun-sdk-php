@@ -1,7 +1,6 @@
 # Invoice
 
 Low level Invoice (auto-generated)
-
 The invoice object.
 
 ***

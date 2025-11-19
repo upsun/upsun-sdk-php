@@ -1,7 +1,6 @@
 # LineItem
 
 Low level LineItem (auto-generated)
-
 A line item in an order.
 
 ***

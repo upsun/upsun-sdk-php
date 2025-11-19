@@ -1,7 +1,6 @@
 # OrganizationProjectLinksDelete
 
 Low level OrganizationProjectLinksDelete (auto-generated)
-
 Link for deleting the current project.
 
 ***

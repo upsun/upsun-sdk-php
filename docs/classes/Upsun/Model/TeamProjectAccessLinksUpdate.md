@@ -1,7 +1,6 @@
 # TeamProjectAccessLinksUpdate
 
 Low level TeamProjectAccessLinksUpdate (auto-generated)
-
 Link for updating the current access item.
 
 ***

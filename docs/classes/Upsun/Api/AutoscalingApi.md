@@ -61,10 +61,10 @@ public getAutoscalerSettings(string $projectId, string $environmentId): \Upsun\M
 
 **Parameters:**
 
-| Parameter        | Type       | Description                                                          |
-|------------------|------------|----------------------------------------------------------------------|
-| `$projectId`     | **string** | A string that uniquely identifies the project (required)             |
-| `$environmentId` | **string** | A string that uniquely identifies the project environment (required) |
+| Parameter        | Type       | Description |
+|------------------|------------|-------------|
+| `$projectId`     | **string** | (required)  |
+| `$environmentId` | **string** | (required)  |
 
 **Throws:**
 
@@ -86,10 +86,10 @@ private getAutoscalerSettingsWithHttpInfo(string $projectId, string $environment
 
 **Parameters:**
 
-| Parameter        | Type       | Description                                                          |
-|------------------|------------|----------------------------------------------------------------------|
-| `$projectId`     | **string** | A string that uniquely identifies the project (required)             |
-| `$environmentId` | **string** | A string that uniquely identifies the project environment (required) |
+| Parameter        | Type       | Description |
+|------------------|------------|-------------|
+| `$projectId`     | **string** | (required)  |
+| `$environmentId` | **string** | (required)  |
 
 **Throws:**
 
@@ -109,10 +109,10 @@ private getAutoscalerSettingsRequest(string $projectId, string $environmentId): 
 
 **Parameters:**
 
-| Parameter        | Type       | Description                                                          |
-|------------------|------------|----------------------------------------------------------------------|
-| `$projectId`     | **string** | A string that uniquely identifies the project (required)             |
-| `$environmentId` | **string** | A string that uniquely identifies the project environment (required) |
+| Parameter        | Type       | Description |
+|------------------|------------|-------------|
+| `$projectId`     | **string** | (required)  |
+| `$environmentId` | **string** | (required)  |
 
 **Throws:**
 
@@ -131,11 +131,11 @@ public patchAutoscalerSettings(string $projectId, string $environmentId, \Upsun\
 
 **Parameters:**
 
-| Parameter             | Type                                      | Description                                                          |
-|-----------------------|-------------------------------------------|----------------------------------------------------------------------|
-| `$projectId`          | **string**                                | A string that uniquely identifies the project (required)             |
-| `$environmentId`      | **string**                                | A string that uniquely identifies the project environment (required) |
-| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | Settings to modify (optional)                                        |
+| Parameter             | Type                                      | Description |
+|-----------------------|-------------------------------------------|-------------|
+| `$projectId`          | **string**                                | (required)  |
+| `$environmentId`      | **string**                                | (required)  |
+| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | (optional)  |
 
 **Throws:**
 
@@ -157,11 +157,11 @@ private patchAutoscalerSettingsWithHttpInfo(string $projectId, string $environme
 
 **Parameters:**
 
-| Parameter             | Type                                      | Description                                                          |
-|-----------------------|-------------------------------------------|----------------------------------------------------------------------|
-| `$projectId`          | **string**                                | A string that uniquely identifies the project (required)             |
-| `$environmentId`      | **string**                                | A string that uniquely identifies the project environment (required) |
-| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | Settings to modify (optional)                                        |
+| Parameter             | Type                                      | Description |
+|-----------------------|-------------------------------------------|-------------|
+| `$projectId`          | **string**                                | (required)  |
+| `$environmentId`      | **string**                                | (required)  |
+| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | (optional)  |
 
 **Throws:**
 
@@ -181,11 +181,11 @@ private patchAutoscalerSettingsRequest(string $projectId, string $environmentId,
 
 **Parameters:**
 
-| Parameter             | Type                                      | Description                                                          |
-|-----------------------|-------------------------------------------|----------------------------------------------------------------------|
-| `$projectId`          | **string**                                | A string that uniquely identifies the project (required)             |
-| `$environmentId`      | **string**                                | A string that uniquely identifies the project environment (required) |
-| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | Settings to modify (optional)                                        |
+| Parameter             | Type                                      | Description |
+|-----------------------|-------------------------------------------|-------------|
+| `$projectId`          | **string**                                | (required)  |
+| `$environmentId`      | **string**                                | (required)  |
+| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | (optional)  |
 
 **Throws:**
 
@@ -204,11 +204,11 @@ public postAutoscalerSettings(string $projectId, string $environmentId, \Upsun\M
 
 **Parameters:**
 
-| Parameter             | Type                                      | Description                                                          |
-|-----------------------|-------------------------------------------|----------------------------------------------------------------------|
-| `$projectId`          | **string**                                | A string that uniquely identifies the project (required)             |
-| `$environmentId`      | **string**                                | A string that uniquely identifies the project environment (required) |
-| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | Settings to update (optional)                                        |
+| Parameter             | Type                                      | Description |
+|-----------------------|-------------------------------------------|-------------|
+| `$projectId`          | **string**                                | (required)  |
+| `$environmentId`      | **string**                                | (required)  |
+| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | (optional)  |
 
 **Throws:**
 
@@ -230,11 +230,11 @@ private postAutoscalerSettingsWithHttpInfo(string $projectId, string $environmen
 
 **Parameters:**
 
-| Parameter             | Type                                      | Description                                                          |
-|-----------------------|-------------------------------------------|----------------------------------------------------------------------|
-| `$projectId`          | **string**                                | A string that uniquely identifies the project (required)             |
-| `$environmentId`      | **string**                                | A string that uniquely identifies the project environment (required) |
-| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | Settings to update (optional)                                        |
+| Parameter             | Type                                      | Description |
+|-----------------------|-------------------------------------------|-------------|
+| `$projectId`          | **string**                                | (required)  |
+| `$environmentId`      | **string**                                | (required)  |
+| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | (optional)  |
 
 **Throws:**
 
@@ -254,11 +254,11 @@ private postAutoscalerSettingsRequest(string $projectId, string $environmentId, 
 
 **Parameters:**
 
-| Parameter             | Type                                      | Description                                                          |
-|-----------------------|-------------------------------------------|----------------------------------------------------------------------|
-| `$projectId`          | **string**                                | A string that uniquely identifies the project (required)             |
-| `$environmentId`      | **string**                                | A string that uniquely identifies the project environment (required) |
-| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | Settings to update (optional)                                        |
+| Parameter             | Type                                      | Description |
+|-----------------------|-------------------------------------------|-------------|
+| `$projectId`          | **string**                                | (required)  |
+| `$environmentId`      | **string**                                | (required)  |
+| `$autoscalerSettings` | **\Upsun\Model\AutoscalerSettings\|null** | (optional)  |
 
 **Throws:**
 

@@ -1,7 +1,6 @@
 # ProjectOptions
 
 Low level ProjectOptions (auto-generated)
-
 The project options object.
 
 ***

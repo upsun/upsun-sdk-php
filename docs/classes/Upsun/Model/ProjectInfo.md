@@ -1,7 +1,6 @@
 # ProjectInfo
 
 Low level ProjectInfo (auto-generated)
-
 The project information
 
 ***

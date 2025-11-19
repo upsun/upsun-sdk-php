@@ -205,9 +205,10 @@ Retrieves the specified organization.
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -231,9 +232,10 @@ private getOrgWithHttpInfo(string $organizationId): \Upsun\Model\Organization
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -253,9 +255,10 @@ private getOrgRequest(string $organizationId): \Psr\Http\Message\RequestInterfac
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -276,21 +279,21 @@ Non-admin users will only see organizations they are members of.
 
 **Parameters:**
 
-| Parameter             | Type                                  | Description                                                                                                                                                |
-|-----------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$filterId`           | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `id` using one or more operators. (optional)                                                                                           |
-| `$filterType`         | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `type` using one or more operators. (optional)                                                                                         |
-| `$filterOwnerId`      | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `owner_id` using one or more operators. (optional)                                                                                     |
-| `$filterName`         | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `name` using one or more operators. (optional)                                                                                         |
-| `$filterLabel`        | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `label` using one or more operators. (optional)                                                                                        |
-| `$filterVendor`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `vendor` using one or more operators. (optional)                                                                                       |
-| `$filterCapabilities` | **\Upsun\Model\ArrayFilter\|null**    | Allows filtering by `capabilites` using one or more operators. (optional)                                                                                  |
-| `$filterStatus`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)                     |
-| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                   |
-| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                         |
-| `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$sort`               | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional) |
+| Parameter             | Type                                  | Description |
+|-----------------------|---------------------------------------|-------------|
+| `$filterId`           | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterType`         | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterOwnerId`      | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterName`         | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterLabel`        | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterVendor`       | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterCapabilities` | **\Upsun\Model\ArrayFilter\|null**    | (optional)  |
+| `$filterStatus`       | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | (optional)  |
+| `$pageSize`           | **int\|null**                         | (optional)  |
+| `$pageBefore`         | **string\|null**                      | (optional)  |
+| `$pageAfter`          | **string\|null**                      | (optional)  |
+| `$sort`               | **string\|null**                      | (optional)  |
 
 **Throws:**
 
@@ -314,21 +317,21 @@ private listOrgsWithHttpInfo(\Upsun\Model\StringFilter|null $filterId = null, \U
 
 **Parameters:**
 
-| Parameter             | Type                                  | Description                                                                                                                                                |
-|-----------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$filterId`           | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `id` using one or more operators. (optional)                                                                                           |
-| `$filterType`         | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `type` using one or more operators. (optional)                                                                                         |
-| `$filterOwnerId`      | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `owner_id` using one or more operators. (optional)                                                                                     |
-| `$filterName`         | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `name` using one or more operators. (optional)                                                                                         |
-| `$filterLabel`        | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `label` using one or more operators. (optional)                                                                                        |
-| `$filterVendor`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `vendor` using one or more operators. (optional)                                                                                       |
-| `$filterCapabilities` | **\Upsun\Model\ArrayFilter\|null**    | Allows filtering by `capabilites` using one or more operators. (optional)                                                                                  |
-| `$filterStatus`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)                     |
-| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                   |
-| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                         |
-| `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$sort`               | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional) |
+| Parameter             | Type                                  | Description |
+|-----------------------|---------------------------------------|-------------|
+| `$filterId`           | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterType`         | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterOwnerId`      | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterName`         | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterLabel`        | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterVendor`       | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterCapabilities` | **\Upsun\Model\ArrayFilter\|null**    | (optional)  |
+| `$filterStatus`       | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | (optional)  |
+| `$pageSize`           | **int\|null**                         | (optional)  |
+| `$pageBefore`         | **string\|null**                      | (optional)  |
+| `$pageAfter`          | **string\|null**                      | (optional)  |
+| `$sort`               | **string\|null**                      | (optional)  |
 
 **Throws:**
 
@@ -348,21 +351,21 @@ private listOrgsRequest(\Upsun\Model\StringFilter|null $filterId = null, \Upsun\
 
 **Parameters:**
 
-| Parameter             | Type                                  | Description                                                                                                                                                |
-|-----------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$filterId`           | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `id` using one or more operators. (optional)                                                                                           |
-| `$filterType`         | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `type` using one or more operators. (optional)                                                                                         |
-| `$filterOwnerId`      | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `owner_id` using one or more operators. (optional)                                                                                     |
-| `$filterName`         | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `name` using one or more operators. (optional)                                                                                         |
-| `$filterLabel`        | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `label` using one or more operators. (optional)                                                                                        |
-| `$filterVendor`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `vendor` using one or more operators. (optional)                                                                                       |
-| `$filterCapabilities` | **\Upsun\Model\ArrayFilter\|null**    | Allows filtering by `capabilites` using one or more operators. (optional)                                                                                  |
-| `$filterStatus`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)                     |
-| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                   |
-| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                         |
-| `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$sort`               | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional) |
+| Parameter             | Type                                  | Description |
+|-----------------------|---------------------------------------|-------------|
+| `$filterId`           | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterType`         | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterOwnerId`      | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterName`         | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterLabel`        | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterVendor`       | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterCapabilities` | **\Upsun\Model\ArrayFilter\|null**    | (optional)  |
+| `$filterStatus`       | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | (optional)  |
+| `$pageSize`           | **int\|null**                         | (optional)  |
+| `$pageBefore`         | **string\|null**                      | (optional)  |
+| `$pageAfter`          | **string\|null**                      | (optional)  |
+| `$sort`               | **string\|null**                      | (optional)  |
 
 **Throws:**
 
@@ -383,18 +386,18 @@ Retrieves organizations that the specified user is a member of.
 
 **Parameters:**
 
-| Parameter          | Type                                  | Description                                                                                                                                                |
-|--------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$userId`          | **string**                            | The ID of the user. (required)                                                                                                                             |
-| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `id` using one or more operators. (optional)                                                                                           |
-| `$filterType`      | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `type` using one or more operators. (optional)                                                                                         |
-| `$filterVendor`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `vendor` using one or more operators. (optional)                                                                                       |
-| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)                     |
-| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                   |
-| `$pageSize`        | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                         |
-| `$pageBefore`      | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$pageAfter`       | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$sort`            | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional) |
+| Parameter          | Type                                  | Description                    |
+|--------------------|---------------------------------------|--------------------------------|
+| `$userId`          | **string**                            | The ID of the user. (required) |
+| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterType`      | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterVendor`    | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | (optional)                     |
+| `$pageSize`        | **int\|null**                         | (optional)                     |
+| `$pageBefore`      | **string\|null**                      | (optional)                     |
+| `$pageAfter`       | **string\|null**                      | (optional)                     |
+| `$sort`            | **string\|null**                      | (optional)                     |
 
 **Throws:**
 
@@ -418,18 +421,18 @@ private listUserOrgsWithHttpInfo(string $userId, \Upsun\Model\StringFilter|null 
 
 **Parameters:**
 
-| Parameter          | Type                                  | Description                                                                                                                                                |
-|--------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$userId`          | **string**                            | The ID of the user. (required)                                                                                                                             |
-| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `id` using one or more operators. (optional)                                                                                           |
-| `$filterType`      | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `type` using one or more operators. (optional)                                                                                         |
-| `$filterVendor`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `vendor` using one or more operators. (optional)                                                                                       |
-| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)                     |
-| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                   |
-| `$pageSize`        | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                         |
-| `$pageBefore`      | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$pageAfter`       | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$sort`            | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional) |
+| Parameter          | Type                                  | Description                    |
+|--------------------|---------------------------------------|--------------------------------|
+| `$userId`          | **string**                            | The ID of the user. (required) |
+| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterType`      | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterVendor`    | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | (optional)                     |
+| `$pageSize`        | **int\|null**                         | (optional)                     |
+| `$pageBefore`      | **string\|null**                      | (optional)                     |
+| `$pageAfter`       | **string\|null**                      | (optional)                     |
+| `$sort`            | **string\|null**                      | (optional)                     |
 
 **Throws:**
 
@@ -449,18 +452,18 @@ private listUserOrgsRequest(string $userId, \Upsun\Model\StringFilter|null $filt
 
 **Parameters:**
 
-| Parameter          | Type                                  | Description                                                                                                                                                |
-|--------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$userId`          | **string**                            | The ID of the user. (required)                                                                                                                             |
-| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `id` using one or more operators. (optional)                                                                                           |
-| `$filterType`      | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `type` using one or more operators. (optional)                                                                                         |
-| `$filterVendor`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `vendor` using one or more operators. (optional)                                                                                       |
-| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `status` using one or more operators.<br> Defaults to `filter[status][in]=active,restricted,suspended`. (optional)                     |
-| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                   |
-| `$pageSize`        | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                         |
-| `$pageBefore`      | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$pageAfter`       | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)    |
-| `$sort`            | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `name`, `label`, `created_at`, `updated_at`. (optional) |
+| Parameter          | Type                                  | Description                    |
+|--------------------|---------------------------------------|--------------------------------|
+| `$userId`          | **string**                            | The ID of the user. (required) |
+| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterType`      | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterVendor`    | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | (optional)                     |
+| `$pageSize`        | **int\|null**                         | (optional)                     |
+| `$pageBefore`      | **string\|null**                      | (optional)                     |
+| `$pageAfter`       | **string\|null**                      | (optional)                     |
+| `$sort`            | **string\|null**                      | (optional)                     |
 
 **Throws:**
 

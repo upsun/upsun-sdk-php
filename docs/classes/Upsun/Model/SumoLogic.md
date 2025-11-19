@@ -1,7 +1,6 @@
 # SumoLogic
 
 Low level SumoLogic (auto-generated)
-
 Sumo Logic log-forwarding integration configurations
 
 ***

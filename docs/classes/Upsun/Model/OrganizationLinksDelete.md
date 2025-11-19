@@ -1,7 +1,6 @@
 # OrganizationLinksDelete
 
 Low level OrganizationLinksDelete (auto-generated)
-
 Link for deleting the current organization.
 
 ***

@@ -1,7 +1,6 @@
 # ProjectOptionsDefaults
 
 Low level ProjectOptionsDefaults (auto-generated)
-
 The initial values applied to the project.
 
 ***

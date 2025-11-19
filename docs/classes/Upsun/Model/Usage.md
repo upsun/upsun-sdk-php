@@ -1,7 +1,6 @@
 # Usage
 
 Low level Usage (auto-generated)
-
 The usage object.
 
 ***

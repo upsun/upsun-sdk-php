@@ -1,7 +1,6 @@
 # RegionProvider
 
 Low level RegionProvider (auto-generated)
-
 Information about the region provider.
 
 ***

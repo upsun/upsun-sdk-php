@@ -1,7 +1,6 @@
 # HalLinksPrevious
 
 Low level HalLinksPrevious (auto-generated)
-
 The link to the previous resource page, given that it exists.
 
 ***

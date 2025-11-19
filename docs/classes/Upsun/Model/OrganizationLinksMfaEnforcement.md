@@ -1,7 +1,6 @@
 # OrganizationLinksMfaEnforcement
 
 Low level OrganizationLinksMfaEnforcement (auto-generated)
-
 Link to the current organization's MFA enforcement settings.
 
 ***

@@ -1,7 +1,6 @@
 # AutoscalerMemoryTrigger
 
 Low level AutoscalerMemoryTrigger (auto-generated)
-
 Memory resource trigger settings. When memory usage goes below lower bound, service will be scaled down. When
 memory usage goes above upper bound, service will be scaled up.
 

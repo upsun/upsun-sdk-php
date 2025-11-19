@@ -1,7 +1,6 @@
 # OrganizationLinksProfile
 
 Low level OrganizationLinksProfile (auto-generated)
-
 Link to the current organization's profile.
 
 ***

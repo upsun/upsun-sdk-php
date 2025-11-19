@@ -1,7 +1,6 @@
 # SSIConfiguration
 
 Low level SSIConfiguration (auto-generated)
-
 Server-Side Include configuration.
 
 ***

@@ -1,7 +1,6 @@
 # AutoscalerResources
 
 Low level AutoscalerResources (auto-generated)
-
 Vertical scaling settings
 
 ***

@@ -1,7 +1,6 @@
 # Order
 
 Low level Order (auto-generated)
-
 The order object.
 
 ***

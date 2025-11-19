@@ -63,10 +63,10 @@ Deletes the specified connection.
 
 **Parameters:**
 
-| Parameter   | Type       | Description                                     |
-|-------------|------------|-------------------------------------------------|
-| `$provider` | **string** | The name of the federation provider. (required) |
-| `$userId`   | **string** | The ID of the user. (required)                  |
+| Parameter   | Type       | Description                    |
+|-------------|------------|--------------------------------|
+| `$provider` | **string** | (required)                     |
+| `$userId`   | **string** | The ID of the user. (required) |
 
 **Throws:**
 
@@ -90,10 +90,10 @@ private deleteLoginConnectionWithHttpInfo(string $provider, string $userId): voi
 
 **Parameters:**
 
-| Parameter   | Type       | Description                                     |
-|-------------|------------|-------------------------------------------------|
-| `$provider` | **string** | The name of the federation provider. (required) |
-| `$userId`   | **string** | The ID of the user. (required)                  |
+| Parameter   | Type       | Description                    |
+|-------------|------------|--------------------------------|
+| `$provider` | **string** | (required)                     |
+| `$userId`   | **string** | The ID of the user. (required) |
 
 **Throws:**
 
@@ -113,10 +113,10 @@ private deleteLoginConnectionRequest(string $provider, string $userId): \Psr\Htt
 
 **Parameters:**
 
-| Parameter   | Type       | Description                                     |
-|-------------|------------|-------------------------------------------------|
-| `$provider` | **string** | The name of the federation provider. (required) |
-| `$userId`   | **string** | The ID of the user. (required)                  |
+| Parameter   | Type       | Description                    |
+|-------------|------------|--------------------------------|
+| `$provider` | **string** | (required)                     |
+| `$userId`   | **string** | The ID of the user. (required) |
 
 **Throws:**
 
@@ -137,10 +137,10 @@ Retrieves the specified connection.
 
 **Parameters:**
 
-| Parameter   | Type       | Description                                     |
-|-------------|------------|-------------------------------------------------|
-| `$provider` | **string** | The name of the federation provider. (required) |
-| `$userId`   | **string** | The ID of the user. (required)                  |
+| Parameter   | Type       | Description                    |
+|-------------|------------|--------------------------------|
+| `$provider` | **string** | (required)                     |
+| `$userId`   | **string** | The ID of the user. (required) |
 
 **Throws:**
 
@@ -164,10 +164,10 @@ private getLoginConnectionWithHttpInfo(string $provider, string $userId): \Upsun
 
 **Parameters:**
 
-| Parameter   | Type       | Description                                     |
-|-------------|------------|-------------------------------------------------|
-| `$provider` | **string** | The name of the federation provider. (required) |
-| `$userId`   | **string** | The ID of the user. (required)                  |
+| Parameter   | Type       | Description                    |
+|-------------|------------|--------------------------------|
+| `$provider` | **string** | (required)                     |
+| `$userId`   | **string** | The ID of the user. (required) |
 
 **Throws:**
 
@@ -187,10 +187,10 @@ private getLoginConnectionRequest(string $provider, string $userId): \Psr\Http\M
 
 **Parameters:**
 
-| Parameter   | Type       | Description                                     |
-|-------------|------------|-------------------------------------------------|
-| `$provider` | **string** | The name of the federation provider. (required) |
-| `$userId`   | **string** | The ID of the user. (required)                  |
+| Parameter   | Type       | Description                    |
+|-------------|------------|--------------------------------|
+| `$provider` | **string** | (required)                     |
+| `$userId`   | **string** | The ID of the user. (required) |
 
 **Throws:**
 

@@ -1,7 +1,6 @@
 # NewRelic
 
 Low level NewRelic (auto-generated)
-
 New Relic log-forwarding integration configurations
 
 ***

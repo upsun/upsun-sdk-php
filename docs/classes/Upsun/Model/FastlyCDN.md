@@ -1,7 +1,6 @@
 # FastlyCDN
 
 Low level FastlyCDN (auto-generated)
-
 Fastly CDN integration configurations
 
 ***

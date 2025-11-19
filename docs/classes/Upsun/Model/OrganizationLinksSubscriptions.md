@@ -1,7 +1,6 @@
 # OrganizationLinksSubscriptions
 
 Low level OrganizationLinksSubscriptions (auto-generated)
-
 Link to the current organization's subscriptions.
 
 ***

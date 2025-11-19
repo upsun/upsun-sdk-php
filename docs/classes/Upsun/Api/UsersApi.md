@@ -349,9 +349,9 @@ Retrieves a user matching the specified email address.
 
 **Parameters:**
 
-| Parameter | Type       | Description                          |
-|-----------|------------|--------------------------------------|
-| `$email`  | **string** | The user's email address. (required) |
+| Parameter | Type       | Description |
+|-----------|------------|-------------|
+| `$email`  | **string** | (required)  |
 
 **Throws:**
 
@@ -375,9 +375,9 @@ private getUserByEmailAddressWithHttpInfo(string $email): \Upsun\Model\User
 
 **Parameters:**
 
-| Parameter | Type       | Description                          |
-|-----------|------------|--------------------------------------|
-| `$email`  | **string** | The user's email address. (required) |
+| Parameter | Type       | Description |
+|-----------|------------|-------------|
+| `$email`  | **string** | (required)  |
 
 **Throws:**
 
@@ -397,9 +397,9 @@ private getUserByEmailAddressRequest(string $email): \Psr\Http\Message\RequestIn
 
 **Parameters:**
 
-| Parameter | Type       | Description                          |
-|-----------|------------|--------------------------------------|
-| `$email`  | **string** | The user's email address. (required) |
+| Parameter | Type       | Description |
+|-----------|------------|-------------|
+| `$email`  | **string** | (required)  |
 
 **Throws:**
 
@@ -420,9 +420,9 @@ Retrieves a user matching the specified username.
 
 **Parameters:**
 
-| Parameter   | Type       | Description                     |
-|-------------|------------|---------------------------------|
-| `$username` | **string** | The user's username. (required) |
+| Parameter   | Type       | Description |
+|-------------|------------|-------------|
+| `$username` | **string** | (required)  |
 
 **Throws:**
 
@@ -446,9 +446,9 @@ private getUserByUsernameWithHttpInfo(string $username): \Upsun\Model\User
 
 **Parameters:**
 
-| Parameter   | Type       | Description                     |
-|-------------|------------|---------------------------------|
-| `$username` | **string** | The user's username. (required) |
+| Parameter   | Type       | Description |
+|-------------|------------|-------------|
+| `$username` | **string** | (required)  |
 
 **Throws:**
 
@@ -468,9 +468,9 @@ private getUserByUsernameRequest(string $username): \Psr\Http\Message\RequestInt
 
 **Parameters:**
 
-| Parameter   | Type       | Description                     |
-|-------------|------------|---------------------------------|
-| `$username` | **string** | The user's username. (required) |
+| Parameter   | Type       | Description |
+|-------------|------------|-------------|
+| `$username` | **string** | (required)  |
 
 **Throws:**
 

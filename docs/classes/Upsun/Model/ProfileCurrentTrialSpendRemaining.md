@@ -1,7 +1,6 @@
 # ProfileCurrentTrialSpendRemaining
 
 Low level ProfileCurrentTrialSpendRemaining (auto-generated)
-
 The remaining amount available for the trial.
 
 ***

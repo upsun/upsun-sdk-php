@@ -1,7 +1,6 @@
 # SubscriptionAddonsObjectUpgradesAvailable
 
 Low level SubscriptionAddonsObjectUpgradesAvailable (auto-generated)
-
 The upgrades available for current addons.
 
 ***

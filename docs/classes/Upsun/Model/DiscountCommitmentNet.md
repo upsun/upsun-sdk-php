@@ -1,7 +1,6 @@
 # DiscountCommitmentNet
 
 Low level DiscountCommitmentNet (auto-generated)
-
 Net commitment amounts (discount deducted).
 
 ***

@@ -1,7 +1,6 @@
 # OrganizationLinksApplyVoucher
 
 Low level OrganizationLinksApplyVoucher (auto-generated)
-
 Link for applying a voucher for the current organization.
 
 ***

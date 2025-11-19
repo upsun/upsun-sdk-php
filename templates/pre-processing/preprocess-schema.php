@@ -5,6 +5,7 @@ namespace Upsun;
 use Exception;
 use InvalidArgumentException;
 use RuntimeException;
+use stdClass;
 
 /**
  * Preprocessing script to make missing properties nullable
@@ -429,7 +430,6 @@ class OpenApiPreprocessor
                         $refs['phpdoc']['return'] = $type . '[]';
                     }
                     return $refs;
-
                 case 'object':
                     // Handle additionalProperties (key-value mapping)
                     if (isset($schema['additionalProperties'])) {
@@ -463,7 +463,6 @@ class OpenApiPreprocessor
                         $refs['phpdoc']['return'] = 'object';
                     }
                     return $refs;
-
                 case 'boolean':
                 case 'string':
                 case 'integer':
@@ -502,7 +501,7 @@ class OpenApiPreprocessor
     {
         if (is_array($data)) {
             if (empty($data)) {
-                return new \stdClass();
+                return new stdClass();
             }
 
             $result = [];
@@ -512,7 +511,7 @@ class OpenApiPreprocessor
                 $result[$key] = $this->forceEmptyObjects($value);
             }
 
-            return $isAssociative && empty($result) ? new \stdClass() : $result;
+            return $isAssociative && empty($result) ? new stdClass() : $result;
         }
 
         return $data;
@@ -903,20 +902,24 @@ class OpenApiPreprocessor
         foreach ($this->schema['components']['schemas'] as &$schema) {
             $this->wordwrapSchemaDescription($schema);
         }
+
+        foreach ($this->schema['components']['parameters'] as &$schema) {
+            $this->wordwrapSchemaDescription($schema, 80);
+        }
     }
 
-    private function wordwrapSchemaDescription(array &$schema): void
+    private function wordwrapSchemaDescription(array &$schema, int $wordwrapLength = 113): void
     {
         // schema.description
         if (!empty($schema['description'])) {
-            $schema['x-description'] = $this->preprocessDescription($schema['description']);
+            $schema['x-description'] = $this->preprocessDescription($schema['description'], $wordwrapLength);
         }
 
-        // description des propriétés
+        // property description
         if (!empty($schema['properties']) && is_array($schema['properties'])) {
             foreach ($schema['properties'] as &$prop) {
                 if (!empty($prop['description'])) {
-                    $prop['x-description'] = $this->preprocessDescription($prop['description']);
+                    $prop['x-description'] = $this->preprocessDescription($prop['description'], $wordwrapLength);
                 }
 
                 // recursive if property is an object
@@ -936,7 +939,7 @@ class OpenApiPreprocessor
         }
     }
 
-    public function preprocessDescription(string $description): array
+    public function preprocessDescription(string $description, int $wordwrapLength = 113): array
     {
         // Replace Markdown links with absolute Upsun URLs
         $description = preg_replace_callback(
@@ -961,8 +964,11 @@ class OpenApiPreprocessor
         // Normalize whitespace
         $normalized = preg_replace('/\s+/', ' ', trim($description));
 
-        // Wrap at 113 chars
-        $lines = wordwrap($normalized, 113, "\n", false);
+        // Remove <br> tags
+        $normalized = preg_replace('/<br\s*\/?>/i', '', $normalized);
+
+        // Wrap
+        $lines = wordwrap($normalized, $wordwrapLength, "\n", false);
 
         return explode("\n", $lines);
     }

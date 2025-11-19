@@ -19,7 +19,7 @@ Low level MetricsValue (auto-generated)
 ### value
 
 ```php
-private ?mixed $value
+private mixed $value
 ```
 
 ***
@@ -27,7 +27,7 @@ private ?mixed $value
 ### startTime
 
 ```php
-private ?mixed $startTime
+private mixed $startTime
 ```
 
 ***
@@ -37,15 +37,15 @@ private ?mixed $startTime
 ### __construct
 
 ```php
-public __construct(?mixed $value = null, ?mixed $startTime = null): mixed
+public __construct(mixed $value = null, mixed $startTime = null): mixed
 ```
 
 **Parameters:**
 
-| Parameter    | Type       | Description |
-|--------------|------------|-------------|
-| `$value`     | **?mixed** |             |
-| `$startTime` | **?mixed** |             |
+| Parameter    | Type      | Description |
+|--------------|-----------|-------------|
+| `$value`     | **mixed** |             |
+| `$startTime` | **mixed** |             |
 
 ***
 
@@ -80,7 +80,7 @@ public __toString(): string
 The measured value of the metric for the given time interval.
 
 ```php
-public getValue(): ?mixed
+public getValue(): mixed
 ```
 
 ***
@@ -90,7 +90,7 @@ public getValue(): ?mixed
 The timestamp at which the time interval began.
 
 ```php
-public getStartTime(): ?mixed
+public getStartTime(): mixed
 ```
 
 ***

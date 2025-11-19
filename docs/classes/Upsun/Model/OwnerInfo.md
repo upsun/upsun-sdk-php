@@ -1,7 +1,6 @@
 # OwnerInfo
 
 Low level OwnerInfo (auto-generated)
-
 Project owner information that can be exposed to collaborators.
 
 ***

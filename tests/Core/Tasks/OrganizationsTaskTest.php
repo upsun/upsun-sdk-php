@@ -49,7 +49,6 @@ use Upsun\Model\Invoice;
 use Upsun\Model\ListOrgInvoices200Response;
 use Upsun\Model\ListOrgOrders200Response;
 use Upsun\Model\ListOrgPlanRecords200Response;
-use Upsun\Model\ListOrgs200Response;
 use Upsun\Model\ListOrgUsageRecords200Response;
 use Upsun\Model\Order;
 use Upsun\Model\Organization;

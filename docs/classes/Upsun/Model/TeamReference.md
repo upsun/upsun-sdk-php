@@ -1,7 +1,6 @@
 # TeamReference
 
 Low level TeamReference (auto-generated)
-
 The referenced team, or null if it no longer exists.
 
 ***

@@ -1,7 +1,6 @@
 # OrganizationLinksAddress
 
 Low level OrganizationLinksAddress (auto-generated)
-
 Link to the current organization's address.
 
 ***

@@ -1,7 +1,6 @@
 # Address
 
 Low level Address (auto-generated)
-
 The address of the user.
 
 ***

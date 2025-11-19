@@ -1,7 +1,6 @@
 # HalLinksNext
 
 Low level HalLinksNext (auto-generated)
-
 The link to the next resource page, given that it exists.
 
 ***

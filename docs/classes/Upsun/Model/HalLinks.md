@@ -1,7 +1,6 @@
 # HalLinks
 
 Low level HalLinks (auto-generated)
-
 Links to _self, and previous or next page, given that they exist.
 
 ***

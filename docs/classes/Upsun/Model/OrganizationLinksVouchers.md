@@ -1,7 +1,6 @@
 # OrganizationLinksVouchers
 
 Low level OrganizationLinksVouchers (auto-generated)
-
 Link to the current organization's vouchers.
 
 ***

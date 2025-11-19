@@ -43,6 +43,78 @@ jobs:
           composer require --dev sensiolabs/insight-cli
           ./vendor/bin/insight analyze --level=minor --fail-on=critical
 
+      - name: Run API vs Facade coverage analysis
+        id: run-coverage
+        continue-on-error: true
+        run: php templates/Coverage/CheckApiCoverage.php
+
+      - name: Read coverage report
+        continue-on-error: true
+        id: coverage
+        run: |
+          echo "total=$(jq -r '.total_api_methods' api-coverage.json)" >> $GITHUB_OUTPUT
+          echo "called=$(jq -r '.called_methods' api-coverage.json)" >> $GITHUB_OUTPUT
+          echo "unmapped=$(jq -r '.unmapped_methods | length' api-coverage.json)" >> $GITHUB_OUTPUT
+          echo "invalid=$(jq -r '.invalid_facade_calls | length' api-coverage.json)" >> $GITHUB_OUTPUT
+          echo "coverage=$(jq -r '.coverage_percentage' api-coverage.json)" >> $GITHUB_OUTPUT
+
+          {
+              echo "json<<JSONEOF"
+              jq '.' api-coverage.json
+              echo "JSONEOF"
+          } >> $GITHUB_OUTPUT
+
+      - name: Find existing comment
+        uses: peter-evans/find-comment@v3
+        id: find-comment
+        continue-on-error: true
+        if: github.event_name == 'pull_request'
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '🧾 API Coverage Report'
+
+      - name: Create or update PR comment with coverage report
+        uses: peter-evans/create-or-update-comment@v4
+        continue-on-error: true
+        if: github.event_name == 'pull_request'
+        with:
+          token: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ## 🧾 API Coverage Report
+
+            _Last updated: ${{ github.sha }} • Run #${{ github.run_number }}_
+
+            | Metric | Value |
+            |--------|-------|
+            | **Total API methods** | ${{ steps.coverage.outputs.total }} |
+            | **Called from facades** | ${{ steps.coverage.outputs.called }} |
+            | **Unmapped API methods** | ${{ steps.coverage.outputs.unmapped }} |
+            | **Invalid Facade API calls** | ${{ steps.coverage.outputs.invalid }} |
+            | **Coverage** | **${{ steps.coverage.outputs.coverage }}%** |
+
+            <details>
+            <summary>📋 Full JSON report</summary>
+            <pre><code class="language-json">${{ steps.coverage.outputs.json }}</code></pre>
+            </details>
+
+      - name: Post error comment if coverage failed
+        uses: peter-evans/create-or-update-comment@v4
+        continue-on-error: true
+        if: github.event_name == 'pull_request' && steps.run-coverage.outcome == 'failure'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## ⚠️ API Coverage Analysis Failed
+
+            The coverage analysis encountered an error during execution.
+
+            Check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.
+
   tests:
     name:  Test on PHP ${{ matrix.php-version }}
     runs-on: ubuntu-latest

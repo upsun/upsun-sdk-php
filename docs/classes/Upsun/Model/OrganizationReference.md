@@ -1,7 +1,6 @@
 # OrganizationReference
 
 Low level OrganizationReference (auto-generated)
-
 The referenced organization, or null if it no longer exists.
 
 ***

@@ -1,7 +1,6 @@
 # OrganizationAddonsObject
 
 Low level OrganizationAddonsObject (auto-generated)
-
 The list of available and current add-ons of an organization.
 
 ***

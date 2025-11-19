@@ -1,7 +1,6 @@
 # TLSSettings
 
 Low level TLSSettings (auto-generated)
-
 TLS settings for the route.
 
 ***

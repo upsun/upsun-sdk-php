@@ -1,7 +1,6 @@
 # Bitbucket
 
 Low level Bitbucket (auto-generated)
-
 Bitbucket integration configurations
 
 ***

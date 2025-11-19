@@ -1,7 +1,6 @@
 # OrganizationLinksEstimateSubscription
 
 Low level OrganizationLinksEstimateSubscription (auto-generated)
-
 Link for estimating the price of a new subscription.
 
 ***

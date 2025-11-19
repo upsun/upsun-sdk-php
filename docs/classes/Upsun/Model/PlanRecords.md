@@ -1,7 +1,6 @@
 # PlanRecords
 
 Low level PlanRecords (auto-generated)
-
 The plan record object.
 
 ***

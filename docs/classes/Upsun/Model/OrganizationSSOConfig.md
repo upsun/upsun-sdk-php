@@ -1,7 +1,6 @@
 # OrganizationSSOConfig
 
 Low level OrganizationSSOConfig (auto-generated)
-
 The SSO configuration for the organization.
 
 ***

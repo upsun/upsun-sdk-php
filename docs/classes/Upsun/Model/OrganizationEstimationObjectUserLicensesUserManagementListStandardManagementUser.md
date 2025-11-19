@@ -1,7 +1,6 @@
 # OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser
 
 Low level OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser (auto-generated)
-
 An estimation of standard_management_user cost.
 
 ***

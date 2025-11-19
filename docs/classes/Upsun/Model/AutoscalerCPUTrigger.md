@@ -1,7 +1,6 @@
 # AutoscalerCPUTrigger
 
 Low level AutoscalerCPUTrigger (auto-generated)
-
 CPU resource trigger settings. When CPU usage goes below lower bound, service will be scaled down. When CPU usage
 goes above upper bound, service will be scaled up.
 

@@ -1,7 +1,6 @@
 # ContinuousProfilingConfiguration
 
 Low level ContinuousProfilingConfiguration (auto-generated)
-
 The continuous profiling configuration
 
 ***

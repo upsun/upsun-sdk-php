@@ -1,7 +1,6 @@
 # ProfileCurrentTrialSpend
 
 Low level ProfileCurrentTrialSpend (auto-generated)
-
 The total amount available for the trial.
 
 ***

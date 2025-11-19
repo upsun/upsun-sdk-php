@@ -27,10 +27,11 @@ use function sprintf;
  *
  * Abstract class for all API classes with automatic token refresh
  *
-{{> partial_internal_header }}
- */
+{{> partial_internal_header }} */
 abstract class AbstractApi
 {
+    public const BASE_PATH = '{{basePath}}';
+
     private readonly StreamFactoryInterface $streamFactory;
 
     private readonly UriFactoryInterface $uriFactory;
@@ -128,26 +129,28 @@ abstract class AbstractApi
             }
 
             return $response;
-        } catch (ClientExceptionInterface $e) {
+        } catch (ClientExceptionInterface $exception) {
             if (isset($request)) {
                 throw new ApiException(
-                    sprintf('[%d] %s', $e->getCode(), $e->getMessage()),
+                    sprintf('[%d] %s', $exception->getCode(), $exception->getMessage()),
                     $request,
                     $response ?? null,
-                    $e
+                    $exception
                 );
             }
-            throw $e;
-        } catch (Exception $e) {
+
+            throw $exception;
+        } catch (Exception $exception) {
             if (isset($request)) {
                 throw new ApiException(
-                    sprintf('[%s] %s', $e->getCode(), $e->getMessage()),
+                    sprintf('[%s] %s', $exception->getCode(), $exception->getMessage()),
                     $request,
                     $response ?? null,
-                    $e
+                    $exception
                 );
             }
-            throw $e;
+
+            throw $exception;
         }
     }
 

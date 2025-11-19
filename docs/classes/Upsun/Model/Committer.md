@@ -1,7 +1,6 @@
 # Committer
 
 Low level Committer (auto-generated)
-
 The information about the committer
 
 ***

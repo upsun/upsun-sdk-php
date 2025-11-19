@@ -1,7 +1,6 @@
 # AutoscalerCPUResources
 
 Low level AutoscalerCPUResources (auto-generated)
-
 CPU scaling settings
 
 ***

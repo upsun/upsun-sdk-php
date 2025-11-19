@@ -1,7 +1,6 @@
 # InvoicePDF
 
 Low level InvoicePDF (auto-generated)
-
 Invoice PDF document details.
 
 ***

@@ -1,7 +1,6 @@
 # PrepaymentTransactionObjectAmount
 
 Low level PrepaymentTransactionObjectAmount (auto-generated)
-
 The prepayment balance in complex format.
 
 ***

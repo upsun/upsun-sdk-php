@@ -1,7 +1,6 @@
 # OrganizationProjectLinksAddons
 
 Low level OrganizationProjectLinksAddons (auto-generated)
-
 Link to the project's add-ons.
 
 ***
