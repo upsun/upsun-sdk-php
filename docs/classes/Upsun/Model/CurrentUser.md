@@ -1,7 +1,6 @@
 # CurrentUser
 
 Low level CurrentUser (auto-generated)
-
 The user object.
 
 ***

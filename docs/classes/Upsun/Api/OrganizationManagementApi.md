@@ -63,9 +63,10 @@ Estimates the total spend for the specified organization.
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -89,9 +90,10 @@ private estimateOrgWithHttpInfo(string $organizationId): \Upsun\Model\Organizati
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -111,9 +113,10 @@ private estimateOrgRequest(string $organizationId): \Psr\Http\Message\RequestInt
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -134,9 +137,10 @@ Retrieves billing alert configuration for the specified organization.
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -160,9 +164,10 @@ private getOrgBillingAlertConfigWithHttpInfo(string $organizationId): \Upsun\Mod
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -182,9 +187,10 @@ private getOrgBillingAlertConfigRequest(string $organizationId): \Psr\Http\Messa
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -347,10 +353,11 @@ Updates billing alert configuration for the specified organization.
 
 **Parameters:**
 
-| Parameter                             | Type                                                 | Description                                                                                                |
-|---------------------------------------|------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId`                     | **string**                                           | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$updateOrgBillingAlertConfigRequest` | **?\Upsun\Model\UpdateOrgBillingAlertConfigRequest** |                                                                                                            |
+| Parameter                             | Type                                                 | Description                                                                                            |
+|---------------------------------------|------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`                     | **string**                                           | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$updateOrgBillingAlertConfigRequest` | **?\Upsun\Model\UpdateOrgBillingAlertConfigRequest** |                                                                                                        |
 
 **Throws:**
 
@@ -374,10 +381,11 @@ private updateOrgBillingAlertConfigWithHttpInfo(string $organizationId, ?\Upsun\
 
 **Parameters:**
 
-| Parameter                             | Type                                                 | Description                                                                                                |
-|---------------------------------------|------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId`                     | **string**                                           | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$updateOrgBillingAlertConfigRequest` | **?\Upsun\Model\UpdateOrgBillingAlertConfigRequest** |                                                                                                            |
+| Parameter                             | Type                                                 | Description                                                                                            |
+|---------------------------------------|------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`                     | **string**                                           | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$updateOrgBillingAlertConfigRequest` | **?\Upsun\Model\UpdateOrgBillingAlertConfigRequest** |                                                                                                        |
 
 **Throws:**
 
@@ -397,10 +405,11 @@ private updateOrgBillingAlertConfigRequest(string $organizationId, ?\Upsun\Model
 
 **Parameters:**
 
-| Parameter                             | Type                                                 | Description                                                                                                |
-|---------------------------------------|------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId`                     | **string**                                           | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$updateOrgBillingAlertConfigRequest` | **?\Upsun\Model\UpdateOrgBillingAlertConfigRequest** |                                                                                                            |
+| Parameter                             | Type                                                 | Description                                                                                            |
+|---------------------------------------|------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`                     | **string**                                           | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$updateOrgBillingAlertConfigRequest` | **?\Upsun\Model\UpdateOrgBillingAlertConfigRequest** |                                                                                                        |
 
 **Throws:**
 

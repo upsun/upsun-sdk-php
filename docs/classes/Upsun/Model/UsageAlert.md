@@ -1,7 +1,6 @@
 # UsageAlert
 
 Low level UsageAlert (auto-generated)
-
 The usage alert for a subscription.
 
 ***

@@ -130,10 +130,10 @@ public listTicketCategories(string|null $subscriptionId = null, string|null $org
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                           |
-|-------------------|------------------|-----------------------------------------------------------------------|
-| `$subscriptionId` | **string\|null** | The ID of the subscription the ticket should be related to (optional) |
-| `$organizationId` | **string\|null** | The ID of the organization the ticket should be related to (optional) |
+| Parameter         | Type             | Description |
+|-------------------|------------------|-------------|
+| `$subscriptionId` | **string\|null** | (optional)  |
+| `$organizationId` | **string\|null** | (optional)  |
 
 **Throws:**
 
@@ -157,10 +157,10 @@ private listTicketCategoriesWithHttpInfo(string|null $subscriptionId = null, str
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                           |
-|-------------------|------------------|-----------------------------------------------------------------------|
-| `$subscriptionId` | **string\|null** | The ID of the subscription the ticket should be related to (optional) |
-| `$organizationId` | **string\|null** | The ID of the organization the ticket should be related to (optional) |
+| Parameter         | Type             | Description |
+|-------------------|------------------|-------------|
+| `$subscriptionId` | **string\|null** | (optional)  |
+| `$organizationId` | **string\|null** | (optional)  |
 
 **Throws:**
 
@@ -180,10 +180,10 @@ private listTicketCategoriesRequest(string|null $subscriptionId = null, string|n
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                           |
-|-------------------|------------------|-----------------------------------------------------------------------|
-| `$subscriptionId` | **string\|null** | The ID of the subscription the ticket should be related to (optional) |
-| `$organizationId` | **string\|null** | The ID of the organization the ticket should be related to (optional) |
+| Parameter         | Type             | Description |
+|-------------------|------------------|-------------|
+| `$subscriptionId` | **string\|null** | (optional)  |
+| `$organizationId` | **string\|null** | (optional)  |
 
 **Throws:**
 
@@ -202,10 +202,10 @@ public listTicketPriorities(string|null $subscriptionId = null, string|null $cat
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                           |
-|-------------------|------------------|-----------------------------------------------------------------------|
-| `$subscriptionId` | **string\|null** | The ID of the subscription the ticket should be related to (optional) |
-| `$category`       | **string\|null** | The category of the support ticket. (optional)                        |
+| Parameter         | Type             | Description |
+|-------------------|------------------|-------------|
+| `$subscriptionId` | **string\|null** | (optional)  |
+| `$category`       | **string\|null** | (optional)  |
 
 **Throws:**
 
@@ -229,10 +229,10 @@ private listTicketPrioritiesWithHttpInfo(string|null $subscriptionId = null, str
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                           |
-|-------------------|------------------|-----------------------------------------------------------------------|
-| `$subscriptionId` | **string\|null** | The ID of the subscription the ticket should be related to (optional) |
-| `$category`       | **string\|null** | The category of the support ticket. (optional)                        |
+| Parameter         | Type             | Description |
+|-------------------|------------------|-------------|
+| `$subscriptionId` | **string\|null** | (optional)  |
+| `$category`       | **string\|null** | (optional)  |
 
 **Throws:**
 
@@ -252,10 +252,10 @@ private listTicketPrioritiesRequest(string|null $subscriptionId = null, string|n
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                           |
-|-------------------|------------------|-----------------------------------------------------------------------|
-| `$subscriptionId` | **string\|null** | The ID of the subscription the ticket should be related to (optional) |
-| `$category`       | **string\|null** | The category of the support ticket. (optional)                        |
+| Parameter         | Type             | Description |
+|-------------------|------------------|-------------|
+| `$subscriptionId` | **string\|null** | (optional)  |
+| `$category`       | **string\|null** | (optional)  |
 
 **Throws:**
 
@@ -274,10 +274,10 @@ public updateTicket(string $ticketId, ?\Upsun\Model\UpdateTicketRequest $updateT
 
 **Parameters:**
 
-| Parameter              | Type                                  | Description                     |
-|------------------------|---------------------------------------|---------------------------------|
-| `$ticketId`            | **string**                            | The ID of the ticket (required) |
-| `$updateTicketRequest` | **?\Upsun\Model\UpdateTicketRequest** |                                 |
+| Parameter              | Type                                  | Description |
+|------------------------|---------------------------------------|-------------|
+| `$ticketId`            | **string**                            | (required)  |
+| `$updateTicketRequest` | **?\Upsun\Model\UpdateTicketRequest** |             |
 
 **Throws:**
 
@@ -301,10 +301,10 @@ private updateTicketWithHttpInfo(string $ticketId, ?\Upsun\Model\UpdateTicketReq
 
 **Parameters:**
 
-| Parameter              | Type                                  | Description                     |
-|------------------------|---------------------------------------|---------------------------------|
-| `$ticketId`            | **string**                            | The ID of the ticket (required) |
-| `$updateTicketRequest` | **?\Upsun\Model\UpdateTicketRequest** |                                 |
+| Parameter              | Type                                  | Description |
+|------------------------|---------------------------------------|-------------|
+| `$ticketId`            | **string**                            | (required)  |
+| `$updateTicketRequest` | **?\Upsun\Model\UpdateTicketRequest** |             |
 
 **Throws:**
 
@@ -324,10 +324,10 @@ private updateTicketRequest(string $ticketId, ?\Upsun\Model\UpdateTicketRequest 
 
 **Parameters:**
 
-| Parameter              | Type                                  | Description                     |
-|------------------------|---------------------------------------|---------------------------------|
-| `$ticketId`            | **string**                            | The ID of the ticket (required) |
-| `$updateTicketRequest` | **?\Upsun\Model\UpdateTicketRequest** |                                 |
+| Parameter              | Type                                  | Description |
+|------------------------|---------------------------------------|-------------|
+| `$ticketId`            | **string**                            | (required)  |
+| `$updateTicketRequest` | **?\Upsun\Model\UpdateTicketRequest** |             |
 
 **Throws:**
 

@@ -5,8 +5,7 @@ namespace {{apiPackage}};
 /**
  * HeaderSelector Class Doc Comment
  *
-{{> partial_internal_header }}
- * @internal
+{{> partial_internal_header }} * @internal
 */
 class ApiHeaderSelector
 {
@@ -38,7 +37,7 @@ class ApiHeaderSelector
         # filter out empty entries
         $accept = array_filter($accept);
 
-        if (count($accept) === 0) {
+        if ($accept === []) {
             return null;
         }
 
@@ -49,7 +48,7 @@ class ApiHeaderSelector
 
         # If none of the available Accept headers is of type "json", then just use all them
         $headersWithJson = $this->selectJsonMimeList($accept);
-        if (count($headersWithJson) === 0) {
+        if ($headersWithJson === []) {
             return implode(',', $accept);
         }
 
@@ -59,19 +58,16 @@ class ApiHeaderSelector
     }
 
     /**
-    * Detects whether a string contains a valid JSON mime type
-    */
+     * Detects whether a string contains a valid JSON mime type
+     */
     public function isJsonMime(string $searchString): bool
     {
         return preg_match('~^application/(json|[\w!#$&.+-^_]+\+json)\s*(;|$)~', $searchString) === 1;
     }
 
     /**
-    * Select all items from a list containing a JSON mime type
-    *
-    * @param array $mimeList
-    * @return array
-    */
+     * Select all items from a list containing a JSON mime type
+     */
     private function selectJsonMimeList(array $mimeList): array
     {
         $jsonMimeList = [];
@@ -80,13 +76,13 @@ class ApiHeaderSelector
                 $jsonMimeList[] = $mime;
             }
         }
+
         return $jsonMimeList;
     }
 
-
     /**
-    * Create an Accept header string from the given "Accept" headers array, recalculating all weights
-    */
+     * Create an Accept header string from the given "Accept" headers array, recalculating all weights
+     */
     private function getAcceptHeaderWithAdjustedWeight(array $accept, array $headersWithJson): string
     {
         $processedHeaders = [
@@ -113,7 +109,7 @@ class ApiHeaderSelector
         $hasMoreThan28Headers = count($accept) > 28;
 
         foreach ($processedHeaders as $headers) {
-            if (count($headers) > 0) {
+            if ($headers !== []) {
                 $acceptHeaders[] = $this->adjustWeight($headers, $currentWeight, $hasMoreThan28Headers);
             }
         }

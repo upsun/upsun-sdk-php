@@ -1,7 +1,6 @@
 # ProjectAddonBaseLinksUpdate
 
 Low level ProjectAddonBaseLinksUpdate (auto-generated)
-
 Link for updating the current add-on.
 
 ***

@@ -1,7 +1,6 @@
 # DiscountCommitmentAmount
 
 Low level DiscountCommitmentAmount (auto-generated)
-
 Commitment amounts.
 
 ***

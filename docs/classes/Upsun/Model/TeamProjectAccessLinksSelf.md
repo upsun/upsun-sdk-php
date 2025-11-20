@@ -1,7 +1,6 @@
 # TeamProjectAccessLinksSelf
 
 Low level TeamProjectAccessLinksSelf (auto-generated)
-
 Link to the current access item.
 
 ***

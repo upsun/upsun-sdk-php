@@ -1,7 +1,6 @@
 # StickyConfiguration
 
 Low level StickyConfiguration (auto-generated)
-
 Sticky routing configuration.
 
 ***

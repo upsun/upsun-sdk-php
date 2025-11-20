@@ -1,7 +1,6 @@
 # OrganizationMfaEnforcement
 
 Low level OrganizationMfaEnforcement (auto-generated)
-
 The MFA enforcement for the organization.
 
 ***

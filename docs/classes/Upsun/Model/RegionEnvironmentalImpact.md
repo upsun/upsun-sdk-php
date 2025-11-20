@@ -1,7 +1,6 @@
 # RegionEnvironmentalImpact
 
 Low level RegionEnvironmentalImpact (auto-generated)
-
 Information about the region provider's environmental impact.
 
 ***

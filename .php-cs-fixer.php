@@ -31,6 +31,31 @@ return $config
             'sort_algorithm' => 'alpha',
             'imports_order' => ['class', 'function', 'const'],
         ],
+        "fully_qualified_strict_types" => false,
+        'no_unused_imports' => true,
+        'global_namespace_import' => [
+            'import_classes' => true,
+            'import_constants' => true,
+            'import_functions' => true,
+        ],
+        'no_extra_blank_lines' => [
+            'tokens' => [
+                'extra',
+                'curly_brace_block',
+                'parenthesis_brace_block',
+                'square_brace_block',
+                'return',
+                'throw',
+                'use',
+                'use_trait',
+                'continue',
+                'break',
+                'switch',
+                'case',
+                'default',
+            ],
+        ],
+        'no_whitespace_in_blank_line' => true,
     ])
     ->setFinder($finder)
 ;

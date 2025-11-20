@@ -13,6 +13,12 @@ Abstract class for all API classes with automatic token refresh
 
 * https://docs.upsun.com
 
+## Constants
+
+| Constant    | Visibility | Type | Value                   |
+|-------------|------------|------|-------------------------|
+| `BASE_PATH` | public     |      | 'https://api.upsun.com' |
+
 ## Properties
 
 ### streamFactory

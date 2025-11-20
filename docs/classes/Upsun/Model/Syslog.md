@@ -1,7 +1,6 @@
 # Syslog
 
 Low level Syslog (auto-generated)
-
 Syslog log-forwarding integration configurations
 
 ***

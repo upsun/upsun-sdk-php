@@ -33,8 +33,16 @@ jobs:
       - name: Install dependencies
         run: composer run install:ci
 
-      - name: Run PHP lint (phpcs, php-cs-fixer, rector)
+      - name: Run PHP lint (phpcs, rector, php-cs-fixer)
+        id: lint
+        continue-on-error: true
         run: composer run lint:all
+
+      - name: Show error message if lint fails
+        if: steps.lint.outcome == 'failure'
+        run: |
+          echo "::error::Linting failed! Please run 'composer run fix:all' locally to fix issues."
+          exit 1
 
       - name: symfony-insight
         # Need to check how to setup symfony insight properly
@@ -94,6 +102,7 @@ jobs:
         with:
           default-runtime-version: ${{ env.PRIMARY_PHP_VERSION }}
           codecov-secret: ${{ secrets.CODECOV_TOKEN || 'Please define a CODECOV_TOKEN in your GitHub envVars' }}
+          github-secret: ${{ secrets.OPENAPI_WORKFLOW_TOKEN || 'Please define a OPENAPI_WORKFLOW_TOKEN in your GitHub envVars' }}
 
   build:
     name: Build Project

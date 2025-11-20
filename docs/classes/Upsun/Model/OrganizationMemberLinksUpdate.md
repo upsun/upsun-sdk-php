@@ -1,7 +1,6 @@
 # OrganizationMemberLinksUpdate
 
 Low level OrganizationMemberLinksUpdate (auto-generated)
-
 Link for updating the current member.
 
 ***

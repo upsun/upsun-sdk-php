@@ -1,7 +1,6 @@
 # OrderLinksInvoices
 
 Low level OrderLinksInvoices (auto-generated)
-
 Link to related Invoices API. Use this to retrieve invoices related to this order.
 
 ***

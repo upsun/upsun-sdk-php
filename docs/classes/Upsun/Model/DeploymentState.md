@@ -1,7 +1,6 @@
 # DeploymentState
 
 Low level DeploymentState (auto-generated)
-
 The environment deployment state
 
 ***

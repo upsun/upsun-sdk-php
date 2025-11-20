@@ -5,13 +5,13 @@ namespace {{apiPackage}};
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Throwable;
 use {{modelPackage}}\Error;
 
 /**
  * Low level {{classname}} (auto-generated)
  *
-{{> partial_internal_header }}
- */
+{{> partial_internal_header }} */
 class ApiException extends RequestException
 {
     /**
@@ -33,10 +33,10 @@ class ApiException extends RequestException
         $message,
         RequestInterface $request,
         ?ResponseInterface $response = null,
-        ?\Throwable $previous = null
+        ?Throwable $previous = null
     ) {
         parent::__construct($message, $request, $previous);
-        if ($response) {
+        if ($response !== null) {
             $this->responseHeaders = $response->getHeaders();
             $this->responseBody = (string) $response->getBody();
             $this->code = $response->getStatusCode();

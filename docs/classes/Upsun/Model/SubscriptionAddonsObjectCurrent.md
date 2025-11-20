@@ -1,7 +1,6 @@
 # SubscriptionAddonsObjectCurrent
 
 Low level SubscriptionAddonsObjectCurrent (auto-generated)
-
 The list of existing addons and their current values.
 
 ***

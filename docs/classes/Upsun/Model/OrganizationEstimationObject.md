@@ -1,7 +1,6 @@
 # OrganizationEstimationObject
 
 Low level OrganizationEstimationObject (auto-generated)
-
 An estimation of all organization spend.
 
 ***

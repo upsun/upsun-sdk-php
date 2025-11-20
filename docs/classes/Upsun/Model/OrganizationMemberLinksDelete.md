@@ -1,7 +1,6 @@
 # OrganizationMemberLinksDelete
 
 Low level OrganizationMemberLinksDelete (auto-generated)
-
 Link for deleting the current member.
 
 ***

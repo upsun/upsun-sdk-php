@@ -1,7 +1,6 @@
 # Subscription
 
 Low level Subscription (auto-generated)
-
 The subscription object.
 
 ***

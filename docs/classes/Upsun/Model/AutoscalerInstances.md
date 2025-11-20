@@ -1,7 +1,6 @@
 # AutoscalerInstances
 
 Low level AutoscalerInstances (auto-generated)
-
 Horizontal scaling settings
 
 ***

@@ -135,7 +135,8 @@ public canUpdateSubscription(string $subscriptionId, string|null $plan = null, i
 | `$subscriptionId` | **string**       | The ID of the subscription (required)                                                                                    |
 | `$plan`           | **string\|null** | The plan type of the subscription. (optional)                                                                            |
 | `$environments`   | **int\|null**    | The number of environments which can be provisioned on the project. (optional)                                           |
-| `$storage`        | **int\|null**    | The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values. (optional) |
+| `$storage`        | **int\|null**    | The total storage available to each environment, in MiB. Only multiples of 1024
+are accepted as legal values. (optional) |
 | `$userLicenses`   | **int\|null**    | The number of user licenses. (optional)                                                                                  |
 
 **Throws:**
@@ -165,7 +166,8 @@ private canUpdateSubscriptionWithHttpInfo(string $subscriptionId, string|null $p
 | `$subscriptionId` | **string**       | The ID of the subscription (required)                                                                                    |
 | `$plan`           | **string\|null** | The plan type of the subscription. (optional)                                                                            |
 | `$environments`   | **int\|null**    | The number of environments which can be provisioned on the project. (optional)                                           |
-| `$storage`        | **int\|null**    | The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values. (optional) |
+| `$storage`        | **int\|null**    | The total storage available to each environment, in MiB. Only multiples of 1024
+are accepted as legal values. (optional) |
 | `$userLicenses`   | **int\|null**    | The number of user licenses. (optional)                                                                                  |
 
 **Throws:**
@@ -191,7 +193,8 @@ private canUpdateSubscriptionRequest(string $subscriptionId, string|null $plan =
 | `$subscriptionId` | **string**       | The ID of the subscription (required)                                                                                    |
 | `$plan`           | **string\|null** | The plan type of the subscription. (optional)                                                                            |
 | `$environments`   | **int\|null**    | The number of environments which can be provisioned on the project. (optional)                                           |
-| `$storage`        | **int\|null**    | The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values. (optional) |
+| `$storage`        | **int\|null**    | The total storage available to each environment, in MiB. Only multiples of 1024
+are accepted as legal values. (optional) |
 | `$userLicenses`   | **int\|null**    | The number of user licenses. (optional)                                                                                  |
 
 **Throws:**
@@ -359,14 +362,14 @@ public estimateNewOrgSubscription(string $organizationId, string $plan, int $env
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                            |
-|-------------------|------------------|----------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization. (required)                                                 |
-| `$plan`           | **string**       | The plan type of the subscription. (required)                                          |
-| `$environments`   | **int**          | The maximum number of environments which can be provisioned on the project. (required) |
-| `$storage`        | **int**          | The total storage available to each environment, in MiB. (required)                    |
-| `$userLicenses`   | **int**          | The number of user licenses. (required)                                                |
-| `$format`         | **string\|null** | The format of the estimation output. (optional)                                        |
+| Parameter         | Type             | Description                            |
+|-------------------|------------------|----------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. (required) |
+| `$plan`           | **string**       | (required)                             |
+| `$environments`   | **int**          | (required)                             |
+| `$storage`        | **int**          | (required)                             |
+| `$userLicenses`   | **int**          | (required)                             |
+| `$format`         | **string\|null** | (optional)                             |
 
 **Throws:**
 
@@ -390,14 +393,14 @@ private estimateNewOrgSubscriptionWithHttpInfo(string $organizationId, string $p
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                            |
-|-------------------|------------------|----------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization. (required)                                                 |
-| `$plan`           | **string**       | The plan type of the subscription. (required)                                          |
-| `$environments`   | **int**          | The maximum number of environments which can be provisioned on the project. (required) |
-| `$storage`        | **int**          | The total storage available to each environment, in MiB. (required)                    |
-| `$userLicenses`   | **int**          | The number of user licenses. (required)                                                |
-| `$format`         | **string\|null** | The format of the estimation output. (optional)                                        |
+| Parameter         | Type             | Description                            |
+|-------------------|------------------|----------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. (required) |
+| `$plan`           | **string**       | (required)                             |
+| `$environments`   | **int**          | (required)                             |
+| `$storage`        | **int**          | (required)                             |
+| `$userLicenses`   | **int**          | (required)                             |
+| `$format`         | **string\|null** | (optional)                             |
 
 **Throws:**
 
@@ -417,14 +420,14 @@ private estimateNewOrgSubscriptionRequest(string $organizationId, string $plan, 
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                            |
-|-------------------|------------------|----------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization. (required)                                                 |
-| `$plan`           | **string**       | The plan type of the subscription. (required)                                          |
-| `$environments`   | **int**          | The maximum number of environments which can be provisioned on the project. (required) |
-| `$storage`        | **int**          | The total storage available to each environment, in MiB. (required)                    |
-| `$userLicenses`   | **int**          | The number of user licenses. (required)                                                |
-| `$format`         | **string\|null** | The format of the estimation output. (optional)                                        |
+| Parameter         | Type             | Description                            |
+|-------------------|------------------|----------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. (required) |
+| `$plan`           | **string**       | (required)                             |
+| `$environments`   | **int**          | (required)                             |
+| `$storage`        | **int**          | (required)                             |
+| `$userLicenses`   | **int**          | (required)                             |
+| `$format`         | **string\|null** | (optional)                             |
 
 **Throws:**
 
@@ -443,15 +446,15 @@ public estimateOrgSubscription(string $organizationId, string $subscriptionId, s
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                            |
-|-------------------|------------------|----------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization. (required)                                                 |
-| `$subscriptionId` | **string**       | The ID of the subscription. (required)                                                 |
-| `$plan`           | **string**       | The plan type of the subscription. (required)                                          |
-| `$environments`   | **int\|null**    | The maximum number of environments which can be provisioned on the project. (optional) |
-| `$storage`        | **int\|null**    | The total storage available to each environment, in MiB. (optional)                    |
-| `$userLicenses`   | **int\|null**    | The number of user licenses. (optional)                                                |
-| `$format`         | **string\|null** | The format of the estimation output. (optional)                                        |
+| Parameter         | Type             | Description                            |
+|-------------------|------------------|----------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. (required) |
+| `$subscriptionId` | **string**       | The ID of the subscription. (required) |
+| `$plan`           | **string**       | (required)                             |
+| `$environments`   | **int\|null**    | (optional)                             |
+| `$storage`        | **int\|null**    | (optional)                             |
+| `$userLicenses`   | **int\|null**    | (optional)                             |
+| `$format`         | **string\|null** | (optional)                             |
 
 **Throws:**
 
@@ -475,15 +478,15 @@ private estimateOrgSubscriptionWithHttpInfo(string $organizationId, string $subs
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                            |
-|-------------------|------------------|----------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization. (required)                                                 |
-| `$subscriptionId` | **string**       | The ID of the subscription. (required)                                                 |
-| `$plan`           | **string**       | The plan type of the subscription. (required)                                          |
-| `$environments`   | **int\|null**    | The maximum number of environments which can be provisioned on the project. (optional) |
-| `$storage`        | **int\|null**    | The total storage available to each environment, in MiB. (optional)                    |
-| `$userLicenses`   | **int\|null**    | The number of user licenses. (optional)                                                |
-| `$format`         | **string\|null** | The format of the estimation output. (optional)                                        |
+| Parameter         | Type             | Description                            |
+|-------------------|------------------|----------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. (required) |
+| `$subscriptionId` | **string**       | The ID of the subscription. (required) |
+| `$plan`           | **string**       | (required)                             |
+| `$environments`   | **int\|null**    | (optional)                             |
+| `$storage`        | **int\|null**    | (optional)                             |
+| `$userLicenses`   | **int\|null**    | (optional)                             |
+| `$format`         | **string\|null** | (optional)                             |
 
 **Throws:**
 
@@ -503,15 +506,15 @@ private estimateOrgSubscriptionRequest(string $organizationId, string $subscript
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                            |
-|-------------------|------------------|----------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization. (required)                                                 |
-| `$subscriptionId` | **string**       | The ID of the subscription. (required)                                                 |
-| `$plan`           | **string**       | The plan type of the subscription. (required)                                          |
-| `$environments`   | **int\|null**    | The maximum number of environments which can be provisioned on the project. (optional) |
-| `$storage`        | **int\|null**    | The total storage available to each environment, in MiB. (optional)                    |
-| `$userLicenses`   | **int\|null**    | The number of user licenses. (optional)                                                |
-| `$format`         | **string\|null** | The format of the estimation output. (optional)                                        |
+| Parameter         | Type             | Description                            |
+|-------------------|------------------|----------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. (required) |
+| `$subscriptionId` | **string**       | The ID of the subscription. (required) |
+| `$plan`           | **string**       | (required)                             |
+| `$environments`   | **int\|null**    | (optional)                             |
+| `$storage`        | **int\|null**    | (optional)                             |
+| `$userLicenses`   | **int\|null**    | (optional)                             |
+| `$format`         | **string\|null** | (optional)                             |
 
 **Throws:**
 
@@ -604,12 +607,12 @@ public getOrgSubscriptionCurrentUsage(string $organizationId, string $subscripti
 
 **Parameters:**
 
-| Parameter            | Type             | Description                                                      |
-|----------------------|------------------|------------------------------------------------------------------|
-| `$organizationId`    | **string**       | The ID of the organization. (required)                           |
-| `$subscriptionId`    | **string**       | The ID of the subscription. (required)                           |
-| `$usageGroups`       | **string\|null** | A list of usage groups to retrieve current usage for. (optional) |
-| `$includeNotCharged` | **bool\|null**   | Whether to include not charged usage groups. (optional)          |
+| Parameter            | Type             | Description                            |
+|----------------------|------------------|----------------------------------------|
+| `$organizationId`    | **string**       | The ID of the organization. (required) |
+| `$subscriptionId`    | **string**       | The ID of the subscription. (required) |
+| `$usageGroups`       | **string\|null** | (optional)                             |
+| `$includeNotCharged` | **bool\|null**   | (optional)                             |
 
 **Throws:**
 
@@ -633,12 +636,12 @@ private getOrgSubscriptionCurrentUsageWithHttpInfo(string $organizationId, strin
 
 **Parameters:**
 
-| Parameter            | Type             | Description                                                      |
-|----------------------|------------------|------------------------------------------------------------------|
-| `$organizationId`    | **string**       | The ID of the organization. (required)                           |
-| `$subscriptionId`    | **string**       | The ID of the subscription. (required)                           |
-| `$usageGroups`       | **string\|null** | A list of usage groups to retrieve current usage for. (optional) |
-| `$includeNotCharged` | **bool\|null**   | Whether to include not charged usage groups. (optional)          |
+| Parameter            | Type             | Description                            |
+|----------------------|------------------|----------------------------------------|
+| `$organizationId`    | **string**       | The ID of the organization. (required) |
+| `$subscriptionId`    | **string**       | The ID of the subscription. (required) |
+| `$usageGroups`       | **string\|null** | (optional)                             |
+| `$includeNotCharged` | **bool\|null**   | (optional)                             |
 
 **Throws:**
 
@@ -658,12 +661,12 @@ private getOrgSubscriptionCurrentUsageRequest(string $organizationId, string $su
 
 **Parameters:**
 
-| Parameter            | Type             | Description                                                      |
-|----------------------|------------------|------------------------------------------------------------------|
-| `$organizationId`    | **string**       | The ID of the organization. (required)                           |
-| `$subscriptionId`    | **string**       | The ID of the subscription. (required)                           |
-| `$usageGroups`       | **string\|null** | A list of usage groups to retrieve current usage for. (optional) |
-| `$includeNotCharged` | **bool\|null**   | Whether to include not charged usage groups. (optional)          |
+| Parameter            | Type             | Description                            |
+|----------------------|------------------|----------------------------------------|
+| `$organizationId`    | **string**       | The ID of the organization. (required) |
+| `$subscriptionId`    | **string**       | The ID of the subscription. (required) |
+| `$usageGroups`       | **string\|null** | (optional)                             |
+| `$includeNotCharged` | **bool\|null**   | (optional)                             |
 
 **Throws:**
 
@@ -684,10 +687,11 @@ Retrieves current and available usage alerts.
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$subscriptionId` | **string** | The ID of the subscription. (required)                                                                     |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$subscriptionId` | **string** | The ID of the subscription. (required)                                                                 |
 
 **Throws:**
 
@@ -711,10 +715,11 @@ private getSubscriptionUsageAlertsWithHttpInfo(string $organizationId, string $s
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$subscriptionId` | **string** | The ID of the subscription. (required)                                                                     |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$subscriptionId` | **string** | The ID of the subscription. (required)                                                                 |
 
 **Throws:**
 
@@ -734,10 +739,11 @@ private getSubscriptionUsageAlertsRequest(string $organizationId, string $subscr
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$subscriptionId` | **string** | The ID of the subscription. (required)                                                                     |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$subscriptionId` | **string** | The ID of the subscription. (required)                                                                 |
 
 **Throws:**
 
@@ -758,19 +764,23 @@ Retrieves subscriptions for the specified organization.
 
 **Parameters:**
 
-| Parameter             | Type                                  | Description                                                                                                                                                                                    |
-|-----------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                                                         |
-| `$filterStatus`       | **string\|null**                      | The status of the subscription. (optional)                                                                                                                                                     |
-| `$filterId`           | **string\|null**                      | Machine name of the region. (optional)                                                                                                                                                         |
-| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_id` using one or more operators. (optional)                                                                                                                       |
-| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_title` using one or more operators. (optional)                                                                                                                    |
-| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `region` using one or more operators. (optional)                                                                                                                           |
-| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                                                       |
-| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                                                             |
-| `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)                                        |
-| `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)                                        |
-| `$sort`               | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`. (optional) |
+| Parameter             | Type                                  | Description                                                                                                                                                                          |
+|-----------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                                               |
+| `$filterStatus`       | **string\|null**                      | The status of the subscription. (optional)                                                                                                                                           |
+| `$filterId`           | **string\|null**                      | Machine name of the region. (optional)                                                                                                                                               |
+| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_id` using one or more operators. (optional)                                                                                                             |
+| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_title` using one or more operators. (optional)                                                                                                          |
+| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `region` using one or more operators. (optional)                                                                                                                 |
+| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                                             |
+| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                                                   |
+| `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional)                              |
+| `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional)                              |
+| `$sort`               | **string\|null**                      | Allows sorting by a single field. Use a dash ("-") to sort descending. Supported
+fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`,
+`updated_at`. (optional) |
 
 **Throws:**
 
@@ -794,19 +804,23 @@ private listOrgSubscriptionsWithHttpInfo(string $organizationId, string|null $fi
 
 **Parameters:**
 
-| Parameter             | Type                                  | Description                                                                                                                                                                                    |
-|-----------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                                                         |
-| `$filterStatus`       | **string\|null**                      | The status of the subscription. (optional)                                                                                                                                                     |
-| `$filterId`           | **string\|null**                      | Machine name of the region. (optional)                                                                                                                                                         |
-| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_id` using one or more operators. (optional)                                                                                                                       |
-| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_title` using one or more operators. (optional)                                                                                                                    |
-| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `region` using one or more operators. (optional)                                                                                                                           |
-| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                                                       |
-| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                                                             |
-| `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)                                        |
-| `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)                                        |
-| `$sort`               | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`. (optional) |
+| Parameter             | Type                                  | Description                                                                                                                                                                          |
+|-----------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                                               |
+| `$filterStatus`       | **string\|null**                      | The status of the subscription. (optional)                                                                                                                                           |
+| `$filterId`           | **string\|null**                      | Machine name of the region. (optional)                                                                                                                                               |
+| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_id` using one or more operators. (optional)                                                                                                             |
+| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_title` using one or more operators. (optional)                                                                                                          |
+| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `region` using one or more operators. (optional)                                                                                                                 |
+| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                                             |
+| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                                                   |
+| `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional)                              |
+| `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional)                              |
+| `$sort`               | **string\|null**                      | Allows sorting by a single field. Use a dash ("-") to sort descending. Supported
+fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`,
+`updated_at`. (optional) |
 
 **Throws:**
 
@@ -826,19 +840,23 @@ private listOrgSubscriptionsRequest(string $organizationId, string|null $filterS
 
 **Parameters:**
 
-| Parameter             | Type                                  | Description                                                                                                                                                                                    |
-|-----------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                                                         |
-| `$filterStatus`       | **string\|null**                      | The status of the subscription. (optional)                                                                                                                                                     |
-| `$filterId`           | **string\|null**                      | Machine name of the region. (optional)                                                                                                                                                         |
-| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_id` using one or more operators. (optional)                                                                                                                       |
-| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_title` using one or more operators. (optional)                                                                                                                    |
-| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `region` using one or more operators. (optional)                                                                                                                           |
-| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                                                       |
-| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                                                             |
-| `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)                                        |
-| `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional)                                        |
-| `$sort`               | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`. (optional) |
+| Parameter             | Type                                  | Description                                                                                                                                                                          |
+|-----------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                                               |
+| `$filterStatus`       | **string\|null**                      | The status of the subscription. (optional)                                                                                                                                           |
+| `$filterId`           | **string\|null**                      | Machine name of the region. (optional)                                                                                                                                               |
+| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_id` using one or more operators. (optional)                                                                                                             |
+| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_title` using one or more operators. (optional)                                                                                                          |
+| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `region` using one or more operators. (optional)                                                                                                                 |
+| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                                             |
+| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                                                   |
+| `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional)                              |
+| `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional)                              |
+| `$sort`               | **string\|null**                      | Allows sorting by a single field. Use a dash ("-") to sort descending. Supported
+fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`,
+`updated_at`. (optional) |
 
 **Throws:**
 
@@ -1008,11 +1026,12 @@ Updates usage alerts for a subscription.
 
 **Parameters:**
 
-| Parameter                               | Type                                                   | Description                                                                                                |
-|-----------------------------------------|--------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId`                       | **string**                                             | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$subscriptionId`                       | **string**                                             | The ID of the subscription. (required)                                                                     |
-| `$updateSubscriptionUsageAlertsRequest` | **?\Upsun\Model\UpdateSubscriptionUsageAlertsRequest** |                                                                                                            |
+| Parameter                               | Type                                                   | Description                                                                                            |
+|-----------------------------------------|--------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`                       | **string**                                             | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$subscriptionId`                       | **string**                                             | The ID of the subscription. (required)                                                                 |
+| `$updateSubscriptionUsageAlertsRequest` | **?\Upsun\Model\UpdateSubscriptionUsageAlertsRequest** |                                                                                                        |
 
 **Throws:**
 
@@ -1036,11 +1055,12 @@ private updateSubscriptionUsageAlertsWithHttpInfo(string $organizationId, string
 
 **Parameters:**
 
-| Parameter                               | Type                                                   | Description                                                                                                |
-|-----------------------------------------|--------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId`                       | **string**                                             | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$subscriptionId`                       | **string**                                             | The ID of the subscription. (required)                                                                     |
-| `$updateSubscriptionUsageAlertsRequest` | **?\Upsun\Model\UpdateSubscriptionUsageAlertsRequest** |                                                                                                            |
+| Parameter                               | Type                                                   | Description                                                                                            |
+|-----------------------------------------|--------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`                       | **string**                                             | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$subscriptionId`                       | **string**                                             | The ID of the subscription. (required)                                                                 |
+| `$updateSubscriptionUsageAlertsRequest` | **?\Upsun\Model\UpdateSubscriptionUsageAlertsRequest** |                                                                                                        |
 
 **Throws:**
 
@@ -1060,11 +1080,12 @@ private updateSubscriptionUsageAlertsRequest(string $organizationId, string $sub
 
 **Parameters:**
 
-| Parameter                               | Type                                                   | Description                                                                                                |
-|-----------------------------------------|--------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId`                       | **string**                                             | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$subscriptionId`                       | **string**                                             | The ID of the subscription. (required)                                                                     |
-| `$updateSubscriptionUsageAlertsRequest` | **?\Upsun\Model\UpdateSubscriptionUsageAlertsRequest** |                                                                                                            |
+| Parameter                               | Type                                                   | Description                                                                                            |
+|-----------------------------------------|--------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`                       | **string**                                             | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$subscriptionId`                       | **string**                                             | The ID of the subscription. (required)                                                                 |
+| `$updateSubscriptionUsageAlertsRequest` | **?\Upsun\Model\UpdateSubscriptionUsageAlertsRequest** |                                                                                                        |
 
 **Throws:**
 

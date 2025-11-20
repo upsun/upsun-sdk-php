@@ -1,7 +1,6 @@
 # EnvironmentInfo
 
 Low level EnvironmentInfo (auto-generated)
-
 The environment information
 
 ***

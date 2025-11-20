@@ -1,7 +1,6 @@
 # HTTPLogForwarding
 
 Low level HTTPLogForwarding (auto-generated)
-
 HTTP log-forwarding integration configurations
 
 ***

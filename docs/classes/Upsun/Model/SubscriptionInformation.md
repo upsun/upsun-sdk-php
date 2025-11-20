@@ -1,7 +1,6 @@
 # SubscriptionInformation
 
 Low level SubscriptionInformation (auto-generated)
-
 The subscription information of the project
 
 ***

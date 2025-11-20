@@ -63,11 +63,11 @@ Confirms phone number using a verification code.
 
 **Parameters:**
 
-| Parameter                    | Type                                        | Description                                                                  |
-|------------------------------|---------------------------------------------|------------------------------------------------------------------------------|
-| `$sid`                       | **string**                                  | The session ID obtained from `POST /users/{user_id}/phonenumber`. (required) |
-| `$userId`                    | **string**                                  | The ID of the user. (required)                                               |
-| `$confirmPhoneNumberRequest` | **?\Upsun\Model\ConfirmPhoneNumberRequest** |                                                                              |
+| Parameter                    | Type                                        | Description                    |
+|------------------------------|---------------------------------------------|--------------------------------|
+| `$sid`                       | **string**                                  | (required)                     |
+| `$userId`                    | **string**                                  | The ID of the user. (required) |
+| `$confirmPhoneNumberRequest` | **?\Upsun\Model\ConfirmPhoneNumberRequest** |                                |
 
 **Throws:**
 
@@ -91,11 +91,11 @@ private confirmPhoneNumberWithHttpInfo(string $sid, string $userId, ?\Upsun\Mode
 
 **Parameters:**
 
-| Parameter                    | Type                                        | Description                                                                  |
-|------------------------------|---------------------------------------------|------------------------------------------------------------------------------|
-| `$sid`                       | **string**                                  | The session ID obtained from `POST /users/{user_id}/phonenumber`. (required) |
-| `$userId`                    | **string**                                  | The ID of the user. (required)                                               |
-| `$confirmPhoneNumberRequest` | **?\Upsun\Model\ConfirmPhoneNumberRequest** |                                                                              |
+| Parameter                    | Type                                        | Description                    |
+|------------------------------|---------------------------------------------|--------------------------------|
+| `$sid`                       | **string**                                  | (required)                     |
+| `$userId`                    | **string**                                  | The ID of the user. (required) |
+| `$confirmPhoneNumberRequest` | **?\Upsun\Model\ConfirmPhoneNumberRequest** |                                |
 
 **Throws:**
 
@@ -115,11 +115,11 @@ private confirmPhoneNumberRequest(string $sid, string $userId, ?\Upsun\Model\Con
 
 **Parameters:**
 
-| Parameter                    | Type                                        | Description                                                                  |
-|------------------------------|---------------------------------------------|------------------------------------------------------------------------------|
-| `$sid`                       | **string**                                  | The session ID obtained from `POST /users/{user_id}/phonenumber`. (required) |
-| `$userId`                    | **string**                                  | The ID of the user. (required)                                               |
-| `$confirmPhoneNumberRequest` | **?\Upsun\Model\ConfirmPhoneNumberRequest** |                                                                              |
+| Parameter                    | Type                                        | Description                    |
+|------------------------------|---------------------------------------------|--------------------------------|
+| `$sid`                       | **string**                                  | (required)                     |
+| `$userId`                    | **string**                                  | The ID of the user. (required) |
+| `$confirmPhoneNumberRequest` | **?\Upsun\Model\ConfirmPhoneNumberRequest** |                                |
 
 **Throws:**
 

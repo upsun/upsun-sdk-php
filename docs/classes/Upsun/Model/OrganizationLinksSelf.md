@@ -1,7 +1,6 @@
 # OrganizationLinksSelf
 
 Low level OrganizationLinksSelf (auto-generated)
-
 Link to the current organization.
 
 ***

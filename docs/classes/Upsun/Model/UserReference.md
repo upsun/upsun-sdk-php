@@ -1,7 +1,6 @@
 # UserReference
 
 Low level UserReference (auto-generated)
-
 The referenced user, or null if it no longer exists.
 
 ***

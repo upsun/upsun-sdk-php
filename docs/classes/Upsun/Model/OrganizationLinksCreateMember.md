@@ -1,7 +1,6 @@
 # OrganizationLinksCreateMember
 
 Low level OrganizationLinksCreateMember (auto-generated)
-
 Link for creating a new organization member.
 
 ***

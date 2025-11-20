@@ -1,7 +1,6 @@
 # AutoscalerScalingCooldown
 
 Low level AutoscalerScalingCooldown (auto-generated)
-
 Scaling cooldown settings
 
 ***

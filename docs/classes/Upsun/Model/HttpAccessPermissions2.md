@@ -1,7 +1,6 @@
 # HttpAccessPermissions2
 
 Low level HttpAccessPermissions2 (auto-generated)
-
 The Http access permissions for this environment
 
 ***

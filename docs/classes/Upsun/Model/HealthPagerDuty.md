@@ -1,7 +1,6 @@
 # HealthPagerDuty
 
 Low level HealthPagerDuty (auto-generated)
-
 Health PagerDuty notification integration configurations
 
 ***

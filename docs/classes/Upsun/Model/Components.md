@@ -1,7 +1,6 @@
 # Components
 
 Low level Components (auto-generated)
-
 The components of the project
 
 ***

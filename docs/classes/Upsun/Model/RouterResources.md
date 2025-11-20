@@ -1,7 +1,6 @@
 # RouterResources
 
 Low level RouterResources (auto-generated)
-
 Router resource settings for flex plan
 
 ***

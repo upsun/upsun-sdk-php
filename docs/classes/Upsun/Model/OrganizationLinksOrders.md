@@ -1,7 +1,6 @@
 # OrganizationLinksOrders
 
 Low level OrganizationLinksOrders (auto-generated)
-
 Link to the current organization's orders.
 
 ***

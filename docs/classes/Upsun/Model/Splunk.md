@@ -1,7 +1,6 @@
 # Splunk
 
 Low level Splunk (auto-generated)
-
 Splunk log-forwarding integration configurations
 
 ***

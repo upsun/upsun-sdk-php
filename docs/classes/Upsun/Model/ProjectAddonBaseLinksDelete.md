@@ -1,7 +1,6 @@
 # ProjectAddonBaseLinksDelete
 
 Low level ProjectAddonBaseLinksDelete (auto-generated)
-
 Link for deleting the current add-on.
 
 ***

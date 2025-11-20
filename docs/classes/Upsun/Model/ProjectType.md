@@ -1,7 +1,6 @@
 # ProjectType
 
 Low level ProjectType (auto-generated)
-
 The type of projects.
 
 ***

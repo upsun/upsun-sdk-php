@@ -212,7 +212,6 @@ class TeamsTask extends TaskBase
         return $this->accessApi->getProjectTeamAccess(projectId: $projectId, teamId: $teamId);
     }
 
-
     /**
      * Gets project access for a team
      *

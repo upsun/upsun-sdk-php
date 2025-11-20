@@ -1,7 +1,6 @@
 # AutoscalerServiceSettings
 
 Low level AutoscalerServiceSettings (auto-generated)
-
 Autoscaling settings for a specific service
 
 ***

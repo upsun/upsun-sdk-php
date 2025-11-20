@@ -211,10 +211,11 @@ Retrieves the specified organization member.
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$userId`         | **string** | The ID of the user. (required)                                                                             |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$userId`         | **string** | The ID of the user. (required)                                                                         |
 
 **Throws:**
 
@@ -238,10 +239,11 @@ private getOrgMemberWithHttpInfo(string $organizationId, string $userId): \Upsun
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$userId`         | **string** | The ID of the user. (required)                                                                             |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$userId`         | **string** | The ID of the user. (required)                                                                         |
 
 **Throws:**
 
@@ -261,10 +263,11 @@ private getOrgMemberRequest(string $organizationId, string $userId): \Psr\Http\M
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$userId`         | **string** | The ID of the user. (required)                                                                             |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$userId`         | **string** | The ID of the user. (required)                                                                         |
 
 **Throws:**
 
@@ -285,14 +288,15 @@ Accessible to organization owners and members with the "manage members" permissi
 
 **Parameters:**
 
-| Parameter            | Type                               | Description                                                                                                                                             |
-|----------------------|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`    | **string**                         | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)                                              |
-| `$filterPermissions` | **\Upsun\Model\ArrayFilter\|null** | Allows filtering by `permissions` using one or more operators. (optional)                                                                               |
-| `$pageSize`          | **int\|null**                      | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`        | **string\|null**                   | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`         | **string\|null**                   | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`              | **string\|null**                   | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `created_at`, `updated_at`. (optional)               |
+| Parameter            | Type                               | Description                                                                                            |
+|----------------------|------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`    | **string**                         | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$filterPermissions` | **\Upsun\Model\ArrayFilter\|null** | (optional)                                                                                             |
+| `$pageSize`          | **int\|null**                      | (optional)                                                                                             |
+| `$pageBefore`        | **string\|null**                   | (optional)                                                                                             |
+| `$pageAfter`         | **string\|null**                   | (optional)                                                                                             |
+| `$sort`              | **string\|null**                   | (optional)                                                                                             |
 
 **Throws:**
 
@@ -316,14 +320,15 @@ private listOrgMembersWithHttpInfo(string $organizationId, \Upsun\Model\ArrayFil
 
 **Parameters:**
 
-| Parameter            | Type                               | Description                                                                                                                                             |
-|----------------------|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`    | **string**                         | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)                                              |
-| `$filterPermissions` | **\Upsun\Model\ArrayFilter\|null** | Allows filtering by `permissions` using one or more operators. (optional)                                                                               |
-| `$pageSize`          | **int\|null**                      | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`        | **string\|null**                   | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`         | **string\|null**                   | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`              | **string\|null**                   | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `created_at`, `updated_at`. (optional)               |
+| Parameter            | Type                               | Description                                                                                            |
+|----------------------|------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`    | **string**                         | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$filterPermissions` | **\Upsun\Model\ArrayFilter\|null** | (optional)                                                                                             |
+| `$pageSize`          | **int\|null**                      | (optional)                                                                                             |
+| `$pageBefore`        | **string\|null**                   | (optional)                                                                                             |
+| `$pageAfter`         | **string\|null**                   | (optional)                                                                                             |
+| `$sort`              | **string\|null**                   | (optional)                                                                                             |
 
 **Throws:**
 
@@ -343,14 +348,15 @@ private listOrgMembersRequest(string $organizationId, \Upsun\Model\ArrayFilter|n
 
 **Parameters:**
 
-| Parameter            | Type                               | Description                                                                                                                                             |
-|----------------------|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`    | **string**                         | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)                                              |
-| `$filterPermissions` | **\Upsun\Model\ArrayFilter\|null** | Allows filtering by `permissions` using one or more operators. (optional)                                                                               |
-| `$pageSize`          | **int\|null**                      | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`        | **string\|null**                   | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`         | **string\|null**                   | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`              | **string\|null**                   | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `created_at`, `updated_at`. (optional)               |
+| Parameter            | Type                               | Description                                                                                            |
+|----------------------|------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`    | **string**                         | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$filterPermissions` | **\Upsun\Model\ArrayFilter\|null** | (optional)                                                                                             |
+| `$pageSize`          | **int\|null**                      | (optional)                                                                                             |
+| `$pageBefore`        | **string\|null**                   | (optional)                                                                                             |
+| `$pageAfter`         | **string\|null**                   | (optional)                                                                                             |
+| `$sort`              | **string\|null**                   | (optional)                                                                                             |
 
 **Throws:**
 

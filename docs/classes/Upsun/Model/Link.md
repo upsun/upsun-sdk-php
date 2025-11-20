@@ -1,7 +1,6 @@
 # Link
 
 Low level Link (auto-generated)
-
 A hypermedia link to the {current, next, previous} set of items.
 
 ***

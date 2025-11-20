@@ -1,7 +1,6 @@
 # VPNConfiguration
 
 Low level VPNConfiguration (auto-generated)
-
 The configuration of the VPN
 
 ***

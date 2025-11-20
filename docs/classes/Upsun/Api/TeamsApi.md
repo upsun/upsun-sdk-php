@@ -498,12 +498,12 @@ Retrieves a list of users associated with a single team.
 
 **Parameters:**
 
-| Parameter     | Type             | Description                                                                                                                                             |
-|---------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$teamId`     | **string**       | The ID of the team. (required)                                                                                                                          |
-| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`       | **string\|null** | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter     | Type             | Description                    |
+|---------------|------------------|--------------------------------|
+| `$teamId`     | **string**       | The ID of the team. (required) |
+| `$pageBefore` | **string\|null** | (optional)                     |
+| `$pageAfter`  | **string\|null** | (optional)                     |
+| `$sort`       | **string\|null** | (optional)                     |
 
 **Throws:**
 
@@ -527,12 +527,12 @@ private listTeamMembersWithHttpInfo(string $teamId, string|null $pageBefore = nu
 
 **Parameters:**
 
-| Parameter     | Type             | Description                                                                                                                                             |
-|---------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$teamId`     | **string**       | The ID of the team. (required)                                                                                                                          |
-| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`       | **string\|null** | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter     | Type             | Description                    |
+|---------------|------------------|--------------------------------|
+| `$teamId`     | **string**       | The ID of the team. (required) |
+| `$pageBefore` | **string\|null** | (optional)                     |
+| `$pageAfter`  | **string\|null** | (optional)                     |
+| `$sort`       | **string\|null** | (optional)                     |
 
 **Throws:**
 
@@ -552,12 +552,12 @@ private listTeamMembersRequest(string $teamId, string|null $pageBefore = null, s
 
 **Parameters:**
 
-| Parameter     | Type             | Description                                                                                                                                             |
-|---------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$teamId`     | **string**       | The ID of the team. (required)                                                                                                                          |
-| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`       | **string\|null** | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter     | Type             | Description                    |
+|---------------|------------------|--------------------------------|
+| `$teamId`     | **string**       | The ID of the team. (required) |
+| `$pageBefore` | **string\|null** | (optional)                     |
+| `$pageAfter`  | **string\|null** | (optional)                     |
+| `$sort`       | **string\|null** | (optional)                     |
 
 **Throws:**
 
@@ -578,15 +578,15 @@ Retrieves a list of teams.
 
 **Parameters:**
 
-| Parameter               | Type                                  | Description                                                                                                                                             |
-|-------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `organization_id` using one or more operators. (optional)                                                                           |
-| `$filterId`             | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `id` using one or more operators. (optional)                                                                                        |
-| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
-| `$pageSize`             | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`           | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`            | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`                 | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter               | Type                                  | Description |
+|-------------------------|---------------------------------------|-------------|
+| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterId`             | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | (optional)  |
+| `$pageSize`             | **int\|null**                         | (optional)  |
+| `$pageBefore`           | **string\|null**                      | (optional)  |
+| `$pageAfter`            | **string\|null**                      | (optional)  |
+| `$sort`                 | **string\|null**                      | (optional)  |
 
 **Throws:**
 
@@ -610,15 +610,15 @@ private listTeamsWithHttpInfo(\Upsun\Model\StringFilter|null $filterOrganization
 
 **Parameters:**
 
-| Parameter               | Type                                  | Description                                                                                                                                             |
-|-------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `organization_id` using one or more operators. (optional)                                                                           |
-| `$filterId`             | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `id` using one or more operators. (optional)                                                                                        |
-| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
-| `$pageSize`             | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`           | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`            | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`                 | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter               | Type                                  | Description |
+|-------------------------|---------------------------------------|-------------|
+| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterId`             | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | (optional)  |
+| `$pageSize`             | **int\|null**                         | (optional)  |
+| `$pageBefore`           | **string\|null**                      | (optional)  |
+| `$pageAfter`            | **string\|null**                      | (optional)  |
+| `$sort`                 | **string\|null**                      | (optional)  |
 
 **Throws:**
 
@@ -638,15 +638,15 @@ private listTeamsRequest(\Upsun\Model\StringFilter|null $filterOrganizationId = 
 
 **Parameters:**
 
-| Parameter               | Type                                  | Description                                                                                                                                             |
-|-------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `organization_id` using one or more operators. (optional)                                                                           |
-| `$filterId`             | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `id` using one or more operators. (optional)                                                                                        |
-| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
-| `$pageSize`             | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`           | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`            | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`                 | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter               | Type                                  | Description |
+|-------------------------|---------------------------------------|-------------|
+| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterId`             | **\Upsun\Model\StringFilter\|null**   | (optional)  |
+| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | (optional)  |
+| `$pageSize`             | **int\|null**                         | (optional)  |
+| `$pageBefore`           | **string\|null**                      | (optional)  |
+| `$pageAfter`            | **string\|null**                      | (optional)  |
+| `$sort`                 | **string\|null**                      | (optional)  |
 
 **Throws:**
 
@@ -667,15 +667,15 @@ Retrieves teams that the specified user is a member of.
 
 **Parameters:**
 
-| Parameter               | Type                                  | Description                                                                                                                                             |
-|-------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$userId`               | **string**                            | The ID of the user. (required)                                                                                                                          |
-| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `organization_id` using one or more operators. (optional)                                                                           |
-| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
-| `$pageSize`             | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`           | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`            | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`                 | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter               | Type                                  | Description                    |
+|-------------------------|---------------------------------------|--------------------------------|
+| `$userId`               | **string**                            | The ID of the user. (required) |
+| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | (optional)                     |
+| `$pageSize`             | **int\|null**                         | (optional)                     |
+| `$pageBefore`           | **string\|null**                      | (optional)                     |
+| `$pageAfter`            | **string\|null**                      | (optional)                     |
+| `$sort`                 | **string\|null**                      | (optional)                     |
 
 **Throws:**
 
@@ -699,15 +699,15 @@ private listUserTeamsWithHttpInfo(string $userId, \Upsun\Model\StringFilter|null
 
 **Parameters:**
 
-| Parameter               | Type                                  | Description                                                                                                                                             |
-|-------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$userId`               | **string**                            | The ID of the user. (required)                                                                                                                          |
-| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `organization_id` using one or more operators. (optional)                                                                           |
-| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
-| `$pageSize`             | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`           | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`            | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`                 | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter               | Type                                  | Description                    |
+|-------------------------|---------------------------------------|--------------------------------|
+| `$userId`               | **string**                            | The ID of the user. (required) |
+| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | (optional)                     |
+| `$pageSize`             | **int\|null**                         | (optional)                     |
+| `$pageBefore`           | **string\|null**                      | (optional)                     |
+| `$pageAfter`            | **string\|null**                      | (optional)                     |
+| `$sort`                 | **string\|null**                      | (optional)                     |
 
 **Throws:**
 
@@ -727,15 +727,15 @@ private listUserTeamsRequest(string $userId, \Upsun\Model\StringFilter|null $fil
 
 **Parameters:**
 
-| Parameter               | Type                                  | Description                                                                                                                                             |
-|-------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$userId`               | **string**                            | The ID of the user. (required)                                                                                                                          |
-| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `organization_id` using one or more operators. (optional)                                                                           |
-| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
-| `$pageSize`             | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
-| `$pageBefore`           | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$pageAfter`            | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. (optional) |
-| `$sort`                 | **string\|null**                      | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending. (optional)                                                                 |
+| Parameter               | Type                                  | Description                    |
+|-------------------------|---------------------------------------|--------------------------------|
+| `$userId`               | **string**                            | The ID of the user. (required) |
+| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null**   | (optional)                     |
+| `$filterUpdatedAt`      | **\Upsun\Model\DateTimeFilter\|null** | (optional)                     |
+| `$pageSize`             | **int\|null**                         | (optional)                     |
+| `$pageBefore`           | **string\|null**                      | (optional)                     |
+| `$pageAfter`            | **string\|null**                      | (optional)                     |
+| `$sort`                 | **string\|null**                      | (optional)                     |
 
 **Throws:**
 

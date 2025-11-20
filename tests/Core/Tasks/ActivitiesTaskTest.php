@@ -21,32 +21,21 @@ class ActivitiesTaskTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $psr17Factory = new Psr17Factory();
-
         $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $oauthProvider = $this->createMock(OAuthProvider::class);
-
-        $projectActivityApi = new ProjectActivityApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
-
-        $environmentActivityApi = new EnvironmentActivityApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
 
         $upsunClient = $this->createMock(UpsunClient::class);
 
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
+            $this->httpClient,
+            new Psr17Factory(),
+            new ApiConfiguration()
+        ];
+
         $this->activitiesTask = new class (
             $upsunClient,
-            $projectActivityApi,
-            $environmentActivityApi
+            new ProjectActivityApi(...$apiClassParams),
+            new EnvironmentActivityApi(...$apiClassParams)
         ) extends ActivitiesTask {
         };
     }

@@ -1,7 +1,6 @@
 # OrganizationAddonsObjectAvailable
 
 Low level OrganizationAddonsObjectAvailable (auto-generated)
-
 The list of available add-ons and their possible values.
 
 ***

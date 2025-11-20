@@ -1,7 +1,6 @@
 # DiscountDiscount
 
 Low level DiscountDiscount (auto-generated)
-
 Discount value per relevant time periods.
 
 ***

@@ -1,7 +1,6 @@
 # CronsDeploymentState
 
 Low level CronsDeploymentState (auto-generated)
-
 The crons deployment state
 
 ***

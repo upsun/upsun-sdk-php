@@ -1,7 +1,6 @@
 # OrderBillingPeriodLabel
 
 Low level OrderBillingPeriodLabel (auto-generated)
-
 Descriptive information about the billing cycle.
 
 ***

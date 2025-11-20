@@ -1,7 +1,6 @@
 # PrepaymentTransactionObject
 
 Low level PrepaymentTransactionObject (auto-generated)
-
 Prepayment transaction for an organization.
 
 ***

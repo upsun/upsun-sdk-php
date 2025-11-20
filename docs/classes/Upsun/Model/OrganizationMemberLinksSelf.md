@@ -1,7 +1,6 @@
 # OrganizationMemberLinksSelf
 
 Low level OrganizationMemberLinksSelf (auto-generated)
-
 Link to the current member.
 
 ***

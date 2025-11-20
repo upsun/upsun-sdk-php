@@ -63,10 +63,11 @@ Retrieves an invoice for the specified organization.
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$invoiceId`      | **string** | The ID of the invoice. (required)                                                                          |
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$invoiceId`      | **string** | The ID of the invoice. (required)                                                                      |
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -90,10 +91,11 @@ private getOrgInvoiceWithHttpInfo(string $invoiceId, string $organizationId): \U
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$invoiceId`      | **string** | The ID of the invoice. (required)                                                                          |
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$invoiceId`      | **string** | The ID of the invoice. (required)                                                                      |
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -113,10 +115,11 @@ private getOrgInvoiceRequest(string $invoiceId, string $organizationId): \Psr\Ht
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$invoiceId`      | **string** | The ID of the invoice. (required)                                                                          |
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$invoiceId`      | **string** | The ID of the invoice. (required)                                                                      |
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -137,13 +140,15 @@ Retrieves a list of invoices for the specified organization.
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                                                |
-|-------------------|------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$filterStatus`   | **string\|null** | The status of the invoice. (optional)                                                                      |
-| `$filterType`     | **string\|null** | The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. (optional)    |
-| `$filterOrderId`  | **string\|null** | The order id of Invoice. (optional)                                                                        |
-| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                            |
+| Parameter         | Type             | Description                                                                                             |
+|-------------------|------------------|---------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required)  |
+| `$filterStatus`   | **string\|null** | The status of the invoice. (optional)                                                                   |
+| `$filterType`     | **string\|null** | The invoice type. Use invoice for standard invoices, credit_memo for
+refund/credit invoices. (optional) |
+| `$filterOrderId`  | **string\|null** | The order id of Invoice. (optional)                                                                     |
+| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                         |
 
 **Throws:**
 
@@ -167,13 +172,15 @@ private listOrgInvoicesWithHttpInfo(string $organizationId, string|null $filterS
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                                                |
-|-------------------|------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$filterStatus`   | **string\|null** | The status of the invoice. (optional)                                                                      |
-| `$filterType`     | **string\|null** | The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. (optional)    |
-| `$filterOrderId`  | **string\|null** | The order id of Invoice. (optional)                                                                        |
-| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                            |
+| Parameter         | Type             | Description                                                                                             |
+|-------------------|------------------|---------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required)  |
+| `$filterStatus`   | **string\|null** | The status of the invoice. (optional)                                                                   |
+| `$filterType`     | **string\|null** | The invoice type. Use invoice for standard invoices, credit_memo for
+refund/credit invoices. (optional) |
+| `$filterOrderId`  | **string\|null** | The order id of Invoice. (optional)                                                                     |
+| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                         |
 
 **Throws:**
 
@@ -193,13 +200,15 @@ private listOrgInvoicesRequest(string $organizationId, string|null $filterStatus
 
 **Parameters:**
 
-| Parameter         | Type             | Description                                                                                                |
-|-------------------|------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string**       | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$filterStatus`   | **string\|null** | The status of the invoice. (optional)                                                                      |
-| `$filterType`     | **string\|null** | The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. (optional)    |
-| `$filterOrderId`  | **string\|null** | The order id of Invoice. (optional)                                                                        |
-| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                            |
+| Parameter         | Type             | Description                                                                                             |
+|-------------------|------------------|---------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string**       | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required)  |
+| `$filterStatus`   | **string\|null** | The status of the invoice. (optional)                                                                   |
+| `$filterType`     | **string\|null** | The invoice type. Use invoice for standard invoices, credit_memo for
+refund/credit invoices. (optional) |
+| `$filterOrderId`  | **string\|null** | The order id of Invoice. (optional)                                                                     |
+| `$page`           | **int\|null**    | Page to be displayed. Defaults to 1. (optional)                                                         |
 
 **Throws:**
 

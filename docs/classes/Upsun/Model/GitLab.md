@@ -1,7 +1,6 @@
 # GitLab
 
 Low level GitLab (auto-generated)
-
 GitLab integration configurations
 
 ***

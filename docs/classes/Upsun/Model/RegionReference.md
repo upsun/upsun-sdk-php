@@ -1,7 +1,6 @@
 # RegionReference
 
 Low level RegionReference (auto-generated)
-
 The referenced region, or null if it no longer exists.
 
 ***

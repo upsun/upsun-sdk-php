@@ -61,10 +61,10 @@ public createProfilePicture(string $uuid, \SplFileObject|null $file = null): \Up
 
 **Parameters:**
 
-| Parameter | Type                     | Description                          |
-|-----------|--------------------------|--------------------------------------|
-| `$uuid`   | **string**               | The uuid of the user (required)      |
-| `$file`   | **\SplFileObject\|null** | The image file to upload. (optional) |
+| Parameter | Type                     | Description |
+|-----------|--------------------------|-------------|
+| `$uuid`   | **string**               | (required)  |
+| `$file`   | **\SplFileObject\|null** | (optional)  |
 
 **Throws:**
 
@@ -88,10 +88,10 @@ private createProfilePictureWithHttpInfo(string $uuid, \SplFileObject|null $file
 
 **Parameters:**
 
-| Parameter | Type                     | Description                          |
-|-----------|--------------------------|--------------------------------------|
-| `$uuid`   | **string**               | The uuid of the user (required)      |
-| `$file`   | **\SplFileObject\|null** | The image file to upload. (optional) |
+| Parameter | Type                     | Description |
+|-----------|--------------------------|-------------|
+| `$uuid`   | **string**               | (required)  |
+| `$file`   | **\SplFileObject\|null** | (optional)  |
 
 **Throws:**
 
@@ -111,10 +111,10 @@ private createProfilePictureRequest(string $uuid, \SplFileObject|null $file = nu
 
 **Parameters:**
 
-| Parameter | Type                     | Description                          |
-|-----------|--------------------------|--------------------------------------|
-| `$uuid`   | **string**               | The uuid of the user (required)      |
-| `$file`   | **\SplFileObject\|null** | The image file to upload. (optional) |
+| Parameter | Type                     | Description |
+|-----------|--------------------------|-------------|
+| `$uuid`   | **string**               | (required)  |
+| `$file`   | **\SplFileObject\|null** | (optional)  |
 
 **Throws:**
 
@@ -133,9 +133,9 @@ public deleteProfilePicture(string $uuid): void
 
 **Parameters:**
 
-| Parameter | Type       | Description                     |
-|-----------|------------|---------------------------------|
-| `$uuid`   | **string** | The uuid of the user (required) |
+| Parameter | Type       | Description |
+|-----------|------------|-------------|
+| `$uuid`   | **string** | (required)  |
 
 **Throws:**
 
@@ -159,9 +159,9 @@ private deleteProfilePictureWithHttpInfo(string $uuid): void
 
 **Parameters:**
 
-| Parameter | Type       | Description                     |
-|-----------|------------|---------------------------------|
-| `$uuid`   | **string** | The uuid of the user (required) |
+| Parameter | Type       | Description |
+|-----------|------------|-------------|
+| `$uuid`   | **string** | (required)  |
 
 **Throws:**
 
@@ -181,9 +181,9 @@ private deleteProfilePictureRequest(string $uuid): \Psr\Http\Message\RequestInte
 
 **Parameters:**
 
-| Parameter | Type       | Description                     |
-|-----------|------------|---------------------------------|
-| `$uuid`   | **string** | The uuid of the user (required) |
+| Parameter | Type       | Description |
+|-----------|------------|-------------|
+| `$uuid`   | **string** | (required)  |
 
 **Throws:**
 

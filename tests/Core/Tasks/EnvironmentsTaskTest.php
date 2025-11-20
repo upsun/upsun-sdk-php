@@ -50,124 +50,63 @@ class EnvironmentsTaskTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $psr17Factory = new Psr17Factory();
-
         $this->httpClient = $this->createMock(ClientInterface::class);
 
-        $oauthProvider = $this->createMock(OAuthProvider::class);
         $upsunClient = $this->createMock(UpsunClient::class);
 
-        $environmentApi = new EnvironmentApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration());
-        $environmentTypeApi = new EnvironmentTypeApi(
-            $oauthProvider,
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
             $this->httpClient,
-            $psr17Factory,
+            new Psr17Factory(),
             new ApiConfiguration()
-        );
-        $deploymentApi = new DeploymentApi($oauthProvider, $this->httpClient, $psr17Factory, new ApiConfiguration());
+        ];
 
         // Activity Task init
-        $projectActivityApi = new ProjectActivityApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
-
-        $environmentActivityApi = new EnvironmentActivityApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
-
         $activitiesTask = new class (
             $upsunClient,
-            $projectActivityApi,
-            $environmentActivityApi
+            new ProjectActivityApi(...$apiClassParams),
+            new EnvironmentActivityApi(...$apiClassParams)
         ) extends ActivitiesTask {
         };
         $upsunClient->activities = $activitiesTask;
 
         // BackupTask init
-        $environmentBackupApi = new EnvironmentBackupsApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
-
         $backupsTask = new class (
             $upsunClient,
-            $environmentBackupApi
+            new EnvironmentBackupsApi(...$apiClassParams),
         ) extends BackupsTask {
         };
         $upsunClient->backups = $backupsTask;
 
         // VariablesTask init
-        $environmentVariablesApi = new EnvironmentVariablesApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
-
-        $projectVariablesApi = new ProjectVariablesApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
-
         $variablesTask = new class (
             $upsunClient,
-            $projectVariablesApi,
-            $environmentVariablesApi
+            new ProjectVariablesApi(...$apiClassParams),
+            new EnvironmentVariablesApi(...$apiClassParams),
         ) extends VariablesTask {
         };
         $upsunClient->variables = $variablesTask;
 
         // RouteTask init
-        $routingApi = new RoutingApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
-
         $routesTask = new class (
             $upsunClient,
-            $routingApi
+            new RoutingApi(...$apiClassParams),
         ) extends RoutesTask {
         };
         $upsunClient->routes = $routesTask;
 
         // DomainTask init
-        $domainManagementApi = new DomainManagementApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
-
         $domainsTask = new class (
             $upsunClient,
-            $domainManagementApi
+            new DomainManagementApi(...$apiClassParams),
         ) extends DomainsTask {
         };
         $upsunClient->domains = $domainsTask;
 
         // SourceOperationTask init
-        $sourceOperationApi = new SourceOperationsApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
-
         $sourcesTask = new class (
             $upsunClient,
-            $sourceOperationApi
+            new SourceOperationsApi(...$apiClassParams),
         ) extends SourceOperationsTask {
         };
         $upsunClient->sourceOperations = $sourcesTask;
@@ -175,9 +114,9 @@ class EnvironmentsTaskTest extends BaseTestCase
         // EnvironmentTask
         $this->environmentTask = new class (
             $upsunClient,
-            $environmentApi,
-            $environmentTypeApi,
-            $deploymentApi
+            new EnvironmentApi(...$apiClassParams),
+            new EnvironmentTypeApi(...$apiClassParams),
+            new DeploymentApi(...$apiClassParams),
         ) extends EnvironmentsTask {
         };
     }

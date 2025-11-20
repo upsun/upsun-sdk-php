@@ -1,7 +1,6 @@
 # AutoscalerSettings
 
 Low level AutoscalerSettings (auto-generated)
-
 Update model for autoscaling settings. This model is mainly used for partial updates (PATCH), therefore all its
 attributes are optional.
 

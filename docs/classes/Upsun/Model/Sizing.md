@@ -1,7 +1,6 @@
 # Sizing
 
 Low level Sizing (auto-generated)
-
 The environment sizing configuration
 
 ***

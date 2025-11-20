@@ -1,7 +1,6 @@
 # PrepaymentObjectPrepaymentBalance
 
 Low level PrepaymentObjectPrepaymentBalance (auto-generated)
-
 The prepayment balance in complex format.
 
 ***

@@ -1,7 +1,6 @@
 # PrepaymentObject
 
 Low level PrepaymentObject (auto-generated)
-
 Prepayment information for an organization.
 
 ***

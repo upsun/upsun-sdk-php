@@ -1,7 +1,6 @@
 # ProfileCurrentTrialCurrent
 
 Low level ProfileCurrentTrialCurrent (auto-generated)
-
 The total amount spent by the trial user at this point in time.
 
 ***

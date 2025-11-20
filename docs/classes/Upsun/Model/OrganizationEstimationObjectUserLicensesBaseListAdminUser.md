@@ -1,7 +1,6 @@
 # OrganizationEstimationObjectUserLicensesBaseListAdminUser
 
 Low level OrganizationEstimationObjectUserLicensesBaseListAdminUser (auto-generated)
-
 An estimation of admin users cost.
 
 ***

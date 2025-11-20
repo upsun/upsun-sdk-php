@@ -65,14 +65,23 @@ Retrieves plan records for the specified organization.
 
 | Parameter               | Type                | Description                                                                                                                                                                                        |
 |-------------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`       | **string**          | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)                                                                                         |
+| `$organizationId`       | **string**          | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required)                                                                                             |
 | `$filterSubscriptionId` | **string\|null**    | The ID of the subscription (optional)                                                                                                                                                              |
 | `$filterPlan`           | **string\|null**    | The plan type of the subscription. (optional)                                                                                                                                                      |
 | `$filterStatus`         | **string\|null**    | The status of the plan record. (optional)                                                                                                                                                          |
-| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)                            |
-| `$filterEnd`            | **\DateTime\|null** | The end of the observation period for the record. E.g. filter[end]=2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 (optional)                        |
-| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
-| `$filterEndedAt`        | **\DateTime\|null** | The record's end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)         |
+| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g.
+filter[start]=2018-01-01 will display all records that were active (i.e. did not
+end) on 2018-01-01 (optional)                            |
+| `$filterEnd`            | **\DateTime\|null** | The end of the observation period for the record. E.g. filter[end]=2018-01-01
+will display all records that were active on (i.e. they started before)
+2018-01-01 (optional)                        |
+| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started
+after, or before a certain time. E.g.
+filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
+| `$filterEndedAt`        | **\DateTime\|null** | The record's end timestamp. You can use this filter to list records ended after,
+or before a certain time. E.g.
+filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)         |
 | `$page`                 | **int\|null**       | Page to be displayed. Defaults to 1. (optional)                                                                                                                                                    |
 
 **Throws:**
@@ -99,14 +108,23 @@ private listOrgPlanRecordsWithHttpInfo(string $organizationId, string|null $filt
 
 | Parameter               | Type                | Description                                                                                                                                                                                        |
 |-------------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`       | **string**          | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)                                                                                         |
+| `$organizationId`       | **string**          | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required)                                                                                             |
 | `$filterSubscriptionId` | **string\|null**    | The ID of the subscription (optional)                                                                                                                                                              |
 | `$filterPlan`           | **string\|null**    | The plan type of the subscription. (optional)                                                                                                                                                      |
 | `$filterStatus`         | **string\|null**    | The status of the plan record. (optional)                                                                                                                                                          |
-| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)                            |
-| `$filterEnd`            | **\DateTime\|null** | The end of the observation period for the record. E.g. filter[end]=2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 (optional)                        |
-| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
-| `$filterEndedAt`        | **\DateTime\|null** | The record's end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)         |
+| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g.
+filter[start]=2018-01-01 will display all records that were active (i.e. did not
+end) on 2018-01-01 (optional)                            |
+| `$filterEnd`            | **\DateTime\|null** | The end of the observation period for the record. E.g. filter[end]=2018-01-01
+will display all records that were active on (i.e. they started before)
+2018-01-01 (optional)                        |
+| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started
+after, or before a certain time. E.g.
+filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
+| `$filterEndedAt`        | **\DateTime\|null** | The record's end timestamp. You can use this filter to list records ended after,
+or before a certain time. E.g.
+filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)         |
 | `$page`                 | **int\|null**       | Page to be displayed. Defaults to 1. (optional)                                                                                                                                                    |
 
 **Throws:**
@@ -129,14 +147,23 @@ private listOrgPlanRecordsRequest(string $organizationId, string|null $filterSub
 
 | Parameter               | Type                | Description                                                                                                                                                                                        |
 |-------------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`       | **string**          | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)                                                                                         |
+| `$organizationId`       | **string**          | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required)                                                                                             |
 | `$filterSubscriptionId` | **string\|null**    | The ID of the subscription (optional)                                                                                                                                                              |
 | `$filterPlan`           | **string\|null**    | The plan type of the subscription. (optional)                                                                                                                                                      |
 | `$filterStatus`         | **string\|null**    | The status of the plan record. (optional)                                                                                                                                                          |
-| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)                            |
-| `$filterEnd`            | **\DateTime\|null** | The end of the observation period for the record. E.g. filter[end]=2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 (optional)                        |
-| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
-| `$filterEndedAt`        | **\DateTime\|null** | The record's end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)         |
+| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g.
+filter[start]=2018-01-01 will display all records that were active (i.e. did not
+end) on 2018-01-01 (optional)                            |
+| `$filterEnd`            | **\DateTime\|null** | The end of the observation period for the record. E.g. filter[end]=2018-01-01
+will display all records that were active on (i.e. they started before)
+2018-01-01 (optional)                        |
+| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started
+after, or before a certain time. E.g.
+filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
+| `$filterEndedAt`        | **\DateTime\|null** | The record's end timestamp. You can use this filter to list records ended after,
+or before a certain time. E.g.
+filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)         |
 | `$page`                 | **int\|null**       | Page to be displayed. Defaults to 1. (optional)                                                                                                                                                    |
 
 **Throws:**
@@ -160,11 +187,16 @@ Retrieves usage records for the specified organization.
 
 | Parameter               | Type                | Description                                                                                                                                                                                        |
 |-------------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`       | **string**          | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)                                                                                         |
+| `$organizationId`       | **string**          | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required)                                                                                             |
 | `$filterSubscriptionId` | **string\|null**    | The ID of the subscription (optional)                                                                                                                                                              |
 | `$filterUsageGroup`     | **string\|null**    | Filter records by the type of usage. (optional)                                                                                                                                                    |
-| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)                            |
-| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
+| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g.
+filter[start]=2018-01-01 will display all records that were active (i.e. did not
+end) on 2018-01-01 (optional)                            |
+| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started
+after, or before a certain time. E.g.
+filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
 | `$page`                 | **int\|null**       | Page to be displayed. Defaults to 1. (optional)                                                                                                                                                    |
 
 **Throws:**
@@ -191,11 +223,16 @@ private listOrgUsageRecordsWithHttpInfo(string $organizationId, string|null $fil
 
 | Parameter               | Type                | Description                                                                                                                                                                                        |
 |-------------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`       | **string**          | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)                                                                                         |
+| `$organizationId`       | **string**          | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required)                                                                                             |
 | `$filterSubscriptionId` | **string\|null**    | The ID of the subscription (optional)                                                                                                                                                              |
 | `$filterUsageGroup`     | **string\|null**    | Filter records by the type of usage. (optional)                                                                                                                                                    |
-| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)                            |
-| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
+| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g.
+filter[start]=2018-01-01 will display all records that were active (i.e. did not
+end) on 2018-01-01 (optional)                            |
+| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started
+after, or before a certain time. E.g.
+filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
 | `$page`                 | **int\|null**       | Page to be displayed. Defaults to 1. (optional)                                                                                                                                                    |
 
 **Throws:**
@@ -218,11 +255,16 @@ private listOrgUsageRecordsRequest(string $organizationId, string|null $filterSu
 
 | Parameter               | Type                | Description                                                                                                                                                                                        |
 |-------------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`       | **string**          | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required)                                                                                         |
+| `$organizationId`       | **string**          | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required)                                                                                             |
 | `$filterSubscriptionId` | **string\|null**    | The ID of the subscription (optional)                                                                                                                                                              |
 | `$filterUsageGroup`     | **string\|null**    | Filter records by the type of usage. (optional)                                                                                                                                                    |
-| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 (optional)                            |
-| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
+| `$filterStart`          | **\DateTime\|null** | The start of the observation period for the record. E.g.
+filter[start]=2018-01-01 will display all records that were active (i.e. did not
+end) on 2018-01-01 (optional)                            |
+| `$filterStartedAt`      | **\DateTime\|null** | The record's start timestamp. You can use this filter to list records started
+after, or before a certain time. E.g.
+filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional) |
 | `$page`                 | **int\|null**       | Page to be displayed. Defaults to 1. (optional)                                                                                                                                                    |
 
 **Throws:**

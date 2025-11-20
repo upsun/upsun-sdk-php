@@ -22,24 +22,20 @@ class OperationsTaskTest extends BaseTestCase
 
     protected function setUp(): void
     {
-        $psr17Factory = new Psr17Factory();
-
         $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $oauthProvider = $this->createMock(OAuthProvider::class);
-
-        $runtimeOperationApi = new RuntimeOperationsApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new ApiConfiguration()
-        );
 
         $upsunClient = $this->createMock(UpsunClient::class);
 
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
+            $this->httpClient,
+            new Psr17Factory(),
+            new ApiConfiguration()
+        ];
+
         $this->operationsTask = new class (
             $upsunClient,
-            $runtimeOperationApi
+            new RuntimeOperationsApi(...$apiClassParams),
         ) extends OperationsTask {
         };
     }

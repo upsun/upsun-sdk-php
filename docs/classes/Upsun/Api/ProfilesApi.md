@@ -63,9 +63,10 @@ Retrieves the address for the specified organization.
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -89,9 +90,10 @@ private getOrgAddressWithHttpInfo(string $organizationId): \Upsun\Model\Address
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -111,9 +113,10 @@ private getOrgAddressRequest(string $organizationId): \Psr\Http\Message\RequestI
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -134,9 +137,10 @@ Retrieves the profile for the specified organization.
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -160,9 +164,10 @@ private getOrgProfileWithHttpInfo(string $organizationId): \Upsun\Model\Profile
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -182,9 +187,10 @@ private getOrgProfileRequest(string $organizationId): \Psr\Http\Message\RequestI
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 

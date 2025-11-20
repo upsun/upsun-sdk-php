@@ -1,7 +1,6 @@
 # Routing
 
 Low level Routing (auto-generated)
-
 Configuration about the traffic routed to this version
 
 ***

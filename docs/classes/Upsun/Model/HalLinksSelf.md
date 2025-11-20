@@ -1,7 +1,6 @@
 # HalLinksSelf
 
 Low level HalLinksSelf (auto-generated)
-
 The cardinal link to the self resource.
 
 ***

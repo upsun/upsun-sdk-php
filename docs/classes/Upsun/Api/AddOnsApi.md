@@ -63,9 +63,10 @@ Retrieves information about the add-ons for an organization.
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -89,9 +90,10 @@ private getOrgAddonsWithHttpInfo(string $organizationId): \Upsun\Model\Organizat
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -111,9 +113,10 @@ private getOrgAddonsRequest(string $organizationId): \Psr\Http\Message\RequestIn
 
 **Parameters:**
 
-| Parameter         | Type       | Description                                                                                                |
-|-------------------|------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId` | **string** | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
+| Parameter         | Type       | Description                                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId` | **string** | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
 
 **Throws:**
 
@@ -134,10 +137,11 @@ Updates the add-ons configuration for an organization.
 
 **Parameters:**
 
-| Parameter                 | Type                                    | Description                                                                                                |
-|---------------------------|-----------------------------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId`         | **string**                              | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$updateOrgAddonsRequest` | **\Upsun\Model\UpdateOrgAddonsRequest** |                                                                                                            |
+| Parameter                 | Type                                    | Description                                                                                            |
+|---------------------------|-----------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`         | **string**                              | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$updateOrgAddonsRequest` | **\Upsun\Model\UpdateOrgAddonsRequest** |                                                                                                        |
 
 **Throws:**
 
@@ -161,10 +165,11 @@ private updateOrgAddonsWithHttpInfo(string $organizationId, \Upsun\Model\UpdateO
 
 **Parameters:**
 
-| Parameter                 | Type                                    | Description                                                                                                |
-|---------------------------|-----------------------------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId`         | **string**                              | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$updateOrgAddonsRequest` | **\Upsun\Model\UpdateOrgAddonsRequest** |                                                                                                            |
+| Parameter                 | Type                                    | Description                                                                                            |
+|---------------------------|-----------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`         | **string**                              | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$updateOrgAddonsRequest` | **\Upsun\Model\UpdateOrgAddonsRequest** |                                                                                                        |
 
 **Throws:**
 
@@ -184,10 +189,11 @@ private updateOrgAddonsRequest(string $organizationId, \Upsun\Model\UpdateOrgAdd
 
 **Parameters:**
 
-| Parameter                 | Type                                    | Description                                                                                                |
-|---------------------------|-----------------------------------------|------------------------------------------------------------------------------------------------------------|
-| `$organizationId`         | **string**                              | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead. (required) |
-| `$updateOrgAddonsRequest` | **\Upsun\Model\UpdateOrgAddonsRequest** |                                                                                                            |
+| Parameter                 | Type                                    | Description                                                                                            |
+|---------------------------|-----------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `$organizationId`         | **string**                              | The ID of the organization. Prefix with name= to retrieve the organization by
+name instead. (required) |
+| `$updateOrgAddonsRequest` | **\Upsun\Model\UpdateOrgAddonsRequest** |                                                                                                        |
 
 **Throws:**
 

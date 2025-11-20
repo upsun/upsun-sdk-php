@@ -1,7 +1,6 @@
 # UsageAlertConfigThreshold
 
 Low level UsageAlertConfigThreshold (auto-generated)
-
 Data regarding threshold spend.
 
 ***

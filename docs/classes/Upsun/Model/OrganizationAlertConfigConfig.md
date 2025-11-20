@@ -1,7 +1,6 @@
 # OrganizationAlertConfigConfig
 
 Low level OrganizationAlertConfigConfig (auto-generated)
-
 Configuration for threshold and mode.
 
 ***

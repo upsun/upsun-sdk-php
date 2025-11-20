@@ -1,7 +1,6 @@
 # OpenTelemetry
 
 Low level OpenTelemetry (auto-generated)
-
 OpenTelemetry log-forwarding integration configurations
 
 ***

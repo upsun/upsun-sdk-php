@@ -63,8 +63,8 @@
     },
     "autoload": {
         "psr-4": {
-          "Upsun\\" : "src/",
-          "Upsun\\Coverage\\": "templates/Coverage/"
+            "Upsun\\" : "src/",
+            "Upsun\\Coverage\\": "templates/Coverage/"
         }
     },
     "autoload-dev": {
@@ -97,7 +97,7 @@
         "spec:patch": "php ./templates/pre-processing/preprocess-schema.php",
 
         "spec:generate:install": "npm install -g @openapitools/openapi-generator-cli",
-        "spec:generate": "npx openapi-generator-cli generate -c templates/php/config.yaml",
+        "spec:generate": "npx openapi-generator-cli generate -c templates/config.yaml",
 
         "doc:generate:md": "vendor/bin/phpdoc -c phpdoc.markdown.xml",
         "doc:generate:html": "vendor/bin/phpdoc -c phpdoc.html.xml",
@@ -110,27 +110,27 @@
             "@fix:all"
         ],
         "lint": [
-            "@lint:rector",
             "@lint:phpcs",
+            "@lint:rector",
             "@lint:php-cs-fixer"
         ],
         "lint:all": [
-            "@lint:rector",
-            "@lint:rector:tests",
             "@lint:phpcs",
             "@lint:phpcs:tests",
+            "@lint:rector",
+            "@lint:rector:tests",
             "@lint:php-cs-fixer"
         ],
         "fix": [
-            "@fix:rector",
             "@fix:phpcbf",
+            "@fix:rector",
             "@fix:php-cs-fixer"
         ],
         "fix:all": [
-            "@fix:rector",
-            "@fix:rector:tests",
             "@fix:phpcbf",
             "@fix:phpcbf:tests",
+            "@fix:rector",
+            "@fix:rector:tests",
             "@fix:php-cs-fixer"
         ],
         "test": "@test:unit",
@@ -145,8 +145,7 @@
         ],
 
         "doc:full": [
-          "@doc:generate:md",
-          "@doc:generate:html"
+          "@doc:generate:md"
         ]
     }
 }

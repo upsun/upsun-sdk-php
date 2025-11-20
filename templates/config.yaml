@@ -102,6 +102,3 @@ files:
     templateType: SupportingFiles
     destinationFilename: index.md
     folder: docs/
-  api_doc.mustache:
-    templateType: SupportingFiles
-    folder: docs-openapi/

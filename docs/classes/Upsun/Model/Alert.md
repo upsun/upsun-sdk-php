@@ -1,7 +1,6 @@
 # Alert
 
 Low level Alert (auto-generated)
-
 The alert object.
 
 ***

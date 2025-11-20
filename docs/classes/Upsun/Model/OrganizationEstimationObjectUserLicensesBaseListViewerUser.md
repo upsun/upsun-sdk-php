@@ -1,7 +1,6 @@
 # OrganizationEstimationObjectUserLicensesBaseListViewerUser
 
 Low level OrganizationEstimationObjectUserLicensesBaseListViewerUser (auto-generated)
-
 An estimation of viewer users cost.
 
 ***

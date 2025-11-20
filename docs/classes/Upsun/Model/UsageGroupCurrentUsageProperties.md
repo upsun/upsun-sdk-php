@@ -1,7 +1,6 @@
 # UsageGroupCurrentUsageProperties
 
 Low level UsageGroupCurrentUsageProperties (auto-generated)
-
 Current usage info for a usage group.
 
 ***

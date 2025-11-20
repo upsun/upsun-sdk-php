@@ -1,7 +1,6 @@
 # Author
 
 Low level Author (auto-generated)
-
 The information about the author
 
 ***

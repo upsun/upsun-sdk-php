@@ -64,12 +64,12 @@ organization.
 
 **Parameters:**
 
-| Parameter               | Type                                | Description                                                                                           |
-|-------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------|
-| `$userId`               | **string**                          | The ID of the user. (required)                                                                        |
-| `$filterResourceType`   | **\Upsun\Model\StringFilter\|null** | Allows filtering by `resource_type` (project or organization) using one or more operators. (optional) |
-| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null** | Allows filtering by `organization_id` using one or more operators. (optional)                         |
-| `$filterPermissions`    | **\Upsun\Model\StringFilter\|null** | Allows filtering by `permissions` using one or more operators. (optional)                             |
+| Parameter               | Type                                | Description                    |
+|-------------------------|-------------------------------------|--------------------------------|
+| `$userId`               | **string**                          | The ID of the user. (required) |
+| `$filterResourceType`   | **\Upsun\Model\StringFilter\|null** | (optional)                     |
+| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null** | (optional)                     |
+| `$filterPermissions`    | **\Upsun\Model\StringFilter\|null** | (optional)                     |
 
 **Throws:**
 
@@ -93,12 +93,12 @@ private listUserExtendedAccessWithHttpInfo(string $userId, \Upsun\Model\StringFi
 
 **Parameters:**
 
-| Parameter               | Type                                | Description                                                                                           |
-|-------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------|
-| `$userId`               | **string**                          | The ID of the user. (required)                                                                        |
-| `$filterResourceType`   | **\Upsun\Model\StringFilter\|null** | Allows filtering by `resource_type` (project or organization) using one or more operators. (optional) |
-| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null** | Allows filtering by `organization_id` using one or more operators. (optional)                         |
-| `$filterPermissions`    | **\Upsun\Model\StringFilter\|null** | Allows filtering by `permissions` using one or more operators. (optional)                             |
+| Parameter               | Type                                | Description                    |
+|-------------------------|-------------------------------------|--------------------------------|
+| `$userId`               | **string**                          | The ID of the user. (required) |
+| `$filterResourceType`   | **\Upsun\Model\StringFilter\|null** | (optional)                     |
+| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null** | (optional)                     |
+| `$filterPermissions`    | **\Upsun\Model\StringFilter\|null** | (optional)                     |
 
 **Throws:**
 
@@ -118,12 +118,12 @@ private listUserExtendedAccessRequest(string $userId, \Upsun\Model\StringFilter|
 
 **Parameters:**
 
-| Parameter               | Type                                | Description                                                                                           |
-|-------------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------|
-| `$userId`               | **string**                          | The ID of the user. (required)                                                                        |
-| `$filterResourceType`   | **\Upsun\Model\StringFilter\|null** | Allows filtering by `resource_type` (project or organization) using one or more operators. (optional) |
-| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null** | Allows filtering by `organization_id` using one or more operators. (optional)                         |
-| `$filterPermissions`    | **\Upsun\Model\StringFilter\|null** | Allows filtering by `permissions` using one or more operators. (optional)                             |
+| Parameter               | Type                                | Description                    |
+|-------------------------|-------------------------------------|--------------------------------|
+| `$userId`               | **string**                          | The ID of the user. (required) |
+| `$filterResourceType`   | **\Upsun\Model\StringFilter\|null** | (optional)                     |
+| `$filterOrganizationId` | **\Upsun\Model\StringFilter\|null** | (optional)                     |
+| `$filterPermissions`    | **\Upsun\Model\StringFilter\|null** | (optional)                     |
 
 **Throws:**
 

@@ -1,7 +1,6 @@
 # TeamProjectAccessLinksDelete
 
 Low level TeamProjectAccessLinksDelete (auto-generated)
-
 Link for deleting the current access item.
 
 ***

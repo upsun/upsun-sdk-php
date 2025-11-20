@@ -283,7 +283,6 @@ class OrganizationsTask extends TaskBase
         return $this->projectsApi->getOrgProject(organizationId: $organizationId, projectId: $projectId);
     }
 
-
     /**
      * Lists projects from an organization
      *
@@ -802,7 +801,6 @@ class OrganizationsTask extends TaskBase
         ?DateTime $filterEndedAt = null,
         ?int $page = null
     ): ListOrgPlanRecords200Response {
-
         $subscriptionId = null;
         if ($filterProjectId) {
             $project = $this->client->projects->get($filterProjectId);

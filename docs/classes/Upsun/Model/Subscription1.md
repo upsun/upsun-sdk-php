@@ -1,7 +1,6 @@
 # Subscription1
 
 Low level Subscription1 (auto-generated)
-
 Subscription
 
 ***

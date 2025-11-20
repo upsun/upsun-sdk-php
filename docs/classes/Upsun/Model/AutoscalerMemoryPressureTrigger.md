@@ -1,7 +1,6 @@
 # AutoscalerMemoryPressureTrigger
 
 Low level AutoscalerMemoryPressureTrigger (auto-generated)
-
 Memory pressure trigger settings. When memory pressure goes below lower bound, service will be scaled down. When
 memory pressure goes above upper bound, service will be scaled up.
 

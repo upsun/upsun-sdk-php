@@ -1,7 +1,6 @@
 # ProjectOptionsEnforced
 
 Low level ProjectOptionsEnforced (auto-generated)
-
 The enforced values applied to the project.
 
 ***

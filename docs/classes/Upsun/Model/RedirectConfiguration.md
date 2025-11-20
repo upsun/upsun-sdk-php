@@ -1,7 +1,6 @@
 # RedirectConfiguration
 
 Low level RedirectConfiguration (auto-generated)
-
 The configuration of the redirects.
 
 ***

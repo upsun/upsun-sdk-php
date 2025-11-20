@@ -1,7 +1,6 @@
 # OAuth2Consumer
 
 Low level OAuth2Consumer (auto-generated)
-
 The OAuth2 consumer information (optional).
 
 ***
