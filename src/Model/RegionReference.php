@@ -32,6 +32,7 @@ final class RegionReference implements Model, JsonSerializable
         private readonly ?bool $private = null,
         private readonly ?string $code = null,
         private readonly ?object $envimpact = null,
+        private readonly ?object $environmentalImpact = null,
     ) {
     }
 
@@ -59,6 +60,7 @@ final class RegionReference implements Model, JsonSerializable
             'private' => $this->private,
             'code' => $this->code,
             'envimpact' => $this->envimpact,
+            'environmentalImpact' => $this->environmentalImpact,
         ];
     }
 
@@ -194,5 +196,13 @@ final class RegionReference implements Model, JsonSerializable
     public function getEnvimpact(): ?object
     {
         return $this->envimpact;
+    }
+
+    /**
+     * Environmental impact information for the region.
+     */
+    public function getEnvironmentalImpact(): ?object
+    {
+        return $this->environmentalImpact;
     }
 }

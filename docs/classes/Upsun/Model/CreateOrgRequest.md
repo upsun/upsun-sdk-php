@@ -56,23 +56,32 @@ private ?string $country
 
 ***
 
+### securityContact
+
+```php
+private ?string $securityContact
+```
+
+***
+
 ## Methods
 
 ### __construct
 
 ```php
-public __construct(string $label, ?string $type = null, ?string $ownerId = null, ?string $name = null, ?string $country = null): mixed
+public __construct(string $label, ?string $type = null, ?string $ownerId = null, ?string $name = null, ?string $country = null, ?string $securityContact = null): mixed
 ```
 
 **Parameters:**
 
-| Parameter  | Type        | Description |
-|------------|-------------|-------------|
-| `$label`   | **string**  |             |
-| `$type`    | **?string** |             |
-| `$ownerId` | **?string** |             |
-| `$name`    | **?string** |             |
-| `$country` | **?string** |             |
+| Parameter          | Type        | Description |
+|--------------------|-------------|-------------|
+| `$label`           | **string**  |             |
+| `$type`            | **?string** |             |
+| `$ownerId`         | **?string** |             |
+| `$name`            | **?string** |             |
+| `$country`         | **?string** |             |
+| `$securityContact` | **?string** |             |
 
 ***
 
@@ -138,6 +147,14 @@ public getName(): ?string
 
 ```php
 public getCountry(): ?string
+```
+
+***
+
+### getSecurityContact
+
+```php
+public getSecurityContact(): ?string
 ```
 
 ***

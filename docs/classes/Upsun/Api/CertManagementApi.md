@@ -273,6 +273,74 @@ private getProjectsCertificatesRequest(string $projectId, string $certificateId)
 
 ***
 
+### getProjectsProvisioners
+
+```php
+public getProjectsProvisioners(string $projectId, string $certificateProvisionerDocumentId): \Upsun\Model\CertificateProvisioner
+```
+
+**Parameters:**
+
+| Parameter                           | Type       | Description |
+|-------------------------------------|------------|-------------|
+| `$projectId`                        | **string** |             |
+| `$certificateProvisionerDocumentId` | **string** |             |
+
+**Throws:**
+
+- [`ApiException`](./ApiException.md) on non-2xx response or if the response body is not in the expected format
+- [`ClientExceptionInterface`](https://www.php-fig.org/psr/psr-18/#clientexceptioninterface) 
+
+
+**See Also:**
+
+* https://docs.upsun.com/api/#tag/Cert-Management/operation/get-projects-provisioners
+
+***
+
+### getProjectsProvisionersWithHttpInfo
+
+```php
+private getProjectsProvisionersWithHttpInfo(string $projectId, string $certificateProvisionerDocumentId): \Upsun\Model\CertificateProvisioner
+```
+
+**Parameters:**
+
+| Parameter                           | Type       | Description |
+|-------------------------------------|------------|-------------|
+| `$projectId`                        | **string** |             |
+| `$certificateProvisionerDocumentId` | **string** |             |
+
+**Throws:**
+
+- [`ApiException`](./ApiException.md) on non-2xx response or if the response body is not in the expected format
+- [`ClientExceptionInterface`](https://www.php-fig.org/psr/psr-18/#clientexceptioninterface) 
+
+
+***
+
+### getProjectsProvisionersRequest
+
+Create request for operation 'getProjectsProvisioners'
+
+```php
+private getProjectsProvisionersRequest(string $projectId, string $certificateProvisionerDocumentId): \Psr\Http\Message\RequestInterface
+```
+
+**Parameters:**
+
+| Parameter                           | Type       | Description |
+|-------------------------------------|------------|-------------|
+| `$projectId`                        | **string** |             |
+| `$certificateProvisionerDocumentId` | **string** |             |
+
+**Throws:**
+
+- [`InvalidArgumentException`](https://www.php.net/manual/en/class.invalidargumentexception.php) 
+
+
+***
+
 ### listProjectsCertificates
 
 Get list of SSL certificates
@@ -329,6 +397,71 @@ Create request for operation 'listProjectsCertificates'
 
 ```php
 private listProjectsCertificatesRequest(string $projectId): \Psr\Http\Message\RequestInterface
+```
+
+**Parameters:**
+
+| Parameter    | Type       | Description |
+|--------------|------------|-------------|
+| `$projectId` | **string** |             |
+
+**Throws:**
+
+- [`InvalidArgumentException`](https://www.php.net/manual/en/class.invalidargumentexception.php) 
+
+
+***
+
+### listProjectsProvisioners
+
+```php
+public listProjectsProvisioners(string $projectId): \Upsun\Model\CertificateProvisioner[]
+```
+
+**Parameters:**
+
+| Parameter    | Type       | Description |
+|--------------|------------|-------------|
+| `$projectId` | **string** |             |
+
+**Throws:**
+
+- [`ApiException`](./ApiException.md) on non-2xx response or if the response body is not in the expected format
+- [`ClientExceptionInterface`](https://www.php-fig.org/psr/psr-18/#clientexceptioninterface) 
+
+
+**See Also:**
+
+* https://docs.upsun.com/api/#tag/Cert-Management/operation/list-projects-provisioners
+
+***
+
+### listProjectsProvisionersWithHttpInfo
+
+```php
+private listProjectsProvisionersWithHttpInfo(string $projectId): \Upsun\Model\CertificateProvisioner[]
+```
+
+**Parameters:**
+
+| Parameter    | Type       | Description |
+|--------------|------------|-------------|
+| `$projectId` | **string** |             |
+
+**Throws:**
+
+- [`ApiException`](./ApiException.md) on non-2xx response or if the response body is not in the expected format
+- [`ClientExceptionInterface`](https://www.php-fig.org/psr/psr-18/#clientexceptioninterface) 
+
+
+***
+
+### listProjectsProvisionersRequest
+
+Create request for operation 'listProjectsProvisioners'
+
+```php
+private listProjectsProvisionersRequest(string $projectId): \Psr\Http\Message\RequestInterface
 ```
 
 **Parameters:**
@@ -413,6 +546,77 @@ private updateProjectsCertificatesRequest(string $projectId, string $certificate
 | `$projectId`        | **string**                        |             |
 | `$certificateId`    | **string**                        |             |
 | `$certificatePatch` | **\Upsun\Model\CertificatePatch** | (required)  |
+
+**Throws:**
+
+- [`InvalidArgumentException`](https://www.php.net/manual/en/class.invalidargumentexception.php) 
+
+
+***
+
+### updateProjectsProvisioners
+
+```php
+public updateProjectsProvisioners(string $projectId, string $certificateProvisionerDocumentId, \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch): \Upsun\Model\AcceptedResponse
+```
+
+**Parameters:**
+
+| Parameter                           | Type                                         | Description |
+|-------------------------------------|----------------------------------------------|-------------|
+| `$projectId`                        | **string**                                   |             |
+| `$certificateProvisionerDocumentId` | **string**                                   |             |
+| `$certificateProvisionerPatch`      | **\Upsun\Model\CertificateProvisionerPatch** | (required)  |
+
+**Throws:**
+
+- [`ApiException`](./ApiException.md) on non-2xx response or if the response body is not in the expected format
+- [`ClientExceptionInterface`](https://www.php-fig.org/psr/psr-18/#clientexceptioninterface) 
+
+
+**See Also:**
+
+* https://docs.upsun.com/api/#tag/Cert-Management/operation/update-projects-provisioners
+
+***
+
+### updateProjectsProvisionersWithHttpInfo
+
+```php
+private updateProjectsProvisionersWithHttpInfo(string $projectId, string $certificateProvisionerDocumentId, \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch): \Upsun\Model\AcceptedResponse
+```
+
+**Parameters:**
+
+| Parameter                           | Type                                         | Description |
+|-------------------------------------|----------------------------------------------|-------------|
+| `$projectId`                        | **string**                                   |             |
+| `$certificateProvisionerDocumentId` | **string**                                   |             |
+| `$certificateProvisionerPatch`      | **\Upsun\Model\CertificateProvisionerPatch** | (required)  |
+
+**Throws:**
+
+- [`ApiException`](./ApiException.md) on non-2xx response or if the response body is not in the expected format
+- [`ClientExceptionInterface`](https://www.php-fig.org/psr/psr-18/#clientexceptioninterface) 
+
+
+***
+
+### updateProjectsProvisionersRequest
+
+Create request for operation 'updateProjectsProvisioners'
+
+```php
+private updateProjectsProvisionersRequest(string $projectId, string $certificateProvisionerDocumentId, \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch): \Psr\Http\Message\RequestInterface
+```
+
+**Parameters:**
+
+| Parameter                           | Type                                         | Description |
+|-------------------------------------|----------------------------------------------|-------------|
+| `$projectId`                        | **string**                                   |             |
+| `$certificateProvisionerDocumentId` | **string**                                   |             |
+| `$certificateProvisionerPatch`      | **\Upsun\Model\CertificateProvisionerPatch** | (required)  |
 
 **Throws:**
 

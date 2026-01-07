@@ -16,14 +16,6 @@ Low level ProjectAddonBaseLinks (auto-generated)
 
 ## Properties
 
-### self
-
-```php
-private ?\Upsun\Model\ProjectAddonBaseLinksSelf $self
-```
-
-***
-
 ### update
 
 ```php
@@ -40,21 +32,29 @@ private ?\Upsun\Model\ProjectAddonBaseLinksDelete $delete
 
 ***
 
+### self
+
+```php
+private ?\Upsun\Model\ProjectAddonBaseLinksSelf $self
+```
+
+***
+
 ## Methods
 
 ### __construct
 
 ```php
-public __construct(?\Upsun\Model\ProjectAddonBaseLinksSelf $self = null, ?\Upsun\Model\ProjectAddonBaseLinksUpdate $update = null, ?\Upsun\Model\ProjectAddonBaseLinksDelete $delete = null): mixed
+public __construct(?\Upsun\Model\ProjectAddonBaseLinksUpdate $update = null, ?\Upsun\Model\ProjectAddonBaseLinksDelete $delete = null, ?\Upsun\Model\ProjectAddonBaseLinksSelf $self = null): mixed
 ```
 
 **Parameters:**
 
 | Parameter | Type                                          | Description |
 |-----------|-----------------------------------------------|-------------|
-| `$self`   | **?\Upsun\Model\ProjectAddonBaseLinksSelf**   |             |
 | `$update` | **?\Upsun\Model\ProjectAddonBaseLinksUpdate** |             |
 | `$delete` | **?\Upsun\Model\ProjectAddonBaseLinksDelete** |             |
+| `$self`   | **?\Upsun\Model\ProjectAddonBaseLinksSelf**   |             |
 
 ***
 

@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level OrganizationProjectLinksUpdate (auto-generated)
- * Link for updating the current project.
+ * Link for updating the current project. Only present if user has update permission.
  *
  * @license   MIT
  * @see       https://docs.upsun.com

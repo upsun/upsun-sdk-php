@@ -51,6 +51,8 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Retrieves Autoscaler settings
      *
+     * Retrieves Autoscaler settings
+     *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
      *
@@ -69,6 +71,7 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
+     * Retrieves Autoscaler settings with HTTP Info
      *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
@@ -216,6 +219,8 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Modifies Autoscaler settings
      *
+     * Modifies Autoscaler settings
+     *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
      * @param  \Upsun\Model\AutoscalerSettings|null $autoscalerSettings (optional)
@@ -237,6 +242,7 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
+     * Modifies Autoscaler settings with HTTP Info
      *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
@@ -397,6 +403,8 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Updates Autoscaler settings
      *
+     * Updates Autoscaler settings
+     *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
      * @param  \Upsun\Model\AutoscalerSettings|null $autoscalerSettings (optional)
@@ -418,6 +426,7 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
+     * Updates Autoscaler settings with HTTP Info
      *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)

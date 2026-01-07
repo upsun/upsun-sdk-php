@@ -104,6 +104,14 @@ private ?bool $billingLegacy
 
 ***
 
+### securityContact
+
+```php
+private ?string $securityContact
+```
+
+***
+
 ### status
 
 ```php
@@ -141,7 +149,7 @@ private ?\Upsun\Model\OrganizationLinks $links
 ### __construct
 
 ```php
-public __construct(?string $id = null, ?string $type = null, ?string $ownerId = null, ?string $namespace = null, ?string $name = null, ?string $label = null, ?string $country = null, ?array $capabilities = [], ?string $vendor = null, ?string $billingAccountId = null, ?bool $billingLegacy = null, ?string $status = null, ?\DateTime $createdAt = null, ?\DateTime $updatedAt = null, ?\Upsun\Model\OrganizationLinks $links = null): mixed
+public __construct(?string $id = null, ?string $type = null, ?string $ownerId = null, ?string $namespace = null, ?string $name = null, ?string $label = null, ?string $country = null, ?array $capabilities = [], ?string $vendor = null, ?string $billingAccountId = null, ?bool $billingLegacy = null, ?string $securityContact = null, ?string $status = null, ?\DateTime $createdAt = null, ?\DateTime $updatedAt = null, ?\Upsun\Model\OrganizationLinks $links = null): mixed
 ```
 
 **Parameters:**
@@ -159,6 +167,7 @@ public __construct(?string $id = null, ?string $type = null, ?string $ownerId = 
 | `$vendor`           | **?string**                         |             |
 | `$billingAccountId` | **?string**                         |             |
 | `$billingLegacy`    | **?bool**                           |             |
+| `$securityContact`  | **?string**                         |             |
 | `$status`           | **?string**                         |             |
 | `$createdAt`        | **?\DateTime**                      |             |
 | `$updatedAt`        | **?\DateTime**                      |             |
@@ -296,6 +305,16 @@ Whether the account is billed with the legacy system.
 
 ```php
 public getBillingLegacy(): ?bool
+```
+
+***
+
+### getSecurityContact
+
+The security contact email address for the organization.
+
+```php
+public getSecurityContact(): ?string
 ```
 
 ***

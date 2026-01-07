@@ -145,34 +145,43 @@ private ?object $envimpact
 
 ***
 
+### environmentalImpact
+
+```php
+private ?object $environmentalImpact
+```
+
+***
+
 ## Methods
 
 ### __construct
 
 ```php
-public __construct(string $id, string $label, string $zone, string $selectionLabel, string $projectLabel, string $timezone, bool $available, string $endpoint, object $provider, object $datacenter, object $compliance, \DateTime $createdAt, \DateTime $updatedAt, ?bool $private = null, ?string $code = null, ?object $envimpact = null): mixed
+public __construct(string $id, string $label, string $zone, string $selectionLabel, string $projectLabel, string $timezone, bool $available, string $endpoint, object $provider, object $datacenter, object $compliance, \DateTime $createdAt, \DateTime $updatedAt, ?bool $private = null, ?string $code = null, ?object $envimpact = null, ?object $environmentalImpact = null): mixed
 ```
 
 **Parameters:**
 
-| Parameter         | Type          | Description |
-|-------------------|---------------|-------------|
-| `$id`             | **string**    |             |
-| `$label`          | **string**    |             |
-| `$zone`           | **string**    |             |
-| `$selectionLabel` | **string**    |             |
-| `$projectLabel`   | **string**    |             |
-| `$timezone`       | **string**    |             |
-| `$available`      | **bool**      |             |
-| `$endpoint`       | **string**    |             |
-| `$provider`       | **object**    |             |
-| `$datacenter`     | **object**    |             |
-| `$compliance`     | **object**    |             |
-| `$createdAt`      | **\DateTime** |             |
-| `$updatedAt`      | **\DateTime** |             |
-| `$private`        | **?bool**     |             |
-| `$code`           | **?string**   |             |
-| `$envimpact`      | **?object**   |             |
+| Parameter              | Type          | Description |
+|------------------------|---------------|-------------|
+| `$id`                  | **string**    |             |
+| `$label`               | **string**    |             |
+| `$zone`                | **string**    |             |
+| `$selectionLabel`      | **string**    |             |
+| `$projectLabel`        | **string**    |             |
+| `$timezone`            | **string**    |             |
+| `$available`           | **bool**      |             |
+| `$endpoint`            | **string**    |             |
+| `$provider`            | **object**    |             |
+| `$datacenter`          | **object**    |             |
+| `$compliance`          | **object**    |             |
+| `$createdAt`           | **\DateTime** |             |
+| `$updatedAt`           | **\DateTime** |             |
+| `$private`             | **?bool**     |             |
+| `$code`                | **?string**   |             |
+| `$envimpact`           | **?object**   |             |
+| `$environmentalImpact` | **?object**   |             |
 
 ***
 
@@ -359,6 +368,16 @@ Information about the region provider's environmental impact.
 
 ```php
 public getEnvimpact(): ?object
+```
+
+***
+
+### getEnvironmentalImpact
+
+Environmental impact information for the region.
+
+```php
+public getEnvironmentalImpact(): ?object
 ```
 
 ***

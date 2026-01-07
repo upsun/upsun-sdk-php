@@ -121,49 +121,31 @@ private ?object $tickets
 
 ***
 
-### trial
-
-```php
-private ?bool $trial
-```
-
-***
-
-### currentTrial
-
-```php
-private ?array $currentTrial
-```
-
-***
-
 ## Methods
 
 ### __construct
 
 ```php
-public __construct(?string $id = null, ?string $uuid = null, ?string $username = null, ?string $displayName = null, ?int $status = null, ?string $mail = null, ?array $sshKeys = [], ?bool $hasKey = null, ?array $projects = [], ?int $sequence = null, ?array $roles = [], ?string $picture = null, ?object $tickets = null, ?bool $trial = null, ?array $currentTrial = []): mixed
+public __construct(?string $id = null, ?string $uuid = null, ?string $username = null, ?string $displayName = null, ?int $status = null, ?string $mail = null, ?array $sshKeys = [], ?bool $hasKey = null, ?array $projects = [], ?int $sequence = null, ?array $roles = [], ?string $picture = null, ?object $tickets = null): mixed
 ```
 
 **Parameters:**
 
-| Parameter       | Type        | Description |
-|-----------------|-------------|-------------|
-| `$id`           | **?string** |             |
-| `$uuid`         | **?string** |             |
-| `$username`     | **?string** |             |
-| `$displayName`  | **?string** |             |
-| `$status`       | **?int**    |             |
-| `$mail`         | **?string** |             |
-| `$sshKeys`      | **?array**  |             |
-| `$hasKey`       | **?bool**   |             |
-| `$projects`     | **?array**  |             |
-| `$sequence`     | **?int**    |             |
-| `$roles`        | **?array**  |             |
-| `$picture`      | **?string** |             |
-| `$tickets`      | **?object** |             |
-| `$trial`        | **?bool**   |             |
-| `$currentTrial` | **?array**  |             |
+| Parameter      | Type        | Description |
+|----------------|-------------|-------------|
+| `$id`          | **?string** |             |
+| `$uuid`        | **?string** |             |
+| `$username`    | **?string** |             |
+| `$displayName` | **?string** |             |
+| `$status`      | **?int**    |             |
+| `$mail`        | **?string** |             |
+| `$sshKeys`     | **?array**  |             |
+| `$hasKey`      | **?bool**   |             |
+| `$projects`    | **?array**  |             |
+| `$sequence`    | **?int**    |             |
+| `$roles`       | **?array**  |             |
+| `$picture`     | **?string** |             |
+| `$tickets`     | **?object** |             |
 
 ***
 
@@ -315,24 +297,6 @@ Number of support tickets by status.
 
 ```php
 public getTickets(): ?object
-```
-
-***
-
-### getTrial
-
-The indicator whether the user is in trial or not.
-
-```php
-public getTrial(): ?bool
-```
-
-***
-
-### getCurrentTrial
-
-```php
-public getCurrentTrial(): \Upsun\Model\CurrentUserCurrentTrialInner[]|null
 ```
 
 ***

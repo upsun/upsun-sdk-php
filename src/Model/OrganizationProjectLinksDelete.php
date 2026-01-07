@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level OrganizationProjectLinksDelete (auto-generated)
- * Link for deleting the current project.
+ * Link for deleting the current project. Only present if user has delete permission.
  *
  * @license   MIT
  * @see       https://docs.upsun.com

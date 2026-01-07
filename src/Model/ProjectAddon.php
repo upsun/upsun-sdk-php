@@ -20,7 +20,12 @@ final class ProjectAddon implements Model, JsonSerializable
         private readonly string $type,
         private readonly string $sku,
         private readonly int $quantity,
+        private readonly ?string $unit = null,
+        private readonly ?array $allowedValues = [],
+        private readonly ?array $activities = [],
         private readonly ?string $projectId = null,
+        private readonly ?string $status = null,
+        private readonly ?string $title = null,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
         private readonly ?ProjectAddonBaseLinks $links = null,
@@ -40,8 +45,13 @@ final class ProjectAddon implements Model, JsonSerializable
             'sku' => $this->sku,
             'quantity' => $this->quantity,
             'projectId' => $this->projectId,
+            'status' => $this->status,
+            'title' => $this->title,
+            'unit' => $this->unit,
+            'allowedValues' => $this->allowedValues,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
+            'activities' => $this->activities,
             'links' => $this->links,
         ];
     }
@@ -92,6 +102,39 @@ final class ProjectAddon implements Model, JsonSerializable
     }
 
     /**
+     * Lifecycle status of the add-on.
+     */
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    /**
+     * Human-friendly title of the add-on or SKU.
+     */
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    /**
+     * Unit for quantity-based add-ons when applicable.
+     */
+    public function getUnit(): ?string
+    {
+        return $this->unit;
+    }
+
+    /**
+     * Allowed values for the add-on depending on user role and options.
+     * @return ProjectAddonBaseAllowedValuesInner[]|null
+     */
+    public function getAllowedValues(): ?array
+    {
+        return $this->allowedValues;
+    }
+
+    /**
      * The date and time when the resource was created.
      */
     public function getCreatedAt(): ?DateTime
@@ -105,6 +148,15 @@ final class ProjectAddon implements Model, JsonSerializable
     public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Activities related to the add-on.
+     * @return Activity[]|null
+     */
+    public function getActivities(): ?array
+    {
+        return $this->activities;
     }
 
     public function getLinks(): ?ProjectAddonBaseLinks

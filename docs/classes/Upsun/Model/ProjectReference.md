@@ -97,12 +97,20 @@ private \DateTime $updatedAt
 
 ***
 
+### invoiced
+
+```php
+private ?bool $invoiced
+```
+
+***
+
 ## Methods
 
 ### __construct
 
 ```php
-public __construct(string $id, string $organizationId, string $subscriptionId, string $region, string $title, \Upsun\Model\ProjectType $type, string $plan, \Upsun\Model\ProjectStatus $status, \DateTime $createdAt, \DateTime $updatedAt): mixed
+public __construct(string $id, string $organizationId, string $subscriptionId, string $region, string $title, \Upsun\Model\ProjectType $type, string $plan, \Upsun\Model\ProjectStatus $status, \DateTime $createdAt, \DateTime $updatedAt, ?bool $invoiced = null): mixed
 ```
 
 **Parameters:**
@@ -119,6 +127,7 @@ public __construct(string $id, string $organizationId, string $subscriptionId, s
 | `$status`         | **\Upsun\Model\ProjectStatus** |             |
 | `$createdAt`      | **\DateTime**                  |             |
 | `$updatedAt`      | **\DateTime**                  |             |
+| `$invoiced`       | **?bool**                      |             |
 
 ***
 
@@ -244,6 +253,16 @@ The date and time when the resource was last updated.
 
 ```php
 public getUpdatedAt(): \DateTime
+```
+
+***
+
+### getInvoiced
+
+Whether the project is invoiced.
+
+```php
+public getInvoiced(): ?bool
 ```
 
 ***

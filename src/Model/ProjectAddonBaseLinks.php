@@ -14,9 +14,9 @@ use JsonSerializable;
 final class ProjectAddonBaseLinks implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly ?ProjectAddonBaseLinksSelf $self = null,
         private readonly ?ProjectAddonBaseLinksUpdate $update = null,
         private readonly ?ProjectAddonBaseLinksDelete $delete = null,
+        private readonly ?ProjectAddonBaseLinksSelf $self = null,
     ) {
     }
 

@@ -32,18 +32,18 @@ private ?string $projectOptionsUrl
 
 ***
 
-### securityContact
-
-```php
-private ?string $securityContact
-```
-
-***
-
 ### companyName
 
 ```php
 private ?string $companyName
+```
+
+***
+
+### customerType
+
+```php
+private ?string $customerType
 ```
 
 ***
@@ -69,7 +69,7 @@ private ?string $billingContact
 ### __construct
 
 ```php
-public __construct(?string $defaultCatalog = null, ?string $projectOptionsUrl = null, ?string $securityContact = null, ?string $companyName = null, ?string $vatNumber = null, ?string $billingContact = null): mixed
+public __construct(?string $defaultCatalog = null, ?string $projectOptionsUrl = null, ?string $companyName = null, ?string $customerType = null, ?string $vatNumber = null, ?string $billingContact = null): mixed
 ```
 
 **Parameters:**
@@ -78,8 +78,8 @@ public __construct(?string $defaultCatalog = null, ?string $projectOptionsUrl = 
 |----------------------|-------------|-------------|
 | `$defaultCatalog`    | **?string** |             |
 | `$projectOptionsUrl` | **?string** |             |
-| `$securityContact`   | **?string** |             |
 | `$companyName`       | **?string** |             |
+| `$customerType`      | **?string** |             |
 | `$vatNumber`         | **?string** |             |
 | `$billingContact`    | **?string** |             |
 
@@ -127,18 +127,18 @@ public getProjectOptionsUrl(): ?string
 
 ***
 
-### getSecurityContact
-
-```php
-public getSecurityContact(): ?string
-```
-
-***
-
 ### getCompanyName
 
 ```php
 public getCompanyName(): ?string
+```
+
+***
+
+### getCustomerType
+
+```php
+public getCustomerType(): ?string
 ```
 
 ***

@@ -17,7 +17,6 @@ final class OrganizationProjectCarbon implements Model, JsonSerializable
         private readonly ?string $projectId = null,
         private readonly ?string $projectTitle = null,
         private readonly ?array $values = [],
-        private readonly ?float $total = null,
     ) {
     }
 
@@ -32,7 +31,6 @@ final class OrganizationProjectCarbon implements Model, JsonSerializable
             'projectId' => $this->projectId,
             'projectTitle' => $this->projectTitle,
             'values' => $this->values,
-            'total' => $this->total,
         ];
     }
 
@@ -63,13 +61,5 @@ final class OrganizationProjectCarbon implements Model, JsonSerializable
     public function getValues(): ?array
     {
         return $this->values;
-    }
-
-    /**
-     * The calculated total of the metric for the given interval.
-     */
-    public function getTotal(): ?float
-    {
-        return $this->total;
     }
 }

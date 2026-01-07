@@ -16,10 +16,26 @@ Low level ListOrgProjects200Response (auto-generated)
 
 ## Properties
 
+### count
+
+```php
+private ?int $count
+```
+
+***
+
 ### items
 
 ```php
 private ?array $items
+```
+
+***
+
+### facets
+
+```php
+private ?\Upsun\Model\ProjectFacets $facets
 ```
 
 ***
@@ -37,15 +53,17 @@ private ?\Upsun\Model\ListLinks $links
 ### __construct
 
 ```php
-public __construct(?array $items = [], ?\Upsun\Model\ListLinks $links = null): mixed
+public __construct(?int $count = null, ?array $items = [], ?\Upsun\Model\ProjectFacets $facets = null, ?\Upsun\Model\ListLinks $links = null): mixed
 ```
 
 **Parameters:**
 
-| Parameter | Type                        | Description |
-|-----------|-----------------------------|-------------|
-| `$items`  | **?array**                  |             |
-| `$links`  | **?\Upsun\Model\ListLinks** |             |
+| Parameter | Type                            | Description |
+|-----------|---------------------------------|-------------|
+| `$count`  | **?int**                        |             |
+| `$items`  | **?array**                      |             |
+| `$facets` | **?\Upsun\Model\ProjectFacets** |             |
+| `$links`  | **?\Upsun\Model\ListLinks**     |             |
 
 ***
 
@@ -75,10 +93,28 @@ public __toString(): string
 
 ***
 
+### getCount
+
+```php
+public getCount(): ?int
+```
+
+***
+
 ### getItems
 
 ```php
 public getItems(): \Upsun\Model\OrganizationProject[]|null
+```
+
+***
+
+### getFacets
+
+Facets for filtering options.
+
+```php
+public getFacets(): ?\Upsun\Model\ProjectFacets
 ```
 
 ***

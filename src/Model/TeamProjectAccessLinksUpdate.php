@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level TeamProjectAccessLinksUpdate (auto-generated)
- * Link for updating the current access item.
+ * Link for updating the current access item. Only present if user has update permission.
  *
  * @license   MIT
  * @see       https://docs.upsun.com

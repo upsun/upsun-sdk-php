@@ -36,9 +36,8 @@ final class Profile implements Model, JsonSerializable
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
         private readonly ?string $billingContact = null,
-        private readonly ?string $securityContact = null,
-        private readonly ?ProfileCurrentTrial $currentTrial = null,
         private readonly ?bool $invoiced = null,
+        private readonly ?string $customerType = null,
     ) {
     }
 
@@ -70,9 +69,8 @@ final class Profile implements Model, JsonSerializable
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'billingContact' => $this->billingContact,
-            'securityContact' => $this->securityContact,
-            'currentTrial' => $this->currentTrial,
             'invoiced' => $this->invoiced,
+            'customerType' => $this->customerType,
         ];
     }
 
@@ -242,26 +240,18 @@ final class Profile implements Model, JsonSerializable
     }
 
     /**
-     * The e-mail address of a contact to whom security notices will be sent.
-     */
-    public function getSecurityContact(): ?string
-    {
-        return $this->securityContact;
-    }
-
-    /**
-     * The current trial for the profile.
-     */
-    public function getCurrentTrial(): ?ProfileCurrentTrial
-    {
-        return $this->currentTrial;
-    }
-
-    /**
      * The customer is invoiced.
      */
     public function getInvoiced(): ?bool
     {
         return $this->invoiced;
+    }
+
+    /**
+     * The customer type.
+     */
+    public function getCustomerType(): ?string
+    {
+        return $this->customerType;
     }
 }

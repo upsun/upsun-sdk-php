@@ -14,9 +14,9 @@ use JsonSerializable;
 final class TeamProjectAccessLinks implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly ?TeamProjectAccessLinksSelf $self = null,
         private readonly ?TeamProjectAccessLinksUpdate $update = null,
         private readonly ?TeamProjectAccessLinksDelete $delete = null,
+        private readonly ?TeamProjectAccessLinksSelf $self = null,
     ) {
     }
 
@@ -48,7 +48,7 @@ final class TeamProjectAccessLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link for updating the current access item.
+     * Link for updating the current access item. Only present if user has update permission.
      */
     public function getUpdate(): ?TeamProjectAccessLinksUpdate
     {
@@ -56,7 +56,7 @@ final class TeamProjectAccessLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link for deleting the current access item.
+     * Link for deleting the current access item. Only present if user has delete permission.
      */
     public function getDelete(): ?TeamProjectAccessLinksDelete
     {

@@ -40,20 +40,12 @@ private ?array $values
 
 ***
 
-### total
-
-```php
-private ?float $total
-```
-
-***
-
 ## Methods
 
 ### __construct
 
 ```php
-public __construct(?string $projectId = null, ?string $projectTitle = null, ?array $values = [], ?float $total = null): mixed
+public __construct(?string $projectId = null, ?string $projectTitle = null, ?array $values = []): mixed
 ```
 
 **Parameters:**
@@ -63,7 +55,6 @@ public __construct(?string $projectId = null, ?string $projectTitle = null, ?arr
 | `$projectId`    | **?string** |             |
 | `$projectTitle` | **?string** |             |
 | `$values`       | **?array**  |             |
-| `$total`        | **?float**  |             |
 
 ***
 
@@ -117,16 +108,6 @@ public getProjectTitle(): ?string
 
 ```php
 public getValues(): \Upsun\Model\MetricsValue[]|null
-```
-
-***
-
-### getTotal
-
-The calculated total of the metric for the given interval.
-
-```php
-public getTotal(): ?float
 ```
 
 ***

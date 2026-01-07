@@ -59,6 +59,8 @@ Retrieves Autoscaler settings
 public getAutoscalerSettings(string $projectId, string $environmentId): \Upsun\Model\AutoscalerSettings
 ```
 
+Retrieves Autoscaler settings
+
 **Parameters:**
 
 | Parameter        | Type       | Description |
@@ -79,6 +81,8 @@ public getAutoscalerSettings(string $projectId, string $environmentId): \Upsun\M
 ***
 
 ### getAutoscalerSettingsWithHttpInfo
+
+Retrieves Autoscaler settings with HTTP Info
 
 ```php
 private getAutoscalerSettingsWithHttpInfo(string $projectId, string $environmentId): \Upsun\Model\AutoscalerSettings
@@ -129,6 +133,8 @@ Modifies Autoscaler settings
 public patchAutoscalerSettings(string $projectId, string $environmentId, \Upsun\Model\AutoscalerSettings|null $autoscalerSettings = null): \Upsun\Model\AutoscalerSettings
 ```
 
+Modifies Autoscaler settings
+
 **Parameters:**
 
 | Parameter             | Type                                      | Description |
@@ -150,6 +156,8 @@ public patchAutoscalerSettings(string $projectId, string $environmentId, \Upsun\
 ***
 
 ### patchAutoscalerSettingsWithHttpInfo
+
+Modifies Autoscaler settings with HTTP Info
 
 ```php
 private patchAutoscalerSettingsWithHttpInfo(string $projectId, string $environmentId, \Upsun\Model\AutoscalerSettings|null $autoscalerSettings = null): \Upsun\Model\AutoscalerSettings
@@ -202,6 +210,8 @@ Updates Autoscaler settings
 public postAutoscalerSettings(string $projectId, string $environmentId, \Upsun\Model\AutoscalerSettings|null $autoscalerSettings = null): \Upsun\Model\AutoscalerSettings
 ```
 
+Updates Autoscaler settings
+
 **Parameters:**
 
 | Parameter             | Type                                      | Description |
@@ -223,6 +233,8 @@ public postAutoscalerSettings(string $projectId, string $environmentId, \Upsun\M
 ***
 
 ### postAutoscalerSettingsWithHttpInfo
+
+Updates Autoscaler settings with HTTP Info
 
 ```php
 private postAutoscalerSettingsWithHttpInfo(string $projectId, string $environmentId, \Upsun\Model\AutoscalerSettings|null $autoscalerSettings = null): \Upsun\Model\AutoscalerSettings
