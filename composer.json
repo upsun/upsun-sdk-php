@@ -93,7 +93,7 @@
         "test:coverage:ci": "./vendor/bin/phpunit --coverage-clover=coverage.xml",
 
         "spec:clean": "rm -Rf src/Api/* ; rm -Rf src/Model/* ; rm -Rf docs/*",
-        "spec:dl": "wget -O ./schema/openapispec-upsun.json https://docs.upsun.com/api/openapispec-upsun.json",
+        "spec:dl": "wget -O ./schema/openapispec-upsun.json 'https://meta.upsun.com/openapi-spec?sdks=true'",
         "spec:patch": "php ./templates/pre-processing/preprocess-schema.php",
 
         "spec:generate:install": "npm install -g @openapitools/openapi-generator-cli",
