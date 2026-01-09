@@ -40,9 +40,6 @@ jobs:
       - name: Download OpenAPI spec
         run: composer run spec:dl
 
-      - name: Pre-process OpenApi specs
-        run: composer run spec:patch
-
       - name: Generate Client/Model/Tests code (php)
         run: composer run spec:generate
 
