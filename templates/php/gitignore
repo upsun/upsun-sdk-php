@@ -21,5 +21,4 @@ docs-openapi/
 openapitools.json
 .openapi-generator/
 git_push.sh
-schema/openapispec-upsun-processed.json
 src/DebugPlugin.php
