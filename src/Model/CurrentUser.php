@@ -28,8 +28,6 @@ final class CurrentUser implements Model, JsonSerializable
         private readonly ?array $roles = [],
         private readonly ?string $picture = null,
         private readonly ?object $tickets = null,
-        private readonly ?bool $trial = null,
-        private readonly ?array $currentTrial = [],
     ) {
     }
 
@@ -54,8 +52,6 @@ final class CurrentUser implements Model, JsonSerializable
             'roles' => $this->roles,
             'picture' => $this->picture,
             'tickets' => $this->tickets,
-            'trial' => $this->trial,
-            'currentTrial' => $this->currentTrial,
         ];
     }
 
@@ -164,21 +160,5 @@ final class CurrentUser implements Model, JsonSerializable
     public function getTickets(): ?object
     {
         return $this->tickets;
-    }
-
-    /**
-     * The indicator whether the user is in trial or not.
-     */
-    public function getTrial(): ?bool
-    {
-        return $this->trial;
-    }
-
-    /**
-     * @return CurrentUserCurrentTrialInner[]|null
-     */
-    public function getCurrentTrial(): ?array
-    {
-        return $this->currentTrial;
     }
 }

@@ -19,6 +19,7 @@ final class CreateOrgRequest implements Model, JsonSerializable
         private readonly ?string $ownerId = null,
         private readonly ?string $name = null,
         private readonly ?string $country = null,
+        private readonly ?string $securityContact = null,
     ) {
     }
 
@@ -35,6 +36,7 @@ final class CreateOrgRequest implements Model, JsonSerializable
             'ownerId' => $this->ownerId,
             'name' => $this->name,
             'country' => $this->country,
+            'securityContact' => $this->securityContact,
         ];
     }
 
@@ -66,5 +68,10 @@ final class CreateOrgRequest implements Model, JsonSerializable
     public function getCountry(): ?string
     {
         return $this->country;
+    }
+
+    public function getSecurityContact(): ?string
+    {
+        return $this->securityContact;
     }
 }

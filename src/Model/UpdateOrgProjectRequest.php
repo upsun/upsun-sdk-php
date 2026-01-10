@@ -17,8 +17,6 @@ final class UpdateOrgProjectRequest implements Model, JsonSerializable
         private readonly ?string $title = null,
         private readonly ?string $plan = null,
         private readonly ?string $timezone = null,
-        private readonly ?string $cseNotes = null,
-        private readonly ?string $dedicatedTag = null,
     ) {
     }
 
@@ -33,8 +31,6 @@ final class UpdateOrgProjectRequest implements Model, JsonSerializable
             'title' => $this->title,
             'plan' => $this->plan,
             'timezone' => $this->timezone,
-            'cseNotes' => $this->cseNotes,
-            'dedicatedTag' => $this->dedicatedTag,
         ];
     }
 
@@ -65,21 +61,5 @@ final class UpdateOrgProjectRequest implements Model, JsonSerializable
     public function getTimezone(): ?string
     {
         return $this->timezone;
-    }
-
-    /**
-     * CSE notes.
-     */
-    public function getCseNotes(): ?string
-    {
-        return $this->cseNotes;
-    }
-
-    /**
-     * Dedicated tag.
-     */
-    public function getDedicatedTag(): ?string
-    {
-        return $this->dedicatedTag;
     }
 }

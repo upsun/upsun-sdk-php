@@ -26,6 +26,7 @@ final class ProjectReference implements Model, JsonSerializable
         private readonly ProjectStatus $status,
         private readonly DateTime $createdAt,
         private readonly DateTime $updatedAt,
+        private readonly ?bool $invoiced = null,
     ) {
     }
 
@@ -47,6 +48,7 @@ final class ProjectReference implements Model, JsonSerializable
             'status' => $this->status,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
+            'invoiced' => $this->invoiced,
         ];
     }
 
@@ -133,5 +135,13 @@ final class ProjectReference implements Model, JsonSerializable
     public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Whether the project is invoiced.
+     */
+    public function getInvoiced(): ?bool
+    {
+        return $this->invoiced;
     }
 }

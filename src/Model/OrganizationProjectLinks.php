@@ -14,11 +14,16 @@ use JsonSerializable;
 final class OrganizationProjectLinks implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly ?OrganizationProjectLinksSelf $self = null,
+        private readonly ?OrganizationProjectLinksApi $api = null,
+        private readonly ?OrganizationProjectLinksSubscription $subscription = null,
+        private readonly ?OrganizationProjectLinksViewUsageAlerts $viewUsageAlerts = null,
         private readonly ?OrganizationProjectLinksUpdate $update = null,
+        private readonly ?OrganizationProjectLinksPlanUri $planUri = null,
         private readonly ?OrganizationProjectLinksDelete $delete = null,
+        private readonly ?OrganizationProjectLinksUpdateUsageAlerts $updateUsageAlerts = null,
         private readonly ?OrganizationProjectLinksActivities $activities = null,
         private readonly ?OrganizationProjectLinksAddons $addons = null,
+        private readonly ?OrganizationProjectLinksSelf $self = null,
     ) {
     }
 
@@ -31,8 +36,13 @@ final class OrganizationProjectLinks implements Model, JsonSerializable
     {
         return [
             'self' => $this->self,
+            'api' => $this->api,
+            'subscription' => $this->subscription,
+            'viewUsageAlerts' => $this->viewUsageAlerts,
             'update' => $this->update,
+            'planUri' => $this->planUri,
             'delete' => $this->delete,
+            'updateUsageAlerts' => $this->updateUsageAlerts,
             'activities' => $this->activities,
             'addons' => $this->addons,
         ];
@@ -52,7 +62,31 @@ final class OrganizationProjectLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link for updating the current project.
+     * Link to the regional API endpoint. Only present if user has project-level access.
+     */
+    public function getApi(): ?OrganizationProjectLinksApi
+    {
+        return $this->api;
+    }
+
+    /**
+     * Link to the subscription. Only present if project has a subscription.
+     */
+    public function getSubscription(): ?OrganizationProjectLinksSubscription
+    {
+        return $this->subscription;
+    }
+
+    /**
+     * Link to view usage alerts. Only present if user has view permission.
+     */
+    public function getViewUsageAlerts(): ?OrganizationProjectLinksViewUsageAlerts
+    {
+        return $this->viewUsageAlerts;
+    }
+
+    /**
+     * Link for updating the current project. Only present if user has update permission.
      */
     public function getUpdate(): ?OrganizationProjectLinksUpdate
     {
@@ -60,7 +94,15 @@ final class OrganizationProjectLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link for deleting the current project.
+     * Link to the billing plan page. Only present if user has manage permission.
+     */
+    public function getPlanUri(): ?OrganizationProjectLinksPlanUri
+    {
+        return $this->planUri;
+    }
+
+    /**
+     * Link for deleting the current project. Only present if user has delete permission.
      */
     public function getDelete(): ?OrganizationProjectLinksDelete
     {
@@ -68,7 +110,15 @@ final class OrganizationProjectLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link to the project's activities.
+     * Link to update usage alerts. Only present if user has billing permission.
+     */
+    public function getUpdateUsageAlerts(): ?OrganizationProjectLinksUpdateUsageAlerts
+    {
+        return $this->updateUsageAlerts;
+    }
+
+    /**
+     * Link to the project's activities. Only present if user has view permission.
      */
     public function getActivities(): ?OrganizationProjectLinksActivities
     {
@@ -76,7 +126,7 @@ final class OrganizationProjectLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link to the project's add-ons.
+     * Link to the project's add-ons. Only present if user has view permission.
      */
     public function getAddons(): ?OrganizationProjectLinksAddons
     {
