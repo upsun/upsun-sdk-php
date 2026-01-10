@@ -765,7 +765,6 @@ class OrganizationsTask extends TaskBase
         string $organizationId,
         ?string $defaultCatalog = null,
         ?string $projectOptionsUrl = null,
-        ?string $securityContact = null,
         ?string $companyName = null,
         ?string $vatNumber = null,
         ?string $billingContact = null,
@@ -773,7 +772,6 @@ class OrganizationsTask extends TaskBase
         $updateOrgProfileRequest = new UpdateOrgProfileRequest(
             defaultCatalog: $defaultCatalog,
             projectOptionsUrl: $projectOptionsUrl,
-            securityContact: $securityContact,
             companyName: $companyName,
             vatNumber: $vatNumber,
             billingContact: $billingContact,

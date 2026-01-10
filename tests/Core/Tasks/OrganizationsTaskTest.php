@@ -2696,7 +2696,6 @@ class OrganizationsTaskTest extends BaseTestCase
             'createdAt' => '2023-01-15T10:20:30+00:00',
             'updatedAt' => '2023-06-20T08:15:00+00:00',
             'billingContact' => 'billing@example.com',
-            'securityContact' => 'security@example.com',
             'currentTrial' => [
                 'pendingVerification' => null,
                 'active' => true,
@@ -2805,7 +2804,6 @@ class OrganizationsTaskTest extends BaseTestCase
             'createdAt' => '2023-01-15T10:20:30+00:00',
             'updatedAt' => '2023-06-20T08:15:00+00:00',
             'billingContact' => 'billing@example.com',
-            'securityContact' => 'security@example.com',
             'currentTrial' => [
                 'pendingVerification' => null,
                 'active' => true,
@@ -2838,7 +2836,6 @@ class OrganizationsTaskTest extends BaseTestCase
         $fakeUpdateOrgProfileRequestData = [
             'defaultCatalog' => 'main',
             'projectOptionsUrl' => 'https://example.com/org/options',
-            'securityContact' => 'security@example.com',
             'companyName' => 'Example Corp',
             'vatNumber' => 'FR123456789',
             'billingContact' => 'billing@example.com',
@@ -2856,7 +2853,6 @@ class OrganizationsTaskTest extends BaseTestCase
             organizationId: 'org-123',
             defaultCatalog: $fakeUpdateOrgProfileRequestData['defaultCatalog'],
             projectOptionsUrl: $fakeUpdateOrgProfileRequestData['projectOptionsUrl'],
-            securityContact: $fakeUpdateOrgProfileRequestData['securityContact'],
             companyName: $fakeUpdateOrgProfileRequestData['companyName'],
             vatNumber: $fakeUpdateOrgProfileRequestData['vatNumber'],
             billingContact: $fakeUpdateOrgProfileRequestData['billingContact'],

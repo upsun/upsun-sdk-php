@@ -968,7 +968,6 @@ class UsersTaskTest extends BaseTestCase
             'createdAt' => '2025-01-01T10:00:00Z',
             'updatedAt' => '2025-09-26T12:00:00Z',
             'billingContact' => 'billing@example.com',
-            'securityContact' => 'security@example.com',
             'currentTrial' => [
                 'pendingVerification' => 'none',
                 'active' => true,
