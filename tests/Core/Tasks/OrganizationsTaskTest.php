@@ -765,6 +765,7 @@ class OrganizationsTaskTest extends BaseTestCase
             'status' => 'active',
             'createdAt' => '2023-06-15 10:30:00',
             'updatedAt' => '2025-11-01 14:22:33',
+            'securityContact' => 'security@example.com',
             'links' => [
                 'self' => ['href' => 'https://api.example.com/v1/organizations/org_abc123'],
                 'update' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
@@ -809,6 +810,7 @@ class OrganizationsTaskTest extends BaseTestCase
             name: $data['name'],
             label: $data['label'],
             country: $data['country'],
+            securityContact: $data['securityContact'],
         );
 
         $this->assertInstanceOf(Organization::class, $result);
