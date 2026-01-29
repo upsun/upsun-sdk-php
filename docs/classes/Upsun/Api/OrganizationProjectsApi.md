@@ -285,18 +285,20 @@ Retrieves a list of projects for the specified organization.
 
 **Parameters:**
 
-| Parameter          | Type                                  | Description                            |
-|--------------------|---------------------------------------|----------------------------------------|
-| `$organizationId`  | **string**                            | The ID of the organization. (required) |
-| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | (optional)                             |
-| `$filterTitle`     | **\Upsun\Model\StringFilter\|null**   | (optional)                             |
-| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | (optional)                             |
-| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | (optional)                             |
-| `$filterCreatedAt` | **\Upsun\Model\DateTimeFilter\|null** | (optional)                             |
-| `$pageSize`        | **int\|null**                         | (optional)                             |
-| `$pageBefore`      | **string\|null**                      | (optional)                             |
-| `$pageAfter`       | **string\|null**                      | (optional)                             |
-| `$sort`            | **string\|null**                      | (optional)                             |
+| Parameter          | Type                                  | Description                                                                                                                                             |
+|--------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$organizationId`  | **string**                            | The ID of the organization. (required)                                                                                                                  |
+| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterTitle`     | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
+| `$filterCreatedAt` | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `created_at` using one or more operators. (optional)                                                                                |
+| `$pageSize`        | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore`      | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`       | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`            | **string\|null**                      | (optional)                                                                                                                                              |
 
 **Throws:**
 
@@ -320,18 +322,20 @@ private listOrgProjectsWithHttpInfo(string $organizationId, \Upsun\Model\StringF
 
 **Parameters:**
 
-| Parameter          | Type                                  | Description                            |
-|--------------------|---------------------------------------|----------------------------------------|
-| `$organizationId`  | **string**                            | The ID of the organization. (required) |
-| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | (optional)                             |
-| `$filterTitle`     | **\Upsun\Model\StringFilter\|null**   | (optional)                             |
-| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | (optional)                             |
-| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | (optional)                             |
-| `$filterCreatedAt` | **\Upsun\Model\DateTimeFilter\|null** | (optional)                             |
-| `$pageSize`        | **int\|null**                         | (optional)                             |
-| `$pageBefore`      | **string\|null**                      | (optional)                             |
-| `$pageAfter`       | **string\|null**                      | (optional)                             |
-| `$sort`            | **string\|null**                      | (optional)                             |
+| Parameter          | Type                                  | Description                                                                                                                                             |
+|--------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$organizationId`  | **string**                            | The ID of the organization. (required)                                                                                                                  |
+| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterTitle`     | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
+| `$filterCreatedAt` | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `created_at` using one or more operators. (optional)                                                                                |
+| `$pageSize`        | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore`      | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`       | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`            | **string\|null**                      | (optional)                                                                                                                                              |
 
 **Throws:**
 
@@ -351,18 +355,20 @@ private listOrgProjectsRequest(string $organizationId, \Upsun\Model\StringFilter
 
 **Parameters:**
 
-| Parameter          | Type                                  | Description                            |
-|--------------------|---------------------------------------|----------------------------------------|
-| `$organizationId`  | **string**                            | The ID of the organization. (required) |
-| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | (optional)                             |
-| `$filterTitle`     | **\Upsun\Model\StringFilter\|null**   | (optional)                             |
-| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | (optional)                             |
-| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | (optional)                             |
-| `$filterCreatedAt` | **\Upsun\Model\DateTimeFilter\|null** | (optional)                             |
-| `$pageSize`        | **int\|null**                         | (optional)                             |
-| `$pageBefore`      | **string\|null**                      | (optional)                             |
-| `$pageAfter`       | **string\|null**                      | (optional)                             |
-| `$sort`            | **string\|null**                      | (optional)                             |
+| Parameter          | Type                                  | Description                                                                                                                                             |
+|--------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$organizationId`  | **string**                            | The ID of the organization. (required)                                                                                                                  |
+| `$filterId`        | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterTitle`     | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterStatus`    | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterUpdatedAt` | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
+| `$filterCreatedAt` | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `created_at` using one or more operators. (optional)                                                                                |
+| `$pageSize`        | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore`      | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`       | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`            | **string\|null**                      | (optional)                                                                                                                                              |
 
 **Throws:**
 

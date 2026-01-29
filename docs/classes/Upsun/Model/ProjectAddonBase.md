@@ -32,10 +32,50 @@ private string $type
 
 ***
 
+### unit
+
+```php
+private ?string $unit
+```
+
+***
+
+### allowedValues
+
+```php
+private ?array $allowedValues
+```
+
+***
+
+### activities
+
+```php
+private ?array $activities
+```
+
+***
+
 ### projectId
 
 ```php
 private ?string $projectId
+```
+
+***
+
+### status
+
+```php
+private ?string $status
+```
+
+***
+
+### title
+
+```php
+private ?string $title
 ```
 
 ***
@@ -69,19 +109,24 @@ private ?\Upsun\Model\ProjectAddonBaseLinks $links
 ### __construct
 
 ```php
-public __construct(string $id, string $type, ?string $projectId = null, ?\DateTime $createdAt = null, ?\DateTime $updatedAt = null, ?\Upsun\Model\ProjectAddonBaseLinks $links = null): mixed
+public __construct(string $id, string $type, ?string $unit = null, ?array $allowedValues = [], ?array $activities = [], ?string $projectId = null, ?string $status = null, ?string $title = null, ?\DateTime $createdAt = null, ?\DateTime $updatedAt = null, ?\Upsun\Model\ProjectAddonBaseLinks $links = null): mixed
 ```
 
 **Parameters:**
 
-| Parameter    | Type                                    | Description |
-|--------------|-----------------------------------------|-------------|
-| `$id`        | **string**                              |             |
-| `$type`      | **string**                              |             |
-| `$projectId` | **?string**                             |             |
-| `$createdAt` | **?\DateTime**                          |             |
-| `$updatedAt` | **?\DateTime**                          |             |
-| `$links`     | **?\Upsun\Model\ProjectAddonBaseLinks** |             |
+| Parameter        | Type                                    | Description |
+|------------------|-----------------------------------------|-------------|
+| `$id`            | **string**                              |             |
+| `$type`          | **string**                              |             |
+| `$unit`          | **?string**                             |             |
+| `$allowedValues` | **?array**                              |             |
+| `$activities`    | **?array**                              |             |
+| `$projectId`     | **?string**                             |             |
+| `$status`        | **?string**                             |             |
+| `$title`         | **?string**                             |             |
+| `$createdAt`     | **?\DateTime**                          |             |
+| `$updatedAt`     | **?\DateTime**                          |             |
+| `$links`         | **?\Upsun\Model\ProjectAddonBaseLinks** |             |
 
 ***
 
@@ -141,6 +186,46 @@ public getProjectId(): ?string
 
 ***
 
+### getStatus
+
+Lifecycle status of the add-on.
+
+```php
+public getStatus(): ?string
+```
+
+***
+
+### getTitle
+
+Human-friendly title of the add-on or SKU.
+
+```php
+public getTitle(): ?string
+```
+
+***
+
+### getUnit
+
+Unit for quantity-based add-ons when applicable.
+
+```php
+public getUnit(): ?string
+```
+
+***
+
+### getAllowedValues
+
+Allowed values for the add-on depending on user role and options.
+
+```php
+public getAllowedValues(): \Upsun\Model\ProjectAddonBaseAllowedValuesInner[]|null
+```
+
+***
+
 ### getCreatedAt
 
 The date and time when the resource was created.
@@ -157,6 +242,16 @@ The date and time when the resource was last updated.
 
 ```php
 public getUpdatedAt(): ?\DateTime
+```
+
+***
+
+### getActivities
+
+Activities related to the add-on.
+
+```php
+public getActivities(): \Upsun\Model\Activity[]|null
 ```
 
 ***

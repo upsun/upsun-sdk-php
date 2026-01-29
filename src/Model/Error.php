@@ -14,11 +14,7 @@ use JsonSerializable;
 final class Error implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $status = null,
-        private readonly ?string $message = null,
-        private readonly ?float $code = null,
-        private readonly ?object $detail = null,
-        private readonly ?string $title = null,
+        private readonly string $error,
     ) {
     }
 
@@ -30,11 +26,7 @@ final class Error implements Model, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'status' => $this->status,
-            'message' => $this->message,
-            'code' => $this->code,
-            'detail' => $this->detail,
-            'title' => $this->title,
+            'error' => $this->error,
         ];
     }
 
@@ -43,28 +35,11 @@ final class Error implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getStatus(): ?string
+    /**
+     * Error message
+     */
+    public function getError(): string
     {
-        return $this->status;
-    }
-
-    public function getMessage(): ?string
-    {
-        return $this->message;
-    }
-
-    public function getCode(): ?float
-    {
-        return $this->code;
-    }
-
-    public function getDetail(): ?object
-    {
-        return $this->detail;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
+        return $this->error;
     }
 }

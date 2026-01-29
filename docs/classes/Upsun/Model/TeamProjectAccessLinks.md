@@ -16,14 +16,6 @@ Low level TeamProjectAccessLinks (auto-generated)
 
 ## Properties
 
-### self
-
-```php
-private ?\Upsun\Model\TeamProjectAccessLinksSelf $self
-```
-
-***
-
 ### update
 
 ```php
@@ -40,21 +32,29 @@ private ?\Upsun\Model\TeamProjectAccessLinksDelete $delete
 
 ***
 
+### self
+
+```php
+private ?\Upsun\Model\TeamProjectAccessLinksSelf $self
+```
+
+***
+
 ## Methods
 
 ### __construct
 
 ```php
-public __construct(?\Upsun\Model\TeamProjectAccessLinksSelf $self = null, ?\Upsun\Model\TeamProjectAccessLinksUpdate $update = null, ?\Upsun\Model\TeamProjectAccessLinksDelete $delete = null): mixed
+public __construct(?\Upsun\Model\TeamProjectAccessLinksUpdate $update = null, ?\Upsun\Model\TeamProjectAccessLinksDelete $delete = null, ?\Upsun\Model\TeamProjectAccessLinksSelf $self = null): mixed
 ```
 
 **Parameters:**
 
 | Parameter | Type                                           | Description |
 |-----------|------------------------------------------------|-------------|
-| `$self`   | **?\Upsun\Model\TeamProjectAccessLinksSelf**   |             |
 | `$update` | **?\Upsun\Model\TeamProjectAccessLinksUpdate** |             |
 | `$delete` | **?\Upsun\Model\TeamProjectAccessLinksDelete** |             |
+| `$self`   | **?\Upsun\Model\TeamProjectAccessLinksSelf**   |             |
 
 ***
 
@@ -96,7 +96,7 @@ public getSelf(): ?\Upsun\Model\TeamProjectAccessLinksSelf
 
 ### getUpdate
 
-Link for updating the current access item.
+Link for updating the current access item. Only present if user has update permission.
 
 ```php
 public getUpdate(): ?\Upsun\Model\TeamProjectAccessLinksUpdate
@@ -106,7 +106,7 @@ public getUpdate(): ?\Upsun\Model\TeamProjectAccessLinksUpdate
 
 ### getDelete
 
-Link for deleting the current access item.
+Link for deleting the current access item. Only present if user has delete permission.
 
 ```php
 public getDelete(): ?\Upsun\Model\TeamProjectAccessLinksDelete

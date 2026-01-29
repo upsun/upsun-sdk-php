@@ -16,6 +16,8 @@ use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Certificate;
 use Upsun\Model\CertificateCreateInput;
 use Upsun\Model\CertificatePatch;
+use Upsun\Model\CertificateProvisioner;
+use Upsun\Model\CertificateProvisionerPatch;
 
 /**
  * Low level CertManagementApi (auto-generated)
@@ -197,6 +199,11 @@ final class CertManagementApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -357,6 +364,11 @@ final class CertManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -521,6 +533,174 @@ final class CertManagementApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+
+    /**
+     *
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/get-projects-provisioners
+     */
+    public function getProjectsProvisioners(
+        string $projectId,
+        string $certificateProvisionerDocumentId
+    ): CertificateProvisioner {
+        return $this->getProjectsProvisionersWithHttpInfo(
+            $projectId,
+            $certificateProvisionerDocumentId
+        );
+    }
+
+    /**
+     *
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
+    private function getProjectsProvisionersWithHttpInfo(
+        string $projectId,
+        string $certificateProvisionerDocumentId
+    ): CertificateProvisioner {
+        $request = $this->getProjectsProvisionersRequest(
+            $projectId,
+            $certificateProvisionerDocumentId
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\CertificateProvisioner',
+                $request,
+                $response
+            );
+        } catch (Exception $exception) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $exception->getCode(),
+                    '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}'
+                ),
+                $request,
+                $response ?? null,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Create request for operation 'getProjectsProvisioners'
+     *
+     *
+     * @throws InvalidArgumentException
+     */
+    private function getProjectsProvisionersRequest(
+        string $projectId,
+        string $certificateProvisionerDocumentId
+    ): RequestInterface {
+        // verify the required parameter 'projectId' is set
+        if (empty($projectId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $projectId
+                when calling getProjectsProvisioners'
+            );
+        }
+        // verify the required parameter 'certificateProvisionerDocumentId' is set
+        if (empty($certificateProvisionerDocumentId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $certificateProvisionerDocumentId
+                when calling getProjectsProvisioners'
+            );
+        }
+
+        $resourcePath = '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+
+        if ($projectId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'projectId' . '}',
+                ObjectSerializer::toPathValue($projectId),
+                $resourcePath
+            );
+        }
+        // path params
+
+        if ($certificateProvisionerDocumentId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'certificateProvisionerDocumentId' . '}',
+                ObjectSerializer::toPathValue($certificateProvisionerDocumentId),
+                $resourcePath
+            );
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -664,6 +844,157 @@ final class CertManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+
+    /**
+     *
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
+     * @return \Upsun\Model\CertificateProvisioner[]
+     * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/list-projects-provisioners
+     */
+    public function listProjectsProvisioners(
+        string $projectId
+    ): array {
+        return $this->listProjectsProvisionersWithHttpInfo(
+            $projectId
+        );
+    }
+
+    /**
+     *
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
+     * @return \Upsun\Model\CertificateProvisioner[]
+    */
+    private function listProjectsProvisionersWithHttpInfo(
+        string $projectId
+    ): array {
+        $request = $this->listProjectsProvisionersRequest(
+            $projectId
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\CertificateProvisioner[]',
+                $request,
+                $response
+            );
+        } catch (Exception $exception) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $exception->getCode(),
+                    '/projects/{projectId}/provisioners'
+                ),
+                $request,
+                $response ?? null,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Create request for operation 'listProjectsProvisioners'
+     *
+     *
+     * @throws InvalidArgumentException
+     */
+    private function listProjectsProvisionersRequest(
+        string $projectId
+    ): RequestInterface {
+        // verify the required parameter 'projectId' is set
+        if (empty($projectId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $projectId
+                when calling listProjectsProvisioners'
+            );
+        }
+
+        $resourcePath = '/projects/{projectId}/provisioners';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+
+        if ($projectId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'projectId' . '}',
+                ObjectSerializer::toPathValue($projectId),
+                $resourcePath
+            );
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -849,6 +1180,197 @@ final class CertManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('PATCH', $uri, $headers, $httpBody);
+    }
+
+    /**
+     *
+     * @param  \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/update-projects-provisioners
+     */
+    public function updateProjectsProvisioners(
+        string $projectId,
+        string $certificateProvisionerDocumentId,
+        CertificateProvisionerPatch $certificateProvisionerPatch
+    ): AcceptedResponse {
+        return $this->updateProjectsProvisionersWithHttpInfo(
+            $projectId,
+            $certificateProvisionerDocumentId,
+            $certificateProvisionerPatch
+        );
+    }
+
+    /**
+     *
+     * @param  \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
+    private function updateProjectsProvisionersWithHttpInfo(
+        string $projectId,
+        string $certificateProvisionerDocumentId,
+        CertificateProvisionerPatch $certificateProvisionerPatch
+    ): AcceptedResponse {
+        $request = $this->updateProjectsProvisionersRequest(
+            $projectId,
+            $certificateProvisionerDocumentId,
+            $certificateProvisionerPatch
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\AcceptedResponse',
+                $request,
+                $response
+            );
+        } catch (Exception $exception) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $exception->getCode(),
+                    '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}'
+                ),
+                $request,
+                $response ?? null,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Create request for operation 'updateProjectsProvisioners'
+     *
+     * @param  \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch (required)
+     *
+     * @throws InvalidArgumentException
+     */
+    private function updateProjectsProvisionersRequest(
+        string $projectId,
+        string $certificateProvisionerDocumentId,
+        CertificateProvisionerPatch $certificateProvisionerPatch
+    ): RequestInterface {
+        // verify the required parameter 'projectId' is set
+        if (empty($projectId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $projectId
+                when calling updateProjectsProvisioners'
+            );
+        }
+        // verify the required parameter 'certificateProvisionerDocumentId' is set
+        if (empty($certificateProvisionerDocumentId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $certificateProvisionerDocumentId
+                when calling updateProjectsProvisioners'
+            );
+        }
+        // verify the required parameter 'certificateProvisionerPatch' is set
+        if (empty($certificateProvisionerPatch)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $certificateProvisionerPatch
+                when calling updateProjectsProvisioners'
+            );
+        }
+
+        $resourcePath = '/projects/{projectId}/provisioners/{certificateProvisionerDocumentId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+
+        if ($projectId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'projectId' . '}',
+                ObjectSerializer::toPathValue($projectId),
+                $resourcePath
+            );
+        }
+        // path params
+
+        if ($certificateProvisionerDocumentId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'certificateProvisionerDocumentId' . '}',
+                ObjectSerializer::toPathValue($certificateProvisionerDocumentId),
+                $resourcePath
+            );
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            'application/json',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($certificateProvisionerPatch)) {
+            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($certificateProvisionerPatch)
+                );
+            } else {
+                $httpBody = $certificateProvisionerPatch;
+            }
+        } elseif ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

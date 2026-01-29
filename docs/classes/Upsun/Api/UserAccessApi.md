@@ -359,13 +359,15 @@ Returns a list of items representing the project access.
 
 **Parameters:**
 
-| Parameter     | Type             | Description                       |
-|---------------|------------------|-----------------------------------|
-| `$projectId`  | **string**       | The ID of the project. (required) |
-| `$pageSize`   | **int\|null**    | (optional)                        |
-| `$pageBefore` | **string\|null** | (optional)                        |
-| `$pageAfter`  | **string\|null** | (optional)                        |
-| `$sort`       | **string\|null** | (optional)                        |
+| Parameter     | Type             | Description                                                                                                                                             |
+|---------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$projectId`  | **string**       | The ID of the project. (required)                                                                                                                       |
+| `$pageSize`   | **int\|null**    | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`       | **string\|null** | (optional)                                                                                                                                              |
 
 **Throws:**
 
@@ -389,13 +391,15 @@ private listProjectUserAccessWithHttpInfo(string $projectId, int|null $pageSize 
 
 **Parameters:**
 
-| Parameter     | Type             | Description                       |
-|---------------|------------------|-----------------------------------|
-| `$projectId`  | **string**       | The ID of the project. (required) |
-| `$pageSize`   | **int\|null**    | (optional)                        |
-| `$pageBefore` | **string\|null** | (optional)                        |
-| `$pageAfter`  | **string\|null** | (optional)                        |
-| `$sort`       | **string\|null** | (optional)                        |
+| Parameter     | Type             | Description                                                                                                                                             |
+|---------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$projectId`  | **string**       | The ID of the project. (required)                                                                                                                       |
+| `$pageSize`   | **int\|null**    | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`       | **string\|null** | (optional)                                                                                                                                              |
 
 **Throws:**
 
@@ -415,13 +419,15 @@ private listProjectUserAccessRequest(string $projectId, int|null $pageSize = nul
 
 **Parameters:**
 
-| Parameter     | Type             | Description                       |
-|---------------|------------------|-----------------------------------|
-| `$projectId`  | **string**       | The ID of the project. (required) |
-| `$pageSize`   | **int\|null**    | (optional)                        |
-| `$pageBefore` | **string\|null** | (optional)                        |
-| `$pageAfter`  | **string\|null** | (optional)                        |
-| `$sort`       | **string\|null** | (optional)                        |
+| Parameter     | Type             | Description                                                                                                                                             |
+|---------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$projectId`  | **string**       | The ID of the project. (required)                                                                                                                       |
+| `$pageSize`   | **int\|null**    | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore` | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`  | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`       | **string\|null** | (optional)                                                                                                                                              |
 
 **Throws:**
 
@@ -442,14 +448,16 @@ Returns a list of items representing the user's project access.
 
 **Parameters:**
 
-| Parameter               | Type             | Description                    |
-|-------------------------|------------------|--------------------------------|
-| `$userId`               | **string**       | The ID of the user. (required) |
-| `$filterOrganizationId` | **string\|null** | (optional)                     |
-| `$pageSize`             | **int\|null**    | (optional)                     |
-| `$pageBefore`           | **string\|null** | (optional)                     |
-| `$pageAfter`            | **string\|null** | (optional)                     |
-| `$sort`                 | **string\|null** | (optional)                     |
+| Parameter               | Type             | Description                                                                                                                                             |
+|-------------------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$userId`               | **string**       | The ID of the user. (required)                                                                                                                          |
+| `$filterOrganizationId` | **string\|null** | (optional)                                                                                                                                              |
+| `$pageSize`             | **int\|null**    | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore`           | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`            | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`                 | **string\|null** | (optional)                                                                                                                                              |
 
 **Throws:**
 
@@ -473,14 +481,16 @@ private listUserProjectAccessWithHttpInfo(string $userId, string|null $filterOrg
 
 **Parameters:**
 
-| Parameter               | Type             | Description                    |
-|-------------------------|------------------|--------------------------------|
-| `$userId`               | **string**       | The ID of the user. (required) |
-| `$filterOrganizationId` | **string\|null** | (optional)                     |
-| `$pageSize`             | **int\|null**    | (optional)                     |
-| `$pageBefore`           | **string\|null** | (optional)                     |
-| `$pageAfter`            | **string\|null** | (optional)                     |
-| `$sort`                 | **string\|null** | (optional)                     |
+| Parameter               | Type             | Description                                                                                                                                             |
+|-------------------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$userId`               | **string**       | The ID of the user. (required)                                                                                                                          |
+| `$filterOrganizationId` | **string\|null** | (optional)                                                                                                                                              |
+| `$pageSize`             | **int\|null**    | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore`           | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`            | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`                 | **string\|null** | (optional)                                                                                                                                              |
 
 **Throws:**
 
@@ -500,14 +510,16 @@ private listUserProjectAccessRequest(string $userId, string|null $filterOrganiza
 
 **Parameters:**
 
-| Parameter               | Type             | Description                    |
-|-------------------------|------------------|--------------------------------|
-| `$userId`               | **string**       | The ID of the user. (required) |
-| `$filterOrganizationId` | **string\|null** | (optional)                     |
-| `$pageSize`             | **int\|null**    | (optional)                     |
-| `$pageBefore`           | **string\|null** | (optional)                     |
-| `$pageAfter`            | **string\|null** | (optional)                     |
-| `$sort`                 | **string\|null** | (optional)                     |
+| Parameter               | Type             | Description                                                                                                                                             |
+|-------------------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$userId`               | **string**       | The ID of the user. (required)                                                                                                                          |
+| `$filterOrganizationId` | **string\|null** | (optional)                                                                                                                                              |
+| `$pageSize`             | **int\|null**    | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore`           | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`            | **string\|null** | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`                 | **string\|null** | (optional)                                                                                                                                              |
 
 **Throws:**
 

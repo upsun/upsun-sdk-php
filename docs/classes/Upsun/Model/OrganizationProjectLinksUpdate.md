@@ -1,7 +1,7 @@
 # OrganizationProjectLinksUpdate
 
 Low level OrganizationProjectLinksUpdate (auto-generated)
-Link for updating the current project.
+Link for updating the current project. Only present if user has update permission.
 
 ***
 

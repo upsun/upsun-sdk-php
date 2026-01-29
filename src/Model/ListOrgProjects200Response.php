@@ -14,7 +14,9 @@ use JsonSerializable;
 final class ListOrgProjects200Response implements Model, JsonSerializable
 {
     public function __construct(
+        private readonly ?int $count = null,
         private readonly ?array $items = [],
+        private readonly ?ProjectFacets $facets = null,
         private readonly ?ListLinks $links = null,
     ) {
     }
@@ -27,7 +29,9 @@ final class ListOrgProjects200Response implements Model, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'count' => $this->count,
             'items' => $this->items,
+            'facets' => $this->facets,
             'links' => $this->links,
         ];
     }
@@ -36,12 +40,26 @@ final class ListOrgProjects200Response implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+
     /**
      * @return OrganizationProject[]|null
      */
     public function getItems(): ?array
     {
         return $this->items;
+    }
+
+    /**
+     * Facets for filtering options.
+     */
+    public function getFacets(): ?ProjectFacets
+    {
+        return $this->facets;
     }
 
     public function getLinks(): ?ListLinks

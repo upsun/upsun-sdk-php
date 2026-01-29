@@ -40,39 +40,21 @@ private ?string $timezone
 
 ***
 
-### cseNotes
-
-```php
-private ?string $cseNotes
-```
-
-***
-
-### dedicatedTag
-
-```php
-private ?string $dedicatedTag
-```
-
-***
-
 ## Methods
 
 ### __construct
 
 ```php
-public __construct(?string $title = null, ?string $plan = null, ?string $timezone = null, ?string $cseNotes = null, ?string $dedicatedTag = null): mixed
+public __construct(?string $title = null, ?string $plan = null, ?string $timezone = null): mixed
 ```
 
 **Parameters:**
 
-| Parameter       | Type        | Description |
-|-----------------|-------------|-------------|
-| `$title`        | **?string** |             |
-| `$plan`         | **?string** |             |
-| `$timezone`     | **?string** |             |
-| `$cseNotes`     | **?string** |             |
-| `$dedicatedTag` | **?string** |             |
+| Parameter   | Type        | Description |
+|-------------|-------------|-------------|
+| `$title`    | **?string** |             |
+| `$plan`     | **?string** |             |
+| `$timezone` | **?string** |             |
 
 ***
 
@@ -128,26 +110,6 @@ Timezone of the project.
 
 ```php
 public getTimezone(): ?string
-```
-
-***
-
-### getCseNotes
-
-CSE notes.
-
-```php
-public getCseNotes(): ?string
-```
-
-***
-
-### getDedicatedTag
-
-Dedicated tag.
-
-```php
-public getDedicatedTag(): ?string
 ```
 
 ***

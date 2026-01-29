@@ -16,42 +16,10 @@ Low level Error (auto-generated)
 
 ## Properties
 
-### status
+### error
 
 ```php
-private ?string $status
-```
-
-***
-
-### message
-
-```php
-private ?string $message
-```
-
-***
-
-### code
-
-```php
-private ?float $code
-```
-
-***
-
-### detail
-
-```php
-private ?object $detail
-```
-
-***
-
-### title
-
-```php
-private ?string $title
+private string $error
 ```
 
 ***
@@ -61,18 +29,14 @@ private ?string $title
 ### __construct
 
 ```php
-public __construct(?string $status = null, ?string $message = null, ?float $code = null, ?object $detail = null, ?string $title = null): mixed
+public __construct(string $error): mixed
 ```
 
 **Parameters:**
 
-| Parameter  | Type        | Description |
-|------------|-------------|-------------|
-| `$status`  | **?string** |             |
-| `$message` | **?string** |             |
-| `$code`    | **?float**  |             |
-| `$detail`  | **?object** |             |
-| `$title`   | **?string** |             |
+| Parameter | Type       | Description |
+|-----------|------------|-------------|
+| `$error`  | **string** |             |
 
 ***
 
@@ -102,42 +66,12 @@ public __toString(): string
 
 ***
 
-### getStatus
+### getError
+
+Error message
 
 ```php
-public getStatus(): ?string
-```
-
-***
-
-### getMessage
-
-```php
-public getMessage(): ?string
-```
-
-***
-
-### getCode
-
-```php
-public getCode(): ?float
-```
-
-***
-
-### getDetail
-
-```php
-public getDetail(): ?object
-```
-
-***
-
-### getTitle
-
-```php
-public getTitle(): ?string
+public getError(): string
 ```
 
 ***

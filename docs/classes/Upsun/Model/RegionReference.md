@@ -84,7 +84,7 @@ private string $endpoint
 ### provider
 
 ```php
-private object $provider
+private \Upsun\Model\RegionProvider $provider
 ```
 
 ***
@@ -92,7 +92,7 @@ private object $provider
 ### datacenter
 
 ```php
-private object $datacenter
+private \Upsun\Model\RegionDataCenter $datacenter
 ```
 
 ***
@@ -100,7 +100,7 @@ private object $datacenter
 ### compliance
 
 ```php
-private object $compliance
+private \Upsun\Model\RegionCompliance $compliance
 ```
 
 ***
@@ -129,18 +129,18 @@ private ?bool $private
 
 ***
 
-### code
+### envimpact
 
 ```php
-private ?string $code
+private ?\Upsun\Model\RegionEnvImpact $envimpact
 ```
 
 ***
 
-### envimpact
+### environmentalImpact
 
 ```php
-private ?object $envimpact
+private ?object $environmentalImpact
 ```
 
 ***
@@ -150,29 +150,29 @@ private ?object $envimpact
 ### __construct
 
 ```php
-public __construct(string $id, string $label, string $zone, string $selectionLabel, string $projectLabel, string $timezone, bool $available, string $endpoint, object $provider, object $datacenter, object $compliance, \DateTime $createdAt, \DateTime $updatedAt, ?bool $private = null, ?string $code = null, ?object $envimpact = null): mixed
+public __construct(string $id, string $label, string $zone, string $selectionLabel, string $projectLabel, string $timezone, bool $available, string $endpoint, \Upsun\Model\RegionProvider $provider, \Upsun\Model\RegionDataCenter $datacenter, \Upsun\Model\RegionCompliance $compliance, \DateTime $createdAt, \DateTime $updatedAt, ?bool $private = null, ?\Upsun\Model\RegionEnvImpact $envimpact = null, ?object $environmentalImpact = null): mixed
 ```
 
 **Parameters:**
 
-| Parameter         | Type          | Description |
-|-------------------|---------------|-------------|
-| `$id`             | **string**    |             |
-| `$label`          | **string**    |             |
-| `$zone`           | **string**    |             |
-| `$selectionLabel` | **string**    |             |
-| `$projectLabel`   | **string**    |             |
-| `$timezone`       | **string**    |             |
-| `$available`      | **bool**      |             |
-| `$endpoint`       | **string**    |             |
-| `$provider`       | **object**    |             |
-| `$datacenter`     | **object**    |             |
-| `$compliance`     | **object**    |             |
-| `$createdAt`      | **\DateTime** |             |
-| `$updatedAt`      | **\DateTime** |             |
-| `$private`        | **?bool**     |             |
-| `$code`           | **?string**   |             |
-| `$envimpact`      | **?object**   |             |
+| Parameter              | Type                              | Description |
+|------------------------|-----------------------------------|-------------|
+| `$id`                  | **string**                        |             |
+| `$label`               | **string**                        |             |
+| `$zone`                | **string**                        |             |
+| `$selectionLabel`      | **string**                        |             |
+| `$projectLabel`        | **string**                        |             |
+| `$timezone`            | **string**                        |             |
+| `$available`           | **bool**                          |             |
+| `$endpoint`            | **string**                        |             |
+| `$provider`            | **\Upsun\Model\RegionProvider**   |             |
+| `$datacenter`          | **\Upsun\Model\RegionDataCenter** |             |
+| `$compliance`          | **\Upsun\Model\RegionCompliance** |             |
+| `$createdAt`           | **\DateTime**                     |             |
+| `$updatedAt`           | **\DateTime**                     |             |
+| `$private`             | **?bool**                         |             |
+| `$envimpact`           | **?\Upsun\Model\RegionEnvImpact** |             |
+| `$environmentalImpact` | **?object**                       |             |
 
 ***
 
@@ -288,7 +288,7 @@ public getEndpoint(): string
 Information about the region provider.
 
 ```php
-public getProvider(): object
+public getProvider(): \Upsun\Model\RegionProvider
 ```
 
 ***
@@ -298,7 +298,7 @@ public getProvider(): object
 Information about the region provider data center.
 
 ```php
-public getDatacenter(): object
+public getDatacenter(): \Upsun\Model\RegionDataCenter
 ```
 
 ***
@@ -308,7 +308,7 @@ public getDatacenter(): object
 Information about the region's compliance.
 
 ```php
-public getCompliance(): object
+public getCompliance(): \Upsun\Model\RegionCompliance
 ```
 
 ***
@@ -343,22 +343,22 @@ public getPrivate(): ?bool
 
 ***
 
-### getCode
-
-The code of the region
-
-```php
-public getCode(): ?string
-```
-
-***
-
 ### getEnvimpact
 
 Information about the region provider's environmental impact.
 
 ```php
-public getEnvimpact(): ?object
+public getEnvimpact(): ?\Upsun\Model\RegionEnvImpact
+```
+
+***
+
+### getEnvironmentalImpact
+
+Environmental impact information for the region.
+
+```php
+public getEnvironmentalImpact(): ?object
 ```
 
 ***

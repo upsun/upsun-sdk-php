@@ -89,7 +89,7 @@ final class TeamProjectAccess implements Model, JsonSerializable
     }
 
     /**
-     * The date and time when the access was last updated.
+     * The date and time when the resource was last updated.
      */
     public function getUpdatedAt(): ?DateTime
     {

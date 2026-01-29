@@ -16,6 +16,22 @@ Low level OrganizationProject (auto-generated)
 
 ## Properties
 
+### activities
+
+```php
+private ?array $activities
+```
+
+***
+
+### projectOptions
+
+```php
+private ?\Upsun\Model\ProjectOptionsAggregated $projectOptions
+```
+
+***
+
 ### id
 
 ```php
@@ -120,30 +136,6 @@ private ?string $projectUi
 
 ***
 
-### locked
-
-```php
-private ?bool $locked
-```
-
-***
-
-### cseNotes
-
-```php
-private ?string $cseNotes
-```
-
-***
-
-### dedicatedTag
-
-```php
-private ?string $dedicatedTag
-```
-
-***
-
 ### createdAt
 
 ```php
@@ -173,13 +165,15 @@ private ?\Upsun\Model\OrganizationProjectLinks $links
 ### __construct
 
 ```php
-public __construct(?string $id = null, ?string $organizationId = null, ?string $subscriptionId = null, ?string $vendor = null, ?string $region = null, ?string $title = null, ?\Upsun\Model\ProjectType $type = null, ?string $plan = null, ?string $timezone = null, ?string $defaultBranch = null, ?\Upsun\Model\ProjectStatus $status = null, ?bool $trialPlan = null, ?string $projectUi = null, ?bool $locked = null, ?string $cseNotes = null, ?string $dedicatedTag = null, ?\DateTime $createdAt = null, ?\DateTime $updatedAt = null, ?\Upsun\Model\OrganizationProjectLinks $links = null): mixed
+public __construct(?array $activities = [], ?\Upsun\Model\ProjectOptionsAggregated $projectOptions = null, ?string $id = null, ?string $organizationId = null, ?string $subscriptionId = null, ?string $vendor = null, ?string $region = null, ?string $title = null, ?\Upsun\Model\ProjectType $type = null, ?string $plan = null, ?string $timezone = null, ?string $defaultBranch = null, ?\Upsun\Model\ProjectStatus $status = null, ?bool $trialPlan = null, ?string $projectUi = null, ?\DateTime $createdAt = null, ?\DateTime $updatedAt = null, ?\Upsun\Model\OrganizationProjectLinks $links = null): mixed
 ```
 
 **Parameters:**
 
 | Parameter         | Type                                       | Description |
 |-------------------|--------------------------------------------|-------------|
+| `$activities`     | **?array**                                 |             |
+| `$projectOptions` | **?\Upsun\Model\ProjectOptionsAggregated** |             |
 | `$id`             | **?string**                                |             |
 | `$organizationId` | **?string**                                |             |
 | `$subscriptionId` | **?string**                                |             |
@@ -193,9 +187,6 @@ public __construct(?string $id = null, ?string $organizationId = null, ?string $
 | `$status`         | **?\Upsun\Model\ProjectStatus**            |             |
 | `$trialPlan`      | **?bool**                                  |             |
 | `$projectUi`      | **?string**                                |             |
-| `$locked`         | **?bool**                                  |             |
-| `$cseNotes`       | **?string**                                |             |
-| `$dedicatedTag`   | **?string**                                |             |
 | `$createdAt`      | **?\DateTime**                             |             |
 | `$updatedAt`      | **?\DateTime**                             |             |
 | `$links`          | **?\Upsun\Model\OrganizationProjectLinks** |             |
@@ -358,36 +349,6 @@ public getProjectUi(): ?string
 
 ***
 
-### getLocked
-
-Locked
-
-```php
-public getLocked(): ?bool
-```
-
-***
-
-### getCseNotes
-
-CSE notes.
-
-```php
-public getCseNotes(): ?string
-```
-
-***
-
-### getDedicatedTag
-
-Dedicated tag.
-
-```php
-public getDedicatedTag(): ?string
-```
-
-***
-
 ### getCreatedAt
 
 The date and time when the resource was created.
@@ -404,6 +365,24 @@ The date and time when the resource was last updated.
 
 ```php
 public getUpdatedAt(): ?\DateTime
+```
+
+***
+
+### getActivities
+
+Activities information for the project.
+
+```php
+public getActivities(): \Upsun\Model\Activity[]|null
+```
+
+***
+
+### getProjectOptions
+
+```php
+public getProjectOptions(): ?\Upsun\Model\ProjectOptionsAggregated
 ```
 
 ***

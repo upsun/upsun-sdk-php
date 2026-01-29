@@ -64,28 +64,12 @@ private ?string $defaultBranch
 
 ***
 
-### cseNotes
-
-```php
-private ?string $cseNotes
-```
-
-***
-
-### dedicatedTag
-
-```php
-private ?string $dedicatedTag
-```
-
-***
-
 ## Methods
 
 ### __construct
 
 ```php
-public __construct(string $region, ?string $organizationId = null, ?string $title = null, ?\Upsun\Model\ProjectType $type = null, ?string $plan = null, ?string $defaultBranch = null, ?string $cseNotes = null, ?string $dedicatedTag = null): mixed
+public __construct(string $region, ?string $organizationId = null, ?string $title = null, ?\Upsun\Model\ProjectType $type = null, ?string $plan = null, ?string $defaultBranch = null): mixed
 ```
 
 **Parameters:**
@@ -98,8 +82,6 @@ public __construct(string $region, ?string $organizationId = null, ?string $titl
 | `$type`           | **?\Upsun\Model\ProjectType** |             |
 | `$plan`           | **?string**                   |             |
 | `$defaultBranch`  | **?string**                   |             |
-| `$cseNotes`       | **?string**                   |             |
-| `$dedicatedTag`   | **?string**                   |             |
 
 ***
 
@@ -185,26 +167,6 @@ Default branch.
 
 ```php
 public getDefaultBranch(): ?string
-```
-
-***
-
-### getCseNotes
-
-CSE notes.
-
-```php
-public getCseNotes(): ?string
-```
-
-***
-
-### getDedicatedTag
-
-Dedicated tag.
-
-```php
-public getDedicatedTag(): ?string
 ```
 
 ***

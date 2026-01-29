@@ -13,6 +13,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CanAffordSubscriptionRequest;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Model\CanUpdateSubscription200Response;
 use Upsun\Model\CreateOrgSubscriptionRequest;
@@ -59,6 +60,164 @@ final class SubscriptionsApi extends AbstractApi
         $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
+    }
+
+    /**
+     * Checks if the user can afford the requested resources.
+     *
+     *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/can-afford-subscription
+     */
+    public function canAffordSubscription(
+        string $subscriptionId,
+        ?CanAffordSubscriptionRequest $canAffordSubscriptionRequest = null
+    ): void {
+        $this->canAffordSubscriptionWithHttpInfo(
+            $subscriptionId,
+            $canAffordSubscriptionRequest
+        );
+    }
+
+    /**
+     * Checks if the user can afford the requested resources. with HTTP Info
+     *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
+    private function canAffordSubscriptionWithHttpInfo(
+        string $subscriptionId,
+        ?CanAffordSubscriptionRequest $canAffordSubscriptionRequest = null
+    ): void {
+        $request = $this->canAffordSubscriptionRequest(
+            $subscriptionId,
+            $canAffordSubscriptionRequest
+        );
+
+        try {
+            $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+        } catch (Exception $exception) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $exception->getCode(),
+                    '/subscriptions/{subscriptionId}/can-afford'
+                ),
+                $request,
+                $response ?? null,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Create request for operation 'canAffordSubscription'
+     *
+     * @param  string $subscriptionId
+     *         The ID of the subscription (required)
+     *
+     * @throws InvalidArgumentException
+     */
+    private function canAffordSubscriptionRequest(
+        string $subscriptionId,
+        ?CanAffordSubscriptionRequest $canAffordSubscriptionRequest = null
+    ): RequestInterface {
+        // verify the required parameter 'subscriptionId' is set
+        if (empty($subscriptionId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $subscriptionId
+                when calling canAffordSubscription'
+            );
+        }
+
+        $resourcePath = '/subscriptions/{subscriptionId}/can-afford';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+
+        if ($subscriptionId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'subscriptionId' . '}',
+                ObjectSerializer::toPathValue($subscriptionId),
+                $resourcePath
+            );
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            'application/json',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($canAffordSubscriptionRequest)) {
+            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($canAffordSubscriptionRequest)
+                );
+            } else {
+                $httpBody = $canAffordSubscriptionRequest;
+            }
+        } elseif ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 
     /**
@@ -187,6 +346,11 @@ final class SubscriptionsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -434,6 +598,11 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -599,6 +768,11 @@ final class SubscriptionsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -767,6 +941,11 @@ final class SubscriptionsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1046,6 +1225,11 @@ final class SubscriptionsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1333,6 +1517,11 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -1505,6 +1694,11 @@ final class SubscriptionsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1722,6 +1916,11 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -1899,6 +2098,11 @@ final class SubscriptionsApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -1924,16 +2128,11 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
-     * @param  string|null $filterStatus
-     *         The status of the subscription. (optional)
-     * @param  string|null $filterId
-     *         Machine name of the region. (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterProjectId
-     *         Allows filtering by `project_id` using one or more operators. (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterProjectTitle
-     *         Allows filtering by `project_title` using one or more operators. (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterRegion
-     *         Allows filtering by `region` using one or more operators. (optional)
+     * @param  string|null $filterStatus (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterProjectId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterProjectTitle (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterRegion (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
      *         Allows filtering by `updated_at` using one or more operators. (optional)
      * @param  int|null $pageSize
@@ -1944,10 +2143,7 @@ final class SubscriptionsApi extends AbstractApi
      * @param  string|null $pageAfter
      *         Pagination cursor. This is automatically generated as necessary and provided in
      *         HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string|null $sort
-     *         Allows sorting by a single field. Use a dash ("-") to sort descending. Supported
-     *         fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`,
-     *         `updated_at`. (optional)
+     * @param  string|null $sort (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -1956,7 +2152,7 @@ final class SubscriptionsApi extends AbstractApi
     public function listOrgSubscriptions(
         string $organizationId,
         ?string $filterStatus = null,
-        ?string $filterId = null,
+        ?StringFilter $filterId = null,
         ?StringFilter $filterProjectId = null,
         ?StringFilter $filterProjectTitle = null,
         ?StringFilter $filterRegion = null,
@@ -1986,16 +2182,11 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
-     * @param  string|null $filterStatus
-     *         The status of the subscription. (optional)
-     * @param  string|null $filterId
-     *         Machine name of the region. (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterProjectId
-     *         Allows filtering by `project_id` using one or more operators. (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterProjectTitle
-     *         Allows filtering by `project_title` using one or more operators. (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterRegion
-     *         Allows filtering by `region` using one or more operators. (optional)
+     * @param  string|null $filterStatus (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterProjectId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterProjectTitle (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterRegion (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
      *         Allows filtering by `updated_at` using one or more operators. (optional)
      * @param  int|null $pageSize
@@ -2006,10 +2197,7 @@ final class SubscriptionsApi extends AbstractApi
      * @param  string|null $pageAfter
      *         Pagination cursor. This is automatically generated as necessary and provided in
      *         HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string|null $sort
-     *         Allows sorting by a single field. Use a dash ("-") to sort descending. Supported
-     *         fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`,
-     *         `updated_at`. (optional)
+     * @param  string|null $sort (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -2017,7 +2205,7 @@ final class SubscriptionsApi extends AbstractApi
     private function listOrgSubscriptionsWithHttpInfo(
         string $organizationId,
         ?string $filterStatus = null,
-        ?string $filterId = null,
+        ?StringFilter $filterId = null,
         ?StringFilter $filterProjectId = null,
         ?StringFilter $filterProjectTitle = null,
         ?StringFilter $filterRegion = null,
@@ -2073,16 +2261,11 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
-     * @param  string|null $filterStatus
-     *         The status of the subscription. (optional)
-     * @param  string|null $filterId
-     *         Machine name of the region. (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterProjectId
-     *         Allows filtering by `project_id` using one or more operators. (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterProjectTitle
-     *         Allows filtering by `project_title` using one or more operators. (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterRegion
-     *         Allows filtering by `region` using one or more operators. (optional)
+     * @param  string|null $filterStatus (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterProjectId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterProjectTitle (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterRegion (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
      *         Allows filtering by `updated_at` using one or more operators. (optional)
      * @param  int|null $pageSize
@@ -2093,17 +2276,14 @@ final class SubscriptionsApi extends AbstractApi
      * @param  string|null $pageAfter
      *         Pagination cursor. This is automatically generated as necessary and provided in
      *         HAL links (_links); it should not be constructed externally. (optional)
-     * @param  string|null $sort
-     *         Allows sorting by a single field. Use a dash ("-") to sort descending. Supported
-     *         fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`,
-     *         `updated_at`. (optional)
+     * @param  string|null $sort (optional)
      *
      * @throws InvalidArgumentException
      */
     private function listOrgSubscriptionsRequest(
         string $organizationId,
         ?string $filterStatus = null,
-        ?string $filterId = null,
+        ?StringFilter $filterId = null,
         ?StringFilter $filterProjectId = null,
         ?StringFilter $filterProjectTitle = null,
         ?StringFilter $filterRegion = null,
@@ -2157,14 +2337,14 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($filterId !== null) {
-            if ('form' === 'form' && is_array($filterId)) {
+            if ('form' === 'deepObject' && is_array($filterId)) {
                 foreach ($filterId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
                 $queryParams['filter[id]'] = $filterId instanceof DateTime
                     ? $filterId->format(DATE_ATOM)
-                    : ($filterId);
+                    : ($filterId->getEq());
             }
         }
 
@@ -2310,6 +2490,11 @@ final class SubscriptionsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -2483,6 +2668,11 @@ final class SubscriptionsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -2670,6 +2860,11 @@ final class SubscriptionsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -2860,6 +3055,11 @@ final class SubscriptionsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

@@ -134,15 +134,17 @@ Retrieves a list of available regions.
 
 **Parameters:**
 
-| Parameter          | Type                                | Description |
-|--------------------|-------------------------------------|-------------|
-| `$filterAvailable` | **\Upsun\Model\StringFilter\|null** | (optional)  |
-| `$filterPrivate`   | **\Upsun\Model\StringFilter\|null** | (optional)  |
-| `$filterZone`      | **\Upsun\Model\StringFilter\|null** | (optional)  |
-| `$pageSize`        | **int\|null**                       | (optional)  |
-| `$pageBefore`      | **string\|null**                    | (optional)  |
-| `$pageAfter`       | **string\|null**                    | (optional)  |
-| `$sort`            | **string\|null**                    | (optional)  |
+| Parameter          | Type                                | Description                                                                                                                                             |
+|--------------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$filterAvailable` | **\Upsun\Model\StringFilter\|null** | (optional)                                                                                                                                              |
+| `$filterPrivate`   | **\Upsun\Model\StringFilter\|null** | (optional)                                                                                                                                              |
+| `$filterZone`      | **\Upsun\Model\StringFilter\|null** | (optional)                                                                                                                                              |
+| `$pageSize`        | **int\|null**                       | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore`      | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`       | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`            | **string\|null**                    | (optional)                                                                                                                                              |
 
 **Throws:**
 
@@ -166,15 +168,17 @@ private listRegionsWithHttpInfo(\Upsun\Model\StringFilter|null $filterAvailable 
 
 **Parameters:**
 
-| Parameter          | Type                                | Description |
-|--------------------|-------------------------------------|-------------|
-| `$filterAvailable` | **\Upsun\Model\StringFilter\|null** | (optional)  |
-| `$filterPrivate`   | **\Upsun\Model\StringFilter\|null** | (optional)  |
-| `$filterZone`      | **\Upsun\Model\StringFilter\|null** | (optional)  |
-| `$pageSize`        | **int\|null**                       | (optional)  |
-| `$pageBefore`      | **string\|null**                    | (optional)  |
-| `$pageAfter`       | **string\|null**                    | (optional)  |
-| `$sort`            | **string\|null**                    | (optional)  |
+| Parameter          | Type                                | Description                                                                                                                                             |
+|--------------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$filterAvailable` | **\Upsun\Model\StringFilter\|null** | (optional)                                                                                                                                              |
+| `$filterPrivate`   | **\Upsun\Model\StringFilter\|null** | (optional)                                                                                                                                              |
+| `$filterZone`      | **\Upsun\Model\StringFilter\|null** | (optional)                                                                                                                                              |
+| `$pageSize`        | **int\|null**                       | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore`      | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`       | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`            | **string\|null**                    | (optional)                                                                                                                                              |
 
 **Throws:**
 
@@ -194,15 +198,17 @@ private listRegionsRequest(\Upsun\Model\StringFilter|null $filterAvailable = nul
 
 **Parameters:**
 
-| Parameter          | Type                                | Description |
-|--------------------|-------------------------------------|-------------|
-| `$filterAvailable` | **\Upsun\Model\StringFilter\|null** | (optional)  |
-| `$filterPrivate`   | **\Upsun\Model\StringFilter\|null** | (optional)  |
-| `$filterZone`      | **\Upsun\Model\StringFilter\|null** | (optional)  |
-| `$pageSize`        | **int\|null**                       | (optional)  |
-| `$pageBefore`      | **string\|null**                    | (optional)  |
-| `$pageAfter`       | **string\|null**                    | (optional)  |
-| `$sort`            | **string\|null**                    | (optional)  |
+| Parameter          | Type                                | Description                                                                                                                                             |
+|--------------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$filterAvailable` | **\Upsun\Model\StringFilter\|null** | (optional)                                                                                                                                              |
+| `$filterPrivate`   | **\Upsun\Model\StringFilter\|null** | (optional)                                                                                                                                              |
+| `$filterZone`      | **\Upsun\Model\StringFilter\|null** | (optional)                                                                                                                                              |
+| `$pageSize`        | **int\|null**                       | Determines the number of items to show. (optional)                                                                                                      |
+| `$pageBefore`      | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$pageAfter`       | **string\|null**                    | Pagination cursor. This is automatically generated as necessary and provided in
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`            | **string\|null**                    | (optional)                                                                                                                                              |
 
 **Throws:**
 

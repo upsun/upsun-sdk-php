@@ -88,10 +88,10 @@ private ?string $vendor
 
 ***
 
-### billingAccountId
+### billingProfileId
 
 ```php
-private ?string $billingAccountId
+private ?string $billingProfileId
 ```
 
 ***
@@ -100,6 +100,14 @@ private ?string $billingAccountId
 
 ```php
 private ?bool $billingLegacy
+```
+
+***
+
+### securityContact
+
+```php
+private ?string $securityContact
 ```
 
 ***
@@ -141,7 +149,7 @@ private ?\Upsun\Model\OrganizationLinks $links
 ### __construct
 
 ```php
-public __construct(?string $id = null, ?string $type = null, ?string $ownerId = null, ?string $namespace = null, ?string $name = null, ?string $label = null, ?string $country = null, ?array $capabilities = [], ?string $vendor = null, ?string $billingAccountId = null, ?bool $billingLegacy = null, ?string $status = null, ?\DateTime $createdAt = null, ?\DateTime $updatedAt = null, ?\Upsun\Model\OrganizationLinks $links = null): mixed
+public __construct(?string $id = null, ?string $type = null, ?string $ownerId = null, ?string $namespace = null, ?string $name = null, ?string $label = null, ?string $country = null, ?array $capabilities = [], ?string $vendor = null, ?string $billingProfileId = null, ?bool $billingLegacy = null, ?string $securityContact = null, ?string $status = null, ?\DateTime $createdAt = null, ?\DateTime $updatedAt = null, ?\Upsun\Model\OrganizationLinks $links = null): mixed
 ```
 
 **Parameters:**
@@ -157,8 +165,9 @@ public __construct(?string $id = null, ?string $type = null, ?string $ownerId = 
 | `$country`          | **?string**                         |             |
 | `$capabilities`     | **?array**                          |             |
 | `$vendor`           | **?string**                         |             |
-| `$billingAccountId` | **?string**                         |             |
+| `$billingProfileId` | **?string**                         |             |
 | `$billingLegacy`    | **?bool**                           |             |
+| `$securityContact`  | **?string**                         |             |
 | `$status`           | **?string**                         |             |
 | `$createdAt`        | **?\DateTime**                      |             |
 | `$updatedAt`        | **?\DateTime**                      |             |
@@ -280,12 +289,12 @@ public getVendor(): ?string
 
 ***
 
-### getBillingAccountId
+### getBillingProfileId
 
-The Billing Account ID.
+The Billing Profile ID.
 
 ```php
-public getBillingAccountId(): ?string
+public getBillingProfileId(): ?string
 ```
 
 ***
@@ -296,6 +305,16 @@ Whether the account is billed with the legacy system.
 
 ```php
 public getBillingLegacy(): ?bool
+```
+
+***
+
+### getSecurityContact
+
+The security contact email address for the organization.
+
+```php
+public getSecurityContact(): ?string
 ```
 
 ***

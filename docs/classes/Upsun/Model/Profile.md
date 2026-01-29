@@ -177,26 +177,18 @@ private ?string $billingContact
 
 ***
 
-### securityContact
-
-```php
-private ?string $securityContact
-```
-
-***
-
-### currentTrial
-
-```php
-private ?\Upsun\Model\ProfileCurrentTrial $currentTrial
-```
-
-***
-
 ### invoiced
 
 ```php
 private ?bool $invoiced
+```
+
+***
+
+### customerType
+
+```php
+private ?string $customerType
 ```
 
 ***
@@ -206,36 +198,35 @@ private ?bool $invoiced
 ### __construct
 
 ```php
-public __construct(?string $id = null, ?string $displayName = null, ?string $email = null, ?string $username = null, ?string $type = null, ?string $picture = null, ?string $companyType = null, ?string $companyName = null, ?string $currency = null, ?string $vatNumber = null, ?string $companyRole = null, ?string $websiteUrl = null, ?bool $newUi = null, ?string $uiColorscheme = null, ?string $defaultCatalog = null, ?string $projectOptionsUrl = null, ?bool $marketing = null, ?\DateTime $createdAt = null, ?\DateTime $updatedAt = null, ?string $billingContact = null, ?string $securityContact = null, ?\Upsun\Model\ProfileCurrentTrial $currentTrial = null, ?bool $invoiced = null): mixed
+public __construct(?string $id = null, ?string $displayName = null, ?string $email = null, ?string $username = null, ?string $type = null, ?string $picture = null, ?string $companyType = null, ?string $companyName = null, ?string $currency = null, ?string $vatNumber = null, ?string $companyRole = null, ?string $websiteUrl = null, ?bool $newUi = null, ?string $uiColorscheme = null, ?string $defaultCatalog = null, ?string $projectOptionsUrl = null, ?bool $marketing = null, ?\DateTime $createdAt = null, ?\DateTime $updatedAt = null, ?string $billingContact = null, ?bool $invoiced = null, ?string $customerType = null): mixed
 ```
 
 **Parameters:**
 
-| Parameter            | Type                                  | Description |
-|----------------------|---------------------------------------|-------------|
-| `$id`                | **?string**                           |             |
-| `$displayName`       | **?string**                           |             |
-| `$email`             | **?string**                           |             |
-| `$username`          | **?string**                           |             |
-| `$type`              | **?string**                           |             |
-| `$picture`           | **?string**                           |             |
-| `$companyType`       | **?string**                           |             |
-| `$companyName`       | **?string**                           |             |
-| `$currency`          | **?string**                           |             |
-| `$vatNumber`         | **?string**                           |             |
-| `$companyRole`       | **?string**                           |             |
-| `$websiteUrl`        | **?string**                           |             |
-| `$newUi`             | **?bool**                             |             |
-| `$uiColorscheme`     | **?string**                           |             |
-| `$defaultCatalog`    | **?string**                           |             |
-| `$projectOptionsUrl` | **?string**                           |             |
-| `$marketing`         | **?bool**                             |             |
-| `$createdAt`         | **?\DateTime**                        |             |
-| `$updatedAt`         | **?\DateTime**                        |             |
-| `$billingContact`    | **?string**                           |             |
-| `$securityContact`   | **?string**                           |             |
-| `$currentTrial`      | **?\Upsun\Model\ProfileCurrentTrial** |             |
-| `$invoiced`          | **?bool**                             |             |
+| Parameter            | Type           | Description |
+|----------------------|----------------|-------------|
+| `$id`                | **?string**    |             |
+| `$displayName`       | **?string**    |             |
+| `$email`             | **?string**    |             |
+| `$username`          | **?string**    |             |
+| `$type`              | **?string**    |             |
+| `$picture`           | **?string**    |             |
+| `$companyType`       | **?string**    |             |
+| `$companyName`       | **?string**    |             |
+| `$currency`          | **?string**    |             |
+| `$vatNumber`         | **?string**    |             |
+| `$companyRole`       | **?string**    |             |
+| `$websiteUrl`        | **?string**    |             |
+| `$newUi`             | **?bool**      |             |
+| `$uiColorscheme`     | **?string**    |             |
+| `$defaultCatalog`    | **?string**    |             |
+| `$projectOptionsUrl` | **?string**    |             |
+| `$marketing`         | **?bool**      |             |
+| `$createdAt`         | **?\DateTime** |             |
+| `$updatedAt`         | **?\DateTime** |             |
+| `$billingContact`    | **?string**    |             |
+| `$invoiced`          | **?bool**      |             |
+| `$customerType`      | **?string**    |             |
 
 ***
 
@@ -465,32 +456,22 @@ public getBillingContact(): ?string
 
 ***
 
-### getSecurityContact
-
-The e-mail address of a contact to whom security notices will be sent.
-
-```php
-public getSecurityContact(): ?string
-```
-
-***
-
-### getCurrentTrial
-
-The current trial for the profile.
-
-```php
-public getCurrentTrial(): ?\Upsun\Model\ProfileCurrentTrial
-```
-
-***
-
 ### getInvoiced
 
 The customer is invoiced.
 
 ```php
 public getInvoiced(): ?bool
+```
+
+***
+
+### getCustomerType
+
+The customer type.
+
+```php
+public getCustomerType(): ?string
 ```
 
 ***

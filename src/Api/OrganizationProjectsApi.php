@@ -204,6 +204,11 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -370,6 +375,11 @@ final class OrganizationProjectsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -546,6 +556,11 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -574,11 +589,18 @@ final class OrganizationProjectsApi extends AbstractApi
      * @param  \Upsun\Model\StringFilter|null $filterId (optional)
      * @param  \Upsun\Model\StringFilter|null $filterTitle (optional)
      * @param  \Upsun\Model\StringFilter|null $filterStatus (optional)
-     * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt (optional)
-     * @param  \Upsun\Model\DateTimeFilter|null $filterCreatedAt (optional)
-     * @param  int|null $pageSize (optional)
-     * @param  string|null $pageBefore (optional)
-     * @param  string|null $pageAfter (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterCreatedAt
+     *         Allows filtering by `created_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
      * @param  string|null $sort (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -619,11 +641,18 @@ final class OrganizationProjectsApi extends AbstractApi
      * @param  \Upsun\Model\StringFilter|null $filterId (optional)
      * @param  \Upsun\Model\StringFilter|null $filterTitle (optional)
      * @param  \Upsun\Model\StringFilter|null $filterStatus (optional)
-     * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt (optional)
-     * @param  \Upsun\Model\DateTimeFilter|null $filterCreatedAt (optional)
-     * @param  int|null $pageSize (optional)
-     * @param  string|null $pageBefore (optional)
-     * @param  string|null $pageAfter (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterCreatedAt
+     *         Allows filtering by `created_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
      * @param  string|null $sort (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -689,11 +718,18 @@ final class OrganizationProjectsApi extends AbstractApi
      * @param  \Upsun\Model\StringFilter|null $filterId (optional)
      * @param  \Upsun\Model\StringFilter|null $filterTitle (optional)
      * @param  \Upsun\Model\StringFilter|null $filterStatus (optional)
-     * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt (optional)
-     * @param  \Upsun\Model\DateTimeFilter|null $filterCreatedAt (optional)
-     * @param  int|null $pageSize (optional)
-     * @param  string|null $pageBefore (optional)
-     * @param  string|null $pageAfter (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
+     *         Allows filtering by `updated_at` using one or more operators. (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterCreatedAt
+     *         Allows filtering by `created_at` using one or more operators. (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
      * @param  string|null $sort (optional)
      *
      * @throws InvalidArgumentException
@@ -894,6 +930,11 @@ final class OrganizationProjectsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1145,6 +1186,11 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -1330,6 +1376,11 @@ final class OrganizationProjectsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

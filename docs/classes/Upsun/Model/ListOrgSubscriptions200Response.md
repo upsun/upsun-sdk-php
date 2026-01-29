@@ -16,6 +16,14 @@ Low level ListOrgSubscriptions200Response (auto-generated)
 
 ## Properties
 
+### count
+
+```php
+private ?int $count
+```
+
+***
+
 ### items
 
 ```php
@@ -37,13 +45,14 @@ private ?\Upsun\Model\ListLinks $links
 ### __construct
 
 ```php
-public __construct(?array $items = [], ?\Upsun\Model\ListLinks $links = null): mixed
+public __construct(?int $count = null, ?array $items = [], ?\Upsun\Model\ListLinks $links = null): mixed
 ```
 
 **Parameters:**
 
 | Parameter | Type                        | Description |
 |-----------|-----------------------------|-------------|
+| `$count`  | **?int**                    |             |
 | `$items`  | **?array**                  |             |
 | `$links`  | **?\Upsun\Model\ListLinks** |             |
 
@@ -71,6 +80,14 @@ public jsonSerialize(): array
 
 ```php
 public __toString(): string
+```
+
+***
+
+### getCount
+
+```php
+public getCount(): ?int
 ```
 
 ***

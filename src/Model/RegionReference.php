@@ -24,14 +24,14 @@ final class RegionReference implements Model, JsonSerializable
         private readonly string $timezone,
         private readonly bool $available,
         private readonly string $endpoint,
-        private readonly object $provider,
-        private readonly object $datacenter,
-        private readonly object $compliance,
+        private readonly RegionProvider $provider,
+        private readonly RegionDataCenter $datacenter,
+        private readonly RegionCompliance $compliance,
         private readonly DateTime $createdAt,
         private readonly DateTime $updatedAt,
         private readonly ?bool $private = null,
-        private readonly ?string $code = null,
-        private readonly ?object $envimpact = null,
+        private readonly ?RegionEnvImpact $envimpact = null,
+        private readonly ?object $environmentalImpact = null,
     ) {
     }
 
@@ -57,8 +57,8 @@ final class RegionReference implements Model, JsonSerializable
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'private' => $this->private,
-            'code' => $this->code,
             'envimpact' => $this->envimpact,
+            'environmentalImpact' => $this->environmentalImpact,
         ];
     }
 
@@ -135,7 +135,7 @@ final class RegionReference implements Model, JsonSerializable
     /**
      * Information about the region provider.
      */
-    public function getProvider(): object
+    public function getProvider(): RegionProvider
     {
         return $this->provider;
     }
@@ -143,7 +143,7 @@ final class RegionReference implements Model, JsonSerializable
     /**
      * Information about the region provider data center.
      */
-    public function getDatacenter(): object
+    public function getDatacenter(): RegionDataCenter
     {
         return $this->datacenter;
     }
@@ -151,7 +151,7 @@ final class RegionReference implements Model, JsonSerializable
     /**
      * Information about the region's compliance.
      */
-    public function getCompliance(): object
+    public function getCompliance(): RegionCompliance
     {
         return $this->compliance;
     }
@@ -181,18 +181,18 @@ final class RegionReference implements Model, JsonSerializable
     }
 
     /**
-     * The code of the region
+     * Information about the region provider's environmental impact.
      */
-    public function getCode(): ?string
+    public function getEnvimpact(): ?RegionEnvImpact
     {
-        return $this->code;
+        return $this->envimpact;
     }
 
     /**
-     * Information about the region provider's environmental impact.
+     * Environmental impact information for the region.
      */
-    public function getEnvimpact(): ?object
+    public function getEnvironmentalImpact(): ?object
     {
-        return $this->envimpact;
+        return $this->environmentalImpact;
     }
 }

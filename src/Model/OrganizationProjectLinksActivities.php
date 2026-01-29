@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level OrganizationProjectLinksActivities (auto-generated)
- * Link to the project's activities.
+ * Link to the project's activities. Only present if user has view permission.
  *
  * @license   MIT
  * @see       https://docs.upsun.com

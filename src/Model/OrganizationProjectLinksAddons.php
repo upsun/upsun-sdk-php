@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level OrganizationProjectLinksAddons (auto-generated)
- * Link to the project's add-ons.
+ * Link to the project's add-ons. Only present if user has view permission.
  *
  * @license   MIT
  * @see       https://docs.upsun.com

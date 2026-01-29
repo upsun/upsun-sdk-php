@@ -97,6 +97,10 @@ final class ApiObjectTypesMapper
             'show_vat' => '?bool',
         ],
 
+        'Upsun\Model\AggregatedFeatures' => [
+            'backups' => '?object',
+        ],
+
         'Upsun\Model\Alert' => [
             'id' => '?string',
             'active' => '?bool',
@@ -398,6 +402,10 @@ final class ApiObjectTypesMapper
             'headers' => 'string[]',
         ],
 
+        'Upsun\Model\CanAffordSubscriptionRequest' => [
+            'resources' => 'mixed[]',
+        ],
+
         'Upsun\Model\CanCreateNewOrgSubscription200Response' => [
             'can_create' => '?bool',
             'message' => '?string',
@@ -586,8 +594,6 @@ final class ApiObjectTypesMapper
             'type' => '?\Upsun\Model\ProjectType',
             'plan' => '?string',
             'default_branch' => '?string',
-            'cse_notes' => '?string',
-            'dedicated_tag' => '?string',
         ],
 
         'Upsun\Model\CreateOrgRequest' => [
@@ -596,6 +602,7 @@ final class ApiObjectTypesMapper
             'owner_id' => '?string',
             'name' => '?string',
             'country' => '?string',
+            'security_contact' => '?string',
         ],
 
         'Upsun\Model\CreateOrgSubscriptionRequest' => [
@@ -706,15 +713,6 @@ final class ApiObjectTypesMapper
             'roles' => 'string[]',
             'picture' => '?string',
             'tickets' => '?object',
-            'trial' => '?bool',
-            'current_trial' => '\Upsun\Model\CurrentUserCurrentTrialInner[]',
-        ],
-
-        'Upsun\Model\CurrentUserCurrentTrialInner' => [
-            'created' => '?\DateTime',
-            'description' => '?string',
-            'spend_remaining' => '?string',
-            'expiration' => '?\DateTime',
         ],
 
         'Upsun\Model\CurrentUserProjectsInner' => [
@@ -1222,11 +1220,7 @@ final class ApiObjectTypesMapper
         ],
 
         'Upsun\Model\Error' => [
-            'status' => '?string',
-            'message' => '?string',
-            'code' => '?float',
-            'detail' => '?object',
-            'title' => '?string',
+            'error' => 'string',
         ],
 
         'Upsun\Model\EstimationObject' => [
@@ -1966,11 +1960,14 @@ final class ApiObjectTypesMapper
         ],
 
         'Upsun\Model\ListOrgProjects200Response' => [
+            'count' => '?int',
             'items' => '\Upsun\Model\OrganizationProject[]',
+            'facets' => '?\Upsun\Model\ProjectFacets',
             '_links' => '?\Upsun\Model\ListLinks',
         ],
 
         'Upsun\Model\ListOrgSubscriptions200Response' => [
+            'count' => '?int',
             'items' => '\Upsun\Model\Subscription[]',
             '_links' => '?\Upsun\Model\ListLinks',
         ],
@@ -2003,6 +2000,7 @@ final class ApiObjectTypesMapper
         ],
 
         'Upsun\Model\ListRegions200Response' => [
+            'count' => '?int',
             'regions' => '\Upsun\Model\Region[]',
             '_links' => '?\Upsun\Model\ListLinks',
         ],
@@ -2203,8 +2201,9 @@ final class ApiObjectTypesMapper
             'country' => '?string',
             'capabilities' => 'string[]',
             'vendor' => '?string',
-            'billing_account_id' => '?string',
+            'billing_profile_id' => '?string',
             'billing_legacy' => '?bool',
+            'security_contact' => '?string',
             'status' => '?string',
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
@@ -2486,11 +2485,10 @@ final class ApiObjectTypesMapper
             'status' => '?\Upsun\Model\ProjectStatus',
             'trial_plan' => '?bool',
             'project_ui' => '?string',
-            'locked' => '?bool',
-            'cse_notes' => '?string',
-            'dedicated_tag' => '?string',
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
+            'activities' => '\Upsun\Model\Activity[]',
+            'project_options' => '?\Upsun\Model\ProjectOptionsAggregated',
             '_links' => '?\Upsun\Model\OrganizationProjectLinks',
         ],
 
@@ -2498,13 +2496,17 @@ final class ApiObjectTypesMapper
             'project_id' => '?string',
             'project_title' => '?string',
             'values' => '\Upsun\Model\MetricsValue[]',
-            'total' => '?float',
         ],
 
         'Upsun\Model\OrganizationProjectLinks' => [
             'self' => '?\Upsun\Model\OrganizationProjectLinksSelf',
+            'api' => '?\Upsun\Model\OrganizationProjectLinksApi',
+            'subscription' => '?\Upsun\Model\OrganizationProjectLinksSubscription',
+            'view_usage_alerts' => '?\Upsun\Model\OrganizationProjectLinksViewUsageAlerts',
             'update' => '?\Upsun\Model\OrganizationProjectLinksUpdate',
+            'plan_uri' => '?\Upsun\Model\OrganizationProjectLinksPlanUri',
             'delete' => '?\Upsun\Model\OrganizationProjectLinksDelete',
+            'update_usage_alerts' => '?\Upsun\Model\OrganizationProjectLinksUpdateUsageAlerts',
             'activities' => '?\Upsun\Model\OrganizationProjectLinksActivities',
             'addons' => '?\Upsun\Model\OrganizationProjectLinksAddons',
         ],
@@ -2517,18 +2519,39 @@ final class ApiObjectTypesMapper
             'href' => '?string',
         ],
 
+        'Upsun\Model\OrganizationProjectLinksApi' => [
+            'href' => '?string',
+        ],
+
         'Upsun\Model\OrganizationProjectLinksDelete' => [
             'href' => '?string',
             'method' => '?string',
+        ],
+
+        'Upsun\Model\OrganizationProjectLinksPlanUri' => [
+            'href' => '?string',
         ],
 
         'Upsun\Model\OrganizationProjectLinksSelf' => [
             'href' => '?string',
         ],
 
+        'Upsun\Model\OrganizationProjectLinksSubscription' => [
+            'href' => '?string',
+        ],
+
         'Upsun\Model\OrganizationProjectLinksUpdate' => [
             'href' => '?string',
             'method' => '?string',
+        ],
+
+        'Upsun\Model\OrganizationProjectLinksUpdateUsageAlerts' => [
+            'href' => '?string',
+            'method' => '?string',
+        ],
+
+        'Upsun\Model\OrganizationProjectLinksViewUsageAlerts' => [
+            'href' => '?string',
         ],
 
         'Upsun\Model\OrganizationReference' => [
@@ -2705,58 +2728,8 @@ final class ApiObjectTypesMapper
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             'billing_contact' => '?string',
-            'security_contact' => '?string',
-            'current_trial' => '?\Upsun\Model\ProfileCurrentTrial',
             'invoiced' => '?bool',
-        ],
-
-        'Upsun\Model\ProfileCurrentTrial' => [
-            'active' => '?bool',
-            'created' => '?\DateTime',
-            'description' => '?string',
-            'expiration' => '?\DateTime',
-            'current' => '?\Upsun\Model\ProfileCurrentTrialCurrent',
-            'spend' => '?\Upsun\Model\ProfileCurrentTrialSpend',
-            'spend_remaining' => '?\Upsun\Model\ProfileCurrentTrialSpendRemaining',
-            'projects' => '?\Upsun\Model\ProfileCurrentTrialProjects',
-            'pending_verification' => '?string',
-            'model' => '?string',
-            'days_remaining' => '?int',
-        ],
-
-        'Upsun\Model\ProfileCurrentTrialCurrent' => [
-            'formatted' => '?string',
-            'amount' => '?string',
-            'currency' => '?string',
-            'currency_symbol' => '?string',
-        ],
-
-        'Upsun\Model\ProfileCurrentTrialProjects' => [
-            'id' => '?string',
-            'name' => '?string',
-            'total' => '?\Upsun\Model\ProfileCurrentTrialProjectsTotal',
-        ],
-
-        'Upsun\Model\ProfileCurrentTrialProjectsTotal' => [
-            'amount' => '?int',
-            'currency_code' => '?string',
-            'currency_symbol' => '?string',
-            'formatted' => '?string',
-        ],
-
-        'Upsun\Model\ProfileCurrentTrialSpend' => [
-            'formatted' => '?string',
-            'amount' => '?string',
-            'currency' => '?string',
-            'currency_symbol' => '?string',
-        ],
-
-        'Upsun\Model\ProfileCurrentTrialSpendRemaining' => [
-            'formatted' => '?string',
-            'amount' => '?string',
-            'currency' => '?string',
-            'currency_symbol' => '?string',
-            'unlimited' => '?bool',
+            'customer_type' => '?string',
         ],
 
         'Upsun\Model\Project' => [
@@ -2784,8 +2757,13 @@ final class ApiObjectTypesMapper
             'sku' => 'string',
             'quantity' => 'int',
             'project_id' => '?string',
+            'status' => '?string',
+            'title' => '?string',
+            'unit' => '?string',
+            'allowed_values' => '\Upsun\Model\ProjectAddonBaseAllowedValuesInner[]',
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
+            'activities' => '\Upsun\Model\Activity[]',
             '_links' => '?\Upsun\Model\ProjectAddonBaseLinks',
         ],
 
@@ -2793,9 +2771,17 @@ final class ApiObjectTypesMapper
             'id' => 'string',
             'type' => 'string',
             'project_id' => '?string',
+            'status' => '?string',
+            'title' => '?string',
+            'unit' => '?string',
+            'allowed_values' => '\Upsun\Model\ProjectAddonBaseAllowedValuesInner[]',
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
+            'activities' => '\Upsun\Model\Activity[]',
             '_links' => '?\Upsun\Model\ProjectAddonBaseLinks',
+        ],
+
+        'Upsun\Model\ProjectAddonBaseAllowedValuesInner' => [
         ],
 
         'Upsun\Model\ProjectAddonBaseLinks' => [
@@ -2850,6 +2836,10 @@ final class ApiObjectTypesMapper
             'total' => '?float',
         ],
 
+        'Upsun\Model\ProjectFacets' => [
+            'plans' => 'string[]',
+        ],
+
         'Upsun\Model\ProjectInfo' => [
             'title' => 'string',
             'name' => 'string',
@@ -2887,6 +2877,20 @@ final class ApiObjectTypesMapper
             'billing' => '?object',
         ],
 
+        'Upsun\Model\ProjectOptionsAggregated' => [
+            'billing' => '?object',
+            'defaults' => '?object',
+            'enforced' => '?object',
+            'initialize' => '?object',
+            'plans' => 'string[]',
+            'regions' => 'string[]',
+            'plan_titles' => 'string[]',
+            'sellables' => 'object[]',
+            'features' => '?\Upsun\Model\AggregatedFeatures',
+            'container_sizes' => 'string[]',
+            'debug' => '?object',
+        ],
+
         'Upsun\Model\ProjectOptionsDefaults' => [
             'settings' => '?object',
             'variables' => '?object',
@@ -2920,6 +2924,7 @@ final class ApiObjectTypesMapper
             'status' => '\Upsun\Model\ProjectStatus',
             'created_at' => '\DateTime',
             'updated_at' => '\DateTime',
+            'invoiced' => '?bool',
         ],
 
         'Upsun\Model\ProjectSettings' => [
@@ -3100,10 +3105,27 @@ final class ApiObjectTypesMapper
             'environmental_impact' => '?\Upsun\Model\RegionEnvironmentalImpact',
         ],
 
+        'Upsun\Model\RegionCompliance' => [
+            'hipaa' => '?bool',
+        ],
+
+        'Upsun\Model\RegionDataCenter' => [
+            'name' => '?string',
+            'label' => '?string',
+            'location' => '?string',
+        ],
+
         'Upsun\Model\RegionDatacenter' => [
             'name' => '?string',
             'label' => '?string',
             'location' => '?string',
+        ],
+
+        'Upsun\Model\RegionEnvImpact' => [
+            'zone' => '?string',
+            'carbon_intensity' => '?float',
+            'carbon_intensity_source' => '?string',
+            'green' => '?bool',
         ],
 
         'Upsun\Model\RegionEnvironmentalImpact' => [
@@ -3126,14 +3148,14 @@ final class ApiObjectTypesMapper
             'timezone' => 'string',
             'available' => 'bool',
             'endpoint' => 'string',
-            'provider' => 'object',
-            'datacenter' => 'object',
-            'compliance' => 'object',
+            'provider' => '\Upsun\Model\RegionProvider',
+            'datacenter' => '\Upsun\Model\RegionDataCenter',
+            'compliance' => '\Upsun\Model\RegionCompliance',
             'created_at' => '\DateTime',
             'updated_at' => '\DateTime',
             'private' => '?bool',
-            'code' => '?string',
-            'envimpact' => '?object',
+            'envimpact' => '?\Upsun\Model\RegionEnvImpact',
+            'environmental_impact' => '?object',
         ],
 
         'Upsun\Model\ReplacementDomainStorage' => [
@@ -3809,8 +3831,8 @@ final class ApiObjectTypesMapper
         'Upsun\Model\UpdateOrgProfileRequest' => [
             'default_catalog' => '?string',
             'project_options_url' => '?string',
-            'security_contact' => '?string',
             'company_name' => '?string',
+            'customer_type' => '?string',
             'vat_number' => '?string',
             'billing_contact' => '?string',
         ],
@@ -3819,14 +3841,13 @@ final class ApiObjectTypesMapper
             'title' => '?string',
             'plan' => '?string',
             'timezone' => '?string',
-            'cse_notes' => '?string',
-            'dedicated_tag' => '?string',
         ],
 
         'Upsun\Model\UpdateOrgRequest' => [
             'name' => '?string',
             'label' => '?string',
             'country' => '?string',
+            'security_contact' => '?string',
         ],
 
         'Upsun\Model\UpdateOrgSubscriptionRequest' => [

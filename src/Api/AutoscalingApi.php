@@ -51,6 +51,8 @@ final class AutoscalingApi extends AbstractApi
     /**
      * Retrieves Autoscaler settings
      *
+     * Retrieves Autoscaler settings
+     *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
      *
@@ -69,6 +71,7 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
+     * Retrieves Autoscaler settings with HTTP Info
      *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
@@ -195,6 +198,11 @@ final class AutoscalingApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -214,6 +222,8 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
+     * Modifies Autoscaler settings
+     *
      * Modifies Autoscaler settings
      *
      * @param  string $projectId (required)
@@ -237,6 +247,7 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
+     * Modifies Autoscaler settings with HTTP Info
      *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
@@ -376,6 +387,11 @@ final class AutoscalingApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -395,6 +411,8 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
+     * Updates Autoscaler settings
+     *
      * Updates Autoscaler settings
      *
      * @param  string $projectId (required)
@@ -418,6 +436,7 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
+     * Updates Autoscaler settings with HTTP Info
      *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
@@ -555,6 +574,11 @@ final class AutoscalingApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

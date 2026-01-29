@@ -51,6 +51,78 @@ public __construct(\Upsun\Core\OAuthProvider $oauthProvider, ?\Psr\Http\Client\C
 
 ***
 
+### canAffordSubscription
+
+Checks if the user can afford the requested resources.
+
+```php
+public canAffordSubscription(string $subscriptionId, ?\Upsun\Model\CanAffordSubscriptionRequest $canAffordSubscriptionRequest = null): void
+```
+
+**Parameters:**
+
+| Parameter                       | Type                                           | Description                           |
+|---------------------------------|------------------------------------------------|---------------------------------------|
+| `$subscriptionId`               | **string**                                     | The ID of the subscription (required) |
+| `$canAffordSubscriptionRequest` | **?\Upsun\Model\CanAffordSubscriptionRequest** |                                       |
+
+**Throws:**
+
+- [`ApiException`](./ApiException.md) on non-2xx response or if the response body is not in the expected format
+- [`ClientExceptionInterface`](https://www.php-fig.org/psr/psr-18/#clientexceptioninterface) 
+
+
+**See Also:**
+
+* https://docs.upsun.com/api/#tag/Subscriptions/operation/can-afford-subscription
+
+***
+
+### canAffordSubscriptionWithHttpInfo
+
+Checks if the user can afford the requested resources. with HTTP Info
+
+```php
+private canAffordSubscriptionWithHttpInfo(string $subscriptionId, ?\Upsun\Model\CanAffordSubscriptionRequest $canAffordSubscriptionRequest = null): void
+```
+
+**Parameters:**
+
+| Parameter                       | Type                                           | Description                           |
+|---------------------------------|------------------------------------------------|---------------------------------------|
+| `$subscriptionId`               | **string**                                     | The ID of the subscription (required) |
+| `$canAffordSubscriptionRequest` | **?\Upsun\Model\CanAffordSubscriptionRequest** |                                       |
+
+**Throws:**
+
+- [`ApiException`](./ApiException.md) on non-2xx response or if the response body is not in the expected format
+- [`ClientExceptionInterface`](https://www.php-fig.org/psr/psr-18/#clientexceptioninterface) 
+
+
+***
+
+### canAffordSubscriptionRequest
+
+Create request for operation 'canAffordSubscription'
+
+```php
+private canAffordSubscriptionRequest(string $subscriptionId, ?\Upsun\Model\CanAffordSubscriptionRequest $canAffordSubscriptionRequest = null): \Psr\Http\Message\RequestInterface
+```
+
+**Parameters:**
+
+| Parameter                       | Type                                           | Description                           |
+|---------------------------------|------------------------------------------------|---------------------------------------|
+| `$subscriptionId`               | **string**                                     | The ID of the subscription (required) |
+| `$canAffordSubscriptionRequest` | **?\Upsun\Model\CanAffordSubscriptionRequest** |                                       |
+
+**Throws:**
+
+- [`InvalidArgumentException`](https://www.php.net/manual/en/class.invalidargumentexception.php) 
+
+
+***
+
 ### canCreateNewOrgSubscription
 
 Checks if the user is able to create a new project.
@@ -757,30 +829,28 @@ name instead. (required) |
 List subscriptions
 
 ```php
-public listOrgSubscriptions(string $organizationId, string|null $filterStatus = null, string|null $filterId = null, \Upsun\Model\StringFilter|null $filterProjectId = null, \Upsun\Model\StringFilter|null $filterProjectTitle = null, \Upsun\Model\StringFilter|null $filterRegion = null, \Upsun\Model\DateTimeFilter|null $filterUpdatedAt = null, int|null $pageSize = null, string|null $pageBefore = null, string|null $pageAfter = null, string|null $sort = null): \Upsun\Model\ListOrgSubscriptions200Response
+public listOrgSubscriptions(string $organizationId, string|null $filterStatus = null, \Upsun\Model\StringFilter|null $filterId = null, \Upsun\Model\StringFilter|null $filterProjectId = null, \Upsun\Model\StringFilter|null $filterProjectTitle = null, \Upsun\Model\StringFilter|null $filterRegion = null, \Upsun\Model\DateTimeFilter|null $filterUpdatedAt = null, int|null $pageSize = null, string|null $pageBefore = null, string|null $pageAfter = null, string|null $sort = null): \Upsun\Model\ListOrgSubscriptions200Response
 ```
 
 Retrieves subscriptions for the specified organization.
 
 **Parameters:**
 
-| Parameter             | Type                                  | Description                                                                                                                                                                          |
-|-----------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                                               |
-| `$filterStatus`       | **string\|null**                      | The status of the subscription. (optional)                                                                                                                                           |
-| `$filterId`           | **string\|null**                      | Machine name of the region. (optional)                                                                                                                                               |
-| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_id` using one or more operators. (optional)                                                                                                             |
-| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_title` using one or more operators. (optional)                                                                                                          |
-| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `region` using one or more operators. (optional)                                                                                                                 |
-| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                                             |
-| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                                                   |
+| Parameter             | Type                                  | Description                                                                                                                                             |
+|-----------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                  |
+| `$filterStatus`       | **string\|null**                      | (optional)                                                                                                                                              |
+| `$filterId`           | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
+| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
 | `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
-HAL links (_links); it should not be constructed externally. (optional)                              |
+HAL links (_links); it should not be constructed externally. (optional) |
 | `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
-HAL links (_links); it should not be constructed externally. (optional)                              |
-| `$sort`               | **string\|null**                      | Allows sorting by a single field. Use a dash ("-") to sort descending. Supported
-fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`,
-`updated_at`. (optional) |
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`               | **string\|null**                      | (optional)                                                                                                                                              |
 
 **Throws:**
 
@@ -799,28 +869,26 @@ fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`,
 List subscriptions with HTTP Info
 
 ```php
-private listOrgSubscriptionsWithHttpInfo(string $organizationId, string|null $filterStatus = null, string|null $filterId = null, \Upsun\Model\StringFilter|null $filterProjectId = null, \Upsun\Model\StringFilter|null $filterProjectTitle = null, \Upsun\Model\StringFilter|null $filterRegion = null, \Upsun\Model\DateTimeFilter|null $filterUpdatedAt = null, int|null $pageSize = null, string|null $pageBefore = null, string|null $pageAfter = null, string|null $sort = null): \Upsun\Model\ListOrgSubscriptions200Response
+private listOrgSubscriptionsWithHttpInfo(string $organizationId, string|null $filterStatus = null, \Upsun\Model\StringFilter|null $filterId = null, \Upsun\Model\StringFilter|null $filterProjectId = null, \Upsun\Model\StringFilter|null $filterProjectTitle = null, \Upsun\Model\StringFilter|null $filterRegion = null, \Upsun\Model\DateTimeFilter|null $filterUpdatedAt = null, int|null $pageSize = null, string|null $pageBefore = null, string|null $pageAfter = null, string|null $sort = null): \Upsun\Model\ListOrgSubscriptions200Response
 ```
 
 **Parameters:**
 
-| Parameter             | Type                                  | Description                                                                                                                                                                          |
-|-----------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                                               |
-| `$filterStatus`       | **string\|null**                      | The status of the subscription. (optional)                                                                                                                                           |
-| `$filterId`           | **string\|null**                      | Machine name of the region. (optional)                                                                                                                                               |
-| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_id` using one or more operators. (optional)                                                                                                             |
-| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_title` using one or more operators. (optional)                                                                                                          |
-| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `region` using one or more operators. (optional)                                                                                                                 |
-| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                                             |
-| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                                                   |
+| Parameter             | Type                                  | Description                                                                                                                                             |
+|-----------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                  |
+| `$filterStatus`       | **string\|null**                      | (optional)                                                                                                                                              |
+| `$filterId`           | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
+| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
 | `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
-HAL links (_links); it should not be constructed externally. (optional)                              |
+HAL links (_links); it should not be constructed externally. (optional) |
 | `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
-HAL links (_links); it should not be constructed externally. (optional)                              |
-| `$sort`               | **string\|null**                      | Allows sorting by a single field. Use a dash ("-") to sort descending. Supported
-fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`,
-`updated_at`. (optional) |
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`               | **string\|null**                      | (optional)                                                                                                                                              |
 
 **Throws:**
 
@@ -835,28 +903,26 @@ fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`,
 Create request for operation 'listOrgSubscriptions'
 
 ```php
-private listOrgSubscriptionsRequest(string $organizationId, string|null $filterStatus = null, string|null $filterId = null, \Upsun\Model\StringFilter|null $filterProjectId = null, \Upsun\Model\StringFilter|null $filterProjectTitle = null, \Upsun\Model\StringFilter|null $filterRegion = null, \Upsun\Model\DateTimeFilter|null $filterUpdatedAt = null, int|null $pageSize = null, string|null $pageBefore = null, string|null $pageAfter = null, string|null $sort = null): \Psr\Http\Message\RequestInterface
+private listOrgSubscriptionsRequest(string $organizationId, string|null $filterStatus = null, \Upsun\Model\StringFilter|null $filterId = null, \Upsun\Model\StringFilter|null $filterProjectId = null, \Upsun\Model\StringFilter|null $filterProjectTitle = null, \Upsun\Model\StringFilter|null $filterRegion = null, \Upsun\Model\DateTimeFilter|null $filterUpdatedAt = null, int|null $pageSize = null, string|null $pageBefore = null, string|null $pageAfter = null, string|null $sort = null): \Psr\Http\Message\RequestInterface
 ```
 
 **Parameters:**
 
-| Parameter             | Type                                  | Description                                                                                                                                                                          |
-|-----------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                                               |
-| `$filterStatus`       | **string\|null**                      | The status of the subscription. (optional)                                                                                                                                           |
-| `$filterId`           | **string\|null**                      | Machine name of the region. (optional)                                                                                                                                               |
-| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_id` using one or more operators. (optional)                                                                                                             |
-| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `project_title` using one or more operators. (optional)                                                                                                          |
-| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | Allows filtering by `region` using one or more operators. (optional)                                                                                                                 |
-| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                                             |
-| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                                                   |
+| Parameter             | Type                                  | Description                                                                                                                                             |
+|-----------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `$organizationId`     | **string**                            | The ID of the organization. (required)                                                                                                                  |
+| `$filterStatus`       | **string\|null**                      | (optional)                                                                                                                                              |
+| `$filterId`           | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterProjectId`    | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterProjectTitle` | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterRegion`       | **\Upsun\Model\StringFilter\|null**   | (optional)                                                                                                                                              |
+| `$filterUpdatedAt`    | **\Upsun\Model\DateTimeFilter\|null** | Allows filtering by `updated_at` using one or more operators. (optional)                                                                                |
+| `$pageSize`           | **int\|null**                         | Determines the number of items to show. (optional)                                                                                                      |
 | `$pageBefore`         | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
-HAL links (_links); it should not be constructed externally. (optional)                              |
+HAL links (_links); it should not be constructed externally. (optional) |
 | `$pageAfter`          | **string\|null**                      | Pagination cursor. This is automatically generated as necessary and provided in
-HAL links (_links); it should not be constructed externally. (optional)                              |
-| `$sort`               | **string\|null**                      | Allows sorting by a single field. Use a dash ("-") to sort descending. Supported
-fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`,
-`updated_at`. (optional) |
+HAL links (_links); it should not be constructed externally. (optional) |
+| `$sort`               | **string\|null**                      | (optional)                                                                                                                                              |
 
 **Throws:**
 

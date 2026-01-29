@@ -99,6 +99,10 @@ final class ApiObjectFormatsMapper
             'showVat' => null
         ],
 
+        'Upsun\Model\AggregatedFeatures' => [
+            'backups' => null
+        ],
+
         'Upsun\Model\Alert' => [
             'id' => null,
             'active' => null,
@@ -400,6 +404,10 @@ final class ApiObjectFormatsMapper
             'headers' => null
         ],
 
+        'Upsun\Model\CanAffordSubscriptionRequest' => [
+            'resources' => null
+        ],
+
         'Upsun\Model\CanCreateNewOrgSubscription200Response' => [
             'canCreate' => null,
             'message' => null,
@@ -587,9 +595,7 @@ final class ApiObjectFormatsMapper
             'title' => null,
             'type' => null,
             'plan' => null,
-            'defaultBranch' => null,
-            'cseNotes' => null,
-            'dedicatedTag' => null
+            'defaultBranch' => null
         ],
 
         'Upsun\Model\CreateOrgRequest' => [
@@ -597,7 +603,8 @@ final class ApiObjectFormatsMapper
             'type' => null,
             'ownerId' => 'uuid',
             'name' => null,
-            'country' => null
+            'country' => null,
+            'securityContact' => 'email'
         ],
 
         'Upsun\Model\CreateOrgSubscriptionRequest' => [
@@ -707,16 +714,7 @@ final class ApiObjectFormatsMapper
             'sequence' => null,
             'roles' => null,
             'picture' => 'url',
-            'tickets' => null,
-            'trial' => null,
-            'currentTrial' => null
-        ],
-
-        'Upsun\Model\CurrentUserCurrentTrialInner' => [
-            'created' => 'date-time',
-            'description' => null,
-            'spendRemaining' => null,
-            'expiration' => 'date-time'
+            'tickets' => null
         ],
 
         'Upsun\Model\CurrentUserProjectsInner' => [
@@ -1224,11 +1222,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\Error' => [
-            'status' => null,
-            'message' => null,
-            'code' => null,
-            'detail' => null,
-            'title' => null
+            'error' => null
         ],
 
         'Upsun\Model\EstimationObject' => [
@@ -1968,11 +1962,14 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ListOrgProjects200Response' => [
+            'count' => null,
             'items' => null,
+            'facets' => null,
             'links' => null
         ],
 
         'Upsun\Model\ListOrgSubscriptions200Response' => [
+            'count' => null,
             'items' => null,
             'links' => null
         ],
@@ -2005,6 +2002,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ListRegions200Response' => [
+            'count' => null,
             'regions' => null,
             'links' => null
         ],
@@ -2205,8 +2203,9 @@ final class ApiObjectFormatsMapper
             'country' => null,
             'capabilities' => null,
             'vendor' => null,
-            'billingAccountId' => null,
+            'billingProfileId' => null,
             'billingLegacy' => null,
+            'securityContact' => 'email',
             'status' => null,
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
@@ -2488,25 +2487,28 @@ final class ApiObjectFormatsMapper
             'status' => null,
             'trialPlan' => null,
             'projectUi' => null,
-            'locked' => null,
-            'cseNotes' => null,
-            'dedicatedTag' => null,
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
+            'activities' => null,
+            'projectOptions' => null,
             'links' => null
         ],
 
         'Upsun\Model\OrganizationProjectCarbon' => [
             'projectId' => null,
             'projectTitle' => null,
-            'values' => null,
-            'total' => null
+            'values' => null
         ],
 
         'Upsun\Model\OrganizationProjectLinks' => [
             'self' => null,
+            'api' => null,
+            'subscription' => null,
+            'viewUsageAlerts' => null,
             'update' => null,
+            'planUri' => null,
             'delete' => null,
+            'updateUsageAlerts' => null,
             'activities' => null,
             'addons' => null
         ],
@@ -2519,18 +2521,39 @@ final class ApiObjectFormatsMapper
             'href' => null
         ],
 
+        'Upsun\Model\OrganizationProjectLinksApi' => [
+            'href' => null
+        ],
+
         'Upsun\Model\OrganizationProjectLinksDelete' => [
             'href' => null,
             'method' => null
+        ],
+
+        'Upsun\Model\OrganizationProjectLinksPlanUri' => [
+            'href' => null
         ],
 
         'Upsun\Model\OrganizationProjectLinksSelf' => [
             'href' => null
         ],
 
+        'Upsun\Model\OrganizationProjectLinksSubscription' => [
+            'href' => null
+        ],
+
         'Upsun\Model\OrganizationProjectLinksUpdate' => [
             'href' => null,
             'method' => null
+        ],
+
+        'Upsun\Model\OrganizationProjectLinksUpdateUsageAlerts' => [
+            'href' => null,
+            'method' => null
+        ],
+
+        'Upsun\Model\OrganizationProjectLinksViewUsageAlerts' => [
+            'href' => null
         ],
 
         'Upsun\Model\OrganizationReference' => [
@@ -2707,58 +2730,8 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'billingContact' => 'email',
-            'securityContact' => 'email',
-            'currentTrial' => null,
-            'invoiced' => null
-        ],
-
-        'Upsun\Model\ProfileCurrentTrial' => [
-            'active' => null,
-            'created' => 'date-time',
-            'description' => null,
-            'expiration' => 'date-time',
-            'current' => null,
-            'spend' => null,
-            'spendRemaining' => null,
-            'projects' => null,
-            'pendingVerification' => null,
-            'model' => null,
-            'daysRemaining' => null
-        ],
-
-        'Upsun\Model\ProfileCurrentTrialCurrent' => [
-            'formatted' => null,
-            'amount' => null,
-            'currency' => null,
-            'currencySymbol' => null
-        ],
-
-        'Upsun\Model\ProfileCurrentTrialProjects' => [
-            'id' => null,
-            'name' => null,
-            'total' => null
-        ],
-
-        'Upsun\Model\ProfileCurrentTrialProjectsTotal' => [
-            'amount' => null,
-            'currencyCode' => null,
-            'currencySymbol' => null,
-            'formatted' => null
-        ],
-
-        'Upsun\Model\ProfileCurrentTrialSpend' => [
-            'formatted' => null,
-            'amount' => null,
-            'currency' => null,
-            'currencySymbol' => null
-        ],
-
-        'Upsun\Model\ProfileCurrentTrialSpendRemaining' => [
-            'formatted' => null,
-            'amount' => null,
-            'currency' => null,
-            'currencySymbol' => null,
-            'unlimited' => null
+            'invoiced' => null,
+            'customerType' => null
         ],
 
         'Upsun\Model\Project' => [
@@ -2786,8 +2759,13 @@ final class ApiObjectFormatsMapper
             'sku' => null,
             'quantity' => null,
             'projectId' => null,
+            'status' => null,
+            'title' => null,
+            'unit' => null,
+            'allowedValues' => null,
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
+            'activities' => null,
             'links' => null
         ],
 
@@ -2795,9 +2773,17 @@ final class ApiObjectFormatsMapper
             'id' => null,
             'type' => null,
             'projectId' => null,
+            'status' => null,
+            'title' => null,
+            'unit' => null,
+            'allowedValues' => null,
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
+            'activities' => null,
             'links' => null
+        ],
+
+        'Upsun\Model\ProjectAddonBaseAllowedValuesInner' => [
         ],
 
         'Upsun\Model\ProjectAddonBaseLinks' => [
@@ -2852,6 +2838,10 @@ final class ApiObjectFormatsMapper
             'total' => null
         ],
 
+        'Upsun\Model\ProjectFacets' => [
+            'plans' => null
+        ],
+
         'Upsun\Model\ProjectInfo' => [
             'title' => null,
             'name' => null,
@@ -2889,6 +2879,20 @@ final class ApiObjectFormatsMapper
             'billing' => null
         ],
 
+        'Upsun\Model\ProjectOptionsAggregated' => [
+            'billing' => null,
+            'defaults' => null,
+            'enforced' => null,
+            'initialize' => null,
+            'plans' => null,
+            'regions' => null,
+            'planTitles' => null,
+            'sellables' => null,
+            'features' => null,
+            'containerSizes' => null,
+            'debug' => null
+        ],
+
         'Upsun\Model\ProjectOptionsDefaults' => [
             'settings' => null,
             'variables' => null,
@@ -2921,7 +2925,8 @@ final class ApiObjectFormatsMapper
             'plan' => null,
             'status' => null,
             'createdAt' => 'date-time',
-            'updatedAt' => 'date-time'
+            'updatedAt' => 'date-time',
+            'invoiced' => null
         ],
 
         'Upsun\Model\ProjectSettings' => [
@@ -3102,10 +3107,27 @@ final class ApiObjectFormatsMapper
             'environmentalImpact' => null
         ],
 
+        'Upsun\Model\RegionCompliance' => [
+            'hipaa' => null
+        ],
+
+        'Upsun\Model\RegionDataCenter' => [
+            'name' => null,
+            'label' => null,
+            'location' => null
+        ],
+
         'Upsun\Model\RegionDatacenter' => [
             'name' => null,
             'label' => null,
             'location' => null
+        ],
+
+        'Upsun\Model\RegionEnvImpact' => [
+            'zone' => null,
+            'carbonIntensity' => null,
+            'carbonIntensitySource' => null,
+            'green' => null
         ],
 
         'Upsun\Model\RegionEnvironmentalImpact' => [
@@ -3134,8 +3156,8 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'private' => null,
-            'code' => null,
-            'envimpact' => null
+            'envimpact' => null,
+            'environmentalImpact' => null
         ],
 
         'Upsun\Model\ReplacementDomainStorage' => [
@@ -3811,8 +3833,8 @@ final class ApiObjectFormatsMapper
         'Upsun\Model\UpdateOrgProfileRequest' => [
             'defaultCatalog' => null,
             'projectOptionsUrl' => 'uri',
-            'securityContact' => 'email',
             'companyName' => null,
+            'customerType' => null,
             'vatNumber' => null,
             'billingContact' => 'email'
         ],
@@ -3820,15 +3842,14 @@ final class ApiObjectFormatsMapper
         'Upsun\Model\UpdateOrgProjectRequest' => [
             'title' => null,
             'plan' => null,
-            'timezone' => null,
-            'cseNotes' => null,
-            'dedicatedTag' => null
+            'timezone' => null
         ],
 
         'Upsun\Model\UpdateOrgRequest' => [
             'name' => null,
             'label' => null,
-            'country' => null
+            'country' => null,
+            'securityContact' => 'email'
         ],
 
         'Upsun\Model\UpdateOrgSubscriptionRequest' => [

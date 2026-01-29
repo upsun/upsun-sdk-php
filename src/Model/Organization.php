@@ -24,8 +24,9 @@ final class Organization implements Model, JsonSerializable
         private readonly ?string $country = null,
         private readonly ?array $capabilities = [],
         private readonly ?string $vendor = null,
-        private readonly ?string $billingAccountId = null,
+        private readonly ?string $billingProfileId = null,
         private readonly ?bool $billingLegacy = null,
+        private readonly ?string $securityContact = null,
         private readonly ?string $status = null,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
@@ -50,8 +51,9 @@ final class Organization implements Model, JsonSerializable
             'country' => $this->country,
             'capabilities' => $this->capabilities,
             'vendor' => $this->vendor,
-            'billingAccountId' => $this->billingAccountId,
+            'billingProfileId' => $this->billingProfileId,
             'billingLegacy' => $this->billingLegacy,
+            'securityContact' => $this->securityContact,
             'status' => $this->status,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
@@ -134,11 +136,11 @@ final class Organization implements Model, JsonSerializable
     }
 
     /**
-     * The Billing Account ID.
+     * The Billing Profile ID.
      */
-    public function getBillingAccountId(): ?string
+    public function getBillingProfileId(): ?string
     {
-        return $this->billingAccountId;
+        return $this->billingProfileId;
     }
 
     /**
@@ -147,6 +149,14 @@ final class Organization implements Model, JsonSerializable
     public function getBillingLegacy(): ?bool
     {
         return $this->billingLegacy;
+    }
+
+    /**
+     * The security contact email address for the organization.
+     */
+    public function getSecurityContact(): ?string
+    {
+        return $this->securityContact;
     }
 
     /**

@@ -180,6 +180,11 @@ final class RegionsApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -206,9 +211,14 @@ final class RegionsApi extends AbstractApi
      * @param  \Upsun\Model\StringFilter|null $filterAvailable (optional)
      * @param  \Upsun\Model\StringFilter|null $filterPrivate (optional)
      * @param  \Upsun\Model\StringFilter|null $filterZone (optional)
-     * @param  int|null $pageSize (optional)
-     * @param  string|null $pageBefore (optional)
-     * @param  string|null $pageAfter (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
      * @param  string|null $sort (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -241,9 +251,14 @@ final class RegionsApi extends AbstractApi
      * @param  \Upsun\Model\StringFilter|null $filterAvailable (optional)
      * @param  \Upsun\Model\StringFilter|null $filterPrivate (optional)
      * @param  \Upsun\Model\StringFilter|null $filterZone (optional)
-     * @param  int|null $pageSize (optional)
-     * @param  string|null $pageBefore (optional)
-     * @param  string|null $pageAfter (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
      * @param  string|null $sort (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -301,9 +316,14 @@ final class RegionsApi extends AbstractApi
      * @param  \Upsun\Model\StringFilter|null $filterAvailable (optional)
      * @param  \Upsun\Model\StringFilter|null $filterPrivate (optional)
      * @param  \Upsun\Model\StringFilter|null $filterZone (optional)
-     * @param  int|null $pageSize (optional)
-     * @param  string|null $pageBefore (optional)
-     * @param  string|null $pageAfter (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
      * @param  string|null $sort (optional)
      *
      * @throws InvalidArgumentException
@@ -457,6 +477,11 @@ final class RegionsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

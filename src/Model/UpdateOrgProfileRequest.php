@@ -16,8 +16,8 @@ final class UpdateOrgProfileRequest implements Model, JsonSerializable
     public function __construct(
         private readonly ?string $defaultCatalog = null,
         private readonly ?string $projectOptionsUrl = null,
-        private readonly ?string $securityContact = null,
         private readonly ?string $companyName = null,
+        private readonly ?string $customerType = null,
         private readonly ?string $vatNumber = null,
         private readonly ?string $billingContact = null,
     ) {
@@ -33,8 +33,8 @@ final class UpdateOrgProfileRequest implements Model, JsonSerializable
         return [
             'defaultCatalog' => $this->defaultCatalog,
             'projectOptionsUrl' => $this->projectOptionsUrl,
-            'securityContact' => $this->securityContact,
             'companyName' => $this->companyName,
+            'customerType' => $this->customerType,
             'vatNumber' => $this->vatNumber,
             'billingContact' => $this->billingContact,
         ];
@@ -55,14 +55,14 @@ final class UpdateOrgProfileRequest implements Model, JsonSerializable
         return $this->projectOptionsUrl;
     }
 
-    public function getSecurityContact(): ?string
-    {
-        return $this->securityContact;
-    }
-
     public function getCompanyName(): ?string
     {
         return $this->companyName;
+    }
+
+    public function getCustomerType(): ?string
+    {
+        return $this->customerType;
     }
 
     public function getVatNumber(): ?string
