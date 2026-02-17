@@ -47,3 +47,5 @@ final class DataRetentionConfigurationValue1 implements Model, JsonSerializable
         return $this->maxBackups;
     }
 }
+
+

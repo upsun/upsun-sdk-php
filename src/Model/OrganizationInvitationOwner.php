@@ -38,19 +38,21 @@ final class OrganizationInvitationOwner implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the user.
-     */
+   /**
+    * The ID of the user.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The user's display name.
-     */
+   /**
+    * The user's display name.
+    */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 }
+
+

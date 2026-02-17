@@ -65,9 +65,9 @@ final class HttpLogIntegrationCreateInput implements Model, JsonSerializable
         return $this->headers;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
@@ -78,3 +78,5 @@ final class HttpLogIntegrationCreateInput implements Model, JsonSerializable
         return $this->excludedServices;
     }
 }
+
+

@@ -4,11 +4,13 @@ namespace Upsun\Core\Tasks;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
+use Upsun\Api\AutoscalingApi;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
+use Upsun\Model\AutoscalerSettings;
 use Upsun\Model\Backup;
 use Upsun\Model\Deployment;
 use Upsun\Model\Domain;
@@ -21,18 +23,15 @@ use Upsun\Model\EnvironmentPatch;
 use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Model\EnvironmentSynchronizeInput;
 use Upsun\Model\EnvironmentType;
+use Upsun\Model\EnvironmentTypeEnum;
 use Upsun\Model\EnvironmentVariable;
-use Upsun\Model\HttpAccessPermissions1;
+use Upsun\Model\HttpAccessPermissions2;
 use Upsun\Model\ProjectVariable;
 use Upsun\Model\Resources2;
 use Upsun\Model\Resources3;
 use Upsun\Model\Resources4;
 use Upsun\Model\Resources5;
 use Upsun\Model\Route;
-use Upsun\Model\Routing1;
-use Upsun\Model\Version;
-use Upsun\Model\VersionCreateInput;
-use Upsun\Model\VersionPatch;
 use Upsun\UpsunClient;
 
 /**
@@ -49,6 +48,7 @@ class EnvironmentsTask extends TaskBase
         private readonly EnvironmentApi $api,
         private readonly EnvironmentTypeApi $typeApi,
         private readonly DeploymentApi $deploymentApi,
+        private readonly AutoscalingApi $autoscalingApi,
     ) {
         parent::__construct($client);
     }
@@ -62,15 +62,14 @@ class EnvironmentsTask extends TaskBase
     public function activate(
         string $projectId,
         string $environmentId,
-        string $init
+        ?string $init = null
     ): AcceptedResponse {
-        $environmentActivateInput = new EnvironmentActivateInput(
-            new Resources2(init: $init)
-        );
         return $this->api->activateEnvironment(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            environmentActivateInput: $environmentActivateInput
+            $projectId,
+            $environmentId,
+            new EnvironmentActivateInput(
+                resources: new Resources2($init)
+            )
         );
     }
 
@@ -85,42 +84,20 @@ class EnvironmentsTask extends TaskBase
         string $environmentId,
         string $title,
         string $name,
-        bool $cloneParent,
-        string $type,
+        bool $cloneParent = true,
+        string $type = EnvironmentTypeEnum::DEVELOPMENT,
         ?string $init = null,
     ): AcceptedResponse {
-        $environmentBranchInput = new EnvironmentBranchInput(
-            title: $title,
-            name: $name,
-            cloneParent: $cloneParent,
-            type: $type,
-            resources: new Resources3($init),
-        );
         return $this->api->branchEnvironment(
             projectId: $projectId,
             environmentId: $environmentId,
-            environmentBranchInput: $environmentBranchInput
-        );
-    }
-
-    /**
-     * Creates versions associated with the environment
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     */
-    public function createVersions(
-        string $projectId,
-        string $environmentId,
-        ?int $percentage = null
-    ): AcceptedResponse {
-        $versionCreateInput = new VersionCreateInput(
-            new Routing1(percentage: $percentage)
-        );
-        return $this->api->createProjectsEnvironmentsVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionCreateInput: $versionCreateInput
+            environmentBranchInput: new EnvironmentBranchInput(
+                title: $title,
+                name: $name,
+                cloneParent: $cloneParent,
+                type: $type,
+                resources: new Resources3(init: $init),
+            )
         );
     }
 
@@ -133,8 +110,8 @@ class EnvironmentsTask extends TaskBase
     public function deactivate(string $projectId, string $environmentId): AcceptedResponse
     {
         return $this->api->deactivateEnvironment(
-            projectId: $projectId,
-            environmentId: $environmentId
+            $projectId,
+            $environmentId
         );
     }
 
@@ -147,25 +124,12 @@ class EnvironmentsTask extends TaskBase
     public function delete(string $projectId, string $environmentId): AcceptedResponse
     {
         return $this->api->deleteEnvironment(
-            projectId: $projectId,
-            environmentId: $environmentId
+            $projectId,
+            $environmentId
         );
     }
 
-    /**
-     * Deletes the version
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     */
-    public function deleteVersions(string $projectId, string $environmentId, string $versionId): AcceptedResponse
-    {
-        return $this->api->deleteProjectsEnvironmentsVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: $versionId
-        );
-    }
+    //TODO HTTPACCESS
 
     /**
      * Gets an environment
@@ -176,33 +140,19 @@ class EnvironmentsTask extends TaskBase
     public function get(string $projectId, string $environmentId): Environment
     {
         return $this->api->getEnvironment(
-            projectId: $projectId,
-            environmentId: $environmentId
+            $projectId,
+            $environmentId
         );
     }
 
-    /**
-     * Lists the version
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     */
-    public function getVersions(string $projectId, string $environmentId, string $versionId): Version
-    {
-        return $this->api->getProjectsEnvironmentsVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: $versionId
-        );
-    }
-
+    //TODO review files as done in sdk node
     /**
      * Initializes a new environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function initialize(
+    public function init(
         string $projectId,
         string $environmentId,
         string $profile,
@@ -211,7 +161,7 @@ class EnvironmentsTask extends TaskBase
         string $filePath,
         string $fileContents,
         ?string $config = null,
-        ?int $init = null,
+        ?string $init = null,
     ): AcceptedResponse {
         $environmentInitializeInput = new EnvironmentInitializeInput(
             profile: $profile,
@@ -243,17 +193,7 @@ class EnvironmentsTask extends TaskBase
         return $this->api->listProjectsEnvironments(projectId: $projectId);
     }
 
-    /**
-     * Lists versions associated with the environment
-     *
-     * @throws ClientExceptionInterface
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @return Version[]
-     */
-    public function listVersions(string $projectId, string $environmentId): array
-    {
-        return $this->api->listProjectsEnvironmentsVersions(projectId: $projectId, environmentId: $environmentId);
-    }
+    //TODO logs
 
     /**
      * Merges an environment
@@ -263,13 +203,12 @@ class EnvironmentsTask extends TaskBase
      */
     public function merge(string $projectId, string $environmentId, ?int $init = null): AcceptedResponse
     {
-        $environmentMergeInput = new EnvironmentMergeInput(
-            new Resources5(init: $init)
-        );
         return $this->api->mergeEnvironment(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            environmentMergeInput: $environmentMergeInput
+            $projectId,
+            $environmentId,
+            environmentMergeInput: new EnvironmentMergeInput(
+                resources: new Resources5(init: $init)
+            )
         );
     }
 
@@ -295,6 +234,8 @@ class EnvironmentsTask extends TaskBase
         return $this->api->redeployEnvironment(projectId: $projectId, environmentId: $environmentId);
     }
 
+    //TODO relationships
+
     /**
      * Resume a paused environment
      *
@@ -315,21 +256,20 @@ class EnvironmentsTask extends TaskBase
     public function synchronize(
         string $projectId,
         string $environmentId,
-        bool $synchronizeCode,
-        bool $rebase,
-        bool $synchronizeData,
-        bool $synchronizeResources,
+        bool $synchronizeCode = true,
+        bool $rebase = true,
+        bool $synchronizeData = true,
+        bool $synchronizeResources = true,
     ): AcceptedResponse {
-        $environmentSynchronizeInput = new EnvironmentSynchronizeInput(
-            synchronizeCode: $synchronizeCode,
-            rebase: $rebase,
-            synchronizeData: $synchronizeData,
-            synchronizeResources: $synchronizeResources
-        );
         return $this->api->synchronizeEnvironment(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            environmentSynchronizeInput: $environmentSynchronizeInput
+            $projectId,
+            $environmentId,
+            environmentSynchronizeInput: new EnvironmentSynchronizeInput(
+                synchronizeCode: $synchronizeCode,
+                rebase: $rebase,
+                synchronizeData: $synchronizeData,
+                synchronizeResources: $synchronizeResources
+            )
         );
     }
 
@@ -342,7 +282,10 @@ class EnvironmentsTask extends TaskBase
      *     permission: string,
      *     address: string,
      *   },
-     *   basicAuth?: array
+     *   basicAuth?: array{
+     *    login: string,
+     *    password: string,
+     *   }
      * } $httpAccess
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -368,7 +311,7 @@ class EnvironmentsTask extends TaskBase
             attributes: $attributes,
             type: $type,
             cloneParentOnCreate: $cloneParentOnCreate,
-            httpAccess: isset($httpAccess) ? new HttpAccessPermissions1(
+            httpAccess: isset($httpAccess) ? new HttpAccessPermissions2(
                 isEnabled: $httpAccess['isEnabled'] ?? null,
                 addresses: $httpAccess['addresses'] ?? null,
                 basicAuth: $httpAccess['basicAuth'] ?? null
@@ -380,29 +323,6 @@ class EnvironmentsTask extends TaskBase
             projectId: $projectId,
             environmentId: $environmentId,
             environmentPatch: $environmentPatch
-        );
-    }
-
-    /**
-     * Updates the version
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     */
-    public function updateVersions(
-        string $projectId,
-        string $environmentId,
-        string $versionId,
-        ?int $percentage = null
-    ): AcceptedResponse {
-        $versionPatch = new VersionPatch(
-            $percentage ? new Routing1(percentage: $percentage) : null
-        );
-        return $this->api->updateProjectsEnvironmentsVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: $versionId,
-            versionPatch: $versionPatch
         );
     }
 
@@ -460,7 +380,7 @@ class EnvironmentsTask extends TaskBase
         string $environmentId,
         bool $isSafe
     ): AcceptedResponse {
-        return $this->client->backups->backup(projectId: $projectId, environmentId: $environmentId, isSafe: $isSafe);
+        return $this->client->backups->create(projectId: $projectId, environmentId: $environmentId, isSafe: $isSafe);
     }
 
     /**
@@ -724,17 +644,17 @@ class EnvironmentsTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function createDomain(
+    public function addDomain(
         string $projectId,
-        string $name,
+        string $domain,
         ?array $attributes = null,
         ?bool $isDefault = null,
         ?string $replacementFor = null,
         ?string $environmentId = null,
     ): AcceptedResponse {
-        return $this->client->domains->create(
+        return $this->client->domains->add(
             projectId: $projectId,
-            name: $name,
+            domain: $domain,
             attributes: $attributes,
             isDefault: $isDefault,
             replacementFor: $replacementFor,
@@ -829,6 +749,46 @@ class EnvironmentsTask extends TaskBase
         return $this->deploymentApi->listProjectsEnvironmentsDeployments(
             projectId: $projectId,
             environmentId: $environmentId
+        );
+    }
+
+    /**
+     * Gets the autoscaling configuration for an environment
+     *
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function getAutoscaling(string $projectId, string $environmentId)
+    {
+        return $this->autoscalingApi->getAutoscalerSettings(
+            projectId: $projectId,
+            environmentId: $environmentId
+        );
+    }
+
+    /**
+     * Updates the autoscaling configuration for an environment
+     *
+     * @param array{
+     *   isEnabled?: bool,
+     *   addresses?: array{
+     *     permission: string,
+     *     address: string,
+     *   },
+     *   basicAuth?: array
+     * } $data
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     */
+    public function updateAutoscaling(string $projectId, string $environmentId, array $data): AutoscalerSettings
+    {
+        $autoscalingPatch = new AutoscalerSettings(
+            services: $data
+        );
+        return $this->autoscalingApi->patchAutoscalerSettings(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            autoscalerSettings: $autoscalingPatch
         );
     }
 

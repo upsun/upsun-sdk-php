@@ -54,3 +54,5 @@ final class UpdateSubscriptionUsageAlertsRequestAlertsInner implements Model, Js
         return $this->config;
     }
 }
+
+

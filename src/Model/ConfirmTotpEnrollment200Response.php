@@ -40,3 +40,5 @@ final class ConfirmTotpEnrollment200Response implements Model, JsonSerializable
         return $this->recoveryCodes;
     }
 }
+
+

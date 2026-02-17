@@ -54,3 +54,5 @@ final class ContainerProfilesValueValue implements Model, JsonSerializable
         return $this->cpuType;
     }
 }
+
+

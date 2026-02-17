@@ -48,3 +48,5 @@ final class SubscriptionAddonsObjectUpgradesAvailable implements Model, JsonSeri
         return $this->projectSupportLevel;
     }
 }
+
+

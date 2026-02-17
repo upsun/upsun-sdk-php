@@ -33,30 +33,31 @@ class DomainsTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function create(
+    public function add(
         string $projectId,
-        string $name,
+        string $domain,
         ?array $attributes = null,
         ?bool $isDefault = null,
         ?string $replacementFor = null,
         ?string $environmentId = null
     ): AcceptedResponse {
         $domainCreateInput = new DomainCreateInput(
-            name: $name,
+            name: $domain,
             attributes: $attributes,
             isDefault: $isDefault,
             replacementFor: $replacementFor
         );
+
         if (!$environmentId) {
             return $this->api->createProjectsDomains(
-                projectId: $projectId,
-                domainCreateInput: $domainCreateInput
+                $projectId,
+                $domainCreateInput
             );
         } else {
             return $this->api->createProjectsEnvironmentsDomains(
-                projectId: $projectId,
-                environmentId: $environmentId,
-                domainCreateInput: $domainCreateInput
+                $projectId,
+                $environmentId,
+                $domainCreateInput
             );
         }
     }
@@ -70,12 +71,12 @@ class DomainsTask extends TaskBase
     public function delete(string $projectId, string $domainId, ?string $environmentId = null): AcceptedResponse
     {
         if (!$environmentId) {
-            return $this->api->deleteProjectsDomains(projectId: $projectId, domainId: $domainId);
+            return $this->api->deleteProjectsDomains($projectId, $domainId);
         } else {
             return $this->api->deleteProjectsEnvironmentsDomains(
-                projectId: $projectId,
-                environmentId: $environmentId,
-                domainId: $domainId
+                $projectId,
+                $environmentId,
+                $domainId
             );
         }
     }
@@ -132,6 +133,7 @@ class DomainsTask extends TaskBase
             attributes: $attributes,
             isDefault: $isDefault
         );
+
         if (!$environmentId) {
             return $this->api->updateProjectsDomains(
                 projectId: $projectId,

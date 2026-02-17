@@ -47,3 +47,5 @@ final class WorkerConfiguration implements Model, JsonSerializable
         return $this->disk;
     }
 }
+
+

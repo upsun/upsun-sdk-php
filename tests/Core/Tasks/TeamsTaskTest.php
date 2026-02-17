@@ -25,6 +25,9 @@ class TeamsTaskTest extends BaseTestCase
 {
     private TeamsTask $task;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void

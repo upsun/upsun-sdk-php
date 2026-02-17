@@ -13,9 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CreateTicketRequest;
-use Upsun\Model\Ticket;
-use Upsun\Model\UpdateTicketRequest;
 
 /**
  * Low level SupportApi (auto-generated)
@@ -61,8 +58,8 @@ final class SupportApi extends AbstractApi
      * @see https://docs.upsun.com/api/#tag/Support/operation/create-ticket
      */
     public function createTicket(
-        ?CreateTicketRequest $createTicketRequest = null
-    ): Ticket {
+        ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
+    ): \Upsun\Model\Ticket {
         return $this->createTicketWithHttpInfo(
             $createTicketRequest
         );
@@ -76,8 +73,8 @@ final class SupportApi extends AbstractApi
      * @throws ClientExceptionInterface
     */
     private function createTicketWithHttpInfo(
-        ?CreateTicketRequest $createTicketRequest = null
-    ): Ticket {
+        ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
+    ): \Upsun\Model\Ticket {
         $request = $this->createTicketRequest(
             $createTicketRequest
         );
@@ -116,14 +113,18 @@ final class SupportApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     private function createTicketRequest(
-        ?CreateTicketRequest $createTicketRequest = null
+        ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
     ): RequestInterface {
+
+
         $resourcePath = '/tickets';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -161,6 +162,11 @@ final class SupportApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -263,6 +269,8 @@ final class SupportApi extends AbstractApi
         ?string $subscriptionId = null,
         ?string $organizationId = null
     ): RequestInterface {
+
+
         $resourcePath = '/tickets/category';
         $formParams = [];
         $queryParams = [];
@@ -283,6 +291,8 @@ final class SupportApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($organizationId !== null) {
             if ('form' === 'form' && is_array($organizationId)) {
@@ -295,6 +305,10 @@ final class SupportApi extends AbstractApi
                     : ($organizationId);
             }
         }
+
+
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -324,6 +338,11 @@ final class SupportApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -426,6 +445,8 @@ final class SupportApi extends AbstractApi
         ?string $subscriptionId = null,
         ?string $category = null
     ): RequestInterface {
+
+
         $resourcePath = '/tickets/priority';
         $formParams = [];
         $queryParams = [];
@@ -446,6 +467,8 @@ final class SupportApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($category !== null) {
             if ('form' === 'form' && is_array($category)) {
@@ -458,6 +481,10 @@ final class SupportApi extends AbstractApi
                     : ($category);
             }
         }
+
+
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -487,6 +514,11 @@ final class SupportApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -519,8 +551,8 @@ final class SupportApi extends AbstractApi
      */
     public function updateTicket(
         string $ticketId,
-        ?UpdateTicketRequest $updateTicketRequest = null
-    ): Ticket|null {
+        ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
+    ): \Upsun\Model\Ticket|null {
         return $this->updateTicketWithHttpInfo(
             $ticketId,
             $updateTicketRequest
@@ -537,8 +569,8 @@ final class SupportApi extends AbstractApi
     */
     private function updateTicketWithHttpInfo(
         string $ticketId,
-        ?UpdateTicketRequest $updateTicketRequest = null
-    ): Ticket|null {
+        ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
+    ): \Upsun\Model\Ticket|null {
         $request = $this->updateTicketRequest(
             $ticketId,
             $updateTicketRequest
@@ -580,8 +612,9 @@ final class SupportApi extends AbstractApi
      */
     private function updateTicketRequest(
         string $ticketId,
-        ?UpdateTicketRequest $updateTicketRequest = null
+        ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'ticketId' is set
         if (empty($ticketId)) {
             throw new InvalidArgumentException(
@@ -606,6 +639,7 @@ final class SupportApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -643,6 +677,11 @@ final class SupportApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

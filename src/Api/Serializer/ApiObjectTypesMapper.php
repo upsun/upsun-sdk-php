@@ -24,6 +24,7 @@ final class ApiObjectTypesMapper
     }
 
     private static array $openApiTypes = [
+
         'Upsun\Model\AcceptedResponse' => [
             'status' => 'string',
             'code' => 'int',
@@ -400,6 +401,10 @@ final class ApiObjectTypesMapper
             'default_ttl' => 'int',
             'cookies' => 'string[]',
             'headers' => 'string[]',
+        ],
+
+        'Upsun\Model\CanAffordSubscriptionRequest' => [
+            'resources' => 'mixed[]',
         ],
 
         'Upsun\Model\CanCreateNewOrgSubscription200Response' => [
@@ -1216,11 +1221,7 @@ final class ApiObjectTypesMapper
         ],
 
         'Upsun\Model\Error' => [
-            'status' => '?string',
-            'message' => '?string',
-            'code' => '?float',
-            'detail' => '?object',
-            'title' => '?string',
+            'error' => 'string',
         ],
 
         'Upsun\Model\EstimationObject' => [
@@ -1967,6 +1968,7 @@ final class ApiObjectTypesMapper
         ],
 
         'Upsun\Model\ListOrgSubscriptions200Response' => [
+            'count' => '?int',
             'items' => '\Upsun\Model\Subscription[]',
             '_links' => '?\Upsun\Model\ListLinks',
         ],
@@ -1999,6 +2001,7 @@ final class ApiObjectTypesMapper
         ],
 
         'Upsun\Model\ListRegions200Response' => [
+            'count' => '?int',
             'regions' => '\Upsun\Model\Region[]',
             '_links' => '?\Upsun\Model\ListLinks',
         ],
@@ -2199,7 +2202,7 @@ final class ApiObjectTypesMapper
             'country' => '?string',
             'capabilities' => 'string[]',
             'vendor' => '?string',
-            'billing_account_id' => '?string',
+            'billing_profile_id' => '?string',
             'billing_legacy' => '?bool',
             'security_contact' => '?string',
             'status' => '?string',
@@ -3103,10 +3106,27 @@ final class ApiObjectTypesMapper
             'environmental_impact' => '?\Upsun\Model\RegionEnvironmentalImpact',
         ],
 
+        'Upsun\Model\RegionCompliance' => [
+            'hipaa' => '?bool',
+        ],
+
+        'Upsun\Model\RegionDataCenter' => [
+            'name' => '?string',
+            'label' => '?string',
+            'location' => '?string',
+        ],
+
         'Upsun\Model\RegionDatacenter' => [
             'name' => '?string',
             'label' => '?string',
             'location' => '?string',
+        ],
+
+        'Upsun\Model\RegionEnvImpact' => [
+            'zone' => '?string',
+            'carbon_intensity' => '?float',
+            'carbon_intensity_source' => '?string',
+            'green' => '?bool',
         ],
 
         'Upsun\Model\RegionEnvironmentalImpact' => [
@@ -3129,14 +3149,13 @@ final class ApiObjectTypesMapper
             'timezone' => 'string',
             'available' => 'bool',
             'endpoint' => 'string',
-            'provider' => 'object',
-            'datacenter' => 'object',
-            'compliance' => 'object',
+            'provider' => '\Upsun\Model\RegionProvider',
+            'datacenter' => '\Upsun\Model\RegionDataCenter',
+            'compliance' => '\Upsun\Model\RegionCompliance',
             'created_at' => '\DateTime',
             'updated_at' => '\DateTime',
             'private' => '?bool',
-            'code' => '?string',
-            'envimpact' => '?object',
+            'envimpact' => '?\Upsun\Model\RegionEnvImpact',
             'environmental_impact' => '?object',
         ],
 
@@ -3870,7 +3889,7 @@ final class ApiObjectTypesMapper
         'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest' => [
             'webapps' => '\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue[]',
             'services' => '\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]',
-            'workers' => '\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]',
+            'workers' => '\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWorkersValue[]',
         ],
 
         'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue' => [
@@ -3880,6 +3899,12 @@ final class ApiObjectTypesMapper
         ],
 
         'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue' => [
+            'resources' => '?\Upsun\Model\ResourceConfig',
+            'instance_count' => '?int',
+            'disk' => '?int',
+        ],
+
+        'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWorkersValue' => [
             'resources' => '?\Upsun\Model\ResourceConfig',
             'instance_count' => '?int',
             'disk' => '?int',
@@ -4230,5 +4255,6 @@ final class ApiObjectTypesMapper
             'instance_count' => '?int',
             'slug_id' => 'string',
         ],
+
     ];
 }

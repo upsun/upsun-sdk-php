@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,7 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\Route;
 
 /**
  * Low level RoutingApi (auto-generated)
@@ -65,7 +65,7 @@ final class RoutingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $routeId
-    ): Route {
+    ): \Upsun\Model\Route {
         return $this->getProjectsEnvironmentsRoutesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -84,7 +84,7 @@ final class RoutingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $routeId
-    ): Route {
+    ): \Upsun\Model\Route {
         $request = $this->getProjectsEnvironmentsRoutesRequest(
             $projectId,
             $environmentId,
@@ -129,6 +129,7 @@ final class RoutingApi extends AbstractApi
         string $environmentId,
         string $routeId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -186,6 +187,7 @@ final class RoutingApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -214,6 +216,11 @@ final class RoutingApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -312,6 +319,7 @@ final class RoutingApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -353,6 +361,7 @@ final class RoutingApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -381,6 +390,11 @@ final class RoutingApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

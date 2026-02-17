@@ -54,25 +54,25 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * The Splunk HTTP Event Connector REST API endpoint
-     */
+   /**
+    * The Splunk HTTP Event Connector REST API endpoint
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * The Splunk Index
-     */
+   /**
+    * The Splunk Index
+    */
     public function getIndex(): string
     {
         return $this->index;
     }
 
-    /**
-     * The Splunk Authorization Token
-     */
+   /**
+    * The Splunk Authorization Token
+    */
     public function getToken(): string
     {
         return $this->token;
@@ -83,17 +83,17 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable
         return $this->extra;
     }
 
-    /**
-     * The event 'sourcetype'
-     */
+   /**
+    * The event 'sourcetype'
+    */
     public function getSourcetype(): ?string
     {
         return $this->sourcetype;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
@@ -104,3 +104,5 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable
         return $this->excludedServices;
     }
 }
+
+

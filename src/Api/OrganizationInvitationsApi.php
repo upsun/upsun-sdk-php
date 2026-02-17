@@ -13,9 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CreateOrgInviteRequest;
-use Upsun\Model\OrganizationInvitation;
-use Upsun\Model\StringFilter;
 
 /**
  * Low level OrganizationInvitationsApi (auto-generated)
@@ -130,6 +127,7 @@ final class OrganizationInvitationsApi extends AbstractApi
         string $organizationId,
         string $invitationId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -171,6 +169,7 @@ final class OrganizationInvitationsApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -199,6 +198,11 @@ final class OrganizationInvitationsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -233,8 +237,8 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     public function createOrgInvite(
         string $organizationId,
-        ?CreateOrgInviteRequest $createOrgInviteRequest = null
-    ): OrganizationInvitation {
+        ?\Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
+    ): \Upsun\Model\OrganizationInvitation {
         return $this->createOrgInviteWithHttpInfo(
             $organizationId,
             $createOrgInviteRequest
@@ -252,8 +256,8 @@ final class OrganizationInvitationsApi extends AbstractApi
     */
     private function createOrgInviteWithHttpInfo(
         string $organizationId,
-        ?CreateOrgInviteRequest $createOrgInviteRequest = null
-    ): OrganizationInvitation {
+        ?\Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
+    ): \Upsun\Model\OrganizationInvitation {
         $request = $this->createOrgInviteRequest(
             $organizationId,
             $createOrgInviteRequest
@@ -296,8 +300,9 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     private function createOrgInviteRequest(
         string $organizationId,
-        ?CreateOrgInviteRequest $createOrgInviteRequest = null
+        ?\Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -322,6 +327,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -359,6 +365,11 @@ final class OrganizationInvitationsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -400,7 +411,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     public function listOrgInvites(
         string $organizationId,
-        ?StringFilter $filterState = null,
+        ?\Upsun\Model\StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -434,7 +445,7 @@ final class OrganizationInvitationsApi extends AbstractApi
     */
     private function listOrgInvitesWithHttpInfo(
         string $organizationId,
-        ?StringFilter $filterState = null,
+        ?\Upsun\Model\StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -491,12 +502,13 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     private function listOrgInvitesRequest(
         string $organizationId,
-        ?StringFilter $filterState = null,
+        ?\Upsun\Model\StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -519,6 +531,8 @@ final class OrganizationInvitationsApi extends AbstractApi
             );
         }
 
+
+
         $resourcePath = '/organizations/{organization_id}/invitations';
         $formParams = [];
         $queryParams = [];
@@ -539,6 +553,8 @@ final class OrganizationInvitationsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pageSize !== null) {
             if ('form' === 'form' && is_array($pageSize)) {
@@ -551,6 +567,8 @@ final class OrganizationInvitationsApi extends AbstractApi
                     : ($pageSize);
             }
         }
+
+
 
         // query params
         if ($pageBefore !== null) {
@@ -565,6 +583,8 @@ final class OrganizationInvitationsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pageAfter !== null) {
             if ('form' === 'form' && is_array($pageAfter)) {
@@ -577,6 +597,8 @@ final class OrganizationInvitationsApi extends AbstractApi
                     : ($pageAfter);
             }
         }
+
+
 
         // query params
         if ($sort !== null) {
@@ -591,6 +613,8 @@ final class OrganizationInvitationsApi extends AbstractApi
             }
         }
 
+
+
         // path params
 
         if ($organizationId !== null) {
@@ -600,6 +624,7 @@ final class OrganizationInvitationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -629,6 +654,11 @@ final class OrganizationInvitationsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

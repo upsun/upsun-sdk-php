@@ -54,3 +54,5 @@ final class CanCreateNewOrgSubscription200Response implements Model, JsonSeriali
         return $this->requiredAction;
     }
 }
+
+

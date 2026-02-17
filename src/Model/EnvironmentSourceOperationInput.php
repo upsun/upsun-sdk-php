@@ -37,9 +37,9 @@ final class EnvironmentSourceOperationInput implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The name of the operation to execute
-     */
+   /**
+    * The name of the operation to execute
+    */
     public function getOperation(): string
     {
         return $this->operation;
@@ -50,3 +50,5 @@ final class EnvironmentSourceOperationInput implements Model, JsonSerializable
         return $this->variables;
     }
 }
+
+

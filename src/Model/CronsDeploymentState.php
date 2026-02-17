@@ -38,19 +38,21 @@ final class CronsDeploymentState implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Enabled or disabled
-     */
+   /**
+    * Enabled or disabled
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * The status of the crons
-     */
+   /**
+    * The status of the crons
+    */
     public function getStatus(): string
     {
         return $this->status;
     }
 }
+
+

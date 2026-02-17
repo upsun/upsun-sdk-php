@@ -14,6 +14,7 @@ use JsonSerializable;
 final class ListRegions200Response implements Model, JsonSerializable
 {
     public function __construct(
+        private readonly ?int $count = null,
         private readonly ?array $regions = [],
         private readonly ?ListLinks $links = null,
     ) {
@@ -27,6 +28,7 @@ final class ListRegions200Response implements Model, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'count' => $this->count,
             'regions' => $this->regions,
             'links' => $this->links,
         ];
@@ -36,9 +38,15 @@ final class ListRegions200Response implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return Region[]|null
-     */
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+
+   /**
+    * @return Region[]|null
+    */
     public function getRegions(): ?array
     {
         return $this->regions;
@@ -49,3 +57,5 @@ final class ListRegions200Response implements Model, JsonSerializable
         return $this->links;
     }
 }
+
+

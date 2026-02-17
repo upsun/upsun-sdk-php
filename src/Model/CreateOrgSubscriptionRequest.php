@@ -52,9 +52,9 @@ final class CreateOrgSubscriptionRequest implements Model, JsonSerializable
         return $this->projectRegion;
     }
 
-    /**
-     * The project plan.
-     */
+   /**
+    * The project plan.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;
@@ -85,3 +85,5 @@ final class CreateOrgSubscriptionRequest implements Model, JsonSerializable
         return $this->storage;
     }
 }
+
+

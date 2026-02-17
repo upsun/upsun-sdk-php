@@ -40,17 +40,17 @@ final class HttpAccessPermissions implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether http_access control is enabled
-     */
+   /**
+    * Whether http_access control is enabled
+    */
     public function getIsEnabled(): bool
     {
         return $this->isEnabled;
     }
 
-    /**
-     * @return AddressGrantsInner[]
-     */
+   /**
+    * @return AddressGrantsInner[]
+    */
     public function getAddresses(): array
     {
         return $this->addresses;
@@ -61,3 +61,5 @@ final class HttpAccessPermissions implements Model, JsonSerializable
         return $this->basicAuth;
     }
 }
+
+

@@ -54,3 +54,5 @@ final class CanUpdateSubscription200Response implements Model, JsonSerializable
         return $this->requiredAction;
     }
 }
+
+

@@ -47,3 +47,5 @@ final class ListTicketCategories200ResponseInner implements Model, JsonSerializa
         return $this->label;
     }
 }
+
+

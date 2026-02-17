@@ -44,9 +44,9 @@ final class ListOrgMembers200Response implements Model, JsonSerializable
         return $this->count;
     }
 
-    /**
-     * @return OrganizationMember[]|null
-     */
+   /**
+    * @return OrganizationMember[]|null
+    */
     public function getItems(): ?array
     {
         return $this->items;
@@ -57,3 +57,5 @@ final class ListOrgMembers200Response implements Model, JsonSerializable
         return $this->links;
     }
 }
+
+

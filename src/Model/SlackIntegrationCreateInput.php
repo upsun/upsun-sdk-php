@@ -44,19 +44,21 @@ final class SlackIntegrationCreateInput implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * The Slack token to use
-     */
+   /**
+    * The Slack token to use
+    */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * The Slack channel to post messages to
-     */
+   /**
+    * The Slack channel to post messages to
+    */
     public function getChannel(): string
     {
         return $this->channel;
     }
 }
+
+

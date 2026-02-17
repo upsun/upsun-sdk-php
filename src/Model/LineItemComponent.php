@@ -42,35 +42,37 @@ final class LineItemComponent implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The price as a decimal.
-     */
+   /**
+    * The price as a decimal.
+    */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
 
-    /**
-     * The price formatted with currency.
-     */
+   /**
+    * The price formatted with currency.
+    */
     public function getAmountFormatted(): ?string
     {
         return $this->amountFormatted;
     }
 
-    /**
-     * The display title for the component.
-     */
+   /**
+    * The display title for the component.
+    */
     public function getDisplayTitle(): ?string
     {
         return $this->displayTitle;
     }
 
-    /**
-     * The currency code for the component.
-     */
+   /**
+    * The currency code for the component.
+    */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 }
+
+

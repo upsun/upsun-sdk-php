@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\SystemInformation;
 
 /**
  * Low level SystemInformationApi (auto-generated)
@@ -61,7 +60,7 @@ final class SystemInformationApi extends AbstractApi
      */
     public function actionProjectsSystemRestart(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->actionProjectsSystemRestartWithHttpInfo(
             $projectId
         );
@@ -76,7 +75,7 @@ final class SystemInformationApi extends AbstractApi
     */
     private function actionProjectsSystemRestartWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->actionProjectsSystemRestartRequest(
             $projectId
         );
@@ -117,6 +116,7 @@ final class SystemInformationApi extends AbstractApi
     private function actionProjectsSystemRestartRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -141,6 +141,7 @@ final class SystemInformationApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -170,6 +171,11 @@ final class SystemInformationApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -202,7 +208,7 @@ final class SystemInformationApi extends AbstractApi
      */
     public function getProjectsSystem(
         string $projectId
-    ): SystemInformation {
+    ): \Upsun\Model\SystemInformation {
         return $this->getProjectsSystemWithHttpInfo(
             $projectId
         );
@@ -217,7 +223,7 @@ final class SystemInformationApi extends AbstractApi
     */
     private function getProjectsSystemWithHttpInfo(
         string $projectId
-    ): SystemInformation {
+    ): \Upsun\Model\SystemInformation {
         $request = $this->getProjectsSystemRequest(
             $projectId
         );
@@ -258,6 +264,7 @@ final class SystemInformationApi extends AbstractApi
     private function getProjectsSystemRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -282,6 +289,7 @@ final class SystemInformationApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -311,6 +319,11 @@ final class SystemInformationApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

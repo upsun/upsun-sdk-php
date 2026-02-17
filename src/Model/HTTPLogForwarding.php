@@ -38,19 +38,21 @@ final class HTTPLogForwarding implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The integration is enabled.
-     */
+   /**
+    * The integration is enabled.
+    */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
 
-    /**
-     * Minimum required role for creating the integration.
-     */
+   /**
+    * Minimum required role for creating the integration.
+    */
     public function getRole(): ?string
     {
         return $this->role;
     }
 }
+
+

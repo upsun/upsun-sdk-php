@@ -298,7 +298,7 @@ class TeamsTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function removeProjectTeamAccess(string $projectId, string $teamId): void
+    public function revokeProjectTeamAccess(string $projectId, string $teamId): void
     {
         $this->accessApi->removeProjectTeamAccess(projectId: $projectId, teamId: $teamId);
     }
@@ -309,7 +309,7 @@ class TeamsTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function removeTeamProjectAccess(string $teamId, string $projectId): void
+    public function revokeTeamProjectAccess(string $teamId, string $projectId): void
     {
         $this->accessApi->removeTeamProjectAccess(teamId: $teamId, projectId: $projectId);
     }

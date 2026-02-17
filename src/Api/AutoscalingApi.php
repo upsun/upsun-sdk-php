@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,7 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AutoscalerSettings;
 
 /**
  * Low level AutoscalingApi (auto-generated)
@@ -63,7 +63,7 @@ final class AutoscalingApi extends AbstractApi
     public function getAutoscalerSettings(
         string $projectId,
         string $environmentId
-    ): AutoscalerSettings {
+    ): \Upsun\Model\AutoscalerSettings {
         return $this->getAutoscalerSettingsWithHttpInfo(
             $projectId,
             $environmentId
@@ -82,7 +82,7 @@ final class AutoscalingApi extends AbstractApi
     private function getAutoscalerSettingsWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AutoscalerSettings {
+    ): \Upsun\Model\AutoscalerSettings {
         $request = $this->getAutoscalerSettingsRequest(
             $projectId,
             $environmentId
@@ -127,6 +127,7 @@ final class AutoscalingApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -168,6 +169,7 @@ final class AutoscalingApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -196,6 +198,11 @@ final class AutoscalingApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -232,8 +239,8 @@ final class AutoscalingApi extends AbstractApi
     public function patchAutoscalerSettings(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
-    ): AutoscalerSettings {
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
+    ): \Upsun\Model\AutoscalerSettings {
         return $this->patchAutoscalerSettingsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -254,8 +261,8 @@ final class AutoscalingApi extends AbstractApi
     private function patchAutoscalerSettingsWithHttpInfo(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
-    ): AutoscalerSettings {
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
+    ): \Upsun\Model\AutoscalerSettings {
         $request = $this->patchAutoscalerSettingsRequest(
             $projectId,
             $environmentId,
@@ -301,8 +308,9 @@ final class AutoscalingApi extends AbstractApi
     private function patchAutoscalerSettingsRequest(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -344,6 +352,7 @@ final class AutoscalingApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             'application/json',
@@ -382,6 +391,11 @@ final class AutoscalingApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -416,8 +430,8 @@ final class AutoscalingApi extends AbstractApi
     public function postAutoscalerSettings(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
-    ): AutoscalerSettings {
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
+    ): \Upsun\Model\AutoscalerSettings {
         return $this->postAutoscalerSettingsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -438,8 +452,8 @@ final class AutoscalingApi extends AbstractApi
     private function postAutoscalerSettingsWithHttpInfo(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
-    ): AutoscalerSettings {
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
+    ): \Upsun\Model\AutoscalerSettings {
         $request = $this->postAutoscalerSettingsRequest(
             $projectId,
             $environmentId,
@@ -485,8 +499,9 @@ final class AutoscalingApi extends AbstractApi
     private function postAutoscalerSettingsRequest(
         string $projectId,
         string $environmentId,
-        ?AutoscalerSettings $autoscalerSettings = null
+        ?\Upsun\Model\AutoscalerSettings $autoscalerSettings = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -528,6 +543,7 @@ final class AutoscalingApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             'application/json',
@@ -564,6 +580,11 @@ final class AutoscalingApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

@@ -38,9 +38,9 @@ final class ListTeams200Response implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return Team[]|null
-     */
+   /**
+    * @return Team[]|null
+    */
     public function getItems(): ?array
     {
         return $this->items;
@@ -56,3 +56,5 @@ final class ListTeams200Response implements Model, JsonSerializable
         return $this->links;
     }
 }
+
+

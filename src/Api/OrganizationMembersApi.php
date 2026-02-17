@@ -13,11 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\ArrayFilter;
-use Upsun\Model\CreateOrgMemberRequest;
-use Upsun\Model\ListOrgMembers200Response;
-use Upsun\Model\OrganizationMember;
-use Upsun\Model\UpdateOrgMemberRequest;
 
 /**
  * Low level OrganizationMembersApi (auto-generated)
@@ -67,8 +62,8 @@ final class OrganizationMembersApi extends AbstractApi
      */
     public function createOrgMember(
         string $organizationId,
-        CreateOrgMemberRequest $createOrgMemberRequest
-    ): OrganizationMember {
+        \Upsun\Model\CreateOrgMemberRequest $createOrgMemberRequest
+    ): \Upsun\Model\OrganizationMember {
         return $this->createOrgMemberWithHttpInfo(
             $organizationId,
             $createOrgMemberRequest
@@ -86,8 +81,8 @@ final class OrganizationMembersApi extends AbstractApi
     */
     private function createOrgMemberWithHttpInfo(
         string $organizationId,
-        CreateOrgMemberRequest $createOrgMemberRequest
-    ): OrganizationMember {
+        \Upsun\Model\CreateOrgMemberRequest $createOrgMemberRequest
+    ): \Upsun\Model\OrganizationMember {
         $request = $this->createOrgMemberRequest(
             $organizationId,
             $createOrgMemberRequest
@@ -130,8 +125,9 @@ final class OrganizationMembersApi extends AbstractApi
      */
     private function createOrgMemberRequest(
         string $organizationId,
-        CreateOrgMemberRequest $createOrgMemberRequest
+        \Upsun\Model\CreateOrgMemberRequest $createOrgMemberRequest
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -163,6 +159,7 @@ final class OrganizationMembersApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -200,6 +197,11 @@ final class OrganizationMembersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -299,6 +301,7 @@ final class OrganizationMembersApi extends AbstractApi
         string $organizationId,
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -340,6 +343,7 @@ final class OrganizationMembersApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
             '',
@@ -368,6 +372,11 @@ final class OrganizationMembersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -406,7 +415,7 @@ final class OrganizationMembersApi extends AbstractApi
     public function getOrgMember(
         string $organizationId,
         string $userId
-    ): OrganizationMember {
+    ): \Upsun\Model\OrganizationMember {
         return $this->getOrgMemberWithHttpInfo(
             $organizationId,
             $userId
@@ -428,7 +437,7 @@ final class OrganizationMembersApi extends AbstractApi
     private function getOrgMemberWithHttpInfo(
         string $organizationId,
         string $userId
-    ): OrganizationMember {
+    ): \Upsun\Model\OrganizationMember {
         $request = $this->getOrgMemberRequest(
             $organizationId,
             $userId
@@ -476,6 +485,7 @@ final class OrganizationMembersApi extends AbstractApi
         string $organizationId,
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -517,6 +527,7 @@ final class OrganizationMembersApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
             '',
@@ -545,6 +556,11 @@ final class OrganizationMembersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -585,12 +601,12 @@ final class OrganizationMembersApi extends AbstractApi
      */
     public function listOrgMembers(
         string $organizationId,
-        ?ArrayFilter $filterPermissions = null,
+        ?\Upsun\Model\ArrayFilter $filterPermissions = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListOrgMembers200Response {
+    ): \Upsun\Model\ListOrgMembers200Response {
         return $this->listOrgMembersWithHttpInfo(
             $organizationId,
             $filterPermissions,
@@ -618,12 +634,12 @@ final class OrganizationMembersApi extends AbstractApi
     */
     private function listOrgMembersWithHttpInfo(
         string $organizationId,
-        ?ArrayFilter $filterPermissions = null,
+        ?\Upsun\Model\ArrayFilter $filterPermissions = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListOrgMembers200Response {
+    ): \Upsun\Model\ListOrgMembers200Response {
         $request = $this->listOrgMembersRequest(
             $organizationId,
             $filterPermissions,
@@ -676,12 +692,13 @@ final class OrganizationMembersApi extends AbstractApi
      */
     private function listOrgMembersRequest(
         string $organizationId,
-        ?ArrayFilter $filterPermissions = null,
+        ?\Upsun\Model\ArrayFilter $filterPermissions = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -704,6 +721,8 @@ final class OrganizationMembersApi extends AbstractApi
             );
         }
 
+
+
         $resourcePath = '/organizations/{organization_id}/members';
         $formParams = [];
         $queryParams = [];
@@ -724,6 +743,8 @@ final class OrganizationMembersApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pageSize !== null) {
             if ('form' === 'form' && is_array($pageSize)) {
@@ -736,6 +757,8 @@ final class OrganizationMembersApi extends AbstractApi
                     : ($pageSize);
             }
         }
+
+
 
         // query params
         if ($pageBefore !== null) {
@@ -750,6 +773,8 @@ final class OrganizationMembersApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pageAfter !== null) {
             if ('form' === 'form' && is_array($pageAfter)) {
@@ -762,6 +787,8 @@ final class OrganizationMembersApi extends AbstractApi
                     : ($pageAfter);
             }
         }
+
+
 
         // query params
         if ($sort !== null) {
@@ -776,6 +803,8 @@ final class OrganizationMembersApi extends AbstractApi
             }
         }
 
+
+
         // path params
 
         if ($organizationId !== null) {
@@ -785,6 +814,7 @@ final class OrganizationMembersApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -814,6 +844,11 @@ final class OrganizationMembersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -851,8 +886,8 @@ final class OrganizationMembersApi extends AbstractApi
     public function updateOrgMember(
         string $organizationId,
         string $userId,
-        ?UpdateOrgMemberRequest $updateOrgMemberRequest = null
-    ): OrganizationMember {
+        ?\Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
+    ): \Upsun\Model\OrganizationMember {
         return $this->updateOrgMemberWithHttpInfo(
             $organizationId,
             $userId,
@@ -874,8 +909,8 @@ final class OrganizationMembersApi extends AbstractApi
     private function updateOrgMemberWithHttpInfo(
         string $organizationId,
         string $userId,
-        ?UpdateOrgMemberRequest $updateOrgMemberRequest = null
-    ): OrganizationMember {
+        ?\Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
+    ): \Upsun\Model\OrganizationMember {
         $request = $this->updateOrgMemberRequest(
             $organizationId,
             $userId,
@@ -922,8 +957,9 @@ final class OrganizationMembersApi extends AbstractApi
     private function updateOrgMemberRequest(
         string $organizationId,
         string $userId,
-        ?UpdateOrgMemberRequest $updateOrgMemberRequest = null
+        ?\Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -965,6 +1001,7 @@ final class OrganizationMembersApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
             'application/json',
@@ -1001,6 +1038,11 @@ final class OrganizationMembersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

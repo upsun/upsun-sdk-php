@@ -49,11 +49,13 @@ final class ReplacementDomainStorageCreateInput implements Model, JsonSerializab
         return $this->attributes;
     }
 
-    /**
-     * Prod domain which will be replaced by this domain.
-     */
+   /**
+    * Prod domain which will be replaced by this domain.
+    */
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;
     }
 }
+
+

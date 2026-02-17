@@ -48,3 +48,5 @@ final class ImageTypeRestrictions implements Model, JsonSerializable
         return $this->exclude;
     }
 }
+
+

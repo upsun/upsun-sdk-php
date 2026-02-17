@@ -39,27 +39,29 @@ final class Sizing implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return ServicesValue1[]
-     */
+   /**
+    * @return ServicesValue1[]
+    */
     public function getServices(): array
     {
         return $this->services;
     }
 
-    /**
-     * @return ServicesValue1[]
-     */
+   /**
+    * @return ServicesValue1[]
+    */
     public function getWebapps(): array
     {
         return $this->webapps;
     }
 
-    /**
-     * @return ServicesValue1[]
-     */
+   /**
+    * @return ServicesValue1[]
+    */
     public function getWorkers(): array
     {
         return $this->workers;
     }
 }
+
+

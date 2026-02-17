@@ -37,19 +37,21 @@ final class AcceptedResponse implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The status text of the response
-     */
+   /**
+    * The status text of the response
+    */
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * The status code of the response
-     */
+   /**
+    * The status code of the response
+    */
     public function getCode(): int
     {
         return $this->code;
     }
 }
+
+

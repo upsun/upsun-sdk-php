@@ -47,3 +47,5 @@ final class UpdateOrgBillingAlertConfigRequest implements Model, JsonSerializabl
         return $this->config;
     }
 }
+
+

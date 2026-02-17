@@ -14,12 +14,13 @@ use JsonSerializable;
 final class DomainCreateInput implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly string $name,
+        private readonly ?string $name = null,
         private readonly ?array $attributes = [],
         private readonly ?bool $isDefault = null,
         private readonly ?string $replacementFor = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -51,19 +52,21 @@ final class DomainCreateInput implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * Is this domain default
-     */
+   /**
+    * Is this domain default
+    */
     public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 
-    /**
-     * Prod domain which will be replaced by this domain.
-     */
+   /**
+    * Prod domain which will be replaced by this domain.
+    */
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;
     }
 }
+
+

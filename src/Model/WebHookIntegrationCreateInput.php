@@ -54,9 +54,9 @@ final class WebHookIntegrationCreateInput implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * The URL of the webhook
-     */
+   /**
+    * The URL of the webhook
+    */
     public function getUrl(): string
     {
         return $this->url;
@@ -82,19 +82,21 @@ final class WebHookIntegrationCreateInput implements Model, JsonSerializable
         return $this->states;
     }
 
-    /**
-     * Result to execute the hook on
-     */
+   /**
+    * Result to execute the hook on
+    */
     public function getResult(): ?string
     {
         return $this->result;
     }
 
-    /**
-     * The JWS shared secret key
-     */
+   /**
+    * The JWS shared secret key
+    */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
 }
+
+

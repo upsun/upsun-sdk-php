@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -41,16 +40,16 @@ final class Environment implements Model, JsonSerializable
         private readonly MergeInfo $mergeInfo,
         private readonly bool $hasDeployment,
         private readonly bool $supportsRestrictRobots,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $parent,
         private readonly ?string $defaultDomain,
         private readonly ?string $deploymentTarget,
         private readonly ?DeploymentState $deploymentState,
         private readonly ?Sizing $sizing,
         private readonly ?int $maxInstanceCount,
-        private readonly ?DateTime $lastActiveAt,
-        private readonly ?DateTime $lastBackupAt,
+        private readonly ?\DateTime $lastActiveAt,
+        private readonly ?\DateTime $lastBackupAt,
         private readonly ?string $headCommit,
     ) {
     }
@@ -108,49 +107,49 @@ final class Environment implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of Environment
-     */
+   /**
+    * The identifier of Environment
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The name of the environment
-     */
+   /**
+    * The name of the environment
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * The machine name for the environment
-     */
+   /**
+    * The machine name for the environment
+    */
     public function getMachineName(): string
     {
         return $this->machineName;
     }
 
-    /**
-     * The title of the environment
-     */
+   /**
+    * The title of the environment
+    */
     public function getTitle(): string
     {
         return $this->title;
@@ -161,244 +160,246 @@ final class Environment implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * The type of environment (`production`, `staging` or `development`), if not provided, a default will be calculated
-     */
+   /**
+    * The type of environment (`production`, `staging` or `development`), if not provided, a default will be calculated
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The name of the parent environment
-     */
+   /**
+    * The name of the parent environment
+    */
     public function getParent(): ?string
     {
         return $this->parent;
     }
 
-    /**
-     * The default domain
-     */
+   /**
+    * The default domain
+    */
     public function getDefaultDomain(): ?string
     {
         return $this->defaultDomain;
     }
 
-    /**
-     * Whether the environment has domains
-     */
+   /**
+    * Whether the environment has domains
+    */
     public function getHasDomains(): bool
     {
         return $this->hasDomains;
     }
 
-    /**
-     * Clone data when creating that environment
-     */
+   /**
+    * Clone data when creating that environment
+    */
     public function getCloneParentOnCreate(): bool
     {
         return $this->cloneParentOnCreate;
     }
 
-    /**
-     * Deployment target of the environment
-     */
+   /**
+    * Deployment target of the environment
+    */
     public function getDeploymentTarget(): ?string
     {
         return $this->deploymentTarget;
     }
 
-    /**
-     * Is this environment a pull request / merge request
-     */
+   /**
+    * Is this environment a pull request / merge request
+    */
     public function getIsPr(): bool
     {
         return $this->isPr;
     }
 
-    /**
-     * Does this environment have a remote repository
-     */
+   /**
+    * Does this environment have a remote repository
+    */
     public function getHasRemote(): bool
     {
         return $this->hasRemote;
     }
 
-    /**
-     * The status of the environment
-     */
+   /**
+    * The status of the environment
+    */
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * The Http access permissions for this environment
-     */
+   /**
+    * The Http access permissions for this environment
+    */
     public function getHttpAccess(): HttpAccessPermissions1
     {
         return $this->httpAccess;
     }
 
-    /**
-     * Whether to configure SMTP for this environment
-     */
+   /**
+    * Whether to configure SMTP for this environment
+    */
     public function getEnableSmtp(): bool
     {
         return $this->enableSmtp;
     }
 
-    /**
-     * Whether to restrict robots for this environment
-     */
+   /**
+    * Whether to restrict robots for this environment
+    */
     public function getRestrictRobots(): bool
     {
         return $this->restrictRobots;
     }
 
-    /**
-     * The hostname to use as the CNAME
-     */
+   /**
+    * The hostname to use as the CNAME
+    */
     public function getEdgeHostname(): string
     {
         return $this->edgeHostname;
     }
 
-    /**
-     * The environment deployment state
-     */
+   /**
+    * The environment deployment state
+    */
     public function getDeploymentState(): ?DeploymentState
     {
         return $this->deploymentState;
     }
 
-    /**
-     * The environment sizing configuration
-     */
+   /**
+    * The environment sizing configuration
+    */
     public function getSizing(): ?Sizing
     {
         return $this->sizing;
     }
 
-    /**
-     * Resources overrides
-     * @return ResourcesOverridesValue[]
-     */
+   /**
+    * Resources overrides
+    * @return ResourcesOverridesValue[]
+    */
     public function getResourcesOverrides(): array
     {
         return $this->resourcesOverrides;
     }
 
-    /**
-     * Max number of instances for this environment
-     */
+   /**
+    * Max number of instances for this environment
+    */
     public function getMaxInstanceCount(): ?int
     {
         return $this->maxInstanceCount;
     }
 
-    /**
-     * Last activity date
-     */
-    public function getLastActiveAt(): ?DateTime
+   /**
+    * Last activity date
+    */
+    public function getLastActiveAt(): ?\DateTime
     {
         return $this->lastActiveAt;
     }
 
-    /**
-     * Last backup date
-     */
-    public function getLastBackupAt(): ?DateTime
+   /**
+    * Last backup date
+    */
+    public function getLastBackupAt(): ?\DateTime
     {
         return $this->lastBackupAt;
     }
 
-    /**
-     * The project the environment belongs to
-     */
+   /**
+    * The project the environment belongs to
+    */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * Is this environment the main environment
-     */
+   /**
+    * Is this environment the main environment
+    */
     public function getIsMain(): bool
     {
         return $this->isMain;
     }
 
-    /**
-     * Is there any pending activity on this environment
-     */
+   /**
+    * Is there any pending activity on this environment
+    */
     public function getIsDirty(): bool
     {
         return $this->isDirty;
     }
 
-    /**
-     * Is there any staged activity on this environment
-     */
+   /**
+    * Is there any staged activity on this environment
+    */
     public function getHasStagedActivities(): bool
     {
         return $this->hasStagedActivities;
     }
 
-    /**
-     * If the environment has rolling deployments ready for use
-     */
+   /**
+    * If the environment has rolling deployments ready for use
+    */
     public function getCanRollingDeploy(): bool
     {
         return $this->canRollingDeploy;
     }
 
-    /**
-     * If the environment supports rolling deployments
-     */
+   /**
+    * If the environment supports rolling deployments
+    */
     public function getSupportsRollingDeployments(): bool
     {
         return $this->supportsRollingDeployments;
     }
 
-    /**
-     * Does this environment have code
-     */
+   /**
+    * Does this environment have code
+    */
     public function getHasCode(): bool
     {
         return $this->hasCode;
     }
 
-    /**
-     * The SHA of the head commit for this environment
-     */
+   /**
+    * The SHA of the head commit for this environment
+    */
     public function getHeadCommit(): ?string
     {
         return $this->headCommit;
     }
 
-    /**
-     * The commit distance info between parent and child environments
-     */
+   /**
+    * The commit distance info between parent and child environments
+    */
     public function getMergeInfo(): MergeInfo
     {
         return $this->mergeInfo;
     }
 
-    /**
-     * Whether this environment had a successful deployment
-     */
+   /**
+    * Whether this environment had a successful deployment
+    */
     public function getHasDeployment(): bool
     {
         return $this->hasDeployment;
     }
 
-    /**
-     * Does this environment support configuring restrict_robots
-     */
+   /**
+    * Does this environment support configuring restrict_robots
+    */
     public function getSupportsRestrictRobots(): bool
     {
         return $this->supportsRestrictRobots;
     }
 }
+
+

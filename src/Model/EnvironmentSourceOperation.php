@@ -41,35 +41,37 @@ final class EnvironmentSourceOperation implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of EnvironmentSourceOperation
-     */
+   /**
+    * The identifier of EnvironmentSourceOperation
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The name of the application
-     */
+   /**
+    * The name of the application
+    */
     public function getApp(): string
     {
         return $this->app;
     }
 
-    /**
-     * The name of the source operation
-     */
+   /**
+    * The name of the source operation
+    */
     public function getOperation(): string
     {
         return $this->operation;
     }
 
-    /**
-     * The command that will be triggered
-     */
+   /**
+    * The command that will be triggered
+    */
     public function getCommand(): string
     {
         return $this->command;
     }
 }
+
+

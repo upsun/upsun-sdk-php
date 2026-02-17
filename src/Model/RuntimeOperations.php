@@ -35,11 +35,13 @@ final class RuntimeOperations implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * If true, runtime operations can be triggered.
-     */
+   /**
+    * If true, runtime operations can be triggered.
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 }
+
+

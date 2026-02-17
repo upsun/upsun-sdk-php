@@ -36,9 +36,9 @@ final class ListUserExtendedAccess200Response implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return ListUserExtendedAccess200ResponseItemsInner[]|null
-     */
+   /**
+    * @return ListUserExtendedAccess200ResponseItemsInner[]|null
+    */
     public function getItems(): ?array
     {
         return $this->items;
@@ -49,3 +49,5 @@ final class ListUserExtendedAccess200Response implements Model, JsonSerializable
         return $this->links;
     }
 }
+
+

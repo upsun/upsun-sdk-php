@@ -35,11 +35,13 @@ final class AggregatedFeatures implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Backup features configuration.
-     */
+   /**
+    * Backup features configuration.
+    */
     public function getBackups(): ?object
     {
         return $this->backups;
     }
 }
+
+

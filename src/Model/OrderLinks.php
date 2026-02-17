@@ -36,11 +36,13 @@ final class OrderLinks implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Link to related Invoices API. Use this to retrieve invoices related to this order.
-     */
+   /**
+    * Link to related Invoices API. Use this to retrieve invoices related to this order.
+    */
     public function getInvoices(): ?OrderLinksInvoices
     {
         return $this->invoices;
     }
 }
+
+

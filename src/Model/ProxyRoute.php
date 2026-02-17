@@ -62,17 +62,17 @@ final class ProxyRoute implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * Route type.
-     */
+   /**
+    * Route type.
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * TLS settings for the route.
-     */
+   /**
+    * TLS settings for the route.
+    */
     public function getTls(): TLSSettings
     {
         return $this->tls;
@@ -83,67 +83,69 @@ final class ProxyRoute implements Model, JsonSerializable
         return $this->to;
     }
 
-    /**
-     * The identifier of ProxyRoute
-     */
+   /**
+    * The identifier of ProxyRoute
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * This route is the primary route of the environment
-     */
+   /**
+    * This route is the primary route of the environment
+    */
     public function getPrimary(): ?bool
     {
         return $this->primary;
     }
 
-    /**
-     * How this URL route would look on production environment
-     */
+   /**
+    * How this URL route would look on production environment
+    */
     public function getProductionUrl(): ?string
     {
         return $this->productionUrl;
     }
 
-    /**
-     * The configuration of the redirects.
-     */
+   /**
+    * The configuration of the redirects.
+    */
     public function getRedirects(): ?RedirectConfiguration
     {
         return $this->redirects;
     }
 
-    /**
-     * Cache configuration.
-     */
+   /**
+    * Cache configuration.
+    */
     public function getCache(): ?CacheConfiguration
     {
         return $this->cache;
     }
 
-    /**
-     * Server-Side Include configuration.
-     */
+   /**
+    * Server-Side Include configuration.
+    */
     public function getSsi(): ?SSIConfiguration
     {
         return $this->ssi;
     }
 
-    /**
-     * The upstream to use for this route.
-     */
+   /**
+    * The upstream to use for this route.
+    */
     public function getUpstream(): ?string
     {
         return $this->upstream;
     }
 
-    /**
-     * Sticky routing configuration.
-     */
+   /**
+    * Sticky routing configuration.
+    */
     public function getSticky(): ?StickyConfiguration
     {
         return $this->sticky;
     }
 }
+
+

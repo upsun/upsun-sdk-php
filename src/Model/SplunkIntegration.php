@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -22,8 +21,8 @@ final class SplunkIntegration implements Model, JsonSerializable
         private readonly string $sourcetype,
         private readonly bool $tlsVerify,
         private readonly array $excludedServices,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
@@ -54,18 +53,18 @@ final class SplunkIntegration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -80,33 +79,33 @@ final class SplunkIntegration implements Model, JsonSerializable
         return $this->extra;
     }
 
-    /**
-     * The Splunk HTTP Event Connector REST API endpoint
-     */
+   /**
+    * The Splunk HTTP Event Connector REST API endpoint
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * The Splunk Index
-     */
+   /**
+    * The Splunk Index
+    */
     public function getIndex(): string
     {
         return $this->index;
     }
 
-    /**
-     * The event 'sourcetype'
-     */
+   /**
+    * The event 'sourcetype'
+    */
     public function getSourcetype(): string
     {
         return $this->sourcetype;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
@@ -117,11 +116,13 @@ final class SplunkIntegration implements Model, JsonSerializable
         return $this->excludedServices;
     }
 
-    /**
-     * The identifier of SplunkIntegration
-     */
+   /**
+    * The identifier of SplunkIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+
+

@@ -47,3 +47,5 @@ final class GetCurrentUserVerificationStatusFull200Response implements Model, Js
         return $this->type;
     }
 }
+
+

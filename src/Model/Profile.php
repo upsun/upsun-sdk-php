@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -33,8 +32,8 @@ final class Profile implements Model, JsonSerializable
         private readonly ?string $defaultCatalog = null,
         private readonly ?string $projectOptionsUrl = null,
         private readonly ?bool $marketing = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $billingContact = null,
         private readonly ?bool $invoiced = null,
         private readonly ?string $customerType = null,
@@ -79,179 +78,181 @@ final class Profile implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The user's unique ID.
-     */
+   /**
+    * The user's unique ID.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The user's display name.
-     */
+   /**
+    * The user's display name.
+    */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 
-    /**
-     * The user's email address.
-     */
+   /**
+    * The user's email address.
+    */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * The user's username.
-     */
+   /**
+    * The user's username.
+    */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-     * The user's type (user/organization).
-     */
+   /**
+    * The user's type (user/organization).
+    */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * The URL of the user's picture.
-     */
+   /**
+    * The URL of the user's picture.
+    */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    /**
-     * The company type.
-     */
+   /**
+    * The company type.
+    */
     public function getCompanyType(): ?string
     {
         return $this->companyType;
     }
 
-    /**
-     * The name of the company.
-     */
+   /**
+    * The name of the company.
+    */
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
 
-    /**
-     * A 3-letter ISO 4217 currency code (assigned according to the billing address).
-     */
+   /**
+    * A 3-letter ISO 4217 currency code (assigned according to the billing address).
+    */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
-    /**
-     * The vat number of the user.
-     */
+   /**
+    * The vat number of the user.
+    */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
 
-    /**
-     * The role of the user in the company.
-     */
+   /**
+    * The role of the user in the company.
+    */
     public function getCompanyRole(): ?string
     {
         return $this->companyRole;
     }
 
-    /**
-     * The user or company website.
-     */
+   /**
+    * The user or company website.
+    */
     public function getWebsiteUrl(): ?string
     {
         return $this->websiteUrl;
     }
 
-    /**
-     * Whether the new UI features are enabled for this user.
-     */
+   /**
+    * Whether the new UI features are enabled for this user.
+    */
     public function getNewUi(): ?bool
     {
         return $this->newUi;
     }
 
-    /**
-     * The user's chosen color scheme for user interfaces.
-     */
+   /**
+    * The user's chosen color scheme for user interfaces.
+    */
     public function getUiColorscheme(): ?string
     {
         return $this->uiColorscheme;
     }
 
-    /**
-     * The URL of a catalog file which overrides the default.
-     */
+   /**
+    * The URL of a catalog file which overrides the default.
+    */
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
 
-    /**
-     * The URL of an account-wide project options file.
-     */
+   /**
+    * The URL of an account-wide project options file.
+    */
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
 
-    /**
-     * Flag if the user agreed to receive marketing communication.
-     */
+   /**
+    * Flag if the user agreed to receive marketing communication.
+    */
     public function getMarketing(): ?bool
     {
         return $this->marketing;
     }
 
-    /**
-     * The timestamp representing when the user account was created.
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The timestamp representing when the user account was created.
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The timestamp representing when the user account was last modified.
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The timestamp representing when the user account was last modified.
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The e-mail address of a contact to whom billing notices will be sent.
-     */
+   /**
+    * The e-mail address of a contact to whom billing notices will be sent.
+    */
     public function getBillingContact(): ?string
     {
         return $this->billingContact;
     }
 
-    /**
-     * The customer is invoiced.
-     */
+   /**
+    * The customer is invoiced.
+    */
     public function getInvoiced(): ?bool
     {
         return $this->invoiced;
     }
 
-    /**
-     * The customer type.
-     */
+   /**
+    * The customer type.
+    */
     public function getCustomerType(): ?string
     {
         return $this->customerType;
     }
 }
+
+

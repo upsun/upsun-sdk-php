@@ -61,3 +61,5 @@ final class GetTypeAllowance200ResponseCurrenciesEUR implements Model, JsonSeria
         return $this->currencySymbol;
     }
 }
+
+

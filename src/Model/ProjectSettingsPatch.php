@@ -44,10 +44,10 @@ final class ProjectSettingsPatch implements Model, JsonSerializable
         return $this->initialize;
     }
 
-    /**
-     * Data retention configuration
-     * @return DataRetentionConfigurationValue1[]|null
-     */
+   /**
+    * Data retention configuration
+    * @return DataRetentionConfigurationValue1[]|null
+    */
     public function getDataRetention(): ?array
     {
         return $this->dataRetention;
@@ -58,3 +58,5 @@ final class ProjectSettingsPatch implements Model, JsonSerializable
         return $this->buildResources;
     }
 }
+
+

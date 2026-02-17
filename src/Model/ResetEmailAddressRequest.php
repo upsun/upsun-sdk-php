@@ -40,3 +40,5 @@ final class ResetEmailAddressRequest implements Model, JsonSerializable
         return $this->emailAddress;
     }
 }
+
+

@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,9 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\Address;
-use Upsun\Model\Profile;
-use Upsun\Model\UpdateOrgProfileRequest;
 
 /**
  * Low level ProfilesApi (auto-generated)
@@ -65,7 +63,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function getOrgAddress(
         string $organizationId
-    ): Address {
+    ): \Upsun\Model\Address {
         return $this->getOrgAddressWithHttpInfo(
             $organizationId
         );
@@ -83,7 +81,7 @@ final class ProfilesApi extends AbstractApi
     */
     private function getOrgAddressWithHttpInfo(
         string $organizationId
-    ): Address {
+    ): \Upsun\Model\Address {
         $request = $this->getOrgAddressRequest(
             $organizationId
         );
@@ -127,6 +125,7 @@ final class ProfilesApi extends AbstractApi
     private function getOrgAddressRequest(
         string $organizationId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -151,6 +150,7 @@ final class ProfilesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -180,6 +180,11 @@ final class ProfilesApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -215,7 +220,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function getOrgProfile(
         string $organizationId
-    ): Profile {
+    ): \Upsun\Model\Profile {
         return $this->getOrgProfileWithHttpInfo(
             $organizationId
         );
@@ -233,7 +238,7 @@ final class ProfilesApi extends AbstractApi
     */
     private function getOrgProfileWithHttpInfo(
         string $organizationId
-    ): Profile {
+    ): \Upsun\Model\Profile {
         $request = $this->getOrgProfileRequest(
             $organizationId
         );
@@ -277,6 +282,7 @@ final class ProfilesApi extends AbstractApi
     private function getOrgProfileRequest(
         string $organizationId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -301,6 +307,7 @@ final class ProfilesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -330,6 +337,11 @@ final class ProfilesApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -364,8 +376,8 @@ final class ProfilesApi extends AbstractApi
      */
     public function updateOrgAddress(
         string $organizationId,
-        ?Address $address = null
-    ): Address {
+        ?\Upsun\Model\Address $address = null
+    ): \Upsun\Model\Address {
         return $this->updateOrgAddressWithHttpInfo(
             $organizationId,
             $address
@@ -383,8 +395,8 @@ final class ProfilesApi extends AbstractApi
     */
     private function updateOrgAddressWithHttpInfo(
         string $organizationId,
-        ?Address $address = null
-    ): Address {
+        ?\Upsun\Model\Address $address = null
+    ): \Upsun\Model\Address {
         $request = $this->updateOrgAddressRequest(
             $organizationId,
             $address
@@ -427,8 +439,9 @@ final class ProfilesApi extends AbstractApi
      */
     private function updateOrgAddressRequest(
         string $organizationId,
-        ?Address $address = null
+        ?\Upsun\Model\Address $address = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -453,6 +466,7 @@ final class ProfilesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -492,6 +506,11 @@ final class ProfilesApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -524,8 +543,8 @@ final class ProfilesApi extends AbstractApi
      */
     public function updateOrgProfile(
         string $organizationId,
-        ?UpdateOrgProfileRequest $updateOrgProfileRequest = null
-    ): Profile {
+        ?\Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
+    ): \Upsun\Model\Profile {
         return $this->updateOrgProfileWithHttpInfo(
             $organizationId,
             $updateOrgProfileRequest
@@ -543,8 +562,8 @@ final class ProfilesApi extends AbstractApi
     */
     private function updateOrgProfileWithHttpInfo(
         string $organizationId,
-        ?UpdateOrgProfileRequest $updateOrgProfileRequest = null
-    ): Profile {
+        ?\Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
+    ): \Upsun\Model\Profile {
         $request = $this->updateOrgProfileRequest(
             $organizationId,
             $updateOrgProfileRequest
@@ -587,8 +606,9 @@ final class ProfilesApi extends AbstractApi
      */
     private function updateOrgProfileRequest(
         string $organizationId,
-        ?UpdateOrgProfileRequest $updateOrgProfileRequest = null
+        ?\Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -613,6 +633,7 @@ final class ProfilesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -650,6 +671,11 @@ final class ProfilesApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

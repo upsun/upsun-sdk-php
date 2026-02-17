@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -20,7 +19,7 @@ final class Usage implements Model, JsonSerializable
         private readonly ?string $subscriptionId = null,
         private readonly ?string $usageGroup = null,
         private readonly ?float $quantity = null,
-        private readonly ?DateTime $start = null,
+        private readonly ?\DateTime $start = null,
     ) {
     }
 
@@ -45,43 +44,45 @@ final class Usage implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The unique ID of the usage record.
-     */
+   /**
+    * The unique ID of the usage record.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the subscription.
-     */
+   /**
+    * The ID of the subscription.
+    */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The type of usage that this record represents.
-     */
+   /**
+    * The type of usage that this record represents.
+    */
     public function getUsageGroup(): ?string
     {
         return $this->usageGroup;
     }
 
-    /**
-     * The quantity used.
-     */
+   /**
+    * The quantity used.
+    */
     public function getQuantity(): ?float
     {
         return $this->quantity;
     }
 
-    /**
-     * The start timestamp of this usage record (ISO 8601).
-     */
-    public function getStart(): ?DateTime
+   /**
+    * The start timestamp of this usage record (ISO 8601).
+    */
+    public function getStart(): ?\DateTime
     {
         return $this->start;
     }
 }
+
+

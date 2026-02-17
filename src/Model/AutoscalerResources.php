@@ -37,21 +37,23 @@ final class AutoscalerResources implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * Lower/Upper bounds on CPU allocation when scaling
-     * @return AutoscalerCPUResources[]|null
-     */
+   /**
+    * Lower/Upper bounds on CPU allocation when scaling
+    * @return AutoscalerCPUResources[]|null
+    */
     public function getCpu(): ?array
     {
         return $this->cpu;
     }
 
-    /**
-     * Lower/Upper bounds on Memory allocation when scaling
-     * @return AutoscalerMemoryResources[]|null
-     */
+   /**
+    * Lower/Upper bounds on Memory allocation when scaling
+    * @return AutoscalerMemoryResources[]|null
+    */
     public function getMemory(): ?array
     {
         return $this->memory;
     }
 }
+
+

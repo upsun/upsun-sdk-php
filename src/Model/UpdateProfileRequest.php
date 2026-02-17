@@ -124,3 +124,5 @@ final class UpdateProfileRequest implements Model, JsonSerializable
         return $this->picture;
     }
 }
+
+

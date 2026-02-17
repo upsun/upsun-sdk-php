@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CreateSshKeyRequest;
-use Upsun\Model\SshKey;
 
 /**
  * Low level SshKeysApi (auto-generated)
@@ -59,8 +58,8 @@ final class SshKeysApi extends AbstractApi
      * @see https://docs.upsun.com/api/#tag/Ssh-Keys/operation/create-ssh-key
      */
     public function createSshKey(
-        ?CreateSshKeyRequest $createSshKeyRequest = null
-    ): SshKey {
+        ?\Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
+    ): \Upsun\Model\SshKey {
         return $this->createSshKeyWithHttpInfo(
             $createSshKeyRequest
         );
@@ -74,8 +73,8 @@ final class SshKeysApi extends AbstractApi
      * @throws ClientExceptionInterface
     */
     private function createSshKeyWithHttpInfo(
-        ?CreateSshKeyRequest $createSshKeyRequest = null
-    ): SshKey {
+        ?\Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
+    ): \Upsun\Model\SshKey {
         $request = $this->createSshKeyRequest(
             $createSshKeyRequest
         );
@@ -114,14 +113,18 @@ final class SshKeysApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     private function createSshKeyRequest(
-        ?CreateSshKeyRequest $createSshKeyRequest = null
+        ?\Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
     ): RequestInterface {
+
+
         $resourcePath = '/ssh_keys';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -159,6 +162,11 @@ final class SshKeysApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -243,6 +251,7 @@ final class SshKeysApi extends AbstractApi
     private function deleteSshKeyRequest(
         int $keyId
     ): RequestInterface {
+
         // verify the required parameter 'keyId' is set
         if (empty($keyId)) {
             throw new InvalidArgumentException(
@@ -267,6 +276,7 @@ final class SshKeysApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             [],
@@ -296,6 +306,11 @@ final class SshKeysApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -328,7 +343,7 @@ final class SshKeysApi extends AbstractApi
      */
     public function getSshKey(
         int $keyId
-    ): SshKey {
+    ): \Upsun\Model\SshKey {
         return $this->getSshKeyWithHttpInfo(
             $keyId
         );
@@ -344,7 +359,7 @@ final class SshKeysApi extends AbstractApi
     */
     private function getSshKeyWithHttpInfo(
         int $keyId
-    ): SshKey {
+    ): \Upsun\Model\SshKey {
         $request = $this->getSshKeyRequest(
             $keyId
         );
@@ -386,6 +401,7 @@ final class SshKeysApi extends AbstractApi
     private function getSshKeyRequest(
         int $keyId
     ): RequestInterface {
+
         // verify the required parameter 'keyId' is set
         if (empty($keyId)) {
             throw new InvalidArgumentException(
@@ -410,6 +426,7 @@ final class SshKeysApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -439,6 +456,11 @@ final class SshKeysApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

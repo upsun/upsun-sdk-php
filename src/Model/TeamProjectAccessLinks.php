@@ -39,27 +39,29 @@ final class TeamProjectAccessLinks implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Link to the current access item.
-     */
+   /**
+    * Link to the current access item.
+    */
     public function getSelf(): ?TeamProjectAccessLinksSelf
     {
         return $this->self;
     }
 
-    /**
-     * Link for updating the current access item. Only present if user has update permission.
-     */
+   /**
+    * Link for updating the current access item. Only present if user has update permission.
+    */
     public function getUpdate(): ?TeamProjectAccessLinksUpdate
     {
         return $this->update;
     }
 
-    /**
-     * Link for deleting the current access item. Only present if user has delete permission.
-     */
+   /**
+    * Link for deleting the current access item. Only present if user has delete permission.
+    */
     public function getDelete(): ?TeamProjectAccessLinksDelete
     {
         return $this->delete;
     }
 }
+
+

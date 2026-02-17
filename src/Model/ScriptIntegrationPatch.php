@@ -52,9 +52,9 @@ final class ScriptIntegrationPatch implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * The script to run
-     */
+   /**
+    * The script to run
+    */
     public function getScript(): string
     {
         return $this->script;
@@ -80,11 +80,13 @@ final class ScriptIntegrationPatch implements Model, JsonSerializable
         return $this->states;
     }
 
-    /**
-     * Result to execute the hook on
-     */
+   /**
+    * Result to execute the hook on
+    */
     public function getResult(): ?string
     {
         return $this->result;
     }
 }
+
+

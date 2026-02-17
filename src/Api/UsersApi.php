@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,12 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CurrentUser;
-use Upsun\Model\GetCurrentUserVerificationStatus200Response;
-use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
-use Upsun\Model\ResetEmailAddressRequest;
-use Upsun\Model\UpdateUserRequest;
-use Upsun\Model\User;
 
 /**
  * Low level UsersApi (auto-generated)
@@ -62,7 +57,8 @@ final class UsersApi extends AbstractApi
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user
      */
-    public function getCurrentUser(): User
+    public function getCurrentUser(
+    ): \Upsun\Model\User 
     {
         return $this->getCurrentUserWithHttpInfo(
         );
@@ -74,7 +70,8 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
-    private function getCurrentUserWithHttpInfo(): User
+    private function getCurrentUserWithHttpInfo(
+    ): \Upsun\Model\User 
     {
         $request = $this->getCurrentUserRequest(
         );
@@ -111,14 +108,18 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    private function getCurrentUserRequest(): RequestInterface
-    {
+    private function getCurrentUserRequest(
+    ): RequestInterface {
+
+
         $resourcePath = '/users/me';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -150,6 +151,11 @@ final class UsersApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -179,7 +185,8 @@ final class UsersApi extends AbstractApi
      *
      * @deprecated
      */
-    public function getCurrentUserDeprecated(): CurrentUser
+    public function getCurrentUserDeprecated(
+    ): \Upsun\Model\CurrentUser 
     {
         return $this->getCurrentUserDeprecatedWithHttpInfo(
         );
@@ -193,7 +200,8 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
-    private function getCurrentUserDeprecatedWithHttpInfo(): CurrentUser
+    private function getCurrentUserDeprecatedWithHttpInfo(
+    ): \Upsun\Model\CurrentUser 
     {
         $request = $this->getCurrentUserDeprecatedRequest(
         );
@@ -232,14 +240,18 @@ final class UsersApi extends AbstractApi
      *
      * @deprecated
      */
-    private function getCurrentUserDeprecatedRequest(): RequestInterface
-    {
+    private function getCurrentUserDeprecatedRequest(
+    ): RequestInterface {
+
+
         $resourcePath = '/me';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -271,6 +283,11 @@ final class UsersApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -298,7 +315,8 @@ final class UsersApi extends AbstractApi
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status
      */
-    public function getCurrentUserVerificationStatus(): GetCurrentUserVerificationStatus200Response
+    public function getCurrentUserVerificationStatus(
+    ): \Upsun\Model\GetCurrentUserVerificationStatus200Response 
     {
         return $this->getCurrentUserVerificationStatusWithHttpInfo(
         );
@@ -310,7 +328,8 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
-    private function getCurrentUserVerificationStatusWithHttpInfo(): GetCurrentUserVerificationStatus200Response
+    private function getCurrentUserVerificationStatusWithHttpInfo(
+    ): \Upsun\Model\GetCurrentUserVerificationStatus200Response 
     {
         $request = $this->getCurrentUserVerificationStatusRequest(
         );
@@ -347,14 +366,18 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    private function getCurrentUserVerificationStatusRequest(): RequestInterface
-    {
+    private function getCurrentUserVerificationStatusRequest(
+    ): RequestInterface {
+
+
         $resourcePath = '/me/phone';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -386,6 +409,11 @@ final class UsersApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -413,7 +441,8 @@ final class UsersApi extends AbstractApi
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status-full
      */
-    public function getCurrentUserVerificationStatusFull(): GetCurrentUserVerificationStatusFull200Response
+    public function getCurrentUserVerificationStatusFull(
+    ): \Upsun\Model\GetCurrentUserVerificationStatusFull200Response 
     {
         return $this->getCurrentUserVerificationStatusFullWithHttpInfo(
         );
@@ -425,7 +454,8 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
-    private function getCurrentUserVerificationStatusFullWithHttpInfo(): GetCurrentUserVerificationStatusFull200Response
+    private function getCurrentUserVerificationStatusFullWithHttpInfo(
+    ): \Upsun\Model\GetCurrentUserVerificationStatusFull200Response 
     {
         $request = $this->getCurrentUserVerificationStatusFullRequest(
         );
@@ -462,14 +492,18 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    private function getCurrentUserVerificationStatusFullRequest(): RequestInterface
-    {
+    private function getCurrentUserVerificationStatusFullRequest(
+    ): RequestInterface {
+
+
         $resourcePath = '/me/verification';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -499,6 +533,11 @@ final class UsersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -533,7 +572,7 @@ final class UsersApi extends AbstractApi
      */
     public function getUser(
         string $userId
-    ): User {
+    ): \Upsun\Model\User {
         return $this->getUserWithHttpInfo(
             $userId
         );
@@ -550,7 +589,7 @@ final class UsersApi extends AbstractApi
     */
     private function getUserWithHttpInfo(
         string $userId
-    ): User {
+    ): \Upsun\Model\User {
         $request = $this->getUserRequest(
             $userId
         );
@@ -593,6 +632,7 @@ final class UsersApi extends AbstractApi
     private function getUserRequest(
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -617,6 +657,7 @@ final class UsersApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -646,6 +687,11 @@ final class UsersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -679,7 +725,7 @@ final class UsersApi extends AbstractApi
      */
     public function getUserByEmailAddress(
         string $email
-    ): User {
+    ): \Upsun\Model\User {
         return $this->getUserByEmailAddressWithHttpInfo(
             $email
         );
@@ -695,7 +741,7 @@ final class UsersApi extends AbstractApi
     */
     private function getUserByEmailAddressWithHttpInfo(
         string $email
-    ): User {
+    ): \Upsun\Model\User {
         $request = $this->getUserByEmailAddressRequest(
             $email
         );
@@ -737,6 +783,7 @@ final class UsersApi extends AbstractApi
     private function getUserByEmailAddressRequest(
         string $email
     ): RequestInterface {
+
         // verify the required parameter 'email' is set
         if (empty($email)) {
             throw new InvalidArgumentException(
@@ -761,6 +808,7 @@ final class UsersApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -790,6 +838,11 @@ final class UsersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -823,7 +876,7 @@ final class UsersApi extends AbstractApi
      */
     public function getUserByUsername(
         string $username
-    ): User {
+    ): \Upsun\Model\User {
         return $this->getUserByUsernameWithHttpInfo(
             $username
         );
@@ -839,7 +892,7 @@ final class UsersApi extends AbstractApi
     */
     private function getUserByUsernameWithHttpInfo(
         string $username
-    ): User {
+    ): \Upsun\Model\User {
         $request = $this->getUserByUsernameRequest(
             $username
         );
@@ -881,6 +934,7 @@ final class UsersApi extends AbstractApi
     private function getUserByUsernameRequest(
         string $username
     ): RequestInterface {
+
         // verify the required parameter 'username' is set
         if (empty($username)) {
             throw new InvalidArgumentException(
@@ -905,6 +959,7 @@ final class UsersApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -934,6 +989,11 @@ final class UsersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -970,7 +1030,7 @@ final class UsersApi extends AbstractApi
      */
     public function resetEmailAddress(
         string $userId,
-        ?ResetEmailAddressRequest $resetEmailAddressRequest = null
+        ?\Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): void {
         $this->resetEmailAddressWithHttpInfo(
             $userId,
@@ -990,7 +1050,7 @@ final class UsersApi extends AbstractApi
     */
     private function resetEmailAddressWithHttpInfo(
         string $userId,
-        ?ResetEmailAddressRequest $resetEmailAddressRequest = null
+        ?\Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): void {
         $request = $this->resetEmailAddressRequest(
             $userId,
@@ -1029,8 +1089,9 @@ final class UsersApi extends AbstractApi
      */
     private function resetEmailAddressRequest(
         string $userId,
-        ?ResetEmailAddressRequest $resetEmailAddressRequest = null
+        ?\Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -1055,6 +1116,7 @@ final class UsersApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1092,6 +1154,11 @@ final class UsersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1181,6 +1248,7 @@ final class UsersApi extends AbstractApi
     private function resetPasswordRequest(
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -1205,6 +1273,7 @@ final class UsersApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1234,6 +1303,11 @@ final class UsersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1268,8 +1342,8 @@ final class UsersApi extends AbstractApi
      */
     public function updateUser(
         string $userId,
-        ?UpdateUserRequest $updateUserRequest = null
-    ): User {
+        ?\Upsun\Model\UpdateUserRequest $updateUserRequest = null
+    ): \Upsun\Model\User {
         return $this->updateUserWithHttpInfo(
             $userId,
             $updateUserRequest
@@ -1287,8 +1361,8 @@ final class UsersApi extends AbstractApi
     */
     private function updateUserWithHttpInfo(
         string $userId,
-        ?UpdateUserRequest $updateUserRequest = null
-    ): User {
+        ?\Upsun\Model\UpdateUserRequest $updateUserRequest = null
+    ): \Upsun\Model\User {
         $request = $this->updateUserRequest(
             $userId,
             $updateUserRequest
@@ -1331,8 +1405,9 @@ final class UsersApi extends AbstractApi
      */
     private function updateUserRequest(
         string $userId,
-        ?UpdateUserRequest $updateUserRequest = null
+        ?\Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -1357,6 +1432,7 @@ final class UsersApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1394,6 +1470,11 @@ final class UsersApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

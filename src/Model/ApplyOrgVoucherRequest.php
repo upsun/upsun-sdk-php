@@ -40,3 +40,5 @@ final class ApplyOrgVoucherRequest implements Model, JsonSerializable
         return $this->code;
     }
 }
+
+

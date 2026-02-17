@@ -48,3 +48,5 @@ final class OrganizationAddonsObjectUpgradesAvailable implements Model, JsonSeri
         return $this->supportLevel;
     }
 }
+
+

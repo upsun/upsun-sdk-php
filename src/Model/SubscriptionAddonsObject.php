@@ -40,27 +40,29 @@ final class SubscriptionAddonsObject implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The list of available addons.
-     */
+   /**
+    * The list of available addons.
+    */
     public function getAvailable(): ?SubscriptionAddonsObjectAvailable
     {
         return $this->available;
     }
 
-    /**
-     * The list of existing addons and their current values.
-     */
+   /**
+    * The list of existing addons and their current values.
+    */
     public function getCurrent(): ?SubscriptionAddonsObjectCurrent
     {
         return $this->current;
     }
 
-    /**
-     * The upgrades available for current addons.
-     */
+   /**
+    * The upgrades available for current addons.
+    */
     public function getUpgradesAvailable(): ?SubscriptionAddonsObjectUpgradesAvailable
     {
         return $this->upgradesAvailable;
     }
 }
+
+

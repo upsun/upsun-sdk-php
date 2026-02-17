@@ -31,6 +31,9 @@ class SupportTicketsTaskTest extends BaseTestCase
 {
     private SupportTicketsTask $task;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void

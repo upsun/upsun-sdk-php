@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -23,9 +22,9 @@ final class Backup implements Model, JsonSerializable
         private readonly bool $safe,
         private readonly bool $restorable,
         private readonly bool $automated,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
-        private readonly ?DateTime $expiresAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?\DateTime $expiresAt,
         private readonly ?int $index,
         private readonly ?int $sizeOfVolumes,
         private readonly ?int $sizeUsed,
@@ -64,26 +63,26 @@ final class Backup implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of Backup
-     */
+   /**
+    * The identifier of Backup
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -93,91 +92,93 @@ final class Backup implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * The status of the backup
-     */
+   /**
+    * The status of the backup
+    */
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * Expiration date of the backup
-     */
-    public function getExpiresAt(): ?DateTime
+   /**
+    * Expiration date of the backup
+    */
+    public function getExpiresAt(): ?\DateTime
     {
         return $this->expiresAt;
     }
 
-    /**
-     * The index of this automated backup
-     */
+   /**
+    * The index of this automated backup
+    */
     public function getIndex(): ?int
     {
         return $this->index;
     }
 
-    /**
-     * The ID of the code commit attached to the backup
-     */
+   /**
+    * The ID of the code commit attached to the backup
+    */
     public function getCommitId(): string
     {
         return $this->commitId;
     }
 
-    /**
-     * The environment the backup belongs to
-     */
+   /**
+    * The environment the backup belongs to
+    */
     public function getEnvironment(): string
     {
         return $this->environment;
     }
 
-    /**
-     * Whether this backup was taken in a safe way
-     */
+   /**
+    * Whether this backup was taken in a safe way
+    */
     public function getSafe(): bool
     {
         return $this->safe;
     }
 
-    /**
-     * Total size of volumes backed up
-     */
+   /**
+    * Total size of volumes backed up
+    */
     public function getSizeOfVolumes(): ?int
     {
         return $this->sizeOfVolumes;
     }
 
-    /**
-     * Total size of space used on volumes backed up
-     */
+   /**
+    * Total size of space used on volumes backed up
+    */
     public function getSizeUsed(): ?int
     {
         return $this->sizeUsed;
     }
 
-    /**
-     * The current deployment at the time of backup
-     */
+   /**
+    * The current deployment at the time of backup
+    */
     public function getDeployment(): ?string
     {
         return $this->deployment;
     }
 
-    /**
-     * Whether the backup is restorable
-     */
+   /**
+    * Whether the backup is restorable
+    */
     public function getRestorable(): bool
     {
         return $this->restorable;
     }
 
-    /**
-     * Whether the backup is automated
-     */
+   /**
+    * Whether the backup is automated
+    */
     public function getAutomated(): bool
     {
         return $this->automated;
     }
 }
+
+

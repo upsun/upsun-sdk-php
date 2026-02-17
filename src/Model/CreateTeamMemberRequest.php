@@ -40,3 +40,5 @@ final class CreateTeamMemberRequest implements Model, JsonSerializable
         return $this->userId;
     }
 }
+
+

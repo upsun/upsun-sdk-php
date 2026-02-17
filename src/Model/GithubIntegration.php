@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -25,8 +24,8 @@ final class GithubIntegration implements Model, JsonSerializable
         private readonly bool $buildPullRequestsPostMerge,
         private readonly bool $pullRequestsCloneParentData,
         private readonly string $tokenType,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $baseUrl,
         private readonly ?string $id = null,
     ) {
@@ -62,18 +61,18 @@ final class GithubIntegration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -83,91 +82,93 @@ final class GithubIntegration implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * Whether or not to fetch branches.
-     */
+   /**
+    * Whether or not to fetch branches.
+    */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
-     */
+   /**
+    * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+    */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * The resources used when initializing a new service
-     */
+   /**
+    * The resources used when initializing a new service
+    */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * The base URL of the Github API endpoint.
-     */
+   /**
+    * The base URL of the Github API endpoint.
+    */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * The GitHub repository (in the form `user/repo`).
-     */
+   /**
+    * The GitHub repository (in the form `user/repo`).
+    */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * Whether or not to build pull requests.
-     */
+   /**
+    * Whether or not to build pull requests.
+    */
     public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * Whether or not to build draft pull requests (requires `build_pull_requests`).
-     */
+   /**
+    * Whether or not to build draft pull requests (requires `build_pull_requests`).
+    */
     public function getBuildDraftPullRequests(): bool
     {
         return $this->buildDraftPullRequests;
     }
 
-    /**
-     * Whether to build pull requests post-merge (if true) or pre-merge (if false).
-     */
+   /**
+    * Whether to build pull requests post-merge (if true) or pre-merge (if false).
+    */
     public function getBuildPullRequestsPostMerge(): bool
     {
         return $this->buildPullRequestsPostMerge;
     }
 
-    /**
-     * Whether or not to clone parent data when building pull requests.
-     */
+   /**
+    * Whether or not to clone parent data when building pull requests.
+    */
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
 
-    /**
-     * The type of the token of this GitHub integration
-     */
+   /**
+    * The type of the token of this GitHub integration
+    */
     public function getTokenType(): string
     {
         return $this->tokenType;
     }
 
-    /**
-     * The identifier of GithubIntegration
-     */
+   /**
+    * The identifier of GithubIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+
+

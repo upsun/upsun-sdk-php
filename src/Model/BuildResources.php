@@ -39,9 +39,9 @@ final class BuildResources implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * If true, build resources can be modified.
-     */
+   /**
+    * If true, build resources can be modified.
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
@@ -57,3 +57,5 @@ final class BuildResources implements Model, JsonSerializable
         return $this->maxMemory;
     }
 }
+
+

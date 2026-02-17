@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -26,9 +25,9 @@ final class GitLabIntegration implements Model, JsonSerializable
         private readonly bool $buildMergeRequests,
         private readonly bool $buildWipMergeRequests,
         private readonly bool $mergeRequestsCloneParentData,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
-        private readonly ?DateTime $tokenExpiresAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
+        private readonly ?\DateTime $tokenExpiresAt,
         private readonly ?string $id = null,
     ) {
     }
@@ -64,18 +63,18 @@ final class GitLabIntegration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -85,31 +84,31 @@ final class GitLabIntegration implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * Whether or not to fetch branches.
-     */
+   /**
+    * Whether or not to fetch branches.
+    */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
-     */
+   /**
+    * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+    */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * The resources used when initializing a new service
-     */
+   /**
+    * The resources used when initializing a new service
+    */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
 
-    public function getTokenExpiresAt(): ?DateTime
+    public function getTokenExpiresAt(): ?\DateTime
     {
         return $this->tokenExpiresAt;
     }
@@ -124,51 +123,53 @@ final class GitLabIntegration implements Model, JsonSerializable
         return $this->rotateTokenValidityInWeeks;
     }
 
-    /**
-     * The base URL of the GitLab installation.
-     */
+   /**
+    * The base URL of the GitLab installation.
+    */
     public function getBaseUrl(): string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * The GitLab project (in the form `namespace/repo`).
-     */
+   /**
+    * The GitLab project (in the form `namespace/repo`).
+    */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * Whether or not to build merge requests.
-     */
+   /**
+    * Whether or not to build merge requests.
+    */
     public function getBuildMergeRequests(): bool
     {
         return $this->buildMergeRequests;
     }
 
-    /**
-     * Whether or not to build work in progress merge requests (requires `build_merge_requests`).
-     */
+   /**
+    * Whether or not to build work in progress merge requests (requires `build_merge_requests`).
+    */
     public function getBuildWipMergeRequests(): bool
     {
         return $this->buildWipMergeRequests;
     }
 
-    /**
-     * Whether or not to clone parent data when building merge requests.
-     */
+   /**
+    * Whether or not to clone parent data when building merge requests.
+    */
     public function getMergeRequestsCloneParentData(): bool
     {
         return $this->mergeRequestsCloneParentData;
     }
 
-    /**
-     * The identifier of GitLabIntegration
-     */
+   /**
+    * The identifier of GitLabIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+
+

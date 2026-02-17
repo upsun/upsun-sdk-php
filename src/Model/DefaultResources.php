@@ -68,3 +68,5 @@ final class DefaultResources implements Model, JsonSerializable
         return $this->profileSize;
     }
 }
+
+

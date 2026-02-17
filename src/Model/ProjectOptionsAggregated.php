@@ -105,11 +105,13 @@ final class ProjectOptionsAggregated implements Model, JsonSerializable
         return $this->containerSizes;
     }
 
-    /**
-     * Debug configuration.
-     */
+   /**
+    * Debug configuration.
+    */
     public function getDebug(): ?object
     {
         return $this->debug;
     }
 }
+
+

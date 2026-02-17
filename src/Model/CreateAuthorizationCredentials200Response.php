@@ -47,3 +47,5 @@ final class CreateAuthorizationCredentials200Response implements Model, JsonSeri
         return $this->type;
     }
 }
+
+

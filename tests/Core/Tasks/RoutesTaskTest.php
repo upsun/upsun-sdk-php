@@ -18,6 +18,9 @@ class RoutesTaskTest extends BaseTestCase
 {
     private RoutesTask $routesTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void

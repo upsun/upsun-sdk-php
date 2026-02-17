@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -22,8 +21,8 @@ final class WebHookIntegration implements Model, JsonSerializable
         private readonly array $states,
         private readonly string $result,
         private readonly string $url,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $sharedKey,
         private readonly ?string $id = null,
     ) {
@@ -56,18 +55,18 @@ final class WebHookIntegration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -97,35 +96,37 @@ final class WebHookIntegration implements Model, JsonSerializable
         return $this->states;
     }
 
-    /**
-     * Result to execute the hook on
-     */
+   /**
+    * Result to execute the hook on
+    */
     public function getResult(): string
     {
         return $this->result;
     }
 
-    /**
-     * The JWS shared secret key
-     */
+   /**
+    * The JWS shared secret key
+    */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
 
-    /**
-     * The URL of the webhook
-     */
+   /**
+    * The URL of the webhook
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * The identifier of WebHookIntegration
-     */
+   /**
+    * The identifier of WebHookIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+
+

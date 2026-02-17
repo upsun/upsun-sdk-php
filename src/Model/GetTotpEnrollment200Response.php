@@ -61,3 +61,5 @@ final class GetTotpEnrollment200Response implements Model, JsonSerializable
         return $this->qrCode;
     }
 }
+
+

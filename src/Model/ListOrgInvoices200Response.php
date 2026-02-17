@@ -34,11 +34,13 @@ final class ListOrgInvoices200Response implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return Invoice[]|null
-     */
+   /**
+    * @return Invoice[]|null
+    */
     public function getItems(): ?array
     {
         return $this->items;
     }
 }
+
+

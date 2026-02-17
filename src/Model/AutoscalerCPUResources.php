@@ -38,19 +38,21 @@ final class AutoscalerCPUResources implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Minimum CPUs when scaling down vertically
-     */
+   /**
+    * Minimum CPUs when scaling down vertically
+    */
     public function getMin(): ?float
     {
         return $this->min;
     }
 
-    /**
-     * Maximum CPUs when scaling up vertically
-     */
+   /**
+    * Maximum CPUs when scaling up vertically
+    */
     public function getMax(): ?float
     {
         return $this->max;
     }
 }
+
+

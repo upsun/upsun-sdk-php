@@ -56,11 +56,13 @@ final class VouchersVouchersInner implements Model, JsonSerializable
         return $this->currency;
     }
 
-    /**
-     * @return VouchersVouchersInnerOrdersInner[]|null
-     */
+   /**
+    * @return VouchersVouchersInnerOrdersInner[]|null
+    */
     public function getOrders(): ?array
     {
         return $this->orders;
     }
 }
+
+

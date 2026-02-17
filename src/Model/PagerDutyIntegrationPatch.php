@@ -42,11 +42,13 @@ final class PagerDutyIntegrationPatch implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * The PagerDuty routing key
-     */
+   /**
+    * The PagerDuty routing key
+    */
     public function getRoutingKey(): string
     {
         return $this->routingKey;
     }
 }
+
+

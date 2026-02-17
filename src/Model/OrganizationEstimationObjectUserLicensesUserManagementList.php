@@ -37,19 +37,21 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * An estimation of standard_management_user cost.
-     */
+   /**
+    * An estimation of standard_management_user cost.
+    */
     public function getStandardManagementUser(): ?OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser
     {
         return $this->standardManagementUser;
     }
 
-    /**
-     * An estimation of advanced_management_user cost.
-     */
+   /**
+    * An estimation of advanced_management_user cost.
+    */
     public function getAdvancedManagementUser(): ?OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser
     {
         return $this->advancedManagementUser;
     }
 }
+
+

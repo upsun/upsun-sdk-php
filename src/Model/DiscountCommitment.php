@@ -40,27 +40,29 @@ final class DiscountCommitment implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Commitment period length in months.
-     */
+   /**
+    * Commitment period length in months.
+    */
     public function getMonths(): ?int
     {
         return $this->months;
     }
 
-    /**
-     * Commitment amounts.
-     */
+   /**
+    * Commitment amounts.
+    */
     public function getAmount(): ?DiscountCommitmentAmount
     {
         return $this->amount;
     }
 
-    /**
-     * Net commitment amounts (discount deducted).
-     */
+   /**
+    * Net commitment amounts (discount deducted).
+    */
     public function getNet(): ?DiscountCommitmentNet
     {
         return $this->net;
     }
 }
+
+

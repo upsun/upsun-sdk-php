@@ -13,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\ListUserExtendedAccess200Response;
-use Upsun\Model\StringFilter;
 
 /**
  * Low level GrantsApi (auto-generated)
@@ -68,10 +66,10 @@ final class GrantsApi extends AbstractApi
      */
     public function listUserExtendedAccess(
         string $userId,
-        ?StringFilter $filterResourceType = null,
-        ?StringFilter $filterOrganizationId = null,
-        ?StringFilter $filterPermissions = null
-    ): ListUserExtendedAccess200Response {
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
+    ): \Upsun\Model\ListUserExtendedAccess200Response {
         return $this->listUserExtendedAccessWithHttpInfo(
             $userId,
             $filterResourceType,
@@ -94,10 +92,10 @@ final class GrantsApi extends AbstractApi
     */
     private function listUserExtendedAccessWithHttpInfo(
         string $userId,
-        ?StringFilter $filterResourceType = null,
-        ?StringFilter $filterOrganizationId = null,
-        ?StringFilter $filterPermissions = null
-    ): ListUserExtendedAccess200Response {
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
+    ): \Upsun\Model\ListUserExtendedAccess200Response {
         $request = $this->listUserExtendedAccessRequest(
             $userId,
             $filterResourceType,
@@ -145,10 +143,11 @@ final class GrantsApi extends AbstractApi
      */
     private function listUserExtendedAccessRequest(
         string $userId,
-        ?StringFilter $filterResourceType = null,
-        ?StringFilter $filterOrganizationId = null,
-        ?StringFilter $filterPermissions = null
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -177,6 +176,8 @@ final class GrantsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($filterOrganizationId !== null) {
             if ('form' === 'deepObject' && is_array($filterOrganizationId)) {
@@ -189,6 +190,8 @@ final class GrantsApi extends AbstractApi
                     : ($filterOrganizationId->getEq());
             }
         }
+
+
 
         // query params
         if ($filterPermissions !== null) {
@@ -203,6 +206,8 @@ final class GrantsApi extends AbstractApi
             }
         }
 
+
+
         // path params
 
         if ($userId !== null) {
@@ -212,6 +217,7 @@ final class GrantsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -241,6 +247,11 @@ final class GrantsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

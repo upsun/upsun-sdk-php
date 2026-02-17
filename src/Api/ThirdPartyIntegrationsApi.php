@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,10 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Integration;
-use Upsun\Model\IntegrationCreateInput;
-use Upsun\Model\IntegrationPatch;
 
 /**
  * Low level ThirdPartyIntegrationsApi (auto-generated)
@@ -63,8 +60,8 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      */
     public function createProjectsIntegrations(
         string $projectId,
-        IntegrationCreateInput $integrationCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\IntegrationCreateInput $integrationCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->createProjectsIntegrationsWithHttpInfo(
             $projectId,
             $integrationCreateInput
@@ -81,8 +78,8 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     */
     private function createProjectsIntegrationsWithHttpInfo(
         string $projectId,
-        IntegrationCreateInput $integrationCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\IntegrationCreateInput $integrationCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->createProjectsIntegrationsRequest(
             $projectId,
             $integrationCreateInput
@@ -124,8 +121,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      */
     private function createProjectsIntegrationsRequest(
         string $projectId,
-        IntegrationCreateInput $integrationCreateInput
+        \Upsun\Model\IntegrationCreateInput $integrationCreateInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -157,6 +155,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -196,6 +195,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -226,7 +230,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function deleteProjectsIntegrations(
         string $projectId,
         string $integrationId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->deleteProjectsIntegrationsWithHttpInfo(
             $projectId,
             $integrationId
@@ -243,7 +247,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     private function deleteProjectsIntegrationsWithHttpInfo(
         string $projectId,
         string $integrationId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsIntegrationsRequest(
             $projectId,
             $integrationId
@@ -286,6 +290,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $projectId,
         string $integrationId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -327,6 +332,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -355,6 +361,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -387,7 +398,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function getProjectsIntegrations(
         string $projectId,
         string $integrationId
-    ): Integration {
+    ): \Upsun\Model\Integration {
         return $this->getProjectsIntegrationsWithHttpInfo(
             $projectId,
             $integrationId
@@ -404,7 +415,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     private function getProjectsIntegrationsWithHttpInfo(
         string $projectId,
         string $integrationId
-    ): Integration {
+    ): \Upsun\Model\Integration {
         $request = $this->getProjectsIntegrationsRequest(
             $projectId,
             $integrationId
@@ -447,6 +458,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $projectId,
         string $integrationId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -488,6 +500,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -516,6 +529,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -607,6 +625,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     private function listProjectsIntegrationsRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -631,6 +650,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -660,6 +680,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -693,8 +718,8 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function updateProjectsIntegrations(
         string $projectId,
         string $integrationId,
-        IntegrationPatch $integrationPatch
-    ): AcceptedResponse {
+        \Upsun\Model\IntegrationPatch $integrationPatch
+    ): \Upsun\Model\AcceptedResponse {
         return $this->updateProjectsIntegrationsWithHttpInfo(
             $projectId,
             $integrationId,
@@ -713,8 +738,8 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     private function updateProjectsIntegrationsWithHttpInfo(
         string $projectId,
         string $integrationId,
-        IntegrationPatch $integrationPatch
-    ): AcceptedResponse {
+        \Upsun\Model\IntegrationPatch $integrationPatch
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsIntegrationsRequest(
             $projectId,
             $integrationId,
@@ -758,8 +783,9 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     private function updateProjectsIntegrationsRequest(
         string $projectId,
         string $integrationId,
-        IntegrationPatch $integrationPatch
+        \Upsun\Model\IntegrationPatch $integrationPatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -808,6 +834,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             'application/json',
@@ -844,6 +871,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

@@ -52,9 +52,9 @@ final class WebConfiguration implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return WebLocationsValue[]
-     */
+   /**
+    * @return WebLocationsValue[]
+    */
     public function getLocations(): array
     {
         return $this->locations;
@@ -105,3 +105,5 @@ final class WebConfiguration implements Model, JsonSerializable
         return $this->expires;
     }
 }
+
+

@@ -42,17 +42,17 @@ final class CacheConfiguration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether the cache is enabled.
-     */
+   /**
+    * Whether the cache is enabled.
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * The TTL to apply when the response doesn't specify one. Only applies to static files.
-     */
+   /**
+    * The TTL to apply when the response doesn't specify one. Only applies to static files.
+    */
     public function getDefaultTtl(): int
     {
         return $this->defaultTtl;
@@ -68,3 +68,5 @@ final class CacheConfiguration implements Model, JsonSerializable
         return $this->headers;
     }
 }
+
+

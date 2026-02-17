@@ -47,3 +47,5 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements Model, JsonSerializa
         return $this->transactions;
     }
 }
+
+

@@ -49,11 +49,13 @@ final class ProdDomainStorageCreateInput implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * Is this domain default
-     */
+   /**
+    * Is this domain default
+    */
     public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 }
+
+

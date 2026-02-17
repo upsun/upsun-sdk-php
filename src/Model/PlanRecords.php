@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -16,14 +15,14 @@ use JsonSerializable;
 final class PlanRecords implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly ?DateTime $end = null,
+        private readonly ?\DateTime $end = null,
         private readonly ?string $id = null,
         private readonly ?string $owner = null,
         private readonly ?string $subscriptionId = null,
         private readonly ?string $sku = null,
         private readonly ?string $plan = null,
         private readonly ?array $options = [],
-        private readonly ?DateTime $start = null,
+        private readonly ?\DateTime $start = null,
         private readonly ?string $status = null,
     ) {
     }
@@ -53,41 +52,41 @@ final class PlanRecords implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The unique ID of the plan record.
-     */
+   /**
+    * The unique ID of the plan record.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The UUID of the owner.
-     */
+   /**
+    * The UUID of the owner.
+    */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
 
-    /**
-     * The ID of the subscription this record pertains to.
-     */
+   /**
+    * The ID of the subscription this record pertains to.
+    */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The product SKU of the plan that this record represents.
-     */
+   /**
+    * The product SKU of the plan that this record represents.
+    */
     public function getSku(): ?string
     {
         return $this->sku;
     }
 
-    /**
-     * The machine name of the plan that this record represents.
-     */
+   /**
+    * The machine name of the plan that this record represents.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;
@@ -98,27 +97,29 @@ final class PlanRecords implements Model, JsonSerializable
         return $this->options;
     }
 
-    /**
-     * The start timestamp of this plan record (ISO 8601).
-     */
-    public function getStart(): ?DateTime
+   /**
+    * The start timestamp of this plan record (ISO 8601).
+    */
+    public function getStart(): ?\DateTime
     {
         return $this->start;
     }
 
-    /**
-     * The end timestamp of this plan record (ISO 8601).
-     */
-    public function getEnd(): ?DateTime
+   /**
+    * The end timestamp of this plan record (ISO 8601).
+    */
+    public function getEnd(): ?\DateTime
     {
         return $this->end;
     }
 
-    /**
-     * The status of the subscription during this record: active or suspended.
-     */
+   /**
+    * The status of the subscription during this record: active or suspended.
+    */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 }
+
+

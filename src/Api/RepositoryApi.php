@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,10 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\Blob;
-use Upsun\Model\Commit;
-use Upsun\Model\Ref;
-use Upsun\Model\Tree;
 
 /**
  * Low level RepositoryApi (auto-generated)
@@ -66,7 +63,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitBlobs(
         string $projectId,
         string $repositoryBlobId
-    ): Blob {
+    ): \Upsun\Model\Blob {
         return $this->getProjectsGitBlobsWithHttpInfo(
             $projectId,
             $repositoryBlobId
@@ -83,7 +80,7 @@ final class RepositoryApi extends AbstractApi
     private function getProjectsGitBlobsWithHttpInfo(
         string $projectId,
         string $repositoryBlobId
-    ): Blob {
+    ): \Upsun\Model\Blob {
         $request = $this->getProjectsGitBlobsRequest(
             $projectId,
             $repositoryBlobId
@@ -126,6 +123,7 @@ final class RepositoryApi extends AbstractApi
         string $projectId,
         string $repositoryBlobId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -167,6 +165,7 @@ final class RepositoryApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -195,6 +194,11 @@ final class RepositoryApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -232,7 +236,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitCommits(
         string $projectId,
         string $repositoryCommitId
-    ): Commit {
+    ): \Upsun\Model\Commit {
         return $this->getProjectsGitCommitsWithHttpInfo(
             $projectId,
             $repositoryCommitId
@@ -249,7 +253,7 @@ final class RepositoryApi extends AbstractApi
     private function getProjectsGitCommitsWithHttpInfo(
         string $projectId,
         string $repositoryCommitId
-    ): Commit {
+    ): \Upsun\Model\Commit {
         $request = $this->getProjectsGitCommitsRequest(
             $projectId,
             $repositoryCommitId
@@ -292,6 +296,7 @@ final class RepositoryApi extends AbstractApi
         string $projectId,
         string $repositoryCommitId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -333,6 +338,7 @@ final class RepositoryApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -361,6 +367,11 @@ final class RepositoryApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -397,7 +408,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitRefs(
         string $projectId,
         string $repositoryRefId
-    ): Ref {
+    ): \Upsun\Model\Ref {
         return $this->getProjectsGitRefsWithHttpInfo(
             $projectId,
             $repositoryRefId
@@ -414,7 +425,7 @@ final class RepositoryApi extends AbstractApi
     private function getProjectsGitRefsWithHttpInfo(
         string $projectId,
         string $repositoryRefId
-    ): Ref {
+    ): \Upsun\Model\Ref {
         $request = $this->getProjectsGitRefsRequest(
             $projectId,
             $repositoryRefId
@@ -457,6 +468,7 @@ final class RepositoryApi extends AbstractApi
         string $projectId,
         string $repositoryRefId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -498,6 +510,7 @@ final class RepositoryApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -526,6 +539,11 @@ final class RepositoryApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -562,7 +580,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitTrees(
         string $projectId,
         string $repositoryTreeId
-    ): Tree {
+    ): \Upsun\Model\Tree {
         return $this->getProjectsGitTreesWithHttpInfo(
             $projectId,
             $repositoryTreeId
@@ -579,7 +597,7 @@ final class RepositoryApi extends AbstractApi
     private function getProjectsGitTreesWithHttpInfo(
         string $projectId,
         string $repositoryTreeId
-    ): Tree {
+    ): \Upsun\Model\Tree {
         $request = $this->getProjectsGitTreesRequest(
             $projectId,
             $repositoryTreeId
@@ -622,6 +640,7 @@ final class RepositoryApi extends AbstractApi
         string $projectId,
         string $repositoryTreeId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -663,6 +682,7 @@ final class RepositoryApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -691,6 +711,11 @@ final class RepositoryApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -787,6 +812,7 @@ final class RepositoryApi extends AbstractApi
     private function listProjectsGitRefsRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -811,6 +837,7 @@ final class RepositoryApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -840,6 +867,11 @@ final class RepositoryApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

@@ -76,3 +76,5 @@ final class ProjectInfo implements Model, JsonSerializable
         return $this->settings;
     }
 }
+
+

@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -15,14 +14,14 @@ use JsonSerializable;
 final class OrganizationInvitation implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly ?DateTime $finishedAt = null,
+        private readonly ?\DateTime $finishedAt = null,
         private readonly ?string $id = null,
         private readonly ?string $state = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $email = null,
         private readonly ?OrganizationInvitationOwner $owner = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?array $permissions = [],
     ) {
     }
@@ -52,66 +51,66 @@ final class OrganizationInvitation implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the invitation.
-     */
+   /**
+    * The ID of the invitation.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The invitation state.
-     */
+   /**
+    * The invitation state.
+    */
     public function getState(): ?string
     {
         return $this->state;
     }
 
-    /**
-     * The ID of the organization.
-     */
+   /**
+    * The ID of the organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The email address of the invitee.
-     */
+   /**
+    * The email address of the invitee.
+    */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * The inviter.
-     */
+   /**
+    * The inviter.
+    */
     public function getOwner(): ?OrganizationInvitationOwner
     {
         return $this->owner;
     }
 
-    /**
-     * The date and time when the invitation was created.
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The date and time when the invitation was created.
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the invitation was last updated.
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The date and time when the invitation was last updated.
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The date and time when the invitation was finished.
-     */
-    public function getFinishedAt(): ?DateTime
+   /**
+    * The date and time when the invitation was finished.
+    */
+    public function getFinishedAt(): ?\DateTime
     {
         return $this->finishedAt;
     }
@@ -121,3 +120,5 @@ final class OrganizationInvitation implements Model, JsonSerializable
         return $this->permissions;
     }
 }
+
+

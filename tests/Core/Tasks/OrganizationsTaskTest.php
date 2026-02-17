@@ -69,6 +69,9 @@ class OrganizationsTaskTest extends BaseTestCase
 {
     protected OrganizationsTask $organizationsTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void

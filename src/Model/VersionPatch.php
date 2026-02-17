@@ -35,11 +35,13 @@ final class VersionPatch implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Configuration about the traffic routed to this version
-     */
+   /**
+    * Configuration about the traffic routed to this version
+    */
     public function getRouting(): ?Routing1
     {
         return $this->routing;
     }
 }
+
+

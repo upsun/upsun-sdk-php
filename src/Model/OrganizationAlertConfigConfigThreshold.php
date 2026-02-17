@@ -42,35 +42,37 @@ final class OrganizationAlertConfigConfigThreshold implements Model, JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Formatted threshold value.
-     */
+   /**
+    * Formatted threshold value.
+    */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
-    /**
-     * Threshold value.
-     */
+   /**
+    * Threshold value.
+    */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
 
-    /**
-     * Threshold currency code.
-     */
+   /**
+    * Threshold currency code.
+    */
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
 
-    /**
-     * Threshold currency symbol.
-     */
+   /**
+    * Threshold currency symbol.
+    */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
 }
+
+

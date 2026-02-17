@@ -43,43 +43,45 @@ final class Blob implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of Blob
-     */
+   /**
+    * The identifier of Blob
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The identifier of the tag
-     */
+   /**
+    * The identifier of the tag
+    */
     public function getSha(): string
     {
         return $this->sha;
     }
 
-    /**
-     * The size of the blob
-     */
+   /**
+    * The size of the blob
+    */
     public function getSize(): int
     {
         return $this->size;
     }
 
-    /**
-     * The encoding of the contents
-     */
+   /**
+    * The encoding of the contents
+    */
     public function getEncoding(): string
     {
         return $this->encoding;
     }
 
-    /**
-     * The contents
-     */
+   /**
+    * The contents
+    */
     public function getContent(): string
     {
         return $this->content;
     }
 }
+
+

@@ -35,11 +35,13 @@ final class Resources3 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The resources used when initializing services of the new environment
-     */
+   /**
+    * The resources used when initializing services of the new environment
+    */
     public function getInit(): ?string
     {
         return $this->init;
     }
 }
+
+

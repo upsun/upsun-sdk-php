@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,10 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\DeploymentTarget;
-use Upsun\Model\DeploymentTargetCreateInput;
-use Upsun\Model\DeploymentTargetPatch;
 
 /**
  * Low level DeploymentTargetApi (auto-generated)
@@ -64,8 +61,8 @@ final class DeploymentTargetApi extends AbstractApi
      */
     public function createProjectsDeployments(
         string $projectId,
-        DeploymentTargetCreateInput $deploymentTargetCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->createProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetCreateInput
@@ -82,8 +79,8 @@ final class DeploymentTargetApi extends AbstractApi
     */
     private function createProjectsDeploymentsWithHttpInfo(
         string $projectId,
-        DeploymentTargetCreateInput $deploymentTargetCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->createProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetCreateInput
@@ -125,8 +122,9 @@ final class DeploymentTargetApi extends AbstractApi
      */
     private function createProjectsDeploymentsRequest(
         string $projectId,
-        DeploymentTargetCreateInput $deploymentTargetCreateInput
+        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -158,6 +156,7 @@ final class DeploymentTargetApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -197,6 +196,11 @@ final class DeploymentTargetApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -228,7 +232,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function deleteProjectsDeployments(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->deleteProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetConfigurationId
@@ -245,7 +249,7 @@ final class DeploymentTargetApi extends AbstractApi
     private function deleteProjectsDeploymentsWithHttpInfo(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetConfigurationId
@@ -288,6 +292,7 @@ final class DeploymentTargetApi extends AbstractApi
         string $projectId,
         string $deploymentTargetConfigurationId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -329,6 +334,7 @@ final class DeploymentTargetApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -357,6 +363,11 @@ final class DeploymentTargetApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -390,7 +401,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function getProjectsDeployments(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): DeploymentTarget {
+    ): \Upsun\Model\DeploymentTarget {
         return $this->getProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetConfigurationId
@@ -407,7 +418,7 @@ final class DeploymentTargetApi extends AbstractApi
     private function getProjectsDeploymentsWithHttpInfo(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): DeploymentTarget {
+    ): \Upsun\Model\DeploymentTarget {
         $request = $this->getProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetConfigurationId
@@ -450,6 +461,7 @@ final class DeploymentTargetApi extends AbstractApi
         string $projectId,
         string $deploymentTargetConfigurationId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -491,6 +503,7 @@ final class DeploymentTargetApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -519,6 +532,11 @@ final class DeploymentTargetApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -611,6 +629,7 @@ final class DeploymentTargetApi extends AbstractApi
     private function listProjectsDeploymentsRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -635,6 +654,7 @@ final class DeploymentTargetApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -664,6 +684,11 @@ final class DeploymentTargetApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -697,8 +722,8 @@ final class DeploymentTargetApi extends AbstractApi
     public function updateProjectsDeployments(
         string $projectId,
         string $deploymentTargetConfigurationId,
-        DeploymentTargetPatch $deploymentTargetPatch
-    ): AcceptedResponse {
+        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
+    ): \Upsun\Model\AcceptedResponse {
         return $this->updateProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetConfigurationId,
@@ -717,8 +742,8 @@ final class DeploymentTargetApi extends AbstractApi
     private function updateProjectsDeploymentsWithHttpInfo(
         string $projectId,
         string $deploymentTargetConfigurationId,
-        DeploymentTargetPatch $deploymentTargetPatch
-    ): AcceptedResponse {
+        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetConfigurationId,
@@ -762,8 +787,9 @@ final class DeploymentTargetApi extends AbstractApi
     private function updateProjectsDeploymentsRequest(
         string $projectId,
         string $deploymentTargetConfigurationId,
-        DeploymentTargetPatch $deploymentTargetPatch
+        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -812,6 +838,7 @@ final class DeploymentTargetApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             'application/json',
@@ -848,6 +875,11 @@ final class DeploymentTargetApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

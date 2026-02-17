@@ -60,82 +60,82 @@ final class CurrentUser implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The UUID of the owner.
-     */
+   /**
+    * The UUID of the owner.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The UUID of the owner.
-     */
+   /**
+    * The UUID of the owner.
+    */
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
 
-    /**
-     * The username of the owner.
-     */
+   /**
+    * The username of the owner.
+    */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-     * The full name of the owner.
-     */
+   /**
+    * The full name of the owner.
+    */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 
-    /**
-     * Status of the user. 0 = blocked; 1 = active.
-     */
+   /**
+    * Status of the user. 0 = blocked; 1 = active.
+    */
     public function getStatus(): ?int
     {
         return $this->status;
     }
 
-    /**
-     * The email address of the owner.
-     */
+   /**
+    * The email address of the owner.
+    */
     public function getMail(): ?string
     {
         return $this->mail;
     }
 
-    /**
-     * The list of user's public SSH keys.
-     * @return SshKey[]|null
-     */
+   /**
+    * The list of user's public SSH keys.
+    * @return SshKey[]|null
+    */
     public function getSshKeys(): ?array
     {
         return $this->sshKeys;
     }
 
-    /**
-     * The indicator whether the user has a public ssh key on file or not.
-     */
+   /**
+    * The indicator whether the user has a public ssh key on file or not.
+    */
     public function getHasKey(): ?bool
     {
         return $this->hasKey;
     }
 
-    /**
-     * @return CurrentUserProjectsInner[]|null
-     */
+   /**
+    * @return CurrentUserProjectsInner[]|null
+    */
     public function getProjects(): ?array
     {
         return $this->projects;
     }
 
-    /**
-     * The sequential ID of the user.
-     */
+   /**
+    * The sequential ID of the user.
+    */
     public function getSequence(): ?int
     {
         return $this->sequence;
@@ -146,19 +146,21 @@ final class CurrentUser implements Model, JsonSerializable
         return $this->roles;
     }
 
-    /**
-     * The URL of the user image.
-     */
+   /**
+    * The URL of the user image.
+    */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
 
-    /**
-     * Number of support tickets by status.
-     */
+   /**
+    * Number of support tickets by status.
+    */
     public function getTickets(): ?object
     {
         return $this->tickets;
     }
 }
+
+

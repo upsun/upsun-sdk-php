@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,11 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\GetOrgPrepaymentInfo200Response;
-use Upsun\Model\ListOrgPrepaymentTransactions200Response;
-use Upsun\Model\OrganizationAlertConfig;
-use Upsun\Model\OrganizationEstimationObject;
-use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
 
 /**
  * Low level OrganizationManagementApi (auto-generated)
@@ -67,7 +63,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function estimateOrg(
         string $organizationId
-    ): OrganizationEstimationObject {
+    ): \Upsun\Model\OrganizationEstimationObject {
         return $this->estimateOrgWithHttpInfo(
             $organizationId
         );
@@ -85,7 +81,7 @@ final class OrganizationManagementApi extends AbstractApi
     */
     private function estimateOrgWithHttpInfo(
         string $organizationId
-    ): OrganizationEstimationObject {
+    ): \Upsun\Model\OrganizationEstimationObject {
         $request = $this->estimateOrgRequest(
             $organizationId
         );
@@ -129,6 +125,7 @@ final class OrganizationManagementApi extends AbstractApi
     private function estimateOrgRequest(
         string $organizationId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -153,6 +150,7 @@ final class OrganizationManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -182,6 +180,11 @@ final class OrganizationManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -217,7 +220,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function getOrgBillingAlertConfig(
         string $organizationId
-    ): OrganizationAlertConfig {
+    ): \Upsun\Model\OrganizationAlertConfig {
         return $this->getOrgBillingAlertConfigWithHttpInfo(
             $organizationId
         );
@@ -235,7 +238,7 @@ final class OrganizationManagementApi extends AbstractApi
     */
     private function getOrgBillingAlertConfigWithHttpInfo(
         string $organizationId
-    ): OrganizationAlertConfig {
+    ): \Upsun\Model\OrganizationAlertConfig {
         $request = $this->getOrgBillingAlertConfigRequest(
             $organizationId
         );
@@ -279,6 +282,7 @@ final class OrganizationManagementApi extends AbstractApi
     private function getOrgBillingAlertConfigRequest(
         string $organizationId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -303,6 +307,7 @@ final class OrganizationManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -332,6 +337,11 @@ final class OrganizationManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -366,7 +376,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function getOrgPrepaymentInfo(
         string $organizationId
-    ): GetOrgPrepaymentInfo200Response {
+    ): \Upsun\Model\GetOrgPrepaymentInfo200Response {
         return $this->getOrgPrepaymentInfoWithHttpInfo(
             $organizationId
         );
@@ -383,7 +393,7 @@ final class OrganizationManagementApi extends AbstractApi
     */
     private function getOrgPrepaymentInfoWithHttpInfo(
         string $organizationId
-    ): GetOrgPrepaymentInfo200Response {
+    ): \Upsun\Model\GetOrgPrepaymentInfo200Response {
         $request = $this->getOrgPrepaymentInfoRequest(
             $organizationId
         );
@@ -426,6 +436,7 @@ final class OrganizationManagementApi extends AbstractApi
     private function getOrgPrepaymentInfoRequest(
         string $organizationId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -450,6 +461,7 @@ final class OrganizationManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -479,6 +491,11 @@ final class OrganizationManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -513,7 +530,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function listOrgPrepaymentTransactions(
         string $organizationId
-    ): ListOrgPrepaymentTransactions200Response {
+    ): \Upsun\Model\ListOrgPrepaymentTransactions200Response {
         return $this->listOrgPrepaymentTransactionsWithHttpInfo(
             $organizationId
         );
@@ -530,7 +547,7 @@ final class OrganizationManagementApi extends AbstractApi
     */
     private function listOrgPrepaymentTransactionsWithHttpInfo(
         string $organizationId
-    ): ListOrgPrepaymentTransactions200Response {
+    ): \Upsun\Model\ListOrgPrepaymentTransactions200Response {
         $request = $this->listOrgPrepaymentTransactionsRequest(
             $organizationId
         );
@@ -573,6 +590,7 @@ final class OrganizationManagementApi extends AbstractApi
     private function listOrgPrepaymentTransactionsRequest(
         string $organizationId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -597,6 +615,7 @@ final class OrganizationManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -626,6 +645,11 @@ final class OrganizationManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -661,8 +685,8 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function updateOrgBillingAlertConfig(
         string $organizationId,
-        ?UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
-    ): OrganizationAlertConfig {
+        ?\Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
+    ): \Upsun\Model\OrganizationAlertConfig {
         return $this->updateOrgBillingAlertConfigWithHttpInfo(
             $organizationId,
             $updateOrgBillingAlertConfigRequest
@@ -681,8 +705,8 @@ final class OrganizationManagementApi extends AbstractApi
     */
     private function updateOrgBillingAlertConfigWithHttpInfo(
         string $organizationId,
-        ?UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
-    ): OrganizationAlertConfig {
+        ?\Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
+    ): \Upsun\Model\OrganizationAlertConfig {
         $request = $this->updateOrgBillingAlertConfigRequest(
             $organizationId,
             $updateOrgBillingAlertConfigRequest
@@ -726,8 +750,9 @@ final class OrganizationManagementApi extends AbstractApi
      */
     private function updateOrgBillingAlertConfigRequest(
         string $organizationId,
-        ?UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
+        ?\Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -752,6 +777,7 @@ final class OrganizationManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -789,6 +815,11 @@ final class OrganizationManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

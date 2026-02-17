@@ -47,3 +47,5 @@ final class VerifyPhoneNumberRequest implements Model, JsonSerializable
         return $this->phoneNumber;
     }
 }
+
+

@@ -68,3 +68,5 @@ final class MinimumResources implements Model, JsonSerializable
         return $this->profileSize;
     }
 }
+
+

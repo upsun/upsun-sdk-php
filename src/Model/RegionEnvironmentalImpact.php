@@ -55,3 +55,5 @@ final class RegionEnvironmentalImpact implements Model, JsonSerializable
         return $this->green;
     }
 }
+
+

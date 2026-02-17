@@ -52,51 +52,53 @@ final class ProjectPatch implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * The title of the project
-     */
+   /**
+    * The title of the project
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * The description of the project
-     */
+   /**
+    * The description of the project
+    */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * The default branch of the project
-     */
+   /**
+    * The default branch of the project
+    */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
 
-    /**
-     * Timezone of the project
-     */
+   /**
+    * Timezone of the project
+    */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
-    /**
-     * The region of the project
-     */
+   /**
+    * The region of the project
+    */
     public function getRegion(): ?string
     {
         return $this->region;
     }
 
-    /**
-     * The default domain of the project
-     */
+   /**
+    * The default domain of the project
+    */
     public function getDefaultDomain(): ?string
     {
         return $this->defaultDomain;
     }
 }
+
+

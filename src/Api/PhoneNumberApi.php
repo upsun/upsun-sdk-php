@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,9 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\ConfirmPhoneNumberRequest;
-use Upsun\Model\VerifyPhoneNumber200Response;
-use Upsun\Model\VerifyPhoneNumberRequest;
 
 /**
  * Low level PhoneNumberApi (auto-generated)
@@ -66,7 +64,7 @@ final class PhoneNumberApi extends AbstractApi
     public function confirmPhoneNumber(
         string $sid,
         string $userId,
-        ?ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
+        ?\Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): void {
         $this->confirmPhoneNumberWithHttpInfo(
             $sid,
@@ -88,7 +86,7 @@ final class PhoneNumberApi extends AbstractApi
     private function confirmPhoneNumberWithHttpInfo(
         string $sid,
         string $userId,
-        ?ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
+        ?\Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): void {
         $request = $this->confirmPhoneNumberRequest(
             $sid,
@@ -129,8 +127,9 @@ final class PhoneNumberApi extends AbstractApi
     private function confirmPhoneNumberRequest(
         string $sid,
         string $userId,
-        ?ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
+        ?\Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'sid' is set
         if (empty($sid)) {
             throw new InvalidArgumentException(
@@ -172,6 +171,7 @@ final class PhoneNumberApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             'application/json',
@@ -210,6 +210,11 @@ final class PhoneNumberApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -242,8 +247,8 @@ final class PhoneNumberApi extends AbstractApi
      */
     public function verifyPhoneNumber(
         string $userId,
-        ?VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
-    ): VerifyPhoneNumber200Response {
+        ?\Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
+    ): \Upsun\Model\VerifyPhoneNumber200Response {
         return $this->verifyPhoneNumberWithHttpInfo(
             $userId,
             $verifyPhoneNumberRequest
@@ -261,8 +266,8 @@ final class PhoneNumberApi extends AbstractApi
     */
     private function verifyPhoneNumberWithHttpInfo(
         string $userId,
-        ?VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
-    ): VerifyPhoneNumber200Response {
+        ?\Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
+    ): \Upsun\Model\VerifyPhoneNumber200Response {
         $request = $this->verifyPhoneNumberRequest(
             $userId,
             $verifyPhoneNumberRequest
@@ -305,8 +310,9 @@ final class PhoneNumberApi extends AbstractApi
      */
     private function verifyPhoneNumberRequest(
         string $userId,
-        ?VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
+        ?\Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -331,6 +337,7 @@ final class PhoneNumberApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -368,6 +375,11 @@ final class PhoneNumberApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

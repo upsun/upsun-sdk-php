@@ -41,6 +41,9 @@ class UsersTaskTest extends BaseTestCase
 {
     private UsersTask $usersTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void

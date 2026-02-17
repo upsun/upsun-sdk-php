@@ -60,83 +60,85 @@ final class GithubIntegrationPatch implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * The GitHub token.
-     */
+   /**
+    * The GitHub token.
+    */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * The GitHub repository (in the form `user/repo`).
-     */
+   /**
+    * The GitHub repository (in the form `user/repo`).
+    */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * Whether or not to fetch branches.
-     */
+   /**
+    * Whether or not to fetch branches.
+    */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
-     */
+   /**
+    * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+    */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * The resources used when initializing a new service
-     */
+   /**
+    * The resources used when initializing a new service
+    */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * The base URL of the Github API endpoint.
-     */
+   /**
+    * The base URL of the Github API endpoint.
+    */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * Whether or not to build pull requests.
-     */
+   /**
+    * Whether or not to build pull requests.
+    */
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * Whether or not to build draft pull requests (requires `build_pull_requests`).
-     */
+   /**
+    * Whether or not to build draft pull requests (requires `build_pull_requests`).
+    */
     public function getBuildDraftPullRequests(): ?bool
     {
         return $this->buildDraftPullRequests;
     }
 
-    /**
-     * Whether to build pull requests post-merge (if true) or pre-merge (if false).
-     */
+   /**
+    * Whether to build pull requests post-merge (if true) or pre-merge (if false).
+    */
     public function getBuildPullRequestsPostMerge(): ?bool
     {
         return $this->buildPullRequestsPostMerge;
     }
 
-    /**
-     * Whether or not to clone parent data when building pull requests.
-     */
+   /**
+    * Whether or not to clone parent data when building pull requests.
+    */
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
     }
 }
+
+

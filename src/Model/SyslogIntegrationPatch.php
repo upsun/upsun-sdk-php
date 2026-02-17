@@ -65,41 +65,41 @@ final class SyslogIntegrationPatch implements Model, JsonSerializable
         return $this->extra;
     }
 
-    /**
-     * Syslog relay/collector host
-     */
+   /**
+    * Syslog relay/collector host
+    */
     public function getHost(): ?string
     {
         return $this->host;
     }
 
-    /**
-     * Syslog relay/collector port
-     */
+   /**
+    * Syslog relay/collector port
+    */
     public function getPort(): ?int
     {
         return $this->port;
     }
 
-    /**
-     * Transport protocol
-     */
+   /**
+    * Transport protocol
+    */
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
 
-    /**
-     * Syslog facility
-     */
+   /**
+    * Syslog facility
+    */
     public function getFacility(): ?int
     {
         return $this->facility;
     }
 
-    /**
-     * Syslog message format
-     */
+   /**
+    * Syslog message format
+    */
     public function getMessageFormat(): ?string
     {
         return $this->messageFormat;
@@ -115,9 +115,9 @@ final class SyslogIntegrationPatch implements Model, JsonSerializable
         return $this->authMode;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
@@ -128,3 +128,5 @@ final class SyslogIntegrationPatch implements Model, JsonSerializable
         return $this->excludedServices;
     }
 }
+
+

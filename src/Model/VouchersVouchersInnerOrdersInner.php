@@ -82,3 +82,5 @@ final class VouchersVouchersInnerOrdersInner implements Model, JsonSerializable
         return $this->currency;
     }
 }
+
+

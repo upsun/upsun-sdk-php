@@ -59,7 +59,7 @@ class VariablesTask extends TaskBase
             visibleRuntime: $visibleRuntime,
             applicationScope: $applicationScope
         );
-        return $this->projectVariablesApi->createProjectsVariables($projectId, $projectVariableCreateInput);
+        return $this->projectVariablesApi->createProjectsVariables(projectId: $projectId, projectVariableCreateInput: $projectVariableCreateInput);
     }
 
     /**

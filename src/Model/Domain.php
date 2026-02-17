@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -15,11 +14,11 @@ use JsonSerializable;
 final class Domain implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly string $type,
-        private readonly string $name,
-        private readonly array $attributes,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $type = null,
+        private readonly ?string $name = null,
+        private readonly ?array $attributes = [],
         private readonly ?string $id = null,
         private readonly ?string $project = null,
         private readonly ?string $registeredName = null,
@@ -27,6 +26,7 @@ final class Domain implements Model, JsonSerializable
         private readonly ?string $replacementFor = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -54,25 +54,25 @@ final class Domain implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Domain type
-     */
+   /**
+    * Domain type
+    */
     public function getType(): string
     {
         return $this->type;
@@ -88,9 +88,9 @@ final class Domain implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * The identifier of ReplacementDomainStorage
-     */
+   /**
+    * The identifier of ReplacementDomainStorage
+    */
     public function getId(): ?string
     {
         return $this->id;
@@ -106,19 +106,21 @@ final class Domain implements Model, JsonSerializable
         return $this->registeredName;
     }
 
-    /**
-     * Is this domain default
-     */
+   /**
+    * Is this domain default
+    */
     public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 
-    /**
-     * Prod domain which will be replaced by this domain.
-     */
+   /**
+    * Prod domain which will be replaced by this domain.
+    */
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;
     }
 }
+
+

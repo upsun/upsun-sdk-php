@@ -1,3 +1,25 @@
+{{#vendorExtensions.x-isOneOf}}
+final class {{classname}} implements Model, JsonSerializable
+{
+    public function __construct(
+    {{#vars}}
+      {{#isContainer}}
+        private readonly ?array ${{name}} = [],
+      {{/isContainer}}
+      {{^isContainer}}
+        {{#isDateTime}}
+        private readonly ?\DateTime ${{name}} = null,
+        {{/isDateTime}}
+        {{^isDateTime}}
+        private readonly {{#isAnyType}}mixed{{/isAnyType}}{{^isAnyType}}?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isAnyType}} ${{name}} = null,
+        {{/isDateTime}}
+      {{/isContainer}}
+    {{/vars}}
+    ) {
+    }
+
+{{/vendorExtensions.x-isOneOf}}
+{{^vendorExtensions.x-isOneOf}}
 final class {{classname}} implements Model, JsonSerializable
 {
     public function __construct(
@@ -52,6 +74,7 @@ final class {{classname}} implements Model, JsonSerializable
     {{/vars}}
     ) {
     }
+{{/vendorExtensions.x-isOneOf}}
 
     public function getModelName(): string
     {

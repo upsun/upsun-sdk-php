@@ -40,3 +40,5 @@ final class GetCurrentUserVerificationStatus200Response implements Model, JsonSe
         return $this->verifyPhone;
     }
 }
+
+

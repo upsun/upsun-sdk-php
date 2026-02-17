@@ -35,11 +35,13 @@ final class Metrics implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Limit on the maximum time range allowed in metrics retrieval
-     */
+   /**
+    * Limit on the maximum time range allowed in metrics retrieval
+    */
     public function getMaxRange(): string
     {
         return $this->maxRange;
     }
 }
+
+

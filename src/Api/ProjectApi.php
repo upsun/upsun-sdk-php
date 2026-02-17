@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,10 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Project;
-use Upsun\Model\ProjectCapabilities;
-use Upsun\Model\ProjectPatch;
 
 /**
  * Low level ProjectApi (auto-generated)
@@ -65,7 +62,7 @@ final class ProjectApi extends AbstractApi
      */
     public function actionProjectsClearBuildCache(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->actionProjectsClearBuildCacheWithHttpInfo(
             $projectId
         );
@@ -80,7 +77,7 @@ final class ProjectApi extends AbstractApi
     */
     private function actionProjectsClearBuildCacheWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->actionProjectsClearBuildCacheRequest(
             $projectId
         );
@@ -121,6 +118,7 @@ final class ProjectApi extends AbstractApi
     private function actionProjectsClearBuildCacheRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -145,6 +143,7 @@ final class ProjectApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -174,6 +173,11 @@ final class ProjectApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -206,7 +210,7 @@ final class ProjectApi extends AbstractApi
      */
     public function getProjects(
         string $projectId
-    ): Project {
+    ): \Upsun\Model\Project {
         return $this->getProjectsWithHttpInfo(
             $projectId
         );
@@ -221,7 +225,7 @@ final class ProjectApi extends AbstractApi
     */
     private function getProjectsWithHttpInfo(
         string $projectId
-    ): Project {
+    ): \Upsun\Model\Project {
         $request = $this->getProjectsRequest(
             $projectId
         );
@@ -262,6 +266,7 @@ final class ProjectApi extends AbstractApi
     private function getProjectsRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -286,6 +291,7 @@ final class ProjectApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -315,6 +321,11 @@ final class ProjectApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -348,7 +359,7 @@ final class ProjectApi extends AbstractApi
      */
     public function getProjectsCapabilities(
         string $projectId
-    ): ProjectCapabilities {
+    ): \Upsun\Model\ProjectCapabilities {
         return $this->getProjectsCapabilitiesWithHttpInfo(
             $projectId
         );
@@ -363,7 +374,7 @@ final class ProjectApi extends AbstractApi
     */
     private function getProjectsCapabilitiesWithHttpInfo(
         string $projectId
-    ): ProjectCapabilities {
+    ): \Upsun\Model\ProjectCapabilities {
         $request = $this->getProjectsCapabilitiesRequest(
             $projectId
         );
@@ -404,6 +415,7 @@ final class ProjectApi extends AbstractApi
     private function getProjectsCapabilitiesRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -428,6 +440,7 @@ final class ProjectApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -457,6 +470,11 @@ final class ProjectApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -490,8 +508,8 @@ final class ProjectApi extends AbstractApi
      */
     public function updateProjects(
         string $projectId,
-        ProjectPatch $projectPatch
-    ): AcceptedResponse {
+        \Upsun\Model\ProjectPatch $projectPatch
+    ): \Upsun\Model\AcceptedResponse {
         return $this->updateProjectsWithHttpInfo(
             $projectId,
             $projectPatch
@@ -508,8 +526,8 @@ final class ProjectApi extends AbstractApi
     */
     private function updateProjectsWithHttpInfo(
         string $projectId,
-        ProjectPatch $projectPatch
-    ): AcceptedResponse {
+        \Upsun\Model\ProjectPatch $projectPatch
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsRequest(
             $projectId,
             $projectPatch
@@ -551,8 +569,9 @@ final class ProjectApi extends AbstractApi
      */
     private function updateProjectsRequest(
         string $projectId,
-        ProjectPatch $projectPatch
+        \Upsun\Model\ProjectPatch $projectPatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -584,6 +603,7 @@ final class ProjectApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -621,6 +641,11 @@ final class ProjectApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

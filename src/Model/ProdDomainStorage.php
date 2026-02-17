@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -18,8 +17,8 @@ final class ProdDomainStorage implements Model, JsonSerializable
         private readonly string $type,
         private readonly string $name,
         private readonly array $attributes,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
         private readonly ?string $project = null,
         private readonly ?string $registeredName = null,
@@ -52,18 +51,18 @@ final class ProdDomainStorage implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -83,9 +82,9 @@ final class ProdDomainStorage implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * The identifier of ProdDomainStorage
-     */
+   /**
+    * The identifier of ProdDomainStorage
+    */
     public function getId(): ?string
     {
         return $this->id;
@@ -101,11 +100,13 @@ final class ProdDomainStorage implements Model, JsonSerializable
         return $this->registeredName;
     }
 
-    /**
-     * Is this domain default
-     */
+   /**
+    * Is this domain default
+    */
     public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 }
+
+

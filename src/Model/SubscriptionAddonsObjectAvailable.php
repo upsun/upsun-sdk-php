@@ -48,3 +48,5 @@ final class SubscriptionAddonsObjectAvailable implements Model, JsonSerializable
         return $this->projectSupportLevel;
     }
 }
+
+

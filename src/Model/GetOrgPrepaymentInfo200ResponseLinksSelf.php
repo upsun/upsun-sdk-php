@@ -40,3 +40,5 @@ final class GetOrgPrepaymentInfo200ResponseLinksSelf implements Model, JsonSeria
         return $this->href;
     }
 }
+
+

@@ -56,14 +56,13 @@ class InvitationsTask extends TaskBase
         array $permissions,
         ?bool $force = true
     ): OrganizationInvitation {
-        $inviteRequest = new CreateOrgInviteRequest(
-            email: $email,
-            permissions: $permissions,
-            force: $force,
-        );
         return $this->orgInvApi->createOrgInvite(
             organizationId: $organizationId,
-            createOrgInviteRequest: $inviteRequest
+            createOrgInviteRequest: new CreateOrgInviteRequest(
+                email: $email,
+                permissions: $permissions,
+                force: $force,
+            )
         );
     }
 
@@ -120,16 +119,15 @@ class InvitationsTask extends TaskBase
         ?array $environments = null,
         ?bool $force = null,
     ): ProjectInvitation {
-        $createProjectInviteRequest = new CreateProjectInviteRequest(
-            email: $email,
-            role: $role,
-            permissions: $permissions,
-            environments: $environments,
-            force: $force
-        );
         return $this->prjInvApi->createProjectInvite(
             projectId: $projectId,
-            createProjectInviteRequest: $createProjectInviteRequest
+            createProjectInviteRequest: new CreateProjectInviteRequest(
+                email: $email,
+                role: $role,
+                permissions: $permissions,
+                environments: $environments,
+                force: $force
+            )
         );
     }
 

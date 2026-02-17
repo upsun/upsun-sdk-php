@@ -47,3 +47,5 @@ final class ConfirmTotpEnrollmentRequest implements Model, JsonSerializable
         return $this->passcode;
     }
 }
+
+

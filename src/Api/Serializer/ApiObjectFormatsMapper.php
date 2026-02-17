@@ -26,6 +26,7 @@ final class ApiObjectFormatsMapper
     }
 
     protected static $openApiFormats = [
+
         'Upsun\Model\AcceptedResponse' => [
             'status' => null,
             'code' => null
@@ -163,6 +164,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\AutoscalerDuration' => [
+            
         ],
 
         'Upsun\Model\AutoscalerInstances' => [
@@ -402,6 +404,10 @@ final class ApiObjectFormatsMapper
             'defaultTtl' => null,
             'cookies' => null,
             'headers' => null
+        ],
+
+        'Upsun\Model\CanAffordSubscriptionRequest' => [
+            'resources' => null
         ],
 
         'Upsun\Model\CanCreateNewOrgSubscription200Response' => [
@@ -1218,11 +1224,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\Error' => [
-            'status' => null,
-            'message' => null,
-            'code' => null,
-            'detail' => null,
-            'title' => null
+            'error' => null
         ],
 
         'Upsun\Model\EstimationObject' => [
@@ -1969,6 +1971,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ListOrgSubscriptions200Response' => [
+            'count' => null,
             'items' => null,
             'links' => null
         ],
@@ -2001,6 +2004,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ListRegions200Response' => [
+            'count' => null,
             'regions' => null,
             'links' => null
         ],
@@ -2201,7 +2205,7 @@ final class ApiObjectFormatsMapper
             'country' => null,
             'capabilities' => null,
             'vendor' => null,
-            'billingAccountId' => null,
+            'billingProfileId' => null,
             'billingLegacy' => null,
             'securityContact' => 'email',
             'status' => null,
@@ -2782,6 +2786,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ProjectAddonBaseAllowedValuesInner' => [
+            
         ],
 
         'Upsun\Model\ProjectAddonBaseLinks' => [
@@ -3007,9 +3012,11 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ProjectStatus' => [
+            
         ],
 
         'Upsun\Model\ProjectType' => [
+            
         ],
 
         'Upsun\Model\ProjectVariable' => [
@@ -3105,10 +3112,27 @@ final class ApiObjectFormatsMapper
             'environmentalImpact' => null
         ],
 
+        'Upsun\Model\RegionCompliance' => [
+            'hipaa' => null
+        ],
+
+        'Upsun\Model\RegionDataCenter' => [
+            'name' => null,
+            'label' => null,
+            'location' => null
+        ],
+
         'Upsun\Model\RegionDatacenter' => [
             'name' => null,
             'label' => null,
             'location' => null
+        ],
+
+        'Upsun\Model\RegionEnvImpact' => [
+            'zone' => null,
+            'carbonIntensity' => null,
+            'carbonIntensitySource' => null,
+            'green' => null
         ],
 
         'Upsun\Model\RegionEnvironmentalImpact' => [
@@ -3137,7 +3161,6 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'private' => null,
-            'code' => null,
             'envimpact' => null,
             'environmentalImpact' => null
         ],
@@ -3887,6 +3910,12 @@ final class ApiObjectFormatsMapper
             'disk' => null
         ],
 
+        'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWorkersValue' => [
+            'resources' => null,
+            'instanceCount' => null,
+            'disk' => null
+        ],
+
         'Upsun\Model\UpdateSubscriptionUsageAlertsRequest' => [
             'alerts' => null
         ],
@@ -4232,5 +4261,6 @@ final class ApiObjectFormatsMapper
             'instanceCount' => null,
             'slugId' => null
         ],
+
     ];
 }

@@ -54,9 +54,9 @@ final class FastlyIntegrationPatch implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * Fastly API Token
-     */
+   /**
+    * Fastly API Token
+    */
     public function getToken(): string
     {
         return $this->token;
@@ -87,11 +87,13 @@ final class FastlyIntegrationPatch implements Model, JsonSerializable
         return $this->states;
     }
 
-    /**
-     * Result to execute the hook on
-     */
+   /**
+    * Result to execute the hook on
+    */
     public function getResult(): ?string
     {
         return $this->result;
     }
 }
+
+

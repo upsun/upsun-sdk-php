@@ -79,9 +79,9 @@ final class ProjectCapabilities implements Model, JsonSerializable
         return $this->images;
     }
 
-    /**
-     * Maximum number of instance per service
-     */
+   /**
+    * Maximum number of instance per service
+    */
     public function getInstanceLimit(): int
     {
         return $this->instanceLimit;
@@ -127,3 +127,5 @@ final class ProjectCapabilities implements Model, JsonSerializable
         return $this->integrations;
     }
 }
+
+

@@ -55,9 +55,9 @@ final class NewRelicIntegrationPatch implements Model, JsonSerializable
         return $this->url;
     }
 
-    /**
-     * The NewRelic Logs License Key
-     */
+   /**
+    * The NewRelic Logs License Key
+    */
     public function getLicenseKey(): string
     {
         return $this->licenseKey;
@@ -68,9 +68,9 @@ final class NewRelicIntegrationPatch implements Model, JsonSerializable
         return $this->extra;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
@@ -81,3 +81,5 @@ final class NewRelicIntegrationPatch implements Model, JsonSerializable
         return $this->excludedServices;
     }
 }
+
+

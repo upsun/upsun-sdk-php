@@ -47,3 +47,5 @@ final class GrantUserProjectAccessRequestInner implements Model, JsonSerializabl
         return $this->permissions;
     }
 }
+
+

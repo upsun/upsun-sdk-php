@@ -19,6 +19,9 @@ class RegionsTaskTest extends BaseTestCase
 {
     protected RegionsTask $regionsTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void

@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -21,8 +20,8 @@ final class HttpLogIntegration implements Model, JsonSerializable
         private readonly array $headers,
         private readonly bool $tlsVerify,
         private readonly array $excludedServices,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
@@ -52,18 +51,18 @@ final class HttpLogIntegration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -88,9 +87,9 @@ final class HttpLogIntegration implements Model, JsonSerializable
         return $this->headers;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
@@ -101,11 +100,13 @@ final class HttpLogIntegration implements Model, JsonSerializable
         return $this->excludedServices;
     }
 
-    /**
-     * The identifier of HttpLogIntegration
-     */
+   /**
+    * The identifier of HttpLogIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+
+

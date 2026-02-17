@@ -21,6 +21,9 @@ class InvitationsTaskTest extends BaseTestCase
 {
     private readonly InvitationsTask $invitationTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void

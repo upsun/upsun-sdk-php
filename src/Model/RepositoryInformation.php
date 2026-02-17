@@ -43,11 +43,13 @@ final class RepositoryInformation implements Model, JsonSerializable
         return $this->url;
     }
 
-    /**
-     * SSH Key used to access external private repositories.
-     */
+   /**
+    * SSH Key used to access external private repositories.
+    */
     public function getClientSshKey(): ?string
     {
         return $this->clientSshKey;
     }
 }
+
+

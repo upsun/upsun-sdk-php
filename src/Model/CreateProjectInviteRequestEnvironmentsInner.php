@@ -47,3 +47,5 @@ final class CreateProjectInviteRequestEnvironmentsInner implements Model, JsonSe
         return $this->role;
     }
 }
+
+

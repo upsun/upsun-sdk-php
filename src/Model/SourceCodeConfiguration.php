@@ -42,11 +42,13 @@ final class SourceCodeConfiguration implements Model, JsonSerializable
         return $this->root;
     }
 
-    /**
-     * @return SourceOperationsValue[]
-     */
+   /**
+    * @return SourceOperationsValue[]
+    */
     public function getOperations(): array
     {
         return $this->operations;
     }
 }
+
+

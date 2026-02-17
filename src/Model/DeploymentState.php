@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -18,9 +17,9 @@ final class DeploymentState implements Model, JsonSerializable
     public function __construct(
         private readonly bool $lastDeploymentSuccessful,
         private readonly CronsDeploymentState $crons,
-        private readonly ?DateTime $lastDeploymentAt,
-        private readonly ?DateTime $lastAutoscaleUpAt,
-        private readonly ?DateTime $lastAutoscaleDownAt,
+        private readonly ?\DateTime $lastDeploymentAt,
+        private readonly ?\DateTime $lastAutoscaleUpAt,
+        private readonly ?\DateTime $lastAutoscaleDownAt,
     ) {
     }
 
@@ -45,43 +44,45 @@ final class DeploymentState implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether the last deployment was successful
-     */
+   /**
+    * Whether the last deployment was successful
+    */
     public function getLastDeploymentSuccessful(): bool
     {
         return $this->lastDeploymentSuccessful;
     }
 
-    /**
-     * Datetime of the last deployment
-     */
-    public function getLastDeploymentAt(): ?DateTime
+   /**
+    * Datetime of the last deployment
+    */
+    public function getLastDeploymentAt(): ?\DateTime
     {
         return $this->lastDeploymentAt;
     }
 
-    /**
-     * Datetime of the last autoscale up deployment
-     */
-    public function getLastAutoscaleUpAt(): ?DateTime
+   /**
+    * Datetime of the last autoscale up deployment
+    */
+    public function getLastAutoscaleUpAt(): ?\DateTime
     {
         return $this->lastAutoscaleUpAt;
     }
 
-    /**
-     * Datetime of the last autoscale down deployment
-     */
-    public function getLastAutoscaleDownAt(): ?DateTime
+   /**
+    * Datetime of the last autoscale down deployment
+    */
+    public function getLastAutoscaleDownAt(): ?\DateTime
     {
         return $this->lastAutoscaleDownAt;
     }
 
-    /**
-     * The crons deployment state
-     */
+   /**
+    * The crons deployment state
+    */
     public function getCrons(): CronsDeploymentState
     {
         return $this->crons;
     }
 }
+
+

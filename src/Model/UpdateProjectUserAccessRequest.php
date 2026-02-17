@@ -40,3 +40,5 @@ final class UpdateProjectUserAccessRequest implements Model, JsonSerializable
         return $this->permissions;
     }
 }
+
+

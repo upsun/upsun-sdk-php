@@ -41,35 +41,37 @@ final class Version implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of Version
-     */
+   /**
+    * The identifier of Version
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The SHA of the commit of this version
-     */
+   /**
+    * The SHA of the commit of this version
+    */
     public function getCommit(): ?string
     {
         return $this->commit;
     }
 
-    /**
-     * Whether this version is locked and cannot be modified
-     */
+   /**
+    * Whether this version is locked and cannot be modified
+    */
     public function getLocked(): bool
     {
         return $this->locked;
     }
 
-    /**
-     * Configuration about the traffic routed to this version
-     */
+   /**
+    * Configuration about the traffic routed to this version
+    */
     public function getRouting(): Routing
     {
         return $this->routing;
     }
 }
+
+

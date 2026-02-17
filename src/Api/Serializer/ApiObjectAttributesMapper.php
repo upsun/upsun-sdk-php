@@ -24,6 +24,7 @@ final class ApiObjectAttributesMapper
     }
 
     private static array $attributeMap = [
+
         'Upsun\Model\AcceptedResponse' => [
             'status' => 'status',
             'code' => 'code'
@@ -142,6 +143,7 @@ final class ApiObjectAttributesMapper
             'enabled' => 'enabled'
         ],
         'Upsun\Model\AutoscalerDuration' => [
+            
         ],
         'Upsun\Model\AutoscalerInstances' => [
             'min' => 'min',
@@ -350,6 +352,9 @@ final class ApiObjectAttributesMapper
             'defaultTtl' => 'default_ttl',
             'cookies' => 'cookies',
             'headers' => 'headers'
+        ],
+        'Upsun\Model\CanAffordSubscriptionRequest' => [
+            'resources' => 'resources'
         ],
         'Upsun\Model\CanCreateNewOrgSubscription200Response' => [
             'canCreate' => 'can_create',
@@ -1066,11 +1071,7 @@ final class ApiObjectAttributesMapper
             'serverToken' => 'server_token'
         ],
         'Upsun\Model\Error' => [
-            'status' => 'status',
-            'message' => 'message',
-            'code' => 'code',
-            'detail' => 'detail',
-            'title' => 'title'
+            'error' => 'error'
         ],
         'Upsun\Model\EstimationObject' => [
             'plan' => 'plan',
@@ -1729,6 +1730,7 @@ final class ApiObjectAttributesMapper
             'links' => '_links'
         ],
         'Upsun\Model\ListOrgSubscriptions200Response' => [
+            'count' => 'count',
             'items' => 'items',
             'links' => '_links'
         ],
@@ -1755,6 +1757,7 @@ final class ApiObjectAttributesMapper
             'links' => '_links'
         ],
         'Upsun\Model\ListRegions200Response' => [
+            'count' => 'count',
             'regions' => 'regions',
             'links' => '_links'
         ],
@@ -1926,7 +1929,7 @@ final class ApiObjectAttributesMapper
             'country' => 'country',
             'capabilities' => 'capabilities',
             'vendor' => 'vendor',
-            'billingAccountId' => 'billing_account_id',
+            'billingProfileId' => 'billing_profile_id',
             'billingLegacy' => 'billing_legacy',
             'securityContact' => 'security_contact',
             'status' => 'status',
@@ -2423,6 +2426,7 @@ final class ApiObjectAttributesMapper
             'links' => '_links'
         ],
         'Upsun\Model\ProjectAddonBaseAllowedValuesInner' => [
+            
         ],
         'Upsun\Model\ProjectAddonBaseLinks' => [
             'self' => 'self',
@@ -2627,8 +2631,10 @@ final class ApiObjectAttributesMapper
             'buildResources' => 'build_resources'
         ],
         'Upsun\Model\ProjectStatus' => [
+            
         ],
         'Upsun\Model\ProjectType' => [
+            
         ],
         'Upsun\Model\ProjectVariable' => [
             'id' => 'id',
@@ -2715,10 +2721,24 @@ final class ApiObjectAttributesMapper
             'datacenter' => 'datacenter',
             'environmentalImpact' => 'environmental_impact'
         ],
+        'Upsun\Model\RegionCompliance' => [
+            'hipaa' => 'hipaa'
+        ],
+        'Upsun\Model\RegionDataCenter' => [
+            'name' => 'name',
+            'label' => 'label',
+            'location' => 'location'
+        ],
         'Upsun\Model\RegionDatacenter' => [
             'name' => 'name',
             'label' => 'label',
             'location' => 'location'
+        ],
+        'Upsun\Model\RegionEnvImpact' => [
+            'zone' => 'zone',
+            'carbonIntensity' => 'carbon_intensity',
+            'carbonIntensitySource' => 'carbon_intensity_source',
+            'green' => 'green'
         ],
         'Upsun\Model\RegionEnvironmentalImpact' => [
             'zone' => 'zone',
@@ -2744,7 +2764,6 @@ final class ApiObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'private' => 'private',
-            'code' => 'code',
             'envimpact' => 'envimpact',
             'environmentalImpact' => 'environmental_impact'
         ],
@@ -3395,6 +3414,11 @@ final class ApiObjectAttributesMapper
             'disk' => 'disk'
         ],
         'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue' => [
+            'resources' => 'resources',
+            'instanceCount' => 'instance_count',
+            'disk' => 'disk'
+        ],
+        'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWorkersValue' => [
             'resources' => 'resources',
             'instanceCount' => 'instance_count',
             'disk' => 'disk'

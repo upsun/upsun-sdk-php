@@ -40,27 +40,29 @@ final class AddonCredential1 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The addon key (public identifier).
-     */
+   /**
+    * The addon key (public identifier).
+    */
     public function getAddonKey(): string
     {
         return $this->addonKey;
     }
 
-    /**
-     * The client key (public identifier).
-     */
+   /**
+    * The client key (public identifier).
+    */
     public function getClientKey(): string
     {
         return $this->clientKey;
     }
 
-    /**
-     * The secret of the client.
-     */
+   /**
+    * The secret of the client.
+    */
     public function getSharedSecret(): string
     {
         return $this->sharedSecret;
     }
 }
+
+

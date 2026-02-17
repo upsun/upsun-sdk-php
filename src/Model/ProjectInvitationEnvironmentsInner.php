@@ -61,3 +61,5 @@ final class ProjectInvitationEnvironmentsInner implements Model, JsonSerializabl
         return $this->title;
     }
 }
+
+

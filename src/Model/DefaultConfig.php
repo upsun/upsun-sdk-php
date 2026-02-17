@@ -42,11 +42,13 @@ final class DefaultConfig implements Model, JsonSerializable
         return $this->manualCount;
     }
 
-    /**
-     * @return ScheduleInner[]
-     */
+   /**
+    * @return ScheduleInner[]
+    */
     public function getSchedule(): array
     {
         return $this->schedule;
     }
 }
+
+

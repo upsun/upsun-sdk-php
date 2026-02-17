@@ -40,3 +40,5 @@ final class UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig implements Mod
         return $this->threshold;
     }
 }
+
+

@@ -14,26 +14,24 @@ use JsonSerializable;
 final class IntegrationPatch implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly string $type,
-        private readonly string $repository,
-        private readonly string $url,
-        private readonly string $username,
-        private readonly string $token,
-        private readonly string $project,
-        private readonly string $serviceId,
-        private readonly array $recipients,
-        private readonly string $routingKey,
-        private readonly string $channel,
-        private readonly string $licenseKey,
-        private readonly string $script,
-        private readonly string $index,
-        private readonly ?OAuth2Consumer1 $appCredentials = null,
-        private readonly ?AddonCredential1 $addonCredentials = null,
-        private readonly ?string $fromAddress = null,
-        private readonly ?string $sharedKey = null,
+        private readonly ?string $type = null,
+        private readonly ?string $repository = null,
+        private readonly ?string $url = null,
+        private readonly ?string $username = null,
+        private readonly ?string $token = null,
+        private readonly ?string $project = null,
+        private readonly ?string $serviceId = null,
+        private readonly ?array $recipients = [],
+        private readonly ?string $routingKey = null,
+        private readonly ?string $channel = null,
+        private readonly ?string $licenseKey = null,
+        private readonly ?string $script = null,
+        private readonly ?string $index = null,
         private readonly ?bool $fetchBranches = null,
         private readonly ?bool $pruneBranches = null,
         private readonly ?string $environmentInitResources = null,
+        private readonly ?OAuth2Consumer1 $appCredentials = null,
+        private readonly ?AddonCredential1 $addonCredentials = null,
         private readonly ?bool $buildPullRequests = null,
         private readonly ?bool $pullRequestsCloneParentData = null,
         private readonly ?bool $resyncPullRequests = null,
@@ -50,6 +48,8 @@ final class IntegrationPatch implements Model, JsonSerializable
         private readonly ?bool $buildMergeRequests = null,
         private readonly ?bool $buildWipMergeRequests = null,
         private readonly ?bool $mergeRequestsCloneParentData = null,
+        private readonly ?string $fromAddress = null,
+        private readonly ?string $sharedKey = null,
         private readonly ?array $extra = [],
         private readonly ?array $headers = [],
         private readonly ?bool $tlsVerify = null,
@@ -65,6 +65,7 @@ final class IntegrationPatch implements Model, JsonSerializable
         private readonly ?string $authMode = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -136,41 +137,41 @@ final class IntegrationPatch implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * The GitHub repository (in the form `user/repo`).
-     */
+   /**
+    * The GitHub repository (in the form `user/repo`).
+    */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * The URL of the webhook
-     */
+   /**
+    * The URL of the webhook
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * The Bitbucket Server user.
-     */
+   /**
+    * The Bitbucket Server user.
+    */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * The Splunk Authorization Token
-     */
+   /**
+    * The Splunk Authorization Token
+    */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * The GitLab project (in the form `namespace/repo`).
-     */
+   /**
+    * The GitLab project (in the form `namespace/repo`).
+    */
     public function getProject(): string
     {
         return $this->project;
@@ -186,105 +187,105 @@ final class IntegrationPatch implements Model, JsonSerializable
         return $this->recipients;
     }
 
-    /**
-     * The PagerDuty routing key
-     */
+   /**
+    * The PagerDuty routing key
+    */
     public function getRoutingKey(): string
     {
         return $this->routingKey;
     }
 
-    /**
-     * The Slack channel to post messages to
-     */
+   /**
+    * The Slack channel to post messages to
+    */
     public function getChannel(): string
     {
         return $this->channel;
     }
 
-    /**
-     * The NewRelic Logs License Key
-     */
+   /**
+    * The NewRelic Logs License Key
+    */
     public function getLicenseKey(): string
     {
         return $this->licenseKey;
     }
 
-    /**
-     * The script to run
-     */
+   /**
+    * The script to run
+    */
     public function getScript(): string
     {
         return $this->script;
     }
 
-    /**
-     * The Splunk Index
-     */
+   /**
+    * The Splunk Index
+    */
     public function getIndex(): string
     {
         return $this->index;
     }
 
-    /**
-     * Whether or not to fetch branches.
-     */
+   /**
+    * Whether or not to fetch branches.
+    */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
-     */
+   /**
+    * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+    */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * The resources used when initializing a new service
-     */
+   /**
+    * The resources used when initializing a new service
+    */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * The OAuth2 consumer information (optional).
-     */
+   /**
+    * The OAuth2 consumer information (optional).
+    */
     public function getAppCredentials(): ?OAuth2Consumer1
     {
         return $this->appCredentials;
     }
 
-    /**
-     * The addon credential information (optional).
-     */
+   /**
+    * The addon credential information (optional).
+    */
     public function getAddonCredentials(): ?AddonCredential1
     {
         return $this->addonCredentials;
     }
 
-    /**
-     * Whether or not to build pull requests.
-     */
+   /**
+    * Whether or not to build pull requests.
+    */
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * Whether or not to clone parent data when building pull requests.
-     */
+   /**
+    * Whether or not to clone parent data when building pull requests.
+    */
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
     }
 
-    /**
-     * Whether or not pull request environment data should be re-synced on every build.
-     */
+   /**
+    * Whether or not pull request environment data should be re-synced on every build.
+    */
     public function getResyncPullRequests(): ?bool
     {
         return $this->resyncPullRequests;
@@ -310,33 +311,33 @@ final class IntegrationPatch implements Model, JsonSerializable
         return $this->states;
     }
 
-    /**
-     * Result to execute the hook on
-     */
+   /**
+    * Result to execute the hook on
+    */
     public function getResult(): ?string
     {
         return $this->result;
     }
 
-    /**
-     * The base URL of the GitLab installation.
-     */
+   /**
+    * The base URL of the GitLab installation.
+    */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * Whether or not to build draft pull requests (requires `build_pull_requests`).
-     */
+   /**
+    * Whether or not to build draft pull requests (requires `build_pull_requests`).
+    */
     public function getBuildDraftPullRequests(): ?bool
     {
         return $this->buildDraftPullRequests;
     }
 
-    /**
-     * Whether to build pull requests post-merge (if true) or pre-merge (if false).
-     */
+   /**
+    * Whether to build pull requests post-merge (if true) or pre-merge (if false).
+    */
     public function getBuildPullRequestsPostMerge(): ?bool
     {
         return $this->buildPullRequestsPostMerge;
@@ -352,41 +353,41 @@ final class IntegrationPatch implements Model, JsonSerializable
         return $this->rotateTokenValidityInWeeks;
     }
 
-    /**
-     * Whether or not to build merge requests.
-     */
+   /**
+    * Whether or not to build merge requests.
+    */
     public function getBuildMergeRequests(): ?bool
     {
         return $this->buildMergeRequests;
     }
 
-    /**
-     * Whether or not to build work in progress merge requests (requires `build_merge_requests`).
-     */
+   /**
+    * Whether or not to build work in progress merge requests (requires `build_merge_requests`).
+    */
     public function getBuildWipMergeRequests(): ?bool
     {
         return $this->buildWipMergeRequests;
     }
 
-    /**
-     * Whether or not to clone parent data when building merge requests.
-     */
+   /**
+    * Whether or not to clone parent data when building merge requests.
+    */
     public function getMergeRequestsCloneParentData(): ?bool
     {
         return $this->mergeRequestsCloneParentData;
     }
 
-    /**
-     * The email address to use
-     */
+   /**
+    * The email address to use
+    */
     public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }
 
-    /**
-     * The JWS shared secret key
-     */
+   /**
+    * The JWS shared secret key
+    */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
@@ -402,9 +403,9 @@ final class IntegrationPatch implements Model, JsonSerializable
         return $this->headers;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
@@ -415,57 +416,57 @@ final class IntegrationPatch implements Model, JsonSerializable
         return $this->excludedServices;
     }
 
-    /**
-     * The event 'sourcetype'
-     */
+   /**
+    * The event 'sourcetype'
+    */
     public function getSourcetype(): ?string
     {
         return $this->sourcetype;
     }
 
-    /**
-     * The Category used to easy filtering (sent as X-Sumo-Category header)
-     */
+   /**
+    * The Category used to easy filtering (sent as X-Sumo-Category header)
+    */
     public function getCategory(): ?string
     {
         return $this->category;
     }
 
-    /**
-     * Syslog relay/collector host
-     */
+   /**
+    * Syslog relay/collector host
+    */
     public function getHost(): ?string
     {
         return $this->host;
     }
 
-    /**
-     * Syslog relay/collector port
-     */
+   /**
+    * Syslog relay/collector port
+    */
     public function getPort(): ?int
     {
         return $this->port;
     }
 
-    /**
-     * Transport protocol
-     */
+   /**
+    * Transport protocol
+    */
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
 
-    /**
-     * Syslog facility
-     */
+   /**
+    * Syslog facility
+    */
     public function getFacility(): ?int
     {
         return $this->facility;
     }
 
-    /**
-     * Syslog message format
-     */
+   /**
+    * Syslog message format
+    */
     public function getMessageFormat(): ?string
     {
         return $this->messageFormat;
@@ -481,3 +482,5 @@ final class IntegrationPatch implements Model, JsonSerializable
         return $this->authMode;
     }
 }
+
+

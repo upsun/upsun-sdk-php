@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -25,8 +24,8 @@ final class Project implements Model, JsonSerializable
         private readonly string $region,
         private readonly RepositoryInformation $repository,
         private readonly SubscriptionInformation $subscription,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $namespace,
         private readonly ?string $organization,
         private readonly ?string $defaultBranch,
@@ -66,26 +65,26 @@ final class Project implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of Project
-     */
+   /**
+    * The identifier of Project
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -95,99 +94,101 @@ final class Project implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * The title of the project
-     */
+   /**
+    * The title of the project
+    */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * The description of the project
-     */
+   /**
+    * The description of the project
+    */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * The owner of the project
-     */
+   /**
+    * The owner of the project
+    */
     public function getOwner(): string
     {
         return $this->owner;
     }
 
-    /**
-     * The namespace the project belongs in
-     */
+   /**
+    * The namespace the project belongs in
+    */
     public function getNamespace(): ?string
     {
         return $this->namespace;
     }
 
-    /**
-     * The organization the project belongs in
-     */
+   /**
+    * The organization the project belongs in
+    */
     public function getOrganization(): ?string
     {
         return $this->organization;
     }
 
-    /**
-     * The default branch of the project
-     */
+   /**
+    * The default branch of the project
+    */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
 
-    /**
-     * The status of the project
-     */
+   /**
+    * The status of the project
+    */
     public function getStatus(): Status
     {
         return $this->status;
     }
 
-    /**
-     * Timezone of the project
-     */
+   /**
+    * Timezone of the project
+    */
     public function getTimezone(): string
     {
         return $this->timezone;
     }
 
-    /**
-     * The region of the project
-     */
+   /**
+    * The region of the project
+    */
     public function getRegion(): string
     {
         return $this->region;
     }
 
-    /**
-     * The repository information of the project
-     */
+   /**
+    * The repository information of the project
+    */
     public function getRepository(): RepositoryInformation
     {
         return $this->repository;
     }
 
-    /**
-     * The default domain of the project
-     */
+   /**
+    * The default domain of the project
+    */
     public function getDefaultDomain(): ?string
     {
         return $this->defaultDomain;
     }
 
-    /**
-     * The subscription information of the project
-     */
+   /**
+    * The subscription information of the project
+    */
     public function getSubscription(): SubscriptionInformation
     {
         return $this->subscription;
     }
 }
+
+

@@ -36,11 +36,13 @@ final class UsageAlertConfig implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Data regarding threshold spend.
-     */
+   /**
+    * Data regarding threshold spend.
+    */
     public function getThreshold(): ?UsageAlertConfigThreshold
     {
         return $this->threshold;
     }
 }
+
+

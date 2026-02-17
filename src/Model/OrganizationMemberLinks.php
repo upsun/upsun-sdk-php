@@ -39,27 +39,29 @@ final class OrganizationMemberLinks implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Link to the current member.
-     */
+   /**
+    * Link to the current member.
+    */
     public function getSelf(): ?OrganizationMemberLinksSelf
     {
         return $this->self;
     }
 
-    /**
-     * Link for updating the current member.
-     */
+   /**
+    * Link for updating the current member.
+    */
     public function getUpdate(): ?OrganizationMemberLinksUpdate
     {
         return $this->update;
     }
 
-    /**
-     * Link for deleting the current member.
-     */
+   /**
+    * Link for deleting the current member.
+    */
     public function getDelete(): ?OrganizationMemberLinksDelete
     {
         return $this->delete;
     }
 }
+
+

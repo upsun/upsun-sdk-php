@@ -40,3 +40,5 @@ final class Resources1 implements Model, JsonSerializable
         return $this->profileSize;
     }
 }
+
+

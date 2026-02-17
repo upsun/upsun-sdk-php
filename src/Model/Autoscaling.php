@@ -35,11 +35,13 @@ final class Autoscaling implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * If true, autoscaling can be configured.
-     */
+   /**
+    * If true, autoscaling can be configured.
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 }
+
+

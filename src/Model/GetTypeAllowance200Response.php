@@ -40,3 +40,5 @@ final class GetTypeAllowance200Response implements Model, JsonSerializable
         return $this->currencies;
     }
 }
+
+

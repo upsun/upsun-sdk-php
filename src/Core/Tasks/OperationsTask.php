@@ -39,16 +39,15 @@ class OperationsTask extends TaskBase
         string $operation,
         array $parameters
     ): AcceptedResponse {
-        $environmentOperationInput = new EnvironmentOperationInput(
-            service: $service,
-            operation: $operation,
-            parameters: $parameters
-        );
         return $this->api->runOperation(
             projectId: $projectId,
             environmentId: $environmentId,
             deploymentId: $deploymentId,
-            environmentOperationInput: $environmentOperationInput
+            environmentOperationInput: new EnvironmentOperationInput(
+                service: $service,
+                operation: $operation,
+                parameters: $parameters
+            )
         );
     }
 }

@@ -47,3 +47,5 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements Model, JsonSeria
         return $this->mode;
     }
 }
+
+

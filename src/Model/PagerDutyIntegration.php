@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -17,8 +16,8 @@ final class PagerDutyIntegration implements Model, JsonSerializable
     public function __construct(
         private readonly string $type,
         private readonly string $routingKey,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
@@ -44,18 +43,18 @@ final class PagerDutyIntegration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -65,19 +64,21 @@ final class PagerDutyIntegration implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * The PagerDuty routing key
-     */
+   /**
+    * The PagerDuty routing key
+    */
     public function getRoutingKey(): string
     {
         return $this->routingKey;
     }
 
-    /**
-     * The identifier of PagerDutyIntegration
-     */
+   /**
+    * The identifier of PagerDutyIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+
+

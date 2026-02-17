@@ -41,39 +41,41 @@ final class AutoscalerTriggers implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * Settings for scaling based on CPU usage
-     * @return AutoscalerCPUTrigger[]|null
-     */
+   /**
+    * Settings for scaling based on CPU usage
+    * @return AutoscalerCPUTrigger[]|null
+    */
     public function getCpu(): ?array
     {
         return $this->cpu;
     }
 
-    /**
-     * Settings for scaling based on Memory usage
-     * @return AutoscalerMemoryTrigger[]|null
-     */
+   /**
+    * Settings for scaling based on Memory usage
+    * @return AutoscalerMemoryTrigger[]|null
+    */
     public function getMemory(): ?array
     {
         return $this->memory;
     }
 
-    /**
-     * Settings for scaling based on CPU pressure
-     * @return AutoscalerCPUPressureTrigger[]|null
-     */
+   /**
+    * Settings for scaling based on CPU pressure
+    * @return AutoscalerCPUPressureTrigger[]|null
+    */
     public function getCpuPressure(): ?array
     {
         return $this->cpuPressure;
     }
 
-    /**
-     * Settings for scaling based on Memory pressure
-     * @return AutoscalerMemoryPressureTrigger[]|null
-     */
+   /**
+    * Settings for scaling based on Memory pressure
+    * @return AutoscalerMemoryPressureTrigger[]|null
+    */
     public function getMemoryPressure(): ?array
     {
         return $this->memoryPressure;
     }
 }
+
+

@@ -41,17 +41,17 @@ final class CertificateCreateInput implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The PEM-encoded certificate
-     */
+   /**
+    * The PEM-encoded certificate
+    */
     public function getCertificate(): string
     {
         return $this->certificate;
     }
 
-    /**
-     * The PEM-encoded private key
-     */
+   /**
+    * The PEM-encoded private key
+    */
     public function getKey(): string
     {
         return $this->key;
@@ -62,11 +62,13 @@ final class CertificateCreateInput implements Model, JsonSerializable
         return $this->chain;
     }
 
-    /**
-     * Whether this certificate should be skipped during provisioning
-     */
+   /**
+    * Whether this certificate should be skipped during provisioning
+    */
     public function getIsInvalid(): ?bool
     {
         return $this->isInvalid;
     }
 }
+
+

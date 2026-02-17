@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -24,12 +23,12 @@ final class Organization implements Model, JsonSerializable
         private readonly ?string $country = null,
         private readonly ?array $capabilities = [],
         private readonly ?string $vendor = null,
-        private readonly ?string $billingAccountId = null,
+        private readonly ?string $billingProfileId = null,
         private readonly ?bool $billingLegacy = null,
         private readonly ?string $securityContact = null,
         private readonly ?string $status = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?OrganizationLinks $links = null,
     ) {
     }
@@ -51,7 +50,7 @@ final class Organization implements Model, JsonSerializable
             'country' => $this->country,
             'capabilities' => $this->capabilities,
             'vendor' => $this->vendor,
-            'billingAccountId' => $this->billingAccountId,
+            'billingProfileId' => $this->billingProfileId,
             'billingLegacy' => $this->billingLegacy,
             'securityContact' => $this->securityContact,
             'status' => $this->status,
@@ -66,57 +65,57 @@ final class Organization implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the organization.
-     */
+   /**
+    * The ID of the organization.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The type of the organization.
-     */
+   /**
+    * The type of the organization.
+    */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * The ID of the owner.
-     */
+   /**
+    * The ID of the owner.
+    */
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
 
-    /**
-     * The namespace in which the organization name is unique.
-     */
+   /**
+    * The namespace in which the organization name is unique.
+    */
     public function getNamespace(): ?string
     {
         return $this->namespace;
     }
 
-    /**
-     * A unique machine name representing the organization.
-     */
+   /**
+    * A unique machine name representing the organization.
+    */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * The human-readable label of the organization.
-     */
+   /**
+    * The human-readable label of the organization.
+    */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * The organization country (2-letter country code).
-     */
+   /**
+    * The organization country (2-letter country code).
+    */
     public function getCountry(): ?string
     {
         return $this->country;
@@ -127,58 +126,58 @@ final class Organization implements Model, JsonSerializable
         return $this->capabilities;
     }
 
-    /**
-     * The vendor.
-     */
+   /**
+    * The vendor.
+    */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    /**
-     * The Billing Account ID.
-     */
-    public function getBillingAccountId(): ?string
+   /**
+    * The Billing Profile ID.
+    */
+    public function getBillingProfileId(): ?string
     {
-        return $this->billingAccountId;
+        return $this->billingProfileId;
     }
 
-    /**
-     * Whether the account is billed with the legacy system.
-     */
+   /**
+    * Whether the account is billed with the legacy system.
+    */
     public function getBillingLegacy(): ?bool
     {
         return $this->billingLegacy;
     }
 
-    /**
-     * The security contact email address for the organization.
-     */
+   /**
+    * The security contact email address for the organization.
+    */
     public function getSecurityContact(): ?string
     {
         return $this->securityContact;
     }
 
-    /**
-     * The status of the organization.
-     */
+   /**
+    * The status of the organization.
+    */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * The date and time when the organization was created.
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The date and time when the organization was created.
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the organization was last updated.
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The date and time when the organization was last updated.
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -188,3 +187,5 @@ final class Organization implements Model, JsonSerializable
         return $this->links;
     }
 }
+
+

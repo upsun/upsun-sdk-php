@@ -14,28 +14,29 @@ use JsonSerializable;
 final class DeploymentTarget implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly string $type,
-        private readonly string $name,
-        private readonly bool $autoMounts,
-        private readonly array $excludedMounts,
-        private readonly object $enforcedMounts,
-        private readonly bool $autoCrons,
-        private readonly bool $autoNginx,
-        private readonly bool $maintenanceMode,
-        private readonly int $guardrailsPhase,
-        private readonly array $docroots,
-        private readonly object $siteUrls,
-        private readonly array $sshHosts,
-        private readonly bool $useDedicatedGrid,
-        private readonly ?string $deployHost,
-        private readonly ?int $deployPort,
-        private readonly ?string $sshHost,
-        private readonly ?array $hosts,
-        private readonly ?string $storageType,
+        private readonly ?string $type = null,
+        private readonly ?string $name = null,
+        private readonly ?string $deployHost = null,
+        private readonly ?int $deployPort = null,
+        private readonly ?string $sshHost = null,
+        private readonly ?array $hosts = [],
+        private readonly ?bool $autoMounts = null,
+        private readonly ?array $excludedMounts = [],
+        private readonly ?object $enforcedMounts = null,
+        private readonly ?bool $autoCrons = null,
+        private readonly ?bool $autoNginx = null,
+        private readonly ?bool $maintenanceMode = null,
+        private readonly ?int $guardrailsPhase = null,
+        private readonly ?array $docroots = [],
+        private readonly ?object $siteUrls = null,
+        private readonly ?array $sshHosts = [],
+        private readonly ?bool $useDedicatedGrid = null,
+        private readonly ?string $storageType = null,
         private readonly ?string $id = null,
         private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -73,58 +74,58 @@ final class DeploymentTarget implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the deployment target.
-     */
+   /**
+    * The type of the deployment target.
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The name of the deployment target.
-     */
+   /**
+    * The name of the deployment target.
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * The host to deploy to.
-     */
+   /**
+    * The host to deploy to.
+    */
     public function getDeployHost(): ?string
     {
         return $this->deployHost;
     }
 
-    /**
-     * The port to deploy to.
-     */
+   /**
+    * The port to deploy to.
+    */
     public function getDeployPort(): ?int
     {
         return $this->deployPort;
     }
 
-    /**
-     * The host to use to SSH to app containers.
-     */
+   /**
+    * The host to use to SSH to app containers.
+    */
     public function getSshHost(): ?string
     {
         return $this->sshHost;
     }
 
-    /**
-     * The hosts of the deployment target.
-     * @return HostsInner[]|null
-     */
+   /**
+    * The hosts of the deployment target.
+    * @return HostsInner[]|null
+    */
     public function getHosts(): ?array
     {
         return $this->hosts;
     }
 
-    /**
-     * Whether to take application mounts from the pushed data or the deployment target.
-     */
+   /**
+    * Whether to take application mounts from the pushed data or the deployment target.
+    */
     public function getAutoMounts(): bool
     {
         return $this->autoMounts;
@@ -135,50 +136,50 @@ final class DeploymentTarget implements Model, JsonSerializable
         return $this->excludedMounts;
     }
 
-    /**
-     * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount).
-     */
+   /**
+    * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount).
+    */
     public function getEnforcedMounts(): object
     {
         return $this->enforcedMounts;
     }
 
-    /**
-     * Whether to take application crons from the pushed data or the deployment target.
-     */
+   /**
+    * Whether to take application crons from the pushed data or the deployment target.
+    */
     public function getAutoCrons(): bool
     {
         return $this->autoCrons;
     }
 
-    /**
-     * Whether to take application crons from the pushed data or the deployment target.
-     */
+   /**
+    * Whether to take application crons from the pushed data or the deployment target.
+    */
     public function getAutoNginx(): bool
     {
         return $this->autoNginx;
     }
 
-    /**
-     * Whether to perform deployments or not
-     */
+   /**
+    * Whether to perform deployments or not
+    */
     public function getMaintenanceMode(): bool
     {
         return $this->maintenanceMode;
     }
 
-    /**
-     * which phase of guardrails are we in
-     */
+   /**
+    * which phase of guardrails are we in
+    */
     public function getGuardrailsPhase(): int
     {
         return $this->guardrailsPhase;
     }
 
-    /**
-     * Mapping of clusters to Enterprise applications
-     * @return DocrootsValue[]
-     */
+   /**
+    * Mapping of clusters to Enterprise applications
+    * @return DocrootsValue[]
+    */
     public function getDocroots(): array
     {
         return $this->docroots;
@@ -194,37 +195,39 @@ final class DeploymentTarget implements Model, JsonSerializable
         return $this->sshHosts;
     }
 
-    /**
-     * When true, the deployment will be pinned to Grid hosts dedicated to the environment using this deployment target.
-     * Dedicated Grid hosts must be created prior to deploying the environment. The constraints that will be set are as
-     * follows: * `cluster_type` is set to `environment-custom`. * `cluster` is set to the environment's cluster name.
-     */
+   /**
+    * When true, the deployment will be pinned to Grid hosts dedicated to the environment using this deployment target.
+    * Dedicated Grid hosts must be created prior to deploying the environment. The constraints that will be set are as
+    * follows: * `cluster_type` is set to `environment-custom`. * `cluster` is set to the environment's cluster name.
+    */
     public function getUseDedicatedGrid(): bool
     {
         return $this->useDedicatedGrid;
     }
 
-    /**
-     * The storage type.
-     */
+   /**
+    * The storage type.
+    */
     public function getStorageType(): ?string
     {
         return $this->storageType;
     }
 
-    /**
-     * The identifier of FoundationDeploymentTarget
-     */
+   /**
+    * The identifier of FoundationDeploymentTarget
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * Mapping of clusters to Enterprise applications
-     */
+   /**
+    * Mapping of clusters to Enterprise applications
+    */
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
 }
+
+

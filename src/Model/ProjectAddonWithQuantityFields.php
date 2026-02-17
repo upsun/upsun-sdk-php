@@ -35,11 +35,13 @@ final class ProjectAddonWithQuantityFields implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The quantity of the add-on.
-     */
+   /**
+    * The quantity of the add-on.
+    */
     public function getQuantity(): int
     {
         return $this->quantity;
     }
 }
+
+

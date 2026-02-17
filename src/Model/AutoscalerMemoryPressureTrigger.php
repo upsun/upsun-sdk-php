@@ -41,27 +41,29 @@ final class AutoscalerMemoryPressureTrigger implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether the trigger is enabled
-     */
+   /**
+    * Whether the trigger is enabled
+    */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
 
-    /**
-     * Trigger condition settings
-     */
+   /**
+    * Trigger condition settings
+    */
     public function getDown(): ?AutoscalerCondition
     {
         return $this->down;
     }
 
-    /**
-     * Trigger condition settings
-     */
+   /**
+    * Trigger condition settings
+    */
     public function getUp(): ?AutoscalerCondition
     {
         return $this->up;
     }
 }
+
+

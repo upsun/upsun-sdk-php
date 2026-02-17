@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -18,8 +17,8 @@ final class BlackfireIntegration implements Model, JsonSerializable
         private readonly string $type,
         private readonly array $environmentsCredentials,
         private readonly bool $continuousProfiling,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
@@ -46,18 +45,18 @@ final class BlackfireIntegration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -67,28 +66,30 @@ final class BlackfireIntegration implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * Blackfire environments credentials
-     * @return EnvironmentsCredentialsValue[]
-     */
+   /**
+    * Blackfire environments credentials
+    * @return EnvironmentsCredentialsValue[]
+    */
     public function getEnvironmentsCredentials(): array
     {
         return $this->environmentsCredentials;
     }
 
-    /**
-     * Whether continuous profiling is enabled for the project
-     */
+   /**
+    * Whether continuous profiling is enabled for the project
+    */
     public function getContinuousProfiling(): bool
     {
         return $this->continuousProfiling;
     }
 
-    /**
-     * The identifier of BlackfireIntegration
-     */
+   /**
+    * The identifier of BlackfireIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+
+

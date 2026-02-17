@@ -33,20 +33,22 @@ class CertificatesTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function create(
+    public function add(
         string $projectId,
         string $certificate,
         string $key,
         ?array $chain = null,
         ?bool $isInvalid = null,
     ): AcceptedResponse {
-        $certificateCreateInput = new CertificateCreateInput(
-            certificate: $certificate,
-            key: $key,
-            chain: $chain,
-            isInvalid: $isInvalid
+        return $this->api->createProjectsCertificates(
+            $projectId,
+            certificateCreateInput: new CertificateCreateInput(
+                $certificate,
+                $key,
+                $chain,
+                $isInvalid
+            )
         );
-        return $this->api->createProjectsCertificates($projectId, $certificateCreateInput);
     }
 
     /**
@@ -58,8 +60,8 @@ class CertificatesTask extends TaskBase
     public function delete(string $projectId, string $certificateId): AcceptedResponse
     {
         return $this->api->deleteProjectsCertificates(
-            projectId: $projectId,
-            certificateId: $certificateId
+            $projectId,
+            $certificateId
         );
     }
 
@@ -99,14 +101,13 @@ class CertificatesTask extends TaskBase
         ?array $chain = null,
         ?bool $isInvalid = null,
     ): AcceptedResponse {
-        $certificatePatch = new CertificatePatch(
-            chain: $chain,
-            isInvalid: $isInvalid
-        );
         return $this->api->updateProjectsCertificates(
-            projectId: $projectId,
-            certificateId: $certificateId,
-            certificatePatch: $certificatePatch
+            $projectId,
+            $certificateId,
+            new CertificatePatch(
+                $chain,
+                $isInvalid
+            )
         );
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -21,8 +20,8 @@ final class SumologicIntegration implements Model, JsonSerializable
         private readonly string $category,
         private readonly bool $tlsVerify,
         private readonly array $excludedServices,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
@@ -52,18 +51,18 @@ final class SumologicIntegration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -83,17 +82,17 @@ final class SumologicIntegration implements Model, JsonSerializable
         return $this->url;
     }
 
-    /**
-     * The Category used to easy filtering (sent as X-Sumo-Category header)
-     */
+   /**
+    * The Category used to easy filtering (sent as X-Sumo-Category header)
+    */
     public function getCategory(): string
     {
         return $this->category;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
@@ -104,11 +103,13 @@ final class SumologicIntegration implements Model, JsonSerializable
         return $this->excludedServices;
     }
 
-    /**
-     * The identifier of SumologicIntegration
-     */
+   /**
+    * The identifier of SumologicIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+
+

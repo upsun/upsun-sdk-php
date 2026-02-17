@@ -13,9 +13,10 @@ use JsonSerializable;
  */
 final class ProjectAddonBaseAllowedValuesInner implements Model, JsonSerializable
 {
-    public function __construct()
-    {
+    public function __construct(
+    ) {
     }
+
 
     public function getModelName(): string
     {
@@ -33,3 +34,5 @@ final class ProjectAddonBaseAllowedValuesInner implements Model, JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
+
+

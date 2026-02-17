@@ -53,17 +53,17 @@ final class CreateProjectInviteRequest implements Model, JsonSerializable
         return $this->role;
     }
 
-    /**
-     * @return CreateProjectInviteRequestPermissionsInner[]|null
-     */
+   /**
+    * @return CreateProjectInviteRequestPermissionsInner[]|null
+    */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
 
-    /**
-     * @return CreateProjectInviteRequestEnvironmentsInner[]|null
-     */
+   /**
+    * @return CreateProjectInviteRequestEnvironmentsInner[]|null
+    */
     public function getEnvironments(): ?array
     {
         return $this->environments;
@@ -74,3 +74,5 @@ final class CreateProjectInviteRequest implements Model, JsonSerializable
         return $this->force;
     }
 }
+
+

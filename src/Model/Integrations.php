@@ -39,9 +39,9 @@ final class Integrations implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * If true, integrations can be used
-     */
+   /**
+    * If true, integrations can be used
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
@@ -57,3 +57,5 @@ final class Integrations implements Model, JsonSerializable
         return $this->allowedIntegrations;
     }
 }
+
+

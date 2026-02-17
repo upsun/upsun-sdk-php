@@ -36,11 +36,13 @@ final class Routing implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The percentage of traffic routed to this version
-     */
+   /**
+    * The percentage of traffic routed to this version
+    */
     public function getPercentage(): int
     {
         return $this->percentage;
     }
 }
+
+

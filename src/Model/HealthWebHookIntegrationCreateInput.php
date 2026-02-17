@@ -44,19 +44,21 @@ final class HealthWebHookIntegrationCreateInput implements Model, JsonSerializab
         return $this->type;
     }
 
-    /**
-     * The URL of the webhook
-     */
+   /**
+    * The URL of the webhook
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * The JWS shared secret key
-     */
+   /**
+    * The JWS shared secret key
+    */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
 }
+
+

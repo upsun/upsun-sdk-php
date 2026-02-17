@@ -22,6 +22,9 @@ class VariablesTaskTest extends BaseTestCase
 {
     private VariablesTask $variablesTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void

@@ -47,3 +47,5 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
         return $this->url;
     }
 }
+
+

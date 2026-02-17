@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -17,7 +16,7 @@ final class SystemInformation implements Model, JsonSerializable
     public function __construct(
         private readonly string $version,
         private readonly string $image,
-        private readonly DateTime $startedAt,
+        private readonly \DateTime $startedAt,
     ) {
     }
 
@@ -40,24 +39,26 @@ final class SystemInformation implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The version of this project server
-     */
+   /**
+    * The version of this project server
+    */
     public function getVersion(): string
     {
         return $this->version;
     }
 
-    /**
-     * The image version of the project server
-     */
+   /**
+    * The image version of the project server
+    */
     public function getImage(): string
     {
         return $this->image;
     }
 
-    public function getStartedAt(): DateTime
+    public function getStartedAt(): \DateTime
     {
         return $this->startedAt;
     }
 }
+
+

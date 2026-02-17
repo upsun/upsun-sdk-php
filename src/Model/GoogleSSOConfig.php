@@ -37,19 +37,21 @@ final class GoogleSSOConfig implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * SSO provider type.
-     */
+   /**
+    * SSO provider type.
+    */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
-    /**
-     * Google hosted domain.
-     */
+   /**
+    * Google hosted domain.
+    */
     public function getDomain(): ?string
     {
         return $this->domain;
     }
 }
+
+

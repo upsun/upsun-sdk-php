@@ -48,3 +48,5 @@ final class OrganizationAddonsObjectCurrent implements Model, JsonSerializable
         return $this->supportLevel;
     }
 }
+
+

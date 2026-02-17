@@ -48,3 +48,5 @@ final class RegionProvider implements Model, JsonSerializable
         return $this->logo;
     }
 }
+
+

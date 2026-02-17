@@ -41,35 +41,37 @@ final class MetricsMetadata implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The value used to calculate the lower bound of the temporal query. Inclusive.
-     */
+   /**
+    * The value used to calculate the lower bound of the temporal query. Inclusive.
+    */
     public function getFrom(): mixed
     {
         return $this->from;
     }
 
-    /**
-     * The truncated value used to calculate the upper bound of the temporal query. Exclusive.
-     */
+   /**
+    * The truncated value used to calculate the upper bound of the temporal query. Exclusive.
+    */
     public function getTo(): mixed
     {
         return $this->to;
     }
 
-    /**
-     * The interval used to group the metric values.
-     */
+   /**
+    * The interval used to group the metric values.
+    */
     public function getInterval(): mixed
     {
         return $this->interval;
     }
 
-    /**
-     * The units associated with the provided values.
-     */
+   /**
+    * The units associated with the provided values.
+    */
     public function getUnits(): mixed
     {
         return $this->units;
     }
 }
+
+

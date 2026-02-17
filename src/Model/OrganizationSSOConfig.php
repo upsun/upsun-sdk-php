@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -20,8 +19,8 @@ final class OrganizationSSOConfig implements Model, JsonSerializable
         private readonly ?string $domain = null,
         private readonly ?string $organizationId = null,
         private readonly ?bool $enforced = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -47,51 +46,53 @@ final class OrganizationSSOConfig implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * SSO provider type.
-     */
+   /**
+    * SSO provider type.
+    */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
-    /**
-     * Google hosted domain.
-     */
+   /**
+    * Google hosted domain.
+    */
     public function getDomain(): ?string
     {
         return $this->domain;
     }
 
-    /**
-     * Organization ID.
-     */
+   /**
+    * Organization ID.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * Whether the configuration is enforced for all the organization members.
-     */
+   /**
+    * Whether the configuration is enforced for all the organization members.
+    */
     public function getEnforced(): ?bool
     {
         return $this->enforced;
     }
 
-    /**
-     * The date and time when the SSO configuration was created.
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The date and time when the SSO configuration was created.
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the SSO configuration was last updated.
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The date and time when the SSO configuration was last updated.
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 }
+
+

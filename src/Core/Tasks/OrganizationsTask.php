@@ -240,13 +240,15 @@ class OrganizationsTask extends TaskBase
         ?string $country = null,
         ?string $securityContact = null
     ): Organization {
-        $updateOrgRequest = new UpdateOrgRequest(
-            name: $name,
-            label: $label,
-            country: $country,
-            securityContact: $securityContact
+        return $this->api->updateOrg(
+            organizationId: $organizationId,
+            updateOrgRequest: new UpdateOrgRequest(
+                $name,
+                $label,
+                $country,
+                $securityContact
+            )
         );
-        return $this->api->updateOrg(organizationId: $organizationId, updateOrgRequest: $updateOrgRequest);
     }
 
     /**

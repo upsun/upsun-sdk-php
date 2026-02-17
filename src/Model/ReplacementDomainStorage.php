@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -18,8 +17,8 @@ final class ReplacementDomainStorage implements Model, JsonSerializable
         private readonly string $type,
         private readonly string $name,
         private readonly array $attributes,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
         private readonly ?string $project = null,
         private readonly ?string $registeredName = null,
@@ -52,25 +51,25 @@ final class ReplacementDomainStorage implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Domain type
-     */
+   /**
+    * Domain type
+    */
     public function getType(): string
     {
         return $this->type;
@@ -86,9 +85,9 @@ final class ReplacementDomainStorage implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * The identifier of ReplacementDomainStorage
-     */
+   /**
+    * The identifier of ReplacementDomainStorage
+    */
     public function getId(): ?string
     {
         return $this->id;
@@ -104,11 +103,13 @@ final class ReplacementDomainStorage implements Model, JsonSerializable
         return $this->registeredName;
     }
 
-    /**
-     * Prod domain which will be replaced by this domain.
-     */
+   /**
+    * Prod domain which will be replaced by this domain.
+    */
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;
     }
 }
+
+

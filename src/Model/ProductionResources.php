@@ -42,35 +42,37 @@ final class ProductionResources implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Enable legacy development sizing for this environment type.
-     */
+   /**
+    * Enable legacy development sizing for this environment type.
+    */
     public function getLegacyDevelopment(): bool
     {
         return $this->legacyDevelopment;
     }
 
-    /**
-     * Maximum number of allocated CPU units.
-     */
+   /**
+    * Maximum number of allocated CPU units.
+    */
     public function getMaxCpu(): ?float
     {
         return $this->maxCpu;
     }
 
-    /**
-     * Maximum amount of allocated RAM.
-     */
+   /**
+    * Maximum amount of allocated RAM.
+    */
     public function getMaxMemory(): ?int
     {
         return $this->maxMemory;
     }
 
-    /**
-     * Maximum number of environments
-     */
+   /**
+    * Maximum number of environments
+    */
     public function getMaxEnvironments(): ?int
     {
         return $this->maxEnvironments;
     }
 }
+
+

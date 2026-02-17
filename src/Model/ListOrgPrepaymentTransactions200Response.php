@@ -44,9 +44,9 @@ final class ListOrgPrepaymentTransactions200Response implements Model, JsonSeria
         return $this->count;
     }
 
-    /**
-     * @return PrepaymentTransactionObject[]|null
-     */
+   /**
+    * @return PrepaymentTransactionObject[]|null
+    */
     public function getTransactions(): ?array
     {
         return $this->transactions;
@@ -57,3 +57,5 @@ final class ListOrgPrepaymentTransactions200Response implements Model, JsonSeria
         return $this->links;
     }
 }
+
+

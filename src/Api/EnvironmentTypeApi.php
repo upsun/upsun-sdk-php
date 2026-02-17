@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,7 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\EnvironmentType;
 
 /**
  * Low level EnvironmentTypeApi (auto-generated)
@@ -61,7 +61,7 @@ final class EnvironmentTypeApi extends AbstractApi
     public function getEnvironmentType(
         string $projectId,
         string $environmentTypeId
-    ): EnvironmentType {
+    ): \Upsun\Model\EnvironmentType {
         return $this->getEnvironmentTypeWithHttpInfo(
             $projectId,
             $environmentTypeId
@@ -78,7 +78,7 @@ final class EnvironmentTypeApi extends AbstractApi
     private function getEnvironmentTypeWithHttpInfo(
         string $projectId,
         string $environmentTypeId
-    ): EnvironmentType {
+    ): \Upsun\Model\EnvironmentType {
         $request = $this->getEnvironmentTypeRequest(
             $projectId,
             $environmentTypeId
@@ -121,6 +121,7 @@ final class EnvironmentTypeApi extends AbstractApi
         string $projectId,
         string $environmentTypeId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -162,6 +163,7 @@ final class EnvironmentTypeApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -190,6 +192,11 @@ final class EnvironmentTypeApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -282,6 +289,7 @@ final class EnvironmentTypeApi extends AbstractApi
     private function listProjectsEnvironmentTypesRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -306,6 +314,7 @@ final class EnvironmentTypeApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -335,6 +344,11 @@ final class EnvironmentTypeApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

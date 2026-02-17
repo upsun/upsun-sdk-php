@@ -61,3 +61,5 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements Model,
         return $this->usage;
     }
 }
+
+

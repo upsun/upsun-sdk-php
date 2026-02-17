@@ -46,6 +46,9 @@ class EnvironmentsTaskTest extends BaseTestCase
 {
     private EnvironmentsTask $environmentTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void
@@ -530,103 +533,6 @@ class EnvironmentsTaskTest extends BaseTestCase
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testCreateVersions(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
-
-        $result = $this->environmentTask->createVersions(projectId: $projectId, environmentId: $environmentId);
-
-        $acceptedResponse = new AcceptedResponse('accepted', 200);
-        $this->assertEquals($acceptedResponse, $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws Exception
-     */
-    public function testListVersions(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $data = [
-            [
-                'id' => 'version1',
-                'commit' => 'azertyuiop1236',
-                'locked' => false,
-                'routing' => [
-                    'percentage' => 100
-                ]
-            ],
-            [
-                'id' => 'version2',
-                'commit' => 'azertyuiop1235',
-                'locked' => false,
-                'routing' => [
-                    'percentage' => 100
-                ]
-            ]
-        ];
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode($data)
-            ));
-
-        $result = $this->environmentTask->listVersions(projectId: $projectId, environmentId: $environmentId);
-        $this->assertIsArray($result);
-        $this->assertContainsOnlyInstancesOf(Version::class, $result);
-        $this->assertObjectMatchesArray($result, $data);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws Exception
-     */
-    public function testGetVersions(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $data = [
-            'id' => 'default',
-            'commit' => 'azertyuiop1236',
-            'locked' => false,
-            'routing' => [
-                'percentage' => 100
-            ]
-        ];
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode($data)
-            ));
-
-        $result = $this->environmentTask->getVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: 'default'
-        );
-        $this->assertInstanceOf(Version::class, $result);
-        $this->assertObjectProperties($result, $data);
     }
 
     /**
@@ -3070,64 +2976,6 @@ class EnvironmentsTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testDeleteVersionsSuccess(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $versionId = 'ver-789';
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
-
-        $result = $this->environmentTask->deleteVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: $versionId
-        );
-
-        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testDeleteVersionsError(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $versionId = 'ver-789';
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                403,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'unauthorized',
-                    'code' => 403
-                ])
-            ));
-
-        $this->expectException(ApiException::class);
-
-        $this->environmentTask->deleteVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: $versionId
-        );
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
     public function testRedeploySuccess(): void
     {
         $projectId = 'project-123';
@@ -3240,68 +3088,6 @@ class EnvironmentsTaskTest extends BaseTestCase
             rebase: $rebase,
             synchronizeData: $synchronizeData,
             synchronizeResources: $synchronizeResources
-        );
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateVersionsSuccess(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $versionId = 'ver-789';
-        $percentage = 50;
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
-
-        $result = $this->environmentTask->updateVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: $versionId,
-            percentage: $percentage
-        );
-
-        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateVersionsError(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $versionId = 'ver-789';
-        $percentage = 75;
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                403,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'unauthorized',
-                    'code' => 403
-                ])
-            ));
-
-        $this->expectException(ApiException::class);
-
-        $this->environmentTask->updateVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: $versionId,
-            percentage: $percentage
         );
     }
 

@@ -47,17 +47,17 @@ final class TLSSettings implements Model, JsonSerializable
         return $this->strictTransportSecurity;
     }
 
-    /**
-     * The minimum TLS version to support.
-     */
+   /**
+    * The minimum TLS version to support.
+    */
     public function getMinVersion(): ?string
     {
         return $this->minVersion;
     }
 
-    /**
-     * The type of client authentication to request.
-     */
+   /**
+    * The type of client authentication to request.
+    */
     public function getClientAuthentication(): ?string
     {
         return $this->clientAuthentication;
@@ -68,3 +68,5 @@ final class TLSSettings implements Model, JsonSerializable
         return $this->clientCertificateAuthorities;
     }
 }
+
+

@@ -36,11 +36,13 @@ final class OAuth2Consumer implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The OAuth consumer key.
-     */
+   /**
+    * The OAuth consumer key.
+    */
     public function getKey(): string
     {
         return $this->key;
     }
 }
+
+

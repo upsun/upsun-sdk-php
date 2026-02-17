@@ -633,11 +633,10 @@ class UsersTask extends TaskBase
      */
     public function confirmPhoneNumber(string $sid, string $userId, string $code): void
     {
-        $confirmPhoneNumberRequest = new ConfirmPhoneNumberRequest(code: $code);
         $this->phoneNumberApi->confirmPhoneNumber(
             sid: $sid,
             userId: $userId,
-            confirmPhoneNumberRequest: $confirmPhoneNumberRequest
+            confirmPhoneNumberRequest: new ConfirmPhoneNumberRequest(code: $code)
         );
     }
 
@@ -652,13 +651,12 @@ class UsersTask extends TaskBase
         string $channel,
         string $phoneNumber,
     ): VerifyPhoneNumber200Response {
-        $verifyPhoneNumberRequest = new VerifyPhoneNumberRequest(
-            channel: $channel,
-            phoneNumber: $phoneNumber
-        );
         return $this->phoneNumberApi->verifyPhoneNumber(
             userId: $userId,
-            verifyPhoneNumberRequest: $verifyPhoneNumberRequest
+            verifyPhoneNumberRequest: new VerifyPhoneNumberRequest(
+                channel: $channel,
+                phoneNumber: $phoneNumber
+            )
         );
     }
 }

@@ -75,3 +75,5 @@ final class TicketJiraInner implements Model, JsonSerializable
         return $this->updatedAt;
     }
 }
+
+

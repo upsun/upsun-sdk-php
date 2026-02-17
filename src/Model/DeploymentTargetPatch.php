@@ -14,16 +14,17 @@ use JsonSerializable;
 final class DeploymentTargetPatch implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly string $type,
-        private readonly string $name,
-        private readonly ?array $hosts = [],
+        private readonly ?string $type = null,
+        private readonly ?string $name = null,
         private readonly ?object $enforcedMounts = null,
         private readonly ?object $siteUrls = null,
         private readonly ?array $sshHosts = [],
         private readonly ?object $enterpriseEnvironmentsMapping = null,
+        private readonly ?array $hosts = [],
         private readonly ?bool $useDedicatedGrid = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -49,25 +50,25 @@ final class DeploymentTargetPatch implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the deployment target.
-     */
+   /**
+    * The type of the deployment target.
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The name of the deployment target.
-     */
+   /**
+    * The name of the deployment target.
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount).
-     */
+   /**
+    * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount).
+    */
     public function getEnforcedMounts(): ?object
     {
         return $this->enforcedMounts;
@@ -83,30 +84,32 @@ final class DeploymentTargetPatch implements Model, JsonSerializable
         return $this->sshHosts;
     }
 
-    /**
-     * Mapping of clusters to Enterprise applications
-     */
+   /**
+    * Mapping of clusters to Enterprise applications
+    */
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
 
-    /**
-     * The hosts of the deployment target.
-     * @return DeploymentHostsInner[]|null
-     */
+   /**
+    * The hosts of the deployment target.
+    * @return DeploymentHostsInner[]|null
+    */
     public function getHosts(): ?array
     {
         return $this->hosts;
     }
 
-    /**
-     * When true, the deployment will be pinned to Grid hosts dedicated to the environment using this deployment target.
-     * Dedicated Grid hosts must be created prior to deploying the environment. The constraints that will be set are as
-     * follows: * `cluster_type` is set to `environment-custom`. * `cluster` is set to the environment's cluster name.
-     */
+   /**
+    * When true, the deployment will be pinned to Grid hosts dedicated to the environment using this deployment target.
+    * Dedicated Grid hosts must be created prior to deploying the environment. The constraints that will be set are as
+    * follows: * `cluster_type` is set to `environment-custom`. * `cluster` is set to the environment's cluster name.
+    */
     public function getUseDedicatedGrid(): ?bool
     {
         return $this->useDedicatedGrid;
     }
 }
+
+

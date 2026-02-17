@@ -44,19 +44,21 @@ final class ListProfiles200Response implements Model, JsonSerializable
         return $this->count;
     }
 
-    /**
-     * @return Profile[]|null
-     */
+   /**
+    * @return Profile[]|null
+    */
     public function getProfiles(): ?array
     {
         return $this->profiles;
     }
 
-    /**
-     * Links to _self, and previous or next page, given that they exist.
-     */
+   /**
+    * Links to _self, and previous or next page, given that they exist.
+    */
     public function getLinks(): ?HalLinks
     {
         return $this->links;
     }
 }
+
+

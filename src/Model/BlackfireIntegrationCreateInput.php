@@ -40,3 +40,5 @@ final class BlackfireIntegrationCreateInput implements Model, JsonSerializable
         return $this->type;
     }
 }
+
+

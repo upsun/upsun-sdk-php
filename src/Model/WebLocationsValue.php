@@ -81,9 +81,9 @@ final class WebLocationsValue implements Model, JsonSerializable
         return $this->headers;
     }
 
-    /**
-     * @return SpecificOverridesValue[]
-     */
+   /**
+    * @return SpecificOverridesValue[]
+    */
     public function getRules(): array
     {
         return $this->rules;
@@ -99,3 +99,5 @@ final class WebLocationsValue implements Model, JsonSerializable
         return $this->requestBuffering;
     }
 }
+
+

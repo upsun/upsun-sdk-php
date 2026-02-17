@@ -39,27 +39,29 @@ final class DedicatedDeploymentTargetCreateInput implements Model, JsonSerializa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the deployment target.
-     */
+   /**
+    * The type of the deployment target.
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The name of the deployment target.
-     */
+   /**
+    * The name of the deployment target.
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount).
-     */
+   /**
+    * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount).
+    */
     public function getEnforcedMounts(): ?object
     {
         return $this->enforcedMounts;
     }
 }
+
+

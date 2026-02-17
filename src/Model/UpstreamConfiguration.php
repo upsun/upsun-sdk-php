@@ -47,3 +47,5 @@ final class UpstreamConfiguration implements Model, JsonSerializable
         return $this->protocol;
     }
 }
+
+

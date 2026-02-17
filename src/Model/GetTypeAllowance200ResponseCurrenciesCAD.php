@@ -61,3 +61,5 @@ final class GetTypeAllowance200ResponseCurrenciesCAD implements Model, JsonSeria
         return $this->currencySymbol;
     }
 }
+
+

@@ -19,6 +19,9 @@ use Upsun\Core\OAuthProvider;
  */
 class OAuthProviderTest extends TestCase
 {
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     private RequestFactoryInterface $requestFactory;

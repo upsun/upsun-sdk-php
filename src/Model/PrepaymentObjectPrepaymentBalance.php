@@ -42,35 +42,37 @@ final class PrepaymentObjectPrepaymentBalance implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Formatted balance.
-     */
+   /**
+    * Formatted balance.
+    */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
-    /**
-     * The balance amount.
-     */
+   /**
+    * The balance amount.
+    */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
 
-    /**
-     * The balance currency code.
-     */
+   /**
+    * The balance currency code.
+    */
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
 
-    /**
-     * The balance currency symbol.
-     */
+   /**
+    * The balance currency symbol.
+    */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
 }
+
+

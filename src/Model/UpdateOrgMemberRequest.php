@@ -40,3 +40,5 @@ final class UpdateOrgMemberRequest implements Model, JsonSerializable
         return $this->permissions;
     }
 }
+
+

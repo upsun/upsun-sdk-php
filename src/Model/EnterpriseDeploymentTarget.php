@@ -51,34 +51,34 @@ final class EnterpriseDeploymentTarget implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the deployment target.
-     */
+   /**
+    * The type of the deployment target.
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The name of the deployment target.
-     */
+   /**
+    * The name of the deployment target.
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * The host to deploy to.
-     */
+   /**
+    * The host to deploy to.
+    */
     public function getDeployHost(): ?string
     {
         return $this->deployHost;
     }
 
-    /**
-     * Mapping of clusters to Enterprise applications
-     * @return DocrootsValue[]
-     */
+   /**
+    * Mapping of clusters to Enterprise applications
+    * @return DocrootsValue[]
+    */
     public function getDocroots(): array
     {
         return $this->docroots;
@@ -94,27 +94,29 @@ final class EnterpriseDeploymentTarget implements Model, JsonSerializable
         return $this->sshHosts;
     }
 
-    /**
-     * Whether to perform deployments or not
-     */
+   /**
+    * Whether to perform deployments or not
+    */
     public function getMaintenanceMode(): bool
     {
         return $this->maintenanceMode;
     }
 
-    /**
-     * The identifier of EnterpriseDeploymentTarget
-     */
+   /**
+    * The identifier of EnterpriseDeploymentTarget
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * Mapping of clusters to Enterprise applications
-     */
+   /**
+    * Mapping of clusters to Enterprise applications
+    */
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
 }
+
+

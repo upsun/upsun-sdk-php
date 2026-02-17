@@ -68,3 +68,5 @@ final class GetTypeAllowance200ResponseCurrencies implements Model, JsonSerializ
         return $this->cAD;
     }
 }
+
+

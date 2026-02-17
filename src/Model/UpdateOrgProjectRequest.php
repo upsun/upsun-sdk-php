@@ -39,27 +39,29 @@ final class UpdateOrgProjectRequest implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The title of the project.
-     */
+   /**
+    * The title of the project.
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * The project plan.
-     */
+   /**
+    * The project plan.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * Timezone of the project.
-     */
+   /**
+    * Timezone of the project.
+    */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 }
+
+

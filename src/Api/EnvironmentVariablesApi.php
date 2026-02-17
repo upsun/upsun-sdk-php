@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,10 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\EnvironmentVariable;
-use Upsun\Model\EnvironmentVariableCreateInput;
-use Upsun\Model\EnvironmentVariablePatch;
 
 /**
  * Low level EnvironmentVariablesApi (auto-generated)
@@ -69,8 +66,8 @@ final class EnvironmentVariablesApi extends AbstractApi
     public function createProjectsEnvironmentsVariables(
         string $projectId,
         string $environmentId,
-        EnvironmentVariableCreateInput $environmentVariableCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentVariableCreateInput $environmentVariableCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->createProjectsEnvironmentsVariablesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -89,8 +86,8 @@ final class EnvironmentVariablesApi extends AbstractApi
     private function createProjectsEnvironmentsVariablesWithHttpInfo(
         string $projectId,
         string $environmentId,
-        EnvironmentVariableCreateInput $environmentVariableCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentVariableCreateInput $environmentVariableCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->createProjectsEnvironmentsVariablesRequest(
             $projectId,
             $environmentId,
@@ -134,8 +131,9 @@ final class EnvironmentVariablesApi extends AbstractApi
     private function createProjectsEnvironmentsVariablesRequest(
         string $projectId,
         string $environmentId,
-        EnvironmentVariableCreateInput $environmentVariableCreateInput
+        \Upsun\Model\EnvironmentVariableCreateInput $environmentVariableCreateInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -184,6 +182,7 @@ final class EnvironmentVariablesApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             'application/json',
@@ -222,6 +221,11 @@ final class EnvironmentVariablesApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -254,7 +258,7 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $variableId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->deleteProjectsEnvironmentsVariablesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -273,7 +277,7 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $variableId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsEnvironmentsVariablesRequest(
             $projectId,
             $environmentId,
@@ -318,6 +322,7 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $environmentId,
         string $variableId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -375,6 +380,7 @@ final class EnvironmentVariablesApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -403,6 +409,11 @@ final class EnvironmentVariablesApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -437,7 +448,7 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $variableId
-    ): EnvironmentVariable {
+    ): \Upsun\Model\EnvironmentVariable {
         return $this->getProjectsEnvironmentsVariablesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -456,7 +467,7 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $variableId
-    ): EnvironmentVariable {
+    ): \Upsun\Model\EnvironmentVariable {
         $request = $this->getProjectsEnvironmentsVariablesRequest(
             $projectId,
             $environmentId,
@@ -501,6 +512,7 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $environmentId,
         string $variableId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -558,6 +570,7 @@ final class EnvironmentVariablesApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -586,6 +599,11 @@ final class EnvironmentVariablesApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -683,6 +701,7 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -724,6 +743,7 @@ final class EnvironmentVariablesApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -752,6 +772,11 @@ final class EnvironmentVariablesApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -790,8 +815,8 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $variableId,
-        EnvironmentVariablePatch $environmentVariablePatch
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentVariablePatch $environmentVariablePatch
+    ): \Upsun\Model\AcceptedResponse {
         return $this->updateProjectsEnvironmentsVariablesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -812,8 +837,8 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $variableId,
-        EnvironmentVariablePatch $environmentVariablePatch
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentVariablePatch $environmentVariablePatch
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsEnvironmentsVariablesRequest(
             $projectId,
             $environmentId,
@@ -859,8 +884,9 @@ final class EnvironmentVariablesApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $variableId,
-        EnvironmentVariablePatch $environmentVariablePatch
+        \Upsun\Model\EnvironmentVariablePatch $environmentVariablePatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -925,6 +951,7 @@ final class EnvironmentVariablesApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             'application/json',
@@ -961,6 +988,11 @@ final class EnvironmentVariablesApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

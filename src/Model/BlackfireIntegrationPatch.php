@@ -40,3 +40,5 @@ final class BlackfireIntegrationPatch implements Model, JsonSerializable
         return $this->type;
     }
 }
+
+

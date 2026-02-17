@@ -178,97 +178,97 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->initialize;
     }
 
-    /**
-     * The name of the product.
-     */
+   /**
+    * The name of the product.
+    */
     public function getProductName(): string
     {
         return $this->productName;
     }
 
-    /**
-     * The lowercase ASCII code of the product.
-     */
+   /**
+    * The lowercase ASCII code of the product.
+    */
     public function getProductCode(): string
     {
         return $this->productCode;
     }
 
-    /**
-     * The template of the project UI uri
-     */
+   /**
+    * The template of the project UI uri
+    */
     public function getUiUriTemplate(): string
     {
         return $this->uiUriTemplate;
     }
 
-    /**
-     * The prefix of the generated environment variables.
-     */
+   /**
+    * The prefix of the generated environment variables.
+    */
     public function getVariablesPrefix(): string
     {
         return $this->variablesPrefix;
     }
 
-    /**
-     * The email of the bot.
-     */
+   /**
+    * The email of the bot.
+    */
     public function getBotEmail(): string
     {
         return $this->botEmail;
     }
 
-    /**
-     * The name of the application-specific configuration file.
-     */
+   /**
+    * The name of the application-specific configuration file.
+    */
     public function getApplicationConfigFile(): string
     {
         return $this->applicationConfigFile;
     }
 
-    /**
-     * The name of the project configuration directory.
-     */
+   /**
+    * The name of the project configuration directory.
+    */
     public function getProjectConfigDir(): string
     {
         return $this->projectConfigDir;
     }
 
-    /**
-     * Whether to use the default Drupal-centric configuration files when missing from the repository.
-     */
+   /**
+    * Whether to use the default Drupal-centric configuration files when missing from the repository.
+    */
     public function getUseDrupalDefaults(): bool
     {
         return $this->useDrupalDefaults;
     }
 
-    /**
-     * Whether to use legacy subdomain scheme, that replaces `.` by `---` in development subdomains.
-     */
+   /**
+    * Whether to use legacy subdomain scheme, that replaces `.` by `---` in development subdomains.
+    */
     public function getUseLegacySubdomains(): bool
     {
         return $this->useLegacySubdomains;
     }
 
-    /**
-     * The size of development services.
-     */
+   /**
+    * The size of development services.
+    */
     public function getDevelopmentServiceSize(): string
     {
         return $this->developmentServiceSize;
     }
 
-    /**
-     * The size of development applications.
-     */
+   /**
+    * The size of development applications.
+    */
     public function getDevelopmentApplicationSize(): string
     {
         return $this->developmentApplicationSize;
     }
 
-    /**
-     * Enable automatic certificate provisioning.
-     */
+   /**
+    * Enable automatic certificate provisioning.
+    */
     public function getEnableCertificateProvisioning(): bool
     {
         return $this->enableCertificateProvisioning;
@@ -279,73 +279,73 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->certificateStyle;
     }
 
-    /**
-     * Create an activity for certificate renewal
-     */
+   /**
+    * Create an activity for certificate renewal
+    */
     public function getCertificateRenewalActivity(): bool
     {
         return $this->certificateRenewalActivity;
     }
 
-    /**
-     * The template of the development domain, can include {project} and {environment} placeholders.
-     */
+   /**
+    * The template of the development domain, can include {project} and {environment} placeholders.
+    */
     public function getDevelopmentDomainTemplate(): ?string
     {
         return $this->developmentDomainTemplate;
     }
 
-    /**
-     * Enable the State API-driven deployments on regions that support them.
-     */
+   /**
+    * Enable the State API-driven deployments on regions that support them.
+    */
     public function getEnableStateApiDeployments(): bool
     {
         return $this->enableStateApiDeployments;
     }
 
-    /**
-     * Set the size of the temporary disk (/tmp, in MB).
-     */
+   /**
+    * Set the size of the temporary disk (/tmp, in MB).
+    */
     public function getTemporaryDiskSize(): ?int
     {
         return $this->temporaryDiskSize;
     }
 
-    /**
-     * Set the size of the instance disk (in MB).
-     */
+   /**
+    * Set the size of the instance disk (in MB).
+    */
     public function getLocalDiskSize(): ?int
     {
         return $this->localDiskSize;
     }
 
-    /**
-     * Minimum interval between cron runs (in minutes)
-     */
+   /**
+    * Minimum interval between cron runs (in minutes)
+    */
     public function getCronMinimumInterval(): int
     {
         return $this->cronMinimumInterval;
     }
 
-    /**
-     * Maximum jitter inserted in cron runs (in minutes)
-     */
+   /**
+    * Maximum jitter inserted in cron runs (in minutes)
+    */
     public function getCronMaximumJitter(): int
     {
         return $this->cronMaximumJitter;
     }
 
-    /**
-     * The interval (in days) for which cron activity and logs are kept around
-     */
+   /**
+    * The interval (in days) for which cron activity and logs are kept around
+    */
     public function getCronProductionExpiryInterval(): int
     {
         return $this->cronProductionExpiryInterval;
     }
 
-    /**
-     * The interval (in days) for which cron activity and logs are kept around
-     */
+   /**
+    * The interval (in days) for which cron activity and logs are kept around
+    */
     public function getCronNonProductionExpiryInterval(): int
     {
         return $this->cronNonProductionExpiryInterval;
@@ -356,17 +356,17 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->concurrencyLimits;
     }
 
-    /**
-     * Enable the flexible build cache implementation
-     */
+   /**
+    * Enable the flexible build cache implementation
+    */
     public function getFlexibleBuildCache(): bool
     {
         return $this->flexibleBuildCache;
     }
 
-    /**
-     * Strict configuration validation.
-     */
+   /**
+    * Strict configuration validation.
+    */
     public function getStrictConfiguration(): bool
     {
         return $this->strictConfiguration;
@@ -382,66 +382,66 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->cronsInGit;
     }
 
-    /**
-     * Custom error template for the router.
-     */
+   /**
+    * Custom error template for the router.
+    */
     public function getCustomErrorTemplate(): ?string
     {
         return $this->customErrorTemplate;
     }
 
-    /**
-     * Custom error template for the application.
-     */
+   /**
+    * Custom error template for the application.
+    */
     public function getAppErrorPageTemplate(): ?string
     {
         return $this->appErrorPageTemplate;
     }
 
-    /**
-     * The strategy used to generate environment machine names
-     */
+   /**
+    * The strategy used to generate environment machine names
+    */
     public function getEnvironmentNameStrategy(): string
     {
         return $this->environmentNameStrategy;
     }
 
-    /**
-     * Data retention configuration
-     * @return DataRetentionConfigurationValue[]|null
-     */
+   /**
+    * Data retention configuration
+    * @return DataRetentionConfigurationValue[]|null
+    */
     public function getDataRetention(): ?array
     {
         return $this->dataRetention;
     }
 
-    /**
-     * Enable pushing commits to codesource integration.
-     */
+   /**
+    * Enable pushing commits to codesource integration.
+    */
     public function getEnableCodesourceIntegrationPush(): bool
     {
         return $this->enableCodesourceIntegrationPush;
     }
 
-    /**
-     * Enforce multi-factor authentication.
-     */
+   /**
+    * Enforce multi-factor authentication.
+    */
     public function getEnforceMfa(): bool
     {
         return $this->enforceMfa;
     }
 
-    /**
-     * Use systemd images.
-     */
+   /**
+    * Use systemd images.
+    */
     public function getSystemd(): bool
     {
         return $this->systemd;
     }
 
-    /**
-     * Use the router v2 image.
-     */
+   /**
+    * Use the router v2 image.
+    */
     public function getRouterGen2(): bool
     {
         return $this->routerGen2;
@@ -452,17 +452,17 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->buildResources;
     }
 
-    /**
-     * The default policy for firewall outbound restrictions
-     */
+   /**
+    * The default policy for firewall outbound restrictions
+    */
     public function getOutboundRestrictionsDefaultPolicy(): string
     {
         return $this->outboundRestrictionsDefaultPolicy;
     }
 
-    /**
-     * Whether self-upgrades are enabled
-     */
+   /**
+    * Whether self-upgrades are enabled
+    */
     public function getSelfUpgrade(): bool
     {
         return $this->selfUpgrade;
@@ -478,49 +478,49 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->additionalHosts;
     }
 
-    /**
-     * Maximum number of routes allowed
-     */
+   /**
+    * Maximum number of routes allowed
+    */
     public function getMaxAllowedRoutes(): int
     {
         return $this->maxAllowedRoutes;
     }
 
-    /**
-     * Maximum number of redirect paths allowed
-     */
+   /**
+    * Maximum number of redirect paths allowed
+    */
     public function getMaxAllowedRedirectsPaths(): int
     {
         return $this->maxAllowedRedirectsPaths;
     }
 
-    /**
-     * Enable incremental backups on regions that support them.
-     */
+   /**
+    * Enable incremental backups on regions that support them.
+    */
     public function getEnableIncrementalBackups(): bool
     {
         return $this->enableIncrementalBackups;
     }
 
-    /**
-     * Enable sizing api.
-     */
+   /**
+    * Enable sizing api.
+    */
     public function getSizingApiEnabled(): bool
     {
         return $this->sizingApiEnabled;
     }
 
-    /**
-     * Enable cache grace period.
-     */
+   /**
+    * Enable cache grace period.
+    */
     public function getEnableCacheGracePeriod(): bool
     {
         return $this->enableCacheGracePeriod;
     }
 
-    /**
-     * Enable zero-downtime deployments for resource-only changes.
-     */
+   /**
+    * Enable zero-downtime deployments for resource-only changes.
+    */
     public function getEnableZeroDowntimeDeployments(): bool
     {
         return $this->enableZeroDowntimeDeployments;
@@ -531,41 +531,41 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->enableAdminAgent;
     }
 
-    /**
-     * The certifier url
-     */
+   /**
+    * The certifier url
+    */
     public function getCertifierUrl(): string
     {
         return $this->certifierUrl;
     }
 
-    /**
-     * Whether centralized permissions are enabled
-     */
+   /**
+    * Whether centralized permissions are enabled
+    */
     public function getCentralizedPermissions(): bool
     {
         return $this->centralizedPermissions;
     }
 
-    /**
-     * Maximum size of request to glue-server (in MB)
-     */
+   /**
+    * Maximum size of request to glue-server (in MB)
+    */
     public function getGlueServerMaxRequestSize(): int
     {
         return $this->glueServerMaxRequestSize;
     }
 
-    /**
-     * Enable SSH access update with persistent endpoint
-     */
+   /**
+    * Enable SSH access update with persistent endpoint
+    */
     public function getPersistentEndpointsSsh(): bool
     {
         return $this->persistentEndpointsSsh;
     }
 
-    /**
-     * Enable SSL certificate update with persistent endpoint
-     */
+   /**
+    * Enable SSL certificate update with persistent endpoint
+    */
     public function getPersistentEndpointsSslCertificates(): bool
     {
         return $this->persistentEndpointsSslCertificates;
@@ -586,17 +586,17 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->enableUnifiedConfiguration;
     }
 
-    /**
-     * Enable tracing support in routes
-     */
+   /**
+    * Enable tracing support in routes
+    */
     public function getEnableRoutesTracing(): bool
     {
         return $this->enableRoutesTracing;
     }
 
-    /**
-     * Enable extended deployment validation by images
-     */
+   /**
+    * Enable extended deployment validation by images
+    */
     public function getImageDeploymentValidation(): bool
     {
         return $this->imageDeploymentValidation;
@@ -607,17 +607,17 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->supportGenericImages;
     }
 
-    /**
-     * Enable fetching the GitHub App token from SIA.
-     */
+   /**
+    * Enable fetching the GitHub App token from SIA.
+    */
     public function getEnableGithubAppTokenExchange(): bool
     {
         return $this->enableGithubAppTokenExchange;
     }
 
-    /**
-     * The continuous profiling configuration
-     */
+   /**
+    * The continuous profiling configuration
+    */
     public function getContinuousProfiling(): ContinuousProfilingConfiguration
     {
         return $this->continuousProfiling;
@@ -628,17 +628,17 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->disableAgentErrorReporter;
     }
 
-    /**
-     * Require ownership proof before domains are added to environments.
-     */
+   /**
+    * Require ownership proof before domains are added to environments.
+    */
     public function getRequiresDomainOwnership(): bool
     {
         return $this->requiresDomainOwnership;
     }
 
-    /**
-     * Enable guaranteed resources feature
-     */
+   /**
+    * Enable guaranteed resources feature
+    */
     public function getEnableGuaranteedResources(): bool
     {
         return $this->enableGuaranteedResources;
@@ -649,25 +649,25 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->gitServer;
     }
 
-    /**
-     * The maximum size of activity logs in bytes. This limit is applied on the pre-compressed log size.
-     */
+   /**
+    * The maximum size of activity logs in bytes. This limit is applied on the pre-compressed log size.
+    */
     public function getActivityLogsMaxSize(): int
     {
         return $this->activityLogsMaxSize;
     }
 
-    /**
-     * If deployments can be manual, i.e. explicitly triggered by user.
-     */
+   /**
+    * If deployments can be manual, i.e. explicitly triggered by user.
+    */
     public function getAllowManualDeployments(): bool
     {
         return $this->allowManualDeployments;
     }
 
-    /**
-     * If the project can use rolling deployments.
-     */
+   /**
+    * If the project can use rolling deployments.
+    */
     public function getAllowRollingDeployments(): bool
     {
         return $this->allowRollingDeployments;
@@ -678,11 +678,13 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->allowBurst;
     }
 
-    /**
-     * Router resource settings for flex plan
-     */
+   /**
+    * Router resource settings for flex plan
+    */
     public function getRouterResources(): RouterResources
     {
         return $this->routerResources;
     }
 }
+
+

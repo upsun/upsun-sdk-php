@@ -34,11 +34,13 @@ final class UpdateUsageAlertsRequest implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return Alert[]|null
-     */
+   /**
+    * @return Alert[]|null
+    */
     public function getAlerts(): ?array
     {
         return $this->alerts;
     }
 }
+
+

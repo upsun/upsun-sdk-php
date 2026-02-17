@@ -35,11 +35,13 @@ final class Resources5 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The resources used when merging an environment
-     */
+   /**
+    * The resources used when merging an environment
+    */
     public function getInit(): ?string
     {
         return $this->init;
     }
 }
+
+

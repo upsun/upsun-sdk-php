@@ -53,17 +53,17 @@ final class EnvironmentRestoreInput implements Model, JsonSerializable
         return $this->branchFrom;
     }
 
-    /**
-     * Whether we should restore the code or only the data
-     */
+   /**
+    * Whether we should restore the code or only the data
+    */
     public function getRestoreCode(): bool
     {
         return $this->restoreCode;
     }
 
-    /**
-     * Whether we should restore resources configuration from the backup
-     */
+   /**
+    * Whether we should restore resources configuration from the backup
+    */
     public function getRestoreResources(): bool
     {
         return $this->restoreResources;
@@ -74,3 +74,5 @@ final class EnvironmentRestoreInput implements Model, JsonSerializable
         return $this->resources;
     }
 }
+
+

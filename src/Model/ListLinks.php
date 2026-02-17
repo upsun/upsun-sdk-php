@@ -39,27 +39,29 @@ final class ListLinks implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * A hypermedia link to the {current, next, previous} set of items.
-     */
+   /**
+    * A hypermedia link to the {current, next, previous} set of items.
+    */
     public function getSelf(): ?Link
     {
         return $this->self;
     }
 
-    /**
-     * A hypermedia link to the {current, next, previous} set of items.
-     */
+   /**
+    * A hypermedia link to the {current, next, previous} set of items.
+    */
     public function getPrevious(): ?Link
     {
         return $this->previous;
     }
 
-    /**
-     * A hypermedia link to the {current, next, previous} set of items.
-     */
+   /**
+    * A hypermedia link to the {current, next, previous} set of items.
+    */
     public function getNext(): ?Link
     {
         return $this->next;
     }
 }
+
+

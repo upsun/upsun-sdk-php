@@ -47,3 +47,5 @@ final class CreateProjectInviteRequestPermissionsInner implements Model, JsonSer
         return $this->role;
     }
 }
+
+

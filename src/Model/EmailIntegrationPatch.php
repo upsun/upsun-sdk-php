@@ -49,11 +49,13 @@ final class EmailIntegrationPatch implements Model, JsonSerializable
         return $this->recipients;
     }
 
-    /**
-     * The email address to use
-     */
+   /**
+    * The email address to use
+    */
     public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }
 }
+
+

@@ -37,19 +37,21 @@ final class MetricsValue implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The measured value of the metric for the given time interval.
-     */
+   /**
+    * The measured value of the metric for the given time interval.
+    */
     public function getValue(): mixed
     {
         return $this->value;
     }
 
-    /**
-     * The timestamp at which the time interval began.
-     */
+   /**
+    * The timestamp at which the time interval began.
+    */
     public function getStartTime(): mixed
     {
         return $this->startTime;
     }
 }
+
+

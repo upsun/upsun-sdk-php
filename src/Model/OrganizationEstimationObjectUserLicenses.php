@@ -48,3 +48,5 @@ final class OrganizationEstimationObjectUserLicenses implements Model, JsonSeria
         return $this->userManagement;
     }
 }
+
+

@@ -43,17 +43,17 @@ final class EnterpriseDeploymentTargetPatch implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the deployment target.
-     */
+   /**
+    * The type of the deployment target.
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The name of the deployment target.
-     */
+   /**
+    * The name of the deployment target.
+    */
     public function getName(): string
     {
         return $this->name;
@@ -69,11 +69,13 @@ final class EnterpriseDeploymentTargetPatch implements Model, JsonSerializable
         return $this->sshHosts;
     }
 
-    /**
-     * Mapping of clusters to Enterprise applications
-     */
+   /**
+    * Mapping of clusters to Enterprise applications
+    */
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
 }
+
+

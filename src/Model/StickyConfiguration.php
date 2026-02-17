@@ -36,11 +36,13 @@ final class StickyConfiguration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether sticky routing is enabled.
-     */
+   /**
+    * Whether sticky routing is enabled.
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 }
+
+

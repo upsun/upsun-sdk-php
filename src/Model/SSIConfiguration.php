@@ -36,11 +36,13 @@ final class SSIConfiguration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether SSI include is enabled.
-     */
+   /**
+    * Whether SSI include is enabled.
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 }
+
+

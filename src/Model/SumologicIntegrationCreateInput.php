@@ -60,17 +60,17 @@ final class SumologicIntegrationCreateInput implements Model, JsonSerializable
         return $this->extra;
     }
 
-    /**
-     * The Category used to easy filtering (sent as X-Sumo-Category header)
-     */
+   /**
+    * The Category used to easy filtering (sent as X-Sumo-Category header)
+    */
     public function getCategory(): ?string
     {
         return $this->category;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
@@ -81,3 +81,5 @@ final class SumologicIntegrationCreateInput implements Model, JsonSerializable
         return $this->excludedServices;
     }
 }
+
+

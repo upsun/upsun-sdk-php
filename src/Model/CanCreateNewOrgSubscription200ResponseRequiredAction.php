@@ -47,3 +47,5 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
         return $this->type;
     }
 }
+
+

@@ -19,6 +19,9 @@ class SourceOperationsTaskTest extends BaseTestCase
 {
     private SourceOperationsTask $task;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void

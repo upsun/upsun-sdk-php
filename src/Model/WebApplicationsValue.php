@@ -113,9 +113,9 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->access;
     }
 
-    /**
-     * @return ServiceRelationshipsValue[]
-     */
+   /**
+    * @return ServiceRelationshipsValue[]
+    */
     public function getRelationships(): array
     {
         return $this->relationships;
@@ -126,9 +126,9 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->additionalHosts;
     }
 
-    /**
-     * @return MountsValue[]
-     */
+   /**
+    * @return MountsValue[]
+    */
     public function getMounts(): array
     {
         return $this->mounts;
@@ -154,9 +154,9 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->containerProfile;
     }
 
-    /**
-     * @return OperationsValue[]
-     */
+   /**
+    * @return OperationsValue[]
+    */
     public function getOperations(): array
     {
         return $this->operations;
@@ -207,9 +207,9 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->hooks;
     }
 
-    /**
-     * @return CronsValue[]
-     */
+   /**
+    * @return CronsValue[]
+    */
     public function getCrons(): array
     {
         return $this->crons;
@@ -255,3 +255,5 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->slugId;
     }
 }
+
+

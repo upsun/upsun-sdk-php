@@ -19,6 +19,9 @@ class BackupsTaskTest extends BaseTestCase
 {
     private BackupsTask $backupsTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void

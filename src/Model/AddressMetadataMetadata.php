@@ -45,19 +45,21 @@ final class AddressMetadataMetadata implements Model, JsonSerializable
         return $this->requiredFields;
     }
 
-    /**
-     * Localized labels for address fields.
-     */
+   /**
+    * Localized labels for address fields.
+    */
     public function getFieldLabels(): ?object
     {
         return $this->fieldLabels;
     }
 
-    /**
-     * Whether this country supports a VAT number.
-     */
+   /**
+    * Whether this country supports a VAT number.
+    */
     public function getShowVat(): ?bool
     {
         return $this->showVat;
     }
 }
+
+

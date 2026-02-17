@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,10 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Domain;
-use Upsun\Model\DomainCreateInput;
-use Upsun\Model\DomainPatch;
 
 /**
  * Low level DomainManagementApi (auto-generated)
@@ -66,8 +63,8 @@ final class DomainManagementApi extends AbstractApi
      */
     public function createProjectsDomains(
         string $projectId,
-        DomainCreateInput $domainCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\DomainCreateInput $domainCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->createProjectsDomainsWithHttpInfo(
             $projectId,
             $domainCreateInput
@@ -84,8 +81,8 @@ final class DomainManagementApi extends AbstractApi
     */
     private function createProjectsDomainsWithHttpInfo(
         string $projectId,
-        DomainCreateInput $domainCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\DomainCreateInput $domainCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->createProjectsDomainsRequest(
             $projectId,
             $domainCreateInput
@@ -127,8 +124,9 @@ final class DomainManagementApi extends AbstractApi
      */
     private function createProjectsDomainsRequest(
         string $projectId,
-        DomainCreateInput $domainCreateInput
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -160,6 +158,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -199,6 +198,11 @@ final class DomainManagementApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -234,8 +238,8 @@ final class DomainManagementApi extends AbstractApi
     public function createProjectsEnvironmentsDomains(
         string $projectId,
         string $environmentId,
-        DomainCreateInput $domainCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\DomainCreateInput $domainCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->createProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -254,8 +258,8 @@ final class DomainManagementApi extends AbstractApi
     private function createProjectsEnvironmentsDomainsWithHttpInfo(
         string $projectId,
         string $environmentId,
-        DomainCreateInput $domainCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\DomainCreateInput $domainCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->createProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -299,8 +303,9 @@ final class DomainManagementApi extends AbstractApi
     private function createProjectsEnvironmentsDomainsRequest(
         string $projectId,
         string $environmentId,
-        DomainCreateInput $domainCreateInput
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -349,6 +354,7 @@ final class DomainManagementApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             'application/json',
@@ -387,6 +393,11 @@ final class DomainManagementApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -418,7 +429,7 @@ final class DomainManagementApi extends AbstractApi
     public function deleteProjectsDomains(
         string $projectId,
         string $domainId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->deleteProjectsDomainsWithHttpInfo(
             $projectId,
             $domainId
@@ -435,7 +446,7 @@ final class DomainManagementApi extends AbstractApi
     private function deleteProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsDomainsRequest(
             $projectId,
             $domainId
@@ -478,6 +489,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $domainId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -519,6 +531,7 @@ final class DomainManagementApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -547,6 +560,11 @@ final class DomainManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -581,7 +599,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->deleteProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -600,7 +618,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -645,6 +663,7 @@ final class DomainManagementApi extends AbstractApi
         string $environmentId,
         string $domainId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -702,6 +721,7 @@ final class DomainManagementApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -730,6 +750,11 @@ final class DomainManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -763,7 +788,7 @@ final class DomainManagementApi extends AbstractApi
     public function getProjectsDomains(
         string $projectId,
         string $domainId
-    ): Domain {
+    ): \Upsun\Model\Domain {
         return $this->getProjectsDomainsWithHttpInfo(
             $projectId,
             $domainId
@@ -780,7 +805,7 @@ final class DomainManagementApi extends AbstractApi
     private function getProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId
-    ): Domain {
+    ): \Upsun\Model\Domain {
         $request = $this->getProjectsDomainsRequest(
             $projectId,
             $domainId
@@ -823,6 +848,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $domainId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -864,6 +890,7 @@ final class DomainManagementApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -892,6 +919,11 @@ final class DomainManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -926,7 +958,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): Domain {
+    ): \Upsun\Model\Domain {
         return $this->getProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -945,7 +977,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): Domain {
+    ): \Upsun\Model\Domain {
         $request = $this->getProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -990,6 +1022,7 @@ final class DomainManagementApi extends AbstractApi
         string $environmentId,
         string $domainId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1047,6 +1080,7 @@ final class DomainManagementApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -1075,6 +1109,11 @@ final class DomainManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1169,6 +1208,7 @@ final class DomainManagementApi extends AbstractApi
     private function listProjectsDomainsRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1193,6 +1233,7 @@ final class DomainManagementApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1222,6 +1263,11 @@ final class DomainManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1320,6 +1366,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1361,6 +1408,7 @@ final class DomainManagementApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             '',
@@ -1389,6 +1437,11 @@ final class DomainManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];
@@ -1423,8 +1476,8 @@ final class DomainManagementApi extends AbstractApi
     public function updateProjectsDomains(
         string $projectId,
         string $domainId,
-        DomainPatch $domainPatch
-    ): AcceptedResponse {
+        \Upsun\Model\DomainPatch $domainPatch
+    ): \Upsun\Model\AcceptedResponse {
         return $this->updateProjectsDomainsWithHttpInfo(
             $projectId,
             $domainId,
@@ -1443,8 +1496,8 @@ final class DomainManagementApi extends AbstractApi
     private function updateProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId,
-        DomainPatch $domainPatch
-    ): AcceptedResponse {
+        \Upsun\Model\DomainPatch $domainPatch
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsDomainsRequest(
             $projectId,
             $domainId,
@@ -1488,8 +1541,9 @@ final class DomainManagementApi extends AbstractApi
     private function updateProjectsDomainsRequest(
         string $projectId,
         string $domainId,
-        DomainPatch $domainPatch
+        \Upsun\Model\DomainPatch $domainPatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1538,6 +1592,7 @@ final class DomainManagementApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             'application/json',
@@ -1576,6 +1631,11 @@ final class DomainManagementApi extends AbstractApi
             }
         }
 
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
@@ -1609,8 +1669,8 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId,
-        DomainPatch $domainPatch
-    ): AcceptedResponse {
+        \Upsun\Model\DomainPatch $domainPatch
+    ): \Upsun\Model\AcceptedResponse {
         return $this->updateProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1631,8 +1691,8 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId,
-        DomainPatch $domainPatch
-    ): AcceptedResponse {
+        \Upsun\Model\DomainPatch $domainPatch
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -1678,8 +1738,9 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId,
-        DomainPatch $domainPatch
+        \Upsun\Model\DomainPatch $domainPatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1744,6 +1805,7 @@ final class DomainManagementApi extends AbstractApi
             );
         }
 
+
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
             'application/json',
@@ -1780,6 +1842,11 @@ final class DomainManagementApi extends AbstractApi
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
             }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
 
         $defaultHeaders = [];

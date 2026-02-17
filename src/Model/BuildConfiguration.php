@@ -42,11 +42,13 @@ final class BuildConfiguration implements Model, JsonSerializable
         return $this->flavor;
     }
 
-    /**
-     * @return BuildCachesValue[]
-     */
+   /**
+    * @return BuildCachesValue[]
+    */
     public function getCaches(): array
     {
         return $this->caches;
     }
 }
+
+

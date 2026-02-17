@@ -35,11 +35,13 @@ final class EnvironmentDeployInput implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The deployment strategy (`rolling` or `stopstart`)
-     */
+   /**
+    * The deployment strategy (`rolling` or `stopstart`)
+    */
     public function getStrategy(): string
     {
         return $this->strategy;
     }
 }
+
+

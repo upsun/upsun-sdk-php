@@ -46,17 +46,17 @@ final class ListOrgProjects200Response implements Model, JsonSerializable
         return $this->count;
     }
 
-    /**
-     * @return OrganizationProject[]|null
-     */
+   /**
+    * @return OrganizationProject[]|null
+    */
     public function getItems(): ?array
     {
         return $this->items;
     }
 
-    /**
-     * Facets for filtering options.
-     */
+   /**
+    * Facets for filtering options.
+    */
     public function getFacets(): ?ProjectFacets
     {
         return $this->facets;
@@ -67,3 +67,5 @@ final class ListOrgProjects200Response implements Model, JsonSerializable
         return $this->links;
     }
 }
+
+

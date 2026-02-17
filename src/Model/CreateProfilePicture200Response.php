@@ -40,3 +40,5 @@ final class CreateProfilePicture200Response implements Model, JsonSerializable
         return $this->url;
     }
 }
+
+

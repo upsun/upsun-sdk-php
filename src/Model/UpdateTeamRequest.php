@@ -47,3 +47,5 @@ final class UpdateTeamRequest implements Model, JsonSerializable
         return $this->projectPermissions;
     }
 }
+
+

@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -17,8 +16,8 @@ final class HealthWebHookIntegration implements Model, JsonSerializable
     public function __construct(
         private readonly string $type,
         private readonly string $url,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
@@ -44,18 +43,18 @@ final class HealthWebHookIntegration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -65,19 +64,21 @@ final class HealthWebHookIntegration implements Model, JsonSerializable
         return $this->type;
     }
 
-    /**
-     * The URL of the webhook
-     */
+   /**
+    * The URL of the webhook
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * The identifier of HealthWebHookIntegration
-     */
+   /**
+    * The identifier of HealthWebHookIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+
+

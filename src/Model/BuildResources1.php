@@ -47,3 +47,5 @@ final class BuildResources1 implements Model, JsonSerializable
         return $this->memory;
     }
 }
+
+

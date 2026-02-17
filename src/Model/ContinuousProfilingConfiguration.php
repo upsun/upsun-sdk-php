@@ -41,3 +41,5 @@ final class ContinuousProfilingConfiguration implements Model, JsonSerializable
         return $this->supportedRuntimes;
     }
 }
+
+
