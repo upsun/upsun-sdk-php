@@ -482,11 +482,6 @@ final class ApiObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at'
         ],
-        'Upsun\Model\ContainerProfilesValueValue' => [
-            'cpu' => 'cpu',
-            'memory' => 'memory',
-            'cpuType' => 'cpu_type'
-        ],
         'Upsun\Model\ContinuousProfilingConfiguration' => [
             'supportedRuntimes' => 'supported_runtimes'
         ],

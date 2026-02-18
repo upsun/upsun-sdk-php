@@ -29,7 +29,7 @@ final class Deployment implements Model, JsonSerializable
         private readonly array $routes,
         private readonly array $webapps,
         private readonly array $workers,
-        private readonly array $containerProfiles,
+        private readonly string $containerProfiles,
         private readonly ?VPNConfiguration $vpn,
         private readonly ?\DateTime $createdAt = null,
         private readonly ?\DateTime $updatedAt = null,
@@ -208,7 +208,7 @@ final class Deployment implements Model, JsonSerializable
         return $this->workers;
     }
 
-    public function getContainerProfiles(): array
+    public function getContainerProfiles(): string
     {
         return $this->containerProfiles;
     }

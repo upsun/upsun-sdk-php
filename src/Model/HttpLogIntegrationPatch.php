@@ -20,7 +20,7 @@ final class HttpLogIntegrationPatch implements Model, JsonSerializable, Integrat
         private readonly ?array $extra = [],
         private readonly ?array $headers = [],
         private readonly ?bool $tlsVerify = null,
-        private readonly ?array $excludedServices = [],
+        private readonly ?string $excludedServices = null,
     ) {
     }
 
@@ -75,7 +75,7 @@ final class HttpLogIntegrationPatch implements Model, JsonSerializable, Integrat
         return $this->tlsVerify;
     }
 
-    public function getExcludedServices(): ?array
+    public function getExcludedServices(): ?string
     {
         return $this->excludedServices;
     }

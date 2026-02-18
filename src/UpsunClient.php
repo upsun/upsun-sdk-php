@@ -41,6 +41,7 @@ use Upsun\Api\RepositoryApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\RuntimeOperationsApi;
 use Upsun\Api\SourceOperationsApi;
+use Upsun\Api\SshKeysApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\SupportApi;
 use Upsun\Api\SystemInformationApi;
@@ -59,18 +60,21 @@ use Upsun\Core\Tasks\CertificatesTask;
 use Upsun\Core\Tasks\DomainsTask;
 use Upsun\Core\Tasks\EnvironmentsTask;
 use Upsun\Core\Tasks\IntegrationsTask;
-use Upsun\Core\Tasks\InvitationsTask;
 use Upsun\Core\Tasks\MetricsTask;
 use Upsun\Core\Tasks\MountsTask;
 use Upsun\Core\Tasks\OperationsTask;
 use Upsun\Core\Tasks\OrganizationsTask;
 use Upsun\Core\Tasks\ProjectsTask;
 use Upsun\Core\Tasks\RegionsTask;
+use Upsun\Core\Tasks\RepositoriesTask;
 use Upsun\Core\Tasks\ResourcesTask;
 use Upsun\Core\Tasks\RoutesTask;
+use Upsun\Core\Tasks\ServicesTask;
 use Upsun\Core\Tasks\SourceOperationsTask;
+use Upsun\Core\Tasks\SshTask;
 use Upsun\Core\Tasks\SupportTicketsTask;
 use Upsun\Core\Tasks\TeamsTask;
+use Upsun\Core\Tasks\UsersInvitationsTask;
 use Upsun\Core\Tasks\UsersTask;
 use Upsun\Core\Tasks\VariablesTask;
 use Upsun\Core\Tasks\WorkersTask;
@@ -106,7 +110,7 @@ class UpsunClient
 
     public IntegrationsTask $integrations;
 
-    public InvitationsTask $invitations;
+    public UsersInvitationsTask $invitations;
 
     public MetricsTask $metrics;
 
@@ -120,11 +124,17 @@ class UpsunClient
 
     public RegionsTask $regions;
 
+    public RepositoriesTask $repositories;
+
     public ResourcesTask $resources;
 
     public RoutesTask $routes;
 
+    public ServicesTask $services;
+
     public SourceOperationsTask $sourceOperations;
+
+    public SshTask $sshTask;
 
     public TeamsTask $teams;
 
@@ -195,6 +205,7 @@ class UpsunClient
         $subscriptionsApi = new SubscriptionsApi(...$taskParams);
         $supportApi = new SupportApi(...$taskParams);
         $systemInformationApi = new SystemInformationApi(...$taskParams);
+        $sshKeysApi = new SshKeysApi(...$taskParams);
         $teamAccessApi = new TeamAccessApi(...$taskParams);
         $teamsApi = new TeamsApi(...$taskParams);
         $thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi(...$taskParams);
@@ -236,7 +247,7 @@ class UpsunClient
             $this,
             $thirdPartyIntegrationsApi
         );
-        $this->invitations = new InvitationsTask(
+        $this->invitations = new UsersInvitationsTask(
             $this,
             $organizationInvitationsApi,
             $projectInvitationsApi,
@@ -275,6 +286,12 @@ class UpsunClient
             $this,
             $regionsApi
         );
+
+        $this->repositories = new RepositoriesTask(
+            $this,
+            $repositoryApi,
+            $systemInformationApi,
+        );
         $this->resources = new ResourcesTask(
             $this,
             $deploymentApi
@@ -282,6 +299,9 @@ class UpsunClient
         $this->routes = new RoutesTask(
             $this,
             $routingApi
+        );
+        $this->services = new ServicesTask(
+            $this,
         );
         $this->sourceOperations = new SourceOperationsTask(
             $this,
@@ -296,6 +316,10 @@ class UpsunClient
             $this,
             $defaultApi,
             $supportApi
+        );
+        $this->sshTask = new SshTask(
+            $this,
+            $sshKeysApi
         );
         $this->users = new UsersTask(
             $this,

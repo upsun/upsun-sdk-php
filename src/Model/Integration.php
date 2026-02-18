@@ -19,9 +19,5 @@ interface Integration
 
     public function __toString(): string;
 
-    public function getCreated At(): string;
-
-    public function getUpdated At(): string;
-
     public function getType(): string;
 }

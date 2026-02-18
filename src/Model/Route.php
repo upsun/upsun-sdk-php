@@ -19,15 +19,9 @@ interface Route
 
     public function __toString(): string;
 
-    public function getPrimary(): boolean;
-
-    public function getId(): string;
-
-    public function getProduction Url(): string;
-
-    public function getAttributes(): object;
+    public function getAttributes(): array;
 
     public function getType(): string;
 
-    public function getTls(): object;
+    public function getTls(): array;
 }

@@ -15,7 +15,7 @@ use Upsun\Model\DomainPatch;
 final class ReplacementDomainStoragePatch implements Model, JsonSerializable, DomainPatch
 {
     public function __construct(
-        private readonly ?array $attributes = [],
+        private readonly ?TLSSettings $attributes = null,
     ) {
     }
 
@@ -37,7 +37,10 @@ final class ReplacementDomainStoragePatch implements Model, JsonSerializable, Do
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getAttributes(): ?array
+   /**
+    * TLS settings for the route.
+    */
+    public function getAttributes(): ?TLSSettings
     {
         return $this->attributes;
     }

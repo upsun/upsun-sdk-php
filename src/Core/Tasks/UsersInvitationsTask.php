@@ -14,13 +14,13 @@ use Upsun\Model\StringFilter;
 use Upsun\UpsunClient;
 
 /**
- * InvitationTask class.
+ * UsersInvitationsTask class.
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
  * @see       https://docs.upsun.com
  */
-class InvitationsTask extends TaskBase
+class UsersInvitationsTask extends TaskBase
 {
     public function __construct(
         UpsunClient $client,

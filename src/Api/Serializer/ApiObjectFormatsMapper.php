@@ -556,12 +556,6 @@ final class ApiObjectFormatsMapper
             'updatedAt' => 'date-time'
         ],
 
-        'Upsun\Model\ContainerProfilesValueValue' => [
-            'cpu' => 'float',
-            'memory' => null,
-            'cpuType' => null
-        ],
-
         'Upsun\Model\ContinuousProfilingConfiguration' => [
             'supportedRuntimes' => null
         ],

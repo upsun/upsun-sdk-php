@@ -553,12 +553,6 @@ final class ApiObjectTypesMapper
             'updated_at' => '?\DateTime',
         ],
 
-        'Upsun\Model\ContainerProfilesValueValue' => [
-            'cpu' => 'float',
-            'memory' => 'int',
-            'cpu_type' => 'string',
-        ],
-
         'Upsun\Model\ContinuousProfilingConfiguration' => [
             'supported_runtimes' => 'string[]',
         ],
@@ -832,7 +826,7 @@ final class ApiObjectTypesMapper
             'routes' => '\Upsun\Model\RoutesValue[]',
             'webapps' => '\Upsun\Model\WebApplicationsValue[]',
             'workers' => '\Upsun\Model\WorkersValue[]',
-            'container_profiles' => 'array&lt;string,\Upsun\Model\ContainerProfilesValueValue&gt;[]',
+            'container_profiles' => 'string',
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             'fingerprint' => '?string',
@@ -974,7 +968,7 @@ final class ApiObjectTypesMapper
         ],
 
         'Upsun\Model\DomainPatch' => [
-            'attributes' => 'string[]',
+            'attributes' => '?\Upsun\Model\TLSSettings',
             'is_default' => '?bool',
         ],
 
@@ -1670,7 +1664,7 @@ final class ApiObjectTypesMapper
             'extra' => 'string[]',
             'headers' => 'string[]',
             'tls_verify' => '?bool',
-            'excluded_services' => 'string[]',
+            'excluded_services' => '?string',
         ],
 
         'Upsun\Model\ImageTypeRestrictions' => [
@@ -3178,7 +3172,7 @@ final class ApiObjectTypesMapper
         ],
 
         'Upsun\Model\ReplacementDomainStoragePatch' => [
-            'attributes' => 'string[]',
+            'attributes' => '?\Upsun\Model\TLSSettings',
         ],
 
         'Upsun\Model\RepositoryInformation' => [

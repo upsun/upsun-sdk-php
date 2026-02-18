@@ -8,7 +8,7 @@ interface {{classname}}
     public function __toString(): string;
 {{#vendorExtensions.x-required}}
 
-    public function get{{name}}(): {{type}};
+    public function get{{name}}(): {{#x-isDateTime}}\DateTime{{/x-isDateTime}}{{^x-isDateTime}}{{#x-isArray}}array{{/x-isArray}}{{^x-isArray}}{{type}}{{/x-isArray}}{{/x-isDateTime}};
 {{/vendorExtensions.x-required}}
 {{/vendorExtensions.x-isOneOf}}
 {{^vendorExtensions.x-isOneOf}}

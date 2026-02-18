@@ -34,7 +34,7 @@ class IntegrationsTask extends TaskBase
      *
      * @param IntegrationCreateInput $integrationCreateInput An implementation of the IntegrationCreateInput interface.
      *        Use one of the concrete types that implement this interface:
-     *        BitbucketIntegrationCreateInput
+     *         - BitbucketIntegrationCreateInput
      *         - BitbucketServerIntegrationCreateInput
      *         - GitHubIntegrationCreateInput
      *         - GitLabIntegrationCreateInput
