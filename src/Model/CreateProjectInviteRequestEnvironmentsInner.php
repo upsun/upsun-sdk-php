@@ -19,6 +19,7 @@ final class CreateProjectInviteRequestEnvironmentsInner implements Model, JsonSe
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class CreateProjectInviteRequestEnvironmentsInner implements Model, JsonSe
         return $this->role;
     }
 }
-
-

@@ -20,6 +20,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagementListAdvancedMa
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -54,5 +55,3 @@ final class OrganizationEstimationObjectUserLicensesUserManagementListAdvancedMa
         return $this->total;
     }
 }
-
-

@@ -20,6 +20,7 @@ final class OrganizationProjectLinksUpdateUsageAlerts implements Model, JsonSeri
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -54,5 +55,3 @@ final class OrganizationProjectLinksUpdateUsageAlerts implements Model, JsonSeri
         return $this->method;
     }
 }
-
-

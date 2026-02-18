@@ -35,6 +35,7 @@ final class Config implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -210,5 +211,3 @@ final class Config implements Model, JsonSerializable
         return $this->otlplog;
     }
 }
-
-

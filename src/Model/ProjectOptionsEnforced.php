@@ -20,6 +20,7 @@ final class ProjectOptionsEnforced implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -54,5 +55,3 @@ final class ProjectOptionsEnforced implements Model, JsonSerializable
         return $this->capabilities;
     }
 }
-
-

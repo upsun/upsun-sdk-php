@@ -19,6 +19,7 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements Model, JsonSeria
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements Model, JsonSeria
         return $this->mode;
     }
 }
-
-

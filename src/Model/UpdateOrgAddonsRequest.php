@@ -19,6 +19,7 @@ final class UpdateOrgAddonsRequest implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class UpdateOrgAddonsRequest implements Model, JsonSerializable
         return $this->supportLevel;
     }
 }
-
-

@@ -23,6 +23,7 @@ final class PrepaymentObjectPrepayment implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -84,5 +85,3 @@ final class PrepaymentObjectPrepayment implements Model, JsonSerializable
         return $this->fallback;
     }
 }
-
-

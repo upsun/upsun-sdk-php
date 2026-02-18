@@ -30,6 +30,7 @@ final class UpdateProfileRequest implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -124,5 +125,3 @@ final class UpdateProfileRequest implements Model, JsonSerializable
         return $this->picture;
     }
 }
-
-

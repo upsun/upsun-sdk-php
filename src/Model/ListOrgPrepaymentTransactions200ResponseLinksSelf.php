@@ -18,6 +18,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinksSelf implements Model, 
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -40,5 +41,3 @@ final class ListOrgPrepaymentTransactions200ResponseLinksSelf implements Model, 
         return $this->href;
     }
 }
-
-

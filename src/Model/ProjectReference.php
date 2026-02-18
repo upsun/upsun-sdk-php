@@ -29,6 +29,7 @@ final class ProjectReference implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -144,5 +145,3 @@ final class ProjectReference implements Model, JsonSerializable
         return $this->invoiced;
     }
 }
-
-

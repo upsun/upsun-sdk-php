@@ -19,6 +19,7 @@ final class ProjectFacets implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -41,5 +42,3 @@ final class ProjectFacets implements Model, JsonSerializable
         return $this->plans;
     }
 }
-
-

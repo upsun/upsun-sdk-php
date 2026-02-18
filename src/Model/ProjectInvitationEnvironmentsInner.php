@@ -21,6 +21,7 @@ final class ProjectInvitationEnvironmentsInner implements Model, JsonSerializabl
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -61,5 +62,3 @@ final class ProjectInvitationEnvironmentsInner implements Model, JsonSerializabl
         return $this->title;
     }
 }
-
-

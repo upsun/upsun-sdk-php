@@ -18,6 +18,7 @@ final class Resources6 implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -43,5 +44,3 @@ final class Resources6 implements Model, JsonSerializable
         return $this->init;
     }
 }
-
-

@@ -21,6 +21,7 @@ final class GetTypeAllowance200ResponseCurrenciesEUR implements Model, JsonSeria
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -61,5 +62,3 @@ final class GetTypeAllowance200ResponseCurrenciesEUR implements Model, JsonSeria
         return $this->currencySymbol;
     }
 }
-
-

@@ -31,6 +31,7 @@ final class CurrentUser implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -162,5 +163,3 @@ final class CurrentUser implements Model, JsonSerializable
         return $this->tickets;
     }
 }
-
-

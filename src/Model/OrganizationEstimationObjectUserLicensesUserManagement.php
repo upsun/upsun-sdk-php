@@ -20,6 +20,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Mo
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -60,5 +61,3 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Mo
         return $this->list;
     }
 }
-
-

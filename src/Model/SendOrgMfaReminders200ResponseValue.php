@@ -19,6 +19,7 @@ final class SendOrgMfaReminders200ResponseValue implements Model, JsonSerializab
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class SendOrgMfaReminders200ResponseValue implements Model, JsonSerializab
         return $this->message;
     }
 }
-
-

@@ -22,6 +22,7 @@ final class RegionEnvImpact implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -74,5 +75,3 @@ final class RegionEnvImpact implements Model, JsonSerializable
         return $this->green;
     }
 }
-
-

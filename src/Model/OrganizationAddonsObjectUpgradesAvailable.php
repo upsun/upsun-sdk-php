@@ -20,6 +20,7 @@ final class OrganizationAddonsObjectUpgradesAvailable implements Model, JsonSeri
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -48,5 +49,3 @@ final class OrganizationAddonsObjectUpgradesAvailable implements Model, JsonSeri
         return $this->supportLevel;
     }
 }
-
-

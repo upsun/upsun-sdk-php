@@ -19,6 +19,7 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Mo
         return $this->url;
     }
 }
-
-

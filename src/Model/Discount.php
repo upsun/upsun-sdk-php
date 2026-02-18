@@ -29,6 +29,7 @@ final class Discount implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -144,5 +145,3 @@ final class Discount implements Model, JsonSerializable
         return $this->endAt;
     }
 }
-
-

@@ -19,6 +19,7 @@ final class OrganizationProjectLinksActivities implements Model, JsonSerializabl
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -44,5 +45,3 @@ final class OrganizationProjectLinksActivities implements Model, JsonSerializabl
         return $this->href;
     }
 }
-
-

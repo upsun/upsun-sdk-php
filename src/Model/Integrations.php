@@ -20,6 +20,7 @@ final class Integrations implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -57,5 +58,3 @@ final class Integrations implements Model, JsonSerializable
         return $this->allowedIntegrations;
     }
 }
-
-

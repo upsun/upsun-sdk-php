@@ -87,6 +87,7 @@ final class ProjectSettings implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -686,5 +687,3 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->routerResources;
     }
 }
-
-

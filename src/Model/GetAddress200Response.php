@@ -28,6 +28,7 @@ final class GetAddress200Response implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -143,5 +144,3 @@ final class GetAddress200Response implements Model, JsonSerializable
         return $this->metadata;
     }
 }
-
-

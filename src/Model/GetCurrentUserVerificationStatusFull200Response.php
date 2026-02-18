@@ -19,6 +19,7 @@ final class GetCurrentUserVerificationStatusFull200Response implements Model, Js
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class GetCurrentUserVerificationStatusFull200Response implements Model, Js
         return $this->type;
     }
 }
-
-

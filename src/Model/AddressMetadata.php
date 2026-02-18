@@ -19,6 +19,7 @@ final class AddressMetadata implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -44,5 +45,3 @@ final class AddressMetadata implements Model, JsonSerializable
         return $this->metadata;
     }
 }
-
-

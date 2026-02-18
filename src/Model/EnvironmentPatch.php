@@ -26,6 +26,7 @@ final class EnvironmentPatch implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -120,5 +121,3 @@ final class EnvironmentPatch implements Model, JsonSerializable
         return $this->restrictRobots;
     }
 }
-
-

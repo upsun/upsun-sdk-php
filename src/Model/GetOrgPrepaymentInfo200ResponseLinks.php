@@ -19,6 +19,7 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements Model, JsonSerializa
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements Model, JsonSerializa
         return $this->transactions;
     }
 }
-
-

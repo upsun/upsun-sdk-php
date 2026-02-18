@@ -38,6 +38,7 @@ final class Activity implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -238,5 +239,3 @@ final class Activity implements Model, JsonSerializable
         return $this->environments;
     }
 }
-
-

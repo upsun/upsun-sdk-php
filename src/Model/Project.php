@@ -33,6 +33,7 @@ final class Project implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -190,5 +191,3 @@ final class Project implements Model, JsonSerializable
         return $this->subscription;
     }
 }
-
-

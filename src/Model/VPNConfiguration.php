@@ -32,6 +32,7 @@ final class VPNConfiguration implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -168,5 +169,3 @@ final class VPNConfiguration implements Model, JsonSerializable
         return $this->margintime;
     }
 }
-
-

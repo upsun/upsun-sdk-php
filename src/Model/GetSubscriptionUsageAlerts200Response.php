@@ -19,6 +19,7 @@ final class GetSubscriptionUsageAlerts200Response implements Model, JsonSerializ
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -52,5 +53,3 @@ final class GetSubscriptionUsageAlerts200Response implements Model, JsonSerializ
         return $this->available;
     }
 }
-
-

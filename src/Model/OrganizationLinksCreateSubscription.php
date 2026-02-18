@@ -20,6 +20,7 @@ final class OrganizationLinksCreateSubscription implements Model, JsonSerializab
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -54,5 +55,3 @@ final class OrganizationLinksCreateSubscription implements Model, JsonSerializab
         return $this->method;
     }
 }
-
-

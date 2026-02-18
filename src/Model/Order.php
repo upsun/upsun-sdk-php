@@ -38,6 +38,7 @@ final class Order implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -235,5 +236,3 @@ final class Order implements Model, JsonSerializable
         return $this->links;
     }
 }
-
-

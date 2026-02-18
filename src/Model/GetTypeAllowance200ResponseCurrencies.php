@@ -22,6 +22,7 @@ final class GetTypeAllowance200ResponseCurrencies implements Model, JsonSerializ
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -68,5 +69,3 @@ final class GetTypeAllowance200ResponseCurrencies implements Model, JsonSerializ
         return $this->cAD;
     }
 }
-
-

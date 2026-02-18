@@ -22,6 +22,7 @@ final class SpecificOverridesValue implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -68,5 +69,3 @@ final class SpecificOverridesValue implements Model, JsonSerializable
         return $this->headers;
     }
 }
-
-

@@ -24,6 +24,7 @@ final class Vouchers implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -101,5 +102,3 @@ final class Vouchers implements Model, JsonSerializable
         return $this->links;
     }
 }
-
-

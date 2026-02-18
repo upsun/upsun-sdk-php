@@ -20,6 +20,7 @@ final class HalLinksNext implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -54,5 +55,3 @@ final class HalLinksNext implements Model, JsonSerializable
         return $this->href;
     }
 }
-
-

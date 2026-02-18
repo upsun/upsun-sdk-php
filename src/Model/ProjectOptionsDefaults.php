@@ -22,6 +22,7 @@ final class ProjectOptionsDefaults implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -74,5 +75,3 @@ final class ProjectOptionsDefaults implements Model, JsonSerializable
         return $this->capabilities;
     }
 }
-
-

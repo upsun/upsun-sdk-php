@@ -25,6 +25,7 @@ final class UserProjectAccess implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -107,5 +108,3 @@ final class UserProjectAccess implements Model, JsonSerializable
         return $this->links;
     }
 }
-
-

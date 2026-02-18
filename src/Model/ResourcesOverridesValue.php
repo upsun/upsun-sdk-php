@@ -22,6 +22,7 @@ final class ResourcesOverridesValue implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -70,5 +71,3 @@ final class ResourcesOverridesValue implements Model, JsonSerializable
         return $this->redeployedEnd;
     }
 }
-
-

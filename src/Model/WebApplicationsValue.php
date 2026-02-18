@@ -47,6 +47,7 @@ final class WebApplicationsValue implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -255,5 +256,3 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->slugId;
     }
 }
-
-

@@ -27,6 +27,7 @@ final class LineItem implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -125,5 +126,3 @@ final class LineItem implements Model, JsonSerializable
         return $this->excludeFromInvoice;
     }
 }
-
-

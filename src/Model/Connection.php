@@ -24,6 +24,7 @@ final class Connection implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -103,5 +104,3 @@ final class Connection implements Model, JsonSerializable
         return $this->updatedAt;
     }
 }
-
-

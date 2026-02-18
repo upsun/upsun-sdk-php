@@ -79,4 +79,3 @@ final class AutoscalerDuration implements JsonSerializable
     }
 }
 
-

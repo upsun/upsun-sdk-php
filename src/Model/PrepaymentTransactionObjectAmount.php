@@ -22,6 +22,7 @@ final class PrepaymentTransactionObjectAmount implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -74,5 +75,3 @@ final class PrepaymentTransactionObjectAmount implements Model, JsonSerializable
         return $this->currencySymbol;
     }
 }
-
-

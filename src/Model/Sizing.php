@@ -21,6 +21,7 @@ final class Sizing implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -63,5 +64,3 @@ final class Sizing implements Model, JsonSerializable
         return $this->workers;
     }
 }
-
-

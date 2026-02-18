@@ -25,6 +25,7 @@ final class OrganizationEstimationObject implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -104,5 +105,3 @@ final class OrganizationEstimationObject implements Model, JsonSerializable
         return $this->subscriptions;
     }
 }
-
-

@@ -1,26 +1,18 @@
 {{#vendorExtensions.x-isOneOf}}
-final class {{classname}} implements Model, JsonSerializable
+interface {{classname}}
 {
-    public function __construct(
-    {{#vars}}
-      {{#isContainer}}
-        private readonly ?array ${{name}} = [],
-      {{/isContainer}}
-      {{^isContainer}}
-        {{#isDateTime}}
-        private readonly ?\DateTime ${{name}} = null,
-        {{/isDateTime}}
-        {{^isDateTime}}
-        private readonly {{#isAnyType}}mixed{{/isAnyType}}{{^isAnyType}}?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isAnyType}} ${{name}} = null,
-        {{/isDateTime}}
-      {{/isContainer}}
-    {{/vars}}
-    ) {
-    }
+    public function getModelName(): string;
 
+    public function jsonSerialize(): array;
+
+    public function __toString(): string;
+{{#vendorExtensions.x-required}}
+
+    public function get{{name}}(): {{type}};
+{{/vendorExtensions.x-required}}
 {{/vendorExtensions.x-isOneOf}}
 {{^vendorExtensions.x-isOneOf}}
-final class {{classname}} implements Model, JsonSerializable
+final class {{classname}} implements Model, JsonSerializable{{#vendorExtensions.x-parentInterface}}, {{.}}{{/vendorExtensions.x-parentInterface}}
 {
     public function __construct(
     {{#vars}}
@@ -74,7 +66,7 @@ final class {{classname}} implements Model, JsonSerializable
     {{/vars}}
     ) {
     }
-{{/vendorExtensions.x-isOneOf}}
+
 
     public function getModelName(): string
     {
@@ -117,4 +109,5 @@ final class {{classname}} implements Model, JsonSerializable
         return $this->{{{name}}};
     }
 {{/vars}}
+{{/vendorExtensions.x-isOneOf}}
 }

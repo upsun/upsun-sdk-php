@@ -20,6 +20,7 @@ final class ProjectSettingsPatch implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -58,5 +59,3 @@ final class ProjectSettingsPatch implements Model, JsonSerializable
         return $this->buildResources;
     }
 }
-
-

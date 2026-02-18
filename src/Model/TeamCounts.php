@@ -19,6 +19,7 @@ final class TeamCounts implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -53,5 +54,3 @@ final class TeamCounts implements Model, JsonSerializable
         return $this->projectCount;
     }
 }
-
-

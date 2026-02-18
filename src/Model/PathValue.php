@@ -23,6 +23,7 @@ final class PathValue implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -75,5 +76,3 @@ final class PathValue implements Model, JsonSerializable
         return $this->expires;
     }
 }
-
-

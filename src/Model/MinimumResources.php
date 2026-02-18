@@ -22,6 +22,7 @@ final class MinimumResources implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -68,5 +69,3 @@ final class MinimumResources implements Model, JsonSerializable
         return $this->profileSize;
     }
 }
-
-

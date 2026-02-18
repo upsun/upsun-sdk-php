@@ -23,6 +23,7 @@ final class CreateOrgProjectRequest implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -93,5 +94,3 @@ final class CreateOrgProjectRequest implements Model, JsonSerializable
         return $this->defaultBranch;
     }
 }
-
-

@@ -22,6 +22,7 @@ final class OrganizationAlertConfigConfigThreshold implements Model, JsonSeriali
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -74,5 +75,3 @@ final class OrganizationAlertConfigConfigThreshold implements Model, JsonSeriali
         return $this->currencySymbol;
     }
 }
-
-

@@ -30,6 +30,7 @@ final class Region implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -155,5 +156,3 @@ final class Region implements Model, JsonSerializable
         return $this->environmentalImpact;
     }
 }
-
-

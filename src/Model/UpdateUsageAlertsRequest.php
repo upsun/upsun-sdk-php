@@ -18,6 +18,7 @@ final class UpdateUsageAlertsRequest implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -42,5 +43,3 @@ final class UpdateUsageAlertsRequest implements Model, JsonSerializable
         return $this->alerts;
     }
 }
-
-

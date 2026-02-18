@@ -24,6 +24,7 @@ final class OrganizationAlertConfig implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -94,5 +95,3 @@ final class OrganizationAlertConfig implements Model, JsonSerializable
         return $this->config;
     }
 }
-
-

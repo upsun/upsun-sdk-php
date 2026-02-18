@@ -20136,7 +20136,10 @@
                     "pull_requests_clone_parent_data",
                     "resync_pull_requests"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "BitbucketIntegrationCreateInput": {
                 "type": "object",
@@ -20296,7 +20299,10 @@
                     "type",
                     "repository"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "BitbucketIntegrationPatch": {
                 "type": "object",
@@ -20456,7 +20462,10 @@
                     "type",
                     "repository"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "BitbucketServerIntegration": {
                 "type": "object",
@@ -20600,7 +20609,10 @@
                     "build_pull_requests",
                     "pull_requests_clone_parent_data"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "BitbucketServerIntegrationCreateInput": {
                 "type": "object",
@@ -20716,7 +20728,10 @@
                     "project",
                     "repository"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "BitbucketServerIntegrationPatch": {
                 "type": "object",
@@ -20832,7 +20847,10 @@
                     "project",
                     "repository"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "BlackfireIntegration": {
                 "type": "object",
@@ -20920,7 +20938,10 @@
                     "environments_credentials",
                     "continuous_profiling"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "BlackfireIntegrationCreateInput": {
                 "type": "object",
@@ -20935,7 +20956,10 @@
                 "required": [
                     "type"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "BlackfireIntegrationPatch": {
                 "type": "object",
@@ -20950,7 +20974,10 @@
                 "required": [
                     "type"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "Blob": {
                 "type": "object",
@@ -21714,7 +21741,10 @@
                     "maintenance_mode",
                     "guardrails_phase"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DeploymentTarget"
+                ]
             },
             "DedicatedDeploymentTargetCreateInput": {
                 "type": "object",
@@ -21756,7 +21786,10 @@
                     "type",
                     "name"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DeploymentTargetCreateInput"
+                ]
             },
             "DedicatedDeploymentTargetPatch": {
                 "type": "object",
@@ -21798,7 +21831,10 @@
                     "type",
                     "name"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DeploymentTargetPatch"
+                ]
             },
             "Deployment": {
                 "type": "object",
@@ -24578,7 +24614,17 @@
                         "$ref": "#/components/schemas/FoundationDeploymentTarget"
                     }
                 ],
-                "x-isOneOf": true
+                "x-isOneOf": true,
+                "x-required": [
+                    {
+                        "name": "Type",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Name",
+                        "type": "string"
+                    }
+                ]
             },
             "DeploymentTargetCollection": {
                 "type": "array",
@@ -24598,7 +24644,17 @@
                         "$ref": "#/components/schemas/FoundationDeploymentTargetCreateInput"
                     }
                 ],
-                "x-isOneOf": true
+                "x-isOneOf": true,
+                "x-required": [
+                    {
+                        "name": "Type",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Name",
+                        "type": "string"
+                    }
+                ]
             },
             "DeploymentTargetPatch": {
                 "oneOf": [
@@ -24612,7 +24668,17 @@
                         "$ref": "#/components/schemas/FoundationDeploymentTargetPatch"
                     }
                 ],
-                "x-isOneOf": true
+                "x-isOneOf": true,
+                "x-required": [
+                    {
+                        "name": "Type",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Name",
+                        "type": "string"
+                    }
+                ]
             },
             "Domain": {
                 "oneOf": [
@@ -24623,7 +24689,29 @@
                         "$ref": "#/components/schemas/ReplacementDomainStorage"
                     }
                 ],
-                "x-isOneOf": true
+                "x-isOneOf": true,
+                "x-required": [
+                    {
+                        "name": "Created At",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Updated At",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Type",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Name",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Attributes",
+                        "type": "object"
+                    }
+                ]
             },
             "DomainCollection": {
                 "type": "array",
@@ -24640,7 +24728,13 @@
                         "$ref": "#/components/schemas/ReplacementDomainStorageCreateInput"
                     }
                 ],
-                "x-isOneOf": true
+                "x-isOneOf": true,
+                "x-required": [
+                    {
+                        "name": "Name",
+                        "type": "string"
+                    }
+                ]
             },
             "DomainPatch": {
                 "oneOf": [
@@ -24723,7 +24817,10 @@
                     "from_address",
                     "recipients"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "EmailIntegrationCreateInput": {
                 "type": "object",
@@ -24761,7 +24858,10 @@
                     "type",
                     "recipients"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "EmailIntegrationPatch": {
                 "type": "object",
@@ -24799,7 +24899,10 @@
                     "type",
                     "recipients"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "EnterpriseDeploymentTarget": {
                 "type": "object",
@@ -24928,7 +25031,10 @@
                     "ssh_hosts",
                     "maintenance_mode"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DeploymentTarget"
+                ]
             },
             "EnterpriseDeploymentTargetCreateInput": {
                 "type": "object",
@@ -24990,7 +25096,10 @@
                     "type",
                     "name"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DeploymentTargetCreateInput"
+                ]
             },
             "EnterpriseDeploymentTargetPatch": {
                 "type": "object",
@@ -25052,7 +25161,10 @@
                     "type",
                     "name"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DeploymentTargetPatch"
+                ]
             },
             "Environment": {
                 "type": "object",
@@ -27087,7 +27199,10 @@
                     "result",
                     "service_id"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "FastlyIntegrationCreateInput": {
                 "type": "object",
@@ -27181,7 +27296,10 @@
                     "token",
                     "service_id"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "FastlyIntegrationPatch": {
                 "type": "object",
@@ -27275,7 +27393,10 @@
                     "token",
                     "service_id"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "FoundationDeploymentTarget": {
                 "type": "object",
@@ -27386,7 +27507,10 @@
                     "use_dedicated_grid",
                     "storage_type"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DeploymentTarget"
+                ]
             },
             "FoundationDeploymentTargetCreateInput": {
                 "type": "object",
@@ -27474,7 +27598,10 @@
                     "type",
                     "name"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DeploymentTargetCreateInput"
+                ]
             },
             "FoundationDeploymentTargetPatch": {
                 "type": "object",
@@ -27562,7 +27689,10 @@
                     "type",
                     "name"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DeploymentTargetPatch"
+                ]
             },
             "GitLabIntegration": {
                 "type": "object",
@@ -27719,7 +27849,10 @@
                     "build_wip_merge_requests",
                     "merge_requests_clone_parent_data"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "GitLabIntegrationCreateInput": {
                 "type": "object",
@@ -27835,7 +27968,10 @@
                     "token",
                     "project"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "GitLabIntegrationPatch": {
                 "type": "object",
@@ -27951,7 +28087,10 @@
                     "token",
                     "project"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "GithubIntegration": {
                 "type": "object",
@@ -28110,7 +28249,10 @@
                     "pull_requests_clone_parent_data",
                     "token_type"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "GithubIntegrationCreateInput": {
                 "type": "object",
@@ -28224,7 +28366,10 @@
                     "token",
                     "repository"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "GithubIntegrationPatch": {
                 "type": "object",
@@ -28338,7 +28483,10 @@
                     "token",
                     "repository"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "HealthWebHookIntegration": {
                 "type": "object",
@@ -28396,7 +28544,10 @@
                     "type",
                     "url"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "HealthWebHookIntegrationCreateInput": {
                 "type": "object",
@@ -28431,7 +28582,10 @@
                     "type",
                     "url"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "HealthWebHookIntegrationPatch": {
                 "type": "object",
@@ -28466,7 +28620,10 @@
                     "type",
                     "url"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "HttpLogIntegration": {
                 "type": "object",
@@ -28570,7 +28727,10 @@
                     "tls_verify",
                     "excluded_services"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "HttpLogIntegrationCreateInput": {
                 "type": "object",
@@ -28637,7 +28797,10 @@
                     "type",
                     "url"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "HttpLogIntegrationPatch": {
                 "type": "object",
@@ -28704,7 +28867,10 @@
                     "type",
                     "url"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "Integration": {
                 "oneOf": [
@@ -28763,7 +28929,21 @@
                         "$ref": "#/components/schemas/WebHookIntegration"
                     }
                 ],
-                "x-isOneOf": true
+                "x-isOneOf": true,
+                "x-required": [
+                    {
+                        "name": "Created At",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Updated At",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Type",
+                        "type": "string"
+                    }
+                ]
             },
             "IntegrationCollection": {
                 "type": "array",
@@ -28828,7 +29008,13 @@
                         "$ref": "#/components/schemas/WebHookIntegrationCreateInput"
                     }
                 ],
-                "x-isOneOf": true
+                "x-isOneOf": true,
+                "x-required": [
+                    {
+                        "name": "Type",
+                        "type": "string"
+                    }
+                ]
             },
             "IntegrationPatch": {
                 "oneOf": [
@@ -28887,7 +29073,13 @@
                         "$ref": "#/components/schemas/WebHookIntegrationPatch"
                     }
                 ],
-                "x-isOneOf": true
+                "x-isOneOf": true,
+                "x-required": [
+                    {
+                        "name": "Type",
+                        "type": "string"
+                    }
+                ]
             },
             "NewRelicIntegration": {
                 "type": "object",
@@ -28978,7 +29170,10 @@
                     "tls_verify",
                     "excluded_services"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "NewRelicIntegrationCreateInput": {
                 "type": "object",
@@ -29043,7 +29238,10 @@
                     "url",
                     "license_key"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "NewRelicIntegrationPatch": {
                 "type": "object",
@@ -29108,7 +29306,10 @@
                     "url",
                     "license_key"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "PagerDutyIntegration": {
                 "type": "object",
@@ -29166,7 +29367,10 @@
                     "type",
                     "routing_key"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "PagerDutyIntegrationCreateInput": {
                 "type": "object",
@@ -29191,7 +29395,10 @@
                     "type",
                     "routing_key"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "PagerDutyIntegrationPatch": {
                 "type": "object",
@@ -29216,7 +29423,10 @@
                     "type",
                     "routing_key"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "ProdDomainStorage": {
                 "type": "object",
@@ -29305,7 +29515,10 @@
                     "name",
                     "attributes"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Domain"
+                ]
             },
             "ProdDomainStorageCreateInput": {
                 "type": "object",
@@ -29341,7 +29554,10 @@
                 "required": [
                     "name"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DomainCreateInput"
+                ]
             },
             "ProdDomainStoragePatch": {
                 "type": "object",
@@ -29368,7 +29584,10 @@
                         ]
                     }
                 },
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DomainPatch"
+                ]
             },
             "Project": {
                 "type": "object",
@@ -32361,7 +32580,10 @@
                     "tls",
                     "to"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Route"
+                ]
             },
             "RedirectRoute": {
                 "type": "object",
@@ -32734,7 +32956,10 @@
                     "tls",
                     "to"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Route"
+                ]
             },
             "Ref": {
                 "type": "object",
@@ -32900,7 +33125,10 @@
                     "name",
                     "attributes"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Domain"
+                ]
             },
             "ReplacementDomainStorageCreateInput": {
                 "type": "object",
@@ -32936,7 +33164,10 @@
                 "required": [
                     "name"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DomainCreateInput"
+                ]
             },
             "ReplacementDomainStoragePatch": {
                 "type": "object",
@@ -32954,7 +33185,10 @@
                         ]
                     }
                 },
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "DomainPatch"
+                ]
             },
             "Route": {
                 "oneOf": [
@@ -32968,7 +33202,33 @@
                         "$ref": "#/components/schemas/UpstreamRoute"
                     }
                 ],
-                "x-isOneOf": true
+                "x-isOneOf": true,
+                "x-required": [
+                    {
+                        "name": "Primary",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "Id",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Production Url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Attributes",
+                        "type": "object"
+                    },
+                    {
+                        "name": "Type",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Tls",
+                        "type": "object"
+                    }
+                ]
             },
             "RouteCollection": {
                 "type": "array",
@@ -33099,7 +33359,10 @@
                     "result",
                     "script"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "ScriptIntegrationCreateInput": {
                 "type": "object",
@@ -33186,7 +33449,10 @@
                     "type",
                     "script"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "ScriptIntegrationPatch": {
                 "type": "object",
@@ -33273,7 +33539,10 @@
                     "type",
                     "script"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "SlackIntegration": {
                 "type": "object",
@@ -33331,7 +33600,10 @@
                     "type",
                     "channel"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "SlackIntegrationCreateInput": {
                 "type": "object",
@@ -33366,7 +33638,10 @@
                     "token",
                     "channel"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "SlackIntegrationPatch": {
                 "type": "object",
@@ -33401,7 +33676,10 @@
                     "token",
                     "channel"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "SplunkIntegration": {
                 "type": "object",
@@ -33515,7 +33793,10 @@
                     "tls_verify",
                     "excluded_services"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "SplunkIntegrationCreateInput": {
                 "type": "object",
@@ -33602,7 +33883,10 @@
                     "index",
                     "token"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "SplunkIntegrationPatch": {
                 "type": "object",
@@ -33689,7 +33973,10 @@
                     "index",
                     "token"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "SumologicIntegration": {
                 "type": "object",
@@ -33790,7 +34077,10 @@
                     "tls_verify",
                     "excluded_services"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "SumologicIntegrationCreateInput": {
                 "type": "object",
@@ -33854,7 +34144,10 @@
                     "type",
                     "url"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "SumologicIntegrationPatch": {
                 "type": "object",
@@ -33918,7 +34211,10 @@
                     "type",
                     "url"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "SyslogIntegration": {
                 "type": "object",
@@ -34061,7 +34357,10 @@
                     "tls_verify",
                     "excluded_services"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "SyslogIntegrationCreateInput": {
                 "type": "object",
@@ -34179,7 +34478,10 @@
                 "required": [
                     "type"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "SyslogIntegrationPatch": {
                 "type": "object",
@@ -34297,7 +34599,10 @@
                 "required": [
                     "type"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "SystemInformation": {
                 "type": "object",
@@ -34784,7 +35089,10 @@
                     "type",
                     "tls"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Route"
+                ]
             },
             "Version": {
                 "type": "object",
@@ -35041,7 +35349,10 @@
                     "shared_key",
                     "url"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "Integration"
+                ]
             },
             "WebHookIntegrationCreateInput": {
                 "type": "object",
@@ -35138,7 +35449,10 @@
                     "type",
                     "url"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationCreateInput"
+                ]
             },
             "WebHookIntegrationPatch": {
                 "type": "object",
@@ -35235,7 +35549,10 @@
                     "type",
                     "url"
                 ],
-                "additionalProperties": false
+                "additionalProperties": false,
+                "x-parentInterface": [
+                    "IntegrationPatch"
+                ]
             },
             "AutoscalerCPUPressureTrigger": {
                 "description": "CPU pressure trigger settings.\n\nWhen CPU pressure goes below lower bound, service will be scaled down.\nWhen CPU pressure goes above upper bound, service will be scaled up.",

@@ -19,6 +19,7 @@ final class PreflightChecks implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class PreflightChecks implements Model, JsonSerializable
         return $this->ignoredRules;
     }
 }
-
-

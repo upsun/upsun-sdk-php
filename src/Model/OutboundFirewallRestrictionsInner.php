@@ -21,6 +21,7 @@ final class OutboundFirewallRestrictionsInner implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -61,5 +62,3 @@ final class OutboundFirewallRestrictionsInner implements Model, JsonSerializable
         return $this->ports;
     }
 }
-
-

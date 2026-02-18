@@ -20,6 +20,7 @@ final class OrganizationEstimationObjectUserLicensesBase implements Model, JsonS
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -60,5 +61,3 @@ final class OrganizationEstimationObjectUserLicensesBase implements Model, JsonS
         return $this->list;
     }
 }
-
-

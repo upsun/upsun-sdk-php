@@ -22,6 +22,7 @@ final class OrderBillingPeriodLabel implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -74,5 +75,3 @@ final class OrderBillingPeriodLabel implements Model, JsonSerializable
         return $this->nextMonth;
     }
 }
-
-

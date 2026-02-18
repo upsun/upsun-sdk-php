@@ -19,6 +19,7 @@ final class SSIConfiguration implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -44,5 +45,3 @@ final class SSIConfiguration implements Model, JsonSerializable
         return $this->enabled;
     }
 }
-
-

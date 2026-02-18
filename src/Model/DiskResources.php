@@ -20,6 +20,7 @@ final class DiskResources implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -54,5 +55,3 @@ final class DiskResources implements Model, JsonSerializable
         return $this->storage;
     }
 }
-
-

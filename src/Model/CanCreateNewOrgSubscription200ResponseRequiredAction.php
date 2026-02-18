@@ -19,6 +19,7 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
         return $this->type;
     }
 }
-
-

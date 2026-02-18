@@ -20,6 +20,7 @@ final class Object implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -51,5 +52,3 @@ final class Object implements Model, JsonSerializable
         return $this->sha;
     }
 }
-
-

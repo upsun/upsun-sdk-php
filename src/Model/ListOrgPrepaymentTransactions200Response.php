@@ -20,6 +20,7 @@ final class ListOrgPrepaymentTransactions200Response implements Model, JsonSeria
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -57,5 +58,3 @@ final class ListOrgPrepaymentTransactions200Response implements Model, JsonSeria
         return $this->links;
     }
 }
-
-

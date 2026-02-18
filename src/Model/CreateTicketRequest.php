@@ -28,6 +28,7 @@ final class CreateTicketRequest implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -113,5 +114,3 @@ final class CreateTicketRequest implements Model, JsonSerializable
         return $this->collaboratorIds;
     }
 }
-
-

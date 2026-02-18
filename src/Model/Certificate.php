@@ -29,6 +29,7 @@ final class Certificate implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -145,5 +146,3 @@ final class Certificate implements Model, JsonSerializable
         return $this->expiresAt;
     }
 }
-
-

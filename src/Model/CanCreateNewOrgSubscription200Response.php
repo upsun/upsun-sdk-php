@@ -20,6 +20,7 @@ final class CanCreateNewOrgSubscription200Response implements Model, JsonSeriali
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -54,5 +55,3 @@ final class CanCreateNewOrgSubscription200Response implements Model, JsonSeriali
         return $this->requiredAction;
     }
 }
-
-

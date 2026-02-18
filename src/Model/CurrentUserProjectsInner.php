@@ -37,6 +37,7 @@ final class CurrentUserProjectsInner implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -176,5 +177,3 @@ final class CurrentUserProjectsInner implements Model, JsonSerializable
         return $this->createdAt;
     }
 }
-
-

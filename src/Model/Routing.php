@@ -19,6 +19,7 @@ final class Routing implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -44,5 +45,3 @@ final class Routing implements Model, JsonSerializable
         return $this->percentage;
     }
 }
-
-

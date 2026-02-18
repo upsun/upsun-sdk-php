@@ -19,6 +19,7 @@ final class OrganizationProjectLinksViewUsageAlerts implements Model, JsonSerial
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -44,5 +45,3 @@ final class OrganizationProjectLinksViewUsageAlerts implements Model, JsonSerial
         return $this->href;
     }
 }
-
-

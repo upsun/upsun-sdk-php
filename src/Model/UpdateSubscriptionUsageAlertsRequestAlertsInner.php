@@ -20,6 +20,7 @@ final class UpdateSubscriptionUsageAlertsRequestAlertsInner implements Model, Js
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -54,5 +55,3 @@ final class UpdateSubscriptionUsageAlertsRequestAlertsInner implements Model, Js
         return $this->config;
     }
 }
-
-

@@ -20,6 +20,7 @@ final class OrganizationEstimationObjectUserLicenses implements Model, JsonSeria
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -48,5 +49,3 @@ final class OrganizationEstimationObjectUserLicenses implements Model, JsonSeria
         return $this->userManagement;
     }
 }
-
-

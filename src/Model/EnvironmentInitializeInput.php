@@ -22,6 +22,7 @@ final class EnvironmentInitializeInput implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -81,5 +82,3 @@ final class EnvironmentInitializeInput implements Model, JsonSerializable
         return $this->resources;
     }
 }
-
-

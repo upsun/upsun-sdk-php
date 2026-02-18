@@ -20,6 +20,7 @@ final class OrganizationMemberLinks implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -63,5 +64,3 @@ final class OrganizationMemberLinks implements Model, JsonSerializable
         return $this->delete;
     }
 }
-
-

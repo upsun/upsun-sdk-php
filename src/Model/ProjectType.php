@@ -68,4 +68,3 @@ final class ProjectType implements JsonSerializable
     }
 }
 
-

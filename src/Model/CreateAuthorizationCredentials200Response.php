@@ -19,6 +19,7 @@ final class CreateAuthorizationCredentials200Response implements Model, JsonSeri
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class CreateAuthorizationCredentials200Response implements Model, JsonSeri
         return $this->type;
     }
 }
-
-

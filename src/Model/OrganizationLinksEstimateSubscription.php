@@ -19,6 +19,7 @@ final class OrganizationLinksEstimateSubscription implements Model, JsonSerializ
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -44,5 +45,3 @@ final class OrganizationLinksEstimateSubscription implements Model, JsonSerializ
         return $this->href;
     }
 }
-
-

@@ -20,6 +20,7 @@ final class ListLinks implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -63,5 +64,3 @@ final class ListLinks implements Model, JsonSerializable
         return $this->next;
     }
 }
-
-

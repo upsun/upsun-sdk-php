@@ -20,6 +20,7 @@ final class AutoscalerCPUResources implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -54,5 +55,3 @@ final class AutoscalerCPUResources implements Model, JsonSerializable
         return $this->max;
     }
 }
-
-

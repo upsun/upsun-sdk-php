@@ -26,6 +26,7 @@ final class OrganizationReference implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -114,5 +115,3 @@ final class OrganizationReference implements Model, JsonSerializable
         return $this->updatedAt;
     }
 }
-
-

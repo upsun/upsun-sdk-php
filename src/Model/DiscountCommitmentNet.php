@@ -21,6 +21,7 @@ final class DiscountCommitmentNet implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -64,5 +65,3 @@ final class DiscountCommitmentNet implements Model, JsonSerializable
         return $this->contractTotal;
     }
 }
-
-

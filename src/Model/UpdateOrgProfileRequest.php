@@ -23,6 +23,7 @@ final class UpdateOrgProfileRequest implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -75,5 +76,3 @@ final class UpdateOrgProfileRequest implements Model, JsonSerializable
         return $this->billingContact;
     }
 }
-
-

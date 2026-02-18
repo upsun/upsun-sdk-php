@@ -28,6 +28,7 @@ final class ProjectVariable implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -137,5 +138,3 @@ final class ProjectVariable implements Model, JsonSerializable
         return $this->value;
     }
 }
-
-

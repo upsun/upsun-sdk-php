@@ -24,6 +24,7 @@ final class ApiToken implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -106,5 +107,3 @@ final class ApiToken implements Model, JsonSerializable
         return $this->lastUsedAt;
     }
 }
-
-

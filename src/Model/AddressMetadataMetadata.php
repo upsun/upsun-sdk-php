@@ -21,6 +21,7 @@ final class AddressMetadataMetadata implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -61,5 +62,3 @@ final class AddressMetadataMetadata implements Model, JsonSerializable
         return $this->showVat;
     }
 }
-
-

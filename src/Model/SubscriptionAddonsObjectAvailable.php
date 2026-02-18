@@ -20,6 +20,7 @@ final class SubscriptionAddonsObjectAvailable implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -48,5 +49,3 @@ final class SubscriptionAddonsObjectAvailable implements Model, JsonSerializable
         return $this->projectSupportLevel;
     }
 }
-
-

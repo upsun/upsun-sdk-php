@@ -20,6 +20,7 @@ final class AutoscalerSettings implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -42,5 +43,3 @@ final class AutoscalerSettings implements Model, JsonSerializable
         return $this->services;
     }
 }
-
-

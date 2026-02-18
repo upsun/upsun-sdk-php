@@ -27,6 +27,7 @@ final class OrganizationProjectLinks implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -133,5 +134,3 @@ final class OrganizationProjectLinks implements Model, JsonSerializable
         return $this->addons;
     }
 }
-
-

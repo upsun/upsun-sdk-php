@@ -18,6 +18,7 @@ final class UpdateSubscriptionUsageAlertsRequest implements Model, JsonSerializa
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -42,5 +43,3 @@ final class UpdateSubscriptionUsageAlertsRequest implements Model, JsonSerializa
         return $this->alerts;
     }
 }
-
-

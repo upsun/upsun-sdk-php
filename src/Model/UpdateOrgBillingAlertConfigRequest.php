@@ -19,6 +19,7 @@ final class UpdateOrgBillingAlertConfigRequest implements Model, JsonSerializabl
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class UpdateOrgBillingAlertConfigRequest implements Model, JsonSerializabl
         return $this->config;
     }
 }
-
-

@@ -24,6 +24,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements Model, JsonSe
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -82,5 +83,3 @@ final class ListUserExtendedAccess200ResponseItemsInner implements Model, JsonSe
         return $this->updatedAt;
     }
 }
-
-

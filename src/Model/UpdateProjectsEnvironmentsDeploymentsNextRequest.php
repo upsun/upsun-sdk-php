@@ -20,6 +20,7 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements Model, J
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -62,5 +63,3 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements Model, J
         return $this->workers;
     }
 }
-
-

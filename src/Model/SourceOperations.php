@@ -18,6 +18,7 @@ final class SourceOperations implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -43,5 +44,3 @@ final class SourceOperations implements Model, JsonSerializable
         return $this->enabled;
     }
 }
-
-

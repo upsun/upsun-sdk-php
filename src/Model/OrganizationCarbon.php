@@ -21,6 +21,7 @@ final class OrganizationCarbon implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -70,5 +71,3 @@ final class OrganizationCarbon implements Model, JsonSerializable
         return $this->total;
     }
 }
-
-

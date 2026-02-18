@@ -28,6 +28,7 @@ final class ServicesValue implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -110,5 +111,3 @@ final class ServicesValue implements Model, JsonSerializable
         return $this->instanceCount;
     }
 }
-
-

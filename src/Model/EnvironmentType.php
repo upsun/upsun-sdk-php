@@ -19,6 +19,7 @@ final class EnvironmentType implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -50,5 +51,3 @@ final class EnvironmentType implements Model, JsonSerializable
         return $this->attributes;
     }
 }
-
-

@@ -20,6 +20,7 @@ final class RegionProvider implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -48,5 +49,3 @@ final class RegionProvider implements Model, JsonSerializable
         return $this->logo;
     }
 }
-
-

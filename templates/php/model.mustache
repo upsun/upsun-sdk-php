@@ -10,6 +10,9 @@ namespace {{modelPackage}};
 use InvalidArgumentException;
 {{/isEnum}}
 use JsonSerializable;
+{{#vendorExtensions.x-parentInterface}}
+use {{modelPackage}}\{{.}};
+{{/vendorExtensions.x-parentInterface}}
 
 /**
  * Low level {{classname}} (auto-generated)

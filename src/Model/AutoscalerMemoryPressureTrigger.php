@@ -22,6 +22,7 @@ final class AutoscalerMemoryPressureTrigger implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -65,5 +66,3 @@ final class AutoscalerMemoryPressureTrigger implements Model, JsonSerializable
         return $this->up;
     }
 }
-
-

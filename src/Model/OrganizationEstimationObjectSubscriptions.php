@@ -20,6 +20,7 @@ final class OrganizationEstimationObjectSubscriptions implements Model, JsonSeri
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -55,5 +56,3 @@ final class OrganizationEstimationObjectSubscriptions implements Model, JsonSeri
         return $this->list;
     }
 }
-
-

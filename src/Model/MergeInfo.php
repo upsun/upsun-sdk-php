@@ -21,6 +21,7 @@ final class MergeInfo implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -64,5 +65,3 @@ final class MergeInfo implements Model, JsonSerializable
         return $this->parentRef;
     }
 }
-
-

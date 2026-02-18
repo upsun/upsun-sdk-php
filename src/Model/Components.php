@@ -19,6 +19,7 @@ final class Components implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -44,5 +45,3 @@ final class Components implements Model, JsonSerializable
         return $this->voucherVatBaseprice;
     }
 }
-
-

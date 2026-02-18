@@ -18,6 +18,7 @@ final class GetCurrentUserVerificationStatus200Response implements Model, JsonSe
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -40,5 +41,3 @@ final class GetCurrentUserVerificationStatus200Response implements Model, JsonSe
         return $this->verifyPhone;
     }
 }
-
-

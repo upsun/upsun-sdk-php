@@ -20,6 +20,7 @@ final class AutoscalerResources implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -55,5 +56,3 @@ final class AutoscalerResources implements Model, JsonSerializable
         return $this->memory;
     }
 }
-
-

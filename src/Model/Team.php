@@ -24,6 +24,7 @@ final class Team implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -97,5 +98,3 @@ final class Team implements Model, JsonSerializable
         return $this->updatedAt;
     }
 }
-
-

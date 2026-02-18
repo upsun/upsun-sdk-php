@@ -18,6 +18,7 @@ final class GrantTeamProjectAccessRequestInner implements Model, JsonSerializabl
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -40,5 +41,3 @@ final class GrantTeamProjectAccessRequestInner implements Model, JsonSerializabl
         return $this->projectId;
     }
 }
-
-

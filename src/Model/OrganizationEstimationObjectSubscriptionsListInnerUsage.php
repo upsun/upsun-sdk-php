@@ -21,6 +21,7 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -61,5 +62,3 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
         return $this->environments;
     }
 }
-
-

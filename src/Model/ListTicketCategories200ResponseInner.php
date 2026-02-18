@@ -19,6 +19,7 @@ final class ListTicketCategories200ResponseInner implements Model, JsonSerializa
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -47,5 +48,3 @@ final class ListTicketCategories200ResponseInner implements Model, JsonSerializa
         return $this->label;
     }
 }
-
-

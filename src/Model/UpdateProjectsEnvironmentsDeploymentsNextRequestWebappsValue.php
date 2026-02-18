@@ -20,6 +20,7 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue impleme
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -54,5 +55,3 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue impleme
         return $this->disk;
     }
 }
-
-

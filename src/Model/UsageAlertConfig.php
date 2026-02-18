@@ -19,6 +19,7 @@ final class UsageAlertConfig implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -44,5 +45,3 @@ final class UsageAlertConfig implements Model, JsonSerializable
         return $this->threshold;
     }
 }
-
-

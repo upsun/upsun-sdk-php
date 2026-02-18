@@ -28,6 +28,7 @@ final class Address implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -134,5 +135,3 @@ final class Address implements Model, JsonSerializable
         return $this->postalCode;
     }
 }
-
-

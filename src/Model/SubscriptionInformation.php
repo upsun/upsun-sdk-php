@@ -30,6 +30,7 @@ final class SubscriptionInformation implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -151,5 +152,3 @@ final class SubscriptionInformation implements Model, JsonSerializable
         return $this->imageTypes;
     }
 }
-
-
