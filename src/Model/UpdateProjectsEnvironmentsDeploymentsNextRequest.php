@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $webapps = [],
         private readonly ?array $services = [],
@@ -63,3 +65,4 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements Model, J
         return $this->workers;
     }
 }
+

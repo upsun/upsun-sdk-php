@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateOrgSubscriptionRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $projectTitle = null,
         private readonly ?string $plan = null,
@@ -127,3 +129,4 @@ final class UpdateOrgSubscriptionRequest implements Model, JsonSerializable
         return $this->projectSupportLevel;
     }
 }
+

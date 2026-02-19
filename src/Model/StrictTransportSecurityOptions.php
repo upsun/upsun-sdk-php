@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class StrictTransportSecurityOptions implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?bool $enabled,
         private readonly ?bool $includeSubdomains,
@@ -64,3 +66,4 @@ final class StrictTransportSecurityOptions implements Model, JsonSerializable
         return $this->preload;
     }
 }
+

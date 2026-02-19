@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class AutoscalerServiceSettings implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?AutoscalerTriggers $triggers = null,
         private readonly ?AutoscalerInstances $instances = null,
@@ -85,3 +87,4 @@ final class AutoscalerServiceSettings implements Model, JsonSerializable
         return $this->scaleCooldown;
     }
 }
+

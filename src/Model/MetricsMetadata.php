@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class MetricsMetadata implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly mixed $from = null,
         private readonly mixed $to = null,
@@ -74,3 +76,4 @@ final class MetricsMetadata implements Model, JsonSerializable
         return $this->units;
     }
 }
+

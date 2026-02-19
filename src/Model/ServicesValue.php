@@ -13,6 +13,15 @@ use JsonSerializable;
  */
 final class ServicesValue implements Model, JsonSerializable
 {
+
+    public const SIZE__2_XL = '2XL';
+    public const SIZE__4_XL = '4XL';
+    public const SIZE_AUTO = 'AUTO';
+    public const SIZE_L = 'L';
+    public const SIZE_M = 'M';
+    public const SIZE_S = 'S';
+    public const SIZE_XL = 'XL';
+
     public function __construct(
         private readonly string $type,
         private readonly string $size,
@@ -111,3 +120,4 @@ final class ServicesValue implements Model, JsonSerializable
         return $this->instanceCount;
     }
 }
+

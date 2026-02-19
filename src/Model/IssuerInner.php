@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class IssuerInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $oid,
         private readonly string $value,
@@ -55,3 +57,4 @@ final class IssuerInner implements Model, JsonSerializable
         return $this->value;
     }
 }
+

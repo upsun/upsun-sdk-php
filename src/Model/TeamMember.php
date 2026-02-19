@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class TeamMember implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $teamId = null,
         private readonly ?string $userId = null,
@@ -74,3 +76,4 @@ final class TeamMember implements Model, JsonSerializable
         return $this->updatedAt;
     }
 }
+

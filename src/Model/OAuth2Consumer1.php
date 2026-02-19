@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OAuth2Consumer1 implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $key,
         private readonly string $secret,
@@ -55,3 +57,4 @@ final class OAuth2Consumer1 implements Model, JsonSerializable
         return $this->secret;
     }
 }
+

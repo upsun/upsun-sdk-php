@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class ListUserExtendedAccess200ResponseItemsInner implements Model, JsonSerializable
 {
+
+    public const RESOURCE_TYPE_PROJECT = 'project';
+    public const RESOURCE_TYPE_ORGANIZATION = 'organization';
+
     public function __construct(
         private readonly ?string $userId = null,
         private readonly ?string $resourceId = null,
@@ -83,3 +87,4 @@ final class ListUserExtendedAccess200ResponseItemsInner implements Model, JsonSe
         return $this->updatedAt;
     }
 }
+

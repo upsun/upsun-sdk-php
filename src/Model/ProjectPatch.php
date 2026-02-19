@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectPatch implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $defaultBranch = null,
         private readonly ?string $defaultDomain = null,
@@ -101,3 +103,4 @@ final class ProjectPatch implements Model, JsonSerializable
         return $this->defaultDomain;
     }
 }
+

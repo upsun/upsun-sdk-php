@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class EmailIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly array $recipients,
@@ -59,3 +61,4 @@ final class EmailIntegrationCreateInput implements Model, JsonSerializable, Inte
         return $this->fromAddress;
     }
 }
+

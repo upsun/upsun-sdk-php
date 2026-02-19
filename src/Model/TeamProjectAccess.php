@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class TeamProjectAccess implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $teamId = null,
         private readonly ?string $organizationId = null,
@@ -101,3 +103,4 @@ final class TeamProjectAccess implements Model, JsonSerializable
         return $this->links;
     }
 }
+

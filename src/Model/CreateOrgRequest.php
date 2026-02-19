@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class CreateOrgRequest implements Model, JsonSerializable
 {
+
+    public const TYPE_FIXED = 'fixed';
+    public const TYPE_FLEXIBLE = 'flexible';
+
     public function __construct(
         private readonly string $label,
         private readonly ?string $type = null,
@@ -76,3 +80,4 @@ final class CreateOrgRequest implements Model, JsonSerializable
         return $this->securityContact;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class SourceCodeConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $operations,
         private readonly ?string $root,
@@ -51,3 +53,4 @@ final class SourceCodeConfiguration implements Model, JsonSerializable
         return $this->operations;
     }
 }
+

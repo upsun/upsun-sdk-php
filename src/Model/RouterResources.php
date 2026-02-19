@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class RouterResources implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly float $baselineCpu,
         private readonly int $baselineMemory,
@@ -75,3 +77,4 @@ final class RouterResources implements Model, JsonSerializable
         return $this->maxMemory;
     }
 }
+

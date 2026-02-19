@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectAddonBaseLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?ProjectAddonBaseLinksUpdate $update = null,
         private readonly ?ProjectAddonBaseLinksDelete $delete = null,
@@ -64,3 +66,4 @@ final class ProjectAddonBaseLinks implements Model, JsonSerializable
         return $this->delete;
     }
 }
+

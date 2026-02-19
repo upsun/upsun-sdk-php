@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class Address implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $country = null,
         private readonly ?string $nameLine = null,
@@ -135,3 +137,4 @@ final class Address implements Model, JsonSerializable
         return $this->postalCode;
     }
 }
+

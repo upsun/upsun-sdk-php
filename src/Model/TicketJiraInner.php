@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class TicketJiraInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $id = null,
         private readonly ?int $ticketId = null,
@@ -76,3 +78,4 @@ final class TicketJiraInner implements Model, JsonSerializable
         return $this->updatedAt;
     }
 }
+

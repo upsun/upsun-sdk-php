@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class RedirectConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $expires,
         private readonly array $paths,
@@ -56,3 +58,4 @@ final class RedirectConfiguration implements Model, JsonSerializable
         return $this->paths;
     }
 }
+

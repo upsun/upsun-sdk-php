@@ -14,6 +14,8 @@ use Upsun\Model\DomainPatch;
  */
 final class ReplacementDomainStoragePatch implements Model, JsonSerializable, DomainPatch
 {
+
+
     public function __construct(
         private readonly ?TLSSettings $attributes = null,
     ) {
@@ -45,3 +47,4 @@ final class ReplacementDomainStoragePatch implements Model, JsonSerializable, Do
         return $this->attributes;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class FilesInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $path,
         private readonly int $mode,
@@ -55,3 +57,4 @@ final class FilesInner implements Model, JsonSerializable
         return $this->contents;
     }
 }
+

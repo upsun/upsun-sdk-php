@@ -14,6 +14,15 @@ use JsonSerializable;
  */
 final class Discount implements Model, JsonSerializable
 {
+
+    public const TYPE_ALLOWANCE = 'allowance';
+    public const TYPE_STARTUP = 'startup';
+    public const TYPE_ENTERPRISE = 'enterprise';
+    public const STATUS_INACTIVE = 'inactive';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_EXPIRED = 'expired';
+    public const STATUS_DEACTIVATED = 'deactivated';
+
     public function __construct(
         private readonly ?DiscountCommitment $commitment = null,
         private readonly ?int $totalMonths = null,
@@ -145,3 +154,4 @@ final class Discount implements Model, JsonSerializable
         return $this->endAt;
     }
 }
+

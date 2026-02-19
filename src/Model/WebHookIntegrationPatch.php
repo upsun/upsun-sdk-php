@@ -14,6 +14,11 @@ use Upsun\Model\IntegrationPatch;
  */
 final class WebHookIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
+
+    public const RESULT_STAR = '*';
+    public const RESULT_FAILURE = 'failure';
+    public const RESULT_SUCCESS = 'success';
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -100,3 +105,4 @@ final class WebHookIntegrationPatch implements Model, JsonSerializable, Integrat
         return $this->sharedKey;
     }
 }
+

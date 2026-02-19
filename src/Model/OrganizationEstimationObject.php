@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrganizationEstimationObject implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $total = null,
         private readonly ?string $subTotal = null,
@@ -105,3 +107,4 @@ final class OrganizationEstimationObject implements Model, JsonSerializable
         return $this->subscriptions;
     }
 }
+

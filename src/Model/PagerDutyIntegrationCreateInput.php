@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class PagerDutyIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $routingKey,
@@ -52,3 +54,4 @@ final class PagerDutyIntegrationCreateInput implements Model, JsonSerializable, 
         return $this->routingKey;
     }
 }
+

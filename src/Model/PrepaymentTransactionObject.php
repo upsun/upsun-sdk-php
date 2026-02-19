@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class PrepaymentTransactionObject implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $updated = null,
         private readonly ?string $expireDate = null,
@@ -105,3 +107,4 @@ final class PrepaymentTransactionObject implements Model, JsonSerializable
         return $this->expireDate;
     }
 }
+

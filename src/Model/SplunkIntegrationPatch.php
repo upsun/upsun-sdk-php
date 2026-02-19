@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationPatch;
  */
 final class SplunkIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -106,3 +108,4 @@ final class SplunkIntegrationPatch implements Model, JsonSerializable, Integrati
         return $this->excludedServices;
     }
 }
+

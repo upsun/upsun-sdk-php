@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class ContinuousProfilingConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $supportedRuntimes,
     ) {
@@ -42,3 +44,4 @@ final class ContinuousProfilingConfiguration implements Model, JsonSerializable
         return $this->supportedRuntimes;
     }
 }
+

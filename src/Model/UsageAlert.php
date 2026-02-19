@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class UsageAlert implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $lastAlertAt = null,
         private readonly ?string $updatedAt = null,
@@ -95,3 +97,4 @@ final class UsageAlert implements Model, JsonSerializable
         return $this->config;
     }
 }
+

@@ -13,6 +13,14 @@ use JsonSerializable;
  */
 final class CreateOrgInviteRequest implements Model, JsonSerializable
 {
+
+    public const PERMISSIONS_ADMIN = 'admin';
+    public const PERMISSIONS_BILLING = 'billing';
+    public const PERMISSIONS_PLANS = 'plans';
+    public const PERMISSIONS_MEMBERS = 'members';
+    public const PERMISSIONS_PROJECT_CREATE = 'project:create';
+    public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
+
     public function __construct(
         private readonly string $email,
         private readonly array $permissions,
@@ -55,3 +63,4 @@ final class CreateOrgInviteRequest implements Model, JsonSerializable
         return $this->force;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class VersionCreateInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?Routing1 $routing = null,
     ) {
@@ -44,3 +46,4 @@ final class VersionCreateInput implements Model, JsonSerializable
         return $this->routing;
     }
 }
+

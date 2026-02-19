@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class AutoscalerInstances implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $min = null,
         private readonly ?int $max = null,
@@ -55,3 +57,4 @@ final class AutoscalerInstances implements Model, JsonSerializable
         return $this->max;
     }
 }
+

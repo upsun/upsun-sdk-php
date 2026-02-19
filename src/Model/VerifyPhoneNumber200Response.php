@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class VerifyPhoneNumber200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $sid = null,
     ) {
@@ -41,3 +43,4 @@ final class VerifyPhoneNumber200Response implements Model, JsonSerializable
         return $this->sid;
     }
 }
+

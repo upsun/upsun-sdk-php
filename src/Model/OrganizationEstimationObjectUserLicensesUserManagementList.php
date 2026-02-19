@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class OrganizationEstimationObjectUserLicensesUserManagementList implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standardManagementUser = null,
         private readonly ?OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advancedManagementUser = null,
@@ -54,3 +56,4 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
         return $this->advancedManagementUser;
     }
 }
+

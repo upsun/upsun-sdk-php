@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class RepositoryInformation implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $url,
         private readonly ?string $clientSshKey,
@@ -52,3 +54,4 @@ final class RepositoryInformation implements Model, JsonSerializable
         return $this->clientSshKey;
     }
 }
+

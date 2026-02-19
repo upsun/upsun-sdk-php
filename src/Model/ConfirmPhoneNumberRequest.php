@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ConfirmPhoneNumberRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $code,
     ) {
@@ -41,3 +43,4 @@ final class ConfirmPhoneNumberRequest implements Model, JsonSerializable
         return $this->code;
     }
 }
+

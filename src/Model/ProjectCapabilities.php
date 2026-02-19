@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectCapabilities implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly Metrics $metrics,
         private readonly LogsForwarding $logsForwarding,
@@ -128,3 +130,4 @@ final class ProjectCapabilities implements Model, JsonSerializable
         return $this->integrations;
     }
 }
+

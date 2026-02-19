@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class SubscriptionAddonsObjectUpgradesAvailable implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $continuousProfiling = [],
         private readonly ?array $projectSupportLevel = [],
@@ -49,3 +51,4 @@ final class SubscriptionAddonsObjectUpgradesAvailable implements Model, JsonSeri
         return $this->projectSupportLevel;
     }
 }
+

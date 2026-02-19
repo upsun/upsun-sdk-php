@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ImagesValueValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $available,
     ) {
@@ -41,3 +43,4 @@ final class ImagesValueValue implements Model, JsonSerializable
         return $this->available;
     }
 }
+

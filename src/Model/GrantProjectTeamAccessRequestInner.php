@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class GrantProjectTeamAccessRequestInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $teamId,
     ) {
@@ -41,3 +43,4 @@ final class GrantProjectTeamAccessRequestInner implements Model, JsonSerializabl
         return $this->teamId;
     }
 }
+

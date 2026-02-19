@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class AddressMetadata implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?AddressMetadataMetadata $metadata = null,
     ) {
@@ -45,3 +47,4 @@ final class AddressMetadata implements Model, JsonSerializable
         return $this->metadata;
     }
 }
+

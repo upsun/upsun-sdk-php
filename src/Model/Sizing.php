@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class Sizing implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $services,
         private readonly array $webapps,
@@ -64,3 +66,4 @@ final class Sizing implements Model, JsonSerializable
         return $this->workers;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class GuaranteedResources implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
         private readonly int $instanceLimit,
@@ -54,3 +56,4 @@ final class GuaranteedResources implements Model, JsonSerializable
         return $this->instanceLimit;
     }
 }
+

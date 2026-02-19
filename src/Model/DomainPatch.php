@@ -19,3 +19,4 @@ interface DomainPatch
 
     public function __toString(): string;
 }
+

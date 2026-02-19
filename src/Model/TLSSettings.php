@@ -14,6 +14,14 @@ use JsonSerializable;
  */
 final class TLSSettings implements Model, JsonSerializable
 {
+
+    public const MIN_VERSION_TLSV1_0 = 'TLSv1.0';
+    public const MIN_VERSION_TLSV1_1 = 'TLSv1.1';
+    public const MIN_VERSION_TLSV1_2 = 'TLSv1.2';
+    public const MIN_VERSION_TLSV1_3 = 'TLSv1.3';
+    public const CLIENT_AUTHENTICATION_REQUEST = 'request';
+    public const CLIENT_AUTHENTICATION__REQUIRE = 'require';
+
     public function __construct(
         private readonly StrictTransportSecurityOptions $strictTransportSecurity,
         private readonly array $clientCertificateAuthorities,
@@ -69,3 +77,4 @@ final class TLSSettings implements Model, JsonSerializable
         return $this->clientCertificateAuthorities;
     }
 }
+

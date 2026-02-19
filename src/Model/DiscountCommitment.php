@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class DiscountCommitment implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $months = null,
         private readonly ?DiscountCommitmentAmount $amount = null,
@@ -65,3 +67,4 @@ final class DiscountCommitment implements Model, JsonSerializable
         return $this->net;
     }
 }
+

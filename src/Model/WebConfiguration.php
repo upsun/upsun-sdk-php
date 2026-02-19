@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class WebConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $locations,
         private readonly bool $moveToRoot,
@@ -106,3 +108,4 @@ final class WebConfiguration implements Model, JsonSerializable
         return $this->expires;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class EnvironmentVariableCreateInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $name,
         private readonly string $value,
@@ -128,3 +130,4 @@ final class EnvironmentVariableCreateInput implements Model, JsonSerializable
         return $this->isInheritable;
     }
 }
+

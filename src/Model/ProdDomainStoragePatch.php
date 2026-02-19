@@ -14,6 +14,8 @@ use Upsun\Model\DomainPatch;
  */
 final class ProdDomainStoragePatch implements Model, JsonSerializable, DomainPatch
 {
+
+
     public function __construct(
         private readonly ?array $attributes = [],
         private readonly ?bool $isDefault = null,
@@ -52,3 +54,4 @@ final class ProdDomainStoragePatch implements Model, JsonSerializable, DomainPat
         return $this->isDefault;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CronsValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $spec,
         private readonly Commands $commands,
@@ -69,3 +71,4 @@ final class CronsValue implements Model, JsonSerializable
         return $this->cmd;
     }
 }
+

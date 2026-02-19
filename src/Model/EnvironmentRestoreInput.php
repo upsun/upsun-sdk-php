@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class EnvironmentRestoreInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $restoreCode,
         private readonly bool $restoreResources,
@@ -75,3 +77,4 @@ final class EnvironmentRestoreInput implements Model, JsonSerializable
         return $this->resources;
     }
 }
+

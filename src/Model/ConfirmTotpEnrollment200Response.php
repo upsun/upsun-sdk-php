@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ConfirmTotpEnrollment200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $recoveryCodes = [],
     ) {
@@ -41,3 +43,4 @@ final class ConfirmTotpEnrollment200Response implements Model, JsonSerializable
         return $this->recoveryCodes;
     }
 }
+

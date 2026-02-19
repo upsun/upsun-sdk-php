@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class AutoscalerResources implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $cpu = [],
         private readonly ?array $memory = [],
@@ -56,3 +58,4 @@ final class AutoscalerResources implements Model, JsonSerializable
         return $this->memory;
     }
 }
+

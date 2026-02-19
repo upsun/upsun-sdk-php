@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class EnvironmentSynchronizeInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $synchronizeCode,
         private readonly bool $rebase,
@@ -74,3 +76,4 @@ final class EnvironmentSynchronizeInput implements Model, JsonSerializable
         return $this->synchronizeResources;
     }
 }
+

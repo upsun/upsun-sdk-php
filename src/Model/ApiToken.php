@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ApiToken implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?\DateTime $lastUsedAt = null,
         private readonly ?string $id = null,
@@ -107,3 +109,4 @@ final class ApiToken implements Model, JsonSerializable
         return $this->lastUsedAt;
     }
 }
+

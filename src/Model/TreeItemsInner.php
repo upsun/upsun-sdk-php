@@ -13,6 +13,13 @@ use JsonSerializable;
  */
 final class TreeItemsInner implements Model, JsonSerializable
 {
+
+    public const MODE__040000 = '040000';
+    public const MODE__100644 = '100644';
+    public const MODE__100755 = '100755';
+    public const MODE__120000 = '120000';
+    public const MODE__160000 = '160000';
+
     public function __construct(
         private readonly string $path,
         private readonly string $mode,
@@ -62,3 +69,4 @@ final class TreeItemsInner implements Model, JsonSerializable
         return $this->sha;
     }
 }
+

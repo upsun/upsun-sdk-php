@@ -19,3 +19,4 @@ interface ProjectAddonBaseAllowedValuesInner
 
     public function __toString(): string;
 }
+

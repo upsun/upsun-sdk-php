@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class SubscriptionCurrentUsageObject implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?UsageGroupCurrentUsageProperties $cpuApp = null,
         private readonly ?UsageGroupCurrentUsageProperties $storageAppServices = null,
@@ -165,3 +167,4 @@ final class SubscriptionCurrentUsageObject implements Model, JsonSerializable
         return $this->fastlyRequests;
     }
 }
+

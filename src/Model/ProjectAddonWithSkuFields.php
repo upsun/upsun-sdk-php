@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectAddonWithSkuFields implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $sku,
     ) {
@@ -44,3 +46,4 @@ final class ProjectAddonWithSkuFields implements Model, JsonSerializable
         return $this->sku;
     }
 }
+

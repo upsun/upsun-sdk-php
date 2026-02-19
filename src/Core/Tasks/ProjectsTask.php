@@ -24,8 +24,11 @@ use Upsun\Model\DeploymentTarget;
 use Upsun\Model\DeploymentTargetCreateInput;
 use Upsun\Model\DeploymentTargetPatch;
 use Upsun\Model\Domain;
+use Upsun\Model\DomainCreateInput;
+use Upsun\Model\DomainPatch;
 use Upsun\Model\Environment;
 use Upsun\Model\Integration;
+use Upsun\Model\IntegrationCreateInput;
 use Upsun\Model\IntegrationPatch;
 use Upsun\Model\ListProjectTeamAccess200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
@@ -426,27 +429,11 @@ class ProjectsTask extends TaskBase
      */
     public function createDeployment(
         string $projectId,
-        string $type,
-        string $name,
-        ?array $hosts = [],
-        ?array $enforcedMounts = null,
-        ?array $siteUrls = null,
-        ?array $sshHosts = [],
-        ?array $enterpriseEnvironmentsMapping = null,
-        ?bool $useDedicatedGrid = null,
+        DeploymentTargetCreateInput $deploymentTargetCreateInput,
     ): AcceptedResponse {
         return $this->deploymentTargetApi->createProjectsDeployments(
             projectId: $projectId,
-            deploymentTargetCreateInput: new DeploymentTargetCreateInput(
-                type: $type,
-                name: $name,
-                hosts: $hosts,
-                enforcedMounts: (object)$enforcedMounts,
-                siteUrls: (object)$siteUrls,
-                sshHosts: $sshHosts,
-                enterpriseEnvironmentsMapping: (object)$enterpriseEnvironmentsMapping,
-                useDedicatedGrid: $useDedicatedGrid,
-            )
+            deploymentTargetCreateInput: $deploymentTargetCreateInput,
         );
     }
 
@@ -499,26 +486,8 @@ class ProjectsTask extends TaskBase
     public function updateDeployment(
         string $projectId,
         string $deploymentTargetConfigurationId,
-        string $type,
-        string $name,
-        ?array $hosts = [],
-        ?array $enforcedMounts = null,
-        ?array $siteUrls = null,
-        ?array $sshHosts = [],
-        ?array $enterpriseEnvironmentsMapping = null,
-        ?bool $useDedicatedGrid = null,
+        DeploymentTargetPatch $deploymentTargetPatch,
     ): AcceptedResponse {
-        $deploymentTargetPatch = new DeploymentTargetPatch(
-            type: $type,
-            name: $name,
-            hosts: $hosts,
-            enforcedMounts: (object)$enforcedMounts,
-            siteUrls: (object)$siteUrls,
-            sshHosts: $sshHosts,
-            enterpriseEnvironmentsMapping: (object)$enterpriseEnvironmentsMapping,
-            useDedicatedGrid: $useDedicatedGrid,
-        );
-
         return $this->deploymentTargetApi->updateProjectsDeployments(
             projectId: $projectId,
             deploymentTargetConfigurationId: $deploymentTargetConfigurationId,
@@ -621,107 +590,11 @@ class ProjectsTask extends TaskBase
      */
     public function createIntegration(
         string $projectId,
-        string $type,
-        string $repository,
-        string $url,
-        string $username,
-        string $token,
-        string $project,
-        string $serviceId,
-        array $recipients,
-        string $routingKey,
-        string $channel,
-        string $licenseKey,
-        string $script,
-        string $index,
-        ?array $appCredentials = null,
-        ?array $addonCredentials = null,
-        ?string $fromAddress = null,
-        ?string $sharedKey = null,
-        ?bool $fetchBranches = null,
-        ?bool $pruneBranches = null,
-        ?string $environmentInitResources = null,
-        ?bool $buildPullRequests = null,
-        ?bool $pullRequestsCloneParentData = null,
-        ?bool $resyncPullRequests = null,
-        ?array $events = [],
-        ?array $environments = [],
-        ?array $excludedEnvironments = [],
-        ?array $states = [],
-        ?string $result = null,
-        ?string $baseUrl = null,
-        ?bool $buildDraftPullRequests = null,
-        ?bool $buildPullRequestsPostMerge = null,
-        ?bool $rotateToken = null,
-        ?int $rotateTokenValidityInWeeks = null,
-        ?bool $buildMergeRequests = null,
-        ?bool $buildWipMergeRequests = null,
-        ?bool $mergeRequestsCloneParentData = null,
-        ?array $extra = [],
-        ?array $headers = [],
-        ?bool $tlsVerify = null,
-        ?array $excludedServices = [],
-        ?string $sourceType = null,
-        ?string $category = null,
-        ?string $host = null,
-        ?int $port = null,
-        ?string $protocol = null,
-        ?int $facility = null,
-        ?string $messageFormat = null,
-        ?string $authToken = null,
-        ?string $authMode = null,
+        IntegrationCreateInput $integrationCreateInput,
     ): AcceptedResponse {
         return $this->client->integrations->createIntegration(
             $projectId,
-            $type,
-            $repository,
-            $url,
-            $username,
-            $token,
-            $project,
-            $serviceId,
-            $recipients,
-            $routingKey,
-            $channel,
-            $licenseKey,
-            $script,
-            $index,
-            $appCredentials,
-            $addonCredentials,
-            $fromAddress,
-            $sharedKey,
-            $fetchBranches,
-            $pruneBranches,
-            $environmentInitResources,
-            $buildPullRequests,
-            $pullRequestsCloneParentData,
-            $resyncPullRequests,
-            $events,
-            $environments,
-            $excludedEnvironments,
-            $states,
-            $result,
-            $baseUrl,
-            $buildDraftPullRequests,
-            $buildPullRequestsPostMerge,
-            $rotateToken,
-            $rotateTokenValidityInWeeks,
-            $buildMergeRequests,
-            $buildWipMergeRequests,
-            $mergeRequestsCloneParentData,
-            $extra,
-            $headers,
-            $tlsVerify,
-            $excludedServices,
-            $sourceType,
-            $category,
-            $host,
-            $port,
-            $protocol,
-            $facility,
-            $messageFormat,
-            $authToken,
-            $authMode
+            $integrationCreateInput,
         );
     }
 
@@ -774,116 +647,9 @@ class ProjectsTask extends TaskBase
     public function updateIntegration(
         string $projectId,
         string $integrationId,
-        string $type,
-        string $repository,
-        string $url,
-        string $username,
-        string $token,
-        string $project,
-        string $serviceId,
-        array $recipients,
-        string $routingKey,
-        string $channel,
-        string $licenseKey,
-        string $script,
-        string $index,
-        ?array $appCredentials = null,
-        ?array $addonCredentials = null,
-        ?string $fromAddress = null,
-        ?string $sharedKey = null,
-        ?bool $fetchBranches = null,
-        ?bool $pruneBranches = null,
-        ?string $environmentInitResources = null,
-        ?bool $buildPullRequests = null,
-        ?bool $pullRequestsCloneParentData = null,
-        ?bool $resyncPullRequests = null,
-        ?array $events = [],
-        ?array $environments = [],
-        ?array $excludedEnvironments = [],
-        ?array $states = [],
-        ?string $result = null,
-        ?string $baseUrl = null,
-        ?bool $buildDraftPullRequests = null,
-        ?bool $buildPullRequestsPostMerge = null,
-        ?bool $rotateToken = null,
-        ?int $rotateTokenValidityInWeeks = null,
-        ?bool $buildMergeRequests = null,
-        ?bool $buildWipMergeRequests = null,
-        ?bool $mergeRequestsCloneParentData = null,
-        ?array $extra = [],
-        ?array $headers = [],
-        ?bool $tlsVerify = null,
-        ?array $excludedServices = [],
-        ?string $sourceType = null,
-        ?string $category = null,
-        ?string $host = null,
-        ?int $port = null,
-        ?string $protocol = null,
-        ?int $facility = null,
-        ?string $messageFormat = null,
-        ?string $authToken = null,
-        ?string $authMode = null,
+        IntegrationPatch $integrationPatch,
     ): AcceptedResponse {
-        $integrationPatch = new IntegrationPatch(
-            type: $type,
-            repository: $repository,
-            url: $url,
-            username: $username,
-            token: $token,
-            project: $project,
-            serviceId: $serviceId,
-            recipients: $recipients,
-            routingKey: $routingKey,
-            channel: $channel,
-            licenseKey: $licenseKey,
-            script: $script,
-            index: $index,
-            appCredentials: $appCredentials ?
-                new OAuth2Consumer1(
-                    $appCredentials['key'],
-                    $appCredentials['secret'],
-                ) : null,
-            addonCredentials: $addonCredentials ?
-                new AddonCredential1(
-                    $addonCredentials['addonKey'],
-                    $addonCredentials['clientKey'],
-                    $addonCredentials['sharedSecret'],
-                ) : null,
-            fromAddress: $fromAddress,
-            sharedKey: $sharedKey,
-            fetchBranches: $fetchBranches,
-            pruneBranches: $pruneBranches,
-            environmentInitResources: $environmentInitResources,
-            buildPullRequests: $buildPullRequests,
-            pullRequestsCloneParentData: $pullRequestsCloneParentData,
-            resyncPullRequests: $resyncPullRequests,
-            events: $events,
-            environments: $environments,
-            excludedEnvironments: $excludedEnvironments,
-            states: $states,
-            result: $result,
-            baseUrl: $baseUrl,
-            buildDraftPullRequests: $buildDraftPullRequests,
-            buildPullRequestsPostMerge: $buildPullRequestsPostMerge,
-            rotateToken: $rotateToken,
-            rotateTokenValidityInWeeks: $rotateTokenValidityInWeeks,
-            buildMergeRequests: $buildMergeRequests,
-            buildWipMergeRequests: $buildWipMergeRequests,
-            mergeRequestsCloneParentData: $mergeRequestsCloneParentData,
-            extra: $extra,
-            headers: $headers,
-            tlsVerify: $tlsVerify,
-            excludedServices: $excludedServices,
-            sourcetype: $sourceType,
-            category: $category,
-            host: $host,
-            port: $port,
-            protocol: $protocol,
-            facility: $facility,
-            messageFormat: $messageFormat,
-            authToken: $authToken,
-            authMode: $authMode
-        );
+        
         return $this->thirdPartyIntegrationsApi->updateProjectsIntegrations(
             projectId: $projectId,
             integrationId: $integrationId,
@@ -899,17 +665,11 @@ class ProjectsTask extends TaskBase
      */
     public function addDomain(
         string $projectId,
-        string $name,
-        ?array $attributes = null,
-        ?bool $isDefault = null,
-        ?string $replacementFor = null
+        DomainCreateInput $domainCreateInput,
     ): AcceptedResponse {
-        return $this->client->domains->create(
+        return $this->client->domains->add(
             projectId: $projectId,
-            name: $name,
-            attributes: $attributes,
-            isDefault: $isDefault,
-            replacementFor: $replacementFor
+            domainCreateInput: $domainCreateInput,
         );
     }
 
@@ -957,14 +717,12 @@ class ProjectsTask extends TaskBase
     public function updateDomain(
         string $projectId,
         string $domainId,
-        ?array $attributes,
-        ?bool $isDefault
+        DomainPatch $domainPatch
     ): AcceptedResponse {
         return $this->client->domains->update(
             projectId: $projectId,
             domainId: $domainId,
-            attributes: $attributes,
-            isDefault: $isDefault
+            domainPatch: $domainPatch,
         );
     }
 

@@ -14,6 +14,8 @@ use Upsun\Model\Domain;
  */
 final class ReplacementDomainStorage implements Model, JsonSerializable, Domain
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -113,3 +115,4 @@ final class ReplacementDomainStorage implements Model, JsonSerializable, Domain
         return $this->replacementFor;
     }
 }
+

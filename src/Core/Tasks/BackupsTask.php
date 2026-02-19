@@ -37,8 +37,11 @@ class BackupsTask extends TaskBase
     public function create(
         string $projectId,
         string $environmentId,
-        bool $isSafe
+        bool $isSafe = true,
     ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->backupEnvironment(
             projectId: $projectId,
             environmentId: $environmentId,
@@ -54,6 +57,10 @@ class BackupsTask extends TaskBase
      */
     public function delete(string $projectId, string $environmentId, string $backupId): AcceptedResponse
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+        $this->checkBackupId($backupId);
+
         return $this->api->deleteProjectsEnvironmentsBackups($projectId, $environmentId, $backupId);
     }
 
@@ -65,6 +72,10 @@ class BackupsTask extends TaskBase
      */
     public function get(string $projectId, string $environmentId, string $backupId): Backup
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+        $this->checkBackupId($backupId);
+
         return $this->api->getProjectsEnvironmentsBackups(
             $projectId,
             $environmentId,
@@ -81,6 +92,9 @@ class BackupsTask extends TaskBase
      */
     public function list(string $projectId, string $environmentId): array
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->listProjectsEnvironmentsBackups(projectId: $projectId, environmentId: $environmentId);
     }
 
@@ -94,12 +108,16 @@ class BackupsTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $backupId,
-        bool $restoreCode,
-        bool $restoreResources,
+        bool $restoreCode = true,
+        bool $restoreResources = true,
         ?string $environmentName = null,
         ?string $branchFrom = null,
-        ?string $init = null,
+        ?string $init = Resources6::INIT__DEFAULT,
     ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+        $this->checkBackupId($backupId);
+
         return $this->api->restoreBackup(
             $projectId,
             $environmentId,

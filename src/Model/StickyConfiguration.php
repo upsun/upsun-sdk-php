@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class StickyConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
     ) {
@@ -45,3 +47,4 @@ final class StickyConfiguration implements Model, JsonSerializable
         return $this->enabled;
     }
 }
+

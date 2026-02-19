@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationPatch;
  */
 final class BlackfireIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
+
+
     public function __construct(
         private readonly string $type,
     ) {
@@ -42,3 +44,4 @@ final class BlackfireIntegrationPatch implements Model, JsonSerializable, Integr
         return $this->type;
     }
 }
+

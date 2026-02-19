@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class PlanRecords implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?\DateTime $end = null,
         private readonly ?string $id = null,
@@ -122,3 +124,4 @@ final class PlanRecords implements Model, JsonSerializable
         return $this->status;
     }
 }
+

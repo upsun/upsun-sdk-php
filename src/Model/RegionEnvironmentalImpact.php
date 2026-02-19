@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class RegionEnvironmentalImpact implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $zone = null,
         private readonly ?string $carbonIntensity = null,
@@ -56,3 +58,4 @@ final class RegionEnvironmentalImpact implements Model, JsonSerializable
         return $this->green;
     }
 }
+

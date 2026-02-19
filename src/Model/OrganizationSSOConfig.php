@@ -14,6 +14,9 @@ use JsonSerializable;
  */
 final class OrganizationSSOConfig implements Model, JsonSerializable
 {
+
+    public const PROVIDER_TYPE_GOOGLE = 'google';
+
     public function __construct(
         private readonly ?string $providerType = null,
         private readonly ?string $domain = null,
@@ -95,3 +98,4 @@ final class OrganizationSSOConfig implements Model, JsonSerializable
         return $this->updatedAt;
     }
 }
+

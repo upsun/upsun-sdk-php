@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Deployment implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $clusterName,
@@ -237,3 +239,4 @@ final class Deployment implements Model, JsonSerializable
         return $this->fingerprint;
     }
 }
+

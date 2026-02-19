@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class EnvironmentVariable implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $name,
@@ -188,3 +190,4 @@ final class EnvironmentVariable implements Model, JsonSerializable
         return $this->value;
     }
 }
+

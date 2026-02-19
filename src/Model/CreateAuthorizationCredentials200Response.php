@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CreateAuthorizationCredentials200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?CreateAuthorizationCredentials200ResponseRedirectToUrl $redirectToUrl = null,
         private readonly ?string $type = null,
@@ -48,3 +50,4 @@ final class CreateAuthorizationCredentials200Response implements Model, JsonSeri
         return $this->type;
     }
 }
+

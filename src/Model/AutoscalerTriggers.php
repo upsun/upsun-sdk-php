@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class AutoscalerTriggers implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $cpu = [],
         private readonly ?array $memory = [],
@@ -78,3 +80,4 @@ final class AutoscalerTriggers implements Model, JsonSerializable
         return $this->memoryPressure;
     }
 }
+

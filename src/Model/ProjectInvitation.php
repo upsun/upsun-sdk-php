@@ -13,6 +13,15 @@ use JsonSerializable;
  */
 final class ProjectInvitation implements Model, JsonSerializable
 {
+
+    public const STATE_PENDING = 'pending';
+    public const STATE_PROCESSING = 'processing';
+    public const STATE_ACCEPTED = 'accepted';
+    public const STATE_CANCELLED = 'cancelled';
+    public const STATE_ERROR = 'error';
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_VIEWER = 'viewer';
+
     public function __construct(
         private readonly ?\DateTime $finishedAt = null,
         private readonly ?string $id = null,
@@ -134,3 +143,4 @@ final class ProjectInvitation implements Model, JsonSerializable
         return $this->environments;
     }
 }
+

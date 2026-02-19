@@ -25,3 +25,4 @@ interface Domain
 
     public function getAttributes(): array;
 }
+

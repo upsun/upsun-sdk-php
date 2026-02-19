@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CertificateProvisionerPatch implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $eabKid = null,
         private readonly ?string $eabHmacKey = null,
@@ -74,3 +76,4 @@ final class CertificateProvisionerPatch implements Model, JsonSerializable
         return $this->eabHmacKey;
     }
 }
+

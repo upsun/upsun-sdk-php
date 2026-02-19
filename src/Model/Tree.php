@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Tree implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $sha,
@@ -65,3 +67,4 @@ final class Tree implements Model, JsonSerializable
         return $this->tree;
     }
 }
+

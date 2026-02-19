@@ -13,6 +13,23 @@ use JsonSerializable;
  */
 final class CreateTicketRequest implements Model, JsonSerializable
 {
+
+    public const PRIORITY_LOW = 'low';
+    public const PRIORITY_NORMAL = 'normal';
+    public const PRIORITY_HIGH = 'high';
+    public const PRIORITY_URGENT = 'urgent';
+    public const CATEGORY_ACCESS = 'access';
+    public const CATEGORY_BILLING_QUESTION = 'billing_question';
+    public const CATEGORY_COMPLAINT = 'complaint';
+    public const CATEGORY_COMPLIANCE_QUESTION = 'compliance_question';
+    public const CATEGORY_CONFIGURATION_CHANGE = 'configuration_change';
+    public const CATEGORY_GENERAL_QUESTION = 'general_question';
+    public const CATEGORY_INCIDENT_OUTAGE = 'incident_outage';
+    public const CATEGORY_BUG_REPORT = 'bug_report';
+    public const CATEGORY_REPORT_A_GUI_BUG = 'report_a_gui_bug';
+    public const CATEGORY_ONBOARDING = 'onboarding';
+    public const CATEGORY_CLOSE_MY_ACCOUNT = 'close_my_account';
+
     public function __construct(
         private readonly string $subject,
         private readonly string $description,
@@ -114,3 +131,4 @@ final class CreateTicketRequest implements Model, JsonSerializable
         return $this->collaboratorIds;
     }
 }
+

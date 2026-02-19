@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class HealthSlack implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?bool $enabled = null,
         private readonly ?string $role = null,
@@ -55,3 +57,4 @@ final class HealthSlack implements Model, JsonSerializable
         return $this->role;
     }
 }
+

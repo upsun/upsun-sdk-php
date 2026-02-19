@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class PrepaymentObject implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?PrepaymentObjectPrepayment $prepayment = null,
     ) {
@@ -45,3 +47,4 @@ final class PrepaymentObject implements Model, JsonSerializable
         return $this->prepayment;
     }
 }
+

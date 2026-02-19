@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CertificateProvisioner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $directoryUrl,
@@ -84,3 +86,4 @@ final class CertificateProvisioner implements Model, JsonSerializable
         return $this->eabHmacKey;
     }
 }
+

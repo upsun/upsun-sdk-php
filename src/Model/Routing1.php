@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class Routing1 implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $percentage = null,
     ) {
@@ -45,3 +47,4 @@ final class Routing1 implements Model, JsonSerializable
         return $this->percentage;
     }
 }
+

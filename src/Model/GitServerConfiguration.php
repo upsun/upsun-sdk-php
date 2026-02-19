@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class GitServerConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $pushSizeHardLimit,
     ) {
@@ -44,3 +46,4 @@ final class GitServerConfiguration implements Model, JsonSerializable
         return $this->pushSizeHardLimit;
     }
 }
+

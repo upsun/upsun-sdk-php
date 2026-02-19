@@ -14,6 +14,11 @@ use Upsun\Model\Route;
  */
 final class RedirectRoute implements Model, JsonSerializable, Route
 {
+
+    public const TYPE_PROXY = 'proxy';
+    public const TYPE_REDIRECT = 'redirect';
+    public const TYPE_UPSTREAM = 'upstream';
+
     public function __construct(
         private readonly array $attributes,
         private readonly string $type,
@@ -149,3 +154,4 @@ final class RedirectRoute implements Model, JsonSerializable, Route
         return $this->sticky;
     }
 }
+

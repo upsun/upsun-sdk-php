@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Project implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly array $attributes,
@@ -191,3 +193,4 @@ final class Project implements Model, JsonSerializable
         return $this->subscription;
     }
 }
+

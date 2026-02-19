@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class BlackfireIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
     ) {
@@ -42,3 +44,4 @@ final class BlackfireIntegrationCreateInput implements Model, JsonSerializable, 
         return $this->type;
     }
 }
+

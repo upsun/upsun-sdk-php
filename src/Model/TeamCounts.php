@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class TeamCounts implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $memberCount = null,
         private readonly ?int $projectCount = null,
@@ -54,3 +56,4 @@ final class TeamCounts implements Model, JsonSerializable
         return $this->projectCount;
     }
 }
+

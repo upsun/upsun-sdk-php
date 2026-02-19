@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $action = null,
         private readonly ?string $type = null,
@@ -48,3 +50,4 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
         return $this->type;
     }
 }
+

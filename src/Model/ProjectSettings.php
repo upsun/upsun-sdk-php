@@ -13,6 +13,26 @@ use JsonSerializable;
  */
 final class ProjectSettings implements Model, JsonSerializable
 {
+
+    public const DEVELOPMENT_SERVICE_SIZE__2_XL = '2XL';
+    public const DEVELOPMENT_SERVICE_SIZE__4_XL = '4XL';
+    public const DEVELOPMENT_SERVICE_SIZE_L = 'L';
+    public const DEVELOPMENT_SERVICE_SIZE_M = 'M';
+    public const DEVELOPMENT_SERVICE_SIZE_S = 'S';
+    public const DEVELOPMENT_SERVICE_SIZE_XL = 'XL';
+    public const DEVELOPMENT_APPLICATION_SIZE__2_XL = '2XL';
+    public const DEVELOPMENT_APPLICATION_SIZE__4_XL = '4XL';
+    public const DEVELOPMENT_APPLICATION_SIZE_L = 'L';
+    public const DEVELOPMENT_APPLICATION_SIZE_M = 'M';
+    public const DEVELOPMENT_APPLICATION_SIZE_S = 'S';
+    public const DEVELOPMENT_APPLICATION_SIZE_XL = 'XL';
+    public const CERTIFICATE_STYLE_ECDSA = 'ecdsa';
+    public const CERTIFICATE_STYLE_RSA = 'rsa';
+    public const ENVIRONMENT_NAME_STRATEGY_HASH = 'hash';
+    public const ENVIRONMENT_NAME_STRATEGY_NAME_AND_HASH = 'name-and-hash';
+    public const OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_ALLOW = 'allow';
+    public const OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_DENY = 'deny';
+
     public function __construct(
         private readonly object $initialize,
         private readonly string $productName,
@@ -687,3 +707,4 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->routerResources;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class MergeInfo implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $commitsAhead,
         private readonly ?int $commitsBehind,
@@ -65,3 +67,4 @@ final class MergeInfo implements Model, JsonSerializable
         return $this->parentRef;
     }
 }
+

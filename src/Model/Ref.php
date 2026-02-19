@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Ref implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $ref,
@@ -74,3 +76,4 @@ final class Ref implements Model, JsonSerializable
         return $this->sha;
     }
 }
+

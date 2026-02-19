@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateTeamRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $label = null,
         private readonly ?array $projectPermissions = [],
@@ -48,3 +50,4 @@ final class UpdateTeamRequest implements Model, JsonSerializable
         return $this->projectPermissions;
     }
 }
+

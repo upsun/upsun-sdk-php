@@ -14,6 +14,8 @@ use Upsun\Model\AutoscalerSettings;
 use Upsun\Model\Backup;
 use Upsun\Model\Deployment;
 use Upsun\Model\Domain;
+use Upsun\Model\DomainCreateInput;
+use Upsun\Model\DomainPatch;
 use Upsun\Model\Environment;
 use Upsun\Model\EnvironmentActivateInput;
 use Upsun\Model\EnvironmentBranchInput;
@@ -64,6 +66,9 @@ class EnvironmentsTask extends TaskBase
         string $environmentId,
         ?string $init = null
     ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->activateEnvironment(
             $projectId,
             $environmentId,
@@ -646,18 +651,12 @@ class EnvironmentsTask extends TaskBase
      */
     public function addDomain(
         string $projectId,
-        string $domain,
-        ?array $attributes = null,
-        ?bool $isDefault = null,
-        ?string $replacementFor = null,
+        DomainCreateInput $domainCreateInput,
         ?string $environmentId = null,
     ): AcceptedResponse {
         return $this->client->domains->add(
             projectId: $projectId,
-            domain: $domain,
-            attributes: $attributes,
-            isDefault: $isDefault,
-            replacementFor: $replacementFor,
+            domainCreateInput: $domainCreateInput,
             environmentId: $environmentId
         );
     }
@@ -710,14 +709,12 @@ class EnvironmentsTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $domainId,
-        ?array $attributes = null,
-        ?bool $isDefault = null,
+        DomainPatch $domainPatch,
     ): AcceptedResponse {
         return $this->client->domains->update(
             projectId: $projectId,
             domainId: $domainId,
-            attributes: $attributes,
-            isDefault: $isDefault,
+            domainPatch: $domainPatch,
             environmentId: $environmentId
         );
     }

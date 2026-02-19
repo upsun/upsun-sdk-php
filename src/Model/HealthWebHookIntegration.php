@@ -14,6 +14,8 @@ use Upsun\Model\Integration;
  */
 final class HealthWebHookIntegration implements Model, JsonSerializable, Integration
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -82,3 +84,4 @@ final class HealthWebHookIntegration implements Model, JsonSerializable, Integra
         return $this->id;
     }
 }
+

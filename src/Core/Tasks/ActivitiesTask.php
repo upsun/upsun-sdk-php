@@ -41,6 +41,9 @@ class ActivitiesTask extends TaskBase
         string $activityId,
         ?string $environmentId = null
     ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        $this->checkActivityId($activityId);
+
         if (!$environmentId) {
             return $this->prjApi->actionProjectsActivitiesCancel(projectId: $projectId, activityId: $activityId);
         } else {
@@ -60,6 +63,10 @@ class ActivitiesTask extends TaskBase
      */
     public function get(string $projectId, string $activityId, ?string $environmentId = null): Activity
     {
+        $this->checkProjectId($projectId);
+        $this->checkActivityId($activityId);
+        $this->checkEnvironmentId($environmentId);
+
         if (!$environmentId) {
             return $this->prjApi->getProjectsActivities(
                 projectId: $projectId,
@@ -83,6 +90,9 @@ class ActivitiesTask extends TaskBase
      */
     public function list(string $projectId, ?string $environmentId = null): array
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         if (!$environmentId) {
             return $this->prjApi->listProjectsActivities(projectId: $projectId);
         } else {
@@ -106,6 +116,13 @@ class ActivitiesTask extends TaskBase
         ?string $environmentId = null,
         bool $stream = true
     ): Generator {
+        $this->checkProjectId($projectId);
+        $this->checkActivityId($activityId);
+        
+        if ($environmentId) {
+            $this->checkEnvironmentId($environmentId);
+        }   
+        
         $resourcePath = $environmentId
             ? sprintf(
                 '/projects/%s/environments/%s/activities/%s/log',

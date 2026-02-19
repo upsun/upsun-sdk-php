@@ -339,7 +339,6 @@ class UpsunClient
         );
         $this->workers = new WorkersTask(
             $this,
-            $deploymentApi
         );
     }
 

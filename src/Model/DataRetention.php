@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class DataRetention implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
     ) {
@@ -44,3 +46,4 @@ final class DataRetention implements Model, JsonSerializable
         return $this->enabled;
     }
 }
+

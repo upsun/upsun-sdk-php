@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Connection implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $provider = null,
         private readonly ?string $providerType = null,
@@ -104,3 +106,4 @@ final class Connection implements Model, JsonSerializable
         return $this->updatedAt;
     }
 }
+

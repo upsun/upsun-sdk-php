@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectSettingsPatch implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $dataRetention = [],
         private readonly ?object $initialize = null,
@@ -59,3 +61,4 @@ final class ProjectSettingsPatch implements Model, JsonSerializable
         return $this->buildResources;
     }
 }
+

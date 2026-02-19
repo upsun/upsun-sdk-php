@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class EnvironmentType implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly array $attributes,
@@ -51,3 +53,4 @@ final class EnvironmentType implements Model, JsonSerializable
         return $this->attributes;
     }
 }
+

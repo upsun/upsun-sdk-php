@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class OrganizationMemberLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?OrganizationMemberLinksSelf $self = null,
         private readonly ?OrganizationMemberLinksUpdate $update = null,
@@ -64,3 +66,4 @@ final class OrganizationMemberLinks implements Model, JsonSerializable
         return $this->delete;
     }
 }
+

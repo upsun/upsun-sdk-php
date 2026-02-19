@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class ProjectFacets implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $plans = [],
     ) {
@@ -42,3 +44,4 @@ final class ProjectFacets implements Model, JsonSerializable
         return $this->plans;
     }
 }
+

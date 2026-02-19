@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class AutoscalerScalingFactor implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $up = null,
         private readonly ?int $down = null,
@@ -55,3 +57,4 @@ final class AutoscalerScalingFactor implements Model, JsonSerializable
         return $this->down;
     }
 }
+

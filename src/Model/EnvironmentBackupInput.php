@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class EnvironmentBackupInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $safe,
     ) {
@@ -44,3 +46,4 @@ final class EnvironmentBackupInput implements Model, JsonSerializable
         return $this->safe;
     }
 }
+

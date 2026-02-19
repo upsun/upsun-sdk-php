@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class Resources4 implements Model, JsonSerializable
 {
+
+    public const INIT__DEFAULT = 'default';
+    public const INIT_MINIMUM = 'minimum';
+
     public function __construct(
         private readonly ?string $init,
     ) {
@@ -44,3 +48,4 @@ final class Resources4 implements Model, JsonSerializable
         return $this->init;
     }
 }
+

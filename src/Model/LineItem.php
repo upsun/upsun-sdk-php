@@ -14,6 +14,14 @@ use JsonSerializable;
  */
 final class LineItem implements Model, JsonSerializable
 {
+
+    public const TYPE_PROJECT_PLAN = 'project_plan';
+    public const TYPE_PROJECT_FEATURE = 'project_feature';
+    public const TYPE_PROJECT_SUBTOTAL = 'project_subtotal';
+    public const TYPE_ORGANIZATION_PLAN = 'organization_plan';
+    public const TYPE_ORGANIZATION_FEATURE = 'organization_feature';
+    public const TYPE_ORGANIZATION_SUBTOTAL = 'organization_subtotal';
+
     public function __construct(
         private readonly ?float $licenseId = null,
         private readonly ?string $projectId = null,
@@ -126,3 +134,4 @@ final class LineItem implements Model, JsonSerializable
         return $this->excludeFromInvoice;
     }
 }
+

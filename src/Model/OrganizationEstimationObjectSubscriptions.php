@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrganizationEstimationObjectSubscriptions implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $total = null,
         private readonly ?array $list = [],
@@ -56,3 +58,4 @@ final class OrganizationEstimationObjectSubscriptions implements Model, JsonSeri
         return $this->list;
     }
 }
+

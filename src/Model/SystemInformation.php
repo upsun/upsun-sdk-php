@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class SystemInformation implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $version,
         private readonly string $image,
@@ -61,3 +63,4 @@ final class SystemInformation implements Model, JsonSerializable
         return $this->startedAt;
     }
 }
+

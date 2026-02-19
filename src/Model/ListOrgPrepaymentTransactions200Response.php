@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ListOrgPrepaymentTransactions200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $transactions = [],
@@ -58,3 +60,4 @@ final class ListOrgPrepaymentTransactions200Response implements Model, JsonSeria
         return $this->links;
     }
 }
+

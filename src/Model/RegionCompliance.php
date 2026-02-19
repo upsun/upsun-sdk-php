@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class RegionCompliance implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?bool $hipaa = null,
     ) {
@@ -45,3 +47,4 @@ final class RegionCompliance implements Model, JsonSerializable
         return $this->hipaa;
     }
 }
+

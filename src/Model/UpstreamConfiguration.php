@@ -13,6 +13,12 @@ use JsonSerializable;
  */
 final class UpstreamConfiguration implements Model, JsonSerializable
 {
+
+    public const SOCKET_FAMILY_TCP = 'tcp';
+    public const SOCKET_FAMILY_UNIX = 'unix';
+    public const PROTOCOL_FASTCGI = 'fastcgi';
+    public const PROTOCOL_HTTP = 'http';
+
     public function __construct(
         private readonly string $socketFamily,
         private readonly ?string $protocol,
@@ -48,3 +54,4 @@ final class UpstreamConfiguration implements Model, JsonSerializable
         return $this->protocol;
     }
 }
+

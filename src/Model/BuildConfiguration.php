@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class BuildConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $caches,
         private readonly ?string $flavor,
@@ -51,3 +53,4 @@ final class BuildConfiguration implements Model, JsonSerializable
         return $this->caches;
     }
 }
+

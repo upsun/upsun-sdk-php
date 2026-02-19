@@ -14,6 +14,10 @@ use JsonSerializable;
  */
 final class InvoicePDF implements Model, JsonSerializable
 {
+
+    public const STATUS_READY = 'ready';
+    public const STATUS_PENDING = 'pending';
+
     public function __construct(
         private readonly ?string $url = null,
         private readonly ?string $status = null,
@@ -57,3 +61,4 @@ final class InvoicePDF implements Model, JsonSerializable
         return $this->status;
     }
 }
+

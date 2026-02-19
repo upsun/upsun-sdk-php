@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class EnvironmentVariablePatch implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?array $attributes = [],
@@ -128,3 +130,4 @@ final class EnvironmentVariablePatch implements Model, JsonSerializable
         return $this->isInheritable;
     }
 }
+

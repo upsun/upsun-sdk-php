@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class Components implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?object $voucherVatBaseprice = null,
     ) {
@@ -45,3 +47,4 @@ final class Components implements Model, JsonSerializable
         return $this->voucherVatBaseprice;
     }
 }
+

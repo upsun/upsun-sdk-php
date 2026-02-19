@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CertificatePatch implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $chain = [],
         private readonly ?bool $isInvalid = null,
@@ -51,3 +53,4 @@ final class CertificatePatch implements Model, JsonSerializable
         return $this->isInvalid;
     }
 }
+

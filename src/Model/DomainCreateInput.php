@@ -21,3 +21,4 @@ interface DomainCreateInput
 
     public function getName(): string;
 }
+

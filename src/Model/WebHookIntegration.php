@@ -14,6 +14,11 @@ use Upsun\Model\Integration;
  */
 final class WebHookIntegration implements Model, JsonSerializable, Integration
 {
+
+    public const RESULT_STAR = '*';
+    public const RESULT_FAILURE = 'failure';
+    public const RESULT_SUCCESS = 'success';
+
     public function __construct(
         private readonly string $type,
         private readonly array $events,
@@ -130,3 +135,4 @@ final class WebHookIntegration implements Model, JsonSerializable, Integration
         return $this->id;
     }
 }
+

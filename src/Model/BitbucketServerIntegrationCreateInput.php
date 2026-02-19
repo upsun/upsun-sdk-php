@@ -14,6 +14,12 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class BitbucketServerIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
+    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
+    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
+    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -142,3 +148,4 @@ final class BitbucketServerIntegrationCreateInput implements Model, JsonSerializ
         return $this->pullRequestsCloneParentData;
     }
 }
+

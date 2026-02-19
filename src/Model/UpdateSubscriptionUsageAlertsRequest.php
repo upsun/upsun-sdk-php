@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateSubscriptionUsageAlertsRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $alerts = [],
     ) {
@@ -43,3 +45,4 @@ final class UpdateSubscriptionUsageAlertsRequest implements Model, JsonSerializa
         return $this->alerts;
     }
 }
+

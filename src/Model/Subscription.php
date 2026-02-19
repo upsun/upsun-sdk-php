@@ -14,6 +14,14 @@ use JsonSerializable;
  */
 final class Subscription implements Model, JsonSerializable
 {
+
+    public const STATUS_REQUESTED = 'requested';
+    public const STATUS_PROVISIONING_FAILURE = 'provisioning failure';
+    public const STATUS_PROVISIONING = 'provisioning';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_SUSPENDED = 'suspended';
+    public const STATUS_DELETED = 'deleted';
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $status = null,
@@ -275,3 +283,4 @@ final class Subscription implements Model, JsonSerializable
         return $this->green;
     }
 }
+

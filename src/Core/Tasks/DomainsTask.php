@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\DomainManagementApi;
@@ -30,23 +31,17 @@ class DomainsTask extends TaskBase
     /**
      * Adds a project (or environment) domain
      *
+     * @param DomainCreateInput $domainCreateInput is an instance of ProdDomainStoragePatch or ReplacementDomainStoragePatch
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function add(
         string $projectId,
-        string $domain,
-        ?array $attributes = null,
-        ?bool $isDefault = null,
-        ?string $replacementFor = null,
+        DomainCreateInput $domainCreateInput,
         ?string $environmentId = null
     ): AcceptedResponse {
-        $domainCreateInput = new DomainCreateInput(
-            name: $domain,
-            attributes: $attributes,
-            isDefault: $isDefault,
-            replacementFor: $replacementFor
-        );
+        $this->checkProjectId($projectId);    
 
         if (!$environmentId) {
             return $this->api->createProjectsDomains(
@@ -54,6 +49,8 @@ class DomainsTask extends TaskBase
                 $domainCreateInput
             );
         } else {
+            $this->checkEnvironmentId($environmentId);
+
             return $this->api->createProjectsEnvironmentsDomains(
                 $projectId,
                 $environmentId,
@@ -67,12 +64,18 @@ class DomainsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function delete(string $projectId, string $domainId, ?string $environmentId = null): AcceptedResponse
     {
+        $this->checkProjectId($projectId);
+        $this->checkDomainId($domainId);
+
         if (!$environmentId) {
             return $this->api->deleteProjectsDomains($projectId, $domainId);
         } else {
+            $this->checkEnvironmentId($environmentId);
+
             return $this->api->deleteProjectsEnvironmentsDomains(
                 $projectId,
                 $environmentId,
@@ -86,12 +89,18 @@ class DomainsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function get(string $projectId, string $domainId, ?string $environmentId = null): Domain
     {
+        $this->checkProjectId($projectId);
+        $this->checkDomainId($domainId);
+
         if (!$environmentId) {
             return $this->api->getProjectsDomains(projectId: $projectId, domainId: $domainId);
         } else {
+            $this->checkEnvironmentId($environmentId);
+
             return $this->api->getProjectsEnvironmentsDomains(
                 projectId: $projectId,
                 environmentId: $environmentId,
@@ -105,34 +114,38 @@ class DomainsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return Domain[]
      */
     public function list(string $projectId, ?string $environmentId = null): array
     {
+        $this->checkProjectId($projectId);
+
         if (!$environmentId) {
             return $this->api->listProjectsDomains(projectId: $projectId);
         } else {
+            $this->checkEnvironmentId($environmentId);
+        
             return $this->api->listProjectsEnvironmentsDomains(projectId: $projectId, environmentId: $environmentId);
         }
     }
 
     /**
      * Updates a project (or environment) domain
-     *
+     * 
+     * @param DomainPatch $domainPatch is an instance of ProdDomainStoragePatch or ReplacementDomainStoragePatch
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function update(
         string $projectId,
         string $domainId,
-        ?array $attributes = null,
-        ?bool $isDefault = null,
-        ?string $environmentId = null
+        DomainPatch $domainPatch,
+        ?string $environmentId = null,
     ): AcceptedResponse {
-        $domainPatch = new DomainPatch(
-            attributes: $attributes,
-            isDefault: $isDefault
-        );
+        $this->checkProjectId($projectId);
+        $this->checkDomainId($domainId);
 
         if (!$environmentId) {
             return $this->api->updateProjectsDomains(
@@ -141,6 +154,8 @@ class DomainsTask extends TaskBase
                 domainPatch: $domainPatch
             );
         } else {
+            $this->checkEnvironmentId($environmentId);
+
             return $this->api->updateProjectsEnvironmentsDomains(
                 projectId: $projectId,
                 environmentId: $environmentId,

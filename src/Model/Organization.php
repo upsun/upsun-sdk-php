@@ -13,6 +13,14 @@ use JsonSerializable;
  */
 final class Organization implements Model, JsonSerializable
 {
+
+    public const TYPE_FIXED = 'fixed';
+    public const TYPE_FLEXIBLE = 'flexible';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_RESTRICTED = 'restricted';
+    public const STATUS_SUSPENDED = 'suspended';
+    public const STATUS_DELETED = 'deleted';
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $type = null,
@@ -188,3 +196,4 @@ final class Organization implements Model, JsonSerializable
         return $this->links;
     }
 }
+

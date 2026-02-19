@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class ProjectOptions implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?ProjectOptionsDefaults $defaults = null,
         private readonly ?ProjectOptionsEnforced $enforced = null,
@@ -79,3 +81,4 @@ final class ProjectOptions implements Model, JsonSerializable
         return $this->billing;
     }
 }
+

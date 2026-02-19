@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CurrentUserProjectsInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $name = null,
@@ -177,3 +179,4 @@ final class CurrentUserProjectsInner implements Model, JsonSerializable
         return $this->createdAt;
     }
 }
+

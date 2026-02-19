@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateOrgBillingAlertConfigRequestConfig implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $threshold = null,
         private readonly ?string $mode = null,
@@ -48,3 +50,4 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements Model, JsonSeria
         return $this->mode;
     }
 }
+

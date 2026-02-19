@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrganizationEstimationObjectUserLicensesBaseListViewerUser implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?string $total = null,
@@ -55,3 +57,4 @@ final class OrganizationEstimationObjectUserLicensesBaseListViewerUser implement
         return $this->total;
     }
 }
+

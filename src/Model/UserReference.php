@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class UserReference implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $username = null,
@@ -116,3 +118,4 @@ final class UserReference implements Model, JsonSerializable
         return $this->ssoEnabled;
     }
 }
+

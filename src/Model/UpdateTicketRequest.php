@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class UpdateTicketRequest implements Model, JsonSerializable
 {
+
+    public const STATUS_OPEN = 'open';
+    public const STATUS_SOLVED = 'solved';
+
     public function __construct(
         private readonly ?string $status = null,
         private readonly ?array $collaboratorIds = [],
@@ -55,3 +59,4 @@ final class UpdateTicketRequest implements Model, JsonSerializable
         return $this->collaboratorsReplace;
     }
 }
+

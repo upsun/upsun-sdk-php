@@ -13,6 +13,11 @@ use JsonSerializable;
  */
 final class OperationsValue implements Model, JsonSerializable
 {
+
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_CONTRIBUTOR = 'contributor';
+    public const ROLE_VIEWER = 'viewer';
+
     public function __construct(
         private readonly Commands $commands,
         private readonly string $role,
@@ -55,3 +60,4 @@ final class OperationsValue implements Model, JsonSerializable
         return $this->role;
     }
 }
+

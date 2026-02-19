@@ -14,6 +14,8 @@ use Upsun\Model\Integration;
  */
 final class PagerDutyIntegration implements Model, JsonSerializable, Integration
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $routingKey,
@@ -82,3 +84,4 @@ final class PagerDutyIntegration implements Model, JsonSerializable, Integration
         return $this->id;
     }
 }
+

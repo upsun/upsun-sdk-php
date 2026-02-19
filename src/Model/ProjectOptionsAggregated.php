@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectOptionsAggregated implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?object $billing = null,
         private readonly ?object $defaults = null,
@@ -114,3 +116,4 @@ final class ProjectOptionsAggregated implements Model, JsonSerializable
         return $this->debug;
     }
 }
+

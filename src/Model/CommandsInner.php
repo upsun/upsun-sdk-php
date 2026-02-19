@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CommandsInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $app,
         private readonly string $type,
@@ -55,3 +57,4 @@ final class CommandsInner implements Model, JsonSerializable
         return $this->exitCode;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class UsageGroupCurrentUsageProperties implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $title = null,
         private readonly ?bool $type = null,
@@ -125,3 +127,4 @@ final class UsageGroupCurrentUsageProperties implements Model, JsonSerializable
         return $this->dailyAverageFormatted;
     }
 }
+

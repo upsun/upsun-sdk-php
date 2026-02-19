@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class ProjectOptionsDefaults implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?object $settings = null,
         private readonly ?object $variables = null,
@@ -75,3 +77,4 @@ final class ProjectOptionsDefaults implements Model, JsonSerializable
         return $this->capabilities;
     }
 }
+

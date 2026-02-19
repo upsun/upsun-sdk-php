@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CreateProfilePicture200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $url = null,
     ) {
@@ -41,3 +43,4 @@ final class CreateProfilePicture200Response implements Model, JsonSerializable
         return $this->url;
     }
 }
+

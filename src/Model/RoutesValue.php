@@ -19,3 +19,4 @@ interface RoutesValue
 
     public function __toString(): string;
 }
+

@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationPatch;
  */
 final class EmailIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly array $recipients,
@@ -59,3 +61,4 @@ final class EmailIntegrationPatch implements Model, JsonSerializable, Integratio
         return $this->fromAddress;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class OrganizationLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?OrganizationLinksSelf $self = null,
         private readonly ?OrganizationLinksUpdate $update = null,
@@ -184,3 +186,4 @@ final class OrganizationLinks implements Model, JsonSerializable
         return $this->mfaEnforcement;
     }
 }
+

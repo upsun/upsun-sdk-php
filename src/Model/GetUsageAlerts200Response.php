@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class GetUsageAlerts200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $available = [],
         private readonly ?array $current = [],
@@ -53,3 +55,4 @@ final class GetUsageAlerts200Response implements Model, JsonSerializable
         return $this->current;
     }
 }
+

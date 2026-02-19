@@ -13,6 +13,16 @@ use JsonSerializable;
  */
 final class Activity implements Model, JsonSerializable
 {
+
+    public const STATE_CANCELLED = 'cancelled';
+    public const STATE_COMPLETE = 'complete';
+    public const STATE_IN_PROGRESS = 'in_progress';
+    public const STATE_PENDING = 'pending';
+    public const STATE_SCHEDULED = 'scheduled';
+    public const STATE_STAGED = 'staged';
+    public const RESULT_FAILURE = 'failure';
+    public const RESULT_SUCCESS = 'success';
+
     public function __construct(
         private readonly string $id,
         private readonly string $type,
@@ -239,3 +249,4 @@ final class Activity implements Model, JsonSerializable
         return $this->environments;
     }
 }
+

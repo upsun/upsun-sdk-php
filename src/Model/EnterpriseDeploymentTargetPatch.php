@@ -14,6 +14,11 @@ use Upsun\Model\DeploymentTargetPatch;
  */
 final class EnterpriseDeploymentTargetPatch implements Model, JsonSerializable, DeploymentTargetPatch
 {
+
+    public const TYPE_DEDICATED = 'dedicated';
+    public const TYPE_ENTERPRISE = 'enterprise';
+    public const TYPE_LOCAL = 'local';
+
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -79,3 +84,4 @@ final class EnterpriseDeploymentTargetPatch implements Model, JsonSerializable, 
         return $this->enterpriseEnvironmentsMapping;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class DiskResources implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $temporary,
         private readonly ?int $instance,
@@ -55,3 +57,4 @@ final class DiskResources implements Model, JsonSerializable
         return $this->storage;
     }
 }
+

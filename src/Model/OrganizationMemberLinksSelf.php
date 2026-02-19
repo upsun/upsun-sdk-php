@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrganizationMemberLinksSelf implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $href = null,
     ) {
@@ -45,3 +47,4 @@ final class OrganizationMemberLinksSelf implements Model, JsonSerializable
         return $this->href;
     }
 }
+

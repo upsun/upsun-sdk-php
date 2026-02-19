@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class EnvironmentInitializeInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $profile,
         private readonly string $repository,
@@ -82,3 +84,4 @@ final class EnvironmentInitializeInput implements Model, JsonSerializable
         return $this->resources;
     }
 }
+

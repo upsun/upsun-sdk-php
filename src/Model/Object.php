@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class Object implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $sha,
@@ -52,3 +54,4 @@ final class Object implements Model, JsonSerializable
         return $this->sha;
     }
 }
+

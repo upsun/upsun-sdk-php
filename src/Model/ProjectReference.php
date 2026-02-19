@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class ProjectReference implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $organizationId,
@@ -145,3 +147,4 @@ final class ProjectReference implements Model, JsonSerializable
         return $this->invoiced;
     }
 }
+

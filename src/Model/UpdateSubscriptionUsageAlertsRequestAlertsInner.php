@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateSubscriptionUsageAlertsRequestAlertsInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?bool $active = null,
@@ -55,3 +57,4 @@ final class UpdateSubscriptionUsageAlertsRequestAlertsInner implements Model, Js
         return $this->config;
     }
 }
+

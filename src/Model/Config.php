@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Config implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?NewRelic $newrelic = null,
         private readonly ?SumoLogic $sumologic = null,
@@ -211,3 +213,4 @@ final class Config implements Model, JsonSerializable
         return $this->otlplog;
     }
 }
+

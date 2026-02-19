@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CanAffordSubscriptionRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $resources = [],
     ) {
@@ -41,3 +43,4 @@ final class CanAffordSubscriptionRequest implements Model, JsonSerializable
         return $this->resources;
     }
 }
+

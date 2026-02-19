@@ -14,6 +14,8 @@ use Upsun\Model\DomainCreateInput;
  */
 final class ProdDomainStorageCreateInput implements Model, JsonSerializable, DomainCreateInput
 {
+
+
     public function __construct(
         private readonly string $name,
         private readonly ?array $attributes = [],
@@ -59,3 +61,4 @@ final class ProdDomainStorageCreateInput implements Model, JsonSerializable, Dom
         return $this->isDefault;
     }
 }
+

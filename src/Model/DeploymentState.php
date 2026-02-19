@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class DeploymentState implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $lastDeploymentSuccessful,
         private readonly CronsDeploymentState $crons,
@@ -85,3 +87,4 @@ final class DeploymentState implements Model, JsonSerializable
         return $this->crons;
     }
 }
+

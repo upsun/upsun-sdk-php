@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class HttpLogIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -80,3 +82,4 @@ final class HttpLogIntegrationCreateInput implements Model, JsonSerializable, In
         return $this->excludedServices;
     }
 }
+

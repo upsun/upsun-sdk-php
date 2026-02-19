@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class EnvironmentSourceOperationInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $operation,
         private readonly array $variables,
@@ -51,3 +53,4 @@ final class EnvironmentSourceOperationInput implements Model, JsonSerializable
         return $this->variables;
     }
 }
+

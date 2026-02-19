@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrganizationAddonsObject implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?OrganizationAddonsObjectAvailable $available = null,
         private readonly ?OrganizationAddonsObjectCurrent $current = null,
@@ -65,3 +67,4 @@ final class OrganizationAddonsObject implements Model, JsonSerializable
         return $this->upgradesAvailable;
     }
 }
+

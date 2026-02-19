@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class AddressMetadataMetadata implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $requiredFields = [],
         private readonly ?object $fieldLabels = null,
@@ -62,3 +64,4 @@ final class AddressMetadataMetadata implements Model, JsonSerializable
         return $this->showVat;
     }
 }
+

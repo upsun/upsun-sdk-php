@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrganizationAddonsObjectAvailable implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $userManagement = [],
         private readonly ?array $supportLevel = [],
@@ -49,3 +51,4 @@ final class OrganizationAddonsObjectAvailable implements Model, JsonSerializable
         return $this->supportLevel;
     }
 }
+

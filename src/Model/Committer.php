@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class Committer implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly \DateTime $date,
         private readonly string $name,
@@ -65,3 +67,4 @@ final class Committer implements Model, JsonSerializable
         return $this->email;
     }
 }
+

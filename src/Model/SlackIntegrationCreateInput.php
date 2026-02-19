@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class SlackIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $token,
@@ -62,3 +64,4 @@ final class SlackIntegrationCreateInput implements Model, JsonSerializable, Inte
         return $this->channel;
     }
 }
+

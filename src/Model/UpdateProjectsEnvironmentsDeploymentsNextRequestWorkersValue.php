@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateProjectsEnvironmentsDeploymentsNextRequestWorkersValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $instanceCount = null,
         private readonly ?int $disk = null,
@@ -55,3 +57,4 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequestWorkersValue impleme
         return $this->disk;
     }
 }
+

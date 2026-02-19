@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Error implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $error,
     ) {
@@ -44,3 +46,4 @@ final class Error implements Model, JsonSerializable
         return $this->error;
     }
 }
+

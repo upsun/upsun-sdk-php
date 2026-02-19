@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrganizationAlertConfigConfig implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?OrganizationAlertConfigConfigThreshold $threshold = null,
         private readonly ?string $mode = null,
@@ -55,3 +57,4 @@ final class OrganizationAlertConfigConfig implements Model, JsonSerializable
         return $this->mode;
     }
 }
+

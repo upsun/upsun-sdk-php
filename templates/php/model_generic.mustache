@@ -14,6 +14,17 @@ interface {{classname}}
 {{^vendorExtensions.x-isOneOf}}
 final class {{classname}} implements Model, JsonSerializable{{#vendorExtensions.x-parentInterface}}, {{.}}{{/vendorExtensions.x-parentInterface}}
 {
+
+    {{#vars}}
+{{#isEnum}}
+    {{#allowableValues}}
+    {{#enumVars}}
+    public const {{#lambda.uppercase}}{{baseName}}{{/lambda.uppercase}}_{{{name}}} = {{{value}}};
+    {{/enumVars}}
+    {{/allowableValues}}
+{{/isEnum}}
+{{/vars}}
+
     public function __construct(
     {{#vars}}
       {{#required}}

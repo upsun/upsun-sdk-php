@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class UsageAlertConfig implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?UsageAlertConfigThreshold $threshold = null,
     ) {
@@ -45,3 +47,4 @@ final class UsageAlertConfig implements Model, JsonSerializable
         return $this->threshold;
     }
 }
+

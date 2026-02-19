@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class EnvironmentDeployInput implements Model, JsonSerializable
 {
+
+    public const STRATEGY_ROLLING = 'rolling';
+    public const STRATEGY_STOPSTART = 'stopstart';
+
     public function __construct(
         private readonly string $strategy,
     ) {
@@ -44,3 +48,4 @@ final class EnvironmentDeployInput implements Model, JsonSerializable
         return $this->strategy;
     }
 }
+

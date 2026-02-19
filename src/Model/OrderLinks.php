@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrderLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?OrderLinksInvoices $invoices = null,
     ) {
@@ -45,3 +47,4 @@ final class OrderLinks implements Model, JsonSerializable
         return $this->invoices;
     }
 }
+

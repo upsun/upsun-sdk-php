@@ -15,6 +15,8 @@ use JsonSerializable;
  */
 final class AutoscalerMemoryTrigger implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?bool $enabled = null,
         private readonly ?AutoscalerCondition $down = null,
@@ -66,3 +68,4 @@ final class AutoscalerMemoryTrigger implements Model, JsonSerializable
         return $this->up;
     }
 }
+

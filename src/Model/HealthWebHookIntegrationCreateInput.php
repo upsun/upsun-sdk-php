@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class HealthWebHookIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -62,3 +64,4 @@ final class HealthWebHookIntegrationCreateInput implements Model, JsonSerializab
         return $this->sharedKey;
     }
 }
+

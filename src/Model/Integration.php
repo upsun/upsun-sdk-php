@@ -21,3 +21,4 @@ interface Integration
 
     public function getType(): string;
 }
+

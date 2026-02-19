@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class AutoscalerCondition implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly float $threshold,
         private readonly ?bool $enabled = null,
@@ -62,3 +64,4 @@ final class AutoscalerCondition implements Model, JsonSerializable
         return $this->enabled;
     }
 }
+

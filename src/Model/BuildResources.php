@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class BuildResources implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
         private readonly float $maxCpu,
@@ -58,3 +60,4 @@ final class BuildResources implements Model, JsonSerializable
         return $this->maxMemory;
     }
 }
+

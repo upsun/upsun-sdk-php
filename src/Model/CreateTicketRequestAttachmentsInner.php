@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CreateTicketRequestAttachmentsInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $filename = null,
         private readonly ?string $data = null,
@@ -48,3 +50,4 @@ final class CreateTicketRequestAttachmentsInner implements Model, JsonSerializab
         return $this->data;
     }
 }
+

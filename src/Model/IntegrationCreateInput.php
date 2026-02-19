@@ -21,3 +21,4 @@ interface IntegrationCreateInput
 
     public function getType(): string;
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class EnvironmentInfo implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $name,
         private readonly string $status,
@@ -122,3 +124,4 @@ final class EnvironmentInfo implements Model, JsonSerializable
         return $this->links;
     }
 }
+

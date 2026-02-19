@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class Backup implements Model, JsonSerializable
 {
+
+    public const STATUS_CREATED = 'CREATED';
+    public const STATUS_DELETING = 'DELETING';
+
     public function __construct(
         private readonly string $id,
         private readonly array $attributes,
@@ -181,3 +185,4 @@ final class Backup implements Model, JsonSerializable
         return $this->automated;
     }
 }
+

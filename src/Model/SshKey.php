@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class SshKey implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $keyId = null,
         private readonly ?int $uid = null,
@@ -95,3 +97,4 @@ final class SshKey implements Model, JsonSerializable
         return $this->changed;
     }
 }
+

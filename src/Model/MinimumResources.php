@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class MinimumResources implements Model, JsonSerializable
 {
+
+    public const CPU_TYPE_GUARANTEED = 'guaranteed';
+    public const CPU_TYPE_SHARED = 'shared';
+
     public function __construct(
         private readonly float $cpu,
         private readonly int $memory,
@@ -69,3 +73,4 @@ final class MinimumResources implements Model, JsonSerializable
         return $this->profileSize;
     }
 }
+

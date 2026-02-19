@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\CertManagementApi;
@@ -32,6 +33,7 @@ class CertificatesTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function add(
         string $projectId,
@@ -40,6 +42,12 @@ class CertificatesTask extends TaskBase
         ?array $chain = null,
         ?bool $isInvalid = null,
     ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+
+        if( empty($certificate) || empty($key) ) {
+            throw new InvalidArgumentException("Certificate and key are required");
+        }
+        
         return $this->api->createProjectsCertificates(
             $projectId,
             certificateCreateInput: new CertificateCreateInput(
@@ -56,9 +64,13 @@ class CertificatesTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function delete(string $projectId, string $certificateId): AcceptedResponse
     {
+        $this->checkProjectId($projectId);
+        $this->checkCertificateId($certificateId);
+
         return $this->api->deleteProjectsCertificates(
             $projectId,
             $certificateId
@@ -70,9 +82,13 @@ class CertificatesTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function get(string $projectId, string $certificateId): Certificate
     {
+        $this->checkProjectId($projectId);
+        $this->checkCertificateId($certificateId);
+
         return $this->api->getProjectsCertificates(projectId: $projectId, certificateId: $certificateId);
     }
 
@@ -82,10 +98,13 @@ class CertificatesTask extends TaskBase
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return Certificate[]
      */
     public function list(string $projectId): array
     {
+        $this->checkProjectId($projectId);
+
         return $this->api->listProjectsCertificates(projectId: $projectId);
     }
 
@@ -94,13 +113,17 @@ class CertificatesTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function update(
         string $projectId,
         string $certificateId,
-        ?array $chain = null,
+        ?array $chain = [],
         ?bool $isInvalid = null,
     ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        $this->checkCertificateId($certificateId);
+
         return $this->api->updateProjectsCertificates(
             $projectId,
             $certificateId,

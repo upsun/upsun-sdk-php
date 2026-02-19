@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class HttpAccessPermissions1 implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $isEnabled,
         private readonly array $addresses,
@@ -62,3 +64,4 @@ final class HttpAccessPermissions1 implements Model, JsonSerializable
         return $this->basicAuth;
     }
 }
+

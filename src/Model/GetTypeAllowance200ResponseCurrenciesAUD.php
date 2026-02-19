@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class GetTypeAllowance200ResponseCurrenciesAUD implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?float $amount = null,
@@ -62,3 +64,4 @@ final class GetTypeAllowance200ResponseCurrenciesAUD implements Model, JsonSeria
         return $this->currencySymbol;
     }
 }
+

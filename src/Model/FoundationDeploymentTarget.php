@@ -14,6 +14,11 @@ use Upsun\Model\DeploymentTarget;
  */
 final class FoundationDeploymentTarget implements Model, JsonSerializable, DeploymentTarget
 {
+
+    public const TYPE_DEDICATED = 'dedicated';
+    public const TYPE_ENTERPRISE = 'enterprise';
+    public const TYPE_LOCAL = 'local';
+
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -98,3 +103,4 @@ final class FoundationDeploymentTarget implements Model, JsonSerializable, Deplo
         return $this->id;
     }
 }
+

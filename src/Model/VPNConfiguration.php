@@ -14,6 +14,14 @@ use JsonSerializable;
  */
 final class VPNConfiguration implements Model, JsonSerializable
 {
+
+    public const VERSION_NUMBER_1 = 1;
+    public const VERSION_NUMBER_2 = 2;
+    public const AGGRESSIVE_NO = 'no';
+    public const AGGRESSIVE_YES = 'yes';
+    public const MODECONFIG_PULL = 'pull';
+    public const MODECONFIG_PUSH = 'push';
+
     public function __construct(
         private readonly int $version,
         private readonly string $aggressive,
@@ -169,3 +177,4 @@ final class VPNConfiguration implements Model, JsonSerializable
         return $this->margintime;
     }
 }
+

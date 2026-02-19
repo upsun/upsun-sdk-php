@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class DiscountDiscount implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?CurrencyAmountNullable $commitmentPeriod = null,
         private readonly ?CurrencyAmountNullable $contractTotal = null,
@@ -65,3 +67,4 @@ final class DiscountDiscount implements Model, JsonSerializable
         return $this->contractTotal;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class RegionProvider implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?string $logo = null,
@@ -49,3 +51,4 @@ final class RegionProvider implements Model, JsonSerializable
         return $this->logo;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Metrics implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $maxRange,
     ) {
@@ -44,3 +46,4 @@ final class Metrics implements Model, JsonSerializable
         return $this->maxRange;
     }
 }
+

@@ -14,6 +14,14 @@ use Upsun\Model\Integration;
  */
 final class GithubIntegration implements Model, JsonSerializable, Integration
 {
+
+    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
+    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
+    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
+    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
+    public const TOKEN_TYPE_CLASSIC_PERSONAL_TOKEN = 'classic_personal_token';
+    public const TOKEN_TYPE_GITHUB_APP = 'github_app';
+
     public function __construct(
         private readonly string $type,
         private readonly bool $fetchBranches,
@@ -172,3 +180,4 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
         return $this->id;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class EstimationObject implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $plan = null,
         private readonly ?string $userLicenses = null,
@@ -95,3 +97,4 @@ final class EstimationObject implements Model, JsonSerializable
         return $this->options;
     }
 }
+

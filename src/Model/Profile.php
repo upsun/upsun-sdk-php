@@ -14,6 +14,13 @@ use JsonSerializable;
  */
 final class Profile implements Model, JsonSerializable
 {
+
+    public const TYPE_USER = 'user';
+    public const TYPE_ORGANIZATION = 'organization';
+    public const CUSTOMER_TYPE_INDIVIDUAL = 'individual';
+    public const CUSTOMER_TYPE_CORPORATION = 'corporation';
+    public const CUSTOMER_TYPE_GOVERNMENT = 'government';
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $displayName = null,
@@ -255,3 +262,4 @@ final class Profile implements Model, JsonSerializable
         return $this->customerType;
     }
 }
+

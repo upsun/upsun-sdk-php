@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class PrepaymentObjectPrepayment implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $lastUpdatedAt = null,
         private readonly ?string $fallback = null,
@@ -85,3 +87,4 @@ final class PrepaymentObjectPrepayment implements Model, JsonSerializable
         return $this->fallback;
     }
 }
+

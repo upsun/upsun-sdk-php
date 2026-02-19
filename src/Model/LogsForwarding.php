@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class LogsForwarding implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $maxExtraPayloadSize,
     ) {
@@ -44,3 +46,4 @@ final class LogsForwarding implements Model, JsonSerializable
         return $this->maxExtraPayloadSize;
     }
 }
+

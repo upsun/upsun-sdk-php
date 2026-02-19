@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ListOrgPrepaymentTransactions200ResponseLinksPrepayment implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $href = null,
     ) {
@@ -41,3 +43,4 @@ final class ListOrgPrepaymentTransactions200ResponseLinksPrepayment implements M
         return $this->href;
     }
 }
+

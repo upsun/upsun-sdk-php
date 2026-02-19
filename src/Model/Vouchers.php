@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Vouchers implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $uuid = null,
         private readonly ?string $vouchersTotal = null,
@@ -102,3 +104,4 @@ final class Vouchers implements Model, JsonSerializable
         return $this->links;
     }
 }
+

@@ -14,6 +14,8 @@ use Upsun\Model\Domain;
  */
 final class ProdDomainStorage implements Model, JsonSerializable, Domain
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -110,3 +112,4 @@ final class ProdDomainStorage implements Model, JsonSerializable, Domain
         return $this->isDefault;
     }
 }
+

@@ -13,6 +13,11 @@ use JsonSerializable;
  */
 final class AccessControlInner implements Model, JsonSerializable
 {
+
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_CONTRIBUTOR = 'contributor';
+    public const ROLE_VIEWER = 'viewer';
+
     public function __construct(
         private readonly string $entityId,
         private readonly string $role,
@@ -48,3 +53,4 @@ final class AccessControlInner implements Model, JsonSerializable
         return $this->role;
     }
 }
+

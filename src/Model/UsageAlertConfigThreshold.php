@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class UsageAlertConfigThreshold implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?float $amount = null,
@@ -65,3 +67,4 @@ final class UsageAlertConfigThreshold implements Model, JsonSerializable
         return $this->unit;
     }
 }
+

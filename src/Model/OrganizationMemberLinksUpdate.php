@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrganizationMemberLinksUpdate implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $href = null,
         private readonly ?string $method = null,
@@ -55,3 +57,4 @@ final class OrganizationMemberLinksUpdate implements Model, JsonSerializable
         return $this->method;
     }
 }
+

@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class HostsInner implements Model, JsonSerializable
 {
+
+    public const TYPE_CORE = 'core';
+    public const TYPE_SATELLITE = 'satellite';
+
     public function __construct(
         private readonly string $type,
         private readonly ?string $id,
@@ -55,3 +59,4 @@ final class HostsInner implements Model, JsonSerializable
         return $this->services;
     }
 }
+

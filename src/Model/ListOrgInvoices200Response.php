@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ListOrgInvoices200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $items = [],
     ) {
@@ -43,3 +45,4 @@ final class ListOrgInvoices200Response implements Model, JsonSerializable
         return $this->items;
     }
 }
+

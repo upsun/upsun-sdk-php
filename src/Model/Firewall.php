@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Firewall implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $outbound,
     ) {
@@ -43,3 +45,4 @@ final class Firewall implements Model, JsonSerializable
         return $this->outbound;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class AcceptedResponse implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $status,
         private readonly int $code,
@@ -54,3 +56,4 @@ final class AcceptedResponse implements Model, JsonSerializable
         return $this->code;
     }
 }
+

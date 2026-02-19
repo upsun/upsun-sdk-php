@@ -13,6 +13,19 @@ use JsonSerializable;
  */
 final class Team implements Model, JsonSerializable
 {
+
+    public const PROJECT_PERMISSIONS_ADMIN = 'admin';
+    public const PROJECT_PERMISSIONS_VIEWER = 'viewer';
+    public const PROJECT_PERMISSIONS_DEVELOPMENT_ADMIN = 'development:admin';
+    public const PROJECT_PERMISSIONS_DEVELOPMENT_CONTRIBUTOR = 'development:contributor';
+    public const PROJECT_PERMISSIONS_DEVELOPMENT_VIEWER = 'development:viewer';
+    public const PROJECT_PERMISSIONS_STAGING_ADMIN = 'staging:admin';
+    public const PROJECT_PERMISSIONS_STAGING_CONTRIBUTOR = 'staging:contributor';
+    public const PROJECT_PERMISSIONS_STAGING_VIEWER = 'staging:viewer';
+    public const PROJECT_PERMISSIONS_PRODUCTION_ADMIN = 'production:admin';
+    public const PROJECT_PERMISSIONS_PRODUCTION_CONTRIBUTOR = 'production:contributor';
+    public const PROJECT_PERMISSIONS_PRODUCTION_VIEWER = 'production:viewer';
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $organizationId = null,
@@ -98,3 +111,4 @@ final class Team implements Model, JsonSerializable
         return $this->updatedAt;
     }
 }
+

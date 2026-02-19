@@ -14,6 +14,13 @@ use Upsun\Model\Integration;
  */
 final class SyslogIntegration implements Model, JsonSerializable, Integration
 {
+
+    public const PROTOCOL_TCP = 'tcp';
+    public const PROTOCOL_TLS = 'tls';
+    public const PROTOCOL_UDP = 'udp';
+    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
+    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
+
     public function __construct(
         private readonly string $type,
         private readonly array $extra,
@@ -146,3 +153,4 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
         return $this->id;
     }
 }
+

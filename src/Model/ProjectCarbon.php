@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectCarbon implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $projectId = null,
         private readonly ?string $projectTitle = null,
@@ -81,3 +83,4 @@ final class ProjectCarbon implements Model, JsonSerializable
         return $this->total;
     }
 }
+

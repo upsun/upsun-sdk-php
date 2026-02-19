@@ -13,6 +13,9 @@ use JsonSerializable;
  */
 final class GoogleSSOConfig implements Model, JsonSerializable
 {
+
+    public const PROVIDER_TYPE_GOOGLE = 'google';
+
     public function __construct(
         private readonly ?string $providerType = null,
         private readonly ?string $domain = null,
@@ -54,3 +57,4 @@ final class GoogleSSOConfig implements Model, JsonSerializable
         return $this->domain;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class HTTPLogForwarding implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?bool $enabled = null,
         private readonly ?string $role = null,
@@ -55,3 +57,4 @@ final class HTTPLogForwarding implements Model, JsonSerializable
         return $this->role;
     }
 }
+

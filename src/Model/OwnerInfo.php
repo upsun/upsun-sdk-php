@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OwnerInfo implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $type = null,
         private readonly ?string $username = null,
@@ -65,3 +67,4 @@ final class OwnerInfo implements Model, JsonSerializable
         return $this->displayName;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class HalLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?HalLinksSelf $self = null,
         private readonly ?HalLinksPrevious $previous = null,
@@ -65,3 +67,4 @@ final class HalLinks implements Model, JsonSerializable
         return $this->next;
     }
 }
+

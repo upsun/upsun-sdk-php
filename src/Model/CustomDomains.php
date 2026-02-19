@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CustomDomains implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
         private readonly int $environmentsWithDomainsLimit,
@@ -54,3 +56,4 @@ final class CustomDomains implements Model, JsonSerializable
         return $this->environmentsWithDomainsLimit;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrderBillingPeriodLabel implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?string $month = null,
@@ -75,3 +77,4 @@ final class OrderBillingPeriodLabel implements Model, JsonSerializable
         return $this->nextMonth;
     }
 }
+

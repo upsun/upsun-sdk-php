@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Integrations implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
         private readonly ?Config $config = null,
@@ -58,3 +60,4 @@ final class Integrations implements Model, JsonSerializable
         return $this->allowedIntegrations;
     }
 }
+

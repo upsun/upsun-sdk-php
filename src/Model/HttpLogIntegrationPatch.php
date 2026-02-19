@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationPatch;
  */
 final class HttpLogIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -80,3 +82,4 @@ final class HttpLogIntegrationPatch implements Model, JsonSerializable, Integrat
         return $this->excludedServices;
     }
 }
+

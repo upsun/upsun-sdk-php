@@ -13,6 +13,14 @@ use JsonSerializable;
  */
 final class MountsValue implements Model, JsonSerializable
 {
+
+    public const SOURCE_INSTANCE = 'instance';
+    public const SOURCE_LOCAL = 'local';
+    public const SOURCE_SERVICE = 'service';
+    public const SOURCE_STORAGE = 'storage';
+    public const SOURCE_TEMPORARY = 'temporary';
+    public const SOURCE_TMP = 'tmp';
+
     public function __construct(
         private readonly string $source,
         private readonly string $sourcePath,
@@ -55,3 +63,4 @@ final class MountsValue implements Model, JsonSerializable
         return $this->service;
     }
 }
+

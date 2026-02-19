@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class MetricsValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly mixed $value = null,
         private readonly mixed $startTime = null,
@@ -54,3 +56,4 @@ final class MetricsValue implements Model, JsonSerializable
         return $this->startTime;
     }
 }
+

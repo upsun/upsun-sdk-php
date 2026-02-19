@@ -13,6 +13,11 @@ use JsonSerializable;
  */
 final class EnvironmentPatch implements Model, JsonSerializable
 {
+
+    public const TYPE_DEVELOPMENT = 'development';
+    public const TYPE_PRODUCTION = 'production';
+    public const TYPE_STAGING = 'staging';
+
     public function __construct(
         private readonly ?string $parent = null,
         private readonly ?string $name = null,
@@ -121,3 +126,4 @@ final class EnvironmentPatch implements Model, JsonSerializable
         return $this->restrictRobots;
     }
 }
+

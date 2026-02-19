@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class LineItemComponent implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?float $amount = null,
         private readonly ?string $amountFormatted = null,
@@ -75,3 +77,4 @@ final class LineItemComponent implements Model, JsonSerializable
         return $this->currency;
     }
 }
+

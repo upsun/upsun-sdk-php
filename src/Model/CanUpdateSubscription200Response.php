@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CanUpdateSubscription200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?bool $canUpdate = null,
         private readonly ?string $message = null,
@@ -55,3 +57,4 @@ final class CanUpdateSubscription200Response implements Model, JsonSerializable
         return $this->requiredAction;
     }
 }
+

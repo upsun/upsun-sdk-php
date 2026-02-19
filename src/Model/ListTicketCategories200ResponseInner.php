@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ListTicketCategories200ResponseInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $label = null,
@@ -48,3 +50,4 @@ final class ListTicketCategories200ResponseInner implements Model, JsonSerializa
         return $this->label;
     }
 }
+

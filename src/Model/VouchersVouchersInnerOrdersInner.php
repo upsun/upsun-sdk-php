@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class VouchersVouchersInnerOrdersInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $orderId = null,
         private readonly ?string $status = null,
@@ -83,3 +85,4 @@ final class VouchersVouchersInnerOrdersInner implements Model, JsonSerializable
         return $this->currency;
     }
 }
+

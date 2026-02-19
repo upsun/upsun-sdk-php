@@ -4,7 +4,6 @@ namespace Upsun\Core\Tasks;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
-use Upsun\Api\DeploymentApi;
 use Upsun\Model\WorkersValue;
 use Upsun\UpsunClient;
 
@@ -19,7 +18,6 @@ class WorkersTask extends TaskBase
 {
     public function __construct(
         UpsunClient $client,
-        private readonly DeploymentApi $api,
     ) {
         parent::__construct($client);
     }
@@ -29,17 +27,19 @@ class WorkersTask extends TaskBase
      *
      * @throws ApiException
      * @throws ClientExceptionInterface
-     * @return WorkersValue[]
+     * @return array<string, WorkersValue>
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $allDeployments = $this->api->listProjectsEnvironmentsDeployments(
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        $currentDeployment = $this->client->environments->getDeployment(
             projectId: $projectId,
-            environmentId: $environmentId
+            environmentId: $environmentId,
+            deploymentId: 'current'
         );
 
-        $deployment = reset($allDeployments);
-
-        return $deployment?->getWorkers() ?? [];
+        return $currentDeployment?->getWorkers() ?? [];
     }
 }

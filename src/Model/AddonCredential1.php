@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class AddonCredential1 implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $addonKey,
         private readonly string $clientKey,
@@ -65,3 +67,4 @@ final class AddonCredential1 implements Model, JsonSerializable
         return $this->sharedSecret;
     }
 }
+

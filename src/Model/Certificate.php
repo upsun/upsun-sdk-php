@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Certificate implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $certificate,
@@ -146,3 +148,4 @@ final class Certificate implements Model, JsonSerializable
         return $this->expiresAt;
     }
 }
+

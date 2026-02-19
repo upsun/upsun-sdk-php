@@ -14,6 +14,21 @@ use JsonSerializable;
  */
 final class SubscriptionInformation implements Model, JsonSerializable
 {
+
+    public const PLAN__2XLARGE = '2xlarge';
+    public const PLAN__2XLARGE_HIGH_MEMORY = '2xlarge-high-memory';
+    public const PLAN__4XLARGE = '4xlarge';
+    public const PLAN__8XLARGE = '8xlarge';
+    public const PLAN_DEVELOPMENT = 'development';
+    public const PLAN_LARGE = 'large';
+    public const PLAN_LARGE_HIGH_MEMORY = 'large-high-memory';
+    public const PLAN_MEDIUM = 'medium';
+    public const PLAN_MEDIUM_HIGH_MEMORY = 'medium-high-memory';
+    public const PLAN_STANDARD = 'standard';
+    public const PLAN_STANDARD_HIGH_MEMORY = 'standard-high-memory';
+    public const PLAN_XLARGE = 'xlarge';
+    public const PLAN_XLARGE_HIGH_MEMORY = 'xlarge-high-memory';
+
     public function __construct(
         private readonly string $licenseUri,
         private readonly int $storage,
@@ -152,3 +167,4 @@ final class SubscriptionInformation implements Model, JsonSerializable
         return $this->imageTypes;
     }
 }
+

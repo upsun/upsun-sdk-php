@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateUserRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $username = null,
         private readonly ?string $firstName = null,
@@ -83,3 +85,4 @@ final class UpdateUserRequest implements Model, JsonSerializable
         return $this->country;
     }
 }
+

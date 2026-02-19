@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectAddonWithQuantityFields implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $quantity,
     ) {
@@ -44,3 +46,4 @@ final class ProjectAddonWithQuantityFields implements Model, JsonSerializable
         return $this->quantity;
     }
 }
+

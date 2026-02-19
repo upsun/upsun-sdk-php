@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class OrganizationProject implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $activities = [],
         private readonly ?ProjectOptionsAggregated $projectOptions = null,
@@ -209,3 +211,4 @@ final class OrganizationProject implements Model, JsonSerializable
         return $this->links;
     }
 }
+

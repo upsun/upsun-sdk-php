@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Version implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly bool $locked,
@@ -74,3 +76,4 @@ final class Version implements Model, JsonSerializable
         return $this->routing;
     }
 }
+

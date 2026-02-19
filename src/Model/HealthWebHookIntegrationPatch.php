@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationPatch;
  */
 final class HealthWebHookIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -62,3 +64,4 @@ final class HealthWebHookIntegrationPatch implements Model, JsonSerializable, In
         return $this->sharedKey;
     }
 }
+

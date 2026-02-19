@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ResourceConfig implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $profileSize = null,
     ) {
@@ -44,3 +46,4 @@ final class ResourceConfig implements Model, JsonSerializable
         return $this->profileSize;
     }
 }
+

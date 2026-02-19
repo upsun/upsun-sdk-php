@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class Blob implements Model, JsonSerializable
 {
+
+    public const ENCODING_BASE64 = 'base64';
+    public const ENCODING_UTF_8 = 'utf-8';
+
     public function __construct(
         private readonly string $id,
         private readonly string $sha,
@@ -84,3 +88,4 @@ final class Blob implements Model, JsonSerializable
         return $this->content;
     }
 }
+

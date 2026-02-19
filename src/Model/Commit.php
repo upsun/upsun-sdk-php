@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Commit implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $sha,
@@ -101,3 +103,4 @@ final class Commit implements Model, JsonSerializable
         return $this->parents;
     }
 }
+

@@ -14,6 +14,11 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class WebHookIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+    public const RESULT_STAR = '*';
+    public const RESULT_FAILURE = 'failure';
+    public const RESULT_SUCCESS = 'success';
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -100,3 +105,4 @@ final class WebHookIntegrationCreateInput implements Model, JsonSerializable, In
         return $this->sharedKey;
     }
 }
+

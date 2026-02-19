@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class SplunkIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -106,3 +108,4 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable, Int
         return $this->excludedServices;
     }
 }
+

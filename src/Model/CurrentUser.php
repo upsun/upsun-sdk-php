@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class CurrentUser implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $uuid = null,
@@ -163,3 +165,4 @@ final class CurrentUser implements Model, JsonSerializable
         return $this->tickets;
     }
 }
+

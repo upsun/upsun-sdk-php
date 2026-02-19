@@ -14,6 +14,11 @@ use JsonSerializable;
  */
 final class CronsDeploymentState implements Model, JsonSerializable
 {
+
+    public const STATUS_PAUSED = 'paused';
+    public const STATUS_RUNNING = 'running';
+    public const STATUS_SLEEPING = 'sleeping';
+
     public function __construct(
         private readonly bool $enabled,
         private readonly string $status,
@@ -55,3 +60,4 @@ final class CronsDeploymentState implements Model, JsonSerializable
         return $this->status;
     }
 }
+

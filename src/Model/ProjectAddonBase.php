@@ -13,6 +13,11 @@ use JsonSerializable;
  */
 final class ProjectAddonBase implements Model, JsonSerializable
 {
+
+    public const STATUS_REQUESTED = 'requested';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_FAILED = 'failed';
+
     public function __construct(
         private readonly string $id,
         private readonly string $type,
@@ -143,3 +148,4 @@ final class ProjectAddonBase implements Model, JsonSerializable
         return $this->links;
     }
 }
+

@@ -32,6 +32,10 @@ class ApplicationsTask extends TaskBase
      */
     public function configGet(string $projectId, string $environmentId, string $applicationId): ?WebApplicationsValue
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+        $this->checkApplicationId($applicationId);
+
         $applicationList = $this->list(projectId: $projectId, environmentId: $environmentId);
         return $applicationList[$applicationId] ?? null;
     }
@@ -41,17 +45,19 @@ class ApplicationsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return WebApplicationsValue[]
+     * @return array<string, WebApplicationsValue>
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $deployments = $this->api->listProjectsEnvironmentsDeployments(
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        $currentDeployment = $this->client->environments->getDeployment(
             projectId: $projectId,
-            environmentId: $environmentId
+            environmentId: $environmentId,
+            deploymentId: 'current'
         );
 
-        $deployments = reset($deployments);
-
-        return !empty($deployments) ? $deployments->getWebapps() : [];
+        return $currentDeployment?->getWebapps() ?? [];
     }
 }

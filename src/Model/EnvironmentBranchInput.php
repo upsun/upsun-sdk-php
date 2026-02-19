@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class EnvironmentBranchInput implements Model, JsonSerializable
 {
+
+    public const TYPE_DEVELOPMENT = 'development';
+    public const TYPE_STAGING = 'staging';
+
     public function __construct(
         private readonly string $title,
         private readonly string $name,
@@ -75,3 +79,4 @@ final class EnvironmentBranchInput implements Model, JsonSerializable
         return $this->resources;
     }
 }
+

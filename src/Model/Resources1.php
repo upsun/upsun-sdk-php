@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Resources1 implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $profileSize,
     ) {
@@ -41,3 +43,4 @@ final class Resources1 implements Model, JsonSerializable
         return $this->profileSize;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ResetEmailAddressRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $emailAddress,
     ) {
@@ -41,3 +43,4 @@ final class ResetEmailAddressRequest implements Model, JsonSerializable
         return $this->emailAddress;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class OrganizationCarbon implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $organizationId = null,
         private readonly ?MetricsMetadata $meta = null,
@@ -71,3 +73,4 @@ final class OrganizationCarbon implements Model, JsonSerializable
         return $this->total;
     }
 }
+

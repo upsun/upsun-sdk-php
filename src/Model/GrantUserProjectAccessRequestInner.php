@@ -13,6 +13,19 @@ use JsonSerializable;
  */
 final class GrantUserProjectAccessRequestInner implements Model, JsonSerializable
 {
+
+    public const PERMISSIONS_ADMIN = 'admin';
+    public const PERMISSIONS_VIEWER = 'viewer';
+    public const PERMISSIONS_DEVELOPMENT_ADMIN = 'development:admin';
+    public const PERMISSIONS_DEVELOPMENT_CONTRIBUTOR = 'development:contributor';
+    public const PERMISSIONS_DEVELOPMENT_VIEWER = 'development:viewer';
+    public const PERMISSIONS_STAGING_ADMIN = 'staging:admin';
+    public const PERMISSIONS_STAGING_CONTRIBUTOR = 'staging:contributor';
+    public const PERMISSIONS_STAGING_VIEWER = 'staging:viewer';
+    public const PERMISSIONS_PRODUCTION_ADMIN = 'production:admin';
+    public const PERMISSIONS_PRODUCTION_CONTRIBUTOR = 'production:contributor';
+    public const PERMISSIONS_PRODUCTION_VIEWER = 'production:viewer';
+
     public function __construct(
         private readonly string $projectId,
         private readonly array $permissions,
@@ -48,3 +61,4 @@ final class GrantUserProjectAccessRequestInner implements Model, JsonSerializabl
         return $this->permissions;
     }
 }
+

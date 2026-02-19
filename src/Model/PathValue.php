@@ -13,6 +13,12 @@ use JsonSerializable;
  */
 final class PathValue implements Model, JsonSerializable
 {
+
+    public const CODE_NUMBER_301 = 301;
+    public const CODE_NUMBER_302 = 302;
+    public const CODE_NUMBER_307 = 307;
+    public const CODE_NUMBER_308 = 308;
+
     public function __construct(
         private readonly bool $regexp,
         private readonly string $to,
@@ -76,3 +82,4 @@ final class PathValue implements Model, JsonSerializable
         return $this->expires;
     }
 }
+

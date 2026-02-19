@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ListRegions200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $regions = [],
@@ -58,3 +60,4 @@ final class ListRegions200Response implements Model, JsonSerializable
         return $this->links;
     }
 }
+

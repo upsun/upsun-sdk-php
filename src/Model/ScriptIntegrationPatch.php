@@ -14,6 +14,11 @@ use Upsun\Model\IntegrationPatch;
  */
 final class ScriptIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
+
+    public const RESULT_STAR = '*';
+    public const RESULT_FAILURE = 'failure';
+    public const RESULT_SUCCESS = 'success';
+
     public function __construct(
         private readonly string $type,
         private readonly string $script,
@@ -90,3 +95,4 @@ final class ScriptIntegrationPatch implements Model, JsonSerializable, Integrati
         return $this->result;
     }
 }
+

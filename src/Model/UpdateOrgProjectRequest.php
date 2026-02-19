@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateOrgProjectRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $title = null,
         private readonly ?string $plan = null,
@@ -64,3 +66,4 @@ final class UpdateOrgProjectRequest implements Model, JsonSerializable
         return $this->timezone;
     }
 }
+

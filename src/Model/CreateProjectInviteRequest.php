@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class CreateProjectInviteRequest implements Model, JsonSerializable
 {
+
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_VIEWER = 'viewer';
+
     public function __construct(
         private readonly string $email,
         private readonly ?string $role = null,
@@ -75,3 +79,4 @@ final class CreateProjectInviteRequest implements Model, JsonSerializable
         return $this->force;
     }
 }
+

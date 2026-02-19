@@ -14,6 +14,12 @@ use Upsun\Model\Integration;
  */
 final class BitbucketServerIntegration implements Model, JsonSerializable, Integration
 {
+
+    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
+    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
+    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
+    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
+
     public function __construct(
         private readonly string $type,
         private readonly bool $fetchBranches,
@@ -162,3 +168,4 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
         return $this->id;
     }
 }
+

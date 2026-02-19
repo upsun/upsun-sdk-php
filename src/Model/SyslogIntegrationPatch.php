@@ -14,6 +14,15 @@ use Upsun\Model\IntegrationPatch;
  */
 final class SyslogIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
+
+    public const PROTOCOL_TCP = 'tcp';
+    public const PROTOCOL_TLS = 'tls';
+    public const PROTOCOL_UDP = 'udp';
+    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
+    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
+    public const AUTH_MODE_PREFIX = 'prefix';
+    public const AUTH_MODE_STRUCTURED_DATA = 'structured_data';
+
     public function __construct(
         private readonly string $type,
         private readonly ?array $extra = [],
@@ -130,3 +139,4 @@ final class SyslogIntegrationPatch implements Model, JsonSerializable, Integrati
         return $this->excludedServices;
     }
 }
+

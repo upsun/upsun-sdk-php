@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class VouchersLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?VouchersLinksSelf $self = null,
     ) {
@@ -44,3 +46,4 @@ final class VouchersLinks implements Model, JsonSerializable
         return $this->self;
     }
 }
+

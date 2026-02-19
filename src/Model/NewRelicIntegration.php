@@ -14,6 +14,8 @@ use Upsun\Model\Integration;
  */
 final class NewRelicIntegration implements Model, JsonSerializable, Integration
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly array $extra,
@@ -103,3 +105,4 @@ final class NewRelicIntegration implements Model, JsonSerializable, Integration
         return $this->id;
     }
 }
+

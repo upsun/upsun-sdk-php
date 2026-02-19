@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrganizationReference implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $type = null,
@@ -115,3 +117,4 @@ final class OrganizationReference implements Model, JsonSerializable
         return $this->updatedAt;
     }
 }
+

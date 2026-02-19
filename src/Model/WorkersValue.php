@@ -13,6 +13,19 @@ use JsonSerializable;
  */
 final class WorkersValue implements Model, JsonSerializable
 {
+
+    public const SIZE__2_XL = '2XL';
+    public const SIZE__4_XL = '4XL';
+    public const SIZE_AUTO = 'AUTO';
+    public const SIZE_L = 'L';
+    public const SIZE_M = 'M';
+    public const SIZE_S = 'S';
+    public const SIZE_XL = 'XL';
+    public const SIZE_XS = 'XS';
+    public const ACCESS_ADMIN = 'admin';
+    public const ACCESS_CONTRIBUTOR = 'contributor';
+    public const ACCESS_VIEWER = 'viewer';
+
     public function __construct(
         private readonly string $size,
         private readonly array $access,
@@ -211,3 +224,4 @@ final class WorkersValue implements Model, JsonSerializable
         return $this->slugId;
     }
 }
+

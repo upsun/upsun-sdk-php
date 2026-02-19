@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class CacheConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
         private readonly int $defaultTtl,
@@ -69,3 +71,4 @@ final class CacheConfiguration implements Model, JsonSerializable
         return $this->headers;
     }
 }
+

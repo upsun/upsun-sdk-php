@@ -13,6 +13,10 @@ use JsonSerializable;
  */
 final class User implements Model, JsonSerializable
 {
+
+    public const CONSENT_METHOD_OPT_IN = 'opt-in';
+    public const CONSENT_METHOD_TEXT_REF = 'text-ref';
+
     public function __construct(
         private readonly string $id,
         private readonly bool $deactivated,
@@ -194,3 +198,4 @@ final class User implements Model, JsonSerializable
         return $this->consentMethod;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectVariableCreateInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $name,
         private readonly string $value,
@@ -108,3 +110,4 @@ final class ProjectVariableCreateInput implements Model, JsonSerializable
         return $this->applicationScope;
     }
 }
+

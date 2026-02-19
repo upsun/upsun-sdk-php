@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class TeamProjectAccessLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?TeamProjectAccessLinksUpdate $update = null,
         private readonly ?TeamProjectAccessLinksDelete $delete = null,
@@ -64,3 +66,4 @@ final class TeamProjectAccessLinks implements Model, JsonSerializable
         return $this->delete;
     }
 }
+

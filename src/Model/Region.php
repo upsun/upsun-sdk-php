@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class Region implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $label = null,
@@ -156,3 +158,4 @@ final class Region implements Model, JsonSerializable
         return $this->environmentalImpact;
     }
 }
+

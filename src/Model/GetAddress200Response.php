@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class GetAddress200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $country = null,
         private readonly ?string $nameLine = null,
@@ -144,3 +146,4 @@ final class GetAddress200Response implements Model, JsonSerializable
         return $this->metadata;
     }
 }
+

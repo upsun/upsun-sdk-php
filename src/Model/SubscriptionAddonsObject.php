@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class SubscriptionAddonsObject implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?SubscriptionAddonsObjectAvailable $available = null,
         private readonly ?SubscriptionAddonsObjectCurrent $current = null,
@@ -65,3 +67,4 @@ final class SubscriptionAddonsObject implements Model, JsonSerializable
         return $this->upgradesAvailable;
     }
 }
+

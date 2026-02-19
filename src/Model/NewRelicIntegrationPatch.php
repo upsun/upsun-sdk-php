@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationPatch;
  */
 final class NewRelicIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -83,3 +85,4 @@ final class NewRelicIntegrationPatch implements Model, JsonSerializable, Integra
         return $this->excludedServices;
     }
 }
+

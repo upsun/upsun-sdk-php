@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class NewRelicIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -83,3 +85,4 @@ final class NewRelicIntegrationCreateInput implements Model, JsonSerializable, I
         return $this->excludedServices;
     }
 }
+

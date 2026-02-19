@@ -14,6 +14,8 @@ use Upsun\Model\IntegrationPatch;
  */
 final class SlackIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $token,
@@ -62,3 +64,4 @@ final class SlackIntegrationPatch implements Model, JsonSerializable, Integratio
         return $this->channel;
     }
 }
+

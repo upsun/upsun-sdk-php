@@ -14,6 +14,11 @@ use Upsun\Model\DeploymentTargetCreateInput;
  */
 final class EnterpriseDeploymentTargetCreateInput implements Model, JsonSerializable, DeploymentTargetCreateInput
 {
+
+    public const TYPE_DEDICATED = 'dedicated';
+    public const TYPE_ENTERPRISE = 'enterprise';
+    public const TYPE_LOCAL = 'local';
+
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -79,3 +84,4 @@ final class EnterpriseDeploymentTargetCreateInput implements Model, JsonSerializ
         return $this->enterpriseEnvironmentsMapping;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class AggregatedFeatures implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?object $backups = null,
     ) {
@@ -44,3 +46,4 @@ final class AggregatedFeatures implements Model, JsonSerializable
         return $this->backups;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class CurrencyAmountNullable implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?float $amount = null,
@@ -75,3 +77,4 @@ final class CurrencyAmountNullable implements Model, JsonSerializable
         return $this->currencySymbol;
     }
 }
+

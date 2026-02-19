@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CertificateCreateInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $certificate,
         private readonly string $key,
@@ -71,3 +73,4 @@ final class CertificateCreateInput implements Model, JsonSerializable
         return $this->isInvalid;
     }
 }
+

@@ -14,6 +14,8 @@ use Upsun\Model\Integration;
  */
 final class EmailIntegration implements Model, JsonSerializable, Integration
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly array $recipients,
@@ -89,3 +91,4 @@ final class EmailIntegration implements Model, JsonSerializable, Integration
         return $this->id;
     }
 }
+

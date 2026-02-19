@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class EnvironmentVariablesInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $name,
         private readonly bool $isSensitive,
@@ -76,3 +78,4 @@ final class EnvironmentVariablesInner implements Model, JsonSerializable
         return $this->value;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ListOrgPrepaymentTransactions200ResponseLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
         private readonly ?ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous = null,
@@ -62,3 +64,4 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements Model, Json
         return $this->prepayment;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrganizationMfaEnforcement implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?bool $enforceMfa = null,
     ) {
@@ -45,3 +47,4 @@ final class OrganizationMfaEnforcement implements Model, JsonSerializable
         return $this->enforceMfa;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ArrayFilter implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $eq = null,
         private readonly ?string $ne = null,
@@ -74,3 +76,4 @@ final class ArrayFilter implements Model, JsonSerializable
         return $this->nin;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class DevelopmentResources implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $legacyDevelopment,
         private readonly ?float $maxCpu,
@@ -75,3 +77,4 @@ final class DevelopmentResources implements Model, JsonSerializable
         return $this->maxEnvironments;
     }
 }
+

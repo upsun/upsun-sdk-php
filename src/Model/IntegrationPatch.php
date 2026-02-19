@@ -21,3 +21,4 @@ interface IntegrationPatch
 
     public function getType(): string;
 }
+

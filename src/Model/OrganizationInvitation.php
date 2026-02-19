@@ -13,6 +13,19 @@ use JsonSerializable;
  */
 final class OrganizationInvitation implements Model, JsonSerializable
 {
+
+    public const STATE_PENDING = 'pending';
+    public const STATE_PROCESSING = 'processing';
+    public const STATE_ACCEPTED = 'accepted';
+    public const STATE_CANCELLED = 'cancelled';
+    public const STATE_ERROR = 'error';
+    public const PERMISSIONS_ADMIN = 'admin';
+    public const PERMISSIONS_BILLING = 'billing';
+    public const PERMISSIONS_PLANS = 'plans';
+    public const PERMISSIONS_MEMBERS = 'members';
+    public const PERMISSIONS_PROJECT_CREATE = 'project:create';
+    public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
+
     public function __construct(
         private readonly ?\DateTime $finishedAt = null,
         private readonly ?string $id = null,
@@ -121,3 +134,4 @@ final class OrganizationInvitation implements Model, JsonSerializable
         return $this->permissions;
     }
 }
+

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ListLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?Link $self = null,
         private readonly ?Link $previous = null,
@@ -64,3 +66,4 @@ final class ListLinks implements Model, JsonSerializable
         return $this->next;
     }
 }
+

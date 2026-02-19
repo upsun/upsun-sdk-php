@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class OrganizationInvitationOwner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $displayName = null,
@@ -55,3 +57,4 @@ final class OrganizationInvitationOwner implements Model, JsonSerializable
         return $this->displayName;
     }
 }
+
