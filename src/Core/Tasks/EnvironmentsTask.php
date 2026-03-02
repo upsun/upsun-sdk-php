@@ -5,13 +5,11 @@ namespace Upsun\Core\Tasks;
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
-use Upsun\Api\AutoscalingApi;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
-use Upsun\Model\AutoscalerSettings;
 use Upsun\Model\Backup;
 use Upsun\Model\Deployment;
 use Upsun\Model\Domain;
@@ -26,7 +24,6 @@ use Upsun\Model\EnvironmentPatch;
 use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Model\EnvironmentSynchronizeInput;
 use Upsun\Model\EnvironmentType;
-use Upsun\Model\EnvironmentTypeEnum;
 use Upsun\Model\EnvironmentVariable;
 use Upsun\Model\HttpAccessPermissions2;
 use Upsun\Model\ProjectVariable;
@@ -50,10 +47,9 @@ class EnvironmentsTask extends TaskBase
 {
     public function __construct(
         UpsunClient $client,
-        private readonly EnvironmentApi $api,
+        private readonly EnvironmentApi $envApi,
         private readonly EnvironmentTypeApi $typeApi,
         private readonly DeploymentApi $deploymentApi,
-        private readonly AutoscalingApi $autoscalingApi,
     ) {
         parent::__construct($client);
     }
@@ -72,7 +68,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->activateEnvironment(
+        return $this->envApi->activateEnvironment(
             $projectId,
             $environmentId,
             new EnvironmentActivateInput(
@@ -99,7 +95,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->branchEnvironment(
+        return $this->envApi->branchEnvironment(
             projectId: $projectId,
             environmentId: $environmentId,
             environmentBranchInput: new EnvironmentBranchInput(
@@ -123,7 +119,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->deactivateEnvironment($projectId,$environmentId);
+        return $this->envApi->deactivateEnvironment($projectId,$environmentId);
     }
 
     /**
@@ -137,7 +133,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->deleteEnvironment($projectId,$environmentId);
+        return $this->envApi->deleteEnvironment($projectId,$environmentId);
     }
 
     /**
@@ -166,7 +162,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->updateEnvironment(
+        return $this->envApi->updateEnvironment(
             projectId: $projectId,
             environmentId: $environmentId,
             environmentPatch: new EnvironmentPatch(
@@ -191,15 +187,15 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->getEnvironment(
+        return $this->envApi->getEnvironment(
             $projectId,
             $environmentId
         );
     }
 
     /**
-     * Get or Update details of the environment. If params are provided, the environment will be updated with the
-     * specified parameters before returning the details.
+     * Get or Update details of the environment. If extra parameters are provided, the environment will be updated with 
+     * the specified parameters before returning the details.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -275,7 +271,7 @@ class EnvironmentsTask extends TaskBase
             config: $config,
             resources: new Resources4(init: $init),
         );
-        return $this->api->initializeEnvironment(
+        return $this->envApi->initializeEnvironment(
             projectId: $projectId,
             environmentId: $environmentId,
             environmentInitializeInput: $environmentInitializeInput
@@ -294,7 +290,7 @@ class EnvironmentsTask extends TaskBase
     {
         $this->checkProjectId($projectId);
 
-        return $this->api->listProjectsEnvironments(projectId: $projectId);
+        return $this->envApi->listProjectsEnvironments(projectId: $projectId);
     }
 
     //TODO logs
@@ -318,7 +314,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->mergeEnvironment(
+        return $this->envApi->mergeEnvironment(
             $projectId,
             $environmentId,
             environmentMergeInput: new EnvironmentMergeInput(
@@ -339,7 +335,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->pauseEnvironment(projectId: $projectId, environmentId: $environmentId);
+        return $this->envApi->pauseEnvironment(projectId: $projectId, environmentId: $environmentId);
     }
 
     /**
@@ -354,7 +350,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->redeployEnvironment(projectId: $projectId, environmentId: $environmentId);
+        return $this->envApi->redeployEnvironment(projectId: $projectId, environmentId: $environmentId);
     }
 
     /**
@@ -376,7 +372,7 @@ class EnvironmentsTask extends TaskBase
             $applicationId
         );
 
-        return $appConfig ? $appConfig->getRelationships() : [];
+        return $appConfig?->getRelationships() ?? [];
     }
 
     /**
@@ -391,7 +387,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->resumeEnvironment(projectId: $projectId, environmentId: $environmentId);
+        return $this->envApi->resumeEnvironment(projectId: $projectId, environmentId: $environmentId);
     }
 
     /**
@@ -412,7 +408,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->synchronizeEnvironment(
+        return $this->envApi->synchronizeEnvironment(
             $projectId,
             $environmentId,
             environmentSynchronizeInput: new EnvironmentSynchronizeInput(
@@ -459,7 +455,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->api->updateEnvironment(
+        return $this->envApi->updateEnvironment(
             projectId: $projectId,
             environmentId: $environmentId,
             environmentPatch: new EnvironmentPatch(
@@ -671,14 +667,17 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Adds an Environment or Project variable
-     *
+     * Create an environment variable in the environment. Environment variables are used to store configuration values
+     * that can be accessed by the applications running in the environment. The name of the variable must be unique 
+     * within the environment. If a variable with the same name already exists, the API will return an error.
+     * 
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function createVariable(
         string $projectId,
+        string $environmentId,
         string $name,
         string $value,
         ?array $attributes = null,
@@ -689,33 +688,20 @@ class EnvironmentsTask extends TaskBase
         ?array $applicationScope = null,
         ?bool $isEnabled = null,
         ?bool $isInheritable = null,
-        ?string $environmentId = null
     ): AcceptedResponse {
-        return ($environmentId ?
-            $this->client->variables->createEnvironmentVariable(
-                projectId: $projectId,
-                environmentId: $environmentId,
-                name: $name,
-                value: $value,
-                attributes: $attributes,
-                isJson: $isJson,
-                isSensitive: $isSensitive,
-                visibleBuild: $visibleBuild,
-                visibleRuntime: $visibleRuntime,
-                applicationScope: $applicationScope,
-                isEnabled: $isEnabled,
-                isInheritable: $isInheritable,
-            ) : $this->client->variables->createProjectVariable(
-                projectId: $projectId,
-                name: $name,
-                value: $value,
-                attributes: $attributes,
-                isJson: $isJson,
-                isSensitive: $isSensitive,
-                visibleBuild: $visibleBuild,
-                visibleRuntime: $visibleRuntime,
-                applicationScope: $applicationScope,
-            )
+        return $this->client->variables->createEnvironmentVariable(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            name: $name,
+            value: $value,
+            attributes: $attributes,
+            isJson: $isJson,
+            isSensitive: $isSensitive,
+            visibleBuild: $visibleBuild,
+            visibleRuntime: $visibleRuntime,
+            applicationScope: $applicationScope,
+            isEnabled: $isEnabled,
+            isInheritable: $isInheritable,
         );
     }
 
@@ -921,6 +907,7 @@ class EnvironmentsTask extends TaskBase
     /**
      * Updates an environment domain
      *
+     * @param DomainPatch $domainPatch is an instance of ProdDomainStoragePatch or ReplacementDomainStoragePatch
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -975,50 +962,12 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets the autoscaling configuration for an environment
-     *
-     * @throws ClientExceptionInterface
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     */
-    public function getAutoscaling(string $projectId, string $environmentId)
-    {
-        return $this->autoscalingApi->getAutoscalerSettings(
-            projectId: $projectId,
-            environmentId: $environmentId
-        );
-    }
-
-    /**
-     * Updates the autoscaling configuration for an environment
-     *
-     * @param array{
-     *   isEnabled?: bool,
-     *   addresses?: array{
-     *     permission: string,
-     *     address: string,
-     *   },
-     *   basicAuth?: array
-     * } $data
-     * @throws ClientExceptionInterface
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     */
-    public function updateAutoscaling(string $projectId, string $environmentId, array $data): AutoscalerSettings
-    {
-        $autoscalingPatch = new AutoscalerSettings(
-            services: $data
-        );
-        return $this->autoscalingApi->patchAutoscalerSettings(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            autoscalerSettings: $autoscalingPatch
-        );
-    }
-
-    /**
      * Lists source operations
      *
+     * @deprecated  use $client->sourceOperations->list() instead
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return EnvironmentSourceOperation[]
      */
     public function listSourceOperations(string $projectId, string $environmentId): array
@@ -1029,8 +978,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Triggers a source operation
      *
+     * @deprecated use $client->sourceOperations->run() instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function runSourceOperation(
         string $projectId,

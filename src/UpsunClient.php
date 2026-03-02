@@ -241,7 +241,6 @@ class UpsunClient
             $environmentApi,
             $environmentTypeApi,
             $deploymentApi,
-            $autoscalingApi,
         );
         $this->integrations = new IntegrationsTask(
             $this,
