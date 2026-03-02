@@ -13,7 +13,7 @@ use Upsun\Model\Resources6;
 use Upsun\UpsunClient;
 
 /**
- * BackupTask class.
+ * BackupsTask class.
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
@@ -29,7 +29,7 @@ class BackupsTask extends TaskBase
     }
 
     /**
-     * Creates snapshot of environment
+     * Create snapshot of environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -50,7 +50,7 @@ class BackupsTask extends TaskBase
     }
 
     /**
-     * Deletes an environment snapshot
+     * Delete an environment snapshot
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -65,7 +65,7 @@ class BackupsTask extends TaskBase
     }
 
     /**
-     * Gets an environment snapshot's info
+     * Get an environment snapshot's info
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -84,7 +84,7 @@ class BackupsTask extends TaskBase
     }
 
     /**
-     * Gets an environment's snapshot list
+     * Get an environment's snapshot list
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -99,7 +99,7 @@ class BackupsTask extends TaskBase
     }
 
     /**
-     * Restores an environment snapshot
+     * Restore an environment snapshot
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface

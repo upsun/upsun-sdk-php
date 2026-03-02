@@ -31,7 +31,7 @@ class ActivitiesTask extends TaskBase
     }
 
     /**
-     * Cancels a project (or environment) activity
+     * Cancel a project (or environment) activity
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -56,7 +56,7 @@ class ActivitiesTask extends TaskBase
     }
 
     /**
-     * Gets a project (or environment) activity log entry
+     * Get a project (or environment) activity log entry
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -82,7 +82,7 @@ class ActivitiesTask extends TaskBase
     }
 
     /**
-     * Gets project (or environment) activity log
+     * Get project (or environment) activity log
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -104,7 +104,7 @@ class ActivitiesTask extends TaskBase
     }
 
     /**
-     * Streams a project (or environment) activity log in real-time
+     * Stream a project (or environment) activity log in real-time
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -124,13 +124,13 @@ class ActivitiesTask extends TaskBase
         }   
         
         $resourcePath = $environmentId
-            ? sprintf(
+            ? \sprintf(
                 '/projects/%s/environments/%s/activities/%s/log',
                 $projectId,
                 $environmentId,
                 $activityId
             )
-            : sprintf('/projects/%s/activities/%s/log', $projectId, $activityId);
+            : \sprintf('/projects/%s/activities/%s/log', $projectId, $activityId);
 
         $query = $stream ? '?stream=1' : '';
         $uri = rtrim($this->client->apiConfig->getHost(), '/') . $resourcePath . $query;

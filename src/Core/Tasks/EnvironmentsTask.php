@@ -37,7 +37,7 @@ use Upsun\Model\ServiceRelationshipsValue;
 use Upsun\UpsunClient;
 
 /**
- * EnvironmentTask class.
+ * EnvironmentsTask class.
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
@@ -55,7 +55,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Activates an environment
+     * Activate an environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -78,7 +78,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Branchs an environment
+     * Branch an environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -109,7 +109,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Deactivates an environment
+     * Deactivate an environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -123,7 +123,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Deletes an environment
+     * Delete an environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -279,7 +279,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets list of project environments
+     * Get list of project environments
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -303,7 +303,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Merges an environment
+     * Merge an environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -324,7 +324,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Pauses an environment
+     * Pause an environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -339,7 +339,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Redeploys an environment
+     * Redeploy an environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -391,7 +391,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Synchronizes a child environment with its parent
+     * Synchronize a child environment with its parent
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -421,7 +421,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Updates an environment
+     * Update an environment
      *
      * @param null|array{
      *   isEnabled?: bool,
@@ -497,7 +497,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets an environment activity log entry
+     * Get an environment activity log entry
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -513,7 +513,7 @@ class EnvironmentsTask extends TaskBase
             }
 
     /**
-     * Gets an environment activity log entry
+     * Get an environment activity log entry
      *
      * @deprecated use getActivity instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -530,7 +530,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets environment activity log
+     * Get environment activity log
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -543,7 +543,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Creates snapshot of environment
+     * Create snapshot of environment
      * Trigger a backup of the environment. The backup will be created asynchronously, and the API will return
      * a 202 Accepted response if the backup request has been accepted. The client can then check the list of backups to
      * monitor the progress and confirm when the backup is completed.
@@ -574,7 +574,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Deletes an environment snapshot
+     * Delete an environment snapshot
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -590,7 +590,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets an environment snapshot's info
+     * Get an environment snapshot's info
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -606,7 +606,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Restores an environment snapshot
+     * Restore an environment snapshot
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -706,7 +706,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Deletes an environment variable
+     * Delete an environment variable
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -722,7 +722,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets an environment variable
+     * Get an environment variable
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -738,7 +738,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets list of Environment variables
+     * Get list of Environment variables
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -753,8 +753,8 @@ class EnvironmentsTask extends TaskBase
         );
     }
 
-        /**
-     * Gets list of Environment variables
+    /**
+     * Get list of Environment variables
      *
      * @deprecated use listVariables instead
      * @throws ClientExceptionInterface
@@ -771,7 +771,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets list of Project variables
+     * Get list of Project variables
      *
      * @deprecated use $this->client->projects->listVariables instead
      * @throws ClientExceptionInterface
@@ -785,7 +785,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Updates an environment variable
+     * Update an environment variable
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -864,7 +864,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Deletes an environment domain
+     * Delete an environment domain
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -880,7 +880,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets an environment domain
+     * Get an environment domain
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -892,7 +892,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets a list of environment domains
+     * Get a list of environment domains
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -905,7 +905,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Updates an environment domain
+     * Update an environment domain
      *
      * @param DomainPatch $domainPatch is an instance of ProdDomainStoragePatch or ReplacementDomainStoragePatch
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -927,7 +927,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets a single environment deployment
+     * Get a single environment deployment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -947,7 +947,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets an environment's deployment information
+     * Get an environment's deployment information
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -962,7 +962,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Lists source operations
+     * List source operations
      *
      * @deprecated  use $client->sourceOperations->list() instead
      * @throws ClientExceptionInterface
@@ -976,7 +976,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Triggers a source operation
+     * Trigger a source operation
      *
      * @deprecated use $client->sourceOperations->run() instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format

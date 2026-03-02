@@ -13,7 +13,7 @@ use Upsun\Model\DomainPatch;
 use Upsun\UpsunClient;
 
 /**
- * DomainTask class.
+ * DomainsTask class.
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
@@ -29,7 +29,7 @@ class DomainsTask extends TaskBase
     }
 
     /**
-     * Adds a project (or environment) domain
+     * Add a project (or environment) domain
      *
      * @param DomainCreateInput $domainCreateInput is an instance of ProdDomainStoragePatch or ReplacementDomainStoragePatch
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -60,7 +60,7 @@ class DomainsTask extends TaskBase
     }
 
     /**
-     * Deletes a project (or environment) domain
+     * Delete a project (or environment) domain
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -85,7 +85,7 @@ class DomainsTask extends TaskBase
     }
 
     /**
-     * Gets a project (or environment) domain
+     * Get a project (or environment) domain
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -110,7 +110,7 @@ class DomainsTask extends TaskBase
     }
 
     /**
-     * Gets list of project (or environment) domains
+     * Get list of project (or environment) domains
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -131,7 +131,7 @@ class DomainsTask extends TaskBase
     }
 
     /**
-     * Updates a project (or environment) domain
+     * Update a project (or environment) domain
      * 
      * @param DomainPatch $domainPatch is an instance of ProdDomainStoragePatch or ReplacementDomainStoragePatch
      * @throws ApiException on non-2xx response or if the response body is not in the expected format

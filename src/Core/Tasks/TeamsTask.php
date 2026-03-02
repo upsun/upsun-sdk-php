@@ -158,12 +158,12 @@ class TeamsTask extends TaskBase
     }
 
     /**
-     * Lists User teams
+     * Retrieves teams that the specified user is a member of.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
-    public function listUserTeams(
+    public function listTeamsByMember(
         string $userId,
         ?array $filterOrganizationId = null,
         ?array $filterUpdatedAt = null,
@@ -176,6 +176,32 @@ class TeamsTask extends TaskBase
             userId: $userId,
             filterOrganizationId: new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
             filterUpdatedAt: new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
+    }
+
+    /**
+     * Lists teams by member
+     * @deprecated use listTeamsByMember() instead
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     */
+    public function listUserTeams(
+        string $userId,
+        ?array $filterOrganizationId = null,
+        ?array $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): ListTeams200Response {
+        return $this->listTeamsByMember(
+            userId: $userId,
+            filterOrganizationId: $filterOrganizationId,
+            filterUpdatedAt: $filterUpdatedAt,
             pageSize: $pageSize,
             pageBefore: $pageBefore,
             pageAfter: $pageAfter,

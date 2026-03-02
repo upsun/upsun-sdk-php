@@ -2,7 +2,6 @@
 
 namespace Upsun\Core\Tasks;
 
-use Exception;
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
@@ -139,6 +138,26 @@ class IntegrationsTask extends TaskBase
      * Update an existing third-party integration for a project. This method allows you to update the configuration of an
      * existing integration for a project by specifying the new parameters for that integration.
      * 
+     * @param IntegrationPatch $integrationUpdateInput An implementation of the IntegrationPatch interface.
+     *        Use one of the concrete types that implement this interface:
+     *         - BitbucketIntegrationPatch
+     *         - BitbucketServerIntegrationPatch
+     *         - GitHubIntegrationPatch
+     *         - GitLabIntegrationPatch
+     *         - WebhookIntegrationPatch
+     *         - HealthEmailIntegrationPatch
+     *         - HealthPagerdutyIntegrationPatch
+     *         - HealthSlackIntegrationPatch
+     *         - HealthWebhookIntegrationPatch
+     *         - ScriptIntegrationPatch
+     *         - NewRelicIntegrationPatch
+     *         - SplunkIntegrationPatch
+     *         - SumoLogicIntegrationPatch
+     *         - SyslogIntegrationPatch
+     *         - DatadogIntegrationPatch
+     *         - AppDynamicsIntegrationPatch
+     *         - LogstashIntegrationPatch
+     *         - DynatraceIntegrationPatch
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors or if the request cannot be completed
      * @throws InvalidArgumentException if the project ID, integration ID, or integration update input is invalid

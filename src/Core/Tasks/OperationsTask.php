@@ -10,7 +10,7 @@ use Upsun\Model\EnvironmentOperationInput;
 use Upsun\UpsunClient;
 
 /**
- * OperationTask class.
+ * OperationsTask class.
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
@@ -20,13 +20,13 @@ class OperationsTask extends TaskBase
 {
     public function __construct(
         UpsunClient $client,
-        private readonly RuntimeOperationsApi $api
+        private readonly RuntimeOperationsApi $runtimeOperationsApi
     ) {
         parent::__construct($client);
     }
 
     /**
-     * Executes a runtime operation
+     * Execute a runtime operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -39,7 +39,7 @@ class OperationsTask extends TaskBase
         string $operation,
         array $parameters
     ): AcceptedResponse {
-        return $this->api->runOperation(
+        return $this->runtimeOperationsApi->runOperation(
             projectId: $projectId,
             environmentId: $environmentId,
             deploymentId: $deploymentId,

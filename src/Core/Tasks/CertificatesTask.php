@@ -13,7 +13,7 @@ use Upsun\Model\CertificatePatch;
 use Upsun\UpsunClient;
 
 /**
- * CertificateTask class.
+ * CertificatesTask class.
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
@@ -29,7 +29,7 @@ class CertificatesTask extends TaskBase
     }
 
     /**
-     * Adds an SSL certificate
+     * Add an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -60,7 +60,7 @@ class CertificatesTask extends TaskBase
     }
 
     /**
-     * Deletes an SSL certificate
+     * Delete an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -78,7 +78,7 @@ class CertificatesTask extends TaskBase
     }
 
     /**
-     * Gets an SSL certificate
+     * Get an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -93,8 +93,7 @@ class CertificatesTask extends TaskBase
     }
 
     /**
-     * Gets list of SSL certificates
-     *
+     * Get list of SSL certificates
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -109,7 +108,7 @@ class CertificatesTask extends TaskBase
     }
 
     /**
-     * Updates an SSL certificate
+     * Update an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
