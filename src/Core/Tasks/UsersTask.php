@@ -312,10 +312,7 @@ class UsersTask extends TaskBase
      */
     public function getProjectUserAccess(string $projectId, string $userId): UserProjectAccess
     {
-        $this->checkProjectId($projectId);
-        $this->checkUserId($userId);
-
-        return $this->userAccessApi->getProjectUserAccess(projectId: $projectId, userId: $userId);
+        return $this->getProjectUserAccessByProject(projectId: $projectId, userId: $userId);
     }
 
     /**
@@ -386,7 +383,7 @@ class UsersTask extends TaskBase
      */
     public function grantUserProjectAccess(string $userId, array $data): void
     {
-        return $this->grantUserProjectAccessByUser(userId: $userId, data: $data);
+        $this->grantUserProjectAccessByUser(userId: $userId, data: $data);
     }
 
     /**
@@ -446,6 +443,7 @@ class UsersTask extends TaskBase
      * @deprecated use listUserProjectAccessByUser instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the user ID is invalid
      */
     public function listUserProjectAccess(
         string $userId,
@@ -455,7 +453,7 @@ class UsersTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListProjectUserAccess200Response {
-        return $this->userAccessApi->listUserProjectAccess(
+        return $this->listUserProjectAccessByUser(
             userId: $userId,
             filterOrganizationId: $filterOrganizationId,
             pageSize: $pageSize,
@@ -473,6 +471,7 @@ class UsersTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the user ID is invalid
      */
     public function listExtendedAccess(
         string $userId,
@@ -480,6 +479,8 @@ class UsersTask extends TaskBase
         ?array $filterOrganizationId = null,
         ?array $filterPermissions = null
     ): ListUserExtendedAccess200Response {
+        $this->checkUserId($userId);
+
         return $this->grantsApi->listUserExtendedAccess(
             userId: $userId,
             filterResourceType: $filterResourceType ?

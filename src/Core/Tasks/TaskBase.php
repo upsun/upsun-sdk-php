@@ -214,6 +214,13 @@ abstract class TaskBase
         }
     }
 
+    protected static function checkEnvironmentTypeId(string $environmentTypeId): void
+    {
+        if (!$environmentTypeId) {
+            throw new InvalidArgumentException('Environment Type ID is required');
+        }
+    }
+
     protected function normalizeFilter(array|string|int|DateTime|null $value): array
     {
         if ($value === null) {

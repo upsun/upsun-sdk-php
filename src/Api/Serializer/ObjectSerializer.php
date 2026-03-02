@@ -34,7 +34,7 @@ class ObjectSerializer
         ?string $type = null,
         ?string $format = null
     ): float|object|array|bool|int|string|null {
-        if (is_scalar($data) || null === $data) {
+        if (\is_scalar($data) || null === $data) {
             return $data;
         }
 
@@ -42,14 +42,14 @@ class ObjectSerializer
             return ($format === 'date') ? $data->format('Y-m-d') : $data->format(self::$dateTimeFormat);
         }
 
-        if (is_array($data)) {
+        if (\is_array($data)) {
             foreach ($data as $property => $value) {
                 $data[$property] = self::sanitizeForSerialization($value);
             }
             return $data;
         }
 
-        if (is_object($data)) {
+        if (\is_object($data)) {
             $values = [];
             if ($data instanceof Model) {
                 $formats = ApiObjectFormatsMapper::openApiFormats($data->getModelName());
@@ -67,10 +67,10 @@ class ObjectSerializer
 
                     if ($value !== null && !in_array($openApiType, ['\DateTime', '\SplFileObject', 'array', 'bool', 'boolean', 'byte', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
                         $callable = [$openApiType, 'getAllowableEnumValues'];
-                        if (is_callable($callable)) {
+                        if (\is_callable($callable)) {
                             /** array $callable */
                             $allowedEnumTypes = $callable();
-                            if (!in_array($value, $allowedEnumTypes, true)) {
+                            if (!\in_array($value, $allowedEnumTypes, true)) {
                                 $imploded = implode("', '", $allowedEnumTypes);
                                 throw new InvalidArgumentException(
                                     sprintf(
@@ -153,13 +153,13 @@ class ObjectSerializer
             return null;
         }
 
-        if (!class_exists($class)) {
+        if (!\class_exists($class)) {
             throw new InvalidArgumentException(sprintf('Class %s does not exist', $class));
         }
 
         if (str_ends_with($class, '[]')) {
             $subClass = substr($class, 0, -2);
-            if (!is_array($data)) {
+            if (!\is_array($data)) {
                 throw new InvalidArgumentException('Data must be an array to deserialize into ' . $class);
             }
 
@@ -184,9 +184,9 @@ class ObjectSerializer
             $jsonKey = $attributeMap[$paramName] ?? $paramName;
 
             $value = null;
-            if (is_object($data)) {
+            if (\is_object($data)) {
                 $value = $data->{$jsonKey} ?? $data->{$paramName} ?? null;
-            } elseif (is_array($data)) {
+            } elseif (\is_array($data)) {
                 $value = $data[$jsonKey] ?? $data[$paramName] ?? null;
             }
 
@@ -210,7 +210,7 @@ class ObjectSerializer
             if ($paramType) {
                 $typeName = $paramType->getName();
 
-                if ($paramType->getName() === 'array' && is_array($value)) {
+                if ($paramType->getName() === 'array' && \is_array($value)) {
                     $types = ApiObjectTypesMapper::openApiTypes($fullClass);
 
                     if (isset($types[$paramName]) && str_ends_with($types[$paramName], '[]')) {
@@ -239,7 +239,13 @@ class ObjectSerializer
                 if ($paramType->isBuiltin()) {
                     switch ($typeName) {
                         case 'string':
-                            $args[] = $value !== null ? (string)$value : null;
+                            if ($value === null) {
+                                $args[] = null;
+                            } elseif (\is_scalar($value)) {
+                                $args[] = (string) $value;
+                            } else {
+                                $args[] = json_encode($value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?: '';
+                            }
                             break;
                         case 'int':
                             $args[] = $value !== null ? (int)$value : null;
@@ -262,7 +268,7 @@ class ObjectSerializer
                 } elseif ($typeName === 'DateTime') {
                     $args[] = $value !== null ? new DateTime($value) : null;
                 } elseif (class_exists($typeName)) {
-                    if (is_string($value) && in_array('getAllowableEnumValues', get_class_methods($typeName))) {
+                    if (\is_string($value) && in_array('getAllowableEnumValues', get_class_methods($typeName))) {
                         // Generated Enum
                         $args[] = new $typeName($value);
                     } else {
@@ -275,7 +281,7 @@ class ObjectSerializer
                 $args[] = $value;
             }
 
-            if ($args[count($args) - 1] === null && !$allowsNull) {
+            if ($args[\count($args) - 1] === null && !$allowsNull) {
                 $types = ApiObjectTypesMapper::openApiTypes($fullClass);
                 if (isset($types[$jsonKey]) && str_contains($types[$jsonKey], 'null')) {
                     continue;
@@ -302,7 +308,7 @@ class ObjectSerializer
 
         // Handle any class with array properties
         if (class_exists($class) && is_subclass_of($class, Model::class)) {
-            if (is_array($data)) {
+            if (\is_array($data)) {
                 $data = self::preprocessArrayProperties($data, $class);
             }
 
@@ -314,7 +320,7 @@ class ObjectSerializer
             $subClass = substr($class, 0, -2); // remove []
             $values = [];
 
-            if (!is_array($data)) {
+            if (!\is_array($data)) {
                 throw new InvalidArgumentException('Data must be an array to deserialize into ' . $class);
             }
 
@@ -338,7 +344,12 @@ class ObjectSerializer
                 return (float)$data;
             case 'string':
             case 'byte':
-                return (string)$data;
+                if (\is_scalar($data)) {
+                    return (string) $data;
+                }
+
+                return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?: '';
+
             case 'mixed':
                 return $data;
             case 'array':
@@ -353,7 +364,7 @@ class ObjectSerializer
 
                 // determine file name
                 if (
-                    is_array($httpHeaders)
+                    \is_array($httpHeaders)
                     && array_key_exists('Content-Disposition', $httpHeaders)
                     && preg_match(
                         '/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i',
@@ -401,9 +412,9 @@ class ObjectSerializer
                 $subClass = ltrim(substr($propertyType, 0, -2), '?'); // remove [] et ?
 
                 // If the data contains this property and it's an array
-                if (isset($data[$propertyName]) && is_array($data[$propertyName])) {
+                if (isset($data[$propertyName]) && \is_array($data[$propertyName])) {
                     // If it's a model class, deserialize each element
-                    if (class_exists($subClass)) {
+                    if (\class_exists($subClass)) {
                         $values = [];
                         foreach ($data[$propertyName] as $item) {
                             $values[] = self::deserialize($item, $subClass);
@@ -456,9 +467,9 @@ class ObjectSerializer
         $qs = '';
         foreach ($params as $k => $v) {
             $k = $encoder((string)$k);
-            if (!is_array($v)) {
+            if (!\is_array($v)) {
                 $qs .= $k;
-                $v = is_bool($v) ? $castBool($v) : $v;
+                $v = \is_bool($v) ? $castBool($v) : $v;
                 if ($v !== null) {
                     $qs .= '=' . $encoder((string)$v);
                 }
@@ -467,7 +478,7 @@ class ObjectSerializer
             } else {
                 foreach ($v as $vv) {
                     $qs .= $k;
-                    $vv = is_bool($vv) ? $castBool($vv) : $vv;
+                    $vv = \is_bool($vv) ? $castBool($vv) : $vv;
                     if ($vv !== null) {
                         $qs .= '=' . $encoder((string)$vv);
                     }

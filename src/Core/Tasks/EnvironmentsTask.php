@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\AutoscalingApi;
@@ -33,7 +34,9 @@ use Upsun\Model\Resources2;
 use Upsun\Model\Resources3;
 use Upsun\Model\Resources4;
 use Upsun\Model\Resources5;
+use Upsun\Model\Resources6;
 use Upsun\Model\Route;
+use Upsun\Model\ServiceRelationshipsValue;
 use Upsun\UpsunClient;
 
 /**
@@ -90,9 +93,12 @@ class EnvironmentsTask extends TaskBase
         string $title,
         string $name,
         bool $cloneParent = true,
-        string $type = EnvironmentTypeEnum::DEVELOPMENT,
+        string $type = Environment::TYPE_DEVELOPMENT,
         ?string $init = null,
     ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->branchEnvironment(
             projectId: $projectId,
             environmentId: $environmentId,
@@ -114,10 +120,10 @@ class EnvironmentsTask extends TaskBase
      */
     public function deactivate(string $projectId, string $environmentId): AcceptedResponse
     {
-        return $this->api->deactivateEnvironment(
-            $projectId,
-            $environmentId
-        );
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->api->deactivateEnvironment($projectId,$environmentId);
     }
 
     /**
@@ -128,34 +134,121 @@ class EnvironmentsTask extends TaskBase
      */
     public function delete(string $projectId, string $environmentId): AcceptedResponse
     {
-        return $this->api->deleteEnvironment(
-            $projectId,
-            $environmentId
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->api->deleteEnvironment($projectId,$environmentId);
+    }
+
+    /**
+     * Update the HTTP access permissions for the environment.
+     *
+     * @param array{
+     *   isEnabled?: bool,
+     *   permission: string,
+     *   address: string,
+     * } $addresses
+     * @param array{
+     *    login: string,
+     *    password: string,
+     *   } $basicAuth
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function httpAccess(
+        string $projectId,
+        string $environmentId,
+        ?bool $isEnabled = true,
+        ?array $addresses = null,
+        ?array $basicAuth = null
+    ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->api->updateEnvironment(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            environmentPatch: new EnvironmentPatch(
+                httpAccess: new HttpAccessPermissions2(
+                    isEnabled: $isEnabled,
+                    addresses: $addresses,
+                    basicAuth: $basicAuth
+                )
+            )
         );
     }
 
-    //TODO HTTPACCESS
-
     /**
-     * Gets an environment
+     * Get details of a specific environment. The details include information about the environment's current status.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function get(string $projectId, string $environmentId): Environment
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->getEnvironment(
             $projectId,
             $environmentId
         );
     }
 
-    //TODO review files as done in sdk node
     /**
-     * Initializes a new environment
+     * Get or Update details of the environment. If params are provided, the environment will be updated with the
+     * specified parameters before returning the details.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function info(
+        string $projectId,
+        string $environmentId,
+        ?string $parent = null,
+        ?string $name = null,
+        ?string $title = null,
+        ?array $attributes = null,
+        ?string $type = null,
+        ?bool $cloneParentOnCreate = null,
+        ?array $httpAccess = null,
+        ?bool $enableSmtp = null,
+        ?bool $restrictRobots = null,
+    ): Environment {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        if (
+            $parent !== null || $name !== null || $title !== null || $attributes !== null || $type !== null
+            || $cloneParentOnCreate !== null || $httpAccess !== null || $enableSmtp !== null || $restrictRobots !== null
+        ) {
+            $this->update(
+                projectId: $projectId,
+                environmentId: $environmentId,
+                name: $name,
+                title: $title,
+                attributes: $attributes,
+                type: $type,
+                cloneParentOnCreate: $cloneParentOnCreate,
+                httpAccess: $httpAccess,
+                enableSmtp: $enableSmtp,
+                restrictRobots: $restrictRobots
+            );
+        }
+
+        return $this->get($projectId, $environmentId);
+    }
+
+    /**
+     * Initialize the environment by deploying code from a specified repository and profile, with optional configuration
+     * and initialization parameters.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function init(
         string $projectId,
@@ -166,8 +259,11 @@ class EnvironmentsTask extends TaskBase
         string $filePath,
         string $fileContents,
         ?string $config = null,
-        ?string $init = null,
+        ?string $init = Resources4::INIT__DEFAULT,
     ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         $environmentInitializeInput = new EnvironmentInitializeInput(
             profile: $profile,
             repository: $repository,
@@ -191,23 +287,37 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return Environment[]
      */
     public function list(string $projectId): array
     {
+        $this->checkProjectId($projectId);
+
         return $this->api->listProjectsEnvironments(projectId: $projectId);
     }
 
     //TODO logs
+    public function logs(string $projectId, string $environmentId, string $appName): array
+    {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        throw new \LogicException('Not implemented yet');
+    }
 
     /**
      * Merges an environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function merge(string $projectId, string $environmentId, ?int $init = null): AcceptedResponse
+    public function merge(string $projectId, string $environmentId, ?int $init = Resources5::INIT__DEFAULT): AcceptedResponse
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->mergeEnvironment(
             $projectId,
             $environmentId,
@@ -222,9 +332,13 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function pause(string $projectId, string $environmentId): AcceptedResponse
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->pauseEnvironment(projectId: $projectId, environmentId: $environmentId);
     }
 
@@ -233,22 +347,50 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function redeploy(string $projectId, string $environmentId): AcceptedResponse
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->redeployEnvironment(projectId: $projectId, environmentId: $environmentId);
     }
 
-    //TODO relationships
+    /**
+     * Get the relationships of an environment, which include the linked applications or services.
+     *
+     * @return ServiceRelationshipsValue[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function relationships(string $projectId, string $environmentId, string $applicationId): array
+    {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        $appConfig = $this->client->applications->configGet(
+            $projectId,
+            $environmentId,
+            $applicationId
+        );
+
+        return $appConfig ? $appConfig->getRelationships() : [];
+    }
 
     /**
      * Resume a paused environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function resume(string $projectId, string $environmentId): AcceptedResponse
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->resumeEnvironment(projectId: $projectId, environmentId: $environmentId);
     }
 
@@ -257,6 +399,7 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function synchronize(
         string $projectId,
@@ -266,6 +409,9 @@ class EnvironmentsTask extends TaskBase
         bool $synchronizeData = true,
         bool $synchronizeResources = true,
     ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->synchronizeEnvironment(
             $projectId,
             $environmentId,
@@ -295,6 +441,7 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function update(
         string $projectId,
@@ -309,33 +456,40 @@ class EnvironmentsTask extends TaskBase
         ?bool $enableSmtp = null,
         ?bool $restrictRobots = null,
     ): AcceptedResponse {
-        $environmentPatch = new EnvironmentPatch(
-            parent: $parent,
-            name: $name,
-            title: $title,
-            attributes: $attributes,
-            type: $type,
-            cloneParentOnCreate: $cloneParentOnCreate,
-            httpAccess: isset($httpAccess) ? new HttpAccessPermissions2(
-                isEnabled: $httpAccess['isEnabled'] ?? null,
-                addresses: $httpAccess['addresses'] ?? null,
-                basicAuth: $httpAccess['basicAuth'] ?? null
-            ) : null,
-            enableSmtp: $enableSmtp,
-            restrictRobots: $restrictRobots
-        );
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->updateEnvironment(
             projectId: $projectId,
             environmentId: $environmentId,
-            environmentPatch: $environmentPatch
+            environmentPatch: new EnvironmentPatch(
+                parent: $parent,
+                name: $name,
+                title: $title,
+                attributes: $attributes,
+                type: $type,
+                cloneParentOnCreate: $cloneParentOnCreate,
+                httpAccess: isset($httpAccess) ? new HttpAccessPermissions2(
+                    isEnabled: $httpAccess['isEnabled'] ?? null,
+                    addresses: $httpAccess['addresses'] ?? null,
+                    basicAuth: $httpAccess['basicAuth'] ?? null
+                ) : null,
+                enableSmtp: $enableSmtp,
+                restrictRobots: $restrictRobots
+            )
         );
     }
 
     /**
-     * Cancels an environment activity
+     * Cancel an ongoing activity on the environment, such as deployment, synchronization, etc.
+     * The cancellation will be best-effort and may not succeed if the activity is too close to completion.
+     * The API will return a 202 Accepted response if the cancellation request has been accepted,
+     * but the client should check the environment's current activities to confirm whether the cancellation was
+     * successful or not.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function activityCancel(string $projectId, string $environmentId, string $activityId): AcceptedResponse
     {
@@ -351,10 +505,28 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+    */
+    public function getActivity(string $projectId, string $environmentId, string $activityId): Activity
+    {
+        return $this->client->activities->get(
+            projectId: $projectId,
+            activityId: $activityId,
+            environmentId: $environmentId
+            );
+            }
+
+    /**
+     * Gets an environment activity log entry
+     *
+     * @deprecated use getActivity instead
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getActivities(string $projectId, string $environmentId, string $activityId): Activity
     {
-        return $this->client->activities->get(
+        return $this->getActivity(
             projectId: $projectId,
             activityId: $activityId,
             environmentId: $environmentId
@@ -364,9 +536,9 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets environment activity log
      *
-     *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return Activity[]
      */
     public function listActivities(string $projectId, string $environmentId): array
@@ -376,9 +548,13 @@ class EnvironmentsTask extends TaskBase
 
     /**
      * Creates snapshot of environment
+     * Trigger a backup of the environment. The backup will be created asynchronously, and the API will return
+     * a 202 Accepted response if the backup request has been accepted. The client can then check the list of backups to
+     * monitor the progress and confirm when the backup is completed.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function backup(
         string $projectId,
@@ -389,10 +565,24 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
+     * List all backups of the environment.
+     *
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return Backup[]
+     */
+    public function listBackups(string $projectId, string $environmentId): array
+    {
+        return $this->client->backups->list(projectId: $projectId, environmentId: $environmentId);
+    }
+
+    /**
      * Deletes an environment snapshot
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function deleteBackup(string $projectId, string $environmentId, string $backupId): AcceptedResponse
     {
@@ -408,6 +598,7 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getBackup(string $projectId, string $environmentId, string $backupId): Backup
     {
@@ -419,32 +610,21 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets an environment's snapshot list
-     *
-     * @throws ClientExceptionInterface
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @return Backup[]
-     */
-    public function listBackups(string $projectId, string $environmentId): array
-    {
-        return $this->client->backups->list(projectId: $projectId, environmentId: $environmentId);
-    }
-
-    /**
      * Restores an environment snapshot
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function restoreBackup(
         string $projectId,
         string $environmentId,
         string $backupId,
-        bool $restoreCode,
-        bool $restoreResources,
+        bool $restoreCode = true,
+        bool $restoreResources = true,
         ?string $environmentName = null,
         ?string $branchFrom = null,
-        ?string $init = null,
+        ?string $init = Resources6::INIT__DEFAULT,
     ): AcceptedResponse {
         return $this->client->backups->restore(
             projectId: $projectId,
@@ -459,25 +639,34 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets environment type links
+     * Get details of a specific environment type, such as development, production, etc.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getType(string $projectId, string $environmentTypeId): EnvironmentType
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentTypeId($environmentTypeId);
+
         return $this->typeApi->getEnvironmentType(projectId: $projectId, environmentTypeId: $environmentTypeId);
     }
 
     /**
-     * Gets environment types
+     * List all environment types available in the project. Environment types represent different categories or
+     * classifications of environments, such as development, staging, production, etc. Each environment type may have
+     * specific characteristics or configurations that differentiate it from other types.
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return EnvironmentType[]
      */
     public function listTypes(string $projectId): array
     {
+        $this->checkProjectId($projectId);
+
         return $this->typeApi->listProjectsEnvironmentTypes(projectId: $projectId);
     }
 
@@ -486,6 +675,7 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function createVariable(
         string $projectId,
@@ -534,6 +724,7 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function deleteVariable(string $projectId, string $environmentId, string $variableId): AcceptedResponse
     {
@@ -549,6 +740,7 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getVariable(string $projectId, string $environmentId, string $variableId): EnvironmentVariable
     {
@@ -564,11 +756,29 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return EnvironmentVariable[]
+     */
+    public function listVariables(string $projectId, string $environmentId): array
+    {
+        return $this->client->variables->listEnvironmentVariables(
+            projectId: $projectId,
+            environmentId: $environmentId
+        );
+    }
+
+        /**
+     * Gets list of Environment variables
+     *
+     * @deprecated use listVariables instead
+     * @throws ClientExceptionInterface
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return EnvironmentVariable[]
      */
     public function listEnvironmentVariables(string $projectId, string $environmentId): array
     {
-        return $this->client->variables->listEnvironmentVariables(
+        return $this->listVariables(
             projectId: $projectId,
             environmentId: $environmentId
         );
@@ -577,8 +787,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Gets list of Project variables
      *
+     * @deprecated use $this->client->projects->listVariables instead
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return ProjectVariable[]
      */
     public function listProjectVariables(string $projectId): array
@@ -591,6 +803,7 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function updateVariable(
         string $projectId,
@@ -621,10 +834,11 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets a route's info
+     * Get a route's info
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getRoute(string $projectId, string $environmentId, string $routeId): Route
     {
@@ -632,10 +846,11 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Gets list of routes
+     * Get list of routes
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return Route[]
      */
     public function listRoutes(string $projectId, string $environmentId): array
@@ -644,10 +859,11 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Adds an environment domain
+     * Add an environment domain
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function addDomain(
         string $projectId,
@@ -666,6 +882,7 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function deleteDomain(string $projectId, string $environmentId, string $domainId): AcceptedResponse
     {
@@ -681,6 +898,7 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getDomain(string $projectId, string $environmentId, string $domainId): Domain
     {
@@ -692,6 +910,7 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return Domain[]
      */
     public function listDomains(string $projectId, string $environmentId): array
@@ -704,6 +923,7 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function updateDomain(
         string $projectId,
@@ -724,9 +944,14 @@ class EnvironmentsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getDeployment(string $projectId, string $environmentId, string $deploymentId): Deployment
     {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+        $this->checkDeploymentId($deploymentId);
+
         return $this->deploymentApi->getProjectsEnvironmentsDeployments(
             projectId: $projectId,
             environmentId: $environmentId,

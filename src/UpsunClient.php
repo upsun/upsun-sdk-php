@@ -294,7 +294,8 @@ class UpsunClient
         );
         $this->resources = new ResourcesTask(
             $this,
-            $deploymentApi
+            $deploymentApi,
+            $autoscalingApi
         );
         $this->routes = new RoutesTask(
             $this,
