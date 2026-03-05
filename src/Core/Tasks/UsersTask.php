@@ -101,17 +101,17 @@ class UsersTask extends TaskBase
      */
     public function addToProject(
         string $projectId, 
-        array $permissions
+        array $userPermissions
     ): void {
         $this->checkProjectId($projectId);
 
-        if(empty($permissions)) {
+        if(empty($userPermissions)) {
             throw new InvalidArgumentException('At least one user permission is required to add a user to a project');
         }
 
         $this->userAccessApi->grantProjectUserAccess(
             projectId: $projectId,
-            grantProjectUserAccessRequestInner: $permissions
+            grantProjectUserAccessRequestInner: $userPermissions
         );
     }
 
@@ -366,11 +366,11 @@ class UsersTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the user ID is invalid
      */
-    public function grantUserProjectAccessByUser(string $userId, array $data): void
+    public function grantUserProjectAccessByUser(string $userId, array $access): void
     {
         $this->checkUserId($userId);
 
-        $this->userAccessApi->grantUserProjectAccess(userId: $userId, grantUserProjectAccessRequestInner: $data);
+        $this->userAccessApi->grantUserProjectAccess(userId: $userId, grantUserProjectAccessRequestInner: $access);
     }
 
     /**
@@ -383,7 +383,7 @@ class UsersTask extends TaskBase
      */
     public function grantUserProjectAccess(string $userId, array $data): void
     {
-        $this->grantUserProjectAccessByUser(userId: $userId, data: $data);
+        $this->grantUserProjectAccessByUser(userId: $userId, access: $data);
     }
 
     /**
@@ -473,7 +473,7 @@ class UsersTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the user ID is invalid
      */
-    public function listExtendedAccess(
+    public function listExtendedUserProjectAccess(
         string $userId,
         ?array $filterResourceType = null,
         ?array $filterOrganizationId = null,
@@ -545,10 +545,10 @@ class UsersTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the project ID or user ID is invalid, or if permissions are empty.
      */
-    public function updateProjectUserAccessByProject(
+    public function updateUserProjectAccessByProject(
         string $projectId,
         string $userId,
-        ?array $permissions = null
+        array $permissions
     ): void {
         $this->checkProjectId($projectId);
         $this->checkUserId($userId);
@@ -574,7 +574,7 @@ class UsersTask extends TaskBase
      * appropriate level of access to perform their tasks within the project. By updating a user's project access, you 
      * can grant them additional permissions or restrict their access as needed.
      *
-     * @deprecated use updateProjectUserAccessByProject instead
+     * @deprecated use updateUserProjectAccessByProject instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the project ID or user ID is invalid, or if permissions are empty.
@@ -582,9 +582,9 @@ class UsersTask extends TaskBase
     public function updateProjectUserAccess(
         string $projectId,
         string $userId,
-        ?array $permissions = null
+        array $permissions
     ): void {
-        $this->updateProjectUserAccessByProject( projectId: $projectId, userId: $userId, permissions: $permissions );
+        $this->updateUserProjectAccessByProject( projectId: $projectId, userId: $userId, permissions: $permissions );
     }
 
     /**
@@ -600,7 +600,7 @@ class UsersTask extends TaskBase
     public function updateUserProjectAccessByUser(
         string $userId,
         string $projectId,
-        ?array $permissions = null
+        array $permissions
     ): void {
         $this->checkUserId($userId);
         $this->checkProjectId($projectId);
@@ -631,7 +631,7 @@ class UsersTask extends TaskBase
     public function updateUserProjectAccess(
         string $userId,
         string $projectId,
-        ?array $permissions = null
+        array $permissions
     ): void {
         $this->updateUserProjectAccessByUser(userId: $userId, projectId: $projectId, permissions: $permissions);
     }    

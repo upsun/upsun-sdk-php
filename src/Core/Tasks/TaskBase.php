@@ -221,6 +221,27 @@ abstract class TaskBase
         }
     }
 
+    protected static function checkRouteId(string $routeId): void
+    {
+        if (!$routeId) {
+            throw new InvalidArgumentException('Route ID is required');
+        }
+    }
+
+    protected static function checkInvitationId(string $invitationId): void
+    {
+        if (!$invitationId) {
+            throw new InvalidArgumentException('Invitation ID is required');
+        }
+    }
+
+    protected static function checkTicketId(string $ticketId): void
+    {
+        if (!$ticketId) {
+            throw new InvalidArgumentException('Ticket ID is required');
+        }
+    }   
+
     protected function normalizeFilter(array|string|int|DateTime|null $value): array
     {
         if ($value === null) {

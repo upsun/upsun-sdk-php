@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
@@ -34,10 +35,14 @@ class UsersInvitationsTask extends TaskBase
      * Cancels a pending invitation to an organization
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function cancelOrgInvite(string $organizationId, string $invitationId): void
     {
+        $this->checkOrganizationId($organizationId);
+        $this->checkInvitationId($invitationId);
+
         $this->orgInvApi->cancelOrgInvite(
             organizationId: $organizationId,
             invitationId: $invitationId
@@ -48,7 +53,8 @@ class UsersInvitationsTask extends TaskBase
      * Invites user to an organization by email
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function createOrgInvite(
         string $organizationId,
@@ -56,6 +62,9 @@ class UsersInvitationsTask extends TaskBase
         array $permissions,
         ?bool $force = true
     ): OrganizationInvitation {
+        $this->checkOrganizationId($organizationId);
+        $this->checkEmail($email);
+
         return $this->orgInvApi->createOrgInvite(
             organizationId: $organizationId,
             createOrgInviteRequest: new CreateOrgInviteRequest(
@@ -70,7 +79,8 @@ class UsersInvitationsTask extends TaskBase
      * Lists invitations to an organization
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return OrganizationInvitation[]
      */
     public function listOrgInvites(
@@ -81,6 +91,8 @@ class UsersInvitationsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): array {
+        $this->checkOrganizationId($organizationId);
+
         return $this->orgInvApi->listOrgInvites(
             organizationId: $organizationId,
             filterState: new StringFilter(...$this->normalizeFilter($filterState)),
@@ -95,10 +107,14 @@ class UsersInvitationsTask extends TaskBase
      * Cancels a pending invitation to a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function cancelProjectInvite(string $projectId, string $invitationId): void
     {
+        $this->checkProjectId($projectId);
+        $this->checkInvitationId($invitationId);
+
         $this->prjInvApi->cancelProjectInvite(projectId: $projectId, invitationId: $invitationId);
     }
 
@@ -109,7 +125,8 @@ class UsersInvitationsTask extends TaskBase
      * @param array<int, array{id: string, name: string}>|null $environments
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function createProjectInvite(
         string $projectId,
@@ -119,6 +136,9 @@ class UsersInvitationsTask extends TaskBase
         ?array $environments = null,
         ?bool $force = null,
     ): ProjectInvitation {
+        $this->checkProjectId($projectId);
+        $this->checkEmail($email);
+
         return $this->prjInvApi->createProjectInvite(
             projectId: $projectId,
             createProjectInviteRequest: new CreateProjectInviteRequest(
@@ -135,7 +155,8 @@ class UsersInvitationsTask extends TaskBase
      * Lists invitations to a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return ProjectInvitation[]
      */
     public function listProjectInvites(
@@ -146,6 +167,8 @@ class UsersInvitationsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): array {
+        $this->checkProjectId($projectId);
+        
         return $this->prjInvApi->listProjectInvites(
             projectId: $projectId,
             filterState: new StringFilter(...$this->normalizeFilter($filterState)),

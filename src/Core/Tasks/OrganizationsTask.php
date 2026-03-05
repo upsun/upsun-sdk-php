@@ -43,8 +43,8 @@ use Upsun\Model\Organization;
 use Upsun\Model\OrganizationAddonsObject;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
-use Upsun\Model\OrganizationProject;
 use Upsun\Model\Profile;
+use Upsun\Model\Project;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue; // only mentionned in PHPDocs
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
@@ -499,18 +499,15 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Get a project of a specific organization
+     * Get a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function getProject(string $organizationId, string $projectId): OrganizationProject
+    public function getProject(string $projectId): Project
     {
-        $this->checkOrganizationId($organizationId);
-        $this->checkProjectId($projectId);
-
-        return $this->projectsApi->getOrgProject(organizationId: $organizationId, projectId: $projectId);
+        return $this->client->projects->get(projectId: $projectId);
     }
 
     /**

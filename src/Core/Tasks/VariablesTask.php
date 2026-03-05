@@ -77,14 +77,14 @@ class VariablesTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function deleteProjectVariable(string $projectId, string $projectVariableId): AcceptedResponse
+    public function deleteProjectVariable(string $projectId, string $variableId): AcceptedResponse
     {
         $this->checkProjectId($projectId);
-        $this->checkVariableId($projectVariableId);
+        $this->checkVariableId($variableId);
 
         return $this->projectVariablesApi->deleteProjectsVariables(
             projectId: $projectId,
-            projectVariableId: $projectVariableId
+            projectVariableId: $variableId
         );
     }
 
@@ -95,14 +95,14 @@ class VariablesTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function getProjectVariable(string $projectId, string $projectVariableId): ProjectVariable
+    public function getProjectVariable(string $projectId, string $variableId): ProjectVariable
     {
         $this->checkProjectId($projectId);
-        $this->checkVariableId($projectVariableId);
+        $this->checkVariableId($variableId);
 
         return $this->projectVariablesApi->getProjectsVariables(
             projectId: $projectId,
-            projectVariableId: $projectVariableId
+            projectVariableId: $variableId
         );
     }
 
@@ -130,7 +130,7 @@ class VariablesTask extends TaskBase
      */
     public function updateProjectVariable(
         string $projectId,
-        string $projectVariableId,
+        string $variableId,
         ?string $name = null,
         ?string $value = null,
         ?array $attributes = null,
@@ -141,11 +141,11 @@ class VariablesTask extends TaskBase
         ?array $applicationScope = null,
     ): AcceptedResponse {
         $this->checkProjectId($projectId);
-        $this->checkVariableId($projectVariableId);
+        $this->checkVariableId($variableId);
 
         return $this->projectVariablesApi->updateProjectsVariables(
             projectId: $projectId,
-            projectVariableId: $projectVariableId,
+            projectVariableId: $variableId,
             projectVariablePatch: new ProjectVariablePatch(
                 name: $name,
                 attributes: $attributes,

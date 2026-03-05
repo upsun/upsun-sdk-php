@@ -29,9 +29,9 @@ class SshTask extends TaskBase
     /**
      * Add a new SSH key for a user.
      *
-     * @throws InvalidArgumentException if the SSH key value or user ID is invalid
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if the SSH key value or user ID is invalid
      */
     public function add(string $value, string $userId, ?string $title = null): SshKey
     {
@@ -53,9 +53,9 @@ class SshTask extends TaskBase
     /**
      * Get the details of an SSH key by ID.
      *
-     * @throws InvalidArgumentException if the key ID is invalid
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if the key ID is invalid
      */
     public function get(int $keyId): SshKey
     {
@@ -67,9 +67,9 @@ class SshTask extends TaskBase
     /**
      * Delete an SSH key by ID.
      *
-     * @throws InvalidArgumentException if the key ID is invalid
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if the key ID is invalid
      */
     public function delete(int $keyId): void
     {

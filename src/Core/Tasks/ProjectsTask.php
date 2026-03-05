@@ -451,7 +451,7 @@ class ProjectsTask extends TaskBase
 
         return $this->client->variables->getProjectVariable(
             projectId: $projectId,
-            projectVariableId: $variableId
+            variableId: $variableId
         );
     }
 
@@ -469,7 +469,7 @@ class ProjectsTask extends TaskBase
 
         return $this->client->variables->deleteProjectVariable(
             projectId: $projectId,
-            projectVariableId: $variableId
+            variableId: $variableId
         );
     }
 
@@ -509,7 +509,7 @@ class ProjectsTask extends TaskBase
 
         return $this->client->variables->updateProjectVariable(
             projectId: $projectId,
-            projectVariableId: $variableId,
+            variableId: $variableId,
             name: $name,
             value: $value,
             attributes: $attributes,
@@ -1006,7 +1006,7 @@ class ProjectsTask extends TaskBase
      * @throws ClientExceptionInterface on network errors
      * @throws InvalidArgumentException if the project ID is invalid
      */
-    public function listProjectTeamAccessByProject(
+    public function listTeamProjectAccessByProject(
         string $projectId,
         ?int $pageSize = null,
         ?string $pageBefore = null,
@@ -1025,7 +1025,7 @@ class ProjectsTask extends TaskBase
     /**
      * Lists project team access for a project
      * 
-     * @deprecated use listProjectTeamAccessByProject() instead
+     * @deprecated use listTeamProjectAccessByProject() instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
      * @throws InvalidArgumentException if the project ID is invalid
@@ -1037,7 +1037,7 @@ class ProjectsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListProjectTeamAccess200Response {
-        return $this->listProjectTeamAccessByProject(
+        return $this->listTeamProjectAccessByProject(
             projectId: $projectId,
             pageSize: $pageSize,
             pageBefore: $pageBefore,
@@ -1181,7 +1181,7 @@ class ProjectsTask extends TaskBase
     {
         $this->client->users->addToProject(
             projectId: $projectId,
-            permissions: $permissions
+            userPermissions: $permissions
         );
     }
 
@@ -1238,9 +1238,9 @@ class ProjectsTask extends TaskBase
     public function updateUserProjectAccessByProject(
         string $projectId,
         string $userId,
-        ?array $permissions = null
+        array $permissions
     ): void {
-        $this->client->users->updateProjectUserAccessByProject(
+        $this->client->users->updateUserProjectAccessByProject(
             projectId: $projectId,
             userId: $userId,
             permissions: $permissions
