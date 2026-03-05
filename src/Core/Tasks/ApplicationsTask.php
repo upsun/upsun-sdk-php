@@ -25,7 +25,7 @@ class ApplicationsTask extends TaskBase
     }
 
     /**
-     * Gets an environment's application
+     * Get an environment's application
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -41,7 +41,7 @@ class ApplicationsTask extends TaskBase
     }
 
     /**
-     * Lists applications of an environment
+     * List applications of an environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface

@@ -45,7 +45,7 @@ use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationProject;
 use Upsun\Model\Profile;
-use Upsun\Model\SendOrgMfaReminders200ResponseValue;
+use Upsun\Model\SendOrgMfaReminders200ResponseValue; // only mentionned in PHPDocs
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
@@ -487,7 +487,7 @@ class OrganizationsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListTeams200Response {
-        return $this->client->teams->listTeamsByMember(
+        return $this->client->teams->listByMember(
             userId: $userId,
             filterOrganizationId: $filterOrganizationId,
             filterUpdatedAt: $filterUpdatedAt,

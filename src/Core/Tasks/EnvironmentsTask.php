@@ -194,7 +194,7 @@ class EnvironmentsTask extends TaskBase
     }
 
     /**
-     * Get or Update details of the environment. If extra parameters are provided, the environment will be updated with 
+     * Get or Update details of the environment. If extra parameters are provided, the environment will be updated with
      * the specified parameters before returning the details.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -309,7 +309,7 @@ class EnvironmentsTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function merge(string $projectId, string $environmentId, ?int $init = Resources5::INIT__DEFAULT): AcceptedResponse
+    public function merge(string $projectId, string $environmentId, ?string $init = Resources5::INIT__DEFAULT): AcceptedResponse
     {
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
@@ -668,9 +668,9 @@ class EnvironmentsTask extends TaskBase
 
     /**
      * Create an environment variable in the environment. Environment variables are used to store configuration values
-     * that can be accessed by the applications running in the environment. The name of the variable must be unique 
+     * that can be accessed by the applications running in the environment. The name of the variable must be unique
      * within the environment. If a variable with the same name already exists, the API will return an error.
-     * 
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid

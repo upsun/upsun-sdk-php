@@ -294,7 +294,7 @@ class UsersTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the project ID or user ID is invalid
      */
-    public function getProjectUserAccessByProject(string $projectId, string $userId): UserProjectAccess
+    public function getUserProjectAccessByProject(string $projectId, string $userId): UserProjectAccess
     {
         $this->checkProjectId($projectId);
         $this->checkUserId($userId);
@@ -305,14 +305,14 @@ class UsersTask extends TaskBase
     /**
      * Gets user access for a project
      *
-     * @deprecated use getProjectUserAccessByProject instead
+     * @deprecated use getUserProjectAccessByProject instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the project ID or user ID is invalid
      */
     public function getProjectUserAccess(string $projectId, string $userId): UserProjectAccess
     {
-        return $this->getProjectUserAccessByProject(projectId: $projectId, userId: $userId);
+        return $this->getUserProjectAccessByProject(projectId: $projectId, userId: $userId);
     }
 
     /**
