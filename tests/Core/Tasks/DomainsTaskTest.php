@@ -2,8 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Model\ProdDomainStorage;
-use Upsun\Model\ReplacementDomainStorage;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -16,6 +14,8 @@ use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\DomainsTask;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\DomainPatch;
+use Upsun\Model\ProdDomainStorage;
+use Upsun\Model\ReplacementDomainStorage;
 use Upsun\UpsunClient;
 
 class DomainsTaskTest extends BaseTestCase

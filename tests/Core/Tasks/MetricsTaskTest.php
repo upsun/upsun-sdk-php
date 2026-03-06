@@ -2,8 +2,8 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\Tasks\TaskBase;
 use Upsun\Core\Tasks\MetricsTask;
+use Upsun\Core\Tasks\TaskBase;
 use Upsun\UpsunClient;
 
 class MetricsTaskTest extends BaseTestCase

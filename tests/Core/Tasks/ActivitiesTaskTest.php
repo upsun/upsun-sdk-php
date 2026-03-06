@@ -2,12 +2,12 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Api\ApiException;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
+use Upsun\Api\ApiException;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Core\OAuthProvider;

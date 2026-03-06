@@ -2,12 +2,12 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Psr\Http\Message\RequestInterface;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 use stdClass;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
