@@ -8,14 +8,14 @@ use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
-use stdClass;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
+use Upsun\Api\EnvironmentApi;
+use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\EnvironmentsTask;
 use Upsun\Core\Tasks\WorkersTask;
-use Upsun\Model\Deployment;
 use Upsun\Model\WorkersValue;
 use Upsun\UpsunClient;
 
@@ -33,7 +33,21 @@ class WorkersTaskTest extends BaseTestCase
         $this->httpClient = $this->createMock(ClientInterface::class);
 
         $upsunClient = $this->createMock(UpsunClient::class);
-        $environmentsTask = $this->createMock(EnvironmentsTask::class);
+
+        $apiClassParams = [
+            $this->createMock(OAuthProvider::class),
+            $this->httpClient,
+            new Psr17Factory(),
+            new ApiConfiguration()
+        ];
+
+        $environmentsTask = new class (
+            $upsunClient,
+            new EnvironmentApi(...$apiClassParams),
+            new EnvironmentTypeApi(...$apiClassParams),
+            new DeploymentApi(...$apiClassParams)
+        ) extends EnvironmentsTask {
+        };
         $upsunClient->environments = $environmentsTask;
 
         $apiClassParams = [
@@ -45,18 +59,37 @@ class WorkersTaskTest extends BaseTestCase
 
         $this->workersTask = new class (
             $upsunClient,
-            new DeploymentApi(...$apiClassParams),
         ) extends WorkersTask {
         };
     }
 
+    public function testListWorkers()
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($this->getFakeDeployment([],[]), JSON_THROW_ON_ERROR)
+            )
+        );
+
+        $result = $this->workersTask->list('proj1', 'main');
+
+        $this->assertIsArray($result);
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey('app--app-worker', $result);
+        $this->assertInstanceOf(WorkersValue::class, $result['app--app-worker']);
+   
+    }
+
+
     /**
      * Test that WorkersTask correctly calls EnvironmentsTask::getDeployment()
      */
-    public function testListWorkersCallsGetDeployment()
+    public function testListWorkersInvalidArguments()
     {
-        $projectId = 'proj_123';
-        $environmentId = 'env_456';
 
         // This test verifies that WorkersTask depends on EnvironmentsTask
         // Since Deployment is final and cannot be mocked, we just verify the interaction
@@ -75,33 +108,19 @@ class WorkersTaskTest extends BaseTestCase
         $projectId = 'proj_123';
         $environmentId = 'env_456';
 
-        // Create a mock request for ApiException
-        $request = $this->createMock(RequestInterface::class);
-
-        // Mock environments task that throws ApiException
-        $environmentsTask = $this->createMock(EnvironmentsTask::class);
-        $environmentsTask->method('getDeployment')
-            ->with($projectId, $environmentId, 'current')
-            ->willThrowException(new ApiException('Not found', $request));
-
-        $upsunClient = $this->createMock(UpsunClient::class);
-        $upsunClient->environments = $environmentsTask;
-
-        $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
-            $this->httpClient,
-            new Psr17Factory(),
-            new ApiConfiguration()
-        ];
-
-        $workersTask = new class (
-            $upsunClient,
-            new DeploymentApi(...$apiClassParams),
-        ) extends WorkersTask {
-        };
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
 
         $this->expectException(ApiException::class);
 
-        $workersTask->list(projectId: $projectId, environmentId: $environmentId);
+        $this->workersTask->list(projectId: $projectId, environmentId: $environmentId);
     }
 }

@@ -19,7 +19,6 @@ use Upsun\UpsunClient;
 class ServicesTaskTest extends BaseTestCase
 {
     private ServicesTask $servicesTask;
-    private UpsunClient $upsunClient;
 
     /**
      * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject

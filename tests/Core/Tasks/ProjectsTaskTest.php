@@ -81,9 +81,6 @@ use Upsun\Core\Tasks\WorkersTask;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\Certificate;
-use Upsun\Model\DedicatedDeploymentTargetCreateInput;
-use Upsun\Model\DedicatedDeploymentTargetPatch;
-use Upsun\Model\DeploymentTarget;
 use Upsun\Model\Domain;
 use Upsun\Model\Environment;
 use Upsun\Model\ListProjectTeamAccess200Response;
@@ -126,10 +123,6 @@ class ProjectsTaskTest extends BaseTestCase
             new ProjectApi(...$apiClassParams),
             new OrganizationProjectsApi(...$apiClassParams),
             new ProjectSettingsApi(...$apiClassParams),
-            new DeploymentTargetApi(...$apiClassParams),
-            new RepositoryApi(...$apiClassParams),
-            new SystemInformationApi(...$apiClassParams),
-            new ThirdPartyIntegrationsApi(...$apiClassParams),
             new SubscriptionsApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
@@ -157,7 +150,6 @@ class ProjectsTaskTest extends BaseTestCase
 
         $upsunClient->applications = new class (
             $upsunClient,
-            new DeploymentApi(...$apiClassParams)
         ) extends ApplicationsTask {
         };
 

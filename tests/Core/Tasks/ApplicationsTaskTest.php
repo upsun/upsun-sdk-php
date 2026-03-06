@@ -49,7 +49,6 @@ class ApplicationsTaskTest extends BaseTestCase
 
         $this->applicationsTask = new class (
             $upsunClient,
-            new DeploymentApi(...$apiClassParams)
         ) extends ApplicationsTask {
         };
     }

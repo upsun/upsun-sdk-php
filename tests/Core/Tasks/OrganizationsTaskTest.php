@@ -12,7 +12,6 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\ApiTokensApi;
 use Upsun\Api\ConnectionsApi;
-use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\GrantsApi;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
@@ -25,12 +24,9 @@ use Upsun\Api\ProfilesApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\RecordsApi;
-use Upsun\Api\RepositoryApi;
 use Upsun\Api\SubscriptionsApi;
-use Upsun\Api\SystemInformationApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
-use Upsun\Api\ThirdPartyIntegrationsApi;
 use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
@@ -109,10 +105,6 @@ class OrganizationsTaskTest extends BaseTestCase
             new ProjectApi(...$apiClassParams),
             new OrganizationProjectsApi(...$apiClassParams),
             new ProjectSettingsApi(...$apiClassParams),
-            new DeploymentTargetApi(...$apiClassParams),
-            new RepositoryApi(...$apiClassParams),
-            new SystemInformationApi(...$apiClassParams),
-            new ThirdPartyIntegrationsApi(...$apiClassParams),
             new SubscriptionsApi(...$apiClassParams),
         ) extends ProjectsTask {
         };

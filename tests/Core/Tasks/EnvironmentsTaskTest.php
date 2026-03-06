@@ -41,7 +41,6 @@ use Upsun\Model\ProdDomainStorageCreateInput;
 use Upsun\Model\ProdDomainStoragePatch;
 use Upsun\Model\ProjectVariable;
 use Upsun\Model\Route;
-use Upsun\Model\Version;
 use Upsun\UpsunClient;
 
 class EnvironmentsTaskTest extends BaseTestCase

@@ -17,8 +17,7 @@ use Upsun\Model\{ListProjectTeamAccess200Response,
     ListTeamMembers200Response,
     ListTeams200Response,
     Team,
-    TeamMember,
-    TeamProjectAccess};
+    TeamMember};
 use Upsun\UpsunClient;
 
 class TeamsTaskTest extends BaseTestCase

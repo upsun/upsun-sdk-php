@@ -8,7 +8,6 @@ use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
-use Upsun\Api\ApiException;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\DomainsTask;

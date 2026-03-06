@@ -55,10 +55,6 @@ class SupportTicketsTaskTest extends BaseTestCase
             new ProjectApi(...$apiClassParams),
             new OrganizationProjectsApi(...$apiClassParams),
             new ProjectSettingsApi(...$apiClassParams),
-            new DeploymentTargetApi(...$apiClassParams),
-            new RepositoryApi(...$apiClassParams),
-            new SystemInformationApi(...$apiClassParams),
-            new ThirdPartyIntegrationsApi(...$apiClassParams),
             new SubscriptionsApi(...$apiClassParams),
         ) extends ProjectsTask {
         };

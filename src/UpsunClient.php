@@ -174,7 +174,6 @@ class UpsunClient
         $connectionsApi = new ConnectionsApi(...$taskParams);
         $defaultApi = new DefaultApi(...$taskParams);
         $deploymentApi = new DeploymentApi(...$taskParams);
-        $deploymentTargetApi = new DeploymentTargetApi(...$taskParams);
         $domainManagementApi = new DomainManagementApi(...$taskParams);
         $environmentActivityApi = new EnvironmentActivityApi(...$taskParams);
         $environmentApi = new EnvironmentApi(...$taskParams);
@@ -222,7 +221,6 @@ class UpsunClient
         );
         $this->applications = new ApplicationsTask(
             $this,
-            $deploymentApi
         );
         $this->backups = new BackupsTask(
             $this,
@@ -276,10 +274,6 @@ class UpsunClient
             $projectApi,
             $organizationProjectsApi,
             $projectSettingsApi,
-            $deploymentTargetApi,
-            $repositoryApi,
-            $systemInformationApi,
-            $thirdPartyIntegrationsApi,
             $subscriptionsApi,
         );
         $this->regions = new RegionsTask(

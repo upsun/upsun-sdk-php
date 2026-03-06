@@ -15,7 +15,6 @@ use Upsun\Core\Tasks\IntegrationsTask;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\GitHubIntegrationCreateInput;
 use Upsun\Model\GitHubIntegrationPatch;
-use Upsun\Model\Integration;
 use Upsun\UpsunClient;
 
 class IntegrationsTaskTest extends BaseTestCase
