@@ -5,14 +5,10 @@ namespace Upsun\Core\Tasks;
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
-use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;
-use Upsun\Api\RepositoryApi;
 use Upsun\Api\SubscriptionsApi;
-use Upsun\Api\SystemInformationApi;
-use Upsun\Api\ThirdPartyIntegrationsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\Blob;
@@ -21,9 +17,6 @@ use Upsun\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Model\Certificate;
 use Upsun\Model\Commit;
 use Upsun\Model\CreateOrgSubscriptionRequest;
-use Upsun\Model\DeploymentTarget;
-use Upsun\Model\DeploymentTargetCreateInput;
-use Upsun\Model\DeploymentTargetPatch;
 use Upsun\Model\Domain;
 use Upsun\Model\DomainCreateInput;
 use Upsun\Model\DomainPatch;
@@ -63,10 +56,6 @@ class ProjectsTask extends TaskBase
         private readonly ProjectApi $prjApi,
         private readonly OrganizationProjectsApi $organizationApi,
         private readonly ProjectSettingsApi $settingsApi,
-        private readonly DeploymentTargetApi $deploymentTargetApi,
-        private readonly RepositoryApi $repositoryApi,
-        private readonly SystemInformationApi $systemInfoApi,
-        private readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi,
         private readonly SubscriptionsApi $subscriptionsApi,
     ) {
         parent::__construct($client);
@@ -74,12 +63,12 @@ class ProjectsTask extends TaskBase
 
     /**
      * Clears the build cache for a project.
-     * 
+     *
      * @param string $projectId
-     * @return AcceptedResponse
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the project ID is invalid
+     * @return AcceptedResponse
      */
     public function clearBuildCache(string $projectId): AcceptedResponse
     {
@@ -158,13 +147,13 @@ class ProjectsTask extends TaskBase
 
     /**
      * Get or update a project.
-     * 
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function info(
-        string $projectId, 
+        string $projectId,
         ?string $title = null,
         ?string $defaultBranch = null,
         ?string $description = null,
@@ -178,15 +167,15 @@ class ProjectsTask extends TaskBase
         if ($title || $defaultBranch || $description || $defaultDomain || $attributes || $timezone || $region) {
             $this->update(
                 $projectId,
-                $title, 
-                $defaultBranch, 
-                $description, 
-                $defaultDomain, 
-                $attributes, 
-                $timezone, 
+                $title,
+                $defaultBranch,
+                $description,
+                $defaultDomain,
+                $attributes,
+                $timezone,
                 $region
             );
-        } 
+        }
 
         return $this->get($projectId);
     }
@@ -240,7 +229,7 @@ class ProjectsTask extends TaskBase
 
     /**
      * Lists projects for an organization.
-     * 
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
      * @throws InvalidArgumentException if the organization ID is invalid
@@ -256,10 +245,10 @@ class ProjectsTask extends TaskBase
      * Get the subscription details for a project. This method retrieves the subscription information associated with the
      * project, including details such as the subscription ID, status, plan, and other relevant information about the
      * subscription that is linked to the project.
-     * 
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
-     * @throws InvalidArgumentException if the project ID is invalid or if the subscription ID cannot be extracted from 
+     * @throws InvalidArgumentException if the project ID is invalid or if the subscription ID cannot be extracted from
      * the project information
      */
     public function getSubscription(string $projectId): Subscription
@@ -524,10 +513,10 @@ class ProjectsTask extends TaskBase
     /**
      * Gets project activity log
      *
-     * @return Activity[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
      * @throws InvalidArgumentException if the project ID is invalid
+     * @return Activity[]
      */
     public function listActivities(string $projectId): array
     {
@@ -556,96 +545,6 @@ class ProjectsTask extends TaskBase
     public function cancelActivity(string $projectId, string $activityId): AcceptedResponse
     {
         return $this->client->activities->cancel(projectId: $projectId, activityId: $activityId);
-    }
-
-    /**
-     * Creates a project deployment target
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface on network errors
-     * @throws InvalidArgumentException if the project ID is invalid or if the provided deployment target details are 
-     * not valid
-     */
-    public function createDeployment(
-        string $projectId,
-        DeploymentTargetCreateInput $deploymentTargetCreateInput,
-    ): AcceptedResponse {
-        $this->checkProjectId($projectId);
-
-        return $this->deploymentTargetApi->createProjectsDeployments(
-            projectId: $projectId,
-            deploymentTargetCreateInput: $deploymentTargetCreateInput,
-        );
-    }
-
-    /**
-     * Deletes a single project deployment target
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface on network errors
-     * @throws InvalidArgumentException if the project ID or deployment target configuration ID is invalid
-     */
-    public function deleteDeployment(string $projectId, string $deploymentTargetConfigurationId): AcceptedResponse
-    {
-        $this->checkProjectId($projectId);
-
-        return $this->deploymentTargetApi->deleteProjectsDeployments(
-            projectId: $projectId,
-            deploymentTargetConfigurationId: $deploymentTargetConfigurationId
-        );
-    }
-
-    /**
-     * Gets a single project deployment target
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface on network errors
-     * @throws InvalidArgumentException if the project ID or deployment target configuration ID is invalid
-     */
-    public function getDeployment(string $projectId, string $deploymentTargetConfigurationId): DeploymentTarget
-    {
-        $this->checkProjectId($projectId);
-        
-        return $this->deploymentTargetApi->getProjectsDeployments(
-            projectId: $projectId,
-            deploymentTargetConfigurationId: $deploymentTargetConfigurationId
-        );
-    }
-
-    /**
-     * Gets project deployment target info
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface on network errors
-     * @throws InvalidArgumentException if the project ID is invalid
-     * @return DeploymentTarget[]
-     */
-    public function listDeployments(string $projectId): array
-    {
-        $this->checkProjectId($projectId);
-
-        return $this->deploymentTargetApi->listProjectsDeployments(projectId: $projectId);
-    }
-
-    /**
-     * Updates a project deployment
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface on network errors
-     * @throws InvalidArgumentException if the project ID or deployment target configuration ID is invalid
-     */
-    public function updateDeployment(
-        string $projectId,
-        string $deploymentTargetConfigurationId,
-        DeploymentTargetPatch $deploymentTargetPatch,
-    ): AcceptedResponse {
-        $this->checkProjectId($projectId);
-
-        return $this->deploymentTargetApi->updateProjectsDeployments(
-            projectId: $projectId,
-            deploymentTargetConfigurationId: $deploymentTargetConfigurationId,
-            deploymentTargetPatch: $deploymentTargetPatch
-        );
     }
 
     /**
@@ -796,7 +695,7 @@ class ProjectsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
-     * @throws InvalidArgumentException if the project ID or domain ID is invalid 
+     * @throws InvalidArgumentException if the project ID or domain ID is invalid
      * or if the provided domain details are not valid
      */
     public function updateDomain(
@@ -816,7 +715,7 @@ class ProjectsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
-     * @throws InvalidArgumentException if the project ID is invalid or if the provided certificate details are not 
+     * @throws InvalidArgumentException if the project ID is invalid or if the provided certificate details are not
      * valid
      */
     public function addCertificate(
@@ -908,7 +807,6 @@ class ProjectsTask extends TaskBase
     /**
      * Gets team access for a project
      *
-     * @deprecated use getTeamProjectAccessByProject() instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
      * @throws InvalidArgumentException if the project ID or team ID is invalid
@@ -1024,7 +922,7 @@ class ProjectsTask extends TaskBase
 
     /**
      * Lists project team access for a project
-     * 
+     *
      * @deprecated use listTeamProjectAccessByProject() instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
@@ -1116,7 +1014,7 @@ class ProjectsTask extends TaskBase
     public function revokeProjectTeamAccess(string $projectId, string $teamId): void
     {
         $this->revokeTeamProjectAccessByProject(projectId: $projectId, teamId: $teamId);
-    }    
+    }
 
     /**
      * Removes project access for a team
@@ -1141,10 +1039,10 @@ class ProjectsTask extends TaskBase
     public function revokeTeamProjectAccess(string $teamId, string $projectId): void
     {
         $this->revokeTeamProjectAccessByTeam(teamId: $teamId, projectId: $projectId);
-    }    
+    }
 
     /**
-     * Get the access details of a user to a project. This method retrieves the access information for a specific user 
+     * Get the access details of a user to a project. This method retrieves the access information for a specific user
      * in relation to a project, including the level of access granted to the user, the permissions they have, and any
      * relevant metadata about the user's access to the project.
      *
@@ -1199,11 +1097,11 @@ class ProjectsTask extends TaskBase
             projectId: $projectId,
             permissions: $permissions
         );
-    }    
+    }
 
     /**
      * Revoke access to a project for a user. This method allows you to revoke the access that a user has to a project,
-     * which will remove the user's permissions and access to the project. Once the request is accepted, the user will 
+     * which will remove the user's permissions and access to the project. Once the request is accepted, the user will
      * no longer have access to the project.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -1387,7 +1285,7 @@ class ProjectsTask extends TaskBase
      * @deprecated use $this->client->integrations->createIntegration() instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
-     * @throws InvalidArgumentException if the project ID is invalid or if the provided integration details are not 
+     * @throws InvalidArgumentException if the project ID is invalid or if the provided integration details are not
      * valid
      */
     public function createIntegration(
@@ -1466,5 +1364,4 @@ class ProjectsTask extends TaskBase
             integrationUpdateInput: $integrationPatch
         );
     }
-
 }

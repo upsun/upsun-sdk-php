@@ -23,168 +23,168 @@ abstract class TaskBase
 
     protected static function checkUserId(string $userId): void
     {
-        if (!$userId) {
+        if (trim($userId) === '') {
             throw new InvalidArgumentException('User ID is required');
         }
     }
 
     protected static function checkProjectId(string $projectId): void
     {
-        if (!$projectId) {
+        if (trim($projectId) === '') {
             throw new InvalidArgumentException('Project ID is required');
         }
     }
 
     protected static function checkOrganizationId(string $organizationId): void
     {
-        if (!$organizationId) {
+        if (trim($organizationId) === '') {
             throw new InvalidArgumentException('Organization ID is required');
         }
     }
 
     protected static function checkEnvironmentId(string $environmentId): void
     {
-        if (!$environmentId) {
+        if (trim($environmentId) === '') {
             throw new InvalidArgumentException('Environment ID is required');
         }
     }
 
     protected static function checkActivityId(string $activityId): void
     {
-        if (!$activityId) {
+        if (trim($activityId) === '') {
             throw new InvalidArgumentException('Activity ID is required');
         }
     }
 
     protected static function checkApplicationId(string $applicationId): void
     {
-        if (!$applicationId) {
+        if (trim($applicationId) === '') {
             throw new InvalidArgumentException('Application ID is required');
         }
     }
 
     protected static function checkBackupId(string $backupId): void
     {
-        if (!$backupId) {
+        if (trim($backupId) === '') {
             throw new InvalidArgumentException('Backup ID is required');
         }
     }
 
     protected static function checkCertificateId(string $certificateId): void
     {
-        if (!$certificateId) {
+        if (trim($certificateId) === '') {
             throw new InvalidArgumentException('Certificate ID is required');
         }
     }
 
     protected static function checkSubscriptionId(string $subscriptionId): void
     {
-        if (!$subscriptionId) {
+        if (trim($subscriptionId) === '') {
             throw new InvalidArgumentException('Subscription ID is required');
         }
     }
 
     protected static function checkTeamId(string $teamId): void
     {
-        if (!$teamId) {
+        if (trim($teamId) === '') {
             throw new InvalidArgumentException('Team ID is required');
         }
     }
 
     protected static function checkDeploymentId(string $deploymentId): void
     {
-        if (!$deploymentId) {
+        if (trim($deploymentId) === '') {
             throw new InvalidArgumentException('Deployment ID is required');
         }
     }
 
     protected static function checkInvoiceId(string $invoiceId): void
     {
-        if (!$invoiceId) {
+        if (trim($invoiceId) === '') {
             throw new InvalidArgumentException('Invoice ID is required');
         }
     }
 
     protected static function checkOrderId(string $orderId): void
     {
-        if (!$orderId) {
+        if (trim($orderId) === '') {
             throw new InvalidArgumentException('Order ID is required');
         }
     }
 
     protected static function checkVoucherCode(string $code): void
     {
-        if (!$code) {
+        if (trim($code) === '') {
             throw new InvalidArgumentException('Voucher code is required');
         }
     }
 
     protected static function checkProjectRegion(string $region): void
     {
-        if (!$region) {
+        if (trim($region) === '') {
             throw new InvalidArgumentException('Project region is required');
         }
     }
 
     protected static function checkVariableId(string $variableId): void
     {
-        if (!$variableId) {
+        if (trim($variableId) === '') {
             throw new InvalidArgumentException('Variable ID is required');
         }
     }
 
     protected static function checkRepositoryBlobId(string $repositoryBlobId): void
     {
-        if (!$repositoryBlobId) {
+        if (trim($repositoryBlobId) === '') {
             throw new InvalidArgumentException('Repository Blob ID is required');
         }
     }
 
     protected static function checkRepositoryCommitId(string $repositoryCommitId): void
     {
-        if (!$repositoryCommitId) {
+        if (trim($repositoryCommitId) === '') {
             throw new InvalidArgumentException('Repository Commit ID is required');
         }
     }
 
     protected static function checkRepositoryRefId(string $repositoryRefId): void
     {
-        if (!$repositoryRefId) {
+        if (trim($repositoryRefId) === '') {
             throw new InvalidArgumentException('Repository Ref ID is required');
         }
     }
 
     protected static function checkRepositoryTreeId(string $repositoryTreeId): void
     {
-        if (!$repositoryTreeId) {
+        if (trim($repositoryTreeId) === '') {
             throw new InvalidArgumentException('Repository Tree ID is required');
         }
     }
 
     protected static function checkIntegrationId(string $integrationId): void
     {
-        if (!$integrationId) {
+        if (trim($integrationId) === '') {
             throw new InvalidArgumentException('Integration ID is required');
         }
     }
 
     protected static function checkDomainId(string $domainId): void
     {
-        if (!$domainId) {
+        if (trim($domainId) === '') {
             throw new InvalidArgumentException('Domain ID is required');
         }
     }
 
     protected static function checkApiTokenId(string $tokenId): void
     {
-        if (!$tokenId) {
+        if (trim($tokenId) === '') {
             throw new InvalidArgumentException('API Token ID is required');
         }
     }
 
     protected static function checkEmail(string $email): void
     {
-        if (!$email) {
+        if (trim($email) === '') {
             throw new InvalidArgumentException('Email is required');
         }
 
@@ -195,14 +195,14 @@ abstract class TaskBase
 
     protected static function checkInviteId(string $inviteId): void
     {
-        if (!$inviteId) {
+        if (trim($inviteId) === '') {
             throw new InvalidArgumentException('Invite ID is required');
         }
     }
 
     protected static function checkUsername(string $username): void
     {
-        if (!$username) {
+        if (trim($username) === '') {
             throw new InvalidArgumentException('Username is required');
         }
     }
@@ -216,31 +216,31 @@ abstract class TaskBase
 
     protected static function checkEnvironmentTypeId(string $environmentTypeId): void
     {
-        if (!$environmentTypeId) {
+        if (trim($environmentTypeId) === '') {
             throw new InvalidArgumentException('Environment Type ID is required');
         }
     }
 
     protected static function checkRouteId(string $routeId): void
     {
-        if (!$routeId) {
+        if (trim($routeId) === '') {
             throw new InvalidArgumentException('Route ID is required');
         }
     }
 
     protected static function checkInvitationId(string $invitationId): void
     {
-        if (!$invitationId) {
+        if (trim($invitationId) === '') {
             throw new InvalidArgumentException('Invitation ID is required');
         }
     }
 
     protected static function checkTicketId(string $ticketId): void
     {
-        if (!$ticketId) {
+        if (trim($ticketId) === '') {
             throw new InvalidArgumentException('Ticket ID is required');
         }
-    }   
+    }
 
     protected function normalizeFilter(array|string|int|DateTime|null $value): array
     {

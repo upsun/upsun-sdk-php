@@ -168,7 +168,7 @@ class UsersInvitationsTask extends TaskBase
         ?string $sort = null
     ): array {
         $this->checkProjectId($projectId);
-        
+
         return $this->prjInvApi->listProjectInvites(
             projectId: $projectId,
             filterState: new StringFilter(...$this->normalizeFilter($filterState)),

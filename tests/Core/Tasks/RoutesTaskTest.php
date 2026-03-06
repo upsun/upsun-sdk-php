@@ -98,6 +98,7 @@ class RoutesTaskTest extends BaseTestCase
         ];
 
         $this->httpClient
+            ->expects($this->once())
             ->method('sendRequest')
             ->willReturn(new Response(
                 200,
@@ -218,6 +219,7 @@ class RoutesTaskTest extends BaseTestCase
         ];
 
         $this->httpClient
+            ->expects($this->once())
             ->method('sendRequest')
             ->willReturn(new Response(
                 200,

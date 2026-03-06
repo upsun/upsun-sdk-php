@@ -17,7 +17,7 @@ additionalProperties:
   basePath: https://api.upsun.com
   docUrl: https://docs.upsun.com
   composerProject: upsun-sdk-php
-  licenseName: MIT
+  licenseName: Apache V2
   composerPackageName: upsun/upsun-sdk-php
   artifactUrl: https://github.com/upsun/upsun-sdk-php
   developerOrganization: Upsun Advocacy Team

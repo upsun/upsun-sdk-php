@@ -25,7 +25,6 @@ use Upsun\Model\GetAddress200Response;
 use Upsun\Model\GetCurrentUserVerificationStatus200Response;
 use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
 use Upsun\Model\GetTotpEnrollment200Response;
-use Upsun\Model\GrantProjectUserAccessRequestInner;
 use Upsun\Model\ListProfiles200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
 use Upsun\Model\ListUserExtendedAccess200Response;
@@ -94,18 +93,18 @@ class UsersTask extends TaskBase
      * Adds users to a project with specified permissions.
      * This method allows you to grant access to a project for one or more users, specifying their access levels
      * and permissions within the project.
-     * @return void
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the project ID is invalid, or if permissions are not properly specified
+     * @return void
      */
     public function addToProject(
-        string $projectId, 
+        string $projectId,
         array $userPermissions
     ): void {
         $this->checkProjectId($projectId);
 
-        if(empty($userPermissions)) {
+        if (empty($userPermissions)) {
             throw new InvalidArgumentException('At least one user permission is required to add a user to a project');
         }
 
@@ -127,7 +126,7 @@ class UsersTask extends TaskBase
     {
         $this->checkProjectId($projectId);
         $this->checkUserId($userId);
-        
+
         $this->userAccessApi->removeProjectUserAccess(projectId: $projectId, userId: $userId);
     }
 
@@ -143,7 +142,7 @@ class UsersTask extends TaskBase
         $this->checkUserId($userId);
 
         return $this->api->getUser(userId: $userId);
-    }    
+    }
 
     /**
      * Lists all users who have access to a specific project, along with their access levels and permissions.
@@ -188,9 +187,9 @@ class UsersTask extends TaskBase
         ?string $country = null,
     ): User {
         $this->checkUserId($userId);
-        
+
         return $this->api->updateUser(
-            userId: $userId, 
+            userId: $userId,
             updateUserRequest: new UpdateUserRequest(
                 username: $username,
                 firstName: $firstName,
@@ -235,7 +234,7 @@ class UsersTask extends TaskBase
     public function getByEmailAddress(string $email): User
     {
         $this->checkEmail($email);
-        
+
         return $this->api->getUserByEmailAddress(email: $email);
     }
 
@@ -249,7 +248,7 @@ class UsersTask extends TaskBase
     public function getByUsername(string $username): User
     {
         $this->checkUsername($username);
-        
+
         return $this->api->getUserByUsername(username: $username);
     }
 
@@ -265,7 +264,9 @@ class UsersTask extends TaskBase
         ?string $emailAddress = null
     ): void {
         $this->checkUserId($userId);
-        if ($emailAddress) { $this->checkEmail($emailAddress); }
+        if ($emailAddress) {
+            $this->checkEmail($emailAddress);
+        }
 
         $resetEmailAddressRequest = $emailAddress ? new ResetEmailAddressRequest(
             emailAddress: $emailAddress
@@ -461,12 +462,12 @@ class UsersTask extends TaskBase
             pageAfter: $pageAfter,
             sort: $sort
         );
-    }    
+    }
 
     /**
-     * Retrieves a list of all projects that a user has access to, along with their access levels and permissions for 
-     * each project. This method provides an extended view of the user's access, which may include additional details 
-     * about the projects and the user's permissions within those projects, making it easier to manage and review user 
+     * Retrieves a list of all projects that a user has access to, along with their access levels and permissions for
+     * each project. This method provides an extended view of the user's access, which may include additional details
+     * about the projects and the user's permissions within those projects, making it easier to manage and review user
      * access across multiple projects.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -525,7 +526,7 @@ class UsersTask extends TaskBase
     /**
      * Removes project access for a user
      *
-     * @deprecated use removeUserProjectAccessByUser instead
+     * @deprecated use revokeUserProjectAccessByUser instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the user ID or project ID is invalid
@@ -533,12 +534,12 @@ class UsersTask extends TaskBase
     public function removeUserProjectAccess(string $userId, string $projectId): void
     {
         $this->revokeUserProjectAccessByUser($userId, $projectId);
-    }    
+    }
 
     /**
      * Updates a user's access level and permissions for a specific project. This method allows you to modify the access
      * permissions of a user for a project, which can be useful for managing user roles and ensuring that users have the
-     * appropriate level of access to perform their tasks within the project. By updating a user's project access, you 
+     * appropriate level of access to perform their tasks within the project. By updating a user's project access, you
      * can grant them additional permissions or restrict their access as needed.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -552,7 +553,7 @@ class UsersTask extends TaskBase
     ): void {
         $this->checkProjectId($projectId);
         $this->checkUserId($userId);
-        
+
         if (empty($permissions)) {
             throw new InvalidArgumentException(
                 'Permissions array cannot be empty when updating project user access'
@@ -571,7 +572,7 @@ class UsersTask extends TaskBase
     /**
      * Updates a user's access level and permissions for a specific project. This method allows you to modify the access
      * permissions of a user for a project, which can be useful for managing user roles and ensuring that users have the
-     * appropriate level of access to perform their tasks within the project. By updating a user's project access, you 
+     * appropriate level of access to perform their tasks within the project. By updating a user's project access, you
      * can grant them additional permissions or restrict their access as needed.
      *
      * @deprecated use updateUserProjectAccessByProject instead
@@ -584,7 +585,7 @@ class UsersTask extends TaskBase
         string $userId,
         array $permissions
     ): void {
-        $this->updateUserProjectAccessByProject( projectId: $projectId, userId: $userId, permissions: $permissions );
+        $this->updateUserProjectAccessByProject(projectId: $projectId, userId: $userId, permissions: $permissions);
     }
 
     /**
@@ -634,7 +635,7 @@ class UsersTask extends TaskBase
         array $permissions
     ): void {
         $this->updateUserProjectAccessByUser(userId: $userId, projectId: $projectId, permissions: $permissions);
-    }    
+    }
 
     /**
      * Deletes a user profile picture
@@ -662,7 +663,7 @@ class UsersTask extends TaskBase
         $this->checkUserId($userId);
 
         return $this->profilesApi->getAddress(userId: $userId);
-    }    
+    }
 
     /**
      * Gets a single user profile
@@ -676,7 +677,7 @@ class UsersTask extends TaskBase
         $this->checkUserId($userId);
 
         return $this->profilesApi->getProfile(userId: $userId);
-    }    
+    }
 
     /**
      * Lists current user profiles
@@ -712,7 +713,7 @@ class UsersTask extends TaskBase
         $this->checkUserId($userId);
 
         return $this->profilesApi->updateAddress(
-            userId: $userId, 
+            userId: $userId,
             address: new Address(
                 country: $country,
                 nameLine: $nameLine,
@@ -754,7 +755,7 @@ class UsersTask extends TaskBase
         $this->checkUserId($userId);
 
         return $this->profilesApi->updateProfile(
-            userId: $userId, 
+            userId: $userId,
             updateProfileRequest: new UpdateProfileRequest(
                 displayName: $displayName,
                 username: $username,
@@ -786,9 +787,9 @@ class UsersTask extends TaskBase
         if (empty($name)) {
             throw new InvalidArgumentException('API token name cannot be empty');
         }
-        
+
         return $this->tokensApi->createApiToken(
-            userId: $userId, 
+            userId: $userId,
             createApiTokenRequest: new CreateApiTokenRequest(name: $name)
         );
     }
@@ -894,7 +895,7 @@ class UsersTask extends TaskBase
      * complete the TOTP enrollment process for a user, ensuring that they have successfully set up their TOTP
      * authentication method. By confirming the TOTP enrollment, the user can then use TOTP for
      * two-factor authentication when logging in.
-     * 
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the user ID is invalid, or if the TOTP secret or passcode are empty
@@ -905,8 +906,12 @@ class UsersTask extends TaskBase
         string $passCode
     ): ConfirmTotpEnrollment200Response {
         $this->checkUserId($userId);
-        if (empty($secret)) { throw new InvalidArgumentException('TOTP secret cannot be empty'); }
-        if (empty($passCode)) { throw new InvalidArgumentException('TOTP passcode cannot be empty'); }
+        if (empty($secret)) {
+            throw new InvalidArgumentException('TOTP secret cannot be empty');
+        }
+        if (empty($passCode)) {
+            throw new InvalidArgumentException('TOTP passcode cannot be empty');
+        }
 
         $confirmTotpEnrollmentRequest = new ConfirmTotpEnrollmentRequest(
             secret: $secret,
@@ -956,7 +961,7 @@ class UsersTask extends TaskBase
     public function recreateMfaRecoveryCodes(string $userId): void
     {
         $this->checkUserId($userId);
-        
+
         $this->mfaApi->recreateRecoveryCodes(userId: $userId);
     }
 
@@ -983,8 +988,12 @@ class UsersTask extends TaskBase
     public function confirmPhoneNumber(string $sid, string $userId, string $code): void
     {
         $this->checkUserId($userId);
-        if (empty($sid)) { throw new InvalidArgumentException('SID cannot be empty'); }
-        if (empty($code)) { throw new InvalidArgumentException('Confirmation code cannot be empty'); }
+        if (empty($sid)) {
+            throw new InvalidArgumentException('SID cannot be empty');
+        }
+        if (empty($code)) {
+            throw new InvalidArgumentException('Confirmation code cannot be empty');
+        }
 
         $this->phoneNumberApi->confirmPhoneNumber(
             sid: $sid,
@@ -1007,8 +1016,12 @@ class UsersTask extends TaskBase
         string $phoneNumber,
     ): VerifyPhoneNumber200Response {
         $this->checkUserId($userId);
-        if (empty($channel)) { throw new InvalidArgumentException('Channel cannot be empty'); }
-        if (empty($phoneNumber)) { throw new InvalidArgumentException('Phone number cannot be empty'); }
+        if (empty($channel)) {
+            throw new InvalidArgumentException('Channel cannot be empty');
+        }
+        if (empty($phoneNumber)) {
+            throw new InvalidArgumentException('Phone number cannot be empty');
+        }
 
         return $this->phoneNumberApi->verifyPhoneNumber(
             userId: $userId,

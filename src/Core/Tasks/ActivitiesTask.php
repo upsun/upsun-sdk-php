@@ -65,20 +65,20 @@ class ActivitiesTask extends TaskBase
     {
         $this->checkProjectId($projectId);
         $this->checkActivityId($activityId);
-        $this->checkEnvironmentId($environmentId);
 
         if (!$environmentId) {
             return $this->prjApi->getProjectsActivities(
                 projectId: $projectId,
                 activityId: $activityId
             );
-        } else {
-            return $this->envApi->getProjectsEnvironmentsActivities(
-                projectId: $projectId,
-                environmentId: $environmentId,
-                activityId: $activityId
-            );
         }
+
+        $this->checkEnvironmentId($environmentId);
+        return $this->envApi->getProjectsEnvironmentsActivities(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            activityId: $activityId
+        );
     }
 
     /**
@@ -91,16 +91,16 @@ class ActivitiesTask extends TaskBase
     public function list(string $projectId, ?string $environmentId = null): array
     {
         $this->checkProjectId($projectId);
-        $this->checkEnvironmentId($environmentId);
 
         if (!$environmentId) {
             return $this->prjApi->listProjectsActivities(projectId: $projectId);
-        } else {
-            return $this->envApi->listProjectsEnvironmentsActivities(
-                projectId: $projectId,
-                environmentId: $environmentId
-            );
         }
+
+        $this->checkEnvironmentId($environmentId);
+        return $this->envApi->listProjectsEnvironmentsActivities(
+            projectId: $projectId,
+            environmentId: $environmentId
+        );
     }
 
     /**
@@ -118,11 +118,11 @@ class ActivitiesTask extends TaskBase
     ): Generator {
         $this->checkProjectId($projectId);
         $this->checkActivityId($activityId);
-        
+
         if ($environmentId) {
             $this->checkEnvironmentId($environmentId);
-        }   
-        
+        }
+
         $resourcePath = $environmentId
             ? \sprintf(
                 '/projects/%s/environments/%s/activities/%s/log',

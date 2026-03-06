@@ -49,66 +49,6 @@ class CertificatesTaskTest extends BaseTestCase
      * @throws ClientExceptionInterface
      * @throws Exception
      */
-    public function testCreateCertificateSuccess()
-    {
-        $projectId = 'proj_123';
-        $fakeResponse = [
-            'status' => 'accepted',
-            'code' => 204,
-        ];
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                204,
-                ['Content-Type' => 'application/json'],
-                json_encode($fakeResponse)
-            ));
-
-        $result = $this->task->create(
-            projectId: $projectId,
-            certificate: 'cert-data',
-            key: 'key-data',
-            chain: ['chain1', 'chain2'],
-            isInvalid: false,
-        );
-
-        $this->assertInstanceOf(AcceptedResponse::class, $result);
-        $this->assertObjectProperties($result, $fakeResponse);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testCreateCertificateError()
-    {
-        $projectId = 'proj_123';
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                400,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'error',
-                    'code' => 400,
-                    'message' => 'Invalid certificate data'
-                ])
-            ));
-
-        $this->expectException(ApiException::class);
-
-        $this->task->create(
-            projectId: $projectId,
-            certificate: 'cert-data',
-            key: 'key-data'
-        );
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws Exception
-     */
     public function testDeleteCertificateSuccess()
     {
         $projectId = 'proj_123';

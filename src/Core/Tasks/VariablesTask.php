@@ -52,11 +52,15 @@ class VariablesTask extends TaskBase
         ?array $applicationScope = [],
     ): AcceptedResponse {
         $this->checkProjectId($projectId);
-        if( empty($name) ) { throw new InvalidArgumentException("Variable name is required"); }
-        if( empty($value) ) { throw new InvalidArgumentException("Variable value is required"); }
-    
+        if (empty($name)) {
+            throw new InvalidArgumentException("Variable name is required");
+        }
+        if (empty($value)) {
+            throw new InvalidArgumentException("Variable value is required");
+        }
+
         return $this->projectVariablesApi->createProjectsVariables(
-            projectId: $projectId, 
+            projectId: $projectId,
             projectVariableCreateInput: new ProjectVariableCreateInput(
                 name: $name,
                 value: $value,
@@ -182,8 +186,12 @@ class VariablesTask extends TaskBase
     ): AcceptedResponse {
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
-        if( empty($name) ) { throw new InvalidArgumentException("Variable name is required"); }
-        if( empty($value) ) { throw new InvalidArgumentException("Variable value is required"); }
+        if (empty($name)) {
+            throw new InvalidArgumentException("Variable name is required");
+        }
+        if (empty($value)) {
+            throw new InvalidArgumentException("Variable value is required");
+        }
 
         return $this->environmentVariablesApi->createProjectsEnvironmentsVariables(
             projectId: $projectId,
@@ -252,10 +260,10 @@ class VariablesTask extends TaskBase
     /**
      * Lists environment variables
      *
-     * @return EnvironmentVariable[]
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return EnvironmentVariable[]
      */
     public function listEnvironmentVariables(string $projectId, string $environmentId): array
     {
@@ -293,8 +301,12 @@ class VariablesTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
         $this->checkVariableId($variableId);
-        if( empty($name) ) { throw new InvalidArgumentException("Variable name is required"); }
-        if( empty($value) ) { throw new InvalidArgumentException("Variable value is required"); }
+        if (empty($name)) {
+            throw new InvalidArgumentException("Variable name is required");
+        }
+        if (empty($value)) {
+            throw new InvalidArgumentException("Variable value is required");
+        }
 
         return $this->environmentVariablesApi->updateProjectsEnvironmentsVariables(
             projectId: $projectId,

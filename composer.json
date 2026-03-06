@@ -10,7 +10,7 @@
         "api"
     ],
     "homepage": "https://github.com/upsun/upsun-sdk-php",
-    "license": "MIT",
+    "license": "Apache V2",
     "authors": [
         {
             "name": "Florent HUCK",

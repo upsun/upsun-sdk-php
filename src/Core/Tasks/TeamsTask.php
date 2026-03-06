@@ -57,7 +57,7 @@ class TeamsTask extends TaskBase
             projectPermissions: $projectPermissions
         ));
     }
-    
+
     /**
      * Deletes team
      *
@@ -102,7 +102,7 @@ class TeamsTask extends TaskBase
         $this->checkTeamId($teamId);
 
         return $this->teamsApi->updateTeam(
-            teamId: $teamId, 
+            teamId: $teamId,
             updateTeamRequest: new UpdateTeamRequest(
                 label: $label,
                 projectPermissions: $projectPermissions
@@ -169,7 +169,7 @@ class TeamsTask extends TaskBase
 
     /**
      * Lists teams by member
-     * 
+     *
      * @deprecated use listByMember() instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
@@ -369,11 +369,11 @@ class TeamsTask extends TaskBase
 
     /**
      * Grants project access to a team
-     * 
+     *
      * @param array{
      *  projectId: string,
      * } $access
-     * 
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
      * @throws InvalidArgumentException if the project ID or team ID is invalid

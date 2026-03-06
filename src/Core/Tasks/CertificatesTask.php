@@ -44,10 +44,10 @@ class CertificatesTask extends TaskBase
     ): AcceptedResponse {
         $this->checkProjectId($projectId);
 
-        if( empty($certificate) || empty($key) ) {
+        if (empty($certificate) || empty($key)) {
             throw new InvalidArgumentException("Certificate and key are required");
         }
-        
+
         return $this->api->createProjectsCertificates(
             $projectId,
             certificateCreateInput: new CertificateCreateInput(

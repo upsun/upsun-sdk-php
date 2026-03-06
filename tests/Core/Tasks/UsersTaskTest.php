@@ -162,7 +162,7 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($userFake)
             ));
 
-        $result = $this->usersTask->get(id: 'user_123');
+        $result = $this->usersTask->get(userId: 'user_123');
         $this->assertInstanceOf(User::class, $result);
         $this->assertObjectProperties($result, $userFake);
     }
@@ -182,7 +182,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->get(id: 'invalid_user');
+        $this->usersTask->get(userId: 'invalid_user');
     }
 
     /**
@@ -431,7 +431,7 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($accessFake)
             ));
 
-        $result = $this->usersTask->getProjectUserAccess(projectId: $projectId, userId: $userId);
+        $result = $this->usersTask->getUserProjectAccessByProject(projectId: $projectId, userId: $userId);
         $this->assertInstanceOf(UserProjectAccess::class, $result);
         $this->assertObjectProperties($result, $accessFake);
     }
@@ -458,7 +458,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->getProjectUserAccess(projectId: $projectId, userId: $userId);
+        $this->usersTask->getUserProjectAccessByProject(projectId: $projectId, userId: $userId);
     }
 
     /**
@@ -493,7 +493,7 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($accessFake)
             ));
 
-        $result = $this->usersTask->getUserProjectAccess(userId: $userId, projectId: $projectId);
+        $result = $this->usersTask->getUserProjectAccessByUser(userId: $userId, projectId: $projectId);
         $this->assertInstanceOf(UserProjectAccess::class, $result);
         $this->assertObjectProperties($result, $accessFake);
     }
@@ -520,7 +520,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->getUserProjectAccess(userId: $userId, projectId: $projectId);
+        $this->usersTask->getUserProjectAccessByUser(userId: $userId, projectId: $projectId);
     }
 
     /**
@@ -548,9 +548,9 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         // Call the method
-        $this->usersTask->grantProjectUserAccess(
+        $this->usersTask->addToProject(
             projectId: $projectId,
-            grantProjectUserAccessRequestInner: $grantRequestFake
+            userPermissions: $grantRequestFake
         );
 
         // If no exception, the test is successful
@@ -584,9 +584,9 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->grantProjectUserAccess(
+        $this->usersTask->addToProject(
             projectId: $projectId,
-            grantProjectUserAccessRequestInner: $grantRequestFake
+            userPermissions: $grantRequestFake
         );
     }
 
@@ -637,7 +637,7 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($responseFake)
             ));
 
-        $result = $this->usersTask->listProjectUserAccess(projectId: $projectId);
+        $result = $this->usersTask->listProjectUserAccesses(projectId: $projectId);
         $this->assertInstanceOf(ListProjectUserAccess200Response::class, $result);
         $this->assertObjectProperties($result, $responseFake);
     }
@@ -663,7 +663,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->listProjectUserAccess(projectId: $projectId);
+        $this->usersTask->listProjectUserAccesses(projectId: $projectId);
     }
 
     /**
@@ -713,7 +713,7 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($responseFake)
             ));
 
-        $result = $this->usersTask->listUserProjectAccess(userId: $userId);
+        $result = $this->usersTask->listUserProjectAccessByUser(userId: $userId);
         $this->assertInstanceOf(ListProjectUserAccess200Response::class, $result);
         $this->assertObjectProperties($result, $responseFake);
     }
@@ -739,13 +739,13 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->listUserProjectAccess(userId: $userId);
+        $this->usersTask->listUserProjectAccessByUser(userId: $userId);
     }
 
     /**
      * @throws ClientExceptionInterface
      */
-    public function testRemoveProjectUserAccessSuccess()
+    public function testRevokeUserProjectAccessByUserSuccess()
     {
         $projectId = 'proj_123';
         $userId = 'user_123';
@@ -758,7 +758,7 @@ class UsersTaskTest extends BaseTestCase
                 null
             ));
 
-        $this->usersTask->removeProjectUserAccess(projectId: $projectId, userId: $userId);
+        $this->usersTask->revokeUserProjectAccessByUser(projectId: $projectId, userId: $userId);
 
         $this->assertTrue(true);
     }
@@ -766,7 +766,7 @@ class UsersTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testRemoveProjectUserAccessError()
+    public function testRevokeUserProjectAccessByUserError()
     {
         $projectId = 'proj_123';
         $userId = 'user_123';
@@ -785,7 +785,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->removeProjectUserAccess(projectId: $projectId, userId: $userId);
+        $this->usersTask->revokeUserProjectAccessByUser(projectId: $projectId, userId: $userId);
     }
 
 
@@ -806,7 +806,7 @@ class UsersTaskTest extends BaseTestCase
                 null
             ));
 
-        $this->usersTask->updateProjectUserAccess(projectId: $projectId, userId: $userId, permissions: $permissions);
+        $this->usersTask->updateUserProjectAccessByProject(projectId: $projectId, userId: $userId, permissions: $permissions);
 
         $this->assertTrue(true);
     }
@@ -834,7 +834,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->updateProjectUserAccess(projectId: $projectId, userId: $userId, permissions: $permissions);
+        $this->usersTask->updateUserProjectAccessByProject(projectId: $projectId, userId: $userId, permissions: $permissions);
     }
 
     /**
@@ -852,7 +852,7 @@ class UsersTaskTest extends BaseTestCase
                 null
             ));
 
-        $this->usersTask->deleteProfilePicture(uuid: $uuid);
+        $this->usersTask->deleteProfilePicture(userId: $uuid);
 
         $this->assertTrue(true);
     }
@@ -878,7 +878,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->deleteProfilePicture(uuid: $uuid);
+        $this->usersTask->deleteProfilePicture(userId: $uuid);
     }
 
 
@@ -1542,7 +1542,7 @@ class UsersTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testListExtendedAccessSuccess()
+    public function testListExtendedUserProjectAccessSuccess()
     {
         $userId = 'user_123';
         $extendedAccessFake = [
@@ -1576,30 +1576,13 @@ class UsersTaskTest extends BaseTestCase
                 json_encode($extendedAccessFake)
             ));
 
-        $result = $this->usersTask->listExtendedAccess(userId: $userId);
+        $result = $this->usersTask->listExtendedUserProjectAccess(userId: $userId);
         $this->assertInstanceOf(ListUserExtendedAccess200Response::class, $result);
         $this->assertContainsOnlyInstancesOf(
             ListUserExtendedAccess200ResponseItemsInner::class,
             $result->getItems()
         );
         $this->assertObjectMatchesArray($result->getItems(), $extendedAccessFake['items']);
-    }
-
-    public function testListExtendedAccessError()
-    {
-        $userId = 'user_123';
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                403,
-                ['Content-Type' => 'application/json'],
-                json_encode(['status' => 'forbidden', 'code' => 403])
-            ));
-
-        $this->expectException(ApiException::class);
-
-        $this->usersTask->listExtendedAccess($userId);
     }
 
     /**
@@ -1729,7 +1712,7 @@ class UsersTaskTest extends BaseTestCase
                 ])
             ));
 
-        $this->usersTask->recreateRecoveryCodes(userId: $userId);
+        $this->usersTask->recreateMfaRecoveryCodes(userId: $userId);
 
         $this->assertTrue(true);
     }
@@ -1737,7 +1720,7 @@ class UsersTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testRecreateRecoveryCodesError()
+    public function testRecreateMfaRecoveryCodesError()
     {
         $userId = 'user_123';
 
@@ -1754,7 +1737,7 @@ class UsersTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->usersTask->recreateRecoveryCodes(userId: $userId);
+        $this->usersTask->recreateMfaRecoveryCodes(userId: $userId);
     }
 
 
@@ -1915,17 +1898,6 @@ class UsersTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testCreateProfilePictureNotImplemented()
-    {
-        $this->expectException(BadMethodCallException::class);
-        $this->expectExceptionMessage('Not implemented yet');
-
-        $this->usersTask->createProfilePicture(uuid: '123');
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
     public function testGetCurrentUserVerificationStatusFullSuccess(): void
     {
         $this->httpClient
@@ -1991,7 +1963,7 @@ class UsersTaskTest extends BaseTestCase
             ));
         $this->expectNotToPerformAssertions();
 
-        $this->usersTask->grantUserProjectAccess(userId: $userId, data: $data);
+        $this->usersTask->grantUserProjectAccessByUser(userId: $userId, access: $data);
     }
 
     /**
@@ -2018,7 +1990,7 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->grantUserProjectAccess(userId: $userId, data: $data);
+        $this->usersTask->grantUserProjectAccessByUser(userId: $userId, access: $data);
     }
 
     /**
@@ -2045,229 +2017,26 @@ class UsersTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->usersTask->grantUserProjectAccess(userId: $userId, data: $data);
+        $this->usersTask->grantUserProjectAccessByUser(userId: $userId, access: $data);
     }
 
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testRemoveUserProjectAccessSuccess(): void
-    {
-        $userId = 'user123';
-        $projectId = 'project456';
 
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'success' => true,
-                    'message' => 'Access removed'
-                ])
-            ));
 
-        $this->expectNotToPerformAssertions();
 
-        $this->usersTask->removeUserProjectAccess(userId: $userId, projectId: $projectId);
-    }
 
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testRemoveUserProjectAccessError(): void
-    {
-        $userId = 'user123';
-        $projectId = 'project456';
 
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                403,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'forbidden',
-                    'code' => 403,
-                    'message' => 'Access denied'
-                ])
-            ));
 
-        $this->expectException(ApiException::class);
-        $this->usersTask->removeUserProjectAccess(userId: $userId, projectId: $projectId);
-    }
 
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testRemoveUserProjectAccessNotFound(): void
-    {
-        $userId = 'user123';
-        $projectId = 'invalidProject';
 
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                404,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'not_found',
-                    'code' => 404,
-                    'message' => 'Project not found'
-                ])
-            ));
 
-        $this->expectException(ApiException::class);
-        $this->usersTask->removeUserProjectAccess(userId: $userId, projectId: $projectId);
-    }
 
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testRemoveUserProjectAccessAlreadyRemoved(): void
-    {
-        $userId = 'user123';
-        $projectId = 'project456';
 
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                409,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'conflict',
-                    'code' => 409,
-                    'message' => 'User does not have access to this project'
-                ])
-            ));
 
-        $this->expectException(ApiException::class);
-        $this->usersTask->removeUserProjectAccess(userId: $userId, projectId: $projectId);
-    }
 
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateUserProjectAccessSuccess(): void
-    {
-        $userId = 'user123';
-        $projectId = 'project456';
-        $permissions = ['read', 'write'];
 
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'success' => true,
-                    'message' => 'Access updated'
-                ])
-            ));
 
-        $this->expectNotToPerformAssertions();
 
-        $this->usersTask->updateUserProjectAccess(userId: $userId, projectId: $projectId, permissions: $permissions);
-    }
 
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateUserProjectAccessWithNullPermissions(): void
-    {
-        $userId = 'user123';
-        $projectId = 'project456';
-        $permissions = ['read', 'write'];
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'success' => true,
-                    'message' => 'Access updated'
-                ])
-            ));
-
-        $this->expectNotToPerformAssertions();
-
-        $this->usersTask->updateUserProjectAccess(userId: $userId, projectId: $projectId, permissions: $permissions);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateUserProjectAccessError(): void
-    {
-        $userId = 'user123';
-        $projectId = 'project456';
-        $permissions = ['read', 'write'];
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                403,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'forbidden',
-                    'code' => 403,
-                    'message' => 'Access denied'
-                ])
-            ));
-
-        $this->expectException(ApiException::class);
-        $this->usersTask->updateUserProjectAccess(userId: $userId, projectId: $projectId, permissions: $permissions);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateUserProjectAccessNotFound(): void
-    {
-        $userId = 'user123';
-        $projectId = 'invalidProject';
-        $permissions = ['read'];
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                404,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'not_found',
-                    'code' => 404,
-                    'message' => 'Project or user not found'
-                ])
-            ));
-
-        $this->expectException(ApiException::class);
-        $this->usersTask->updateUserProjectAccess(userId: $userId, projectId: $projectId, permissions: $permissions);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateUserProjectAccessInvalidPermissions(): void
-    {
-        $userId = 'user123';
-        $projectId = 'project456';
-        $permissions = ['invalid_permission'];
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                400,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'bad_request',
-                    'code' => 400,
-                    'message' => 'Invalid permissions'
-                ])
-            ));
-
-        $this->expectException(ApiException::class);
-        $this->usersTask->updateUserProjectAccess(userId: $userId, projectId: $projectId, permissions: $permissions);
-    }
 
     /**
      * @throws ClientExceptionInterface

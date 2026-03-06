@@ -8,6 +8,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
+use Upsun\Api\AutoscalingApi;
 use Upsun\Api\DeploymentApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ResourcesTask;
@@ -39,6 +40,7 @@ class ResourcesTaskTest extends BaseTestCase
         $this->resourcesTask = new class (
             $upsunClient,
             new DeploymentApi(...$apiClassParams),
+            new AutoscalingApi(...$apiClassParams),
         ) extends ResourcesTask {
         };
     }

@@ -4,7 +4,6 @@ namespace Upsun\Core\Tasks;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
-use Upsun\Api\DeploymentApi;
 use Upsun\Model\WebApplicationsValue;
 use Upsun\UpsunClient;
 
@@ -18,8 +17,7 @@ use Upsun\UpsunClient;
 class ApplicationsTask extends TaskBase
 {
     public function __construct(
-        UpsunClient $client,
-        private readonly DeploymentApi $api
+        UpsunClient $client
     ) {
         parent::__construct($client);
     }

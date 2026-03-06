@@ -41,7 +41,7 @@ class DomainsTask extends TaskBase
         DomainCreateInput $domainCreateInput,
         ?string $environmentId = null
     ): AcceptedResponse {
-        $this->checkProjectId($projectId);    
+        $this->checkProjectId($projectId);
 
         if (!$environmentId) {
             return $this->api->createProjectsDomains(
@@ -125,14 +125,14 @@ class DomainsTask extends TaskBase
             return $this->api->listProjectsDomains(projectId: $projectId);
         } else {
             $this->checkEnvironmentId($environmentId);
-        
+
             return $this->api->listProjectsEnvironmentsDomains(projectId: $projectId, environmentId: $environmentId);
         }
     }
 
     /**
      * Update a project (or environment) domain
-     * 
+     *
      * @param DomainPatch $domainPatch is an instance of ProdDomainStoragePatch or ReplacementDomainStoragePatch
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface

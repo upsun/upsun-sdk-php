@@ -33,7 +33,7 @@ class SourceOperationsTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network error
      * @throws InvalidArgumentException if required parameters are missing or invalid
-     * 
+     *
      * @return EnvironmentSourceOperation[]
      */
     public function list(string $projectId, string $environmentId): array

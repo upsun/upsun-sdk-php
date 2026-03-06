@@ -34,21 +34,21 @@ class ResourcesTask extends TaskBase
      * Get the resource configuration for a specific application in the current deployment of an environment.
      * This method retrieves the resource configuration for a specific application (webapp, service, or worker) in the
      * current deployment of an environment.
-     * 
+     *
      * @param string $type - the application type, e.g. "webapps", "services", or "workers"
-     * @param string $app - the application name, e.g. "app" for webapps, or the service/worker name for 
+     * @param string $app - the application name, e.g. "app" for webapps, or the service/worker name for
      *  services/workers
-     * @return Resources|null
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     * @return Resources|null
      */
     public function get(
-        string $projectId, 
-        string $environmentId, 
-        string $type = "webapps", 
+        string $projectId,
+        string $environmentId,
+        string $type = "webapps",
         string $app = 'app'
-        ): ?Resources {
+    ): ?Resources {
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
@@ -141,7 +141,7 @@ class ResourcesTask extends TaskBase
             webapps: $webapps,
             services: $services,
             workers: $workers
-         );
+        );
     }
 
     /**
@@ -173,7 +173,7 @@ class ResourcesTask extends TaskBase
      * whether autoscaling is enabled, the addresses that are being autoscaled, and any authentication settings for the
      * autoscaler services. Updating the autoscaler settings will allow you to enable or disable autoscaling, change the
      * addresses that are being autoscaled, and update the authentication settings for the autoscaler services.
-     * 
+     *
      * @param array{
      *   services?: array<string, (array<string, array{
      *     triggers?: array{
@@ -200,7 +200,7 @@ class ResourcesTask extends TaskBase
      *     }
      *   }> | null)> | null
      * } $services
-     * 
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the projectId or environmentId is invalid

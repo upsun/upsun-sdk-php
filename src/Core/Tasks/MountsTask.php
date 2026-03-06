@@ -5,6 +5,10 @@ namespace Upsun\Core\Tasks;
 use RuntimeException;
 use Upsun\UpsunClient;
 
+use function is_array;
+use function is_object;
+use function is_string;
+
 /**
  * MountsTask class.
  *
@@ -22,7 +26,7 @@ class MountsTask extends TaskBase
 
     /**
      * List the mounts for a specific application in the current deployment of an environment.
-     * 
+     *
      * @param string $filterType - optional filter for resource type, e.g. "webapps", "services", or "workers"
      * @return array<array>
      */
@@ -44,19 +48,31 @@ class MountsTask extends TaskBase
             : ['webapps', 'services', 'workers'];
 
         foreach ($resourceTypes as $resourceType) {
-            $group = $this->readField($currentDeployment, $resourceType) ?? [];
-            if (!\is_array($group) && !\is_object($group)) {
+            switch ($resourceType) {
+                case 'webapps':
+                    $group = $currentDeployment->getWebapps();
+                    break;
+                case 'services':
+                    $group = $currentDeployment->getServices();
+                    break;
+                case 'workers':
+                    $group = $currentDeployment->getWorkers();
+                    break;
+                default:
+                    continue 2; // Skip unknown resource types
+            }
+
+            if (!is_array($group) && !is_object($group)) {
                 continue;
             }
 
-            foreach ((array) $group as $app) {
-                $appName = $this->readField($app, 'name') ?? $this->readField($app, 'id');
-                if (!\is_string($appName) || $appName === '') {
+            foreach ((array) $group as $appName => $app) {
+                if (!is_string($appName) || $appName === '') {
                     continue;
                 }
 
                 $mounts = $this->readField($app, 'mounts');
-                $result[$appName] = \is_array($mounts) ? $mounts : [];
+                $result[$appName] = is_array($mounts) ? $mounts : [];
             }
         }
 
@@ -76,13 +92,13 @@ class MountsTask extends TaskBase
     /**
      * Helper method to read a field from an object or array, trying both getter method and direct property access.
      */
-    private function readField(mixed $source, string $field): ?array
+    private function readField(mixed $source, string $field): mixed
     {
-        if (\is_array($source)) {
+        if (is_array($source)) {
             return $source[$field] ?? null;
         }
 
-        if (\is_object($source)) {
+        if (is_object($source)) {
             $getter = 'get' . ucfirst($field);
             if (method_exists($source, $getter)) {
                 return $source->{$getter}();

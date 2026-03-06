@@ -58,6 +58,7 @@ use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationProject;
 use Upsun\Model\PlanRecords;
 use Upsun\Model\Profile;
+use Upsun\Model\Project;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\Subscription;
 use Upsun\Model\SubscriptionCurrentUsageObject;
@@ -106,6 +107,7 @@ class OrganizationsTaskTest extends BaseTestCase
         $projectsTask = new class (
             $upsunClient,
             new ProjectApi(...$apiClassParams),
+            new OrganizationProjectsApi(...$apiClassParams),
             new ProjectSettingsApi(...$apiClassParams),
             new DeploymentTargetApi(...$apiClassParams),
             new RepositoryApi(...$apiClassParams),
@@ -1171,7 +1173,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($list)
             ));
 
-        $result = $this->organizationsTask->listTeams(organizationId: $orgId);
+        $result = $this->organizationsTask->listTeams($orgId);
         $this->assertIsArray($result->getItems());
         $this->assertContainsOnlyInstancesOf(Team::class, $result->getItems());
         $this->assertObjectMatchesArray($result->getItems(), $list['items']);
@@ -1183,56 +1185,8 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testGetProject()
     {
-        $orgId = 'fake-org-5678';
         $projectId = 'fake-proj-1234';
-        $data = [
-            "id" => "fake-proj-1234",
-            "organization_id" => "fake-org-5678",
-            "subscription_id" => "999999",
-            "vendor" => "upsun",
-            "region" => "us.platform.sh",
-            "title" => "Demo Project",
-            "plan" => "upsun/flexible",
-            "default_branch" => "main",
-            "status" => "active",
-            "timezone" => "America/New_York",
-            "options_url" => "",
-            "agency_site" => false,
-            "support_tier" => "upsun_standard",
-            "options_custom" => [
-                "initialize" => [
-                    "profile" => "demo",
-                    "repository" => "https://github.com/platformsh/demo-cmd.git"
-                ]
-            ],
-            "trial_plan" => false,
-            "project_ui" => "https://console.upsun.com/fake-org-5678/fake-proj-1234",
-            "created_at" => "2023-10-24T16:34:45Z",
-            "updated_at" => "2025-04-08T11:12:55.802313Z",
-            "_links" => [
-                "activities" => [
-                    "href" => "/organizations/fake-org-5678/projects/fake-proj-1234/activities"
-                ],
-                "addons" => [
-                    "href" => "/organizations/fake-org-5678/projects/fake-proj-1234/addons"
-                ],
-                "api" => [
-                    "href" => "/projects/fake-proj-1234"
-                ],
-                "self" => [
-                    "href" => "/organizations/fake-org-5678/projects/fake-proj-1234"
-                ],
-                "subscription" => [
-                    "href" => "/organizations/fake-org-5678/subscriptions/999999"
-                ]
-            ],
-            "type" => "grid",
-            "locked" => false,
-            "cse_notes" => "",
-            "fastly_service_ids" => [],
-            "edgee_org_id" => "",
-            "edgee_project_id" => ""
-        ];
+        $data = $this->getFakeProject($projectId);
 
         $this->httpClient
             ->method('sendRequest')
@@ -1242,8 +1196,8 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->getProject(organizationId: $orgId, projectId: $projectId);
-        $this->assertInstanceOf(OrganizationProject::class, $result);
+        $result = $this->organizationsTask->getProject(projectId: $projectId);
+        $this->assertInstanceOf(Project::class, $result);
         $this->assertObjectProperties($result, $data);
     }
 

@@ -160,9 +160,9 @@ class SupportTicketsTask extends TaskBase
         ?bool $collaboratorsReplace = null,
     ): Ticket {
         $this->checkTicketId($ticketId);
-        
+
         return $this->supportApi->updateTicket(
-            ticketId: $ticketId, 
+            ticketId: $ticketId,
             updateTicketRequest: new UpdateTicketRequest(
                 status: $status,
                 collaboratorIds: $collaboratorIds,

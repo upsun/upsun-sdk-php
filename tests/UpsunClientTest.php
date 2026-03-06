@@ -14,7 +14,6 @@ use Upsun\Core\Tasks\BackupsTask;
 use Upsun\Core\Tasks\CertificatesTask;
 use Upsun\Core\Tasks\DomainsTask;
 use Upsun\Core\Tasks\EnvironmentsTask;
-use Upsun\Core\Tasks\InvitationsTask;
 use Upsun\Core\Tasks\MetricsTask;
 use Upsun\Core\Tasks\MountsTask;
 use Upsun\Core\Tasks\OperationsTask;
@@ -26,6 +25,7 @@ use Upsun\Core\Tasks\RoutesTask;
 use Upsun\Core\Tasks\SourceOperationsTask;
 use Upsun\Core\Tasks\SupportTicketsTask;
 use Upsun\Core\Tasks\TeamsTask;
+use Upsun\Core\Tasks\UsersInvitationsTask;
 use Upsun\Core\Tasks\UsersTask;
 use Upsun\Core\Tasks\VariablesTask;
 use Upsun\Core\Tasks\WorkersTask;
@@ -102,7 +102,7 @@ class UpsunClientTest extends TestCase
 
     public function testConstructorInitializesInvitationsTask()
     {
-        $this->assertInstanceOf(InvitationsTask::class, $this->upsunClient->invitations);
+        $this->assertInstanceOf(UsersInvitationsTask::class, $this->upsunClient->invitations);
     }
 
     public function testConstructorInitializesMetricsTask()

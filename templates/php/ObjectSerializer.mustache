@@ -150,6 +150,11 @@ class ObjectSerializer
             return null;
         }
 
+        // Handle polymorphic interfaces by resolving to concrete classes
+        if (interface_exists($class)) {
+            $class = self::resolvePolymorphicClass($class, $data);
+        }
+
         if (!\class_exists($class)) {
             throw new InvalidArgumentException(sprintf('Class %s does not exist', $class));
         }
@@ -486,5 +491,143 @@ class ObjectSerializer
         }
 
         return $qs ? substr($qs, 0, -1) : '';
+    }
+
+    /**
+     * Resolve polymorphic interface to concrete class using discriminator field
+     *
+     * @param string $interface The interface class name
+     * @param mixed $data The data containing the discriminator
+     * @return string The concrete class name
+     * @throws InvalidArgumentException if unable to resolve
+     */
+    private static function resolvePolymorphicClass(string $interface, $data): string
+    {
+        // Extract discriminator value (typically 'type')
+        $discriminatorValue = null;
+        if (\is_object($data) && isset($data->type)) {
+            $discriminatorValue = $data->type;
+        } elseif (\is_array($data) && isset($data['type'])) {
+            $discriminatorValue = $data['type'];
+        }
+
+        if ($discriminatorValue === null) {
+            throw new InvalidArgumentException(
+                sprintf('No discriminator value found in data for interface %s', $interface)
+            );
+        }
+
+        // Cache for discovered polymorphic implementations
+        static $polymorphicCache = [];
+        
+        $normalizedInterface = ltrim($interface, '\\');
+        
+        // If not cached, discover implementations
+        if (!isset($polymorphicCache[$normalizedInterface])) {
+            $polymorphicCache[$normalizedInterface] = self::discoverPolymorphicImplementations($normalizedInterface);
+        }
+        
+        $classMap = $polymorphicCache[$normalizedInterface];
+        
+        if (!isset($classMap[$discriminatorValue])) {
+            $available = implode(', ', array_keys($classMap));
+            throw new InvalidArgumentException(
+                sprintf(
+                    'Unknown discriminator value "%s" for interface %s. Available: %s',
+                    $discriminatorValue,
+                    $interface,
+                    $available
+                )
+            );
+        }
+
+        return $classMap[$discriminatorValue];
+    }
+
+    /**
+     * Discover all concrete implementations of a polymorphic interface
+     *
+     * @param string $interface The interface class name
+     * @return array Mapping of discriminator values to class names
+     */
+    private static function discoverPolymorphicImplementations(string $interface): array
+    {
+        $mapping = [];
+        
+        // Determine the namespace to scan (typically the Model namespace)
+        $namespaceParts = explode('\\', $interface);
+        $className = array_pop($namespaceParts);
+        $namespace = implode('\\', $namespaceParts);
+        
+        // Try to force-load potential implementations by naming convention
+        // e.g., for Route interface, try ProxyRoute, RedirectRoute, UpstreamRoute, etc.
+        $potentialPrefixes = ['Proxy', 'Redirect', 'Upstream', 'Primary', 'Secondary', 'Custom', 'Default'];
+        foreach ($potentialPrefixes as $prefix) {
+            $potentialClass = $namespace . '\\' . $prefix . $className;
+            if (class_exists($potentialClass, true)) {
+                // Class exists and was autoloaded
+            }
+        }
+        
+        // Get all declared classes (now including the ones we just loaded)
+        $declaredClasses = get_declared_classes();
+        
+        foreach ($declaredClasses as $class) {
+            // Only check classes in the same namespace
+            if (strpos($class, $namespace . '\\') !== 0) {
+                continue;
+            }
+            
+            // Skip the interface itself
+            if ($class === $interface) {
+                continue;
+            }
+            
+            // Check if class implements the interface
+            $reflectionClass = new ReflectionClass($class);
+            
+            // For interfaces
+            if (interface_exists($interface)) {
+                if (!$reflectionClass->implementsInterface($interface)) {
+                    continue;
+                }
+            } else {
+                // For abstract classes or classes used as interfaces (like Route which may be final)
+                // Check if the base name matches (e.g., ProxyRoute, RedirectRoute implement Route pattern)
+                $baseClassName = $reflectionClass->getShortName();
+                if (strpos($baseClassName, $className) === false) {
+                    continue;
+                }
+            }
+            
+            // Look for TYPE_* constants that indicate discriminator values
+            $foundForThisClass = false;
+            $constants = $reflectionClass->getConstants();
+            foreach ($constants as $constantName => $constantValue) {
+                if (strpos($constantName, 'TYPE_') === 0 && is_string($constantValue)) {
+                    $mapping[$constantValue] = $class;
+                    $foundForThisClass = true;
+                }
+            }
+            
+            // Fallback: use class name pattern (ProxyRoute -> "proxy")
+            if (!$foundForThisClass) {
+                $shortName = $reflectionClass->getShortName();
+                // Remove base interface name from concrete class (ProxyRoute -> Proxy)
+                $discriminator = str_replace($className, '', $shortName);
+                if ($discriminator) {
+                    $discriminator = strtolower($discriminator);
+                    $mapping[$discriminator] = $class;
+                }
+            }
+        }
+        
+        if (empty($mapping)) {
+            throw new InvalidArgumentException(
+                sprintf('No polymorphic implementations found for interface %s', $interface)
+            );
+        }
+        
+        return $mapping;
     }
 }

@@ -119,7 +119,7 @@ class OrganizationsTask extends TaskBase
     public function delete(string $organizationId): void
     {
         $this->checkOrganizationId($organizationId);
-        
+
         $this->organizationsApi->deleteOrg(organizationId: $organizationId);
     }
 
@@ -137,17 +137,17 @@ class OrganizationsTask extends TaskBase
         ?string $country = null,
         ?string $securityContact = null
     ): Organization {
-        if ( 
+        if (
             $country !== null
             || $label !== null
             || $name !== null
             || $securityContact !== null
         ) {
             return $this->update(
-                $organizationId, 
-                $name, 
-                $label, 
-                $country, 
+                $organizationId,
+                $name,
+                $label,
+                $country,
                 $securityContact
             );
         }
@@ -237,7 +237,7 @@ class OrganizationsTask extends TaskBase
     /**
      * List the subscriptions for an organization. This will return a list of all active and past subscriptions associated
      * with the organization, including details such as the subscription plan, status, and billing information.
-     * 
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the organization ID is invalid
@@ -267,9 +267,9 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Add a member to an organization with the specified permissions. This will invite the user to join the 
-     * organization,and the user will need to accept the invitation before they become an active member of the 
-     * organization. The permissions parameter can be used to specify the level of access the member will have within 
+     * Add a member to an organization with the specified permissions. This will invite the user to join the
+     * organization,and the user will need to accept the invitation before they become an active member of the
+     * organization. The permissions parameter can be used to specify the level of access the member will have within
      * the organization.
      *
      * @param ('read'|'write'|'admin')[]|null $permissions
@@ -365,7 +365,7 @@ class OrganizationsTask extends TaskBase
         ?array $permissions = []
     ): OrganizationMember {
         $this->checkOrganizationId($organizationId);
-        $this->checkUserId($userId);    
+        $this->checkUserId($userId);
 
         return $this->membersApi->updateOrgMember(
             organizationId: $organizationId,
@@ -415,7 +415,7 @@ class OrganizationsTask extends TaskBase
 
     /**
      * List organization accessible to the current user, with optional filtering.
-     * This will return a list of organizations that the current user has access to, and the filters can be used to 
+     * This will return a list of organizations that the current user has access to, and the filters can be used to
      * narrow down the list based on specific criteria.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -473,7 +473,7 @@ class OrganizationsTask extends TaskBase
 
     /**
      * Retrieve teams that the specified user is a member of.
-     * 
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -645,7 +645,7 @@ class OrganizationsTask extends TaskBase
     ): EstimationObject {
         $this->checkOrganizationId($organizationId);
         $this->checkProjectId($projectId);
-        
+
         $project = $this->client->projects->get($projectId);
         $subscriptionId = $this->extractSubscriptionId($project->getSubscription()->getLicenseUri());
 
@@ -933,7 +933,7 @@ class OrganizationsTask extends TaskBase
         $this->checkOrganizationId($organizationId);
 
         return $this->profilesApi->updateOrgAddress(
-            organizationId: $organizationId, 
+            organizationId: $organizationId,
             address: new Address(
                 country: $country,
                 nameLine: $nameLine,
@@ -1087,7 +1087,7 @@ class OrganizationsTask extends TaskBase
     public function listVouchers(string $organizationId): Vouchers
     {
         $this->checkOrganizationId($organizationId);
-        
+
         return $this->vouchersApi->listOrgVouchers(organizationId: $organizationId);
     }
 

@@ -3,6 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
+use LogicException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
@@ -119,7 +120,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->envApi->deactivateEnvironment($projectId,$environmentId);
+        return $this->envApi->deactivateEnvironment($projectId, $environmentId);
     }
 
     /**
@@ -133,7 +134,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        return $this->envApi->deleteEnvironment($projectId,$environmentId);
+        return $this->envApi->deleteEnvironment($projectId, $environmentId);
     }
 
     /**
@@ -299,7 +300,7 @@ class EnvironmentsTask extends TaskBase
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
 
-        throw new \LogicException('Not implemented yet');
+        throw new LogicException('Not implemented yet');
     }
 
     /**
@@ -356,10 +357,10 @@ class EnvironmentsTask extends TaskBase
     /**
      * Get the relationships of an environment, which include the linked applications or services.
      *
-     * @return ServiceRelationshipsValue[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return ServiceRelationshipsValue[]
      */
     public function relationships(string $projectId, string $environmentId, string $applicationId): array
     {
@@ -509,8 +510,8 @@ class EnvironmentsTask extends TaskBase
             projectId: $projectId,
             activityId: $activityId,
             environmentId: $environmentId
-            );
-            }
+        );
+    }
 
     /**
      * Get an environment activity log entry

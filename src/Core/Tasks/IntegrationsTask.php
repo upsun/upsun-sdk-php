@@ -59,8 +59,8 @@ class IntegrationsTask extends TaskBase
         IntegrationCreateInput $integrationCreateInput,
     ): AcceptedResponse {
         parent::checkProjectId($projectId);
-        
-        if($integrationCreateInput->getType() === "") {
+
+        if ($integrationCreateInput->getType() === "") {
             throw new InvalidArgumentException("Integration type cannot be empty.");
         }
 
@@ -82,8 +82,8 @@ class IntegrationsTask extends TaskBase
         string $integrationId,
     ): AcceptedResponse {
         parent::checkProjectId($projectId);
-        
-        if($integrationId === "") {
+
+        if ($integrationId === "") {
             throw new InvalidArgumentException("Integration ID cannot be empty.");
         }
 
@@ -96,12 +96,12 @@ class IntegrationsTask extends TaskBase
     /**
      * List all third-party integrations for a project. This method retrieves a list of all integrations that are
      * associated with the specified project.
-     * 
+     *
      * @param string $projectId
-     * @return Integration[]
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the project ID is invalid
+     * @return Integration[]
      */
     public function listIntegrations(
         string $projectId,
@@ -116,7 +116,7 @@ class IntegrationsTask extends TaskBase
     /**
      * Get the details of a specific third-party integration for a project. This method retrieves the details of a
      * specific integration that is associated with the specified project.
-     * 
+     *
      * @throws InvalidArgumentException if the project ID or integration ID is invalid
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -137,7 +137,7 @@ class IntegrationsTask extends TaskBase
     /**
      * Update an existing third-party integration for a project. This method allows you to update the configuration of an
      * existing integration for a project by specifying the new parameters for that integration.
-     * 
+     *
      * @param IntegrationPatch $integrationUpdateInput An implementation of the IntegrationPatch interface.
      *        Use one of the concrete types that implement this interface:
      *         - BitbucketIntegrationPatch
@@ -170,7 +170,7 @@ class IntegrationsTask extends TaskBase
         parent::checkProjectId($projectId);
         parent::checkIntegrationId($integrationId);
 
-        if($integrationUpdateInput->getType() === "") {
+        if ($integrationUpdateInput->getType() === "") {
             throw new InvalidArgumentException("Integration type cannot be empty.");
         }
 

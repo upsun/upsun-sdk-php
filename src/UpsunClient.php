@@ -274,6 +274,7 @@ class UpsunClient
         $this->projects = new ProjectsTask(
             $this,
             $projectApi,
+            $organizationProjectsApi,
             $projectSettingsApi,
             $deploymentTargetApi,
             $repositoryApi,

@@ -86,7 +86,7 @@ class RepositoriesTask extends TaskBase
     }
 
     /**
-     * List all Git references (e.g., branches and tags) in the specified project. This method retrieves a list of all 
+     * List all Git references (e.g., branches and tags) in the specified project. This method retrieves a list of all
      * Git references that exist within the project's repository, including details such as the reference name, type
      * (branch or tag), and the commit it points to. The returned list includes the details of each Git reference that
      * belongs to the project.
@@ -134,5 +134,4 @@ class RepositoriesTask extends TaskBase
 
         return $this->systemInformationApi->getProjectsSystem(projectId: $projectId);
     }
-
 }
