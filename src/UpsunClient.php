@@ -13,7 +13,6 @@ use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentApi;
-use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\EnvironmentApi;

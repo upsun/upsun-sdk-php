@@ -71,9 +71,8 @@ class WorkersTaskTest extends BaseTestCase
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode($this->getFakeDeployment([],[]), JSON_THROW_ON_ERROR)
-            )
-        );
+                json_encode($this->getFakeDeployment([], []), JSON_THROW_ON_ERROR)
+            ));
 
         $result = $this->workersTask->list('proj1', 'main');
 
@@ -81,7 +80,6 @@ class WorkersTaskTest extends BaseTestCase
         $this->assertCount(1, $result);
         $this->assertArrayHasKey('app--app-worker', $result);
         $this->assertInstanceOf(WorkersValue::class, $result['app--app-worker']);
-   
     }
 
 
