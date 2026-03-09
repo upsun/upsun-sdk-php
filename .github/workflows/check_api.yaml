@@ -46,10 +46,6 @@ jobs:
       - name: Fix all generated API and Model classes
         run: composer run fix:all
 
-      - uses: ./.github/actions/doc
-        with:
-          default-runtime-version: ${{ env.PRIMARY_PHP_VERSION }}
-
       - name: Run API vs Facade coverage analysis
         run: php templates/Coverage/CheckApiCoverage.php
 
@@ -100,4 +96,3 @@ jobs:
           add-paths: |
             src/
             tests/
-            docs/
