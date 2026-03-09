@@ -19,10 +19,11 @@ runs:
       run: composer run install:ci
 
     - name: Generate Markdown documentation (with phpDocumentor)
+      if: "false"
       shell: bash
       run: composer run doc:generate:md
 
     - name: Generate HTML documentation (with phpDocumentor)
-      if: false
+      if: "false"
       shell: bash
       run: composer run doc:generate:html
