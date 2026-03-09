@@ -1,6 +1,6 @@
 <?php
 
-namespace Upsun;
+namespace Upsun\Core;
 
 use Composer\InstalledVersions;
 

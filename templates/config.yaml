@@ -87,7 +87,7 @@ files:
   UserAgent.mustache:
     templateType: SupportingFiles
     destinationFilename: UserAgent.php
-    folder: src/
+    folder: src/Core/
   ObjectSerializer.mustache:
     templateType: SupportingFiles
     destinationFilename: ObjectSerializer.php

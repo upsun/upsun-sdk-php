@@ -4,7 +4,8 @@ The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps 
 
 For more information, read [the documentation](https://docs.upsun.com/api).
 
-> **CAUTION**: 
+
+> **CAUTION**:
 > This project is currently in **Beta**, meaning features and APIs may evolve over time.
 >
 > Please report bugs or request new features by creating a GitHub issue.

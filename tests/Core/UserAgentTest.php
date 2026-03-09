@@ -1,13 +1,13 @@
 <?php
 
-namespace Upsun\Tests;
+namespace Upsun\Tests\Core;
 
 use PHPUnit\Framework\TestCase;
 use Upsun\Api\ApiConfiguration;
-use Upsun\UserAgent;
+use Upsun\Core\UserAgent;
 
 /**
- * @covers \Upsun\UserAgent
+ * @covers \Upsun\Core\UserAgent
  */
 class UserAgentTest extends TestCase
 {
