@@ -13,7 +13,7 @@ For more information, read [the documentation](https://docs.upsun.com/api).
 
 [![Issues](https://img.shields.io/github/issues/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=0C0F10&color=D5F800&label=Issues)](https://github.com/upsun/upsun-sdk-php/issues)
 [![Pull Requests](https://img.shields.io/github/issues-pr/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=0C0F10&color=D5F800&label=Pull%20requests)](https://github.com/upsun/upsun-sdk-php/pulls)
-[![License](https://img.shields.io/static/v1?label=License&message=MIT&style=for-the-badge&labelColor=0C0F10&color=D5F800)](https://github.com/upsun/upsun-sdk-php/blob/master/LICENSE)
+[![License](https://img.shields.io/static/v1?label=License&message=Apache-2.0&style=for-the-badge&labelColor=0C0F10&color=D5F800)](https://github.com/upsun/upsun-sdk-php/blob/master/LICENSE)
 
 <hr/>
 
