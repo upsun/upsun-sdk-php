@@ -45,39 +45,13 @@ $organizations = $upsunClient->organizations->list();
 ### Example: List projects in an organization
 
 ```php
-$projects = $upsunClient->organizations->listProjects('<organizationId>');
+$projects = $upsunClient->projects->list('<organizationId>');
 ```
 
-### Example: Get a project
+### Example: Redeploy an environment
 
 ```php
-$project = $upsunClient->projects->get('<projectId>');
-```
-
-### Example: Create a project in a specific organization
-```php
-$project = $upsunClient->projects->create(
-    '<organizationId>',
-    'eu-5.platform.sh',
-    'Project title',
-    'main',
-);
-```
-
-### Example: Update a project
-
-```php
-$response = $upsunClient->projects->update(
-    projectId: '<projectId>',
-    title: 'new Title',
-    description: 'Description'
-);
-```
-
-### Example: Delete a project
-
-```php
-$upsunClient->projects->delete('<projectId>');
+$response = $upsunClient->environments->redeploy('<projectId>', '<environmentId>');
 ```
 
 ---
