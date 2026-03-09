@@ -17,7 +17,7 @@ additionalProperties:
   basePath: https://api.upsun.com
   docUrl: https://docs.upsun.com
   composerProject: upsun-sdk-php
-  composerVersion: 0.5.0
+  composerVersion: 0.2.0
   licenseName: Apache-2.0
   licenseNameReadme: Apache License 2.0
   composerPackageName: upsun/upsun-sdk-php
