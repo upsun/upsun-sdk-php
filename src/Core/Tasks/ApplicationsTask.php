@@ -4,7 +4,6 @@ namespace Upsun\Core\Tasks;
 
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
-use Upsun\Api\DeploymentApi;
 use Upsun\Model\WebApplicationsValue;
 use Upsun\UpsunClient;
 
@@ -18,40 +17,45 @@ use Upsun\UpsunClient;
 class ApplicationsTask extends TaskBase
 {
     public function __construct(
-        UpsunClient $client,
-        private readonly DeploymentApi $api
+        UpsunClient $client
     ) {
         parent::__construct($client);
     }
 
     /**
-     * Lists applications of an environment
+     * Get an environment's application
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @return WebApplicationsValue[]
      */
-    public function list(string $projectId, string $environmentId): array
+    public function configGet(string $projectId, string $environmentId, string $applicationId): ?WebApplicationsValue
     {
-        $deployments = $this->api->listProjectsEnvironmentsDeployments(
-            projectId: $projectId,
-            environmentId: $environmentId
-        );
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+        $this->checkApplicationId($applicationId);
 
-        $deployments = reset($deployments);
-
-        return !empty($deployments) ? $deployments->getWebapps() : [];
+        $applicationList = $this->list(projectId: $projectId, environmentId: $environmentId);
+        return $applicationList[$applicationId] ?? null;
     }
 
     /**
-     * Gets an environment's application
+     * List applications of an environment
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @return array<string, WebApplicationsValue>
      */
-    public function get(string $projectId, string $environmentId, string $applicationId): ?WebApplicationsValue
+    public function list(string $projectId, string $environmentId): array
     {
-        $applicationList = $this->list(projectId: $projectId, environmentId: $environmentId);
-        return $applicationList[$applicationId] ?? null;
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        $currentDeployment = $this->client->environments->getDeployment(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            deploymentId: 'current'
+        );
+
+        return $currentDeployment?->getWebapps() ?? [];
     }
 }

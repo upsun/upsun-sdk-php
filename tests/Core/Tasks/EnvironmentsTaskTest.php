@@ -37,15 +37,19 @@ use Upsun\Model\Environment;
 use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Model\EnvironmentType;
 use Upsun\Model\EnvironmentVariable;
+use Upsun\Model\ProdDomainStorageCreateInput;
+use Upsun\Model\ProdDomainStoragePatch;
 use Upsun\Model\ProjectVariable;
 use Upsun\Model\Route;
-use Upsun\Model\Version;
 use Upsun\UpsunClient;
 
 class EnvironmentsTaskTest extends BaseTestCase
 {
     private EnvironmentsTask $environmentTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void
@@ -534,103 +538,6 @@ class EnvironmentsTaskTest extends BaseTestCase
 
     /**
      * @throws ClientExceptionInterface
-     */
-    public function testCreateVersions(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
-
-        $result = $this->environmentTask->createVersions(projectId: $projectId, environmentId: $environmentId);
-
-        $acceptedResponse = new AcceptedResponse('accepted', 200);
-        $this->assertEquals($acceptedResponse, $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws Exception
-     */
-    public function testListVersions(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $data = [
-            [
-                'id' => 'version1',
-                'commit' => 'azertyuiop1236',
-                'locked' => false,
-                'routing' => [
-                    'percentage' => 100
-                ]
-            ],
-            [
-                'id' => 'version2',
-                'commit' => 'azertyuiop1235',
-                'locked' => false,
-                'routing' => [
-                    'percentage' => 100
-                ]
-            ]
-        ];
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode($data)
-            ));
-
-        $result = $this->environmentTask->listVersions(projectId: $projectId, environmentId: $environmentId);
-        $this->assertIsArray($result);
-        $this->assertContainsOnlyInstancesOf(Version::class, $result);
-        $this->assertObjectMatchesArray($result, $data);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws Exception
-     */
-    public function testGetVersions(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $data = [
-            'id' => 'default',
-            'commit' => 'azertyuiop1236',
-            'locked' => false,
-            'routing' => [
-                'percentage' => 100
-            ]
-        ];
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode($data)
-            ));
-
-        $result = $this->environmentTask->getVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: 'default'
-        );
-        $this->assertInstanceOf(Version::class, $result);
-        $this->assertObjectProperties($result, $data);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
      * @throws Exception
      */
     public function testListActivities(): void
@@ -702,7 +609,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $response = $this->environmentTask->getActivities(
+        $response = $this->environmentTask->getActivity(
             projectId: "proj-id",
             environmentId: "env-id",
             activityId: 'act-1'
@@ -932,6 +839,7 @@ class EnvironmentsTaskTest extends BaseTestCase
     public function testCreateProjectVariable(): void
     {
         $projectId = 'project-123';
+        $environmentId = 'main';
 
         $this->httpClient
             ->method('sendRequest')
@@ -946,6 +854,7 @@ class EnvironmentsTaskTest extends BaseTestCase
 
         $result = $this->environmentTask->createVariable(
             projectId: $projectId,
+            environmentId: $environmentId,
             name: 'API_KEY',
             value: 'secret',
             isJson: false,
@@ -1416,14 +1325,16 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->createDomain(
+        $result = $this->environmentTask->addDomain(
             projectId: $projectId,
-            name: 'domain-1',
-            attributes: [
-                'version' => '8.2',
-                'engine' => 'php-fpm',
-            ],
-            isDefault: true,
+            domainCreateInput: new ProdDomainStorageCreateInput(
+                name: 'domain-1',
+                attributes: [
+                    'version' => '8.2',
+                    'engine' => 'php-fpm',
+                ],
+                isDefault: true
+            ),
             environmentId: $environmentId
         );
 
@@ -1449,14 +1360,16 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->createDomain(
+        $result = $this->environmentTask->addDomain(
             projectId: $projectId,
-            name: 'domain-1',
-            attributes: [
-                'version' => '8.2',
-                'engine' => 'php-fpm',
-            ],
-            isDefault: true
+            domainCreateInput: new ProdDomainStorageCreateInput(
+                name: 'domain-1',
+                attributes: [
+                    'version' => '8.2',
+                    'engine' => 'php-fpm',
+                ],
+                isDefault: true
+            )
         );
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
@@ -1473,7 +1386,7 @@ class EnvironmentsTaskTest extends BaseTestCase
         $environmentId = 'env-123';
         $domainId = 'domain-1';
         $data = [
-            'type' => 'environment',
+            'type' => 'prodstorage',
             'name' => 'DEV',
             'attributes' => [
                 'description' => 'Environnement de développement',
@@ -1529,11 +1442,13 @@ class EnvironmentsTaskTest extends BaseTestCase
             projectId: $projectId,
             environmentId: $environmentId,
             domainId: $domainId,
-            attributes: [
-                'version' => '8.2',
-                'engine' => 'php-fpm',
-            ],
-            isDefault: true
+            domainPatch: new ProdDomainStoragePatch(
+                attributes: [
+                    'version' => '8.2',
+                    'engine' => 'php-fpm',
+                ],
+                isDefault: true
+            )
         );
 
         $acceptedResponse = new AcceptedResponse('accepted', 200);
@@ -1551,7 +1466,7 @@ class EnvironmentsTaskTest extends BaseTestCase
         $list = [
             [
                 'id' => 'ref1',
-                'type' => 'environment',
+                'type' => 'prodstorage',
                 'name' => 'DEV',
                 'attributes' => [
                     'description' => 'Development environment',
@@ -1566,7 +1481,7 @@ class EnvironmentsTaskTest extends BaseTestCase
             ],
             [
                 'id' => 'ref2',
-                'type' => 'production',
+                'type' => 'replacementstorage',
                 'name' => 'PROD',
                 'attributes' => [
                     'description' => 'Production environment',
@@ -1605,7 +1520,7 @@ class EnvironmentsTaskTest extends BaseTestCase
         $projectId = 'project-123';
         $environmentTypeId = 'type-456';
         $data = [
-            'id' => 'production',
+            'id' => 'prodstorage',
             '_links' => [
                 'self' => ['href' => 'href'],
                 '#edit' => ['href' => 'href'],
@@ -3070,64 +2985,6 @@ class EnvironmentsTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testDeleteVersionsSuccess(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $versionId = 'ver-789';
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
-
-        $result = $this->environmentTask->deleteVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: $versionId
-        );
-
-        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testDeleteVersionsError(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $versionId = 'ver-789';
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                403,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'unauthorized',
-                    'code' => 403
-                ])
-            ));
-
-        $this->expectException(ApiException::class);
-
-        $this->environmentTask->deleteVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: $versionId
-        );
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
     public function testRedeploySuccess(): void
     {
         $projectId = 'project-123';
@@ -3246,68 +3103,6 @@ class EnvironmentsTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateVersionsSuccess(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $versionId = 'ver-789';
-        $percentage = 50;
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
-
-        $result = $this->environmentTask->updateVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: $versionId,
-            percentage: $percentage
-        );
-
-        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateVersionsError(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $versionId = 'ver-789';
-        $percentage = 75;
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                403,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'unauthorized',
-                    'code' => 403
-                ])
-            ));
-
-        $this->expectException(ApiException::class);
-
-        $this->environmentTask->updateVersions(
-            projectId: $projectId,
-            environmentId: $environmentId,
-            versionId: $versionId,
-            percentage: $percentage
-        );
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
     public function testDeleteDomainSuccess(): void
     {
         $projectId = 'project-123';
@@ -3392,7 +3187,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->initialize(
+        $result = $this->environmentTask->init(
             projectId: $projectId,
             environmentId: $environmentId,
             profile: $profile,
@@ -3433,7 +3228,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->initialize(
+        $result = $this->environmentTask->init(
             projectId: $projectId,
             environmentId: $environmentId,
             profile: $profile,
@@ -3473,7 +3268,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ])
             ));
 
-        $result = $this->environmentTask->initialize(
+        $result = $this->environmentTask->init(
             projectId: $projectId,
             environmentId: $environmentId,
             profile: $profile,
@@ -3514,7 +3309,7 @@ class EnvironmentsTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->environmentTask->initialize(
+        $this->environmentTask->init(
             projectId: $projectId,
             environmentId: $environmentId,
             profile: $profile,
@@ -3551,7 +3346,7 @@ class EnvironmentsTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->environmentTask->initialize(
+        $this->environmentTask->init(
             projectId: $projectId,
             environmentId: $environmentId,
             profile: $profile,
@@ -3588,7 +3383,7 @@ class EnvironmentsTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->environmentTask->initialize(
+        $this->environmentTask->init(
             projectId: $projectId,
             environmentId: $environmentId,
             profile: $profile,
@@ -3625,7 +3420,7 @@ class EnvironmentsTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->environmentTask->initialize(
+        $this->environmentTask->init(
             projectId: $projectId,
             environmentId: $environmentId,
             profile: $profile,
@@ -3634,5 +3429,160 @@ class EnvironmentsTaskTest extends BaseTestCase
             filePath: $filePath,
             fileContents: $fileContents
         );
+    }
+
+    /**
+     * @dataProvider environmentStatusProvider
+     */
+    public function testGetEnvironmentWithDifferentStatuses(string $status): void
+    {
+        $projectId = 'test-project-id';
+        $environmentId = 'main';
+        $expectedData = [
+            'id' => 'ref1',
+            '_links' => [],
+            '_embedded' => [],
+            'created_at' => '2025-09-08T13:29:56.333140+00:00',
+            'updated_at' => '2025-09-15T16:17:15.300725+00:00',
+            'name' => 'main',
+            'machine_name' => 'main-bvxea6i',
+            'title' => 'Main',
+            'attributes' => [],
+            'type' => 'production',
+            'parent' => null,
+            'default_domain' => null,
+            'has_domains' => false,
+            'clone_parent_on_create' => true,
+            'deployment_target' => 'local',
+            'is_pr' => false,
+            'has_remote' => false,
+            'status' => $status,
+            'http_access' => [
+                'is_enabled' => true,
+                'addresses' => [],
+                'basic_auth' => []
+            ],
+            'supportsRollingDeployments' => false,
+            'enable_smtp' => true,
+            'restrict_robots' => true,
+            'edge_hostname' => 'main-bvxea6i-azertyuiop.eu-5.platformsh.site',
+            'deployment_state' => [
+                'last_deployment_successful' => true,
+                'last_deployment_at' => '2025-09-15T16:17:15.300344+00:00',
+                'last_autoscale_up_at' => null,
+                'last_autoscale_down_at' => null,
+                'crons' => ['enabled' => true, 'status' => 'running']
+            ],
+            'sizing' => [
+                'services' => [],
+                'webapps' => [
+                    'app' => [
+                        'resources' => ['profile_size' => '0.5'],
+                        'instance_count' => 1,
+                        'disk' => 2001
+                    ]
+                ],
+                'workers' => []
+            ],
+            'resources_overrides' => [],
+            'max_instance_count' => null,
+            'last_active_at' => '2025-09-15T16:13:18.034357+00:00',
+            'last_backup_at' => '2025-09-15T04:09:39.480120+00:00',
+            'project' => 'azertyuiop',
+            'is_main' => true,
+            'is_dirty' => false,
+            'has_staged_activities' => false,
+            'can_rolling_deploy' => false,
+            'has_code' => true,
+            'head_commit' => 'azertyuiop',
+            'merge_info' => ['commits_ahead' => 0, 'commits_behind' => 0, 'parent_ref' => null],
+            'has_deployment' => true,
+            'supports_restrict_robots' => true
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn($this->createJsonResponse(200, $expectedData));
+
+        $result = $this->environmentTask->get($projectId, $environmentId);
+
+        $this->assertInstanceOf(Environment::class, $result);
+        $this->assertEquals($status, $result->getStatus());
+    }
+
+    /**
+     * @dataProvider httpErrorCodesProvider
+     */
+    public function testEnvironmentOperationsWithDifferentHttpErrors(int $statusCode, string $message): void
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn($this->createErrorResponse($statusCode, $message));
+
+        $this->expectException(ApiException::class);
+
+        $this->environmentTask->get('test-project-id', 'test-env');
+    }
+
+    public function testListEnvironmentsReturnsEmptyArray(): void
+    {
+        $projectId = 'test-project-id';
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn($this->createJsonResponse(200, []));
+
+        $result = $this->environmentTask->list($projectId);
+
+        $this->assertIsArray($result);
+        $this->assertCount(0, $result);
+    }
+
+    public function testBranchWithEmptyTitle(): void
+    {
+        $projectId = 'test-project-id';
+        $parentId = 'main';
+        $branchName = 'feature-branch';
+        $expectedData = [
+            'status' => 'accepted',
+            'code' => 202,
+            '_links' => ['self' => ['href' => '/api/projects/' . $projectId . '/environments/' . $branchName]]
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn($this->createJsonResponse(202, $expectedData));
+
+        // Branch with empty title (same as branch name)
+        $result = $this->environmentTask->branch($projectId, $parentId, $branchName, $branchName);
+
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+    }
+
+    public static function environmentStatusProvider(): array
+    {
+        return [
+            'active' => ['active'],
+            'inactive' => ['inactive'],
+            'dirty' => ['dirty'],
+            'paused' => ['paused'],
+        ];
+    }
+
+    public static function httpErrorCodesProvider(): array
+    {
+        return [
+            'bad request' => [400, 'Bad Request'],
+            'unauthorized' => [401, 'Unauthorized'],
+            'forbidden' => [403, 'Forbidden'],
+            'not found' => [404, 'Not Found'],
+            'conflict' => [409, 'Conflict'],
+            'rate limited' => [429, 'Too Many Requests'],
+            'internal error' => [500, 'Internal Server Error'],
+            'service unavailable' => [503, 'Service Unavailable'],
+        ];
     }
 }

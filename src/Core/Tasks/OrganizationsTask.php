@@ -3,6 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiException;
@@ -33,6 +34,7 @@ use Upsun\Model\ListOrgOrders200Response;
 use Upsun\Model\ListOrgPlanRecords200Response;
 use Upsun\Model\ListOrgProjects200Response;
 use Upsun\Model\ListOrgs200Response;
+use Upsun\Model\ListOrgSubscriptions200Response;
 use Upsun\Model\ListOrgUsageRecords200Response;
 use Upsun\Model\ListTeams200Response;
 use Upsun\Model\ListUserOrgs200Response;
@@ -41,9 +43,9 @@ use Upsun\Model\Organization;
 use Upsun\Model\OrganizationAddonsObject;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
-use Upsun\Model\OrganizationProject;
 use Upsun\Model\Profile;
-use Upsun\Model\SendOrgMfaReminders200ResponseValue;
+use Upsun\Model\Project;
+use Upsun\Model\SendOrgMfaReminders200ResponseValue; // only mentionned in PHPDocs
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
@@ -68,7 +70,7 @@ class OrganizationsTask extends TaskBase
 
     public function __construct(
         UpsunClient $client,
-        private readonly OrganizationsApi $api,
+        private readonly OrganizationsApi $organizationsApi,
         private readonly OrganizationProjectsApi $projectsApi,
         private readonly OrganizationMembersApi $membersApi,
         private readonly SubscriptionsApi $subscriptionsApi,
@@ -84,7 +86,7 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Creates organization
+     * Create organization
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -96,40 +98,106 @@ class OrganizationsTask extends TaskBase
         ?string $name = null,
         ?string $country = null,
     ): Organization {
-        $createOrgRequest = new CreateOrgRequest(
-            label: $label,
-            type: $type,
-            ownerId: $ownerId,
-            name: $name,
-            country: $country
+        return $this->organizationsApi->createOrg(
+            createOrgRequest: new CreateOrgRequest(
+                label: $label,
+                type: $type,
+                ownerId: $ownerId,
+                name: $name,
+                country: $country
+            )
         );
-        return $this->api->createOrg(createOrgRequest: $createOrgRequest);
     }
 
     /**
-     * Deletes organization
+     * Delete organization
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function delete(string $organizationId): void
     {
-        $this->api->deleteOrg(organizationId: $organizationId);
+        $this->checkOrganizationId($organizationId);
+
+        $this->organizationsApi->deleteOrg(organizationId: $organizationId);
     }
 
     /**
-     * Gets organization
+     * Get or update organization info
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function get(string $organizationId): Organization
-    {
-        return $this->api->getOrg(organizationId: $organizationId);
+    public function info(
+        string $organizationId,
+        ?string $name = null,
+        ?string $label = null,
+        ?string $country = null,
+        ?string $securityContact = null
+    ): Organization {
+        if (
+            $country !== null
+            || $label !== null
+            || $name !== null
+            || $securityContact !== null
+        ) {
+            return $this->update(
+                $organizationId,
+                $name,
+                $label,
+                $country,
+                $securityContact
+            );
+        }
+
+        return $this->get($organizationId);
     }
 
     /**
-     * Lists organizations
+     * Get organization
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function get(string $organizationId): Organization
+    {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->organizationsApi->getOrg(organizationId: $organizationId);
+    }
+
+    /**
+     * Update an organization
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function update(
+        string $organizationId,
+        ?string $name = null,
+        ?string $label = null,
+        ?string $country = null,
+        ?string $securityContact = null
+    ): Organization {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->organizationsApi->updateOrg(
+            organizationId: $organizationId,
+            updateOrgRequest: new UpdateOrgRequest(
+                $name,
+                $label,
+                $country,
+                $securityContact
+            )
+        );
+    }
+
+    /**
+     * List organizations
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -149,7 +217,7 @@ class OrganizationsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListOrgs200Response {
-        return $this->api->listOrgs(
+        return $this->organizationsApi->listOrgs(
             filterId: new StringFilter(...$this->normalizeFilter($filterId)),
             filterType: new StringFilter(...$this->normalizeFilter($filterType)),
             filterOwnerId: new StringFilter(...$this->normalizeFilter($filterOwnerId)),
@@ -167,10 +235,155 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Lists user organizations
+     * List the subscriptions for an organization. This will return a list of all active and past subscriptions associated
+     * with the organization, including details such as the subscription plan, status, and billing information.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the organization ID is invalid
+     */
+    public function listSubscriptions(string $organizationId): ListOrgSubscriptions200Response
+    {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->subscriptionsApi->listOrgSubscriptions($organizationId);
+    }
+
+    /**
+     * Create an organization member
+     *
+     * @param ('read'|'write'|'admin')[]|null $permissions
+     * @deprecated use addMembers() instead
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function createMember(
+        string $organizationId,
+        string $userId,
+        ?array $permissions = []
+    ): OrganizationMember {
+        return $this->addMember($organizationId, $userId, $permissions);
+    }
+
+    /**
+     * Add a member to an organization with the specified permissions. This will invite the user to join the
+     * organization,and the user will need to accept the invitation before they become an active member of the
+     * organization. The permissions parameter can be used to specify the level of access the member will have within
+     * the organization.
+     *
+     * @param ('read'|'write'|'admin')[]|null $permissions
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function addMember(
+        string $organizationId,
+        string $userId,
+        ?array $permissions = []
+    ): OrganizationMember {
+        $this->checkOrganizationId($organizationId);
+        $this->checkUserId($userId);
+
+        return $this->membersApi->createOrgMember(
+            organizationId: $organizationId,
+            createOrgMemberRequest: new CreateOrgMemberRequest(
+                userId: $userId,
+                permissions: $permissions ?? null
+            )
+        );
+    }
+
+    /**
+     * Delete an organization member
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function deleteMember(string $organizationId, string $userId): void
+    {
+        $this->checkOrganizationId($organizationId);
+        $this->checkUserId($userId);
+
+        $this->membersApi->deleteOrgMember(organizationId: $organizationId, userId: $userId);
+    }
+
+    /**
+     * Get organization member
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function getMember(string $organizationId, string $userId): OrganizationMember
+    {
+        return $this->membersApi->getOrgMember(organizationId: $organizationId, userId: $userId);
+    }
+
+    /**
+     * List members of an organization
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function listMembers(
+        string $organizationId,
+        ?array $filterPermissions = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): ListOrgMembers200Response {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->membersApi->listOrgMembers(
+            organizationId: $organizationId,
+            filterPermissions: $filterPermissions ?
+                new ArrayFilter(...$this->normalizeFilter($filterPermissions)) : null,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
+    }
+
+    /**
+     * Update an organization member's permissions. This will modify the member's access level within the organization
+     * based on the specified permissions.
+     *
+     * @param ('read'|'write'|'admin')[]|null $permissions
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     */
+    public function updateMember(
+        string $organizationId,
+        string $userId,
+        ?array $permissions = []
+    ): OrganizationMember {
+        $this->checkOrganizationId($organizationId);
+        $this->checkUserId($userId);
+
+        return $this->membersApi->updateOrgMember(
+            organizationId: $organizationId,
+            userId: $userId,
+            updateOrgMemberRequest: new UpdateOrgMemberRequest(
+                permissions: $permissions
+            )
+        );
+    }
+
+    /**
+     * List the organizations that a user belongs to, with optional filtering. This will return a list of organizations
+     * that the specified user is a member of, and the filters can be used to narrow down the list based on specific
+     * criteria.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function listUserOrgs(
         string $userId,
@@ -184,7 +397,9 @@ class OrganizationsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListUserOrgs200Response {
-        return $this->api->listUserOrgs(
+        $this->checkUserId($userId);
+
+        return $this->organizationsApi->listUserOrgs(
             userId: $userId,
             filterId: new StringFilter(...$this->normalizeFilter($filterId)),
             filterType: new StringFilter(...$this->normalizeFilter($filterType)),
@@ -199,10 +414,13 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Lists current user organizations
+     * List organization accessible to the current user, with optional filtering.
+     * This will return a list of organizations that the current user has access to, and the filters can be used to
+     * narrow down the list based on specific criteria.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function listCurrentUserOrgs(
         ?array $filterId = null,
@@ -228,33 +446,14 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Updates an organization
+     * Get Teams of the current organization (for current user)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     */
-    public function update(
-        string $organizationId,
-        ?string $name = null,
-        ?string $label = null,
-        ?string $country = null,
-    ): Organization {
-        $updateOrgRequest = new UpdateOrgRequest(
-            name: $name,
-            label: $label,
-            country: $country
-        );
-        return $this->api->updateOrg(organizationId: $organizationId, updateOrgRequest: $updateOrgRequest);
-    }
-
-    /**
-     * Gets Teams of the current organization (for current user)
-     *
-     * @throws ApiException
-     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function listTeams(
-        ?string $organizationId,
+        ?string $filterOrganizationId = null,
         ?string $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
@@ -262,7 +461,7 @@ class OrganizationsTask extends TaskBase
         ?string $sort = null
     ): ListTeams200Response {
         return $this->client->teams->list(
-            filterOrganizationId: $organizationId ? ['eq' => $organizationId] : null,
+            filterOrganizationId: $filterOrganizationId ? ['eq' => $filterOrganizationId] : null,
             filterId: null,
             filterUpdatedAt: $filterUpdatedAt,
             pageSize: $pageSize,
@@ -273,21 +472,50 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Gets a project of a specific organization
+     * Retrieve teams that the specified user is a member of.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function getProject(string $organizationId, string $projectId): OrganizationProject
-    {
-        return $this->projectsApi->getOrgProject(organizationId: $organizationId, projectId: $projectId);
+    public function listTeamsByMember(
+        string $userId,
+        ?array $filterOrganizationId = null,
+        ?array $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): ListTeams200Response {
+        return $this->client->teams->listByMember(
+            userId: $userId,
+            filterOrganizationId: $filterOrganizationId,
+            filterUpdatedAt: $filterUpdatedAt,
+            pageSize: $pageSize,
+            pageBefore: $pageBefore,
+            pageAfter: $pageAfter,
+            sort: $sort
+        );
     }
 
     /**
-     * Lists projects from an organization
+     * Get a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function getProject(string $projectId): Project
+    {
+        return $this->client->projects->get(projectId: $projectId);
+    }
+
+    /**
+     * List projects from an organization
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function listProjects(
         string $organizationId,
@@ -301,6 +529,8 @@ class OrganizationsTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): ListOrgProjects200Response {
+        $this->checkOrganizationId($organizationId);
+
         return $this->projectsApi->listOrgProjects(
             $organizationId,
             filterId: $filterId ? new StringFilter(...$this->normalizeFilter($filterId)) : null,
@@ -316,103 +546,13 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Creates organization member
-     *
-     * @param ('read'|'write'|'admin')[]|null $permissions
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     */
-    public function createMember(
-        string $organizationId,
-        string $userId,
-        ?array $permissions = []
-    ): OrganizationMember {
-        $createOrgMemberRequest = new CreateOrgMemberRequest(
-            userId: $userId,
-            permissions: $permissions ?? null
-        );
-        return $this->membersApi->createOrgMember(
-            organizationId: $organizationId,
-            createOrgMemberRequest: $createOrgMemberRequest
-        );
-    }
-
-    /**
-     * Updates organization member
-     *
-     * @param ('read'|'write'|'admin')[]|null $permissions
+     * Check if a new project can be created within the specified organization. This will return information about whether
+     * the organization is eligible to create a new project, based on factors such as the organization's current
+     * subscription status, project limits, and any other relevant criteria defined by the API.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     */
-    public function updateMember(
-        string $organizationId,
-        string $userId,
-        ?array $permissions = []
-    ): OrganizationMember {
-        $updateOrgMemberRequest = $permissions ? new UpdateOrgMemberRequest(
-            permissions: $permissions
-        ) : null;
-        return $this->membersApi->updateOrgMember(
-            organizationId: $organizationId,
-            userId: $userId,
-            updateOrgMemberRequest: $updateOrgMemberRequest
-        );
-    }
-
-    /**
-     * Gets organization member
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     */
-    public function getMember(string $organizationId, string $userId): OrganizationMember
-    {
-        return $this->membersApi->getOrgMember(organizationId: $organizationId, userId: $userId);
-    }
-
-    /**
-     * Lists members of an organization
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     */
-    public function listMembers(
-        string $organizationId,
-        ?array $filterPermissions = null,
-        ?int $pageSize = null,
-        ?string $pageBefore = null,
-        ?string $pageAfter = null,
-        ?string $sort = null
-    ): ListOrgMembers200Response {
-        return $this->membersApi->listOrgMembers(
-            organizationId: $organizationId,
-            filterPermissions: $filterPermissions ?
-                new ArrayFilter(...$this->normalizeFilter($filterPermissions)) : null,
-            pageSize: $pageSize,
-            pageBefore: $pageBefore,
-            pageAfter: $pageAfter,
-            sort: $sort
-        );
-    }
-
-    /**
-     * Delete an organization member
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     */
-    public function deleteMember(string $organizationId, string $userId): void
-    {
-        $this->membersApi->deleteOrgMember(organizationId: $organizationId, userId: $userId);
-    }
-
-    /**
-     * Checks if the user is able to create a new project in the organization.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function canCreateProject(string $organizationId): CanCreateNewOrgSubscription200Response
     {
@@ -420,10 +560,11 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Creates a project
+     * Create a project
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function createProject(
         string $organizationId,
@@ -448,10 +589,11 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Deletes a project
+     * Delete a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function deleteProject(string $projectId): void
     {
@@ -459,18 +601,22 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Estimates the price of a new project
+     * Estimate the cost of creating a new project within the specified organization, based on parameters such as the
+     * number of environments, storage, and user licenses.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function estimateNewProject(
         string $organizationId,
         ?int $environments = 3,
         ?int $storage = 500,
         ?int $userLicenses = 1,
-        ?string $format = null
+        ?string $format = null,
     ): EstimationObject {
+        $this->checkOrganizationId($organizationId);
+
         return $this->subscriptionsApi->estimateNewOrgSubscription(
             organizationId: $organizationId,
             plan: self::DEFAULT_UPSUN_PLAN,
@@ -482,10 +628,12 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Estimates the price of a project
+     * Estimate the cost of a project within the specified organization, based on parameters such as the
+     * number of environments, storage, and user licenses.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function estimateProject(
         string $organizationId,
@@ -495,6 +643,9 @@ class OrganizationsTask extends TaskBase
         ?int $userLicenses = 1,
         ?string $format = null
     ): EstimationObject {
+        $this->checkOrganizationId($organizationId);
+        $this->checkProjectId($projectId);
+
         $project = $this->client->projects->get($projectId);
         $subscriptionId = $this->extractSubscriptionId($project->getSubscription()->getLicenseUri());
 
@@ -510,10 +661,11 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Gets current usage for a project
+     * Get current usage for a project
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getProjectUsage(
         string $organizationId,
@@ -521,6 +673,9 @@ class OrganizationsTask extends TaskBase
         ?string $usageGroups = null,
         ?bool $includeNotCharged = null
     ): SubscriptionCurrentUsageObject {
+        $this->checkOrganizationId($organizationId);
+        $this->checkProjectId($projectId);
+
         $project = $this->client->projects->get($projectId);
         $subscriptionId = $this->extractSubscriptionId($project->getSubscription()->getLicenseUri());
 
@@ -533,10 +688,12 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Updates a project
+     * Update a project
      *
+     * @deprecated use $client->projects->update() instead
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function updateProject(
         string $projectId,
@@ -561,70 +718,86 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Disables organization MFA enforcement
+     * Disable organization MFA enforcement
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function disableMfaEnforcement(string $organizationId): void
     {
+        $this->checkOrganizationId($organizationId);
+
         $this->mfaApi->disableOrgMfaEnforcement(organizationId: $organizationId);
     }
 
     /**
-     * Enables organization MFA enforcement
+     * Enable organization MFA enforcement
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function enableMfaEnforcement(string $organizationId): void
     {
+        $this->checkOrganizationId($organizationId);
+
         $this->mfaApi->enableOrgMfaEnforcement(organizationId: $organizationId);
     }
 
     /**
-     * Gets organization MFA settings
+     * Get organization MFA settings
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getMfaEnforcement(string $organizationId): OrganizationMFAEnforcement
     {
+        $this->checkOrganizationId($organizationId);
+
         return $this->mfaApi->getOrgMfaEnforcement(organizationId: $organizationId);
     }
 
     /**
-     * Sends MFA reminders to organization members
+     * Send MFA reminders to organization members
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return SendOrgMfaReminders200ResponseValue[]
      */
     public function sendMfaReminders(string $organizationId, ?array $userIds = null): array
     {
-        $sendOrgMfaRemindersRequest = new SendOrgMfaRemindersRequest(userIds: $userIds);
+        $this->checkOrganizationId($organizationId);
+
         return $this->mfaApi->sendOrgMfaReminders(
             organizationId: $organizationId,
-            sendOrgMfaRemindersRequest: $sendOrgMfaRemindersRequest
+            sendOrgMfaRemindersRequest: new SendOrgMfaRemindersRequest(userIds: $userIds)
         );
     }
 
     /**
-     * Gets invoice
+     * Get invoice
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getInvoice(string $invoiceId, string $organizationId): Invoice
     {
+        $this->checkInvoiceId($invoiceId);
+        $this->checkOrganizationId($organizationId);
+
         return $this->invoicesApi->getOrgInvoice(invoiceId: $invoiceId, organizationId: $organizationId);
     }
 
     /**
-     * Lists invoices
+     * List invoices
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function listInvoices(
         string $organizationId,
@@ -633,6 +806,8 @@ class OrganizationsTask extends TaskBase
         ?string $filterOrderId = null,
         ?int $page = null
     ): ListOrgInvoices200Response {
+        $this->checkOrganizationId($organizationId);
+
         return $this->invoicesApi->listOrgInvoices(
             organizationId: $organizationId,
             filterStatus: $filterStatus,
@@ -643,20 +818,7 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Creates confirmation credentials for 3D-Secure
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     */
-    public function createAuthorizationCredentials(
-        string $organizationId,
-        string $orderId
-    ): CreateAuthorizationCredentials200Response {
-        return $this->ordersApi->createAuthorizationCredentials(organizationId: $organizationId, orderId: $orderId);
-    }
-
-    /**
-     * Downloads an invoice.
+     * Download an invoice.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -667,18 +829,39 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Gets order
+     * Create confirmation credentials for 3D-Secure
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function createAuthorizationCredentials(
+        string $organizationId,
+        string $orderId
+    ): CreateAuthorizationCredentials200Response {
+        $this->checkOrganizationId($organizationId);
+        $this->checkOrderId($orderId);
+
+        return $this->ordersApi->createAuthorizationCredentials(organizationId: $organizationId, orderId: $orderId);
+    }
+
+    /**
+     * Get an order
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getOrder(string $organizationId, string $orderId, ?string $mode = null): Order
     {
+        $this->checkOrganizationId($organizationId);
+        $this->checkOrderId($orderId);
+
         return $this->ordersApi->getOrgOrder(organizationId: $organizationId, orderId: $orderId, mode: $mode);
     }
 
     /**
-     * Lists orders
+     * List orders
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -700,32 +883,39 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Gets address
+     * Get address
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getAddress(string $organizationId): Address
     {
+        $this->checkOrganizationId($organizationId);
+
         return $this->profilesApi->getOrgAddress(organizationId: $organizationId);
     }
 
     /**
-     * Gets profile
+     * Get profile
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getProfile(string $organizationId): Profile
     {
+        $this->checkOrganizationId($organizationId);
+
         return $this->profilesApi->getOrgProfile(organizationId: $organizationId);
     }
 
     /**
-     * Updates address
+     * Update address
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function updateAddress(
         string $organizationId,
@@ -740,55 +930,60 @@ class OrganizationsTask extends TaskBase
         ?string $dependentLocality = null,
         ?string $postalCode = null,
     ): Address {
-        $address = new Address(
-            country: $country,
-            nameLine: $nameLine,
-            premise: $premise,
-            subPremise: $subPremise,
-            thoroughfare: $thoroughfare,
-            administrativeArea: $administrativeArea,
-            subAdministrativeArea: $subAdministrativeArea,
-            locality: $locality,
-            dependentLocality: $dependentLocality,
-            postalCode: $postalCode,
+        $this->checkOrganizationId($organizationId);
+
+        return $this->profilesApi->updateOrgAddress(
+            organizationId: $organizationId,
+            address: new Address(
+                country: $country,
+                nameLine: $nameLine,
+                premise: $premise,
+                subPremise: $subPremise,
+                thoroughfare: $thoroughfare,
+                administrativeArea: $administrativeArea,
+                subAdministrativeArea: $subAdministrativeArea,
+                locality: $locality,
+                dependentLocality: $dependentLocality,
+                postalCode: $postalCode,
+            )
         );
-        return $this->profilesApi->updateOrgAddress(organizationId: $organizationId, address: $address);
     }
 
     /**
-     * Updates profile
+     * Update profile
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function updateProfile(
         string $organizationId,
         ?string $defaultCatalog = null,
         ?string $projectOptionsUrl = null,
-        ?string $securityContact = null,
         ?string $companyName = null,
         ?string $vatNumber = null,
         ?string $billingContact = null,
     ): Profile {
-        $updateOrgProfileRequest = new UpdateOrgProfileRequest(
-            defaultCatalog: $defaultCatalog,
-            projectOptionsUrl: $projectOptionsUrl,
-            securityContact: $securityContact,
-            companyName: $companyName,
-            vatNumber: $vatNumber,
-            billingContact: $billingContact,
-        );
+        $this->checkOrganizationId($organizationId);
+
         return $this->profilesApi->updateOrgProfile(
             organizationId: $organizationId,
-            updateOrgProfileRequest: $updateOrgProfileRequest
+            updateOrgProfileRequest: new UpdateOrgProfileRequest(
+                defaultCatalog: $defaultCatalog,
+                projectOptionsUrl: $projectOptionsUrl,
+                companyName: $companyName,
+                vatNumber: $vatNumber,
+                billingContact: $billingContact,
+            )
         );
     }
 
     /**
-     * Lists plan records
+     * List plan records
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function listRecords(
         string $organizationId,
@@ -801,8 +996,12 @@ class OrganizationsTask extends TaskBase
         ?DateTime $filterEndedAt = null,
         ?int $page = null
     ): ListOrgPlanRecords200Response {
+        $this->checkOrganizationId($organizationId);
+
         $subscriptionId = null;
         if ($filterProjectId) {
+            $this->checkProjectId($filterProjectId);
+
             $project = $this->client->projects->get($filterProjectId);
             $subscriptionId = $this->extractSubscriptionId($project->getSubscription()->getLicenseUri());
         }
@@ -821,10 +1020,11 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Lists usage records
+     * List usage records
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function listUsageRecords(
         string $organizationId,
@@ -834,8 +1034,12 @@ class OrganizationsTask extends TaskBase
         ?DateTime $filterStartedAt = null,
         ?int $page = null
     ): ListOrgUsageRecords200Response {
+        $this->checkOrganizationId($organizationId);
+
         $subscriptionId = null;
         if ($filterProjectId) {
+            $this->checkProjectId($filterProjectId);
+
             $project = $this->client->projects->get($filterProjectId);
             $subscriptionId = $this->extractSubscriptionId($project->getSubscription()->getLicenseUri());
         }
@@ -851,13 +1055,19 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Applies voucher
+     * Apply a voucher code to an organization. This will attempt to apply the specified voucher code to the
+     * organization's account, which may result in discounts, credits, or other benefits being applied to the
+     * organization's subscription.
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function applyVoucher(string $organizationId, string $code): void
     {
+        $this->checkOrganizationId($organizationId);
+        $this->checkVoucherCode($code);
+
         $applyOrgVoucherRequest = new ApplyOrgVoucherRequest(
             code: $code
         );
@@ -868,13 +1078,16 @@ class OrganizationsTask extends TaskBase
     }
 
     /**
-     * Lists vouchers
+     * List vouchers
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function listVouchers(string $organizationId): Vouchers
     {
+        $this->checkOrganizationId($organizationId);
+
         return $this->vouchersApi->listOrgVouchers(organizationId: $organizationId);
     }
 
@@ -883,9 +1096,12 @@ class OrganizationsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function getAddons(string $organizationId): OrganizationAddonsObject
     {
+        $this->checkOrganizationId($organizationId);
+
         return $this->addOnsApi->getOrgAddons(organizationId: $organizationId);
     }
 
@@ -894,19 +1110,21 @@ class OrganizationsTask extends TaskBase
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function updateAddons(
         string $organizationId,
         ?string $userManagement = null,
         ?string $supportLevel = null,
     ): OrganizationAddonsObject {
-        $updateOrgAddonsData = new UpdateOrgAddonsRequest(
-            userManagement: $userManagement,
-            supportLevel: $supportLevel
-        );
+        $this->checkOrganizationId($organizationId);
+
         return $this->addOnsApi->updateOrgAddons(
             organizationId: $organizationId,
-            updateOrgAddonsRequest: $updateOrgAddonsData
+            updateOrgAddonsRequest: new UpdateOrgAddonsRequest(
+                userManagement: $userManagement,
+                supportLevel: $supportLevel
+            )
         );
     }
 }

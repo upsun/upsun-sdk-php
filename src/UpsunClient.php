@@ -8,11 +8,11 @@ use Symfony\Component\HttpClient\Psr18Client;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiTokensApi;
+use Upsun\Api\AutoscalingApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentApi;
-use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\EnvironmentApi;
@@ -40,6 +40,7 @@ use Upsun\Api\RepositoryApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\RuntimeOperationsApi;
 use Upsun\Api\SourceOperationsApi;
+use Upsun\Api\SshKeysApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\SupportApi;
 use Upsun\Api\SystemInformationApi;
@@ -57,18 +58,22 @@ use Upsun\Core\Tasks\BackupsTask;
 use Upsun\Core\Tasks\CertificatesTask;
 use Upsun\Core\Tasks\DomainsTask;
 use Upsun\Core\Tasks\EnvironmentsTask;
-use Upsun\Core\Tasks\InvitationsTask;
+use Upsun\Core\Tasks\IntegrationsTask;
 use Upsun\Core\Tasks\MetricsTask;
 use Upsun\Core\Tasks\MountsTask;
 use Upsun\Core\Tasks\OperationsTask;
 use Upsun\Core\Tasks\OrganizationsTask;
 use Upsun\Core\Tasks\ProjectsTask;
 use Upsun\Core\Tasks\RegionsTask;
+use Upsun\Core\Tasks\RepositoriesTask;
 use Upsun\Core\Tasks\ResourcesTask;
 use Upsun\Core\Tasks\RoutesTask;
+use Upsun\Core\Tasks\ServicesTask;
 use Upsun\Core\Tasks\SourceOperationsTask;
+use Upsun\Core\Tasks\SshTask;
 use Upsun\Core\Tasks\SupportTicketsTask;
 use Upsun\Core\Tasks\TeamsTask;
+use Upsun\Core\Tasks\UsersInvitationsTask;
 use Upsun\Core\Tasks\UsersTask;
 use Upsun\Core\Tasks\VariablesTask;
 use Upsun\Core\Tasks\WorkersTask;
@@ -102,7 +107,9 @@ class UpsunClient
 
     public EnvironmentsTask $environments;
 
-    public InvitationsTask $invitations;
+    public IntegrationsTask $integrations;
+
+    public UsersInvitationsTask $invitations;
 
     public MetricsTask $metrics;
 
@@ -116,11 +123,17 @@ class UpsunClient
 
     public RegionsTask $regions;
 
+    public RepositoriesTask $repositories;
+
     public ResourcesTask $resources;
 
     public RoutesTask $routes;
 
+    public ServicesTask $services;
+
     public SourceOperationsTask $sourceOperations;
+
+    public SshTask $sshTask;
 
     public TeamsTask $teams;
 
@@ -135,7 +148,7 @@ class UpsunClient
     public function __construct(protected UpsunConfig $upsunConfig)
     {
         $this->apiConfig = ApiConfiguration::getDefaultConfiguration()
-            ->setHost(host: $this->upsunConfig->base_url);
+        ->setHost(host: $this->upsunConfig->base_url);
 
         // Symfony HTTP client compatible PSR-18
         $this->apiClient = new Psr18Client();
@@ -150,114 +163,176 @@ class UpsunClient
             clientSecret: $this->upsunConfig->apiToken,
         );
 
+        $taskParams = [$this->auth, $this->apiClient, $requestFactory, $this->apiConfig];
+
+        // Init used API classes
+        $addOnsApi = new AddOnsApi(...$taskParams);
+        $apiTokensApi = new ApiTokensApi(...$taskParams);
+        $autoscalingApi = new AutoscalingApi(...$taskParams);
+        $certManagementApi = new CertManagementApi(...$taskParams);
+        $connectionsApi = new ConnectionsApi(...$taskParams);
+        $defaultApi = new DefaultApi(...$taskParams);
+        $deploymentApi = new DeploymentApi(...$taskParams);
+        $domainManagementApi = new DomainManagementApi(...$taskParams);
+        $environmentActivityApi = new EnvironmentActivityApi(...$taskParams);
+        $environmentApi = new EnvironmentApi(...$taskParams);
+        $environmentBackupsApi = new EnvironmentBackupsApi(...$taskParams);
+        $environmentTypeApi = new EnvironmentTypeApi(...$taskParams);
+        $environmentVariablesApi = new EnvironmentVariablesApi(...$taskParams);
+        $grantsApi = new GrantsApi(...$taskParams);
+        $invoicesApi = new InvoicesApi(...$taskParams);
+        $mfaApi = new MfaApi(...$taskParams);
+        $ordersApi = new OrdersApi(...$taskParams);
+        $organizationApi = new OrganizationsApi(...$taskParams);
+        $organizationInvitationsApi = new OrganizationInvitationsApi(...$taskParams);
+        $organizationMembersApi = new OrganizationMembersApi(...$taskParams);
+        $organizationProjectsApi = new OrganizationProjectsApi(...$taskParams);
+        $phoneNumberApi = new PhoneNumberApi(...$taskParams);
+        $profilesApi = new ProfilesApi(...$taskParams);
+        $projectActivityApi = new ProjectActivityApi(...$taskParams);
+        $projectApi = new ProjectApi(...$taskParams);
+        $projectInvitationsApi = new ProjectInvitationsApi(...$taskParams);
+        $projectSettingsApi = new ProjectSettingsApi(...$taskParams);
+        $projectVariablesApi = new ProjectVariablesApi(...$taskParams);
+        $recordsApi = new RecordsApi(...$taskParams);
+        $regionsApi = new RegionsApi(...$taskParams);
+        $repositoryApi = new RepositoryApi(...$taskParams);
+        $routingApi = new RoutingApi(...$taskParams);
+        $runtimeOperationsApi = new RuntimeOperationsApi(...$taskParams);
+        $sourceOperationsApi = new SourceOperationsApi(...$taskParams);
+        $subscriptionsApi = new SubscriptionsApi(...$taskParams);
+        $supportApi = new SupportApi(...$taskParams);
+        $systemInformationApi = new SystemInformationApi(...$taskParams);
+        $sshKeysApi = new SshKeysApi(...$taskParams);
+        $teamAccessApi = new TeamAccessApi(...$taskParams);
+        $teamsApi = new TeamsApi(...$taskParams);
+        $thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi(...$taskParams);
+        $userAccessApi = new UserAccessApi(...$taskParams);
+        $userProfilesApi = new UserProfilesApi(...$taskParams);
+        $usersApi = new UsersApi(...$taskParams);
+        $vouchersApi = new VouchersApi(...$taskParams);
+
         // Initialize the command tasks.
         $this->activities = new ActivitiesTask(
             $this,
-            new ProjectActivityApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new EnvironmentActivityApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
+            $projectActivityApi,
+            $environmentActivityApi
         );
         $this->applications = new ApplicationsTask(
             $this,
-            new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->backups = new BackupsTask(
             $this,
-            new EnvironmentBackupsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
+            $environmentBackupsApi
         );
         $this->certificates = new CertificatesTask(
             $this,
-            new CertManagementApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
+            $certManagementApi
         );
         $this->domains = new DomainsTask(
             $this,
-            new DomainManagementApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
+            $domainManagementApi
         );
         $this->environments = new EnvironmentsTask(
             $this,
-            new EnvironmentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new EnvironmentTypeApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            $environmentApi,
+            $environmentTypeApi,
+            $deploymentApi,
         );
-        $this->invitations = new InvitationsTask(
+        $this->integrations = new IntegrationsTask(
             $this,
-            new OrganizationInvitationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new ProjectInvitationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            $thirdPartyIntegrationsApi
+        );
+        $this->invitations = new UsersInvitationsTask(
+            $this,
+            $organizationInvitationsApi,
+            $projectInvitationsApi,
         );
         $this->metrics = new MetricsTask($this);
         $this->mounts = new MountsTask($this);
         $this->operations = new OperationsTask(
             $this,
-            new RuntimeOperationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
+            $runtimeOperationsApi
         );
         $this->organizations = new OrganizationsTask(
             $this,
-            new OrganizationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new OrganizationProjectsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new OrganizationMembersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new SubscriptionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new InvoicesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new MfaApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new OrdersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new ProfilesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new RecordsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new VouchersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new AddOnsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            $organizationApi,
+            $organizationProjectsApi,
+            $organizationMembersApi,
+            $subscriptionsApi,
+            $invoicesApi,
+            $mfaApi,
+            $ordersApi,
+            $profilesApi,
+            $recordsApi,
+            $vouchersApi,
+            $addOnsApi,
         );
         $this->projects = new ProjectsTask(
             $this,
-            new ProjectApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new ProjectSettingsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new DeploymentTargetApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new RepositoryApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new SystemInformationApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new ThirdPartyIntegrationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new SubscriptionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            $projectApi,
+            $organizationProjectsApi,
+            $projectSettingsApi,
+            $subscriptionsApi,
         );
         $this->regions = new RegionsTask(
             $this,
-            new RegionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
+            $regionsApi
+        );
+
+        $this->repositories = new RepositoriesTask(
+            $this,
+            $repositoryApi,
+            $systemInformationApi,
         );
         $this->resources = new ResourcesTask(
             $this,
-            new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
+            $deploymentApi,
+            $autoscalingApi
         );
         $this->routes = new RoutesTask(
             $this,
-            new RoutingApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
+            $routingApi
+        );
+        $this->services = new ServicesTask(
+            $this,
         );
         $this->sourceOperations = new SourceOperationsTask(
             $this,
-            new SourceOperationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
+            $sourceOperationsApi
         );
         $this->teams = new TeamsTask(
             $this,
-            new TeamsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new TeamAccessApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            $teamsApi,
+            $teamAccessApi,
         );
         $this->supportTickets = new SupportTicketsTask(
             $this,
-            new DefaultApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new SupportApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
+            $defaultApi,
+            $supportApi
+        );
+        $this->sshTask = new SshTask(
+            $this,
+            $sshKeysApi
         );
         $this->users = new UsersTask(
             $this,
-            new UsersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new UserProfilesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new UserAccessApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new ApiTokensApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new ConnectionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new GrantsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new MfaApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new PhoneNumberApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            $usersApi,
+            $userProfilesApi,
+            $userAccessApi,
+            $apiTokensApi,
+            $connectionsApi,
+            $grantsApi,
+            $mfaApi,
+            $phoneNumberApi,
         );
         $this->variables = new VariablesTask(
             $this,
-            new ProjectVariablesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new EnvironmentVariablesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            $projectVariablesApi,
+            $environmentVariablesApi,
         );
         $this->workers = new WorkersTask(
             $this,
-            new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
     }
 

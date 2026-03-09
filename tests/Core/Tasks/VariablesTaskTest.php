@@ -22,6 +22,9 @@ class VariablesTaskTest extends BaseTestCase
 {
     private VariablesTask $variablesTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void
@@ -132,7 +135,7 @@ class VariablesTaskTest extends BaseTestCase
 
         $result = $this->variablesTask->deleteProjectVariable(
             projectId: $projectId,
-            projectVariableId: $projectVariableId
+            variableId: $projectVariableId
         );
         $this->assertInstanceOf(AcceptedResponse::class, $result);
         $this->assertObjectProperties($result, $fakeResponse);
@@ -160,7 +163,7 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->deleteProjectVariable(projectId: $projectId, projectVariableId: $projectVariableId);
+        $this->variablesTask->deleteProjectVariable(projectId: $projectId, variableId: $projectVariableId);
     }
 
     /**
@@ -195,7 +198,7 @@ class VariablesTaskTest extends BaseTestCase
 
         $result = $this->variablesTask->getProjectVariable(
             projectId: $projectId,
-            projectVariableId: $projectVariableId
+            variableId: $projectVariableId
         );
         $this->assertInstanceOf(ProjectVariable::class, $result);
         $this->assertObjectProperties($result, $variableFake);
@@ -223,7 +226,7 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
 
-        $this->variablesTask->getProjectVariable(projectId: $projectId, projectVariableId: $projectVariableId);
+        $this->variablesTask->getProjectVariable(projectId: $projectId, variableId: $projectVariableId);
     }
 
     /**
@@ -323,7 +326,7 @@ class VariablesTaskTest extends BaseTestCase
 
         $result = $this->variablesTask->updateProjectVariable(
             projectId: $projectId,
-            projectVariableId: $variableId,
+            variableId: $variableId,
             name: 'VAR_UPDATED',
             value: 'new_value',
             attributes: ['attr1' => 'val1'],
@@ -361,7 +364,7 @@ class VariablesTaskTest extends BaseTestCase
 
         $this->variablesTask->updateProjectVariable(
             projectId: $projectId,
-            projectVariableId: $variableId,
+            variableId: $variableId,
             name: 'VAR_UPDATED',
             value: 'new_value'
         );

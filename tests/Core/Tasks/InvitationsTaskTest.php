@@ -12,15 +12,21 @@ use Upsun\Api\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
 use Upsun\Core\OAuthProvider;
-use Upsun\Core\Tasks\InvitationsTask;
+use Upsun\Core\Tasks\UsersInvitationsTask;
 use Upsun\Model\OrganizationInvitation;
 use Upsun\Model\ProjectInvitation;
 use Upsun\UpsunClient;
 
+/**
+ * @group deprecated
+ */
 class InvitationsTaskTest extends BaseTestCase
 {
-    private readonly InvitationsTask $invitationTask;
+    private readonly UsersInvitationsTask $invitationTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void
@@ -40,7 +46,7 @@ class InvitationsTaskTest extends BaseTestCase
             $upsunClient,
             new OrganizationInvitationsApi(...$apiClassParams),
             new ProjectInvitationsApi(...$apiClassParams),
-        ) extends InvitationsTask {
+        ) extends UsersInvitationsTask {
         };
     }
 

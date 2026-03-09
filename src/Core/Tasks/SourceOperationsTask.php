@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\SourceOperationsApi;
@@ -30,7 +31,9 @@ class SourceOperationsTask extends TaskBase
      * Lists source operations
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     *
      * @return EnvironmentSourceOperation[]
      */
     public function list(string $projectId, string $environmentId): array
@@ -45,7 +48,8 @@ class SourceOperationsTask extends TaskBase
      * Trigger a source operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function run(
         string $projectId,
@@ -53,14 +57,16 @@ class SourceOperationsTask extends TaskBase
         string $operation,
         array $variables
     ): AcceptedResponse {
-        $environmentSourceOperationInput = new EnvironmentSourceOperationInput(
-            operation: $operation,
-            variables: $variables
-        );
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
         return $this->api->runSourceOperation(
             projectId: $projectId,
             environmentId: $environmentId,
-            environmentSourceOperationInput: $environmentSourceOperationInput
+            environmentSourceOperationInput: new EnvironmentSourceOperationInput(
+                operation: $operation,
+                variables: $variables
+            )
         );
     }
 }

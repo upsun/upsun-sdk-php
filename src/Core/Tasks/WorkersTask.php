@@ -2,9 +2,9 @@
 
 namespace Upsun\Core\Tasks;
 
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
-use Upsun\Api\DeploymentApi;
 use Upsun\Model\WorkersValue;
 use Upsun\UpsunClient;
 
@@ -19,7 +19,6 @@ class WorkersTask extends TaskBase
 {
     public function __construct(
         UpsunClient $client,
-        private readonly DeploymentApi $api,
     ) {
         parent::__construct($client);
     }
@@ -27,19 +26,22 @@ class WorkersTask extends TaskBase
     /**
      * Lists workers of an environment
      *
-     * @throws ApiException
-     * @throws ClientExceptionInterface
-     * @return WorkersValue[]
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return array<string, WorkersValue>
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $allDeployments = $this->api->listProjectsEnvironmentsDeployments(
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        $currentDeployment = $this->client->environments->getDeployment(
             projectId: $projectId,
-            environmentId: $environmentId
+            environmentId: $environmentId,
+            deploymentId: 'current'
         );
 
-        $deployment = reset($allDeployments);
-
-        return $deployment?->getWorkers() ?? [];
+        return $currentDeployment?->getWorkers() ?? [];
     }
 }

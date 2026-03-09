@@ -17,7 +17,9 @@ additionalProperties:
   basePath: https://api.upsun.com
   docUrl: https://docs.upsun.com
   composerProject: upsun-sdk-php
-  licenseName: MIT
+  composerVersion: 0.2.0
+  licenseName: Apache-2.0
+  licenseNameReadme: Apache License 2.0
   composerPackageName: upsun/upsun-sdk-php
   artifactUrl: https://github.com/upsun/upsun-sdk-php
   developerOrganization: Upsun Advocacy Team
@@ -82,6 +84,10 @@ files:
   Configuration.mustache:
     templateType: SupportingFiles
     destinationFilename: src/Api/ApiConfiguration.php
+  UserAgent.mustache:
+    templateType: SupportingFiles
+    destinationFilename: UserAgent.php
+    folder: src/Core/
   ObjectSerializer.mustache:
     templateType: SupportingFiles
     destinationFilename: ObjectSerializer.php

@@ -11,6 +11,7 @@ use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentTargetApi;
+use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\RepositoryApi;
@@ -31,6 +32,9 @@ class SupportTicketsTaskTest extends BaseTestCase
 {
     private SupportTicketsTask $task;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void
@@ -49,11 +53,8 @@ class SupportTicketsTaskTest extends BaseTestCase
         $upsunClient->projects = new class (
             $upsunClient,
             new ProjectApi(...$apiClassParams),
+            new OrganizationProjectsApi(...$apiClassParams),
             new ProjectSettingsApi(...$apiClassParams),
-            new DeploymentTargetApi(...$apiClassParams),
-            new RepositoryApi(...$apiClassParams),
-            new SystemInformationApi(...$apiClassParams),
-            new ThirdPartyIntegrationsApi(...$apiClassParams),
             new SubscriptionsApi(...$apiClassParams),
         ) extends ProjectsTask {
         };

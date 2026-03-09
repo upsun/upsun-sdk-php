@@ -1,5 +1,30 @@
-final class {{classname}} implements Model, JsonSerializable
+{{#vendorExtensions.x-isOneOf}}
+interface {{classname}}
 {
+    public function getModelName(): string;
+
+    public function jsonSerialize(): array;
+
+    public function __toString(): string;
+{{#vendorExtensions.x-required}}
+
+    public function get{{name}}(): {{#isAnyType}}mixed{{/isAnyType}}{{^isAnyType}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#openApiType}}{{#isDateTime}}\DateTime{{/isDateTime}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isNumber}}float{{/isNumber}}{{#isInteger}}int{{/isInteger}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{^isDateTime}}{{{openApiType}}}{{/isDateTime}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isContainer}}{{/isAnyType}};
+{{/vendorExtensions.x-required}}
+{{/vendorExtensions.x-isOneOf}}
+{{^vendorExtensions.x-isOneOf}}
+final class {{classname}} implements Model, JsonSerializable{{#vendorExtensions.x-parentInterface}}, {{.}}{{/vendorExtensions.x-parentInterface}}
+{
+
+    {{#vars}}
+{{#isEnum}}
+    {{#allowableValues}}
+    {{#enumVars}}
+    public const {{#lambda.uppercase}}{{baseName}}{{/lambda.uppercase}}_{{{name}}} = {{{value}}};
+    {{/enumVars}}
+    {{/allowableValues}}
+{{/isEnum}}
+{{/vars}}
+
     public function __construct(
     {{#vars}}
       {{#required}}
@@ -53,6 +78,7 @@ final class {{classname}} implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -94,4 +120,5 @@ final class {{classname}} implements Model, JsonSerializable
         return $this->{{{name}}};
     }
 {{/vars}}
+{{/vendorExtensions.x-isOneOf}}
 }

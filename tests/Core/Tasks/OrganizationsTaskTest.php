@@ -12,7 +12,6 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\ApiTokensApi;
 use Upsun\Api\ConnectionsApi;
-use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\GrantsApi;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
@@ -25,12 +24,9 @@ use Upsun\Api\ProfilesApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\RecordsApi;
-use Upsun\Api\RepositoryApi;
 use Upsun\Api\SubscriptionsApi;
-use Upsun\Api\SystemInformationApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
-use Upsun\Api\ThirdPartyIntegrationsApi;
 use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
@@ -58,6 +54,7 @@ use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationProject;
 use Upsun\Model\PlanRecords;
 use Upsun\Model\Profile;
+use Upsun\Model\Project;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\Subscription;
 use Upsun\Model\SubscriptionCurrentUsageObject;
@@ -69,6 +66,9 @@ class OrganizationsTaskTest extends BaseTestCase
 {
     protected OrganizationsTask $organizationsTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void
@@ -103,11 +103,8 @@ class OrganizationsTaskTest extends BaseTestCase
         $projectsTask = new class (
             $upsunClient,
             new ProjectApi(...$apiClassParams),
+            new OrganizationProjectsApi(...$apiClassParams),
             new ProjectSettingsApi(...$apiClassParams),
-            new DeploymentTargetApi(...$apiClassParams),
-            new RepositoryApi(...$apiClassParams),
-            new SystemInformationApi(...$apiClassParams),
-            new ThirdPartyIntegrationsApi(...$apiClassParams),
             new SubscriptionsApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
@@ -765,6 +762,7 @@ class OrganizationsTaskTest extends BaseTestCase
             'status' => 'active',
             'createdAt' => '2023-06-15 10:30:00',
             'updatedAt' => '2025-11-01 14:22:33',
+            'securityContact' => 'security@example.com',
             'links' => [
                 'self' => ['href' => 'https://api.example.com/v1/organizations/org_abc123'],
                 'update' => ['href' => 'https://api.example.com/v1/organizations/org_abc123',
@@ -809,6 +807,7 @@ class OrganizationsTaskTest extends BaseTestCase
             name: $data['name'],
             label: $data['label'],
             country: $data['country'],
+            securityContact: $data['securityContact'],
         );
 
         $this->assertInstanceOf(Organization::class, $result);
@@ -1166,7 +1165,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($list)
             ));
 
-        $result = $this->organizationsTask->listTeams(organizationId: $orgId);
+        $result = $this->organizationsTask->listTeams($orgId);
         $this->assertIsArray($result->getItems());
         $this->assertContainsOnlyInstancesOf(Team::class, $result->getItems());
         $this->assertObjectMatchesArray($result->getItems(), $list['items']);
@@ -1178,56 +1177,8 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testGetProject()
     {
-        $orgId = 'fake-org-5678';
         $projectId = 'fake-proj-1234';
-        $data = [
-            "id" => "fake-proj-1234",
-            "organization_id" => "fake-org-5678",
-            "subscription_id" => "999999",
-            "vendor" => "upsun",
-            "region" => "us.platform.sh",
-            "title" => "Demo Project",
-            "plan" => "upsun/flexible",
-            "default_branch" => "main",
-            "status" => "active",
-            "timezone" => "America/New_York",
-            "options_url" => "",
-            "agency_site" => false,
-            "support_tier" => "upsun_standard",
-            "options_custom" => [
-                "initialize" => [
-                    "profile" => "demo",
-                    "repository" => "https://github.com/platformsh/demo-cmd.git"
-                ]
-            ],
-            "trial_plan" => false,
-            "project_ui" => "https://console.upsun.com/fake-org-5678/fake-proj-1234",
-            "created_at" => "2023-10-24T16:34:45Z",
-            "updated_at" => "2025-04-08T11:12:55.802313Z",
-            "_links" => [
-                "activities" => [
-                    "href" => "/organizations/fake-org-5678/projects/fake-proj-1234/activities"
-                ],
-                "addons" => [
-                    "href" => "/organizations/fake-org-5678/projects/fake-proj-1234/addons"
-                ],
-                "api" => [
-                    "href" => "/projects/fake-proj-1234"
-                ],
-                "self" => [
-                    "href" => "/organizations/fake-org-5678/projects/fake-proj-1234"
-                ],
-                "subscription" => [
-                    "href" => "/organizations/fake-org-5678/subscriptions/999999"
-                ]
-            ],
-            "type" => "grid",
-            "locked" => false,
-            "cse_notes" => "",
-            "fastly_service_ids" => [],
-            "edgee_org_id" => "",
-            "edgee_project_id" => ""
-        ];
+        $data = $this->getFakeProject($projectId);
 
         $this->httpClient
             ->method('sendRequest')
@@ -1237,8 +1188,8 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->getProject(organizationId: $orgId, projectId: $projectId);
-        $this->assertInstanceOf(OrganizationProject::class, $result);
+        $result = $this->organizationsTask->getProject(projectId: $projectId);
+        $this->assertInstanceOf(Project::class, $result);
         $this->assertObjectProperties($result, $data);
     }
 
@@ -2696,7 +2647,6 @@ class OrganizationsTaskTest extends BaseTestCase
             'createdAt' => '2023-01-15T10:20:30+00:00',
             'updatedAt' => '2023-06-20T08:15:00+00:00',
             'billingContact' => 'billing@example.com',
-            'securityContact' => 'security@example.com',
             'currentTrial' => [
                 'pendingVerification' => null,
                 'active' => true,
@@ -2805,7 +2755,6 @@ class OrganizationsTaskTest extends BaseTestCase
             'createdAt' => '2023-01-15T10:20:30+00:00',
             'updatedAt' => '2023-06-20T08:15:00+00:00',
             'billingContact' => 'billing@example.com',
-            'securityContact' => 'security@example.com',
             'currentTrial' => [
                 'pendingVerification' => null,
                 'active' => true,
@@ -2838,7 +2787,6 @@ class OrganizationsTaskTest extends BaseTestCase
         $fakeUpdateOrgProfileRequestData = [
             'defaultCatalog' => 'main',
             'projectOptionsUrl' => 'https://example.com/org/options',
-            'securityContact' => 'security@example.com',
             'companyName' => 'Example Corp',
             'vatNumber' => 'FR123456789',
             'billingContact' => 'billing@example.com',
@@ -2856,7 +2804,6 @@ class OrganizationsTaskTest extends BaseTestCase
             organizationId: 'org-123',
             defaultCatalog: $fakeUpdateOrgProfileRequestData['defaultCatalog'],
             projectOptionsUrl: $fakeUpdateOrgProfileRequestData['projectOptionsUrl'],
-            securityContact: $fakeUpdateOrgProfileRequestData['securityContact'],
             companyName: $fakeUpdateOrgProfileRequestData['companyName'],
             vatNumber: $fakeUpdateOrgProfileRequestData['vatNumber'],
             billingContact: $fakeUpdateOrgProfileRequestData['billingContact'],

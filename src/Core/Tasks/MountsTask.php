@@ -2,10 +2,15 @@
 
 namespace Upsun\Core\Tasks;
 
+use RuntimeException;
 use Upsun\UpsunClient;
 
+use function is_array;
+use function is_object;
+use function is_string;
+
 /**
- * MountTask class.
+ * MountsTask class.
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
@@ -17,5 +22,93 @@ class MountsTask extends TaskBase
         UpsunClient $client,
     ) {
         parent::__construct($client);
+    }
+
+    /**
+     * List the mounts for a specific application in the current deployment of an environment.
+     *
+     * @param string $filterType - optional filter for resource type, e.g. "webapps", "services", or "workers"
+     * @return array<array>
+     */
+    public function list(
+        string $projectId,
+        string $environmentId = 'main',
+        ?string $filterType = null,
+    ): array {
+        $currentDeployment = $this->client->environments->getDeployment(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            deploymentId: 'current',
+        );
+
+        $result = [];
+
+        $resourceTypes = $filterType !== null
+            ? [$filterType]
+            : ['webapps', 'services', 'workers'];
+
+        foreach ($resourceTypes as $resourceType) {
+            switch ($resourceType) {
+                case 'webapps':
+                    $group = $currentDeployment->getWebapps();
+                    break;
+                case 'services':
+                    $group = $currentDeployment->getServices();
+                    break;
+                case 'workers':
+                    $group = $currentDeployment->getWorkers();
+                    break;
+                default:
+                    continue 2; // Skip unknown resource types
+            }
+
+            if (!is_array($group) && !is_object($group)) {
+                continue;
+            }
+
+            foreach ((array) $group as $appName => $app) {
+                if (!is_string($appName) || $appName === '') {
+                    continue;
+                }
+
+                $mounts = $this->readField($app, 'mounts');
+                $result[$appName] = is_array($mounts) ? $mounts : [];
+            }
+        }
+
+        return $result;
+    }
+
+    public function download(string $projectId, string $mountId): never
+    {
+        throw new RuntimeException('Cannot be implemented');
+    }
+
+    public function upload(string $projectId, string $mountId, array $params = []): never
+    {
+        throw new RuntimeException('Cannot be implemented');
+    }
+
+    /**
+     * Helper method to read a field from an object or array, trying both getter method and direct property access.
+     */
+    private function readField(mixed $source, string $field): mixed
+    {
+        if (is_array($source)) {
+            return $source[$field] ?? null;
+        }
+
+        if (is_object($source)) {
+            $getter = 'get' . ucfirst($field);
+            if (method_exists($source, $getter)) {
+                return $source->{$getter}();
+            }
+
+            if (isset($source->{$field})) {
+                return $source->{$field};
+            }
+        }
+
+        return null;
     }
 }

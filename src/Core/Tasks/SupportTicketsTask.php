@@ -3,6 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\DefaultApi;
@@ -36,7 +37,8 @@ class SupportTicketsTask extends TaskBase
      * Lists support tickets
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function list(
         ?int $filterTicketId = null,
@@ -74,7 +76,8 @@ class SupportTicketsTask extends TaskBase
      * Creates a new support ticket
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function create(
         string $subject,
@@ -109,11 +112,14 @@ class SupportTicketsTask extends TaskBase
      * Lists support ticket categories
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return  ListTicketCategories200ResponseInner[]
      */
     public function listCategories(?string $organizationId = null, ?string $projectId = null): array
     {
+        $this->checkOrganizationId($organizationId);
+
         $project = $projectId ? $this->client->projects->get($projectId) : null;
         $subscriptionId = $projectId ?
             $this->extractSubscriptionId($project->getSubscription()->getLicenseUri()) : null;
@@ -128,7 +134,8 @@ class SupportTicketsTask extends TaskBase
      * Lists support ticket priorities
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return ListTicketPriorities200ResponseInner[]
      */
     public function listPriorities(?string $projectId = null, ?string $category = null): array
@@ -143,7 +150,8 @@ class SupportTicketsTask extends TaskBase
      * Updates a ticket
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
+     * @throws ClientExceptionInterface on network error
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function update(
         string $ticketId,
@@ -151,11 +159,15 @@ class SupportTicketsTask extends TaskBase
         ?array $collaboratorIds = [],
         ?bool $collaboratorsReplace = null,
     ): Ticket {
-        $updateTicketRequest = new UpdateTicketRequest(
-            status: $status,
-            collaboratorIds: $collaboratorIds,
-            collaboratorsReplace:  $collaboratorsReplace,
+        $this->checkTicketId($ticketId);
+
+        return $this->supportApi->updateTicket(
+            ticketId: $ticketId,
+            updateTicketRequest: new UpdateTicketRequest(
+                status: $status,
+                collaboratorIds: $collaboratorIds,
+                collaboratorsReplace:  $collaboratorsReplace,
+            )
         );
-        return $this->supportApi->updateTicket(ticketId: $ticketId, updateTicketRequest: $updateTicketRequest);
     }
 }

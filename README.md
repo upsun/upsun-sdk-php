@@ -5,24 +5,10 @@ The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps 
 For more information, read [the documentation](https://docs.upsun.com/api).
 
 
-> [!CAUTION]
+> **CAUTION**:
 > This project is currently in **Beta**, meaning features and APIs may evolve over time.
 >
 > Please report bugs or request new features by creating a GitHub issue.
-
-<hr/>
-
-[![Issues](https://img.shields.io/github/issues/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Issues)](https://github.com/upsun/upsun-sdk-php/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Pull%20requests)](https://github.com/upsun/upsun-sdk-php/pulls)
-[![License](https://img.shields.io/static/v1?label=License&message=MIT&style=for-the-badge&labelColor=f4f2f3&color=ffd9d9)](https://github.com/upsun/upsun-sdk-php/blob/master/LICENSE)
-
-<hr/>
-
-[![codecov](https://codecov.io/gh/upsun/upsun-sdk-php/graph/badge.svg?token=TOF5FTUFGV)](https://codecov.io/gh/upsun/upsun-sdk-php)
-[![Packagist Version](https://img.shields.io/packagist/v/upsun/upsun-sdk-php?include_prereleases&label=packagist)](https://packagist.org/packages/upsun/upsun-sdk-php)
-[![Packagist Downloads](https://img.shields.io/packagist/dt/upsun/upsun-sdk-php)](https://packagist.org/packages/upsun/upsun-sdk-php)
-
-<hr/>
 
 ## Installation
 
@@ -48,7 +34,7 @@ use Upsun\UpsunConfig;
 use Upsun\UpsunClient;
 
 $config = new UpsunConfig(apiToken: getenv('UPSUN_API_TOKEN'));
-$client = new UpsunClient($config);
+$upsunClient = new UpsunClient($config);
 ```
 
 ## Usage
@@ -56,45 +42,19 @@ $client = new UpsunClient($config);
 ### Example: List organizations
 
 ```php
-$organizations = $client->organizations->list();
+$organizations = $upsunClient->organizations->list();
 ```
 
 ### Example: List projects in an organization
 
 ```php
-$projects = $client->organizations->listProjects('<organizationId>');
+$projects = $upsunClient->projects->list('<organizationId>');
 ```
 
-### Example: Get a project
+### Example: Redeploy an environment
 
 ```php
-$project = $client->projects->get('<projectId>');
-```
-
-### Example: Create a project in a specific organization
-```php
-$project = $client->projects->create(
-    '<organizationId>',
-    'eu-5.platform.sh',
-    'Project title',
-    'main',
-);
-```
-
-### Example: Update a project
-
-```php
-$response = $client->projects->update(
-    projectId: '<projectId>',
-    title: 'new Title',
-    description: 'Description'
-);
-```
-
-### Example: Delete a project
-
-```php
-$client->projects->delete('<projectId>');
+$response = $upsunClient->environments->redeploy('<projectId>', '<environmentId>');
 ```
 
 ---
@@ -112,19 +72,17 @@ composer install
 
 The SDK is built as follows:
 
-* From the [JSON specs of our API](https://proxy.upsun.com/docs/openapispec-platformsh.json)
+* From the [JSON specs of our API](https://docs.upsun.com/api/openapispec-upsun.json)
 * Using [``@openapitools/openapi-generator-cli``](https://www.npmjs.com/package/%40openapitools/openapi-generator-cli)
 * Which generates:
   * PHP **Models** (in `src/Model/`)
   * PHP **APIs** (in `src/Api/`)
 * Higher-level PHP (Facade) oriented **Tasks** (in `src/Core/Tasks/`)
 
-![Architecture of the SDK](./assets/images/sdk-schema.png)
-
 ### Regenerating API & Model classes
 
 API and Model classes are generated using [openapi-generator-cli](https://openapi-generator.tech)
-from the [Upsun OpenAPI spec](https://proxy.upsun.com/docs/openapispec-platformsh.json).
+from the [Upsun OpenAPI spec](https://docs.upsun.com/api/openapispec-upsun.json).
 
 ```bash
 composer run spec:install
@@ -137,10 +95,6 @@ Contributions are welcome!<br>
 Please open a [pull request](https://github.com/upsun/upsun-sdk-php/compare) or an [issue](https://github.com/upsun/upsun-sdk-php/issues/new)
 for any improvements, bug fixes, or new features.
 
-## Full SDK Docs
-
-To see the full SDK docs, for all API and Model classes, please see the [following link](./docs/Home.md)
-
 ## Tests
 
 To run the tests, use:
@@ -152,4 +106,4 @@ composer run test
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+This project is licensed under the Apache License 2.0. See the [LICENSE](https://github.com/upsun/upsun-sdk-php/blob/main/LICENSE) and [NOTICE](https://github.com/upsun/upsun-sdk-php/blob/main/NOTICE) files for details.

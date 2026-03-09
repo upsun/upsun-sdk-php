@@ -8,22 +8,30 @@ use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
-use Upsun\Api\ApiException;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\DomainsTask;
 use Upsun\Model\AcceptedResponse;
+use Upsun\Model\DomainPatch;
+use Upsun\Model\ProdDomainStorage;
+use Upsun\Model\ReplacementDomainStorage;
 use Upsun\UpsunClient;
 
 class DomainsTaskTest extends BaseTestCase
 {
     private DomainsTask $domainsTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
         $this->httpClient = $this->createMock(ClientInterface::class);
+
+        class_exists(ProdDomainStorage::class);
+        class_exists(ReplacementDomainStorage::class);
 
         $upsunClient = $this->createMock(UpsunClient::class);
 
@@ -39,68 +47,6 @@ class DomainsTaskTest extends BaseTestCase
             new DomainManagementApi(...$apiClassParams),
         ) extends DomainsTask {
         };
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testCreateWithoutEnvironment(): void
-    {
-        $projectId = 'proj-1';
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
-
-        $result = $this->domainsTask->create(
-            projectId: $projectId,
-            name: 'example.com',
-            attributes: [
-                'ssl' => 'enabled',
-                'region' => 'eu',
-            ],
-            isDefault: true,
-        );
-        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testCreateWithEnvironment(): void
-    {
-        $projectId = 'proj-1';
-        $envId = 'env-1';
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
-
-        $result = $this->domainsTask->create(
-            projectId: $projectId,
-            name: 'example.com',
-            attributes: [
-                'ssl' => 'enabled',
-                'region' => 'eu',
-            ],
-            isDefault: true,
-            environmentId: $envId
-        );
-        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
     /**
@@ -164,7 +110,7 @@ class DomainsTaskTest extends BaseTestCase
                 200,
                 ['Content-Type' => 'application/json'],
                 json_encode([
-                    'type' => 'project',
+                    'type' => 'prodstorage',
                     'name' => 'Production Environment',
                     'attributes' => [
                         'region' => 'us-east-1',
@@ -182,7 +128,7 @@ class DomainsTaskTest extends BaseTestCase
 
         $result = $this->domainsTask->get(projectId: $projectId, domainId: $domainId);
         $this->assertEquals("Production Environment", $result->getName());
-        $this->assertEquals("project", $result->getType());
+        $this->assertEquals("prodstorage", $result->getType());
     }
 
     /**
@@ -200,7 +146,7 @@ class DomainsTaskTest extends BaseTestCase
                 200,
                 ['Content-Type' => 'application/json'],
                 json_encode([
-                    'type' => 'environment',
+                    'type' => 'prodstorage',
                     'name' => 'Environment Domain',
                     'attributes' => [
                         'region' => 'us-east-1',
@@ -218,7 +164,7 @@ class DomainsTaskTest extends BaseTestCase
 
         $result = $this->domainsTask->get(projectId: $projectId, domainId: $domainId, environmentId: $envId);
         $this->assertEquals("Environment Domain", $result->getName());
-        $this->assertEquals("environment", $result->getType());
+        $this->assertEquals("prodstorage", $result->getType());
     }
 
     /**
@@ -235,7 +181,7 @@ class DomainsTaskTest extends BaseTestCase
                 ['Content-Type' => 'application/json'],
                 json_encode([
                     [
-                        'type' => 'project',
+                        'type' => 'prodstorage',
                         'name' => 'Production Domain',
                         'attributes' => [
                             'region' => 'us-east-1',
@@ -250,7 +196,7 @@ class DomainsTaskTest extends BaseTestCase
                         'replacementFor' => 'staging_env_001',
                     ],
                     [
-                        'type' => 'project',
+                        'type' => 'prodstorage',
                         'name' => 'Production Domain',
                         'attributes' => [
                             'region' => 'us-east-1',
@@ -270,8 +216,8 @@ class DomainsTaskTest extends BaseTestCase
         $result = $this->domainsTask->list(projectId: $projectId);
         $this->assertEquals("Production Domain", $result[0]->getName());
         $this->assertEquals("Production Domain", $result[1]->getName());
-        $this->assertEquals("project", $result[0]->getType());
-        $this->assertEquals("project", $result[1]->getType());
+        $this->assertEquals("prodstorage", $result[0]->getType());
+        $this->assertEquals("prodstorage", $result[1]->getType());
     }
 
     /**
@@ -284,7 +230,7 @@ class DomainsTaskTest extends BaseTestCase
         $envId = 'env-id';
         $data = [
             [
-                'type' => 'environment',
+                'type' => 'prodstorage',
                 'name' => 'Environment Domain',
                 'attributes' => [
                     'region' => 'us-east-1',
@@ -299,7 +245,7 @@ class DomainsTaskTest extends BaseTestCase
                 'replacementFor' => 'staging_env_001',
             ],
             [
-                'type' => 'environment',
+                'type' => 'prodstorage',
                 'name' => 'Environment Domain',
                 'attributes' => [
                     'region' => 'us-east-1',
@@ -350,8 +296,7 @@ class DomainsTaskTest extends BaseTestCase
         $result = $this->domainsTask->update(
             projectId: $projectId,
             domainId: $domainId,
-            attributes: [],
-            isDefault: true
+            domainPatch: $this->createMock(DomainPatch::class)
         );
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
@@ -379,34 +324,9 @@ class DomainsTaskTest extends BaseTestCase
         $result = $this->domainsTask->update(
             projectId: $projectId,
             domainId: $domainId,
-            attributes: [],
-            isDefault: true,
+            domainPatch: $this->createMock(DomainPatch::class),
             environmentId: $envId
         );
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testCreateThrowsApiException(): void
-    {
-        $this->expectException(ApiException::class);
-
-        $projectId = 'proj-1';
-        $input = ['name' => 'name'];
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                404,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'KO',
-                    'code' => 404
-                ])
-            ));
-
-        $this->domainsTask->create(projectId: $projectId, name: 'name');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\CertManagementApi;
@@ -12,7 +13,7 @@ use Upsun\Model\CertificatePatch;
 use Upsun\UpsunClient;
 
 /**
- * CertificateTask class.
+ * CertificatesTask class.
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
@@ -28,85 +29,107 @@ class CertificatesTask extends TaskBase
     }
 
     /**
-     * Adds an SSL certificate
+     * Add an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function create(
+    public function add(
         string $projectId,
         string $certificate,
         string $key,
         ?array $chain = null,
         ?bool $isInvalid = null,
     ): AcceptedResponse {
-        $certificateCreateInput = new CertificateCreateInput(
-            certificate: $certificate,
-            key: $key,
-            chain: $chain,
-            isInvalid: $isInvalid
+        $this->checkProjectId($projectId);
+
+        if (empty($certificate) || empty($key)) {
+            throw new InvalidArgumentException("Certificate and key are required");
+        }
+
+        return $this->api->createProjectsCertificates(
+            $projectId,
+            certificateCreateInput: new CertificateCreateInput(
+                $certificate,
+                $key,
+                $chain,
+                $isInvalid
+            )
         );
-        return $this->api->createProjectsCertificates($projectId, $certificateCreateInput);
     }
 
     /**
-     * Deletes an SSL certificate
+     * Delete an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function delete(string $projectId, string $certificateId): AcceptedResponse
     {
+        $this->checkProjectId($projectId);
+        $this->checkCertificateId($certificateId);
+
         return $this->api->deleteProjectsCertificates(
-            projectId: $projectId,
-            certificateId: $certificateId
+            $projectId,
+            $certificateId
         );
     }
 
     /**
-     * Gets an SSL certificate
+     * Get an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function get(string $projectId, string $certificateId): Certificate
     {
+        $this->checkProjectId($projectId);
+        $this->checkCertificateId($certificateId);
+
         return $this->api->getProjectsCertificates(projectId: $projectId, certificateId: $certificateId);
     }
 
     /**
-     * Gets list of SSL certificates
-     *
+     * Get list of SSL certificates
      *
      * @throws ClientExceptionInterface
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return Certificate[]
      */
     public function list(string $projectId): array
     {
+        $this->checkProjectId($projectId);
+
         return $this->api->listProjectsCertificates(projectId: $projectId);
     }
 
     /**
-     * Updates an SSL certificate
+     * Update an SSL certificate
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function update(
         string $projectId,
         string $certificateId,
-        ?array $chain = null,
+        ?array $chain = [],
         ?bool $isInvalid = null,
     ): AcceptedResponse {
-        $certificatePatch = new CertificatePatch(
-            chain: $chain,
-            isInvalid: $isInvalid
-        );
+        $this->checkProjectId($projectId);
+        $this->checkCertificateId($certificateId);
+
         return $this->api->updateProjectsCertificates(
-            projectId: $projectId,
-            certificateId: $certificateId,
-            certificatePatch: $certificatePatch
+            $projectId,
+            $certificateId,
+            new CertificatePatch(
+                $chain,
+                $isInvalid
+            )
         );
     }
 }

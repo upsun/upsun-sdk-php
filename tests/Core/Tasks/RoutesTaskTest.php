@@ -18,6 +18,9 @@ class RoutesTaskTest extends BaseTestCase
 {
     private RoutesTask $routesTask;
 
+    /**
+     * @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject
+     */
     private ClientInterface $httpClient;
 
     protected function setUp(): void
@@ -95,6 +98,7 @@ class RoutesTaskTest extends BaseTestCase
         ];
 
         $this->httpClient
+            ->expects($this->once())
             ->method('sendRequest')
             ->willReturn(new Response(
                 200,
@@ -215,6 +219,7 @@ class RoutesTaskTest extends BaseTestCase
         ];
 
         $this->httpClient
+            ->expects($this->once())
             ->method('sendRequest')
             ->willReturn(new Response(
                 200,
