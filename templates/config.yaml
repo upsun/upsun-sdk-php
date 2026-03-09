@@ -19,6 +19,7 @@ additionalProperties:
   composerProject: upsun-sdk-php
   composerVersion: 0.5.0
   licenseName: Apache-2.0
+  licenseNameReadme: Apache License 2.0
   composerPackageName: upsun/upsun-sdk-php
   artifactUrl: https://github.com/upsun/upsun-sdk-php
   developerOrganization: Upsun Advocacy Team

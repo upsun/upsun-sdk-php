@@ -4,7 +4,6 @@ The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps 
 
 For more information, read [the documentation](https://docs.upsun.com/api).
 
-
 > [!CAUTION]
 > This project is currently in **Beta**, meaning features and APIs may evolve over time.
 >
@@ -12,15 +11,15 @@ For more information, read [the documentation](https://docs.upsun.com/api).
 
 <hr/>
 
-[![Issues](https://img.shields.io/github/issues/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Issues)](https://github.com/upsun/upsun-sdk-php/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=f4f2f3&color=ffd9d9&label=Pull%20requests)](https://github.com/upsun/upsun-sdk-php/pulls)
-[![License](https://img.shields.io/static/v1?label=License&message=MIT&style=for-the-badge&labelColor=f4f2f3&color=ffd9d9)](https://github.com/upsun/upsun-sdk-php/blob/master/LICENSE)
+[![Issues](https://img.shields.io/github/issues/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=0C0F10&color=D5F800&label=Issues)](https://github.com/upsun/upsun-sdk-php/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=0C0F10&color=D5F800&label=Pull%20requests)](https://github.com/upsun/upsun-sdk-php/pulls)
+[![License](https://img.shields.io/static/v1?label=License&message=MIT&style=for-the-badge&labelColor=0C0F10&color=D5F800)](https://github.com/upsun/upsun-sdk-php/blob/master/LICENSE)
 
 <hr/>
 
-[![codecov](https://codecov.io/gh/upsun/upsun-sdk-php/graph/badge.svg?token=TOF5FTUFGV)](https://codecov.io/gh/upsun/upsun-sdk-php)
-[![Packagist Version](https://img.shields.io/packagist/v/upsun/upsun-sdk-php?include_prereleases&label=packagist)](https://packagist.org/packages/upsun/upsun-sdk-php)
-[![Packagist Downloads](https://img.shields.io/packagist/dt/upsun/upsun-sdk-php)](https://packagist.org/packages/upsun/upsun-sdk-php)
+[![codecov](https://img.shields.io/codecov/c/github/upsun/upsun-sdk-php?style=for-the-badge&label=codecov&labelColor=0C0F10&color=D5F800)](https://codecov.io/gh/upsun/upsun-sdk-php)
+[![Packagist Version](https://img.shields.io/packagist/v/upsun/upsun-sdk-php?include_prereleases&style=for-the-badge&label=packagist&labelColor=0C0F10&color=D5F800)](https://packagist.org/packages/upsun/upsun-sdk-php)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/upsun/upsun-sdk-php?style=for-the-badge&label=downloads&labelColor=0C0F10&color=D5F800)](https://packagist.org/packages/upsun/upsun-sdk-php)
 
 <hr/>
 
@@ -152,4 +151,4 @@ composer run test
 
 ## License
 
-This project is licensed under the Apache-2.0 License. See the [LICENSE](./LICENSE) file for details.
+This project is licensed under the Apache License 2.0. See the [LICENSE](./LICENSE) file for details.
