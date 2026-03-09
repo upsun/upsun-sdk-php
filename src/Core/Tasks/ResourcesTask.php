@@ -208,7 +208,7 @@ class ResourcesTask extends TaskBase
     public function updateAutoscalerSettings(
         string $projectId,
         string $environmentId,
-        array $services,
+        ?array $services = null,
     ): AutoscalerSettings {
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
