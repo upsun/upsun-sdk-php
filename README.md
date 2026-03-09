@@ -33,7 +33,7 @@ use Upsun\UpsunConfig;
 use Upsun\UpsunClient;
 
 $config = new UpsunConfig(apiToken: getenv('UPSUN_API_TOKEN'));
-$client = new UpsunClient($config);
+$upsunClient = new UpsunClient($config);
 ```
 
 ## Usage
@@ -41,24 +41,24 @@ $client = new UpsunClient($config);
 ### Example: List organizations
 
 ```php
-$organizations = $client->organizations->list();
+$organizations = $upsunClient->organizations->list();
 ```
 
 ### Example: List projects in an organization
 
 ```php
-$projects = $client->organizations->listProjects('<organizationId>');
+$projects = $upsunClient->organizations->listProjects('<organizationId>');
 ```
 
 ### Example: Get a project
 
 ```php
-$project = $client->projects->get('<projectId>');
+$project = $upsunClient->projects->get('<projectId>');
 ```
 
 ### Example: Create a project in a specific organization
 ```php
-$project = $client->projects->create(
+$project = $upsunClient->projects->create(
     '<organizationId>',
     'eu-5.platform.sh',
     'Project title',
@@ -69,7 +69,7 @@ $project = $client->projects->create(
 ### Example: Update a project
 
 ```php
-$response = $client->projects->update(
+$response = $upsunClient->projects->update(
     projectId: '<projectId>',
     title: 'new Title',
     description: 'Description'
@@ -79,7 +79,7 @@ $response = $client->projects->update(
 ### Example: Delete a project
 
 ```php
-$client->projects->delete('<projectId>');
+$upsunClient->projects->delete('<projectId>');
 ```
 
 ---
