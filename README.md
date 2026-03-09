@@ -9,20 +9,6 @@ For more information, read [the documentation](https://docs.upsun.com/api).
 >
 > Please report bugs or request new features by creating a GitHub issue.
 
-<hr/>
-
-[![Issues](https://img.shields.io/github/issues/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=0C0F10&color=D5F800&label=Issues)](https://github.com/upsun/upsun-sdk-php/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/upsun/upsun-sdk-php.svg?style=for-the-badge&labelColor=0C0F10&color=D5F800&label=Pull%20requests)](https://github.com/upsun/upsun-sdk-php/pulls)
-[![License](https://img.shields.io/static/v1?label=License&message=Apache-2.0&style=for-the-badge&labelColor=0C0F10&color=D5F800)](https://github.com/upsun/upsun-sdk-php/blob/master/LICENSE)
-
-<hr/>
-
-[![codecov](https://img.shields.io/codecov/c/github/upsun/upsun-sdk-php?style=for-the-badge&label=codecov&labelColor=0C0F10&color=D5F800)](https://codecov.io/gh/upsun/upsun-sdk-php)
-[![Packagist Version](https://img.shields.io/packagist/v/upsun/upsun-sdk-php?include_prereleases&style=for-the-badge&label=packagist&labelColor=0C0F10&color=D5F800)](https://packagist.org/packages/upsun/upsun-sdk-php)
-[![Packagist Downloads](https://img.shields.io/packagist/dt/upsun/upsun-sdk-php?style=for-the-badge&label=downloads&labelColor=0C0F10&color=D5F800)](https://packagist.org/packages/upsun/upsun-sdk-php)
-
-<hr/>
-
 ## Installation
 
 Install the SDK via Composer:
