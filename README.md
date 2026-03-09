@@ -111,7 +111,7 @@ composer install
 
 The SDK is built as follows:
 
-* From the [JSON specs of our API](https://proxy.upsun.com/docs/openapispec-platformsh.json)
+* From the [JSON specs of our API](https://docs.upsun.com/api/openapispec-upsun.json)
 * Using [``@openapitools/openapi-generator-cli``](https://www.npmjs.com/package/%40openapitools/openapi-generator-cli)
 * Which generates:
   * PHP **Models** (in `src/Model/`)
@@ -123,7 +123,7 @@ The SDK is built as follows:
 ### Regenerating API & Model classes
 
 API and Model classes are generated using [openapi-generator-cli](https://openapi-generator.tech)
-from the [Upsun OpenAPI spec](https://proxy.upsun.com/docs/openapispec-platformsh.json).
+from the [Upsun OpenAPI spec](https://docs.upsun.com/api/openapispec-upsun.json).
 
 ```bash
 composer run spec:install
