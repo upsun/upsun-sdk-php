@@ -2,6 +2,8 @@
 
 namespace {{apiPackage}};
 
+use Upsun\UserAgent;
+
 /**
  * APIConfiguration holder for the Upsun API Client.
  *
@@ -42,9 +44,14 @@ final class ApiConfiguration
     protected string $host = AbstractApi::BASE_PATH;
 
     /**
-     * User agent of the HTTP request, set to "OpenAPI-Generator/{version}/PHP" by default
+     * User agent of the HTTP request
      */
-    protected string $userAgent = '{{{httpUserAgent}}}{{^httpUserAgent}}OpenAPI-Generator/{{{artifactVersion}}}{{^artifactVersion}}1.0.0{{/artifactVersion}}/PHP{{/httpUserAgent}}';
+    protected string $userAgent;
+
+    /**
+     * Runtime metadata for X-Upsun-Client header
+     */
+    protected string $upsunClientHeader;
 
     /**
      * Debug switch (default set to false)
@@ -58,6 +65,8 @@ final class ApiConfiguration
 
     public function __construct()
     {
+        $this->userAgent = UserAgent::get();
+        $this->upsunClientHeader = UserAgent::getClientMetadata();
         $this->tempFolderPath = sys_get_temp_dir();
     }
 
@@ -117,6 +126,14 @@ final class ApiConfiguration
     public function getUserAgent(): string
     {
         return $this->userAgent;
+    }
+
+    /**
+     * Gets runtime metadata for X-Upsun-Client header
+     */
+    public function getUpsunClientHeader(): string
+    {
+        return $this->upsunClientHeader;
     }
 
     /**

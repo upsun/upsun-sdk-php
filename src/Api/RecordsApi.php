@@ -407,6 +407,9 @@ final class RecordsApi extends AbstractApi
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
+        if ($this->config->getUpsunClientHeader()) {
+            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
+        }
 
         $headers = array_merge(
             $defaultHeaders,
@@ -693,6 +696,9 @@ final class RecordsApi extends AbstractApi
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+        if ($this->config->getUpsunClientHeader()) {
+            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
         }
 
         $headers = array_merge(

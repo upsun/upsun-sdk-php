@@ -31,7 +31,8 @@ class DomainsTask extends TaskBase
     /**
      * Add a project (or environment) domain
      *
-     * @param DomainCreateInput $domainCreateInput is an instance of ProdDomainStoragePatch or ReplacementDomainStoragePatch
+     * @param DomainCreateInput $domainCreateInput is an instance of ProdDomainStoragePatch
+     * or ReplacementDomainStoragePatch
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
