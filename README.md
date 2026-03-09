@@ -104,8 +104,6 @@ The SDK is built as follows:
   * PHP **APIs** (in `src/Api/`)
 * Higher-level PHP (Facade) oriented **Tasks** (in `src/Core/Tasks/`)
 
-![Architecture of the SDK](./assets/images/sdk-schema.png)
-
 ### Regenerating API & Model classes
 
 API and Model classes are generated using [openapi-generator-cli](https://openapi-generator.tech)
@@ -122,10 +120,6 @@ Contributions are welcome!<br>
 Please open a [pull request](https://github.com/upsun/upsun-sdk-php/compare) or an [issue](https://github.com/upsun/upsun-sdk-php/issues/new)
 for any improvements, bug fixes, or new features.
 
-## Full SDK Docs
-
-To see the full SDK docs, for all API and Model classes, please see the [following link](./docs/Home.md)
-
 ## Tests
 
 To run the tests, use:
@@ -137,4 +131,4 @@ composer run test
 
 ## License
 
-This project is licensed under the Apache License 2.0. See the [LICENSE](./LICENSE) and [NOTICE](./NOTICE) files for details.
+This project is licensed under the Apache License 2.0. See the [LICENSE](https://github.com/upsun/upsun-sdk-php/blob/main/LICENSE) and [NOTICE](https://github.com/upsun/upsun-sdk-php/blob/main/NOTICE) files for details.
