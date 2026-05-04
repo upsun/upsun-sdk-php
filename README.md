@@ -95,6 +95,26 @@ Contributions are welcome!<br>
 Please open a [pull request](https://github.com/upsun/upsun-sdk-php/compare) or an [issue](https://github.com/upsun/upsun-sdk-php/issues/new)
 for any improvements, bug fixes, or new features.
 
+## Publishing
+To generate a new version of the Upsun SDK PHP and automatically publish it on https://packagist.org
+
+1. update your local
+```bash
+git fetch
+git checkout main
+git pull
+```
+2. check existing tags on https://github.com/upsun/upsun-sdk-php/tags
+3. create a new tag from your local
+```bash
+git tag v<x.y.z>
+git push --tag
+```
+4. Go on release page: https://github.com/upsun/upsun-sdk-php/releases
+7. create a new release based on the previously created tag (Do not forget to autogenerate description in the form)
+8. check publishing action status: https://github.com/upsun/upsun-sdk-php/actions 
+9. check new release version on https://packagist.org/packages/upsun/upsun-sdk-php 
+
 ## Tests
 
 To run the tests, use:
