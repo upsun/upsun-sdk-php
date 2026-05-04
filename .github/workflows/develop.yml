@@ -141,9 +141,6 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install repo dependencies
-        run: npm ci
-
       - name: Install SDK checker
         run: npm install --no-save upsun-sdk-checker@latest
 
