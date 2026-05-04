@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -13,6 +12,12 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Certificate;
+use Upsun\Model\CertificateCreateInput;
+use Upsun\Model\CertificatePatch;
+use Upsun\Model\CertificateProvisioner;
+use Upsun\Model\CertificateProvisionerPatch;
 
 /**
  * Low level CertManagementApi (auto-generated)
@@ -61,8 +66,8 @@ final class CertManagementApi extends AbstractApi
      */
     public function createProjectsCertificates(
         string $projectId,
-        \Upsun\Model\CertificateCreateInput $certificateCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        CertificateCreateInput $certificateCreateInput
+    ): AcceptedResponse {
         return $this->createProjectsCertificatesWithHttpInfo(
             $projectId,
             $certificateCreateInput
@@ -79,8 +84,8 @@ final class CertManagementApi extends AbstractApi
     */
     private function createProjectsCertificatesWithHttpInfo(
         string $projectId,
-        \Upsun\Model\CertificateCreateInput $certificateCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        CertificateCreateInput $certificateCreateInput
+    ): AcceptedResponse {
         $request = $this->createProjectsCertificatesRequest(
             $projectId,
             $certificateCreateInput
@@ -122,9 +127,8 @@ final class CertManagementApi extends AbstractApi
      */
     private function createProjectsCertificatesRequest(
         string $projectId,
-        \Upsun\Model\CertificateCreateInput $certificateCreateInput
+        CertificateCreateInput $certificateCreateInput
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -156,7 +160,6 @@ final class CertManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -235,7 +238,7 @@ final class CertManagementApi extends AbstractApi
     public function deleteProjectsCertificates(
         string $projectId,
         string $certificateId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->deleteProjectsCertificatesWithHttpInfo(
             $projectId,
             $certificateId
@@ -252,7 +255,7 @@ final class CertManagementApi extends AbstractApi
     private function deleteProjectsCertificatesWithHttpInfo(
         string $projectId,
         string $certificateId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->deleteProjectsCertificatesRequest(
             $projectId,
             $certificateId
@@ -295,7 +298,6 @@ final class CertManagementApi extends AbstractApi
         string $projectId,
         string $certificateId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -336,7 +338,6 @@ final class CertManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -407,7 +408,7 @@ final class CertManagementApi extends AbstractApi
     public function getProjectsCertificates(
         string $projectId,
         string $certificateId
-    ): \Upsun\Model\Certificate {
+    ): Certificate {
         return $this->getProjectsCertificatesWithHttpInfo(
             $projectId,
             $certificateId
@@ -424,7 +425,7 @@ final class CertManagementApi extends AbstractApi
     private function getProjectsCertificatesWithHttpInfo(
         string $projectId,
         string $certificateId
-    ): \Upsun\Model\Certificate {
+    ): Certificate {
         $request = $this->getProjectsCertificatesRequest(
             $projectId,
             $certificateId
@@ -467,7 +468,6 @@ final class CertManagementApi extends AbstractApi
         string $projectId,
         string $certificateId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -508,7 +508,6 @@ final class CertManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -576,7 +575,7 @@ final class CertManagementApi extends AbstractApi
     public function getProjectsProvisioners(
         string $projectId,
         string $certificateProvisionerDocumentId
-    ): \Upsun\Model\CertificateProvisioner {
+    ): CertificateProvisioner {
         return $this->getProjectsProvisionersWithHttpInfo(
             $projectId,
             $certificateProvisionerDocumentId
@@ -592,7 +591,7 @@ final class CertManagementApi extends AbstractApi
     private function getProjectsProvisionersWithHttpInfo(
         string $projectId,
         string $certificateProvisionerDocumentId
-    ): \Upsun\Model\CertificateProvisioner {
+    ): CertificateProvisioner {
         $request = $this->getProjectsProvisionersRequest(
             $projectId,
             $certificateProvisionerDocumentId
@@ -635,7 +634,6 @@ final class CertManagementApi extends AbstractApi
         string $projectId,
         string $certificateProvisionerDocumentId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -676,7 +674,6 @@ final class CertManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -806,7 +803,6 @@ final class CertManagementApi extends AbstractApi
     private function listProjectsCertificatesRequest(
         string $projectId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -831,7 +827,6 @@ final class CertManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -957,7 +952,6 @@ final class CertManagementApi extends AbstractApi
     private function listProjectsProvisionersRequest(
         string $projectId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -982,7 +976,6 @@ final class CertManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1054,8 +1047,8 @@ final class CertManagementApi extends AbstractApi
     public function updateProjectsCertificates(
         string $projectId,
         string $certificateId,
-        \Upsun\Model\CertificatePatch $certificatePatch
-    ): \Upsun\Model\AcceptedResponse {
+        CertificatePatch $certificatePatch
+    ): AcceptedResponse {
         return $this->updateProjectsCertificatesWithHttpInfo(
             $projectId,
             $certificateId,
@@ -1074,8 +1067,8 @@ final class CertManagementApi extends AbstractApi
     private function updateProjectsCertificatesWithHttpInfo(
         string $projectId,
         string $certificateId,
-        \Upsun\Model\CertificatePatch $certificatePatch
-    ): \Upsun\Model\AcceptedResponse {
+        CertificatePatch $certificatePatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsCertificatesRequest(
             $projectId,
             $certificateId,
@@ -1119,9 +1112,8 @@ final class CertManagementApi extends AbstractApi
     private function updateProjectsCertificatesRequest(
         string $projectId,
         string $certificateId,
-        \Upsun\Model\CertificatePatch $certificatePatch
+        CertificatePatch $certificatePatch
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1169,7 +1161,6 @@ final class CertManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1246,8 +1237,8 @@ final class CertManagementApi extends AbstractApi
     public function updateProjectsProvisioners(
         string $projectId,
         string $certificateProvisionerDocumentId,
-        \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch
-    ): \Upsun\Model\AcceptedResponse {
+        CertificateProvisionerPatch $certificateProvisionerPatch
+    ): AcceptedResponse {
         return $this->updateProjectsProvisionersWithHttpInfo(
             $projectId,
             $certificateProvisionerDocumentId,
@@ -1265,8 +1256,8 @@ final class CertManagementApi extends AbstractApi
     private function updateProjectsProvisionersWithHttpInfo(
         string $projectId,
         string $certificateProvisionerDocumentId,
-        \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch
-    ): \Upsun\Model\AcceptedResponse {
+        CertificateProvisionerPatch $certificateProvisionerPatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsProvisionersRequest(
             $projectId,
             $certificateProvisionerDocumentId,
@@ -1310,9 +1301,8 @@ final class CertManagementApi extends AbstractApi
     private function updateProjectsProvisionersRequest(
         string $projectId,
         string $certificateProvisionerDocumentId,
-        \Upsun\Model\CertificateProvisionerPatch $certificateProvisionerPatch
+        CertificateProvisionerPatch $certificateProvisionerPatch
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1360,7 +1350,6 @@ final class CertManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class SendOrgMfaReminders200ResponseValue implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?int $code = null,
         private readonly ?string $message = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class SendOrgMfaReminders200ResponseValue implements Model, JsonSerializab
         return $this->message;
     }
 }
-

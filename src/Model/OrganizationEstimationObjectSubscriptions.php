@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class OrganizationEstimationObjectSubscriptions implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $total = null,
         private readonly ?array $list = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -41,21 +38,20 @@ final class OrganizationEstimationObjectSubscriptions implements Model, JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The total price for subscriptions.
-    */
+    /**
+     * The total price for subscriptions.
+     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-   /**
-    * The list of active subscriptions.
-    * @return OrganizationEstimationObjectSubscriptionsListInner[]|null
-    */
+    /**
+     * The list of active subscriptions.
+     * @return OrganizationEstimationObjectSubscriptionsListInner[]|null
+     */
     public function getList(): ?array
     {
         return $this->list;
     }
 }
-

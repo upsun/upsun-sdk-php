@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\IntegrationCreateInput;
 
 /**
  * Low level SumologicIntegrationCreateInput (auto-generated)
@@ -14,8 +13,6 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class SumologicIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
-
-
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -25,7 +22,6 @@ final class SumologicIntegrationCreateInput implements Model, JsonSerializable, 
         private readonly ?array $excludedServices = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -49,17 +45,17 @@ final class SumologicIntegrationCreateInput implements Model, JsonSerializable, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The Sumologic HTTPS endpoint
-    */
+    /**
+     * The Sumologic HTTPS endpoint
+     */
     public function getUrl(): string
     {
         return $this->url;
@@ -70,17 +66,17 @@ final class SumologicIntegrationCreateInput implements Model, JsonSerializable, 
         return $this->extra;
     }
 
-   /**
-    * The Category used to easy filtering (sent as X-Sumo-Category header)
-    */
+    /**
+     * The Category used to easy filtering (sent as X-Sumo-Category header)
+     */
     public function getCategory(): ?string
     {
         return $this->category;
     }
 
-   /**
-    * Enable/Disable HTTPS certificate verification
-    */
+    /**
+     * Enable/Disable HTTPS certificate verification
+     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
@@ -91,4 +87,3 @@ final class SumologicIntegrationCreateInput implements Model, JsonSerializable, 
         return $this->excludedServices;
     }
 }
-

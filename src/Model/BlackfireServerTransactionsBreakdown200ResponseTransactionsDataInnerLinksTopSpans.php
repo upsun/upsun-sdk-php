@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInnerLinksTopSpans implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $href,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,4 +40,3 @@ final class BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInner
         return $this->href;
     }
 }
-

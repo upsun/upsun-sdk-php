@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class EnvironmentSynchronizeInput implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?bool $synchronizeCode = null,
         private readonly ?bool $rebase = null,
@@ -22,7 +20,6 @@ final class EnvironmentSynchronizeInput implements Model, JsonSerializable
         private readonly ?bool $synchronizeResources = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -44,36 +41,35 @@ final class EnvironmentSynchronizeInput implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Synchronize code?
-    */
+    /**
+     * Synchronize code?
+     */
     public function getSynchronizeCode(): ?bool
     {
         return $this->synchronizeCode;
     }
 
-   /**
-    * Synchronize code by rebasing instead of merging
-    */
+    /**
+     * Synchronize code by rebasing instead of merging
+     */
     public function getRebase(): ?bool
     {
         return $this->rebase;
     }
 
-   /**
-    * Synchronize data?
-    */
+    /**
+     * Synchronize data?
+     */
     public function getSynchronizeData(): ?bool
     {
         return $this->synchronizeData;
     }
 
-   /**
-    * Synchronize resources?
-    */
+    /**
+     * Synchronize resources?
+     */
     public function getSynchronizeResources(): ?bool
     {
         return $this->synchronizeResources;
     }
 }
-

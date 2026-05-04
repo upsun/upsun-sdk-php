@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class FilterSelect implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?Mode $mode = null,
         private readonly ?FilterSelectValues $values = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class FilterSelect implements Model, JsonSerializable
         return $this->values;
     }
 }
-

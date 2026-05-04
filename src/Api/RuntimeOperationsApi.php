@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -13,6 +12,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentOperationInput;
 
 /**
  * Low level RuntimeOperationsApi (auto-generated)
@@ -66,8 +67,8 @@ final class RuntimeOperationsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
-    ): \Upsun\Model\AcceptedResponse {
+        EnvironmentOperationInput $environmentOperationInput
+    ): AcceptedResponse {
         return $this->runOperationWithHttpInfo(
             $projectId,
             $environmentId,
@@ -88,8 +89,8 @@ final class RuntimeOperationsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
-    ): \Upsun\Model\AcceptedResponse {
+        EnvironmentOperationInput $environmentOperationInput
+    ): AcceptedResponse {
         $request = $this->runOperationRequest(
             $projectId,
             $environmentId,
@@ -135,9 +136,8 @@ final class RuntimeOperationsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
+        EnvironmentOperationInput $environmentOperationInput
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -201,7 +201,6 @@ final class RuntimeOperationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

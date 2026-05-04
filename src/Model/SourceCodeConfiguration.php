@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class SourceCodeConfiguration implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly array $operations,
         private readonly ?string $root,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -45,12 +42,11 @@ final class SourceCodeConfiguration implements Model, JsonSerializable
         return $this->root;
     }
 
-   /**
-    * @return SourceOperationsValue[]
-    */
+    /**
+     * @return SourceOperationsValue[]
+     */
     public function getOperations(): array
     {
         return $this->operations;
     }
 }
-

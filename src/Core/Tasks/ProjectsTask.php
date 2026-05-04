@@ -159,7 +159,7 @@ class ProjectsTask extends TaskBase
     ): Project {
         $this->checkProjectId($projectId);
 
-        if ($title || $timezone ) {
+        if ($title || $timezone) {
             $this->update(
                 $projectId,
                 $title,

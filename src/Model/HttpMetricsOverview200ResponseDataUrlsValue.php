@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class HttpMetricsOverview200ResponseDataUrlsValue implements Model, JsonSerializable
 {
-
     public const METHOD_GET = 'GET';
     public const METHOD_POST = 'POST';
     public const METHOD_PUT = 'PUT';
@@ -32,7 +31,6 @@ final class HttpMetricsOverview200ResponseDataUrlsValue implements Model, JsonSe
         private readonly ?float $impact,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -92,4 +90,3 @@ final class HttpMetricsOverview200ResponseDataUrlsValue implements Model, JsonSe
         return $this->count;
     }
 }
-

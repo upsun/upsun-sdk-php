@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class GoogleSSOConfig implements Model, JsonSerializable
 {
-
     public const PROVIDER_TYPE_GOOGLE = 'google';
 
     public function __construct(
@@ -21,7 +20,6 @@ final class GoogleSSOConfig implements Model, JsonSerializable
         private readonly ?string $domain = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -41,20 +39,19 @@ final class GoogleSSOConfig implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * SSO provider type.
-    */
+    /**
+     * SSO provider type.
+     */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
-   /**
-    * Google hosted domain.
-    */
+    /**
+     * Google hosted domain.
+     */
     public function getDomain(): ?string
     {
         return $this->domain;
     }
 }
-

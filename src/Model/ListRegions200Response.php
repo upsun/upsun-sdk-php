@@ -13,15 +13,12 @@ use JsonSerializable;
  */
 final class ListRegions200Response implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $regions = [],
         private readonly ?ListLinks $links = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -47,9 +44,9 @@ final class ListRegions200Response implements Model, JsonSerializable
         return $this->count;
     }
 
-   /**
-    * @return Region[]|null
-    */
+    /**
+     * @return Region[]|null
+     */
     public function getRegions(): ?array
     {
         return $this->regions;
@@ -60,4 +57,3 @@ final class ListRegions200Response implements Model, JsonSerializable
         return $this->links;
     }
 }
-

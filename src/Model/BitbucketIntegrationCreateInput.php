@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\IntegrationCreateInput;
 
 /**
  * Low level BitbucketIntegrationCreateInput (auto-generated)
@@ -14,7 +13,6 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
-
     public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
     public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
     public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
@@ -33,7 +31,6 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
         private readonly ?bool $resyncPullRequests = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -61,84 +58,83 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The Bitbucket repository (in the form `user/repo`)
-    */
+    /**
+     * The Bitbucket repository (in the form `user/repo`)
+     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-   /**
-    * Whether or not to fetch branches
-    */
+    /**
+     * Whether or not to fetch branches
+     */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
 
-   /**
-    * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
-    */
+    /**
+     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
+     */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
 
-   /**
-    * The resources used when initializing a new service
-    */
+    /**
+     * The resources used when initializing a new service
+     */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
 
-   /**
-    * The OAuth2 consumer information (optional)
-    */
+    /**
+     * The OAuth2 consumer information (optional)
+     */
     public function getAppCredentials(): ?OAuth2Consumer1
     {
         return $this->appCredentials;
     }
 
-   /**
-    * The addon credential information (optional)
-    */
+    /**
+     * The addon credential information (optional)
+     */
     public function getAddonCredentials(): ?AddonCredential1
     {
         return $this->addonCredentials;
     }
 
-   /**
-    * Whether or not to build pull requests
-    */
+    /**
+     * Whether or not to build pull requests
+     */
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
 
-   /**
-    * Whether or not to clone parent data when building merge requests
-    */
+    /**
+     * Whether or not to clone parent data when building merge requests
+     */
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
     }
 
-   /**
-    * Whether or not pull request environment data should be re-synced on every build
-    */
+    /**
+     * Whether or not pull request environment data should be re-synced on every build
+     */
     public function getResyncPullRequests(): ?bool
     {
         return $this->resyncPullRequests;
     }
 }
-

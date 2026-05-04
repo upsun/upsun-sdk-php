@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class UpdateSubscriptionUsageAlertsRequest implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?array $alerts = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -37,12 +34,11 @@ final class UpdateSubscriptionUsageAlertsRequest implements Model, JsonSerializa
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-   /**
-    * @return UpdateSubscriptionUsageAlertsRequestAlertsInner[]|null
-    */
+    /**
+     * @return UpdateSubscriptionUsageAlertsRequestAlertsInner[]|null
+     */
     public function getAlerts(): ?array
     {
         return $this->alerts;
     }
 }
-

@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class SendOrgMfaRemindersRequest implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?array $userIds = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,4 +40,3 @@ final class SendOrgMfaRemindersRequest implements Model, JsonSerializable
         return $this->userIds;
     }
 }
-

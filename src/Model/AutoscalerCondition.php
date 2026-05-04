@@ -14,15 +14,12 @@ use JsonSerializable;
  */
 final class AutoscalerCondition implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly float $threshold,
         private readonly ?bool $enabled = null,
         private readonly ?AutoscalerDuration $duration = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,9 +40,9 @@ final class AutoscalerCondition implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Value at which the condition is satisfied
-    */
+    /**
+     * Value at which the condition is satisfied
+     */
     public function getThreshold(): float
     {
         return $this->threshold;
@@ -56,12 +53,11 @@ final class AutoscalerCondition implements Model, JsonSerializable
         return $this->duration;
     }
 
-   /**
-    * Whether the condition should be used for generating alerts
-    */
+    /**
+     * Whether the condition should be used for generating alerts
+     */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
 }
-

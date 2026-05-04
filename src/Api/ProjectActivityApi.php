@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -13,6 +12,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Activity;
 
 /**
  * Low level ProjectActivityApi (auto-generated)
@@ -63,7 +64,7 @@ final class ProjectActivityApi extends AbstractApi
     public function actionProjectsActivitiesCancel(
         string $projectId,
         string $activityId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->actionProjectsActivitiesCancelWithHttpInfo(
             $projectId,
             $activityId
@@ -80,7 +81,7 @@ final class ProjectActivityApi extends AbstractApi
     private function actionProjectsActivitiesCancelWithHttpInfo(
         string $projectId,
         string $activityId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->actionProjectsActivitiesCancelRequest(
             $projectId,
             $activityId
@@ -123,7 +124,6 @@ final class ProjectActivityApi extends AbstractApi
         string $projectId,
         string $activityId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -164,7 +164,6 @@ final class ProjectActivityApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -237,7 +236,7 @@ final class ProjectActivityApi extends AbstractApi
     public function getProjectsActivities(
         string $projectId,
         string $activityId
-    ): \Upsun\Model\Activity {
+    ): Activity {
         return $this->getProjectsActivitiesWithHttpInfo(
             $projectId,
             $activityId
@@ -254,7 +253,7 @@ final class ProjectActivityApi extends AbstractApi
     private function getProjectsActivitiesWithHttpInfo(
         string $projectId,
         string $activityId
-    ): \Upsun\Model\Activity {
+    ): Activity {
         $request = $this->getProjectsActivitiesRequest(
             $projectId,
             $activityId
@@ -297,7 +296,6 @@ final class ProjectActivityApi extends AbstractApi
         string $projectId,
         string $activityId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -338,7 +336,6 @@ final class ProjectActivityApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -479,7 +476,6 @@ final class ProjectActivityApi extends AbstractApi
     private function listProjectsActivitiesRequest(
         string $projectId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -504,7 +500,6 @@ final class ProjectActivityApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

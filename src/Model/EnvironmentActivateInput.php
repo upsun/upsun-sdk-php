@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class EnvironmentActivateInput implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?Resources2 $resources = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,4 +40,3 @@ final class EnvironmentActivateInput implements Model, JsonSerializable
         return $this->resources;
     }
 }
-

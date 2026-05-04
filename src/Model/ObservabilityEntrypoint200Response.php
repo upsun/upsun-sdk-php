@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class ObservabilityEntrypoint200Response implements Model, JsonSerializable
 {
-
     public const ENVIRONMENT_TYPE_PRODUCTION = 'production';
     public const ENVIRONMENT_TYPE_STAGING = 'staging';
     public const ENVIRONMENT_TYPE_DEVELOPMENT = 'development';
@@ -33,7 +32,6 @@ final class ObservabilityEntrypoint200Response implements Model, JsonSerializabl
         private readonly ObservabilityEntrypoint200ResponseDataRetention $dataRetention,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -111,4 +109,3 @@ final class ObservabilityEntrypoint200Response implements Model, JsonSerializabl
         return $this->dataRetention;
     }
 }
-

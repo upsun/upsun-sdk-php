@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class GetCurrentUserVerificationStatusFull200Response implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?bool $state = null,
         private readonly ?string $type = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class GetCurrentUserVerificationStatusFull200Response implements Model, Js
         return $this->type;
     }
 }
-

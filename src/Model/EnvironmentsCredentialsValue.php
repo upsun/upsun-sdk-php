@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class EnvironmentsCredentialsValue implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $serverUuid,
         private readonly string $serverToken,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class EnvironmentsCredentialsValue implements Model, JsonSerializable
         return $this->serverToken;
     }
 }
-

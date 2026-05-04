@@ -14,15 +14,12 @@ use JsonSerializable;
  */
 final class OrganizationAiAgentSettings implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?bool $canEnable = null,
         private readonly ?bool $performanceAgentEnabled = null,
         private readonly ?bool $logAnalyzerAgentEnabled = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,28 +40,27 @@ final class OrganizationAiAgentSettings implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Master switch for AI agent settings. Must be true to enable individual agents.
-    */
+    /**
+     * Master switch for AI agent settings. Must be true to enable individual agents.
+     */
     public function getCanEnable(): ?bool
     {
         return $this->canEnable;
     }
 
-   /**
-    * Whether the performance agent is enabled.
-    */
+    /**
+     * Whether the performance agent is enabled.
+     */
     public function getPerformanceAgentEnabled(): ?bool
     {
         return $this->performanceAgentEnabled;
     }
 
-   /**
-    * Whether the log analyzer agent is enabled.
-    */
+    /**
+     * Whether the log analyzer agent is enabled.
+     */
     public function getLogAnalyzerAgentEnabled(): ?bool
     {
         return $this->logAnalyzerAgentEnabled;
     }
 }
-

@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireProfilesList200Response implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $projectId,
         private readonly string $environmentId,
@@ -26,7 +24,6 @@ final class BlackfireProfilesList200Response implements Model, JsonSerializable
         private readonly int $total,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -72,9 +69,9 @@ final class BlackfireProfilesList200Response implements Model, JsonSerializable
         return $this->agent;
     }
 
-   /**
-    * @return BlackfireProfilesList200ResponseProfilesInner[]
-    */
+    /**
+     * @return BlackfireProfilesList200ResponseProfilesInner[]
+     */
     public function getProfiles(): array
     {
         return $this->profiles;
@@ -95,4 +92,3 @@ final class BlackfireProfilesList200Response implements Model, JsonSerializable
         return $this->total;
     }
 }
-

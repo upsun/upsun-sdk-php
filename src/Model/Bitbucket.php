@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class Bitbucket implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?bool $enabled = null,
         private readonly ?string $role = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -41,20 +38,19 @@ final class Bitbucket implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The integration is enabled.
-    */
+    /**
+     * The integration is enabled.
+     */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
 
-   /**
-    * Minimum required role for creating the integration.
-    */
+    /**
+     * Minimum required role for creating the integration.
+     */
     public function getRole(): ?string
     {
         return $this->role;
     }
 }
-

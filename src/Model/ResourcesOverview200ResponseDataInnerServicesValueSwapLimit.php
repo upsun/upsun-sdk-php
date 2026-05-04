@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class ResourcesOverview200ResponseDataInnerServicesValueSwapLimit implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?int $max = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,4 +40,3 @@ final class ResourcesOverview200ResponseDataInnerServicesValueSwapLimit implemen
         return $this->max;
     }
 }
-

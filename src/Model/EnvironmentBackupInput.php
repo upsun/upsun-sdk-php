@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class EnvironmentBackupInput implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?bool $safe = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -38,12 +35,11 @@ final class EnvironmentBackupInput implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Take a safe or a live backup
-    */
+    /**
+     * Take a safe or a live backup
+     */
     public function getSafe(): ?bool
     {
         return $this->safe;
     }
 }
-

@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class EnvironmentDeployInput implements Model, JsonSerializable
 {
-
     public const STRATEGY_ROLLING = 'rolling';
     public const STRATEGY_STOPSTART = 'stopstart';
 
@@ -21,7 +20,6 @@ final class EnvironmentDeployInput implements Model, JsonSerializable
         private readonly ?string $strategy = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -40,12 +38,11 @@ final class EnvironmentDeployInput implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The deployment strategy (`rolling` or `stopstart`)
-    */
+    /**
+     * The deployment strategy (`rolling` or `stopstart`)
+     */
     public function getStrategy(): ?string
     {
         return $this->strategy;
     }
 }
-

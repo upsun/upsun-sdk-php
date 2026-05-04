@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class AccessControlInner implements Model, JsonSerializable
 {
-
     public const ROLE_ADMIN = 'admin';
     public const ROLE_CONTRIBUTOR = 'contributor';
     public const ROLE_VIEWER = 'viewer';
@@ -23,7 +22,6 @@ final class AccessControlInner implements Model, JsonSerializable
         private readonly string $role,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -53,4 +51,3 @@ final class AccessControlInner implements Model, JsonSerializable
         return $this->role;
     }
 }
-

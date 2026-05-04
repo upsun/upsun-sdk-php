@@ -13,6 +13,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ListOrgPlanRecords200Response;
+use Upsun\Model\ListOrgUsageRecords200Response;
 
 /**
  * Low level RecordsApi (auto-generated)
@@ -62,19 +64,19 @@ final class RecordsApi extends AbstractApi
      *         The plan type of the subscription. (optional)
      * @param  string|null $filterStatus
      *         The status of the plan record. (optional)
-     * @param  \DateTime|null $filterStart
+     * @param  DateTime|null $filterStart
      *         The start of the observation period for the record. E.g.
      *         filter[start]=2018-01-01 will display all records that were active (i.e. did not
      *         end) on 2018-01-01 (optional)
-     * @param  \DateTime|null $filterEnd
+     * @param  DateTime|null $filterEnd
      *         The end of the observation period for the record. E.g. filter[end]=2018-01-01
      *         will display all records that were active on (i.e. they started before)
      *         2018-01-01 (optional)
-     * @param  \DateTime|null $filterStartedAt
+     * @param  DateTime|null $filterStartedAt
      *         The record's start timestamp. You can use this filter to list records started
      *         after, or before a certain time. E.g.
      *         filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
-     * @param  \DateTime|null $filterEndedAt
+     * @param  DateTime|null $filterEndedAt
      *         The record's end timestamp. You can use this filter to list records ended after,
      *         or before a certain time. E.g.
      *         filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)
@@ -90,12 +92,12 @@ final class RecordsApi extends AbstractApi
         ?string $filterSubscriptionId = null,
         ?string $filterPlan = null,
         ?string $filterStatus = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterEnd = null,
-        ?\DateTime $filterStartedAt = null,
-        ?\DateTime $filterEndedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterEnd = null,
+        ?DateTime $filterStartedAt = null,
+        ?DateTime $filterEndedAt = null,
         ?int $page = null
-    ): \Upsun\Model\ListOrgPlanRecords200Response {
+    ): ListOrgPlanRecords200Response {
         return $this->listOrgPlanRecordsWithHttpInfo(
             $organizationId,
             $filterSubscriptionId,
@@ -121,19 +123,19 @@ final class RecordsApi extends AbstractApi
      *         The plan type of the subscription. (optional)
      * @param  string|null $filterStatus
      *         The status of the plan record. (optional)
-     * @param  \DateTime|null $filterStart
+     * @param  DateTime|null $filterStart
      *         The start of the observation period for the record. E.g.
      *         filter[start]=2018-01-01 will display all records that were active (i.e. did not
      *         end) on 2018-01-01 (optional)
-     * @param  \DateTime|null $filterEnd
+     * @param  DateTime|null $filterEnd
      *         The end of the observation period for the record. E.g. filter[end]=2018-01-01
      *         will display all records that were active on (i.e. they started before)
      *         2018-01-01 (optional)
-     * @param  \DateTime|null $filterStartedAt
+     * @param  DateTime|null $filterStartedAt
      *         The record's start timestamp. You can use this filter to list records started
      *         after, or before a certain time. E.g.
      *         filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
-     * @param  \DateTime|null $filterEndedAt
+     * @param  DateTime|null $filterEndedAt
      *         The record's end timestamp. You can use this filter to list records ended after,
      *         or before a certain time. E.g.
      *         filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)
@@ -148,12 +150,12 @@ final class RecordsApi extends AbstractApi
         ?string $filterSubscriptionId = null,
         ?string $filterPlan = null,
         ?string $filterStatus = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterEnd = null,
-        ?\DateTime $filterStartedAt = null,
-        ?\DateTime $filterEndedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterEnd = null,
+        ?DateTime $filterStartedAt = null,
+        ?DateTime $filterEndedAt = null,
         ?int $page = null
-    ): \Upsun\Model\ListOrgPlanRecords200Response {
+    ): ListOrgPlanRecords200Response {
         $request = $this->listOrgPlanRecordsRequest(
             $organizationId,
             $filterSubscriptionId,
@@ -205,19 +207,19 @@ final class RecordsApi extends AbstractApi
      *         The plan type of the subscription. (optional)
      * @param  string|null $filterStatus
      *         The status of the plan record. (optional)
-     * @param  \DateTime|null $filterStart
+     * @param  DateTime|null $filterStart
      *         The start of the observation period for the record. E.g.
      *         filter[start]=2018-01-01 will display all records that were active (i.e. did not
      *         end) on 2018-01-01 (optional)
-     * @param  \DateTime|null $filterEnd
+     * @param  DateTime|null $filterEnd
      *         The end of the observation period for the record. E.g. filter[end]=2018-01-01
      *         will display all records that were active on (i.e. they started before)
      *         2018-01-01 (optional)
-     * @param  \DateTime|null $filterStartedAt
+     * @param  DateTime|null $filterStartedAt
      *         The record's start timestamp. You can use this filter to list records started
      *         after, or before a certain time. E.g.
      *         filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
-     * @param  \DateTime|null $filterEndedAt
+     * @param  DateTime|null $filterEndedAt
      *         The record's end timestamp. You can use this filter to list records ended after,
      *         or before a certain time. E.g.
      *         filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=> (optional)
@@ -231,13 +233,12 @@ final class RecordsApi extends AbstractApi
         ?string $filterSubscriptionId = null,
         ?string $filterPlan = null,
         ?string $filterStatus = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterEnd = null,
-        ?\DateTime $filterStartedAt = null,
-        ?\DateTime $filterEndedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterEnd = null,
+        ?DateTime $filterStartedAt = null,
+        ?DateTime $filterEndedAt = null,
         ?int $page = null
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -266,8 +267,6 @@ final class RecordsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterPlan !== null) {
             if ('form' === 'form' && is_array($filterPlan)) {
@@ -280,8 +279,6 @@ final class RecordsApi extends AbstractApi
                     : ($filterPlan);
             }
         }
-
-
 
         // query params
         if ($filterStatus !== null) {
@@ -296,8 +293,6 @@ final class RecordsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterStart !== null) {
             if ('form' === 'form' && is_array($filterStart)) {
@@ -310,8 +305,6 @@ final class RecordsApi extends AbstractApi
                     : ($filterStart);
             }
         }
-
-
 
         // query params
         if ($filterEnd !== null) {
@@ -326,8 +319,6 @@ final class RecordsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterStartedAt !== null) {
             if ('form' === 'form' && is_array($filterStartedAt)) {
@@ -340,8 +331,6 @@ final class RecordsApi extends AbstractApi
                     : ($filterStartedAt);
             }
         }
-
-
 
         // query params
         if ($filterEndedAt !== null) {
@@ -356,8 +345,6 @@ final class RecordsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($page !== null) {
             if ('form' === 'form' && is_array($page)) {
@@ -371,8 +358,6 @@ final class RecordsApi extends AbstractApi
             }
         }
 
-
-
         // path params
 
         if ($organizationId !== null) {
@@ -382,7 +367,6 @@ final class RecordsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -452,11 +436,11 @@ final class RecordsApi extends AbstractApi
      *         The ID of the subscription (optional)
      * @param  string|null $filterUsageGroup
      *         Filter records by the type of usage. (optional)
-     * @param  \DateTime|null $filterStart
+     * @param  DateTime|null $filterStart
      *         The start of the observation period for the record. E.g.
      *         filter[start]=2018-01-01 will display all records that were active (i.e. did not
      *         end) on 2018-01-01 (optional)
-     * @param  \DateTime|null $filterStartedAt
+     * @param  DateTime|null $filterStartedAt
      *         The record's start timestamp. You can use this filter to list records started
      *         after, or before a certain time. E.g.
      *         filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
@@ -471,10 +455,10 @@ final class RecordsApi extends AbstractApi
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterUsageGroup = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterStartedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterStartedAt = null,
         ?int $page = null
-    ): \Upsun\Model\ListOrgUsageRecords200Response {
+    ): ListOrgUsageRecords200Response {
         return $this->listOrgUsageRecordsWithHttpInfo(
             $organizationId,
             $filterSubscriptionId,
@@ -495,11 +479,11 @@ final class RecordsApi extends AbstractApi
      *         The ID of the subscription (optional)
      * @param  string|null $filterUsageGroup
      *         Filter records by the type of usage. (optional)
-     * @param  \DateTime|null $filterStart
+     * @param  DateTime|null $filterStart
      *         The start of the observation period for the record. E.g.
      *         filter[start]=2018-01-01 will display all records that were active (i.e. did not
      *         end) on 2018-01-01 (optional)
-     * @param  \DateTime|null $filterStartedAt
+     * @param  DateTime|null $filterStartedAt
      *         The record's start timestamp. You can use this filter to list records started
      *         after, or before a certain time. E.g.
      *         filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
@@ -513,10 +497,10 @@ final class RecordsApi extends AbstractApi
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterUsageGroup = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterStartedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterStartedAt = null,
         ?int $page = null
-    ): \Upsun\Model\ListOrgUsageRecords200Response {
+    ): ListOrgUsageRecords200Response {
         $request = $this->listOrgUsageRecordsRequest(
             $organizationId,
             $filterSubscriptionId,
@@ -563,11 +547,11 @@ final class RecordsApi extends AbstractApi
      *         The ID of the subscription (optional)
      * @param  string|null $filterUsageGroup
      *         Filter records by the type of usage. (optional)
-     * @param  \DateTime|null $filterStart
+     * @param  DateTime|null $filterStart
      *         The start of the observation period for the record. E.g.
      *         filter[start]=2018-01-01 will display all records that were active (i.e. did not
      *         end) on 2018-01-01 (optional)
-     * @param  \DateTime|null $filterStartedAt
+     * @param  DateTime|null $filterStartedAt
      *         The record's start timestamp. You can use this filter to list records started
      *         after, or before a certain time. E.g.
      *         filter[started_at][value]=2020-01-01&filter[started_at][operator]=> (optional)
@@ -580,11 +564,10 @@ final class RecordsApi extends AbstractApi
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterUsageGroup = null,
-        ?\DateTime $filterStart = null,
-        ?\DateTime $filterStartedAt = null,
+        ?DateTime $filterStart = null,
+        ?DateTime $filterStartedAt = null,
         ?int $page = null
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -613,8 +596,6 @@ final class RecordsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterUsageGroup !== null) {
             if ('form' === 'form' && is_array($filterUsageGroup)) {
@@ -627,8 +608,6 @@ final class RecordsApi extends AbstractApi
                     : ($filterUsageGroup);
             }
         }
-
-
 
         // query params
         if ($filterStart !== null) {
@@ -643,8 +622,6 @@ final class RecordsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterStartedAt !== null) {
             if ('form' === 'form' && is_array($filterStartedAt)) {
@@ -657,8 +634,6 @@ final class RecordsApi extends AbstractApi
                     : ($filterStartedAt);
             }
         }
-
-
 
         // query params
         if ($page !== null) {
@@ -673,8 +648,6 @@ final class RecordsApi extends AbstractApi
             }
         }
 
-
-
         // path params
 
         if ($organizationId !== null) {
@@ -684,7 +657,6 @@ final class RecordsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],

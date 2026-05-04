@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class ProjectAddonWithSkuFields implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $sku,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -38,12 +35,11 @@ final class ProjectAddonWithSkuFields implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The SKU of the add-on.
-    */
+    /**
+     * The SKU of the add-on.
+     */
     public function getSku(): string
     {
         return $this->sku;
     }
 }
-

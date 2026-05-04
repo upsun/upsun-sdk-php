@@ -13,6 +13,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Invoice;
+use Upsun\Model\ListOrgInvoices200Response;
 
 /**
  * Low level InvoicesApi (auto-generated)
@@ -66,7 +68,7 @@ final class InvoicesApi extends AbstractApi
     public function getOrgInvoice(
         string $invoiceId,
         string $organizationId
-    ): \Upsun\Model\Invoice {
+    ): Invoice {
         return $this->getOrgInvoiceWithHttpInfo(
             $invoiceId,
             $organizationId
@@ -88,7 +90,7 @@ final class InvoicesApi extends AbstractApi
     private function getOrgInvoiceWithHttpInfo(
         string $invoiceId,
         string $organizationId
-    ): \Upsun\Model\Invoice {
+    ): Invoice {
         $request = $this->getOrgInvoiceRequest(
             $invoiceId,
             $organizationId
@@ -136,7 +138,6 @@ final class InvoicesApi extends AbstractApi
         string $invoiceId,
         string $organizationId
     ): RequestInterface {
-
         // verify the required parameter 'invoiceId' is set
         if (empty($invoiceId)) {
             throw new InvalidArgumentException(
@@ -177,7 +178,6 @@ final class InvoicesApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -263,7 +263,7 @@ final class InvoicesApi extends AbstractApi
         ?string $filterType = null,
         ?string $filterOrderId = null,
         ?int $page = null
-    ): \Upsun\Model\ListOrgInvoices200Response {
+    ): ListOrgInvoices200Response {
         return $this->listOrgInvoicesWithHttpInfo(
             $organizationId,
             $filterStatus,
@@ -298,7 +298,7 @@ final class InvoicesApi extends AbstractApi
         ?string $filterType = null,
         ?string $filterOrderId = null,
         ?int $page = null
-    ): \Upsun\Model\ListOrgInvoices200Response {
+    ): ListOrgInvoices200Response {
         $request = $this->listOrgInvoicesRequest(
             $organizationId,
             $filterStatus,
@@ -359,7 +359,6 @@ final class InvoicesApi extends AbstractApi
         ?string $filterOrderId = null,
         ?int $page = null
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -388,8 +387,6 @@ final class InvoicesApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterType !== null) {
             if ('form' === 'form' && is_array($filterType)) {
@@ -402,8 +399,6 @@ final class InvoicesApi extends AbstractApi
                     : ($filterType);
             }
         }
-
-
 
         // query params
         if ($filterOrderId !== null) {
@@ -418,8 +413,6 @@ final class InvoicesApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($page !== null) {
             if ('form' === 'form' && is_array($page)) {
@@ -433,8 +426,6 @@ final class InvoicesApi extends AbstractApi
             }
         }
 
-
-
         // path params
 
         if ($organizationId !== null) {
@@ -444,7 +435,6 @@ final class InvoicesApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],

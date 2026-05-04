@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class ProjectOptionsEnforced implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?object $settings = null,
         private readonly ?object $capabilities = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -41,20 +38,19 @@ final class ProjectOptionsEnforced implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The project settings.
-    */
+    /**
+     * The project settings.
+     */
     public function getSettings(): ?object
     {
         return $this->settings;
     }
 
-   /**
-    * The project capabilities.
-    */
+    /**
+     * The project capabilities.
+     */
     public function getCapabilities(): ?object
     {
         return $this->capabilities;
     }
 }
-

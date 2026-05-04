@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireProfileGraph200Response implements Model, JsonSerializable
 {
-
     public const LANGUAGE_PHP = 'php';
     public const LANGUAGE_PYTHON = 'python';
 
@@ -38,7 +37,6 @@ final class BlackfireProfileGraph200Response implements Model, JsonSerializable
         private readonly ?object $hierarchy = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -164,4 +162,3 @@ final class BlackfireProfileGraph200Response implements Model, JsonSerializable
         return $this->hierarchy;
     }
 }
-

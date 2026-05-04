@@ -13,6 +13,13 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\BlackfireProfileGraph200Response;
+use Upsun\Model\BlackfireProfileProfile200Response;
+use Upsun\Model\BlackfireProfilesList200Response;
+use Upsun\Model\BlackfireProfilesRecommendations200Response;
+use Upsun\Model\BlackfireProfileSubprofiles200Response;
+use Upsun\Model\BlackfireProfileTimeline200Response;
+use Upsun\Model\FilterSelect;
 
 /**
  * Low level BlackfireProfilingApi (auto-generated)
@@ -65,7 +72,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): \Upsun\Model\BlackfireProfileGraph200Response {
+    ): BlackfireProfileGraph200Response {
         return $this->blackfireProfileGraphWithHttpInfo(
             $projectId,
             $environmentId,
@@ -87,7 +94,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): \Upsun\Model\BlackfireProfileGraph200Response {
+    ): BlackfireProfileGraph200Response {
         $request = $this->blackfireProfileGraphRequest(
             $projectId,
             $environmentId,
@@ -135,7 +142,6 @@ final class BlackfireProfilingApi extends AbstractApi
         string $environmentId,
         string $uuid
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -143,8 +149,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 when calling blackfireProfileGraph'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -161,8 +165,6 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"environmentId\" when calling BlackfireProfilingApi.blackfireProfileGraph,
@@ -178,15 +180,12 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/", $uuid)) {
             throw new InvalidArgumentException(
                 "invalid value for \"uuid\" when calling BlackfireProfilingApi.blackfireProfileGraph,
                 must conform to the pattern /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/."
             );
         }
-
 
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/profiles/{uuid}/graph';
         $formParams = [];
@@ -222,7 +221,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -297,7 +295,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): \Upsun\Model\BlackfireProfileProfile200Response {
+    ): BlackfireProfileProfile200Response {
         return $this->blackfireProfileProfileWithHttpInfo(
             $projectId,
             $environmentId,
@@ -319,7 +317,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): \Upsun\Model\BlackfireProfileProfile200Response {
+    ): BlackfireProfileProfile200Response {
         $request = $this->blackfireProfileProfileRequest(
             $projectId,
             $environmentId,
@@ -367,7 +365,6 @@ final class BlackfireProfilingApi extends AbstractApi
         string $environmentId,
         string $uuid
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -375,8 +372,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 when calling blackfireProfileProfile'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -393,8 +388,6 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"environmentId\" when calling BlackfireProfilingApi.blackfireProfileProfile,
@@ -410,15 +403,12 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/", $uuid)) {
             throw new InvalidArgumentException(
                 "invalid value for \"uuid\" when calling BlackfireProfilingApi.blackfireProfileProfile,
                 must conform to the pattern /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/."
             );
         }
-
 
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/profiles/{uuid}/profile';
         $formParams = [];
@@ -454,7 +444,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -529,7 +518,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): \Upsun\Model\BlackfireProfileSubprofiles200Response {
+    ): BlackfireProfileSubprofiles200Response {
         return $this->blackfireProfileSubprofilesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -551,7 +540,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): \Upsun\Model\BlackfireProfileSubprofiles200Response {
+    ): BlackfireProfileSubprofiles200Response {
         $request = $this->blackfireProfileSubprofilesRequest(
             $projectId,
             $environmentId,
@@ -599,7 +588,6 @@ final class BlackfireProfilingApi extends AbstractApi
         string $environmentId,
         string $uuid
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -607,8 +595,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 when calling blackfireProfileSubprofiles'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -625,8 +611,6 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"environmentId\" when calling BlackfireProfilingApi.blackfireProfileSubprofiles,
@@ -642,15 +626,12 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/", $uuid)) {
             throw new InvalidArgumentException(
                 "invalid value for \"uuid\" when calling BlackfireProfilingApi.blackfireProfileSubprofiles,
                 must conform to the pattern /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/."
             );
         }
-
 
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/profiles/{uuid}/subprofiles';
         $formParams = [];
@@ -686,7 +667,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -761,7 +741,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): \Upsun\Model\BlackfireProfileTimeline200Response {
+    ): BlackfireProfileTimeline200Response {
         return $this->blackfireProfileTimelineWithHttpInfo(
             $projectId,
             $environmentId,
@@ -783,7 +763,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): \Upsun\Model\BlackfireProfileTimeline200Response {
+    ): BlackfireProfileTimeline200Response {
         $request = $this->blackfireProfileTimelineRequest(
             $projectId,
             $environmentId,
@@ -831,7 +811,6 @@ final class BlackfireProfilingApi extends AbstractApi
         string $environmentId,
         string $uuid
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -839,8 +818,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 when calling blackfireProfileTimeline'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -857,8 +834,6 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"environmentId\" when calling BlackfireProfilingApi.blackfireProfileTimeline,
@@ -874,15 +849,12 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/", $uuid)) {
             throw new InvalidArgumentException(
                 "invalid value for \"uuid\" when calling BlackfireProfilingApi.blackfireProfileTimeline,
                 must conform to the pattern /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/."
             );
         }
-
 
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/profiles/{uuid}/timeline';
         $formParams = [];
@@ -918,7 +890,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -992,8 +963,8 @@ final class BlackfireProfilingApi extends AbstractApi
      * @param  string|null $isPublic (optional)
      * @param  string|null $sortBy (optional)
      * @param  string|null $sortOrder (optional)
-     * @param  \DateTime|null $startDate (optional)
-     * @param  \DateTime|null $endDate (optional)
+     * @param  DateTime|null $startDate (optional)
+     * @param  DateTime|null $endDate (optional)
      * @param  int|null $statusCode (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -1011,14 +982,14 @@ final class BlackfireProfilingApi extends AbstractApi
         ?string $isPublic = null,
         ?string $sortBy = null,
         ?string $sortOrder = null,
-        ?\DateTime $startDate = null,
-        ?\DateTime $endDate = null,
+        ?DateTime $startDate = null,
+        ?DateTime $endDate = null,
         ?int $statusCode = null,
-        ?\Upsun\Model\FilterSelect $owner = null,
-        ?\Upsun\Model\FilterSelect $languages = null,
-        ?\Upsun\Model\FilterSelect $frameworks = null,
+        ?FilterSelect $owner = null,
+        ?FilterSelect $languages = null,
+        ?FilterSelect $frameworks = null,
         ?int $itemsPerPage = null
-    ): \Upsun\Model\BlackfireProfilesList200Response {
+    ): BlackfireProfilesList200Response {
         return $this->blackfireProfilesListWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1053,8 +1024,8 @@ final class BlackfireProfilingApi extends AbstractApi
      * @param  string|null $isPublic (optional)
      * @param  string|null $sortBy (optional)
      * @param  string|null $sortOrder (optional)
-     * @param  \DateTime|null $startDate (optional)
-     * @param  \DateTime|null $endDate (optional)
+     * @param  DateTime|null $startDate (optional)
+     * @param  DateTime|null $endDate (optional)
      * @param  int|null $statusCode (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -1071,14 +1042,14 @@ final class BlackfireProfilingApi extends AbstractApi
         ?string $isPublic = null,
         ?string $sortBy = null,
         ?string $sortOrder = null,
-        ?\DateTime $startDate = null,
-        ?\DateTime $endDate = null,
+        ?DateTime $startDate = null,
+        ?DateTime $endDate = null,
         ?int $statusCode = null,
-        ?\Upsun\Model\FilterSelect $owner = null,
-        ?\Upsun\Model\FilterSelect $languages = null,
-        ?\Upsun\Model\FilterSelect $frameworks = null,
+        ?FilterSelect $owner = null,
+        ?FilterSelect $languages = null,
+        ?FilterSelect $frameworks = null,
         ?int $itemsPerPage = null
-    ): \Upsun\Model\BlackfireProfilesList200Response {
+    ): BlackfireProfilesList200Response {
         $request = $this->blackfireProfilesListRequest(
             $projectId,
             $environmentId,
@@ -1139,8 +1110,8 @@ final class BlackfireProfilingApi extends AbstractApi
      * @param  string|null $isPublic (optional)
      * @param  string|null $sortBy (optional)
      * @param  string|null $sortOrder (optional)
-     * @param  \DateTime|null $startDate (optional)
-     * @param  \DateTime|null $endDate (optional)
+     * @param  DateTime|null $startDate (optional)
+     * @param  DateTime|null $endDate (optional)
      * @param  int|null $statusCode (optional)
      *
      * @throws InvalidArgumentException
@@ -1156,15 +1127,14 @@ final class BlackfireProfilingApi extends AbstractApi
         ?string $isPublic = null,
         ?string $sortBy = null,
         ?string $sortOrder = null,
-        ?\DateTime $startDate = null,
-        ?\DateTime $endDate = null,
+        ?DateTime $startDate = null,
+        ?DateTime $endDate = null,
         ?int $statusCode = null,
-        ?\Upsun\Model\FilterSelect $owner = null,
-        ?\Upsun\Model\FilterSelect $languages = null,
-        ?\Upsun\Model\FilterSelect $frameworks = null,
+        ?FilterSelect $owner = null,
+        ?FilterSelect $languages = null,
+        ?FilterSelect $frameworks = null,
         ?int $itemsPerPage = null
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1172,8 +1142,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 when calling blackfireProfilesList'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -1190,8 +1158,6 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"environmentId\" when calling BlackfireProfilingApi.blackfireProfilesList,
@@ -1199,16 +1165,12 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if ($page !== null && $page < 1) {
             throw new InvalidArgumentException(
                 'invalid value for "$page" when calling BlackfireProfilingApi.blackfireProfilesList,
                 must be bigger than or equal to 1.'
             );
         }
-
-
 
         if ($limit !== null && $limit > 100) {
             throw new InvalidArgumentException(
@@ -1224,8 +1186,6 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if ($itemsPerPage !== null && $itemsPerPage > 100) {
             throw new InvalidArgumentException(
                 'invalid value for "$itemsPerPage" when calling BlackfireProfilingApi.blackfireProfilesList,
@@ -1239,8 +1199,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 must be bigger than or equal to 1.'
             );
         }
-
-
 
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/profiles';
         $formParams = [];
@@ -1262,8 +1220,6 @@ final class BlackfireProfilingApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($page !== null) {
             if ('form' === 'form' && is_array($page)) {
@@ -1276,8 +1232,6 @@ final class BlackfireProfilingApi extends AbstractApi
                     : ($page);
             }
         }
-
-
 
         // query params
         if ($limit !== null) {
@@ -1292,8 +1246,6 @@ final class BlackfireProfilingApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($url !== null) {
             if ('form' === 'form' && is_array($url)) {
@@ -1306,8 +1258,6 @@ final class BlackfireProfilingApi extends AbstractApi
                     : ($url);
             }
         }
-
-
 
         // query params
         if ($isAuto !== null) {
@@ -1322,8 +1272,6 @@ final class BlackfireProfilingApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($isPublic !== null) {
             if ('form' === 'form' && is_array($isPublic)) {
@@ -1336,8 +1284,6 @@ final class BlackfireProfilingApi extends AbstractApi
                     : ($isPublic);
             }
         }
-
-
 
         // query params
         if ($sortBy !== null) {
@@ -1352,8 +1298,6 @@ final class BlackfireProfilingApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($sortOrder !== null) {
             if ('form' === 'form' && is_array($sortOrder)) {
@@ -1366,8 +1310,6 @@ final class BlackfireProfilingApi extends AbstractApi
                     : ($sortOrder);
             }
         }
-
-
 
         // query params
         if ($startDate !== null) {
@@ -1382,8 +1324,6 @@ final class BlackfireProfilingApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($endDate !== null) {
             if ('form' === 'form' && is_array($endDate)) {
@@ -1396,8 +1336,6 @@ final class BlackfireProfilingApi extends AbstractApi
                     : ($endDate);
             }
         }
-
-
 
         // query params
         if ($statusCode !== null) {
@@ -1412,8 +1350,6 @@ final class BlackfireProfilingApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($owner !== null) {
             if ('form' === 'form' && is_array($owner)) {
@@ -1426,8 +1362,6 @@ final class BlackfireProfilingApi extends AbstractApi
                     : ($owner->getEq());
             }
         }
-
-
 
         // query params
         if ($languages !== null) {
@@ -1442,8 +1376,6 @@ final class BlackfireProfilingApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($frameworks !== null) {
             if ('form' === 'form' && is_array($frameworks)) {
@@ -1457,8 +1389,6 @@ final class BlackfireProfilingApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($itemsPerPage !== null) {
             if ('form' === 'form' && is_array($itemsPerPage)) {
@@ -1471,8 +1401,6 @@ final class BlackfireProfilingApi extends AbstractApi
                     : ($itemsPerPage);
             }
         }
-
-
 
         // path params
 
@@ -1492,7 +1420,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1575,7 +1502,7 @@ final class BlackfireProfilingApi extends AbstractApi
         ?int $to = null,
         ?string $transaction = null,
         ?int $limit = null
-    ): \Upsun\Model\BlackfireProfilesRecommendations200Response {
+    ): BlackfireProfilesRecommendations200Response {
         return $this->blackfireProfilesRecommendationsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1606,7 +1533,7 @@ final class BlackfireProfilingApi extends AbstractApi
         ?int $to = null,
         ?string $transaction = null,
         ?int $limit = null
-    ): \Upsun\Model\BlackfireProfilesRecommendations200Response {
+    ): BlackfireProfilesRecommendations200Response {
         $request = $this->blackfireProfilesRecommendationsRequest(
             $projectId,
             $environmentId,
@@ -1663,7 +1590,6 @@ final class BlackfireProfilingApi extends AbstractApi
         ?string $transaction = null,
         ?int $limit = null
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1671,8 +1597,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 when calling blackfireProfilesRecommendations'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -1689,15 +1613,12 @@ final class BlackfireProfilingApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"environmentId\" when calling BlackfireProfilingApi.blackfireProfilesRecommendations,
                 must conform to the pattern /.+/."
             );
         }
-
 
         if ($limit !== null && $limit > 200) {
             throw new InvalidArgumentException(
@@ -1712,8 +1633,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 must be bigger than or equal to 10.'
             );
         }
-
-
 
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/profiles/recommendations';
         $formParams = [];
@@ -1735,8 +1654,6 @@ final class BlackfireProfilingApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -1749,8 +1666,6 @@ final class BlackfireProfilingApi extends AbstractApi
                     : ($to);
             }
         }
-
-
 
         // query params
         if ($transaction !== null) {
@@ -1765,8 +1680,6 @@ final class BlackfireProfilingApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($limit !== null) {
             if ('form' === 'form' && is_array($limit)) {
@@ -1779,8 +1692,6 @@ final class BlackfireProfilingApi extends AbstractApi
                     : ($limit);
             }
         }
-
-
 
         // path params
 
@@ -1800,7 +1711,6 @@ final class BlackfireProfilingApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

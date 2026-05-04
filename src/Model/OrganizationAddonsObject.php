@@ -14,15 +14,12 @@ use JsonSerializable;
  */
 final class OrganizationAddonsObject implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?OrganizationAddonsObjectAvailable $available = null,
         private readonly ?OrganizationAddonsObjectCurrent $current = null,
         private readonly ?OrganizationAddonsObjectUpgradesAvailable $upgradesAvailable = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,28 +40,27 @@ final class OrganizationAddonsObject implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The list of available add-ons and their possible values.
-    */
+    /**
+     * The list of available add-ons and their possible values.
+     */
     public function getAvailable(): ?OrganizationAddonsObjectAvailable
     {
         return $this->available;
     }
 
-   /**
-    * The list of existing add-ons and their current values.
-    */
+    /**
+     * The list of existing add-ons and their current values.
+     */
     public function getCurrent(): ?OrganizationAddonsObjectCurrent
     {
         return $this->current;
     }
 
-   /**
-    * The upgrades available for current add-ons.
-    */
+    /**
+     * The upgrades available for current add-ons.
+     */
     public function getUpgradesAvailable(): ?OrganizationAddonsObjectUpgradesAvailable
     {
         return $this->upgradesAvailable;
     }
 }
-

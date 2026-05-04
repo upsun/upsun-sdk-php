@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\IntegrationCreateInput;
 
 /**
  * Low level SyslogIntegrationCreateInput (auto-generated)
@@ -14,7 +13,6 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class SyslogIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
-
     public const PROTOCOL_TCP = 'tcp';
     public const PROTOCOL_TLS = 'tls';
     public const PROTOCOL_UDP = 'udp';
@@ -37,7 +35,6 @@ final class SyslogIntegrationCreateInput implements Model, JsonSerializable, Int
         private readonly ?array $excludedServices = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -66,9 +63,9 @@ final class SyslogIntegrationCreateInput implements Model, JsonSerializable, Int
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
@@ -79,41 +76,41 @@ final class SyslogIntegrationCreateInput implements Model, JsonSerializable, Int
         return $this->extra;
     }
 
-   /**
-    * Syslog relay/collector host
-    */
+    /**
+     * Syslog relay/collector host
+     */
     public function getHost(): ?string
     {
         return $this->host;
     }
 
-   /**
-    * Syslog relay/collector port
-    */
+    /**
+     * Syslog relay/collector port
+     */
     public function getPort(): ?int
     {
         return $this->port;
     }
 
-   /**
-    * Transport protocol
-    */
+    /**
+     * Transport protocol
+     */
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
 
-   /**
-    * Syslog facility
-    */
+    /**
+     * Syslog facility
+     */
     public function getFacility(): ?int
     {
         return $this->facility;
     }
 
-   /**
-    * Syslog message format
-    */
+    /**
+     * Syslog message format
+     */
     public function getMessageFormat(): ?string
     {
         return $this->messageFormat;
@@ -129,9 +126,9 @@ final class SyslogIntegrationCreateInput implements Model, JsonSerializable, Int
         return $this->authMode;
     }
 
-   /**
-    * Enable/Disable HTTPS certificate verification
-    */
+    /**
+     * Enable/Disable HTTPS certificate verification
+     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
@@ -142,4 +139,3 @@ final class SyslogIntegrationCreateInput implements Model, JsonSerializable, Int
         return $this->excludedServices;
     }
 }
-

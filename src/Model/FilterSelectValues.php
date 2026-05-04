@@ -2,8 +2,6 @@
 
 namespace Upsun\Model;
 
-use JsonSerializable;
-
 /**
  * Low level FilterSelectValues (auto-generated)
  *
@@ -19,4 +17,3 @@ interface FilterSelectValues
 
     public function __toString(): string;
 }
-

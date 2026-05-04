@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\IntegrationCreateInput;
 
 /**
  * Low level GitLabIntegrationCreateInput (auto-generated)
@@ -14,7 +13,6 @@ use Upsun\Model\IntegrationCreateInput;
  */
 final class GitLabIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
-
     public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
     public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
     public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
@@ -35,7 +33,6 @@ final class GitLabIntegrationCreateInput implements Model, JsonSerializable, Int
         private readonly ?bool $mergeRequestsCloneParentData = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -65,100 +62,99 @@ final class GitLabIntegrationCreateInput implements Model, JsonSerializable, Int
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The GitLab private token
-    */
+    /**
+     * The GitLab private token
+     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-   /**
-    * The GitLab project (in the form `namespace/repo`)
-    */
+    /**
+     * The GitLab project (in the form `namespace/repo`)
+     */
     public function getProject(): string
     {
         return $this->project;
     }
 
-   /**
-    * Whether or not to fetch branches
-    */
+    /**
+     * Whether or not to fetch branches
+     */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
 
-   /**
-    * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
-    */
+    /**
+     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
+     */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
 
-   /**
-    * The resources used when initializing a new service
-    */
+    /**
+     * The resources used when initializing a new service
+     */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
 
-   /**
-    * Whether or not to rotate token automatically using Gitlab API
-    */
+    /**
+     * Whether or not to rotate token automatically using Gitlab API
+     */
     public function getRotateToken(): ?bool
     {
         return $this->rotateToken;
     }
 
-   /**
-    * Validity in weeks of a new token after rotation
-    */
+    /**
+     * Validity in weeks of a new token after rotation
+     */
     public function getRotateTokenValidityInWeeks(): ?int
     {
         return $this->rotateTokenValidityInWeeks;
     }
 
-   /**
-    * The base URL of the GitLab installation
-    */
+    /**
+     * The base URL of the GitLab installation
+     */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
 
-   /**
-    * Whether or not to build merge requests
-    */
+    /**
+     * Whether or not to build merge requests
+     */
     public function getBuildMergeRequests(): ?bool
     {
         return $this->buildMergeRequests;
     }
 
-   /**
-    * Whether or not to build work in progress merge requests (requires `build_merge_requests`)
-    */
+    /**
+     * Whether or not to build work in progress merge requests (requires `build_merge_requests`)
+     */
     public function getBuildWipMergeRequests(): ?bool
     {
         return $this->buildWipMergeRequests;
     }
 
-   /**
-    * Whether or not to clone parent data when building merge requests
-    */
+    /**
+     * Whether or not to clone parent data when building merge requests
+     */
     public function getMergeRequestsCloneParentData(): ?bool
     {
         return $this->mergeRequestsCloneParentData;
     }
 }
-

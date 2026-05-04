@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class HttpMetricsOverview200ResponseData implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly array $urls,
         private readonly array $timelines,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -39,20 +36,19 @@ final class HttpMetricsOverview200ResponseData implements Model, JsonSerializabl
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-   /**
-    * @return HttpMetricsOverview200ResponseDataUrlsValue[]
-    */
+    /**
+     * @return HttpMetricsOverview200ResponseDataUrlsValue[]
+     */
     public function getUrls(): array
     {
         return $this->urls;
     }
 
-   /**
-    * @return HttpMetricsOverview200ResponseDataTimelinesInner[]
-    */
+    /**
+     * @return HttpMetricsOverview200ResponseDataTimelinesInner[]
+     */
     public function getTimelines(): array
     {
         return $this->timelines;
     }
 }
-

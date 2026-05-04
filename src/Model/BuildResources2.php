@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class BuildResources2 implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?float $cpu = null,
         private readonly ?int $memory = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class BuildResources2 implements Model, JsonSerializable
         return $this->memory;
     }
 }
-

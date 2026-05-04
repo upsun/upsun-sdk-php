@@ -14,7 +14,6 @@ use JsonSerializable;
  */
 final class CronsDeploymentState implements Model, JsonSerializable
 {
-
     public const STATUS_PAUSED = 'paused';
     public const STATUS_RUNNING = 'running';
     public const STATUS_SLEEPING = 'sleeping';
@@ -24,7 +23,6 @@ final class CronsDeploymentState implements Model, JsonSerializable
         private readonly string $status,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -44,20 +42,19 @@ final class CronsDeploymentState implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Enabled or disabled
-    */
+    /**
+     * Enabled or disabled
+     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-   /**
-    * The status of the crons
-    */
+    /**
+     * The status of the crons
+     */
     public function getStatus(): string
     {
         return $this->status;
     }
 }
-

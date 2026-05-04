@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class BlackfirePhpServerCaches200Response implements Model, JsonSerializable
 {
-
     public const _DISTRIBUTION_COST_WT = 'wt';
     public const _DISTRIBUTION_COST_PMU = 'pmu';
     public const _CONTEXTS_MODE_ADDITIVE = 'additive';
@@ -33,7 +32,6 @@ final class BlackfirePhpServerCaches200Response implements Model, JsonSerializab
         private readonly ?string $contextsMode = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -102,9 +100,9 @@ final class BlackfirePhpServerCaches200Response implements Model, JsonSerializab
         return $this->distributionCost;
     }
 
-   /**
-    * @return BlackfirePhpServerCaches200ResponseDataInner[]
-    */
+    /**
+     * @return BlackfirePhpServerCaches200ResponseDataInner[]
+     */
     public function getData(): array
     {
         return $this->data;
@@ -120,4 +118,3 @@ final class BlackfirePhpServerCaches200Response implements Model, JsonSerializab
         return $this->contextsMode;
     }
 }
-

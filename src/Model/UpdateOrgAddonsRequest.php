@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class UpdateOrgAddonsRequest implements Model, JsonSerializable
 {
-
     public const USER_MANAGEMENT_STANDARD = 'standard';
     public const USER_MANAGEMENT_ENHANCED = 'enhanced';
     public const SUPPORT_LEVEL_BASIC = 'basic';
@@ -24,7 +23,6 @@ final class UpdateOrgAddonsRequest implements Model, JsonSerializable
         private readonly ?string $supportLevel = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -54,4 +52,3 @@ final class UpdateOrgAddonsRequest implements Model, JsonSerializable
         return $this->supportLevel;
     }
 }
-

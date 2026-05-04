@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireProfilesList200ResponseProfilesInnerAgent implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $uuid = null,
         private readonly ?string $name = null,
@@ -22,7 +20,6 @@ final class BlackfireProfilesList200ResponseProfilesInnerAgent implements Model,
         private readonly ?bool $isEnv = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -64,4 +61,3 @@ final class BlackfireProfilesList200ResponseProfilesInnerAgent implements Model,
         return $this->isEnv;
     }
 }
-

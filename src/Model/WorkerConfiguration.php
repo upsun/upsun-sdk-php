@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class WorkerConfiguration implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly Commands2 $commands,
         private readonly ?int $disk = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class WorkerConfiguration implements Model, JsonSerializable
         return $this->disk;
     }
 }
-

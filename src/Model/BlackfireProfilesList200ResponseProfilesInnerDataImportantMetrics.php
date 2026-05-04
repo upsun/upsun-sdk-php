@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class BlackfireProfilesList200ResponseProfilesInnerDataImportantMetrics implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?BlackfireProfilesList200ResponseProfilesInnerDataImportantMetricsSqlQueries $sqlQueries = null,
         private readonly ?BlackfireProfilesList200ResponseProfilesInnerDataImportantMetricsHttpRequests $httpRequests = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class BlackfireProfilesList200ResponseProfilesInnerDataImportantMetrics im
         return $this->httpRequests;
     }
 }
-

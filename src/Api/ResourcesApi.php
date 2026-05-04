@@ -13,6 +13,9 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ResourcesByService200Response;
+use Upsun\Model\ResourcesOverview200Response;
+use Upsun\Model\ResourcesSummary200Response;
 
 /**
  * Low level ResourcesApi (auto-generated)
@@ -76,7 +79,7 @@ final class ResourcesApi extends AbstractApi
         int $to,
         ?array $aggs = null,
         ?array $types = null
-    ): \Upsun\Model\ResourcesByService200Response {
+    ): ResourcesByService200Response {
         return $this->resourcesByServiceWithHttpInfo(
             $projectId,
             $environmentId,
@@ -110,7 +113,7 @@ final class ResourcesApi extends AbstractApi
         int $to,
         ?array $aggs = null,
         ?array $types = null
-    ): \Upsun\Model\ResourcesByService200Response {
+    ): ResourcesByService200Response {
         $request = $this->resourcesByServiceRequest(
             $projectId,
             $environmentId,
@@ -170,7 +173,6 @@ final class ResourcesApi extends AbstractApi
         ?array $aggs = null,
         ?array $types = null
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -178,8 +180,6 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesByService'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -195,8 +195,6 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesByService'
             );
         }
-
-
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -247,8 +245,6 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -261,8 +257,6 @@ final class ResourcesApi extends AbstractApi
                     : ($to);
             }
         }
-
-
 
         // query params
         if ($aggs !== null) {
@@ -277,8 +271,6 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($types !== null) {
             if ('form' === 'form' && is_array($types)) {
@@ -291,8 +283,6 @@ final class ResourcesApi extends AbstractApi
                     : ($types);
             }
         }
-
-
 
         // path params
 
@@ -321,7 +311,6 @@ final class ResourcesApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -407,7 +396,7 @@ final class ResourcesApi extends AbstractApi
         ?string $service = null,
         ?array $services = null,
         ?string $servicesMode = null
-    ): \Upsun\Model\ResourcesOverview200Response {
+    ): ResourcesOverview200Response {
         return $this->resourcesOverviewWithHttpInfo(
             $projectId,
             $environmentId,
@@ -441,7 +430,7 @@ final class ResourcesApi extends AbstractApi
         ?string $service = null,
         ?array $services = null,
         ?string $servicesMode = null
-    ): \Upsun\Model\ResourcesOverview200Response {
+    ): ResourcesOverview200Response {
         $request = $this->resourcesOverviewRequest(
             $projectId,
             $environmentId,
@@ -501,7 +490,6 @@ final class ResourcesApi extends AbstractApi
         ?array $services = null,
         ?string $servicesMode = null
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -509,8 +497,6 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesOverview'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -526,8 +512,6 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesOverview'
             );
         }
-
-
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -571,8 +555,6 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -585,8 +567,6 @@ final class ResourcesApi extends AbstractApi
                     : ($to);
             }
         }
-
-
 
         // query params
         if ($service !== null) {
@@ -601,8 +581,6 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($services !== null) {
             if ('form' === 'form' && is_array($services)) {
@@ -616,8 +594,6 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($servicesMode !== null) {
             if ('form' === 'form' && is_array($servicesMode)) {
@@ -630,8 +606,6 @@ final class ResourcesApi extends AbstractApi
                     : ($servicesMode);
             }
         }
-
-
 
         // path params
 
@@ -651,7 +625,6 @@ final class ResourcesApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -739,7 +712,7 @@ final class ResourcesApi extends AbstractApi
         ?array $types = null,
         ?array $services = null,
         ?string $servicesMode = null
-    ): \Upsun\Model\ResourcesSummary200Response {
+    ): ResourcesSummary200Response {
         return $this->resourcesSummaryWithHttpInfo(
             $projectId,
             $environmentId,
@@ -776,7 +749,7 @@ final class ResourcesApi extends AbstractApi
         ?array $types = null,
         ?array $services = null,
         ?string $servicesMode = null
-    ): \Upsun\Model\ResourcesSummary200Response {
+    ): ResourcesSummary200Response {
         $request = $this->resourcesSummaryRequest(
             $projectId,
             $environmentId,
@@ -839,7 +812,6 @@ final class ResourcesApi extends AbstractApi
         ?array $services = null,
         ?string $servicesMode = null
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -847,8 +819,6 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesSummary'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -864,8 +834,6 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesSummary'
             );
         }
-
-
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -909,8 +877,6 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -923,8 +889,6 @@ final class ResourcesApi extends AbstractApi
                     : ($to);
             }
         }
-
-
 
         // query params
         if ($aggs !== null) {
@@ -939,8 +903,6 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($types !== null) {
             if ('form' === 'form' && is_array($types)) {
@@ -953,8 +915,6 @@ final class ResourcesApi extends AbstractApi
                     : ($types);
             }
         }
-
-
 
         // query params
         if ($services !== null) {
@@ -969,8 +929,6 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($servicesMode !== null) {
             if ('form' === 'form' && is_array($servicesMode)) {
@@ -983,8 +941,6 @@ final class ResourcesApi extends AbstractApi
                     : ($servicesMode);
             }
         }
-
-
 
         // path params
 
@@ -1004,7 +960,6 @@ final class ResourcesApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

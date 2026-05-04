@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?float $cpu = null,
         private readonly ?float $memory = null,
@@ -22,7 +20,6 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
         private readonly ?int $environments = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -64,4 +61,3 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
         return $this->environments;
     }
 }
-

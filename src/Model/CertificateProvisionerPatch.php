@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class CertificateProvisionerPatch implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $eabKid = null,
         private readonly ?string $eabHmacKey = null,
@@ -22,7 +20,6 @@ final class CertificateProvisionerPatch implements Model, JsonSerializable
         private readonly ?string $email = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -44,36 +41,35 @@ final class CertificateProvisionerPatch implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The URL to the ACME directory
-    */
+    /**
+     * The URL to the ACME directory
+     */
     public function getDirectoryUrl(): ?string
     {
         return $this->directoryUrl;
     }
 
-   /**
-    * The email address for contact information
-    */
+    /**
+     * The email address for contact information
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-   /**
-    * The key identifier for Entity Attestation Binding
-    */
+    /**
+     * The key identifier for Entity Attestation Binding
+     */
     public function getEabKid(): ?string
     {
         return $this->eabKid;
     }
 
-   /**
-    * The Keyed-'Hashing Message Authentication Code' for Entity Attestation Binding
-    */
+    /**
+     * The Keyed-'Hashing Message Authentication Code' for Entity Attestation Binding
+     */
     public function getEabHmacKey(): ?string
     {
         return $this->eabHmacKey;
     }
 }
-

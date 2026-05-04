@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class DateTimeFilter implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $eq = null,
         private readonly ?string $ne = null,
@@ -25,7 +23,6 @@ final class DateTimeFilter implements Model, JsonSerializable
         private readonly ?string $lte = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,60 +47,59 @@ final class DateTimeFilter implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Equal
-    */
+    /**
+     * Equal
+     */
     public function getEq(): ?string
     {
         return $this->eq;
     }
 
-   /**
-    * Not equal
-    */
+    /**
+     * Not equal
+     */
     public function getNe(): ?string
     {
         return $this->ne;
     }
 
-   /**
-    * Between (comma-separated list)
-    */
+    /**
+     * Between (comma-separated list)
+     */
     public function getBetween(): ?string
     {
         return $this->between;
     }
 
-   /**
-    * Greater than
-    */
+    /**
+     * Greater than
+     */
     public function getGt(): ?string
     {
         return $this->gt;
     }
 
-   /**
-    * Greater than or equal
-    */
+    /**
+     * Greater than or equal
+     */
     public function getGte(): ?string
     {
         return $this->gte;
     }
 
-   /**
-    * Less than
-    */
+    /**
+     * Less than
+     */
     public function getLt(): ?string
     {
         return $this->lt;
     }
 
-   /**
-    * Less than or equal
-    */
+    /**
+     * Less than or equal
+     */
     public function getLte(): ?string
     {
         return $this->lte;
     }
 }
-

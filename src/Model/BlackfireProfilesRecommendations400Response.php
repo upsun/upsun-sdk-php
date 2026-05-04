@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireProfilesRecommendations400Response implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $type,
         private readonly string $title,
@@ -22,7 +20,6 @@ final class BlackfireProfilesRecommendations400Response implements Model, JsonSe
         private readonly array $violations,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -64,4 +61,3 @@ final class BlackfireProfilesRecommendations400Response implements Model, JsonSe
         return $this->violations;
     }
 }
-

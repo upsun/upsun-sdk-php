@@ -2,6 +2,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 /**
@@ -13,7 +14,6 @@ use JsonSerializable;
  */
 final class User implements Model, JsonSerializable
 {
-
     public const CONSENT_METHOD_OPT_IN = 'opt-in';
     public const CONSENT_METHOD_TEXT_REF = 'text-ref';
 
@@ -30,13 +30,12 @@ final class User implements Model, JsonSerializable
         private readonly string $company,
         private readonly string $website,
         private readonly string $country,
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
-        private readonly ?\DateTime $consentedAt = null,
+        private readonly DateTime $createdAt,
+        private readonly DateTime $updatedAt,
+        private readonly ?DateTime $consentedAt = null,
         private readonly ?string $consentMethod = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -70,132 +69,131 @@ final class User implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The ID of the user.
-    */
+    /**
+     * The ID of the user.
+     */
     public function getId(): string
     {
         return $this->id;
     }
 
-   /**
-    * Whether the user has been deactivated.
-    */
+    /**
+     * Whether the user has been deactivated.
+     */
     public function getDeactivated(): bool
     {
         return $this->deactivated;
     }
 
-   /**
-    * The namespace in which the user's username is unique.
-    */
+    /**
+     * The namespace in which the user's username is unique.
+     */
     public function getNamespace(): string
     {
         return $this->namespace;
     }
 
-   /**
-    * The user's username.
-    */
+    /**
+     * The user's username.
+     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-   /**
-    * The user's email address.
-    */
+    /**
+     * The user's email address.
+     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-   /**
-    * Whether the user's email address has been verified.
-    */
+    /**
+     * Whether the user's email address has been verified.
+     */
     public function getEmailVerified(): bool
     {
         return $this->emailVerified;
     }
 
-   /**
-    * The user's first name.
-    */
+    /**
+     * The user's first name.
+     */
     public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-   /**
-    * The user's last name.
-    */
+    /**
+     * The user's last name.
+     */
     public function getLastName(): string
     {
         return $this->lastName;
     }
 
-   /**
-    * The user's picture.
-    */
+    /**
+     * The user's picture.
+     */
     public function getPicture(): string
     {
         return $this->picture;
     }
 
-   /**
-    * The user's company.
-    */
+    /**
+     * The user's company.
+     */
     public function getCompany(): string
     {
         return $this->company;
     }
 
-   /**
-    * The user's website.
-    */
+    /**
+     * The user's website.
+     */
     public function getWebsite(): string
     {
         return $this->website;
     }
 
-   /**
-    * The user's ISO 3166-1 alpha-2 country code.
-    */
+    /**
+     * The user's ISO 3166-1 alpha-2 country code.
+     */
     public function getCountry(): string
     {
         return $this->country;
     }
 
-   /**
-    * The date and time when the user was created.
-    */
-    public function getCreatedAt(): \DateTime
+    /**
+     * The date and time when the user was created.
+     */
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
-   /**
-    * The date and time when the user was last updated.
-    */
-    public function getUpdatedAt(): \DateTime
+    /**
+     * The date and time when the user was last updated.
+     */
+    public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }
 
-   /**
-    * The date and time when the user consented to the Terms of Service.
-    */
-    public function getConsentedAt(): ?\DateTime
+    /**
+     * The date and time when the user consented to the Terms of Service.
+     */
+    public function getConsentedAt(): ?DateTime
     {
         return $this->consentedAt;
     }
 
-   /**
-    * The method by which the user consented to the Terms of Service.
-    */
+    /**
+     * The method by which the user consented to the Terms of Service.
+     */
     public function getConsentMethod(): ?string
     {
         return $this->consentMethod;
     }
 }
-

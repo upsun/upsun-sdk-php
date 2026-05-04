@@ -13,6 +13,14 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ArrayFilter;
+use Upsun\Model\CreateOrgRequest;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\ListOrgs200Response;
+use Upsun\Model\ListUserOrgs200Response;
+use Upsun\Model\Organization;
+use Upsun\Model\StringFilter;
+use Upsun\Model\UpdateOrgRequest;
 
 /**
  * Low level OrganizationsApi (auto-generated)
@@ -59,8 +67,8 @@ final class OrganizationsApi extends AbstractApi
      * @see https://docs.upsun.com/api/#tag/Organizations/operation/create-org
      */
     public function createOrg(
-        \Upsun\Model\CreateOrgRequest $createOrgRequest
-    ): \Upsun\Model\Organization {
+        CreateOrgRequest $createOrgRequest
+    ): Organization {
         return $this->createOrgWithHttpInfo(
             $createOrgRequest
         );
@@ -74,8 +82,8 @@ final class OrganizationsApi extends AbstractApi
      * @throws ClientExceptionInterface
     */
     private function createOrgWithHttpInfo(
-        \Upsun\Model\CreateOrgRequest $createOrgRequest
-    ): \Upsun\Model\Organization {
+        CreateOrgRequest $createOrgRequest
+    ): Organization {
         $request = $this->createOrgRequest(
             $createOrgRequest
         );
@@ -114,9 +122,8 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     private function createOrgRequest(
-        \Upsun\Model\CreateOrgRequest $createOrgRequest
+        CreateOrgRequest $createOrgRequest
     ): RequestInterface {
-
         // verify the required parameter 'createOrgRequest' is set
         if (empty($createOrgRequest)) {
             throw new InvalidArgumentException(
@@ -131,8 +138,6 @@ final class OrganizationsApi extends AbstractApi
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -266,7 +271,6 @@ final class OrganizationsApi extends AbstractApi
     private function deleteOrgRequest(
         string $organizationId
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -291,7 +295,6 @@ final class OrganizationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
@@ -364,7 +367,7 @@ final class OrganizationsApi extends AbstractApi
      */
     public function getOrg(
         string $organizationId
-    ): \Upsun\Model\Organization {
+    ): Organization {
         return $this->getOrgWithHttpInfo(
             $organizationId
         );
@@ -382,7 +385,7 @@ final class OrganizationsApi extends AbstractApi
     */
     private function getOrgWithHttpInfo(
         string $organizationId
-    ): \Upsun\Model\Organization {
+    ): Organization {
         $request = $this->getOrgRequest(
             $organizationId
         );
@@ -426,7 +429,6 @@ final class OrganizationsApi extends AbstractApi
     private function getOrgRequest(
         string $organizationId
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -451,7 +453,6 @@ final class OrganizationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -534,21 +535,21 @@ final class OrganizationsApi extends AbstractApi
      * @see https://docs.upsun.com/api/#tag/Organizations/operation/list-orgs
      */
     public function listOrgs(
-        ?\Upsun\Model\StringFilter $filterId = null,
-        ?\Upsun\Model\StringFilter $filterType = null,
-        ?\Upsun\Model\StringFilter $filterOwnerId = null,
-        ?\Upsun\Model\StringFilter $filterName = null,
-        ?\Upsun\Model\StringFilter $filterLabel = null,
-        ?\Upsun\Model\StringFilter $filterBillingProfileId = null,
-        ?\Upsun\Model\StringFilter $filterVendor = null,
-        ?\Upsun\Model\ArrayFilter $filterCapabilities = null,
-        ?\Upsun\Model\StringFilter $filterStatus = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
+        ?StringFilter $filterOwnerId = null,
+        ?StringFilter $filterName = null,
+        ?StringFilter $filterLabel = null,
+        ?StringFilter $filterBillingProfileId = null,
+        ?StringFilter $filterVendor = null,
+        ?ArrayFilter $filterCapabilities = null,
+        ?StringFilter $filterStatus = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListOrgs200Response {
+    ): ListOrgs200Response {
         return $this->listOrgsWithHttpInfo(
             $filterId,
             $filterType,
@@ -589,21 +590,21 @@ final class OrganizationsApi extends AbstractApi
      * @throws ClientExceptionInterface
     */
     private function listOrgsWithHttpInfo(
-        ?\Upsun\Model\StringFilter $filterId = null,
-        ?\Upsun\Model\StringFilter $filterType = null,
-        ?\Upsun\Model\StringFilter $filterOwnerId = null,
-        ?\Upsun\Model\StringFilter $filterName = null,
-        ?\Upsun\Model\StringFilter $filterLabel = null,
-        ?\Upsun\Model\StringFilter $filterBillingProfileId = null,
-        ?\Upsun\Model\StringFilter $filterVendor = null,
-        ?\Upsun\Model\ArrayFilter $filterCapabilities = null,
-        ?\Upsun\Model\StringFilter $filterStatus = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
+        ?StringFilter $filterOwnerId = null,
+        ?StringFilter $filterName = null,
+        ?StringFilter $filterLabel = null,
+        ?StringFilter $filterBillingProfileId = null,
+        ?StringFilter $filterVendor = null,
+        ?ArrayFilter $filterCapabilities = null,
+        ?StringFilter $filterStatus = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListOrgs200Response {
+    ): ListOrgs200Response {
         $request = $this->listOrgsRequest(
             $filterId,
             $filterType,
@@ -669,23 +670,21 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     private function listOrgsRequest(
-        ?\Upsun\Model\StringFilter $filterId = null,
-        ?\Upsun\Model\StringFilter $filterType = null,
-        ?\Upsun\Model\StringFilter $filterOwnerId = null,
-        ?\Upsun\Model\StringFilter $filterName = null,
-        ?\Upsun\Model\StringFilter $filterLabel = null,
-        ?\Upsun\Model\StringFilter $filterBillingProfileId = null,
-        ?\Upsun\Model\StringFilter $filterVendor = null,
-        ?\Upsun\Model\ArrayFilter $filterCapabilities = null,
-        ?\Upsun\Model\StringFilter $filterStatus = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
+        ?StringFilter $filterOwnerId = null,
+        ?StringFilter $filterName = null,
+        ?StringFilter $filterLabel = null,
+        ?StringFilter $filterBillingProfileId = null,
+        ?StringFilter $filterVendor = null,
+        ?ArrayFilter $filterCapabilities = null,
+        ?StringFilter $filterStatus = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
-
-
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
                 'invalid value for "$pageSize" when calling OrganizationsApi.listOrgs,
@@ -699,8 +698,6 @@ final class OrganizationsApi extends AbstractApi
                 must be bigger than or equal to 1.'
             );
         }
-
-
 
         $resourcePath = '/organizations';
         $formParams = [];
@@ -722,8 +719,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterType !== null) {
             if ('form' === 'deepObject' && is_array($filterType)) {
@@ -736,8 +731,6 @@ final class OrganizationsApi extends AbstractApi
                     : ($filterType->getEq());
             }
         }
-
-
 
         // query params
         if ($filterOwnerId !== null) {
@@ -752,8 +745,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterName !== null) {
             if ('form' === 'deepObject' && is_array($filterName)) {
@@ -766,8 +757,6 @@ final class OrganizationsApi extends AbstractApi
                     : ($filterName->getEq());
             }
         }
-
-
 
         // query params
         if ($filterLabel !== null) {
@@ -782,8 +771,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterBillingProfileId !== null) {
             if ('form' === 'deepObject' && is_array($filterBillingProfileId)) {
@@ -796,8 +783,6 @@ final class OrganizationsApi extends AbstractApi
                     : ($filterBillingProfileId->getEq());
             }
         }
-
-
 
         // query params
         if ($filterVendor !== null) {
@@ -812,8 +797,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterCapabilities !== null) {
             if ('form' === 'deepObject' && is_array($filterCapabilities)) {
@@ -826,8 +809,6 @@ final class OrganizationsApi extends AbstractApi
                     : ($filterCapabilities->getEq());
             }
         }
-
-
 
         // query params
         if ($filterStatus !== null) {
@@ -842,8 +823,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterUpdatedAt !== null) {
             if ('form' === 'deepObject' && is_array($filterUpdatedAt)) {
@@ -856,8 +835,6 @@ final class OrganizationsApi extends AbstractApi
                     : ($filterUpdatedAt->getEq());
             }
         }
-
-
 
         // query params
         if ($pageSize !== null) {
@@ -872,8 +849,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageBefore !== null) {
             if ('form' === 'form' && is_array($pageBefore)) {
@@ -886,8 +861,6 @@ final class OrganizationsApi extends AbstractApi
                     : ($pageBefore);
             }
         }
-
-
 
         // query params
         if ($pageAfter !== null) {
@@ -902,8 +875,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -916,10 +887,6 @@ final class OrganizationsApi extends AbstractApi
                     : ($sort);
             }
         }
-
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -1000,16 +967,16 @@ final class OrganizationsApi extends AbstractApi
      */
     public function listUserOrgs(
         string $userId,
-        ?\Upsun\Model\StringFilter $filterId = null,
-        ?\Upsun\Model\StringFilter $filterType = null,
-        ?\Upsun\Model\StringFilter $filterVendor = null,
-        ?\Upsun\Model\StringFilter $filterStatus = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
+        ?StringFilter $filterVendor = null,
+        ?StringFilter $filterStatus = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListUserOrgs200Response {
+    ): ListUserOrgs200Response {
         return $this->listUserOrgsWithHttpInfo(
             $userId,
             $filterId,
@@ -1044,16 +1011,16 @@ final class OrganizationsApi extends AbstractApi
     */
     private function listUserOrgsWithHttpInfo(
         string $userId,
-        ?\Upsun\Model\StringFilter $filterId = null,
-        ?\Upsun\Model\StringFilter $filterType = null,
-        ?\Upsun\Model\StringFilter $filterVendor = null,
-        ?\Upsun\Model\StringFilter $filterStatus = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
+        ?StringFilter $filterVendor = null,
+        ?StringFilter $filterStatus = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListUserOrgs200Response {
+    ): ListUserOrgs200Response {
         $request = $this->listUserOrgsRequest(
             $userId,
             $filterId,
@@ -1113,17 +1080,16 @@ final class OrganizationsApi extends AbstractApi
      */
     private function listUserOrgsRequest(
         string $userId,
-        ?\Upsun\Model\StringFilter $filterId = null,
-        ?\Upsun\Model\StringFilter $filterType = null,
-        ?\Upsun\Model\StringFilter $filterVendor = null,
-        ?\Upsun\Model\StringFilter $filterStatus = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
+        ?StringFilter $filterVendor = null,
+        ?StringFilter $filterStatus = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -1146,8 +1112,6 @@ final class OrganizationsApi extends AbstractApi
             );
         }
 
-
-
         $resourcePath = '/users/{user_id}/organizations';
         $formParams = [];
         $queryParams = [];
@@ -1168,8 +1132,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterType !== null) {
             if ('form' === 'deepObject' && is_array($filterType)) {
@@ -1182,8 +1144,6 @@ final class OrganizationsApi extends AbstractApi
                     : ($filterType->getEq());
             }
         }
-
-
 
         // query params
         if ($filterVendor !== null) {
@@ -1198,8 +1158,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterStatus !== null) {
             if ('form' === 'deepObject' && is_array($filterStatus)) {
@@ -1212,8 +1170,6 @@ final class OrganizationsApi extends AbstractApi
                     : ($filterStatus->getEq());
             }
         }
-
-
 
         // query params
         if ($filterUpdatedAt !== null) {
@@ -1228,8 +1184,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageSize !== null) {
             if ('form' === 'form' && is_array($pageSize)) {
@@ -1242,8 +1196,6 @@ final class OrganizationsApi extends AbstractApi
                     : ($pageSize);
             }
         }
-
-
 
         // query params
         if ($pageBefore !== null) {
@@ -1258,8 +1210,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageAfter !== null) {
             if ('form' === 'form' && is_array($pageAfter)) {
@@ -1272,8 +1222,6 @@ final class OrganizationsApi extends AbstractApi
                     : ($pageAfter);
             }
         }
-
-
 
         // query params
         if ($sort !== null) {
@@ -1288,8 +1236,6 @@ final class OrganizationsApi extends AbstractApi
             }
         }
 
-
-
         // path params
 
         if ($userId !== null) {
@@ -1299,7 +1245,6 @@ final class OrganizationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -1371,8 +1316,8 @@ final class OrganizationsApi extends AbstractApi
      */
     public function updateOrg(
         string $organizationId,
-        ?\Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
-    ): \Upsun\Model\Organization {
+        ?UpdateOrgRequest $updateOrgRequest = null
+    ): Organization {
         return $this->updateOrgWithHttpInfo(
             $organizationId,
             $updateOrgRequest
@@ -1390,8 +1335,8 @@ final class OrganizationsApi extends AbstractApi
     */
     private function updateOrgWithHttpInfo(
         string $organizationId,
-        ?\Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
-    ): \Upsun\Model\Organization {
+        ?UpdateOrgRequest $updateOrgRequest = null
+    ): Organization {
         $request = $this->updateOrgRequest(
             $organizationId,
             $updateOrgRequest
@@ -1434,9 +1379,8 @@ final class OrganizationsApi extends AbstractApi
      */
     private function updateOrgRequest(
         string $organizationId,
-        ?\Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
+        ?UpdateOrgRequest $updateOrgRequest = null
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -1461,7 +1405,6 @@ final class OrganizationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],

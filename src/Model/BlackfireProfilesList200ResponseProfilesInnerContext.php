@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireProfilesList200ResponseProfilesInnerContext implements Model, JsonSerializable
 {
-
     public const TYPE_HTTP_REQUEST = 'http-request';
     public const TYPE_CLI = 'cli';
     public const TYPE_NO_OP = 'no-op';
@@ -27,7 +26,6 @@ final class BlackfireProfilesList200ResponseProfilesInnerContext implements Mode
         private readonly ?array $args = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -81,4 +79,3 @@ final class BlackfireProfilesList200ResponseProfilesInnerContext implements Mode
         return $this->args;
     }
 }
-

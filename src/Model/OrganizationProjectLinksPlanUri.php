@@ -14,13 +14,10 @@ use JsonSerializable;
  */
 final class OrganizationProjectLinksPlanUri implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $href = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -39,12 +36,11 @@ final class OrganizationProjectLinksPlanUri implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * URL of the link.
-    */
+    /**
+     * URL of the link.
+     */
     public function getHref(): ?string
     {
         return $this->href;
     }
 }
-

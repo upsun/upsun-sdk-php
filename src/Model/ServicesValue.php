@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class ServicesValue implements Model, JsonSerializable
 {
-
     public const SIZE__2_XL = '2XL';
     public const SIZE__4_XL = '4XL';
     public const SIZE_AUTO = 'AUTO';
@@ -37,7 +36,6 @@ final class ServicesValue implements Model, JsonSerializable
         private readonly ?int $instanceCount,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -127,4 +125,3 @@ final class ServicesValue implements Model, JsonSerializable
         return $this->supportsHorizontalScaling;
     }
 }
-

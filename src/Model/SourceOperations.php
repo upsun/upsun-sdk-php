@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class SourceOperations implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly bool $enabled,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -38,12 +35,11 @@ final class SourceOperations implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * If true, source operations can be triggered.
-    */
+    /**
+     * If true, source operations can be triggered.
+     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 }
-

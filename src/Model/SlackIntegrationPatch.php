@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\IntegrationPatch;
 
 /**
  * Low level SlackIntegrationPatch (auto-generated)
@@ -14,15 +13,12 @@ use Upsun\Model\IntegrationPatch;
  */
 final class SlackIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
-
-
     public function __construct(
         private readonly string $type,
         private readonly string $token,
         private readonly string $channel,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,28 +39,27 @@ final class SlackIntegrationPatch implements Model, JsonSerializable, Integratio
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The Slack token to use
-    */
+    /**
+     * The Slack token to use
+     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-   /**
-    * The Slack channel to post messages to
-    */
+    /**
+     * The Slack channel to post messages to
+     */
     public function getChannel(): string
     {
         return $this->channel;
     }
 }
-

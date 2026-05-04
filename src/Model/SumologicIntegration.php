@@ -2,8 +2,8 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
-use Upsun\Model\Integration;
 
 /**
  * Low level SumologicIntegration (auto-generated)
@@ -14,8 +14,6 @@ use Upsun\Model\Integration;
  */
 final class SumologicIntegration implements Model, JsonSerializable, Integration
 {
-
-
     public function __construct(
         private readonly string $type,
         private readonly string $role,
@@ -24,12 +22,11 @@ final class SumologicIntegration implements Model, JsonSerializable, Integration
         private readonly string $category,
         private readonly bool $tlsVerify,
         private readonly array $excludedServices,
-        private readonly ?\DateTime $createdAt,
-        private readonly ?\DateTime $updatedAt,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -57,33 +54,33 @@ final class SumologicIntegration implements Model, JsonSerializable, Integration
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The creation date
-    */
-    public function getCreatedAt(): ?\DateTime
+    /**
+     * The creation date
+     */
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-   /**
-    * The update date
-    */
-    public function getUpdatedAt(): ?\DateTime
+    /**
+     * The update date
+     */
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The role of the integration
-    */
+    /**
+     * The role of the integration
+     */
     public function getRole(): string
     {
         return $this->role;
@@ -94,25 +91,25 @@ final class SumologicIntegration implements Model, JsonSerializable, Integration
         return $this->extra;
     }
 
-   /**
-    * The Sumologic HTTPS endpoint
-    */
+    /**
+     * The Sumologic HTTPS endpoint
+     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-   /**
-    * The Category used to easy filtering (sent as X-Sumo-Category header)
-    */
+    /**
+     * The Category used to easy filtering (sent as X-Sumo-Category header)
+     */
     public function getCategory(): string
     {
         return $this->category;
     }
 
-   /**
-    * Enable/Disable HTTPS certificate verification
-    */
+    /**
+     * Enable/Disable HTTPS certificate verification
+     */
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
@@ -123,12 +120,11 @@ final class SumologicIntegration implements Model, JsonSerializable, Integration
         return $this->excludedServices;
     }
 
-   /**
-    * The identifier of SumologicIntegration
-    */
+    /**
+     * The identifier of SumologicIntegration
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
-

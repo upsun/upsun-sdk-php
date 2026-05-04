@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\IntegrationPatch;
 
 /**
  * Low level FastlyIntegrationPatch (auto-generated)
@@ -14,7 +13,6 @@ use Upsun\Model\IntegrationPatch;
  */
 final class FastlyIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
-
     public const RESULT_STAR = '*';
     public const RESULT_FAILURE = 'failure';
     public const RESULT_SUCCESS = 'success';
@@ -31,7 +29,6 @@ final class FastlyIntegrationPatch implements Model, JsonSerializable, Integrati
         private readonly ?bool $tlsCertificates = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -58,25 +55,25 @@ final class FastlyIntegrationPatch implements Model, JsonSerializable, Integrati
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * Fastly API Token
-    */
+    /**
+     * Fastly API Token
+     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-   /**
-    * The Fastly Service ID
-    */
+    /**
+     * The Fastly Service ID
+     */
     public function getServiceId(): string
     {
         return $this->serviceId;
@@ -102,20 +99,19 @@ final class FastlyIntegrationPatch implements Model, JsonSerializable, Integrati
         return $this->states;
     }
 
-   /**
-    * Result to execute the hook on
-    */
+    /**
+     * Result to execute the hook on
+     */
     public function getResult(): ?string
     {
         return $this->result;
     }
 
-   /**
-    * Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
-    */
+    /**
+     * Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
+     */
     public function getTlsCertificates(): ?bool
     {
         return $this->tlsCertificates;
     }
 }
-

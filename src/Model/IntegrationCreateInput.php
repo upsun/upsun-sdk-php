@@ -2,8 +2,6 @@
 
 namespace Upsun\Model;
 
-use JsonSerializable;
-
 /**
  * Low level IntegrationCreateInput (auto-generated)
  *
@@ -21,4 +19,3 @@ interface IntegrationCreateInput
 
     public function getType(): mixed;
 }
-

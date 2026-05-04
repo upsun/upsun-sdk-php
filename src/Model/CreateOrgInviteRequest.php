@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class CreateOrgInviteRequest implements Model, JsonSerializable
 {
-
     public const PERMISSIONS_ADMIN = 'admin';
     public const PERMISSIONS_BILLING = 'billing';
     public const PERMISSIONS_PLANS = 'plans';
@@ -27,7 +26,6 @@ final class CreateOrgInviteRequest implements Model, JsonSerializable
         private readonly ?bool $force = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -63,4 +61,3 @@ final class CreateOrgInviteRequest implements Model, JsonSerializable
         return $this->force;
     }
 }
-

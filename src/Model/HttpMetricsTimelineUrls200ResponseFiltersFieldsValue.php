@@ -13,15 +13,12 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineUrls200ResponseFiltersFieldsValue implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly int $distinctValues,
         private readonly string $type,
         private readonly array $values,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -52,12 +49,11 @@ final class HttpMetricsTimelineUrls200ResponseFiltersFieldsValue implements Mode
         return $this->type;
     }
 
-   /**
-    * @return HttpMetricsTimelineUrls200ResponseFiltersFieldsValueValuesInner[]
-    */
+    /**
+     * @return HttpMetricsTimelineUrls200ResponseFiltersFieldsValueValuesInner[]
+     */
     public function getValues(): array
     {
         return $this->values;
     }
 }
-

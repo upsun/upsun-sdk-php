@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class VerifyPhoneNumberRequest implements Model, JsonSerializable
 {
-
     public const CHANNEL_SMS = 'sms';
     public const CHANNEL_WHATSAPP = 'whatsapp';
     public const CHANNEL_CALL = 'call';
@@ -23,7 +22,6 @@ final class VerifyPhoneNumberRequest implements Model, JsonSerializable
         private readonly string $phoneNumber,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -53,4 +51,3 @@ final class VerifyPhoneNumberRequest implements Model, JsonSerializable
         return $this->phoneNumber;
     }
 }
-

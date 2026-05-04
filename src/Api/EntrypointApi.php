@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -13,6 +12,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ObservabilityEntrypoint200Response;
 
 /**
  * Low level EntrypointApi (auto-generated)
@@ -66,7 +66,7 @@ final class EntrypointApi extends AbstractApi
     public function observabilityEntrypoint(
         string $projectId,
         string $environmentId
-    ): \Upsun\Model\ObservabilityEntrypoint200Response {
+    ): ObservabilityEntrypoint200Response {
         return $this->observabilityEntrypointWithHttpInfo(
             $projectId,
             $environmentId
@@ -85,7 +85,7 @@ final class EntrypointApi extends AbstractApi
     private function observabilityEntrypointWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): \Upsun\Model\ObservabilityEntrypoint200Response {
+    ): ObservabilityEntrypoint200Response {
         $request = $this->observabilityEntrypointRequest(
             $projectId,
             $environmentId
@@ -130,7 +130,6 @@ final class EntrypointApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -138,8 +137,6 @@ final class EntrypointApi extends AbstractApi
                 when calling observabilityEntrypoint'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -156,15 +153,12 @@ final class EntrypointApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"environmentId\" when calling EntrypointApi.observabilityEntrypoint,
                 must conform to the pattern /.+/."
             );
         }
-
 
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability';
         $formParams = [];
@@ -191,7 +185,6 @@ final class EntrypointApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

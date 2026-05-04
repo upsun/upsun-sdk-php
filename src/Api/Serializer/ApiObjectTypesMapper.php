@@ -24,7 +24,6 @@ final class ApiObjectTypesMapper
     }
 
     private static array $openApiTypes = [
-
         'Upsun\Model\AcceptedResponse' => [
             'status' => 'string',
             'code' => 'int',
@@ -5893,6 +5892,5 @@ final class ApiObjectTypesMapper
             'slug_id' => 'string',
             'supports_horizontal_scaling' => 'bool',
         ],
-
     ];
 }

@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class DataRetentionConfigurationValue implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly int $maxBackups,
         private readonly DefaultConfig $defaultConfig,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class DataRetentionConfigurationValue implements Model, JsonSerializable
         return $this->defaultConfig;
     }
 }
-

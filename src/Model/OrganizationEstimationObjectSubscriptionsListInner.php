@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class OrganizationEstimationObjectSubscriptionsListInner implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $licenseId = null,
         private readonly ?string $projectTitle = null,
@@ -22,7 +20,6 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements Model,
         private readonly ?OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -64,4 +61,3 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements Model,
         return $this->usage;
     }
 }
-

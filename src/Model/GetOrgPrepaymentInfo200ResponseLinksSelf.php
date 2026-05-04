@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class GetOrgPrepaymentInfo200ResponseLinksSelf implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $href = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,4 +40,3 @@ final class GetOrgPrepaymentInfo200ResponseLinksSelf implements Model, JsonSeria
         return $this->href;
     }
 }
-

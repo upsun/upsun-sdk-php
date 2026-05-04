@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class OrganizationEstimationObjectUserLicenses implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?OrganizationEstimationObjectUserLicensesBase $base = null,
         private readonly ?OrganizationEstimationObjectUserLicensesUserManagement $userManagement = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -51,4 +48,3 @@ final class OrganizationEstimationObjectUserLicenses implements Model, JsonSeria
         return $this->userManagement;
     }
 }
-

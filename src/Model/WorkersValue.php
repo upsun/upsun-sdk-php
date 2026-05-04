@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class WorkersValue implements Model, JsonSerializable
 {
-
     public const SIZE__2_XL = '2XL';
     public const SIZE__4_XL = '4XL';
     public const SIZE_AUTO = 'AUTO';
@@ -55,7 +54,6 @@ final class WorkersValue implements Model, JsonSerializable
         private readonly ?int $instanceCount,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -119,9 +117,9 @@ final class WorkersValue implements Model, JsonSerializable
         return $this->access;
     }
 
-   /**
-    * @return ServiceRelationshipsValue[]
-    */
+    /**
+     * @return ServiceRelationshipsValue[]
+     */
     public function getRelationships(): array
     {
         return $this->relationships;
@@ -132,9 +130,9 @@ final class WorkersValue implements Model, JsonSerializable
         return $this->additionalHosts;
     }
 
-   /**
-    * @return MountsValue[]
-    */
+    /**
+     * @return MountsValue[]
+     */
     public function getMounts(): array
     {
         return $this->mounts;
@@ -160,9 +158,9 @@ final class WorkersValue implements Model, JsonSerializable
         return $this->containerProfile;
     }
 
-   /**
-    * @return OperationsValue[]
-    */
+    /**
+     * @return OperationsValue[]
+     */
     public function getOperations(): array
     {
         return $this->operations;
@@ -238,4 +236,3 @@ final class WorkersValue implements Model, JsonSerializable
         return $this->supportsHorizontalScaling;
     }
 }
-

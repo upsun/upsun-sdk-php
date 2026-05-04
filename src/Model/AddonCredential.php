@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class AddonCredential implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $addonKey,
         private readonly string $clientKey,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -41,20 +38,19 @@ final class AddonCredential implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The addon key (public identifier).
-    */
+    /**
+     * The addon key (public identifier).
+     */
     public function getAddonKey(): string
     {
         return $this->addonKey;
     }
 
-   /**
-    * The client key (public identifier).
-    */
+    /**
+     * The client key (public identifier).
+     */
     public function getClientKey(): string
     {
         return $this->clientKey;
     }
 }
-
