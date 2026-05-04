@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install dependencies
         shell: bash
@@ -65,7 +65,7 @@ jobs:
           } >> $GITHUB_OUTPUT
 
       - name: Create Pull Request if changes
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
           commit-message: "Update OpenAPI spec"

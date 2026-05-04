@@ -49,7 +49,7 @@ runs:
         } >> $GITHUB_OUTPUT
 
     - name: Find existing comment
-      uses: peter-evans/find-comment@v3
+      uses: peter-evans/find-comment@v4
       id: find-comment
       continue-on-error: true
       if: github.event_name == 'pull_request'
@@ -58,7 +58,7 @@ runs:
         body-includes: '🧾 API Coverage Report'
 
     - name: Create or update PR comment with coverage report
-      uses: peter-evans/create-or-update-comment@v4
+      uses: peter-evans/create-or-update-comment@v5
       continue-on-error: true
       if: github.event_name == 'pull_request' && steps.run-coverage.outcome == 'success'
       with:
@@ -85,7 +85,7 @@ runs:
           </details>
 
     - name: Post error comment if coverage failed
-      uses: peter-evans/create-or-update-comment@v4
+      uses: peter-evans/create-or-update-comment@v5
       continue-on-error: true
       if: github.event_name == 'pull_request' && steps.run-coverage.outcome == 'failure'
       with:
@@ -104,7 +104,7 @@ runs:
 
     - name: Upload coverage to Codecov
       if: success()
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v6
       with:
         files: coverage.xml
         flags: unittests
