@@ -30,7 +30,6 @@ use Upsun\Model\ListProjectUserAccess200Response;
 use Upsun\Model\Project;
 use Upsun\Model\ProjectCapabilities;
 use Upsun\Model\ProjectInvitation;
-use Upsun\Model\ProjectPatch;
 use Upsun\Model\ProjectSettings;
 use Upsun\Model\ProjectSettingsPatch;
 use Upsun\Model\ProjectVariable;
@@ -39,6 +38,7 @@ use Upsun\Model\Subscription;
 use Upsun\Model\SystemInformation;
 use Upsun\Model\TeamProjectAccess;
 use Upsun\Model\Tree;
+use Upsun\Model\UpdateOrgProjectRequest;
 use Upsun\Model\UserProjectAccess;
 use Upsun\UpsunClient;
 
@@ -155,25 +155,15 @@ class ProjectsTask extends TaskBase
     public function info(
         string $projectId,
         ?string $title = null,
-        ?string $defaultBranch = null,
-        ?string $description = null,
-        ?string $defaultDomain = null,
-        ?array $attributes = [],
         ?string $timezone = null,
-        ?string $region = null,
     ): Project {
         $this->checkProjectId($projectId);
 
-        if ($title || $defaultBranch || $description || $defaultDomain || $attributes || $timezone || $region) {
+        if ($title || $timezone ) {
             $this->update(
                 $projectId,
                 $title,
-                $defaultBranch,
-                $description,
-                $defaultDomain,
-                $attributes,
                 $timezone,
-                $region
             );
         }
 
@@ -204,27 +194,22 @@ class ProjectsTask extends TaskBase
     public function update(
         string $projectId,
         ?string $title = null,
-        ?string $defaultBranch = null,
-        ?string $description = null,
-        ?string $defaultDomain = null,
-        ?array $attributes = [],
         ?string $timezone = null,
-        ?string $region = null,
     ): AcceptedResponse {
         $this->checkProjectId($projectId);
 
-        return $this->prjApi->updateProjects(
+        $project = $this->get($projectId);
+
+        $this->organizationApi->updateOrgProject(
+            organizationId: $project->getOrganization(),
             projectId: $projectId,
-            projectPatch: new ProjectPatch(
-                defaultBranch: $defaultBranch,
-                defaultDomain: $defaultDomain,
-                attributes: $attributes,
+            updateOrgProjectRequest: new UpdateOrgProjectRequest(
                 title: $title,
-                description: $description,
                 timezone: $timezone,
-                region: $region
             )
         );
+
+        return new AcceptedResponse('accepted', 200);
     }
 
     /**

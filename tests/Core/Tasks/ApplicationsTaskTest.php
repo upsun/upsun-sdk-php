@@ -427,6 +427,7 @@ class ApplicationsTaskTest extends BaseTestCase
                             'instance_count' => 2,
                             'config_id' => 'configid-0001',
                             'slug_id' => 'fake-slug-id-0001',
+                            'supports_horizontal_scaling' => true,
                         ],
                     ],
                     'workers' => [],

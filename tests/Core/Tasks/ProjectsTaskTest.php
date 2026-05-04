@@ -404,6 +404,9 @@ class ProjectsTaskTest extends BaseTestCase
         $projectId = 'test-project';
 
         $fakeCapabilities = [
+            'tasks' => [
+                'enabled' => true,
+            ],
             'metrics' => [
                 'maxRange' => '30d',
             ],
@@ -461,7 +464,7 @@ class ProjectsTaskTest extends BaseTestCase
             ->expects($this->once())
             ->method('sendRequest')
             ->willReturn(new Response(
-                204,
+                200,
                 ['Content-Type' => 'application/json'],
                 json_encode($fakeCapabilities)
             ));
@@ -477,32 +480,28 @@ class ProjectsTaskTest extends BaseTestCase
     public function testUpdate()
     {
         $projectId = 'test-project';
+        $projectFake = $this->getFakeProject($projectId);
 
         $this->httpClient
-            ->expects($this->once())
+            ->expects($this->exactly(2))
             ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
+            ->willReturnOnConsecutiveCalls(
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($projectFake)
+                ),
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode([])
+                )
+            );
 
         $result = $this->projectsTask->update(
             projectId: $projectId,
             title: 'My Project',
-            defaultBranch: 'main',
-            description: 'A sample project used for testing.',
-            defaultDomain: 'myproject.example.com',
-            attributes: [
-                'framework' => 'symfony',
-                'language' => 'php',
-                'version' => '8.2',
-            ],
             timezone: 'UTC',
-            region: 'eu-central-1',
         );
 
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
@@ -783,6 +782,7 @@ class ProjectsTaskTest extends BaseTestCase
             'enable_disk_health_monitoring' => true,
             'enable_paused_environments' => true,
             'enable_unified_configuration' => true,
+            'enable_explicit_empty_routes' => true,
             'enable_routes_tracing' => false,
             'image_deployment_validation' => true,
             'support_generic_images' => true,
@@ -799,6 +799,7 @@ class ProjectsTaskTest extends BaseTestCase
             'activity_logs_max_size' => 100000,
             'allow_manual_deployments' => true,
             'allow_rolling_deployments' => true,
+            'allow_activity_reschedule' => true,
             'allow_burst' => true,
             'router_resources' => [
                 'baseline_cpu' => 0.2,
@@ -806,13 +807,17 @@ class ProjectsTaskTest extends BaseTestCase
                 'max_cpu' => 1.0,
                 'max_memory' => 4096,
             ],
+            'allow_scaling_to_zero' => true,
+            'save_applications_vendors' => true,
+            'locations_script_default' => true,
+            'support_oci_images' => true,
         ];
 
         $this->httpClient
             ->expects($this->once())
             ->method('sendRequest')
             ->willReturn(new Response(
-                204,
+                200,
                 ['Content-Type' => 'application/json'],
                 json_encode($fakeConfig)
             ));
@@ -2124,10 +2129,11 @@ FAKE-CHAIN-CERT-DATA2
                     'basic_auth' => []
                 ],
                 'enable_smtp' => true,
-                'supportsRollingDeployments' => false,
+                'supports_rolling_deployments' => false,
                 'restrict_robots' => true,
                 'edge_hostname' => 'main-bvxea6i-azertyuiop.eu-5.platformsh.site',
                 'deployment_state' => [
+                    'last_state_update_successful' => true,
                     'last_deployment_successful' => true,
                     'last_deployment_at' => '2025-09-15T16:17:15.300344+00:00',
                     'last_autoscale_up_at' => null,
@@ -2185,10 +2191,11 @@ FAKE-CHAIN-CERT-DATA2
                     'basic_auth' => []
                 ],
                 'enable_smtp' => true,
-                'supportsRollingDeployments' => false,
+                'supports_rolling_deployments' => false,
                 'restrict_robots' => true,
                 'edge_hostname' => 'main-bvxea6i-azertyuiop.eu-5.platformsh.site',
                 'deployment_state' => [
+                    'last_state_update_successful' => true,
                     'last_deployment_successful' => true,
                     'last_deployment_at' => '2025-09-15T16:17:15.300344+00:00',
                     'last_autoscale_up_at' => null,
