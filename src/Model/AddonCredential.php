@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level AddonCredential (auto-generated)
- * The addon credential information (optional).
+ * The addon credential information (optional)
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

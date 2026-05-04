@@ -15,7 +15,8 @@ final class DedicatedDeploymentTargetCreateInput implements Model, JsonSerializa
 {
     public const TYPE_DEDICATED = 'dedicated';
     public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
+    public const TYPE_FOUNDATION = 'foundation';
+    public const TYPE_KUBERNETES = 'kubernetes';
 
     public function __construct(
         private readonly string $type,
@@ -44,7 +45,7 @@ final class DedicatedDeploymentTargetCreateInput implements Model, JsonSerializa
     }
 
     /**
-     * The type of the deployment target.
+     * The type of the deployment target
      */
     public function getType(): string
     {
@@ -52,7 +53,7 @@ final class DedicatedDeploymentTargetCreateInput implements Model, JsonSerializa
     }
 
     /**
-     * The name of the deployment target.
+     * The name of the deployment target
      */
     public function getName(): string
     {
@@ -60,7 +61,7 @@ final class DedicatedDeploymentTargetCreateInput implements Model, JsonSerializa
     }
 
     /**
-     * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount).
+     * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount)
      */
     public function getEnforcedMounts(): ?object
     {

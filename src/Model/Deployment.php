@@ -208,6 +208,9 @@ final class Deployment implements Model, JsonSerializable
         return $this->workers;
     }
 
+    /**
+     * The name of the deployment target
+     */
     public function getContainerProfiles(): string
     {
         return $this->containerProfiles;

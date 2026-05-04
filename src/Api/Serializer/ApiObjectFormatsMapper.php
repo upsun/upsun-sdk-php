@@ -45,6 +45,7 @@ final class ApiObjectFormatsMapper
             'project' => null,
             'state' => null,
             'result' => null,
+            'failureReason' => null,
             'startedAt' => 'date-time',
             'completedAt' => 'date-time',
             'completionPercent' => null,
@@ -252,6 +253,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'fetchBranches' => null,
             'pruneBranches' => null,
             'environmentInitResources' => null,
@@ -299,6 +301,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'fetchBranches' => null,
             'pruneBranches' => null,
             'environmentInitResources' => null,
@@ -348,6 +351,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'environmentsCredentials' => null,
             'continuousProfiling' => null,
             'id' => null
@@ -359,6 +363,453 @@ final class ApiObjectFormatsMapper
 
         'Upsun\Model\BlackfireIntegrationPatch' => [
             'type' => null
+        ],
+
+        'Upsun\Model\BlackfirePhpServerCaches200Response' => [
+            'grain' => null,
+            'from' => null,
+            'to' => null,
+            'agent' => 'uuid',
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'distributionCost' => null,
+            'data' => null,
+            'contexts' => null,
+            'contextsMode' => null
+        ],
+
+        'Upsun\Model\BlackfirePhpServerCaches200ResponseDataInner' => [
+            'timestamp' => null,
+            'opcacheUsage' => 'float',
+            'opcacheIsbUsage' => 'float',
+            'apcuUsage' => 'float',
+            'realpathUsage' => 'float',
+            'pcreUsage' => 'float',
+            'apcuHitrate' => 'float',
+            'opcacheHitrate' => 'float'
+        ],
+
+        'Upsun\Model\BlackfireProfileGraph200Response' => [
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'agent' => 'uuid',
+            'uuid' => 'uuid',
+            'dimensions' => null,
+            'root' => null,
+            'nodes' => null,
+            'edges' => null,
+            'comparison' => null,
+            'language' => null,
+            'peaks' => null,
+            'arguments' => null,
+            'layers' => null,
+            'labels' => null,
+            'spans' => null,
+            'spansOt' => null,
+            'hierarchy' => null
+        ],
+
+        'Upsun\Model\BlackfireProfileProfile200Response' => [
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'agent' => 'uuid',
+            'uuid' => 'uuid',
+            'profile' => null
+        ],
+
+        'Upsun\Model\BlackfireProfileSubprofiles200Response' => [
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'agent' => 'uuid',
+            'uuid' => 'uuid',
+            'subprofiles' => null
+        ],
+
+        'Upsun\Model\BlackfireProfileTimeline200Response' => [
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'agent' => 'uuid',
+            'uuid' => 'uuid',
+            'timeline' => null,
+            'dimension' => null,
+            'time' => null,
+            'language' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200Response' => [
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'agent' => 'uuid',
+            'profiles' => null,
+            'page' => null,
+            'pages' => null,
+            'total' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200ResponseProfilesInner' => [
+            'uuid' => 'uuid',
+            'name' => null,
+            'links' => null,
+            'createdAt' => 'date-time',
+            'updatedAt' => 'date-time',
+            'metadata' => null,
+            'data' => null,
+            'recommendations' => null,
+            'context' => null,
+            'statusCode' => null,
+            'statusName' => null,
+            'owner' => null,
+            'agent' => null,
+            'hasTimeline' => null,
+            'isPublic' => null,
+            'isReadonly' => null,
+            'isComparison' => null,
+            'caches' => null,
+            'report' => null,
+            'vulnerableUsages' => null,
+            'keyPage' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200ResponseProfilesInnerAgent' => [
+            'uuid' => 'uuid',
+            'name' => null,
+            'envUuid' => 'uuid',
+            'isEnv' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200ResponseProfilesInnerContext' => [
+            'uri' => null,
+            'method' => null,
+            'statusCode' => null,
+            'path' => null,
+            'type' => null,
+            'args' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200ResponseProfilesInnerData' => [
+            'envelope' => null,
+            'importantMetrics' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200ResponseProfilesInnerDataEnvelope' => [
+            'wt' => null,
+            'cpu' => null,
+            'io' => null,
+            'pmu' => null,
+            'mu' => null,
+            'nw' => null,
+            'ct' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200ResponseProfilesInnerDataImportantMetrics' => [
+            'sqlQueries' => null,
+            'httpRequests' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200ResponseProfilesInnerDataImportantMetricsHttpRequests' => [
+            'ct' => null,
+            'wt' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200ResponseProfilesInnerDataImportantMetricsSqlQueries' => [
+            'ct' => null,
+            'wt' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200ResponseProfilesInnerLinks' => [
+            'apiSubprofiles' => null,
+            'apiProfile' => null,
+            'apiGraph' => null,
+            'graphUrl' => null,
+            'apiTimeline' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200ResponseProfilesInnerLinksGraphUrl' => [
+            'href' => 'uri',
+            'type' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesList200ResponseProfilesInnerOwner' => [
+            'uuid' => 'uuid',
+            'name' => null,
+            'avatar' => 'uri'
+        ],
+
+        'Upsun\Model\BlackfireProfilesRecommendations200Response' => [
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'agent' => 'uuid',
+            'from' => null,
+            'to' => null,
+            'recommendations' => null,
+            'total' => null,
+            'transaction' => null,
+            'testedTransactions' => null,
+            'untestedTopTransactions' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesRecommendations200ResponseRecommendationsInner' => [
+            'name' => null,
+            'total' => null,
+            'constraint' => null,
+            'links' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinks' => [
+            'apiSubprofiles' => null,
+            'apiProfile' => null,
+            'apiGraph' => null,
+            'apiTimeline' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinksApiGraph' => [
+            'href' => 'uri',
+            'type' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinksApiProfile' => [
+            'href' => 'uri',
+            'type' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinksApiSubprofiles' => [
+            'href' => 'uri',
+            'type' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinksApiTimeline' => [
+            'href' => 'uri',
+            'type' => null
+        ],
+
+        'Upsun\Model\BlackfireProfilesRecommendations400Response' => [
+            'type' => 'uri',
+            'title' => null,
+            'status' => null,
+            'violations' => null
+        ],
+
+        'Upsun\Model\BlackfireServerGlobal200Response' => [
+            'quota' => null,
+            'grain' => null,
+            'from' => null,
+            'to' => null,
+            'keys' => null,
+            'agent' => 'uuid',
+            'contexts' => null,
+            'contextsMode' => null,
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'alertEvaluations' => null,
+            'server' => null,
+            'distributionCost' => null
+        ],
+
+        'Upsun\Model\BlackfireServerGlobal200ResponseAlertEvaluationsInner' => [
+            'timestamp' => null,
+            'alertRuleUuid' => 'uuid',
+            'value' => 'float',
+            'state' => null
+        ],
+
+        'Upsun\Model\BlackfireServerGlobal200ResponseQuota' => [
+            'allowed' => null,
+            'used' => null,
+            'exceeded' => null,
+            'periodStartedAt' => 'date-time',
+            'periodEndsAt' => 'date-time'
+        ],
+
+        'Upsun\Model\BlackfireServerGlobal200ResponseServer' => [
+            'total' => 'float',
+            'data' => null
+        ],
+
+        'Upsun\Model\BlackfireServerGlobal200ResponseServerDataInner' => [
+            'timestamp' => null,
+            'wt' => 'float',
+            'mu' => 'float',
+            'pmu' => 'float',
+            'load' => 'float',
+            'stdout' => 'float',
+            'rpms' => 'float'
+        ],
+
+        'Upsun\Model\BlackfireServerTopSpans200Response' => [
+            'grain' => null,
+            'from' => null,
+            'to' => null,
+            'agent' => 'uuid',
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'sort' => null,
+            'topSpans' => null,
+            'advancedFilters' => null,
+            'contexts' => null,
+            'contextsMode' => null,
+            'transactions' => null,
+            'transactionsMode' => null,
+            'wtSlot' => null,
+            'wtSlotMode' => null,
+            'pmuSlot' => null,
+            'pmuSlotMode' => null,
+            'httpStatusCodes' => null,
+            'httpStatusCodesMode' => null,
+            'httpHosts' => null,
+            'httpHostsMode' => null,
+            'hosts' => null,
+            'hostsMode' => null,
+            'frameworks' => null,
+            'frameworksMode' => null,
+            'languages' => null,
+            'languagesMode' => null,
+            'methods' => null,
+            'methodsMode' => null,
+            'runtimes' => null,
+            'runtimesMode' => null,
+            'oss' => null,
+            'ossMode' => null,
+            'distributionCost' => null
+        ],
+
+        'Upsun\Model\BlackfireServerTopSpans200ResponseAdvancedFilters' => [
+            'fields' => null,
+            'maxApplicableFilters' => null
+        ],
+
+        'Upsun\Model\BlackfireServerTopSpans200ResponseAdvancedFiltersFieldsValue' => [
+            'distinctValues' => null,
+            'type' => null,
+            'values' => null
+        ],
+
+        'Upsun\Model\BlackfireServerTopSpans200ResponseAdvancedFiltersFieldsValueValuesInner' => [
+            'value' => null,
+            'count' => null
+        ],
+
+        'Upsun\Model\BlackfireServerTopSpans200ResponseTopSpans' => [
+            'data' => null
+        ],
+
+        'Upsun\Model\BlackfireServerTopSpans200ResponseTopSpansDataInner' => [
+            'id' => null,
+            'label' => null,
+            'percentage' => 'float',
+            'wt' => null,
+            'p96' => null,
+            'count' => null,
+            'requestWt' => null,
+            'metrics' => null,
+            'serviceName' => null,
+            'impact' => 'float'
+        ],
+
+        'Upsun\Model\BlackfireServerTransactionsBreakdown200Response' => [
+            'grain' => null,
+            'from' => null,
+            'to' => null,
+            'agent' => 'uuid',
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'breakdownDimension' => null,
+            'sort' => null,
+            'breakdownLimit' => null,
+            'breakdownTopHits' => null,
+            'transactions' => null,
+            'topHitsTimeline' => null,
+            'contexts' => null,
+            'contextsMode' => null,
+            'transactions' => null,
+            'transactionsMode' => null,
+            'wtSlot' => null,
+            'wtSlotMode' => null,
+            'pmuSlot' => null,
+            'pmuSlotMode' => null,
+            'httpStatusCodes' => null,
+            'httpStatusCodesMode' => null,
+            'httpHosts' => null,
+            'httpHostsMode' => null,
+            'hosts' => null,
+            'hostsMode' => null,
+            'frameworks' => null,
+            'frameworksMode' => null,
+            'languages' => null,
+            'languagesMode' => null,
+            'methods' => null,
+            'methodsMode' => null,
+            'runtimes' => null,
+            'runtimesMode' => null,
+            'oss' => null,
+            'ossMode' => null,
+            'distributionCost' => null
+        ],
+
+        'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseBreakdownTopHits' => [
+            'maxQuantity' => null,
+            'maxPercentage' => 'float'
+        ],
+
+        'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseTopHitsTimeline' => [
+            'data' => null
+        ],
+
+        'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataInner' => [
+            'timestamp' => null,
+            'totalConsumed' => 'float',
+            'totalCount' => 'float',
+            'transactions' => null
+        ],
+
+        'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataInnerTransactionsValue' => [
+            'average' => 'float',
+            'count' => 'float'
+        ],
+
+        'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseTransactions' => [
+            'data' => null
+        ],
+
+        'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInner' => [
+            'transaction' => null,
+            'wt96thPercentile' => 'float',
+            'avgWt' => 'float',
+            'avgPmu' => 'float',
+            'avgStdout' => 'float',
+            'totalRequests' => 'float',
+            'totalRequestsUnnamed' => 'float',
+            'totalErrors' => 'float',
+            'impact' => 'float',
+            'topHit' => null,
+            'links' => null
+        ],
+
+        'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInnerLinks' => [
+            'topSpans' => null,
+            'recommendations' => null,
+            'profiles' => null
+        ],
+
+        'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInnerLinksProfiles' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInnerLinksRecommendations' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInnerLinksTopSpans' => [
+            'href' => 'uri'
         ],
 
         'Upsun\Model\Blob' => [
@@ -416,7 +867,9 @@ final class ApiObjectFormatsMapper
 
         'Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction' => [
             'action' => null,
-            'type' => null
+            'type' => null,
+            'credentials' => null,
+            'reference' => null
         ],
 
         'Upsun\Model\CanUpdateSubscription200Response' => [
@@ -506,8 +959,16 @@ final class ApiObjectFormatsMapper
             'email' => null
         ],
 
+        'Upsun\Model\CommunityPackagesInner' => [
+        ],
+
         'Upsun\Model\Components' => [
             'voucherVatBaseprice' => null
+        ],
+
+        'Upsun\Model\ComposableImages' => [
+            'runtimes' => null,
+            'packages' => null
         ],
 
         'Upsun\Model\Config' => [
@@ -840,10 +1301,14 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\DeploymentState' => [
+            'lastStateUpdateSuccessful' => null,
             'lastDeploymentSuccessful' => null,
+            'lastDeploymentFailureReason' => null,
+            'lastDeploymentCommands' => null,
             'lastDeploymentAt' => 'date-time',
             'lastAutoscaleUpAt' => 'date-time',
             'lastAutoscaleDownAt' => 'date-time',
+            'lastMaintenanceAt' => 'date-time',
             'crons' => null
         ],
 
@@ -866,6 +1331,9 @@ final class ApiObjectFormatsMapper
             'sshHosts' => null,
             'useDedicatedGrid' => null,
             'storageType' => null,
+            'k8sConfig' => null,
+            'bastionNodesUser' => null,
+            'bastionNodesHost' => null,
             'id' => null,
             'enterpriseEnvironmentsMapping' => null
         ],
@@ -897,6 +1365,15 @@ final class ApiObjectFormatsMapper
             'maxCpu' => 'float',
             'maxMemory' => null,
             'maxEnvironments' => null
+        ],
+
+        'Upsun\Model\Diff' => [
+            'id' => null,
+            'diff' => null,
+            'newPath' => null,
+            'newId' => null,
+            'oldPath' => null,
+            'oldId' => null
         ],
 
         'Upsun\Model\Discount' => [
@@ -961,6 +1438,14 @@ final class ApiObjectFormatsMapper
             'replacementFor' => null
         ],
 
+        'Upsun\Model\DomainClaim' => [
+            'id' => null,
+            'createdAt' => 'date-time',
+            'updatedAt' => 'date-time',
+            'name' => null,
+            'count' => null
+        ],
+
         'Upsun\Model\DomainCreateInput' => [
             'name' => null,
             'attributes' => null,
@@ -977,6 +1462,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'fromAddress' => null,
             'recipients' => null,
             'id' => null
@@ -1237,12 +1723,14 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'events' => null,
             'environments' => null,
             'excludedEnvironments' => null,
             'states' => null,
             'result' => null,
             'serviceId' => null,
+            'tlsCertificates' => null,
             'id' => null
         ],
 
@@ -1254,7 +1742,8 @@ final class ApiObjectFormatsMapper
             'environments' => null,
             'excludedEnvironments' => null,
             'states' => null,
-            'result' => null
+            'result' => null,
+            'tlsCertificates' => null
         ],
 
         'Upsun\Model\FastlyIntegrationPatch' => [
@@ -1265,13 +1754,22 @@ final class ApiObjectFormatsMapper
             'environments' => null,
             'excludedEnvironments' => null,
             'states' => null,
-            'result' => null
+            'result' => null,
+            'tlsCertificates' => null
         ],
 
         'Upsun\Model\FilesInner' => [
             'path' => null,
             'mode' => null,
             'contents' => null
+        ],
+
+        'Upsun\Model\FilterSelect' => [
+            'mode' => null,
+            'values' => null
+        ],
+
+        'Upsun\Model\FilterSelectValues' => [
         ],
 
         'Upsun\Model\Firewall' => [
@@ -1313,6 +1811,103 @@ final class ApiObjectFormatsMapper
             'dependentLocality' => null,
             'postalCode' => null,
             'metadata' => null
+        ],
+
+        'Upsun\Model\GetApplicationFilter200Response' => [
+            'fields' => null,
+            'maxApplicableFilters' => null
+        ],
+
+        'Upsun\Model\GetApplicationFilter200ResponseFieldsValue' => [
+            'distinctValues' => null,
+            'values' => null
+        ],
+
+        'Upsun\Model\GetApplicationFilter200ResponseFieldsValueValuesInner' => [
+            'value' => null,
+            'count' => null
+        ],
+
+        'Upsun\Model\GetApplicationMerge200Response' => [
+            'version' => null,
+            'flamebearer' => null,
+            'metadata' => null,
+            'profileType' => null,
+            'sampleUnit' => null,
+            'timeline' => null,
+            'groups' => null,
+            'heatmap' => null,
+            'aggregationType' => null,
+            'application' => null,
+            'from' => 'date-time',
+            'to' => 'date-time',
+            'scaleFactor' => null
+        ],
+
+        'Upsun\Model\GetApplicationMerge200ResponseFlamebearer' => [
+            'names' => null,
+            'levels' => null,
+            'numTicks' => null,
+            'maxSelf' => null
+        ],
+
+        'Upsun\Model\GetApplicationMerge200ResponseGroupsValue' => [
+            'startTime' => 'int64',
+            'samples' => null,
+            'durationDelta' => 'int64',
+            'watermarks' => 'int64'
+        ],
+
+        'Upsun\Model\GetApplicationMerge200ResponseHeatmap' => [
+            'values' => null,
+            'timeBuckets' => 'int64',
+            'valueBuckets' => 'int64',
+            'startTime' => 'int64',
+            'endTime' => 'int64',
+            'minValue' => null,
+            'maxValue' => null,
+            'minDepth' => null,
+            'maxDepth' => null
+        ],
+
+        'Upsun\Model\GetApplicationMerge200ResponseMetadata' => [
+            'format' => null,
+            'spyName' => null,
+            'sampleRate' => null,
+            'units' => null,
+            'name' => null
+        ],
+
+        'Upsun\Model\GetApplicationMerge200ResponseTimeline' => [
+            'startTime' => 'int64',
+            'samples' => null,
+            'durationDelta' => 'int64',
+            'watermarks' => 'int64'
+        ],
+
+        'Upsun\Model\GetApplicationMerge400Response' => [
+            'code' => null,
+            'message' => null
+        ],
+
+        'Upsun\Model\GetApplicationTimeline200Response' => [
+            'from' => 'int64',
+            'to' => 'int64',
+            'grain' => null,
+            'unit' => null,
+            'aggregationType' => null,
+            'retention' => null,
+            'points' => null
+        ],
+
+        'Upsun\Model\GetApplicationTimeline200ResponsePointsInner' => [
+            'timestamp' => 'int64',
+            'value' => 'int64'
+        ],
+
+        'Upsun\Model\GetApplicationTimeline400Response' => [
+            'code' => null,
+            'message' => null
         ],
 
         'Upsun\Model\GetCurrentUserVerificationStatus200Response' => [
@@ -1420,6 +2015,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'fetchBranches' => null,
             'pruneBranches' => null,
             'environmentInitResources' => null,
@@ -1472,6 +2068,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'fetchBranches' => null,
             'pruneBranches' => null,
             'environmentInitResources' => null,
@@ -1592,6 +2189,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'url' => null,
             'id' => null
         ],
@@ -1612,6 +2210,11 @@ final class ApiObjectFormatsMapper
             'build' => null,
             'deploy' => null,
             'postDeploy' => null
+        ],
+
+        'Upsun\Model\Hooks1' => [
+            'build' => null,
+            'deploy' => null
         ],
 
         'Upsun\Model\HostsInner' => [
@@ -1642,6 +2245,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'extra' => null,
             'url' => null,
             'headers' => null,
@@ -1668,6 +2272,255 @@ final class ApiObjectFormatsMapper
             'excludedServices' => null
         ],
 
+        'Upsun\Model\HttpMetricsOverview200Response' => [
+            'grain' => null,
+            'from' => null,
+            'to' => null,
+            'projectId' => null,
+            'environmentId' => null,
+            'environmentType' => null,
+            'branchMachineName' => null,
+            'topUrlsCount' => null,
+            'data' => null
+        ],
+
+        'Upsun\Model\HttpMetricsOverview200ResponseData' => [
+            'urls' => null,
+            'timelines' => null
+        ],
+
+        'Upsun\Model\HttpMetricsOverview200ResponseDataTimelinesInner' => [
+            'timestamp' => null,
+            'requestSize' => null,
+            'responseSize' => null,
+            'urls' => null,
+            'codes' => null
+        ],
+
+        'Upsun\Model\HttpMetricsOverview200ResponseDataTimelinesInnerCodes' => [
+            'uNKNOWN' => null,
+            '_1xX' => null,
+            '_2xX' => null,
+            '_3xX' => null,
+            '_4xX' => null,
+            '_5xX' => null
+        ],
+
+        'Upsun\Model\HttpMetricsOverview200ResponseDataTimelinesInnerUrlsValue' => [
+            'count' => null,
+            'impact' => 'float'
+        ],
+
+        'Upsun\Model\HttpMetricsOverview200ResponseDataUrlsValue' => [
+            'url' => null,
+            'method' => null,
+            'impact' => 'float',
+            'average' => 'float',
+            'p50' => 'float',
+            'p96' => 'float',
+            'count' => null
+        ],
+
+        'Upsun\Model\HttpMetricsOverview499Response' => [
+            'error' => null,
+            'message' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineIps200Response' => [
+            'grain' => null,
+            'from' => null,
+            'to' => null,
+            'projectId' => null,
+            'environmentId' => null,
+            'environmentType' => null,
+            'branchMachineName' => null,
+            'breakdownLimit' => null,
+            'breakdownTopHits' => null,
+            'breakdown' => null,
+            'topHitsTimeline' => null,
+            'applications' => null,
+            'applicationsMode' => null,
+            'methods' => null,
+            'methodsMode' => null,
+            'domains' => null,
+            'domainsMode' => null,
+            'codeSlots' => null,
+            'codeSlotsMode' => null,
+            'codes' => null,
+            'codesMode' => null,
+            'requestDurationSlots' => null,
+            'requestDurationSlotsMode' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineIps200ResponseBreakdown' => [
+            'kind' => null,
+            'total' => null,
+            'data' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineIps200ResponseBreakdownDataInner' => [
+            'name' => null,
+            'impact' => 'float',
+            'average' => 'float',
+            'p50' => 'float',
+            'p96' => 'float',
+            'count' => null,
+            'topHit' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineIps200ResponseBreakdownTopHits' => [
+            'maxQuantity' => null,
+            'maxPercentage' => 'float'
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineIps200ResponseTopHitsTimeline' => [
+            'data' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineIps200ResponseTopHitsTimelineDataInner' => [
+            'timestamp' => null,
+            'totalConsumed' => 'float',
+            'totalCount' => null,
+            'data' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineIps200ResponseTopHitsTimelineDataInnerDataValue' => [
+            'count' => null,
+            'impact' => 'float'
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUrls200Response' => [
+            'grain' => null,
+            'from' => null,
+            'to' => null,
+            'projectId' => null,
+            'environmentId' => null,
+            'environmentType' => null,
+            'branchMachineName' => null,
+            'breakdownLimit' => null,
+            'breakdownTopHits' => null,
+            'breakdown' => null,
+            'topHitsTimeline' => null,
+            'filters' => null,
+            'applications' => null,
+            'applicationsMode' => null,
+            'methods' => null,
+            'methodsMode' => null,
+            'domains' => null,
+            'domainsMode' => null,
+            'codeSlots' => null,
+            'codeSlotsMode' => null,
+            'codes' => null,
+            'codesMode' => null,
+            'requestDurationSlots' => null,
+            'requestDurationSlotsMode' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUrls200ResponseBreakdown' => [
+            'kind' => null,
+            'total' => null,
+            'data' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUrls200ResponseBreakdownDataInner' => [
+            'url' => null,
+            'method' => null,
+            'impact' => 'float',
+            'average' => 'float',
+            'p50' => 'float',
+            'p96' => 'float',
+            'count' => null,
+            'topHit' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUrls200ResponseFilters' => [
+            'maxApplicableFilters' => null,
+            'fields' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUrls200ResponseFiltersFieldsValue' => [
+            'distinctValues' => null,
+            'type' => null,
+            'values' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUrls200ResponseFiltersFieldsValueValuesInner' => [
+            'value' => null,
+            'count' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUrls200ResponseTopHitsTimeline' => [
+            'data' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUrls200ResponseTopHitsTimelineDataInner' => [
+            'timestamp' => null,
+            'totalConsumed' => 'float',
+            'totalCount' => null,
+            'requestSize' => null,
+            'responseSize' => null,
+            'urls' => null,
+            'codes' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUserAgents200Response' => [
+            'grain' => null,
+            'from' => null,
+            'to' => null,
+            'projectId' => null,
+            'environmentId' => null,
+            'environmentType' => null,
+            'branchMachineName' => null,
+            'breakdownLimit' => null,
+            'breakdownTopHits' => null,
+            'breakdown' => null,
+            'topHitsTimeline' => null,
+            'applications' => null,
+            'applicationsMode' => null,
+            'methods' => null,
+            'methodsMode' => null,
+            'domains' => null,
+            'domainsMode' => null,
+            'codeSlots' => null,
+            'codeSlotsMode' => null,
+            'codes' => null,
+            'codesMode' => null,
+            'requestDurationSlots' => null,
+            'requestDurationSlotsMode' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUserAgents200ResponseBreakdown' => [
+            'kind' => null,
+            'total' => null,
+            'data' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUserAgents200ResponseBreakdownDataInner' => [
+            'name' => null,
+            'impact' => 'float',
+            'average' => 'float',
+            'p50' => 'float',
+            'p96' => 'float',
+            'count' => null,
+            'topHit' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUserAgents200ResponseTopHitsTimeline' => [
+            'data' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUserAgents200ResponseTopHitsTimelineDataInner' => [
+            'timestamp' => null,
+            'totalConsumed' => 'float',
+            'totalCount' => null,
+            'data' => null
+        ],
+
+        'Upsun\Model\HttpMetricsTimelineUserAgents200ResponseTopHitsTimelineDataInnerDataValue' => [
+            'count' => null,
+            'impact' => 'float'
+        ],
+
         'Upsun\Model\ImageTypeRestrictions' => [
             'only' => null,
             'exclude' => null
@@ -1681,6 +2534,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'fetchBranches' => null,
             'pruneBranches' => null,
             'environmentInitResources' => null,
@@ -1699,6 +2553,7 @@ final class ApiObjectFormatsMapper
             'states' => null,
             'result' => null,
             'serviceId' => null,
+            'tlsCertificates' => null,
             'baseUrl' => null,
             'buildDraftPullRequests' => null,
             'buildPullRequestsPostMerge' => null,
@@ -1759,6 +2614,7 @@ final class ApiObjectFormatsMapper
             'excludedEnvironments' => null,
             'states' => null,
             'result' => null,
+            'tlsCertificates' => null,
             'baseUrl' => null,
             'buildDraftPullRequests' => null,
             'buildPullRequestsPostMerge' => null,
@@ -1811,6 +2667,7 @@ final class ApiObjectFormatsMapper
             'excludedEnvironments' => null,
             'states' => null,
             'result' => null,
+            'tlsCertificates' => null,
             'baseUrl' => null,
             'buildDraftPullRequests' => null,
             'buildPullRequestsPostMerge' => null,
@@ -1872,6 +2729,31 @@ final class ApiObjectFormatsMapper
             'value' => null
         ],
 
+        'Upsun\Model\KubernetesDeploymentTargetStorage' => [
+            'type' => null,
+            'name' => null,
+            'k8sConfig' => null,
+            'bastionNodesUser' => null,
+            'bastionNodesHost' => null,
+            'id' => null
+        ],
+
+        'Upsun\Model\KubernetesDeploymentTargetStorageCreateInput' => [
+            'type' => null,
+            'name' => null
+        ],
+
+        'Upsun\Model\KubernetesDeploymentTargetStoragePatch' => [
+            'type' => null,
+            'name' => null
+        ],
+
+        'Upsun\Model\LastDeploymentCommandsInner' => [
+            'app' => null,
+            'type' => null,
+            'exitCode' => null
+        ],
+
         'Upsun\Model\LineItem' => [
             'type' => null,
             'licenseId' => null,
@@ -1893,6 +2775,34 @@ final class ApiObjectFormatsMapper
 
         'Upsun\Model\Link' => [
             'href' => null
+        ],
+
+        'Upsun\Model\ListApplications200Response' => [
+            'applications' => null
+        ],
+
+        'Upsun\Model\ListApplications200ResponseApplicationsValue' => [
+            'name' => null,
+            'profileTypes' => null,
+            'languages' => null
+        ],
+
+        'Upsun\Model\ListApplications200ResponseApplicationsValueProfileTypesValue' => [
+            'name' => null,
+            'description' => null,
+            'title' => null,
+            'unit' => null,
+            'aggregation' => null
+        ],
+
+        'Upsun\Model\ListApplications400Response' => [
+            'code' => null,
+            'message' => null
+        ],
+
+        'Upsun\Model\ListApplications499Response' => [
+            'code' => null,
+            'message' => null
         ],
 
         'Upsun\Model\ListLinks' => [
@@ -2054,6 +2964,14 @@ final class ApiObjectFormatsMapper
             'maxExtraPayloadSize' => null
         ],
 
+        'Upsun\Model\Maintenance' => [
+            'nextMaintenance' => 'date-time'
+        ],
+
+        'Upsun\Model\MaintenanceWindowConfiguration' => [
+            'recurrence' => null
+        ],
+
         'Upsun\Model\MergeInfo' => [
             'commitsAhead' => null,
             'commitsBehind' => null,
@@ -2084,6 +3002,9 @@ final class ApiObjectFormatsMapper
             'profileSize' => null
         ],
 
+        'Upsun\Model\Mode' => [
+        ],
+
         'Upsun\Model\MountsValue' => [
             'source' => null,
             'sourcePath' => null,
@@ -2099,6 +3020,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'extra' => null,
             'url' => null,
             'tlsVerify' => null,
@@ -2133,9 +3055,168 @@ final class ApiObjectFormatsMapper
             'secret' => null
         ],
 
+        'Upsun\Model\OCIImage' => [
+            'name' => null,
+            'buildfile' => null
+        ],
+
         'Upsun\Model\Object' => [
             'type' => null,
             'sha' => null
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200Response' => [
+            'message' => null,
+            'projectId' => null,
+            'branchMachineName' => null,
+            'environmentId' => null,
+            'environmentType' => null,
+            'vendor' => null,
+            'pshUserIdentifier' => null,
+            'links' => null,
+            'retention' => null,
+            'dataRetention' => null
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseDataRetention' => [
+            'unit' => null,
+            'unitInSeconds' => null,
+            'resources' => null,
+            'serverMonitoring' => null,
+            'logs' => null,
+            'httpTraffic' => null,
+            'continuousProfiling' => null
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseDataRetentionContinuousProfiling' => [
+            'retentionPeriod' => null,
+            'maxRange' => null,
+            'recommendedDefaultRange' => null
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseDataRetentionHttpTraffic' => [
+            'retentionPeriod' => null,
+            'maxRange' => null,
+            'recommendedDefaultRange' => null
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseDataRetentionLogs' => [
+            'retentionPeriod' => null,
+            'maxRange' => null,
+            'recommendedDefaultRange' => null
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseDataRetentionResources' => [
+            'retentionPeriod' => null,
+            'maxRange' => null,
+            'recommendedDefaultRange' => null
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseDataRetentionServerMonitoring' => [
+            'retentionPeriod' => null,
+            'maxRange' => null,
+            'recommendedDefaultRange' => null
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinks' => [
+            'self' => null,
+            'resourcesByService' => null,
+            'resourcesOverview' => null,
+            'resourcesSummary' => null,
+            'blackfirePhpServerCaches' => null,
+            'blackfireServerGlobal' => null,
+            'blackfireServerTransactionsBreakdown' => null,
+            'logsQuery' => null,
+            'logsOverview' => null,
+            'httpMetricsOverview' => null,
+            'httpMetricsTimelineUrls' => null,
+            'httpMetricsTimelineIps' => null,
+            'httpMetricsTimelineUserAgents' => null,
+            'consoleSandboxAccess' => null,
+            'conprofApplications' => null,
+            'conprofApplicationFilters' => null,
+            'conprofTimeline' => null,
+            'conprofFlamegraph' => null
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksBlackfirePhpServerCaches' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksBlackfireServerGlobal' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksBlackfireServerTransactionsBreakdown' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofApplicationFilters' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofApplications' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofFlamegraph' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofTimeline' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConsoleSandboxAccess' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsOverview' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineIps' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUrls' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUserAgents' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksLogsOverview' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksLogsQuery' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksResourcesByServiceValue' => [
+            'name' => null,
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksResourcesOverview' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksResourcesSummary' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksSelf' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseRetention' => [
+            'resources' => null,
+            'logs' => null,
+            'httpTraffic' => null,
+            'continuousProfiling' => null
         ],
 
         'Upsun\Model\OpenTelemetry' => [
@@ -2200,6 +3281,7 @@ final class ApiObjectFormatsMapper
             'billingProfileId' => null,
             'billingLegacy' => null,
             'securityContact' => 'email',
+            'aiAgentSettings' => null,
             'status' => null,
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
@@ -2225,6 +3307,12 @@ final class ApiObjectFormatsMapper
         'Upsun\Model\OrganizationAddonsObjectUpgradesAvailable' => [
             'userManagement' => null,
             'supportLevel' => null
+        ],
+
+        'Upsun\Model\OrganizationAiAgentSettings' => [
+            'canEnable' => null,
+            'performanceAgentEnabled' => null,
+            'logAnalyzerAgentEnabled' => null
         ],
 
         'Upsun\Model\OrganizationAlertConfig' => [
@@ -2481,9 +3569,11 @@ final class ApiObjectFormatsMapper
             'status' => null,
             'trialPlan' => null,
             'projectUi' => null,
+            'dedicatedTag' => null,
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'activities' => null,
+            'fastlyServiceIds' => null,
             'projectOptions' => null,
             'links' => null
         ],
@@ -2570,6 +3660,37 @@ final class ApiObjectFormatsMapper
             'updatedAt' => 'date-time'
         ],
 
+        'Upsun\Model\OtlpLogIntegration' => [
+            'createdAt' => 'date-time',
+            'updatedAt' => 'date-time',
+            'type' => null,
+            'role' => null,
+            'extra' => null,
+            'url' => null,
+            'headers' => null,
+            'tlsVerify' => null,
+            'excludedServices' => null,
+            'id' => null
+        ],
+
+        'Upsun\Model\OtlpLogIntegrationCreateInput' => [
+            'type' => null,
+            'url' => null,
+            'extra' => null,
+            'headers' => null,
+            'tlsVerify' => null,
+            'excludedServices' => null
+        ],
+
+        'Upsun\Model\OtlpLogIntegrationPatch' => [
+            'type' => null,
+            'url' => null,
+            'extra' => null,
+            'headers' => null,
+            'tlsVerify' => null,
+            'excludedServices' => null
+        ],
+
         'Upsun\Model\OutboundFirewall' => [
             'enabled' => null
         ],
@@ -2591,6 +3712,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'routingKey' => null,
             'id' => null
         ],
@@ -2725,7 +3847,8 @@ final class ApiObjectFormatsMapper
             'updatedAt' => 'date-time',
             'billingContact' => 'email',
             'invoiced' => null,
-            'customerType' => null
+            'customerType' => null,
+            'legalEntityName' => null
         ],
 
         'Upsun\Model\Project' => [
@@ -2744,7 +3867,8 @@ final class ApiObjectFormatsMapper
             'region' => null,
             'repository' => null,
             'defaultDomain' => null,
-            'subscription' => null
+            'subscription' => null,
+            'maintenance' => null
         ],
 
         'Upsun\Model\ProjectAddon' => [
@@ -2809,6 +3933,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ProjectCapabilities' => [
+            'tasks' => null,
             'metrics' => null,
             'logsForwarding' => null,
             'guaranteedResources' => null,
@@ -2899,16 +4024,6 @@ final class ApiObjectFormatsMapper
             'capabilities' => null
         ],
 
-        'Upsun\Model\ProjectPatch' => [
-            'attributes' => null,
-            'title' => null,
-            'description' => null,
-            'defaultBranch' => null,
-            'timezone' => null,
-            'region' => null,
-            'defaultDomain' => null
-        ],
-
         'Upsun\Model\ProjectReference' => [
             'id' => null,
             'organizationId' => null,
@@ -2980,6 +4095,7 @@ final class ApiObjectFormatsMapper
             'enableDiskHealthMonitoring' => null,
             'enablePausedEnvironments' => null,
             'enableUnifiedConfiguration' => null,
+            'enableExplicitEmptyRoutes' => null,
             'enableRoutesTracing' => null,
             'imageDeploymentValidation' => null,
             'supportGenericImages' => null,
@@ -2992,14 +4108,21 @@ final class ApiObjectFormatsMapper
             'activityLogsMaxSize' => null,
             'allowManualDeployments' => null,
             'allowRollingDeployments' => null,
+            'maintenanceWindow' => null,
+            'allowActivityReschedule' => null,
             'allowBurst' => null,
-            'routerResources' => null
+            'routerResources' => null,
+            'allowScalingToZero' => null,
+            'saveApplicationsVendors' => null,
+            'locationsScriptDefault' => null,
+            'supportOciImages' => null
         ],
 
         'Upsun\Model\ProjectSettingsPatch' => [
             'initialize' => null,
             'dataRetention' => null,
-            'buildResources' => null
+            'buildResources' => null,
+            'maintenanceWindow' => null
         ],
 
         'Upsun\Model\ProjectStatus' => [
@@ -3059,6 +4182,12 @@ final class ApiObjectFormatsMapper
             'sticky' => null
         ],
 
+        'Upsun\Model\Recurrence' => [
+            'interval' => null,
+            'dayOfWeek' => null,
+            'time' => null
+        ],
+
         'Upsun\Model\RedirectConfiguration' => [
             'expires' => null,
             'paths' => null
@@ -3103,12 +4232,6 @@ final class ApiObjectFormatsMapper
 
         'Upsun\Model\RegionCompliance' => [
             'hipaa' => null
-        ],
-
-        'Upsun\Model\RegionDataCenter' => [
-            'name' => null,
-            'label' => null,
-            'location' => null
         ],
 
         'Upsun\Model\RegionDatacenter' => [
@@ -3227,6 +4350,177 @@ final class ApiObjectFormatsMapper
             'init' => null
         ],
 
+        'Upsun\Model\ResourcesByService200Response' => [
+            'grain' => null,
+            'from' => null,
+            'to' => null,
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'service' => null,
+            'data' => null,
+            'dg2HostTypesMapping' => null
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInner' => [
+            'timestamp' => null,
+            'instances' => null
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValue' => [
+            'cpuUsed' => null,
+            'cpuLimit' => null,
+            'memoryUsed' => null,
+            'memoryLimit' => null,
+            'swapUsed' => null,
+            'swapLimit' => null,
+            'memoryPressure' => null,
+            'cpuPressure' => null,
+            'ioPressure' => null,
+            'irqPressure' => null,
+            'mountpoints' => null
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueCpuLimit' => [
+            'max' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueCpuPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueCpuUsed' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueIoPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueIrqPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueMemoryLimit' => [
+            'max' => 'int64'
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueMemoryPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueMemoryUsed' => [
+            'min' => 'int64',
+            'max' => 'int64',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueMountpointsValue' => [
+            'diskUsed' => null,
+            'diskLimit' => null,
+            'inodesUsed' => null,
+            'inodesLimit' => null
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueMountpointsValueDiskLimit' => [
+            'max' => 'int64'
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueMountpointsValueDiskUsed' => [
+            'min' => 'int64',
+            'max' => 'int64',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueMountpointsValueInodesLimit' => [
+            'max' => null
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueMountpointsValueInodesUsed' => [
+            'min' => null,
+            'max' => null,
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesByService200ResponseDataInnerInstancesValueSwapUsed' => [
+            'min' => 'int64',
+            'max' => 'int64',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
         'Upsun\Model\ResourcesLimits' => [
             'containerProfiles' => null,
             'production' => null,
@@ -3239,6 +4533,337 @@ final class ApiObjectFormatsMapper
             'endsAt' => 'date-time',
             'redeployedStart' => null,
             'redeployedEnd' => null
+        ],
+
+        'Upsun\Model\ResourcesOverview200Response' => [
+            'grain' => null,
+            'from' => null,
+            'to' => null,
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'data' => null
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInner' => [
+            'timestamp' => null,
+            'services' => null
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValue' => [
+            'cpuUsed' => null,
+            'cpuLimit' => null,
+            'memoryUsed' => null,
+            'memoryLimit' => null,
+            'swapUsed' => null,
+            'swapLimit' => null,
+            'memoryPressure' => null,
+            'cpuPressure' => null,
+            'ioPressure' => null,
+            'irqPressure' => null,
+            'mountpoints' => null
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueCpuLimit' => [
+            'max' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueCpuPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueCpuUsed' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueIoPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueIrqPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueMemoryLimit' => [
+            'max' => 'int64'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueMemoryPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueMemoryUsed' => [
+            'min' => 'int64',
+            'max' => 'int64',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueMountpointsValue' => [
+            'diskUsed' => null,
+            'diskLimit' => null,
+            'inodesUsed' => null,
+            'inodesLimit' => null
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueMountpointsValueDiskLimit' => [
+            'max' => 'int64'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueMountpointsValueDiskUsed' => [
+            'min' => 'int64',
+            'max' => 'int64',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueMountpointsValueInodesLimit' => [
+            'max' => null
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueMountpointsValueInodesUsed' => [
+            'min' => null,
+            'max' => null,
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueSwapLimit' => [
+            'max' => 'int64'
+        ],
+
+        'Upsun\Model\ResourcesOverview200ResponseDataInnerServicesValueSwapUsed' => [
+            'min' => 'int64',
+            'max' => 'int64',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesSummary200Response' => [
+            'from' => null,
+            'to' => null,
+            'projectId' => null,
+            'environmentId' => null,
+            'branchMachineName' => null,
+            'data' => null
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseData' => [
+            'services' => null
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseDataServicesValueValue' => [
+            'cpuUsed' => null,
+            'cpuLimit' => null,
+            'memoryUsed' => null,
+            'memoryLimit' => null,
+            'swapUsed' => null,
+            'swapLimit' => null,
+            'memoryPressure' => null,
+            'cpuPressure' => null,
+            'ioPressure' => null,
+            'irqPressure' => null,
+            'mountpoints' => null
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseDataServicesValueValueCpuPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseDataServicesValueValueCpuUsed' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseDataServicesValueValueIoPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseDataServicesValueValueIrqPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseDataServicesValueValueMemoryPressure' => [
+            'min' => 'float',
+            'max' => 'float',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseDataServicesValueValueMemoryUsed' => [
+            'min' => 'int64',
+            'max' => 'int64',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseDataServicesValueValueMountpointsValue' => [
+            'diskUsed' => null,
+            'diskLimit' => null,
+            'inodesUsed' => null,
+            'inodesLimit' => null
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseDataServicesValueValueMountpointsValueDiskUsed' => [
+            'min' => 'int64',
+            'max' => 'int64',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseDataServicesValueValueMountpointsValueInodesUsed' => [
+            'min' => null,
+            'max' => null,
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesSummary200ResponseDataServicesValueValueSwapUsed' => [
+            'min' => 'int64',
+            'max' => 'int64',
+            'avg' => 'float',
+            'stddev' => 'float',
+            'p50' => 'float',
+            'p95' => 'float',
+            'p96' => 'float',
+            'p97' => 'float',
+            'p98' => 'float',
+            'p99' => 'float'
+        ],
+
+        'Upsun\Model\ResourcesSummary400Response' => [
+            'type' => 'uri',
+            'title' => null,
+            'status' => null,
+            'violations' => null
         ],
 
         'Upsun\Model\Route' => [
@@ -3278,12 +4903,9 @@ final class ApiObjectFormatsMapper
             'sticky' => null
         ],
 
-        'Upsun\Model\Routing' => [
-            'percentage' => null
-        ],
-
-        'Upsun\Model\Routing1' => [
-            'percentage' => null
+        'Upsun\Model\RunConfiguration' => [
+            'command' => null,
+            'timeout' => null
         ],
 
         'Upsun\Model\RuntimeOperations' => [
@@ -3308,6 +4930,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'events' => null,
             'environments' => null,
             'excludedEnvironments' => null,
@@ -3362,7 +4985,8 @@ final class ApiObjectFormatsMapper
             'resources' => null,
             'containerProfile' => null,
             'endpoints' => null,
-            'instanceCount' => null
+            'instanceCount' => null,
+            'supportsHorizontalScaling' => null
         ],
 
         'Upsun\Model\ServicesValue1' => [
@@ -3381,6 +5005,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'channel' => null,
             'id' => null
         ],
@@ -3400,6 +5025,10 @@ final class ApiObjectFormatsMapper
         'Upsun\Model\SourceCodeConfiguration' => [
             'root' => null,
             'operations' => null
+        ],
+
+        'Upsun\Model\SourceCodeConfiguration1' => [
+            'root' => null
         ],
 
         'Upsun\Model\SourceOperations' => [
@@ -3427,6 +5056,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'extra' => null,
             'url' => null,
             'index' => null,
@@ -3596,6 +5226,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'extra' => null,
             'url' => null,
             'category' => null,
@@ -3631,6 +5262,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'extra' => null,
             'host' => null,
             'port' => null,
@@ -3681,6 +5313,26 @@ final class ApiObjectFormatsMapper
             'minVersion' => null,
             'clientAuthentication' => null,
             'clientCertificateAuthorities' => null
+        ],
+
+        'Upsun\Model\Task' => [
+            'id' => null,
+            'type' => null,
+            'source' => null,
+            'hooks' => null,
+            'relationships' => null,
+            'mounts' => null,
+            'variables' => null,
+            'run' => null,
+            'name' => null
+        ],
+
+        'Upsun\Model\TaskTriggerInput' => [
+            'variables' => null
+        ],
+
+        'Upsun\Model\Tasks' => [
+            'enabled' => null
         ],
 
         'Upsun\Model\Team' => [
@@ -3828,6 +5480,7 @@ final class ApiObjectFormatsMapper
             'defaultCatalog' => null,
             'projectOptionsUrl' => 'uri',
             'companyName' => null,
+            'legalEntityName' => null,
             'customerType' => null,
             'vatNumber' => null,
             'billingContact' => 'email'
@@ -3843,6 +5496,7 @@ final class ApiObjectFormatsMapper
             'name' => null,
             'label' => null,
             'country' => null,
+            'billingProfileId' => null,
             'securityContact' => 'email'
         ],
 
@@ -4070,21 +5724,6 @@ final class ApiObjectFormatsMapper
             'phoneNumber' => null
         ],
 
-        'Upsun\Model\Version' => [
-            'id' => null,
-            'commit' => null,
-            'locked' => null,
-            'routing' => null
-        ],
-
-        'Upsun\Model\VersionCreateInput' => [
-            'routing' => null
-        ],
-
-        'Upsun\Model\VersionPatch' => [
-            'routing' => null
-        ],
-
         'Upsun\Model\Vouchers' => [
             'uuid' => 'uuid',
             'vouchersTotal' => null,
@@ -4147,10 +5786,12 @@ final class ApiObjectFormatsMapper
             'build' => null,
             'dependencies' => null,
             'stack' => null,
+            'image' => null,
             'isAcrossSubmodule' => null,
             'instanceCount' => null,
             'configId' => null,
-            'slugId' => null
+            'slugId' => null,
+            'supportsHorizontalScaling' => null
         ],
 
         'Upsun\Model\WebConfiguration' => [
@@ -4170,6 +5811,7 @@ final class ApiObjectFormatsMapper
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
+            'role' => null,
             'events' => null,
             'environments' => null,
             'excludedEnvironments' => null,
@@ -4247,8 +5889,10 @@ final class ApiObjectFormatsMapper
             'worker' => null,
             'app' => null,
             'stack' => null,
+            'image' => null,
             'instanceCount' => null,
-            'slugId' => null
+            'slugId' => null,
+            'supportsHorizontalScaling' => null
         ],
     ];
 }

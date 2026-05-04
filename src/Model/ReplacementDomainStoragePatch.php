@@ -36,7 +36,7 @@ final class ReplacementDomainStoragePatch implements Model, JsonSerializable, Do
     }
 
     /**
-     * TLS settings for the route.
+     * TLS settings for the route
      */
     public function getAttributes(): ?TLSSettings
     {

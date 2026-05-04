@@ -14,6 +14,8 @@ use JsonSerializable;
 final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Model, JsonSerializable
 {
     public function __construct(
+        private readonly ?object $credentials = null,
+        private readonly ?string $reference = null,
         private readonly ?string $action = null,
         private readonly ?string $type = null,
     ) {
@@ -29,6 +31,8 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
         return [
             'action' => $this->action,
             'type' => $this->type,
+            'credentials' => $this->credentials,
+            'reference' => $this->reference,
         ];
     }
 
@@ -45,5 +49,15 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
     public function getType(): ?string
     {
         return $this->type;
+    }
+
+    public function getCredentials(): ?object
+    {
+        return $this->credentials;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
     }
 }

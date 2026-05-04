@@ -37,6 +37,9 @@ final class PagerDutyIntegrationCreateInput implements Model, JsonSerializable, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;

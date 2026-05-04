@@ -43,7 +43,7 @@ final class ProductionResources implements Model, JsonSerializable
     }
 
     /**
-     * Enable legacy development sizing for this environment type.
+     * Enable legacy development sizing for this environment type
      */
     public function getLegacyDevelopment(): bool
     {
@@ -51,7 +51,7 @@ final class ProductionResources implements Model, JsonSerializable
     }
 
     /**
-     * Maximum number of allocated CPU units.
+     * Maximum number of allocated CPU units
      */
     public function getMaxCpu(): ?float
     {
@@ -59,7 +59,7 @@ final class ProductionResources implements Model, JsonSerializable
     }
 
     /**
-     * Maximum amount of allocated RAM.
+     * Maximum amount of allocated RAM
      */
     public function getMaxMemory(): ?int
     {

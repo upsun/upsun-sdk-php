@@ -2160,9 +2160,11 @@ final class SubscriptionsApi extends AbstractApi
      *         The ID of the organization. (required)
      * @param  string|null $filterStatus (optional)
      * @param  \Upsun\Model\StringFilter|null $filterId (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterProjectId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterProjectId
+     *         Allows filtering by `project_id` using one or more operators. (optional)
      * @param  \Upsun\Model\StringFilter|null $filterProjectTitle (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterRegion (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterRegion
+     *         Allows filtering by `region` using one or more operators. (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
      *         Allows filtering by `updated_at` using one or more operators. (optional)
      * @param  int|null $pageSize
@@ -2214,9 +2216,11 @@ final class SubscriptionsApi extends AbstractApi
      *         The ID of the organization. (required)
      * @param  string|null $filterStatus (optional)
      * @param  \Upsun\Model\StringFilter|null $filterId (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterProjectId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterProjectId
+     *         Allows filtering by `project_id` using one or more operators. (optional)
      * @param  \Upsun\Model\StringFilter|null $filterProjectTitle (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterRegion (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterRegion
+     *         Allows filtering by `region` using one or more operators. (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
      *         Allows filtering by `updated_at` using one or more operators. (optional)
      * @param  int|null $pageSize
@@ -2293,9 +2297,11 @@ final class SubscriptionsApi extends AbstractApi
      *         The ID of the organization. (required)
      * @param  string|null $filterStatus (optional)
      * @param  \Upsun\Model\StringFilter|null $filterId (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterProjectId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterProjectId
+     *         Allows filtering by `project_id` using one or more operators. (optional)
      * @param  \Upsun\Model\StringFilter|null $filterProjectTitle (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterRegion (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterRegion
+     *         Allows filtering by `region` using one or more operators. (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
      *         Allows filtering by `updated_at` using one or more operators. (optional)
      * @param  int|null $pageSize

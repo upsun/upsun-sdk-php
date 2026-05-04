@@ -165,6 +165,9 @@ final class Config implements Model, JsonSerializable
         return $this->healthEmail;
     }
 
+    /**
+     * Health Webhook notification integration configurations
+     */
     public function getHealthWebhook(): ?HealthWebHook
     {
         return $this->healthWebhook;

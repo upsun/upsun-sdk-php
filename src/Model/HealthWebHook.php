@@ -6,6 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level HealthWebHook (auto-generated)
+ * Health Webhook notification integration configurations
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

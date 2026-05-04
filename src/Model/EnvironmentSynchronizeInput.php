@@ -14,10 +14,10 @@ use JsonSerializable;
 final class EnvironmentSynchronizeInput implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly bool $synchronizeCode,
-        private readonly bool $rebase,
-        private readonly bool $synchronizeData,
-        private readonly bool $synchronizeResources,
+        private readonly ?bool $synchronizeCode = null,
+        private readonly ?bool $rebase = null,
+        private readonly ?bool $synchronizeData = null,
+        private readonly ?bool $synchronizeResources = null,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class EnvironmentSynchronizeInput implements Model, JsonSerializable
     /**
      * Synchronize code?
      */
-    public function getSynchronizeCode(): bool
+    public function getSynchronizeCode(): ?bool
     {
         return $this->synchronizeCode;
     }
@@ -52,7 +52,7 @@ final class EnvironmentSynchronizeInput implements Model, JsonSerializable
     /**
      * Synchronize code by rebasing instead of merging
      */
-    public function getRebase(): bool
+    public function getRebase(): ?bool
     {
         return $this->rebase;
     }
@@ -60,7 +60,7 @@ final class EnvironmentSynchronizeInput implements Model, JsonSerializable
     /**
      * Synchronize data?
      */
-    public function getSynchronizeData(): bool
+    public function getSynchronizeData(): ?bool
     {
         return $this->synchronizeData;
     }
@@ -68,7 +68,7 @@ final class EnvironmentSynchronizeInput implements Model, JsonSerializable
     /**
      * Synchronize resources?
      */
-    public function getSynchronizeResources(): bool
+    public function getSynchronizeResources(): ?bool
     {
         return $this->synchronizeResources;
     }

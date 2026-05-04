@@ -23,6 +23,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
 
     public function __construct(
         private readonly string $type,
+        private readonly string $role,
         private readonly bool $fetchBranches,
         private readonly bool $pruneBranches,
         private readonly string $environmentInitResources,
@@ -50,6 +51,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
+            'role' => $this->role,
             'fetchBranches' => $this->fetchBranches,
             'pruneBranches' => $this->pruneBranches,
             'environmentInitResources' => $this->environmentInitResources,
@@ -85,13 +87,24 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
         return $this->updatedAt;
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * Whether or not to fetch branches.
+     * The role of the integration
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * Whether or not to fetch branches
      */
     public function getFetchBranches(): bool
     {
@@ -99,7 +112,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
      */
     public function getPruneBranches(): bool
     {
@@ -115,7 +128,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * The base URL of the Github API endpoint.
+     * The base URL of the Github API endpoint
      */
     public function getBaseUrl(): ?string
     {
@@ -123,7 +136,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * The GitHub repository (in the form `user/repo`).
+     * The GitHub repository (in the form `user/repo`)
      */
     public function getRepository(): string
     {
@@ -131,7 +144,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not to build pull requests.
+     * Whether or not to build pull requests
      */
     public function getBuildPullRequests(): bool
     {
@@ -139,7 +152,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not to build draft pull requests (requires `build_pull_requests`).
+     * Whether or not to build draft pull requests (requires `build_pull_requests`)
      */
     public function getBuildDraftPullRequests(): bool
     {
@@ -147,7 +160,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether to build pull requests post-merge (if true) or pre-merge (if false).
+     * Whether to build pull requests post-merge (if true) or pre-merge (if false)
      */
     public function getBuildPullRequestsPostMerge(): bool
     {
@@ -155,7 +168,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not to clone parent data when building pull requests.
+     * Whether or not to clone parent data when building pull requests
      */
     public function getPullRequestsCloneParentData(): bool
     {

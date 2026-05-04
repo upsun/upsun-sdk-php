@@ -520,6 +520,7 @@ final class OrganizationsApi extends AbstractApi
      * @param  \Upsun\Model\StringFilter|null $filterOwnerId (optional)
      * @param  \Upsun\Model\StringFilter|null $filterName (optional)
      * @param  \Upsun\Model\StringFilter|null $filterLabel (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterBillingProfileId (optional)
      * @param  \Upsun\Model\StringFilter|null $filterVendor (optional)
      * @param  \Upsun\Model\ArrayFilter|null $filterCapabilities (optional)
      * @param  \Upsun\Model\StringFilter|null $filterStatus (optional)
@@ -539,6 +540,7 @@ final class OrganizationsApi extends AbstractApi
         ?StringFilter $filterOwnerId = null,
         ?StringFilter $filterName = null,
         ?StringFilter $filterLabel = null,
+        ?StringFilter $filterBillingProfileId = null,
         ?StringFilter $filterVendor = null,
         ?ArrayFilter $filterCapabilities = null,
         ?StringFilter $filterStatus = null,
@@ -554,6 +556,7 @@ final class OrganizationsApi extends AbstractApi
             $filterOwnerId,
             $filterName,
             $filterLabel,
+            $filterBillingProfileId,
             $filterVendor,
             $filterCapabilities,
             $filterStatus,
@@ -573,6 +576,7 @@ final class OrganizationsApi extends AbstractApi
      * @param  \Upsun\Model\StringFilter|null $filterOwnerId (optional)
      * @param  \Upsun\Model\StringFilter|null $filterName (optional)
      * @param  \Upsun\Model\StringFilter|null $filterLabel (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterBillingProfileId (optional)
      * @param  \Upsun\Model\StringFilter|null $filterVendor (optional)
      * @param  \Upsun\Model\ArrayFilter|null $filterCapabilities (optional)
      * @param  \Upsun\Model\StringFilter|null $filterStatus (optional)
@@ -591,6 +595,7 @@ final class OrganizationsApi extends AbstractApi
         ?StringFilter $filterOwnerId = null,
         ?StringFilter $filterName = null,
         ?StringFilter $filterLabel = null,
+        ?StringFilter $filterBillingProfileId = null,
         ?StringFilter $filterVendor = null,
         ?ArrayFilter $filterCapabilities = null,
         ?StringFilter $filterStatus = null,
@@ -606,6 +611,7 @@ final class OrganizationsApi extends AbstractApi
             $filterOwnerId,
             $filterName,
             $filterLabel,
+            $filterBillingProfileId,
             $filterVendor,
             $filterCapabilities,
             $filterStatus,
@@ -651,6 +657,7 @@ final class OrganizationsApi extends AbstractApi
      * @param  \Upsun\Model\StringFilter|null $filterOwnerId (optional)
      * @param  \Upsun\Model\StringFilter|null $filterName (optional)
      * @param  \Upsun\Model\StringFilter|null $filterLabel (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterBillingProfileId (optional)
      * @param  \Upsun\Model\StringFilter|null $filterVendor (optional)
      * @param  \Upsun\Model\ArrayFilter|null $filterCapabilities (optional)
      * @param  \Upsun\Model\StringFilter|null $filterStatus (optional)
@@ -668,6 +675,7 @@ final class OrganizationsApi extends AbstractApi
         ?StringFilter $filterOwnerId = null,
         ?StringFilter $filterName = null,
         ?StringFilter $filterLabel = null,
+        ?StringFilter $filterBillingProfileId = null,
         ?StringFilter $filterVendor = null,
         ?ArrayFilter $filterCapabilities = null,
         ?StringFilter $filterStatus = null,
@@ -760,6 +768,19 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[label]'] = $filterLabel instanceof DateTime
                     ? $filterLabel->format(DATE_ATOM)
                     : ($filterLabel->getEq());
+            }
+        }
+
+        // query params
+        if ($filterBillingProfileId !== null) {
+            if ('form' === 'deepObject' && is_array($filterBillingProfileId)) {
+                foreach ($filterBillingProfileId as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[billing_profile_id]'] = $filterBillingProfileId instanceof DateTime
+                    ? $filterBillingProfileId->format(DATE_ATOM)
+                    : ($filterBillingProfileId->getEq());
             }
         }
 

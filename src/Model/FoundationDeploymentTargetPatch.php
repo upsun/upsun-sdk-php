@@ -15,7 +15,8 @@ final class FoundationDeploymentTargetPatch implements Model, JsonSerializable, 
 {
     public const TYPE_DEDICATED = 'dedicated';
     public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
+    public const TYPE_FOUNDATION = 'foundation';
+    public const TYPE_KUBERNETES = 'kubernetes';
 
     public function __construct(
         private readonly string $type,
@@ -46,7 +47,7 @@ final class FoundationDeploymentTargetPatch implements Model, JsonSerializable, 
     }
 
     /**
-     * The type of the deployment target.
+     * The type of the deployment target
      */
     public function getType(): string
     {
@@ -54,7 +55,7 @@ final class FoundationDeploymentTargetPatch implements Model, JsonSerializable, 
     }
 
     /**
-     * The name of the deployment target.
+     * The name of the deployment target
      */
     public function getName(): string
     {
@@ -62,7 +63,7 @@ final class FoundationDeploymentTargetPatch implements Model, JsonSerializable, 
     }
 
     /**
-     * The hosts of the deployment target.
+     * The hosts of the deployment target
      * @return DeploymentHostsInner[]|null
      */
     public function getHosts(): ?array

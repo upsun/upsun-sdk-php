@@ -14,6 +14,7 @@ use JsonSerializable;
 final class ProjectCapabilities implements Model, JsonSerializable
 {
     public function __construct(
+        private readonly Tasks $tasks,
         private readonly Metrics $metrics,
         private readonly LogsForwarding $logsForwarding,
         private readonly GuaranteedResources $guaranteedResources,
@@ -38,6 +39,7 @@ final class ProjectCapabilities implements Model, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'tasks' => $this->tasks,
             'metrics' => $this->metrics,
             'logsForwarding' => $this->logsForwarding,
             'guaranteedResources' => $this->guaranteedResources,
@@ -57,6 +59,11 @@ final class ProjectCapabilities implements Model, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getTasks(): Tasks
+    {
+        return $this->tasks;
     }
 
     public function getMetrics(): Metrics

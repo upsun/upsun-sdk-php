@@ -34,6 +34,7 @@ final class Organization implements Model, JsonSerializable
         private readonly ?string $billingProfileId = null,
         private readonly ?bool $billingLegacy = null,
         private readonly ?string $securityContact = null,
+        private readonly ?OrganizationAiAgentSettings $aiAgentSettings = null,
         private readonly ?string $status = null,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
@@ -61,6 +62,7 @@ final class Organization implements Model, JsonSerializable
             'billingProfileId' => $this->billingProfileId,
             'billingLegacy' => $this->billingLegacy,
             'securityContact' => $this->securityContact,
+            'aiAgentSettings' => $this->aiAgentSettings,
             'status' => $this->status,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
@@ -164,6 +166,14 @@ final class Organization implements Model, JsonSerializable
     public function getSecurityContact(): ?string
     {
         return $this->securityContact;
+    }
+
+    /**
+     * AI agent consent settings for the organization.
+     */
+    public function getAiAgentSettings(): ?OrganizationAiAgentSettings
+    {
+        return $this->aiAgentSettings;
     }
 
     /**

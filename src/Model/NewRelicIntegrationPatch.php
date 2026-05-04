@@ -45,11 +45,17 @@ final class NewRelicIntegrationPatch implements Model, JsonSerializable, Integra
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
+    /**
+     * The NewRelic Logs endpoint
+     */
     public function getUrl(): string
     {
         return $this->url;

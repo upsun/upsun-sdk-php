@@ -15,12 +15,19 @@ use JsonSerializable;
  */
 final class DeploymentState implements Model, JsonSerializable
 {
+    public const LAST_DEPLOYMENT_FAILURE_REASON_ERROR = 'error';
+    public const LAST_DEPLOYMENT_FAILURE_REASON_SHELL = 'shell';
+
     public function __construct(
+        private readonly bool $lastStateUpdateSuccessful,
         private readonly bool $lastDeploymentSuccessful,
+        private readonly array $lastDeploymentCommands,
         private readonly CronsDeploymentState $crons,
+        private readonly ?string $lastDeploymentFailureReason,
         private readonly ?DateTime $lastDeploymentAt,
         private readonly ?DateTime $lastAutoscaleUpAt,
         private readonly ?DateTime $lastAutoscaleDownAt,
+        private readonly ?DateTime $lastMaintenanceAt,
     ) {
     }
 
@@ -32,10 +39,14 @@ final class DeploymentState implements Model, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'lastStateUpdateSuccessful' => $this->lastStateUpdateSuccessful,
             'lastDeploymentSuccessful' => $this->lastDeploymentSuccessful,
+            'lastDeploymentFailureReason' => $this->lastDeploymentFailureReason,
+            'lastDeploymentCommands' => $this->lastDeploymentCommands,
             'lastDeploymentAt' => $this->lastDeploymentAt?->format(DATE_ATOM),
             'lastAutoscaleUpAt' => $this->lastAutoscaleUpAt?->format(DATE_ATOM),
             'lastAutoscaleDownAt' => $this->lastAutoscaleDownAt?->format(DATE_ATOM),
+            'lastMaintenanceAt' => $this->lastMaintenanceAt?->format(DATE_ATOM),
             'crons' => $this->crons,
         ];
     }
@@ -46,11 +57,36 @@ final class DeploymentState implements Model, JsonSerializable
     }
 
     /**
+     * Whether the last deployment has correctly switched state (does not mean it was successful)
+     */
+    public function getLastStateUpdateSuccessful(): bool
+    {
+        return $this->lastStateUpdateSuccessful;
+    }
+
+    /**
      * Whether the last deployment was successful
      */
     public function getLastDeploymentSuccessful(): bool
     {
         return $this->lastDeploymentSuccessful;
+    }
+
+    /**
+     * The reason for failure of the last deployment
+     */
+    public function getLastDeploymentFailureReason(): ?string
+    {
+        return $this->lastDeploymentFailureReason;
+    }
+
+    /**
+     * The commands executed during the last deployment
+     * @return LastDeploymentCommandsInner[]
+     */
+    public function getLastDeploymentCommands(): array
+    {
+        return $this->lastDeploymentCommands;
     }
 
     /**
@@ -75,6 +111,14 @@ final class DeploymentState implements Model, JsonSerializable
     public function getLastAutoscaleDownAt(): ?DateTime
     {
         return $this->lastAutoscaleDownAt;
+    }
+
+    /**
+     * Datetime of the last maintenance
+     */
+    public function getLastMaintenanceAt(): ?DateTime
+    {
+        return $this->lastMaintenanceAt;
     }
 
     /**

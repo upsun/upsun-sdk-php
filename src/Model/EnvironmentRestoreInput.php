@@ -14,11 +14,11 @@ use JsonSerializable;
 final class EnvironmentRestoreInput implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly bool $restoreCode,
-        private readonly bool $restoreResources,
-        private readonly ?string $environmentName,
-        private readonly ?string $branchFrom,
-        private readonly ?Resources6 $resources,
+        private readonly ?string $environmentName = null,
+        private readonly ?string $branchFrom = null,
+        private readonly ?Resources6 $resources = null,
+        private readonly ?bool $restoreCode = null,
+        private readonly ?bool $restoreResources = null,
     ) {
     }
 
@@ -56,7 +56,7 @@ final class EnvironmentRestoreInput implements Model, JsonSerializable
     /**
      * Whether we should restore the code or only the data
      */
-    public function getRestoreCode(): bool
+    public function getRestoreCode(): ?bool
     {
         return $this->restoreCode;
     }
@@ -64,7 +64,7 @@ final class EnvironmentRestoreInput implements Model, JsonSerializable
     /**
      * Whether we should restore resources configuration from the backup
      */
-    public function getRestoreResources(): bool
+    public function getRestoreResources(): ?bool
     {
         return $this->restoreResources;
     }

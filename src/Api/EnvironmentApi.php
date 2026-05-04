@@ -21,9 +21,6 @@ use Upsun\Model\EnvironmentInitializeInput;
 use Upsun\Model\EnvironmentMergeInput;
 use Upsun\Model\EnvironmentPatch;
 use Upsun\Model\EnvironmentSynchronizeInput;
-use Upsun\Model\Version;
-use Upsun\Model\VersionCreateInput;
-use Upsun\Model\VersionPatch;
 
 /**
  * Low level EnvironmentApi (auto-generated)
@@ -446,201 +443,6 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Create versions associated with the environment
-     *
-     * Create versions associated with the `{environmentId}` environment. At least one version always exists. When
-     * multiple versions exist, it means that multiple versions of an app are deployed. The deployment target type
-     * denotes whether staged deployment is supported.
-     *
-     * @param  \Upsun\Model\VersionCreateInput $versionCreateInput (required)
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @see https://docs.upsun.com/api/#tag/Environment/operation/create-projects-environments-versions
-     */
-    public function createProjectsEnvironmentsVersions(
-        string $projectId,
-        string $environmentId,
-        VersionCreateInput $versionCreateInput
-    ): AcceptedResponse {
-        return $this->createProjectsEnvironmentsVersionsWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $versionCreateInput
-        );
-    }
-
-    /**
-     * Create versions associated with the environment with HTTP Info
-     *
-     * @param  \Upsun\Model\VersionCreateInput $versionCreateInput (required)
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-    */
-    private function createProjectsEnvironmentsVersionsWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        VersionCreateInput $versionCreateInput
-    ): AcceptedResponse {
-        $request = $this->createProjectsEnvironmentsVersionsRequest(
-            $projectId,
-            $environmentId,
-            $versionCreateInput
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders(),
-                $request->getBody()
-            );
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response
-            );
-        } catch (Exception $exception) {
-            throw new ApiException(
-                sprintf(
-                    '[%d] Error connecting to the API (%s)',
-                    $exception->getCode(),
-                    '/projects/{projectId}/environments/{environmentId}/versions'
-                ),
-                $request,
-                $response ?? null,
-                $exception
-            );
-        }
-    }
-
-    /**
-     * Create request for operation 'createProjectsEnvironmentsVersions'
-     *
-     * @param  \Upsun\Model\VersionCreateInput $versionCreateInput (required)
-     *
-     * @throws InvalidArgumentException
-     */
-    private function createProjectsEnvironmentsVersionsRequest(
-        string $projectId,
-        string $environmentId,
-        VersionCreateInput $versionCreateInput
-    ): RequestInterface {
-        // verify the required parameter 'projectId' is set
-        if (empty($projectId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $projectId
-                when calling createProjectsEnvironmentsVersions'
-            );
-        }
-        // verify the required parameter 'environmentId' is set
-        if (empty($environmentId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId
-                when calling createProjectsEnvironmentsVersions'
-            );
-        }
-        // verify the required parameter 'versionCreateInput' is set
-        if (empty($versionCreateInput)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $versionCreateInput
-                when calling createProjectsEnvironmentsVersions'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-        // path params
-
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-        // path params
-
-        if ($environmentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environmentId),
-                $resourcePath
-            );
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            'application/json',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($versionCreateInput)) {
-            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($versionCreateInput)
-                );
-            } else {
-                $httpBody = $versionCreateInput;
-            }
-        } elseif ($formParams !== []) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-        if ($this->config->getUpsunClientHeader()) {
-            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('POST', $uri, $headers, $httpBody);
-    }
-
-    /**
      * Deactivate an environment
      *
      * Destroy all services and data running on this environment so that only the Git branch remains. The environment
@@ -922,198 +724,6 @@ final class EnvironmentApi extends AbstractApi
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
                 ObjectSerializer::toPathValue($environmentId),
-                $resourcePath
-            );
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            '',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if ($formParams !== []) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-        if ($this->config->getUpsunClientHeader()) {
-            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('DELETE', $uri, $headers, $httpBody);
-    }
-
-    /**
-     * Delete the version
-     *
-     * Delete the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if
-     * the deployment target supports it).
-     *
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @see https://docs.upsun.com/api/#tag/Environment/operation/delete-projects-environments-versions
-     */
-    public function deleteProjectsEnvironmentsVersions(
-        string $projectId,
-        string $environmentId,
-        string $versionId
-    ): AcceptedResponse {
-        return $this->deleteProjectsEnvironmentsVersionsWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $versionId
-        );
-    }
-
-    /**
-     * Delete the version with HTTP Info
-     *
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-    */
-    private function deleteProjectsEnvironmentsVersionsWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $versionId
-    ): AcceptedResponse {
-        $request = $this->deleteProjectsEnvironmentsVersionsRequest(
-            $projectId,
-            $environmentId,
-            $versionId
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders(),
-                $request->getBody()
-            );
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response
-            );
-        } catch (Exception $exception) {
-            throw new ApiException(
-                sprintf(
-                    '[%d] Error connecting to the API (%s)',
-                    $exception->getCode(),
-                    '/projects/{projectId}/environments/{environmentId}/versions/{versionId}'
-                ),
-                $request,
-                $response ?? null,
-                $exception
-            );
-        }
-    }
-
-    /**
-     * Create request for operation 'deleteProjectsEnvironmentsVersions'
-     *
-     *
-     * @throws InvalidArgumentException
-     */
-    private function deleteProjectsEnvironmentsVersionsRequest(
-        string $projectId,
-        string $environmentId,
-        string $versionId
-    ): RequestInterface {
-        // verify the required parameter 'projectId' is set
-        if (empty($projectId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $projectId
-                when calling deleteProjectsEnvironmentsVersions'
-            );
-        }
-        // verify the required parameter 'environmentId' is set
-        if (empty($environmentId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId
-                when calling deleteProjectsEnvironmentsVersions'
-            );
-        }
-        // verify the required parameter 'versionId' is set
-        if (empty($versionId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $versionId
-                when calling deleteProjectsEnvironmentsVersions'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-        // path params
-
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-        // path params
-
-        if ($environmentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environmentId),
-                $resourcePath
-            );
-        }
-        // path params
-
-        if ($versionId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'versionId' . '}',
-                ObjectSerializer::toPathValue($versionId),
                 $resourcePath
             );
         }
@@ -1540,198 +1150,6 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * List the version
-     *
-     * List the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if
-     * the deployment target supports it).
-     *
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @see https://docs.upsun.com/api/#tag/Environment/operation/get-projects-environments-versions
-     */
-    public function getProjectsEnvironmentsVersions(
-        string $projectId,
-        string $environmentId,
-        string $versionId
-    ): Version {
-        return $this->getProjectsEnvironmentsVersionsWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $versionId
-        );
-    }
-
-    /**
-     * List the version with HTTP Info
-     *
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-    */
-    private function getProjectsEnvironmentsVersionsWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $versionId
-    ): Version {
-        $request = $this->getProjectsEnvironmentsVersionsRequest(
-            $projectId,
-            $environmentId,
-            $versionId
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders(),
-                $request->getBody()
-            );
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\Version',
-                $request,
-                $response
-            );
-        } catch (Exception $exception) {
-            throw new ApiException(
-                sprintf(
-                    '[%d] Error connecting to the API (%s)',
-                    $exception->getCode(),
-                    '/projects/{projectId}/environments/{environmentId}/versions/{versionId}'
-                ),
-                $request,
-                $response ?? null,
-                $exception
-            );
-        }
-    }
-
-    /**
-     * Create request for operation 'getProjectsEnvironmentsVersions'
-     *
-     *
-     * @throws InvalidArgumentException
-     */
-    private function getProjectsEnvironmentsVersionsRequest(
-        string $projectId,
-        string $environmentId,
-        string $versionId
-    ): RequestInterface {
-        // verify the required parameter 'projectId' is set
-        if (empty($projectId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $projectId
-                when calling getProjectsEnvironmentsVersions'
-            );
-        }
-        // verify the required parameter 'environmentId' is set
-        if (empty($environmentId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId
-                when calling getProjectsEnvironmentsVersions'
-            );
-        }
-        // verify the required parameter 'versionId' is set
-        if (empty($versionId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $versionId
-                when calling getProjectsEnvironmentsVersions'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-        // path params
-
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-        // path params
-
-        if ($environmentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environmentId),
-                $resourcePath
-            );
-        }
-        // path params
-
-        if ($versionId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'versionId' . '}',
-                ObjectSerializer::toPathValue($versionId),
-                $resourcePath
-            );
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            '',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if ($formParams !== []) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-        if ($this->config->getUpsunClientHeader()) {
-            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('GET', $uri, $headers, $httpBody);
-    }
-
-    /**
      * Initialize a new environment
      *
      * Initialize and configure a new environment with an existing repository. The payload is the url of a git
@@ -2084,43 +1502,33 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * List versions associated with the environment
-     *
-     * List versions associated with the `{environmentId}` environment. At least one version always exists. When
-     * multiple versions exist, it means that multiple versions of an app are deployed. The deployment target type
-     * denotes whether staged deployment is supported.
      *
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     *
-     * @return \Upsun\Model\Version[]
-     * @see https://docs.upsun.com/api/#tag/Environment/operation/list-projects-environments-versions
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/maintenance-redeploy-environment
      */
-    public function listProjectsEnvironmentsVersions(
+    public function maintenanceRedeployEnvironment(
         string $projectId,
         string $environmentId
-    ): array {
-        return $this->listProjectsEnvironmentsVersionsWithHttpInfo(
+    ): AcceptedResponse {
+        return $this->maintenanceRedeployEnvironmentWithHttpInfo(
             $projectId,
             $environmentId
         );
     }
 
     /**
-     * List versions associated with the environment with HTTP Info
      *
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     *
-     * @return \Upsun\Model\Version[]
     */
-    private function listProjectsEnvironmentsVersionsWithHttpInfo(
+    private function maintenanceRedeployEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): array {
-        $request = $this->listProjectsEnvironmentsVersionsRequest(
+    ): AcceptedResponse {
+        $request = $this->maintenanceRedeployEnvironmentRequest(
             $projectId,
             $environmentId
         );
@@ -2134,7 +1542,7 @@ final class EnvironmentApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Version[]',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
@@ -2143,7 +1551,7 @@ final class EnvironmentApi extends AbstractApi
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
                     $exception->getCode(),
-                    '/projects/{projectId}/environments/{environmentId}/versions'
+                    '/projects/{projectId}/environments/{environmentId}/maintenance-redeploy'
                 ),
                 $request,
                 $response ?? null,
@@ -2153,12 +1561,12 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Create request for operation 'listProjectsEnvironmentsVersions'
+     * Create request for operation 'maintenanceRedeployEnvironment'
      *
      *
      * @throws InvalidArgumentException
      */
-    private function listProjectsEnvironmentsVersionsRequest(
+    private function maintenanceRedeployEnvironmentRequest(
         string $projectId,
         string $environmentId
     ): RequestInterface {
@@ -2166,18 +1574,18 @@ final class EnvironmentApi extends AbstractApi
         if (empty($projectId)) {
             throw new InvalidArgumentException(
                 'Missing the required parameter $projectId
-                when calling listProjectsEnvironmentsVersions'
+                when calling maintenanceRedeployEnvironment'
             );
         }
         // verify the required parameter 'environmentId' is set
         if (empty($environmentId)) {
             throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId
-                when calling listProjectsEnvironmentsVersions'
+                when calling maintenanceRedeployEnvironment'
             );
         }
 
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions';
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/maintenance-redeploy';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2256,7 +1664,7 @@ final class EnvironmentApi extends AbstractApi
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
 
-        return $this->createRequest('GET', $uri, $headers, $httpBody);
+        return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 
     /**
@@ -3309,221 +2717,6 @@ final class EnvironmentApi extends AbstractApi
                 );
             } else {
                 $httpBody = $environmentPatch;
-            }
-        } elseif ($formParams !== []) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-        if ($this->config->getUpsunClientHeader()) {
-            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('PATCH', $uri, $headers, $httpBody);
-    }
-
-    /**
-     * Update the version
-     *
-     * Update the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if
-     * the deployment target supports it).
-     *
-     * @param  \Upsun\Model\VersionPatch $versionPatch (required)
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @see https://docs.upsun.com/api/#tag/Environment/operation/update-projects-environments-versions
-     */
-    public function updateProjectsEnvironmentsVersions(
-        string $projectId,
-        string $environmentId,
-        string $versionId,
-        VersionPatch $versionPatch
-    ): AcceptedResponse {
-        return $this->updateProjectsEnvironmentsVersionsWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $versionId,
-            $versionPatch
-        );
-    }
-
-    /**
-     * Update the version with HTTP Info
-     *
-     * @param  \Upsun\Model\VersionPatch $versionPatch (required)
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-    */
-    private function updateProjectsEnvironmentsVersionsWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $versionId,
-        VersionPatch $versionPatch
-    ): AcceptedResponse {
-        $request = $this->updateProjectsEnvironmentsVersionsRequest(
-            $projectId,
-            $environmentId,
-            $versionId,
-            $versionPatch
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders(),
-                $request->getBody()
-            );
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
-                $request,
-                $response
-            );
-        } catch (Exception $exception) {
-            throw new ApiException(
-                sprintf(
-                    '[%d] Error connecting to the API (%s)',
-                    $exception->getCode(),
-                    '/projects/{projectId}/environments/{environmentId}/versions/{versionId}'
-                ),
-                $request,
-                $response ?? null,
-                $exception
-            );
-        }
-    }
-
-    /**
-     * Create request for operation 'updateProjectsEnvironmentsVersions'
-     *
-     * @param  \Upsun\Model\VersionPatch $versionPatch (required)
-     *
-     * @throws InvalidArgumentException
-     */
-    private function updateProjectsEnvironmentsVersionsRequest(
-        string $projectId,
-        string $environmentId,
-        string $versionId,
-        VersionPatch $versionPatch
-    ): RequestInterface {
-        // verify the required parameter 'projectId' is set
-        if (empty($projectId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $projectId
-                when calling updateProjectsEnvironmentsVersions'
-            );
-        }
-        // verify the required parameter 'environmentId' is set
-        if (empty($environmentId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId
-                when calling updateProjectsEnvironmentsVersions'
-            );
-        }
-        // verify the required parameter 'versionId' is set
-        if (empty($versionId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $versionId
-                when calling updateProjectsEnvironmentsVersions'
-            );
-        }
-        // verify the required parameter 'versionPatch' is set
-        if (empty($versionPatch)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $versionPatch
-                when calling updateProjectsEnvironmentsVersions'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/versions/{versionId}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-        // path params
-
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-        // path params
-
-        if ($environmentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environmentId),
-                $resourcePath
-            );
-        }
-        // path params
-
-        if ($versionId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'versionId' . '}',
-                ObjectSerializer::toPathValue($versionId),
-                $resourcePath
-            );
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            'application/json',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($versionPatch)) {
-            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($versionPatch)
-                );
-            } else {
-                $httpBody = $versionPatch;
             }
         } elseif ($formParams !== []) {
             if ($multipart) {

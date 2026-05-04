@@ -31,6 +31,7 @@ final class Project implements Model, JsonSerializable
         private readonly ?string $organization,
         private readonly ?string $defaultBranch,
         private readonly ?string $defaultDomain,
+        private readonly ?Maintenance $maintenance,
     ) {
     }
 
@@ -58,6 +59,7 @@ final class Project implements Model, JsonSerializable
             'repository' => $this->repository,
             'defaultDomain' => $this->defaultDomain,
             'subscription' => $this->subscription,
+            'maintenance' => $this->maintenance,
         ];
     }
 
@@ -189,5 +191,13 @@ final class Project implements Model, JsonSerializable
     public function getSubscription(): SubscriptionInformation
     {
         return $this->subscription;
+    }
+
+    /**
+     * The maintenance information of the project
+     */
+    public function getMaintenance(): ?Maintenance
+    {
+        return $this->maintenance;
     }
 }

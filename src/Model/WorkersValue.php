@@ -41,14 +41,16 @@ final class WorkersValue implements Model, JsonSerializable
         private readonly object $runtime,
         private readonly WorkerConfiguration $worker,
         private readonly string $app,
+        private readonly ComposableImages $stack,
         private readonly string $slugId,
+        private readonly bool $supportsHorizontalScaling,
         private readonly ?Resources $resources,
         private readonly ?int $disk,
         private readonly ?string $timezone,
         private readonly ?Firewall $firewall,
         private readonly ?string $containerProfile,
         private readonly ?object $endpoints,
-        private readonly ?array $stack,
+        private readonly ?OCIImage $image,
         private readonly ?int $instanceCount,
     ) {
     }
@@ -83,8 +85,10 @@ final class WorkersValue implements Model, JsonSerializable
             'worker' => $this->worker,
             'app' => $this->app,
             'stack' => $this->stack,
+            'image' => $this->image,
             'instanceCount' => $this->instanceCount,
             'slugId' => $this->slugId,
+            'supportsHorizontalScaling' => $this->supportsHorizontalScaling,
         ];
     }
 
@@ -207,9 +211,14 @@ final class WorkersValue implements Model, JsonSerializable
         return $this->app;
     }
 
-    public function getStack(): ?array
+    public function getStack(): ComposableImages
     {
         return $this->stack;
+    }
+
+    public function getImage(): ?OCIImage
+    {
+        return $this->image;
     }
 
     public function getInstanceCount(): ?int
@@ -220,5 +229,10 @@ final class WorkersValue implements Model, JsonSerializable
     public function getSlugId(): string
     {
         return $this->slugId;
+    }
+
+    public function getSupportsHorizontalScaling(): bool
+    {
+        return $this->supportsHorizontalScaling;
     }
 }

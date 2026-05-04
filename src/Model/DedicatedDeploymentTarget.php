@@ -15,7 +15,8 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
 {
     public const TYPE_DEDICATED = 'dedicated';
     public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
+    public const TYPE_FOUNDATION = 'foundation';
+    public const TYPE_KUBERNETES = 'kubernetes';
 
     public function __construct(
         private readonly string $type,
@@ -66,7 +67,7 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
     }
 
     /**
-     * The type of the deployment target.
+     * The type of the deployment target
      */
     public function getType(): string
     {
@@ -74,7 +75,7 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
     }
 
     /**
-     * The name of the deployment target.
+     * The name of the deployment target
      */
     public function getName(): string
     {
@@ -82,7 +83,7 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
     }
 
     /**
-     * The host to deploy to.
+     * The host to deploy to
      */
     public function getDeployHost(): ?string
     {
@@ -90,7 +91,7 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
     }
 
     /**
-     * The port to deploy to.
+     * The port to deploy to
      */
     public function getDeployPort(): ?int
     {
@@ -98,7 +99,7 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
     }
 
     /**
-     * The host to use to SSH to app containers.
+     * The host to use to SSH to app containers
      */
     public function getSshHost(): ?string
     {
@@ -106,7 +107,7 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
     }
 
     /**
-     * The hosts of the deployment target.
+     * The hosts of the deployment target
      * @return HostsInner[]|null
      */
     public function getHosts(): ?array
@@ -115,7 +116,7 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
     }
 
     /**
-     * Whether to take application mounts from the pushed data or the deployment target.
+     * Whether to take application mounts from the pushed data or the deployment target
      */
     public function getAutoMounts(): bool
     {
@@ -128,7 +129,7 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
     }
 
     /**
-     * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount).
+     * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount)
      */
     public function getEnforcedMounts(): object
     {
@@ -136,7 +137,7 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
     }
 
     /**
-     * Whether to take application crons from the pushed data or the deployment target.
+     * Whether to take application crons from the pushed data or the deployment target
      */
     public function getAutoCrons(): bool
     {
@@ -144,7 +145,7 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
     }
 
     /**
-     * Whether to take application crons from the pushed data or the deployment target.
+     * Whether to take application crons from the pushed data or the deployment target
      */
     public function getAutoNginx(): bool
     {

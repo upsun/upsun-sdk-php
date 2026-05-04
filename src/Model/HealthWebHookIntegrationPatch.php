@@ -39,6 +39,9 @@ final class HealthWebHookIntegrationPatch implements Model, JsonSerializable, In
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;

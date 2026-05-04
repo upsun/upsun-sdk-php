@@ -39,6 +39,9 @@ final class ReplacementDomainStorageCreateInput implements Model, JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The domain name
+     */
     public function getName(): string
     {
         return $this->name;
@@ -50,7 +53,7 @@ final class ReplacementDomainStorageCreateInput implements Model, JsonSerializab
     }
 
     /**
-     * Prod domain which will be replaced by this domain.
+     * Prod domain which will be replaced by this domain
      */
     public function getReplacementFor(): ?string
     {

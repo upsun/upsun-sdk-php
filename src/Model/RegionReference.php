@@ -25,7 +25,7 @@ final class RegionReference implements Model, JsonSerializable
         private readonly bool $available,
         private readonly string $endpoint,
         private readonly RegionProvider $provider,
-        private readonly RegionDataCenter $datacenter,
+        private readonly RegionDatacenter $datacenter,
         private readonly RegionCompliance $compliance,
         private readonly DateTime $createdAt,
         private readonly DateTime $updatedAt,
@@ -143,7 +143,7 @@ final class RegionReference implements Model, JsonSerializable
     /**
      * Information about the region provider data center.
      */
-    public function getDatacenter(): RegionDataCenter
+    public function getDatacenter(): RegionDatacenter
     {
         return $this->datacenter;
     }

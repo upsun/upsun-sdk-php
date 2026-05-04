@@ -15,7 +15,7 @@ final class EnvironmentSourceOperationInput implements Model, JsonSerializable
 {
     public function __construct(
         private readonly string $operation,
-        private readonly array $variables,
+        private readonly ?array $variables = [],
     ) {
     }
 
@@ -45,7 +45,7 @@ final class EnvironmentSourceOperationInput implements Model, JsonSerializable
         return $this->operation;
     }
 
-    public function getVariables(): array
+    public function getVariables(): ?array
     {
         return $this->variables;
     }

@@ -26,6 +26,7 @@ final class FastlyIntegrationPatch implements Model, JsonSerializable, Integrati
         private readonly ?array $excludedEnvironments = [],
         private readonly ?array $states = [],
         private readonly ?string $result = null,
+        private readonly ?bool $tlsCertificates = null,
     ) {
     }
 
@@ -45,6 +46,7 @@ final class FastlyIntegrationPatch implements Model, JsonSerializable, Integrati
             'excludedEnvironments' => $this->excludedEnvironments,
             'states' => $this->states,
             'result' => $this->result,
+            'tlsCertificates' => $this->tlsCertificates,
         ];
     }
 
@@ -53,6 +55,9 @@ final class FastlyIntegrationPatch implements Model, JsonSerializable, Integrati
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
@@ -66,6 +71,9 @@ final class FastlyIntegrationPatch implements Model, JsonSerializable, Integrati
         return $this->token;
     }
 
+    /**
+     * The Fastly Service ID
+     */
     public function getServiceId(): string
     {
         return $this->serviceId;
@@ -97,5 +105,13 @@ final class FastlyIntegrationPatch implements Model, JsonSerializable, Integrati
     public function getResult(): ?string
     {
         return $this->result;
+    }
+
+    /**
+     * Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
+     */
+    public function getTlsCertificates(): ?bool
+    {
+        return $this->tlsCertificates;
     }
 }

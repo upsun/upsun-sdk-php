@@ -22,6 +22,8 @@ final class Activity implements Model, JsonSerializable
     public const STATE_STAGED = 'staged';
     public const RESULT_FAILURE = 'failure';
     public const RESULT_SUCCESS = 'success';
+    public const FAILURE_REASON_ERROR = 'error';
+    public const FAILURE_REASON_SHELL = 'shell';
 
     public function __construct(
         private readonly string $id,
@@ -37,6 +39,7 @@ final class Activity implements Model, JsonSerializable
         private readonly ?DateTime $createdAt,
         private readonly ?DateTime $updatedAt,
         private readonly ?string $result,
+        private readonly ?string $failureReason,
         private readonly ?DateTime $startedAt,
         private readonly ?DateTime $completedAt,
         private readonly ?DateTime $cancelledAt,
@@ -64,6 +67,7 @@ final class Activity implements Model, JsonSerializable
             'project' => $this->project,
             'state' => $this->state,
             'result' => $this->result,
+            'failureReason' => $this->failureReason,
             'startedAt' => $this->startedAt?->format(DATE_ATOM),
             'completedAt' => $this->completedAt?->format(DATE_ATOM),
             'completionPercent' => $this->completionPercent,
@@ -147,6 +151,14 @@ final class Activity implements Model, JsonSerializable
     public function getResult(): ?string
     {
         return $this->result;
+    }
+
+    /**
+     * The reason for activity failure
+     */
+    public function getFailureReason(): ?string
+    {
+        return $this->failureReason;
     }
 
     /**

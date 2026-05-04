@@ -45,11 +45,17 @@ final class HttpLogIntegrationPatch implements Model, JsonSerializable, Integrat
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
+    /**
+     * The HTTP endpoint
+     */
     public function getUrl(): string
     {
         return $this->url;
@@ -73,6 +79,9 @@ final class HttpLogIntegrationPatch implements Model, JsonSerializable, Integrat
         return $this->tlsVerify;
     }
 
+    /**
+     * The type of the integration
+     */
     public function getExcludedServices(): ?string
     {
         return $this->excludedServices;

@@ -14,7 +14,7 @@ use JsonSerializable;
 final class EnvironmentActivateInput implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly ?Resources2 $resources,
+        private readonly ?Resources2 $resources = null,
     ) {
     }
 

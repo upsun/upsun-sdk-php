@@ -21,6 +21,7 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
 
     public function __construct(
         private readonly string $type,
+        private readonly string $role,
         private readonly bool $fetchBranches,
         private readonly bool $pruneBranches,
         private readonly string $environmentInitResources,
@@ -47,6 +48,7 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
+            'role' => $this->role,
             'fetchBranches' => $this->fetchBranches,
             'pruneBranches' => $this->pruneBranches,
             'environmentInitResources' => $this->environmentInitResources,
@@ -81,13 +83,24 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
         return $this->updatedAt;
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * Whether or not to fetch branches.
+     * The role of the integration
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * Whether or not to fetch branches
      */
     public function getFetchBranches(): bool
     {
@@ -95,7 +108,7 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
      */
     public function getPruneBranches(): bool
     {
@@ -111,7 +124,7 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * The Bitbucket repository (in the form `user/repo`).
+     * The Bitbucket repository (in the form `user/repo`)
      */
     public function getRepository(): string
     {
@@ -119,7 +132,7 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not to build pull requests.
+     * Whether or not to build pull requests
      */
     public function getBuildPullRequests(): bool
     {
@@ -127,7 +140,7 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not to clone parent data when building merge requests.
+     * Whether or not to clone parent data when building merge requests
      */
     public function getPullRequestsCloneParentData(): bool
     {
@@ -135,7 +148,7 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not pull request environment data should be re-synced on every build.
+     * Whether or not pull request environment data should be re-synced on every build
      */
     public function getResyncPullRequests(): bool
     {
@@ -151,7 +164,7 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * The OAuth2 consumer information (optional).
+     * The OAuth2 consumer information (optional)
      */
     public function getAppCredentials(): ?OAuth2Consumer
     {
@@ -159,7 +172,7 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * The addon credential information (optional).
+     * The addon credential information (optional)
      */
     public function getAddonCredentials(): ?AddonCredential
     {
