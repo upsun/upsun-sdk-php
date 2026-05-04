@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,7 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\Connection;
 
 /**
  * Low level ConnectionsApi (auto-generated)
@@ -124,6 +124,7 @@ final class ConnectionsApi extends AbstractApi
         string $provider,
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'provider' is set
         if (empty($provider)) {
             throw new InvalidArgumentException(
@@ -164,6 +165,7 @@ final class ConnectionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -237,7 +239,7 @@ final class ConnectionsApi extends AbstractApi
     public function getLoginConnection(
         string $provider,
         string $userId
-    ): Connection {
+    ): \Upsun\Model\Connection {
         return $this->getLoginConnectionWithHttpInfo(
             $provider,
             $userId
@@ -257,7 +259,7 @@ final class ConnectionsApi extends AbstractApi
     private function getLoginConnectionWithHttpInfo(
         string $provider,
         string $userId
-    ): Connection {
+    ): \Upsun\Model\Connection {
         $request = $this->getLoginConnectionRequest(
             $provider,
             $userId
@@ -303,6 +305,7 @@ final class ConnectionsApi extends AbstractApi
         string $provider,
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'provider' is set
         if (empty($provider)) {
             throw new InvalidArgumentException(
@@ -343,6 +346,7 @@ final class ConnectionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -478,6 +482,7 @@ final class ConnectionsApi extends AbstractApi
     private function listLoginConnectionsRequest(
         string $userId
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -502,6 +507,7 @@ final class ConnectionsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class HttpMetricsOverview200Response implements Model, JsonSerializable
 {
+
     public const _ENVIRONMENT_TYPE_PRODUCTION = 'production';
     public const _ENVIRONMENT_TYPE_STAGING = 'staging';
     public const _ENVIRONMENT_TYPE_DEVELOPMENT = 'development';
@@ -29,6 +30,7 @@ final class HttpMetricsOverview200Response implements Model, JsonSerializable
         private readonly HttpMetricsOverview200ResponseData $data,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -100,3 +102,4 @@ final class HttpMetricsOverview200Response implements Model, JsonSerializable
         return $this->data;
     }
 }
+

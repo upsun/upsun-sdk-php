@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ResourcesSummary400Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $title,
@@ -20,6 +22,7 @@ final class ResourcesSummary400Response implements Model, JsonSerializable
         private readonly array $violations,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -61,3 +64,4 @@ final class ResourcesSummary400Response implements Model, JsonSerializable
         return $this->violations;
     }
 }
+

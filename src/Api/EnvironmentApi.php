@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,15 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Environment;
-use Upsun\Model\EnvironmentActivateInput;
-use Upsun\Model\EnvironmentBranchInput;
-use Upsun\Model\EnvironmentDeployInput;
-use Upsun\Model\EnvironmentInitializeInput;
-use Upsun\Model\EnvironmentMergeInput;
-use Upsun\Model\EnvironmentPatch;
-use Upsun\Model\EnvironmentSynchronizeInput;
 
 /**
  * Low level EnvironmentApi (auto-generated)
@@ -70,8 +62,8 @@ final class EnvironmentApi extends AbstractApi
     public function activateEnvironment(
         string $projectId,
         string $environmentId,
-        EnvironmentActivateInput $environmentActivateInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentActivateInput $environmentActivateInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->activateEnvironmentWithHttpInfo(
             $projectId,
             $environmentId,
@@ -90,8 +82,8 @@ final class EnvironmentApi extends AbstractApi
     private function activateEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
-        EnvironmentActivateInput $environmentActivateInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentActivateInput $environmentActivateInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->activateEnvironmentRequest(
             $projectId,
             $environmentId,
@@ -135,8 +127,9 @@ final class EnvironmentApi extends AbstractApi
     private function activateEnvironmentRequest(
         string $projectId,
         string $environmentId,
-        EnvironmentActivateInput $environmentActivateInput
+        \Upsun\Model\EnvironmentActivateInput $environmentActivateInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -184,6 +177,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -263,8 +257,8 @@ final class EnvironmentApi extends AbstractApi
     public function branchEnvironment(
         string $projectId,
         string $environmentId,
-        EnvironmentBranchInput $environmentBranchInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentBranchInput $environmentBranchInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->branchEnvironmentWithHttpInfo(
             $projectId,
             $environmentId,
@@ -283,8 +277,8 @@ final class EnvironmentApi extends AbstractApi
     private function branchEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
-        EnvironmentBranchInput $environmentBranchInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentBranchInput $environmentBranchInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->branchEnvironmentRequest(
             $projectId,
             $environmentId,
@@ -328,8 +322,9 @@ final class EnvironmentApi extends AbstractApi
     private function branchEnvironmentRequest(
         string $projectId,
         string $environmentId,
-        EnvironmentBranchInput $environmentBranchInput
+        \Upsun\Model\EnvironmentBranchInput $environmentBranchInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -377,6 +372,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -457,7 +453,7 @@ final class EnvironmentApi extends AbstractApi
     public function deactivateEnvironment(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->deactivateEnvironmentWithHttpInfo(
             $projectId,
             $environmentId
@@ -474,7 +470,7 @@ final class EnvironmentApi extends AbstractApi
     private function deactivateEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deactivateEnvironmentRequest(
             $projectId,
             $environmentId
@@ -517,6 +513,7 @@ final class EnvironmentApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -557,6 +554,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -627,7 +625,7 @@ final class EnvironmentApi extends AbstractApi
     public function deleteEnvironment(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->deleteEnvironmentWithHttpInfo(
             $projectId,
             $environmentId
@@ -644,7 +642,7 @@ final class EnvironmentApi extends AbstractApi
     private function deleteEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteEnvironmentRequest(
             $projectId,
             $environmentId
@@ -687,6 +685,7 @@ final class EnvironmentApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -727,6 +726,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -800,8 +800,8 @@ final class EnvironmentApi extends AbstractApi
     public function deployEnvironment(
         string $projectId,
         string $environmentId,
-        EnvironmentDeployInput $environmentDeployInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentDeployInput $environmentDeployInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->deployEnvironmentWithHttpInfo(
             $projectId,
             $environmentId,
@@ -820,8 +820,8 @@ final class EnvironmentApi extends AbstractApi
     private function deployEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
-        EnvironmentDeployInput $environmentDeployInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentDeployInput $environmentDeployInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deployEnvironmentRequest(
             $projectId,
             $environmentId,
@@ -865,8 +865,9 @@ final class EnvironmentApi extends AbstractApi
     private function deployEnvironmentRequest(
         string $projectId,
         string $environmentId,
-        EnvironmentDeployInput $environmentDeployInput
+        \Upsun\Model\EnvironmentDeployInput $environmentDeployInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -914,6 +915,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -992,7 +994,7 @@ final class EnvironmentApi extends AbstractApi
     public function getEnvironment(
         string $projectId,
         string $environmentId
-    ): Environment {
+    ): \Upsun\Model\Environment {
         return $this->getEnvironmentWithHttpInfo(
             $projectId,
             $environmentId
@@ -1009,7 +1011,7 @@ final class EnvironmentApi extends AbstractApi
     private function getEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): Environment {
+    ): \Upsun\Model\Environment {
         $request = $this->getEnvironmentRequest(
             $projectId,
             $environmentId
@@ -1052,6 +1054,7 @@ final class EnvironmentApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1092,6 +1095,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1169,8 +1173,8 @@ final class EnvironmentApi extends AbstractApi
     public function initializeEnvironment(
         string $projectId,
         string $environmentId,
-        EnvironmentInitializeInput $environmentInitializeInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentInitializeInput $environmentInitializeInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->initializeEnvironmentWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1189,8 +1193,8 @@ final class EnvironmentApi extends AbstractApi
     private function initializeEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
-        EnvironmentInitializeInput $environmentInitializeInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentInitializeInput $environmentInitializeInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->initializeEnvironmentRequest(
             $projectId,
             $environmentId,
@@ -1234,8 +1238,9 @@ final class EnvironmentApi extends AbstractApi
     private function initializeEnvironmentRequest(
         string $projectId,
         string $environmentId,
-        EnvironmentInitializeInput $environmentInitializeInput
+        \Upsun\Model\EnvironmentInitializeInput $environmentInitializeInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1283,6 +1288,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1420,6 +1426,7 @@ final class EnvironmentApi extends AbstractApi
     private function listProjectsEnvironmentsRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1444,6 +1451,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1511,7 +1519,7 @@ final class EnvironmentApi extends AbstractApi
     public function maintenanceRedeployEnvironment(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->maintenanceRedeployEnvironmentWithHttpInfo(
             $projectId,
             $environmentId
@@ -1527,7 +1535,7 @@ final class EnvironmentApi extends AbstractApi
     private function maintenanceRedeployEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->maintenanceRedeployEnvironmentRequest(
             $projectId,
             $environmentId
@@ -1570,6 +1578,7 @@ final class EnvironmentApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1610,6 +1619,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1683,8 +1693,8 @@ final class EnvironmentApi extends AbstractApi
     public function mergeEnvironment(
         string $projectId,
         string $environmentId,
-        EnvironmentMergeInput $environmentMergeInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentMergeInput $environmentMergeInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->mergeEnvironmentWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1703,8 +1713,8 @@ final class EnvironmentApi extends AbstractApi
     private function mergeEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
-        EnvironmentMergeInput $environmentMergeInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentMergeInput $environmentMergeInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->mergeEnvironmentRequest(
             $projectId,
             $environmentId,
@@ -1748,8 +1758,9 @@ final class EnvironmentApi extends AbstractApi
     private function mergeEnvironmentRequest(
         string $projectId,
         string $environmentId,
-        EnvironmentMergeInput $environmentMergeInput
+        \Upsun\Model\EnvironmentMergeInput $environmentMergeInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1797,6 +1808,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1879,7 +1891,7 @@ final class EnvironmentApi extends AbstractApi
     public function pauseEnvironment(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->pauseEnvironmentWithHttpInfo(
             $projectId,
             $environmentId
@@ -1896,7 +1908,7 @@ final class EnvironmentApi extends AbstractApi
     private function pauseEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->pauseEnvironmentRequest(
             $projectId,
             $environmentId
@@ -1939,6 +1951,7 @@ final class EnvironmentApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1979,6 +1992,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -2049,7 +2063,7 @@ final class EnvironmentApi extends AbstractApi
     public function redeployEnvironment(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->redeployEnvironmentWithHttpInfo(
             $projectId,
             $environmentId
@@ -2066,7 +2080,7 @@ final class EnvironmentApi extends AbstractApi
     private function redeployEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->redeployEnvironmentRequest(
             $projectId,
             $environmentId
@@ -2109,6 +2123,7 @@ final class EnvironmentApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -2149,6 +2164,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -2222,7 +2238,7 @@ final class EnvironmentApi extends AbstractApi
     public function resumeEnvironment(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->resumeEnvironmentWithHttpInfo(
             $projectId,
             $environmentId
@@ -2239,7 +2255,7 @@ final class EnvironmentApi extends AbstractApi
     private function resumeEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->resumeEnvironmentRequest(
             $projectId,
             $environmentId
@@ -2282,6 +2298,7 @@ final class EnvironmentApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -2322,6 +2339,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -2395,8 +2413,8 @@ final class EnvironmentApi extends AbstractApi
     public function synchronizeEnvironment(
         string $projectId,
         string $environmentId,
-        EnvironmentSynchronizeInput $environmentSynchronizeInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentSynchronizeInput $environmentSynchronizeInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->synchronizeEnvironmentWithHttpInfo(
             $projectId,
             $environmentId,
@@ -2415,8 +2433,8 @@ final class EnvironmentApi extends AbstractApi
     private function synchronizeEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
-        EnvironmentSynchronizeInput $environmentSynchronizeInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentSynchronizeInput $environmentSynchronizeInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->synchronizeEnvironmentRequest(
             $projectId,
             $environmentId,
@@ -2460,8 +2478,9 @@ final class EnvironmentApi extends AbstractApi
     private function synchronizeEnvironmentRequest(
         string $projectId,
         string $environmentId,
-        EnvironmentSynchronizeInput $environmentSynchronizeInput
+        \Upsun\Model\EnvironmentSynchronizeInput $environmentSynchronizeInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -2509,6 +2528,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -2588,8 +2608,8 @@ final class EnvironmentApi extends AbstractApi
     public function updateEnvironment(
         string $projectId,
         string $environmentId,
-        EnvironmentPatch $environmentPatch
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentPatch $environmentPatch
+    ): \Upsun\Model\AcceptedResponse {
         return $this->updateEnvironmentWithHttpInfo(
             $projectId,
             $environmentId,
@@ -2608,8 +2628,8 @@ final class EnvironmentApi extends AbstractApi
     private function updateEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
-        EnvironmentPatch $environmentPatch
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentPatch $environmentPatch
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateEnvironmentRequest(
             $projectId,
             $environmentId,
@@ -2653,8 +2673,9 @@ final class EnvironmentApi extends AbstractApi
     private function updateEnvironmentRequest(
         string $projectId,
         string $environmentId,
-        EnvironmentPatch $environmentPatch
+        \Upsun\Model\EnvironmentPatch $environmentPatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -2702,6 +2723,7 @@ final class EnvironmentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class BlackfireProfileProfile200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $projectId,
         private readonly string $environmentId,
@@ -22,6 +24,7 @@ final class BlackfireProfileProfile200Response implements Model, JsonSerializabl
         private readonly object $profile,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -75,3 +78,4 @@ final class BlackfireProfileProfile200Response implements Model, JsonSerializabl
         return $this->profile;
     }
 }
+

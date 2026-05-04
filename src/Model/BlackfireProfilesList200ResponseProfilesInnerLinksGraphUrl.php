@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class BlackfireProfilesList200ResponseProfilesInnerLinksGraphUrl implements Model, JsonSerializable
 {
+
     public const TYPE_TEXT_HTML = 'text/html';
 
     public function __construct(
@@ -20,6 +21,7 @@ final class BlackfireProfilesList200ResponseProfilesInnerLinksGraphUrl implement
         private readonly string $type,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -49,3 +51,4 @@ final class BlackfireProfilesList200ResponseProfilesInnerLinksGraphUrl implement
         return $this->type;
     }
 }
+

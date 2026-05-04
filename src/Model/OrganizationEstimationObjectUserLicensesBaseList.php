@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class OrganizationEstimationObjectUserLicensesBaseList implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?OrganizationEstimationObjectUserLicensesBaseListAdminUser $adminUser = null,
         private readonly ?OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewerUser = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -37,19 +40,20 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements Model, J
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * An estimation of admin users cost.
-     */
+   /**
+    * An estimation of admin users cost.
+    */
     public function getAdminUser(): ?OrganizationEstimationObjectUserLicensesBaseListAdminUser
     {
         return $this->adminUser;
     }
 
-    /**
-     * An estimation of viewer users cost.
-     */
+   /**
+    * An estimation of viewer users cost.
+    */
     public function getViewerUser(): ?OrganizationEstimationObjectUserLicensesBaseListViewerUser
     {
         return $this->viewerUser;
     }
 }
+

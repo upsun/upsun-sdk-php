@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectVariable implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $name,
@@ -23,11 +24,12 @@ final class ProjectVariable implements Model, JsonSerializable
         private readonly bool $visibleBuild,
         private readonly bool $visibleRuntime,
         private readonly array $applicationScope,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $value = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -56,33 +58,33 @@ final class ProjectVariable implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of ProjectVariable
-     */
+   /**
+    * The identifier of ProjectVariable
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Name of the variable
-     */
+   /**
+    * Name of the variable
+    */
     public function getName(): string
     {
         return $this->name;
@@ -93,33 +95,33 @@ final class ProjectVariable implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * The variable is a JSON string
-     */
+   /**
+    * The variable is a JSON string
+    */
     public function getIsJson(): bool
     {
         return $this->isJson;
     }
 
-    /**
-     * The variable is sensitive
-     */
+   /**
+    * The variable is sensitive
+    */
     public function getIsSensitive(): bool
     {
         return $this->isSensitive;
     }
 
-    /**
-     * The variable is visible during build
-     */
+   /**
+    * The variable is visible during build
+    */
     public function getVisibleBuild(): bool
     {
         return $this->visibleBuild;
     }
 
-    /**
-     * The variable is visible at runtime
-     */
+   /**
+    * The variable is visible at runtime
+    */
     public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
@@ -130,11 +132,12 @@ final class ProjectVariable implements Model, JsonSerializable
         return $this->applicationScope;
     }
 
-    /**
-     * Value of the variable
-     */
+   /**
+    * Value of the variable
+    */
     public function getValue(): ?string
     {
         return $this->value;
     }
 }
+

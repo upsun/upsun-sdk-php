@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,6 +13,7 @@ use JsonSerializable;
  */
 final class GetApplicationMerge200Response implements Model, JsonSerializable
 {
+
     public const _AGGREGATION_TYPE_AVG = 'avg';
     public const _AGGREGATION_TYPE_SUM = 'sum';
 
@@ -28,11 +28,12 @@ final class GetApplicationMerge200Response implements Model, JsonSerializable
         private readonly ?array $groups = [],
         private readonly ?string $aggregationType = null,
         private readonly ?string $application = null,
-        private readonly ?DateTime $from = null,
-        private readonly ?DateTime $to = null,
+        private readonly ?\DateTime $from = null,
+        private readonly ?\DateTime $to = null,
         private readonly ?int $scaleFactor = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -93,9 +94,9 @@ final class GetApplicationMerge200Response implements Model, JsonSerializable
         return $this->timeline;
     }
 
-    /**
-     * @return GetApplicationMerge200ResponseGroupsValue[]|null
-     */
+   /**
+    * @return GetApplicationMerge200ResponseGroupsValue[]|null
+    */
     public function getGroups(): ?array
     {
         return $this->groups;
@@ -116,12 +117,12 @@ final class GetApplicationMerge200Response implements Model, JsonSerializable
         return $this->application;
     }
 
-    public function getFrom(): ?DateTime
+    public function getFrom(): ?\DateTime
     {
         return $this->from;
     }
 
-    public function getTo(): ?DateTime
+    public function getTo(): ?\DateTime
     {
         return $this->to;
     }
@@ -131,3 +132,4 @@ final class GetApplicationMerge200Response implements Model, JsonSerializable
         return $this->scaleFactor;
     }
 }
+

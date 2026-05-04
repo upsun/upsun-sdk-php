@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Task implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $type,
@@ -25,6 +27,7 @@ final class Task implements Model, JsonSerializable
         private readonly string $name,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -51,51 +54,51 @@ final class Task implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of Task
-     */
+   /**
+    * The identifier of Task
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The runtime type and version for the task (e.g., python:3.8)
-     */
+   /**
+    * The runtime type and version for the task (e.g., python:3.8)
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * Configuration related to the source code of the task
-     */
+   /**
+    * Configuration related to the source code of the task
+    */
     public function getSource(): SourceCodeConfiguration1
     {
         return $this->source;
     }
 
-    /**
-     * Scripts executed at various points in the lifecycle of the task
-     */
+   /**
+    * Scripts executed at various points in the lifecycle of the task
+    */
     public function getHooks(): Hooks1
     {
         return $this->hooks;
     }
 
-    /**
-     * The relationships of the task to defined services and applications
-     * @return ServiceRelationshipsValue[]
-     */
+   /**
+    * The relationships of the task to defined services and applications
+    * @return ServiceRelationshipsValue[]
+    */
     public function getRelationships(): array
     {
         return $this->relationships;
     }
 
-    /**
-     * Filesystem mounts of this task
-     * @return MountsValue[]
-     */
+   /**
+    * Filesystem mounts of this task
+    * @return MountsValue[]
+    */
     public function getMounts(): array
     {
         return $this->mounts;
@@ -106,19 +109,20 @@ final class Task implements Model, JsonSerializable
         return $this->variables;
     }
 
-    /**
-     * Configuration for task execution
-     */
+   /**
+    * Configuration for task execution
+    */
     public function getRun(): RunConfiguration
     {
         return $this->run;
     }
 
-    /**
-     * The unique name of the task
-     */
+   /**
+    * The unique name of the task
+    */
     public function getName(): string
     {
         return $this->name;
     }
 }
+

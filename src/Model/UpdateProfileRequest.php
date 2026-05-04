@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateProfileRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $displayName = null,
         private readonly ?string $username = null,
@@ -29,6 +31,7 @@ final class UpdateProfileRequest implements Model, JsonSerializable
         private readonly ?string $picture = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -124,3 +127,4 @@ final class UpdateProfileRequest implements Model, JsonSerializable
         return $this->picture;
     }
 }
+

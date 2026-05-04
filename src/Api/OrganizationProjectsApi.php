@@ -13,13 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CreateOrgProjectRequest;
-use Upsun\Model\DateTimeFilter;
-use Upsun\Model\ListOrgProjects200Response;
-use Upsun\Model\OrganizationProject;
-use Upsun\Model\ProjectCarbon;
-use Upsun\Model\StringFilter;
-use Upsun\Model\UpdateOrgProjectRequest;
 
 /**
  * Low level OrganizationProjectsApi (auto-generated)
@@ -69,8 +62,8 @@ final class OrganizationProjectsApi extends AbstractApi
      */
     public function createOrgProject(
         string $organizationId,
-        CreateOrgProjectRequest $createOrgProjectRequest
-    ): OrganizationProject {
+        \Upsun\Model\CreateOrgProjectRequest $createOrgProjectRequest
+    ): \Upsun\Model\OrganizationProject {
         return $this->createOrgProjectWithHttpInfo(
             $organizationId,
             $createOrgProjectRequest
@@ -88,8 +81,8 @@ final class OrganizationProjectsApi extends AbstractApi
     */
     private function createOrgProjectWithHttpInfo(
         string $organizationId,
-        CreateOrgProjectRequest $createOrgProjectRequest
-    ): OrganizationProject {
+        \Upsun\Model\CreateOrgProjectRequest $createOrgProjectRequest
+    ): \Upsun\Model\OrganizationProject {
         $request = $this->createOrgProjectRequest(
             $organizationId,
             $createOrgProjectRequest
@@ -132,8 +125,9 @@ final class OrganizationProjectsApi extends AbstractApi
      */
     private function createOrgProjectRequest(
         string $organizationId,
-        CreateOrgProjectRequest $createOrgProjectRequest
+        \Upsun\Model\CreateOrgProjectRequest $createOrgProjectRequest
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -165,6 +159,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -309,6 +304,7 @@ final class OrganizationProjectsApi extends AbstractApi
         string $organizationId,
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -349,6 +345,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
@@ -423,7 +420,7 @@ final class OrganizationProjectsApi extends AbstractApi
     public function getOrgProject(
         string $organizationId,
         string $projectId
-    ): OrganizationProject {
+    ): \Upsun\Model\OrganizationProject {
         return $this->getOrgProjectWithHttpInfo(
             $organizationId,
             $projectId
@@ -444,7 +441,7 @@ final class OrganizationProjectsApi extends AbstractApi
     private function getOrgProjectWithHttpInfo(
         string $organizationId,
         string $projectId
-    ): OrganizationProject {
+    ): \Upsun\Model\OrganizationProject {
         $request = $this->getOrgProjectRequest(
             $organizationId,
             $projectId
@@ -491,6 +488,7 @@ final class OrganizationProjectsApi extends AbstractApi
         string $organizationId,
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -531,6 +529,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -620,16 +619,16 @@ final class OrganizationProjectsApi extends AbstractApi
      */
     public function listOrgProjects(
         string $organizationId,
-        ?StringFilter $filterId = null,
-        ?StringFilter $filterTitle = null,
-        ?StringFilter $filterStatus = null,
-        ?DateTimeFilter $filterUpdatedAt = null,
-        ?DateTimeFilter $filterCreatedAt = null,
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterTitle = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?\Upsun\Model\DateTimeFilter $filterCreatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListOrgProjects200Response {
+    ): \Upsun\Model\ListOrgProjects200Response {
         return $this->listOrgProjectsWithHttpInfo(
             $organizationId,
             $filterId,
@@ -673,16 +672,16 @@ final class OrganizationProjectsApi extends AbstractApi
     */
     private function listOrgProjectsWithHttpInfo(
         string $organizationId,
-        ?StringFilter $filterId = null,
-        ?StringFilter $filterTitle = null,
-        ?StringFilter $filterStatus = null,
-        ?DateTimeFilter $filterUpdatedAt = null,
-        ?DateTimeFilter $filterCreatedAt = null,
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterTitle = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?\Upsun\Model\DateTimeFilter $filterCreatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListOrgProjects200Response {
+    ): \Upsun\Model\ListOrgProjects200Response {
         $request = $this->listOrgProjectsRequest(
             $organizationId,
             $filterId,
@@ -751,16 +750,17 @@ final class OrganizationProjectsApi extends AbstractApi
      */
     private function listOrgProjectsRequest(
         string $organizationId,
-        ?StringFilter $filterId = null,
-        ?StringFilter $filterTitle = null,
-        ?StringFilter $filterStatus = null,
-        ?DateTimeFilter $filterUpdatedAt = null,
-        ?DateTimeFilter $filterCreatedAt = null,
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterTitle = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?\Upsun\Model\DateTimeFilter $filterCreatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -783,6 +783,8 @@ final class OrganizationProjectsApi extends AbstractApi
             );
         }
 
+
+
         $resourcePath = '/organizations/{organization_id}/projects';
         $formParams = [];
         $queryParams = [];
@@ -803,6 +805,8 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($filterTitle !== null) {
             if ('form' === 'deepObject' && is_array($filterTitle)) {
@@ -815,6 +819,8 @@ final class OrganizationProjectsApi extends AbstractApi
                     : ($filterTitle->getEq());
             }
         }
+
+
 
         // query params
         if ($filterStatus !== null) {
@@ -829,6 +835,8 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($filterUpdatedAt !== null) {
             if ('form' === 'deepObject' && is_array($filterUpdatedAt)) {
@@ -841,6 +849,8 @@ final class OrganizationProjectsApi extends AbstractApi
                     : ($filterUpdatedAt->getEq());
             }
         }
+
+
 
         // query params
         if ($filterCreatedAt !== null) {
@@ -855,6 +865,8 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pageSize !== null) {
             if ('form' === 'form' && is_array($pageSize)) {
@@ -867,6 +879,8 @@ final class OrganizationProjectsApi extends AbstractApi
                     : ($pageSize);
             }
         }
+
+
 
         // query params
         if ($pageBefore !== null) {
@@ -881,6 +895,8 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pageAfter !== null) {
             if ('form' === 'form' && is_array($pageAfter)) {
@@ -893,6 +909,8 @@ final class OrganizationProjectsApi extends AbstractApi
                     : ($pageAfter);
             }
         }
+
+
 
         // query params
         if ($sort !== null) {
@@ -907,6 +925,8 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
+
+
         // path params
 
         if ($organizationId !== null) {
@@ -916,6 +936,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -997,10 +1018,10 @@ final class OrganizationProjectsApi extends AbstractApi
     public function queryProjectCarbon(
         string $organizationId,
         string $projectId,
-        ?DateTimeFilter $from = null,
-        ?DateTimeFilter $to = null,
+        ?\Upsun\Model\DateTimeFilter $from = null,
+        ?\Upsun\Model\DateTimeFilter $to = null,
         ?string $interval = null
-    ): ProjectCarbon {
+    ): \Upsun\Model\ProjectCarbon {
         return $this->queryProjectCarbonWithHttpInfo(
             $organizationId,
             $projectId,
@@ -1031,10 +1052,10 @@ final class OrganizationProjectsApi extends AbstractApi
     private function queryProjectCarbonWithHttpInfo(
         string $organizationId,
         string $projectId,
-        ?DateTimeFilter $from = null,
-        ?DateTimeFilter $to = null,
+        ?\Upsun\Model\DateTimeFilter $from = null,
+        ?\Upsun\Model\DateTimeFilter $to = null,
         ?string $interval = null
-    ): ProjectCarbon {
+    ): \Upsun\Model\ProjectCarbon {
         $request = $this->queryProjectCarbonRequest(
             $organizationId,
             $projectId,
@@ -1090,10 +1111,11 @@ final class OrganizationProjectsApi extends AbstractApi
     private function queryProjectCarbonRequest(
         string $organizationId,
         string $projectId,
-        ?DateTimeFilter $from = null,
-        ?DateTimeFilter $to = null,
+        ?\Upsun\Model\DateTimeFilter $from = null,
+        ?\Upsun\Model\DateTimeFilter $to = null,
         ?string $interval = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -1129,6 +1151,8 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -1142,6 +1166,8 @@ final class OrganizationProjectsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($interval !== null) {
             if ('form' === 'form' && is_array($interval)) {
@@ -1154,6 +1180,8 @@ final class OrganizationProjectsApi extends AbstractApi
                     : ($interval);
             }
         }
+
+
 
         // path params
 
@@ -1173,6 +1201,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -1247,8 +1276,8 @@ final class OrganizationProjectsApi extends AbstractApi
     public function updateOrgProject(
         string $organizationId,
         string $projectId,
-        ?UpdateOrgProjectRequest $updateOrgProjectRequest = null
-    ): OrganizationProject {
+        ?\Upsun\Model\UpdateOrgProjectRequest $updateOrgProjectRequest = null
+    ): \Upsun\Model\OrganizationProject {
         return $this->updateOrgProjectWithHttpInfo(
             $organizationId,
             $projectId,
@@ -1270,8 +1299,8 @@ final class OrganizationProjectsApi extends AbstractApi
     private function updateOrgProjectWithHttpInfo(
         string $organizationId,
         string $projectId,
-        ?UpdateOrgProjectRequest $updateOrgProjectRequest = null
-    ): OrganizationProject {
+        ?\Upsun\Model\UpdateOrgProjectRequest $updateOrgProjectRequest = null
+    ): \Upsun\Model\OrganizationProject {
         $request = $this->updateOrgProjectRequest(
             $organizationId,
             $projectId,
@@ -1318,8 +1347,9 @@ final class OrganizationProjectsApi extends AbstractApi
     private function updateOrgProjectRequest(
         string $organizationId,
         string $projectId,
-        ?UpdateOrgProjectRequest $updateOrgProjectRequest = null
+        ?\Upsun\Model\UpdateOrgProjectRequest $updateOrgProjectRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -1360,6 +1390,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],

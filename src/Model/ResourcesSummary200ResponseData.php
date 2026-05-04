@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class ResourcesSummary200ResponseData implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $services,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,3 +43,4 @@ final class ResourcesSummary200ResponseData implements Model, JsonSerializable
         return $this->services;
     }
 }
+

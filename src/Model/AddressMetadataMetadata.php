@@ -14,12 +14,15 @@ use JsonSerializable;
  */
 final class AddressMetadataMetadata implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $requiredFields = [],
         private readonly ?object $fieldLabels = null,
         private readonly ?bool $showVat = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -45,19 +48,20 @@ final class AddressMetadataMetadata implements Model, JsonSerializable
         return $this->requiredFields;
     }
 
-    /**
-     * Localized labels for address fields.
-     */
+   /**
+    * Localized labels for address fields.
+    */
     public function getFieldLabels(): ?object
     {
         return $this->fieldLabels;
     }
 
-    /**
-     * Whether this country supports a VAT number.
-     */
+   /**
+    * Whether this country supports a VAT number.
+    */
     public function getShowVat(): ?bool
     {
         return $this->showVat;
     }
 }
+

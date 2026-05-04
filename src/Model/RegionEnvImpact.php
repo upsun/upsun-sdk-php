@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class RegionEnvImpact implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $zone = null,
         private readonly ?float $carbonIntensity = null,
@@ -21,6 +23,7 @@ final class RegionEnvImpact implements Model, JsonSerializable
         private readonly ?bool $green = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -42,35 +45,36 @@ final class RegionEnvImpact implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The geographical zone code for carbon intensity.
-     */
+   /**
+    * The geographical zone code for carbon intensity.
+    */
     public function getZone(): ?string
     {
         return $this->zone;
     }
 
-    /**
-     * The carbon intensity value.
-     */
+   /**
+    * The carbon intensity value.
+    */
     public function getCarbonIntensity(): ?float
     {
         return $this->carbonIntensity;
     }
 
-    /**
-     * The source of the carbon intensity data.
-     */
+   /**
+    * The source of the carbon intensity data.
+    */
     public function getCarbonIntensitySource(): ?string
     {
         return $this->carbonIntensitySource;
     }
 
-    /**
-     * Indicator whether the data center uses green energy.
-     */
+   /**
+    * Indicator whether the data center uses green energy.
+    */
     public function getGreen(): ?bool
     {
         return $this->green;
     }
 }
+

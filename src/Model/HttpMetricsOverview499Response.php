@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class HttpMetricsOverview499Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $error,
         private readonly string $message,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class HttpMetricsOverview499Response implements Model, JsonSerializable
         return $this->message;
     }
 }
+

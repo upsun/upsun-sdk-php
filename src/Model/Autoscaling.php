@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class Autoscaling implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -35,11 +38,12 @@ final class Autoscaling implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * If true, autoscaling can be configured.
-     */
+   /**
+    * If true, autoscaling can be configured.
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 }
+

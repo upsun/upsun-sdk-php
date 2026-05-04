@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class OrganizationAlertConfigConfig implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?OrganizationAlertConfigConfigThreshold $threshold = null,
         private readonly ?string $mode = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,19 +41,20 @@ final class OrganizationAlertConfigConfig implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Data regarding threshold spend.
-     */
+   /**
+    * Data regarding threshold spend.
+    */
     public function getThreshold(): ?OrganizationAlertConfigConfigThreshold
     {
         return $this->threshold;
     }
 
-    /**
-     * The mode of alert.
-     */
+   /**
+    * The mode of alert.
+    */
     public function getMode(): ?string
     {
         return $this->mode;
     }
 }
+

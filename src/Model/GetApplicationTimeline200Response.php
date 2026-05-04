@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class GetApplicationTimeline200Response implements Model, JsonSerializable
 {
+
     public const AGGREGATION_TYPE_AVG = 'avg';
     public const AGGREGATION_TYPE_SUM = 'sum';
 
@@ -26,6 +27,7 @@ final class GetApplicationTimeline200Response implements Model, JsonSerializable
         private readonly array $points,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -80,11 +82,12 @@ final class GetApplicationTimeline200Response implements Model, JsonSerializable
         return $this->retention;
     }
 
-    /**
-     * @return GetApplicationTimeline200ResponsePointsInner[]
-     */
+   /**
+    * @return GetApplicationTimeline200ResponsePointsInner[]
+    */
     public function getPoints(): array
     {
         return $this->points;
     }
 }
+

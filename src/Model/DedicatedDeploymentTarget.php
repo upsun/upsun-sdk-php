@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\DeploymentTarget;
 
 /**
  * Low level DedicatedDeploymentTarget (auto-generated)
@@ -13,6 +14,7 @@ use JsonSerializable;
  */
 final class DedicatedDeploymentTarget implements Model, JsonSerializable, DeploymentTarget
 {
+
     public const TYPE_DEDICATED = 'dedicated';
     public const TYPE_ENTERPRISE = 'enterprise';
     public const TYPE_FOUNDATION = 'foundation';
@@ -35,6 +37,7 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
         private readonly ?string $id = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -66,58 +69,58 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the deployment target
-     */
+   /**
+    * The type of the deployment target
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The name of the deployment target
-     */
+   /**
+    * The name of the deployment target
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * The host to deploy to
-     */
+   /**
+    * The host to deploy to
+    */
     public function getDeployHost(): ?string
     {
         return $this->deployHost;
     }
 
-    /**
-     * The port to deploy to
-     */
+   /**
+    * The port to deploy to
+    */
     public function getDeployPort(): ?int
     {
         return $this->deployPort;
     }
 
-    /**
-     * The host to use to SSH to app containers
-     */
+   /**
+    * The host to use to SSH to app containers
+    */
     public function getSshHost(): ?string
     {
         return $this->sshHost;
     }
 
-    /**
-     * The hosts of the deployment target
-     * @return HostsInner[]|null
-     */
+   /**
+    * The hosts of the deployment target
+    * @return HostsInner[]|null
+    */
     public function getHosts(): ?array
     {
         return $this->hosts;
     }
 
-    /**
-     * Whether to take application mounts from the pushed data or the deployment target
-     */
+   /**
+    * Whether to take application mounts from the pushed data or the deployment target
+    */
     public function getAutoMounts(): bool
     {
         return $this->autoMounts;
@@ -128,51 +131,52 @@ final class DedicatedDeploymentTarget implements Model, JsonSerializable, Deploy
         return $this->excludedMounts;
     }
 
-    /**
-     * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount)
-     */
+   /**
+    * Mounts which are always injected into pushed (e.g. enforce /var/log to be a local mount)
+    */
     public function getEnforcedMounts(): object
     {
         return $this->enforcedMounts;
     }
 
-    /**
-     * Whether to take application crons from the pushed data or the deployment target
-     */
+   /**
+    * Whether to take application crons from the pushed data or the deployment target
+    */
     public function getAutoCrons(): bool
     {
         return $this->autoCrons;
     }
 
-    /**
-     * Whether to take application crons from the pushed data or the deployment target
-     */
+   /**
+    * Whether to take application crons from the pushed data or the deployment target
+    */
     public function getAutoNginx(): bool
     {
         return $this->autoNginx;
     }
 
-    /**
-     * Whether to perform deployments or not
-     */
+   /**
+    * Whether to perform deployments or not
+    */
     public function getMaintenanceMode(): bool
     {
         return $this->maintenanceMode;
     }
 
-    /**
-     * which phase of guardrails are we in
-     */
+   /**
+    * which phase of guardrails are we in
+    */
     public function getGuardrailsPhase(): int
     {
         return $this->guardrailsPhase;
     }
 
-    /**
-     * The identifier of DedicatedDeploymentTarget
-     */
+   /**
+    * The identifier of DedicatedDeploymentTarget
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+

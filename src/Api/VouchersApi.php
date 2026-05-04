@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\ApplyOrgVoucherRequest;
-use Upsun\Model\Vouchers;
 
 /**
  * Low level VouchersApi (auto-generated)
@@ -63,7 +62,7 @@ final class VouchersApi extends AbstractApi
      */
     public function applyOrgVoucher(
         string $organizationId,
-        ApplyOrgVoucherRequest $applyOrgVoucherRequest
+        \Upsun\Model\ApplyOrgVoucherRequest $applyOrgVoucherRequest
     ): void {
         $this->applyOrgVoucherWithHttpInfo(
             $organizationId,
@@ -82,7 +81,7 @@ final class VouchersApi extends AbstractApi
     */
     private function applyOrgVoucherWithHttpInfo(
         string $organizationId,
-        ApplyOrgVoucherRequest $applyOrgVoucherRequest
+        \Upsun\Model\ApplyOrgVoucherRequest $applyOrgVoucherRequest
     ): void {
         $request = $this->applyOrgVoucherRequest(
             $organizationId,
@@ -120,8 +119,9 @@ final class VouchersApi extends AbstractApi
      */
     private function applyOrgVoucherRequest(
         string $organizationId,
-        ApplyOrgVoucherRequest $applyOrgVoucherRequest
+        \Upsun\Model\ApplyOrgVoucherRequest $applyOrgVoucherRequest
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -153,6 +153,7 @@ final class VouchersApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
@@ -233,7 +234,7 @@ final class VouchersApi extends AbstractApi
      */
     public function listOrgVouchers(
         string $organizationId
-    ): Vouchers {
+    ): \Upsun\Model\Vouchers {
         return $this->listOrgVouchersWithHttpInfo(
             $organizationId
         );
@@ -251,7 +252,7 @@ final class VouchersApi extends AbstractApi
     */
     private function listOrgVouchersWithHttpInfo(
         string $organizationId
-    ): Vouchers {
+    ): \Upsun\Model\Vouchers {
         $request = $this->listOrgVouchersRequest(
             $organizationId
         );
@@ -295,6 +296,7 @@ final class VouchersApi extends AbstractApi
     private function listOrgVouchersRequest(
         string $organizationId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -319,6 +321,7 @@ final class VouchersApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],

@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class HttpMetricsOverview200ResponseDataTimelinesInnerUrlsValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $count,
         private readonly ?float $impact,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class HttpMetricsOverview200ResponseDataTimelinesInnerUrlsValue implements
         return $this->impact;
     }
 }
+

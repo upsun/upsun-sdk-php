@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class ServiceRelationshipsValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $service,
         private readonly ?string $endpoint,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class ServiceRelationshipsValue implements Model, JsonSerializable
         return $this->endpoint;
     }
 }
+

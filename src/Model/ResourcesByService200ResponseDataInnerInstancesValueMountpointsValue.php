@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ResourcesByService200ResponseDataInnerInstancesValueMountpointsValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?ResourcesByService200ResponseDataInnerInstancesValueMountpointsValueDiskUsed $diskUsed = null,
         private readonly ?ResourcesByService200ResponseDataInnerInstancesValueMountpointsValueDiskLimit $diskLimit = null,
@@ -20,6 +22,7 @@ final class ResourcesByService200ResponseDataInnerInstancesValueMountpointsValue
         private readonly ?ResourcesByService200ResponseDataInnerInstancesValueMountpointsValueInodesLimit $inodesLimit = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -61,3 +64,4 @@ final class ResourcesByService200ResponseDataInnerInstancesValueMountpointsValue
         return $this->inodesLimit;
     }
 }
+

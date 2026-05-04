@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,14 +13,17 @@ use JsonSerializable;
  */
 final class DomainClaim implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $name,
         private readonly string $count,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -44,43 +46,44 @@ final class DomainClaim implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of DomainClaim
-     */
+   /**
+    * The identifier of DomainClaim
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The claimed domain name
-     */
+   /**
+    * The claimed domain name
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * The domain name
-     */
+   /**
+    * The domain name
+    */
     public function getCount(): string
     {
         return $this->count;
     }
 }
+

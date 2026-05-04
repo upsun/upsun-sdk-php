@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class SpecificOverridesValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $expires = null,
         private readonly ?string $passthru = null,
@@ -21,6 +23,7 @@ final class SpecificOverridesValue implements Model, JsonSerializable
         private readonly ?array $headers = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -68,3 +71,4 @@ final class SpecificOverridesValue implements Model, JsonSerializable
         return $this->headers;
     }
 }
+

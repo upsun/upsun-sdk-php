@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class ProjectAddonBaseLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?ProjectAddonBaseLinksUpdate $update = null,
         private readonly ?ProjectAddonBaseLinksDelete $delete = null,
         private readonly ?ProjectAddonBaseLinksSelf $self = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -39,27 +42,28 @@ final class ProjectAddonBaseLinks implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Link to the current add-on.
-     */
+   /**
+    * Link to the current add-on.
+    */
     public function getSelf(): ?ProjectAddonBaseLinksSelf
     {
         return $this->self;
     }
 
-    /**
-     * Link for updating the current add-on.
-     */
+   /**
+    * Link for updating the current add-on.
+    */
     public function getUpdate(): ?ProjectAddonBaseLinksUpdate
     {
         return $this->update;
     }
 
-    /**
-     * Link for deleting the current add-on.
-     */
+   /**
+    * Link for deleting the current add-on.
+    */
     public function getDelete(): ?ProjectAddonBaseLinksDelete
     {
         return $this->delete;
     }
 }
+

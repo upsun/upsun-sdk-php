@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class BlackfireServerTopSpans200ResponseAdvancedFilters implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $fields,
         private readonly int $maxApplicableFilters,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -36,9 +39,9 @@ final class BlackfireServerTopSpans200ResponseAdvancedFilters implements Model, 
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return BlackfireServerTopSpans200ResponseAdvancedFiltersFieldsValue[]
-     */
+   /**
+    * @return BlackfireServerTopSpans200ResponseAdvancedFiltersFieldsValue[]
+    */
     public function getFields(): array
     {
         return $this->fields;
@@ -49,3 +52,4 @@ final class BlackfireServerTopSpans200ResponseAdvancedFilters implements Model, 
         return $this->maxApplicableFilters;
     }
 }
+

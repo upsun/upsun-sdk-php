@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateOrgSubscriptionRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $projectTitle = null,
         private readonly ?string $plan = null,
@@ -28,6 +30,7 @@ final class UpdateOrgSubscriptionRequest implements Model, JsonSerializable
         private readonly ?string $projectSupportLevel = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -57,25 +60,25 @@ final class UpdateOrgSubscriptionRequest implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The title of the project.
-     */
+   /**
+    * The title of the project.
+    */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * The project plan.
-     */
+   /**
+    * The project plan.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * Timezone of the project.
-     */
+   /**
+    * Timezone of the project.
+    */
     public function getTimezone(): ?string
     {
         return $this->timezone;
@@ -126,3 +129,4 @@ final class UpdateOrgSubscriptionRequest implements Model, JsonSerializable
         return $this->projectSupportLevel;
     }
 }
+

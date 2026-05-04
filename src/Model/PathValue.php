@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class PathValue implements Model, JsonSerializable
 {
+
     public const CODE_NUMBER_301 = 301;
     public const CODE_NUMBER_302 = 302;
     public const CODE_NUMBER_307 = 307;
@@ -27,6 +28,7 @@ final class PathValue implements Model, JsonSerializable
         private readonly ?string $expires,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -80,3 +82,4 @@ final class PathValue implements Model, JsonSerializable
         return $this->expires;
     }
 }
+

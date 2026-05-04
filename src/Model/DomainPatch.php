@@ -2,6 +2,8 @@
 
 namespace Upsun\Model;
 
+use JsonSerializable;
+
 /**
  * Low level DomainPatch (auto-generated)
  *
@@ -17,3 +19,4 @@ interface DomainPatch
 
     public function __toString(): string;
 }
+

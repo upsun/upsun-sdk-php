@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\DeploymentTargetCreateInput;
 
 /**
  * Low level EnterpriseDeploymentTargetCreateInput (auto-generated)
@@ -13,6 +14,7 @@ use JsonSerializable;
  */
 final class EnterpriseDeploymentTargetCreateInput implements Model, JsonSerializable, DeploymentTargetCreateInput
 {
+
     public const TYPE_DEDICATED = 'dedicated';
     public const TYPE_ENTERPRISE = 'enterprise';
     public const TYPE_FOUNDATION = 'foundation';
@@ -26,6 +28,7 @@ final class EnterpriseDeploymentTargetCreateInput implements Model, JsonSerializ
         private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -48,25 +51,25 @@ final class EnterpriseDeploymentTargetCreateInput implements Model, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the deployment target
-     */
+   /**
+    * The type of the deployment target
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The name of the deployment target
-     */
+   /**
+    * The name of the deployment target
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * List of URLs of the site
-     */
+   /**
+    * List of URLs of the site
+    */
     public function getSiteUrls(): ?object
     {
         return $this->siteUrls;
@@ -77,11 +80,12 @@ final class EnterpriseDeploymentTargetCreateInput implements Model, JsonSerializ
         return $this->sshHosts;
     }
 
-    /**
-     * Mapping of clusters to Enterprise applications
-     */
+   /**
+    * Mapping of clusters to Enterprise applications
+    */
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
 }
+

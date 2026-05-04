@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class AddressGrantsInner implements Model, JsonSerializable
 {
+
     public const PERMISSION_ALLOW = 'allow';
     public const PERMISSION_DENY = 'deny';
 
@@ -21,6 +22,7 @@ final class AddressGrantsInner implements Model, JsonSerializable
         private readonly string $address,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -50,3 +52,4 @@ final class AddressGrantsInner implements Model, JsonSerializable
         return $this->address;
     }
 }
+

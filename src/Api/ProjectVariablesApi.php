@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,10 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\ProjectVariable;
-use Upsun\Model\ProjectVariableCreateInput;
-use Upsun\Model\ProjectVariablePatch;
 
 /**
  * Low level ProjectVariablesApi (auto-generated)
@@ -66,8 +63,8 @@ final class ProjectVariablesApi extends AbstractApi
      */
     public function createProjectsVariables(
         string $projectId,
-        ProjectVariableCreateInput $projectVariableCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\ProjectVariableCreateInput $projectVariableCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->createProjectsVariablesWithHttpInfo(
             $projectId,
             $projectVariableCreateInput
@@ -84,8 +81,8 @@ final class ProjectVariablesApi extends AbstractApi
     */
     private function createProjectsVariablesWithHttpInfo(
         string $projectId,
-        ProjectVariableCreateInput $projectVariableCreateInput
-    ): AcceptedResponse {
+        \Upsun\Model\ProjectVariableCreateInput $projectVariableCreateInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->createProjectsVariablesRequest(
             $projectId,
             $projectVariableCreateInput
@@ -127,8 +124,9 @@ final class ProjectVariablesApi extends AbstractApi
      */
     private function createProjectsVariablesRequest(
         string $projectId,
-        ProjectVariableCreateInput $projectVariableCreateInput
+        \Upsun\Model\ProjectVariableCreateInput $projectVariableCreateInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -160,6 +158,7 @@ final class ProjectVariablesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -238,7 +237,7 @@ final class ProjectVariablesApi extends AbstractApi
     public function deleteProjectsVariables(
         string $projectId,
         string $projectVariableId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->deleteProjectsVariablesWithHttpInfo(
             $projectId,
             $projectVariableId
@@ -255,7 +254,7 @@ final class ProjectVariablesApi extends AbstractApi
     private function deleteProjectsVariablesWithHttpInfo(
         string $projectId,
         string $projectVariableId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsVariablesRequest(
             $projectId,
             $projectVariableId
@@ -298,6 +297,7 @@ final class ProjectVariablesApi extends AbstractApi
         string $projectId,
         string $projectVariableId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -338,6 +338,7 @@ final class ProjectVariablesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -408,7 +409,7 @@ final class ProjectVariablesApi extends AbstractApi
     public function getProjectsVariables(
         string $projectId,
         string $projectVariableId
-    ): ProjectVariable {
+    ): \Upsun\Model\ProjectVariable {
         return $this->getProjectsVariablesWithHttpInfo(
             $projectId,
             $projectVariableId
@@ -425,7 +426,7 @@ final class ProjectVariablesApi extends AbstractApi
     private function getProjectsVariablesWithHttpInfo(
         string $projectId,
         string $projectVariableId
-    ): ProjectVariable {
+    ): \Upsun\Model\ProjectVariable {
         $request = $this->getProjectsVariablesRequest(
             $projectId,
             $projectVariableId
@@ -468,6 +469,7 @@ final class ProjectVariablesApi extends AbstractApi
         string $projectId,
         string $projectVariableId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -508,6 +510,7 @@ final class ProjectVariablesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -637,6 +640,7 @@ final class ProjectVariablesApi extends AbstractApi
     private function listProjectsVariablesRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -661,6 +665,7 @@ final class ProjectVariablesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -735,8 +740,8 @@ final class ProjectVariablesApi extends AbstractApi
     public function updateProjectsVariables(
         string $projectId,
         string $projectVariableId,
-        ProjectVariablePatch $projectVariablePatch
-    ): AcceptedResponse {
+        \Upsun\Model\ProjectVariablePatch $projectVariablePatch
+    ): \Upsun\Model\AcceptedResponse {
         return $this->updateProjectsVariablesWithHttpInfo(
             $projectId,
             $projectVariableId,
@@ -755,8 +760,8 @@ final class ProjectVariablesApi extends AbstractApi
     private function updateProjectsVariablesWithHttpInfo(
         string $projectId,
         string $projectVariableId,
-        ProjectVariablePatch $projectVariablePatch
-    ): AcceptedResponse {
+        \Upsun\Model\ProjectVariablePatch $projectVariablePatch
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsVariablesRequest(
             $projectId,
             $projectVariableId,
@@ -800,8 +805,9 @@ final class ProjectVariablesApi extends AbstractApi
     private function updateProjectsVariablesRequest(
         string $projectId,
         string $projectVariableId,
-        ProjectVariablePatch $projectVariablePatch
+        \Upsun\Model\ProjectVariablePatch $projectVariablePatch
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -849,6 +855,7 @@ final class ProjectVariablesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

@@ -13,13 +13,16 @@ use JsonSerializable;
  */
 final class BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $timestamp,
         private readonly ?float $totalConsumed = null,
         private readonly ?float $totalCount = null,
-        private readonly ?array $transactions = [],
+        private readonly ?array $_transactionsFilter = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -32,7 +35,7 @@ final class BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataIn
             'timestamp' => $this->timestamp,
             'totalConsumed' => $this->totalConsumed,
             'totalCount' => $this->totalCount,
-            'transactions' => $this->transactions,
+            '_transactionsFilter' => $this->_transactionsFilter,
         ];
     }
 
@@ -56,11 +59,12 @@ final class BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataIn
         return $this->totalCount;
     }
 
-    /**
-     * @return BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataInnerTransactionsValue[]|null
-     */
-    public function getTransactions(): ?array
+   /**
+    * @return BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataInnerTransactionsValue[]|null
+    */
+    public function getTransactionsFilter(): ?array
     {
-        return $this->transactions;
+        return $this->_transactionsFilter;
     }
 }
+

@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\IntegrationCreateInput;
 
 /**
  * Low level EmailIntegrationCreateInput (auto-generated)
@@ -13,12 +14,15 @@ use JsonSerializable;
  */
 final class EmailIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly array $recipients,
         private readonly ?string $fromAddress = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -39,9 +43,9 @@ final class EmailIntegrationCreateInput implements Model, JsonSerializable, Inte
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
@@ -52,11 +56,12 @@ final class EmailIntegrationCreateInput implements Model, JsonSerializable, Inte
         return $this->recipients;
     }
 
-    /**
-     * The email address to use
-     */
+   /**
+    * The email address to use
+    */
     public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }
 }
+

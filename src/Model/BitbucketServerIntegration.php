@@ -2,8 +2,8 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
+use Upsun\Model\Integration;
 
 /**
  * Low level BitbucketServerIntegration (auto-generated)
@@ -14,6 +14,7 @@ use JsonSerializable;
  */
 final class BitbucketServerIntegration implements Model, JsonSerializable, Integration
 {
+
     public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
     public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
     public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
@@ -31,11 +32,12 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
         private readonly string $repository,
         private readonly bool $buildPullRequests,
         private readonly bool $pullRequestsCloneParentData,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -67,115 +69,116 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The role of the integration
-     */
+   /**
+    * The role of the integration
+    */
     public function getRole(): string
     {
         return $this->role;
     }
 
-    /**
-     * Whether or not to fetch branches
-     */
+   /**
+    * Whether or not to fetch branches
+    */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
-     */
+   /**
+    * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
+    */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * The resources used when initializing a new service
-     */
+   /**
+    * The resources used when initializing a new service
+    */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * The base URL of the Bitbucket Server installation
-     */
+   /**
+    * The base URL of the Bitbucket Server installation
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * The Bitbucket Server user
-     */
+   /**
+    * The Bitbucket Server user
+    */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * The Bitbucket Server project
-     */
+   /**
+    * The Bitbucket Server project
+    */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * The Bitbucket Server repository
-     */
+   /**
+    * The Bitbucket Server repository
+    */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * Whether or not to build pull requests
-     */
+   /**
+    * Whether or not to build pull requests
+    */
     public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * Whether or not to clone parent data when building merge requests
-     */
+   /**
+    * Whether or not to clone parent data when building merge requests
+    */
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
 
-    /**
-     * The identifier of BitbucketServerIntegration
-     */
+   /**
+    * The identifier of BitbucketServerIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+

@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class OrganizationEstimationObjectUserLicensesBase implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?string $total = null,
         private readonly ?OrganizationEstimationObjectUserLicensesBaseList $list = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -39,17 +42,17 @@ final class OrganizationEstimationObjectUserLicensesBase implements Model, JsonS
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The number of base user licenses.
-     */
+   /**
+    * The number of base user licenses.
+    */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
-    /**
-     * The total price for base user licenses.
-     */
+   /**
+    * The total price for base user licenses.
+    */
     public function getTotal(): ?string
     {
         return $this->total;
@@ -60,3 +63,4 @@ final class OrganizationEstimationObjectUserLicensesBase implements Model, JsonS
         return $this->list;
     }
 }
+

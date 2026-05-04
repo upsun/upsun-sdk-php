@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class BlackfireServerGlobal200ResponseServerDataInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $timestamp,
         private readonly ?float $wt = null,
@@ -23,6 +25,7 @@ final class BlackfireServerGlobal200ResponseServerDataInner implements Model, Js
         private readonly ?float $rpms = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -82,3 +85,4 @@ final class BlackfireServerGlobal200ResponseServerDataInner implements Model, Js
         return $this->rpms;
     }
 }
+

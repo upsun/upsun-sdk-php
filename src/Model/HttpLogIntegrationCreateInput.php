@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\IntegrationCreateInput;
 
 /**
  * Low level HttpLogIntegrationCreateInput (auto-generated)
@@ -13,6 +14,8 @@ use JsonSerializable;
  */
 final class HttpLogIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -22,6 +25,7 @@ final class HttpLogIntegrationCreateInput implements Model, JsonSerializable, In
         private readonly ?array $excludedServices = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -45,17 +49,17 @@ final class HttpLogIntegrationCreateInput implements Model, JsonSerializable, In
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The HTTP endpoint
-     */
+   /**
+    * The HTTP endpoint
+    */
     public function getUrl(): string
     {
         return $this->url;
@@ -71,9 +75,9 @@ final class HttpLogIntegrationCreateInput implements Model, JsonSerializable, In
         return $this->headers;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
@@ -84,3 +88,4 @@ final class HttpLogIntegrationCreateInput implements Model, JsonSerializable, In
         return $this->excludedServices;
     }
 }
+

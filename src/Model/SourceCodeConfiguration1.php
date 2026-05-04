@@ -14,10 +14,13 @@ use JsonSerializable;
  */
 final class SourceCodeConfiguration1 implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $root,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -36,11 +39,12 @@ final class SourceCodeConfiguration1 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The root of the task relative to the repository root
-     */
+   /**
+    * The root of the task relative to the repository root
+    */
     public function getRoot(): string
     {
         return $this->root;
     }
 }
+

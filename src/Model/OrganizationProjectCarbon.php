@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class OrganizationProjectCarbon implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $projectId = null,
         private readonly ?string $projectTitle = null,
         private readonly ?array $values = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -39,27 +42,28 @@ final class OrganizationProjectCarbon implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the project.
-     */
+   /**
+    * The ID of the project.
+    */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-    /**
-     * The title of the project.
-     */
+   /**
+    * The title of the project.
+    */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * @return MetricsValue[]|null
-     */
+   /**
+    * @return MetricsValue[]|null
+    */
     public function getValues(): ?array
     {
         return $this->values;
     }
 }
+

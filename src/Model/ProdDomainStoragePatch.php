@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\DomainPatch;
 
 /**
  * Low level ProdDomainStoragePatch (auto-generated)
@@ -13,11 +14,14 @@ use JsonSerializable;
  */
 final class ProdDomainStoragePatch implements Model, JsonSerializable, DomainPatch
 {
+
+
     public function __construct(
         private readonly ?array $attributes = [],
         private readonly ?bool $isDefault = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -42,11 +46,12 @@ final class ProdDomainStoragePatch implements Model, JsonSerializable, DomainPat
         return $this->attributes;
     }
 
-    /**
-     * Is this domain default
-     */
+   /**
+    * Is this domain default
+    */
     public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 }
+

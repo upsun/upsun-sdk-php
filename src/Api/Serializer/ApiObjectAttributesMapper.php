@@ -24,6 +24,7 @@ final class ApiObjectAttributesMapper
     }
 
     private static array $attributeMap = [
+
         'Upsun\Model\AcceptedResponse' => [
             'status' => 'status',
             'code' => 'code'
@@ -143,6 +144,7 @@ final class ApiObjectAttributesMapper
             'enabled' => 'enabled'
         ],
         'Upsun\Model\AutoscalerDuration' => [
+            
         ],
         'Upsun\Model\AutoscalerInstances' => [
             'min' => 'min',
@@ -579,7 +581,7 @@ final class ApiObjectAttributesMapper
             'advancedFilters' => 'advanced_filters',
             'contexts' => '_contexts',
             'contextsMode' => '_contexts_mode',
-            'transactions' => '_transactions',
+            '_transactionsFilter' => '_transactions',
             'transactionsMode' => '_transactions_mode',
             'wtSlot' => '_wt_slot',
             'wtSlotMode' => '_wt_slot_mode',
@@ -647,7 +649,7 @@ final class ApiObjectAttributesMapper
             'topHitsTimeline' => 'top_hits_timeline',
             'contexts' => '_contexts',
             'contextsMode' => '_contexts_mode',
-            'transactions' => '_transactions',
+            '_transactionsFilter' => '_transactions',
             'transactionsMode' => '_transactions_mode',
             'wtSlot' => '_wt_slot',
             'wtSlotMode' => '_wt_slot_mode',
@@ -682,7 +684,7 @@ final class ApiObjectAttributesMapper
             'timestamp' => 'timestamp',
             'totalConsumed' => '_total_consumed',
             'totalCount' => '_total_count',
-            'transactions' => '_transactions'
+            '_transactionsFilter' => '_transactions'
         ],
         'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataInnerTransactionsValue' => [
             'average' => 'average',
@@ -844,6 +846,7 @@ final class ApiObjectAttributesMapper
             'email' => 'email'
         ],
         'Upsun\Model\CommunityPackagesInner' => [
+            
         ],
         'Upsun\Model\Components' => [
             'voucherVatBaseprice' => 'voucher/vat/baseprice'
@@ -1558,6 +1561,7 @@ final class ApiObjectAttributesMapper
             'values' => 'values'
         ],
         'Upsun\Model\FilterSelectValues' => [
+            
         ],
         'Upsun\Model\Firewall' => [
             'outbound' => 'outbound'
@@ -2635,6 +2639,7 @@ final class ApiObjectAttributesMapper
             'profileSize' => 'profile_size'
         ],
         'Upsun\Model\Mode' => [
+            
         ],
         'Upsun\Model\MountsValue' => [
             'source' => 'source',
@@ -3403,6 +3408,7 @@ final class ApiObjectAttributesMapper
             'links' => '_links'
         ],
         'Upsun\Model\ProjectAddonBaseAllowedValuesInner' => [
+            
         ],
         'Upsun\Model\ProjectAddonBaseLinks' => [
             'self' => 'self',
@@ -3607,8 +3613,10 @@ final class ApiObjectAttributesMapper
             'maintenanceWindow' => 'maintenance_window'
         ],
         'Upsun\Model\ProjectStatus' => [
+            
         ],
         'Upsun\Model\ProjectType' => [
+            
         ],
         'Upsun\Model\ProjectVariable' => [
             'id' => 'id',

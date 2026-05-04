@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -15,6 +14,7 @@ use JsonSerializable;
  */
 final class ProjectAddon implements Model, JsonSerializable
 {
+
     public const STATUS_REQUESTED = 'requested';
     public const STATUS_ACTIVE = 'active';
     public const STATUS_FAILED = 'failed';
@@ -30,11 +30,12 @@ final class ProjectAddon implements Model, JsonSerializable
         private readonly ?string $projectId = null,
         private readonly ?string $status = null,
         private readonly ?string $title = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?ProjectAddonBaseLinks $links = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -65,99 +66,99 @@ final class ProjectAddon implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the add-on.
-     */
+   /**
+    * The ID of the add-on.
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The type of the add-on.
-     */
+   /**
+    * The type of the add-on.
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The SKU of the add-on.
-     */
+   /**
+    * The SKU of the add-on.
+    */
     public function getSku(): string
     {
         return $this->sku;
     }
 
-    /**
-     * The quantity of the add-on.
-     */
+   /**
+    * The quantity of the add-on.
+    */
     public function getQuantity(): int
     {
         return $this->quantity;
     }
 
-    /**
-     * The ID of the project.
-     */
+   /**
+    * The ID of the project.
+    */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-    /**
-     * Lifecycle status of the add-on.
-     */
+   /**
+    * Lifecycle status of the add-on.
+    */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * Human-friendly title of the add-on or SKU.
-     */
+   /**
+    * Human-friendly title of the add-on or SKU.
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * Unit for quantity-based add-ons when applicable.
-     */
+   /**
+    * Unit for quantity-based add-ons when applicable.
+    */
     public function getUnit(): ?string
     {
         return $this->unit;
     }
 
-    /**
-     * Allowed values for the add-on depending on user role and options.
-     * @return ProjectAddonBaseAllowedValuesInner[]|null
-     */
+   /**
+    * Allowed values for the add-on depending on user role and options.
+    * @return ProjectAddonBaseAllowedValuesInner[]|null
+    */
     public function getAllowedValues(): ?array
     {
         return $this->allowedValues;
     }
 
-    /**
-     * The date and time when the resource was created.
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The date and time when the resource was created.
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the resource was last updated.
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The date and time when the resource was last updated.
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Activities related to the add-on.
-     * @return Activity[]|null
-     */
+   /**
+    * Activities related to the add-on.
+    * @return Activity[]|null
+    */
     public function getActivities(): ?array
     {
         return $this->activities;
@@ -168,3 +169,4 @@ final class ProjectAddon implements Model, JsonSerializable
         return $this->links;
     }
 }
+

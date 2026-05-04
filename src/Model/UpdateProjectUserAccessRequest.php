@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class UpdateProjectUserAccessRequest implements Model, JsonSerializable
 {
+
     public const PERMISSIONS_ADMIN = 'admin';
     public const PERMISSIONS_VIEWER = 'viewer';
     public const PERMISSIONS_DEVELOPMENT_ADMIN = 'development:admin';
@@ -29,6 +30,7 @@ final class UpdateProjectUserAccessRequest implements Model, JsonSerializable
         private readonly array $permissions,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -52,3 +54,4 @@ final class UpdateProjectUserAccessRequest implements Model, JsonSerializable
         return $this->permissions;
     }
 }
+

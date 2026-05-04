@@ -2,6 +2,8 @@
 
 namespace Upsun\Model;
 
+use JsonSerializable;
+
 /**
  * Low level Integration (auto-generated)
  *
@@ -21,3 +23,4 @@ interface Integration
 
     public function getRole(): mixed;
 }
+

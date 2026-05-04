@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class Resources5 implements Model, JsonSerializable
 {
+
     public const INIT_CHILD = 'child';
     public const INIT__DEFAULT = 'default';
     public const INIT_MANUAL = 'manual';
@@ -22,6 +23,7 @@ final class Resources5 implements Model, JsonSerializable
         private readonly ?string $init = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,11 +42,12 @@ final class Resources5 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The resources used when merging an environment
-     */
+   /**
+    * The resources used when merging an environment
+    */
     public function getInit(): ?string
     {
         return $this->init;
     }
 }
+

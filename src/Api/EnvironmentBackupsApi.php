@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,10 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Backup;
-use Upsun\Model\EnvironmentBackupInput;
-use Upsun\Model\EnvironmentRestoreInput;
 
 /**
  * Low level EnvironmentBackupsApi (auto-generated)
@@ -66,8 +63,8 @@ final class EnvironmentBackupsApi extends AbstractApi
     public function backupEnvironment(
         string $projectId,
         string $environmentId,
-        EnvironmentBackupInput $environmentBackupInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->backupEnvironmentWithHttpInfo(
             $projectId,
             $environmentId,
@@ -86,8 +83,8 @@ final class EnvironmentBackupsApi extends AbstractApi
     private function backupEnvironmentWithHttpInfo(
         string $projectId,
         string $environmentId,
-        EnvironmentBackupInput $environmentBackupInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->backupEnvironmentRequest(
             $projectId,
             $environmentId,
@@ -131,8 +128,9 @@ final class EnvironmentBackupsApi extends AbstractApi
     private function backupEnvironmentRequest(
         string $projectId,
         string $environmentId,
-        EnvironmentBackupInput $environmentBackupInput
+        \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -180,6 +178,7 @@ final class EnvironmentBackupsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -261,7 +260,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $backupId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->deleteProjectsEnvironmentsBackupsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -280,7 +279,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $backupId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsEnvironmentsBackupsRequest(
             $projectId,
             $environmentId,
@@ -325,6 +324,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environmentId,
         string $backupId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -381,6 +381,7 @@ final class EnvironmentBackupsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -455,7 +456,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $backupId
-    ): Backup {
+    ): \Upsun\Model\Backup {
         return $this->getProjectsEnvironmentsBackupsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -474,7 +475,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $backupId
-    ): Backup {
+    ): \Upsun\Model\Backup {
         $request = $this->getProjectsEnvironmentsBackupsRequest(
             $projectId,
             $environmentId,
@@ -519,6 +520,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environmentId,
         string $backupId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -575,6 +577,7 @@ final class EnvironmentBackupsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -709,6 +712,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -749,6 +753,7 @@ final class EnvironmentBackupsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -823,8 +828,8 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $backupId,
-        EnvironmentRestoreInput $environmentRestoreInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->restoreBackupWithHttpInfo(
             $projectId,
             $environmentId,
@@ -845,8 +850,8 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $backupId,
-        EnvironmentRestoreInput $environmentRestoreInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->restoreBackupRequest(
             $projectId,
             $environmentId,
@@ -892,8 +897,9 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $backupId,
-        EnvironmentRestoreInput $environmentRestoreInput
+        \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -957,6 +963,7 @@ final class EnvironmentBackupsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

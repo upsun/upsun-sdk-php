@@ -133,6 +133,7 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): RequestInterface {
+
         // verify the required parameter 'in' is set
         if (empty($in)) {
             throw new InvalidArgumentException(
@@ -168,6 +169,8 @@ final class ReferencesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($sig !== null) {
             if ('form' === 'form' && is_array($sig)) {
@@ -180,6 +183,10 @@ final class ReferencesApi extends AbstractApi
                     : ($sig);
             }
         }
+
+
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -322,6 +329,7 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): RequestInterface {
+
         // verify the required parameter 'in' is set
         if (empty($in)) {
             throw new InvalidArgumentException(
@@ -357,6 +365,8 @@ final class ReferencesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($sig !== null) {
             if ('form' === 'form' && is_array($sig)) {
@@ -369,6 +379,10 @@ final class ReferencesApi extends AbstractApi
                     : ($sig);
             }
         }
+
+
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -511,6 +525,7 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): RequestInterface {
+
         // verify the required parameter 'in' is set
         if (empty($in)) {
             throw new InvalidArgumentException(
@@ -546,6 +561,8 @@ final class ReferencesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($sig !== null) {
             if ('form' === 'form' && is_array($sig)) {
@@ -558,6 +575,10 @@ final class ReferencesApi extends AbstractApi
                     : ($sig);
             }
         }
+
+
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -700,6 +721,7 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): RequestInterface {
+
         // verify the required parameter 'in' is set
         if (empty($in)) {
             throw new InvalidArgumentException(
@@ -735,6 +757,8 @@ final class ReferencesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($sig !== null) {
             if ('form' === 'form' && is_array($sig)) {
@@ -747,6 +771,10 @@ final class ReferencesApi extends AbstractApi
                     : ($sig);
             }
         }
+
+
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -889,6 +917,7 @@ final class ReferencesApi extends AbstractApi
         string $in,
         string $sig
     ): RequestInterface {
+
         // verify the required parameter 'in' is set
         if (empty($in)) {
             throw new InvalidArgumentException(
@@ -924,6 +953,8 @@ final class ReferencesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($sig !== null) {
             if ('form' === 'form' && is_array($sig)) {
@@ -936,6 +967,10 @@ final class ReferencesApi extends AbstractApi
                     : ($sig);
             }
         }
+
+
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

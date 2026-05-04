@@ -13,10 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\BlackfirePhpServerCaches200Response;
-use Upsun\Model\BlackfireServerGlobal200Response;
-use Upsun\Model\BlackfireServerTopSpans200Response;
-use Upsun\Model\BlackfireServerTransactionsBreakdown200Response;
 
 /**
  * Low level BlackfireMonitoringApi (auto-generated)
@@ -82,7 +78,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $contexts = null,
         ?string $contextsMode = null,
         ?string $distributionCost = null
-    ): BlackfirePhpServerCaches200Response {
+    ): \Upsun\Model\BlackfirePhpServerCaches200Response {
         return $this->blackfirePhpServerCachesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -119,7 +115,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $contexts = null,
         ?string $contextsMode = null,
         ?string $distributionCost = null
-    ): BlackfirePhpServerCaches200Response {
+    ): \Upsun\Model\BlackfirePhpServerCaches200Response {
         $request = $this->blackfirePhpServerCachesRequest(
             $projectId,
             $environmentId,
@@ -182,6 +178,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?string $contextsMode = null,
         ?string $distributionCost = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -189,6 +186,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                 when calling blackfirePhpServerCaches'
             );
         }
+
+
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -204,6 +203,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                 when calling blackfirePhpServerCaches'
             );
         }
+
+
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -247,6 +248,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -259,6 +262,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($to);
             }
         }
+
+
 
         // query params
         if ($grain !== null) {
@@ -273,6 +278,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($contexts !== null) {
             if ('form' === 'form' && is_array($contexts)) {
@@ -285,6 +292,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($contexts);
             }
         }
+
+
 
         // query params
         if ($contextsMode !== null) {
@@ -299,6 +308,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($distributionCost !== null) {
             if ('form' === 'form' && is_array($distributionCost)) {
@@ -311,6 +322,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($distributionCost);
             }
         }
+
+
 
         // path params
 
@@ -330,6 +343,7 @@ final class BlackfireMonitoringApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -418,7 +432,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $contexts = null,
         ?string $contextsMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerGlobal200Response {
+    ): \Upsun\Model\BlackfireServerGlobal200Response {
         return $this->blackfireServerGlobalWithHttpInfo(
             $projectId,
             $environmentId,
@@ -458,7 +472,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $contexts = null,
         ?string $contextsMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerGlobal200Response {
+    ): \Upsun\Model\BlackfireServerGlobal200Response {
         $request = $this->blackfireServerGlobalRequest(
             $projectId,
             $environmentId,
@@ -524,6 +538,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?string $contextsMode = null,
         ?string $distributionCost = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -531,6 +546,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                 when calling blackfireServerGlobal'
             );
         }
+
+
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -546,6 +563,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                 when calling blackfireServerGlobal'
             );
         }
+
+
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -596,6 +615,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -608,6 +629,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($to);
             }
         }
+
+
 
         // query params
         if ($keys !== null) {
@@ -622,6 +645,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($grain !== null) {
             if ('form' === 'form' && is_array($grain)) {
@@ -634,6 +659,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($grain);
             }
         }
+
+
 
         // query params
         if ($contexts !== null) {
@@ -648,6 +675,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($contextsMode !== null) {
             if ('form' === 'form' && is_array($contextsMode)) {
@@ -661,6 +690,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($distributionCost !== null) {
             if ('form' === 'form' && is_array($distributionCost)) {
@@ -673,6 +704,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($distributionCost);
             }
         }
+
+
 
         // path params
 
@@ -692,6 +725,7 @@ final class BlackfireMonitoringApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -824,7 +858,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $oss = null,
         ?string $ossMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerTopSpans200Response {
+    ): \Upsun\Model\BlackfireServerTopSpans200Response {
         return $this->blackfireServerTopSpansWithHttpInfo(
             $projectId,
             $environmentId,
@@ -930,7 +964,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $oss = null,
         ?string $ossMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerTopSpans200Response {
+    ): \Upsun\Model\BlackfireServerTopSpans200Response {
         $request = $this->blackfireServerTopSpansRequest(
             $projectId,
             $environmentId,
@@ -1062,6 +1096,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?string $ossMode = null,
         ?string $distributionCost = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1069,6 +1104,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                 when calling blackfireServerTopSpans'
             );
         }
+
+
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -1084,6 +1121,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                 when calling blackfireServerTopSpans'
             );
         }
+
+
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -1127,6 +1166,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -1139,6 +1180,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($to);
             }
         }
+
+
 
         // query params
         if ($grain !== null) {
@@ -1153,6 +1196,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -1165,6 +1210,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($sort);
             }
         }
+
+
 
         // query params
         if ($contexts !== null) {
@@ -1179,6 +1226,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($contextsMode !== null) {
             if ('form' === 'form' && is_array($contextsMode)) {
@@ -1191,6 +1240,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($contextsMode);
             }
         }
+
+
 
         // query params
         if ($transactions !== null) {
@@ -1205,6 +1256,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($transactionsMode !== null) {
             if ('form' === 'form' && is_array($transactionsMode)) {
@@ -1217,6 +1270,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($transactionsMode);
             }
         }
+
+
 
         // query params
         if ($wtSlots !== null) {
@@ -1231,6 +1286,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($wtSlotsMode !== null) {
             if ('form' === 'form' && is_array($wtSlotsMode)) {
@@ -1243,6 +1300,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($wtSlotsMode);
             }
         }
+
+
 
         // query params
         if ($pmuSlots !== null) {
@@ -1257,6 +1316,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pmuSlotsMode !== null) {
             if ('form' === 'form' && is_array($pmuSlotsMode)) {
@@ -1269,6 +1330,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($pmuSlotsMode);
             }
         }
+
+
 
         // query params
         if ($httpStatusCodes !== null) {
@@ -1283,6 +1346,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($httpStatusCodesMode !== null) {
             if ('form' === 'form' && is_array($httpStatusCodesMode)) {
@@ -1295,6 +1360,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($httpStatusCodesMode);
             }
         }
+
+
 
         // query params
         if ($httpHosts !== null) {
@@ -1309,6 +1376,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($httpHostsMode !== null) {
             if ('form' === 'form' && is_array($httpHostsMode)) {
@@ -1321,6 +1390,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($httpHostsMode);
             }
         }
+
+
 
         // query params
         if ($hosts !== null) {
@@ -1335,6 +1406,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($hostsMode !== null) {
             if ('form' === 'form' && is_array($hostsMode)) {
@@ -1347,6 +1420,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($hostsMode);
             }
         }
+
+
 
         // query params
         if ($frameworks !== null) {
@@ -1361,6 +1436,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($frameworksMode !== null) {
             if ('form' === 'form' && is_array($frameworksMode)) {
@@ -1373,6 +1450,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($frameworksMode);
             }
         }
+
+
 
         // query params
         if ($languages !== null) {
@@ -1387,6 +1466,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($languagesMode !== null) {
             if ('form' === 'form' && is_array($languagesMode)) {
@@ -1399,6 +1480,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($languagesMode);
             }
         }
+
+
 
         // query params
         if ($methods !== null) {
@@ -1413,6 +1496,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($methodsMode !== null) {
             if ('form' === 'form' && is_array($methodsMode)) {
@@ -1425,6 +1510,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($methodsMode);
             }
         }
+
+
 
         // query params
         if ($runtimes !== null) {
@@ -1439,6 +1526,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimesMode !== null) {
             if ('form' === 'form' && is_array($runtimesMode)) {
@@ -1451,6 +1540,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($runtimesMode);
             }
         }
+
+
 
         // query params
         if ($oss !== null) {
@@ -1465,6 +1556,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($ossMode !== null) {
             if ('form' === 'form' && is_array($ossMode)) {
@@ -1478,6 +1571,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($distributionCost !== null) {
             if ('form' === 'form' && is_array($distributionCost)) {
@@ -1490,6 +1585,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($distributionCost);
             }
         }
+
+
 
         // path params
 
@@ -1509,6 +1606,7 @@ final class BlackfireMonitoringApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1646,7 +1744,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $oss = null,
         ?string $ossMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerTransactionsBreakdown200Response {
+    ): \Upsun\Model\BlackfireServerTransactionsBreakdown200Response {
         return $this->blackfireServerTransactionsBreakdownWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1758,7 +1856,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $oss = null,
         ?string $ossMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerTransactionsBreakdown200Response {
+    ): \Upsun\Model\BlackfireServerTransactionsBreakdown200Response {
         $request = $this->blackfireServerTransactionsBreakdownRequest(
             $projectId,
             $environmentId,
@@ -1896,6 +1994,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?string $ossMode = null,
         ?string $distributionCost = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1903,6 +2002,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                 when calling blackfireServerTransactionsBreakdown'
             );
         }
+
+
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -1918,6 +2019,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                 when calling blackfireServerTransactionsBreakdown'
             );
         }
+
+
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -1955,6 +2058,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             );
         }
 
+
+
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/server/transactions-break-down';
         $formParams = [];
         $queryParams = [];
@@ -1975,6 +2080,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -1987,6 +2094,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($to);
             }
         }
+
+
 
         // query params
         if ($grain !== null) {
@@ -2001,6 +2110,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($breakdownDimension !== null) {
             if ('form' === 'form' && is_array($breakdownDimension)) {
@@ -2013,6 +2124,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($breakdownDimension);
             }
         }
+
+
 
         // query params
         if ($sort !== null) {
@@ -2027,6 +2140,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($breakdownLimit !== null) {
             if ('form' === 'form' && is_array($breakdownLimit)) {
@@ -2039,6 +2154,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($breakdownLimit);
             }
         }
+
+
 
         // query params
         if ($contexts !== null) {
@@ -2053,6 +2170,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($contextsMode !== null) {
             if ('form' === 'form' && is_array($contextsMode)) {
@@ -2065,6 +2184,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($contextsMode);
             }
         }
+
+
 
         // query params
         if ($transactions !== null) {
@@ -2079,6 +2200,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($transactionsMode !== null) {
             if ('form' === 'form' && is_array($transactionsMode)) {
@@ -2091,6 +2214,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($transactionsMode);
             }
         }
+
+
 
         // query params
         if ($wtSlots !== null) {
@@ -2105,6 +2230,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($wtSlotsMode !== null) {
             if ('form' === 'form' && is_array($wtSlotsMode)) {
@@ -2117,6 +2244,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($wtSlotsMode);
             }
         }
+
+
 
         // query params
         if ($pmuSlots !== null) {
@@ -2131,6 +2260,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pmuSlotsMode !== null) {
             if ('form' === 'form' && is_array($pmuSlotsMode)) {
@@ -2143,6 +2274,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($pmuSlotsMode);
             }
         }
+
+
 
         // query params
         if ($httpStatusCodes !== null) {
@@ -2157,6 +2290,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($httpStatusCodesMode !== null) {
             if ('form' === 'form' && is_array($httpStatusCodesMode)) {
@@ -2169,6 +2304,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($httpStatusCodesMode);
             }
         }
+
+
 
         // query params
         if ($httpHosts !== null) {
@@ -2183,6 +2320,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($httpHostsMode !== null) {
             if ('form' === 'form' && is_array($httpHostsMode)) {
@@ -2195,6 +2334,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($httpHostsMode);
             }
         }
+
+
 
         // query params
         if ($hosts !== null) {
@@ -2209,6 +2350,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($hostsMode !== null) {
             if ('form' === 'form' && is_array($hostsMode)) {
@@ -2221,6 +2364,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($hostsMode);
             }
         }
+
+
 
         // query params
         if ($frameworks !== null) {
@@ -2235,6 +2380,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($frameworksMode !== null) {
             if ('form' === 'form' && is_array($frameworksMode)) {
@@ -2247,6 +2394,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($frameworksMode);
             }
         }
+
+
 
         // query params
         if ($languages !== null) {
@@ -2261,6 +2410,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($languagesMode !== null) {
             if ('form' === 'form' && is_array($languagesMode)) {
@@ -2273,6 +2424,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($languagesMode);
             }
         }
+
+
 
         // query params
         if ($methods !== null) {
@@ -2287,6 +2440,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($methodsMode !== null) {
             if ('form' === 'form' && is_array($methodsMode)) {
@@ -2299,6 +2454,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($methodsMode);
             }
         }
+
+
 
         // query params
         if ($runtimes !== null) {
@@ -2313,6 +2470,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimesMode !== null) {
             if ('form' === 'form' && is_array($runtimesMode)) {
@@ -2325,6 +2484,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($runtimesMode);
             }
         }
+
+
 
         // query params
         if ($oss !== null) {
@@ -2339,6 +2500,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($ossMode !== null) {
             if ('form' === 'form' && is_array($ossMode)) {
@@ -2352,6 +2515,8 @@ final class BlackfireMonitoringApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($distributionCost !== null) {
             if ('form' === 'form' && is_array($distributionCost)) {
@@ -2364,6 +2529,8 @@ final class BlackfireMonitoringApi extends AbstractApi
                     : ($distributionCost);
             }
         }
+
+
 
         // path params
 
@@ -2383,6 +2550,7 @@ final class BlackfireMonitoringApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

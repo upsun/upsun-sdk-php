@@ -15,10 +15,13 @@ use JsonSerializable;
  */
 final class AutoscalerSettings implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $services = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -42,3 +45,4 @@ final class AutoscalerSettings implements Model, JsonSerializable
         return $this->services;
     }
 }
+

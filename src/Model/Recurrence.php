@@ -14,12 +14,15 @@ use JsonSerializable;
  */
 final class Recurrence implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $interval,
         private readonly int $dayOfWeek,
         private readonly string $time,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,27 +43,28 @@ final class Recurrence implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Interval in weeks, either 2w or 4w
-     */
+   /**
+    * Interval in weeks, either 2w or 4w
+    */
     public function getInterval(): string
     {
         return $this->interval;
     }
 
-    /**
-     * Day of week, where Monday is 0
-     */
+   /**
+    * Day of week, where Monday is 0
+    */
     public function getDayOfWeek(): int
     {
         return $this->dayOfWeek;
     }
 
-    /**
-     * Exact time in HH:MM format
-     */
+   /**
+    * Exact time in HH:MM format
+    */
     public function getTime(): string
     {
         return $this->time;
     }
 }
+

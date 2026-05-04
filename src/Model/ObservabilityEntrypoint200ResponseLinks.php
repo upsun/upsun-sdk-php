@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ObservabilityEntrypoint200ResponseLinksSelf $self,
         private readonly array $resourcesByService,
@@ -34,6 +36,7 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
         private readonly ObservabilityEntrypoint200ResponseLinksConprofFlamegraph $conprofFlamegraph,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -74,9 +77,9 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
         return $this->self;
     }
 
-    /**
-     * @return ObservabilityEntrypoint200ResponseLinksResourcesByServiceValue[]
-     */
+   /**
+    * @return ObservabilityEntrypoint200ResponseLinksResourcesByServiceValue[]
+    */
     public function getResourcesByService(): array
     {
         return $this->resourcesByService;
@@ -162,3 +165,4 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
         return $this->conprofFlamegraph;
     }
 }
+

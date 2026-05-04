@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectVariableCreateInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $name,
         private readonly string $value,
@@ -24,6 +26,7 @@ final class ProjectVariableCreateInput implements Model, JsonSerializable
         private readonly ?array $applicationScope = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -49,17 +52,17 @@ final class ProjectVariableCreateInput implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Name of the variable
-     */
+   /**
+    * Name of the variable
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * Value of the variable
-     */
+   /**
+    * Value of the variable
+    */
     public function getValue(): string
     {
         return $this->value;
@@ -70,33 +73,33 @@ final class ProjectVariableCreateInput implements Model, JsonSerializable
         return $this->attributes;
     }
 
-    /**
-     * The variable is a JSON string
-     */
+   /**
+    * The variable is a JSON string
+    */
     public function getIsJson(): ?bool
     {
         return $this->isJson;
     }
 
-    /**
-     * The variable is sensitive
-     */
+   /**
+    * The variable is sensitive
+    */
     public function getIsSensitive(): ?bool
     {
         return $this->isSensitive;
     }
 
-    /**
-     * The variable is visible during build
-     */
+   /**
+    * The variable is visible during build
+    */
     public function getVisibleBuild(): ?bool
     {
         return $this->visibleBuild;
     }
 
-    /**
-     * The variable is visible at runtime
-     */
+   /**
+    * The variable is visible at runtime
+    */
     public function getVisibleRuntime(): ?bool
     {
         return $this->visibleRuntime;
@@ -107,3 +110,4 @@ final class ProjectVariableCreateInput implements Model, JsonSerializable
         return $this->applicationScope;
     }
 }
+

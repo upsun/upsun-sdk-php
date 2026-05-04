@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class AutoscalerMemoryResources implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $min = null,
         private readonly ?int $max = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,19 +41,20 @@ final class AutoscalerMemoryResources implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Minimum memory (bytes) when scaling down vertically
-     */
+   /**
+    * Minimum memory (bytes) when scaling down vertically
+    */
     public function getMin(): ?int
     {
         return $this->min;
     }
 
-    /**
-     * Maximum memory (bytes) when scaling up vertically
-     */
+   /**
+    * Maximum memory (bytes) when scaling up vertically
+    */
     public function getMax(): ?int
     {
         return $this->max;
     }
 }
+

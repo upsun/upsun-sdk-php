@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class BlackfireServerTopSpans200Response implements Model, JsonSerializable
 {
+
     public const _SORT_PERCENTAGE = 'percentage';
     public const _SORT_P_96 = 'p_96';
     public const _SORT_COUNT = 'count';
@@ -59,7 +60,7 @@ final class BlackfireServerTopSpans200Response implements Model, JsonSerializabl
         private readonly ?string $sort,
         private readonly ?array $contexts = [],
         private readonly ?string $contextsMode = null,
-        private readonly ?array $transactions = [],
+        private readonly ?array $_transactionsFilter = [],
         private readonly ?string $transactionsMode = null,
         private readonly ?array $wtSlot = [],
         private readonly ?string $wtSlotMode = null,
@@ -85,6 +86,7 @@ final class BlackfireServerTopSpans200Response implements Model, JsonSerializabl
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -105,7 +107,7 @@ final class BlackfireServerTopSpans200Response implements Model, JsonSerializabl
             'advancedFilters' => $this->advancedFilters,
             'contexts' => $this->contexts,
             'contextsMode' => $this->contextsMode,
-            'transactions' => $this->transactions,
+            '_transactionsFilter' => $this->_transactionsFilter,
             'transactionsMode' => $this->transactionsMode,
             'wtSlot' => $this->wtSlot,
             'wtSlotMode' => $this->wtSlotMode,
@@ -196,9 +198,9 @@ final class BlackfireServerTopSpans200Response implements Model, JsonSerializabl
         return $this->contextsMode;
     }
 
-    public function getTransactions(): ?array
+    public function getTransactionsFilter(): ?array
     {
-        return $this->transactions;
+        return $this->_transactionsFilter;
     }
 
     public function getTransactionsMode(): ?string
@@ -311,3 +313,4 @@ final class BlackfireServerTopSpans200Response implements Model, JsonSerializabl
         return $this->distributionCost;
     }
 }
+

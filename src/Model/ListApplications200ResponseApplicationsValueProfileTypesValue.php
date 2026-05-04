@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class ListApplications200ResponseApplicationsValueProfileTypesValue implements Model, JsonSerializable
 {
+
     public const AGGREGATION_AVG = 'avg';
     public const AGGREGATION_SUM = 'sum';
 
@@ -24,6 +25,7 @@ final class ListApplications200ResponseApplicationsValueProfileTypesValue implem
         private readonly string $aggregation,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -71,3 +73,4 @@ final class ListApplications200ResponseApplicationsValueProfileTypesValue implem
         return $this->aggregation;
     }
 }
+

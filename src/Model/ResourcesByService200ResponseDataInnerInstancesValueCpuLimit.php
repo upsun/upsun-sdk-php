@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class ResourcesByService200ResponseDataInnerInstancesValueCpuLimit implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?float $max = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,3 +43,4 @@ final class ResourcesByService200ResponseDataInnerInstancesValueCpuLimit impleme
         return $this->max;
     }
 }
+

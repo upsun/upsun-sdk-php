@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class WebApplicationsValue implements Model, JsonSerializable
 {
+
     public const SIZE__2_XL = '2XL';
     public const SIZE__4_XL = '4XL';
     public const SIZE_AUTO = 'AUTO';
@@ -60,6 +61,7 @@ final class WebApplicationsValue implements Model, JsonSerializable
         private readonly ?int $instanceCount,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -129,9 +131,9 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->access;
     }
 
-    /**
-     * @return ServiceRelationshipsValue[]
-     */
+   /**
+    * @return ServiceRelationshipsValue[]
+    */
     public function getRelationships(): array
     {
         return $this->relationships;
@@ -142,9 +144,9 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->additionalHosts;
     }
 
-    /**
-     * @return MountsValue[]
-     */
+   /**
+    * @return MountsValue[]
+    */
     public function getMounts(): array
     {
         return $this->mounts;
@@ -170,9 +172,9 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->containerProfile;
     }
 
-    /**
-     * @return OperationsValue[]
-     */
+   /**
+    * @return OperationsValue[]
+    */
     public function getOperations(): array
     {
         return $this->operations;
@@ -223,9 +225,9 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->hooks;
     }
 
-    /**
-     * @return CronsValue[]
-     */
+   /**
+    * @return CronsValue[]
+    */
     public function getCrons(): array
     {
         return $this->crons;
@@ -281,3 +283,4 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->supportsHorizontalScaling;
     }
 }
+

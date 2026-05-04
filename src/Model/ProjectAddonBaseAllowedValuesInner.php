@@ -2,6 +2,8 @@
 
 namespace Upsun\Model;
 
+use JsonSerializable;
+
 /**
  * Low level ProjectAddonBaseAllowedValuesInner (auto-generated)
  *
@@ -17,3 +19,4 @@ interface ProjectAddonBaseAllowedValuesInner
 
     public function __toString(): string;
 }
+

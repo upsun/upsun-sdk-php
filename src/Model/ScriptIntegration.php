@@ -2,8 +2,8 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
+use Upsun\Model\Integration;
 
 /**
  * Low level ScriptIntegration (auto-generated)
@@ -14,6 +14,7 @@ use JsonSerializable;
  */
 final class ScriptIntegration implements Model, JsonSerializable, Integration
 {
+
     public const RESULT_STAR = '*';
     public const RESULT_FAILURE = 'failure';
     public const RESULT_SUCCESS = 'success';
@@ -27,11 +28,12 @@ final class ScriptIntegration implements Model, JsonSerializable, Integration
         private readonly array $states,
         private readonly string $result,
         private readonly string $script,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -60,33 +62,33 @@ final class ScriptIntegration implements Model, JsonSerializable, Integration
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The role of the integration
-     */
+   /**
+    * The role of the integration
+    */
     public function getRole(): string
     {
         return $this->role;
@@ -112,27 +114,28 @@ final class ScriptIntegration implements Model, JsonSerializable, Integration
         return $this->states;
     }
 
-    /**
-     * Result to execute the hook on
-     */
+   /**
+    * Result to execute the hook on
+    */
     public function getResult(): string
     {
         return $this->result;
     }
 
-    /**
-     * The script to run
-     */
+   /**
+    * The script to run
+    */
     public function getScript(): string
     {
         return $this->script;
     }
 
-    /**
-     * The identifier of ScriptIntegration
-     */
+   /**
+    * The identifier of ScriptIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+

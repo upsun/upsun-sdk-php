@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectOptionsAggregated implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?object $billing = null,
         private readonly ?object $defaults = null,
@@ -27,6 +29,7 @@ final class ProjectOptionsAggregated implements Model, JsonSerializable
         private readonly ?object $debug = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -105,11 +108,12 @@ final class ProjectOptionsAggregated implements Model, JsonSerializable
         return $this->containerSizes;
     }
 
-    /**
-     * Debug configuration.
-     */
+   /**
+    * Debug configuration.
+    */
     public function getDebug(): ?object
     {
         return $this->debug;
     }
 }
+

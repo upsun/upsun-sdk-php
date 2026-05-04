@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class BlackfireServerTransactionsBreakdown200Response implements Model, JsonSerializable
 {
+
     public const _BREAKDOWN_DIMENSION_WT = 'wt';
     public const _BREAKDOWN_DIMENSION_PMU = 'pmu';
     public const _BREAKDOWN_DIMENSION_STDOUT = 'stdout';
@@ -66,7 +67,7 @@ final class BlackfireServerTransactionsBreakdown200Response implements Model, Js
         private readonly ?string $sort,
         private readonly ?array $contexts = [],
         private readonly ?string $contextsMode = null,
-        private readonly ?array $transactions = [],
+        private readonly ?array $_transactionsFilter = [],
         private readonly ?string $transactionsMode = null,
         private readonly ?array $wtSlot = [],
         private readonly ?string $wtSlotMode = null,
@@ -92,6 +93,7 @@ final class BlackfireServerTransactionsBreakdown200Response implements Model, Js
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -115,7 +117,7 @@ final class BlackfireServerTransactionsBreakdown200Response implements Model, Js
             'topHitsTimeline' => $this->topHitsTimeline,
             'contexts' => $this->contexts,
             'contextsMode' => $this->contextsMode,
-            'transactions' => $this->transactions,
+            '_transactionsFilter' => $this->_transactionsFilter,
             'transactionsMode' => $this->transactionsMode,
             'wtSlot' => $this->wtSlot,
             'wtSlotMode' => $this->wtSlotMode,
@@ -221,9 +223,9 @@ final class BlackfireServerTransactionsBreakdown200Response implements Model, Js
         return $this->contextsMode;
     }
 
-    public function getTransactions(): ?array
+    public function getTransactionsFilter(): ?array
     {
-        return $this->transactions;
+        return $this->_transactionsFilter;
     }
 
     public function getTransactionsMode(): ?string
@@ -336,3 +338,4 @@ final class BlackfireServerTransactionsBreakdown200Response implements Model, Js
         return $this->distributionCost;
     }
 }
+

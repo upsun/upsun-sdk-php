@@ -14,12 +14,15 @@ use JsonSerializable;
  */
 final class MergeInfo implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $commitsAhead,
         private readonly ?int $commitsBehind,
         private readonly ?string $parentRef,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,27 +43,28 @@ final class MergeInfo implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The amount of commits that are in the environment but not in the parent
-     */
+   /**
+    * The amount of commits that are in the environment but not in the parent
+    */
     public function getCommitsAhead(): ?int
     {
         return $this->commitsAhead;
     }
 
-    /**
-     * The amount of commits that are in the parent but not in the environment
-     */
+   /**
+    * The amount of commits that are in the parent but not in the environment
+    */
     public function getCommitsBehind(): ?int
     {
         return $this->commitsBehind;
     }
 
-    /**
-     * The reference in Git for the parent environment
-     */
+   /**
+    * The reference in Git for the parent environment
+    */
     public function getParentRef(): ?string
     {
         return $this->parentRef;
     }
 }
+

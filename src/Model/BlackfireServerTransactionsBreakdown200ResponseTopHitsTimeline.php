@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class BlackfireServerTransactionsBreakdown200ResponseTopHitsTimeline implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $data,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -34,11 +37,12 @@ final class BlackfireServerTransactionsBreakdown200ResponseTopHitsTimeline imple
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataInner[]
-     */
+   /**
+    * @return BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataInner[]
+    */
     public function getData(): array
     {
         return $this->data;
     }
 }
+

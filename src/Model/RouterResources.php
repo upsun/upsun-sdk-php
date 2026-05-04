@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class RouterResources implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly float $baselineCpu,
         private readonly int $baselineMemory,
@@ -21,6 +23,7 @@ final class RouterResources implements Model, JsonSerializable
         private readonly int $maxMemory,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -42,35 +45,36 @@ final class RouterResources implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Router baseline CPU for flex plan
-     */
+   /**
+    * Router baseline CPU for flex plan
+    */
     public function getBaselineCpu(): float
     {
         return $this->baselineCpu;
     }
 
-    /**
-     * Router baseline memory (MB) for flex plan
-     */
+   /**
+    * Router baseline memory (MB) for flex plan
+    */
     public function getBaselineMemory(): int
     {
         return $this->baselineMemory;
     }
 
-    /**
-     * Router max CPU for flex plan
-     */
+   /**
+    * Router max CPU for flex plan
+    */
     public function getMaxCpu(): float
     {
         return $this->maxCpu;
     }
 
-    /**
-     * Router max memory (MB) for flex plan
-     */
+   /**
+    * Router max memory (MB) for flex plan
+    */
     public function getMaxMemory(): int
     {
         return $this->maxMemory;
     }
 }
+

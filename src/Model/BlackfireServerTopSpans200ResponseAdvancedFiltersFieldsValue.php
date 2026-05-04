@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class BlackfireServerTopSpans200ResponseAdvancedFiltersFieldsValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $distinctValues,
         private readonly string $type,
         private readonly array $values,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -49,11 +52,12 @@ final class BlackfireServerTopSpans200ResponseAdvancedFiltersFieldsValue impleme
         return $this->type;
     }
 
-    /**
-     * @return BlackfireServerTopSpans200ResponseAdvancedFiltersFieldsValueValuesInner[]
-     */
+   /**
+    * @return BlackfireServerTopSpans200ResponseAdvancedFiltersFieldsValueValuesInner[]
+    */
     public function getValues(): array
     {
         return $this->values;
     }
 }
+

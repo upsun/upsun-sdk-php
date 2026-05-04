@@ -14,10 +14,13 @@ use JsonSerializable;
  */
 final class ContinuousProfilingConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $supportedRuntimes,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -41,3 +44,4 @@ final class ContinuousProfilingConfiguration implements Model, JsonSerializable
         return $this->supportedRuntimes;
     }
 }
+

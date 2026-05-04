@@ -13,9 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\DateTimeFilter;
-use Upsun\Model\ListTickets200Response;
-use Upsun\Model\OrganizationCarbon;
 
 /**
  * Low level DefaultApi (auto-generated)
@@ -57,9 +54,9 @@ final class DefaultApi extends AbstractApi
      *
      * @param  int|null $filterTicketId
      *         The ID of the ticket. (optional)
-     * @param  DateTime|null $filterCreated
+     * @param  \DateTime|null $filterCreated
      *         ISO dateformat expected. The time when the support ticket was created. (optional)
-     * @param  DateTime|null $filterUpdated
+     * @param  \DateTime|null $filterUpdated
      *         ISO dateformat expected. The time when the support ticket was updated. (optional)
      * @param  string|null $filterType
      *         The type of the support ticket. (optional)
@@ -75,7 +72,7 @@ final class DefaultApi extends AbstractApi
      *         UUID of the ticket assignee. Converted from the ZID value. (optional)
      * @param  bool|null $filterHasIncidents
      *         Whether or not this ticket has incidents. (optional)
-     * @param  DateTime|null $filterDue
+     * @param  \DateTime|null $filterDue
      *         ISO dateformat expected. A time that the ticket is due at. (optional)
      * @param  string|null $search (optional)
      * @param  int|null $page
@@ -87,8 +84,8 @@ final class DefaultApi extends AbstractApi
      */
     public function listTickets(
         ?int $filterTicketId = null,
-        ?DateTime $filterCreated = null,
-        ?DateTime $filterUpdated = null,
+        ?\DateTime $filterCreated = null,
+        ?\DateTime $filterUpdated = null,
         ?string $filterType = null,
         ?string $filterPriority = null,
         ?string $filterStatus = null,
@@ -96,10 +93,10 @@ final class DefaultApi extends AbstractApi
         ?string $filterSubmitterId = null,
         ?string $filterAssigneeId = null,
         ?bool $filterHasIncidents = null,
-        ?DateTime $filterDue = null,
+        ?\DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
-    ): ListTickets200Response {
+    ): \Upsun\Model\ListTickets200Response {
         return $this->listTicketsWithHttpInfo(
             $filterTicketId,
             $filterCreated,
@@ -122,9 +119,9 @@ final class DefaultApi extends AbstractApi
      *
      * @param  int|null $filterTicketId
      *         The ID of the ticket. (optional)
-     * @param  DateTime|null $filterCreated
+     * @param  \DateTime|null $filterCreated
      *         ISO dateformat expected. The time when the support ticket was created. (optional)
-     * @param  DateTime|null $filterUpdated
+     * @param  \DateTime|null $filterUpdated
      *         ISO dateformat expected. The time when the support ticket was updated. (optional)
      * @param  string|null $filterType
      *         The type of the support ticket. (optional)
@@ -140,7 +137,7 @@ final class DefaultApi extends AbstractApi
      *         UUID of the ticket assignee. Converted from the ZID value. (optional)
      * @param  bool|null $filterHasIncidents
      *         Whether or not this ticket has incidents. (optional)
-     * @param  DateTime|null $filterDue
+     * @param  \DateTime|null $filterDue
      *         ISO dateformat expected. A time that the ticket is due at. (optional)
      * @param  string|null $search (optional)
      * @param  int|null $page
@@ -151,8 +148,8 @@ final class DefaultApi extends AbstractApi
     */
     private function listTicketsWithHttpInfo(
         ?int $filterTicketId = null,
-        ?DateTime $filterCreated = null,
-        ?DateTime $filterUpdated = null,
+        ?\DateTime $filterCreated = null,
+        ?\DateTime $filterUpdated = null,
         ?string $filterType = null,
         ?string $filterPriority = null,
         ?string $filterStatus = null,
@@ -160,10 +157,10 @@ final class DefaultApi extends AbstractApi
         ?string $filterSubmitterId = null,
         ?string $filterAssigneeId = null,
         ?bool $filterHasIncidents = null,
-        ?DateTime $filterDue = null,
+        ?\DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
-    ): ListTickets200Response {
+    ): \Upsun\Model\ListTickets200Response {
         $request = $this->listTicketsRequest(
             $filterTicketId,
             $filterCreated,
@@ -212,9 +209,9 @@ final class DefaultApi extends AbstractApi
      *
      * @param  int|null $filterTicketId
      *         The ID of the ticket. (optional)
-     * @param  DateTime|null $filterCreated
+     * @param  \DateTime|null $filterCreated
      *         ISO dateformat expected. The time when the support ticket was created. (optional)
-     * @param  DateTime|null $filterUpdated
+     * @param  \DateTime|null $filterUpdated
      *         ISO dateformat expected. The time when the support ticket was updated. (optional)
      * @param  string|null $filterType
      *         The type of the support ticket. (optional)
@@ -230,7 +227,7 @@ final class DefaultApi extends AbstractApi
      *         UUID of the ticket assignee. Converted from the ZID value. (optional)
      * @param  bool|null $filterHasIncidents
      *         Whether or not this ticket has incidents. (optional)
-     * @param  DateTime|null $filterDue
+     * @param  \DateTime|null $filterDue
      *         ISO dateformat expected. A time that the ticket is due at. (optional)
      * @param  string|null $search (optional)
      * @param  int|null $page
@@ -240,8 +237,8 @@ final class DefaultApi extends AbstractApi
      */
     private function listTicketsRequest(
         ?int $filterTicketId = null,
-        ?DateTime $filterCreated = null,
-        ?DateTime $filterUpdated = null,
+        ?\DateTime $filterCreated = null,
+        ?\DateTime $filterUpdated = null,
         ?string $filterType = null,
         ?string $filterPriority = null,
         ?string $filterStatus = null,
@@ -249,10 +246,12 @@ final class DefaultApi extends AbstractApi
         ?string $filterSubmitterId = null,
         ?string $filterAssigneeId = null,
         ?bool $filterHasIncidents = null,
-        ?DateTime $filterDue = null,
+        ?\DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
     ): RequestInterface {
+
+
         $resourcePath = '/tickets';
         $formParams = [];
         $queryParams = [];
@@ -273,6 +272,8 @@ final class DefaultApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($filterCreated !== null) {
             if ('form' === 'form' && is_array($filterCreated)) {
@@ -285,6 +286,8 @@ final class DefaultApi extends AbstractApi
                     : ($filterCreated);
             }
         }
+
+
 
         // query params
         if ($filterUpdated !== null) {
@@ -299,6 +302,8 @@ final class DefaultApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($filterType !== null) {
             if ('form' === 'form' && is_array($filterType)) {
@@ -311,6 +316,8 @@ final class DefaultApi extends AbstractApi
                     : ($filterType);
             }
         }
+
+
 
         // query params
         if ($filterPriority !== null) {
@@ -325,6 +332,8 @@ final class DefaultApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($filterStatus !== null) {
             if ('form' === 'form' && is_array($filterStatus)) {
@@ -337,6 +346,8 @@ final class DefaultApi extends AbstractApi
                     : ($filterStatus);
             }
         }
+
+
 
         // query params
         if ($filterRequesterId !== null) {
@@ -351,6 +362,8 @@ final class DefaultApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($filterSubmitterId !== null) {
             if ('form' === 'form' && is_array($filterSubmitterId)) {
@@ -363,6 +376,8 @@ final class DefaultApi extends AbstractApi
                     : ($filterSubmitterId);
             }
         }
+
+
 
         // query params
         if ($filterAssigneeId !== null) {
@@ -377,6 +392,8 @@ final class DefaultApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($filterHasIncidents !== null) {
             if ('form' === 'form' && is_array($filterHasIncidents)) {
@@ -389,6 +406,8 @@ final class DefaultApi extends AbstractApi
                     : ($filterHasIncidents);
             }
         }
+
+
 
         // query params
         if ($filterDue !== null) {
@@ -403,6 +422,8 @@ final class DefaultApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($search !== null) {
             if ('form' === 'form' && is_array($search)) {
@@ -416,6 +437,8 @@ final class DefaultApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($page !== null) {
             if ('form' === 'form' && is_array($page)) {
@@ -428,6 +451,10 @@ final class DefaultApi extends AbstractApi
                     : ($page);
             }
         }
+
+
+
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -506,10 +533,10 @@ final class DefaultApi extends AbstractApi
      */
     public function queryOrganiationCarbon(
         string $organizationId,
-        ?DateTimeFilter $from = null,
-        ?DateTimeFilter $to = null,
+        ?\Upsun\Model\DateTimeFilter $from = null,
+        ?\Upsun\Model\DateTimeFilter $to = null,
         ?string $interval = null
-    ): OrganizationCarbon {
+    ): \Upsun\Model\OrganizationCarbon {
         return $this->queryOrganiationCarbonWithHttpInfo(
             $organizationId,
             $from,
@@ -536,10 +563,10 @@ final class DefaultApi extends AbstractApi
     */
     private function queryOrganiationCarbonWithHttpInfo(
         string $organizationId,
-        ?DateTimeFilter $from = null,
-        ?DateTimeFilter $to = null,
+        ?\Upsun\Model\DateTimeFilter $from = null,
+        ?\Upsun\Model\DateTimeFilter $to = null,
         ?string $interval = null
-    ): OrganizationCarbon {
+    ): \Upsun\Model\OrganizationCarbon {
         $request = $this->queryOrganiationCarbonRequest(
             $organizationId,
             $from,
@@ -591,10 +618,11 @@ final class DefaultApi extends AbstractApi
      */
     private function queryOrganiationCarbonRequest(
         string $organizationId,
-        ?DateTimeFilter $from = null,
-        ?DateTimeFilter $to = null,
+        ?\Upsun\Model\DateTimeFilter $from = null,
+        ?\Upsun\Model\DateTimeFilter $to = null,
         ?string $interval = null
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -623,6 +651,8 @@ final class DefaultApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -635,6 +665,8 @@ final class DefaultApi extends AbstractApi
                     : ($to->getEq());
             }
         }
+
+
 
         // query params
         if ($interval !== null) {
@@ -649,6 +681,8 @@ final class DefaultApi extends AbstractApi
             }
         }
 
+
+
         // path params
 
         if ($organizationId !== null) {
@@ -658,6 +692,7 @@ final class DefaultApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],

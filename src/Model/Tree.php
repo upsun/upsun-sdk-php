@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class Tree implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $sha,
         private readonly array $tree,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -39,28 +42,29 @@ final class Tree implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of Tree
-     */
+   /**
+    * The identifier of Tree
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The identifier of the tree
-     */
+   /**
+    * The identifier of the tree
+    */
     public function getSha(): string
     {
         return $this->sha;
     }
 
-    /**
-     * The tree items
-     * @return TreeItemsInner[]
-     */
+   /**
+    * The tree items
+    * @return TreeItemsInner[]
+    */
     public function getTree(): array
     {
         return $this->tree;
     }
 }
+

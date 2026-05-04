@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInnerLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInnerLinksTopSpans $topSpans,
         private readonly BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInnerLinksRecommendations $recommendations,
         private readonly BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInnerLinksProfiles $profiles,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -54,3 +57,4 @@ final class BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInner
         return $this->profiles;
     }
 }
+

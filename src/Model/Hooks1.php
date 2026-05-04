@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class Hooks1 implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $build,
         private readonly ?string $deploy,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,19 +41,20 @@ final class Hooks1 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Hook executed after the build process
-     */
+   /**
+    * Hook executed after the build process
+    */
     public function getBuild(): ?string
     {
         return $this->build;
     }
 
-    /**
-     * Hook executed before the task's run command
-     */
+   /**
+    * Hook executed before the task's run command
+    */
     public function getDeploy(): ?string
     {
         return $this->deploy;
     }
 }
+

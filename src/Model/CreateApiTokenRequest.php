@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class CreateApiTokenRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $name,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,3 +43,4 @@ final class CreateApiTokenRequest implements Model, JsonSerializable
         return $this->name;
     }
 }
+

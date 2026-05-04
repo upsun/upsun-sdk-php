@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,9 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Deployment;
-use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
 
 /**
  * Low level DeploymentApi (auto-generated)
@@ -65,7 +63,7 @@ final class DeploymentApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $deploymentId
-    ): Deployment {
+    ): \Upsun\Model\Deployment {
         return $this->getProjectsEnvironmentsDeploymentsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -84,7 +82,7 @@ final class DeploymentApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $deploymentId
-    ): Deployment {
+    ): \Upsun\Model\Deployment {
         $request = $this->getProjectsEnvironmentsDeploymentsRequest(
             $projectId,
             $environmentId,
@@ -129,6 +127,7 @@ final class DeploymentApi extends AbstractApi
         string $environmentId,
         string $deploymentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -185,6 +184,7 @@ final class DeploymentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -324,6 +324,7 @@ final class DeploymentApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -364,6 +365,7 @@ final class DeploymentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -434,8 +436,8 @@ final class DeploymentApi extends AbstractApi
     public function updateProjectsEnvironmentsDeploymentsNext(
         string $projectId,
         string $environmentId,
-        UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
-    ): AcceptedResponse {
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
+    ): \Upsun\Model\AcceptedResponse {
         return $this->updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
             $projectId,
             $environmentId,
@@ -453,8 +455,8 @@ final class DeploymentApi extends AbstractApi
     private function updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
         string $projectId,
         string $environmentId,
-        UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
-    ): AcceptedResponse {
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsEnvironmentsDeploymentsNextRequest(
             $projectId,
             $environmentId,
@@ -497,8 +499,9 @@ final class DeploymentApi extends AbstractApi
     private function updateProjectsEnvironmentsDeploymentsNextRequest(
         string $projectId,
         string $environmentId,
-        UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -546,6 +549,7 @@ final class DeploymentApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

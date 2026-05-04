@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class UpdateOrgMemberRequest implements Model, JsonSerializable
 {
+
     public const PERMISSIONS_ADMIN = 'admin';
     public const PERMISSIONS_BILLING = 'billing';
     public const PERMISSIONS_MEMBERS = 'members';
@@ -24,6 +25,7 @@ final class UpdateOrgMemberRequest implements Model, JsonSerializable
         private readonly ?array $permissions = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +49,4 @@ final class UpdateOrgMemberRequest implements Model, JsonSerializable
         return $this->permissions;
     }
 }
+

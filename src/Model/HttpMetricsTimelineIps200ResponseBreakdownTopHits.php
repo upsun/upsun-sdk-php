@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineIps200ResponseBreakdownTopHits implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $maxQuantity,
         private readonly float $maxPercentage,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class HttpMetricsTimelineIps200ResponseBreakdownTopHits implements Model, 
         return $this->maxPercentage;
     }
 }
+

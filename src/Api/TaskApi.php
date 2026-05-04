@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,9 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Task;
-use Upsun\Model\TaskTriggerInput;
 
 /**
  * Low level TaskApi (auto-generated)
@@ -61,7 +59,7 @@ final class TaskApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $taskId
-    ): Task {
+    ): \Upsun\Model\Task {
         return $this->getProjectsEnvironmentsTasksWithHttpInfo(
             $projectId,
             $environmentId,
@@ -79,7 +77,7 @@ final class TaskApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $taskId
-    ): Task {
+    ): \Upsun\Model\Task {
         $request = $this->getProjectsEnvironmentsTasksRequest(
             $projectId,
             $environmentId,
@@ -124,6 +122,7 @@ final class TaskApi extends AbstractApi
         string $environmentId,
         string $taskId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -180,6 +179,7 @@ final class TaskApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -310,6 +310,7 @@ final class TaskApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -350,6 +351,7 @@ final class TaskApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -419,8 +421,8 @@ final class TaskApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $taskId,
-        TaskTriggerInput $taskTriggerInput
-    ): AcceptedResponse {
+        \Upsun\Model\TaskTriggerInput $taskTriggerInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->runTaskWithHttpInfo(
             $projectId,
             $environmentId,
@@ -440,8 +442,8 @@ final class TaskApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $taskId,
-        TaskTriggerInput $taskTriggerInput
-    ): AcceptedResponse {
+        \Upsun\Model\TaskTriggerInput $taskTriggerInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->runTaskRequest(
             $projectId,
             $environmentId,
@@ -487,8 +489,9 @@ final class TaskApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $taskId,
-        TaskTriggerInput $taskTriggerInput
+        \Upsun\Model\TaskTriggerInput $taskTriggerInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -552,6 +555,7 @@ final class TaskApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class HttpMetricsOverview200ResponseDataTimelinesInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $timestamp,
         private readonly ?int $requestSize = null,
@@ -21,6 +23,7 @@ final class HttpMetricsOverview200ResponseDataTimelinesInner implements Model, J
         private readonly ?HttpMetricsOverview200ResponseDataTimelinesInnerCodes $codes = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -58,9 +61,9 @@ final class HttpMetricsOverview200ResponseDataTimelinesInner implements Model, J
         return $this->responseSize;
     }
 
-    /**
-     * @return HttpMetricsOverview200ResponseDataTimelinesInnerUrlsValue[]|null
-     */
+   /**
+    * @return HttpMetricsOverview200ResponseDataTimelinesInnerUrlsValue[]|null
+    */
     public function getUrls(): ?array
     {
         return $this->urls;
@@ -71,3 +74,4 @@ final class HttpMetricsOverview200ResponseDataTimelinesInner implements Model, J
         return $this->codes;
     }
 }
+

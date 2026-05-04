@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ListOrgProjects200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $items = [],
@@ -20,6 +22,7 @@ final class ListOrgProjects200Response implements Model, JsonSerializable
         private readonly ?ListLinks $links = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -46,17 +49,17 @@ final class ListOrgProjects200Response implements Model, JsonSerializable
         return $this->count;
     }
 
-    /**
-     * @return OrganizationProject[]|null
-     */
+   /**
+    * @return OrganizationProject[]|null
+    */
     public function getItems(): ?array
     {
         return $this->items;
     }
 
-    /**
-     * Facets for filtering options.
-     */
+   /**
+    * Facets for filtering options.
+    */
     public function getFacets(): ?ProjectFacets
     {
         return $this->facets;
@@ -67,3 +70,4 @@ final class ListOrgProjects200Response implements Model, JsonSerializable
         return $this->links;
     }
 }
+

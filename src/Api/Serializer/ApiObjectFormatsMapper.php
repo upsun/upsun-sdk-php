@@ -26,6 +26,7 @@ final class ApiObjectFormatsMapper
     }
 
     protected static $openApiFormats = [
+
         'Upsun\Model\AcceptedResponse' => [
             'status' => null,
             'code' => null
@@ -164,6 +165,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\AutoscalerDuration' => [
+            
         ],
 
         'Upsun\Model\AutoscalerInstances' => [
@@ -656,7 +658,7 @@ final class ApiObjectFormatsMapper
             'advancedFilters' => null,
             'contexts' => null,
             'contextsMode' => null,
-            'transactions' => null,
+            '_transactionsFilter' => null,
             'transactionsMode' => null,
             'wtSlot' => null,
             'wtSlotMode' => null,
@@ -730,7 +732,7 @@ final class ApiObjectFormatsMapper
             'topHitsTimeline' => null,
             'contexts' => null,
             'contextsMode' => null,
-            'transactions' => null,
+            '_transactionsFilter' => null,
             'transactionsMode' => null,
             'wtSlot' => null,
             'wtSlotMode' => null,
@@ -768,7 +770,7 @@ final class ApiObjectFormatsMapper
             'timestamp' => null,
             'totalConsumed' => 'float',
             'totalCount' => 'float',
-            'transactions' => null
+            '_transactionsFilter' => null
         ],
 
         'Upsun\Model\BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataInnerTransactionsValue' => [
@@ -960,6 +962,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\CommunityPackagesInner' => [
+            
         ],
 
         'Upsun\Model\Components' => [
@@ -1770,6 +1773,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\FilterSelectValues' => [
+            
         ],
 
         'Upsun\Model\Firewall' => [
@@ -3003,6 +3007,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\Mode' => [
+            
         ],
 
         'Upsun\Model\MountsValue' => [
@@ -3902,6 +3907,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ProjectAddonBaseAllowedValuesInner' => [
+            
         ],
 
         'Upsun\Model\ProjectAddonBaseLinks' => [
@@ -4126,9 +4132,11 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ProjectStatus' => [
+            
         ],
 
         'Upsun\Model\ProjectType' => [
+            
         ],
 
         'Upsun\Model\ProjectVariable' => [
@@ -5894,5 +5902,6 @@ final class ApiObjectFormatsMapper
             'slugId' => null,
             'supportsHorizontalScaling' => null
         ],
+
     ];
 }

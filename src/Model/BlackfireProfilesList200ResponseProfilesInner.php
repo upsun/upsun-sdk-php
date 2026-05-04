@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,6 +13,8 @@ use JsonSerializable;
  */
 final class BlackfireProfilesList200ResponseProfilesInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $uuid,
         private readonly string $name,
@@ -21,8 +22,8 @@ final class BlackfireProfilesList200ResponseProfilesInner implements Model, Json
         private readonly ?int $recommendations = null,
         private readonly ?object $report = null,
         private readonly ?array $vulnerableUsages = [],
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?object $metadata = null,
         private readonly ?BlackfireProfilesList200ResponseProfilesInnerData $data = null,
         private readonly ?BlackfireProfilesList200ResponseProfilesInnerContext $context = null,
@@ -38,6 +39,7 @@ final class BlackfireProfilesList200ResponseProfilesInner implements Model, Json
         private readonly ?object $keyPage = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -91,12 +93,12 @@ final class BlackfireProfilesList200ResponseProfilesInner implements Model, Json
         return $this->links;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -181,3 +183,4 @@ final class BlackfireProfilesList200ResponseProfilesInner implements Model, Json
         return $this->keyPage;
     }
 }
+

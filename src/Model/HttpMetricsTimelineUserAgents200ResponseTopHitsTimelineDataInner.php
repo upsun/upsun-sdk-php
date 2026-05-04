@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineUserAgents200ResponseTopHitsTimelineDataInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $timestamp,
         private readonly ?float $totalConsumed = null,
@@ -20,6 +22,7 @@ final class HttpMetricsTimelineUserAgents200ResponseTopHitsTimelineDataInner imp
         private readonly ?array $data = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -56,11 +59,12 @@ final class HttpMetricsTimelineUserAgents200ResponseTopHitsTimelineDataInner imp
         return $this->totalCount;
     }
 
-    /**
-     * @return HttpMetricsTimelineUserAgents200ResponseTopHitsTimelineDataInnerDataValue[]|null
-     */
+   /**
+    * @return HttpMetricsTimelineUserAgents200ResponseTopHitsTimelineDataInnerDataValue[]|null
+    */
     public function getData(): ?array
     {
         return $this->data;
     }
 }
+

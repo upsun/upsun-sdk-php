@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\OrganizationAddonsObject;
-use Upsun\Model\UpdateOrgAddonsRequest;
 
 /**
  * Low level AddOnsApi (auto-generated)
@@ -64,7 +63,7 @@ final class AddOnsApi extends AbstractApi
      */
     public function getOrgAddons(
         string $organizationId
-    ): OrganizationAddonsObject {
+    ): \Upsun\Model\OrganizationAddonsObject {
         return $this->getOrgAddonsWithHttpInfo(
             $organizationId
         );
@@ -82,7 +81,7 @@ final class AddOnsApi extends AbstractApi
     */
     private function getOrgAddonsWithHttpInfo(
         string $organizationId
-    ): OrganizationAddonsObject {
+    ): \Upsun\Model\OrganizationAddonsObject {
         $request = $this->getOrgAddonsRequest(
             $organizationId
         );
@@ -126,6 +125,7 @@ final class AddOnsApi extends AbstractApi
     private function getOrgAddonsRequest(
         string $organizationId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -150,6 +150,7 @@ final class AddOnsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -222,8 +223,8 @@ final class AddOnsApi extends AbstractApi
      */
     public function updateOrgAddons(
         string $organizationId,
-        UpdateOrgAddonsRequest $updateOrgAddonsRequest
-    ): OrganizationAddonsObject {
+        \Upsun\Model\UpdateOrgAddonsRequest $updateOrgAddonsRequest
+    ): \Upsun\Model\OrganizationAddonsObject {
         return $this->updateOrgAddonsWithHttpInfo(
             $organizationId,
             $updateOrgAddonsRequest
@@ -242,8 +243,8 @@ final class AddOnsApi extends AbstractApi
     */
     private function updateOrgAddonsWithHttpInfo(
         string $organizationId,
-        UpdateOrgAddonsRequest $updateOrgAddonsRequest
-    ): OrganizationAddonsObject {
+        \Upsun\Model\UpdateOrgAddonsRequest $updateOrgAddonsRequest
+    ): \Upsun\Model\OrganizationAddonsObject {
         $request = $this->updateOrgAddonsRequest(
             $organizationId,
             $updateOrgAddonsRequest
@@ -287,8 +288,9 @@ final class AddOnsApi extends AbstractApi
      */
     private function updateOrgAddonsRequest(
         string $organizationId,
-        UpdateOrgAddonsRequest $updateOrgAddonsRequest
+        \Upsun\Model\UpdateOrgAddonsRequest $updateOrgAddonsRequest
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -320,6 +322,7 @@ final class AddOnsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],

@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class CreateOrgSubscriptionRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $projectRegion,
         private readonly ?string $plan = null,
@@ -23,6 +25,7 @@ final class CreateOrgSubscriptionRequest implements Model, JsonSerializable
         private readonly ?int $storage = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -52,9 +55,9 @@ final class CreateOrgSubscriptionRequest implements Model, JsonSerializable
         return $this->projectRegion;
     }
 
-    /**
-     * The project plan.
-     */
+   /**
+    * The project plan.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;
@@ -85,3 +88,4 @@ final class CreateOrgSubscriptionRequest implements Model, JsonSerializable
         return $this->storage;
     }
 }
+

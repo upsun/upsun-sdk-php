@@ -13,9 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\CreateProjectInviteRequest;
-use Upsun\Model\ProjectInvitation;
-use Upsun\Model\StringFilter;
 
 /**
  * Low level ProjectInvitationsApi (auto-generated)
@@ -130,6 +127,7 @@ final class ProjectInvitationsApi extends AbstractApi
         string $projectId,
         string $invitationId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -170,6 +168,7 @@ final class ProjectInvitationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -241,8 +240,8 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     public function createProjectInvite(
         string $projectId,
-        ?CreateProjectInviteRequest $createProjectInviteRequest = null
-    ): ProjectInvitation {
+        ?\Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
+    ): \Upsun\Model\ProjectInvitation {
         return $this->createProjectInviteWithHttpInfo(
             $projectId,
             $createProjectInviteRequest
@@ -260,8 +259,8 @@ final class ProjectInvitationsApi extends AbstractApi
     */
     private function createProjectInviteWithHttpInfo(
         string $projectId,
-        ?CreateProjectInviteRequest $createProjectInviteRequest = null
-    ): ProjectInvitation {
+        ?\Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
+    ): \Upsun\Model\ProjectInvitation {
         $request = $this->createProjectInviteRequest(
             $projectId,
             $createProjectInviteRequest
@@ -304,8 +303,9 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     private function createProjectInviteRequest(
         string $projectId,
-        ?CreateProjectInviteRequest $createProjectInviteRequest = null
+        ?\Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -330,6 +330,7 @@ final class ProjectInvitationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -416,7 +417,7 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     public function listProjectInvites(
         string $projectId,
-        ?StringFilter $filterState = null,
+        ?\Upsun\Model\StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -450,7 +451,7 @@ final class ProjectInvitationsApi extends AbstractApi
     */
     private function listProjectInvitesWithHttpInfo(
         string $projectId,
-        ?StringFilter $filterState = null,
+        ?\Upsun\Model\StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -507,12 +508,13 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     private function listProjectInvitesRequest(
         string $projectId,
-        ?StringFilter $filterState = null,
+        ?\Upsun\Model\StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -535,6 +537,8 @@ final class ProjectInvitationsApi extends AbstractApi
             );
         }
 
+
+
         $resourcePath = '/projects/{project_id}/invitations';
         $formParams = [];
         $queryParams = [];
@@ -555,6 +559,8 @@ final class ProjectInvitationsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pageSize !== null) {
             if ('form' === 'form' && is_array($pageSize)) {
@@ -567,6 +573,8 @@ final class ProjectInvitationsApi extends AbstractApi
                     : ($pageSize);
             }
         }
+
+
 
         // query params
         if ($pageBefore !== null) {
@@ -581,6 +589,8 @@ final class ProjectInvitationsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pageAfter !== null) {
             if ('form' === 'form' && is_array($pageAfter)) {
@@ -593,6 +603,8 @@ final class ProjectInvitationsApi extends AbstractApi
                     : ($pageAfter);
             }
         }
+
+
 
         // query params
         if ($sort !== null) {
@@ -607,6 +619,8 @@ final class ProjectInvitationsApi extends AbstractApi
             }
         }
 
+
+
         // path params
 
         if ($projectId !== null) {
@@ -616,6 +630,7 @@ final class ProjectInvitationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

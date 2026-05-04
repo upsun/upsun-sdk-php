@@ -14,10 +14,13 @@ use JsonSerializable;
  */
 final class RegionCompliance implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?bool $hipaa = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -36,11 +39,12 @@ final class RegionCompliance implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Indicator whether or not this region is HIPAA compliant.
-     */
+   /**
+    * Indicator whether or not this region is HIPAA compliant.
+    */
     public function getHipaa(): ?bool
     {
         return $this->hipaa;
     }
 }
+

@@ -14,6 +14,7 @@ use JsonSerializable;
  */
 final class TLSSettings implements Model, JsonSerializable
 {
+
     public const MIN_VERSION_TLSV1_0 = 'TLSv1.0';
     public const MIN_VERSION_TLSV1_1 = 'TLSv1.1';
     public const MIN_VERSION_TLSV1_2 = 'TLSv1.2';
@@ -28,6 +29,7 @@ final class TLSSettings implements Model, JsonSerializable
         private readonly ?string $clientAuthentication,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -54,17 +56,17 @@ final class TLSSettings implements Model, JsonSerializable
         return $this->strictTransportSecurity;
     }
 
-    /**
-     * The minimum TLS version to support.
-     */
+   /**
+    * The minimum TLS version to support.
+    */
     public function getMinVersion(): ?string
     {
         return $this->minVersion;
     }
 
-    /**
-     * The type of client authentication to request.
-     */
+   /**
+    * The type of client authentication to request.
+    */
     public function getClientAuthentication(): ?string
     {
         return $this->clientAuthentication;
@@ -75,3 +77,4 @@ final class TLSSettings implements Model, JsonSerializable
         return $this->clientCertificateAuthorities;
     }
 }
+
