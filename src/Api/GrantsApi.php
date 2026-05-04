@@ -51,6 +51,158 @@ final class GrantsApi extends AbstractApi
     }
 
     /**
+     * Get access document by access ID
+     *
+     * Returns the full access document referenced by token claim `access_id`.
+     *
+     * @param  string $accessId (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @see https://docs.upsun.com/api/#tag/Grants/operation/get-access-document
+     */
+    public function getAccessDocument(
+        string $accessId
+    ): object {
+        return $this->getAccessDocumentWithHttpInfo(
+            $accessId
+        );
+    }
+
+    /**
+     * Get access document by access ID with HTTP Info
+     *
+     * @param  string $accessId (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
+    private function getAccessDocumentWithHttpInfo(
+        string $accessId
+    ): object {
+        $request = $this->getAccessDocumentRequest(
+            $accessId
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                'object',
+                $request,
+                $response
+            );
+        } catch (Exception $exception) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $exception->getCode(),
+                    '/access/{access_id}'
+                ),
+                $request,
+                $response ?? null,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Create request for operation 'getAccessDocument'
+     *
+     * @param  string $accessId (required)
+     *
+     * @throws InvalidArgumentException
+     */
+    private function getAccessDocumentRequest(
+        string $accessId
+    ): RequestInterface {
+        // verify the required parameter 'accessId' is set
+        if (empty($accessId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $accessId
+                when calling getAccessDocument'
+            );
+        }
+
+        $resourcePath = '/access/{access_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+
+        if ($accessId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'access_id' . '}',
+                ObjectSerializer::toPathValue($accessId),
+                $resourcePath
+            );
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+        if ($this->config->getUpsunClientHeader()) {
+            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+
+    /**
      * List extended access of a user
      *
      * List extended access of the given user, which includes both individual and team access to project and

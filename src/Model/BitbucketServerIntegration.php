@@ -21,6 +21,7 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
 
     public function __construct(
         private readonly string $type,
+        private readonly string $role,
         private readonly bool $fetchBranches,
         private readonly bool $pruneBranches,
         private readonly string $environmentInitResources,
@@ -47,6 +48,7 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
+            'role' => $this->role,
             'fetchBranches' => $this->fetchBranches,
             'pruneBranches' => $this->pruneBranches,
             'environmentInitResources' => $this->environmentInitResources,
@@ -81,13 +83,24 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
         return $this->updatedAt;
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * Whether or not to fetch branches.
+     * The role of the integration
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * Whether or not to fetch branches
      */
     public function getFetchBranches(): bool
     {
@@ -95,7 +108,7 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
     }
 
     /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
      */
     public function getPruneBranches(): bool
     {
@@ -111,7 +124,7 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
     }
 
     /**
-     * The base URL of the Bitbucket Server installation.
+     * The base URL of the Bitbucket Server installation
      */
     public function getUrl(): string
     {
@@ -119,7 +132,7 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
     }
 
     /**
-     * The Bitbucket Server user.
+     * The Bitbucket Server user
      */
     public function getUsername(): string
     {
@@ -143,7 +156,7 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
     }
 
     /**
-     * Whether or not to build pull requests.
+     * Whether or not to build pull requests
      */
     public function getBuildPullRequests(): bool
     {
@@ -151,7 +164,7 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
     }
 
     /**
-     * Whether or not to clone parent data when building merge requests.
+     * Whether or not to clone parent data when building merge requests
      */
     public function getPullRequestsCloneParentData(): bool
     {

@@ -596,8 +596,10 @@ final class OrganizationProjectsApi extends AbstractApi
      * @param  string $organizationId
      *         The ID of the organization. (required)
      * @param  \Upsun\Model\StringFilter|null $filterId (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterTitle (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterStatus (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterTitle
+     *         Allows filtering by project `title` using one or more operators. (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterStatus
+     *         Allows filtering by project `status` using one or more operators. (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
      *         Allows filtering by `updated_at` using one or more operators. (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterCreatedAt
@@ -648,8 +650,10 @@ final class OrganizationProjectsApi extends AbstractApi
      * @param  string $organizationId
      *         The ID of the organization. (required)
      * @param  \Upsun\Model\StringFilter|null $filterId (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterTitle (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterStatus (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterTitle
+     *         Allows filtering by project `title` using one or more operators. (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterStatus
+     *         Allows filtering by project `status` using one or more operators. (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
      *         Allows filtering by `updated_at` using one or more operators. (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterCreatedAt
@@ -725,8 +729,10 @@ final class OrganizationProjectsApi extends AbstractApi
      * @param  string $organizationId
      *         The ID of the organization. (required)
      * @param  \Upsun\Model\StringFilter|null $filterId (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterTitle (optional)
-     * @param  \Upsun\Model\StringFilter|null $filterStatus (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterTitle
+     *         Allows filtering by project `title` using one or more operators. (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterStatus
+     *         Allows filtering by project `status` using one or more operators. (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterUpdatedAt
      *         Allows filtering by `updated_at` using one or more operators. (optional)
      * @param  \Upsun\Model\DateTimeFilter|null $filterCreatedAt

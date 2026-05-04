@@ -123,11 +123,11 @@ class BackupsTask extends TaskBase
             $environmentId,
             $backupId,
             environmentRestoreInput: new EnvironmentRestoreInput(
-                $restoreCode,
-                $restoreResources,
-                $environmentName,
-                $branchFrom,
+                environmentName: $environmentName,
+                branchFrom: $branchFrom,
                 resources: new Resources6($init),
+                restoreCode: $restoreCode,
+                restoreResources: $restoreResources,
             )
         );
     }

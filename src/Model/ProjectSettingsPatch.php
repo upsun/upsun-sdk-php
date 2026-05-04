@@ -15,6 +15,7 @@ final class ProjectSettingsPatch implements Model, JsonSerializable
 {
     public function __construct(
         private readonly ?array $dataRetention = [],
+        private readonly ?MaintenanceWindowConfiguration $maintenanceWindow = null,
         private readonly ?object $initialize = null,
         private readonly ?BuildResources2 $buildResources = null,
     ) {
@@ -31,6 +32,7 @@ final class ProjectSettingsPatch implements Model, JsonSerializable
             'initialize' => $this->initialize,
             'dataRetention' => $this->dataRetention,
             'buildResources' => $this->buildResources,
+            'maintenanceWindow' => $this->maintenanceWindow,
         ];
     }
 
@@ -56,5 +58,13 @@ final class ProjectSettingsPatch implements Model, JsonSerializable
     public function getBuildResources(): ?BuildResources2
     {
         return $this->buildResources;
+    }
+
+    /**
+     * Configuration for the maintenance window schedule
+     */
+    public function getMaintenanceWindow(): ?MaintenanceWindowConfiguration
+    {
+        return $this->maintenanceWindow;
     }
 }

@@ -40,7 +40,7 @@ final class StrictTransportSecurityOptions implements Model, JsonSerializable
     }
 
     /**
-     * Whether strict transport security is enabled or not.
+     * Whether strict transport security is enabled or not
      */
     public function getEnabled(): ?bool
     {
@@ -48,7 +48,7 @@ final class StrictTransportSecurityOptions implements Model, JsonSerializable
     }
 
     /**
-     * Whether the strict transport security policy should include all subdomains.
+     * Whether the strict transport security policy should include all subdomains
      */
     public function getIncludeSubdomains(): ?bool
     {
@@ -56,7 +56,7 @@ final class StrictTransportSecurityOptions implements Model, JsonSerializable
     }
 
     /**
-     * Whether the strict transport security policy should be preloaded in browsers.
+     * Whether the strict transport security policy should be preloaded in browsers
      */
     public function getPreload(): ?bool
     {

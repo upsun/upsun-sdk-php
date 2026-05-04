@@ -21,6 +21,7 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
 
     public function __construct(
         private readonly string $type,
+        private readonly string $role,
         private readonly bool $fetchBranches,
         private readonly bool $pruneBranches,
         private readonly string $environmentInitResources,
@@ -49,6 +50,7 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
+            'role' => $this->role,
             'fetchBranches' => $this->fetchBranches,
             'pruneBranches' => $this->pruneBranches,
             'environmentInitResources' => $this->environmentInitResources,
@@ -85,13 +87,24 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
         return $this->updatedAt;
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * Whether or not to fetch branches.
+     * The role of the integration
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * Whether or not to fetch branches
      */
     public function getFetchBranches(): bool
     {
@@ -99,7 +112,7 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
      */
     public function getPruneBranches(): bool
     {
@@ -114,23 +127,32 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
         return $this->environmentInitResources;
     }
 
+    /**
+     * 'expires_at' value of the current token
+     */
     public function getTokenExpiresAt(): ?DateTime
     {
         return $this->tokenExpiresAt;
     }
 
+    /**
+     * Whether or not to rotate token automatically using Gitlab API
+     */
     public function getRotateToken(): bool
     {
         return $this->rotateToken;
     }
 
+    /**
+     * Validity in weeks of a new token after rotation
+     */
     public function getRotateTokenValidityInWeeks(): int
     {
         return $this->rotateTokenValidityInWeeks;
     }
 
     /**
-     * The base URL of the GitLab installation.
+     * The base URL of the GitLab installation
      */
     public function getBaseUrl(): string
     {
@@ -138,7 +160,7 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * The GitLab project (in the form `namespace/repo`).
+     * The GitLab project (in the form `namespace/repo`)
      */
     public function getProject(): string
     {
@@ -146,7 +168,7 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not to build merge requests.
+     * Whether or not to build merge requests
      */
     public function getBuildMergeRequests(): bool
     {
@@ -154,7 +176,7 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not to build work in progress merge requests (requires `build_merge_requests`).
+     * Whether or not to build work in progress merge requests (requires `build_merge_requests`)
      */
     public function getBuildWipMergeRequests(): bool
     {
@@ -162,7 +184,7 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * Whether or not to clone parent data when building merge requests.
+     * Whether or not to clone parent data when building merge requests
      */
     public function getMergeRequestsCloneParentData(): bool
     {

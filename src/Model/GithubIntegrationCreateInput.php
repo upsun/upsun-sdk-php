@@ -60,6 +60,9 @@ final class GithubIntegrationCreateInput implements Model, JsonSerializable, Int
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
@@ -74,7 +77,7 @@ final class GithubIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * The GitHub repository (in the form `user/repo`).
+     * The GitHub repository (in the form `user/repo`)
      */
     public function getRepository(): string
     {
@@ -82,7 +85,7 @@ final class GithubIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * Whether or not to fetch branches.
+     * Whether or not to fetch branches
      */
     public function getFetchBranches(): ?bool
     {
@@ -90,7 +93,7 @@ final class GithubIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
      */
     public function getPruneBranches(): ?bool
     {
@@ -106,7 +109,7 @@ final class GithubIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * The base URL of the Github API endpoint.
+     * The base URL of the Github API endpoint
      */
     public function getBaseUrl(): ?string
     {
@@ -114,7 +117,7 @@ final class GithubIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * Whether or not to build pull requests.
+     * Whether or not to build pull requests
      */
     public function getBuildPullRequests(): ?bool
     {
@@ -122,7 +125,7 @@ final class GithubIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * Whether or not to build draft pull requests (requires `build_pull_requests`).
+     * Whether or not to build draft pull requests (requires `build_pull_requests`)
      */
     public function getBuildDraftPullRequests(): ?bool
     {
@@ -130,7 +133,7 @@ final class GithubIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * Whether to build pull requests post-merge (if true) or pre-merge (if false).
+     * Whether to build pull requests post-merge (if true) or pre-merge (if false)
      */
     public function getBuildPullRequestsPostMerge(): ?bool
     {
@@ -138,7 +141,7 @@ final class GithubIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * Whether or not to clone parent data when building pull requests.
+     * Whether or not to clone parent data when building pull requests
      */
     public function getPullRequestsCloneParentData(): ?bool
     {

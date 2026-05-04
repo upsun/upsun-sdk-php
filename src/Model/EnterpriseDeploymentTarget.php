@@ -15,7 +15,8 @@ final class EnterpriseDeploymentTarget implements Model, JsonSerializable, Deplo
 {
     public const TYPE_DEDICATED = 'dedicated';
     public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
+    public const TYPE_FOUNDATION = 'foundation';
+    public const TYPE_KUBERNETES = 'kubernetes';
 
     public function __construct(
         private readonly string $type,
@@ -56,7 +57,7 @@ final class EnterpriseDeploymentTarget implements Model, JsonSerializable, Deplo
     }
 
     /**
-     * The type of the deployment target.
+     * The type of the deployment target
      */
     public function getType(): string
     {
@@ -64,7 +65,7 @@ final class EnterpriseDeploymentTarget implements Model, JsonSerializable, Deplo
     }
 
     /**
-     * The name of the deployment target.
+     * The name of the deployment target
      */
     public function getName(): string
     {
@@ -72,7 +73,7 @@ final class EnterpriseDeploymentTarget implements Model, JsonSerializable, Deplo
     }
 
     /**
-     * The host to deploy to.
+     * The host to deploy to
      */
     public function getDeployHost(): ?string
     {
@@ -88,6 +89,9 @@ final class EnterpriseDeploymentTarget implements Model, JsonSerializable, Deplo
         return $this->docroots;
     }
 
+    /**
+     * List of URLs of the site
+     */
     public function getSiteUrls(): object
     {
         return $this->siteUrls;

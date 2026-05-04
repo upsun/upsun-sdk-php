@@ -35,6 +35,9 @@ final class BlackfireIntegrationPatch implements Model, JsonSerializable, Integr
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;

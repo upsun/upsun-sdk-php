@@ -17,7 +17,7 @@ final class EnvironmentDeployInput implements Model, JsonSerializable
     public const STRATEGY_STOPSTART = 'stopstart';
 
     public function __construct(
-        private readonly string $strategy,
+        private readonly ?string $strategy = null,
     ) {
     }
 
@@ -41,7 +41,7 @@ final class EnvironmentDeployInput implements Model, JsonSerializable
     /**
      * The deployment strategy (`rolling` or `stopstart`)
      */
-    public function getStrategy(): string
+    public function getStrategy(): ?string
     {
         return $this->strategy;
     }

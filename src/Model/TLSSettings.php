@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level TLSSettings (auto-generated)
- * TLS settings for the route.
+ * TLS settings for the route
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

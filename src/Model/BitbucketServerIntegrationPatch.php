@@ -60,13 +60,16 @@ final class BitbucketServerIntegrationPatch implements Model, JsonSerializable, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * The base URL of the Bitbucket Server installation.
+     * The base URL of the Bitbucket Server installation
      */
     public function getUrl(): string
     {
@@ -74,7 +77,7 @@ final class BitbucketServerIntegrationPatch implements Model, JsonSerializable, 
     }
 
     /**
-     * The Bitbucket Server user.
+     * The Bitbucket Server user
      */
     public function getUsername(): string
     {
@@ -82,7 +85,7 @@ final class BitbucketServerIntegrationPatch implements Model, JsonSerializable, 
     }
 
     /**
-     * The Bitbucket Server personal access token.
+     * The Bitbucket Server personal access token
      */
     public function getToken(): string
     {
@@ -106,7 +109,7 @@ final class BitbucketServerIntegrationPatch implements Model, JsonSerializable, 
     }
 
     /**
-     * Whether or not to fetch branches.
+     * Whether or not to fetch branches
      */
     public function getFetchBranches(): ?bool
     {
@@ -114,7 +117,7 @@ final class BitbucketServerIntegrationPatch implements Model, JsonSerializable, 
     }
 
     /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
      */
     public function getPruneBranches(): ?bool
     {
@@ -130,7 +133,7 @@ final class BitbucketServerIntegrationPatch implements Model, JsonSerializable, 
     }
 
     /**
-     * Whether or not to build pull requests.
+     * Whether or not to build pull requests
      */
     public function getBuildPullRequests(): ?bool
     {
@@ -138,7 +141,7 @@ final class BitbucketServerIntegrationPatch implements Model, JsonSerializable, 
     }
 
     /**
-     * Whether or not to clone parent data when building merge requests.
+     * Whether or not to clone parent data when building merge requests
      */
     public function getPullRequestsCloneParentData(): ?bool
     {

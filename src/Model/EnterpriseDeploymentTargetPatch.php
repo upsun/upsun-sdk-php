@@ -15,7 +15,8 @@ final class EnterpriseDeploymentTargetPatch implements Model, JsonSerializable, 
 {
     public const TYPE_DEDICATED = 'dedicated';
     public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
+    public const TYPE_FOUNDATION = 'foundation';
+    public const TYPE_KUBERNETES = 'kubernetes';
 
     public function __construct(
         private readonly string $type,
@@ -48,7 +49,7 @@ final class EnterpriseDeploymentTargetPatch implements Model, JsonSerializable, 
     }
 
     /**
-     * The type of the deployment target.
+     * The type of the deployment target
      */
     public function getType(): string
     {
@@ -56,13 +57,16 @@ final class EnterpriseDeploymentTargetPatch implements Model, JsonSerializable, 
     }
 
     /**
-     * The name of the deployment target.
+     * The name of the deployment target
      */
     public function getName(): string
     {
         return $this->name;
     }
 
+    /**
+     * List of URLs of the site
+     */
     public function getSiteUrls(): ?object
     {
         return $this->siteUrls;

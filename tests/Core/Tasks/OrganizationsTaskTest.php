@@ -1532,39 +1532,31 @@ class OrganizationsTaskTest extends BaseTestCase
     public function testUpdateProject()
     {
         $prjId = 'proj_1';
+        $projectFake = $this->getFakeProject($prjId);
         $data = [
-            'defaultBranch' => 'main',
-            'defaultDomain' => 'example.com',
-            'attributes' => [
-                'featureFlag' => true,
-                'maintenanceMode' => false,
-            ],
             'title' => 'Projet Fake',
-            'description' => 'Ceci est un projet simulé pour les tests',
             'timezone' => 'America/New_York',
-            'region' => 'us.platform.sh',
         ];
 
         $this->httpClient
             ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
+            ->willReturnOnConsecutiveCalls(
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($projectFake)
+                ),
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode([])
+                )
+            );
 
         $response = $this->organizationsTask->updateProject(
             projectId: $prjId,
             title: $data['title'],
-            defaultBranch: $data['defaultBranch'],
-            description: $data['description'],
-            defaultDomain: $data['defaultDomain'],
-            attributes: $data['attributes'],
             timezone: $data['timezone'],
-            region: $data['region'],
         );
 
         $this->assertEquals(new AcceptedResponse('accepted', 200), $response);

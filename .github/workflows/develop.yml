@@ -152,6 +152,8 @@ jobs:
           SDK_NODE_BRANCH: main
           SDK_PHP_BRANCH: ${{ github.head_ref || github.ref_name }}
           WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
         run: |
           set -o pipefail
           npx upsun-sdk-checker full:checks 2>&1 | tee sdk-checker-report.txt

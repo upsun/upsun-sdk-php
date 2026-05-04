@@ -58,13 +58,16 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * The Bitbucket repository (in the form `user/repo`).
+     * The Bitbucket repository (in the form `user/repo`)
      */
     public function getRepository(): string
     {
@@ -72,7 +75,7 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
     }
 
     /**
-     * Whether or not to fetch branches.
+     * Whether or not to fetch branches
      */
     public function getFetchBranches(): ?bool
     {
@@ -80,7 +83,7 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
     }
 
     /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
      */
     public function getPruneBranches(): ?bool
     {
@@ -96,7 +99,7 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
     }
 
     /**
-     * The OAuth2 consumer information (optional).
+     * The OAuth2 consumer information (optional)
      */
     public function getAppCredentials(): ?OAuth2Consumer1
     {
@@ -104,7 +107,7 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
     }
 
     /**
-     * The addon credential information (optional).
+     * The addon credential information (optional)
      */
     public function getAddonCredentials(): ?AddonCredential1
     {
@@ -112,7 +115,7 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
     }
 
     /**
-     * Whether or not to build pull requests.
+     * Whether or not to build pull requests
      */
     public function getBuildPullRequests(): ?bool
     {
@@ -120,7 +123,7 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
     }
 
     /**
-     * Whether or not to clone parent data when building merge requests.
+     * Whether or not to clone parent data when building merge requests
      */
     public function getPullRequestsCloneParentData(): ?bool
     {
@@ -128,7 +131,7 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
     }
 
     /**
-     * Whether or not pull request environment data should be re-synced on every build.
+     * Whether or not pull request environment data should be re-synced on every build
      */
     public function getResyncPullRequests(): ?bool
     {

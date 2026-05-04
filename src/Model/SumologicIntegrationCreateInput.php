@@ -45,11 +45,17 @@ final class SumologicIntegrationCreateInput implements Model, JsonSerializable, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
+    /**
+     * The Sumologic HTTPS endpoint
+     */
     public function getUrl(): string
     {
         return $this->url;

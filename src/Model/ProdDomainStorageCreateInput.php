@@ -39,6 +39,9 @@ final class ProdDomainStorageCreateInput implements Model, JsonSerializable, Dom
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The domain name
+     */
     public function getName(): string
     {
         return $this->name;

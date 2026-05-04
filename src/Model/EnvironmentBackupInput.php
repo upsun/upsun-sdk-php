@@ -14,7 +14,7 @@ use JsonSerializable;
 final class EnvironmentBackupInput implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly bool $safe,
+        private readonly ?bool $safe = null,
     ) {
     }
 
@@ -38,7 +38,7 @@ final class EnvironmentBackupInput implements Model, JsonSerializable
     /**
      * Take a safe or a live backup
      */
-    public function getSafe(): bool
+    public function getSafe(): ?bool
     {
         return $this->safe;
     }

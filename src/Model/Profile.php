@@ -44,6 +44,7 @@ final class Profile implements Model, JsonSerializable
         private readonly ?string $billingContact = null,
         private readonly ?bool $invoiced = null,
         private readonly ?string $customerType = null,
+        private readonly ?string $legalEntityName = null,
     ) {
     }
 
@@ -77,6 +78,7 @@ final class Profile implements Model, JsonSerializable
             'billingContact' => $this->billingContact,
             'invoiced' => $this->invoiced,
             'customerType' => $this->customerType,
+            'legalEntityName' => $this->legalEntityName,
         ];
     }
 
@@ -259,5 +261,13 @@ final class Profile implements Model, JsonSerializable
     public function getCustomerType(): ?string
     {
         return $this->customerType;
+    }
+
+    /**
+     * The legal entity name of the customer.
+     */
+    public function getLegalEntityName(): ?string
+    {
+        return $this->legalEntityName;
     }
 }

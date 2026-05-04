@@ -21,6 +21,7 @@ final class UpdateOrgProfileRequest implements Model, JsonSerializable
         private readonly ?string $defaultCatalog = null,
         private readonly ?string $projectOptionsUrl = null,
         private readonly ?string $companyName = null,
+        private readonly ?string $legalEntityName = null,
         private readonly ?string $customerType = null,
         private readonly ?string $vatNumber = null,
         private readonly ?string $billingContact = null,
@@ -38,6 +39,7 @@ final class UpdateOrgProfileRequest implements Model, JsonSerializable
             'defaultCatalog' => $this->defaultCatalog,
             'projectOptionsUrl' => $this->projectOptionsUrl,
             'companyName' => $this->companyName,
+            'legalEntityName' => $this->legalEntityName,
             'customerType' => $this->customerType,
             'vatNumber' => $this->vatNumber,
             'billingContact' => $this->billingContact,
@@ -62,6 +64,11 @@ final class UpdateOrgProfileRequest implements Model, JsonSerializable
     public function getCompanyName(): ?string
     {
         return $this->companyName;
+    }
+
+    public function getLegalEntityName(): ?string
+    {
+        return $this->legalEntityName;
     }
 
     public function getCustomerType(): ?string

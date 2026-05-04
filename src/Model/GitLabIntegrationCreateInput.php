@@ -62,13 +62,16 @@ final class GitLabIntegrationCreateInput implements Model, JsonSerializable, Int
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * The GitLab private token.
+     * The GitLab private token
      */
     public function getToken(): string
     {
@@ -76,7 +79,7 @@ final class GitLabIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * The GitLab project (in the form `namespace/repo`).
+     * The GitLab project (in the form `namespace/repo`)
      */
     public function getProject(): string
     {
@@ -84,7 +87,7 @@ final class GitLabIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * Whether or not to fetch branches.
+     * Whether or not to fetch branches
      */
     public function getFetchBranches(): ?bool
     {
@@ -92,7 +95,7 @@ final class GitLabIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`).
+     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
      */
     public function getPruneBranches(): ?bool
     {
@@ -107,18 +110,24 @@ final class GitLabIntegrationCreateInput implements Model, JsonSerializable, Int
         return $this->environmentInitResources;
     }
 
+    /**
+     * Whether or not to rotate token automatically using Gitlab API
+     */
     public function getRotateToken(): ?bool
     {
         return $this->rotateToken;
     }
 
+    /**
+     * Validity in weeks of a new token after rotation
+     */
     public function getRotateTokenValidityInWeeks(): ?int
     {
         return $this->rotateTokenValidityInWeeks;
     }
 
     /**
-     * The base URL of the GitLab installation.
+     * The base URL of the GitLab installation
      */
     public function getBaseUrl(): ?string
     {
@@ -126,7 +135,7 @@ final class GitLabIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * Whether or not to build merge requests.
+     * Whether or not to build merge requests
      */
     public function getBuildMergeRequests(): ?bool
     {
@@ -134,7 +143,7 @@ final class GitLabIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * Whether or not to build work in progress merge requests (requires `build_merge_requests`).
+     * Whether or not to build work in progress merge requests (requires `build_merge_requests`)
      */
     public function getBuildWipMergeRequests(): ?bool
     {
@@ -142,7 +151,7 @@ final class GitLabIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * Whether or not to clone parent data when building merge requests.
+     * Whether or not to clone parent data when building merge requests
      */
     public function getMergeRequestsCloneParentData(): ?bool
     {

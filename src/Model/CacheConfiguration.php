@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level CacheConfiguration (auto-generated)
- * Cache configuration.
+ * Cache configuration
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

@@ -27,6 +27,7 @@ final class ServicesValue implements Model, JsonSerializable
         private readonly object $access,
         private readonly object $configuration,
         private readonly array $relationships,
+        private readonly bool $supportsHorizontalScaling,
         private readonly ?int $disk,
         private readonly ?Firewall $firewall,
         private readonly ?Resources $resources,
@@ -55,6 +56,7 @@ final class ServicesValue implements Model, JsonSerializable
             'containerProfile' => $this->containerProfile,
             'endpoints' => $this->endpoints,
             'instanceCount' => $this->instanceCount,
+            'supportsHorizontalScaling' => $this->supportsHorizontalScaling,
         ];
     }
 
@@ -116,5 +118,10 @@ final class ServicesValue implements Model, JsonSerializable
     public function getInstanceCount(): ?int
     {
         return $this->instanceCount;
+    }
+
+    public function getSupportsHorizontalScaling(): bool
+    {
+        return $this->supportsHorizontalScaling;
     }
 }

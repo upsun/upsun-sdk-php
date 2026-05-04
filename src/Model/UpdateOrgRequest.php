@@ -17,6 +17,7 @@ final class UpdateOrgRequest implements Model, JsonSerializable
         private readonly ?string $name = null,
         private readonly ?string $label = null,
         private readonly ?string $country = null,
+        private readonly ?string $billingProfileId = null,
         private readonly ?string $securityContact = null,
     ) {
     }
@@ -32,6 +33,7 @@ final class UpdateOrgRequest implements Model, JsonSerializable
             'name' => $this->name,
             'label' => $this->label,
             'country' => $this->country,
+            'billingProfileId' => $this->billingProfileId,
             'securityContact' => $this->securityContact,
         ];
     }
@@ -54,6 +56,11 @@ final class UpdateOrgRequest implements Model, JsonSerializable
     public function getCountry(): ?string
     {
         return $this->country;
+    }
+
+    public function getBillingProfileId(): ?string
+    {
+        return $this->billingProfileId;
     }
 
     public function getSecurityContact(): ?string

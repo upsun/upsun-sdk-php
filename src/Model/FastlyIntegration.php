@@ -20,12 +20,14 @@ final class FastlyIntegration implements Model, JsonSerializable, Integration
 
     public function __construct(
         private readonly string $type,
+        private readonly string $role,
         private readonly array $events,
         private readonly array $environments,
         private readonly array $excludedEnvironments,
         private readonly array $states,
         private readonly string $result,
         private readonly string $serviceId,
+        private readonly bool $tlsCertificates,
         private readonly ?DateTime $createdAt,
         private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
@@ -43,12 +45,14 @@ final class FastlyIntegration implements Model, JsonSerializable, Integration
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
+            'role' => $this->role,
             'events' => $this->events,
             'environments' => $this->environments,
             'excludedEnvironments' => $this->excludedEnvironments,
             'states' => $this->states,
             'result' => $this->result,
             'serviceId' => $this->serviceId,
+            'tlsCertificates' => $this->tlsCertificates,
             'id' => $this->id,
         ];
     }
@@ -74,9 +78,20 @@ final class FastlyIntegration implements Model, JsonSerializable, Integration
         return $this->updatedAt;
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
+    }
+
+    /**
+     * The role of the integration
+     */
+    public function getRole(): string
+    {
+        return $this->role;
     }
 
     public function getEvents(): array
@@ -107,9 +122,20 @@ final class FastlyIntegration implements Model, JsonSerializable, Integration
         return $this->result;
     }
 
+    /**
+     * The Fastly Service ID
+     */
     public function getServiceId(): string
     {
         return $this->serviceId;
+    }
+
+    /**
+     * Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
+     */
+    public function getTlsCertificates(): bool
+    {
+        return $this->tlsCertificates;
     }
 
     /**

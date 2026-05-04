@@ -68,11 +68,17 @@ final class ProdDomainStorage implements Model, JsonSerializable, Domain
         return $this->updatedAt;
     }
 
+    /**
+     * The type of domain
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
+    /**
+     * The domain name
+     */
     public function getName(): string
     {
         return $this->name;
@@ -91,11 +97,17 @@ final class ProdDomainStorage implements Model, JsonSerializable, Domain
         return $this->id;
     }
 
+    /**
+     * The name of the project
+     */
     public function getProject(): ?string
     {
         return $this->project;
     }
 
+    /**
+     * The claimed domain name
+     */
     public function getRegisteredName(): ?string
     {
         return $this->registeredName;

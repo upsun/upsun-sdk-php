@@ -67,7 +67,7 @@ final class UpstreamRoute implements Model, JsonSerializable, Route
     }
 
     /**
-     * Route type.
+     * Route type
      */
     public function getType(): string
     {
@@ -75,7 +75,7 @@ final class UpstreamRoute implements Model, JsonSerializable, Route
     }
 
     /**
-     * TLS settings for the route.
+     * TLS settings for the route
      */
     public function getTls(): TLSSettings
     {
@@ -107,7 +107,7 @@ final class UpstreamRoute implements Model, JsonSerializable, Route
     }
 
     /**
-     * Cache configuration.
+     * Cache configuration
      */
     public function getCache(): ?CacheConfiguration
     {
@@ -115,7 +115,7 @@ final class UpstreamRoute implements Model, JsonSerializable, Route
     }
 
     /**
-     * Server-Side Include configuration.
+     * Server-Side Include configuration
      */
     public function getSsi(): ?SSIConfiguration
     {
@@ -123,7 +123,7 @@ final class UpstreamRoute implements Model, JsonSerializable, Route
     }
 
     /**
-     * The upstream to use for this route.
+     * The upstream to use for this route
      */
     public function getUpstream(): ?string
     {
@@ -131,7 +131,7 @@ final class UpstreamRoute implements Model, JsonSerializable, Route
     }
 
     /**
-     * The configuration of the redirects.
+     * The configuration of the redirects
      */
     public function getRedirects(): ?RedirectConfiguration
     {
@@ -139,13 +139,16 @@ final class UpstreamRoute implements Model, JsonSerializable, Route
     }
 
     /**
-     * Sticky routing configuration.
+     * Sticky routing configuration
      */
     public function getSticky(): ?StickyConfiguration
     {
         return $this->sticky;
     }
 
+    /**
+     * The destination of the proxy
+     */
     public function getTo(): ?string
     {
         return $this->to;

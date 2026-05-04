@@ -16,6 +16,7 @@ final class HealthWebHookIntegration implements Model, JsonSerializable, Integra
 {
     public function __construct(
         private readonly string $type,
+        private readonly string $role,
         private readonly string $url,
         private readonly ?DateTime $createdAt,
         private readonly ?DateTime $updatedAt,
@@ -34,6 +35,7 @@ final class HealthWebHookIntegration implements Model, JsonSerializable, Integra
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
+            'role' => $this->role,
             'url' => $this->url,
             'id' => $this->id,
         ];
@@ -60,9 +62,20 @@ final class HealthWebHookIntegration implements Model, JsonSerializable, Integra
         return $this->updatedAt;
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
+    }
+
+    /**
+     * The role of the integration
+     */
+    public function getRole(): string
+    {
+        return $this->role;
     }
 
     /**

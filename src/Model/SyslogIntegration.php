@@ -22,6 +22,7 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
 
     public function __construct(
         private readonly string $type,
+        private readonly string $role,
         private readonly array $extra,
         private readonly string $host,
         private readonly int $port,
@@ -47,6 +48,7 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
+            'role' => $this->role,
             'extra' => $this->extra,
             'host' => $this->host,
             'port' => $this->port,
@@ -80,9 +82,20 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
         return $this->updatedAt;
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
+    }
+
+    /**
+     * The role of the integration
+     */
+    public function getRole(): string
+    {
+        return $this->role;
     }
 
     public function getExtra(): array

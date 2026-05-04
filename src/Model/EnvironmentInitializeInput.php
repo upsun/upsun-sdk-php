@@ -16,9 +16,9 @@ final class EnvironmentInitializeInput implements Model, JsonSerializable
     public function __construct(
         private readonly string $profile,
         private readonly string $repository,
-        private readonly array $files,
-        private readonly ?string $config,
-        private readonly ?Resources4 $resources,
+        private readonly ?string $config = null,
+        private readonly ?Resources4 $resources = null,
+        private readonly ?array $files = [],
     ) {
     }
 
@@ -69,9 +69,9 @@ final class EnvironmentInitializeInput implements Model, JsonSerializable
 
     /**
      * A list of files to add to the repository during initialization
-     * @return FilesInner[]
+     * @return FilesInner[]|null
      */
-    public function getFiles(): array
+    public function getFiles(): ?array
     {
         return $this->files;
     }

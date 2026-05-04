@@ -76,6 +76,9 @@ final class ReplacementDomainStorage implements Model, JsonSerializable, Domain
         return $this->type;
     }
 
+    /**
+     * The domain name
+     */
     public function getName(): string
     {
         return $this->name;
@@ -94,18 +97,24 @@ final class ReplacementDomainStorage implements Model, JsonSerializable, Domain
         return $this->id;
     }
 
+    /**
+     * The name of the project
+     */
     public function getProject(): ?string
     {
         return $this->project;
     }
 
+    /**
+     * The claimed domain name
+     */
     public function getRegisteredName(): ?string
     {
         return $this->registeredName;
     }
 
     /**
-     * Prod domain which will be replaced by this domain.
+     * Prod domain which will be replaced by this domain
      */
     public function getReplacementFor(): ?string
     {

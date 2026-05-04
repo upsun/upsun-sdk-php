@@ -16,6 +16,7 @@ final class BlackfireIntegration implements Model, JsonSerializable, Integration
 {
     public function __construct(
         private readonly string $type,
+        private readonly string $role,
         private readonly array $environmentsCredentials,
         private readonly bool $continuousProfiling,
         private readonly ?DateTime $createdAt,
@@ -35,6 +36,7 @@ final class BlackfireIntegration implements Model, JsonSerializable, Integration
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
+            'role' => $this->role,
             'environmentsCredentials' => $this->environmentsCredentials,
             'continuousProfiling' => $this->continuousProfiling,
             'id' => $this->id,
@@ -62,9 +64,20 @@ final class BlackfireIntegration implements Model, JsonSerializable, Integration
         return $this->updatedAt;
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
+    }
+
+    /**
+     * The role of the integration
+     */
+    public function getRole(): string
+    {
+        return $this->role;
     }
 
     /**

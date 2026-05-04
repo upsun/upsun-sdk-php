@@ -18,4 +18,6 @@ interface Integration
     public function __toString(): string;
 
     public function getType(): mixed;
+
+    public function getRole(): mixed;
 }

@@ -38,13 +38,16 @@ final class RepositoryInformation implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The Git URL
+     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
     /**
-     * SSH Key used to access external private repositories.
+     * SSH Key used to access external private repositories
      */
     public function getClientSshKey(): ?string
     {

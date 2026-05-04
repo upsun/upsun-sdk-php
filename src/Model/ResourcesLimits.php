@@ -41,7 +41,7 @@ final class ResourcesLimits implements Model, JsonSerializable
     }
 
     /**
-     * Enable support for customizable container profiles.
+     * Enable support for customizable container profiles
      */
     public function getContainerProfiles(): bool
     {

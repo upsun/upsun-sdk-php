@@ -15,8 +15,8 @@ final class FilesInner implements Model, JsonSerializable
 {
     public function __construct(
         private readonly string $path,
-        private readonly int $mode,
-        private readonly string $contents,
+        private readonly ?int $mode = null,
+        private readonly ?string $contents = null,
     ) {
     }
 
@@ -44,12 +44,12 @@ final class FilesInner implements Model, JsonSerializable
         return $this->path;
     }
 
-    public function getMode(): int
+    public function getMode(): ?int
     {
         return $this->mode;
     }
 
-    public function getContents(): string
+    public function getContents(): ?string
     {
         return $this->contents;
     }

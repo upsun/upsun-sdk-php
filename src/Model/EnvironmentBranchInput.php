@@ -19,9 +19,9 @@ final class EnvironmentBranchInput implements Model, JsonSerializable
     public function __construct(
         private readonly string $title,
         private readonly string $name,
-        private readonly bool $cloneParent,
-        private readonly string $type,
-        private readonly ?Resources3 $resources,
+        private readonly ?Resources3 $resources = null,
+        private readonly ?bool $cloneParent = null,
+        private readonly ?string $type = null,
     ) {
     }
 
@@ -59,7 +59,7 @@ final class EnvironmentBranchInput implements Model, JsonSerializable
     /**
      * Clone data from the parent environment
      */
-    public function getCloneParent(): bool
+    public function getCloneParent(): ?bool
     {
         return $this->cloneParent;
     }
@@ -67,7 +67,7 @@ final class EnvironmentBranchInput implements Model, JsonSerializable
     /**
      * The type of environment (`staging` or `development`)
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }

@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level OAuth2Consumer (auto-generated)
- * The OAuth2 consumer information (optional).
+ * The OAuth2 consumer information (optional)
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

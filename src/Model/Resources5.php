@@ -19,7 +19,7 @@ final class Resources5 implements Model, JsonSerializable
     public const INIT_MINIMUM = 'minimum';
 
     public function __construct(
-        private readonly ?string $init,
+        private readonly ?string $init = null,
     ) {
     }
 

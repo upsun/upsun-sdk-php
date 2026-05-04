@@ -83,6 +83,7 @@ final class ProjectSettings implements Model, JsonSerializable
         private readonly bool $enableDiskHealthMonitoring,
         private readonly bool $enablePausedEnvironments,
         private readonly bool $enableUnifiedConfiguration,
+        private readonly bool $enableExplicitEmptyRoutes,
         private readonly bool $enableRoutesTracing,
         private readonly bool $imageDeploymentValidation,
         private readonly bool $supportGenericImages,
@@ -95,14 +96,20 @@ final class ProjectSettings implements Model, JsonSerializable
         private readonly int $activityLogsMaxSize,
         private readonly bool $allowManualDeployments,
         private readonly bool $allowRollingDeployments,
+        private readonly bool $allowActivityReschedule,
         private readonly bool $allowBurst,
         private readonly RouterResources $routerResources,
+        private readonly bool $allowScalingToZero,
+        private readonly bool $saveApplicationsVendors,
+        private readonly bool $locationsScriptDefault,
+        private readonly bool $supportOciImages,
         private readonly ?string $developmentDomainTemplate,
         private readonly ?int $temporaryDiskSize,
         private readonly ?int $localDiskSize,
         private readonly ?string $customErrorTemplate,
         private readonly ?string $appErrorPageTemplate,
         private readonly ?array $dataRetention,
+        private readonly ?MaintenanceWindowConfiguration $maintenanceWindow,
     ) {
     }
 
@@ -170,6 +177,7 @@ final class ProjectSettings implements Model, JsonSerializable
             'enableDiskHealthMonitoring' => $this->enableDiskHealthMonitoring,
             'enablePausedEnvironments' => $this->enablePausedEnvironments,
             'enableUnifiedConfiguration' => $this->enableUnifiedConfiguration,
+            'enableExplicitEmptyRoutes' => $this->enableExplicitEmptyRoutes,
             'enableRoutesTracing' => $this->enableRoutesTracing,
             'imageDeploymentValidation' => $this->imageDeploymentValidation,
             'supportGenericImages' => $this->supportGenericImages,
@@ -182,8 +190,14 @@ final class ProjectSettings implements Model, JsonSerializable
             'activityLogsMaxSize' => $this->activityLogsMaxSize,
             'allowManualDeployments' => $this->allowManualDeployments,
             'allowRollingDeployments' => $this->allowRollingDeployments,
+            'maintenanceWindow' => $this->maintenanceWindow,
+            'allowActivityReschedule' => $this->allowActivityReschedule,
             'allowBurst' => $this->allowBurst,
             'routerResources' => $this->routerResources,
+            'allowScalingToZero' => $this->allowScalingToZero,
+            'saveApplicationsVendors' => $this->saveApplicationsVendors,
+            'locationsScriptDefault' => $this->locationsScriptDefault,
+            'supportOciImages' => $this->supportOciImages,
         ];
     }
 
@@ -606,6 +620,15 @@ final class ProjectSettings implements Model, JsonSerializable
     }
 
     /**
+     * When enabled, explicitly empty routes configuration (routes: or routes: {}) will result in no routes being
+     * generated instead of fallback routes.
+     */
+    public function getEnableExplicitEmptyRoutes(): bool
+    {
+        return $this->enableExplicitEmptyRoutes;
+    }
+
+    /**
      * Enable tracing support in routes
      */
     public function getEnableRoutesTracing(): bool
@@ -677,7 +700,7 @@ final class ProjectSettings implements Model, JsonSerializable
     }
 
     /**
-     * If deployments can be manual, i.e. explicitly triggered by user.
+     * If deployments can be manual, i.e. explicitly triggered by user
      */
     public function getAllowManualDeployments(): bool
     {
@@ -685,11 +708,27 @@ final class ProjectSettings implements Model, JsonSerializable
     }
 
     /**
-     * If the project can use rolling deployments.
+     * If the project can use rolling deployments
      */
     public function getAllowRollingDeployments(): bool
     {
         return $this->allowRollingDeployments;
+    }
+
+    /**
+     * Configuration for the maintenance window schedule
+     */
+    public function getMaintenanceWindow(): ?MaintenanceWindowConfiguration
+    {
+        return $this->maintenanceWindow;
+    }
+
+    /**
+     * Allow certain types of activities to be rescheduled
+     */
+    public function getAllowActivityReschedule(): bool
+    {
+        return $this->allowActivityReschedule;
     }
 
     public function getAllowBurst(): bool
@@ -703,5 +742,28 @@ final class ProjectSettings implements Model, JsonSerializable
     public function getRouterResources(): RouterResources
     {
         return $this->routerResources;
+    }
+
+    public function getAllowScalingToZero(): bool
+    {
+        return $this->allowScalingToZero;
+    }
+
+    /**
+     * Save vendors.json files locally after builds for SBOM generation.
+     */
+    public function getSaveApplicationsVendors(): bool
+    {
+        return $this->saveApplicationsVendors;
+    }
+
+    public function getLocationsScriptDefault(): bool
+    {
+        return $this->locationsScriptDefault;
+    }
+
+    public function getSupportOciImages(): bool
+    {
+        return $this->supportOciImages;
     }
 }

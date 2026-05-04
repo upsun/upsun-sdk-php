@@ -45,16 +45,18 @@ final class WebApplicationsValue implements Model, JsonSerializable
         private readonly SourceCodeConfiguration $source,
         private readonly BuildConfiguration $build,
         private readonly array $dependencies,
+        private readonly ComposableImages $stack,
         private readonly bool $isAcrossSubmodule,
         private readonly string $configId,
         private readonly string $slugId,
+        private readonly bool $supportsHorizontalScaling,
         private readonly ?Resources $resources,
         private readonly ?int $disk,
         private readonly ?string $timezone,
         private readonly ?Firewall $firewall,
         private readonly ?string $containerProfile,
         private readonly ?object $endpoints,
-        private readonly ?array $stack,
+        private readonly ?OCIImage $image,
         private readonly ?int $instanceCount,
     ) {
     }
@@ -93,10 +95,12 @@ final class WebApplicationsValue implements Model, JsonSerializable
             'build' => $this->build,
             'dependencies' => $this->dependencies,
             'stack' => $this->stack,
+            'image' => $this->image,
             'isAcrossSubmodule' => $this->isAcrossSubmodule,
             'instanceCount' => $this->instanceCount,
             'configId' => $this->configId,
             'slugId' => $this->slugId,
+            'supportsHorizontalScaling' => $this->supportsHorizontalScaling,
         ];
     }
 
@@ -242,9 +246,14 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return $this->dependencies;
     }
 
-    public function getStack(): ?array
+    public function getStack(): ComposableImages
     {
         return $this->stack;
+    }
+
+    public function getImage(): ?OCIImage
+    {
+        return $this->image;
     }
 
     public function getIsAcrossSubmodule(): bool
@@ -265,5 +274,10 @@ final class WebApplicationsValue implements Model, JsonSerializable
     public function getSlugId(): string
     {
         return $this->slugId;
+    }
+
+    public function getSupportsHorizontalScaling(): bool
+    {
+        return $this->supportsHorizontalScaling;
     }
 }

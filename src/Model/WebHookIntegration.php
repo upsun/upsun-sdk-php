@@ -20,6 +20,7 @@ final class WebHookIntegration implements Model, JsonSerializable, Integration
 
     public function __construct(
         private readonly string $type,
+        private readonly string $role,
         private readonly array $events,
         private readonly array $environments,
         private readonly array $excludedEnvironments,
@@ -44,6 +45,7 @@ final class WebHookIntegration implements Model, JsonSerializable, Integration
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
+            'role' => $this->role,
             'events' => $this->events,
             'environments' => $this->environments,
             'excludedEnvironments' => $this->excludedEnvironments,
@@ -76,9 +78,20 @@ final class WebHookIntegration implements Model, JsonSerializable, Integration
         return $this->updatedAt;
     }
 
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
+    }
+
+    /**
+     * The role of the integration
+     */
+    public function getRole(): string
+    {
+        return $this->role;
     }
 
     public function getEvents(): array

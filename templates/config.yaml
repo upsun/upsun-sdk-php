@@ -7,6 +7,12 @@ library: psr-18
 generateSupportingFiles: true
 filesToSkip: ["FormDataProcessor.php"]
 
+nameMappings:
+  _transactions: _transactionsFilter
+
+parameterNameMappings:
+  _transactions: _transactions
+
 additionalProperties:
   invokerPackage: Upsun
   apiPackage: Api
@@ -37,7 +43,7 @@ additionalProperties:
   authorName: Upsun Advocacy Team
   basicUser: "platform-api-user"
   variableNamingConvention: "camelCase"
-  parameterNamingConvention: "camelCase"
+
   propertyNamingConvention: "camelCase"
   enumPropertyNaming: "camelCase"
   modelPropertyNaming: "PascalCase"

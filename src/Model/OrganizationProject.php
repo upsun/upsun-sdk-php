@@ -15,7 +15,9 @@ use JsonSerializable;
 final class OrganizationProject implements Model, JsonSerializable
 {
     public function __construct(
+        private readonly ?string $dedicatedTag = null,
         private readonly ?array $activities = [],
+        private readonly ?array $fastlyServiceIds = [],
         private readonly ?ProjectOptionsAggregated $projectOptions = null,
         private readonly ?string $id = null,
         private readonly ?string $organizationId = null,
@@ -57,9 +59,11 @@ final class OrganizationProject implements Model, JsonSerializable
             'status' => $this->status,
             'trialPlan' => $this->trialPlan,
             'projectUi' => $this->projectUi,
+            'dedicatedTag' => $this->dedicatedTag,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'activities' => $this->activities,
+            'fastlyServiceIds' => $this->fastlyServiceIds,
             'projectOptions' => $this->projectOptions,
             'links' => $this->links,
         ];
@@ -175,6 +179,14 @@ final class OrganizationProject implements Model, JsonSerializable
     }
 
     /**
+     * Dedicated tag.
+     */
+    public function getDedicatedTag(): ?string
+    {
+        return $this->dedicatedTag;
+    }
+
+    /**
      * The date and time when the resource was created.
      */
     public function getCreatedAt(): ?DateTime
@@ -197,6 +209,11 @@ final class OrganizationProject implements Model, JsonSerializable
     public function getActivities(): ?array
     {
         return $this->activities;
+    }
+
+    public function getFastlyServiceIds(): ?array
+    {
+        return $this->fastlyServiceIds;
     }
 
     public function getProjectOptions(): ?ProjectOptionsAggregated

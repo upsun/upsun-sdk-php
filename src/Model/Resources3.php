@@ -18,7 +18,7 @@ final class Resources3 implements Model, JsonSerializable
     public const INIT_PARENT = 'parent';
 
     public function __construct(
-        private readonly ?string $init,
+        private readonly ?string $init = null,
     ) {
     }
 

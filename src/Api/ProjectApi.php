@@ -15,7 +15,6 @@ use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Project;
 use Upsun\Model\ProjectCapabilities;
-use Upsun\Model\ProjectPatch;
 
 /**
  * Low level ProjectApi (auto-generated)
@@ -502,41 +501,31 @@ final class ProjectApi extends AbstractApi
     }
 
     /**
-     * Update a project
      *
-     * Update the details of an existing project.
-     *
-     * @param  \Upsun\Model\ProjectPatch $projectPatch (required)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
-     * @see https://docs.upsun.com/api/#tag/Project/operation/update-projects
+     * @see https://docs.upsun.com/api/#tag/Project/operation/maintenance-redeploy-project
      */
-    public function updateProjects(
-        string $projectId,
-        ProjectPatch $projectPatch
+    public function maintenanceRedeployProject(
+        string $projectId
     ): AcceptedResponse {
-        return $this->updateProjectsWithHttpInfo(
-            $projectId,
-            $projectPatch
+        return $this->maintenanceRedeployProjectWithHttpInfo(
+            $projectId
         );
     }
 
     /**
-     * Update a project with HTTP Info
      *
-     * @param  \Upsun\Model\ProjectPatch $projectPatch (required)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
-    private function updateProjectsWithHttpInfo(
-        string $projectId,
-        ProjectPatch $projectPatch
+    private function maintenanceRedeployProjectWithHttpInfo(
+        string $projectId
     ): AcceptedResponse {
-        $request = $this->updateProjectsRequest(
-            $projectId,
-            $projectPatch
+        $request = $this->maintenanceRedeployProjectRequest(
+            $projectId
         );
 
         try {
@@ -557,7 +546,7 @@ final class ProjectApi extends AbstractApi
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
                     $exception->getCode(),
-                    '/projects/{projectId}'
+                    '/projects/{projectId}/maintenance-redeploy'
                 ),
                 $request,
                 $response ?? null,
@@ -567,32 +556,23 @@ final class ProjectApi extends AbstractApi
     }
 
     /**
-     * Create request for operation 'updateProjects'
+     * Create request for operation 'maintenanceRedeployProject'
      *
-     * @param  \Upsun\Model\ProjectPatch $projectPatch (required)
      *
      * @throws InvalidArgumentException
      */
-    private function updateProjectsRequest(
-        string $projectId,
-        ProjectPatch $projectPatch
+    private function maintenanceRedeployProjectRequest(
+        string $projectId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
                 'Missing the required parameter $projectId
-                when calling updateProjects'
-            );
-        }
-        // verify the required parameter 'projectPatch' is set
-        if (empty($projectPatch)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $projectPatch
-                when calling updateProjects'
+                when calling maintenanceRedeployProject'
             );
         }
 
-        $resourcePath = '/projects/{projectId}';
+        $resourcePath = '/projects/{projectId}/maintenance-redeploy';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -611,20 +591,12 @@ final class ProjectApi extends AbstractApi
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
-            'application/json',
+            '',
             $multipart
         );
 
         // for model (json/xml)
-        if (isset($projectPatch)) {
-            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($projectPatch)
-                );
-            } else {
-                $httpBody = $projectPatch;
-            }
-        } elseif ($formParams !== []) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -670,6 +642,6 @@ final class ProjectApi extends AbstractApi
 
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
 
-        return $this->createRequest('PATCH', $uri, $headers, $httpBody);
+        return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 }
