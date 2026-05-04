@@ -149,8 +149,8 @@ jobs:
         env:
           EXCLUDE_OPTIONAL_PARAMS: "true"
           EXCLUDE_DEPRECATED: "true"
-          SDK_PHP_BRANCH: main
-          SDK_NODE_BRANCH: ${{ github.head_ref || github.ref_name }}
+          SDK_NODE_BRANCH: main
+          SDK_PHP_BRANCH: ${{ github.head_ref || github.ref_name }}
           WORKFLOW_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
         run: |
           set -o pipefail
