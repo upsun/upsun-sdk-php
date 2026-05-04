@@ -129,7 +129,7 @@ jobs:
   compare-signatures:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    needs: [ build ]
+    needs: [ coverage ]
 
     steps:
       - name: Checkout
