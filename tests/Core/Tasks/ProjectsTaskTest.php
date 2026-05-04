@@ -477,6 +477,26 @@ class ProjectsTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
+    public function testCanCreate()
+    {
+        $organizationId = 'org_1';
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([])
+            ));
+
+        $result = $this->projectsTask->canCreate($organizationId);
+        $this->assertNotNull($result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testUpdate()
     {
         $projectId = 'test-project';
@@ -505,6 +525,46 @@ class ProjectsTaskTest extends BaseTestCase
         );
 
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testInfoWithUpdate()
+    {
+        $projectId = 'test-project';
+        $projectFake = $this->getFakeProject($projectId);
+
+        $this->httpClient
+            ->expects($this->exactly(3))
+            ->method('sendRequest')
+            ->willReturnOnConsecutiveCalls(
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($projectFake)
+                ),
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode([])
+                ),
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($projectFake)
+                )
+            );
+
+        $result = $this->projectsTask->info(
+            projectId: $projectId,
+            title: 'My Project',
+            timezone: 'UTC',
+        );
+
+        $this->assertInstanceOf(Project::class, $result);
+        $this->assertObjectProperties($result, $projectFake);
     }
 
     /**
