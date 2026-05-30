@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level OrganizationLinksSubscriptions (auto-generated)
- * Link to the current organization's subscriptions.
+ * Link to the current organization's subscriptions. This link may not be present for all organizations.
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

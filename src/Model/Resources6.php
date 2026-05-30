@@ -13,10 +13,8 @@ use JsonSerializable;
  */
 final class Resources6 implements Model, JsonSerializable
 {
-    public const INIT_BACKUP = 'backup';
     public const INIT__DEFAULT = 'default';
     public const INIT_MINIMUM = 'minimum';
-    public const INIT_PARENT = 'parent';
 
     public function __construct(
         private readonly ?string $init = null,
@@ -41,7 +39,7 @@ final class Resources6 implements Model, JsonSerializable
     }
 
     /**
-     * The resources used when initializing services of the environment
+     * The resources used when initializing the environment
      */
     public function getInit(): ?string
     {

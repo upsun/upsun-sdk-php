@@ -23,7 +23,6 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
         private readonly ObservabilityEntrypoint200ResponseLinksBlackfireServerTransactionsBreakdown $blackfireServerTransactionsBreakdown,
         private readonly ObservabilityEntrypoint200ResponseLinksLogsQuery $logsQuery,
         private readonly ObservabilityEntrypoint200ResponseLinksLogsOverview $logsOverview,
-        private readonly ObservabilityEntrypoint200ResponseLinksHttpMetricsOverview $httpMetricsOverview,
         private readonly ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUrls $httpMetricsTimelineUrls,
         private readonly ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineIps $httpMetricsTimelineIps,
         private readonly ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUserAgents $httpMetricsTimelineUserAgents,
@@ -52,7 +51,6 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
             'blackfireServerTransactionsBreakdown' => $this->blackfireServerTransactionsBreakdown,
             'logsQuery' => $this->logsQuery,
             'logsOverview' => $this->logsOverview,
-            'httpMetricsOverview' => $this->httpMetricsOverview,
             'httpMetricsTimelineUrls' => $this->httpMetricsTimelineUrls,
             'httpMetricsTimelineIps' => $this->httpMetricsTimelineIps,
             'httpMetricsTimelineUserAgents' => $this->httpMetricsTimelineUserAgents,
@@ -115,11 +113,6 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
     public function getLogsOverview(): ObservabilityEntrypoint200ResponseLinksLogsOverview
     {
         return $this->logsOverview;
-    }
-
-    public function getHttpMetricsOverview(): ObservabilityEntrypoint200ResponseLinksHttpMetricsOverview
-    {
-        return $this->httpMetricsOverview;
     }
 
     public function getHttpMetricsTimelineUrls(): ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUrls

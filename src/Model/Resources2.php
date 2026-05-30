@@ -13,12 +13,8 @@ use JsonSerializable;
  */
 final class Resources2 implements Model, JsonSerializable
 {
-    public const INIT__DEFAULT = 'default';
-    public const INIT_MINIMUM = 'minimum';
-    public const INIT_PARENT = 'parent';
-
     public function __construct(
-        private readonly ?string $init = null,
+        private readonly ?string $profileSize,
     ) {
     }
 
@@ -30,7 +26,7 @@ final class Resources2 implements Model, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'init' => $this->init,
+            'profileSize' => $this->profileSize,
         ];
     }
 
@@ -39,11 +35,8 @@ final class Resources2 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The resources used when activating an environment
-     */
-    public function getInit(): ?string
+    public function getProfileSize(): ?string
     {
-        return $this->init;
+        return $this->profileSize;
     }
 }

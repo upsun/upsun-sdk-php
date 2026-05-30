@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level OrganizationLinksEstimateSubscription (auto-generated)
- * Link for estimating the price of a new subscription.
+ * Link for estimating the price of a new subscription. This link may not be present for all organizations.
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

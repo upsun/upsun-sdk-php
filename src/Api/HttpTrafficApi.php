@@ -13,10 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\HttpMetricsOverview200Response;
-use Upsun\Model\HttpMetricsTimelineIps200Response;
-use Upsun\Model\HttpMetricsTimelineUrls200Response;
-use Upsun\Model\HttpMetricsTimelineUserAgents200Response;
 
 /**
  * Low level HttpTrafficApi (auto-generated)
@@ -53,299 +49,13 @@ final class HttpTrafficApi extends AbstractApi
     }
 
     /**
-     * Get HTTP traffic overview
-     *
-     * Returns HTTP traffic analytics with top URLs ranked by impact (response time × request count), aggregated
-     * metrics (average, median, p96 response times in milliseconds), status code distributions, and time-series data.
-     * Use top_urls_count parameter to control result size (default: 10, max: 100). Response includes per-URL metrics
-     * grouped by "METHOD-URL" keys (e.g., "GET-https://example.com/api/products") and timestamped traffic data with
-     * request/response sizes in bytes.
-     *
-     * @param  string $projectId (required)
-     * @param  string $environmentId (required)
-     * @param  int $from (required)
-     * @param  int $to (required)
-     * @param  int|null $topUrlsCount (optional)
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @see https://docs.upsun.com/api/#tag/Http-Traffic/operation/http_metrics_overview
-     */
-    public function httpMetricsOverview(
-        string $projectId,
-        string $environmentId,
-        int $from,
-        int $to,
-        ?int $topUrlsCount = null
-    ): HttpMetricsOverview200Response {
-        return $this->httpMetricsOverviewWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $from,
-            $to,
-            $topUrlsCount
-        );
-    }
-
-    /**
-     * Get HTTP traffic overview with HTTP Info
-     *
-     * @param  string $projectId (required)
-     * @param  string $environmentId (required)
-     * @param  int $from (required)
-     * @param  int $to (required)
-     * @param  int|null $topUrlsCount (optional)
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-    */
-    private function httpMetricsOverviewWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        int $from,
-        int $to,
-        ?int $topUrlsCount = null
-    ): HttpMetricsOverview200Response {
-        $request = $this->httpMetricsOverviewRequest(
-            $projectId,
-            $environmentId,
-            $from,
-            $to,
-            $topUrlsCount
-        );
-
-        try {
-            $response = $this->sendAuthenticatedRequest(
-                $request->getMethod(),
-                (string) $request->getUri(),
-                $request->getHeaders(),
-                $request->getBody()
-            );
-
-            return $this->handleResponseWithDataType(
-                '\Upsun\Model\HttpMetricsOverview200Response',
-                $request,
-                $response
-            );
-        } catch (Exception $exception) {
-            throw new ApiException(
-                sprintf(
-                    '[%d] Error connecting to the API (%s)',
-                    $exception->getCode(),
-                    '/projects/{projectId}/environments/{environmentId}/observability/http-metrics/overview'
-                ),
-                $request,
-                $response ?? null,
-                $exception
-            );
-        }
-    }
-
-    /**
-     * Create request for operation 'httpMetricsOverview'
-     *
-     * @param  string $projectId (required)
-     * @param  string $environmentId (required)
-     * @param  int $from (required)
-     * @param  int $to (required)
-     * @param  int|null $topUrlsCount (optional)
-     *
-     * @throws InvalidArgumentException
-     */
-    private function httpMetricsOverviewRequest(
-        string $projectId,
-        string $environmentId,
-        int $from,
-        int $to,
-        ?int $topUrlsCount = null
-    ): RequestInterface {
-        // verify the required parameter 'projectId' is set
-        if (empty($projectId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $projectId
-                when calling httpMetricsOverview'
-            );
-        }
-
-        if (!preg_match("/[a-z0-9]+/", $projectId)) {
-            throw new InvalidArgumentException(
-                "invalid value for \"projectId\" when calling HttpTrafficApi.httpMetricsOverview,
-                must conform to the pattern /[a-z0-9]+/."
-            );
-        }
-
-        // verify the required parameter 'environmentId' is set
-        if (empty($environmentId)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $environmentId
-                when calling httpMetricsOverview'
-            );
-        }
-
-        if (!preg_match("/.+/", $environmentId)) {
-            throw new InvalidArgumentException(
-                "invalid value for \"environmentId\" when calling HttpTrafficApi.httpMetricsOverview,
-                must conform to the pattern /.+/."
-            );
-        }
-
-        // verify the required parameter 'from' is set
-        if (empty($from)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $from
-                when calling httpMetricsOverview'
-            );
-        }
-        // verify the required parameter 'to' is set
-        if (empty($to)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $to
-                when calling httpMetricsOverview'
-            );
-        }
-
-        if ($topUrlsCount !== null && $topUrlsCount > 100) {
-            throw new InvalidArgumentException(
-                'invalid value for "$topUrlsCount" when calling HttpTrafficApi.httpMetricsOverview,
-                must be smaller than or equal to 100.'
-            );
-        }
-
-        if ($topUrlsCount !== null && $topUrlsCount < 1) {
-            throw new InvalidArgumentException(
-                'invalid value for "$topUrlsCount" when calling HttpTrafficApi.httpMetricsOverview,
-                must be bigger than or equal to 1.'
-            );
-        }
-
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/http-metrics/overview';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = null;
-        $multipart = false;
-
-        // query params
-        if ($from !== null) {
-            if ('form' === 'form' && is_array($from)) {
-                foreach ($from as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['from'] = $from instanceof DateTime
-                    ? $from->format(DATE_ATOM)
-                    : ($from);
-            }
-        }
-
-        // query params
-        if ($to !== null) {
-            if ('form' === 'form' && is_array($to)) {
-                foreach ($to as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['to'] = $to instanceof DateTime
-                    ? $to->format(DATE_ATOM)
-                    : ($to);
-            }
-        }
-
-        // query params
-        if ($topUrlsCount !== null) {
-            if ('form' === 'form' && is_array($topUrlsCount)) {
-                foreach ($topUrlsCount as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['top_urls_count'] = $topUrlsCount instanceof DateTime
-                    ? $topUrlsCount->format(DATE_ATOM)
-                    : ($topUrlsCount);
-            }
-        }
-
-        // path params
-
-        if ($projectId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($projectId),
-                $resourcePath
-            );
-        }
-        // path params
-
-        if ($environmentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environmentId),
-                $resourcePath
-            );
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json'],
-            '',
-            $multipart
-        );
-
-        // for model (json/xml)
-        if ($formParams !== []) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if ($this->config->getAccessToken() !== null) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-        if ($this->config->getUpsunClientHeader()) {
-            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-
-        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
-
-        return $this->createRequest('GET', $uri, $headers, $httpBody);
-    }
-
-    /**
      * Get HTTP traffic timeline by IP
      *
      * Returns HTTP traffic analytics grouped by IP address with IPs ranked by impact (response time × request count).
      * Use limit parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how
-     * many are tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether they appear
-     * in timeline data.
+     * many items are flagged as top hits and tracked in the timeline (default: 10, max: 15). Items with index <
+     * top_hits_count are flagged with top_hit: true and tracked in top_hits_timeline; the remainder (up to limit) are
+     * returned with top_hit: false.
      *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
@@ -389,7 +99,7 @@ final class HttpTrafficApi extends AbstractApi
         ?string $codesMode = null,
         ?array $requestDurationSlots = null,
         ?string $requestDurationSlotsMode = null
-    ): HttpMetricsTimelineIps200Response {
+    ): mixed {
         return $this->httpMetricsTimelineIpsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -456,7 +166,7 @@ final class HttpTrafficApi extends AbstractApi
         ?string $codesMode = null,
         ?array $requestDurationSlots = null,
         ?string $requestDurationSlotsMode = null
-    ): HttpMetricsTimelineIps200Response {
+    ): mixed {
         $request = $this->httpMetricsTimelineIpsRequest(
             $projectId,
             $environmentId,
@@ -917,9 +627,10 @@ final class HttpTrafficApi extends AbstractApi
      *
      * Returns HTTP traffic analytics with URLs ranked by impact (response time × request count), aggregated metrics
      * (average, median, p96 response times in milliseconds), status code distributions, and time-series data. Use limit
-     * parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how many are
-     * tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether they appear in
-     * timeline data.
+     * parameter to control total items returned (default: 200, max: 300) and top_hits_count to control how many items
+     * are flagged as top hits and tracked in the timeline (default: 10, max: 15). Items with index < top_hits_count are
+     * flagged with top_hit: true and tracked in top_hits_timeline; the remainder (up to limit) are returned with
+     * top_hit: false.
      *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
@@ -963,7 +674,7 @@ final class HttpTrafficApi extends AbstractApi
         ?string $codesMode = null,
         ?array $requestDurationSlots = null,
         ?string $requestDurationSlotsMode = null
-    ): HttpMetricsTimelineUrls200Response {
+    ): mixed {
         return $this->httpMetricsTimelineUrlsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1030,7 +741,7 @@ final class HttpTrafficApi extends AbstractApi
         ?string $codesMode = null,
         ?array $requestDurationSlots = null,
         ?string $requestDurationSlotsMode = null
-    ): HttpMetricsTimelineUrls200Response {
+    ): mixed {
         $request = $this->httpMetricsTimelineUrlsRequest(
             $projectId,
             $environmentId,
@@ -1491,8 +1202,9 @@ final class HttpTrafficApi extends AbstractApi
      *
      * Returns HTTP traffic analytics grouped by User Agent with User Agents ranked by impact (response time × request
      * count). Use limit parameter to control total items returned (default: 200, max: 300) and top_hits_count to
-     * control how many are tracked in timelines (default: 15, max: 15). Items have a top_hit boolean indicating whether
-     * they appear in timeline data.
+     * control how many items are flagged as top hits and tracked in the timeline (default: 10, max: 15). Items with
+     * index < top_hits_count are flagged with top_hit: true and tracked in top_hits_timeline; the remainder (up to
+     * limit) are returned with top_hit: false.
      *
      * @param  string $projectId (required)
      * @param  string $environmentId (required)
@@ -1536,7 +1248,7 @@ final class HttpTrafficApi extends AbstractApi
         ?string $codesMode = null,
         ?array $requestDurationSlots = null,
         ?string $requestDurationSlotsMode = null
-    ): HttpMetricsTimelineUserAgents200Response {
+    ): mixed {
         return $this->httpMetricsTimelineUserAgentsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1603,7 +1315,7 @@ final class HttpTrafficApi extends AbstractApi
         ?string $codesMode = null,
         ?array $requestDurationSlots = null,
         ?string $requestDurationSlotsMode = null
-    ): HttpMetricsTimelineUserAgents200Response {
+    ): mixed {
         $request = $this->httpMetricsTimelineUserAgentsRequest(
             $projectId,
             $environmentId,

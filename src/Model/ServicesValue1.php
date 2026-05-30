@@ -14,7 +14,7 @@ use JsonSerializable;
 final class ServicesValue1 implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly ?Resources1 $resources,
+        private readonly ?Resources2 $resources,
         private readonly ?int $instanceCount,
         private readonly ?int $disk,
     ) {
@@ -39,7 +39,7 @@ final class ServicesValue1 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getResources(): ?Resources1
+    public function getResources(): ?Resources2
     {
         return $this->resources;
     }

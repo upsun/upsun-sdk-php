@@ -14,7 +14,7 @@ use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Integration;
-use Upsun\Model\IntegrationCreateInput;
+use Upsun\Model\IntegrationCreateCreateInput;
 use Upsun\Model\IntegrationPatch;
 
 /**
@@ -55,7 +55,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * Integrate project with a third-party service
      *
      *
-     * @param  \Upsun\Model\IntegrationCreateInput $integrationCreateInput (required)
+     * @param  \Upsun\Model\IntegrationCreateCreateInput $integrationCreateCreateInput (required)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -63,29 +63,29 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      */
     public function createProjectsIntegrations(
         string $projectId,
-        IntegrationCreateInput $integrationCreateInput
+        IntegrationCreateCreateInput $integrationCreateCreateInput
     ): AcceptedResponse {
         return $this->createProjectsIntegrationsWithHttpInfo(
             $projectId,
-            $integrationCreateInput
+            $integrationCreateCreateInput
         );
     }
 
     /**
      * Integrate project with a third-party service with HTTP Info
      *
-     * @param  \Upsun\Model\IntegrationCreateInput $integrationCreateInput (required)
+     * @param  \Upsun\Model\IntegrationCreateCreateInput $integrationCreateCreateInput (required)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
     private function createProjectsIntegrationsWithHttpInfo(
         string $projectId,
-        IntegrationCreateInput $integrationCreateInput
+        IntegrationCreateCreateInput $integrationCreateCreateInput
     ): AcceptedResponse {
         $request = $this->createProjectsIntegrationsRequest(
             $projectId,
-            $integrationCreateInput
+            $integrationCreateCreateInput
         );
 
         try {
@@ -118,13 +118,13 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     /**
      * Create request for operation 'createProjectsIntegrations'
      *
-     * @param  \Upsun\Model\IntegrationCreateInput $integrationCreateInput (required)
+     * @param  \Upsun\Model\IntegrationCreateCreateInput $integrationCreateCreateInput (required)
      *
      * @throws InvalidArgumentException
      */
     private function createProjectsIntegrationsRequest(
         string $projectId,
-        IntegrationCreateInput $integrationCreateInput
+        IntegrationCreateCreateInput $integrationCreateCreateInput
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
@@ -133,10 +133,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 when calling createProjectsIntegrations'
             );
         }
-        // verify the required parameter 'integrationCreateInput' is set
-        if (empty($integrationCreateInput)) {
+        // verify the required parameter 'integrationCreateCreateInput' is set
+        if (empty($integrationCreateCreateInput)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $integrationCreateInput
+                'Missing the required parameter $integrationCreateCreateInput
                 when calling createProjectsIntegrations'
             );
         }
@@ -165,13 +165,13 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($integrationCreateInput)) {
+        if (isset($integrationCreateCreateInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
                 $httpBody = json_encode(
-                    ObjectSerializer::sanitizeForSerialization($integrationCreateInput)
+                    ObjectSerializer::sanitizeForSerialization($integrationCreateCreateInput)
                 );
             } else {
-                $httpBody = $integrationCreateInput;
+                $httpBody = $integrationCreateCreateInput;
             }
         } elseif ($formParams !== []) {
             if ($multipart) {

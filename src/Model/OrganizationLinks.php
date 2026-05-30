@@ -21,14 +21,19 @@ final class OrganizationLinks implements Model, JsonSerializable
         private readonly ?OrganizationLinksCreateMember $createMember = null,
         private readonly ?OrganizationLinksAddress $address = null,
         private readonly ?OrganizationLinksProfile $profile = null,
+        private readonly ?OrganizationLinksAccount $account = null,
         private readonly ?OrganizationLinksPaymentSource $paymentSource = null,
         private readonly ?OrganizationLinksOrders $orders = null,
         private readonly ?OrganizationLinksVouchers $vouchers = null,
+        private readonly ?OrganizationLinksDiscounts $discounts = null,
         private readonly ?OrganizationLinksApplyVoucher $applyVoucher = null,
         private readonly ?OrganizationLinksSubscriptions $subscriptions = null,
         private readonly ?OrganizationLinksCreateSubscription $createSubscription = null,
         private readonly ?OrganizationLinksEstimateSubscription $estimateSubscription = null,
+        private readonly ?OrganizationLinksPrepayment $prepayment = null,
+        private readonly ?OrganizationLinksBillingProfile $billingProfile = null,
         private readonly ?OrganizationLinksMfaEnforcement $mfaEnforcement = null,
+        private readonly ?OrganizationLinksSso $sso = null,
     ) {
     }
 
@@ -47,14 +52,19 @@ final class OrganizationLinks implements Model, JsonSerializable
             'createMember' => $this->createMember,
             'address' => $this->address,
             'profile' => $this->profile,
+            'account' => $this->account,
             'paymentSource' => $this->paymentSource,
             'orders' => $this->orders,
             'vouchers' => $this->vouchers,
+            'discounts' => $this->discounts,
             'applyVoucher' => $this->applyVoucher,
             'subscriptions' => $this->subscriptions,
             'createSubscription' => $this->createSubscription,
             'estimateSubscription' => $this->estimateSubscription,
+            'prepayment' => $this->prepayment,
+            'billingProfile' => $this->billingProfile,
             'mfaEnforcement' => $this->mfaEnforcement,
+            'sso' => $this->sso,
         ];
     }
 
@@ -104,7 +114,7 @@ final class OrganizationLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link to the current organization's address.
+     * Link to the current organization's address. This link may not be present for all organizations.
      */
     public function getAddress(): ?OrganizationLinksAddress
     {
@@ -112,7 +122,7 @@ final class OrganizationLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link to the current organization's profile.
+     * Link to the current organization's billing profile details. This link may not be present for all organizations.
      */
     public function getProfile(): ?OrganizationLinksProfile
     {
@@ -120,7 +130,15 @@ final class OrganizationLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link to the current organization's payment source.
+     * Link to the current organization's account. This link may not be present for all organizations.
+     */
+    public function getAccount(): ?OrganizationLinksAccount
+    {
+        return $this->account;
+    }
+
+    /**
+     * Link to the current organization's payment source. This link may not be present for all organizations.
      */
     public function getPaymentSource(): ?OrganizationLinksPaymentSource
     {
@@ -128,7 +146,7 @@ final class OrganizationLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link to the current organization's orders.
+     * Link to the current organization's orders. This link may not be present for all organizations.
      */
     public function getOrders(): ?OrganizationLinksOrders
     {
@@ -136,7 +154,7 @@ final class OrganizationLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link to the current organization's vouchers.
+     * Link to the current organization's vouchers. This link may not be present for all organizations.
      */
     public function getVouchers(): ?OrganizationLinksVouchers
     {
@@ -144,7 +162,15 @@ final class OrganizationLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link for applying a voucher for the current organization.
+     * Link to the current organization's discounts. This link may not be present for all organizations.
+     */
+    public function getDiscounts(): ?OrganizationLinksDiscounts
+    {
+        return $this->discounts;
+    }
+
+    /**
+     * Link for applying a voucher for the current organization. This link may not be present for all organizations.
      */
     public function getApplyVoucher(): ?OrganizationLinksApplyVoucher
     {
@@ -152,7 +178,7 @@ final class OrganizationLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link to the current organization's subscriptions.
+     * Link to the current organization's subscriptions. This link may not be present for all organizations.
      */
     public function getSubscriptions(): ?OrganizationLinksSubscriptions
     {
@@ -168,7 +194,7 @@ final class OrganizationLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link for estimating the price of a new subscription.
+     * Link for estimating the price of a new subscription. This link may not be present for all organizations.
      */
     public function getEstimateSubscription(): ?OrganizationLinksEstimateSubscription
     {
@@ -176,10 +202,34 @@ final class OrganizationLinks implements Model, JsonSerializable
     }
 
     /**
-     * Link to the current organization's MFA enforcement settings.
+     * Link to the current organization's prepayment information. This link may not be present for all organizations.
+     */
+    public function getPrepayment(): ?OrganizationLinksPrepayment
+    {
+        return $this->prepayment;
+    }
+
+    /**
+     * Link to the organization's billing profile. This link may not be present for all organizations.
+     */
+    public function getBillingProfile(): ?OrganizationLinksBillingProfile
+    {
+        return $this->billingProfile;
+    }
+
+    /**
+     * Link to the current organization's MFA enforcement settings. This link may not be present for all organizations.
      */
     public function getMfaEnforcement(): ?OrganizationLinksMfaEnforcement
     {
         return $this->mfaEnforcement;
+    }
+
+    /**
+     * Link to the current organization's SSO configuration. This link may not be present for all organizations.
+     */
+    public function getSso(): ?OrganizationLinksSso
+    {
+        return $this->sso;
     }
 }

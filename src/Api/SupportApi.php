@@ -544,7 +544,7 @@ final class SupportApi extends AbstractApi
     public function updateTicket(
         string $ticketId,
         ?UpdateTicketRequest $updateTicketRequest = null
-    ): Ticket|null {
+    ): Ticket {
         return $this->updateTicketWithHttpInfo(
             $ticketId,
             $updateTicketRequest
@@ -562,7 +562,7 @@ final class SupportApi extends AbstractApi
     private function updateTicketWithHttpInfo(
         string $ticketId,
         ?UpdateTicketRequest $updateTicketRequest = null
-    ): Ticket|null {
+    ): Ticket {
         $request = $this->updateTicketRequest(
             $ticketId,
             $updateTicketRequest

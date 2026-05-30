@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level OrganizationLinksMfaEnforcement (auto-generated)
- * Link to the current organization's MFA enforcement settings.
+ * Link to the current organization's MFA enforcement settings. This link may not be present for all organizations.
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

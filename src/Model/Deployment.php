@@ -30,7 +30,8 @@ final class Deployment implements Model, JsonSerializable
         private readonly array $routes,
         private readonly array $webapps,
         private readonly array $workers,
-        private readonly string $containerProfiles,
+        private readonly array $containerProfiles,
+        private readonly string $tasks,
         private readonly ?VPNConfiguration $vpn,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
@@ -63,6 +64,7 @@ final class Deployment implements Model, JsonSerializable
             'webapps' => $this->webapps,
             'workers' => $this->workers,
             'containerProfiles' => $this->containerProfiles,
+            'tasks' => $this->tasks,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'fingerprint' => $this->fingerprint,
@@ -208,12 +210,17 @@ final class Deployment implements Model, JsonSerializable
         return $this->workers;
     }
 
+    public function getContainerProfiles(): array
+    {
+        return $this->containerProfiles;
+    }
+
     /**
      * The name of the deployment target
      */
-    public function getContainerProfiles(): string
+    public function getTasks(): string
     {
-        return $this->containerProfiles;
+        return $this->tasks;
     }
 
     /**

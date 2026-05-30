@@ -14,7 +14,7 @@ use JsonSerializable;
 final class EnvironmentMergeInput implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly ?Resources5 $resources = null,
+        private readonly ?Resources7 $resources = null,
     ) {
     }
 
@@ -35,7 +35,7 @@ final class EnvironmentMergeInput implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getResources(): ?Resources5
+    public function getResources(): ?Resources7
     {
         return $this->resources;
     }

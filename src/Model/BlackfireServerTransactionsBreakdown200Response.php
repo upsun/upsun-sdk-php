@@ -25,6 +25,10 @@ final class BlackfireServerTransactionsBreakdown200Response implements Model, Js
     public const _SORT_WT_96TH_PERCENTILE = 'wt_96th_percentile';
     public const _CONTEXTS_MODE_ADDITIVE = 'additive';
     public const _CONTEXTS_MODE_SUBTRACTIVE = 'subtractive';
+    public const _APPLICATIONS_MODE_ADDITIVE = 'additive';
+    public const _APPLICATIONS_MODE_SUBTRACTIVE = 'subtractive';
+    public const _INSTANCES_MODE_ADDITIVE = 'additive';
+    public const _INSTANCES_MODE_SUBTRACTIVE = 'subtractive';
     public const _TRANSACTIONS_MODE_ADDITIVE = 'additive';
     public const _TRANSACTIONS_MODE_SUBTRACTIVE = 'subtractive';
     public const _WT_SLOT_MODE_ADDITIVE = 'additive';
@@ -66,6 +70,10 @@ final class BlackfireServerTransactionsBreakdown200Response implements Model, Js
         private readonly ?string $sort,
         private readonly ?array $contexts = [],
         private readonly ?string $contextsMode = null,
+        private readonly ?array $applications = [],
+        private readonly ?string $applicationsMode = null,
+        private readonly ?array $instances = [],
+        private readonly ?string $instancesMode = null,
         private readonly ?array $_transactionsFilter = [],
         private readonly ?string $transactionsMode = null,
         private readonly ?array $wtSlot = [],
@@ -115,6 +123,10 @@ final class BlackfireServerTransactionsBreakdown200Response implements Model, Js
             'topHitsTimeline' => $this->topHitsTimeline,
             'contexts' => $this->contexts,
             'contextsMode' => $this->contextsMode,
+            'applications' => $this->applications,
+            'applicationsMode' => $this->applicationsMode,
+            'instances' => $this->instances,
+            'instancesMode' => $this->instancesMode,
             '_transactionsFilter' => $this->_transactionsFilter,
             'transactionsMode' => $this->transactionsMode,
             'wtSlot' => $this->wtSlot,
@@ -219,6 +231,26 @@ final class BlackfireServerTransactionsBreakdown200Response implements Model, Js
     public function getContextsMode(): ?string
     {
         return $this->contextsMode;
+    }
+
+    public function getApplications(): ?array
+    {
+        return $this->applications;
+    }
+
+    public function getApplicationsMode(): ?string
+    {
+        return $this->applicationsMode;
+    }
+
+    public function getInstances(): ?array
+    {
+        return $this->instances;
+    }
+
+    public function getInstancesMode(): ?string
+    {
+        return $this->instancesMode;
     }
 
     public function getTransactionsFilter(): ?array

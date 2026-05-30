@@ -12,7 +12,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\ObservabilityEntrypoint200Response;
 
 /**
  * Low level EntrypointApi (auto-generated)
@@ -66,7 +65,7 @@ final class EntrypointApi extends AbstractApi
     public function observabilityEntrypoint(
         string $projectId,
         string $environmentId
-    ): ObservabilityEntrypoint200Response {
+    ): mixed {
         return $this->observabilityEntrypointWithHttpInfo(
             $projectId,
             $environmentId
@@ -85,7 +84,7 @@ final class EntrypointApi extends AbstractApi
     private function observabilityEntrypointWithHttpInfo(
         string $projectId,
         string $environmentId
-    ): ObservabilityEntrypoint200Response {
+    ): mixed {
         $request = $this->observabilityEntrypointRequest(
             $projectId,
             $environmentId

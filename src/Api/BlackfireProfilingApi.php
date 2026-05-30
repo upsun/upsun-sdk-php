@@ -13,12 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\BlackfireProfileGraph200Response;
-use Upsun\Model\BlackfireProfileProfile200Response;
-use Upsun\Model\BlackfireProfilesList200Response;
-use Upsun\Model\BlackfireProfilesRecommendations200Response;
-use Upsun\Model\BlackfireProfileSubprofiles200Response;
-use Upsun\Model\BlackfireProfileTimeline200Response;
 use Upsun\Model\FilterSelect;
 
 /**
@@ -72,7 +66,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): BlackfireProfileGraph200Response {
+    ): mixed {
         return $this->blackfireProfileGraphWithHttpInfo(
             $projectId,
             $environmentId,
@@ -94,7 +88,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): BlackfireProfileGraph200Response {
+    ): mixed {
         $request = $this->blackfireProfileGraphRequest(
             $projectId,
             $environmentId,
@@ -295,7 +289,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): BlackfireProfileProfile200Response {
+    ): mixed {
         return $this->blackfireProfileProfileWithHttpInfo(
             $projectId,
             $environmentId,
@@ -317,7 +311,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): BlackfireProfileProfile200Response {
+    ): mixed {
         $request = $this->blackfireProfileProfileRequest(
             $projectId,
             $environmentId,
@@ -518,7 +512,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): BlackfireProfileSubprofiles200Response {
+    ): mixed {
         return $this->blackfireProfileSubprofilesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -540,7 +534,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): BlackfireProfileSubprofiles200Response {
+    ): mixed {
         $request = $this->blackfireProfileSubprofilesRequest(
             $projectId,
             $environmentId,
@@ -741,7 +735,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): BlackfireProfileTimeline200Response {
+    ): mixed {
         return $this->blackfireProfileTimelineWithHttpInfo(
             $projectId,
             $environmentId,
@@ -763,7 +757,7 @@ final class BlackfireProfilingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $uuid
-    ): BlackfireProfileTimeline200Response {
+    ): mixed {
         $request = $this->blackfireProfileTimelineRequest(
             $projectId,
             $environmentId,
@@ -989,7 +983,7 @@ final class BlackfireProfilingApi extends AbstractApi
         ?FilterSelect $languages = null,
         ?FilterSelect $frameworks = null,
         ?int $itemsPerPage = null
-    ): BlackfireProfilesList200Response {
+    ): mixed {
         return $this->blackfireProfilesListWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1049,7 +1043,7 @@ final class BlackfireProfilingApi extends AbstractApi
         ?FilterSelect $languages = null,
         ?FilterSelect $frameworks = null,
         ?int $itemsPerPage = null
-    ): BlackfireProfilesList200Response {
+    ): mixed {
         $request = $this->blackfireProfilesListRequest(
             $projectId,
             $environmentId,
@@ -1502,7 +1496,7 @@ final class BlackfireProfilingApi extends AbstractApi
         ?int $to = null,
         ?string $transaction = null,
         ?int $limit = null
-    ): BlackfireProfilesRecommendations200Response {
+    ): mixed {
         return $this->blackfireProfilesRecommendationsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1533,7 +1527,7 @@ final class BlackfireProfilingApi extends AbstractApi
         ?int $to = null,
         ?string $transaction = null,
         ?int $limit = null
-    ): BlackfireProfilesRecommendations200Response {
+    ): mixed {
         $request = $this->blackfireProfilesRecommendationsRequest(
             $projectId,
             $environmentId,

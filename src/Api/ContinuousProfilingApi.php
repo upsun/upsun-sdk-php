@@ -11,12 +11,8 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use SplFileObject;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\GetApplicationFilter200Response;
-use Upsun\Model\GetApplicationTimeline200Response;
-use Upsun\Model\ListApplications200Response;
 
 /**
  * Low level ContinuousProfilingApi (auto-generated)
@@ -64,16 +60,50 @@ final class ContinuousProfilingApi extends AbstractApi
      * @param  int|null $from (optional)
      * @param  int|null $to (optional)
      * @param  string|null $profileType (optional)
-     * @param  int|null $runtimeMode (optional)
-     * @param  string[]|null $runtime (optional)
-     * @param  int|null $runtimeVersionMode (optional)
-     * @param  string[]|null $runtimeVersion (optional)
-     * @param  int|null $runtimeArchMode (optional)
-     * @param  string[]|null $runtimeArch (optional)
-     * @param  int|null $runtimeOsMode (optional)
-     * @param  string[]|null $runtimeOs (optional)
-     * @param  int|null $probeVersionMode (optional)
-     * @param  string[]|null $probeVersion (optional)
+     * @param  int|null $runtimeMode
+     *         Filter mode for runtime parameter. "1" (additive) includes only specified
+     *         runtimes. "-1" (subtractive) excludes specified runtimes and includes all
+     *         others. When omitted while runtime[] is supplied, defaults to "1" (additive). (optional)
+     * @param  string[]|null $runtime
+     *         Filter by runtime language. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control
+     *         inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeVersionMode
+     *         Filter mode for runtime_version parameter. "1" (additive) includes only
+     *         specified versions. "-1" (subtractive) excludes specified versions and includes
+     *         all others. When omitted while runtime_version[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeVersion
+     *         Filter by runtime version. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeArchMode
+     *         Filter mode for runtime_arch parameter. "1" (additive) includes only specified
+     *         architectures. "-1" (subtractive) excludes specified architectures and includes
+     *         all others. When omitted while runtime_arch[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeArch
+     *         Filter by runtime architecture. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeOsMode
+     *         Filter mode for runtime_os parameter. "1" (additive) includes only specified
+     *         operating systems. "-1" (subtractive) excludes specified operating systems and
+     *         includes all others. When omitted while runtime_os[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $runtimeOs
+     *         Filter by runtime operating system. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to
+     *         control inclusion/exclusion behavior. (optional)
+     * @param  int|null $probeVersionMode
+     *         Filter mode for probe_version parameter. "1" (additive) includes only specified
+     *         probe versions. "-1" (subtractive) excludes specified probe versions and
+     *         includes all others. When omitted while probe_version[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $probeVersion
+     *         Filter by probe version. Can be specified multiple times for multiple values
+     *         (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -96,7 +126,7 @@ final class ContinuousProfilingApi extends AbstractApi
         ?array $runtimeOs = null,
         ?int $probeVersionMode = null,
         ?array $probeVersion = null
-    ): GetApplicationFilter200Response {
+    ): mixed {
         return $this->getApplicationFilterWithHttpInfo(
             $projectId,
             $envId,
@@ -126,16 +156,50 @@ final class ContinuousProfilingApi extends AbstractApi
      * @param  int|null $from (optional)
      * @param  int|null $to (optional)
      * @param  string|null $profileType (optional)
-     * @param  int|null $runtimeMode (optional)
-     * @param  string[]|null $runtime (optional)
-     * @param  int|null $runtimeVersionMode (optional)
-     * @param  string[]|null $runtimeVersion (optional)
-     * @param  int|null $runtimeArchMode (optional)
-     * @param  string[]|null $runtimeArch (optional)
-     * @param  int|null $runtimeOsMode (optional)
-     * @param  string[]|null $runtimeOs (optional)
-     * @param  int|null $probeVersionMode (optional)
-     * @param  string[]|null $probeVersion (optional)
+     * @param  int|null $runtimeMode
+     *         Filter mode for runtime parameter. "1" (additive) includes only specified
+     *         runtimes. "-1" (subtractive) excludes specified runtimes and includes all
+     *         others. When omitted while runtime[] is supplied, defaults to "1" (additive). (optional)
+     * @param  string[]|null $runtime
+     *         Filter by runtime language. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control
+     *         inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeVersionMode
+     *         Filter mode for runtime_version parameter. "1" (additive) includes only
+     *         specified versions. "-1" (subtractive) excludes specified versions and includes
+     *         all others. When omitted while runtime_version[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeVersion
+     *         Filter by runtime version. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeArchMode
+     *         Filter mode for runtime_arch parameter. "1" (additive) includes only specified
+     *         architectures. "-1" (subtractive) excludes specified architectures and includes
+     *         all others. When omitted while runtime_arch[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeArch
+     *         Filter by runtime architecture. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeOsMode
+     *         Filter mode for runtime_os parameter. "1" (additive) includes only specified
+     *         operating systems. "-1" (subtractive) excludes specified operating systems and
+     *         includes all others. When omitted while runtime_os[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $runtimeOs
+     *         Filter by runtime operating system. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to
+     *         control inclusion/exclusion behavior. (optional)
+     * @param  int|null $probeVersionMode
+     *         Filter mode for probe_version parameter. "1" (additive) includes only specified
+     *         probe versions. "-1" (subtractive) excludes specified probe versions and
+     *         includes all others. When omitted while probe_version[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $probeVersion
+     *         Filter by probe version. Can be specified multiple times for multiple values
+     *         (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -157,7 +221,7 @@ final class ContinuousProfilingApi extends AbstractApi
         ?array $runtimeOs = null,
         ?int $probeVersionMode = null,
         ?array $probeVersion = null
-    ): GetApplicationFilter200Response {
+    ): mixed {
         $request = $this->getApplicationFilterRequest(
             $projectId,
             $envId,
@@ -213,16 +277,50 @@ final class ContinuousProfilingApi extends AbstractApi
      * @param  int|null $from (optional)
      * @param  int|null $to (optional)
      * @param  string|null $profileType (optional)
-     * @param  int|null $runtimeMode (optional)
-     * @param  string[]|null $runtime (optional)
-     * @param  int|null $runtimeVersionMode (optional)
-     * @param  string[]|null $runtimeVersion (optional)
-     * @param  int|null $runtimeArchMode (optional)
-     * @param  string[]|null $runtimeArch (optional)
-     * @param  int|null $runtimeOsMode (optional)
-     * @param  string[]|null $runtimeOs (optional)
-     * @param  int|null $probeVersionMode (optional)
-     * @param  string[]|null $probeVersion (optional)
+     * @param  int|null $runtimeMode
+     *         Filter mode for runtime parameter. "1" (additive) includes only specified
+     *         runtimes. "-1" (subtractive) excludes specified runtimes and includes all
+     *         others. When omitted while runtime[] is supplied, defaults to "1" (additive). (optional)
+     * @param  string[]|null $runtime
+     *         Filter by runtime language. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control
+     *         inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeVersionMode
+     *         Filter mode for runtime_version parameter. "1" (additive) includes only
+     *         specified versions. "-1" (subtractive) excludes specified versions and includes
+     *         all others. When omitted while runtime_version[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeVersion
+     *         Filter by runtime version. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeArchMode
+     *         Filter mode for runtime_arch parameter. "1" (additive) includes only specified
+     *         architectures. "-1" (subtractive) excludes specified architectures and includes
+     *         all others. When omitted while runtime_arch[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeArch
+     *         Filter by runtime architecture. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeOsMode
+     *         Filter mode for runtime_os parameter. "1" (additive) includes only specified
+     *         operating systems. "-1" (subtractive) excludes specified operating systems and
+     *         includes all others. When omitted while runtime_os[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $runtimeOs
+     *         Filter by runtime operating system. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to
+     *         control inclusion/exclusion behavior. (optional)
+     * @param  int|null $probeVersionMode
+     *         Filter mode for probe_version parameter. "1" (additive) includes only specified
+     *         probe versions. "-1" (subtractive) excludes specified probe versions and
+     *         includes all others. When omitted while probe_version[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $probeVersion
+     *         Filter by probe version. Can be specified multiple times for multiple values
+     *         (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
      *
      * @throws InvalidArgumentException
      */
@@ -563,16 +661,50 @@ final class ContinuousProfilingApi extends AbstractApi
      * @param  int|null $to (optional)
      * @param  string|null $profileType (optional)
      * @param  string|null $out (optional)
-     * @param  int|null $runtimeMode (optional)
-     * @param  string[]|null $runtime (optional)
-     * @param  int|null $runtimeVersionMode (optional)
-     * @param  string[]|null $runtimeVersion (optional)
-     * @param  int|null $runtimeArchMode (optional)
-     * @param  string[]|null $runtimeArch (optional)
-     * @param  int|null $runtimeOsMode (optional)
-     * @param  string[]|null $runtimeOs (optional)
-     * @param  int|null $probeVersionMode (optional)
-     * @param  string[]|null $probeVersion (optional)
+     * @param  int|null $runtimeMode
+     *         Filter mode for runtime parameter. "1" (additive) includes only specified
+     *         runtimes. "-1" (subtractive) excludes specified runtimes and includes all
+     *         others. When omitted while runtime[] is supplied, defaults to "1" (additive). (optional)
+     * @param  string[]|null $runtime
+     *         Filter by runtime language. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control
+     *         inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeVersionMode
+     *         Filter mode for runtime_version parameter. "1" (additive) includes only
+     *         specified versions. "-1" (subtractive) excludes specified versions and includes
+     *         all others. When omitted while runtime_version[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeVersion
+     *         Filter by runtime version. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeArchMode
+     *         Filter mode for runtime_arch parameter. "1" (additive) includes only specified
+     *         architectures. "-1" (subtractive) excludes specified architectures and includes
+     *         all others. When omitted while runtime_arch[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeArch
+     *         Filter by runtime architecture. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeOsMode
+     *         Filter mode for runtime_os parameter. "1" (additive) includes only specified
+     *         operating systems. "-1" (subtractive) excludes specified operating systems and
+     *         includes all others. When omitted while runtime_os[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $runtimeOs
+     *         Filter by runtime operating system. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to
+     *         control inclusion/exclusion behavior. (optional)
+     * @param  int|null $probeVersionMode
+     *         Filter mode for probe_version parameter. "1" (additive) includes only specified
+     *         probe versions. "-1" (subtractive) excludes specified probe versions and
+     *         includes all others. When omitted while probe_version[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $probeVersion
+     *         Filter by probe version. Can be specified multiple times for multiple values
+     *         (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -596,7 +728,7 @@ final class ContinuousProfilingApi extends AbstractApi
         ?array $runtimeOs = null,
         ?int $probeVersionMode = null,
         ?array $probeVersion = null
-    ): SplFileObject {
+    ): mixed {
         return $this->getApplicationMergeWithHttpInfo(
             $projectId,
             $envId,
@@ -628,16 +760,50 @@ final class ContinuousProfilingApi extends AbstractApi
      * @param  int|null $to (optional)
      * @param  string|null $profileType (optional)
      * @param  string|null $out (optional)
-     * @param  int|null $runtimeMode (optional)
-     * @param  string[]|null $runtime (optional)
-     * @param  int|null $runtimeVersionMode (optional)
-     * @param  string[]|null $runtimeVersion (optional)
-     * @param  int|null $runtimeArchMode (optional)
-     * @param  string[]|null $runtimeArch (optional)
-     * @param  int|null $runtimeOsMode (optional)
-     * @param  string[]|null $runtimeOs (optional)
-     * @param  int|null $probeVersionMode (optional)
-     * @param  string[]|null $probeVersion (optional)
+     * @param  int|null $runtimeMode
+     *         Filter mode for runtime parameter. "1" (additive) includes only specified
+     *         runtimes. "-1" (subtractive) excludes specified runtimes and includes all
+     *         others. When omitted while runtime[] is supplied, defaults to "1" (additive). (optional)
+     * @param  string[]|null $runtime
+     *         Filter by runtime language. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control
+     *         inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeVersionMode
+     *         Filter mode for runtime_version parameter. "1" (additive) includes only
+     *         specified versions. "-1" (subtractive) excludes specified versions and includes
+     *         all others. When omitted while runtime_version[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeVersion
+     *         Filter by runtime version. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeArchMode
+     *         Filter mode for runtime_arch parameter. "1" (additive) includes only specified
+     *         architectures. "-1" (subtractive) excludes specified architectures and includes
+     *         all others. When omitted while runtime_arch[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeArch
+     *         Filter by runtime architecture. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeOsMode
+     *         Filter mode for runtime_os parameter. "1" (additive) includes only specified
+     *         operating systems. "-1" (subtractive) excludes specified operating systems and
+     *         includes all others. When omitted while runtime_os[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $runtimeOs
+     *         Filter by runtime operating system. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to
+     *         control inclusion/exclusion behavior. (optional)
+     * @param  int|null $probeVersionMode
+     *         Filter mode for probe_version parameter. "1" (additive) includes only specified
+     *         probe versions. "-1" (subtractive) excludes specified probe versions and
+     *         includes all others. When omitted while probe_version[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $probeVersion
+     *         Filter by probe version. Can be specified multiple times for multiple values
+     *         (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -660,7 +826,7 @@ final class ContinuousProfilingApi extends AbstractApi
         ?array $runtimeOs = null,
         ?int $probeVersionMode = null,
         ?array $probeVersion = null
-    ): SplFileObject {
+    ): mixed {
         $request = $this->getApplicationMergeRequest(
             $projectId,
             $envId,
@@ -718,16 +884,50 @@ final class ContinuousProfilingApi extends AbstractApi
      * @param  int|null $to (optional)
      * @param  string|null $profileType (optional)
      * @param  string|null $out (optional)
-     * @param  int|null $runtimeMode (optional)
-     * @param  string[]|null $runtime (optional)
-     * @param  int|null $runtimeVersionMode (optional)
-     * @param  string[]|null $runtimeVersion (optional)
-     * @param  int|null $runtimeArchMode (optional)
-     * @param  string[]|null $runtimeArch (optional)
-     * @param  int|null $runtimeOsMode (optional)
-     * @param  string[]|null $runtimeOs (optional)
-     * @param  int|null $probeVersionMode (optional)
-     * @param  string[]|null $probeVersion (optional)
+     * @param  int|null $runtimeMode
+     *         Filter mode for runtime parameter. "1" (additive) includes only specified
+     *         runtimes. "-1" (subtractive) excludes specified runtimes and includes all
+     *         others. When omitted while runtime[] is supplied, defaults to "1" (additive). (optional)
+     * @param  string[]|null $runtime
+     *         Filter by runtime language. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control
+     *         inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeVersionMode
+     *         Filter mode for runtime_version parameter. "1" (additive) includes only
+     *         specified versions. "-1" (subtractive) excludes specified versions and includes
+     *         all others. When omitted while runtime_version[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeVersion
+     *         Filter by runtime version. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeArchMode
+     *         Filter mode for runtime_arch parameter. "1" (additive) includes only specified
+     *         architectures. "-1" (subtractive) excludes specified architectures and includes
+     *         all others. When omitted while runtime_arch[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeArch
+     *         Filter by runtime architecture. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeOsMode
+     *         Filter mode for runtime_os parameter. "1" (additive) includes only specified
+     *         operating systems. "-1" (subtractive) excludes specified operating systems and
+     *         includes all others. When omitted while runtime_os[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $runtimeOs
+     *         Filter by runtime operating system. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to
+     *         control inclusion/exclusion behavior. (optional)
+     * @param  int|null $probeVersionMode
+     *         Filter mode for probe_version parameter. "1" (additive) includes only specified
+     *         probe versions. "-1" (subtractive) excludes specified probe versions and
+     *         includes all others. When omitted while probe_version[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $probeVersion
+     *         Filter by probe version. Can be specified multiple times for multiple values
+     *         (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
      *
      * @throws InvalidArgumentException
      */
@@ -1081,16 +1281,50 @@ final class ContinuousProfilingApi extends AbstractApi
      * @param  int|null $from (optional)
      * @param  int|null $to (optional)
      * @param  string|null $profileType (optional)
-     * @param  int|null $runtimeMode (optional)
-     * @param  string[]|null $runtime (optional)
-     * @param  int|null $runtimeVersionMode (optional)
-     * @param  string[]|null $runtimeVersion (optional)
-     * @param  int|null $runtimeArchMode (optional)
-     * @param  string[]|null $runtimeArch (optional)
-     * @param  int|null $runtimeOsMode (optional)
-     * @param  string[]|null $runtimeOs (optional)
-     * @param  int|null $probeVersionMode (optional)
-     * @param  string[]|null $probeVersion (optional)
+     * @param  int|null $runtimeMode
+     *         Filter mode for runtime parameter. "1" (additive) includes only specified
+     *         runtimes. "-1" (subtractive) excludes specified runtimes and includes all
+     *         others. When omitted while runtime[] is supplied, defaults to "1" (additive). (optional)
+     * @param  string[]|null $runtime
+     *         Filter by runtime language. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control
+     *         inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeVersionMode
+     *         Filter mode for runtime_version parameter. "1" (additive) includes only
+     *         specified versions. "-1" (subtractive) excludes specified versions and includes
+     *         all others. When omitted while runtime_version[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeVersion
+     *         Filter by runtime version. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeArchMode
+     *         Filter mode for runtime_arch parameter. "1" (additive) includes only specified
+     *         architectures. "-1" (subtractive) excludes specified architectures and includes
+     *         all others. When omitted while runtime_arch[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeArch
+     *         Filter by runtime architecture. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeOsMode
+     *         Filter mode for runtime_os parameter. "1" (additive) includes only specified
+     *         operating systems. "-1" (subtractive) excludes specified operating systems and
+     *         includes all others. When omitted while runtime_os[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $runtimeOs
+     *         Filter by runtime operating system. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to
+     *         control inclusion/exclusion behavior. (optional)
+     * @param  int|null $probeVersionMode
+     *         Filter mode for probe_version parameter. "1" (additive) includes only specified
+     *         probe versions. "-1" (subtractive) excludes specified probe versions and
+     *         includes all others. When omitted while probe_version[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $probeVersion
+     *         Filter by probe version. Can be specified multiple times for multiple values
+     *         (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -1113,7 +1347,7 @@ final class ContinuousProfilingApi extends AbstractApi
         ?array $runtimeOs = null,
         ?int $probeVersionMode = null,
         ?array $probeVersion = null
-    ): GetApplicationTimeline200Response {
+    ): mixed {
         return $this->getApplicationTimelineWithHttpInfo(
             $projectId,
             $envId,
@@ -1143,16 +1377,50 @@ final class ContinuousProfilingApi extends AbstractApi
      * @param  int|null $from (optional)
      * @param  int|null $to (optional)
      * @param  string|null $profileType (optional)
-     * @param  int|null $runtimeMode (optional)
-     * @param  string[]|null $runtime (optional)
-     * @param  int|null $runtimeVersionMode (optional)
-     * @param  string[]|null $runtimeVersion (optional)
-     * @param  int|null $runtimeArchMode (optional)
-     * @param  string[]|null $runtimeArch (optional)
-     * @param  int|null $runtimeOsMode (optional)
-     * @param  string[]|null $runtimeOs (optional)
-     * @param  int|null $probeVersionMode (optional)
-     * @param  string[]|null $probeVersion (optional)
+     * @param  int|null $runtimeMode
+     *         Filter mode for runtime parameter. "1" (additive) includes only specified
+     *         runtimes. "-1" (subtractive) excludes specified runtimes and includes all
+     *         others. When omitted while runtime[] is supplied, defaults to "1" (additive). (optional)
+     * @param  string[]|null $runtime
+     *         Filter by runtime language. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control
+     *         inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeVersionMode
+     *         Filter mode for runtime_version parameter. "1" (additive) includes only
+     *         specified versions. "-1" (subtractive) excludes specified versions and includes
+     *         all others. When omitted while runtime_version[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeVersion
+     *         Filter by runtime version. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeArchMode
+     *         Filter mode for runtime_arch parameter. "1" (additive) includes only specified
+     *         architectures. "-1" (subtractive) excludes specified architectures and includes
+     *         all others. When omitted while runtime_arch[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeArch
+     *         Filter by runtime architecture. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeOsMode
+     *         Filter mode for runtime_os parameter. "1" (additive) includes only specified
+     *         operating systems. "-1" (subtractive) excludes specified operating systems and
+     *         includes all others. When omitted while runtime_os[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $runtimeOs
+     *         Filter by runtime operating system. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to
+     *         control inclusion/exclusion behavior. (optional)
+     * @param  int|null $probeVersionMode
+     *         Filter mode for probe_version parameter. "1" (additive) includes only specified
+     *         probe versions. "-1" (subtractive) excludes specified probe versions and
+     *         includes all others. When omitted while probe_version[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $probeVersion
+     *         Filter by probe version. Can be specified multiple times for multiple values
+     *         (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -1174,7 +1442,7 @@ final class ContinuousProfilingApi extends AbstractApi
         ?array $runtimeOs = null,
         ?int $probeVersionMode = null,
         ?array $probeVersion = null
-    ): GetApplicationTimeline200Response {
+    ): mixed {
         $request = $this->getApplicationTimelineRequest(
             $projectId,
             $envId,
@@ -1230,16 +1498,50 @@ final class ContinuousProfilingApi extends AbstractApi
      * @param  int|null $from (optional)
      * @param  int|null $to (optional)
      * @param  string|null $profileType (optional)
-     * @param  int|null $runtimeMode (optional)
-     * @param  string[]|null $runtime (optional)
-     * @param  int|null $runtimeVersionMode (optional)
-     * @param  string[]|null $runtimeVersion (optional)
-     * @param  int|null $runtimeArchMode (optional)
-     * @param  string[]|null $runtimeArch (optional)
-     * @param  int|null $runtimeOsMode (optional)
-     * @param  string[]|null $runtimeOs (optional)
-     * @param  int|null $probeVersionMode (optional)
-     * @param  string[]|null $probeVersion (optional)
+     * @param  int|null $runtimeMode
+     *         Filter mode for runtime parameter. "1" (additive) includes only specified
+     *         runtimes. "-1" (subtractive) excludes specified runtimes and includes all
+     *         others. When omitted while runtime[] is supplied, defaults to "1" (additive). (optional)
+     * @param  string[]|null $runtime
+     *         Filter by runtime language. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime[]=go&runtime[]=python). Use runtime_mode to control
+     *         inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeVersionMode
+     *         Filter mode for runtime_version parameter. "1" (additive) includes only
+     *         specified versions. "-1" (subtractive) excludes specified versions and includes
+     *         all others. When omitted while runtime_version[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeVersion
+     *         Filter by runtime version. Can be specified multiple times for multiple values
+     *         (e.g., ?runtime_version[]=1.21&runtime_version[]=1.22). Use runtime_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeArchMode
+     *         Filter mode for runtime_arch parameter. "1" (additive) includes only specified
+     *         architectures. "-1" (subtractive) excludes specified architectures and includes
+     *         all others. When omitted while runtime_arch[] is supplied, defaults to "1"
+     *         (additive). (optional)
+     * @param  string[]|null $runtimeArch
+     *         Filter by runtime architecture. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_arch[]=amd64&runtime_arch[]=arm64). Use runtime_arch_mode
+     *         to control inclusion/exclusion behavior. (optional)
+     * @param  int|null $runtimeOsMode
+     *         Filter mode for runtime_os parameter. "1" (additive) includes only specified
+     *         operating systems. "-1" (subtractive) excludes specified operating systems and
+     *         includes all others. When omitted while runtime_os[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $runtimeOs
+     *         Filter by runtime operating system. Can be specified multiple times for multiple
+     *         values (e.g., ?runtime_os[]=linux&runtime_os[]=darwin). Use runtime_os_mode to
+     *         control inclusion/exclusion behavior. (optional)
+     * @param  int|null $probeVersionMode
+     *         Filter mode for probe_version parameter. "1" (additive) includes only specified
+     *         probe versions. "-1" (subtractive) excludes specified probe versions and
+     *         includes all others. When omitted while probe_version[] is supplied, defaults to
+     *         "1" (additive). (optional)
+     * @param  string[]|null $probeVersion
+     *         Filter by probe version. Can be specified multiple times for multiple values
+     *         (e.g., ?probe_version[]=2.28.2&probe_version[]=2.28.1). Use probe_version_mode
+     *         to control inclusion/exclusion behavior. (optional)
      *
      * @throws InvalidArgumentException
      */
@@ -1587,7 +1889,7 @@ final class ContinuousProfilingApi extends AbstractApi
         string $envId,
         ?int $from = null,
         ?int $to = null
-    ): ListApplications200Response {
+    ): mixed {
         return $this->listApplicationsWithHttpInfo(
             $projectId,
             $envId,
@@ -1612,7 +1914,7 @@ final class ContinuousProfilingApi extends AbstractApi
         string $envId,
         ?int $from = null,
         ?int $to = null
-    ): ListApplications200Response {
+    ): mixed {
         $request = $this->listApplicationsRequest(
             $projectId,
             $envId,

@@ -15,6 +15,7 @@ final class Resources4 implements Model, JsonSerializable
 {
     public const INIT__DEFAULT = 'default';
     public const INIT_MINIMUM = 'minimum';
+    public const INIT_PARENT = 'parent';
 
     public function __construct(
         private readonly ?string $init = null,
@@ -39,7 +40,7 @@ final class Resources4 implements Model, JsonSerializable
     }
 
     /**
-     * The resources used when initializing the environment
+     * The resources used when activating an environment
      */
     public function getInit(): ?string
     {

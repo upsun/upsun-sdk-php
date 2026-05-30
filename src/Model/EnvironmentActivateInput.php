@@ -14,7 +14,7 @@ use JsonSerializable;
 final class EnvironmentActivateInput implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly ?Resources2 $resources = null,
+        private readonly ?Resources4 $resources = null,
     ) {
     }
 
@@ -35,7 +35,7 @@ final class EnvironmentActivateInput implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getResources(): ?Resources2
+    public function getResources(): ?Resources4
     {
         return $this->resources;
     }

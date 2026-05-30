@@ -20,7 +20,7 @@ final class HttpMetricsTimelineUrls200ResponseTopHitsTimelineDataInner implement
         private readonly ?int $requestSize = null,
         private readonly ?int $responseSize = null,
         private readonly ?array $urls = [],
-        private readonly ?HttpMetricsOverview200ResponseDataTimelinesInnerCodes $codes = null,
+        private readonly ?HttpMetricsTimelineUrls200ResponseTopHitsTimelineDataInnerCodes $codes = null,
     ) {
     }
 
@@ -73,14 +73,14 @@ final class HttpMetricsTimelineUrls200ResponseTopHitsTimelineDataInner implement
     }
 
     /**
-     * @return HttpMetricsOverview200ResponseDataTimelinesInnerUrlsValue[]|null
+     * @return HttpMetricsTimelineUrls200ResponseTopHitsTimelineDataInnerUrlsValue[]|null
      */
     public function getUrls(): ?array
     {
         return $this->urls;
     }
 
-    public function getCodes(): ?HttpMetricsOverview200ResponseDataTimelinesInnerCodes
+    public function getCodes(): ?HttpMetricsTimelineUrls200ResponseTopHitsTimelineDataInnerCodes
     {
         return $this->codes;
     }

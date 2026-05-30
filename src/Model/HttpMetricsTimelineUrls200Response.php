@@ -38,7 +38,7 @@ final class HttpMetricsTimelineUrls200Response implements Model, JsonSerializabl
         private readonly string $environmentType,
         private readonly string $branchMachineName,
         private readonly int $breakdownLimit,
-        private readonly HttpMetricsTimelineIps200ResponseBreakdownTopHits $breakdownTopHits,
+        private readonly int $breakdownTopHits,
         private readonly HttpMetricsTimelineUrls200ResponseBreakdown $breakdown,
         private readonly HttpMetricsTimelineUrls200ResponseTopHitsTimeline $topHitsTimeline,
         private readonly HttpMetricsTimelineUrls200ResponseFilters $filters,
@@ -137,7 +137,7 @@ final class HttpMetricsTimelineUrls200Response implements Model, JsonSerializabl
         return $this->breakdownLimit;
     }
 
-    public function getBreakdownTopHits(): HttpMetricsTimelineIps200ResponseBreakdownTopHits
+    public function getBreakdownTopHits(): int
     {
         return $this->breakdownTopHits;
     }

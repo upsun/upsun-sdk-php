@@ -20,7 +20,6 @@ final class BlackfireProfilesList200ResponseProfilesInner implements Model, Json
         private readonly BlackfireProfilesList200ResponseProfilesInnerLinks $links,
         private readonly ?int $recommendations = null,
         private readonly ?object $report = null,
-        private readonly ?array $vulnerableUsages = [],
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
         private readonly ?object $metadata = null,
@@ -66,7 +65,6 @@ final class BlackfireProfilesList200ResponseProfilesInner implements Model, Json
             'isComparison' => $this->isComparison,
             'caches' => $this->caches,
             'report' => $this->report,
-            'vulnerableUsages' => $this->vulnerableUsages,
             'keyPage' => $this->keyPage,
         ];
     }
@@ -169,11 +167,6 @@ final class BlackfireProfilesList200ResponseProfilesInner implements Model, Json
     public function getReport(): ?object
     {
         return $this->report;
-    }
-
-    public function getVulnerableUsages(): ?array
-    {
-        return $this->vulnerableUsages;
     }
 
     public function getKeyPage(): ?object

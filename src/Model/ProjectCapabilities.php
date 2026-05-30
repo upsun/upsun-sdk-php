@@ -21,6 +21,7 @@ final class ProjectCapabilities implements Model, JsonSerializable
         private readonly array $images,
         private readonly int $instanceLimit,
         private readonly BuildResources $buildResources,
+        private readonly ObjectStorage $objectStorage,
         private readonly DataRetention $dataRetention,
         private readonly Autoscaling $autoscaling,
         private readonly ?CustomDomains $customDomains = null,
@@ -46,6 +47,7 @@ final class ProjectCapabilities implements Model, JsonSerializable
             'images' => $this->images,
             'instanceLimit' => $this->instanceLimit,
             'buildResources' => $this->buildResources,
+            'objectStorage' => $this->objectStorage,
             'dataRetention' => $this->dataRetention,
             'autoscaling' => $this->autoscaling,
             'customDomains' => $this->customDomains,
@@ -97,6 +99,11 @@ final class ProjectCapabilities implements Model, JsonSerializable
     public function getBuildResources(): BuildResources
     {
         return $this->buildResources;
+    }
+
+    public function getObjectStorage(): ObjectStorage
+    {
+        return $this->objectStorage;
     }
 
     public function getDataRetention(): DataRetention

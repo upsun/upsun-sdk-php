@@ -4,6 +4,7 @@ namespace Upsun\Api;
 
 use DateTime;
 use Exception;
+use Generator;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -15,7 +16,6 @@ use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\CreateOrgProjectRequest;
 use Upsun\Model\DateTimeFilter;
-use Upsun\Model\ListOrgProjects200Response;
 use Upsun\Model\OrganizationProject;
 use Upsun\Model\ProjectCarbon;
 use Upsun\Model\StringFilter;
@@ -629,7 +629,7 @@ final class OrganizationProjectsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListOrgProjects200Response {
+    ): mixed {
         return $this->listOrgProjectsWithHttpInfo(
             $organizationId,
             $filterId,
@@ -682,7 +682,7 @@ final class OrganizationProjectsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListOrgProjects200Response {
+    ): mixed {
         $request = $this->listOrgProjectsRequest(
             $organizationId,
             $filterId,
@@ -1176,6 +1176,171 @@ final class OrganizationProjectsApi extends AbstractApi
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+        if ($this->config->getUpsunClientHeader()) {
+            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+
+    /**
+     * Stream provisioning progress
+     *
+     * Streams real-time provisioning progress for projects being created in the specified organization. The response is
+     * an NDJSON stream where each line is a JSON object representing a provisioning event. The stream emits events as
+     * provisioning stages complete and terminates automatically when all in-flight projects finish (or fail). A
+     * keep-alive event is sent periodically to prevent connection timeouts. The body is a newline-delimited stream of
+     * JSON objects. Each line is a single `ProvisionEvent`. The `data`, `done`, and `error` events include a `steps`
+     * array listing the ordered provisioning steps. Event types: - `data` — a provisioning stage completed - `done`
+     * — provisioning finished successfully - `error` — provisioning failed - `keep_alive` — connection keep-alive
+     *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
+     * @return \Upsun\Model\ProvisionEvent
+     * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/stream-org-project-provisioning
+     */
+    public function streamOrgProjectProvisioning(
+        string $organizationId
+    ): Generator {
+        return $this->streamOrgProjectProvisioningWithHttpInfo(
+            $organizationId
+        );
+    }
+
+    /**
+     * Stream provisioning progress with HTTP Info
+     *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     *
+     * @return \Upsun\Model\ProvisionEvent
+    */
+    private function streamOrgProjectProvisioningWithHttpInfo(
+        string $organizationId
+    ): Generator {
+        $request = $this->streamOrgProjectProvisioningRequest(
+            $organizationId
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\ProvisionEvent',
+                $request,
+                $response
+            );
+        } catch (Exception $exception) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $exception->getCode(),
+                    '/organizations/{organization_id}/projects/provisioning'
+                ),
+                $request,
+                $response ?? null,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Create request for operation 'streamOrgProjectProvisioning'
+     *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     *
+     * @throws InvalidArgumentException
+     */
+    private function streamOrgProjectProvisioningRequest(
+        string $organizationId
+    ): RequestInterface {
+        // verify the required parameter 'organizationId' is set
+        if (empty($organizationId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $organizationId
+                when calling streamOrgProjectProvisioning'
+            );
+        }
+
+        $resourcePath = '/organizations/{organization_id}/projects/provisioning';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+
+        if ($organizationId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'organization_id' . '}',
+                ObjectSerializer::toPathValue($organizationId),
+                $resourcePath
+            );
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/x-ndjson', 'application/problem+json'],
             '',
             $multipart
         );

@@ -28,6 +28,7 @@ final class WorkersValue implements Model, JsonSerializable
     public function __construct(
         private readonly string $size,
         private readonly array $access,
+        private readonly array $authorizations,
         private readonly array $relationships,
         private readonly array $additionalHosts,
         private readonly array $mounts,
@@ -67,6 +68,7 @@ final class WorkersValue implements Model, JsonSerializable
             'size' => $this->size,
             'disk' => $this->disk,
             'access' => $this->access,
+            'authorizations' => $this->authorizations,
             'relationships' => $this->relationships,
             'additionalHosts' => $this->additionalHosts,
             'mounts' => $this->mounts,
@@ -115,6 +117,14 @@ final class WorkersValue implements Model, JsonSerializable
     public function getAccess(): array
     {
         return $this->access;
+    }
+
+    /**
+     * @return AuthorizationsInner[]
+     */
+    public function getAuthorizations(): array
+    {
+        return $this->authorizations;
     }
 
     /**

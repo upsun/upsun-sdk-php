@@ -38,7 +38,7 @@ final class HttpMetricsTimelineUserAgents200Response implements Model, JsonSeria
         private readonly string $environmentType,
         private readonly string $branchMachineName,
         private readonly int $breakdownLimit,
-        private readonly HttpMetricsTimelineIps200ResponseBreakdownTopHits $breakdownTopHits,
+        private readonly int $breakdownTopHits,
         private readonly HttpMetricsTimelineUserAgents200ResponseBreakdown $breakdown,
         private readonly HttpMetricsTimelineUserAgents200ResponseTopHitsTimeline $topHitsTimeline,
         private readonly ?array $applications = [],
@@ -135,7 +135,7 @@ final class HttpMetricsTimelineUserAgents200Response implements Model, JsonSeria
         return $this->breakdownLimit;
     }
 
-    public function getBreakdownTopHits(): HttpMetricsTimelineIps200ResponseBreakdownTopHits
+    public function getBreakdownTopHits(): int
     {
         return $this->breakdownTopHits;
     }

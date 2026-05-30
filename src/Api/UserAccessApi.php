@@ -13,7 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\ListProjectUserAccess200Response;
 use Upsun\Model\UpdateProjectUserAccessRequest;
 use Upsun\Model\UserProjectAccess;
 
@@ -780,7 +779,7 @@ final class UserAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListProjectUserAccess200Response {
+    ): mixed {
         return $this->listProjectUserAccessWithHttpInfo(
             $projectId,
             $pageSize,
@@ -814,7 +813,7 @@ final class UserAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListProjectUserAccess200Response {
+    ): mixed {
         $request = $this->listProjectUserAccessRequest(
             $projectId,
             $pageSize,
@@ -1050,7 +1049,7 @@ final class UserAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListProjectUserAccess200Response {
+    ): mixed {
         return $this->listUserProjectAccessWithHttpInfo(
             $userId,
             $filterOrganizationId,
@@ -1087,7 +1086,7 @@ final class UserAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListProjectUserAccess200Response {
+    ): mixed {
         $request = $this->listUserProjectAccessRequest(
             $userId,
             $filterOrganizationId,
