@@ -2,9 +2,9 @@
 
 namespace Upsun;
 
+use Http\Discovery\Psr18ClientDiscovery;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Psr\Http\Client\ClientInterface;
-use Symfony\Component\HttpClient\Psr18Client;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiTokensApi;
@@ -145,18 +145,17 @@ class UpsunClient
 
     public WorkersTask $workers;
 
-    public function __construct(protected UpsunConfig $upsunConfig)
+    public function __construct(protected UpsunConfig $upsunConfig, ?ClientInterface $apiClient = null)
     {
         $this->apiConfig = ApiConfiguration::getDefaultConfiguration()
         ->setHost(host: $this->upsunConfig->base_url);
 
-        // Symfony HTTP client compatible PSR-18
-        $this->apiClient = new Psr18Client();
+        $this->apiClient = $apiClient ?? Psr18ClientDiscovery::find();
 
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
 
         $this->auth = new OAuthProvider(
-            httpClient: $this->apiClient, // Symfony PSR-18 client
+            httpClient: $this->apiClient,
             requestFactory: $requestFactory,
             tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
             clientId: $this->upsunConfig->clientId,
