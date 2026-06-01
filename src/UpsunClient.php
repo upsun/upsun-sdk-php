@@ -2,8 +2,8 @@
 
 namespace Upsun;
 
-use Http\Discovery\Psr18ClientDiscovery;
 use Http\Discovery\Psr17FactoryDiscovery;
+use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;

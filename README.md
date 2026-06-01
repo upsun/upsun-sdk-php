@@ -111,9 +111,9 @@ git tag v<x.y.z>
 git push --tag
 ```
 4. Go on release page: https://github.com/upsun/upsun-sdk-php/releases
-7. create a new release based on the previously created tag (Do not forget to autogenerate description in the form)
-8. check publishing action status: https://github.com/upsun/upsun-sdk-php/actions 
-9. check new release version on https://packagist.org/packages/upsun/upsun-sdk-php 
+5. create a new release based on the previously created tag (Do not forget to autogenerate description in the form)
+6. check publishing action status: https://github.com/upsun/upsun-sdk-php/actions 
+7. check new release version on https://packagist.org/packages/upsun/upsun-sdk-php 
 
 ## Tests
 
