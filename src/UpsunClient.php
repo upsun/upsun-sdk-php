@@ -6,6 +6,7 @@ use Http\Discovery\Exception\DiscoveryFailedException;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
+use RuntimeException;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiTokensApi;
@@ -349,7 +350,7 @@ class UpsunClient
         try {
             return Psr18ClientDiscovery::find();
         } catch (DiscoveryFailedException $e) {
-            throw new \RuntimeException(
+            throw new RuntimeException(
                 'No PSR-18 HTTP client implementation available. Install one such as symfony/http-client or provide a ClientInterface instance to UpsunClient.',
                 0,
                 $e

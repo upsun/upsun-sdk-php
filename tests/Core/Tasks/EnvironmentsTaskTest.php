@@ -233,8 +233,8 @@ class EnvironmentsTaskTest extends BaseTestCase
                                 'profile_size' => '0.5',
                                 'disk' => ['temporary' => 8192, 'instance' => 8192, 'storage' => 1024]
                             ],
-                        'instance_count' => 1,
-                        'disk' => 2001
+                            'instance_count' => 1,
+                            'disk' => 2001
                     ]
                 ],
                     'workers' => [],
@@ -320,8 +320,8 @@ class EnvironmentsTaskTest extends BaseTestCase
                                     'profile_size' => '0.5',
                                     'disk' => ['temporary' => 8192, 'instance' => 8192, 'storage' => 1024]
                                 ],
-                            'instance_count' => 1,
-                            'disk' => 2001
+                                'instance_count' => 1,
+                                'disk' => 2001
                         ]
                     ],
                         'workers' => [],
@@ -386,8 +386,8 @@ class EnvironmentsTaskTest extends BaseTestCase
                                     'profile_size' => '0.5',
                                     'disk' => ['temporary' => 8192, 'instance' => 8192, 'storage' => 1024]
                                 ],
-                            'instance_count' => 1,
-                            'disk' => 2001
+                                'instance_count' => 1,
+                                'disk' => 2001
                         ]
                     ],
                         'workers' => [],
@@ -3503,8 +3503,8 @@ class EnvironmentsTaskTest extends BaseTestCase
                                 'profile_size' => '0.5',
                                 'disk' => ['temporary' => 8192, 'instance' => 8192, 'storage' => 1024]
                             ],
-                        'instance_count' => 1,
-                        'disk' => 2001
+                            'instance_count' => 1,
+                            'disk' => 2001
                     ]
                 ],
                     'workers' => [],
