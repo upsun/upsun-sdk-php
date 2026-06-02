@@ -20,7 +20,6 @@ use Upsun\Model\CreateOrgSubscriptionRequest;
 use Upsun\Model\DateTimeFilter;
 use Upsun\Model\EstimationObject;
 use Upsun\Model\GetSubscriptionUsageAlerts200Response;
-use Upsun\Model\ListOrgSubscriptions200Response;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
 use Upsun\Model\SubscriptionAddonsObject;
@@ -2193,7 +2192,7 @@ final class SubscriptionsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListOrgSubscriptions200Response {
+    ): mixed {
         return $this->listOrgSubscriptionsWithHttpInfo(
             $organizationId,
             $filterStatus,
@@ -2248,7 +2247,7 @@ final class SubscriptionsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListOrgSubscriptions200Response {
+    ): mixed {
         $request = $this->listOrgSubscriptionsRequest(
             $organizationId,
             $filterStatus,

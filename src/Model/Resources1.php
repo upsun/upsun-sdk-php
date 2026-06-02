@@ -14,7 +14,12 @@ use JsonSerializable;
 final class Resources1 implements Model, JsonSerializable
 {
     public function __construct(
+        private readonly ?int $baseMemory,
+        private readonly ?int $memoryRatio,
         private readonly ?string $profileSize,
+        private readonly ?MinimumResources $minimum,
+        private readonly ?DefaultResources $default,
+        private readonly ?DiskResources1 $disk,
     ) {
     }
 
@@ -26,7 +31,12 @@ final class Resources1 implements Model, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'baseMemory' => $this->baseMemory,
+            'memoryRatio' => $this->memoryRatio,
             'profileSize' => $this->profileSize,
+            'minimum' => $this->minimum,
+            'default' => $this->default,
+            'disk' => $this->disk,
         ];
     }
 
@@ -35,8 +45,33 @@ final class Resources1 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    public function getBaseMemory(): ?int
+    {
+        return $this->baseMemory;
+    }
+
+    public function getMemoryRatio(): ?int
+    {
+        return $this->memoryRatio;
+    }
+
     public function getProfileSize(): ?string
     {
         return $this->profileSize;
+    }
+
+    public function getMinimum(): ?MinimumResources
+    {
+        return $this->minimum;
+    }
+
+    public function getDefault(): ?DefaultResources
+    {
+        return $this->default;
+    }
+
+    public function getDisk(): ?DiskResources1
+    {
+        return $this->disk;
     }
 }

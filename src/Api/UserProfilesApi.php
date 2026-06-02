@@ -15,7 +15,6 @@ use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\Address;
 use Upsun\Model\CreateProfilePicture200Response;
-use Upsun\Model\GetAddress200Response;
 use Upsun\Model\ListProfiles200Response;
 use Upsun\Model\Profile;
 use Upsun\Model\UpdateProfileRequest;
@@ -381,7 +380,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function getAddress(
         string $userId
-    ): GetAddress200Response {
+    ): mixed {
         return $this->getAddressWithHttpInfo(
             $userId
         );
@@ -398,7 +397,7 @@ final class UserProfilesApi extends AbstractApi
     */
     private function getAddressWithHttpInfo(
         string $userId
-    ): GetAddress200Response {
+    ): mixed {
         $request = $this->getAddressRequest(
             $userId
         );
@@ -813,7 +812,7 @@ final class UserProfilesApi extends AbstractApi
     public function updateAddress(
         string $userId,
         ?Address $address = null
-    ): GetAddress200Response {
+    ): mixed {
         return $this->updateAddressWithHttpInfo(
             $userId,
             $address
@@ -832,7 +831,7 @@ final class UserProfilesApi extends AbstractApi
     private function updateAddressWithHttpInfo(
         string $userId,
         ?Address $address = null
-    ): GetAddress200Response {
+    ): mixed {
         $request = $this->updateAddressRequest(
             $userId,
             $address

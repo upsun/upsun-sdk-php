@@ -423,6 +423,16 @@ class ProjectsTaskTest extends BaseTestCase
                 'maxCpu' => 4.0,
                 'maxMemory' => 8192,
             ],
+            'objectStorage' => [
+                'enabled' => true,
+                'minStorage' => 0,
+                'maxStorage' => 1024,
+                'storageStep' => 1,
+                'cpuPerStep' => 0.0,
+                'memoryPerStep' => 0,
+                'maxCpu' => 1.0,
+                'maxMemory' => 1024,
+            ],
             'dataRetention' => [
                 'enabled' => true,
             ],
@@ -2204,12 +2214,16 @@ FAKE-CHAIN-CERT-DATA2
                     'services' => [],
                     'webapps' => [
                         'app' => [
-                            'resources' => ['profile_size' => '0.5'],
+                            'resources' => [
+                                'profile_size' => '0.5',
+                                'disk' => ['temporary' => 8192, 'instance' => 8192, 'storage' => 1024]
+                            ],
                             'instance_count' => 1,
                             'disk' => 2001
                         ]
                     ],
-                    'workers' => []
+                    'workers' => [],
+                    'tasks' => []
                 ],
                 'resources_overrides' => [],
                 'max_instance_count' => null,
@@ -2266,12 +2280,16 @@ FAKE-CHAIN-CERT-DATA2
                     'services' => [],
                     'webapps' => [
                         'app' => [
-                            'resources' => ['profile_size' => '0.5'],
+                            'resources' => [
+                                'profile_size' => '0.5',
+                                'disk' => ['temporary' => 8192, 'instance' => 8192, 'storage' => 1024]
+                            ],
                             'instance_count' => 1,
                             'disk' => 2001
                         ]
                     ],
-                    'workers' => []
+                    'workers' => [],
+                    'tasks' => []
                 ],
                 'resources_overrides' => [],
                 'max_instance_count' => null,

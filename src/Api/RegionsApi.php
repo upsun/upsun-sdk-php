@@ -13,7 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\ListRegions200Response;
 use Upsun\Model\Region;
 use Upsun\Model\StringFilter;
 
@@ -236,7 +235,7 @@ final class RegionsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListRegions200Response {
+    ): mixed {
         return $this->listRegionsWithHttpInfo(
             $filterAvailable,
             $filterPrivate,
@@ -275,7 +274,7 @@ final class RegionsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListRegions200Response {
+    ): mixed {
         $request = $this->listRegionsRequest(
             $filterAvailable,
             $filterPrivate,

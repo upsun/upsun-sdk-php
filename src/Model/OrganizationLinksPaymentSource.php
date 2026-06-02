@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level OrganizationLinksPaymentSource (auto-generated)
- * Link to the current organization's payment source.
+ * Link to the current organization's payment source. This link may not be present for all organizations.
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

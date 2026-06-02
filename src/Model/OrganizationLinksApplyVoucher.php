@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level OrganizationLinksApplyVoucher (auto-generated)
- * Link for applying a voucher for the current organization.
+ * Link for applying a voucher for the current organization. This link may not be present for all organizations.
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

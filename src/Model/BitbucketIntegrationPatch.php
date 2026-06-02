@@ -23,6 +23,7 @@ final class BitbucketIntegrationPatch implements Model, JsonSerializable, Integr
         private readonly string $repository,
         private readonly ?OAuth2Consumer1 $appCredentials = null,
         private readonly ?AddonCredential1 $addonCredentials = null,
+        private readonly ?int $pullRequestsMaxPages = null,
         private readonly ?bool $fetchBranches = null,
         private readonly ?bool $pruneBranches = null,
         private readonly ?string $environmentInitResources = null,
@@ -49,6 +50,7 @@ final class BitbucketIntegrationPatch implements Model, JsonSerializable, Integr
             'addonCredentials' => $this->addonCredentials,
             'buildPullRequests' => $this->buildPullRequests,
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
+            'pullRequestsMaxPages' => $this->pullRequestsMaxPages,
             'resyncPullRequests' => $this->resyncPullRequests,
         ];
     }
@@ -128,6 +130,14 @@ final class BitbucketIntegrationPatch implements Model, JsonSerializable, Integr
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
+    }
+
+    /**
+     * Maximum number of Bitbucket pull request pages to iterate when syncing pull requests. Null means no limit
+     */
+    public function getPullRequestsMaxPages(): ?int
+    {
+        return $this->pullRequestsMaxPages;
     }
 
     /**

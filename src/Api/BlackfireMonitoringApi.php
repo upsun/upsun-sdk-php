@@ -13,10 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\BlackfirePhpServerCaches200Response;
-use Upsun\Model\BlackfireServerGlobal200Response;
-use Upsun\Model\BlackfireServerTopSpans200Response;
-use Upsun\Model\BlackfireServerTransactionsBreakdown200Response;
 
 /**
  * Low level BlackfireMonitoringApi (auto-generated)
@@ -67,6 +63,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  int|null $grain (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string|null $distributionCost (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -81,8 +81,12 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?int $grain = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?string $distributionCost = null
-    ): BlackfirePhpServerCaches200Response {
+    ): mixed {
         return $this->blackfirePhpServerCachesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -91,6 +95,10 @@ final class BlackfireMonitoringApi extends AbstractApi
             $grain,
             $contexts,
             $contextsMode,
+            $applications,
+            $applicationsMode,
+            $instances,
+            $instancesMode,
             $distributionCost
         );
     }
@@ -105,6 +113,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  int|null $grain (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string|null $distributionCost (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -118,8 +130,12 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?int $grain = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?string $distributionCost = null
-    ): BlackfirePhpServerCaches200Response {
+    ): mixed {
         $request = $this->blackfirePhpServerCachesRequest(
             $projectId,
             $environmentId,
@@ -128,6 +144,10 @@ final class BlackfireMonitoringApi extends AbstractApi
             $grain,
             $contexts,
             $contextsMode,
+            $applications,
+            $applicationsMode,
+            $instances,
+            $instancesMode,
             $distributionCost
         );
 
@@ -168,6 +188,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  int|null $grain (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string|null $distributionCost (optional)
      *
      * @throws InvalidArgumentException
@@ -180,6 +204,10 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?int $grain = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?string $distributionCost = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
@@ -300,6 +328,58 @@ final class BlackfireMonitoringApi extends AbstractApi
         }
 
         // query params
+        if ($applications !== null) {
+            if ('form' === 'form' && is_array($applications)) {
+                foreach ($applications as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['applications[]'] = $applications instanceof DateTime
+                    ? $applications->format(DATE_ATOM)
+                    : ($applications);
+            }
+        }
+
+        // query params
+        if ($applicationsMode !== null) {
+            if ('form' === 'form' && is_array($applicationsMode)) {
+                foreach ($applicationsMode as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['applications_mode'] = $applicationsMode instanceof DateTime
+                    ? $applicationsMode->format(DATE_ATOM)
+                    : ($applicationsMode);
+            }
+        }
+
+        // query params
+        if ($instances !== null) {
+            if ('form' === 'form' && is_array($instances)) {
+                foreach ($instances as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['instances[]'] = $instances instanceof DateTime
+                    ? $instances->format(DATE_ATOM)
+                    : ($instances);
+            }
+        }
+
+        // query params
+        if ($instancesMode !== null) {
+            if ('form' === 'form' && is_array($instancesMode)) {
+                foreach ($instancesMode as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['instances_mode'] = $instancesMode instanceof DateTime
+                    ? $instancesMode->format(DATE_ATOM)
+                    : ($instancesMode);
+            }
+        }
+
+        // query params
         if ($distributionCost !== null) {
             if ('form' === 'form' && is_array($distributionCost)) {
                 foreach ($distributionCost as $key => $value) {
@@ -402,6 +482,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  int|null $grain (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string|null $distributionCost (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -417,8 +501,12 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?int $grain = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerGlobal200Response {
+    ): mixed {
         return $this->blackfireServerGlobalWithHttpInfo(
             $projectId,
             $environmentId,
@@ -428,6 +516,10 @@ final class BlackfireMonitoringApi extends AbstractApi
             $grain,
             $contexts,
             $contextsMode,
+            $applications,
+            $applicationsMode,
+            $instances,
+            $instancesMode,
             $distributionCost
         );
     }
@@ -443,6 +535,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  int|null $grain (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string|null $distributionCost (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -457,8 +553,12 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?int $grain = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerGlobal200Response {
+    ): mixed {
         $request = $this->blackfireServerGlobalRequest(
             $projectId,
             $environmentId,
@@ -468,6 +568,10 @@ final class BlackfireMonitoringApi extends AbstractApi
             $grain,
             $contexts,
             $contextsMode,
+            $applications,
+            $applicationsMode,
+            $instances,
+            $instancesMode,
             $distributionCost
         );
 
@@ -509,6 +613,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  int|null $grain (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string|null $distributionCost (optional)
      *
      * @throws InvalidArgumentException
@@ -522,6 +630,10 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?int $grain = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?string $distributionCost = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
@@ -662,6 +774,58 @@ final class BlackfireMonitoringApi extends AbstractApi
         }
 
         // query params
+        if ($applications !== null) {
+            if ('form' === 'form' && is_array($applications)) {
+                foreach ($applications as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['applications[]'] = $applications instanceof DateTime
+                    ? $applications->format(DATE_ATOM)
+                    : ($applications);
+            }
+        }
+
+        // query params
+        if ($applicationsMode !== null) {
+            if ('form' === 'form' && is_array($applicationsMode)) {
+                foreach ($applicationsMode as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['applications_mode'] = $applicationsMode instanceof DateTime
+                    ? $applicationsMode->format(DATE_ATOM)
+                    : ($applicationsMode);
+            }
+        }
+
+        // query params
+        if ($instances !== null) {
+            if ('form' === 'form' && is_array($instances)) {
+                foreach ($instances as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['instances[]'] = $instances instanceof DateTime
+                    ? $instances->format(DATE_ATOM)
+                    : ($instances);
+            }
+        }
+
+        // query params
+        if ($instancesMode !== null) {
+            if ('form' === 'form' && is_array($instancesMode)) {
+                foreach ($instancesMode as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['instances_mode'] = $instancesMode instanceof DateTime
+                    ? $instancesMode->format(DATE_ATOM)
+                    : ($instancesMode);
+            }
+        }
+
+        // query params
         if ($distributionCost !== null) {
             if ('form' === 'form' && is_array($distributionCost)) {
                 foreach ($distributionCost as $key => $value) {
@@ -764,6 +928,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  string|null $sort (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string[]|null $transactions (optional)
      * @param  string|null $transactionsMode (optional)
      * @param  string[]|null $wtSlots (optional)
@@ -801,6 +969,10 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?string $sort = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?array $transactions = null,
         ?string $transactionsMode = null,
         ?array $wtSlots = null,
@@ -824,7 +996,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $oss = null,
         ?string $ossMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerTopSpans200Response {
+    ): mixed {
         return $this->blackfireServerTopSpansWithHttpInfo(
             $projectId,
             $environmentId,
@@ -834,6 +1006,10 @@ final class BlackfireMonitoringApi extends AbstractApi
             $sort,
             $contexts,
             $contextsMode,
+            $applications,
+            $applicationsMode,
+            $instances,
+            $instancesMode,
             $transactions,
             $transactionsMode,
             $wtSlots,
@@ -871,6 +1047,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  string|null $sort (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string[]|null $transactions (optional)
      * @param  string|null $transactionsMode (optional)
      * @param  string[]|null $wtSlots (optional)
@@ -907,6 +1087,10 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?string $sort = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?array $transactions = null,
         ?string $transactionsMode = null,
         ?array $wtSlots = null,
@@ -930,7 +1114,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $oss = null,
         ?string $ossMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerTopSpans200Response {
+    ): mixed {
         $request = $this->blackfireServerTopSpansRequest(
             $projectId,
             $environmentId,
@@ -940,6 +1124,10 @@ final class BlackfireMonitoringApi extends AbstractApi
             $sort,
             $contexts,
             $contextsMode,
+            $applications,
+            $applicationsMode,
+            $instances,
+            $instancesMode,
             $transactions,
             $transactionsMode,
             $wtSlots,
@@ -1003,6 +1191,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  string|null $sort (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string[]|null $transactions (optional)
      * @param  string|null $transactionsMode (optional)
      * @param  string[]|null $wtSlots (optional)
@@ -1038,6 +1230,10 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?string $sort = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?array $transactions = null,
         ?string $transactionsMode = null,
         ?array $wtSlots = null,
@@ -1189,6 +1385,58 @@ final class BlackfireMonitoringApi extends AbstractApi
                 $queryParams['contexts_mode'] = $contextsMode instanceof DateTime
                     ? $contextsMode->format(DATE_ATOM)
                     : ($contextsMode);
+            }
+        }
+
+        // query params
+        if ($applications !== null) {
+            if ('form' === 'form' && is_array($applications)) {
+                foreach ($applications as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['applications[]'] = $applications instanceof DateTime
+                    ? $applications->format(DATE_ATOM)
+                    : ($applications);
+            }
+        }
+
+        // query params
+        if ($applicationsMode !== null) {
+            if ('form' === 'form' && is_array($applicationsMode)) {
+                foreach ($applicationsMode as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['applications_mode'] = $applicationsMode instanceof DateTime
+                    ? $applicationsMode->format(DATE_ATOM)
+                    : ($applicationsMode);
+            }
+        }
+
+        // query params
+        if ($instances !== null) {
+            if ('form' === 'form' && is_array($instances)) {
+                foreach ($instances as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['instances[]'] = $instances instanceof DateTime
+                    ? $instances->format(DATE_ATOM)
+                    : ($instances);
+            }
+        }
+
+        // query params
+        if ($instancesMode !== null) {
+            if ('form' === 'form' && is_array($instancesMode)) {
+                foreach ($instancesMode as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['instances_mode'] = $instancesMode instanceof DateTime
+                    ? $instancesMode->format(DATE_ATOM)
+                    : ($instancesMode);
             }
         }
 
@@ -1584,6 +1832,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  int|null $breakdownLimit (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string[]|null $transactions (optional)
      * @param  string|null $transactionsMode (optional)
      * @param  string[]|null $wtSlots (optional)
@@ -1623,6 +1875,10 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?int $breakdownLimit = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?array $transactions = null,
         ?string $transactionsMode = null,
         ?array $wtSlots = null,
@@ -1646,7 +1902,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $oss = null,
         ?string $ossMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerTransactionsBreakdown200Response {
+    ): mixed {
         return $this->blackfireServerTransactionsBreakdownWithHttpInfo(
             $projectId,
             $environmentId,
@@ -1658,6 +1914,10 @@ final class BlackfireMonitoringApi extends AbstractApi
             $breakdownLimit,
             $contexts,
             $contextsMode,
+            $applications,
+            $applicationsMode,
+            $instances,
+            $instancesMode,
             $transactions,
             $transactionsMode,
             $wtSlots,
@@ -1697,6 +1957,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  int|null $breakdownLimit (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string[]|null $transactions (optional)
      * @param  string|null $transactionsMode (optional)
      * @param  string[]|null $wtSlots (optional)
@@ -1735,6 +1999,10 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?int $breakdownLimit = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?array $transactions = null,
         ?string $transactionsMode = null,
         ?array $wtSlots = null,
@@ -1758,7 +2026,7 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?array $oss = null,
         ?string $ossMode = null,
         ?string $distributionCost = null
-    ): BlackfireServerTransactionsBreakdown200Response {
+    ): mixed {
         $request = $this->blackfireServerTransactionsBreakdownRequest(
             $projectId,
             $environmentId,
@@ -1770,6 +2038,10 @@ final class BlackfireMonitoringApi extends AbstractApi
             $breakdownLimit,
             $contexts,
             $contextsMode,
+            $applications,
+            $applicationsMode,
+            $instances,
+            $instancesMode,
             $transactions,
             $transactionsMode,
             $wtSlots,
@@ -1835,6 +2107,10 @@ final class BlackfireMonitoringApi extends AbstractApi
      * @param  int|null $breakdownLimit (optional)
      * @param  string[]|null $contexts (optional)
      * @param  string|null $contextsMode (optional)
+     * @param  string[]|null $applications (optional)
+     * @param  string|null $applicationsMode (optional)
+     * @param  string[]|null $instances (optional)
+     * @param  string|null $instancesMode (optional)
      * @param  string[]|null $transactions (optional)
      * @param  string|null $transactionsMode (optional)
      * @param  string[]|null $wtSlots (optional)
@@ -1872,6 +2148,10 @@ final class BlackfireMonitoringApi extends AbstractApi
         ?int $breakdownLimit = null,
         ?array $contexts = null,
         ?string $contextsMode = null,
+        ?array $applications = null,
+        ?string $applicationsMode = null,
+        ?array $instances = null,
+        ?string $instancesMode = null,
         ?array $transactions = null,
         ?string $transactionsMode = null,
         ?array $wtSlots = null,
@@ -2063,6 +2343,58 @@ final class BlackfireMonitoringApi extends AbstractApi
                 $queryParams['contexts_mode'] = $contextsMode instanceof DateTime
                     ? $contextsMode->format(DATE_ATOM)
                     : ($contextsMode);
+            }
+        }
+
+        // query params
+        if ($applications !== null) {
+            if ('form' === 'form' && is_array($applications)) {
+                foreach ($applications as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['applications[]'] = $applications instanceof DateTime
+                    ? $applications->format(DATE_ATOM)
+                    : ($applications);
+            }
+        }
+
+        // query params
+        if ($applicationsMode !== null) {
+            if ('form' === 'form' && is_array($applicationsMode)) {
+                foreach ($applicationsMode as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['applications_mode'] = $applicationsMode instanceof DateTime
+                    ? $applicationsMode->format(DATE_ATOM)
+                    : ($applicationsMode);
+            }
+        }
+
+        // query params
+        if ($instances !== null) {
+            if ('form' === 'form' && is_array($instances)) {
+                foreach ($instances as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['instances[]'] = $instances instanceof DateTime
+                    ? $instances->format(DATE_ATOM)
+                    : ($instances);
+            }
+        }
+
+        // query params
+        if ($instancesMode !== null) {
+            if ('form' === 'form' && is_array($instancesMode)) {
+                foreach ($instancesMode as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['instances_mode'] = $instancesMode instanceof DateTime
+                    ? $instancesMode->format(DATE_ATOM)
+                    : ($instancesMode);
             }
         }
 

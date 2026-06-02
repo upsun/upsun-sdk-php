@@ -2,9 +2,11 @@
 
 namespace Upsun;
 
+use Http\Discovery\Exception\DiscoveryFailedException;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
+use RuntimeException;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiTokensApi;
@@ -150,7 +152,7 @@ class UpsunClient
         $this->apiConfig = ApiConfiguration::getDefaultConfiguration()
         ->setHost(host: $this->upsunConfig->base_url);
 
-        $this->apiClient = $apiClient ?? Psr18ClientDiscovery::find();
+        $this->apiClient = $apiClient ?? $this->discoverHttpClient();
 
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
 
@@ -333,6 +335,27 @@ class UpsunClient
         $this->workers = new WorkersTask(
             $this,
         );
+    }
+
+    private function discoverHttpClient(): ClientInterface
+    {
+        $symfonyPsr18Client = '\\Symfony\\Component\\HttpClient\\Psr18Client';
+        if (class_exists($symfonyPsr18Client)) {
+            /** @var ClientInterface $client */
+            $client = new $symfonyPsr18Client();
+
+            return $client;
+        }
+
+        try {
+            return Psr18ClientDiscovery::find();
+        } catch (DiscoveryFailedException $e) {
+            throw new RuntimeException(
+                'No PSR-18 HTTP client implementation available. Install one such as symfony/http-client or provide a ClientInterface instance to UpsunClient.',
+                0,
+                $e
+            );
+        }
     }
 
     public function getToken(): string

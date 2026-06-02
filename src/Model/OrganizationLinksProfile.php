@@ -6,7 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level OrganizationLinksProfile (auto-generated)
- * Link to the current organization's profile.
+ * Link to the current organization's billing profile details. This link may not be present for all organizations.
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

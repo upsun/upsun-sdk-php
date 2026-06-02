@@ -18,6 +18,7 @@ final class Sizing implements Model, JsonSerializable
         private readonly array $services,
         private readonly array $webapps,
         private readonly array $workers,
+        private readonly array $tasks,
     ) {
     }
 
@@ -32,6 +33,7 @@ final class Sizing implements Model, JsonSerializable
             'services' => $this->services,
             'webapps' => $this->webapps,
             'workers' => $this->workers,
+            'tasks' => $this->tasks,
         ];
     }
 
@@ -48,7 +50,7 @@ final class Sizing implements Model, JsonSerializable
     }
 
     /**
-     * @return ServicesValue1[]
+     * @return WebApplicationsValue1[]
      */
     public function getWebapps(): array
     {
@@ -61,5 +63,13 @@ final class Sizing implements Model, JsonSerializable
     public function getWorkers(): array
     {
         return $this->workers;
+    }
+
+    /**
+     * @return TasksValue[]
+     */
+    public function getTasks(): array
+    {
+        return $this->tasks;
     }
 }

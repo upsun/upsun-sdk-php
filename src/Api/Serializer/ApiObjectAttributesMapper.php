@@ -123,6 +123,11 @@ final class ApiObjectAttributesMapper
             'name' => 'name',
             'email' => 'email'
         ],
+        'Upsun\Model\AuthorizationsInner' => [
+            'type' => 'type',
+            'action' => 'action',
+            'resource' => 'resource'
+        ],
         'Upsun\Model\AutoscalerCPUPressureTrigger' => [
             'enabled' => 'enabled',
             'down' => 'down',
@@ -210,6 +215,10 @@ final class ApiObjectAttributesMapper
             'restorable' => 'restorable',
             'automated' => 'automated'
         ],
+        'Upsun\Model\BasicAuth' => [
+            'username' => 'username',
+            'password' => 'password'
+        ],
         'Upsun\Model\Bitbucket' => [
             'enabled' => 'enabled',
             'role' => 'role'
@@ -225,6 +234,7 @@ final class ApiObjectAttributesMapper
             'repository' => 'repository',
             'buildPullRequests' => 'build_pull_requests',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'pullRequestsMaxPages' => 'pull_requests_max_pages',
             'resyncPullRequests' => 'resync_pull_requests',
             'id' => 'id',
             'appCredentials' => 'app_credentials',
@@ -240,6 +250,7 @@ final class ApiObjectAttributesMapper
             'addonCredentials' => 'addon_credentials',
             'buildPullRequests' => 'build_pull_requests',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'pullRequestsMaxPages' => 'pull_requests_max_pages',
             'resyncPullRequests' => 'resync_pull_requests'
         ],
         'Upsun\Model\BitbucketIntegrationPatch' => [
@@ -252,6 +263,7 @@ final class ApiObjectAttributesMapper
             'addonCredentials' => 'addon_credentials',
             'buildPullRequests' => 'build_pull_requests',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'pullRequestsMaxPages' => 'pull_requests_max_pages',
             'resyncPullRequests' => 'resync_pull_requests'
         ],
         'Upsun\Model\BitbucketServer' => [
@@ -330,7 +342,11 @@ final class ApiObjectAttributesMapper
             'distributionCost' => '_distribution_cost',
             'data' => 'data',
             'contexts' => '_contexts',
-            'contextsMode' => '_contexts_mode'
+            'contextsMode' => '_contexts_mode',
+            'applications' => '_applications',
+            'applicationsMode' => '_applications_mode',
+            'instances' => '_instances',
+            'instancesMode' => '_instances_mode'
         ],
         'Upsun\Model\BlackfirePhpServerCaches200ResponseDataInner' => [
             'timestamp' => 'timestamp',
@@ -341,6 +357,16 @@ final class ApiObjectAttributesMapper
             'pcreUsage' => 'pcre_usage',
             'apcuHitrate' => 'apcu_hitrate',
             'opcacheHitrate' => 'opcache_hitrate'
+        ],
+        'Upsun\Model\BlackfirePhpServerCaches400Response' => [
+            'type' => 'type',
+            'title' => 'title',
+            'status' => 'status',
+            'violations' => 'violations'
+        ],
+        'Upsun\Model\BlackfirePhpServerCaches499Response' => [
+            'error' => 'error',
+            'message' => 'message'
         ],
         'Upsun\Model\BlackfireProfileGraph200Response' => [
             'projectId' => '_project_id',
@@ -419,7 +445,6 @@ final class ApiObjectAttributesMapper
             'isComparison' => 'is_comparison',
             'caches' => 'caches',
             'report' => 'report',
-            'vulnerableUsages' => 'vulnerable_usages',
             'keyPage' => 'key_page'
         ],
         'Upsun\Model\BlackfireProfilesList200ResponseProfilesInnerAgent' => [
@@ -518,12 +543,6 @@ final class ApiObjectAttributesMapper
             'href' => 'href',
             'type' => 'type'
         ],
-        'Upsun\Model\BlackfireProfilesRecommendations400Response' => [
-            'type' => 'type',
-            'title' => 'title',
-            'status' => 'status',
-            'violations' => 'violations'
-        ],
         'Upsun\Model\BlackfireServerGlobal200Response' => [
             'quota' => '_quota',
             'grain' => '_grain',
@@ -538,6 +557,10 @@ final class ApiObjectAttributesMapper
             'branchMachineName' => '_branch_machine_name',
             'alertEvaluations' => 'alert_evaluations',
             'server' => 'server',
+            'applications' => '_applications',
+            'applicationsMode' => '_applications_mode',
+            'instances' => '_instances',
+            'instancesMode' => '_instances_mode',
             'distributionCost' => '_distribution_cost'
         ],
         'Upsun\Model\BlackfireServerGlobal200ResponseAlertEvaluationsInner' => [
@@ -579,6 +602,10 @@ final class ApiObjectAttributesMapper
             'advancedFilters' => 'advanced_filters',
             'contexts' => '_contexts',
             'contextsMode' => '_contexts_mode',
+            'applications' => '_applications',
+            'applicationsMode' => '_applications_mode',
+            'instances' => '_instances',
+            'instancesMode' => '_instances_mode',
             '_transactionsFilter' => '_transactions',
             'transactionsMode' => '_transactions_mode',
             'wtSlot' => '_wt_slot',
@@ -647,6 +674,10 @@ final class ApiObjectAttributesMapper
             'topHitsTimeline' => 'top_hits_timeline',
             'contexts' => '_contexts',
             'contextsMode' => '_contexts_mode',
+            'applications' => '_applications',
+            'applicationsMode' => '_applications_mode',
+            'instances' => '_instances',
+            'instancesMode' => '_instances_mode',
             '_transactionsFilter' => '_transactions',
             'transactionsMode' => '_transactions_mode',
             'wtSlot' => '_wt_slot',
@@ -891,6 +922,11 @@ final class ApiObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at'
         ],
+        'Upsun\Model\ContainerProfilesValueValue' => [
+            'cpu' => 'cpu',
+            'memory' => 'memory',
+            'cpuType' => 'cpu_type'
+        ],
         'Upsun\Model\ContinuousProfilingConfiguration' => [
             'supportedRuntimes' => 'supported_runtimes'
         ],
@@ -1130,6 +1166,7 @@ final class ApiObjectAttributesMapper
             'webapps' => 'webapps',
             'workers' => 'workers',
             'containerProfiles' => 'container_profiles',
+            'tasks' => 'tasks',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'fingerprint' => 'fingerprint'
@@ -1246,6 +1283,15 @@ final class ApiObjectAttributesMapper
             'temporary' => 'temporary',
             'instance' => 'instance',
             'storage' => 'storage'
+        ],
+        'Upsun\Model\DiskResources1' => [
+            'temporary' => 'temporary',
+            'instance' => 'instance',
+            'storage' => 'storage',
+            'object' => 'object'
+        ],
+        'Upsun\Model\DiskResources2' => [
+            'object' => 'object'
         ],
         'Upsun\Model\DocrootsValue' => [
             'activeDocroot' => 'active_docroot',
@@ -1854,10 +1900,6 @@ final class ApiObjectAttributesMapper
             'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
         ],
-        'Upsun\Model\GoogleSSOConfig' => [
-            'providerType' => 'provider_type',
-            'domain' => 'domain'
-        ],
         'Upsun\Model\GrantProjectTeamAccessRequestInner' => [
             'teamId' => 'team_id'
         ],
@@ -1932,6 +1974,17 @@ final class ApiObjectAttributesMapper
             'url' => 'url',
             'sharedKey' => 'shared_key'
         ],
+        'Upsun\Model\History' => [
+            'id' => 'id',
+            'projectId' => 'project_id',
+            'eventType' => 'event_type',
+            'eventId' => 'event_id',
+            'resource' => 'resource',
+            'environment' => 'environment',
+            'quantity' => 'quantity',
+            'timestamp' => 'timestamp',
+            'user' => 'user'
+        ],
         'Upsun\Model\Hooks' => [
             'build' => 'build',
             'deploy' => 'deploy',
@@ -1989,53 +2042,6 @@ final class ApiObjectAttributesMapper
             'tlsVerify' => 'tls_verify',
             'excludedServices' => 'excluded_services'
         ],
-        'Upsun\Model\HttpMetricsOverview200Response' => [
-            'grain' => '_grain',
-            'from' => '_from',
-            'to' => '_to',
-            'projectId' => '_project_id',
-            'environmentId' => '_environment_id',
-            'environmentType' => '_environment_type',
-            'branchMachineName' => '_branch_machine_name',
-            'topUrlsCount' => '_top_urls_count',
-            'data' => 'data'
-        ],
-        'Upsun\Model\HttpMetricsOverview200ResponseData' => [
-            'urls' => 'urls',
-            'timelines' => 'timelines'
-        ],
-        'Upsun\Model\HttpMetricsOverview200ResponseDataTimelinesInner' => [
-            'timestamp' => 'timestamp',
-            'requestSize' => 'request_size',
-            'responseSize' => 'response_size',
-            'urls' => 'urls',
-            'codes' => 'codes'
-        ],
-        'Upsun\Model\HttpMetricsOverview200ResponseDataTimelinesInnerCodes' => [
-            'uNKNOWN' => 'UNKNOWN',
-            '_1xX' => '1XX',
-            '_2xX' => '2XX',
-            '_3xX' => '3XX',
-            '_4xX' => '4XX',
-            '_5xX' => '5XX'
-        ],
-        'Upsun\Model\HttpMetricsOverview200ResponseDataTimelinesInnerUrlsValue' => [
-            'count' => 'count',
-            'impact' => 'impact'
-        ],
-        'Upsun\Model\HttpMetricsOverview200ResponseDataUrlsValue' => [
-            'url' => 'url',
-            'method' => 'method',
-            'impact' => 'impact',
-            'average' => 'average',
-            'p50' => 'p_50',
-            'p96' => 'p_96',
-            'count' => 'count'
-        ],
-        'Upsun\Model\HttpMetricsOverview499Response' => [
-            'error' => 'error',
-            'message' => 'message'
-        ],
         'Upsun\Model\HttpMetricsTimelineIps200Response' => [
             'grain' => '_grain',
             'from' => '_from',
@@ -2074,10 +2080,6 @@ final class ApiObjectAttributesMapper
             'p96' => 'p_96',
             'count' => 'count',
             'topHit' => 'top_hit'
-        ],
-        'Upsun\Model\HttpMetricsTimelineIps200ResponseBreakdownTopHits' => [
-            'maxQuantity' => 'max_quantity',
-            'maxPercentage' => 'max_percentage'
         ],
         'Upsun\Model\HttpMetricsTimelineIps200ResponseTopHitsTimeline' => [
             'data' => 'data'
@@ -2158,6 +2160,18 @@ final class ApiObjectAttributesMapper
             'urls' => 'urls',
             'codes' => 'codes'
         ],
+        'Upsun\Model\HttpMetricsTimelineUrls200ResponseTopHitsTimelineDataInnerCodes' => [
+            'uNKNOWN' => 'UNKNOWN',
+            '_1xX' => '1XX',
+            '_2xX' => '2XX',
+            '_3xX' => '3XX',
+            '_4xX' => '4XX',
+            '_5xX' => '5XX'
+        ],
+        'Upsun\Model\HttpMetricsTimelineUrls200ResponseTopHitsTimelineDataInnerUrlsValue' => [
+            'count' => 'count',
+            'impact' => 'impact'
+        ],
         'Upsun\Model\HttpMetricsTimelineUserAgents200Response' => [
             'grain' => '_grain',
             'from' => '_from',
@@ -2228,6 +2242,7 @@ final class ApiObjectAttributesMapper
             'repository' => 'repository',
             'buildPullRequests' => 'build_pull_requests',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'pullRequestsMaxPages' => 'pull_requests_max_pages',
             'resyncPullRequests' => 'resync_pull_requests',
             'url' => 'url',
             'username' => 'username',
@@ -2273,7 +2288,7 @@ final class ApiObjectAttributesMapper
             'appCredentials' => 'app_credentials',
             'addonCredentials' => 'addon_credentials'
         ],
-        'Upsun\Model\IntegrationCreateInput' => [
+        'Upsun\Model\IntegrationCreateCreateInput' => [
             'type' => 'type',
             'repository' => 'repository',
             'url' => 'url',
@@ -2294,6 +2309,7 @@ final class ApiObjectAttributesMapper
             'addonCredentials' => 'addon_credentials',
             'buildPullRequests' => 'build_pull_requests',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'pullRequestsMaxPages' => 'pull_requests_max_pages',
             'resyncPullRequests' => 'resync_pull_requests',
             'events' => 'events',
             'environments' => 'environments',
@@ -2346,6 +2362,7 @@ final class ApiObjectAttributesMapper
             'addonCredentials' => 'addon_credentials',
             'buildPullRequests' => 'build_pull_requests',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'pullRequestsMaxPages' => 'pull_requests_max_pages',
             'resyncPullRequests' => 'resync_pull_requests',
             'events' => 'events',
             'environments' => 'environments',
@@ -2521,6 +2538,11 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf' => [
             'href' => 'href'
         ],
+        'Upsun\Model\ListOrgProjectHistory200Response' => [
+            'count' => 'count',
+            'items' => 'items',
+            'links' => '_links'
+        ],
         'Upsun\Model\ListOrgProjects200Response' => [
             'count' => 'count',
             'items' => 'items',
@@ -2687,6 +2709,16 @@ final class ApiObjectAttributesMapper
             'type' => 'type',
             'sha' => 'sha'
         ],
+        'Upsun\Model\ObjectStorage' => [
+            'enabled' => 'enabled',
+            'minStorage' => 'min_storage',
+            'maxStorage' => 'max_storage',
+            'storageStep' => 'storage_step',
+            'cpuPerStep' => 'cpu_per_step',
+            'memoryPerStep' => 'memory_per_step',
+            'maxCpu' => 'max_cpu',
+            'maxMemory' => 'max_memory'
+        ],
         'Upsun\Model\ObservabilityEntrypoint200Response' => [
             'message' => 'message',
             'projectId' => 'project_id',
@@ -2743,7 +2775,6 @@ final class ApiObjectAttributesMapper
             'blackfireServerTransactionsBreakdown' => 'blackfire_server_transactions_breakdown',
             'logsQuery' => 'logs_query',
             'logsOverview' => 'logs_overview',
-            'httpMetricsOverview' => 'http_metrics_overview',
             'httpMetricsTimelineUrls' => 'http_metrics_timeline_urls',
             'httpMetricsTimelineIps' => 'http_metrics_timeline_ips',
             'httpMetricsTimelineUserAgents' => 'http_metrics_timeline_user_agents',
@@ -2775,9 +2806,6 @@ final class ApiObjectAttributesMapper
             'href' => 'href'
         ],
         'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConsoleSandboxAccess' => [
-            'href' => 'href'
-        ],
-        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsOverview' => [
             'href' => 'href'
         ],
         'Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineIps' => [
@@ -3008,14 +3036,22 @@ final class ApiObjectAttributesMapper
             'createMember' => 'create-member',
             'address' => 'address',
             'profile' => 'profile',
+            'account' => 'account',
             'paymentSource' => 'payment-source',
             'orders' => 'orders',
             'vouchers' => 'vouchers',
+            'discounts' => 'discounts',
             'applyVoucher' => 'apply-voucher',
             'subscriptions' => 'subscriptions',
             'createSubscription' => 'create-subscription',
             'estimateSubscription' => 'estimate-subscription',
-            'mfaEnforcement' => 'mfa-enforcement'
+            'prepayment' => 'prepayment',
+            'billingProfile' => 'billing-profile',
+            'mfaEnforcement' => 'mfa-enforcement',
+            'sso' => 'sso'
+        ],
+        'Upsun\Model\OrganizationLinksAccount' => [
+            'href' => 'href'
         ],
         'Upsun\Model\OrganizationLinksAddress' => [
             'href' => 'href'
@@ -3023,6 +3059,9 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\OrganizationLinksApplyVoucher' => [
             'href' => 'href',
             'method' => 'method'
+        ],
+        'Upsun\Model\OrganizationLinksBillingProfile' => [
+            'href' => 'href'
         ],
         'Upsun\Model\OrganizationLinksCreateMember' => [
             'href' => 'href',
@@ -3035,6 +3074,9 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\OrganizationLinksDelete' => [
             'href' => 'href',
             'method' => 'method'
+        ],
+        'Upsun\Model\OrganizationLinksDiscounts' => [
+            'href' => 'href'
         ],
         'Upsun\Model\OrganizationLinksEstimateSubscription' => [
             'href' => 'href'
@@ -3051,10 +3093,16 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\OrganizationLinksPaymentSource' => [
             'href' => 'href'
         ],
+        'Upsun\Model\OrganizationLinksPrepayment' => [
+            'href' => 'href'
+        ],
         'Upsun\Model\OrganizationLinksProfile' => [
             'href' => 'href'
         ],
         'Upsun\Model\OrganizationLinksSelf' => [
+            'href' => 'href'
+        ],
+        'Upsun\Model\OrganizationLinksSso' => [
             'href' => 'href'
         ],
         'Upsun\Model\OrganizationLinksSubscriptions' => [
@@ -3179,14 +3227,6 @@ final class ApiObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at'
         ],
-        'Upsun\Model\OrganizationSSOConfig' => [
-            'providerType' => 'provider_type',
-            'domain' => 'domain',
-            'organizationId' => 'organization_id',
-            'enforced' => 'enforced',
-            'createdAt' => 'created_at',
-            'updatedAt' => 'updated_at'
-        ],
         'Upsun\Model\OtlpLogIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
@@ -3199,7 +3239,7 @@ final class ApiObjectAttributesMapper
             'excludedServices' => 'excluded_services',
             'id' => 'id'
         ],
-        'Upsun\Model\OtlpLogIntegrationCreateInput' => [
+        'Upsun\Model\OtlpLogIntegrationCreateCreateInput' => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
@@ -3374,58 +3414,6 @@ final class ApiObjectAttributesMapper
             'subscription' => 'subscription',
             'maintenance' => 'maintenance'
         ],
-        'Upsun\Model\ProjectAddon' => [
-            'id' => 'id',
-            'type' => 'type',
-            'sku' => 'sku',
-            'quantity' => 'quantity',
-            'projectId' => 'project_id',
-            'status' => 'status',
-            'title' => 'title',
-            'unit' => 'unit',
-            'allowedValues' => 'allowed_values',
-            'createdAt' => 'created_at',
-            'updatedAt' => 'updated_at',
-            'activities' => 'activities',
-            'links' => '_links'
-        ],
-        'Upsun\Model\ProjectAddonBase' => [
-            'id' => 'id',
-            'type' => 'type',
-            'projectId' => 'project_id',
-            'status' => 'status',
-            'title' => 'title',
-            'unit' => 'unit',
-            'allowedValues' => 'allowed_values',
-            'createdAt' => 'created_at',
-            'updatedAt' => 'updated_at',
-            'activities' => 'activities',
-            'links' => '_links'
-        ],
-        'Upsun\Model\ProjectAddonBaseAllowedValuesInner' => [
-        ],
-        'Upsun\Model\ProjectAddonBaseLinks' => [
-            'self' => 'self',
-            'update' => 'update',
-            'delete' => 'delete'
-        ],
-        'Upsun\Model\ProjectAddonBaseLinksDelete' => [
-            'href' => 'href',
-            'method' => 'method'
-        ],
-        'Upsun\Model\ProjectAddonBaseLinksSelf' => [
-            'href' => 'href'
-        ],
-        'Upsun\Model\ProjectAddonBaseLinksUpdate' => [
-            'href' => 'href',
-            'method' => 'method'
-        ],
-        'Upsun\Model\ProjectAddonWithQuantityFields' => [
-            'quantity' => 'quantity'
-        ],
-        'Upsun\Model\ProjectAddonWithSkuFields' => [
-            'sku' => 'sku'
-        ],
         'Upsun\Model\ProjectCapabilities' => [
             'tasks' => 'tasks',
             'metrics' => 'metrics',
@@ -3434,6 +3422,7 @@ final class ApiObjectAttributesMapper
             'images' => 'images',
             'instanceLimit' => 'instance_limit',
             'buildResources' => 'build_resources',
+            'objectStorage' => 'object_storage',
             'dataRetention' => 'data_retention',
             'autoscaling' => 'autoscaling',
             'customDomains' => 'custom_domains',
@@ -3643,6 +3632,19 @@ final class ApiObjectAttributesMapper
             'visibleRuntime' => 'visible_runtime',
             'applicationScope' => 'application_scope'
         ],
+        'Upsun\Model\ProvisionEvent' => [
+            'type' => 'type',
+            'projectId' => 'project_id',
+            'stage' => 'stage',
+            'label' => 'label',
+            'reason' => 'reason',
+            'timestamp' => 'timestamp',
+            'steps' => 'steps'
+        ],
+        'Upsun\Model\ProvisionStep' => [
+            'stage' => 'stage',
+            'label' => 'label'
+        ],
         'Upsun\Model\ProxyRoute' => [
             'attributes' => 'attributes',
             'type' => 'type',
@@ -3741,6 +3743,27 @@ final class ApiObjectAttributesMapper
             'envimpact' => 'envimpact',
             'environmentalImpact' => 'environmental_impact'
         ],
+        'Upsun\Model\RegistryCredential' => [
+            'id' => 'id',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'registry' => 'registry',
+            'auth' => 'auth',
+            'identityToken' => 'identity_token',
+            'registryToken' => 'registry_token'
+        ],
+        'Upsun\Model\RegistryCredentialCreateInput' => [
+            'registry' => 'registry',
+            'auth' => 'auth',
+            'identityToken' => 'identity_token',
+            'registryToken' => 'registry_token'
+        ],
+        'Upsun\Model\RegistryCredentialPatch' => [
+            'registry' => 'registry',
+            'auth' => 'auth',
+            'identityToken' => 'identity_token',
+            'registryToken' => 'registry_token'
+        ],
         'Upsun\Model\ReplacementDomainStorage' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
@@ -3783,13 +3806,19 @@ final class ApiObjectAttributesMapper
             'disk' => 'disk'
         ],
         'Upsun\Model\Resources1' => [
-            'profileSize' => 'profile_size'
+            'baseMemory' => 'base_memory',
+            'memoryRatio' => 'memory_ratio',
+            'profileSize' => 'profile_size',
+            'minimum' => 'minimum',
+            'default' => 'default',
+            'disk' => 'disk'
         ],
         'Upsun\Model\Resources2' => [
-            'init' => 'init'
+            'profileSize' => 'profile_size'
         ],
         'Upsun\Model\Resources3' => [
-            'init' => 'init'
+            'profileSize' => 'profile_size',
+            'disk' => 'disk'
         ],
         'Upsun\Model\Resources4' => [
             'init' => 'init'
@@ -3799,6 +3828,16 @@ final class ApiObjectAttributesMapper
         ],
         'Upsun\Model\Resources6' => [
             'init' => 'init'
+        ],
+        'Upsun\Model\Resources7' => [
+            'init' => 'init'
+        ],
+        'Upsun\Model\Resources8' => [
+            'init' => 'init'
+        ],
+        'Upsun\Model\Resources9' => [
+            'baseMemory' => 'base_memory',
+            'memoryRatio' => 'memory_ratio'
         ],
         'Upsun\Model\ResourcesByService200Response' => [
             'grain' => '_grain',
@@ -4381,7 +4420,8 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\Sizing' => [
             'services' => 'services',
             'webapps' => 'webapps',
-            'workers' => 'workers'
+            'workers' => 'workers',
+            'tasks' => 'tasks'
         ],
         'Upsun\Model\SlackIntegration' => [
             'createdAt' => 'created_at',
@@ -4668,9 +4708,16 @@ final class ApiObjectAttributesMapper
             'source' => 'source',
             'hooks' => 'hooks',
             'relationships' => 'relationships',
+            'additionalHosts' => 'additional_hosts',
             'mounts' => 'mounts',
+            'timezone' => 'timezone',
             'variables' => 'variables',
+            'dependencies' => 'dependencies',
+            'runtime' => 'runtime',
+            'authorizations' => 'authorizations',
             'run' => 'run',
+            'resources' => 'resources',
+            'containerProfile' => 'container_profile',
             'name' => 'name'
         ],
         'Upsun\Model\TaskTriggerInput' => [
@@ -4678,6 +4725,9 @@ final class ApiObjectAttributesMapper
         ],
         'Upsun\Model\Tasks' => [
             'enabled' => 'enabled'
+        ],
+        'Upsun\Model\TasksValue' => [
+            'resources' => 'resources'
         ],
         'Upsun\Model\Team' => [
             'id' => 'id',
@@ -5056,6 +5106,7 @@ final class ApiObjectAttributesMapper
             'size' => 'size',
             'disk' => 'disk',
             'access' => 'access',
+            'authorizations' => 'authorizations',
             'relationships' => 'relationships',
             'additionalHosts' => 'additional_hosts',
             'mounts' => 'mounts',
@@ -5084,6 +5135,11 @@ final class ApiObjectAttributesMapper
             'configId' => 'config_id',
             'slugId' => 'slug_id',
             'supportsHorizontalScaling' => 'supports_horizontal_scaling'
+        ],
+        'Upsun\Model\WebApplicationsValue1' => [
+            'resources' => 'resources',
+            'instanceCount' => 'instance_count',
+            'disk' => 'disk'
         ],
         'Upsun\Model\WebConfiguration' => [
             'locations' => 'locations',
@@ -5155,6 +5211,7 @@ final class ApiObjectAttributesMapper
             'size' => 'size',
             'disk' => 'disk',
             'access' => 'access',
+            'authorizations' => 'authorizations',
             'relationships' => 'relationships',
             'additionalHosts' => 'additional_hosts',
             'mounts' => 'mounts',

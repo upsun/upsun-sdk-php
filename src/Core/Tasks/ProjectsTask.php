@@ -22,7 +22,7 @@ use Upsun\Model\DomainCreateInput;
 use Upsun\Model\DomainPatch;
 use Upsun\Model\Environment;
 use Upsun\Model\Integration;
-use Upsun\Model\IntegrationCreateInput;
+use Upsun\Model\IntegrationCreateCreateInput;
 use Upsun\Model\IntegrationPatch;
 use Upsun\Model\ListOrgProjects200Response;
 use Upsun\Model\ListProjectTeamAccess200Response;
@@ -1275,7 +1275,7 @@ class ProjectsTask extends TaskBase
      */
     public function createIntegration(
         string $projectId,
-        IntegrationCreateInput $integrationCreateInput,
+        IntegrationCreateCreateInput $integrationCreateInput,
     ): AcceptedResponse {
         return $this->client->integrations->createIntegration(
             $projectId,

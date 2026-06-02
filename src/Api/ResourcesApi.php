@@ -13,9 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\ResourcesByService200Response;
-use Upsun\Model\ResourcesOverview200Response;
-use Upsun\Model\ResourcesSummary200Response;
 
 /**
  * Low level ResourcesApi (auto-generated)
@@ -79,7 +76,7 @@ final class ResourcesApi extends AbstractApi
         int $to,
         ?array $aggs = null,
         ?array $types = null
-    ): ResourcesByService200Response {
+    ): mixed {
         return $this->resourcesByServiceWithHttpInfo(
             $projectId,
             $environmentId,
@@ -113,7 +110,7 @@ final class ResourcesApi extends AbstractApi
         int $to,
         ?array $aggs = null,
         ?array $types = null
-    ): ResourcesByService200Response {
+    ): mixed {
         $request = $this->resourcesByServiceRequest(
             $projectId,
             $environmentId,
@@ -396,7 +393,7 @@ final class ResourcesApi extends AbstractApi
         ?string $service = null,
         ?array $services = null,
         ?string $servicesMode = null
-    ): ResourcesOverview200Response {
+    ): mixed {
         return $this->resourcesOverviewWithHttpInfo(
             $projectId,
             $environmentId,
@@ -430,7 +427,7 @@ final class ResourcesApi extends AbstractApi
         ?string $service = null,
         ?array $services = null,
         ?string $servicesMode = null
-    ): ResourcesOverview200Response {
+    ): mixed {
         $request = $this->resourcesOverviewRequest(
             $projectId,
             $environmentId,
@@ -712,7 +709,7 @@ final class ResourcesApi extends AbstractApi
         ?array $types = null,
         ?array $services = null,
         ?string $servicesMode = null
-    ): ResourcesSummary200Response {
+    ): mixed {
         return $this->resourcesSummaryWithHttpInfo(
             $projectId,
             $environmentId,
@@ -749,7 +746,7 @@ final class ResourcesApi extends AbstractApi
         ?array $types = null,
         ?array $services = null,
         ?string $servicesMode = null
-    ): ResourcesSummary200Response {
+    ): mixed {
         $request = $this->resourcesSummaryRequest(
             $projectId,
             $environmentId,

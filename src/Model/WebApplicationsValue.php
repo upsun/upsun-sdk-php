@@ -28,6 +28,7 @@ final class WebApplicationsValue implements Model, JsonSerializable
     public function __construct(
         private readonly string $size,
         private readonly array $access,
+        private readonly array $authorizations,
         private readonly array $relationships,
         private readonly array $additionalHosts,
         private readonly array $mounts,
@@ -50,7 +51,7 @@ final class WebApplicationsValue implements Model, JsonSerializable
         private readonly string $configId,
         private readonly string $slugId,
         private readonly bool $supportsHorizontalScaling,
-        private readonly ?Resources $resources,
+        private readonly ?Resources1 $resources,
         private readonly ?int $disk,
         private readonly ?string $timezone,
         private readonly ?Firewall $firewall,
@@ -73,6 +74,7 @@ final class WebApplicationsValue implements Model, JsonSerializable
             'size' => $this->size,
             'disk' => $this->disk,
             'access' => $this->access,
+            'authorizations' => $this->authorizations,
             'relationships' => $this->relationships,
             'additionalHosts' => $this->additionalHosts,
             'mounts' => $this->mounts,
@@ -109,7 +111,7 @@ final class WebApplicationsValue implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getResources(): ?Resources
+    public function getResources(): ?Resources1
     {
         return $this->resources;
     }
@@ -127,6 +129,14 @@ final class WebApplicationsValue implements Model, JsonSerializable
     public function getAccess(): array
     {
         return $this->access;
+    }
+
+    /**
+     * @return AuthorizationsInner[]
+     */
+    public function getAuthorizations(): array
+    {
+        return $this->authorizations;
     }
 
     /**

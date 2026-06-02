@@ -17,7 +17,7 @@ final class EnvironmentInitializeInput implements Model, JsonSerializable
         private readonly string $profile,
         private readonly string $repository,
         private readonly ?string $config = null,
-        private readonly ?Resources4 $resources = null,
+        private readonly ?Resources6 $resources = null,
         private readonly ?array $files = [],
     ) {
     }
@@ -76,7 +76,7 @@ final class EnvironmentInitializeInput implements Model, JsonSerializable
         return $this->files;
     }
 
-    public function getResources(): ?Resources4
+    public function getResources(): ?Resources6
     {
         return $this->resources;
     }

@@ -13,10 +13,9 @@ use JsonSerializable;
  */
 final class Resources5 implements Model, JsonSerializable
 {
-    public const INIT_CHILD = 'child';
     public const INIT__DEFAULT = 'default';
-    public const INIT_MANUAL = 'manual';
     public const INIT_MINIMUM = 'minimum';
+    public const INIT_PARENT = 'parent';
 
     public function __construct(
         private readonly ?string $init = null,
@@ -41,7 +40,7 @@ final class Resources5 implements Model, JsonSerializable
     }
 
     /**
-     * The resources used when merging an environment
+     * The resources used when initializing services of the new environment
      */
     public function getInit(): ?string
     {

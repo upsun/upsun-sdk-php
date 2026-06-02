@@ -8,7 +8,7 @@ use Upsun\Api\ApiException;
 use Upsun\Api\ThirdPartyIntegrationsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Integration;
-use Upsun\Model\IntegrationCreateInput;
+use Upsun\Model\IntegrationCreateCreateInput;
 use Upsun\Model\IntegrationPatch;
 use Upsun\UpsunClient;
 
@@ -31,7 +31,7 @@ class IntegrationsTask extends TaskBase
     /**
      * Create an integration for a project.
      *
-     * @param IntegrationCreateInput $integrationCreateInput An implementation of the IntegrationCreateInput interface.
+    * @param IntegrationCreateCreateInput $integrationCreateInput An implementation of the IntegrationCreateCreateInput interface.
      *        Use one of the concrete types that implement this interface:
      *         - BitbucketIntegrationCreateInput
      *         - BitbucketServerIntegrationCreateInput
@@ -56,7 +56,7 @@ class IntegrationsTask extends TaskBase
      */
     public function createIntegration(
         string $projectId,
-        IntegrationCreateInput $integrationCreateInput,
+        IntegrationCreateCreateInput $integrationCreateInput,
     ): AcceptedResponse {
         parent::checkProjectId($projectId);
 
@@ -66,7 +66,7 @@ class IntegrationsTask extends TaskBase
 
         return $this->thirdPartyIntegrationsApi->createProjectsIntegrations(
             projectId: $projectId,
-            integrationCreateInput: $integrationCreateInput
+            integrationCreateCreateInput: $integrationCreateInput
         );
     }
 

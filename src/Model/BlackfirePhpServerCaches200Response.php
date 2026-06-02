@@ -17,6 +17,10 @@ final class BlackfirePhpServerCaches200Response implements Model, JsonSerializab
     public const _DISTRIBUTION_COST_PMU = 'pmu';
     public const _CONTEXTS_MODE_ADDITIVE = 'additive';
     public const _CONTEXTS_MODE_SUBTRACTIVE = 'subtractive';
+    public const _APPLICATIONS_MODE_ADDITIVE = 'additive';
+    public const _APPLICATIONS_MODE_SUBTRACTIVE = 'subtractive';
+    public const _INSTANCES_MODE_ADDITIVE = 'additive';
+    public const _INSTANCES_MODE_SUBTRACTIVE = 'subtractive';
 
     public function __construct(
         private readonly int $grain,
@@ -30,6 +34,10 @@ final class BlackfirePhpServerCaches200Response implements Model, JsonSerializab
         private readonly array $data,
         private readonly ?array $contexts = [],
         private readonly ?string $contextsMode = null,
+        private readonly ?array $applications = [],
+        private readonly ?string $applicationsMode = null,
+        private readonly ?array $instances = [],
+        private readonly ?string $instancesMode = null,
     ) {
     }
 
@@ -52,6 +60,10 @@ final class BlackfirePhpServerCaches200Response implements Model, JsonSerializab
             'data' => $this->data,
             'contexts' => $this->contexts,
             'contextsMode' => $this->contextsMode,
+            'applications' => $this->applications,
+            'applicationsMode' => $this->applicationsMode,
+            'instances' => $this->instances,
+            'instancesMode' => $this->instancesMode,
         ];
     }
 
@@ -116,5 +128,25 @@ final class BlackfirePhpServerCaches200Response implements Model, JsonSerializab
     public function getContextsMode(): ?string
     {
         return $this->contextsMode;
+    }
+
+    public function getApplications(): ?array
+    {
+        return $this->applications;
+    }
+
+    public function getApplicationsMode(): ?string
+    {
+        return $this->applicationsMode;
+    }
+
+    public function getInstances(): ?array
+    {
+        return $this->instances;
+    }
+
+    public function getInstancesMode(): ?string
+    {
+        return $this->instancesMode;
     }
 }

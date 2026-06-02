@@ -19,7 +19,7 @@ final class EnvironmentBranchInput implements Model, JsonSerializable
     public function __construct(
         private readonly string $title,
         private readonly string $name,
-        private readonly ?Resources3 $resources = null,
+        private readonly ?Resources5 $resources = null,
         private readonly ?bool $cloneParent = null,
         private readonly ?string $type = null,
     ) {
@@ -72,7 +72,7 @@ final class EnvironmentBranchInput implements Model, JsonSerializable
         return $this->type;
     }
 
-    public function getResources(): ?Resources3
+    public function getResources(): ?Resources5
     {
         return $this->resources;
     }

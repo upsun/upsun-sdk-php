@@ -16,7 +16,7 @@ final class EnvironmentRestoreInput implements Model, JsonSerializable
     public function __construct(
         private readonly ?string $environmentName = null,
         private readonly ?string $branchFrom = null,
-        private readonly ?Resources6 $resources = null,
+        private readonly ?Resources8 $resources = null,
         private readonly ?bool $restoreCode = null,
         private readonly ?bool $restoreResources = null,
     ) {
@@ -69,7 +69,7 @@ final class EnvironmentRestoreInput implements Model, JsonSerializable
         return $this->restoreResources;
     }
 
-    public function getResources(): ?Resources6
+    public function getResources(): ?Resources8
     {
         return $this->resources;
     }

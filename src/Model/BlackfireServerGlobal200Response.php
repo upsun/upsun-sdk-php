@@ -15,6 +15,10 @@ final class BlackfireServerGlobal200Response implements Model, JsonSerializable
 {
     public const _CONTEXTS_MODE_ADDITIVE = 'additive';
     public const _CONTEXTS_MODE_SUBTRACTIVE = 'subtractive';
+    public const _APPLICATIONS_MODE_ADDITIVE = 'additive';
+    public const _APPLICATIONS_MODE_SUBTRACTIVE = 'subtractive';
+    public const _INSTANCES_MODE_ADDITIVE = 'additive';
+    public const _INSTANCES_MODE_SUBTRACTIVE = 'subtractive';
     public const _DISTRIBUTION_COST_WT = 'wt';
     public const _DISTRIBUTION_COST_PMU = 'pmu';
 
@@ -32,6 +36,10 @@ final class BlackfireServerGlobal200Response implements Model, JsonSerializable
         private readonly BlackfireServerGlobal200ResponseServer $server,
         private readonly ?array $contexts,
         private readonly ?string $contextsMode,
+        private readonly ?array $applications = [],
+        private readonly ?string $applicationsMode = null,
+        private readonly ?array $instances = [],
+        private readonly ?string $instancesMode = null,
         private readonly ?string $distributionCost = null,
     ) {
     }
@@ -57,6 +65,10 @@ final class BlackfireServerGlobal200Response implements Model, JsonSerializable
             'branchMachineName' => $this->branchMachineName,
             'alertEvaluations' => $this->alertEvaluations,
             'server' => $this->server,
+            'applications' => $this->applications,
+            'applicationsMode' => $this->applicationsMode,
+            'instances' => $this->instances,
+            'instancesMode' => $this->instancesMode,
             'distributionCost' => $this->distributionCost,
         ];
     }
@@ -132,6 +144,26 @@ final class BlackfireServerGlobal200Response implements Model, JsonSerializable
     public function getServer(): BlackfireServerGlobal200ResponseServer
     {
         return $this->server;
+    }
+
+    public function getApplications(): ?array
+    {
+        return $this->applications;
+    }
+
+    public function getApplicationsMode(): ?string
+    {
+        return $this->applicationsMode;
+    }
+
+    public function getInstances(): ?array
+    {
+        return $this->instances;
+    }
+
+    public function getInstancesMode(): ?string
+    {
+        return $this->instancesMode;
     }
 
     public function getDistributionCost(): ?string
