@@ -156,7 +156,7 @@ class UpsunClient
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
 
         $this->auth = new OAuthProvider(
-            httpClient: $this->apiClient, // Symfony PSR-18 client
+            httpClient: $this->apiClient,
             requestFactory: $requestFactory,
             tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
             clientId: $this->upsunConfig->clientId,

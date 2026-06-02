@@ -65,6 +65,22 @@ class UpsunClientTest extends TestCase
         $this->assertInstanceOf(ClientInterface::class, $this->upsunClient->apiClient);
     }
 
+    public function testConstructorUsesInjectedHttpClient()
+    {
+        $customConfig = new UpsunConfig(
+            base_url: 'https://api.upsun.com',
+            auth_url: 'https://auth.upsun.com',
+            apiToken: 'test-api-token',
+            token_endpoint: 'oauth2/token',
+            clientId: 'test-client-id'
+        );
+
+        $apiClient = $this->createMock(ClientInterface::class);
+        $upsunClient = new UpsunClient($customConfig, $apiClient);
+
+        $this->assertSame($apiClient, $upsunClient->apiClient);
+    }
+
     public function testConstructorInitializesOAuthProvider()
     {
         $this->assertInstanceOf(OAuthProvider::class, $this->upsunClient->auth);
