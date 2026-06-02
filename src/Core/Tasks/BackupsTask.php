@@ -9,7 +9,7 @@ use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Backup;
 use Upsun\Model\EnvironmentBackupInput;
 use Upsun\Model\EnvironmentRestoreInput;
-use Upsun\Model\Resources6;
+use Upsun\Model\Resources8;
 use Upsun\UpsunClient;
 
 /**
@@ -112,7 +112,7 @@ class BackupsTask extends TaskBase
         bool $restoreResources = true,
         ?string $environmentName = null,
         ?string $branchFrom = null,
-        ?string $init = Resources6::INIT__DEFAULT,
+        ?string $init = Resources8::INIT__DEFAULT,
     ): AcceptedResponse {
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
@@ -125,7 +125,7 @@ class BackupsTask extends TaskBase
             environmentRestoreInput: new EnvironmentRestoreInput(
                 environmentName: $environmentName,
                 branchFrom: $branchFrom,
-                resources: new Resources6($init),
+                resources: new Resources8(init: $init),
                 restoreCode: $restoreCode,
                 restoreResources: $restoreResources,
             )

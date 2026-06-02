@@ -28,11 +28,11 @@ use Upsun\Model\EnvironmentType;
 use Upsun\Model\EnvironmentVariable;
 use Upsun\Model\HttpAccessPermissions2;
 use Upsun\Model\ProjectVariable;
-use Upsun\Model\Resources2;
-use Upsun\Model\Resources3;
 use Upsun\Model\Resources4;
 use Upsun\Model\Resources5;
 use Upsun\Model\Resources6;
+use Upsun\Model\Resources7;
+use Upsun\Model\Resources8;
 use Upsun\Model\Route;
 use Upsun\Model\ServiceRelationshipsValue;
 use Upsun\UpsunClient;
@@ -73,7 +73,7 @@ class EnvironmentsTask extends TaskBase
             $projectId,
             $environmentId,
             new EnvironmentActivateInput(
-                resources: new Resources2($init)
+                resources: new Resources4(init: $init)
             )
         );
     }
@@ -104,7 +104,7 @@ class EnvironmentsTask extends TaskBase
                 name: $name,
                 cloneParent: $cloneParent,
                 type: $type,
-                resources: new Resources3(init: $init),
+                resources: new Resources5(init: $init),
             )
         );
     }
@@ -256,7 +256,7 @@ class EnvironmentsTask extends TaskBase
         string $filePath,
         string $fileContents,
         ?string $config = null,
-        ?string $init = Resources4::INIT__DEFAULT,
+        ?string $init = Resources6::INIT__DEFAULT,
     ): AcceptedResponse {
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
@@ -270,7 +270,7 @@ class EnvironmentsTask extends TaskBase
                 $fileContents
             ],
             config: $config,
-            resources: new Resources4(init: $init),
+            resources: new Resources6(init: $init),
         );
         return $this->envApi->initializeEnvironment(
             projectId: $projectId,
@@ -310,7 +310,7 @@ class EnvironmentsTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function merge(string $projectId, string $environmentId, ?string $init = Resources5::INIT__DEFAULT): AcceptedResponse
+    public function merge(string $projectId, string $environmentId, ?string $init = Resources7::INIT__DEFAULT): AcceptedResponse
     {
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
@@ -319,7 +319,7 @@ class EnvironmentsTask extends TaskBase
             $projectId,
             $environmentId,
             environmentMergeInput: new EnvironmentMergeInput(
-                resources: new Resources5(init: $init)
+                resources: new Resources7(init: $init)
             )
         );
     }
@@ -621,7 +621,7 @@ class EnvironmentsTask extends TaskBase
         bool $restoreResources = true,
         ?string $environmentName = null,
         ?string $branchFrom = null,
-        ?string $init = Resources6::INIT__DEFAULT,
+        ?string $init = Resources8::INIT__DEFAULT,
     ): AcceptedResponse {
         return $this->client->backups->restore(
             projectId: $projectId,

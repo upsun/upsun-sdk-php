@@ -568,6 +568,16 @@ abstract class BaseTestCase extends TestCase
                 'capabilities' => [
                     'autoscaling' => ['enabled' => true],
                     'build_resources' => ['enabled' => true, 'max_cpu' => 4.0, 'max_memory' => 10240],
+                    'object_storage' => [
+                        'enabled' => true,
+                        'min_storage' => 0,
+                        'max_storage' => 1024,
+                        'storage_step' => 1,
+                        'cpu_per_step' => 0.0,
+                        'memory_per_step' => 0,
+                        'max_cpu' => 1.0,
+                        'max_memory' => 1024,
+                    ],
                     'custom_domains' => ['enabled' => true, 'environments_with_domains_limit' => 5],
                     'data_retention' => ['enabled' => true],
                     'guaranteed_resources' => ['enabled' => false, 'instance_limit' => 32],
@@ -798,7 +808,8 @@ abstract class BaseTestCase extends TestCase
             ],
             'webapps' => $webapps,
             'workers' => $workers,
-            'container_profiles' => 'HIGH_CPU',
+            'tasks' => '[]',
+            'container_profiles' => [],
         ];
     }
 

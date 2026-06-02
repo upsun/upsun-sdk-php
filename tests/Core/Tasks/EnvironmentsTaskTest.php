@@ -229,12 +229,16 @@ class EnvironmentsTaskTest extends BaseTestCase
                 'services' => [],
                 'webapps' => [
                     'app' => [
-                        'resources' => ['profile_size' => '0.5'],
+                            'resources' => [
+                                'profile_size' => '0.5',
+                                'disk' => ['temporary' => 8192, 'instance' => 8192, 'storage' => 1024]
+                            ],
                         'instance_count' => 1,
                         'disk' => 2001
                     ]
                 ],
-                'workers' => []
+                    'workers' => [],
+                    'tasks' => []
             ],
             'resources_overrides' => [],
             'max_instance_count' => null,
@@ -312,12 +316,16 @@ class EnvironmentsTaskTest extends BaseTestCase
                     'services' => [],
                     'webapps' => [
                         'app' => [
-                            'resources' => ['profile_size' => '0.5'],
+                                'resources' => [
+                                    'profile_size' => '0.5',
+                                    'disk' => ['temporary' => 8192, 'instance' => 8192, 'storage' => 1024]
+                                ],
                             'instance_count' => 1,
                             'disk' => 2001
                         ]
                     ],
-                    'workers' => []
+                        'workers' => [],
+                        'tasks' => []
                 ],
                 'resources_overrides' => [],
                 'max_instance_count' => null,
@@ -374,12 +382,16 @@ class EnvironmentsTaskTest extends BaseTestCase
                     'services' => [],
                     'webapps' => [
                         'app' => [
-                            'resources' => ['profile_size' => '0.5'],
+                                'resources' => [
+                                    'profile_size' => '0.5',
+                                    'disk' => ['temporary' => 8192, 'instance' => 8192, 'storage' => 1024]
+                                ],
                             'instance_count' => 1,
                             'disk' => 2001
                         ]
                     ],
-                    'workers' => []
+                        'workers' => [],
+                        'tasks' => []
                 ],
                 'resources_overrides' => [],
                 'max_instance_count' => null,
@@ -1972,6 +1984,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ],
             ],
             'workers' => [],
+            'tasks' => '[]',
             'container_profiles' => [
                 'BALANCED' => [
                     '0.1' => ['cpu' => 0.1, 'memory' => 352, 'cpu_type' => 'shared'],
@@ -2397,6 +2410,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                     ],
                 ],
                 'workers' => [],
+                'tasks' => '[]',
                 'container_profiles' => [
                     'BALANCED' => [
                         '0.1' => ['cpu' => 0.1, 'memory' => 352, 'cpu_type' => 'shared'],
@@ -2795,6 +2809,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                     ],
                 ],
                 'workers' => [],
+                'tasks' => '[]',
                 'container_profiles' => [
                     'BALANCED' => [
                         '0.1' => ['cpu' => 0.1, 'memory' => 352, 'cpu_type' => 'shared'],
@@ -3484,12 +3499,16 @@ class EnvironmentsTaskTest extends BaseTestCase
                 'services' => [],
                 'webapps' => [
                     'app' => [
-                        'resources' => ['profile_size' => '0.5'],
+                            'resources' => [
+                                'profile_size' => '0.5',
+                                'disk' => ['temporary' => 8192, 'instance' => 8192, 'storage' => 1024]
+                            ],
                         'instance_count' => 1,
                         'disk' => 2001
                     ]
                 ],
-                'workers' => []
+                    'workers' => [],
+                    'tasks' => []
             ],
             'resources_overrides' => [],
             'max_instance_count' => null,
