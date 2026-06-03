@@ -219,4 +219,28 @@ class ResourcesTask extends TaskBase
             autoscalerSettings: new AutoscalerSettings(...$services),
         );
     }
+
+    /**
+     * Patch (partially update) the autoscaler settings for the environment.
+     * This method allows you to make targeted updates to specific autoscaler settings without replacing the entire
+     * configuration. Use this when you want to update only certain aspects of the autoscaler settings.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function patchAutoscalerSettings(
+        string $projectId,
+        string $environmentId,
+        ?AutoscalerSettings $autoscalerSettings = null,
+    ): AutoscalerSettings {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->autoscalingApi->patchAutoscalerSettings(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            autoscalerSettings: $autoscalerSettings,
+        );
+    }
 }

@@ -11,6 +11,7 @@ use Upsun\Api\ConnectionsApi;
 use Upsun\Api\GrantsApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\PhoneNumberApi;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
@@ -21,6 +22,7 @@ use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\ConfirmTotpEnrollmentRequest;
 use Upsun\Model\Connection;
 use Upsun\Model\CreateApiTokenRequest;
+use Upsun\Model\CreateProfilePicture200Response;
 use Upsun\Model\GetAddress200Response;
 use Upsun\Model\GetCurrentUserVerificationStatus200Response;
 use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
@@ -59,6 +61,7 @@ class UsersTask extends TaskBase
         private readonly GrantsApi $grantsApi,
         private readonly MfaApi $mfaApi,
         private readonly PhoneNumberApi $phoneNumberApi,
+        private readonly ReferencesApi $referencesApi,
     ) {
         parent::__construct($client);
     }
@@ -1030,5 +1033,73 @@ class UsersTask extends TaskBase
                 phoneNumber: $phoneNumber
             )
         );
+    }
+
+    /**
+     * Get the current user (deprecated method)
+     * This method is deprecated. Use me() instead to retrieve information about the current user.
+     *
+     * @deprecated use me() instead
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     */
+    public function getCurrentUserDeprecated()
+    {
+        return $this->api->getCurrentUserDeprecated();
+    }
+
+    /**
+     * Create a profile picture for a user
+     * This method allows you to upload and set a profile picture for a user.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the user ID is invalid
+     */
+    public function createProfilePicture(
+        string $userId,
+        ?\SplFileObject $file = null
+    ): CreateProfilePicture200Response {
+        $this->checkUserId($userId);
+
+        return $this->profilesApi->createProfilePicture(uuid: $userId, file: $file);
+    }
+
+    /**
+     * Get an access document
+     * This method retrieves an access document associated with the specified access ID.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the access ID is invalid or empty
+     */
+    public function getAccessDocument(string $accessId): object
+    {
+        if (empty($accessId)) {
+            throw new InvalidArgumentException('Access ID cannot be empty');
+        }
+
+        return $this->grantsApi->getAccessDocument(accessId: $accessId);
+    }
+
+    /**
+     * List referenced users
+     * This method retrieves a list of users that are referenced by a specific signature.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the in or sig parameter is invalid or empty
+     * @return array
+     */
+    public function listReferencedUsers(string $in, string $sig): array
+    {
+        if (empty($in)) {
+            throw new InvalidArgumentException('In parameter cannot be empty');
+        }
+        if (empty($sig)) {
+            throw new InvalidArgumentException('Sig parameter cannot be empty');
+        }
+
+        return $this->referencesApi->listReferencedUsers(in: $in, sig: $sig);
     }
 }

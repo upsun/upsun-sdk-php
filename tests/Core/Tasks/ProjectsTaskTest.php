@@ -7,16 +7,21 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
+use Upsun\Api\AlertsApi;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\ApiTokensApi;
 use Upsun\Api\AutoscalingApi;
+use Upsun\Api\BlackfireMonitoringApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\DeploymentTargetApi;
+use Upsun\Api\DiffApi;
+use Upsun\Api\DiscountsApi;
+use Upsun\Api\DomainClaimApi;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\EnvironmentApi;
@@ -24,9 +29,11 @@ use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Api\GrantsApi;
+use Upsun\Api\HttpTrafficApi;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
+use Upsun\Api\OrganizationManagementApi;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
@@ -39,6 +46,7 @@ use Upsun\Api\ProjectInvitationsApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\RecordsApi;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\RegionsApi;
 use Upsun\Api\RepositoryApi;
 use Upsun\Api\RoutingApi;
@@ -50,6 +58,7 @@ use Upsun\Api\SystemInformationApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
 use Upsun\Api\ThirdPartyIntegrationsApi;
+use Upsun\Api\ContinuousProfilingApi;
 use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
@@ -124,6 +133,9 @@ class ProjectsTaskTest extends BaseTestCase
             new OrganizationProjectsApi(...$apiClassParams),
             new ProjectSettingsApi(...$apiClassParams),
             new SubscriptionsApi(...$apiClassParams),
+            new DeploymentTargetApi(...$apiClassParams),
+            new AlertsApi(...$apiClassParams),
+            new DomainClaimApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
 
@@ -186,7 +198,10 @@ class ProjectsTaskTest extends BaseTestCase
         };
 
         $upsunClient->metrics = new class (
-            $upsunClient
+            $upsunClient,
+            new HttpTrafficApi(...$apiClassParams),
+            new BlackfireMonitoringApi(...$apiClassParams),
+            new ContinuousProfilingApi(...$apiClassParams)
         ) extends MetricsTask {
         };
 
@@ -213,7 +228,11 @@ class ProjectsTaskTest extends BaseTestCase
             new ProfilesApi(...$apiClassParams),
             new RecordsApi(...$apiClassParams),
             new VouchersApi(...$apiClassParams),
-            new AddOnsApi(...$apiClassParams)
+            new AddOnsApi(...$apiClassParams),
+            new DiscountsApi(...$apiClassParams),
+            new OrganizationManagementApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams),
+            new DefaultApi(...$apiClassParams)
         ) extends OrganizationsTask {
         };
 
@@ -221,14 +240,16 @@ class ProjectsTaskTest extends BaseTestCase
 
         $upsunClient->regions = new class (
             $upsunClient,
-            new RegionsApi(...$apiClassParams)
+            new RegionsApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams)
         ) extends RegionsTask {
         };
 
         $upsunClient->repositories = new class (
             $upsunClient,
             new RepositoryApi(...$apiClassParams),
-            new SystemInformationApi(...$apiClassParams)
+            new SystemInformationApi(...$apiClassParams),
+            new DiffApi(...$apiClassParams)
         ) extends RepositoriesTask {
         };
 
@@ -254,7 +275,8 @@ class ProjectsTaskTest extends BaseTestCase
         $upsunClient->teams = new class (
             $upsunClient,
             new TeamsApi(...$apiClassParams),
-            new TeamAccessApi(...$apiClassParams)
+            new TeamAccessApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams),
         ) extends TeamsTask {
         };
 
@@ -274,7 +296,8 @@ class ProjectsTaskTest extends BaseTestCase
             new ConnectionsApi(...$apiClassParams),
             new GrantsApi(...$apiClassParams),
             new MfaApi(...$apiClassParams),
-            new PhoneNumberApi(...$apiClassParams)
+            new PhoneNumberApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams),
         ) extends UsersTask {
         };
 

@@ -12,10 +12,16 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\ApiTokensApi;
 use Upsun\Api\ConnectionsApi;
+use Upsun\Api\DefaultApi;
+use Upsun\Api\DeploymentTargetApi;
+use Upsun\Api\DiscountsApi;
+use Upsun\Api\AlertsApi;
+use Upsun\Api\DomainClaimApi;
 use Upsun\Api\GrantsApi;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
+use Upsun\Api\OrganizationManagementApi;
 use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\OrganizationsApi;
@@ -24,6 +30,7 @@ use Upsun\Api\ProfilesApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\RecordsApi;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
@@ -94,7 +101,8 @@ class OrganizationsTaskTest extends BaseTestCase
             new ConnectionsApi(...$apiClassParams),
             new GrantsApi(...$apiClassParams),
             new MfaApi(...$apiClassParams),
-            new PhoneNumberApi(...$apiClassParams)
+            new PhoneNumberApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams)
         ) extends UsersTask {
         };
         $upsunClient->users = $usersTask;
@@ -106,6 +114,9 @@ class OrganizationsTaskTest extends BaseTestCase
             new OrganizationProjectsApi(...$apiClassParams),
             new ProjectSettingsApi(...$apiClassParams),
             new SubscriptionsApi(...$apiClassParams),
+            new DeploymentTargetApi(...$apiClassParams),
+            new AlertsApi(...$apiClassParams),
+            new DomainClaimApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
 
@@ -115,7 +126,8 @@ class OrganizationsTaskTest extends BaseTestCase
         $teamsTask = new class (
             $upsunClient,
             new TeamsApi(...$apiClassParams),
-            new TeamAccessApi(...$apiClassParams)
+            new TeamAccessApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams)
         ) extends TeamsTask {
         };
 
@@ -134,7 +146,11 @@ class OrganizationsTaskTest extends BaseTestCase
             new ProfilesApi(...$apiClassParams),
             new RecordsApi(...$apiClassParams),
             new VouchersApi(...$apiClassParams),
-            new AddOnsApi(...$apiClassParams)
+            new AddOnsApi(...$apiClassParams),
+            new DiscountsApi(...$apiClassParams),
+            new OrganizationManagementApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams),
+            new DefaultApi(...$apiClassParams)
         ) extends OrganizationsTask {
         };
     }

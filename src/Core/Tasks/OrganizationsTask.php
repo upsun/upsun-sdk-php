@@ -7,13 +7,17 @@ use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiException;
+use Upsun\Api\DefaultApi;
+use Upsun\Api\DiscountsApi;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
+use Upsun\Api\OrganizationManagementApi;
 use Upsun\Api\OrdersApi;
 use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\OrganizationsApi;
 use Upsun\Api\ProfilesApi;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\RecordsApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\VouchersApi;
@@ -21,16 +25,25 @@ use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Address;
 use Upsun\Model\ApplyOrgVoucherRequest;
 use Upsun\Model\ArrayFilter;
+use Upsun\Model\CanAffordSubscriptionRequest;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\CanUpdateSubscription200Response;
+use Upsun\Model\CreateOrgProjectRequest;
 use Upsun\Model\CreateAuthorizationCredentials200Response;
 use Upsun\Model\CreateOrgMemberRequest;
 use Upsun\Model\CreateOrgRequest;
 use Upsun\Model\DateTimeFilter;
+use Upsun\Model\Discount;
 use Upsun\Model\EstimationObject;
+use Upsun\Model\GetOrgPrepaymentInfo200Response;
+use Upsun\Model\GetSubscriptionUsageAlerts200Response;
+use Upsun\Model\GetTypeAllowance200Response;
 use Upsun\Model\Invoice;
+use Upsun\Model\ListOrgDiscounts200Response;
 use Upsun\Model\ListOrgInvoices200Response;
 use Upsun\Model\ListOrgMembers200Response;
 use Upsun\Model\ListOrgOrders200Response;
+use Upsun\Model\ListOrgPrepaymentTransactions200Response;
 use Upsun\Model\ListOrgPlanRecords200Response;
 use Upsun\Model\ListOrgProjects200Response;
 use Upsun\Model\ListOrgs200Response;
@@ -41,19 +54,28 @@ use Upsun\Model\ListUserOrgs200Response;
 use Upsun\Model\Order;
 use Upsun\Model\Organization;
 use Upsun\Model\OrganizationAddonsObject;
+use Upsun\Model\OrganizationAlertConfig;
+use Upsun\Model\OrganizationCarbon;
+use Upsun\Model\OrganizationEstimationObject;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
+use Upsun\Model\OrganizationProject;
 use Upsun\Model\Profile;
 use Upsun\Model\Project;
+use Upsun\Model\ProjectCarbon;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue; // only mentionned in PHPDocs
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
+use Upsun\Model\SubscriptionAddonsObject;
 use Upsun\Model\SubscriptionCurrentUsageObject;
 use Upsun\Model\UpdateOrgAddonsRequest;
+use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
 use Upsun\Model\UpdateOrgMemberRequest;
 use Upsun\Model\UpdateOrgProfileRequest;
 use Upsun\Model\UpdateOrgRequest;
+use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
 use Upsun\Model\Vouchers;
 use Upsun\UpsunClient;
 
@@ -81,6 +103,10 @@ class OrganizationsTask extends TaskBase
         private readonly RecordsApi $recordsApi,
         private readonly VouchersApi $vouchersApi,
         private readonly AddOnsApi $addOnsApi,
+        private readonly DiscountsApi $discountsApi,
+        private readonly OrganizationManagementApi $organizationManagementApi,
+        private readonly ReferencesApi $referencesApi,
+        private readonly DefaultApi $defaultApi,
     ) {
         parent::__construct($client);
     }
@@ -1115,6 +1141,437 @@ class OrganizationsTask extends TaskBase
                 userManagement: $userManagement,
                 supportLevel: $supportLevel
             )
+        );
+    }
+
+    // Organization Projects Methods
+
+    /**
+     * Creates a project in an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return OrganizationProject
+     */
+    public function createOrgProject(
+        string $organizationId,
+        CreateOrgProjectRequest $createOrgProjectRequest
+    ): OrganizationProject {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->projectsApi->createOrgProject(
+            organizationId: $organizationId,
+            createOrgProjectRequest: $createOrgProjectRequest
+        );
+    }
+
+    /**
+     * Deletes a project from an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function deleteOrgProject(string $organizationId, string $projectId): void
+    {
+        $this->checkOrganizationId($organizationId);
+        $this->checkProjectId($projectId);
+
+        $this->projectsApi->deleteOrgProject(
+            organizationId: $organizationId,
+            projectId: $projectId
+        );
+    }
+
+    /**
+     * Gets a project from an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return OrganizationProject
+     */
+    public function getOrgProject(string $organizationId, string $projectId): OrganizationProject
+    {
+        $this->checkOrganizationId($organizationId);
+        $this->checkProjectId($projectId);
+
+        return $this->projectsApi->getOrgProject(
+            organizationId: $organizationId,
+            projectId: $projectId
+        );
+    }
+
+    /**
+     * Queries project carbon emissions metrics.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return ProjectCarbon
+     */
+    public function queryProjectCarbon(
+        string $organizationId,
+        string $projectId,
+        ?DateTimeFilter $from = null,
+        ?DateTimeFilter $to = null,
+        ?string $interval = null
+    ): ProjectCarbon {
+        $this->checkOrganizationId($organizationId);
+        $this->checkProjectId($projectId);
+        if ($interval !== null && trim($interval) === '') {
+            throw new InvalidArgumentException('interval cannot be empty when provided.');
+        }
+
+        return $this->projectsApi->queryProjectCarbon(
+            organizationId: $organizationId,
+            projectId: $projectId,
+            from: $from,
+            to: $to,
+            interval: $interval ?? null
+        );
+    }
+
+    // Subscriptions Methods
+
+    /**
+     * Checks whether the subscription can afford requested resources.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the subscription ID is invalid
+     */
+    public function canAffordSubscription(
+        string $subscriptionId,
+        CanAffordSubscriptionRequest $canAffordSubscriptionRequest
+    ): void {
+        $this->checkSubscriptionId($subscriptionId);
+
+        $this->subscriptionsApi->canAffordSubscription(
+            subscriptionId: $subscriptionId,
+            canAffordSubscriptionRequest: $canAffordSubscriptionRequest
+        );
+    }
+
+    /**
+     * Checks whether the subscription can be updated with the requested values.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the subscription ID is invalid
+     * @return CanUpdateSubscription200Response
+     */
+    public function canUpdateSubscription(
+        string $subscriptionId,
+        ?string $plan = null,
+        ?int $environments = null,
+        ?int $storage = null,
+        ?int $userLicenses = null
+    ): CanUpdateSubscription200Response {
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->subscriptionsApi->canUpdateSubscription(
+            subscriptionId: $subscriptionId,
+            plan: $plan,
+            environments: $environments,
+            storage: $storage,
+            userLicenses: $userLicenses
+        );
+    }
+
+    /**
+     * Gets subscription usage alerts for an organization subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return GetSubscriptionUsageAlerts200Response
+     */
+    public function getSubscriptionUsageAlerts(
+        string $organizationId,
+        string $subscriptionId
+    ): GetSubscriptionUsageAlerts200Response {
+        $this->checkOrganizationId($organizationId);
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->subscriptionsApi->getSubscriptionUsageAlerts(
+            organizationId: $organizationId,
+            subscriptionId: $subscriptionId
+        );
+    }
+
+    /**
+     * Lists addons for an organization subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return SubscriptionAddonsObject
+     */
+    public function listSubscriptionAddons(
+        string $organizationId,
+        string $subscriptionId
+    ): SubscriptionAddonsObject {
+        $this->checkOrganizationId($organizationId);
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->subscriptionsApi->listSubscriptionAddons(
+            organizationId: $organizationId,
+            subscriptionId: $subscriptionId
+        );
+    }
+
+    /**
+     * Updates an organization subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return Subscription
+     */
+    public function updateOrgSubscription(
+        string $organizationId,
+        string $subscriptionId,
+        UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest
+    ): Subscription {
+        $this->checkOrganizationId($organizationId);
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->subscriptionsApi->updateOrgSubscription(
+            organizationId: $organizationId,
+            subscriptionId: $subscriptionId,
+            updateOrgSubscriptionRequest: $updateOrgSubscriptionRequest
+        );
+    }
+
+    /**
+     * Updates usage alerts for an organization subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return GetSubscriptionUsageAlerts200Response
+     */
+    public function updateSubscriptionUsageAlerts(
+        string $organizationId,
+        string $subscriptionId,
+        UpdateSubscriptionUsageAlertsRequest $updateSubscriptionUsageAlertsRequest
+    ): GetSubscriptionUsageAlerts200Response {
+        $this->checkOrganizationId($organizationId);
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->subscriptionsApi->updateSubscriptionUsageAlerts(
+            organizationId: $organizationId,
+            subscriptionId: $subscriptionId,
+            updateSubscriptionUsageAlertsRequest: $updateSubscriptionUsageAlertsRequest
+        );
+    }
+
+    // Discounts Methods
+
+    /**
+     * Gets a discount by ID.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the discount ID is empty
+     * @return Discount
+     */
+    public function getDiscount(string $id): Discount
+    {
+        if (trim($id) === '') {
+            throw new InvalidArgumentException('id cannot be empty.');
+        }
+
+        return $this->discountsApi->getDiscount(id: $id);
+    }
+
+    /**
+     * Gets the First Project Incentive type allowance.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @return GetTypeAllowance200Response
+     */
+    public function getTypeAllowance(): GetTypeAllowance200Response
+    {
+        return $this->discountsApi->getTypeAllowance();
+    }
+
+    /**
+     * Lists discounts for an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the organization ID is invalid
+     * @return ListOrgDiscounts200Response
+     */
+    public function listOrgDiscounts(string $organizationId): ListOrgDiscounts200Response
+    {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->discountsApi->listOrgDiscounts(organizationId: $organizationId);
+    }
+
+    // Organization Management Methods
+
+    /**
+     * Estimates total spend for an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the organization ID is invalid
+     * @return OrganizationEstimationObject
+     */
+    public function estimateOrg(string $organizationId): OrganizationEstimationObject
+    {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->organizationManagementApi->estimateOrg(organizationId: $organizationId);
+    }
+
+    /**
+     * Gets billing alert configuration for an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the organization ID is invalid
+     * @return OrganizationAlertConfig
+     */
+    public function getOrgBillingAlertConfig(string $organizationId): OrganizationAlertConfig
+    {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->organizationManagementApi->getOrgBillingAlertConfig(organizationId: $organizationId);
+    }
+
+    /**
+     * Gets prepayment information for an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the organization ID is invalid
+     * @return GetOrgPrepaymentInfo200Response
+     */
+    public function getOrgPrepaymentInfo(string $organizationId): GetOrgPrepaymentInfo200Response
+    {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->organizationManagementApi->getOrgPrepaymentInfo(organizationId: $organizationId);
+    }
+
+    /**
+     * Lists prepayment transactions for an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the organization ID is invalid
+     * @return ListOrgPrepaymentTransactions200Response
+     */
+    public function listOrgPrepaymentTransactions(string $organizationId): ListOrgPrepaymentTransactions200Response
+    {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->organizationManagementApi->listOrgPrepaymentTransactions(organizationId: $organizationId);
+    }
+
+    /**
+     * Updates billing alert configuration for an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the organization ID is invalid
+     * @return OrganizationAlertConfig
+     */
+    public function updateOrgBillingAlertConfig(
+        string $organizationId,
+        UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest
+    ): OrganizationAlertConfig {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->organizationManagementApi->updateOrgBillingAlertConfig(
+            organizationId: $organizationId,
+            updateOrgBillingAlertConfigRequest: $updateOrgBillingAlertConfigRequest
+        );
+    }
+
+    // References Methods
+
+    /**
+     * Lists referenced organizations.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return array<string,\Upsun\Model\OrganizationReference>
+     */
+    public function listReferencedOrgs(string $in, string $sig): array
+    {
+        if (trim($in) === '') {
+            throw new InvalidArgumentException('in cannot be empty.');
+        }
+
+        if (trim($sig) === '') {
+            throw new InvalidArgumentException('sig cannot be empty.');
+        }
+
+        return $this->referencesApi->listReferencedOrgs(
+            in: $in,
+            sig: $sig
+        );
+    }
+
+    /**
+     * Lists referenced projects.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return array<string,\Upsun\Model\ProjectReference>
+     */
+    public function listReferencedProjects(string $in, string $sig): array
+    {
+        if (trim($in) === '') {
+            throw new InvalidArgumentException('in cannot be empty.');
+        }
+
+        if (trim($sig) === '') {
+            throw new InvalidArgumentException('sig cannot be empty.');
+        }
+
+        return $this->referencesApi->listReferencedProjects(
+            in: $in,
+            sig: $sig
+        );
+    }
+
+    // Organization Carbon Methods
+
+    /**
+     * Queries organization carbon emissions metrics.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return OrganizationCarbon
+     */
+    public function queryOrganiationCarbon(
+        string $organizationId,
+        ?DateTimeFilter $from = null,
+        ?DateTimeFilter $to = null,
+        ?string $interval = null
+    ): OrganizationCarbon {
+        $this->checkOrganizationId($organizationId);
+        if ($interval !== null && trim($interval) === '') {
+            throw new InvalidArgumentException('interval cannot be empty when provided.');
+        }
+
+        return $this->defaultApi->queryOrganiationCarbon(
+            organizationId: $organizationId,
+            from: $from,
+            to: $to,
+            interval: $interval ?? null
         );
     }
 }

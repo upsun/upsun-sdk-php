@@ -4,6 +4,7 @@ namespace Upsun\Tests\Core\Tasks;
 
 use BadMethodCallException;
 use Exception;
+use InvalidArgumentException;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -15,6 +16,7 @@ use Upsun\Api\ConnectionsApi;
 use Upsun\Api\GrantsApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\PhoneNumberApi;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
@@ -23,6 +25,8 @@ use Upsun\Core\Tasks\UsersTask;
 use Upsun\Model\ApiToken;
 use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\Connection;
+use Upsun\Model\CurrentUser;
+use Upsun\Model\CreateProfilePicture200Response;
 use Upsun\Model\GetAddress200Response;
 use Upsun\Model\GetCurrentUserVerificationStatus200Response;
 use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
@@ -69,6 +73,7 @@ class UsersTaskTest extends BaseTestCase
             new GrantsApi(...$apiClassParams),
             new MfaApi(...$apiClassParams),
             new PhoneNumberApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams),
         ) extends UsersTask {
         };
     }
@@ -296,6 +301,124 @@ class UsersTaskTest extends BaseTestCase
 
         $this->usersTask->resetEmailAddress(userId: 'user_123', emailAddress: $email);
         $this->assertTrue(true);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testGetCurrentUserDeprecatedSuccess(): void
+    {
+        $userFake = [
+            'id' => 'user_123',
+            'uuid' => 'user_123',
+            'username' => 'john_doe',
+            'displayName' => 'John Doe',
+            'status' => 1,
+            'mail' => 'john.doe@example.com',
+            'sshKeys' => [],
+            'hasKey' => true,
+            'projects' => [],
+            'sequence' => 1,
+            'roles' => ['user'],
+            'picture' => 'https://example.com/avatar.jpg',
+            'tickets' => (object) ['open' => 1],
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($userFake)
+            ));
+
+        $result = $this->usersTask->getCurrentUserDeprecated();
+
+        $this->assertInstanceOf(CurrentUser::class, $result);
+        $this->assertObjectProperties($result, $userFake);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCreateProfilePictureSuccess(): void
+    {
+        $response = ['url' => 'https://example.com/avatar.png'];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($response)
+            ));
+
+        $result = $this->usersTask->createProfilePicture(userId: 'user_123');
+
+        $this->assertInstanceOf(CreateProfilePicture200Response::class, $result);
+        $this->assertObjectProperties($result, $response);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetAccessDocumentSuccess(): void
+    {
+        $response = ['document' => 'granted', 'scope' => 'project'];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($response)
+            ));
+
+        $result = $this->usersTask->getAccessDocument('access_123');
+
+        $this->assertIsObject($result);
+        $this->assertEquals('granted', $result->document);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListReferencedUsersSuccess(): void
+    {
+        $response = [
+            'user-1' => [
+                'id' => 'user-1',
+                'username' => 'john',
+                'email' => 'john@example.com',
+                'firstName' => 'John',
+                'lastName' => 'Doe',
+                'picture' => 'https://example.com/john.png',
+                'mfaEnabled' => true,
+                'ssoEnabled' => false,
+            ],
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($response)
+            ));
+
+        $result = $this->usersTask->listReferencedUsers('abc', 'sig123');
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('user-1', $result);
+        $this->assertEquals('john', $result['user-1']->getUsername());
+    }
+
+    public function testListReferencedUsersWithEmptySig(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->usersTask->listReferencedUsers('abc', '');
     }
 
     public function testGetCurrentUserVerificationStatusSuccess()

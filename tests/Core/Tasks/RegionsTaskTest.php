@@ -9,6 +9,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\RegionsApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\RegionsTask;
@@ -39,7 +40,8 @@ class RegionsTaskTest extends BaseTestCase
 
         $this->regionsTask = new class (
             $upsunClient,
-            new RegionsApi(...$apiClassParams)
+            new RegionsApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams)
         ) extends RegionsTask {
         };
     }
@@ -222,5 +224,19 @@ class RegionsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
         $this->regionsTask->list();
+    }
+
+    public function testListReferencedRegionsWithEmptyIn(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->regionsTask->listReferencedRegions('', 'sig123');
+    }
+
+    public function testListReferencedRegionsWithEmptySig(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->regionsTask->listReferencedRegions('abc', '');
     }
 }

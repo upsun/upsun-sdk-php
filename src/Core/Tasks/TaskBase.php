@@ -242,6 +242,13 @@ abstract class TaskBase
         }
     }
 
+    protected static function checkTaskId(string $taskId): void
+    {
+        if (trim($taskId) === '') {
+            throw new InvalidArgumentException('Task ID is required');
+        }
+    }
+
     protected function normalizeFilter(array|string|int|DateTime|null $value): array
     {
         if ($value === null) {

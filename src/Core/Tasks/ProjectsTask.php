@@ -4,7 +4,10 @@ namespace Upsun\Core\Tasks;
 
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
+use Upsun\Api\AlertsApi;
 use Upsun\Api\ApiException;
+use Upsun\Api\DeploymentTargetApi;
+use Upsun\Api\DomainClaimApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;
@@ -17,10 +20,16 @@ use Upsun\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Model\Certificate;
 use Upsun\Model\Commit;
 use Upsun\Model\CreateOrgSubscriptionRequest;
+use Upsun\Model\DateTimeFilter;
 use Upsun\Model\Domain;
+use Upsun\Model\DomainClaim;
 use Upsun\Model\DomainCreateInput;
 use Upsun\Model\DomainPatch;
+use Upsun\Model\DeploymentTarget;
+use Upsun\Model\DeploymentTargetCreateInput;
+use Upsun\Model\DeploymentTargetPatch;
 use Upsun\Model\Environment;
+use Upsun\Model\GetUsageAlerts200Response;
 use Upsun\Model\Integration;
 use Upsun\Model\IntegrationCreateCreateInput;
 use Upsun\Model\IntegrationPatch;
@@ -28,6 +37,7 @@ use Upsun\Model\ListOrgProjects200Response;
 use Upsun\Model\ListProjectTeamAccess200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
 use Upsun\Model\Project;
+use Upsun\Model\ProjectCarbon;
 use Upsun\Model\ProjectCapabilities;
 use Upsun\Model\ProjectInvitation;
 use Upsun\Model\ProjectSettings;
@@ -38,6 +48,7 @@ use Upsun\Model\Subscription;
 use Upsun\Model\SystemInformation;
 use Upsun\Model\TeamProjectAccess;
 use Upsun\Model\Tree;
+use Upsun\Model\UpdateUsageAlertsRequest;
 use Upsun\Model\UpdateOrgProjectRequest;
 use Upsun\Model\UserProjectAccess;
 use Upsun\UpsunClient;
@@ -57,6 +68,9 @@ class ProjectsTask extends TaskBase
         private readonly OrganizationProjectsApi $organizationApi,
         private readonly ProjectSettingsApi $settingsApi,
         private readonly SubscriptionsApi $subscriptionsApi,
+        private readonly DeploymentTargetApi $deploymentTargetApi,
+        private readonly AlertsApi $alertsApi,
+        private readonly DomainClaimApi $domainClaimApi,
     ) {
         parent::__construct($client);
     }
@@ -1348,5 +1362,299 @@ class ProjectsTask extends TaskBase
             integrationId: $integrationId,
             integrationUpdateInput: $integrationPatch
         );
+    }
+
+    // Deployment Target Methods
+
+    /**
+     * Creates a deployment target for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if the project ID is invalid
+     * @return AcceptedResponse
+     */
+    public function createProjectsDeployments(
+        string $projectId,
+        DeploymentTargetCreateInput $deploymentTargetCreateInput
+    ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+
+        return $this->deploymentTargetApi->createProjectsDeployments(
+            projectId: $projectId,
+            deploymentTargetCreateInput: $deploymentTargetCreateInput
+        );
+    }
+
+    /**
+     * Deletes a deployment target from a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return AcceptedResponse
+     */
+    public function deleteProjectsDeployments(
+        string $projectId,
+        string $deploymentTargetConfigurationId
+    ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        if (trim($deploymentTargetConfigurationId) === '') {
+            throw new InvalidArgumentException('deploymentTargetConfigurationId cannot be empty.');
+        }
+
+        return $this->deploymentTargetApi->deleteProjectsDeployments(
+            projectId: $projectId,
+            deploymentTargetConfigurationId: $deploymentTargetConfigurationId
+        );
+    }
+
+    /**
+     * Gets a single deployment target for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return DeploymentTarget
+     */
+    public function getProjectsDeployments(
+        string $projectId,
+        string $deploymentTargetConfigurationId
+    ): DeploymentTarget {
+        $this->checkProjectId($projectId);
+        if (trim($deploymentTargetConfigurationId) === '') {
+            throw new InvalidArgumentException('deploymentTargetConfigurationId cannot be empty.');
+        }
+
+        return $this->deploymentTargetApi->getProjectsDeployments(
+            projectId: $projectId,
+            deploymentTargetConfigurationId: $deploymentTargetConfigurationId
+        );
+    }
+
+    /**
+     * Lists deployment targets for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if the project ID is invalid
+     * @return DeploymentTarget[]
+     */
+    public function listProjectsDeployments(string $projectId): array
+    {
+        $this->checkProjectId($projectId);
+
+        return $this->deploymentTargetApi->listProjectsDeployments(projectId: $projectId);
+    }
+
+    /**
+     * Updates a deployment target for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return AcceptedResponse
+     */
+    public function updateProjectsDeployments(
+        string $projectId,
+        string $deploymentTargetConfigurationId,
+        DeploymentTargetPatch $deploymentTargetPatch
+    ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        if (trim($deploymentTargetConfigurationId) === '') {
+            throw new InvalidArgumentException('deploymentTargetConfigurationId cannot be empty.');
+        }
+
+        return $this->deploymentTargetApi->updateProjectsDeployments(
+            projectId: $projectId,
+            deploymentTargetConfigurationId: $deploymentTargetConfigurationId,
+            deploymentTargetPatch: $deploymentTargetPatch
+        );
+    }
+
+    // Alerts Methods
+
+    /**
+     * Gets usage alerts for a subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if the subscription ID is invalid
+     * @return GetUsageAlerts200Response
+     */
+    public function getUsageAlerts(string $subscriptionId): GetUsageAlerts200Response
+    {
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->alertsApi->getUsageAlerts(subscriptionId: $subscriptionId);
+    }
+
+    /**
+     * Updates usage alerts for a subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if the subscription ID is invalid
+     * @return GetUsageAlerts200Response
+     */
+    public function updateUsageAlerts(
+        string $subscriptionId,
+        UpdateUsageAlertsRequest $updateUsageAlertsRequest
+    ): GetUsageAlerts200Response {
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->alertsApi->updateUsageAlerts(
+            subscriptionId: $subscriptionId,
+            updateUsageAlertsRequest: $updateUsageAlertsRequest
+        );
+    }
+
+    // Domain Claim Methods
+
+    /**
+     * Creates a domain claim for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if the project ID is invalid
+     * @return AcceptedResponse
+     */
+    public function createProjectsDomainClaims(string $projectId, object $body): AcceptedResponse
+    {
+        $this->checkProjectId($projectId);
+
+        return $this->domainClaimApi->createProjectsDomainClaims(
+            projectId: $projectId,
+            body: $body
+        );
+    }
+
+    /**
+     * Deletes a domain claim from a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return AcceptedResponse
+     */
+    public function deleteProjectsDomainClaims(string $projectId, string $domainClaimId): AcceptedResponse
+    {
+        $this->checkProjectId($projectId);
+        if (trim($domainClaimId) === '') {
+            throw new InvalidArgumentException('domainClaimId cannot be empty.');
+        }
+
+        return $this->domainClaimApi->deleteProjectsDomainClaims(
+            projectId: $projectId,
+            domainClaimId: $domainClaimId
+        );
+    }
+
+    /**
+     * Gets a single domain claim for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return DomainClaim
+     */
+    public function getProjectsDomainClaims(string $projectId, string $domainClaimId): DomainClaim
+    {
+        $this->checkProjectId($projectId);
+        if (trim($domainClaimId) === '') {
+            throw new InvalidArgumentException('domainClaimId cannot be empty.');
+        }
+
+        return $this->domainClaimApi->getProjectsDomainClaims(
+            projectId: $projectId,
+            domainClaimId: $domainClaimId
+        );
+    }
+
+    /**
+     * Lists domain claims for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if the project ID is invalid
+     * @return DomainClaim[]
+     */
+    public function listProjectsDomainClaims(string $projectId): array
+    {
+        $this->checkProjectId($projectId);
+
+        return $this->domainClaimApi->listProjectsDomainClaims(projectId: $projectId);
+    }
+
+    /**
+     * Updates a domain claim for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return AcceptedResponse
+     */
+    public function updateProjectsDomainClaims(
+        string $projectId,
+        string $domainClaimId,
+        object $body
+    ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        if (trim($domainClaimId) === '') {
+            throw new InvalidArgumentException('domainClaimId cannot be empty.');
+        }
+
+        return $this->domainClaimApi->updateProjectsDomainClaims(
+            projectId: $projectId,
+            domainClaimId: $domainClaimId,
+            body: $body
+        );
+    }
+
+    // Carbon And Maintenance Methods
+
+    /**
+     * Queries project carbon emissions metrics.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return ProjectCarbon
+     */
+    public function queryProjectCarbon(
+        string $organizationId,
+        string $projectId,
+        ?DateTimeFilter $from = null,
+        ?DateTimeFilter $to = null,
+        ?string $interval = null
+    ): ProjectCarbon {
+        $this->checkOrganizationId($organizationId);
+        $this->checkProjectId($projectId);
+        if ($interval !== null && trim($interval) === '') {
+            throw new InvalidArgumentException('interval cannot be empty when provided.');
+        }
+
+        return $this->organizationApi->queryProjectCarbon(
+            organizationId: $organizationId,
+            projectId: $projectId,
+            from: $from,
+            to: $to,
+            interval: $interval ?? null
+        );
+    }
+
+    /**
+     * Triggers a maintenance redeploy for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface on network errors
+     * @throws InvalidArgumentException if the project ID is invalid
+     * @return AcceptedResponse
+     */
+    public function maintenanceRedeployProject(string $projectId): AcceptedResponse
+    {
+        $this->checkProjectId($projectId);
+
+        return $this->prjApi->maintenanceRedeployProject(projectId: $projectId);
     }
 }

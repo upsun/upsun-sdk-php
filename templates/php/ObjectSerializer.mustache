@@ -354,6 +354,8 @@ class ObjectSerializer
 
             case 'mixed':
                 return $data;
+            case 'object':
+                return (object)$data;
             case 'array':
                 error_log("Warning: Deserializing generic 'array' type - should use specific model class");
                 return (array)$data;

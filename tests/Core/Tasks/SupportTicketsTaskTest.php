@@ -8,9 +8,11 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
+use Upsun\Api\AlertsApi;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentTargetApi;
+use Upsun\Api\DomainClaimApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectSettingsApi;
@@ -56,6 +58,9 @@ class SupportTicketsTaskTest extends BaseTestCase
             new OrganizationProjectsApi(...$apiClassParams),
             new ProjectSettingsApi(...$apiClassParams),
             new SubscriptionsApi(...$apiClassParams),
+            new DeploymentTargetApi(...$apiClassParams),
+            new AlertsApi(...$apiClassParams),
+            new DomainClaimApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
 

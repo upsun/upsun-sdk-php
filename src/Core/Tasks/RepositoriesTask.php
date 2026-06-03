@@ -2,8 +2,10 @@
 
 namespace Upsun\Core\Tasks;
 
+use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
+use Upsun\Api\DiffApi;
 use Upsun\Api\RepositoryApi;
 use Upsun\Api\SystemInformationApi;
 use Upsun\Model\Blob;
@@ -26,6 +28,7 @@ class RepositoriesTask extends TaskBase
         UpsunClient $client,
         private readonly RepositoryApi $repositoryApi,
         private readonly SystemInformationApi $systemInformationApi,
+        private readonly DiffApi $diffApi,
     ) {
         parent::__construct($client);
     }
@@ -94,7 +97,7 @@ class RepositoriesTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @return Ref[]
-     */
+     */ 
     public function listGitRefs(string $projectId): array
     {
         parent::checkProjectId($projectId);
@@ -133,5 +136,35 @@ class RepositoriesTask extends TaskBase
         parent::checkProjectId($projectId);
 
         return $this->systemInformationApi->getProjectsSystem(projectId: $projectId);
+    }
+
+    /**
+     * List Git diffs between two references
+     * This method retrieves the differences between two Git references (branches, tags, or commits),
+     * showing what changed between them.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId, diffBaseId, or diffTargetId is invalid
+     * @return array
+     */
+    public function listGitDiffs(
+        string $projectId,
+        string $diffBaseId,
+        string $diffTargetId
+    ): array {
+        $this->checkProjectId($projectId);
+        if (empty($diffBaseId)) {
+            throw new InvalidArgumentException('Diff base ID cannot be empty');
+        }
+        if (empty($diffTargetId)) {
+            throw new InvalidArgumentException('Diff target ID cannot be empty');
+        }
+
+        return $this->diffApi->listProjectsGitDiffs(
+            projectId: $projectId,
+            diffBaseId: $diffBaseId,
+            diffTargetId: $diffTargetId
+        );
     }
 }

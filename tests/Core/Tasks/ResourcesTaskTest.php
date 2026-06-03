@@ -326,4 +326,36 @@ class ResourcesTaskTest extends BaseTestCase
             webapps: $webapps
         );
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testPatchAutoscalerSettingsSuccess(): void
+    {
+        $expectedData = [
+            'services' => [
+                'db' => [
+                    'mysql' => [
+                        'instances' => ['min' => 1, 'max' => 3]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($expectedData)
+            ));
+
+        $result = $this->resourcesTask->patchAutoscalerSettings(
+            projectId: 'project123',
+            environmentId: 'env456'
+        );
+
+        $this->assertObjectProperties($result, $expectedData);
+    }
 }
