@@ -9,8 +9,8 @@ use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\TaskApi;
 use Upsun\Core\OAuthProvider;
-use Upsun\Core\Tasks\TaskContainersTask;
 use Upsun\Core\Tasks\TaskBase;
+use Upsun\Core\Tasks\TaskContainersTask;
 use Upsun\Model\AcceptedResponse;
 use Upsun\UpsunClient;
 

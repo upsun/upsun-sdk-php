@@ -5,6 +5,7 @@ namespace Upsun\Core\Tasks;
 use BadMethodCallException;
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
+use SplFileObject;
 use Upsun\Api\ApiException;
 use Upsun\Api\ApiTokensApi;
 use Upsun\Api\ConnectionsApi;
@@ -1058,7 +1059,7 @@ class UsersTask extends TaskBase
      */
     public function createProfilePicture(
         string $userId,
-        ?\SplFileObject $file = null
+        ?SplFileObject $file = null
     ): CreateProfilePicture200Response {
         $this->checkUserId($userId);
 

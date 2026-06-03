@@ -97,7 +97,7 @@ class RepositoriesTask extends TaskBase
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @return Ref[]
-     */ 
+     */
     public function listGitRefs(string $projectId): array
     {
         parent::checkProjectId($projectId);
