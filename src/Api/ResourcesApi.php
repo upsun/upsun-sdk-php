@@ -25,13 +25,13 @@ final class ResourcesApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -43,7 +43,7 @@ final class ResourcesApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -170,6 +170,7 @@ final class ResourcesApi extends AbstractApi
         ?array $aggs = null,
         ?array $types = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -177,6 +178,8 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesByService'
             );
         }
+
+
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -192,6 +195,8 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesByService'
             );
         }
+
+
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -242,6 +247,8 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -254,6 +261,8 @@ final class ResourcesApi extends AbstractApi
                     : ($to);
             }
         }
+
+
 
         // query params
         if ($aggs !== null) {
@@ -268,6 +277,8 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($types !== null) {
             if ('form' === 'form' && is_array($types)) {
@@ -280,6 +291,8 @@ final class ResourcesApi extends AbstractApi
                     : ($types);
             }
         }
+
+
 
         // path params
 
@@ -308,6 +321,7 @@ final class ResourcesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -487,6 +501,7 @@ final class ResourcesApi extends AbstractApi
         ?array $services = null,
         ?string $servicesMode = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -494,6 +509,8 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesOverview'
             );
         }
+
+
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -509,6 +526,8 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesOverview'
             );
         }
+
+
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -552,6 +571,8 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -564,6 +585,8 @@ final class ResourcesApi extends AbstractApi
                     : ($to);
             }
         }
+
+
 
         // query params
         if ($service !== null) {
@@ -578,6 +601,8 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($services !== null) {
             if ('form' === 'form' && is_array($services)) {
@@ -591,6 +616,8 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($servicesMode !== null) {
             if ('form' === 'form' && is_array($servicesMode)) {
@@ -603,6 +630,8 @@ final class ResourcesApi extends AbstractApi
                     : ($servicesMode);
             }
         }
+
+
 
         // path params
 
@@ -622,6 +651,7 @@ final class ResourcesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -809,6 +839,7 @@ final class ResourcesApi extends AbstractApi
         ?array $services = null,
         ?string $servicesMode = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -816,6 +847,8 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesSummary'
             );
         }
+
+
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -831,6 +864,8 @@ final class ResourcesApi extends AbstractApi
                 when calling resourcesSummary'
             );
         }
+
+
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -874,6 +909,8 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -886,6 +923,8 @@ final class ResourcesApi extends AbstractApi
                     : ($to);
             }
         }
+
+
 
         // query params
         if ($aggs !== null) {
@@ -900,6 +939,8 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($types !== null) {
             if ('form' === 'form' && is_array($types)) {
@@ -912,6 +953,8 @@ final class ResourcesApi extends AbstractApi
                     : ($types);
             }
         }
+
+
 
         // query params
         if ($services !== null) {
@@ -926,6 +969,8 @@ final class ResourcesApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($servicesMode !== null) {
             if ('form' === 'form' && is_array($servicesMode)) {
@@ -938,6 +983,8 @@ final class ResourcesApi extends AbstractApi
                     : ($servicesMode);
             }
         }
+
+
 
         // path params
 
@@ -957,6 +1004,7 @@ final class ResourcesApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

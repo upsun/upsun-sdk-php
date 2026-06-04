@@ -13,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\ListUserExtendedAccess200Response;
-use Upsun\Model\StringFilter;
 
 /**
  * Low level GrantsApi (auto-generated)
@@ -27,13 +25,13 @@ final class GrantsApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -45,7 +43,7 @@ final class GrantsApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -121,6 +119,7 @@ final class GrantsApi extends AbstractApi
     private function getAccessDocumentRequest(
         string $accessId
     ): RequestInterface {
+
         // verify the required parameter 'accessId' is set
         if (empty($accessId)) {
             throw new InvalidArgumentException(
@@ -145,6 +144,7 @@ final class GrantsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -220,10 +220,10 @@ final class GrantsApi extends AbstractApi
      */
     public function listUserExtendedAccess(
         string $userId,
-        ?StringFilter $filterResourceType = null,
-        ?StringFilter $filterOrganizationId = null,
-        ?StringFilter $filterPermissions = null
-    ): ListUserExtendedAccess200Response {
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
+    ): \Upsun\Model\ListUserExtendedAccess200Response {
         return $this->listUserExtendedAccessWithHttpInfo(
             $userId,
             $filterResourceType,
@@ -246,10 +246,10 @@ final class GrantsApi extends AbstractApi
     */
     private function listUserExtendedAccessWithHttpInfo(
         string $userId,
-        ?StringFilter $filterResourceType = null,
-        ?StringFilter $filterOrganizationId = null,
-        ?StringFilter $filterPermissions = null
-    ): ListUserExtendedAccess200Response {
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
+    ): \Upsun\Model\ListUserExtendedAccess200Response {
         $request = $this->listUserExtendedAccessRequest(
             $userId,
             $filterResourceType,
@@ -297,10 +297,11 @@ final class GrantsApi extends AbstractApi
      */
     private function listUserExtendedAccessRequest(
         string $userId,
-        ?StringFilter $filterResourceType = null,
-        ?StringFilter $filterOrganizationId = null,
-        ?StringFilter $filterPermissions = null
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
     ): RequestInterface {
+
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -329,6 +330,8 @@ final class GrantsApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($filterOrganizationId !== null) {
             if ('form' === 'deepObject' && is_array($filterOrganizationId)) {
@@ -341,6 +344,8 @@ final class GrantsApi extends AbstractApi
                     : ($filterOrganizationId->getEq());
             }
         }
+
+
 
         // query params
         if ($filterPermissions !== null) {
@@ -355,6 +360,8 @@ final class GrantsApi extends AbstractApi
             }
         }
 
+
+
         // path params
 
         if ($userId !== null) {
@@ -364,6 +371,7 @@ final class GrantsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\EnvironmentOperationInput;
 
 /**
  * Low level RuntimeOperationsApi (auto-generated)
@@ -26,13 +25,13 @@ final class RuntimeOperationsApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -44,7 +43,7 @@ final class RuntimeOperationsApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -67,8 +66,8 @@ final class RuntimeOperationsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        EnvironmentOperationInput $environmentOperationInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->runOperationWithHttpInfo(
             $projectId,
             $environmentId,
@@ -89,8 +88,8 @@ final class RuntimeOperationsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        EnvironmentOperationInput $environmentOperationInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->runOperationRequest(
             $projectId,
             $environmentId,
@@ -136,8 +135,9 @@ final class RuntimeOperationsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        EnvironmentOperationInput $environmentOperationInput
+        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -201,6 +201,7 @@ final class RuntimeOperationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

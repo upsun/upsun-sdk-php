@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -24,13 +25,13 @@ final class ProjectsApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -42,7 +43,7 @@ final class ProjectsApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -132,6 +133,7 @@ final class ProjectsApi extends AbstractApi
         string $organizationId,
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -172,6 +174,7 @@ final class ProjectsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
