@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\IntegrationPatch;
 
 /**
  * Low level ScriptIntegrationPatch (auto-generated)
@@ -13,6 +14,7 @@ use JsonSerializable;
  */
 final class ScriptIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
+
     public const RESULT_STAR = '*';
     public const RESULT_FAILURE = 'failure';
     public const RESULT_SUCCESS = 'success';
@@ -27,6 +29,7 @@ final class ScriptIntegrationPatch implements Model, JsonSerializable, Integrati
         private readonly ?string $result = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -51,17 +54,17 @@ final class ScriptIntegrationPatch implements Model, JsonSerializable, Integrati
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The script to run
-     */
+   /**
+    * The script to run
+    */
     public function getScript(): string
     {
         return $this->script;
@@ -87,11 +90,12 @@ final class ScriptIntegrationPatch implements Model, JsonSerializable, Integrati
         return $this->states;
     }
 
-    /**
-     * Result to execute the hook on
-     */
+   /**
+    * Result to execute the hook on
+    */
     public function getResult(): ?string
     {
         return $this->result;
     }
 }
+

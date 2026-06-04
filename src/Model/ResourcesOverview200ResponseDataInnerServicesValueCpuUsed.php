@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ResourcesOverview200ResponseDataInnerServicesValueCpuUsed implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?float $min = null,
         private readonly ?float $max = null,
@@ -26,6 +28,7 @@ final class ResourcesOverview200ResponseDataInnerServicesValueCpuUsed implements
         private readonly ?float $p99 = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -103,3 +106,4 @@ final class ResourcesOverview200ResponseDataInnerServicesValueCpuUsed implements
         return $this->p99;
     }
 }
+

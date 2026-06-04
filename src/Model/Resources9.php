@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class Resources9 implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $baseMemory,
         private readonly int $memoryRatio,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,19 +41,20 @@ final class Resources9 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The base memory for the container
-     */
+   /**
+    * The base memory for the container
+    */
     public function getBaseMemory(): int
     {
         return $this->baseMemory;
     }
 
-    /**
-     * The amount of memory to allocate per units of CPU
-     */
+   /**
+    * The amount of memory to allocate per units of CPU
+    */
     public function getMemoryRatio(): int
     {
         return $this->memoryRatio;
     }
 }
+

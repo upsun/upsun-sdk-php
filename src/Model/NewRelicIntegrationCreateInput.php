@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\IntegrationCreateCreateInput;
 
 /**
  * Low level NewRelicIntegrationCreateInput (auto-generated)
@@ -13,6 +14,8 @@ use JsonSerializable;
  */
 final class NewRelicIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -22,6 +25,7 @@ final class NewRelicIntegrationCreateInput implements Model, JsonSerializable, I
         private readonly ?array $excludedServices = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -45,25 +49,25 @@ final class NewRelicIntegrationCreateInput implements Model, JsonSerializable, I
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The NewRelic Logs endpoint
-     */
+   /**
+    * The NewRelic Logs endpoint
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * The NewRelic Logs License Key
-     */
+   /**
+    * The NewRelic Logs License Key
+    */
     public function getLicenseKey(): string
     {
         return $this->licenseKey;
@@ -74,9 +78,9 @@ final class NewRelicIntegrationCreateInput implements Model, JsonSerializable, I
         return $this->extra;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
@@ -87,3 +91,4 @@ final class NewRelicIntegrationCreateInput implements Model, JsonSerializable, I
         return $this->excludedServices;
     }
 }
+

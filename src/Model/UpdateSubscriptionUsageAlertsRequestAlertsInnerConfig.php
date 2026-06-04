@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $threshold = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,3 +43,4 @@ final class UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig implements Mod
         return $this->threshold;
     }
 }
+

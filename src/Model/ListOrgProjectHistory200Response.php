@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class ListOrgProjectHistory200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $count,
         private readonly array $items,
         private readonly ListLinks $links,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -44,9 +47,9 @@ final class ListOrgProjectHistory200Response implements Model, JsonSerializable
         return $this->count;
     }
 
-    /**
-     * @return History[]
-     */
+   /**
+    * @return History[]
+    */
     public function getItems(): array
     {
         return $this->items;
@@ -57,3 +60,4 @@ final class ListOrgProjectHistory200Response implements Model, JsonSerializable
         return $this->links;
     }
 }
+

@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class BasicAuth implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $username,
         private readonly string $password,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,19 +41,20 @@ final class BasicAuth implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Username used to basic auth to container registry
-     */
+   /**
+    * Username used to basic auth to container registry
+    */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * Password used to basic auth to container registry
-     */
+   /**
+    * Password used to basic auth to container registry
+    */
     public function getPassword(): string
     {
         return $this->password;
     }
 }
+

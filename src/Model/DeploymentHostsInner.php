@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class DeploymentHostsInner implements Model, JsonSerializable
 {
+
     public const TYPE_CORE = 'core';
     public const TYPE_SATELLITE = 'satellite';
 
@@ -22,6 +23,7 @@ final class DeploymentHostsInner implements Model, JsonSerializable
         private readonly ?array $services = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -57,3 +59,4 @@ final class DeploymentHostsInner implements Model, JsonSerializable
         return $this->services;
     }
 }
+

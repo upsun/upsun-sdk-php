@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class WebConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $locations,
         private readonly bool $moveToRoot,
@@ -26,6 +28,7 @@ final class WebConfiguration implements Model, JsonSerializable
         private readonly ?UpstreamConfiguration $upstream = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -52,9 +55,9 @@ final class WebConfiguration implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return WebLocationsValue[]
-     */
+   /**
+    * @return WebLocationsValue[]
+    */
     public function getLocations(): array
     {
         return $this->locations;
@@ -105,3 +108,4 @@ final class WebConfiguration implements Model, JsonSerializable
         return $this->expires;
     }
 }
+

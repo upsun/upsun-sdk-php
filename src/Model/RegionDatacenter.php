@@ -14,12 +14,15 @@ use JsonSerializable;
  */
 final class RegionDatacenter implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?string $label = null,
         private readonly ?string $location = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -55,3 +58,4 @@ final class RegionDatacenter implements Model, JsonSerializable
         return $this->location;
     }
 }
+

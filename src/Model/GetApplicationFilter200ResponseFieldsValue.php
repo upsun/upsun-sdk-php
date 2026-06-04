@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class GetApplicationFilter200ResponseFieldsValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $distinctValues,
         private readonly array $values,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -42,11 +45,12 @@ final class GetApplicationFilter200ResponseFieldsValue implements Model, JsonSer
         return $this->distinctValues;
     }
 
-    /**
-     * @return GetApplicationFilter200ResponseFieldsValueValuesInner[]
-     */
+   /**
+    * @return GetApplicationFilter200ResponseFieldsValueValuesInner[]
+    */
     public function getValues(): array
     {
         return $this->values;
     }
 }
+

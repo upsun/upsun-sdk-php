@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class OrganizationProjectLinksDelete implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $href = null,
         private readonly ?string $method = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,19 +41,20 @@ final class OrganizationProjectLinksDelete implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * URL of the link.
-     */
+   /**
+    * URL of the link.
+    */
     public function getHref(): ?string
     {
         return $this->href;
     }
 
-    /**
-     * The HTTP method to use.
-     */
+   /**
+    * The HTTP method to use.
+    */
     public function getMethod(): ?string
     {
         return $this->method;
     }
 }
+

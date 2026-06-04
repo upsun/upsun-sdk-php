@@ -2,8 +2,8 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
+use Upsun\Model\Integration;
 
 /**
  * Low level SyslogIntegration (auto-generated)
@@ -14,6 +14,7 @@ use JsonSerializable;
  */
 final class SyslogIntegration implements Model, JsonSerializable, Integration
 {
+
     public const PROTOCOL_TCP = 'tcp';
     public const PROTOCOL_TLS = 'tls';
     public const PROTOCOL_UDP = 'udp';
@@ -31,11 +32,12 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
         private readonly string $messageFormat,
         private readonly bool $tlsVerify,
         private readonly array $excludedServices,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -66,33 +68,33 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The role of the integration
-     */
+   /**
+    * The role of the integration
+    */
     public function getRole(): string
     {
         return $this->role;
@@ -103,49 +105,49 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
         return $this->extra;
     }
 
-    /**
-     * Syslog relay/collector host
-     */
+   /**
+    * Syslog relay/collector host
+    */
     public function getHost(): string
     {
         return $this->host;
     }
 
-    /**
-     * Syslog relay/collector port
-     */
+   /**
+    * Syslog relay/collector port
+    */
     public function getPort(): int
     {
         return $this->port;
     }
 
-    /**
-     * Transport protocol
-     */
+   /**
+    * Transport protocol
+    */
     public function getProtocol(): string
     {
         return $this->protocol;
     }
 
-    /**
-     * Syslog facility
-     */
+   /**
+    * Syslog facility
+    */
     public function getFacility(): int
     {
         return $this->facility;
     }
 
-    /**
-     * Syslog message format
-     */
+   /**
+    * Syslog message format
+    */
     public function getMessageFormat(): string
     {
         return $this->messageFormat;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
@@ -156,11 +158,12 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
         return $this->excludedServices;
     }
 
-    /**
-     * The identifier of SyslogIntegration
-     */
+   /**
+    * The identifier of SyslogIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+

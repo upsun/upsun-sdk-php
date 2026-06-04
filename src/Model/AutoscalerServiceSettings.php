@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class AutoscalerServiceSettings implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?AutoscalerTriggers $triggers = null,
         private readonly ?AutoscalerInstances $instances = null,
@@ -22,6 +24,7 @@ final class AutoscalerServiceSettings implements Model, JsonSerializable
         private readonly ?AutoscalerScalingCooldown $scaleCooldown = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -44,43 +47,44 @@ final class AutoscalerServiceSettings implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Scaling triggers settings
-     */
+   /**
+    * Scaling triggers settings
+    */
     public function getTriggers(): ?AutoscalerTriggers
     {
         return $this->triggers;
     }
 
-    /**
-     * Horizontal scaling settings
-     */
+   /**
+    * Horizontal scaling settings
+    */
     public function getInstances(): ?AutoscalerInstances
     {
         return $this->instances;
     }
 
-    /**
-     * Vertical scaling settings
-     */
+   /**
+    * Vertical scaling settings
+    */
     public function getResources(): ?AutoscalerResources
     {
         return $this->resources;
     }
 
-    /**
-     * Scaling factor settings
-     */
+   /**
+    * Scaling factor settings
+    */
     public function getScaleFactor(): ?AutoscalerScalingFactor
     {
         return $this->scaleFactor;
     }
 
-    /**
-     * Scaling cooldown settings
-     */
+   /**
+    * Scaling cooldown settings
+    */
     public function getScaleCooldown(): ?AutoscalerScalingCooldown
     {
         return $this->scaleCooldown;
     }
 }
+

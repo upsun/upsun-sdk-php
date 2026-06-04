@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class CreateOrgRequest implements Model, JsonSerializable
 {
+
     public const TYPE_FIXED = 'fixed';
     public const TYPE_FLEXIBLE = 'flexible';
 
@@ -25,6 +26,7 @@ final class CreateOrgRequest implements Model, JsonSerializable
         private readonly ?string $securityContact = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -78,3 +80,4 @@ final class CreateOrgRequest implements Model, JsonSerializable
         return $this->securityContact;
     }
 }
+

@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,6 +13,8 @@ use JsonSerializable;
  */
 final class Deployment implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $clusterName,
@@ -33,11 +34,12 @@ final class Deployment implements Model, JsonSerializable
         private readonly array $containerProfiles,
         private readonly string $tasks,
         private readonly ?VPNConfiguration $vpn,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $fingerprint = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -76,135 +78,135 @@ final class Deployment implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of Deployment
-     */
+   /**
+    * The identifier of Deployment
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The name of the cluster
-     */
+   /**
+    * The name of the cluster
+    */
     public function getClusterName(): string
     {
         return $this->clusterName;
     }
 
-    /**
-     * The project information
-     */
+   /**
+    * The project information
+    */
     public function getProjectInfo(): ProjectInfo
     {
         return $this->projectInfo;
     }
 
-    /**
-     * The environment information
-     */
+   /**
+    * The environment information
+    */
     public function getEnvironmentInfo(): EnvironmentInfo
     {
         return $this->environmentInfo;
     }
 
-    /**
-     * The deployment target
-     */
+   /**
+    * The deployment target
+    */
     public function getDeploymentTarget(): string
     {
         return $this->deploymentTarget;
     }
 
-    /**
-     * The configuration of the VPN
-     */
+   /**
+    * The configuration of the VPN
+    */
     public function getVpn(): ?VPNConfiguration
     {
         return $this->vpn;
     }
 
-    /**
-     * The permissions of the HTTP access
-     */
+   /**
+    * The permissions of the HTTP access
+    */
     public function getHttpAccess(): HttpAccessPermissions
     {
         return $this->httpAccess;
     }
 
-    /**
-     * Whether to configure SMTP for this environment
-     */
+   /**
+    * Whether to configure SMTP for this environment
+    */
     public function getEnableSmtp(): bool
     {
         return $this->enableSmtp;
     }
 
-    /**
-     * Whether to restrict robots for this environment
-     */
+   /**
+    * Whether to restrict robots for this environment
+    */
     public function getRestrictRobots(): bool
     {
         return $this->restrictRobots;
     }
 
-    /**
-     * The variables applying to this environment
-     * @return EnvironmentVariablesInner[]
-     */
+   /**
+    * The variables applying to this environment
+    * @return EnvironmentVariablesInner[]
+    */
     public function getVariables(): array
     {
         return $this->variables;
     }
 
-    /**
-     * Access control definition for this enviroment
-     * @return AccessControlInner[]
-     */
+   /**
+    * Access control definition for this enviroment
+    * @return AccessControlInner[]
+    */
     public function getAccess(): array
     {
         return $this->access;
     }
 
-    /**
-     * Subscription
-     */
+   /**
+    * Subscription
+    */
     public function getSubscription(): Subscription1
     {
         return $this->subscription;
     }
 
-    /**
-     * The services
-     * @return ServicesValue[]
-     */
+   /**
+    * The services
+    * @return ServicesValue[]
+    */
     public function getServices(): array
     {
         return $this->services;
     }
 
-    /**
-     * The routes
-     * @return RoutesValue[]
-     */
+   /**
+    * The routes
+    * @return RoutesValue[]
+    */
     public function getRoutes(): array
     {
         return $this->routes;
     }
 
-    /**
-     * The Web applications
-     * @return WebApplicationsValue[]
-     */
+   /**
+    * The Web applications
+    * @return WebApplicationsValue[]
+    */
     public function getWebapps(): array
     {
         return $this->webapps;
     }
 
-    /**
-     * The workers
-     * @return WorkersValue[]
-     */
+   /**
+    * The workers
+    * @return WorkersValue[]
+    */
     public function getWorkers(): array
     {
         return $this->workers;
@@ -215,35 +217,36 @@ final class Deployment implements Model, JsonSerializable
         return $this->containerProfiles;
     }
 
-    /**
-     * The name of the deployment target
-     */
+   /**
+    * The name of the deployment target
+    */
     public function getTasks(): string
     {
         return $this->tasks;
     }
 
-    /**
-     * The creation date of the deployment
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date of the deployment
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date of the deployment
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date of the deployment
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The fingerprint of the deployment
-     */
+   /**
+    * The fingerprint of the deployment
+    */
     public function getFingerprint(): ?string
     {
         return $this->fingerprint;
     }
 }
+

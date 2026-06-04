@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectCapabilities implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly Tasks $tasks,
         private readonly Metrics $metrics,
@@ -31,6 +33,7 @@ final class ProjectCapabilities implements Model, JsonSerializable
         private readonly ?Integrations $integrations = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -88,9 +91,9 @@ final class ProjectCapabilities implements Model, JsonSerializable
         return $this->images;
     }
 
-    /**
-     * Maximum number of instance per service
-     */
+   /**
+    * Maximum number of instance per service
+    */
     public function getInstanceLimit(): int
     {
         return $this->instanceLimit;
@@ -141,3 +144,4 @@ final class ProjectCapabilities implements Model, JsonSerializable
         return $this->integrations;
     }
 }
+

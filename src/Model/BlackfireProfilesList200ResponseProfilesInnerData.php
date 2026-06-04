@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class BlackfireProfilesList200ResponseProfilesInnerData implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?BlackfireProfilesList200ResponseProfilesInnerDataEnvelope $envelope = null,
         private readonly ?BlackfireProfilesList200ResponseProfilesInnerDataImportantMetrics $importantMetrics = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class BlackfireProfilesList200ResponseProfilesInnerData implements Model, 
         return $this->importantMetrics;
     }
 }
+

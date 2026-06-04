@@ -14,10 +14,13 @@ use JsonSerializable;
  */
 final class ProjectFacets implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $plans = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -41,3 +44,4 @@ final class ProjectFacets implements Model, JsonSerializable
         return $this->plans;
     }
 }
+

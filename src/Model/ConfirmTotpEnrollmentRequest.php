@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class ConfirmTotpEnrollmentRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $secret,
         private readonly string $passcode,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class ConfirmTotpEnrollmentRequest implements Model, JsonSerializable
         return $this->passcode;
     }
 }
+

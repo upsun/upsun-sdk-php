@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class UpdateOrgRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?string $label = null,
@@ -21,6 +23,7 @@ final class UpdateOrgRequest implements Model, JsonSerializable
         private readonly ?string $securityContact = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -68,3 +71,4 @@ final class UpdateOrgRequest implements Model, JsonSerializable
         return $this->securityContact;
     }
 }
+

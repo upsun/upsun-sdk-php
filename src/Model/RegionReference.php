@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -15,6 +14,8 @@ use JsonSerializable;
  */
 final class RegionReference implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $label,
@@ -27,13 +28,14 @@ final class RegionReference implements Model, JsonSerializable
         private readonly RegionProvider $provider,
         private readonly RegionDatacenter $datacenter,
         private readonly RegionCompliance $compliance,
-        private readonly DateTime $createdAt,
-        private readonly DateTime $updatedAt,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
         private readonly ?bool $private = null,
         private readonly ?RegionEnvImpact $envimpact = null,
         private readonly ?object $environmentalImpact = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -67,132 +69,133 @@ final class RegionReference implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The machine name of the region where the project is located.
-     */
+   /**
+    * The machine name of the region where the project is located.
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The human-readable name of the region.
-     */
+   /**
+    * The human-readable name of the region.
+    */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * The geographical zone of the region.
-     */
+   /**
+    * The geographical zone of the region.
+    */
     public function getZone(): string
     {
         return $this->zone;
     }
 
-    /**
-     * The label to display when choosing between regions for new projects.
-     */
+   /**
+    * The label to display when choosing between regions for new projects.
+    */
     public function getSelectionLabel(): string
     {
         return $this->selectionLabel;
     }
 
-    /**
-     * The label to display on existing projects.
-     */
+   /**
+    * The label to display on existing projects.
+    */
     public function getProjectLabel(): string
     {
         return $this->projectLabel;
     }
 
-    /**
-     * Default timezone of the region.
-     */
+   /**
+    * Default timezone of the region.
+    */
     public function getTimezone(): string
     {
         return $this->timezone;
     }
 
-    /**
-     * Indicator whether or not this region is selectable during the checkout. Not available regions will never show up
-     * during checkout.
-     */
+   /**
+    * Indicator whether or not this region is selectable during the checkout. Not available regions will never show up
+    * during checkout.
+    */
     public function getAvailable(): bool
     {
         return $this->available;
     }
 
-    /**
-     * Link to the region API endpoint.
-     */
+   /**
+    * Link to the region API endpoint.
+    */
     public function getEndpoint(): string
     {
         return $this->endpoint;
     }
 
-    /**
-     * Information about the region provider.
-     */
+   /**
+    * Information about the region provider.
+    */
     public function getProvider(): RegionProvider
     {
         return $this->provider;
     }
 
-    /**
-     * Information about the region provider data center.
-     */
+   /**
+    * Information about the region provider data center.
+    */
     public function getDatacenter(): RegionDatacenter
     {
         return $this->datacenter;
     }
 
-    /**
-     * Information about the region's compliance.
-     */
+   /**
+    * Information about the region's compliance.
+    */
     public function getCompliance(): RegionCompliance
     {
         return $this->compliance;
     }
 
-    /**
-     * The date and time when the resource was created.
-     */
-    public function getCreatedAt(): DateTime
+   /**
+    * The date and time when the resource was created.
+    */
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the resource was last updated.
-     */
-    public function getUpdatedAt(): DateTime
+   /**
+    * The date and time when the resource was last updated.
+    */
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Indicator whether or not this platform is for private use only.
-     */
+   /**
+    * Indicator whether or not this platform is for private use only.
+    */
     public function getPrivate(): ?bool
     {
         return $this->private;
     }
 
-    /**
-     * Information about the region provider's environmental impact.
-     */
+   /**
+    * Information about the region provider's environmental impact.
+    */
     public function getEnvimpact(): ?RegionEnvImpact
     {
         return $this->envimpact;
     }
 
-    /**
-     * Environmental impact information for the region.
-     */
+   /**
+    * Environmental impact information for the region.
+    */
     public function getEnvironmentalImpact(): ?object
     {
         return $this->environmentalImpact;
     }
 }
+

@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class Error implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $error,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -35,11 +38,12 @@ final class Error implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Error message
-     */
+   /**
+    * Error message
+    */
     public function getError(): string
     {
         return $this->error;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class PrepaymentTransactionObject implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $updated = null,
         private readonly ?string $expireDate = null,
@@ -24,6 +26,7 @@ final class PrepaymentTransactionObject implements Model, JsonSerializable
         private readonly ?string $created = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -48,59 +51,60 @@ final class PrepaymentTransactionObject implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Order ID
-     */
+   /**
+    * Order ID
+    */
     public function getOrderId(): ?string
     {
         return $this->orderId;
     }
 
-    /**
-     * The message associated with transaction.
-     */
+   /**
+    * The message associated with transaction.
+    */
     public function getMessage(): ?string
     {
         return $this->message;
     }
 
-    /**
-     * Whether the transactions was successful or a failure.
-     */
+   /**
+    * Whether the transactions was successful or a failure.
+    */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * The prepayment balance in complex format.
-     */
+   /**
+    * The prepayment balance in complex format.
+    */
     public function getAmount(): ?PrepaymentTransactionObjectAmount
     {
         return $this->amount;
     }
 
-    /**
-     * Time the transaction was created.
-     */
+   /**
+    * Time the transaction was created.
+    */
     public function getCreated(): ?string
     {
         return $this->created;
     }
 
-    /**
-     * Time the transaction was last updated.
-     */
+   /**
+    * Time the transaction was last updated.
+    */
     public function getUpdated(): ?string
     {
         return $this->updated;
     }
 
-    /**
-     * The expiration date of the transaction (deposits only).
-     */
+   /**
+    * The expiration date of the transaction (deposits only).
+    */
     public function getExpireDate(): ?string
     {
         return $this->expireDate;
     }
 }
+

@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class CertificatePatch implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $chain = [],
         private readonly ?bool $isInvalid = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -42,11 +45,12 @@ final class CertificatePatch implements Model, JsonSerializable
         return $this->chain;
     }
 
-    /**
-     * Whether this certificate should be skipped during provisioning
-     */
+   /**
+    * Whether this certificate should be skipped during provisioning
+    */
     public function getIsInvalid(): ?bool
     {
         return $this->isInvalid;
     }
 }
+

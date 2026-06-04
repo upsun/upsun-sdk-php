@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class MountsValue implements Model, JsonSerializable
 {
+
     public const SOURCE_INSTANCE = 'instance';
     public const SOURCE_LOCAL = 'local';
     public const SOURCE_SERVICE = 'service';
@@ -26,6 +27,7 @@ final class MountsValue implements Model, JsonSerializable
         private readonly ?string $service = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -61,3 +63,4 @@ final class MountsValue implements Model, JsonSerializable
         return $this->service;
     }
 }
+

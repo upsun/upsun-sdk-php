@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Resources1 implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $baseMemory,
         private readonly ?int $memoryRatio,
@@ -22,6 +24,7 @@ final class Resources1 implements Model, JsonSerializable
         private readonly ?DiskResources1 $disk,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -75,3 +78,4 @@ final class Resources1 implements Model, JsonSerializable
         return $this->disk;
     }
 }
+

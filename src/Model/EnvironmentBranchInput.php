@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class EnvironmentBranchInput implements Model, JsonSerializable
 {
+
     public const TYPE_DEVELOPMENT = 'development';
     public const TYPE_STAGING = 'staging';
 
@@ -24,6 +25,7 @@ final class EnvironmentBranchInput implements Model, JsonSerializable
         private readonly ?string $type = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -56,17 +58,17 @@ final class EnvironmentBranchInput implements Model, JsonSerializable
         return $this->name;
     }
 
-    /**
-     * Clone data from the parent environment
-     */
+   /**
+    * Clone data from the parent environment
+    */
     public function getCloneParent(): ?bool
     {
         return $this->cloneParent;
     }
 
-    /**
-     * The type of environment (`staging` or `development`)
-     */
+   /**
+    * The type of environment (`staging` or `development`)
+    */
     public function getType(): ?string
     {
         return $this->type;
@@ -77,3 +79,4 @@ final class EnvironmentBranchInput implements Model, JsonSerializable
         return $this->resources;
     }
 }
+

@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\IntegrationCreateCreateInput;
 
 /**
  * Low level PagerDutyIntegrationCreateInput (auto-generated)
@@ -13,11 +14,14 @@ use JsonSerializable;
  */
 final class PagerDutyIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $routingKey,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -37,19 +41,20 @@ final class PagerDutyIntegrationCreateInput implements Model, JsonSerializable, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The PagerDuty routing key
-     */
+   /**
+    * The PagerDuty routing key
+    */
     public function getRoutingKey(): string
     {
         return $this->routingKey;
     }
 }
+

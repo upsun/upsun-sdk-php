@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class ContainerProfilesValueValue implements Model, JsonSerializable
 {
+
     public const CPU_TYPE_GUARANTEED = 'guaranteed';
     public const CPU_TYPE_SHARED = 'shared';
 
@@ -22,6 +23,7 @@ final class ContainerProfilesValueValue implements Model, JsonSerializable
         private readonly string $cpuType,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -57,3 +59,4 @@ final class ContainerProfilesValueValue implements Model, JsonSerializable
         return $this->cpuType;
     }
 }
+

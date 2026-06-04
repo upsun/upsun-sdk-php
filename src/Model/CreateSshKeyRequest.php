@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class CreateSshKeyRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $value,
         private readonly ?string $title = null,
         private readonly ?string $uuid = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -54,3 +57,4 @@ final class CreateSshKeyRequest implements Model, JsonSerializable
         return $this->uuid;
     }
 }
+

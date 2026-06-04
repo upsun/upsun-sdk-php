@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class GetApplicationMerge200ResponseFlamebearer implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $names,
         private readonly array $levels,
@@ -20,6 +22,7 @@ final class GetApplicationMerge200ResponseFlamebearer implements Model, JsonSeri
         private readonly int $maxSelf,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -61,3 +64,4 @@ final class GetApplicationMerge200ResponseFlamebearer implements Model, JsonSeri
         return $this->maxSelf;
     }
 }
+

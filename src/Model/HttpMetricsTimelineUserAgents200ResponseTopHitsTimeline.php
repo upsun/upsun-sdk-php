@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineUserAgents200ResponseTopHitsTimeline implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $data,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -34,11 +37,12 @@ final class HttpMetricsTimelineUserAgents200ResponseTopHitsTimeline implements M
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return HttpMetricsTimelineUserAgents200ResponseTopHitsTimelineDataInner[]
-     */
+   /**
+    * @return HttpMetricsTimelineUserAgents200ResponseTopHitsTimelineDataInner[]
+    */
     public function getData(): array
     {
         return $this->data;
     }
 }
+

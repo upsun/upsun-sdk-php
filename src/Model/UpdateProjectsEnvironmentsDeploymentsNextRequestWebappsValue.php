@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $instanceCount = null,
         private readonly ?int $disk = null,
         private readonly ?ResourceConfig $resources = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -54,3 +57,4 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue impleme
         return $this->disk;
     }
 }
+

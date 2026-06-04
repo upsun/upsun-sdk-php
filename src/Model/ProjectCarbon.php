@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ProjectCarbon implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $projectId = null,
         private readonly ?string $projectTitle = null,
@@ -21,6 +23,7 @@ final class ProjectCarbon implements Model, JsonSerializable
         private readonly ?float $total = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -43,17 +46,17 @@ final class ProjectCarbon implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the project.
-     */
+   /**
+    * The ID of the project.
+    */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-    /**
-     * The title of the project.
-     */
+   /**
+    * The title of the project.
+    */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
@@ -64,19 +67,20 @@ final class ProjectCarbon implements Model, JsonSerializable
         return $this->meta;
     }
 
-    /**
-     * @return MetricsValue[]|null
-     */
+   /**
+    * @return MetricsValue[]|null
+    */
     public function getValues(): ?array
     {
         return $this->values;
     }
 
-    /**
-     * The calculated total of the metric for the given interval.
-     */
+   /**
+    * The calculated total of the metric for the given interval.
+    */
     public function getTotal(): ?float
     {
         return $this->total;
     }
 }
+

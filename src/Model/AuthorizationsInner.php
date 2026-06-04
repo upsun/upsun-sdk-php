@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class AuthorizationsInner implements Model, JsonSerializable
 {
+
     public const TYPE_ENV = 'env';
     public const TYPE_TASK = 'task';
 
@@ -22,6 +23,7 @@ final class AuthorizationsInner implements Model, JsonSerializable
         private readonly ?string $resource,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -57,3 +59,4 @@ final class AuthorizationsInner implements Model, JsonSerializable
         return $this->resource;
     }
 }
+

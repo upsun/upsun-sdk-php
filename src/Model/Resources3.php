@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class Resources3 implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly DiskResources2 $disk,
         private readonly ?string $profileSize,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class Resources3 implements Model, JsonSerializable
         return $this->disk;
     }
 }
+

@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class MinimumResources implements Model, JsonSerializable
 {
+
     public const CPU_TYPE_GUARANTEED = 'guaranteed';
     public const CPU_TYPE_SHARED = 'shared';
 
@@ -24,6 +25,7 @@ final class MinimumResources implements Model, JsonSerializable
         private readonly ?string $profileSize,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -71,3 +73,4 @@ final class MinimumResources implements Model, JsonSerializable
         return $this->profileSize;
     }
 }
+

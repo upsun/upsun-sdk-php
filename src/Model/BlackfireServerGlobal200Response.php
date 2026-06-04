@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class BlackfireServerGlobal200Response implements Model, JsonSerializable
 {
+
     public const _CONTEXTS_MODE_ADDITIVE = 'additive';
     public const _CONTEXTS_MODE_SUBTRACTIVE = 'subtractive';
     public const _APPLICATIONS_MODE_ADDITIVE = 'additive';
@@ -43,6 +44,7 @@ final class BlackfireServerGlobal200Response implements Model, JsonSerializable
         private readonly ?string $distributionCost = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -133,9 +135,9 @@ final class BlackfireServerGlobal200Response implements Model, JsonSerializable
         return $this->branchMachineName;
     }
 
-    /**
-     * @return BlackfireServerGlobal200ResponseAlertEvaluationsInner[]
-     */
+   /**
+    * @return BlackfireServerGlobal200ResponseAlertEvaluationsInner[]
+    */
     public function getAlertEvaluations(): array
     {
         return $this->alertEvaluations;
@@ -171,3 +173,4 @@ final class BlackfireServerGlobal200Response implements Model, JsonSerializable
         return $this->distributionCost;
     }
 }
+

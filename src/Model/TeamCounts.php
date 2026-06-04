@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class TeamCounts implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $memberCount = null,
         private readonly ?int $projectCount = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -37,19 +40,20 @@ final class TeamCounts implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Total count of members of the team.
-     */
+   /**
+    * Total count of members of the team.
+    */
     public function getMemberCount(): ?int
     {
         return $this->memberCount;
     }
 
-    /**
-     * Total count of projects that the team has access to.
-     */
+   /**
+    * Total count of projects that the team has access to.
+    */
     public function getProjectCount(): ?int
     {
         return $this->projectCount;
     }
 }
+

@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class CacheConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
         private readonly int $defaultTtl,
@@ -21,6 +23,7 @@ final class CacheConfiguration implements Model, JsonSerializable
         private readonly array $headers,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -42,17 +45,17 @@ final class CacheConfiguration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether the cache is enabled.
-     */
+   /**
+    * Whether the cache is enabled.
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * The TTL to apply when the response doesn't specify one. Only applies to static files.
-     */
+   /**
+    * The TTL to apply when the response doesn't specify one. Only applies to static files.
+    */
     public function getDefaultTtl(): int
     {
         return $this->defaultTtl;
@@ -68,3 +71,4 @@ final class CacheConfiguration implements Model, JsonSerializable
         return $this->headers;
     }
 }
+

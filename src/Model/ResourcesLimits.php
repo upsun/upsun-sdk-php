@@ -14,12 +14,15 @@ use JsonSerializable;
  */
 final class ResourcesLimits implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $containerProfiles,
         private readonly ProductionResources $production,
         private readonly DevelopmentResources $development,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,27 +43,28 @@ final class ResourcesLimits implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Enable support for customizable container profiles
-     */
+   /**
+    * Enable support for customizable container profiles
+    */
     public function getContainerProfiles(): bool
     {
         return $this->containerProfiles;
     }
 
-    /**
-     * Resources for production environments
-     */
+   /**
+    * Resources for production environments
+    */
     public function getProduction(): ProductionResources
     {
         return $this->production;
     }
 
-    /**
-     * Resources for development environments
-     */
+   /**
+    * Resources for development environments
+    */
     public function getDevelopment(): DevelopmentResources
     {
         return $this->development;
     }
 }
+

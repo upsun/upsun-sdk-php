@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class EnvironmentType implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly array $attributes,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -37,9 +40,9 @@ final class EnvironmentType implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of EnvironmentType
-     */
+   /**
+    * The identifier of EnvironmentType
+    */
     public function getId(): string
     {
         return $this->id;
@@ -50,3 +53,4 @@ final class EnvironmentType implements Model, JsonSerializable
         return $this->attributes;
     }
 }
+

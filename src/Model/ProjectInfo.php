@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class ProjectInfo implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $title,
         private readonly string $name,
@@ -23,6 +25,7 @@ final class ProjectInfo implements Model, JsonSerializable
         private readonly ?string $organization,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -76,3 +79,4 @@ final class ProjectInfo implements Model, JsonSerializable
         return $this->settings;
     }
 }
+

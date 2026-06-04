@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineUserAgents200Response implements Model, JsonSerializable
 {
+
     public const _ENVIRONMENT_TYPE_PRODUCTION = 'production';
     public const _ENVIRONMENT_TYPE_STAGING = 'staging';
     public const _ENVIRONMENT_TYPE_DEVELOPMENT = 'development';
@@ -55,6 +56,7 @@ final class HttpMetricsTimelineUserAgents200Response implements Model, JsonSeria
         private readonly ?string $requestDurationSlotsMode = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -210,3 +212,4 @@ final class HttpMetricsTimelineUserAgents200Response implements Model, JsonSeria
         return $this->requestDurationSlotsMode;
     }
 }
+

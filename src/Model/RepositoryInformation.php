@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class RepositoryInformation implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $url,
         private readonly ?string $clientSshKey,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,19 +41,20 @@ final class RepositoryInformation implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The Git URL
-     */
+   /**
+    * The Git URL
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * SSH Key used to access external private repositories
-     */
+   /**
+    * SSH Key used to access external private repositories
+    */
     public function getClientSshKey(): ?string
     {
         return $this->clientSshKey;
     }
 }
+

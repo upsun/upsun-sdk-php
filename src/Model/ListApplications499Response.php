@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class ListApplications499Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $code,
         private readonly string $message,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class ListApplications499Response implements Model, JsonSerializable
         return $this->message;
     }
 }
+

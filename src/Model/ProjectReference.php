@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -15,6 +14,8 @@ use JsonSerializable;
  */
 final class ProjectReference implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $organizationId,
@@ -24,11 +25,12 @@ final class ProjectReference implements Model, JsonSerializable
         private readonly ProjectType $type,
         private readonly string $plan,
         private readonly ProjectStatus $status,
-        private readonly DateTime $createdAt,
-        private readonly DateTime $updatedAt,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
         private readonly ?bool $invoiced = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -57,91 +59,92 @@ final class ProjectReference implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the project.
-     */
+   /**
+    * The ID of the project.
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the organization.
-     */
+   /**
+    * The ID of the organization.
+    */
     public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The ID of the subscription.
-     */
+   /**
+    * The ID of the subscription.
+    */
     public function getSubscriptionId(): string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The machine name of the region where the project is located.
-     */
+   /**
+    * The machine name of the region where the project is located.
+    */
     public function getRegion(): string
     {
         return $this->region;
     }
 
-    /**
-     * The title of the project.
-     */
+   /**
+    * The title of the project.
+    */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * The type of projects.
-     */
+   /**
+    * The type of projects.
+    */
     public function getType(): ProjectType
     {
         return $this->type;
     }
 
-    /**
-     * The project plan.
-     */
+   /**
+    * The project plan.
+    */
     public function getPlan(): string
     {
         return $this->plan;
     }
 
-    /**
-     * The status of the project.
-     */
+   /**
+    * The status of the project.
+    */
     public function getStatus(): ProjectStatus
     {
         return $this->status;
     }
 
-    /**
-     * The date and time when the resource was created.
-     */
-    public function getCreatedAt(): DateTime
+   /**
+    * The date and time when the resource was created.
+    */
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the resource was last updated.
-     */
-    public function getUpdatedAt(): DateTime
+   /**
+    * The date and time when the resource was last updated.
+    */
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Whether the project is invoiced.
-     */
+   /**
+    * Whether the project is invoiced.
+    */
     public function getInvoiced(): ?bool
     {
         return $this->invoiced;
     }
 }
+

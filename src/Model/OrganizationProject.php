@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,6 +13,8 @@ use JsonSerializable;
  */
 final class OrganizationProject implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $dedicatedTag = null,
         private readonly ?array $activities = [],
@@ -32,11 +33,12 @@ final class OrganizationProject implements Model, JsonSerializable
         private readonly ?ProjectStatus $status = null,
         private readonly ?bool $trialPlan = null,
         private readonly ?string $projectUi = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?OrganizationProjectLinks $links = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -74,138 +76,138 @@ final class OrganizationProject implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the project.
-     */
+   /**
+    * The ID of the project.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the organization.
-     */
+   /**
+    * The ID of the organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The ID of the subscription.
-     */
+   /**
+    * The ID of the subscription.
+    */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * Vendor of the project.
-     */
+   /**
+    * Vendor of the project.
+    */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    /**
-     * The machine name of the region where the project is located.
-     */
+   /**
+    * The machine name of the region where the project is located.
+    */
     public function getRegion(): ?string
     {
         return $this->region;
     }
 
-    /**
-     * The title of the project.
-     */
+   /**
+    * The title of the project.
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * The type of projects.
-     */
+   /**
+    * The type of projects.
+    */
     public function getType(): ?ProjectType
     {
         return $this->type;
     }
 
-    /**
-     * The project plan.
-     */
+   /**
+    * The project plan.
+    */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * Timezone of the project.
-     */
+   /**
+    * Timezone of the project.
+    */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
-    /**
-     * Default branch.
-     */
+   /**
+    * Default branch.
+    */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
 
-    /**
-     * The status of the project.
-     */
+   /**
+    * The status of the project.
+    */
     public function getStatus(): ?ProjectStatus
     {
         return $this->status;
     }
 
-    /**
-     * Whether the project is currently on a trial plan.
-     */
+   /**
+    * Whether the project is currently on a trial plan.
+    */
     public function getTrialPlan(): ?bool
     {
         return $this->trialPlan;
     }
 
-    /**
-     * The URL for the project's user interface.
-     */
+   /**
+    * The URL for the project's user interface.
+    */
     public function getProjectUi(): ?string
     {
         return $this->projectUi;
     }
 
-    /**
-     * Dedicated tag.
-     */
+   /**
+    * Dedicated tag.
+    */
     public function getDedicatedTag(): ?string
     {
         return $this->dedicatedTag;
     }
 
-    /**
-     * The date and time when the resource was created.
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The date and time when the resource was created.
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the resource was last updated.
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The date and time when the resource was last updated.
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Activities information for the project.
-     * @return Activity[]|null
-     */
+   /**
+    * Activities information for the project.
+    * @return Activity[]|null
+    */
     public function getActivities(): ?array
     {
         return $this->activities;
@@ -226,3 +228,4 @@ final class OrganizationProject implements Model, JsonSerializable
         return $this->links;
     }
 }
+

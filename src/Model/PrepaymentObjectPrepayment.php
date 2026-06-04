@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class PrepaymentObjectPrepayment implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $lastUpdatedAt = null,
         private readonly ?string $fallback = null,
@@ -22,6 +24,7 @@ final class PrepaymentObjectPrepayment implements Model, JsonSerializable
         private readonly ?bool $sufficient = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -44,43 +47,44 @@ final class PrepaymentObjectPrepayment implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Organization ID
-     */
+   /**
+    * Organization ID
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The prepayment balance in complex format.
-     */
+   /**
+    * The prepayment balance in complex format.
+    */
     public function getBalance(): ?PrepaymentObjectPrepaymentBalance
     {
         return $this->balance;
     }
 
-    /**
-     * The date the prepayment balance was last updated.
-     */
+   /**
+    * The date the prepayment balance was last updated.
+    */
     public function getLastUpdatedAt(): ?string
     {
         return $this->lastUpdatedAt;
     }
 
-    /**
-     * Whether the prepayment balance is enough to cover the upcoming order.
-     */
+   /**
+    * Whether the prepayment balance is enough to cover the upcoming order.
+    */
     public function getSufficient(): ?bool
     {
         return $this->sufficient;
     }
 
-    /**
-     * The fallback payment method, if any, to be used in case prepayment balance is not enough to cover an order.
-     */
+   /**
+    * The fallback payment method, if any, to be used in case prepayment balance is not enough to cover an order.
+    */
     public function getFallback(): ?string
     {
         return $this->fallback;
     }
 }
+

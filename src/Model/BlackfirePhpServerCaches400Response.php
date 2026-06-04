@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class BlackfirePhpServerCaches400Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $title,
@@ -20,6 +22,7 @@ final class BlackfirePhpServerCaches400Response implements Model, JsonSerializab
         private readonly array $violations,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -61,3 +64,4 @@ final class BlackfirePhpServerCaches400Response implements Model, JsonSerializab
         return $this->violations;
     }
 }
+

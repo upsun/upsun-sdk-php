@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Diff implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $diff,
@@ -22,6 +24,7 @@ final class Diff implements Model, JsonSerializable
         private readonly ?string $oldPath,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -45,41 +48,41 @@ final class Diff implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of Diff
-     */
+   /**
+    * The identifier of Diff
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The unified diff between two trees
-     */
+   /**
+    * The unified diff between two trees
+    */
     public function getDiff(): string
     {
         return $this->diff;
     }
 
-    /**
-     * The new path of the file in the diff
-     */
+   /**
+    * The new path of the file in the diff
+    */
     public function getNewPath(): ?string
     {
         return $this->newPath;
     }
 
-    /**
-     * The new object ID of the file in the diff
-     */
+   /**
+    * The new object ID of the file in the diff
+    */
     public function getNewId(): ?string
     {
         return $this->newId;
     }
 
-    /**
-     * The old path of the file in the diff
-     */
+   /**
+    * The old path of the file in the diff
+    */
     public function getOldPath(): ?string
     {
         return $this->oldPath;
@@ -90,3 +93,4 @@ final class Diff implements Model, JsonSerializable
         return $this->oldId;
     }
 }
+

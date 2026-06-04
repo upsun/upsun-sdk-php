@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class BuildConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $caches,
         private readonly ?string $flavor,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -42,11 +45,12 @@ final class BuildConfiguration implements Model, JsonSerializable
         return $this->flavor;
     }
 
-    /**
-     * @return BuildCachesValue[]
-     */
+   /**
+    * @return BuildCachesValue[]
+    */
     public function getCaches(): array
     {
         return $this->caches;
     }
 }
+

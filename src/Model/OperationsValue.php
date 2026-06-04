@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class OperationsValue implements Model, JsonSerializable
 {
+
     public const ROLE_ADMIN = 'admin';
     public const ROLE_CONTRIBUTOR = 'contributor';
     public const ROLE_VIEWER = 'viewer';
@@ -23,6 +24,7 @@ final class OperationsValue implements Model, JsonSerializable
         private readonly ?int $timeout,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -58,3 +60,4 @@ final class OperationsValue implements Model, JsonSerializable
         return $this->role;
     }
 }
+

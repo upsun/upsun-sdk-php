@@ -2,8 +2,8 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
+use Upsun\Model\Integration;
 
 /**
  * Low level EmailIntegration (auto-generated)
@@ -14,16 +14,19 @@ use JsonSerializable;
  */
 final class EmailIntegration implements Model, JsonSerializable, Integration
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $role,
         private readonly array $recipients,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $fromAddress,
         private readonly ?string $id = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -48,41 +51,41 @@ final class EmailIntegration implements Model, JsonSerializable, Integration
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The role of the integration
-     */
+   /**
+    * The role of the integration
+    */
     public function getRole(): string
     {
         return $this->role;
     }
 
-    /**
-     * The email address to use
-     */
+   /**
+    * The email address to use
+    */
     public function getFromAddress(): ?string
     {
         return $this->fromAddress;
@@ -93,11 +96,12 @@ final class EmailIntegration implements Model, JsonSerializable, Integration
         return $this->recipients;
     }
 
-    /**
-     * The identifier of EmailIntegration
-     */
+   /**
+    * The identifier of EmailIntegration
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+

@@ -14,10 +14,13 @@ use JsonSerializable;
  */
 final class OrganizationMfaEnforcement implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?bool $enforceMfa = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -36,11 +39,12 @@ final class OrganizationMfaEnforcement implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether the MFA enforcement is enabled.
-     */
+   /**
+    * Whether the MFA enforcement is enabled.
+    */
     public function getEnforceMfa(): ?bool
     {
         return $this->enforceMfa;
     }
 }
+

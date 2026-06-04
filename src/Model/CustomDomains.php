@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class CustomDomains implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
         private readonly int $environmentsWithDomainsLimit,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -37,19 +40,20 @@ final class CustomDomains implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * If true, custom domains can be added to the project.
-     */
+   /**
+    * If true, custom domains can be added to the project.
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * Limit on the amount of non-production environments that can have domains set
-     */
+   /**
+    * Limit on the amount of non-production environments that can have domains set
+    */
     public function getEnvironmentsWithDomainsLimit(): int
     {
         return $this->environmentsWithDomainsLimit;
     }
 }
+

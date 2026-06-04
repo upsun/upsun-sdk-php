@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineUrls200ResponseBreakdown implements Model, JsonSerializable
 {
+
     public const KIND_URL = 'url';
 
     public function __construct(
@@ -21,6 +22,7 @@ final class HttpMetricsTimelineUrls200ResponseBreakdown implements Model, JsonSe
         private readonly array $data,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -51,11 +53,12 @@ final class HttpMetricsTimelineUrls200ResponseBreakdown implements Model, JsonSe
         return $this->total;
     }
 
-    /**
-     * @return HttpMetricsTimelineUrls200ResponseBreakdownDataInner[]
-     */
+   /**
+    * @return HttpMetricsTimelineUrls200ResponseBreakdownDataInner[]
+    */
     public function getData(): array
     {
         return $this->data;
     }
 }
+

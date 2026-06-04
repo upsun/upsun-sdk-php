@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class OutboundFirewall implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -35,11 +38,12 @@ final class OutboundFirewall implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * If true, outbound firewall can be used.
-     */
+   /**
+    * If true, outbound firewall can be used.
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 }
+

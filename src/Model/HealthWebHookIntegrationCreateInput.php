@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\IntegrationCreateCreateInput;
 
 /**
  * Low level HealthWebHookIntegrationCreateInput (auto-generated)
@@ -13,12 +14,15 @@ use JsonSerializable;
  */
 final class HealthWebHookIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
         private readonly ?string $sharedKey = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -39,27 +43,28 @@ final class HealthWebHookIntegrationCreateInput implements Model, JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The URL of the webhook
-     */
+   /**
+    * The URL of the webhook
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * The JWS shared secret key
-     */
+   /**
+    * The JWS shared secret key
+    */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
 }
+

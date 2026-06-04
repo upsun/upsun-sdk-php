@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,16 +13,19 @@ use JsonSerializable;
  */
 final class RegistryCredential implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $id,
         private readonly string $registry,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?BasicAuth $auth,
         private readonly ?string $identityToken,
         private readonly ?string $registryToken,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -48,60 +50,61 @@ final class RegistryCredential implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of RegistryCredential
-     */
+   /**
+    * The identifier of RegistryCredential
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Registry hostname with optional port and optional path namespace, e.g. 'ghcr.io', 'registry.example.com:5000',
-     * 'quay.io/myorg' (no scheme, no trailing slash, lowercase only)
-     */
+   /**
+    * Registry hostname with optional port and optional path namespace, e.g. 'ghcr.io', 'registry.example.com:5000',
+    * 'quay.io/myorg' (no scheme, no trailing slash, lowercase only)
+    */
     public function getRegistry(): string
     {
         return $this->registry;
     }
 
-    /**
-     * Basic Auth for the container registry
-     */
+   /**
+    * Basic Auth for the container registry
+    */
     public function getAuth(): ?BasicAuth
     {
         return $this->auth;
     }
 
-    /**
-     * Refresh token to exchange for bearer token with container registry auth
-     */
+   /**
+    * Refresh token to exchange for bearer token with container registry auth
+    */
     public function getIdentityToken(): ?string
     {
         return $this->identityToken;
     }
 
-    /**
-     * Bearer token used to auth with container registry auth
-     */
+   /**
+    * Bearer token used to auth with container registry auth
+    */
     public function getRegistryToken(): ?string
     {
         return $this->registryToken;
     }
 }
+

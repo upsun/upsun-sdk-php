@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class HalLinksPrevious implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $title = null,
         private readonly ?string $href = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,19 +41,20 @@ final class HalLinksPrevious implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Title of the link
-     */
+   /**
+    * Title of the link
+    */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * URL of the link
-     */
+   /**
+    * URL of the link
+    */
     public function getHref(): ?string
     {
         return $this->href;
     }
 }
+
