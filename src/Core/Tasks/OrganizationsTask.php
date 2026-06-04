@@ -65,6 +65,7 @@ use Upsun\Model\Profile;
 use Upsun\Model\Project;
 use Upsun\Model\ProjectCarbon;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue; // only mentionned in PHPDocs
+use Upsun\Model\ProvisionEvent;
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
