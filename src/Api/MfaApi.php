@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use Closure;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,6 +11,7 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\ConfirmTotpEnrollmentRequest;
 use Upsun\Model\GetTotpEnrollment200Response;
@@ -32,7 +32,7 @@ final class MfaApi extends AbstractApi
     private ApiConfiguration $config;
 
     public function __construct(
-        Closure $tokenProvider,
+        TokenProvider $tokenProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?ApiConfiguration $config = null,

@@ -13,6 +13,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use Upsun\Api\AbstractApi;
 use Upsun\Api\ApiException;
+use Upsun\Core\TokenProvider;
 
 /**
  * Test suite for AbstractApi — focuses on sendAuthenticatedRequest() logic (FIX 1: 401 retry).
@@ -29,8 +30,8 @@ class AbstractApiTest extends TestCase
     /** @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject */
     private ClientInterface $httpClient;
 
-    private int $tokenCallCount = 0;
-    private int $forceRefreshCount = 0;
+    public int $tokenCallCount = 0;
+    public int $forceRefreshCount = 0;
 
     private Psr17Factory $psr17Factory;
 
@@ -41,13 +42,20 @@ class AbstractApiTest extends TestCase
         $this->tokenCallCount    = 0;
         $this->forceRefreshCount = 0;
 
-        // Closure-based tokenProvider: tracks call count and force-refresh requests.
-        $tokenProvider = function (bool $force = false): string {
-            $this->tokenCallCount++;
-            if ($force) {
-                $this->forceRefreshCount++;
+        // Anonymous class implementing TokenProvider: tracks call count and force-refresh requests.
+        $tokenProvider = new class ($this) implements TokenProvider {
+            public function __construct(private readonly AbstractApiTest $test)
+            {
             }
-            return 'Bearer test-token';
+
+            public function __invoke(bool $force = false): string
+            {
+                $this->test->tokenCallCount++;
+                if ($force) {
+                    $this->test->forceRefreshCount++;
+                }
+                return 'Bearer test-token';
+            }
         };
 
         $this->api = new class (
