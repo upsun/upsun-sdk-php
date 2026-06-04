@@ -36,7 +36,13 @@ class TeamsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            static fn (bool $force = false): string => 'Bearer test-token',
+            new class implements \Upsun\Core\TokenProvider
+            {
+                public function __invoke(bool $force = false): string
+                {
+                    return 'Bearer test-token';
+                }
+            },
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

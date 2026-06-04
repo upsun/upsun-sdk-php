@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use Closure;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -14,6 +13,7 @@ use Psr\Http\Message\StreamFactoryInterface;
 use SplFileObject;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\FormDataProcessor;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\Address;
 use Upsun\Model\CreateProfilePicture200Response;
 use Upsun\Model\ListProfiles200Response;
@@ -34,7 +34,7 @@ final class UserProfilesApi extends AbstractApi
     private ApiConfiguration $config;
 
     public function __construct(
-        Closure $tokenProvider,
+        TokenProvider $tokenProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?ApiConfiguration $config = null,

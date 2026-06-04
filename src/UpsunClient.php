@@ -95,6 +95,7 @@ use Upsun\Core\Tasks\UsersInvitationsTask;
 use Upsun\Core\Tasks\UsersTask;
 use Upsun\Core\Tasks\VariablesTask;
 use Upsun\Core\Tasks\WorkersTask;
+use Upsun\Core\TokenProvider;
 
 /**
  * Upsun Client to interact with the API.
@@ -185,14 +186,26 @@ class UpsunClient
             );
         }
 
-        $tokenProvider = function (bool $force = false): string {
-            if ($force && $this->auth !== null) {
-                $this->auth->forceRefresh();
+        $tokenProvider = new class ($this) implements TokenProvider {
+            public function __construct(private readonly UpsunClient $client)
+            {
             }
-            return $this->getToken();
+
+            public function __invoke(bool $force = false): string
+            {
+                if ($force && $this->client->auth !== null) {
+                    $this->client->auth->forceRefresh();
+                }
+                return $this->client->getToken();
+            }
         };
 
-        $taskParams = [$tokenProvider, $this->apiClient, $requestFactory, $this->apiConfig];
+        $taskParams = [
+            $tokenProvider,
+            $this->apiClient,
+            $requestFactory,
+            $this->apiConfig,
+        ];
 
         // Init used API classes
         $addOnsApi = new AddOnsApi(...$taskParams);

@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use Closure;
 use Exception;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClientFactory;
@@ -19,6 +18,7 @@ use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
+use Upsun\Core\TokenProvider;
 
 use function sprintf;
 
@@ -40,7 +40,7 @@ abstract class AbstractApi
     private readonly UriFactoryInterface $uriFactory;
 
     public function __construct(
-        private readonly Closure $tokenProvider,
+        private readonly TokenProvider $tokenProvider,
         private ClientInterface $httpClient,
         private readonly RequestFactoryInterface $requestFactory,
         private readonly string $baseUri,

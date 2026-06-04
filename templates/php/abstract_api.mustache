@@ -5,6 +5,7 @@ namespace {{invokerPackage}}\Api;
 use Exception;
 use InvalidArgumentException;
 use JsonException;
+use {{invokerPackage}}\Core\TokenProvider;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClientFactory;
 use Http\Discovery\Psr17FactoryDiscovery;
@@ -36,7 +37,7 @@ abstract class AbstractApi
     private readonly UriFactoryInterface $uriFactory;
 
     public function __construct(
-        private readonly \Closure $tokenProvider,
+        private readonly TokenProvider $tokenProvider,
         private ClientInterface $httpClient,
         private readonly RequestFactoryInterface $requestFactory,
         private readonly string $baseUri,
