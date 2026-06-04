@@ -2,6 +2,7 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Upsun\Core\TokenProvider;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -30,7 +31,7 @@ class BackupsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            new class implements \Upsun\Core\TokenProvider
+            new class implements TokenProvider
             {
                 public function __invoke(bool $force = false): string
                 {

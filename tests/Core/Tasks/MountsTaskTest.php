@@ -2,6 +2,7 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Upsun\Core\TokenProvider;
 use GuzzleHttp\Psr7\Response;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Client\ClientInterface;
@@ -31,7 +32,7 @@ class MountsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            new class implements \Upsun\Core\TokenProvider
+            new class implements TokenProvider
             {
                 public function __invoke(bool $force = false): string
                 {
