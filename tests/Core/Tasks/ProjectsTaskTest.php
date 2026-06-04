@@ -2,6 +2,11 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Upsun\Model\ListOrgProjectHistory200Response;
+use Upsun\Model\RegistryCredentialCreateInput;
+use Upsun\Model\BasicAuth;
+use Upsun\Model\RegistryCredential;
+use Upsun\Model\RegistryCredentialPatch;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -2568,9 +2573,6 @@ FAKE-CHAIN-CERT-DATA2
     /**
      * @throws ClientExceptionInterface
      */
-    /**
-     * @throws ClientExceptionInterface
-     */
     public function testDeleteDomainWithError()
     {
         $projectId = 'test-project';
@@ -3023,5 +3025,181 @@ FAKE-CHAIN-CERT-DATA2
 
         $this->expectException(ApiException::class);
         $this->projectsTask->listEnvironments(projectId: $projectId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testListOrgProjectHistorySuccess(): void
+    {
+        $payload = [
+            'count' => 1,
+            'items' => [
+                [
+                    'id' => 'hist-1',
+                    'projectId' => 'project123',
+                    'eventType' => 'deploy',
+                    'eventId' => 'evt-1',
+                    'resource' => 'cpu_app',
+                    'environment' => 'main',
+                    'quantity' => '1',
+                    'timestamp' => '2025-01-01T00:00:00+00:00',
+                    'user' => 'user-1'
+                ]
+            ],
+            'links' => [
+                'self' => ['href' => 'https://api.example.test/history']
+            ]
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($payload)));
+
+        $result = $this->projectsTask->listOrgProjectHistory('org123', 'project123');
+
+        $this->assertInstanceOf(ListOrgProjectHistory200Response::class, $result);
+        $this->assertObjectProperties($result, $payload);
+    }
+
+    public function testGetSbomWithInvalidProjectId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->projectsTask->getSbom('', 'env456', 'dep123', 'svc123');
+    }
+
+    public function testListSbomsWithInvalidEnvironmentId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->projectsTask->listSboms('project123', '', 'dep123');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCreateOciRegistrySuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode([
+                'status' => 'accepted',
+                'code' => 200
+            ])));
+
+        $result = $this->projectsTask->createOciRegistry(
+            'project123',
+            new RegistryCredentialCreateInput(
+                'ghcr.io',
+                new BasicAuth('user', 'pass')
+            )
+        );
+
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteOciRegistrySuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode([
+                'status' => 'accepted',
+                'code' => 200
+            ])));
+
+        $result = $this->projectsTask->deleteOciRegistry('project123', 'registry123');
+
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testGetOciRegistrySuccess(): void
+    {
+        $payload = [
+            'id' => 'registry123',
+            'registry' => 'ghcr.io',
+            'createdAt' => '2025-01-01T00:00:00+00:00',
+            'updatedAt' => '2025-01-02T00:00:00+00:00',
+            'auth' => ['username' => 'user', 'password' => 'pass'],
+            'identityToken' => 'identity-token',
+            'registryToken' => 'registry-token'
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($payload)));
+
+        $result = $this->projectsTask->getOciRegistry('project123', 'registry123');
+
+        $this->assertInstanceOf(RegistryCredential::class, $result);
+        $this->assertObjectProperties($result, $payload);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testListOciRegistriesSuccess(): void
+    {
+        $payload = [
+            [
+                'id' => 'registry123',
+                'registry' => 'ghcr.io',
+                'createdAt' => '2025-01-01T00:00:00+00:00',
+                'updatedAt' => '2025-01-02T00:00:00+00:00',
+                'auth' => ['username' => 'user', 'password' => 'pass'],
+                'identityToken' => 'identity-token',
+                'registryToken' => 'registry-token'
+            ]
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($payload)));
+
+        $result = $this->projectsTask->listOciRegistries('project123');
+
+        $this->assertContainsOnlyInstancesOf(RegistryCredential::class, $result);
+        $this->assertObjectMatchesArray($result, $payload);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateOciRegistrySuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode([
+                'status' => 'accepted',
+                'code' => 200
+            ])));
+
+        $result = $this->projectsTask->updateOciRegistry(
+            'project123',
+            'registry123',
+            new RegistryCredentialPatch(
+                new BasicAuth('user', 'pass'),
+                null,
+                null,
+                'ghcr.io/new'
+            )
+        );
+
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 }

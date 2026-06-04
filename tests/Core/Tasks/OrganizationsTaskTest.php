@@ -2,6 +2,7 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Upsun\Model\ProvisionEvent;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -3133,5 +3134,49 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->expectException(ApiException::class);
 
         $this->organizationsTask->downloadInvoice(token: $token);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testStreamOrgProjectProvisioningSuccess(): void
+    {
+        $payload = [
+            'type' => 'data',
+            'projectId' => 'project123',
+            'stage' => 'build',
+            'label' => 'Building project',
+            'reason' => null,
+            'timestamp' => '2025-01-01T00:00:00+00:00',
+            'steps' => []
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/x-ndjson'],
+                    json_encode($payload) . "\n"
+                )
+            );
+
+        $result = $this->organizationsTask->streamOrgProjectProvisioning('org123');
+
+        $this->assertInstanceOf(\Generator::class, $result);
+
+        $events = iterator_to_array($result, false);
+        $this->assertCount(1, $events);
+        $this->assertInstanceOf(ProvisionEvent::class, $events[0]);
+        $this->assertObjectProperties($events[0], $payload);
+    }
+
+    public function testStreamOrgProjectProvisioningWithInvalidOrganizationId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->streamOrgProjectProvisioning('');
     }
 }

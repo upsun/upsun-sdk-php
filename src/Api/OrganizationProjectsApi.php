@@ -1247,7 +1247,7 @@ final class OrganizationProjectsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      *
-     * @return \Upsun\Model\ProvisionEvent
+    * @return Generator<int,\Upsun\Model\ProvisionEvent>
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/stream-org-project-provisioning
      */
     public function streamOrgProjectProvisioning(
@@ -1267,7 +1267,7 @@ final class OrganizationProjectsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      *
-     * @return \Upsun\Model\ProvisionEvent
+    * @return Generator<int,\Upsun\Model\ProvisionEvent>
     */
     private function streamOrgProjectProvisioningWithHttpInfo(
         string $organizationId
@@ -1284,7 +1284,7 @@ final class OrganizationProjectsApi extends AbstractApi
                 $request->getBody()
             );
 
-            return $this->handleResponseWithDataType(
+            return $this->handleNdjsonStreamWithDataType(
                 '\Upsun\Model\ProvisionEvent',
                 $request,
                 $response

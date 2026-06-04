@@ -3,6 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
+use Generator;
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\AddOnsApi;
@@ -63,7 +64,6 @@ use Upsun\Model\OrganizationProject;
 use Upsun\Model\Profile;
 use Upsun\Model\Project;
 use Upsun\Model\ProjectCarbon;
-use Upsun\Model\ProvisionEvent;
 // only mentionned in PHPDocs
 use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\SendOrgMfaRemindersRequest;
@@ -1584,7 +1584,7 @@ class OrganizationsTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the organizationId is invalid
      */
-    public function streamOrgProjectProvisioning(string $organizationId): ProvisionEvent
+    public function streamOrgProjectProvisioning(string $organizationId): Generator
     {
         $this->checkOrganizationId($organizationId);
 

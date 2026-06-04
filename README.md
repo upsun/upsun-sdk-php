@@ -18,6 +18,14 @@ Install the SDK via Composer:
 composer require upsun/upsun-sdk-php
 ```
 
+> **Important**:
+> This SDK relies on PSR interfaces and requires a **PSR-18 HTTP client** implementation at runtime.
+> If your project does not already provide one, install a compatible client, for example:
+>
+> ```bash
+> composer require symfony/http-client
+> ```
+
 Then include Composer's autoloader in your PHP application:
 
 ```php

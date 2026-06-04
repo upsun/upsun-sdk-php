@@ -2,6 +2,9 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Upsun\Model\ResourcesByService200Response;
+use Upsun\Model\ResourcesOverview200Response;
+use Upsun\Model\ResourcesSummary200Response;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -359,5 +362,84 @@ class ResourcesTaskTest extends BaseTestCase
         );
 
         $this->assertObjectProperties($result, $expectedData);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testResourcesByServiceSuccess(): void
+    {
+        $payload = [
+            'grain' => 60,
+            'from' => 100,
+            'to' => 200,
+            'projectId' => 'project123',
+            'environmentId' => 'env456',
+            'branchMachineName' => 'main-abc123',
+            'service' => 'app',
+            'data' => [],
+            'dg2HostTypesMapping' => []
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($payload)));
+
+        $result = $this->resourcesTask->resourcesByService('project123', 'env456', 'app', 100, 200);
+
+        $this->assertInstanceOf(ResourcesByService200Response::class, $result);
+        $this->assertObjectProperties($result, $payload);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testResourcesOverviewSuccess(): void
+    {
+        $payload = [
+            'grain' => 60,
+            'from' => 100,
+            'to' => 200,
+            'projectId' => 'project123',
+            'environmentId' => 'env456',
+            'branchMachineName' => 'main-abc123',
+            'data' => []
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($payload)));
+
+        $result = $this->resourcesTask->resourcesOverview('project123', 'env456', 100, 200);
+
+        $this->assertInstanceOf(ResourcesOverview200Response::class, $result);
+        $this->assertObjectProperties($result, $payload);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testResourcesSummarySuccess(): void
+    {
+        $payload = [
+            'from' => 100,
+            'to' => 200,
+            'projectId' => 'project123',
+            'environmentId' => 'env456',
+            'branchMachineName' => 'main-abc123',
+            'data' => ['services' => []]
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($payload)));
+
+        $result = $this->resourcesTask->resourcesSummary('project123', 'env456', 100, 200);
+
+        $this->assertInstanceOf(ResourcesSummary200Response::class, $result);
+        $this->assertObjectProperties($result, $payload);
     }
 }

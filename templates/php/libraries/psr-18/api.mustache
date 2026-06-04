@@ -69,7 +69,12 @@ use {{invokerPackage}}\FormDataProcessor;
      * @throws ClientExceptionInterface
 {{#vendorExtensions.x-return-types-displayReturn}}
      *
+{{#vendorExtensions.x-ndjson-stream}}
+    * @return \Generator<int,{{vendorExtensions.x-stream-item-type}}>
+{{/vendorExtensions.x-ndjson-stream}}
+{{^vendorExtensions.x-ndjson-stream}}
      * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}
+{{/vendorExtensions.x-ndjson-stream}}
 {{/vendorExtensions.x-return-types-displayReturn}}
      * @see {{docUrl}}/api/#tag/{{vendorExtensions.x-tag-id-kebab}}/operation/{{vendorExtensions.x-property-id-kebab}}
 {{#vendorExtensions.x-deprecated}}
@@ -108,7 +113,12 @@ use {{invokerPackage}}\FormDataProcessor;
      * @throws ClientExceptionInterface
 {{#vendorExtensions.x-return-types-displayReturn}}
      *
+{{#vendorExtensions.x-ndjson-stream}}
+    * @return \Generator<int,{{vendorExtensions.x-stream-item-type}}>
+{{/vendorExtensions.x-ndjson-stream}}
+{{^vendorExtensions.x-ndjson-stream}}
      * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}
+{{/vendorExtensions.x-ndjson-stream}}
 {{/vendorExtensions.x-return-types-displayReturn}}
     */
     private function {{operationId}}WithHttpInfo({{#allParams}}
@@ -127,11 +137,17 @@ use {{invokerPackage}}\FormDataProcessor;
                 $request->getBody()
             );{{#vendorExtensions.x-returnable}}
 
+{{#vendorExtensions.x-ndjson-stream}}
+            return $this->handleNdjsonStreamWithDataType(
+                '{{vendorExtensions.x-stream-item-type}}',
+                $request,
+                $response
+            );{{/vendorExtensions.x-ndjson-stream}}{{^vendorExtensions.x-ndjson-stream}}
             return $this->handleResponseWithDataType(
                 '{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}',
                 $request,
                 $response
-            );{{/vendorExtensions.x-returnable}}
+            );{{/vendorExtensions.x-ndjson-stream}}{{/vendorExtensions.x-returnable}}
         } catch (Exception $exception) {
             throw new ApiException(
                 sprintf(
