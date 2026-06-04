@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineUrls200ResponseBreakdownDataInner implements Model, JsonSerializable
 {
-
     public const METHOD_GET = 'GET';
     public const METHOD_POST = 'POST';
     public const METHOD_PUT = 'PUT';
@@ -33,7 +32,6 @@ final class HttpMetricsTimelineUrls200ResponseBreakdownDataInner implements Mode
         private readonly ?float $impact,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -99,4 +97,3 @@ final class HttpMetricsTimelineUrls200ResponseBreakdownDataInner implements Mode
         return $this->topHit;
     }
 }
-

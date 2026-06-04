@@ -14,7 +14,6 @@ use JsonSerializable;
  */
 final class LineItem implements Model, JsonSerializable
 {
-
     public const TYPE_PROJECT_PLAN = 'project_plan';
     public const TYPE_PROJECT_FEATURE = 'project_feature';
     public const TYPE_PROJECT_SUBTOTAL = 'project_subtotal';
@@ -34,7 +33,6 @@ final class LineItem implements Model, JsonSerializable
         private readonly ?bool $excludeFromInvoice = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -61,77 +59,76 @@ final class LineItem implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of line item.
-    */
+    /**
+     * The type of line item.
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-   /**
-    * The associated subscription identifier.
-    */
+    /**
+     * The associated subscription identifier.
+     */
     public function getLicenseId(): ?float
     {
         return $this->licenseId;
     }
 
-   /**
-    * The associated project identifier.
-    */
+    /**
+     * The associated project identifier.
+     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-   /**
-    * Display name of the line item product.
-    */
+    /**
+     * Display name of the line item product.
+     */
     public function getProduct(): ?string
     {
         return $this->product;
     }
 
-   /**
-    * The line item product SKU.
-    */
+    /**
+     * The line item product SKU.
+     */
     public function getSku(): ?string
     {
         return $this->sku;
     }
 
-   /**
-    * Total price as a decimal.
-    */
+    /**
+     * Total price as a decimal.
+     */
     public function getTotal(): ?float
     {
         return $this->total;
     }
 
-   /**
-    * Total price, formatted with currency.
-    */
+    /**
+     * Total price, formatted with currency.
+     */
     public function getTotalFormatted(): ?string
     {
         return $this->totalFormatted;
     }
 
-   /**
-    * The price components for the line item, keyed by type.
-    * @return LineItemComponent[]|null
-    */
+    /**
+     * The price components for the line item, keyed by type.
+     * @return LineItemComponent[]|null
+     */
     public function getComponents(): ?array
     {
         return $this->components;
     }
 
-   /**
-    * Line item should not be considered billable.
-    */
+    /**
+     * Line item should not be considered billable.
+     */
     public function getExcludeFromInvoice(): ?bool
     {
         return $this->excludeFromInvoice;
     }
 }
-

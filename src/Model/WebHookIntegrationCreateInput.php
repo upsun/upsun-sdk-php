@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\IntegrationCreateCreateInput;
 
 /**
  * Low level WebHookIntegrationCreateInput (auto-generated)
@@ -14,7 +13,6 @@ use Upsun\Model\IntegrationCreateCreateInput;
  */
 final class WebHookIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateCreateInput
 {
-
     public const RESULT_STAR = '*';
     public const RESULT_FAILURE = 'failure';
     public const RESULT_SUCCESS = 'success';
@@ -30,7 +28,6 @@ final class WebHookIntegrationCreateInput implements Model, JsonSerializable, In
         private readonly ?string $result = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -56,17 +53,17 @@ final class WebHookIntegrationCreateInput implements Model, JsonSerializable, In
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The URL of the webhook
-    */
+    /**
+     * The URL of the webhook
+     */
     public function getUrl(): string
     {
         return $this->url;
@@ -92,20 +89,19 @@ final class WebHookIntegrationCreateInput implements Model, JsonSerializable, In
         return $this->states;
     }
 
-   /**
-    * Result to execute the hook on
-    */
+    /**
+     * Result to execute the hook on
+     */
     public function getResult(): ?string
     {
         return $this->result;
     }
 
-   /**
-    * The JWS shared secret key
-    */
+    /**
+     * The JWS shared secret key
+     */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
 }
-

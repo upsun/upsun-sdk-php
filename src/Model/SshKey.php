@@ -14,8 +14,6 @@ use JsonSerializable;
  */
 final class SshKey implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?int $keyId = null,
         private readonly ?int $uid = null,
@@ -25,7 +23,6 @@ final class SshKey implements Model, JsonSerializable
         private readonly ?string $changed = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -49,52 +46,51 @@ final class SshKey implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The ID of the public key.
-    */
+    /**
+     * The ID of the public key.
+     */
     public function getKeyId(): ?int
     {
         return $this->keyId;
     }
 
-   /**
-    * The internal user ID.
-    */
+    /**
+     * The internal user ID.
+     */
     public function getUid(): ?int
     {
         return $this->uid;
     }
 
-   /**
-    * The fingerprint of the public key.
-    */
+    /**
+     * The fingerprint of the public key.
+     */
     public function getFingerprint(): ?string
     {
         return $this->fingerprint;
     }
 
-   /**
-    * The title of the public key.
-    */
+    /**
+     * The title of the public key.
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-   /**
-    * The actual value of the public key.
-    */
+    /**
+     * The actual value of the public key.
+     */
     public function getValue(): ?string
     {
         return $this->value;
     }
 
-   /**
-    * The time of the last key modification (ISO 8601)
-    */
+    /**
+     * The time of the last key modification (ISO 8601)
+     */
     public function getChanged(): ?string
     {
         return $this->changed;
     }
 }
-

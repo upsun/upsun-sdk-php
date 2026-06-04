@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineUrls200ResponseFilters implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly int $maxApplicableFilters,
         private readonly ?array $fields = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -45,12 +42,11 @@ final class HttpMetricsTimelineUrls200ResponseFilters implements Model, JsonSeri
         return $this->maxApplicableFilters;
     }
 
-   /**
-    * @return HttpMetricsTimelineUrls200ResponseFiltersFieldsValue[]|null
-    */
+    /**
+     * @return HttpMetricsTimelineUrls200ResponseFiltersFieldsValue[]|null
+     */
     public function getFields(): ?array
     {
         return $this->fields;
     }
 }
-

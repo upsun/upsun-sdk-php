@@ -2,6 +2,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 /**
@@ -13,8 +14,6 @@ use JsonSerializable;
  */
 final class Certificate implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $id,
         private readonly string $certificate,
@@ -25,12 +24,11 @@ final class Certificate implements Model, JsonSerializable
         private readonly array $domains,
         private readonly array $authType,
         private readonly array $issuer,
-        private readonly \DateTime $expiresAt,
-        private readonly ?\DateTime $createdAt,
-        private readonly ?\DateTime $updatedAt,
+        private readonly DateTime $expiresAt,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -60,33 +58,33 @@ final class Certificate implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The identifier of Certificate
-    */
+    /**
+     * The identifier of Certificate
+     */
     public function getId(): string
     {
         return $this->id;
     }
 
-   /**
-    * The creation date
-    */
-    public function getCreatedAt(): ?\DateTime
+    /**
+     * The creation date
+     */
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-   /**
-    * The update date
-    */
-    public function getUpdatedAt(): ?\DateTime
+    /**
+     * The update date
+     */
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
 
-   /**
-    * The PEM-encoded certificate
-    */
+    /**
+     * The PEM-encoded certificate
+     */
     public function getCertificate(): string
     {
         return $this->certificate;
@@ -97,25 +95,25 @@ final class Certificate implements Model, JsonSerializable
         return $this->chain;
     }
 
-   /**
-    * Whether this certificate is automatically provisioned
-    */
+    /**
+     * Whether this certificate is automatically provisioned
+     */
     public function getIsProvisioned(): bool
     {
         return $this->isProvisioned;
     }
 
-   /**
-    * Whether this certificate should be skipped during provisioning
-    */
+    /**
+     * Whether this certificate should be skipped during provisioning
+     */
     public function getIsInvalid(): bool
     {
         return $this->isInvalid;
     }
 
-   /**
-    * Whether this certificate is root type
-    */
+    /**
+     * Whether this certificate is root type
+     */
     public function getIsRoot(): bool
     {
         return $this->isRoot;
@@ -131,21 +129,20 @@ final class Certificate implements Model, JsonSerializable
         return $this->authType;
     }
 
-   /**
-    * The issuer of the certificate
-    * @return IssuerInner[]
-    */
+    /**
+     * The issuer of the certificate
+     * @return IssuerInner[]
+     */
     public function getIssuer(): array
     {
         return $this->issuer;
     }
 
-   /**
-    * Expiration date
-    */
-    public function getExpiresAt(): \DateTime
+    /**
+     * Expiration date
+     */
+    public function getExpiresAt(): DateTime
     {
         return $this->expiresAt;
     }
 }
-

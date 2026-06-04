@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class EnvironmentVariablePatch implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?array $attributes = [],
@@ -28,7 +26,6 @@ final class EnvironmentVariablePatch implements Model, JsonSerializable
         private readonly ?bool $isInheritable = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -56,9 +53,9 @@ final class EnvironmentVariablePatch implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Name of the variable
-    */
+    /**
+     * Name of the variable
+     */
     public function getName(): ?string
     {
         return $this->name;
@@ -69,41 +66,41 @@ final class EnvironmentVariablePatch implements Model, JsonSerializable
         return $this->attributes;
     }
 
-   /**
-    * Value of the variable
-    */
+    /**
+     * Value of the variable
+     */
     public function getValue(): ?string
     {
         return $this->value;
     }
 
-   /**
-    * The variable is a JSON string
-    */
+    /**
+     * The variable is a JSON string
+     */
     public function getIsJson(): ?bool
     {
         return $this->isJson;
     }
 
-   /**
-    * The variable is sensitive
-    */
+    /**
+     * The variable is sensitive
+     */
     public function getIsSensitive(): ?bool
     {
         return $this->isSensitive;
     }
 
-   /**
-    * The variable is visible during build
-    */
+    /**
+     * The variable is visible during build
+     */
     public function getVisibleBuild(): ?bool
     {
         return $this->visibleBuild;
     }
 
-   /**
-    * The variable is visible at runtime
-    */
+    /**
+     * The variable is visible at runtime
+     */
     public function getVisibleRuntime(): ?bool
     {
         return $this->visibleRuntime;
@@ -114,20 +111,19 @@ final class EnvironmentVariablePatch implements Model, JsonSerializable
         return $this->applicationScope;
     }
 
-   /**
-    * The variable is enabled on this environment
-    */
+    /**
+     * The variable is enabled on this environment
+     */
     public function getIsEnabled(): ?bool
     {
         return $this->isEnabled;
     }
 
-   /**
-    * The variable is inheritable to child environments
-    */
+    /**
+     * The variable is inheritable to child environments
+     */
     public function getIsInheritable(): ?bool
     {
         return $this->isInheritable;
     }
 }
-

@@ -13,15 +13,12 @@ use JsonSerializable;
  */
 final class CreateTeamRequest implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $organizationId,
         private readonly string $label,
         private readonly ?array $projectPermissions = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -57,4 +54,3 @@ final class CreateTeamRequest implements Model, JsonSerializable
         return $this->projectPermissions;
     }
 }
-

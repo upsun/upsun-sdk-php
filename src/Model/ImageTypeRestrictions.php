@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class ImageTypeRestrictions implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?array $only = [],
         private readonly ?array $exclude = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -51,4 +48,3 @@ final class ImageTypeRestrictions implements Model, JsonSerializable
         return $this->exclude;
     }
 }
-

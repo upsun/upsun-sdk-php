@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -11,8 +10,14 @@ use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use SplFileObject;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Address;
+use Upsun\Model\CreateProfilePicture200Response;
+use Upsun\Model\ListProfiles200Response;
+use Upsun\Model\Profile;
+use Upsun\Model\UpdateProfileRequest;
 
 /**
  * Low level UserProfilesApi (auto-generated)
@@ -53,7 +58,7 @@ final class UserProfilesApi extends AbstractApi
      *
      *
      * @param  string $uuid (required)
-     * @param  \SplFileObject|null $file (optional)
+     * @param  SplFileObject|null $file (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -61,8 +66,8 @@ final class UserProfilesApi extends AbstractApi
      */
     public function createProfilePicture(
         string $uuid,
-        ?\SplFileObject $file = null
-    ): \Upsun\Model\CreateProfilePicture200Response {
+        ?SplFileObject $file = null
+    ): CreateProfilePicture200Response {
         return $this->createProfilePictureWithHttpInfo(
             $uuid,
             $file
@@ -73,15 +78,15 @@ final class UserProfilesApi extends AbstractApi
      * Create a user profile picture with HTTP Info
      *
      * @param  string $uuid (required)
-     * @param  \SplFileObject|null $file (optional)
+     * @param  SplFileObject|null $file (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
     private function createProfilePictureWithHttpInfo(
         string $uuid,
-        ?\SplFileObject $file = null
-    ): \Upsun\Model\CreateProfilePicture200Response {
+        ?SplFileObject $file = null
+    ): CreateProfilePicture200Response {
         $request = $this->createProfilePictureRequest(
             $uuid,
             $file
@@ -118,15 +123,14 @@ final class UserProfilesApi extends AbstractApi
      * Create request for operation 'createProfilePicture'
      *
      * @param  string $uuid (required)
-     * @param  \SplFileObject|null $file (optional)
+     * @param  SplFileObject|null $file (optional)
      *
      * @throws InvalidArgumentException
      */
     private function createProfilePictureRequest(
         string $uuid,
-        ?\SplFileObject $file = null
+        ?SplFileObject $file = null
     ): RequestInterface {
-
         // verify the required parameter 'uuid' is set
         if (empty($uuid)) {
             throw new InvalidArgumentException(
@@ -161,7 +165,6 @@ final class UserProfilesApi extends AbstractApi
 
         $formParams = $formDataProcessor->flatten($formData);
         $multipart = $formDataProcessor->has_file;
-        
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -283,7 +286,6 @@ final class UserProfilesApi extends AbstractApi
     private function deleteProfilePictureRequest(
         string $uuid
     ): RequestInterface {
-
         // verify the required parameter 'uuid' is set
         if (empty($uuid)) {
             throw new InvalidArgumentException(
@@ -308,7 +310,6 @@ final class UserProfilesApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             [],
@@ -439,7 +440,6 @@ final class UserProfilesApi extends AbstractApi
     private function getAddressRequest(
         string $userId
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -464,7 +464,6 @@ final class UserProfilesApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -535,7 +534,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function getProfile(
         string $userId
-    ): \Upsun\Model\Profile {
+    ): Profile {
         return $this->getProfileWithHttpInfo(
             $userId
         );
@@ -552,7 +551,7 @@ final class UserProfilesApi extends AbstractApi
     */
     private function getProfileWithHttpInfo(
         string $userId
-    ): \Upsun\Model\Profile {
+    ): Profile {
         $request = $this->getProfileRequest(
             $userId
         );
@@ -595,7 +594,6 @@ final class UserProfilesApi extends AbstractApi
     private function getProfileRequest(
         string $userId
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -620,7 +618,6 @@ final class UserProfilesApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -686,8 +683,7 @@ final class UserProfilesApi extends AbstractApi
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/list-profiles
      */
-    public function listProfiles(
-    ): \Upsun\Model\ListProfiles200Response 
+    public function listProfiles(): ListProfiles200Response
     {
         return $this->listProfilesWithHttpInfo(
         );
@@ -699,8 +695,7 @@ final class UserProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
-    private function listProfilesWithHttpInfo(
-    ): \Upsun\Model\ListProfiles200Response 
+    private function listProfilesWithHttpInfo(): ListProfiles200Response
     {
         $request = $this->listProfilesRequest(
         );
@@ -737,18 +732,14 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    private function listProfilesRequest(
-    ): RequestInterface {
-
-
+    private function listProfilesRequest(): RequestInterface
+    {
         $resourcePath = '/profiles';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -820,7 +811,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function updateAddress(
         string $userId,
-        ?\Upsun\Model\Address $address = null
+        ?Address $address = null
     ): mixed {
         return $this->updateAddressWithHttpInfo(
             $userId,
@@ -839,7 +830,7 @@ final class UserProfilesApi extends AbstractApi
     */
     private function updateAddressWithHttpInfo(
         string $userId,
-        ?\Upsun\Model\Address $address = null
+        ?Address $address = null
     ): mixed {
         $request = $this->updateAddressRequest(
             $userId,
@@ -883,9 +874,8 @@ final class UserProfilesApi extends AbstractApi
      */
     private function updateAddressRequest(
         string $userId,
-        ?\Upsun\Model\Address $address = null
+        ?Address $address = null
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -910,7 +900,6 @@ final class UserProfilesApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -990,8 +979,8 @@ final class UserProfilesApi extends AbstractApi
      */
     public function updateProfile(
         string $userId,
-        ?\Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
-    ): \Upsun\Model\Profile {
+        ?UpdateProfileRequest $updateProfileRequest = null
+    ): Profile {
         return $this->updateProfileWithHttpInfo(
             $userId,
             $updateProfileRequest
@@ -1009,8 +998,8 @@ final class UserProfilesApi extends AbstractApi
     */
     private function updateProfileWithHttpInfo(
         string $userId,
-        ?\Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
-    ): \Upsun\Model\Profile {
+        ?UpdateProfileRequest $updateProfileRequest = null
+    ): Profile {
         $request = $this->updateProfileRequest(
             $userId,
             $updateProfileRequest
@@ -1053,9 +1042,8 @@ final class UserProfilesApi extends AbstractApi
      */
     private function updateProfileRequest(
         string $userId,
-        ?\Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
+        ?UpdateProfileRequest $updateProfileRequest = null
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -1080,7 +1068,6 @@ final class UserProfilesApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

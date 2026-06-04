@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class Commit implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $id,
         private readonly string $sha,
@@ -25,7 +23,6 @@ final class Commit implements Model, JsonSerializable
         private readonly array $parents,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,49 +47,49 @@ final class Commit implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The identifier of Commit
-    */
+    /**
+     * The identifier of Commit
+     */
     public function getId(): string
     {
         return $this->id;
     }
 
-   /**
-    * The identifier of the commit
-    */
+    /**
+     * The identifier of the commit
+     */
     public function getSha(): string
     {
         return $this->sha;
     }
 
-   /**
-    * The information about the author
-    */
+    /**
+     * The information about the author
+     */
     public function getAuthor(): Author
     {
         return $this->author;
     }
 
-   /**
-    * The information about the committer
-    */
+    /**
+     * The information about the committer
+     */
     public function getCommitter(): Committer
     {
         return $this->committer;
     }
 
-   /**
-    * The commit message
-    */
+    /**
+     * The commit message
+     */
     public function getMessage(): string
     {
         return $this->message;
     }
 
-   /**
-    * The identifier of the tree
-    */
+    /**
+     * The identifier of the tree
+     */
     public function getTree(): string
     {
         return $this->tree;
@@ -103,4 +100,3 @@ final class Commit implements Model, JsonSerializable
         return $this->parents;
     }
 }
-

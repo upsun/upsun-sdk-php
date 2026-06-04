@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class UpstreamConfiguration implements Model, JsonSerializable
 {
-
     public const SOCKET_FAMILY_TCP = 'tcp';
     public const SOCKET_FAMILY_UNIX = 'unix';
     public const PROTOCOL_FASTCGI = 'fastcgi';
@@ -24,7 +23,6 @@ final class UpstreamConfiguration implements Model, JsonSerializable
         private readonly ?string $protocol,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -54,4 +52,3 @@ final class UpstreamConfiguration implements Model, JsonSerializable
         return $this->protocol;
     }
 }
-

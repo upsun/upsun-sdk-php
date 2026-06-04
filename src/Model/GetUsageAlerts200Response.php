@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class GetUsageAlerts200Response implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?array $available = [],
         private readonly ?array $current = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -39,20 +36,19 @@ final class GetUsageAlerts200Response implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-   /**
-    * @return Alert[]|null
-    */
+    /**
+     * @return Alert[]|null
+     */
     public function getAvailable(): ?array
     {
         return $this->available;
     }
 
-   /**
-    * @return Alert[]|null
-    */
+    /**
+     * @return Alert[]|null
+     */
     public function getCurrent(): ?array
     {
         return $this->current;
     }
 }
-

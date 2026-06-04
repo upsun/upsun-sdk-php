@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class GetTotpEnrollment200Response implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $issuer = null,
         private readonly ?string $accountName = null,
@@ -22,7 +20,6 @@ final class GetTotpEnrollment200Response implements Model, JsonSerializable
         private readonly ?string $qrCode = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -64,4 +61,3 @@ final class GetTotpEnrollment200Response implements Model, JsonSerializable
         return $this->qrCode;
     }
 }
-

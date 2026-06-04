@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireServerTopSpans200ResponseTopSpansDataInner implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $id,
         private readonly string $label,
@@ -28,7 +26,6 @@ final class BlackfireServerTopSpans200ResponseTopSpansDataInner implements Model
         private readonly ?float $percentage,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -106,4 +103,3 @@ final class BlackfireServerTopSpans200ResponseTopSpansDataInner implements Model
         return $this->impact;
     }
 }
-

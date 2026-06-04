@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class TreeItemsInner implements Model, JsonSerializable
 {
-
     public const MODE__040000 = '040000';
     public const MODE__100644 = '100644';
     public const MODE__100755 = '100755';
@@ -27,7 +26,6 @@ final class TreeItemsInner implements Model, JsonSerializable
         private readonly ?string $sha,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -69,4 +67,3 @@ final class TreeItemsInner implements Model, JsonSerializable
         return $this->sha;
     }
 }
-

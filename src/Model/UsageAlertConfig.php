@@ -14,13 +14,10 @@ use JsonSerializable;
  */
 final class UsageAlertConfig implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?UsageAlertConfigThreshold $threshold = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -39,12 +36,11 @@ final class UsageAlertConfig implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Data regarding threshold spend.
-    */
+    /**
+     * Data regarding threshold spend.
+     */
     public function getThreshold(): ?UsageAlertConfigThreshold
     {
         return $this->threshold;
     }
 }
-

@@ -14,8 +14,6 @@ use JsonSerializable;
  */
 final class UsageGroupCurrentUsageProperties implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $title = null,
         private readonly ?bool $type = null,
@@ -28,7 +26,6 @@ final class UsageGroupCurrentUsageProperties implements Model, JsonSerializable
         private readonly ?string $dailyAverageFormatted = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -55,76 +52,75 @@ final class UsageGroupCurrentUsageProperties implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The title of the usage group.
-    */
+    /**
+     * The title of the usage group.
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-   /**
-    * The usage group type.
-    */
+    /**
+     * The usage group type.
+     */
     public function getType(): ?bool
     {
         return $this->type;
     }
 
-   /**
-    * The value of current usage for the group.
-    */
+    /**
+     * The value of current usage for the group.
+     */
     public function getCurrentUsage(): ?float
     {
         return $this->currentUsage;
     }
 
-   /**
-    * The formatted value of current usage for the group.
-    */
+    /**
+     * The formatted value of current usage for the group.
+     */
     public function getCurrentUsageFormatted(): ?string
     {
         return $this->currentUsageFormatted;
     }
 
-   /**
-    * Whether the group is not charged for the subscription.
-    */
+    /**
+     * Whether the group is not charged for the subscription.
+     */
     public function getNotCharged(): ?bool
     {
         return $this->notCharged;
     }
 
-   /**
-    * The amount of free usage for the group.
-    */
+    /**
+     * The amount of free usage for the group.
+     */
     public function getFreeQuantity(): ?float
     {
         return $this->freeQuantity;
     }
 
-   /**
-    * The formatted amount of free usage for the group.
-    */
+    /**
+     * The formatted amount of free usage for the group.
+     */
     public function getFreeQuantityFormatted(): ?string
     {
         return $this->freeQuantityFormatted;
     }
 
-   /**
-    * The daily average usage calculated for the group.
-    */
+    /**
+     * The daily average usage calculated for the group.
+     */
     public function getDailyAverage(): ?float
     {
         return $this->dailyAverage;
     }
 
-   /**
-    * The formatted daily average usage calculated for the group.
-    */
+    /**
+     * The formatted daily average usage calculated for the group.
+     */
     public function getDailyAverageFormatted(): ?string
     {
         return $this->dailyAverageFormatted;
     }
 }
-

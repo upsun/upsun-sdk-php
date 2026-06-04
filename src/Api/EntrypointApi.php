@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -130,7 +129,6 @@ final class EntrypointApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -138,8 +136,6 @@ final class EntrypointApi extends AbstractApi
                 when calling observabilityEntrypoint'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -156,15 +152,12 @@ final class EntrypointApi extends AbstractApi
             );
         }
 
-
-
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"environmentId\" when calling EntrypointApi.observabilityEntrypoint,
                 must conform to the pattern /.+/."
             );
         }
-
 
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability';
         $formParams = [];
@@ -191,7 +184,6 @@ final class EntrypointApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

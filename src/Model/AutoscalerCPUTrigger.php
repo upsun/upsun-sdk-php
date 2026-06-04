@@ -15,15 +15,12 @@ use JsonSerializable;
  */
 final class AutoscalerCPUTrigger implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?bool $enabled = null,
         private readonly ?AutoscalerCondition $down = null,
         private readonly ?AutoscalerCondition $up = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -44,28 +41,27 @@ final class AutoscalerCPUTrigger implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Whether the trigger is enabled
-    */
+    /**
+     * Whether the trigger is enabled
+     */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
 
-   /**
-    * Trigger condition settings
-    */
+    /**
+     * Trigger condition settings
+     */
     public function getDown(): ?AutoscalerCondition
     {
         return $this->down;
     }
 
-   /**
-    * Trigger condition settings
-    */
+    /**
+     * Trigger condition settings
+     */
     public function getUp(): ?AutoscalerCondition
     {
         return $this->up;
     }
 }
-

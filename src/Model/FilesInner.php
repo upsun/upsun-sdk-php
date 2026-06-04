@@ -13,15 +13,12 @@ use JsonSerializable;
  */
 final class FilesInner implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $path,
         private readonly ?int $mode = null,
         private readonly ?string $contents = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -57,4 +54,3 @@ final class FilesInner implements Model, JsonSerializable
         return $this->contents;
     }
 }
-

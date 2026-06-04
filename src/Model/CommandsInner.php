@@ -13,15 +13,12 @@ use JsonSerializable;
  */
 final class CommandsInner implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $app,
         private readonly string $type,
         private readonly int $exitCode,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -57,4 +54,3 @@ final class CommandsInner implements Model, JsonSerializable
         return $this->exitCode;
     }
 }
-

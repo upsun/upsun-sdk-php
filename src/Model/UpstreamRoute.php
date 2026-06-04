@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\Route;
 
 /**
  * Low level UpstreamRoute (auto-generated)
@@ -14,7 +13,6 @@ use Upsun\Model\Route;
  */
 final class UpstreamRoute implements Model, JsonSerializable, Route
 {
-
     public const TYPE_PROXY = 'proxy';
     public const TYPE_REDIRECT = 'redirect';
     public const TYPE_UPSTREAM = 'upstream';
@@ -34,7 +32,6 @@ final class UpstreamRoute implements Model, JsonSerializable, Route
         private readonly ?string $to = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -69,92 +66,91 @@ final class UpstreamRoute implements Model, JsonSerializable, Route
         return $this->attributes;
     }
 
-   /**
-    * Route type
-    */
+    /**
+     * Route type
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * TLS settings for the route
-    */
+    /**
+     * TLS settings for the route
+     */
     public function getTls(): TLSSettings
     {
         return $this->tls;
     }
 
-   /**
-    * The identifier of UpstreamRoute
-    */
+    /**
+     * The identifier of UpstreamRoute
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-   /**
-    * This route is the primary route of the environment
-    */
+    /**
+     * This route is the primary route of the environment
+     */
     public function getPrimary(): ?bool
     {
         return $this->primary;
     }
 
-   /**
-    * How this URL route would look on production environment
-    */
+    /**
+     * How this URL route would look on production environment
+     */
     public function getProductionUrl(): ?string
     {
         return $this->productionUrl;
     }
 
-   /**
-    * Cache configuration
-    */
+    /**
+     * Cache configuration
+     */
     public function getCache(): ?CacheConfiguration
     {
         return $this->cache;
     }
 
-   /**
-    * Server-Side Include configuration
-    */
+    /**
+     * Server-Side Include configuration
+     */
     public function getSsi(): ?SSIConfiguration
     {
         return $this->ssi;
     }
 
-   /**
-    * The upstream to use for this route
-    */
+    /**
+     * The upstream to use for this route
+     */
     public function getUpstream(): ?string
     {
         return $this->upstream;
     }
 
-   /**
-    * The configuration of the redirects
-    */
+    /**
+     * The configuration of the redirects
+     */
     public function getRedirects(): ?RedirectConfiguration
     {
         return $this->redirects;
     }
 
-   /**
-    * Sticky routing configuration
-    */
+    /**
+     * Sticky routing configuration
+     */
     public function getSticky(): ?StickyConfiguration
     {
         return $this->sticky;
     }
 
-   /**
-    * The destination of the proxy
-    */
+    /**
+     * The destination of the proxy
+     */
     public function getTo(): ?string
     {
         return $this->to;
     }
 }
-

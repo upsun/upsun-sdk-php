@@ -2,6 +2,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,15 +15,12 @@ use JsonSerializable;
  */
 final class Committer implements Model, JsonSerializable
 {
-
-
     public function __construct(
-        private readonly \DateTime $date,
+        private readonly DateTime $date,
         private readonly string $name,
         private readonly string $email,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,28 +41,27 @@ final class Committer implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The time of the author or committer
-    */
-    public function getDate(): \DateTime
+    /**
+     * The time of the author or committer
+     */
+    public function getDate(): DateTime
     {
         return $this->date;
     }
 
-   /**
-    * The name of the author or committer
-    */
+    /**
+     * The name of the author or committer
+     */
     public function getName(): string
     {
         return $this->name;
     }
 
-   /**
-    * The email of the author or committer
-    */
+    /**
+     * The email of the author or committer
+     */
     public function getEmail(): string
     {
         return $this->email;
     }
 }
-

@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinks implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinksApiSubprofiles $apiSubprofiles,
         private readonly BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinksApiProfile $apiProfile,
@@ -22,7 +20,6 @@ final class BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinks
         private readonly ?BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinksApiTimeline $apiTimeline = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -64,4 +61,3 @@ final class BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinks
         return $this->apiTimeline;
     }
 }
-

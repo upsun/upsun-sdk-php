@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class RegistryCredentialPatch implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?BasicAuth $auth = null,
         private readonly ?string $identityToken = null,
@@ -22,7 +20,6 @@ final class RegistryCredentialPatch implements Model, JsonSerializable
         private readonly ?string $registry = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -44,37 +41,36 @@ final class RegistryCredentialPatch implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Registry hostname with optional port and optional path namespace, e.g. 'ghcr.io', 'registry.example.com:5000',
-    * 'quay.io/myorg' (no scheme, no trailing slash, lowercase only)
-    */
+    /**
+     * Registry hostname with optional port and optional path namespace, e.g. 'ghcr.io', 'registry.example.com:5000',
+     * 'quay.io/myorg' (no scheme, no trailing slash, lowercase only)
+     */
     public function getRegistry(): ?string
     {
         return $this->registry;
     }
 
-   /**
-    * Basic Auth for the container registry
-    */
+    /**
+     * Basic Auth for the container registry
+     */
     public function getAuth(): ?BasicAuth
     {
         return $this->auth;
     }
 
-   /**
-    * Refresh token to exchange for bearer token with container registry auth
-    */
+    /**
+     * Refresh token to exchange for bearer token with container registry auth
+     */
     public function getIdentityToken(): ?string
     {
         return $this->identityToken;
     }
 
-   /**
-    * Bearer token used to auth with container registry auth
-    */
+    /**
+     * Bearer token used to auth with container registry auth
+     */
     public function getRegistryToken(): ?string
     {
         return $this->registryToken;
     }
 }
-

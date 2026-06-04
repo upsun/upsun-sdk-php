@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineUrls200ResponseFiltersFieldsValueValuesInner implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $value,
         private readonly int $count,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class HttpMetricsTimelineUrls200ResponseFiltersFieldsValueValuesInner impl
         return $this->count;
     }
 }
-

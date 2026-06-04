@@ -14,15 +14,12 @@ use JsonSerializable;
  */
 final class HttpAccessPermissions implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly bool $isEnabled,
         private readonly array $addresses,
         private readonly array $basicAuth,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,17 +40,17 @@ final class HttpAccessPermissions implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Whether http_access control is enabled
-    */
+    /**
+     * Whether http_access control is enabled
+     */
     public function getIsEnabled(): bool
     {
         return $this->isEnabled;
     }
 
-   /**
-    * @return AddressGrantsInner[]
-    */
+    /**
+     * @return AddressGrantsInner[]
+     */
     public function getAddresses(): array
     {
         return $this->addresses;
@@ -64,4 +61,3 @@ final class HttpAccessPermissions implements Model, JsonSerializable
         return $this->basicAuth;
     }
 }
-

@@ -13,12 +13,9 @@ use JsonSerializable;
  */
 final class CommunityPackagesInner implements Model, JsonSerializable
 {
-
-
-    public function __construct(
-    ) {
+    public function __construct()
+    {
     }
-
 
     public function getModelName(): string
     {
@@ -36,4 +33,3 @@ final class CommunityPackagesInner implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 }
-

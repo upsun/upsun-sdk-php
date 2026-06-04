@@ -2,6 +2,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 /**
@@ -13,17 +14,14 @@ use JsonSerializable;
  */
 final class BlackfireServerGlobal200ResponseQuota implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly int $allowed,
         private readonly int $used,
         private readonly bool $exceeded,
-        private readonly ?\DateTime $periodStartedAt,
-        private readonly ?\DateTime $periodEndsAt,
+        private readonly ?DateTime $periodStartedAt,
+        private readonly ?DateTime $periodEndsAt,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -61,14 +59,13 @@ final class BlackfireServerGlobal200ResponseQuota implements Model, JsonSerializ
         return $this->exceeded;
     }
 
-    public function getPeriodStartedAt(): ?\DateTime
+    public function getPeriodStartedAt(): ?DateTime
     {
         return $this->periodStartedAt;
     }
 
-    public function getPeriodEndsAt(): ?\DateTime
+    public function getPeriodEndsAt(): ?DateTime
     {
         return $this->periodEndsAt;
     }
 }
-

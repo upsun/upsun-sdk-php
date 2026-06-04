@@ -67,4 +67,3 @@ final class ProjectType implements JsonSerializable
         return $this->value;
     }
 }
-

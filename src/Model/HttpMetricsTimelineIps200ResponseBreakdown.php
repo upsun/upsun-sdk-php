@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineIps200ResponseBreakdown implements Model, JsonSerializable
 {
-
     public const KIND_IP = 'ip';
 
     public function __construct(
@@ -22,7 +21,6 @@ final class HttpMetricsTimelineIps200ResponseBreakdown implements Model, JsonSer
         private readonly array $data,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -53,12 +51,11 @@ final class HttpMetricsTimelineIps200ResponseBreakdown implements Model, JsonSer
         return $this->total;
     }
 
-   /**
-    * @return HttpMetricsTimelineIps200ResponseBreakdownDataInner[]
-    */
+    /**
+     * @return HttpMetricsTimelineIps200ResponseBreakdownDataInner[]
+     */
     public function getData(): array
     {
         return $this->data;
     }
 }
-

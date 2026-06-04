@@ -14,15 +14,12 @@ use JsonSerializable;
  */
 final class UsageAlertConfigThreshold implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?float $amount = null,
         private readonly ?string $unit = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,28 +40,27 @@ final class UsageAlertConfigThreshold implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Formatted threshold value.
-    */
+    /**
+     * Formatted threshold value.
+     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
-   /**
-    * Threshold value.
-    */
+    /**
+     * Threshold value.
+     */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
 
-   /**
-    * Threshold unit.
-    */
+    /**
+     * Threshold unit.
+     */
     public function getUnit(): ?string
     {
         return $this->unit;
     }
 }
-

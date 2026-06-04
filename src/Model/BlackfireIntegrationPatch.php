@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\IntegrationPatch;
 
 /**
  * Low level BlackfireIntegrationPatch (auto-generated)
@@ -14,13 +13,10 @@ use Upsun\Model\IntegrationPatch;
  */
 final class BlackfireIntegrationPatch implements Model, JsonSerializable, IntegrationPatch
 {
-
-
     public function __construct(
         private readonly string $type,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -39,12 +35,11 @@ final class BlackfireIntegrationPatch implements Model, JsonSerializable, Integr
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 }
-

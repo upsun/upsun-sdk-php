@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireProfileTimeline200Response implements Model, JsonSerializable
 {
-
     public const LANGUAGE_PHP = 'php';
     public const LANGUAGE_PYTHON = 'python';
 
@@ -29,7 +28,6 @@ final class BlackfireProfileTimeline200Response implements Model, JsonSerializab
         private readonly string $language,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -101,4 +99,3 @@ final class BlackfireProfileTimeline200Response implements Model, JsonSerializab
         return $this->language;
     }
 }
-

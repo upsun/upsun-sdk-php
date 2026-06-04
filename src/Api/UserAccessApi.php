@@ -13,6 +13,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\UpdateProjectUserAccessRequest;
+use Upsun\Model\UserProjectAccess;
 
 /**
  * Low level UserAccessApi (auto-generated)
@@ -65,7 +67,7 @@ final class UserAccessApi extends AbstractApi
     public function getProjectUserAccess(
         string $projectId,
         string $userId
-    ): \Upsun\Model\UserProjectAccess {
+    ): UserProjectAccess {
         return $this->getProjectUserAccessWithHttpInfo(
             $projectId,
             $userId
@@ -86,7 +88,7 @@ final class UserAccessApi extends AbstractApi
     private function getProjectUserAccessWithHttpInfo(
         string $projectId,
         string $userId
-    ): \Upsun\Model\UserProjectAccess {
+    ): UserProjectAccess {
         $request = $this->getProjectUserAccessRequest(
             $projectId,
             $userId
@@ -133,7 +135,6 @@ final class UserAccessApi extends AbstractApi
         string $projectId,
         string $userId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -174,7 +175,6 @@ final class UserAccessApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -249,7 +249,7 @@ final class UserAccessApi extends AbstractApi
     public function getUserProjectAccess(
         string $userId,
         string $projectId
-    ): \Upsun\Model\UserProjectAccess {
+    ): UserProjectAccess {
         return $this->getUserProjectAccessWithHttpInfo(
             $userId,
             $projectId
@@ -270,7 +270,7 @@ final class UserAccessApi extends AbstractApi
     private function getUserProjectAccessWithHttpInfo(
         string $userId,
         string $projectId
-    ): \Upsun\Model\UserProjectAccess {
+    ): UserProjectAccess {
         $request = $this->getUserProjectAccessRequest(
             $userId,
             $projectId
@@ -317,7 +317,6 @@ final class UserAccessApi extends AbstractApi
         string $userId,
         string $projectId
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -358,7 +357,6 @@ final class UserAccessApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -489,7 +487,6 @@ final class UserAccessApi extends AbstractApi
         string $projectId,
         array $grantProjectUserAccessRequestInner
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -521,7 +518,6 @@ final class UserAccessApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
@@ -660,7 +656,6 @@ final class UserAccessApi extends AbstractApi
         string $userId,
         array $grantUserProjectAccessRequestInner
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -692,7 +687,6 @@ final class UserAccessApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
@@ -879,7 +873,6 @@ final class UserAccessApi extends AbstractApi
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -902,8 +895,6 @@ final class UserAccessApi extends AbstractApi
             );
         }
 
-
-
         $resourcePath = '/projects/{project_id}/user-access';
         $formParams = [];
         $queryParams = [];
@@ -924,8 +915,6 @@ final class UserAccessApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageBefore !== null) {
             if ('form' === 'form' && is_array($pageBefore)) {
@@ -938,8 +927,6 @@ final class UserAccessApi extends AbstractApi
                     : ($pageBefore);
             }
         }
-
-
 
         // query params
         if ($pageAfter !== null) {
@@ -954,8 +941,6 @@ final class UserAccessApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -969,8 +954,6 @@ final class UserAccessApi extends AbstractApi
             }
         }
 
-
-
         // path params
 
         if ($projectId !== null) {
@@ -980,7 +963,6 @@ final class UserAccessApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -1167,7 +1149,6 @@ final class UserAccessApi extends AbstractApi
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -1190,8 +1171,6 @@ final class UserAccessApi extends AbstractApi
             );
         }
 
-
-
         $resourcePath = '/users/{user_id}/project-access';
         $formParams = [];
         $queryParams = [];
@@ -1212,8 +1191,6 @@ final class UserAccessApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageSize !== null) {
             if ('form' === 'form' && is_array($pageSize)) {
@@ -1226,8 +1203,6 @@ final class UserAccessApi extends AbstractApi
                     : ($pageSize);
             }
         }
-
-
 
         // query params
         if ($pageBefore !== null) {
@@ -1242,8 +1217,6 @@ final class UserAccessApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageAfter !== null) {
             if ('form' === 'form' && is_array($pageAfter)) {
@@ -1256,8 +1229,6 @@ final class UserAccessApi extends AbstractApi
                     : ($pageAfter);
             }
         }
-
-
 
         // query params
         if ($sort !== null) {
@@ -1272,8 +1243,6 @@ final class UserAccessApi extends AbstractApi
             }
         }
 
-
-
         // path params
 
         if ($userId !== null) {
@@ -1283,7 +1252,6 @@ final class UserAccessApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -1420,7 +1388,6 @@ final class UserAccessApi extends AbstractApi
         string $projectId,
         string $userId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1461,7 +1428,6 @@ final class UserAccessApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
@@ -1598,7 +1564,6 @@ final class UserAccessApi extends AbstractApi
         string $userId,
         string $projectId
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -1639,7 +1604,6 @@ final class UserAccessApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
@@ -1714,7 +1678,7 @@ final class UserAccessApi extends AbstractApi
     public function updateProjectUserAccess(
         string $projectId,
         string $userId,
-        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): void {
         $this->updateProjectUserAccessWithHttpInfo(
             $projectId,
@@ -1737,7 +1701,7 @@ final class UserAccessApi extends AbstractApi
     private function updateProjectUserAccessWithHttpInfo(
         string $projectId,
         string $userId,
-        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): void {
         $request = $this->updateProjectUserAccessRequest(
             $projectId,
@@ -1779,9 +1743,8 @@ final class UserAccessApi extends AbstractApi
     private function updateProjectUserAccessRequest(
         string $projectId,
         string $userId,
-        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1822,7 +1785,6 @@ final class UserAccessApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
@@ -1905,7 +1867,7 @@ final class UserAccessApi extends AbstractApi
     public function updateUserProjectAccess(
         string $userId,
         string $projectId,
-        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): void {
         $this->updateUserProjectAccessWithHttpInfo(
             $userId,
@@ -1928,7 +1890,7 @@ final class UserAccessApi extends AbstractApi
     private function updateUserProjectAccessWithHttpInfo(
         string $userId,
         string $projectId,
-        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): void {
         $request = $this->updateUserProjectAccessRequest(
             $userId,
@@ -1970,9 +1932,8 @@ final class UserAccessApi extends AbstractApi
     private function updateUserProjectAccessRequest(
         string $userId,
         string $projectId,
-        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -2013,7 +1974,6 @@ final class UserAccessApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],

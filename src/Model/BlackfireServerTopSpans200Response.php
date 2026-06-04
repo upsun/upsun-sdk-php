@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireServerTopSpans200Response implements Model, JsonSerializable
 {
-
     public const _SORT_PERCENTAGE = 'percentage';
     public const _SORT_P_96 = 'p_96';
     public const _SORT_COUNT = 'count';
@@ -93,7 +92,6 @@ final class BlackfireServerTopSpans200Response implements Model, JsonSerializabl
         private readonly ?string $distributionCost = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -345,4 +343,3 @@ final class BlackfireServerTopSpans200Response implements Model, JsonSerializabl
         return $this->distributionCost;
     }
 }
-

@@ -14,8 +14,6 @@ use JsonSerializable;
  */
 final class OrganizationEstimationObject implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $total = null,
         private readonly ?string $subTotal = null,
@@ -26,7 +24,6 @@ final class OrganizationEstimationObject implements Model, JsonSerializable
         private readonly ?OrganizationEstimationObjectSubscriptions $subscriptions = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -51,60 +48,59 @@ final class OrganizationEstimationObject implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The total estimated price for the organization.
-    */
+    /**
+     * The total estimated price for the organization.
+     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-   /**
-    * The sub total for all projects and sellables.
-    */
+    /**
+     * The sub total for all projects and sellables.
+     */
     public function getSubTotal(): ?string
     {
         return $this->subTotal;
     }
 
-   /**
-    * The total amount of vouchers.
-    */
+    /**
+     * The total amount of vouchers.
+     */
     public function getVouchers(): ?string
     {
         return $this->vouchers;
     }
 
-   /**
-    * An estimation of user licenses cost.
-    */
+    /**
+     * An estimation of user licenses cost.
+     */
     public function getUserLicenses(): ?OrganizationEstimationObjectUserLicenses
     {
         return $this->userLicenses;
     }
 
-   /**
-    * An estimation of the advanced user management sellable cost.
-    */
+    /**
+     * An estimation of the advanced user management sellable cost.
+     */
     public function getUserManagement(): ?string
     {
         return $this->userManagement;
     }
 
-   /**
-    * The total monthly price for premium support.
-    */
+    /**
+     * The total monthly price for premium support.
+     */
     public function getSupportLevel(): ?string
     {
         return $this->supportLevel;
     }
 
-   /**
-    * An estimation of subscriptions cost.
-    */
+    /**
+     * An estimation of subscriptions cost.
+     */
     public function getSubscriptions(): ?OrganizationEstimationObjectSubscriptions
     {
         return $this->subscriptions;
     }
 }
-

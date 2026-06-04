@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineUserAgents200ResponseBreakdown implements Model, JsonSerializable
 {
-
     public const KIND_USER_AGENT = 'user_agent';
 
     public function __construct(
@@ -22,7 +21,6 @@ final class HttpMetricsTimelineUserAgents200ResponseBreakdown implements Model, 
         private readonly array $data,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -53,12 +51,11 @@ final class HttpMetricsTimelineUserAgents200ResponseBreakdown implements Model, 
         return $this->total;
     }
 
-   /**
-    * @return HttpMetricsTimelineUserAgents200ResponseBreakdownDataInner[]
-    */
+    /**
+     * @return HttpMetricsTimelineUserAgents200ResponseBreakdownDataInner[]
+     */
     public function getData(): array
     {
         return $this->data;
     }
 }
-

@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class ResourcesByService200ResponseDataInnerInstancesValue implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?ResourcesByService200ResponseDataInnerInstancesValueCpuUsed $cpuUsed = null,
         private readonly ?ResourcesByService200ResponseDataInnerInstancesValueCpuLimit $cpuLimit = null,
@@ -29,7 +27,6 @@ final class ResourcesByService200ResponseDataInnerInstancesValue implements Mode
         private readonly ?array $mountpoints = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -108,12 +105,11 @@ final class ResourcesByService200ResponseDataInnerInstancesValue implements Mode
         return $this->irqPressure;
     }
 
-   /**
-    * @return ResourcesByService200ResponseDataInnerInstancesValueMountpointsValue[]|null
-    */
+    /**
+     * @return ResourcesByService200ResponseDataInnerInstancesValueMountpointsValue[]|null
+     */
     public function getMountpoints(): ?array
     {
         return $this->mountpoints;
     }
 }
-

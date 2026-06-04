@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class DefaultConfig implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly int $manualCount,
         private readonly array $schedule,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -45,12 +42,11 @@ final class DefaultConfig implements Model, JsonSerializable
         return $this->manualCount;
     }
 
-   /**
-    * @return ScheduleInner[]
-    */
+    /**
+     * @return ScheduleInner[]
+     */
     public function getSchedule(): array
     {
         return $this->schedule;
     }
 }
-

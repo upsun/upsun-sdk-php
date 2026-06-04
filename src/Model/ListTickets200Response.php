@@ -13,15 +13,12 @@ use JsonSerializable;
  */
 final class ListTickets200Response implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $tickets = [],
         private readonly ?HalLinks $links = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -47,20 +44,19 @@ final class ListTickets200Response implements Model, JsonSerializable
         return $this->count;
     }
 
-   /**
-    * @return Ticket[]|null
-    */
+    /**
+     * @return Ticket[]|null
+     */
     public function getTickets(): ?array
     {
         return $this->tickets;
     }
 
-   /**
-    * Links to _self, and previous or next page, given that they exist.
-    */
+    /**
+     * Links to _self, and previous or next page, given that they exist.
+     */
     public function getLinks(): ?HalLinks
     {
         return $this->links;
     }
 }
-

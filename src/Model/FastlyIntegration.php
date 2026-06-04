@@ -2,8 +2,8 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
-use Upsun\Model\Integration;
 
 /**
  * Low level FastlyIntegration (auto-generated)
@@ -14,7 +14,6 @@ use Upsun\Model\Integration;
  */
 final class FastlyIntegration implements Model, JsonSerializable, Integration
 {
-
     public const RESULT_STAR = '*';
     public const RESULT_FAILURE = 'failure';
     public const RESULT_SUCCESS = 'success';
@@ -29,12 +28,11 @@ final class FastlyIntegration implements Model, JsonSerializable, Integration
         private readonly string $result,
         private readonly string $serviceId,
         private readonly bool $tlsCertificates,
-        private readonly ?\DateTime $createdAt,
-        private readonly ?\DateTime $updatedAt,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -64,33 +62,33 @@ final class FastlyIntegration implements Model, JsonSerializable, Integration
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The creation date
-    */
-    public function getCreatedAt(): ?\DateTime
+    /**
+     * The creation date
+     */
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-   /**
-    * The update date
-    */
-    public function getUpdatedAt(): ?\DateTime
+    /**
+     * The update date
+     */
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The role of the integration
-    */
+    /**
+     * The role of the integration
+     */
     public function getRole(): string
     {
         return $this->role;
@@ -116,36 +114,35 @@ final class FastlyIntegration implements Model, JsonSerializable, Integration
         return $this->states;
     }
 
-   /**
-    * Result to execute the hook on
-    */
+    /**
+     * Result to execute the hook on
+     */
     public function getResult(): string
     {
         return $this->result;
     }
 
-   /**
-    * The Fastly Service ID
-    */
+    /**
+     * The Fastly Service ID
+     */
     public function getServiceId(): string
     {
         return $this->serviceId;
     }
 
-   /**
-    * Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
-    */
+    /**
+     * Push platform-provisioned TLS certificates to Fastly. Requires a Fastly API token with TLS management permissions
+     */
     public function getTlsCertificates(): bool
     {
         return $this->tlsCertificates;
     }
 
-   /**
-    * The identifier of FastlyIntegration
-    */
+    /**
+     * The identifier of FastlyIntegration
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
-

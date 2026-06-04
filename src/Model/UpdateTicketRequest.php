@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class UpdateTicketRequest implements Model, JsonSerializable
 {
-
     public const STATUS_OPEN = 'open';
     public const STATUS_SOLVED = 'solved';
 
@@ -23,7 +22,6 @@ final class UpdateTicketRequest implements Model, JsonSerializable
         private readonly ?bool $collaboratorsReplace = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -59,4 +57,3 @@ final class UpdateTicketRequest implements Model, JsonSerializable
         return $this->collaboratorsReplace;
     }
 }
-

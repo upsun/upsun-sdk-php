@@ -13,15 +13,12 @@ use JsonSerializable;
  */
 final class StrictTransportSecurityOptions implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?bool $enabled,
         private readonly ?bool $includeSubdomains,
         private readonly ?bool $preload,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -42,28 +39,27 @@ final class StrictTransportSecurityOptions implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Whether strict transport security is enabled or not
-    */
+    /**
+     * Whether strict transport security is enabled or not
+     */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
 
-   /**
-    * Whether the strict transport security policy should include all subdomains
-    */
+    /**
+     * Whether the strict transport security policy should include all subdomains
+     */
     public function getIncludeSubdomains(): ?bool
     {
         return $this->includeSubdomains;
     }
 
-   /**
-    * Whether the strict transport security policy should be preloaded in browsers
-    */
+    /**
+     * Whether the strict transport security policy should be preloaded in browsers
+     */
     public function getPreload(): ?bool
     {
         return $this->preload;
     }
 }
-

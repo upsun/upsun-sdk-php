@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class OrganizationProjectLinks implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?OrganizationProjectLinksApi $api = null,
         private readonly ?OrganizationProjectLinksSubscription $subscription = null,
@@ -28,7 +26,6 @@ final class OrganizationProjectLinks implements Model, JsonSerializable
         private readonly ?OrganizationProjectLinksSelf $self = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -56,84 +53,83 @@ final class OrganizationProjectLinks implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Link to the current project.
-    */
+    /**
+     * Link to the current project.
+     */
     public function getSelf(): ?OrganizationProjectLinksSelf
     {
         return $this->self;
     }
 
-   /**
-    * Link to the regional API endpoint. Only present if user has project-level access.
-    */
+    /**
+     * Link to the regional API endpoint. Only present if user has project-level access.
+     */
     public function getApi(): ?OrganizationProjectLinksApi
     {
         return $this->api;
     }
 
-   /**
-    * Link to the subscription. Only present if project has a subscription.
-    */
+    /**
+     * Link to the subscription. Only present if project has a subscription.
+     */
     public function getSubscription(): ?OrganizationProjectLinksSubscription
     {
         return $this->subscription;
     }
 
-   /**
-    * Link to view usage alerts. Only present if user has view permission.
-    */
+    /**
+     * Link to view usage alerts. Only present if user has view permission.
+     */
     public function getViewUsageAlerts(): ?OrganizationProjectLinksViewUsageAlerts
     {
         return $this->viewUsageAlerts;
     }
 
-   /**
-    * Link for updating the current project. Only present if user has update permission.
-    */
+    /**
+     * Link for updating the current project. Only present if user has update permission.
+     */
     public function getUpdate(): ?OrganizationProjectLinksUpdate
     {
         return $this->update;
     }
 
-   /**
-    * Link to the billing plan page. Only present if user has manage permission.
-    */
+    /**
+     * Link to the billing plan page. Only present if user has manage permission.
+     */
     public function getPlanUri(): ?OrganizationProjectLinksPlanUri
     {
         return $this->planUri;
     }
 
-   /**
-    * Link for deleting the current project. Only present if user has delete permission.
-    */
+    /**
+     * Link for deleting the current project. Only present if user has delete permission.
+     */
     public function getDelete(): ?OrganizationProjectLinksDelete
     {
         return $this->delete;
     }
 
-   /**
-    * Link to update usage alerts. Only present if user has billing permission.
-    */
+    /**
+     * Link to update usage alerts. Only present if user has billing permission.
+     */
     public function getUpdateUsageAlerts(): ?OrganizationProjectLinksUpdateUsageAlerts
     {
         return $this->updateUsageAlerts;
     }
 
-   /**
-    * Link to the project's activities. Only present if user has view permission.
-    */
+    /**
+     * Link to the project's activities. Only present if user has view permission.
+     */
     public function getActivities(): ?OrganizationProjectLinksActivities
     {
         return $this->activities;
     }
 
-   /**
-    * Link to the project's add-ons. Only present if user has view permission.
-    */
+    /**
+     * Link to the project's add-ons. Only present if user has view permission.
+     */
     public function getAddons(): ?OrganizationProjectLinksAddons
     {
         return $this->addons;
     }
 }
-

@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class GetApplicationTimeline200ResponsePointsInner implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly int $timestamp,
         private readonly ?int $value = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class GetApplicationTimeline200ResponsePointsInner implements Model, JsonS
         return $this->value;
     }
 }
-

@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class OrganizationAddonsObjectAvailable implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?array $userManagement = [],
         private readonly ?array $supportLevel = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -51,4 +48,3 @@ final class OrganizationAddonsObjectAvailable implements Model, JsonSerializable
         return $this->supportLevel;
     }
 }
-

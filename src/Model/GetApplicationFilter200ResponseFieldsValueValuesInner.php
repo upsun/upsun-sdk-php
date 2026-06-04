@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class GetApplicationFilter200ResponseFieldsValueValuesInner implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $value,
         private readonly int $count,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class GetApplicationFilter200ResponseFieldsValueValuesInner implements Mod
         return $this->count;
     }
 }
-

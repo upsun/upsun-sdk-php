@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataInnerTransactionsValue implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly float $average,
         private readonly float $count,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class BlackfireServerTransactionsBreakdown200ResponseTopHitsTimelineDataIn
         return $this->count;
     }
 }
-

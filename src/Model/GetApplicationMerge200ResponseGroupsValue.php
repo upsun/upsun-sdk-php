@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class GetApplicationMerge200ResponseGroupsValue implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly int $startTime,
         private readonly array $samples,
@@ -22,7 +20,6 @@ final class GetApplicationMerge200ResponseGroupsValue implements Model, JsonSeri
         private readonly ?array $watermarks = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -64,4 +61,3 @@ final class GetApplicationMerge200ResponseGroupsValue implements Model, JsonSeri
         return $this->watermarks;
     }
 }
-

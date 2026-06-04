@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class GetApplicationMerge200ResponseHeatmap implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly array $values,
         private readonly int $timeBuckets,
@@ -27,7 +25,6 @@ final class GetApplicationMerge200ResponseHeatmap implements Model, JsonSerializ
         private readonly int $maxDepth,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -99,4 +96,3 @@ final class GetApplicationMerge200ResponseHeatmap implements Model, JsonSerializ
         return $this->maxDepth;
     }
 }
-

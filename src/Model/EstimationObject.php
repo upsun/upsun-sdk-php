@@ -14,8 +14,6 @@ use JsonSerializable;
  */
 final class EstimationObject implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $plan = null,
         private readonly ?string $userLicenses = null,
@@ -25,7 +23,6 @@ final class EstimationObject implements Model, JsonSerializable
         private readonly ?object $options = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -49,52 +46,51 @@ final class EstimationObject implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The monthly price of the plan.
-    */
+    /**
+     * The monthly price of the plan.
+     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-   /**
-    * The monthly price of the user licenses.
-    */
+    /**
+     * The monthly price of the user licenses.
+     */
     public function getUserLicenses(): ?string
     {
         return $this->userLicenses;
     }
 
-   /**
-    * The monthly price of the environments.
-    */
+    /**
+     * The monthly price of the environments.
+     */
     public function getEnvironments(): ?string
     {
         return $this->environments;
     }
 
-   /**
-    * The monthly price of the storage.
-    */
+    /**
+     * The monthly price of the storage.
+     */
     public function getStorage(): ?string
     {
         return $this->storage;
     }
 
-   /**
-    * The total monthly price.
-    */
+    /**
+     * The total monthly price.
+     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-   /**
-    * The unit prices of the options.
-    */
+    /**
+     * The unit prices of the options.
+     */
     public function getOptions(): ?object
     {
         return $this->options;
     }
 }
-

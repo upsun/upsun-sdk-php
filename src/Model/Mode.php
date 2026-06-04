@@ -66,4 +66,3 @@ final class Mode implements JsonSerializable
         return $this->value;
     }
 }
-
