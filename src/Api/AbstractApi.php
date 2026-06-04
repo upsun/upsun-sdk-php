@@ -3,6 +3,7 @@
 namespace Upsun\Api;
 
 use Exception;
+use Generator;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClientFactory;
 use Http\Discovery\Psr17FactoryDiscovery;
