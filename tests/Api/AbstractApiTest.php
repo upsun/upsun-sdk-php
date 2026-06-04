@@ -13,7 +13,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use Upsun\Api\AbstractApi;
 use Upsun\Api\ApiException;
-use Upsun\Core\OAuthProvider;
 
 /**
  * Test suite for AbstractApi — focuses on sendAuthenticatedRequest() logic (FIX 1: 401 retry).
@@ -30,24 +29,29 @@ class AbstractApiTest extends TestCase
     /** @var ClientInterface&\PHPUnit\Framework\MockObject\MockObject */
     private ClientInterface $httpClient;
 
-    /** @var OAuthProvider&\PHPUnit\Framework\MockObject\MockObject */
-    private OAuthProvider $oauthProvider;
+    private int $tokenCallCount = 0;
+    private int $forceRefreshCount = 0;
 
     private Psr17Factory $psr17Factory;
 
     protected function setUp(): void
     {
-        $this->httpClient   = $this->createMock(ClientInterface::class);
-        $this->oauthProvider = $this->createMock(OAuthProvider::class);
-        $this->psr17Factory  = new Psr17Factory();
+        $this->httpClient        = $this->createMock(ClientInterface::class);
+        $this->psr17Factory      = new Psr17Factory();
+        $this->tokenCallCount    = 0;
+        $this->forceRefreshCount = 0;
 
-        // Stub getAuthorization() so createAuthenticatedRequest() never hits the network
-        $this->oauthProvider
-            ->method('getAuthorization')
-            ->willReturn('Bearer test-token');
+        // Closure-based tokenProvider: tracks call count and force-refresh requests.
+        $tokenProvider = function (bool $force = false): string {
+            $this->tokenCallCount++;
+            if ($force) {
+                $this->forceRefreshCount++;
+            }
+            return 'Bearer test-token';
+        };
 
         $this->api = new class (
-            $this->oauthProvider,
+            $tokenProvider,
             $this->httpClient,
             $this->psr17Factory,
             'https://api.upsun.com',
@@ -115,13 +119,10 @@ class AbstractApiTest extends TestCase
                 new Response(200, ['Content-Type' => 'application/json'], '{"ok":true}'),
             );
 
-        $this->oauthProvider
-            ->expects($this->once())
-            ->method('forceRefresh');
-
         $response = $this->api->callSendAuthenticatedRequest('GET', '/v1/organizations');
 
         $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame(1, $this->forceRefreshCount, 'tokenProvider(force=true) should be called once on 401');
     }
 
     /**
@@ -139,13 +140,14 @@ class AbstractApiTest extends TestCase
                 new Response(401, [], 'Unauthorized'),
             );
 
-        $this->oauthProvider
-            ->expects($this->once())
-            ->method('forceRefresh');
+        try {
+            $this->api->callSendAuthenticatedRequest('GET', '/v1/organizations');
+            $this->fail('Expected ApiException was not thrown');
+        } catch (ApiException) {
+            // expected — $_retried guard prevents a second forceRefresh on the already-retried call
+        }
 
-        $this->expectException(ApiException::class);
-
-        $this->api->callSendAuthenticatedRequest('GET', '/v1/organizations');
+        $this->assertSame(1, $this->forceRefreshCount, '$_retried guard: tokenProvider(force=true) called exactly once even on double-401');
     }
 
     /**
@@ -160,13 +162,14 @@ class AbstractApiTest extends TestCase
             ->method('sendRequest')
             ->willReturn(new Response(403, [], 'Forbidden'));
 
-        $this->oauthProvider
-            ->expects($this->never())
-            ->method('forceRefresh');
+        try {
+            $this->api->callSendAuthenticatedRequest('GET', '/v1/organizations');
+            $this->fail('Expected ApiException was not thrown');
+        } catch (ApiException) {
+            // expected
+        }
 
-        $this->expectException(ApiException::class);
-
-        $this->api->callSendAuthenticatedRequest('GET', '/v1/organizations');
+        $this->assertSame(0, $this->forceRefreshCount, 'tokenProvider(force=true) should never be called for a 403');
     }
 
     /**
@@ -181,13 +184,14 @@ class AbstractApiTest extends TestCase
             ->method('sendRequest')
             ->willReturn(new Response(500, [], 'Internal Server Error'));
 
-        $this->oauthProvider
-            ->expects($this->never())
-            ->method('forceRefresh');
+        try {
+            $this->api->callSendAuthenticatedRequest('GET', '/v1/organizations');
+            $this->fail('Expected ApiException was not thrown');
+        } catch (ApiException) {
+            // expected
+        }
 
-        $this->expectException(ApiException::class);
-
-        $this->api->callSendAuthenticatedRequest('GET', '/v1/organizations');
+        $this->assertSame(0, $this->forceRefreshCount, 'tokenProvider(force=true) should never be called for a 500');
     }
 
     /**
@@ -238,11 +242,9 @@ class AbstractApiTest extends TestCase
      */
     public function testRefreshTokenCallsEnsureValidToken(): void
     {
-        $this->oauthProvider
-            ->expects($this->once())
-            ->method('ensureValidToken');
-
         $this->api->callRefreshToken();
+
+        $this->assertSame(1, $this->tokenCallCount, 'refreshToken() should invoke the tokenProvider closure once');
     }
 
     /**

@@ -10,7 +10,6 @@ use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\ThirdPartyIntegrationsApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\IntegrationsTask;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\GitHubIntegrationCreateInput;
@@ -33,7 +32,7 @@ class IntegrationsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

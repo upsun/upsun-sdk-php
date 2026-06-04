@@ -11,7 +11,6 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
-use Upsun\Core\OAuthProvider;
 
 abstract class BaseTestCase extends TestCase
 {
@@ -94,7 +93,7 @@ abstract class BaseTestCase extends TestCase
 
     /**
      * Create standard API class parameters for testing.
-     * Returns array: [OAuthProvider, ClientInterface, Psr17Factory, ApiConfiguration]
+     * Returns array: [\Closure tokenProvider, ClientInterface, Psr17Factory, ApiConfiguration]
      *
      * @param ClientInterface|null $httpClient Optional HTTP client mock to use
      * @return array
@@ -106,7 +105,7 @@ abstract class BaseTestCase extends TestCase
         }
 
         return [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

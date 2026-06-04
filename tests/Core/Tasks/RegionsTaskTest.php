@@ -10,7 +10,6 @@ use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\RegionsApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\RegionsTask;
 use Upsun\Model\Region;
 use Upsun\UpsunClient;
@@ -31,7 +30,7 @@ class RegionsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

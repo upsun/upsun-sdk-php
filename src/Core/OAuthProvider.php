@@ -28,8 +28,14 @@ class OAuthProvider
     private ?string $typeToken = null;
     private int $tokenExpiry = 0;
 
-    /** Re-entrance guard — prevents recursive acquisition in PHP Fiber contexts (FIX 5). */
-    private bool $acquiringToken = false;
+    /**
+     * Fiber-based thundering-herd guard (Change 2).
+     * When non-null, a Fiber is already acquiring a token; other Fibers suspend until it finishes.
+     * In synchronous (FPM) contexts Fiber::getCurrent() returns null, so this is always null.
+     *
+     * @var \Fiber<void,void,void,void>|null
+     */
+    private ?\Fiber $acquiringFiber = null;
 
     /** Effective refresh endpoint (defaults to tokenEndpoint when not provided). */
     private readonly string $effectiveRefreshEndpoint;
@@ -164,11 +170,10 @@ class OAuthProvider
 
     /**
      * Forces unconditional token re-acquisition, bypassing the expiry check.
-     * Called by the 401 retry middleware (RFC 6750 §3.1) (FIX 1 prerequisite).
+     * Called by the 401 retry path (RFC 6750 §3.1) (FIX 1 prerequisite).
      *
      * - Clears accessToken and tokenExpiry so ensureValidToken() triggers re-acquisition.
      * - Does NOT clear refreshToken — the next ensureValidToken() call will prefer it.
-     * - Does NOT reset acquiringToken — avoids restarting an already in-flight acquisition.
      *
      * @throws Exception
      */
@@ -181,28 +186,34 @@ class OAuthProvider
 
     /**
      * Ensures a valid token is available, with a 120 s proactive buffer (FIX 3).
-     * Re-entrance guard prevents recursive acquisition in PHP Fiber contexts (FIX 5).
+     * Uses a Fiber-based thundering-herd guard (Change 2):
+     * - In Fiber contexts, concurrent callers suspend until the first acquisition completes.
+     * - In synchronous (FPM) contexts, Fiber::getCurrent() is null and the guard is a no-op.
      *
      * @throws Exception
      */
     public function ensureValidToken(): void
     {
         $buffer = 120;
+        if ($this->accessToken && time() <= ($this->tokenExpiry - $buffer)) {
+            return; // fast path — token is still valid
+        }
 
-        if (!$this->accessToken || time() > ($this->tokenExpiry - $buffer)) {
-            // Re-entrance guard: if acquisition is already in progress (e.g., from a Fiber),
-            // return immediately rather than triggering a second concurrent request.
-            // For multi-process FPM thundering-herd, an external lock (APCu/Redis) is required.
-            if ($this->acquiringToken) {
-                return;
+        if ($this->acquiringFiber !== null && !$this->acquiringFiber->isTerminated()) {
+            // Another Fiber is already acquiring — suspend until it finishes,
+            // then the token will be valid. In FPM/sync contexts this branch is
+            // never taken because acquiringFiber is always null.
+            while ($this->acquiringFiber !== null && !$this->acquiringFiber->isTerminated()) {
+                \Fiber::getCurrent()?->suspend();
             }
+            return;
+        }
 
-            $this->acquiringToken = true;
-            try {
-                $this->doAcquireToken();
-            } finally {
-                $this->acquiringToken = false;
-            }
+        $this->acquiringFiber = \Fiber::getCurrent(); // null in sync (FPM) context
+        try {
+            $this->doAcquireToken();
+        } finally {
+            $this->acquiringFiber = null;
         }
     }
 

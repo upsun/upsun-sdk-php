@@ -553,24 +553,45 @@ class OAuthProviderTest extends TestCase
     }
 
     /**
-     * FIX 5 — Re-entrance guard: while acquiringToken=true, ensureValidToken() is a no-op.
+     * Change 2 — Fiber-based thundering-herd guard: concurrent Fiber callers only trigger
+     * one HTTP acquisition. The second Fiber suspends until the first finishes.
      *
      * @throws Exception
      */
-    public function testReEntranceGuardPreventsDoubleAcquisition(): void
+    public function testFiberGuardPreventsDoubleAcquisitionUnderConcurrency(): void
     {
-        // Simulate being mid-acquisition by setting the flag via reflection
-        $reflection = new \ReflectionClass($this->oauthProvider);
-        $prop = $reflection->getProperty('acquiringToken');
-        $prop->setAccessible(true);
-        $prop->setValue($this->oauthProvider, true);
+        $httpCallCount = 0;
+        $tokenResponse = json_encode([
+            'access_token' => 'fiber-token',
+            'expires_in'   => 3600,
+        ]);
 
-        // No HTTP call should be triggered since acquisition is already in progress
         $this->httpClient
-            ->expects($this->never())
-            ->method('sendRequest');
+            ->method('sendRequest')
+            ->willReturnCallback(function () use (&$httpCallCount, $tokenResponse) {
+                $httpCallCount++;
+                \Fiber::getCurrent()?->suspend(); // simulate async I/O suspending the Fiber
+                return new Response(200, ['Content-Type' => 'application/json'], $tokenResponse);
+            });
 
-        $this->oauthProvider->ensureValidToken();
+        $provider = $this->oauthProvider;
+
+        $fiber1 = new \Fiber(fn () => $provider->ensureValidToken());
+        $fiber2 = new \Fiber(fn () => $provider->ensureValidToken());
+
+        // Fiber1 starts acquiring and suspends mid-HTTP call
+        $fiber1->start();
+        // Fiber2 detects Fiber1 is acquiring; suspends in the while-loop guard
+        $fiber2->start();
+
+        // Fiber1 resumes: HTTP call returns, token stored, acquiringFiber cleared
+        $fiber1->resume();
+        // Fiber2 resumes: while-loop sees acquiringFiber=null, exits, returns without HTTP call
+        $fiber2->resume();
+
+        $this->assertTrue($fiber1->isTerminated());
+        $this->assertTrue($fiber2->isTerminated());
+        $this->assertSame(1, $httpCallCount, 'Fiber guard: only one HTTP call should be made under concurrent access');
     }
 
     /**
@@ -846,8 +867,11 @@ class OAuthProviderTest extends TestCase
                     $this->assertStringContainsString('grant_type=refresh_token', $body);
                     $this->assertStringContainsString('refresh_token=persisted-refresh-token', $body);
                 }
-                return new Response(200, ['Content-Type' => 'application/json'],
-                    $callCount === 1 ? $initialResponse : $refreshResponse);
+                return new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    $callCount === 1 ? $initialResponse : $refreshResponse
+                );
             });
 
         $this->oauthProvider->exchangeCodeForToken();

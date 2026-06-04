@@ -18,7 +18,6 @@ use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\UriInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
-use Upsun\Core\OAuthProvider;
 
 use function sprintf;
 
@@ -40,7 +39,7 @@ abstract class AbstractApi
     private readonly UriFactoryInterface $uriFactory;
 
     public function __construct(
-        private readonly OAuthProvider $oauthProvider,
+        private readonly \Closure $tokenProvider,
         private ClientInterface $httpClient,
         private readonly RequestFactoryInterface $requestFactory,
         private readonly string $baseUri,
@@ -64,7 +63,7 @@ abstract class AbstractApi
      */
     protected function getAuthorizationHeader(): string
     {
-        return $this->oauthProvider->getAuthorization();
+        return ($this->tokenProvider)();
     }
 
     /**
@@ -110,7 +109,8 @@ abstract class AbstractApi
         string $method,
         string $uri,
         array $headers = [],
-        string|StreamInterface|null $body = null
+        string|StreamInterface|null $body = null,
+        bool $_retried = false
     ): ResponseInterface {
         try {
             $this->refreshToken();
@@ -118,12 +118,11 @@ abstract class AbstractApi
 
             $response = $this->httpClient->sendRequest($request);
 
-            // FIX 1: On 401, force token re-acquisition (prefers refresh_token grant) and retry once.
-            // RFC 6750 §3.1 + RFC 6749 Fig. 2 steps F→G→H.
-            if ($response->getStatusCode() === 401) {
-                $this->oauthProvider->forceRefresh();
-                $request = $this->createAuthenticatedRequest($method, $uri, $headers, $body);
-                $response = $this->httpClient->sendRequest($request);
+            // Change 1+3: On 401, call tokenProvider(true) to force-refresh, then retry once.
+            // $_retried prevents a second retry if the force-refreshed token is also rejected.
+            if ($response->getStatusCode() === 401 && !$_retried) {
+                ($this->tokenProvider)(true);
+                return $this->sendAuthenticatedRequest($method, $uri, $headers, $body, true);
             }
 
             // Manually check status code
@@ -170,7 +169,7 @@ abstract class AbstractApi
      */
     public function refreshToken(): void
     {
-        $this->oauthProvider->ensureValidToken();
+        ($this->tokenProvider)();
     }
 
     /**

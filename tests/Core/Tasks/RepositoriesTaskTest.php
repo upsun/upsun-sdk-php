@@ -11,7 +11,6 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\RepositoryApi;
 use Upsun\Api\SystemInformationApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\RepositoriesTask;
 use Upsun\Model\Blob;
 use Upsun\Model\Commit;
@@ -36,7 +35,7 @@ class RepositoriesTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

@@ -18,7 +18,6 @@ use Upsun\Api\PhoneNumberApi;
 use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\UsersTask;
 use Upsun\Model\ApiToken;
 use Upsun\Model\ConfirmTotpEnrollment200Response;
@@ -53,7 +52,7 @@ class UsersTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

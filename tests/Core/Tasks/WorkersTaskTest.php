@@ -13,7 +13,6 @@ use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentTypeApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\EnvironmentsTask;
 use Upsun\Core\Tasks\WorkersTask;
 use Upsun\Model\WorkersValue;
@@ -35,7 +34,7 @@ class WorkersTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()
@@ -51,7 +50,7 @@ class WorkersTaskTest extends BaseTestCase
         $upsunClient->environments = $environmentsTask;
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()
