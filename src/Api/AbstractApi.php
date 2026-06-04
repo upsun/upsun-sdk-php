@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use Closure;
 use Exception;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClientFactory;
@@ -39,7 +40,7 @@ abstract class AbstractApi
     private readonly UriFactoryInterface $uriFactory;
 
     public function __construct(
-        private readonly \Closure $tokenProvider,
+        private readonly Closure $tokenProvider,
         private ClientInterface $httpClient,
         private readonly RequestFactoryInterface $requestFactory,
         private readonly string $baseUri,
