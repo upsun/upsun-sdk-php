@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use DateTime;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
@@ -22,6 +21,7 @@ use Upsun\Api\SystemInformationApi;
 use Upsun\Api\ThirdPartyIntegrationsApi;
 use Upsun\Core\Tasks\ProjectsTask;
 use Upsun\Core\Tasks\SupportTicketsTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\ListTicketCategories200ResponseInner;
 use Upsun\Model\ListTicketPriorities200ResponseInner;
 use Upsun\Model\ListTickets200Response;

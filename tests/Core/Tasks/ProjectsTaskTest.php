@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -78,6 +77,7 @@ use Upsun\Core\Tasks\UsersInvitationsTask;
 use Upsun\Core\Tasks\UsersTask;
 use Upsun\Core\Tasks\VariablesTask;
 use Upsun\Core\Tasks\WorkersTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\Certificate;

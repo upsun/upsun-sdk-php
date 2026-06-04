@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use InvalidArgumentException;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -13,6 +12,7 @@ use Upsun\Api\ApiException;
 use Upsun\Api\RepositoryApi;
 use Upsun\Api\SystemInformationApi;
 use Upsun\Core\Tasks\RepositoriesTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\Blob;
 use Upsun\Model\Commit;
 use Upsun\Model\Ref;

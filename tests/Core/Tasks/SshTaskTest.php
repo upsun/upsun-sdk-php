@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use InvalidArgumentException;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -12,6 +11,7 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\SshKeysApi;
 use Upsun\Core\Tasks\SshTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\SshKey;
 use Upsun\UpsunClient;
 
