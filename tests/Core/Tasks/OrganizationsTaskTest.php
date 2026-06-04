@@ -3179,4 +3179,118 @@ class OrganizationsTaskTest extends BaseTestCase
 
         $this->organizationsTask->streamOrgProjectProvisioning('');
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testStreamOrgProjectProvisioningYieldsMultipleEventsAndSkipsBlankLines(): void
+    {
+        $first = [
+            'type' => 'data',
+            'projectId' => 'project123',
+            'stage' => 'build',
+            'label' => 'Building project',
+            'reason' => null,
+            'timestamp' => '2025-01-01T00:00:00+00:00',
+            'steps' => []
+        ];
+        $second = [
+            'type' => 'done',
+            'projectId' => 'project123',
+            'stage' => 'finished',
+            'label' => 'Provisioning complete',
+            'reason' => null,
+            'timestamp' => '2025-01-01T00:01:00+00:00',
+            'steps' => []
+        ];
+
+        // Blank lines between/around events must be skipped.
+        $body = "\n" . json_encode($first) . "\n\n" . json_encode($second) . "\n";
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/x-ndjson'], $body));
+
+        $events = iterator_to_array(
+            $this->organizationsTask->streamOrgProjectProvisioning('org123'),
+            false
+        );
+
+        $this->assertCount(2, $events);
+        $this->assertInstanceOf(ProvisionEvent::class, $events[0]);
+        $this->assertInstanceOf(ProvisionEvent::class, $events[1]);
+        $this->assertObjectProperties($events[0], $first);
+        $this->assertObjectProperties($events[1], $second);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testStreamOrgProjectProvisioningYieldsTailWithoutTrailingNewline(): void
+    {
+        $payload = [
+            'type' => 'data',
+            'projectId' => 'project123',
+            'stage' => 'build',
+            'label' => 'Building project',
+            'reason' => null,
+            'timestamp' => '2025-01-01T00:00:00+00:00',
+            'steps' => []
+        ];
+
+        // No trailing newline: the last (and only) event lives in the buffer tail.
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/x-ndjson'], json_encode($payload)));
+
+        $events = iterator_to_array(
+            $this->organizationsTask->streamOrgProjectProvisioning('org123'),
+            false
+        );
+
+        $this->assertCount(1, $events);
+        $this->assertInstanceOf(ProvisionEvent::class, $events[0]);
+        $this->assertObjectProperties($events[0], $payload);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testStreamOrgProjectProvisioningThrowsOnInvalidLine(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/x-ndjson'], "{invalid-json}\n"));
+
+        $this->expectException(ApiException::class);
+
+        iterator_to_array(
+            $this->organizationsTask->streamOrgProjectProvisioning('org123'),
+            false
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testStreamOrgProjectProvisioningThrowsOnInvalidTail(): void
+    {
+        // No trailing newline so the invalid JSON is parsed in the tail branch.
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/x-ndjson'], '{invalid-json}'));
+
+        $this->expectException(ApiException::class);
+
+        iterator_to_array(
+            $this->organizationsTask->streamOrgProjectProvisioning('org123'),
+            false
+        );
+    }
 }
