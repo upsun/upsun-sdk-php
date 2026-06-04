@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use Closure;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -26,7 +27,7 @@ final class EntrypointApi extends AbstractApi
     private ApiConfiguration $config;
 
     public function __construct(
-        \Closure $tokenProvider,
+        Closure $tokenProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?ApiConfiguration $config = null,

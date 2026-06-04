@@ -3,6 +3,7 @@
 namespace Upsun\Core;
 
 use Exception;
+use Fiber;
 use Nyholm\Psr7\Stream;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -33,9 +34,9 @@ class OAuthProvider
      * When non-null, a Fiber is already acquiring a token; other Fibers suspend until it finishes.
      * In synchronous (FPM) contexts Fiber::getCurrent() returns null, so this is always null.
      *
-     * @var \Fiber<void,void,void,void>|null
+     * @var Fiber<void,void,void,void>|null
      */
-    private ?\Fiber $acquiringFiber = null;
+    private ?Fiber $acquiringFiber = null;
 
     /** Effective refresh endpoint (defaults to tokenEndpoint when not provided). */
     private readonly string $effectiveRefreshEndpoint;
@@ -204,12 +205,12 @@ class OAuthProvider
             // then the token will be valid. In FPM/sync contexts this branch is
             // never taken because acquiringFiber is always null.
             while ($this->acquiringFiber !== null && !$this->acquiringFiber->isTerminated()) {
-                \Fiber::getCurrent()?->suspend();
+                Fiber::getCurrent()?->suspend();
             }
             return;
         }
 
-        $this->acquiringFiber = \Fiber::getCurrent(); // null in sync (FPM) context
+        $this->acquiringFiber = Fiber::getCurrent(); // null in sync (FPM) context
         try {
             $this->doAcquireToken();
         } finally {

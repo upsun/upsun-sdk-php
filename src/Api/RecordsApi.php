@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use Closure;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
@@ -29,7 +30,7 @@ final class RecordsApi extends AbstractApi
     private ApiConfiguration $config;
 
     public function __construct(
-        \Closure $tokenProvider,
+        Closure $tokenProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?ApiConfiguration $config = null,
