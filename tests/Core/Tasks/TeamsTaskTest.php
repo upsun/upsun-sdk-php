@@ -2,6 +2,7 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Upsun\Core\TokenProvider;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -36,7 +37,7 @@ class TeamsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            new class implements \Upsun\Core\TokenProvider
+            new class implements TokenProvider
             {
                 public function __invoke(bool $force = false): string
                 {

@@ -8,7 +8,6 @@ use Nyholm\Psr7\Stream;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
-use Upsun\Core\TokenProvider;
 
 /**
  *  class (auto-generated)
