@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -28,6 +27,7 @@ use Upsun\Core\Tasks\EnvironmentsTask;
 use Upsun\Core\Tasks\RoutesTask;
 use Upsun\Core\Tasks\SourceOperationsTask;
 use Upsun\Core\Tasks\VariablesTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\Backup;

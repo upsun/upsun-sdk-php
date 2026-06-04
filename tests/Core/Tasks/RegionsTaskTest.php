@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -13,6 +12,7 @@ use Upsun\Api\ApiException;
 use Upsun\Api\ReferencesApi;
 use Upsun\Api\RegionsApi;
 use Upsun\Core\Tasks\RegionsTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\Region;
 use Upsun\UpsunClient;
 

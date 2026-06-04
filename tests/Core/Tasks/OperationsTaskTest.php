@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -11,6 +10,7 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\RuntimeOperationsApi;
 use Upsun\Core\Tasks\OperationsTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\UpsunClient;
 

@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use BadMethodCallException;
 use Exception;
 use InvalidArgumentException;
@@ -22,6 +21,7 @@ use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
 use Upsun\Core\Tasks\UsersTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\ApiToken;
 use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\Connection;

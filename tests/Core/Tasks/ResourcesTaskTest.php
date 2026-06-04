@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -13,6 +12,7 @@ use Upsun\Api\AutoscalingApi;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\ResourcesApi;
 use Upsun\Core\Tasks\ResourcesTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\ResourcesByService200Response;
 use Upsun\Model\ResourcesOverview200Response;

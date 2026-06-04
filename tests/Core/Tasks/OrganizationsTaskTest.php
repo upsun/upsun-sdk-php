@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -46,6 +45,7 @@ use Upsun\Core\Tasks\OrganizationsTask;
 use Upsun\Core\Tasks\ProjectsTask;
 use Upsun\Core\Tasks\TeamsTask;
 use Upsun\Core\Tasks\UsersTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Address;
 use Upsun\Model\CanAffordSubscriptionRequest;

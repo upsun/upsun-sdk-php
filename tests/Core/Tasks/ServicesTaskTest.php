@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
 use Nyholm\Psr7\Factory\Psr17Factory;
@@ -13,6 +12,7 @@ use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Core\Tasks\EnvironmentsTask;
 use Upsun\Core\Tasks\ServicesTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\ServicesValue;
 use Upsun\UpsunClient;
 

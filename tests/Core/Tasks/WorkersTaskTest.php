@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -16,6 +15,7 @@ use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Core\Tasks\EnvironmentsTask;
 use Upsun\Core\Tasks\WorkersTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\WorkersValue;
 use Upsun\UpsunClient;
 

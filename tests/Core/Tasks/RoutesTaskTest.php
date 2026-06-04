@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -11,6 +10,7 @@ use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\RoutingApi;
 use Upsun\Core\Tasks\RoutesTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\Route;
 use Upsun\UpsunClient;
 

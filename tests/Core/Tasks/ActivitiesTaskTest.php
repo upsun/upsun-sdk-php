@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -12,6 +11,7 @@ use Upsun\Api\ApiException;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Core\Tasks\ActivitiesTask;
+use Upsun\Core\TokenProvider;
 use Upsun\UpsunClient;
 
 class ActivitiesTaskTest extends BaseTestCase

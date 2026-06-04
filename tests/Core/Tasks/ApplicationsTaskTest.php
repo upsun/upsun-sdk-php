@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Core\TokenProvider;
 use GuzzleHttp\Psr7\Response;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Client\ClientInterface;
@@ -12,6 +11,7 @@ use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Core\Tasks\ApplicationsTask;
 use Upsun\Core\Tasks\EnvironmentsTask;
+use Upsun\Core\TokenProvider;
 use Upsun\UpsunClient;
 
 class ApplicationsTaskTest extends BaseTestCase
