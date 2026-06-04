@@ -98,10 +98,6 @@ class OAuthProvider
      */
     private function refreshAccessToken(): void
     {
-        if (!$this->refreshToken) {
-            throw new Exception('No refresh token available');
-        }
-
         try {
             $body = http_build_query([
                 'grant_type'    => 'refresh_token',
