@@ -2,12 +2,16 @@
 
 namespace Upsun\Core\Tasks;
 
+use DateTime;
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\BlackfireMonitoringApi;
+use Upsun\Api\BlackfireProfilingApi;
 use Upsun\Api\ContinuousProfilingApi;
+use Upsun\Api\EntrypointApi;
 use Upsun\Api\HttpTrafficApi;
+use Upsun\Model\FilterSelect;
 use Upsun\UpsunClient;
 
 /**
@@ -24,6 +28,8 @@ class MetricsTask extends TaskBase
         private readonly HttpTrafficApi $httpTrafficApi,
         private readonly BlackfireMonitoringApi $blackfireMonitoringApi,
         private readonly ContinuousProfilingApi $continuousProfilingApi,
+        private readonly BlackfireProfilingApi $blackfireProfilingApi,
+        private readonly EntrypointApi $entrypointApi,
     ) {
         parent::__construct($client);
     }
@@ -638,6 +644,196 @@ class MetricsTask extends TaskBase
             runtimeOs: $runtimeOs,
             probeVersionMode: $probeVersionMode,
             probeVersion: $probeVersion
+        );
+    }
+
+    // Blackfire Profiling Methods
+
+    /**
+     * Get the call graph for a Blackfire profile.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function blackfireProfileGraph(
+        string $projectId,
+        string $environmentId,
+        string $uuid
+    ): mixed {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->blackfireProfilingApi->blackfireProfileGraph(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            uuid: $uuid
+        );
+    }
+
+    /**
+     * Get the profile details for a Blackfire profile.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function blackfireProfileProfile(
+        string $projectId,
+        string $environmentId,
+        string $uuid
+    ): mixed {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->blackfireProfilingApi->blackfireProfileProfile(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            uuid: $uuid
+        );
+    }
+
+    /**
+     * Get the subprofiles for a Blackfire profile.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function blackfireProfileSubprofiles(
+        string $projectId,
+        string $environmentId,
+        string $uuid
+    ): mixed {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->blackfireProfilingApi->blackfireProfileSubprofiles(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            uuid: $uuid
+        );
+    }
+
+    /**
+     * Get the timeline for a Blackfire profile.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function blackfireProfileTimeline(
+        string $projectId,
+        string $environmentId,
+        string $uuid
+    ): mixed {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->blackfireProfilingApi->blackfireProfileTimeline(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            uuid: $uuid
+        );
+    }
+
+    /**
+     * List Blackfire profiling results.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function blackfireProfilesList(
+        string $projectId,
+        string $environmentId,
+        ?string $transaction = null,
+        ?int $page = null,
+        ?int $limit = null,
+        ?string $url = null,
+        ?bool $isAuto = null,
+        ?string $isPublic = null,
+        ?string $sortBy = null,
+        ?string $sortOrder = null,
+        ?DateTime $startDate = null,
+        ?DateTime $endDate = null,
+        ?int $statusCode = null,
+        ?FilterSelect $owner = null,
+        ?FilterSelect $languages = null,
+        ?FilterSelect $frameworks = null,
+        ?int $itemsPerPage = null
+    ): mixed {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->blackfireProfilingApi->blackfireProfilesList(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            transaction: $transaction,
+            page: $page,
+            limit: $limit,
+            url: $url,
+            isAuto: $isAuto,
+            isPublic: $isPublic,
+            sortBy: $sortBy,
+            sortOrder: $sortOrder,
+            startDate: $startDate,
+            endDate: $endDate,
+            statusCode: $statusCode,
+            owner: $owner,
+            languages: $languages,
+            frameworks: $frameworks,
+            itemsPerPage: $itemsPerPage
+        );
+    }
+
+    /**
+     * Get Blackfire profiling recommendations.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function blackfireProfilesRecommendations(
+        string $projectId,
+        string $environmentId,
+        ?int $from = null,
+        ?int $to = null,
+        ?string $transaction = null,
+        ?int $limit = null
+    ): mixed {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->blackfireProfilingApi->blackfireProfilesRecommendations(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            from: $from,
+            to: $to,
+            transaction: $transaction,
+            limit: $limit
+        );
+    }
+
+    // Observability Entrypoint
+
+    /**
+     * Get the observability entrypoint for an environment.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function observabilityEntrypoint(
+        string $projectId,
+        string $environmentId
+    ): mixed {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->entrypointApi->observabilityEntrypoint(
+            projectId: $projectId,
+            environmentId: $environmentId
         );
     }
 }

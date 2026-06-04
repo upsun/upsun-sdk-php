@@ -13,6 +13,7 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiTokensApi;
 use Upsun\Api\AutoscalingApi;
 use Upsun\Api\BlackfireMonitoringApi;
+use Upsun\Api\BlackfireProfilingApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\ContinuousProfilingApi;
@@ -23,6 +24,7 @@ use Upsun\Api\DiffApi;
 use Upsun\Api\DiscountsApi;
 use Upsun\Api\DomainClaimApi;
 use Upsun\Api\DomainManagementApi;
+use Upsun\Api\EntrypointApi;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentBackupsApi;
@@ -43,14 +45,18 @@ use Upsun\Api\ProfilesApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectInvitationsApi;
+use Upsun\Api\ProjectsApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\RecordsApi;
 use Upsun\Api\ReferencesApi;
 use Upsun\Api\RegionsApi;
+use Upsun\Api\RegistryCredentialApi;
 use Upsun\Api\RepositoryApi;
+use Upsun\Api\ResourcesApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\RuntimeOperationsApi;
+use Upsun\Api\SbomApi;
 use Upsun\Api\SourceOperationsApi;
 use Upsun\Api\SshKeysApi;
 use Upsun\Api\SubscriptionsApi;
@@ -208,20 +214,26 @@ class UpsunClient
         $phoneNumberApi = new PhoneNumberApi(...$taskParams);
         $profilesApi = new ProfilesApi(...$taskParams);
         $blackfireMonitoringApi = new BlackfireMonitoringApi(...$taskParams);
+        $blackfireProfilingApi = new BlackfireProfilingApi(...$taskParams);
         $projectActivityApi = new ProjectActivityApi(...$taskParams);
         $projectApi = new ProjectApi(...$taskParams);
         $projectInvitationsApi = new ProjectInvitationsApi(...$taskParams);
         $projectSettingsApi = new ProjectSettingsApi(...$taskParams);
         $projectVariablesApi = new ProjectVariablesApi(...$taskParams);
         $continuousProfilingApi = new ContinuousProfilingApi(...$taskParams);
+        $entrypointApi = new EntrypointApi(...$taskParams);
         $referencesApi = new ReferencesApi(...$taskParams);
         $recordsApi = new RecordsApi(...$taskParams);
         $regionsApi = new RegionsApi(...$taskParams);
         $repositoryApi = new RepositoryApi(...$taskParams);
         $routingApi = new RoutingApi(...$taskParams);
         $runtimeOperationsApi = new RuntimeOperationsApi(...$taskParams);
+        $registryCredentialApi = new RegistryCredentialApi(...$taskParams);
+        $resourcesApi = new ResourcesApi(...$taskParams);
+        $sbomApi = new SbomApi(...$taskParams);
         $sourceOperationsApi = new SourceOperationsApi(...$taskParams);
         $subscriptionsApi = new SubscriptionsApi(...$taskParams);
+        $projectsApi = new ProjectsApi(...$taskParams);
         $supportApi = new SupportApi(...$taskParams);
         $systemInformationApi = new SystemInformationApi(...$taskParams);
         $sshKeysApi = new SshKeysApi(...$taskParams);
@@ -274,6 +286,8 @@ class UpsunClient
             $httpTrafficApi,
             $blackfireMonitoringApi,
             $continuousProfilingApi,
+            $blackfireProfilingApi,
+            $entrypointApi,
         );
         $this->mounts = new MountsTask($this);
         $this->operations = new OperationsTask(
@@ -307,6 +321,9 @@ class UpsunClient
             $deploymentTargetApi,
             $alertsApi,
             $domainClaimApi,
+            $projectsApi,
+            $sbomApi,
+            $registryCredentialApi,
         );
         $this->regions = new RegionsTask(
             $this,
@@ -323,7 +340,8 @@ class UpsunClient
         $this->resources = new ResourcesTask(
             $this,
             $deploymentApi,
-            $autoscalingApi
+            $autoscalingApi,
+            $resourcesApi,
         );
         $this->routes = new RoutesTask(
             $this,

@@ -22,9 +22,3 @@ openapitools.json
 .openapi-generator/
 git_push.sh
 src/DebugPlugin.php
-
-# PHPDoc generated cache
-.phpdoc/
-
-# Local deployment state
-deployments_current.json

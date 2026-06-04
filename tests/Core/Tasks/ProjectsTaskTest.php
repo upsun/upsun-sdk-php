@@ -14,6 +14,7 @@ use Upsun\Api\ApiException;
 use Upsun\Api\ApiTokensApi;
 use Upsun\Api\AutoscalingApi;
 use Upsun\Api\BlackfireMonitoringApi;
+use Upsun\Api\BlackfireProfilingApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\ContinuousProfilingApi;
@@ -24,6 +25,7 @@ use Upsun\Api\DiffApi;
 use Upsun\Api\DiscountsApi;
 use Upsun\Api\DomainClaimApi;
 use Upsun\Api\DomainManagementApi;
+use Upsun\Api\EntrypointApi;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentBackupsApi;
@@ -44,14 +46,18 @@ use Upsun\Api\ProfilesApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectInvitationsApi;
+use Upsun\Api\ProjectsApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\RecordsApi;
 use Upsun\Api\ReferencesApi;
 use Upsun\Api\RegionsApi;
+use Upsun\Api\RegistryCredentialApi;
 use Upsun\Api\RepositoryApi;
+use Upsun\Api\ResourcesApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\RuntimeOperationsApi;
+use Upsun\Api\SbomApi;
 use Upsun\Api\SourceOperationsApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\SupportApi;
@@ -136,6 +142,9 @@ class ProjectsTaskTest extends BaseTestCase
             new DeploymentTargetApi(...$apiClassParams),
             new AlertsApi(...$apiClassParams),
             new DomainClaimApi(...$apiClassParams),
+            new ProjectsApi(...$apiClassParams),
+            new SbomApi(...$apiClassParams),
+            new RegistryCredentialApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
 
@@ -201,7 +210,9 @@ class ProjectsTaskTest extends BaseTestCase
             $upsunClient,
             new HttpTrafficApi(...$apiClassParams),
             new BlackfireMonitoringApi(...$apiClassParams),
-            new ContinuousProfilingApi(...$apiClassParams)
+            new ContinuousProfilingApi(...$apiClassParams),
+            new BlackfireProfilingApi(...$apiClassParams),
+            new EntrypointApi(...$apiClassParams),
         ) extends MetricsTask {
         };
 
@@ -257,6 +268,7 @@ class ProjectsTaskTest extends BaseTestCase
             $upsunClient,
             new DeploymentApi(...$apiClassParams),
             new AutoscalingApi(...$apiClassParams),
+            new ResourcesApi(...$apiClassParams),
         ) extends ResourcesTask {
         };
 

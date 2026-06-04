@@ -6,7 +6,9 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\BlackfireMonitoringApi;
+use Upsun\Api\BlackfireProfilingApi;
 use Upsun\Api\ContinuousProfilingApi;
+use Upsun\Api\EntrypointApi;
 use Upsun\Api\HttpTrafficApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\MetricsTask;
@@ -39,7 +41,9 @@ class MetricsTaskTest extends BaseTestCase
             $upsunClient,
             new HttpTrafficApi(...$apiClassParams),
             new BlackfireMonitoringApi(...$apiClassParams),
-            new ContinuousProfilingApi(...$apiClassParams)
+            new ContinuousProfilingApi(...$apiClassParams),
+            new BlackfireProfilingApi(...$apiClassParams),
+            new EntrypointApi(...$apiClassParams),
         ) extends MetricsTask {
         };
     }
@@ -60,7 +64,7 @@ class MetricsTaskTest extends BaseTestCase
         $constructor = $reflection->getConstructor();
 
         $this->assertNotNull($constructor);
-        $this->assertCount(4, $constructor->getParameters());
+        $this->assertCount(6, $constructor->getParameters());
         $this->assertEquals('client', $constructor->getParameters()[0]->getName());
     }
 

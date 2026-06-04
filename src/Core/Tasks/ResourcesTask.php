@@ -7,6 +7,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
 use Upsun\Api\AutoscalingApi;
 use Upsun\Api\DeploymentApi;
+use Upsun\Api\ResourcesApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\AutoscalerSettings;
 use Upsun\Model\Resources;
@@ -25,7 +26,8 @@ class ResourcesTask extends TaskBase
     public function __construct(
         UpsunClient $client,
         private readonly DeploymentApi $deploymentApi,
-        private readonly AutoscalingApi $autoscalingApi
+        private readonly AutoscalingApi $autoscalingApi,
+        private readonly ResourcesApi $resourcesApi,
     ) {
         parent::__construct($client);
     }
@@ -241,6 +243,98 @@ class ResourcesTask extends TaskBase
             projectId: $projectId,
             environmentId: $environmentId,
             autoscalerSettings: $autoscalerSettings,
+        );
+    }
+
+    /**
+     * Get resource metrics broken down by service.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function resourcesByService(
+        string $projectId,
+        string $environmentId,
+        string $service,
+        int $from,
+        int $to,
+        ?array $aggs = null,
+        ?array $types = null
+    ): mixed {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->resourcesApi->resourcesByService(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            service: $service,
+            from: $from,
+            to: $to,
+            aggs: $aggs,
+            types: $types
+        );
+    }
+
+    /**
+     * Get an overview of resource metrics.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function resourcesOverview(
+        string $projectId,
+        string $environmentId,
+        int $from,
+        int $to,
+        ?string $service = null,
+        ?array $services = null,
+        ?string $servicesMode = null
+    ): mixed {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->resourcesApi->resourcesOverview(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            from: $from,
+            to: $to,
+            service: $service,
+            services: $services,
+            servicesMode: $servicesMode
+        );
+    }
+
+    /**
+     * Get a summary of resource metrics.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function resourcesSummary(
+        string $projectId,
+        string $environmentId,
+        int $from,
+        int $to,
+        ?array $aggs = null,
+        ?array $types = null,
+        ?array $services = null,
+        ?string $servicesMode = null
+    ): mixed {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->resourcesApi->resourcesSummary(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            from: $from,
+            to: $to,
+            aggs: $aggs,
+            types: $types,
+            services: $services,
+            servicesMode: $servicesMode
         );
     }
 }

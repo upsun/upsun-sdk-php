@@ -15,8 +15,11 @@ use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\DomainClaimApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\ProjectApi;
+use Upsun\Api\ProjectsApi;
 use Upsun\Api\ProjectSettingsApi;
+use Upsun\Api\RegistryCredentialApi;
 use Upsun\Api\RepositoryApi;
+use Upsun\Api\SbomApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\SupportApi;
 use Upsun\Api\SystemInformationApi;
@@ -61,6 +64,9 @@ class SupportTicketsTaskTest extends BaseTestCase
             new DeploymentTargetApi(...$apiClassParams),
             new AlertsApi(...$apiClassParams),
             new DomainClaimApi(...$apiClassParams),
+            new ProjectsApi(...$apiClassParams),
+            new SbomApi(...$apiClassParams),
+            new RegistryCredentialApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
 

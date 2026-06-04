@@ -10,7 +10,10 @@ use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\DomainClaimApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\ProjectApi;
+use Upsun\Api\ProjectsApi;
 use Upsun\Api\ProjectSettingsApi;
+use Upsun\Api\RegistryCredentialApi;
+use Upsun\Api\SbomApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
@@ -44,6 +47,10 @@ use Upsun\Model\ProjectSettings;
 use Upsun\Model\ProjectSettingsPatch;
 use Upsun\Model\ProjectVariable;
 use Upsun\Model\Ref;
+use Upsun\Model\RegistryCredential;
+use Upsun\Model\RegistryCredentialCreateInput;
+use Upsun\Model\RegistryCredentialPatch;
+use Upsun\Model\Sbom;
 use Upsun\Model\Subscription;
 use Upsun\Model\SystemInformation;
 use Upsun\Model\TeamProjectAccess;
@@ -71,6 +78,9 @@ class ProjectsTask extends TaskBase
         private readonly DeploymentTargetApi $deploymentTargetApi,
         private readonly AlertsApi $alertsApi,
         private readonly DomainClaimApi $domainClaimApi,
+        private readonly ProjectsApi $projectsApi,
+        private readonly SbomApi $sbomApi,
+        private readonly RegistryCredentialApi $registryCredentialApi,
     ) {
         parent::__construct($client);
     }
@@ -1656,5 +1666,166 @@ class ProjectsTask extends TaskBase
         $this->checkProjectId($projectId);
 
         return $this->prjApi->maintenanceRedeployProject(projectId: $projectId);
+    }
+
+    /**
+     * List project history for an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the organizationId or projectId is invalid
+     */
+    public function listOrgProjectHistory(
+        string $organizationId,
+        string $projectId
+    ): mixed {
+        $this->checkOrganizationId($organizationId);
+        $this->checkProjectId($projectId);
+
+        return $this->projectsApi->listOrgProjectHistory(
+            organizationId: $organizationId,
+            projectId: $projectId
+        );
+    }
+
+    /**
+     * Get an SBOM for a specific service in a deployment.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function getSbom(
+        string $projectId,
+        string $environmentId,
+        string $deploymentId,
+        string $sbomServiceId
+    ): Sbom {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->sbomApi->getProjectsEnvironmentsDeploymentsSboms(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            deploymentId: $deploymentId,
+            sbomServiceId: $sbomServiceId
+        );
+    }
+
+    /**
+     * List all SBOMs for a deployment.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function listSboms(
+        string $projectId,
+        string $environmentId,
+        string $deploymentId
+    ): array {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->sbomApi->listProjectsEnvironmentsDeploymentsSboms(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            deploymentId: $deploymentId
+        );
+    }
+
+    /**
+     * Create an OCI registry credential for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId is invalid
+     */
+    public function createOciRegistry(
+        string $projectId,
+        RegistryCredentialCreateInput $registryCredentialCreateInput
+    ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+
+        return $this->registryCredentialApi->createProjectsOciRegistries(
+            projectId: $projectId,
+            registryCredentialCreateInput: $registryCredentialCreateInput
+        );
+    }
+
+    /**
+     * Delete an OCI registry credential for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId is invalid
+     */
+    public function deleteOciRegistry(
+        string $projectId,
+        string $registryCredentialId
+    ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+
+        return $this->registryCredentialApi->deleteProjectsOciRegistries(
+            projectId: $projectId,
+            registryCredentialId: $registryCredentialId
+        );
+    }
+
+    /**
+     * Get an OCI registry credential for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId is invalid
+     */
+    public function getOciRegistry(
+        string $projectId,
+        string $registryCredentialId
+    ): RegistryCredential {
+        $this->checkProjectId($projectId);
+
+        return $this->registryCredentialApi->getProjectsOciRegistries(
+            projectId: $projectId,
+            registryCredentialId: $registryCredentialId
+        );
+    }
+
+    /**
+     * List OCI registry credentials for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId is invalid
+     * @return RegistryCredential[]
+     */
+    public function listOciRegistries(string $projectId): array
+    {
+        $this->checkProjectId($projectId);
+
+        return $this->registryCredentialApi->listProjectsOciRegistries(
+            projectId: $projectId
+        );
+    }
+
+    /**
+     * Update an OCI registry credential for a project.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId is invalid
+     */
+    public function updateOciRegistry(
+        string $projectId,
+        string $registryCredentialId,
+        RegistryCredentialPatch $registryCredentialPatch
+    ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+
+        return $this->registryCredentialApi->updateProjectsOciRegistries(
+            projectId: $projectId,
+            registryCredentialId: $registryCredentialId,
+            registryCredentialPatch: $registryCredentialPatch
+        );
     }
 }

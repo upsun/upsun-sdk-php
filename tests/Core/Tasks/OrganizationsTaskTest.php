@@ -28,9 +28,12 @@ use Upsun\Api\OrganizationsApi;
 use Upsun\Api\PhoneNumberApi;
 use Upsun\Api\ProfilesApi;
 use Upsun\Api\ProjectApi;
+use Upsun\Api\ProjectsApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\RecordsApi;
 use Upsun\Api\ReferencesApi;
+use Upsun\Api\RegistryCredentialApi;
+use Upsun\Api\SbomApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
@@ -117,6 +120,9 @@ class OrganizationsTaskTest extends BaseTestCase
             new DeploymentTargetApi(...$apiClassParams),
             new AlertsApi(...$apiClassParams),
             new DomainClaimApi(...$apiClassParams),
+            new ProjectsApi(...$apiClassParams),
+            new SbomApi(...$apiClassParams),
+            new RegistryCredentialApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
 
@@ -834,7 +840,7 @@ class OrganizationsTaskTest extends BaseTestCase
      * @throws ClientExceptionInterface
      * @throws Exception
      */
-    public function testCreateMember()
+    public function testAddMember()
     {
         $orgId = 'org_98765';
         $userId = 'user_54321';
@@ -881,7 +887,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($organizationMemberData)
             ));
 
-        $result = $this->organizationsTask->createMember(
+        $result = $this->organizationsTask->addMember(
             organizationId: $orgId,
             userId: $userId,
             permissions: $permissions

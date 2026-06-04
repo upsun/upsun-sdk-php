@@ -63,8 +63,9 @@ use Upsun\Model\OrganizationProject;
 use Upsun\Model\Profile;
 use Upsun\Model\Project;
 use Upsun\Model\ProjectCarbon;
-use Upsun\Model\SendOrgMfaReminders200ResponseValue;
+use Upsun\Model\ProvisionEvent;
 // only mentionned in PHPDocs
+use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
@@ -1573,6 +1574,22 @@ class OrganizationsTask extends TaskBase
             from: $from,
             to: $to,
             interval: $interval ?? null
+        );
+    }
+
+    /**
+     * Stream the provisioning progress for a new project in an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the organizationId is invalid
+     */
+    public function streamOrgProjectProvisioning(string $organizationId): ProvisionEvent
+    {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->projectsApi->streamOrgProjectProvisioning(
+            organizationId: $organizationId
         );
     }
 }

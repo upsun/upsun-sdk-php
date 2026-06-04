@@ -10,6 +10,7 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\AutoscalingApi;
 use Upsun\Api\DeploymentApi;
+use Upsun\Api\ResourcesApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ResourcesTask;
 use Upsun\Model\AcceptedResponse;
@@ -41,6 +42,7 @@ class ResourcesTaskTest extends BaseTestCase
             $upsunClient,
             new DeploymentApi(...$apiClassParams),
             new AutoscalingApi(...$apiClassParams),
+            new ResourcesApi(...$apiClassParams),
         ) extends ResourcesTask {
         };
     }
@@ -48,7 +50,7 @@ class ResourcesTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateSuccess(): void
+    public function testSetSuccess(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -91,7 +93,7 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update(
+        $response = $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId,
             webapps: $webapps,
@@ -104,7 +106,7 @@ class ResourcesTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateWithDefaultParameters(): void
+    public function testSetWithDefaultParameters(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -120,7 +122,7 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update(
+        $response = $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId
         );
@@ -130,7 +132,7 @@ class ResourcesTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateWithOnlyWebapps(): void
+    public function testSetWithOnlyWebapps(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -155,7 +157,7 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update(
+        $response = $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId,
             webapps: $webapps
@@ -192,7 +194,7 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update(
+        $response = $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId,
             webapps: $webapps,
@@ -204,7 +206,7 @@ class ResourcesTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateError(): void
+    public function testSetError(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -229,13 +231,13 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update(projectId: $projectId, environmentId: $environmentId, webapps: $webapps);
+        $this->resourcesTask->set(projectId: $projectId, environmentId: $environmentId, webapps: $webapps);
     }
 
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateNotFound(): void
+    public function testSetNotFound(): void
     {
         $projectId = 'invalidProject';
         $environmentId = 'env456';
@@ -253,13 +255,13 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update(projectId: $projectId, environmentId: $environmentId);
+        $this->resourcesTask->set(projectId: $projectId, environmentId: $environmentId);
     }
 
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateInvalidResources(): void
+    public function testSetInvalidResources(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -284,7 +286,7 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update(
+        $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId,
             webapps: $webapps
@@ -294,7 +296,7 @@ class ResourcesTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateInsufficientResources(): void
+    public function testSetInsufficientResources(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -320,7 +322,7 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update(
+        $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId,
             webapps: $webapps
