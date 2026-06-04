@@ -681,6 +681,227 @@ class OAuthProviderTest extends TestCase
     }
 
     /**
+     * FIX 2 — refreshAccessToken() throws (and doAcquireToken falls back) when refresh response
+     * contains invalid JSON.
+     *
+     * @throws Exception
+     */
+    public function testRefreshAccessTokenFallsBackOnInvalidJsonResponse(): void
+    {
+        $firstResponse = json_encode([
+            'access_token'  => 'initial-token',
+            'refresh_token' => 'valid-refresh-token',
+            'expires_in'    => -1,
+        ]);
+
+        $fallbackResponse = json_encode([
+            'access_token' => 'api-token-fallback',
+            'expires_in'   => 3600,
+        ]);
+
+        $callCount = 0;
+        $this->httpClient
+            ->expects($this->exactly(3))
+            ->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request) use ($firstResponse, $fallbackResponse, &$callCount) {
+                $callCount++;
+                $body = (string)$request->getBody();
+                if ($callCount === 1) {
+                    return new Response(200, ['Content-Type' => 'application/json'], $firstResponse);
+                }
+                if ($callCount === 2) {
+                    // Refresh request — return invalid JSON
+                    $this->assertStringContainsString('grant_type=refresh_token', $body);
+                    return new Response(200, ['Content-Type' => 'application/json'], 'not-valid-json{{{');
+                }
+                // Fallback to api_token
+                $this->assertStringContainsString('grant_type=api_token', $body);
+                return new Response(200, ['Content-Type' => 'application/json'], $fallbackResponse);
+            });
+
+        $this->oauthProvider->exchangeCodeForToken();
+        $auth = $this->oauthProvider->getAuthorization();
+        $this->assertEquals('Bearer api-token-fallback', $auth);
+    }
+
+    /**
+     * FIX 2 — refreshAccessToken() throws (and doAcquireToken falls back) when refresh response
+     * has no access_token.
+     *
+     * @throws Exception
+     */
+    public function testRefreshAccessTokenFallsBackWhenMissingAccessToken(): void
+    {
+        $firstResponse = json_encode([
+            'access_token'  => 'initial-token',
+            'refresh_token' => 'valid-refresh-token',
+            'expires_in'    => -1,
+        ]);
+
+        $refreshWithoutToken = json_encode([
+            'expires_in' => 3600,
+        ]);
+
+        $fallbackResponse = json_encode([
+            'access_token' => 'api-token-fallback',
+            'expires_in'   => 3600,
+        ]);
+
+        $callCount = 0;
+        $this->httpClient
+            ->expects($this->exactly(3))
+            ->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request) use ($firstResponse, $refreshWithoutToken, $fallbackResponse, &$callCount) {
+                $callCount++;
+                $body = (string)$request->getBody();
+                if ($callCount === 1) {
+                    return new Response(200, ['Content-Type' => 'application/json'], $firstResponse);
+                }
+                if ($callCount === 2) {
+                    $this->assertStringContainsString('grant_type=refresh_token', $body);
+                    return new Response(200, ['Content-Type' => 'application/json'], $refreshWithoutToken);
+                }
+                $this->assertStringContainsString('grant_type=api_token', $body);
+                return new Response(200, ['Content-Type' => 'application/json'], $fallbackResponse);
+            });
+
+        $this->oauthProvider->exchangeCodeForToken();
+        $auth = $this->oauthProvider->getAuthorization();
+        $this->assertEquals('Bearer api-token-fallback', $auth);
+    }
+
+    /**
+     * FIX 2 — refreshAccessToken() wraps ClientExceptionInterface and doAcquireToken falls back.
+     *
+     * @throws Exception
+     */
+    public function testRefreshAccessTokenFallsBackOnClientException(): void
+    {
+        $networkError = new class ('Connection timed out') extends \Exception implements ClientExceptionInterface {
+        };
+
+        $firstResponse = json_encode([
+            'access_token'  => 'initial-token',
+            'refresh_token' => 'valid-refresh-token',
+            'expires_in'    => -1,
+        ]);
+
+        $fallbackResponse = json_encode([
+            'access_token' => 'api-token-fallback',
+            'expires_in'   => 3600,
+        ]);
+
+        $callCount = 0;
+        $this->httpClient
+            ->expects($this->exactly(3))
+            ->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request) use ($firstResponse, $fallbackResponse, $networkError, &$callCount) {
+                $callCount++;
+                $body = (string)$request->getBody();
+                if ($callCount === 1) {
+                    return new Response(200, ['Content-Type' => 'application/json'], $firstResponse);
+                }
+                if ($callCount === 2) {
+                    $this->assertStringContainsString('grant_type=refresh_token', $body);
+                    throw $networkError;
+                }
+                $this->assertStringContainsString('grant_type=api_token', $body);
+                return new Response(200, ['Content-Type' => 'application/json'], $fallbackResponse);
+            });
+
+        $this->oauthProvider->exchangeCodeForToken();
+        $auth = $this->oauthProvider->getAuthorization();
+        $this->assertEquals('Bearer api-token-fallback', $auth);
+    }
+
+    /**
+     * storeTokenData() — token_type and refresh_token from response are stored.
+     * Verified by checking that a subsequent expiry triggers refresh_token grant (not api_token).
+     *
+     * @throws Exception
+     */
+    public function testStoreTokenDataPersistsRefreshToken(): void
+    {
+        $initialResponse = json_encode([
+            'access_token'  => 'initial-token',
+            'refresh_token' => 'persisted-refresh-token',
+            'token_type'    => 'Bearer',
+            'expires_in'    => -1,
+        ]);
+
+        $refreshResponse = json_encode([
+            'access_token' => 'refreshed-via-stored-token',
+            'expires_in'   => 3600,
+        ]);
+
+        $callCount = 0;
+        $this->httpClient
+            ->expects($this->exactly(2))
+            ->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request) use ($initialResponse, $refreshResponse, &$callCount) {
+                $callCount++;
+                $body = (string)$request->getBody();
+                if ($callCount === 2) {
+                    // The stored refresh_token must appear in the refresh call body
+                    $this->assertStringContainsString('grant_type=refresh_token', $body);
+                    $this->assertStringContainsString('refresh_token=persisted-refresh-token', $body);
+                }
+                return new Response(200, ['Content-Type' => 'application/json'],
+                    $callCount === 1 ? $initialResponse : $refreshResponse);
+            });
+
+        $this->oauthProvider->exchangeCodeForToken();
+        $auth = $this->oauthProvider->getAuthorization();
+        $this->assertEquals('Bearer refreshed-via-stored-token', $auth);
+    }
+
+    /**
+     * FIX 4 — When no refreshEndpoint is provided, tokenEndpoint is used as fallback.
+     *
+     * @throws Exception
+     */
+    public function testRefreshEndpointDefaultsToTokenEndpoint(): void
+    {
+        // Construct a provider WITHOUT a refreshEndpoint
+        $provider = new OAuthProvider(
+            $this->httpClient,
+            $this->requestFactory,
+            $this->tokenEndpoint,
+            $this->clientId,
+            $this->clientSecret,
+            // no refreshEndpoint
+        );
+
+        $firstResponse = json_encode([
+            'access_token'  => 'initial-token',
+            'refresh_token' => 'refresh-abc',
+            'expires_in'    => -1,
+        ]);
+
+        $refreshResponse = json_encode([
+            'access_token' => 'token-after-refresh',
+            'expires_in'   => 3600,
+        ]);
+
+        $this->httpClient
+            ->expects($this->exactly(2))
+            ->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request) use ($firstResponse, $refreshResponse) {
+                $body = (string)$request->getBody();
+                if (str_contains($body, 'grant_type=refresh_token')) {
+                    // Should target tokenEndpoint (the default)
+                    $this->assertEquals($this->tokenEndpoint, (string)$request->getUri());
+                    return new Response(200, ['Content-Type' => 'application/json'], $refreshResponse);
+                }
+                return new Response(200, ['Content-Type' => 'application/json'], $firstResponse);
+            });
+
+        $provider->exchangeCodeForToken();
+        $auth = $provider->getAuthorization();
+        $this->assertEquals('Bearer token-after-refresh', $auth);
+    }
+
+    /**
      * @throws Exception
      */
     public function testAuthorizationHeaderFormat()
