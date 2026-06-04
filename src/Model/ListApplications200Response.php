@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class ListApplications200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $applications,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -34,11 +37,12 @@ final class ListApplications200Response implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return ListApplications200ResponseApplicationsValue[]
-     */
+   /**
+    * @return ListApplications200ResponseApplicationsValue[]
+    */
     public function getApplications(): array
     {
         return $this->applications;
     }
 }
+

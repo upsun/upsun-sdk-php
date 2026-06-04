@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class ObservabilityEntrypoint200ResponseRetention implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $resources,
         private readonly int $logs,
@@ -20,6 +22,7 @@ final class ObservabilityEntrypoint200ResponseRetention implements Model, JsonSe
         private readonly int $continuousProfiling,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -61,3 +64,4 @@ final class ObservabilityEntrypoint200ResponseRetention implements Model, JsonSe
         return $this->continuousProfiling;
     }
 }
+

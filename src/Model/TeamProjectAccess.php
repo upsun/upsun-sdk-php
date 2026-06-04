@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,16 +13,19 @@ use JsonSerializable;
  */
 final class TeamProjectAccess implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $teamId = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $projectId = null,
         private readonly ?string $projectTitle = null,
-        private readonly ?DateTime $grantedAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $grantedAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?TeamProjectAccessLinks $links = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -48,50 +50,50 @@ final class TeamProjectAccess implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the team.
-     */
+   /**
+    * The ID of the team.
+    */
     public function getTeamId(): ?string
     {
         return $this->teamId;
     }
 
-    /**
-     * The ID of the organization.
-     */
+   /**
+    * The ID of the organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The ID of the project.
-     */
+   /**
+    * The ID of the project.
+    */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-    /**
-     * The title of the project.
-     */
+   /**
+    * The title of the project.
+    */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * The date and time when the access was granted.
-     */
-    public function getGrantedAt(): ?DateTime
+   /**
+    * The date and time when the access was granted.
+    */
+    public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
 
-    /**
-     * The date and time when the resource was last updated.
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The date and time when the resource was last updated.
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -101,3 +103,4 @@ final class TeamProjectAccess implements Model, JsonSerializable
         return $this->links;
     }
 }
+

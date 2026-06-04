@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class Status implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $code,
         private readonly string $message,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -48,3 +51,4 @@ final class Status implements Model, JsonSerializable
         return $this->message;
     }
 }
+

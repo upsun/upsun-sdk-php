@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class GuaranteedResources implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
         private readonly int $instanceLimit,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -37,19 +40,20 @@ final class GuaranteedResources implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * If true, guaranteed resources can be used
-     */
+   /**
+    * If true, guaranteed resources can be used
+    */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * Instance limit for guaranteed resources
-     */
+   /**
+    * Instance limit for guaranteed resources
+    */
     public function getInstanceLimit(): int
     {
         return $this->instanceLimit;
     }
 }
+

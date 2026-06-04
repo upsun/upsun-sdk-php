@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class BlackfireProfilesRecommendations200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $projectId,
         private readonly string $environmentId,
@@ -27,6 +29,7 @@ final class BlackfireProfilesRecommendations200Response implements Model, JsonSe
         private readonly ?array $untestedTopTransactions = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -85,9 +88,9 @@ final class BlackfireProfilesRecommendations200Response implements Model, JsonSe
         return $this->to;
     }
 
-    /**
-     * @return BlackfireProfilesRecommendations200ResponseRecommendationsInner[]
-     */
+   /**
+    * @return BlackfireProfilesRecommendations200ResponseRecommendationsInner[]
+    */
     public function getRecommendations(): array
     {
         return $this->recommendations;
@@ -113,3 +116,4 @@ final class BlackfireProfilesRecommendations200Response implements Model, JsonSe
         return $this->untestedTopTransactions;
     }
 }
+

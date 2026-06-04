@@ -9,7 +9,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Nyholm\Psr7\Stream;
 
 /**
- * OAuthProvider class (auto-generated)
+ *  class (auto-generated)
  *
  * Token lifecycle follows RFC 6749 §6 and RFC 6750 §3.1:
  * - Proactive refresh when token is within the 120 s expiry buffer (FIX 3)
@@ -40,7 +40,7 @@ class OAuthProvider
         private readonly string $tokenEndpoint,
         private readonly string $clientId,
         private readonly string $clientSecret,
-        private readonly ?string $refreshEndpoint = null,
+        ?string $refreshEndpoint = null,
     ) {
         $this->effectiveRefreshEndpoint = $refreshEndpoint ?? $this->tokenEndpoint;
     }
@@ -64,6 +64,7 @@ class OAuthProvider
                 ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
                 ->withBody(Stream::create($body));
+
 
             $response = $this->httpClient->sendRequest($request);
 

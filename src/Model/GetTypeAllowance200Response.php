@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class GetTypeAllowance200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?GetTypeAllowance200ResponseCurrencies $currencies = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,3 +43,4 @@ final class GetTypeAllowance200Response implements Model, JsonSerializable
         return $this->currencies;
     }
 }
+

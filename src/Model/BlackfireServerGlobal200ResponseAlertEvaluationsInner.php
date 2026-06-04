@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class BlackfireServerGlobal200ResponseAlertEvaluationsInner implements Model, JsonSerializable
 {
+
     public const STATE_NORMAL = 'normal';
     public const STATE_WARN = 'warn';
     public const STATE_ALARM = 'alarm';
@@ -24,6 +25,7 @@ final class BlackfireServerGlobal200ResponseAlertEvaluationsInner implements Mod
         private readonly string $state,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -65,3 +67,4 @@ final class BlackfireServerGlobal200ResponseAlertEvaluationsInner implements Mod
         return $this->state;
     }
 }
+

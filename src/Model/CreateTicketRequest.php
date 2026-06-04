@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class CreateTicketRequest implements Model, JsonSerializable
 {
+
     public const PRIORITY_LOW = 'low';
     public const PRIORITY_NORMAL = 'normal';
     public const PRIORITY_HIGH = 'high';
@@ -43,6 +44,7 @@ final class CreateTicketRequest implements Model, JsonSerializable
         private readonly ?array $collaboratorIds = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -116,9 +118,9 @@ final class CreateTicketRequest implements Model, JsonSerializable
         return $this->category;
     }
 
-    /**
-     * @return CreateTicketRequestAttachmentsInner[]|null
-     */
+   /**
+    * @return CreateTicketRequestAttachmentsInner[]|null
+    */
     public function getAttachments(): ?array
     {
         return $this->attachments;
@@ -129,3 +131,4 @@ final class CreateTicketRequest implements Model, JsonSerializable
         return $this->collaboratorIds;
     }
 }
+

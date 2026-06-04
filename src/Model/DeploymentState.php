@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -15,6 +14,7 @@ use JsonSerializable;
  */
 final class DeploymentState implements Model, JsonSerializable
 {
+
     public const LAST_DEPLOYMENT_FAILURE_REASON_ERROR = 'error';
     public const LAST_DEPLOYMENT_FAILURE_REASON_SHELL = 'shell';
 
@@ -24,12 +24,13 @@ final class DeploymentState implements Model, JsonSerializable
         private readonly array $lastDeploymentCommands,
         private readonly CronsDeploymentState $crons,
         private readonly ?string $lastDeploymentFailureReason,
-        private readonly ?DateTime $lastDeploymentAt,
-        private readonly ?DateTime $lastAutoscaleUpAt,
-        private readonly ?DateTime $lastAutoscaleDownAt,
-        private readonly ?DateTime $lastMaintenanceAt,
+        private readonly ?\DateTime $lastDeploymentAt,
+        private readonly ?\DateTime $lastAutoscaleUpAt,
+        private readonly ?\DateTime $lastAutoscaleDownAt,
+        private readonly ?\DateTime $lastMaintenanceAt,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -56,76 +57,77 @@ final class DeploymentState implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether the last deployment has correctly switched state (does not mean it was successful)
-     */
+   /**
+    * Whether the last deployment has correctly switched state (does not mean it was successful)
+    */
     public function getLastStateUpdateSuccessful(): bool
     {
         return $this->lastStateUpdateSuccessful;
     }
 
-    /**
-     * Whether the last deployment was successful
-     */
+   /**
+    * Whether the last deployment was successful
+    */
     public function getLastDeploymentSuccessful(): bool
     {
         return $this->lastDeploymentSuccessful;
     }
 
-    /**
-     * The reason for failure of the last deployment
-     */
+   /**
+    * The reason for failure of the last deployment
+    */
     public function getLastDeploymentFailureReason(): ?string
     {
         return $this->lastDeploymentFailureReason;
     }
 
-    /**
-     * The commands executed during the last deployment
-     * @return LastDeploymentCommandsInner[]
-     */
+   /**
+    * The commands executed during the last deployment
+    * @return LastDeploymentCommandsInner[]
+    */
     public function getLastDeploymentCommands(): array
     {
         return $this->lastDeploymentCommands;
     }
 
-    /**
-     * Datetime of the last deployment
-     */
-    public function getLastDeploymentAt(): ?DateTime
+   /**
+    * Datetime of the last deployment
+    */
+    public function getLastDeploymentAt(): ?\DateTime
     {
         return $this->lastDeploymentAt;
     }
 
-    /**
-     * Datetime of the last autoscale up deployment
-     */
-    public function getLastAutoscaleUpAt(): ?DateTime
+   /**
+    * Datetime of the last autoscale up deployment
+    */
+    public function getLastAutoscaleUpAt(): ?\DateTime
     {
         return $this->lastAutoscaleUpAt;
     }
 
-    /**
-     * Datetime of the last autoscale down deployment
-     */
-    public function getLastAutoscaleDownAt(): ?DateTime
+   /**
+    * Datetime of the last autoscale down deployment
+    */
+    public function getLastAutoscaleDownAt(): ?\DateTime
     {
         return $this->lastAutoscaleDownAt;
     }
 
-    /**
-     * Datetime of the last maintenance
-     */
-    public function getLastMaintenanceAt(): ?DateTime
+   /**
+    * Datetime of the last maintenance
+    */
+    public function getLastMaintenanceAt(): ?\DateTime
     {
         return $this->lastMaintenanceAt;
     }
 
-    /**
-     * The crons deployment state
-     */
+   /**
+    * The crons deployment state
+    */
     public function getCrons(): CronsDeploymentState
     {
         return $this->crons;
     }
 }
+

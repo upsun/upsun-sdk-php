@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class DocrootsValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $activeDocroot,
         private readonly ?array $docrootVersions,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class DocrootsValue implements Model, JsonSerializable
         return $this->docrootVersions;
     }
 }
+

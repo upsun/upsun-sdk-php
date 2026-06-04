@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineUrls200ResponseTopHitsTimelineDataInnerCodes implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $uNKNOWN,
         private readonly int $_1xX,
@@ -22,6 +24,7 @@ final class HttpMetricsTimelineUrls200ResponseTopHitsTimelineDataInnerCodes impl
         private readonly int $_5xX,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -75,3 +78,4 @@ final class HttpMetricsTimelineUrls200ResponseTopHitsTimelineDataInnerCodes impl
         return $this->_5xX;
     }
 }
+

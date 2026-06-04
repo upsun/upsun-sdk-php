@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class OrganizationLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?OrganizationLinksSelf $self = null,
         private readonly ?OrganizationLinksUpdate $update = null,
@@ -36,6 +38,7 @@ final class OrganizationLinks implements Model, JsonSerializable
         private readonly ?OrganizationLinksSso $sso = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -73,163 +76,164 @@ final class OrganizationLinks implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Link to the current organization.
-     */
+   /**
+    * Link to the current organization.
+    */
     public function getSelf(): ?OrganizationLinksSelf
     {
         return $this->self;
     }
 
-    /**
-     * Link for updating the current organization.
-     */
+   /**
+    * Link for updating the current organization.
+    */
     public function getUpdate(): ?OrganizationLinksUpdate
     {
         return $this->update;
     }
 
-    /**
-     * Link for deleting the current organization.
-     */
+   /**
+    * Link for deleting the current organization.
+    */
     public function getDelete(): ?OrganizationLinksDelete
     {
         return $this->delete;
     }
 
-    /**
-     * Link to the current organization's members.
-     */
+   /**
+    * Link to the current organization's members.
+    */
     public function getMembers(): ?OrganizationLinksMembers
     {
         return $this->members;
     }
 
-    /**
-     * Link for creating a new organization member.
-     */
+   /**
+    * Link for creating a new organization member.
+    */
     public function getCreateMember(): ?OrganizationLinksCreateMember
     {
         return $this->createMember;
     }
 
-    /**
-     * Link to the current organization's address. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the current organization's address. This link may not be present for all organizations.
+    */
     public function getAddress(): ?OrganizationLinksAddress
     {
         return $this->address;
     }
 
-    /**
-     * Link to the current organization's billing profile details. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the current organization's billing profile details. This link may not be present for all organizations.
+    */
     public function getProfile(): ?OrganizationLinksProfile
     {
         return $this->profile;
     }
 
-    /**
-     * Link to the current organization's account. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the current organization's account. This link may not be present for all organizations.
+    */
     public function getAccount(): ?OrganizationLinksAccount
     {
         return $this->account;
     }
 
-    /**
-     * Link to the current organization's payment source. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the current organization's payment source. This link may not be present for all organizations.
+    */
     public function getPaymentSource(): ?OrganizationLinksPaymentSource
     {
         return $this->paymentSource;
     }
 
-    /**
-     * Link to the current organization's orders. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the current organization's orders. This link may not be present for all organizations.
+    */
     public function getOrders(): ?OrganizationLinksOrders
     {
         return $this->orders;
     }
 
-    /**
-     * Link to the current organization's vouchers. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the current organization's vouchers. This link may not be present for all organizations.
+    */
     public function getVouchers(): ?OrganizationLinksVouchers
     {
         return $this->vouchers;
     }
 
-    /**
-     * Link to the current organization's discounts. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the current organization's discounts. This link may not be present for all organizations.
+    */
     public function getDiscounts(): ?OrganizationLinksDiscounts
     {
         return $this->discounts;
     }
 
-    /**
-     * Link for applying a voucher for the current organization. This link may not be present for all organizations.
-     */
+   /**
+    * Link for applying a voucher for the current organization. This link may not be present for all organizations.
+    */
     public function getApplyVoucher(): ?OrganizationLinksApplyVoucher
     {
         return $this->applyVoucher;
     }
 
-    /**
-     * Link to the current organization's subscriptions. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the current organization's subscriptions. This link may not be present for all organizations.
+    */
     public function getSubscriptions(): ?OrganizationLinksSubscriptions
     {
         return $this->subscriptions;
     }
 
-    /**
-     * Link for creating a new organization subscription.
-     */
+   /**
+    * Link for creating a new organization subscription.
+    */
     public function getCreateSubscription(): ?OrganizationLinksCreateSubscription
     {
         return $this->createSubscription;
     }
 
-    /**
-     * Link for estimating the price of a new subscription. This link may not be present for all organizations.
-     */
+   /**
+    * Link for estimating the price of a new subscription. This link may not be present for all organizations.
+    */
     public function getEstimateSubscription(): ?OrganizationLinksEstimateSubscription
     {
         return $this->estimateSubscription;
     }
 
-    /**
-     * Link to the current organization's prepayment information. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the current organization's prepayment information. This link may not be present for all organizations.
+    */
     public function getPrepayment(): ?OrganizationLinksPrepayment
     {
         return $this->prepayment;
     }
 
-    /**
-     * Link to the organization's billing profile. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the organization's billing profile. This link may not be present for all organizations.
+    */
     public function getBillingProfile(): ?OrganizationLinksBillingProfile
     {
         return $this->billingProfile;
     }
 
-    /**
-     * Link to the current organization's MFA enforcement settings. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the current organization's MFA enforcement settings. This link may not be present for all organizations.
+    */
     public function getMfaEnforcement(): ?OrganizationLinksMfaEnforcement
     {
         return $this->mfaEnforcement;
     }
 
-    /**
-     * Link to the current organization's SSO configuration. This link may not be present for all organizations.
-     */
+   /**
+    * Link to the current organization's SSO configuration. This link may not be present for all organizations.
+    */
     public function getSso(): ?OrganizationLinksSso
     {
         return $this->sso;
     }
 }
+

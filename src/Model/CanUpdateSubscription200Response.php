@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class CanUpdateSubscription200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?bool $canUpdate = null,
         private readonly ?string $message = null,
         private readonly ?object $requiredAction = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -54,3 +57,4 @@ final class CanUpdateSubscription200Response implements Model, JsonSerializable
         return $this->requiredAction;
     }
 }
+

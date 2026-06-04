@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\DomainCreateInput;
 
 /**
  * Low level ReplacementDomainStorageCreateInput (auto-generated)
@@ -13,12 +14,15 @@ use JsonSerializable;
  */
 final class ReplacementDomainStorageCreateInput implements Model, JsonSerializable, DomainCreateInput
 {
+
+
     public function __construct(
         private readonly string $name,
         private readonly ?array $attributes = [],
         private readonly ?string $replacementFor = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -39,9 +43,9 @@ final class ReplacementDomainStorageCreateInput implements Model, JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The domain name
-     */
+   /**
+    * The domain name
+    */
     public function getName(): string
     {
         return $this->name;
@@ -52,11 +56,12 @@ final class ReplacementDomainStorageCreateInput implements Model, JsonSerializab
         return $this->attributes;
     }
 
-    /**
-     * Prod domain which will be replaced by this domain
-     */
+   /**
+    * Prod domain which will be replaced by this domain
+    */
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;
     }
 }
+

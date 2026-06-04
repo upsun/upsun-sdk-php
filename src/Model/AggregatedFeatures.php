@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class AggregatedFeatures implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?object $backups = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -35,11 +38,12 @@ final class AggregatedFeatures implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Backup features configuration.
-     */
+   /**
+    * Backup features configuration.
+    */
     public function getBackups(): ?object
     {
         return $this->backups;
     }
 }
+

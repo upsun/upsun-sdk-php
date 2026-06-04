@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class CreateTeamMemberRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $userId,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,3 +43,4 @@ final class CreateTeamMemberRequest implements Model, JsonSerializable
         return $this->userId;
     }
 }
+

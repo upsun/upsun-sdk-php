@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineIps implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $href,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,3 +43,4 @@ final class ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineIps implem
         return $this->href;
     }
 }
+

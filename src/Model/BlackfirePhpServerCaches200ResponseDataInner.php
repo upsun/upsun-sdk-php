@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class BlackfirePhpServerCaches200ResponseDataInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $timestamp,
         private readonly ?float $opcacheUsage = null,
@@ -24,6 +26,7 @@ final class BlackfirePhpServerCaches200ResponseDataInner implements Model, JsonS
         private readonly ?float $opcacheHitrate = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -89,3 +92,4 @@ final class BlackfirePhpServerCaches200ResponseDataInner implements Model, JsonS
         return $this->opcacheHitrate;
     }
 }
+

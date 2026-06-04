@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,6 +13,7 @@ use JsonSerializable;
  */
 final class Activity implements Model, JsonSerializable
 {
+
     public const STATE_CANCELLED = 'cancelled';
     public const STATE_COMPLETE = 'complete';
     public const STATE_IN_PROGRESS = 'in_progress';
@@ -36,20 +36,21 @@ final class Activity implements Model, JsonSerializable
         private readonly string $log,
         private readonly object $payload,
         private readonly array $commands,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $result,
         private readonly ?string $failureReason,
-        private readonly ?DateTime $startedAt,
-        private readonly ?DateTime $completedAt,
-        private readonly ?DateTime $cancelledAt,
+        private readonly ?\DateTime $startedAt,
+        private readonly ?\DateTime $completedAt,
+        private readonly ?\DateTime $cancelledAt,
         private readonly ?string $description,
         private readonly ?string $text,
-        private readonly ?DateTime $expiresAt,
+        private readonly ?\DateTime $expiresAt,
         private readonly ?string $integration = null,
         private readonly ?array $environments = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -89,106 +90,106 @@ final class Activity implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identifier of Activity
-     */
+   /**
+    * The identifier of Activity
+    */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The creation date
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The creation date
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The update date
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The update date
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The type of the activity
-     */
+   /**
+    * The type of the activity
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The parameters of the activity
-     */
+   /**
+    * The parameters of the activity
+    */
     public function getParameters(): object
     {
         return $this->parameters;
     }
 
-    /**
-     * The project the activity belongs to
-     */
+   /**
+    * The project the activity belongs to
+    */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * The state of the activity
-     */
+   /**
+    * The state of the activity
+    */
     public function getState(): string
     {
         return $this->state;
     }
 
-    /**
-     * The result of the activity
-     */
+   /**
+    * The result of the activity
+    */
     public function getResult(): ?string
     {
         return $this->result;
     }
 
-    /**
-     * The reason for activity failure
-     */
+   /**
+    * The reason for activity failure
+    */
     public function getFailureReason(): ?string
     {
         return $this->failureReason;
     }
 
-    /**
-     * The start date of the activity
-     */
-    public function getStartedAt(): ?DateTime
+   /**
+    * The start date of the activity
+    */
+    public function getStartedAt(): ?\DateTime
     {
         return $this->startedAt;
     }
 
-    /**
-     * The completion date of the activity
-     */
-    public function getCompletedAt(): ?DateTime
+   /**
+    * The completion date of the activity
+    */
+    public function getCompletedAt(): ?\DateTime
     {
         return $this->completedAt;
     }
 
-    /**
-     * The completion percentage of the activity
-     */
+   /**
+    * The completion percentage of the activity
+    */
     public function getCompletionPercent(): int
     {
         return $this->completionPercent;
     }
 
-    /**
-     * The Cancellation date of the activity
-     */
-    public function getCancelledAt(): ?DateTime
+   /**
+    * The Cancellation date of the activity
+    */
+    public function getCancelledAt(): ?\DateTime
     {
         return $this->cancelledAt;
     }
@@ -198,58 +199,58 @@ final class Activity implements Model, JsonSerializable
         return $this->timings;
     }
 
-    /**
-     * The log of the activity
-     */
+   /**
+    * The log of the activity
+    */
     public function getLog(): string
     {
         return $this->log;
     }
 
-    /**
-     * The payload of the activity
-     */
+   /**
+    * The payload of the activity
+    */
     public function getPayload(): object
     {
         return $this->payload;
     }
 
-    /**
-     * The description of the activity, formatted with HTML
-     */
+   /**
+    * The description of the activity, formatted with HTML
+    */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * The description of the activity, formatted as plain text
-     */
+   /**
+    * The description of the activity, formatted as plain text
+    */
     public function getText(): ?string
     {
         return $this->text;
     }
 
-    /**
-     * The date at which the activity will expire
-     */
-    public function getExpiresAt(): ?DateTime
+   /**
+    * The date at which the activity will expire
+    */
+    public function getExpiresAt(): ?\DateTime
     {
         return $this->expiresAt;
     }
 
-    /**
-     * The commands of the activity
-     * @return CommandsInner[]
-     */
+   /**
+    * The commands of the activity
+    * @return CommandsInner[]
+    */
     public function getCommands(): array
     {
         return $this->commands;
     }
 
-    /**
-     * The integration the activity belongs to
-     */
+   /**
+    * The integration the activity belongs to
+    */
     public function getIntegration(): ?string
     {
         return $this->integration;
@@ -260,3 +261,4 @@ final class Activity implements Model, JsonSerializable
         return $this->environments;
     }
 }
+

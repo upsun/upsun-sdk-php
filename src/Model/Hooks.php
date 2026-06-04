@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class Hooks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $build,
         private readonly ?string $deploy,
         private readonly ?string $postDeploy,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -54,3 +57,4 @@ final class Hooks implements Model, JsonSerializable
         return $this->postDeploy;
     }
 }
+

@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class GetCurrentUserVerificationStatus200Response implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?bool $verifyPhone = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,3 +43,4 @@ final class GetCurrentUserVerificationStatus200Response implements Model, JsonSe
         return $this->verifyPhone;
     }
 }
+

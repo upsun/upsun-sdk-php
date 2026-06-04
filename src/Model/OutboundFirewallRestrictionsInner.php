@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class OutboundFirewallRestrictionsInner implements Model, JsonSerializable
 {
+
     public const PROTOCOL_TCP = 'tcp';
 
     public function __construct(
@@ -22,6 +23,7 @@ final class OutboundFirewallRestrictionsInner implements Model, JsonSerializable
         private readonly array $ports,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -63,3 +65,4 @@ final class OutboundFirewallRestrictionsInner implements Model, JsonSerializable
         return $this->ports;
     }
 }
+

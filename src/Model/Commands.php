@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class Commands implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $start,
         private readonly ?string $stop = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class Commands implements Model, JsonSerializable
         return $this->stop;
     }
 }
+

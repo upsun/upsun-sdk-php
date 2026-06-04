@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\IntegrationCreateCreateInput;
 
 /**
  * Low level SplunkIntegrationCreateInput (auto-generated)
@@ -13,6 +14,8 @@ use JsonSerializable;
  */
 final class SplunkIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateCreateInput
 {
+
+
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -24,6 +27,7 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable, Int
         private readonly ?array $excludedServices = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -49,33 +53,33 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable, Int
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The Splunk HTTP Event Connector REST API endpoint
-     */
+   /**
+    * The Splunk HTTP Event Connector REST API endpoint
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * The Splunk Index
-     */
+   /**
+    * The Splunk Index
+    */
     public function getIndex(): string
     {
         return $this->index;
     }
 
-    /**
-     * The Splunk Authorization Token
-     */
+   /**
+    * The Splunk Authorization Token
+    */
     public function getToken(): string
     {
         return $this->token;
@@ -86,17 +90,17 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable, Int
         return $this->extra;
     }
 
-    /**
-     * The event 'sourcetype'
-     */
+   /**
+    * The event 'sourcetype'
+    */
     public function getSourcetype(): ?string
     {
         return $this->sourcetype;
     }
 
-    /**
-     * Enable/Disable HTTPS certificate verification
-     */
+   /**
+    * Enable/Disable HTTPS certificate verification
+    */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
@@ -107,3 +111,4 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable, Int
         return $this->excludedServices;
     }
 }
+

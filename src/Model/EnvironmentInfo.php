@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class EnvironmentInfo implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $name,
         private readonly string $status,
@@ -26,6 +28,7 @@ final class EnvironmentInfo implements Model, JsonSerializable
         private readonly object $links,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -52,65 +55,65 @@ final class EnvironmentInfo implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The machine name of the environment
-     */
+   /**
+    * The machine name of the environment
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * The enviroment status
-     */
+   /**
+    * The enviroment status
+    */
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * Is this environment the main environment
-     */
+   /**
+    * Is this environment the main environment
+    */
     public function getIsMain(): bool
     {
         return $this->isMain;
     }
 
-    /**
-     * Is this environment a production environment
-     */
+   /**
+    * Is this environment a production environment
+    */
     public function getIsProduction(): bool
     {
         return $this->isProduction;
     }
 
-    /**
-     * Constraints of the environment's deployment
-     */
+   /**
+    * Constraints of the environment's deployment
+    */
     public function getConstraints(): object
     {
         return $this->constraints;
     }
 
-    /**
-     * The reference in Git for this environment
-     */
+   /**
+    * The reference in Git for this environment
+    */
     public function getReference(): string
     {
         return $this->reference;
     }
 
-    /**
-     * The machine name of the environment
-     */
+   /**
+    * The machine name of the environment
+    */
     public function getMachineName(): string
     {
         return $this->machineName;
     }
 
-    /**
-     * The type of environment (Production, Staging or Development)
-     */
+   /**
+    * The type of environment (Production, Staging or Development)
+    */
     public function getEnvironmentType(): string
     {
         return $this->environmentType;
@@ -121,3 +124,4 @@ final class EnvironmentInfo implements Model, JsonSerializable
         return $this->links;
     }
 }
+

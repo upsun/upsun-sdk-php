@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class OAuth2Consumer1 implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $key,
         private readonly string $secret,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,19 +41,20 @@ final class OAuth2Consumer1 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The OAuth consumer key.
-     */
+   /**
+    * The OAuth consumer key.
+    */
     public function getKey(): string
     {
         return $this->key;
     }
 
-    /**
-     * The OAuth consumer secret.
-     */
+   /**
+    * The OAuth consumer secret.
+    */
     public function getSecret(): string
     {
         return $this->secret;
     }
 }
+

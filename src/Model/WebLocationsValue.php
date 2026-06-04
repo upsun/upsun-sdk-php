@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class WebLocationsValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $expires,
         private readonly string $passthru,
@@ -25,6 +27,7 @@ final class WebLocationsValue implements Model, JsonSerializable
         private readonly ?RequestBuffering $requestBuffering = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -81,9 +84,9 @@ final class WebLocationsValue implements Model, JsonSerializable
         return $this->headers;
     }
 
-    /**
-     * @return SpecificOverridesValue[]
-     */
+   /**
+    * @return SpecificOverridesValue[]
+    */
     public function getRules(): array
     {
         return $this->rules;
@@ -99,3 +102,4 @@ final class WebLocationsValue implements Model, JsonSerializable
         return $this->requestBuffering;
     }
 }
+

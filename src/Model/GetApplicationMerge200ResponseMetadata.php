@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class GetApplicationMerge200ResponseMetadata implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $format,
         private readonly string $spyName,
@@ -21,6 +23,7 @@ final class GetApplicationMerge200ResponseMetadata implements Model, JsonSeriali
         private readonly string $name,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -68,3 +71,4 @@ final class GetApplicationMerge200ResponseMetadata implements Model, JsonSeriali
         return $this->name;
     }
 }
+

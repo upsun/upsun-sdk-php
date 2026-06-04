@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class Vouchers implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $uuid = null,
         private readonly ?string $vouchersTotal = null,
@@ -23,6 +25,7 @@ final class Vouchers implements Model, JsonSerializable
         private readonly ?VouchersLinks $links = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,50 +50,50 @@ final class Vouchers implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The uuid of the user.
-     */
+   /**
+    * The uuid of the user.
+    */
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
 
-    /**
-     * The total voucher credit given to the user.
-     */
+   /**
+    * The total voucher credit given to the user.
+    */
     public function getVouchersTotal(): ?string
     {
         return $this->vouchersTotal;
     }
 
-    /**
-     * The part of total voucher credit applied to orders.
-     */
+   /**
+    * The part of total voucher credit applied to orders.
+    */
     public function getVouchersApplied(): ?string
     {
         return $this->vouchersApplied;
     }
 
-    /**
-     * The remaining voucher credit, available for future orders.
-     */
+   /**
+    * The remaining voucher credit, available for future orders.
+    */
     public function getVouchersRemainingBalance(): ?string
     {
         return $this->vouchersRemainingBalance;
     }
 
-    /**
-     * The currency of the vouchers.
-     */
+   /**
+    * The currency of the vouchers.
+    */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
-    /**
-     * Array of vouchers.
-     * @return VouchersVouchersInner[]|null
-     */
+   /**
+    * Array of vouchers.
+    * @return VouchersVouchersInner[]|null
+    */
     public function getVouchers(): ?array
     {
         return $this->vouchers;
@@ -101,3 +104,4 @@ final class Vouchers implements Model, JsonSerializable
         return $this->links;
     }
 }
+

@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,6 +13,7 @@ use JsonSerializable;
  */
 final class ListUserExtendedAccess200ResponseItemsInner implements Model, JsonSerializable
 {
+
     public const RESOURCE_TYPE_PROJECT = 'project';
     public const RESOURCE_TYPE_ORGANIZATION = 'organization';
 
@@ -23,10 +23,11 @@ final class ListUserExtendedAccess200ResponseItemsInner implements Model, JsonSe
         private readonly ?string $resourceType = null,
         private readonly ?string $organizationId = null,
         private readonly ?array $permissions = [],
-        private readonly ?DateTime $grantedAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $grantedAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -76,13 +77,14 @@ final class ListUserExtendedAccess200ResponseItemsInner implements Model, JsonSe
         return $this->permissions;
     }
 
-    public function getGrantedAt(): ?DateTime
+    public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 }
+

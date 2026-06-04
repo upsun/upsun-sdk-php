@@ -13,6 +13,7 @@ use JsonSerializable;
  */
 final class GrantProjectUserAccessRequestInner implements Model, JsonSerializable
 {
+
     public const PERMISSIONS_ADMIN = 'admin';
     public const PERMISSIONS_VIEWER = 'viewer';
     public const PERMISSIONS_DEVELOPMENT_ADMIN = 'development:admin';
@@ -31,6 +32,7 @@ final class GrantProjectUserAccessRequestInner implements Model, JsonSerializabl
         private readonly ?bool $autoAddMember = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -66,3 +68,4 @@ final class GrantProjectUserAccessRequestInner implements Model, JsonSerializabl
         return $this->autoAddMember;
     }
 }
+

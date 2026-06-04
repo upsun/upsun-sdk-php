@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class BuildCachesValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $watch,
         private readonly bool $allowStale,
@@ -20,6 +22,7 @@ final class BuildCachesValue implements Model, JsonSerializable
         private readonly ?string $directory,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -61,3 +64,4 @@ final class BuildCachesValue implements Model, JsonSerializable
         return $this->shareBetweenApps;
     }
 }
+

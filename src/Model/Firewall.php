@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class Firewall implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $outbound,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -34,11 +37,12 @@ final class Firewall implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return OutboundFirewallRestrictionsInner[]|null
-     */
+   /**
+    * @return OutboundFirewallRestrictionsInner[]|null
+    */
     public function getOutbound(): ?array
     {
         return $this->outbound;
     }
 }
+

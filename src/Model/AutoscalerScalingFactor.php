@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class AutoscalerScalingFactor implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $up = null,
         private readonly ?int $down = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,19 +41,20 @@ final class AutoscalerScalingFactor implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Number of instances to add when scaling up horizontally
-     */
+   /**
+    * Number of instances to add when scaling up horizontally
+    */
     public function getUp(): ?int
     {
         return $this->up;
     }
 
-    /**
-     * Number of instances to remove when scaling down horizontally
-     */
+   /**
+    * Number of instances to remove when scaling down horizontally
+    */
     public function getDown(): ?int
     {
         return $this->down;
     }
 }
+

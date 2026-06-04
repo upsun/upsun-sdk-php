@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class ResourcesOverview200ResponseDataInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $timestamp,
         private readonly ?array $services = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -42,11 +45,12 @@ final class ResourcesOverview200ResponseDataInner implements Model, JsonSerializ
         return $this->timestamp;
     }
 
-    /**
-     * @return ResourcesOverview200ResponseDataInnerServicesValue[]|null
-     */
+   /**
+    * @return ResourcesOverview200ResponseDataInnerServicesValue[]|null
+    */
     public function getServices(): ?array
     {
         return $this->services;
     }
 }
+

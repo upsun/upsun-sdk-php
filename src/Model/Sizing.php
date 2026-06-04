@@ -14,6 +14,8 @@ use JsonSerializable;
  */
 final class Sizing implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $services,
         private readonly array $webapps,
@@ -21,6 +23,7 @@ final class Sizing implements Model, JsonSerializable
         private readonly array $tasks,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -41,35 +44,36 @@ final class Sizing implements Model, JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return ServicesValue1[]
-     */
+   /**
+    * @return ServicesValue1[]
+    */
     public function getServices(): array
     {
         return $this->services;
     }
 
-    /**
-     * @return WebApplicationsValue1[]
-     */
+   /**
+    * @return WebApplicationsValue1[]
+    */
     public function getWebapps(): array
     {
         return $this->webapps;
     }
 
-    /**
-     * @return ServicesValue1[]
-     */
+   /**
+    * @return ServicesValue1[]
+    */
     public function getWorkers(): array
     {
         return $this->workers;
     }
 
-    /**
-     * @return TasksValue[]
-     */
+   /**
+    * @return TasksValue[]
+    */
     public function getTasks(): array
     {
         return $this->tasks;
     }
 }
+

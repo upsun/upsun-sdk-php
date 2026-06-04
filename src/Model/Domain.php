@@ -2,6 +2,8 @@
 
 namespace Upsun\Model;
 
+use JsonSerializable;
+
 /**
  * Low level Domain (auto-generated)
  *
@@ -23,3 +25,4 @@ interface Domain
 
     public function getAttributes(): mixed;
 }
+

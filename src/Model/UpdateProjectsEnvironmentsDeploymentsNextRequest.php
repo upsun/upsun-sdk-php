@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?array $webapps = [],
         private readonly ?array $services = [],
         private readonly ?array $workers = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,27 +41,28 @@ final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements Model, J
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue[]|null
-     */
+   /**
+    * @return UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue[]|null
+    */
     public function getWebapps(): ?array
     {
         return $this->webapps;
     }
 
-    /**
-     * @return UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]|null
-     */
+   /**
+    * @return UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]|null
+    */
     public function getServices(): ?array
     {
         return $this->services;
     }
 
-    /**
-     * @return UpdateProjectsEnvironmentsDeploymentsNextRequestWorkersValue[]|null
-     */
+   /**
+    * @return UpdateProjectsEnvironmentsDeploymentsNextRequestWorkersValue[]|null
+    */
     public function getWorkers(): ?array
     {
         return $this->workers;
     }
 }
+

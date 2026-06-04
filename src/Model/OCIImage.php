@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class OCIImage implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?string $buildfile = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class OCIImage implements Model, JsonSerializable
         return $this->buildfile;
     }
 }
+

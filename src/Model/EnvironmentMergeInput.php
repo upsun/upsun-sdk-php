@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class EnvironmentMergeInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?Resources7 $resources = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,3 +43,4 @@ final class EnvironmentMergeInput implements Model, JsonSerializable
         return $this->resources;
     }
 }
+

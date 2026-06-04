@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class PreflightChecks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
         private readonly array $ignoredRules,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class PreflightChecks implements Model, JsonSerializable
         return $this->ignoredRules;
     }
 }
+

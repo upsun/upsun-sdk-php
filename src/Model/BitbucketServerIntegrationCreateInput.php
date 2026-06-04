@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\IntegrationCreateCreateInput;
 
 /**
  * Low level BitbucketServerIntegrationCreateInput (auto-generated)
@@ -13,6 +14,7 @@ use JsonSerializable;
  */
 final class BitbucketServerIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateCreateInput
 {
+
     public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
     public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
     public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
@@ -32,6 +34,7 @@ final class BitbucketServerIntegrationCreateInput implements Model, JsonSerializ
         private readonly ?bool $pullRequestsCloneParentData = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -60,91 +63,92 @@ final class BitbucketServerIntegrationCreateInput implements Model, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the integration
-     */
+   /**
+    * The type of the integration
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The base URL of the Bitbucket Server installation
-     */
+   /**
+    * The base URL of the Bitbucket Server installation
+    */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * The Bitbucket Server user
-     */
+   /**
+    * The Bitbucket Server user
+    */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * The Bitbucket Server personal access token
-     */
+   /**
+    * The Bitbucket Server personal access token
+    */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * The Bitbucket Server project
-     */
+   /**
+    * The Bitbucket Server project
+    */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * The Bitbucket Server repository
-     */
+   /**
+    * The Bitbucket Server repository
+    */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * Whether or not to fetch branches
-     */
+   /**
+    * Whether or not to fetch branches
+    */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
-     */
+   /**
+    * Whether or not to remove branches that disappeared remotely (requires `fetch_branches`)
+    */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * The resources used when initializing a new service
-     */
+   /**
+    * The resources used when initializing a new service
+    */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * Whether or not to build pull requests
-     */
+   /**
+    * Whether or not to build pull requests
+    */
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * Whether or not to clone parent data when building merge requests
-     */
+   /**
+    * Whether or not to clone parent data when building merge requests
+    */
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
     }
 }
+

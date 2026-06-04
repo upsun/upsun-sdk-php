@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class EnvironmentOperationInput implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $service,
         private readonly string $operation,
         private readonly ?array $parameters = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -39,17 +42,17 @@ final class EnvironmentOperationInput implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The name of the application or worker to run the operation on
-     */
+   /**
+    * The name of the application or worker to run the operation on
+    */
     public function getService(): string
     {
         return $this->service;
     }
 
-    /**
-     * The name of the operation
-     */
+   /**
+    * The name of the operation
+    */
     public function getOperation(): string
     {
         return $this->operation;
@@ -60,3 +63,4 @@ final class EnvironmentOperationInput implements Model, JsonSerializable
         return $this->parameters;
     }
 }
+

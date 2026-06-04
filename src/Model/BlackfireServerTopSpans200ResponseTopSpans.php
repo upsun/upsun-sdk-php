@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class BlackfireServerTopSpans200ResponseTopSpans implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly array $data,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -34,11 +37,12 @@ final class BlackfireServerTopSpans200ResponseTopSpans implements Model, JsonSer
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
-    /**
-     * @return BlackfireServerTopSpans200ResponseTopSpansDataInner[]
-     */
+   /**
+    * @return BlackfireServerTopSpans200ResponseTopSpansDataInner[]
+    */
     public function getData(): array
     {
         return $this->data;
     }
 }
+

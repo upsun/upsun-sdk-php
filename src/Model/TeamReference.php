@@ -2,7 +2,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 /**
@@ -15,6 +14,7 @@ use JsonSerializable;
  */
 final class TeamReference implements Model, JsonSerializable
 {
+
     public const PROJECT_PERMISSIONS_ADMIN = 'admin';
     public const PROJECT_PERMISSIONS_VIEWER = 'viewer';
     public const PROJECT_PERMISSIONS_DEVELOPMENT_ADMIN = 'development:admin';
@@ -33,10 +33,11 @@ final class TeamReference implements Model, JsonSerializable
         private readonly ?string $label = null,
         private readonly ?array $projectPermissions = [],
         private readonly ?TeamCounts $counts = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -61,25 +62,25 @@ final class TeamReference implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the team.
-     */
+   /**
+    * The ID of the team.
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the parent organization.
-     */
+   /**
+    * The ID of the parent organization.
+    */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The human-readable label of the team.
-     */
+   /**
+    * The human-readable label of the team.
+    */
     public function getLabel(): ?string
     {
         return $this->label;
@@ -95,19 +96,20 @@ final class TeamReference implements Model, JsonSerializable
         return $this->counts;
     }
 
-    /**
-     * The date and time when the team was created.
-     */
-    public function getCreatedAt(): ?DateTime
+   /**
+    * The date and time when the team was created.
+    */
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the team was last updated.
-     */
-    public function getUpdatedAt(): ?DateTime
+   /**
+    * The date and time when the team was last updated.
+    */
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 }
+

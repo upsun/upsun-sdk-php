@@ -14,10 +14,13 @@ use JsonSerializable;
  */
 final class MaintenanceWindowConfiguration implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly Recurrence $recurrence,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -36,11 +39,12 @@ final class MaintenanceWindowConfiguration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Defines the recurring schedule for the maintenance window
-     */
+   /**
+    * Defines the recurring schedule for the maintenance window
+    */
     public function getRecurrence(): Recurrence
     {
         return $this->recurrence;
     }
 }
+

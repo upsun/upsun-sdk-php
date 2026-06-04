@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class ScheduleInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $interval,
         private readonly int $count,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class ScheduleInner implements Model, JsonSerializable
         return $this->count;
     }
 }
+

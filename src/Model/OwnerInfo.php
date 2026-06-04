@@ -14,12 +14,15 @@ use JsonSerializable;
  */
 final class OwnerInfo implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $type = null,
         private readonly ?string $username = null,
         private readonly ?string $displayName = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,27 +43,28 @@ final class OwnerInfo implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Type of the owner, usually 'user'.
-     */
+   /**
+    * Type of the owner, usually 'user'.
+    */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * The username of the owner.
-     */
+   /**
+    * The username of the owner.
+    */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-     * The full name of the owner.
-     */
+   /**
+    * The full name of the owner.
+    */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 }
+

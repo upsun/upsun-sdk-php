@@ -13,10 +13,13 @@ use JsonSerializable;
  */
 final class VouchersLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?VouchersLinksSelf $self = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -35,11 +38,12 @@ final class VouchersLinks implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Link to the current resource.
-     */
+   /**
+    * Link to the current resource.
+    */
     public function getSelf(): ?VouchersLinksSelf
     {
         return $this->self;
     }
 }
+

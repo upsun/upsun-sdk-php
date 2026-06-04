@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class ObservabilityEntrypoint200ResponseLinksResourcesByServiceValue implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $name,
         private readonly string $href,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class ObservabilityEntrypoint200ResponseLinksResourcesByServiceValue imple
         return $this->href;
     }
 }
+

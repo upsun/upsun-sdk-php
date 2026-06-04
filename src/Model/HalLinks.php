@@ -14,12 +14,15 @@ use JsonSerializable;
  */
 final class HalLinks implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?HalLinksSelf $self = null,
         private readonly ?HalLinksPrevious $previous = null,
         private readonly ?HalLinksNext $next = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -40,27 +43,28 @@ final class HalLinks implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The cardinal link to the self resource.
-     */
+   /**
+    * The cardinal link to the self resource.
+    */
     public function getSelf(): ?HalLinksSelf
     {
         return $this->self;
     }
 
-    /**
-     * The link to the previous resource page, given that it exists.
-     */
+   /**
+    * The link to the previous resource page, given that it exists.
+    */
     public function getPrevious(): ?HalLinksPrevious
     {
         return $this->previous;
     }
 
-    /**
-     * The link to the next resource page, given that it exists.
-     */
+   /**
+    * The link to the next resource page, given that it exists.
+    */
     public function getNext(): ?HalLinksNext
     {
         return $this->next;
     }
 }
+

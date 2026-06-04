@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class BlackfireProfilesRecommendations200ResponseRecommendationsInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $name,
         private readonly int $total,
@@ -20,6 +22,7 @@ final class BlackfireProfilesRecommendations200ResponseRecommendationsInner impl
         private readonly ?BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinks $links = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -61,3 +64,4 @@ final class BlackfireProfilesRecommendations200ResponseRecommendationsInner impl
         return $this->links;
     }
 }
+

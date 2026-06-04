@@ -14,6 +14,7 @@ use JsonSerializable;
  */
 final class SubscriptionInformation implements Model, JsonSerializable
 {
+
     public const PLAN__2XLARGE = '2xlarge';
     public const PLAN__2XLARGE_HIGH_MEMORY = '2xlarge-high-memory';
     public const PLAN__4XLARGE = '4xlarge';
@@ -44,6 +45,7 @@ final class SubscriptionInformation implements Model, JsonSerializable
     ) {
     }
 
+
     public function getModelName(): string
     {
         return self::class;
@@ -72,57 +74,57 @@ final class SubscriptionInformation implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * URI of the subscription
-     */
+   /**
+    * URI of the subscription
+    */
     public function getLicenseUri(): string
     {
         return $this->licenseUri;
     }
 
-    /**
-     * Size of storage (in MB)
-     */
+   /**
+    * Size of storage (in MB)
+    */
     public function getStorage(): int
     {
         return $this->storage;
     }
 
-    /**
-     * Number of users
-     */
+   /**
+    * Number of users
+    */
     public function getIncludedUsers(): int
     {
         return $this->includedUsers;
     }
 
-    /**
-     * URI for managing the subscription
-     */
+   /**
+    * URI for managing the subscription
+    */
     public function getSubscriptionManagementUri(): string
     {
         return $this->subscriptionManagementUri;
     }
 
-    /**
-     * True if subscription attributes, like number of users, are frozen
-     */
+   /**
+    * True if subscription attributes, like number of users, are frozen
+    */
     public function getRestricted(): bool
     {
         return $this->restricted;
     }
 
-    /**
-     * Whether or not the subscription is suspended
-     */
+   /**
+    * Whether or not the subscription is suspended
+    */
     public function getSuspended(): bool
     {
         return $this->suspended;
     }
 
-    /**
-     * Current number of users
-     */
+   /**
+    * Current number of users
+    */
     public function getUserLicenses(): int
     {
         return $this->userLicenses;
@@ -133,35 +135,36 @@ final class SubscriptionInformation implements Model, JsonSerializable
         return $this->plan;
     }
 
-    /**
-     * Number of environments
-     */
+   /**
+    * Number of environments
+    */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
 
-    /**
-     * Resources limits
-     */
+   /**
+    * Resources limits
+    */
     public function getResources(): ?ResourcesLimits
     {
         return $this->resources;
     }
 
-    /**
-     * URL for resources validation
-     */
+   /**
+    * URL for resources validation
+    */
     public function getResourceValidationUrl(): ?string
     {
         return $this->resourceValidationUrl;
     }
 
-    /**
-     * Restricted and denied image types
-     */
+   /**
+    * Restricted and denied image types
+    */
     public function getImageTypes(): ?ImageTypeRestrictions
     {
         return $this->imageTypes;
     }
 }
+

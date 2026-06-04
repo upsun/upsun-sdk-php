@@ -14,10 +14,13 @@ use JsonSerializable;
  */
 final class Components implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?object $voucherVatBaseprice = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -36,11 +39,12 @@ final class Components implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * stub
-     */
+   /**
+    * stub
+    */
     public function getVoucherVatBaseprice(): ?object
     {
         return $this->voucherVatBaseprice;
     }
 }
+

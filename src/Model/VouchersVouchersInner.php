@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class VouchersVouchersInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?string $code = null,
         private readonly ?string $amount = null,
@@ -20,6 +22,7 @@ final class VouchersVouchersInner implements Model, JsonSerializable
         private readonly ?array $orders = [],
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -56,11 +59,12 @@ final class VouchersVouchersInner implements Model, JsonSerializable
         return $this->currency;
     }
 
-    /**
-     * @return VouchersVouchersInnerOrdersInner[]|null
-     */
+   /**
+    * @return VouchersVouchersInnerOrdersInner[]|null
+    */
     public function getOrders(): ?array
     {
         return $this->orders;
     }
 }
+

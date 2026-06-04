@@ -14,10 +14,13 @@ use JsonSerializable;
  */
 final class AddressMetadata implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?AddressMetadataMetadata $metadata = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -36,11 +39,12 @@ final class AddressMetadata implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Address field metadata.
-     */
+   /**
+    * Address field metadata.
+    */
     public function getMetadata(): ?AddressMetadataMetadata
     {
         return $this->metadata;
     }
 }
+

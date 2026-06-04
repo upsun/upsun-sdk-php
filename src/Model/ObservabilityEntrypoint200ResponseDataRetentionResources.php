@@ -13,12 +13,15 @@ use JsonSerializable;
  */
 final class ObservabilityEntrypoint200ResponseDataRetentionResources implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly int $retentionPeriod,
         private readonly int $maxRange,
         private readonly int $recommendedDefaultRange,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -54,3 +57,4 @@ final class ObservabilityEntrypoint200ResponseDataRetentionResources implements 
         return $this->recommendedDefaultRange;
     }
 }
+

@@ -13,11 +13,14 @@ use JsonSerializable;
  */
 final class RequestBuffering implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly bool $enabled,
         private readonly ?string $maxRequestSize,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -47,3 +50,4 @@ final class RequestBuffering implements Model, JsonSerializable
         return $this->maxRequestSize;
     }
 }
+

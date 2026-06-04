@@ -13,6 +13,8 @@ use JsonSerializable;
  */
 final class HttpMetricsTimelineUserAgents200ResponseBreakdownDataInner implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly string $name,
         private readonly float $impact,
@@ -23,6 +25,7 @@ final class HttpMetricsTimelineUserAgents200ResponseBreakdownDataInner implement
         private readonly bool $topHit,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -82,3 +85,4 @@ final class HttpMetricsTimelineUserAgents200ResponseBreakdownDataInner implement
         return $this->topHit;
     }
 }
+

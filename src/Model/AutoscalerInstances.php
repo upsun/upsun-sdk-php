@@ -14,11 +14,14 @@ use JsonSerializable;
  */
 final class AutoscalerInstances implements Model, JsonSerializable
 {
+
+
     public function __construct(
         private readonly ?int $min = null,
         private readonly ?int $max = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -38,19 +41,20 @@ final class AutoscalerInstances implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Minimum number of instances when scaling down horizontally
-     */
+   /**
+    * Minimum number of instances when scaling down horizontally
+    */
     public function getMin(): ?int
     {
         return $this->min;
     }
 
-    /**
-     * Maximum number of instances when scaling up horizontally
-     */
+   /**
+    * Maximum number of instances when scaling up horizontally
+    */
     public function getMax(): ?int
     {
         return $this->max;
     }
 }
+

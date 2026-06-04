@@ -3,6 +3,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use Upsun\Model\DeploymentTarget;
 
 /**
  * Low level KubernetesDeploymentTargetStorage (auto-generated)
@@ -13,6 +14,7 @@ use JsonSerializable;
  */
 final class KubernetesDeploymentTargetStorage implements Model, JsonSerializable, DeploymentTarget
 {
+
     public const TYPE_DEDICATED = 'dedicated';
     public const TYPE_ENTERPRISE = 'enterprise';
     public const TYPE_FOUNDATION = 'foundation';
@@ -27,6 +29,7 @@ final class KubernetesDeploymentTargetStorage implements Model, JsonSerializable
         private readonly ?string $id = null,
     ) {
     }
+
 
     public function getModelName(): string
     {
@@ -50,51 +53,52 @@ final class KubernetesDeploymentTargetStorage implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of the deployment target
-     */
+   /**
+    * The type of the deployment target
+    */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * The name of the deployment target
-     */
+   /**
+    * The name of the deployment target
+    */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * K8S config
-     */
+   /**
+    * K8S config
+    */
     public function getK8sConfig(): ?string
     {
         return $this->k8sConfig;
     }
 
-    /**
-     * The bastion-nodes ssh user
-     */
+   /**
+    * The bastion-nodes ssh user
+    */
     public function getBastionNodesUser(): ?string
     {
         return $this->bastionNodesUser;
     }
 
-    /**
-     * The bastion node endpoint
-     */
+   /**
+    * The bastion node endpoint
+    */
     public function getBastionNodesHost(): ?string
     {
         return $this->bastionNodesHost;
     }
 
-    /**
-     * The identifier of KubernetesDeploymentTargetStorage
-     */
+   /**
+    * The identifier of KubernetesDeploymentTargetStorage
+    */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
+
