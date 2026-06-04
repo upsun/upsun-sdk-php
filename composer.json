@@ -76,7 +76,9 @@
     },
     "prefer-stable": true,
     "scripts": {
+        "clean": "rm -rf ./coverage/ ./coverage.xml",
         "install:ci": "composer install --prefer-dist --no-progress --no-interaction",
+
         "lint:phpcs": "./vendor/bin/phpcs --standard=phpcs.xml src/",
         "lint:phpcs:tests": "./vendor/bin/phpcs --standard=phpcs.xml tests/",
         "lint:rector": "./vendor/bin/rector process src --dry-run",
