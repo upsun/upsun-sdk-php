@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Activity;
 
 /**
  * Low level ProjectActivityApi (auto-generated)
@@ -26,13 +25,13 @@ final class ProjectActivityApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -44,7 +43,7 @@ final class ProjectActivityApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -64,7 +63,7 @@ final class ProjectActivityApi extends AbstractApi
     public function actionProjectsActivitiesCancel(
         string $projectId,
         string $activityId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->actionProjectsActivitiesCancelWithHttpInfo(
             $projectId,
             $activityId
@@ -81,7 +80,7 @@ final class ProjectActivityApi extends AbstractApi
     private function actionProjectsActivitiesCancelWithHttpInfo(
         string $projectId,
         string $activityId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->actionProjectsActivitiesCancelRequest(
             $projectId,
             $activityId
@@ -124,6 +123,7 @@ final class ProjectActivityApi extends AbstractApi
         string $projectId,
         string $activityId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -164,6 +164,7 @@ final class ProjectActivityApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -236,7 +237,7 @@ final class ProjectActivityApi extends AbstractApi
     public function getProjectsActivities(
         string $projectId,
         string $activityId
-    ): Activity {
+    ): \Upsun\Model\Activity {
         return $this->getProjectsActivitiesWithHttpInfo(
             $projectId,
             $activityId
@@ -253,7 +254,7 @@ final class ProjectActivityApi extends AbstractApi
     private function getProjectsActivitiesWithHttpInfo(
         string $projectId,
         string $activityId
-    ): Activity {
+    ): \Upsun\Model\Activity {
         $request = $this->getProjectsActivitiesRequest(
             $projectId,
             $activityId
@@ -296,6 +297,7 @@ final class ProjectActivityApi extends AbstractApi
         string $projectId,
         string $activityId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -336,6 +338,7 @@ final class ProjectActivityApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -476,6 +479,7 @@ final class ProjectActivityApi extends AbstractApi
     private function listProjectsActivitiesRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -500,6 +504,7 @@ final class ProjectActivityApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

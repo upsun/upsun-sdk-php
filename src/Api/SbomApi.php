@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,7 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\Sbom;
 
 /**
  * Low level SbomApi (auto-generated)
@@ -25,13 +25,13 @@ final class SbomApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -43,7 +43,7 @@ final class SbomApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -60,7 +60,7 @@ final class SbomApi extends AbstractApi
         string $environmentId,
         string $deploymentId,
         string $sbomServiceId
-    ): Sbom {
+    ): \Upsun\Model\Sbom {
         return $this->getProjectsEnvironmentsDeploymentsSbomsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -80,7 +80,7 @@ final class SbomApi extends AbstractApi
         string $environmentId,
         string $deploymentId,
         string $sbomServiceId
-    ): Sbom {
+    ): \Upsun\Model\Sbom {
         $request = $this->getProjectsEnvironmentsDeploymentsSbomsRequest(
             $projectId,
             $environmentId,
@@ -127,6 +127,7 @@ final class SbomApi extends AbstractApi
         string $deploymentId,
         string $sbomServiceId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -199,6 +200,7 @@ final class SbomApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -334,6 +336,7 @@ final class SbomApi extends AbstractApi
         string $environmentId,
         string $deploymentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -390,6 +393,7 @@ final class SbomApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

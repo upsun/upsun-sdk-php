@@ -26,6 +26,7 @@ final class ApiObjectFormatsMapper
     }
 
     protected static $openApiFormats = [
+
         'Upsun\Model\AcceptedResponse' => [
             'status' => null,
             'code' => null
@@ -170,6 +171,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\AutoscalerDuration' => [
+            
         ],
 
         'Upsun\Model\AutoscalerInstances' => [
@@ -994,6 +996,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\CommunityPackagesInner' => [
+            
         ],
 
         'Upsun\Model\Components' => [
@@ -1822,6 +1825,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\FilterSelectValues' => [
+            
         ],
 
         'Upsun\Model\Firewall' => [
@@ -3026,6 +3030,7 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\Mode' => [
+            
         ],
 
         'Upsun\Model\MountsValue' => [
@@ -4111,9 +4116,11 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ProjectStatus' => [
+            
         ],
 
         'Upsun\Model\ProjectType' => [
+            
         ],
 
         'Upsun\Model\ProjectVariable' => [
@@ -5957,5 +5964,6 @@ final class ApiObjectFormatsMapper
             'slugId' => null,
             'supportsHorizontalScaling' => null
         ],
+
     ];
 }

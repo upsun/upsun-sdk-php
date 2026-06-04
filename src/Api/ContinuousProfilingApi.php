@@ -25,13 +25,13 @@ final class ContinuousProfilingApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -43,7 +43,7 @@ final class ContinuousProfilingApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -342,6 +342,7 @@ final class ContinuousProfilingApi extends AbstractApi
         ?int $probeVersionMode = null,
         ?array $probeVersion = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -349,6 +350,8 @@ final class ContinuousProfilingApi extends AbstractApi
                 when calling getApplicationFilter'
             );
         }
+
+
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -365,6 +368,8 @@ final class ContinuousProfilingApi extends AbstractApi
             );
         }
 
+
+
         if (!preg_match("/.+/", $envId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"envId\" when calling ContinuousProfilingApi.getApplicationFilter,
@@ -380,12 +385,15 @@ final class ContinuousProfilingApi extends AbstractApi
             );
         }
 
+
+
         if (!preg_match("/.+/", $app)) {
             throw new InvalidArgumentException(
                 "invalid value for \"app\" when calling ContinuousProfilingApi.getApplicationFilter,
                 must conform to the pattern /.+/."
             );
         }
+
 
         $resourcePath = '/projects/{projectId}/environments/{envId}/continuous-profiling/app/{app}/filter';
         $formParams = [];
@@ -407,6 +415,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -419,6 +429,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($to);
             }
         }
+
+
 
         // query params
         if ($profileType !== null) {
@@ -433,6 +445,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimeMode !== null) {
             if ('form' === 'form' && is_array($runtimeMode)) {
@@ -445,6 +459,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtimeMode);
             }
         }
+
+
 
         // query params
         if ($runtime !== null) {
@@ -459,6 +475,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimeVersionMode !== null) {
             if ('form' === 'form' && is_array($runtimeVersionMode)) {
@@ -471,6 +489,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtimeVersionMode);
             }
         }
+
+
 
         // query params
         if ($runtimeVersion !== null) {
@@ -485,6 +505,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimeArchMode !== null) {
             if ('form' === 'form' && is_array($runtimeArchMode)) {
@@ -497,6 +519,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtimeArchMode);
             }
         }
+
+
 
         // query params
         if ($runtimeArch !== null) {
@@ -511,6 +535,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimeOsMode !== null) {
             if ('form' === 'form' && is_array($runtimeOsMode)) {
@@ -523,6 +549,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtimeOsMode);
             }
         }
+
+
 
         // query params
         if ($runtimeOs !== null) {
@@ -537,6 +565,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($probeVersionMode !== null) {
             if ('form' === 'form' && is_array($probeVersionMode)) {
@@ -550,6 +580,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($probeVersion !== null) {
             if ('form' === 'form' && is_array($probeVersion)) {
@@ -562,6 +594,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($probeVersion);
             }
         }
+
+
 
         // path params
 
@@ -590,6 +624,7 @@ final class ContinuousProfilingApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -950,6 +985,7 @@ final class ContinuousProfilingApi extends AbstractApi
         ?int $probeVersionMode = null,
         ?array $probeVersion = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -957,6 +993,8 @@ final class ContinuousProfilingApi extends AbstractApi
                 when calling getApplicationMerge'
             );
         }
+
+
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -973,6 +1011,8 @@ final class ContinuousProfilingApi extends AbstractApi
             );
         }
 
+
+
         if (!preg_match("/.+/", $envId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"envId\" when calling ContinuousProfilingApi.getApplicationMerge,
@@ -988,12 +1028,15 @@ final class ContinuousProfilingApi extends AbstractApi
             );
         }
 
+
+
         if (!preg_match("/.+/", $app)) {
             throw new InvalidArgumentException(
                 "invalid value for \"app\" when calling ContinuousProfilingApi.getApplicationMerge,
                 must conform to the pattern /.+/."
             );
         }
+
 
         $resourcePath = '/projects/{projectId}/environments/{envId}/continuous-profiling/app/{app}/merge';
         $formParams = [];
@@ -1015,6 +1058,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -1027,6 +1072,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($to);
             }
         }
+
+
 
         // query params
         if ($profileType !== null) {
@@ -1041,6 +1088,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($out !== null) {
             if ('form' === 'form' && is_array($out)) {
@@ -1053,6 +1102,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($out);
             }
         }
+
+
 
         // query params
         if ($runtimeMode !== null) {
@@ -1067,6 +1118,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtime !== null) {
             if ('form' === 'form' && is_array($runtime)) {
@@ -1079,6 +1132,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtime);
             }
         }
+
+
 
         // query params
         if ($runtimeVersionMode !== null) {
@@ -1093,6 +1148,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimeVersion !== null) {
             if ('form' === 'form' && is_array($runtimeVersion)) {
@@ -1105,6 +1162,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtimeVersion);
             }
         }
+
+
 
         // query params
         if ($runtimeArchMode !== null) {
@@ -1119,6 +1178,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimeArch !== null) {
             if ('form' === 'form' && is_array($runtimeArch)) {
@@ -1131,6 +1192,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtimeArch);
             }
         }
+
+
 
         // query params
         if ($runtimeOsMode !== null) {
@@ -1145,6 +1208,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimeOs !== null) {
             if ('form' === 'form' && is_array($runtimeOs)) {
@@ -1157,6 +1222,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtimeOs);
             }
         }
+
+
 
         // query params
         if ($probeVersionMode !== null) {
@@ -1171,6 +1238,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($probeVersion !== null) {
             if ('form' === 'form' && is_array($probeVersion)) {
@@ -1183,6 +1252,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($probeVersion);
             }
         }
+
+
 
         // path params
 
@@ -1211,6 +1282,7 @@ final class ContinuousProfilingApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/octet-stream', 'text/vnd.graphviz', 'application/json'],
@@ -1563,6 +1635,7 @@ final class ContinuousProfilingApi extends AbstractApi
         ?int $probeVersionMode = null,
         ?array $probeVersion = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1570,6 +1643,8 @@ final class ContinuousProfilingApi extends AbstractApi
                 when calling getApplicationTimeline'
             );
         }
+
+
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -1586,6 +1661,8 @@ final class ContinuousProfilingApi extends AbstractApi
             );
         }
 
+
+
         if (!preg_match("/.+/", $envId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"envId\" when calling ContinuousProfilingApi.getApplicationTimeline,
@@ -1601,12 +1678,15 @@ final class ContinuousProfilingApi extends AbstractApi
             );
         }
 
+
+
         if (!preg_match("/.+/", $app)) {
             throw new InvalidArgumentException(
                 "invalid value for \"app\" when calling ContinuousProfilingApi.getApplicationTimeline,
                 must conform to the pattern /.+/."
             );
         }
+
 
         $resourcePath = '/projects/{projectId}/environments/{envId}/continuous-profiling/app/{app}';
         $formParams = [];
@@ -1628,6 +1708,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -1640,6 +1722,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($to);
             }
         }
+
+
 
         // query params
         if ($profileType !== null) {
@@ -1654,6 +1738,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimeMode !== null) {
             if ('form' === 'form' && is_array($runtimeMode)) {
@@ -1666,6 +1752,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtimeMode);
             }
         }
+
+
 
         // query params
         if ($runtime !== null) {
@@ -1680,6 +1768,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimeVersionMode !== null) {
             if ('form' === 'form' && is_array($runtimeVersionMode)) {
@@ -1692,6 +1782,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtimeVersionMode);
             }
         }
+
+
 
         // query params
         if ($runtimeVersion !== null) {
@@ -1706,6 +1798,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimeArchMode !== null) {
             if ('form' === 'form' && is_array($runtimeArchMode)) {
@@ -1718,6 +1812,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtimeArchMode);
             }
         }
+
+
 
         // query params
         if ($runtimeArch !== null) {
@@ -1732,6 +1828,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($runtimeOsMode !== null) {
             if ('form' === 'form' && is_array($runtimeOsMode)) {
@@ -1744,6 +1842,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($runtimeOsMode);
             }
         }
+
+
 
         // query params
         if ($runtimeOs !== null) {
@@ -1758,6 +1858,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($probeVersionMode !== null) {
             if ('form' === 'form' && is_array($probeVersionMode)) {
@@ -1771,6 +1873,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($probeVersion !== null) {
             if ('form' === 'form' && is_array($probeVersion)) {
@@ -1783,6 +1887,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($probeVersion);
             }
         }
+
+
 
         // path params
 
@@ -1811,6 +1917,7 @@ final class ContinuousProfilingApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1965,6 +2072,7 @@ final class ContinuousProfilingApi extends AbstractApi
         ?int $from = null,
         ?int $to = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1972,6 +2080,8 @@ final class ContinuousProfilingApi extends AbstractApi
                 when calling listApplications'
             );
         }
+
+
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -1988,12 +2098,15 @@ final class ContinuousProfilingApi extends AbstractApi
             );
         }
 
+
+
         if (!preg_match("/.+/", $envId)) {
             throw new InvalidArgumentException(
                 "invalid value for \"envId\" when calling ContinuousProfilingApi.listApplications,
                 must conform to the pattern /.+/."
             );
         }
+
 
         $resourcePath = '/projects/{projectId}/environments/{envId}/continuous-profiling';
         $formParams = [];
@@ -2015,6 +2128,8 @@ final class ContinuousProfilingApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -2027,6 +2142,8 @@ final class ContinuousProfilingApi extends AbstractApi
                     : ($to);
             }
         }
+
+
 
         // path params
 
@@ -2046,6 +2163,7 @@ final class ContinuousProfilingApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\SystemInformation;
 
 /**
  * Low level SystemInformationApi (auto-generated)
@@ -26,13 +25,13 @@ final class SystemInformationApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -44,7 +43,7 @@ final class SystemInformationApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -61,7 +60,7 @@ final class SystemInformationApi extends AbstractApi
      */
     public function actionProjectsSystemRestart(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->actionProjectsSystemRestartWithHttpInfo(
             $projectId
         );
@@ -76,7 +75,7 @@ final class SystemInformationApi extends AbstractApi
     */
     private function actionProjectsSystemRestartWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->actionProjectsSystemRestartRequest(
             $projectId
         );
@@ -117,6 +116,7 @@ final class SystemInformationApi extends AbstractApi
     private function actionProjectsSystemRestartRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -141,6 +141,7 @@ final class SystemInformationApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -210,7 +211,7 @@ final class SystemInformationApi extends AbstractApi
      */
     public function getProjectsSystem(
         string $projectId
-    ): SystemInformation {
+    ): \Upsun\Model\SystemInformation {
         return $this->getProjectsSystemWithHttpInfo(
             $projectId
         );
@@ -225,7 +226,7 @@ final class SystemInformationApi extends AbstractApi
     */
     private function getProjectsSystemWithHttpInfo(
         string $projectId
-    ): SystemInformation {
+    ): \Upsun\Model\SystemInformation {
         $request = $this->getProjectsSystemRequest(
             $projectId
         );
@@ -266,6 +267,7 @@ final class SystemInformationApi extends AbstractApi
     private function getProjectsSystemRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -290,6 +292,7 @@ final class SystemInformationApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

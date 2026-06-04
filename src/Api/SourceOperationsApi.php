@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\EnvironmentSourceOperationInput;
 
 /**
  * Low level SourceOperationsApi (auto-generated)
@@ -26,13 +25,13 @@ final class SourceOperationsApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -44,7 +43,7 @@ final class SourceOperationsApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -128,6 +127,7 @@ final class SourceOperationsApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -168,6 +168,7 @@ final class SourceOperationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -241,8 +242,8 @@ final class SourceOperationsApi extends AbstractApi
     public function runSourceOperation(
         string $projectId,
         string $environmentId,
-        EnvironmentSourceOperationInput $environmentSourceOperationInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentSourceOperationInput $environmentSourceOperationInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->runSourceOperationWithHttpInfo(
             $projectId,
             $environmentId,
@@ -261,8 +262,8 @@ final class SourceOperationsApi extends AbstractApi
     private function runSourceOperationWithHttpInfo(
         string $projectId,
         string $environmentId,
-        EnvironmentSourceOperationInput $environmentSourceOperationInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentSourceOperationInput $environmentSourceOperationInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->runSourceOperationRequest(
             $projectId,
             $environmentId,
@@ -306,8 +307,9 @@ final class SourceOperationsApi extends AbstractApi
     private function runSourceOperationRequest(
         string $projectId,
         string $environmentId,
-        EnvironmentSourceOperationInput $environmentSourceOperationInput
+        \Upsun\Model\EnvironmentSourceOperationInput $environmentSourceOperationInput
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -355,6 +357,7 @@ final class SourceOperationsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

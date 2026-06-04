@@ -3,22 +3,22 @@
 namespace Upsun\Api;
 
 use Exception;
+use InvalidArgumentException;
+use JsonException;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClientFactory;
 use Http\Discovery\Psr17FactoryDiscovery;
-use InvalidArgumentException;
-use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Upsun\Core\OAuthProvider;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
-use Upsun\Core\OAuthProvider;
+use Psr\Http\Message\UriInterface;
+use Psr\Http\Message\StreamInterface;
 
 use function sprintf;
 
@@ -229,10 +229,10 @@ abstract class AbstractApi
     /**
      * @template T
      * @param class-string<T>|string $dataType Fully-qualified class name, or scalar type like "string", "array"
+     * @return T
      *
      * @throws ApiException
      * @throws Exception
-     * @return T
      */
     protected function handleResponseWithDataType(
         string $dataType,

@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\DomainClaim;
 
 /**
  * Low level DomainClaimApi (auto-generated)
@@ -26,13 +25,13 @@ final class DomainClaimApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -44,7 +43,7 @@ final class DomainClaimApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -60,7 +59,7 @@ final class DomainClaimApi extends AbstractApi
     public function createProjectsDomainClaims(
         string $projectId,
         object $body
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->createProjectsDomainClaimsWithHttpInfo(
             $projectId,
             $body
@@ -77,7 +76,7 @@ final class DomainClaimApi extends AbstractApi
     private function createProjectsDomainClaimsWithHttpInfo(
         string $projectId,
         object $body
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->createProjectsDomainClaimsRequest(
             $projectId,
             $body
@@ -121,6 +120,7 @@ final class DomainClaimApi extends AbstractApi
         string $projectId,
         object $body
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -152,6 +152,7 @@ final class DomainClaimApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -227,7 +228,7 @@ final class DomainClaimApi extends AbstractApi
     public function deleteProjectsDomainClaims(
         string $projectId,
         string $domainClaimId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->deleteProjectsDomainClaimsWithHttpInfo(
             $projectId,
             $domainClaimId
@@ -243,7 +244,7 @@ final class DomainClaimApi extends AbstractApi
     private function deleteProjectsDomainClaimsWithHttpInfo(
         string $projectId,
         string $domainClaimId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsDomainClaimsRequest(
             $projectId,
             $domainClaimId
@@ -286,6 +287,7 @@ final class DomainClaimApi extends AbstractApi
         string $projectId,
         string $domainClaimId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -326,6 +328,7 @@ final class DomainClaimApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -393,7 +396,7 @@ final class DomainClaimApi extends AbstractApi
     public function getProjectsDomainClaims(
         string $projectId,
         string $domainClaimId
-    ): DomainClaim {
+    ): \Upsun\Model\DomainClaim {
         return $this->getProjectsDomainClaimsWithHttpInfo(
             $projectId,
             $domainClaimId
@@ -409,7 +412,7 @@ final class DomainClaimApi extends AbstractApi
     private function getProjectsDomainClaimsWithHttpInfo(
         string $projectId,
         string $domainClaimId
-    ): DomainClaim {
+    ): \Upsun\Model\DomainClaim {
         $request = $this->getProjectsDomainClaimsRequest(
             $projectId,
             $domainClaimId
@@ -452,6 +455,7 @@ final class DomainClaimApi extends AbstractApi
         string $projectId,
         string $domainClaimId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -492,6 +496,7 @@ final class DomainClaimApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -617,6 +622,7 @@ final class DomainClaimApi extends AbstractApi
     private function listProjectsDomainClaimsRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -641,6 +647,7 @@ final class DomainClaimApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -710,7 +717,7 @@ final class DomainClaimApi extends AbstractApi
         string $projectId,
         string $domainClaimId,
         object $body
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->updateProjectsDomainClaimsWithHttpInfo(
             $projectId,
             $domainClaimId,
@@ -729,7 +736,7 @@ final class DomainClaimApi extends AbstractApi
         string $projectId,
         string $domainClaimId,
         object $body
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsDomainClaimsRequest(
             $projectId,
             $domainClaimId,
@@ -775,6 +782,7 @@ final class DomainClaimApi extends AbstractApi
         string $domainClaimId,
         object $body
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -822,6 +830,7 @@ final class DomainClaimApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

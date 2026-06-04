@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,9 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Project;
-use Upsun\Model\ProjectCapabilities;
 
 /**
  * Low level ProjectApi (auto-generated)
@@ -27,13 +25,13 @@ final class ProjectApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -45,7 +43,7 @@ final class ProjectApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -64,7 +62,7 @@ final class ProjectApi extends AbstractApi
      */
     public function actionProjectsClearBuildCache(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->actionProjectsClearBuildCacheWithHttpInfo(
             $projectId
         );
@@ -79,7 +77,7 @@ final class ProjectApi extends AbstractApi
     */
     private function actionProjectsClearBuildCacheWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->actionProjectsClearBuildCacheRequest(
             $projectId
         );
@@ -120,6 +118,7 @@ final class ProjectApi extends AbstractApi
     private function actionProjectsClearBuildCacheRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -144,6 +143,7 @@ final class ProjectApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -213,7 +213,7 @@ final class ProjectApi extends AbstractApi
      */
     public function getProjects(
         string $projectId
-    ): Project {
+    ): \Upsun\Model\Project {
         return $this->getProjectsWithHttpInfo(
             $projectId
         );
@@ -228,7 +228,7 @@ final class ProjectApi extends AbstractApi
     */
     private function getProjectsWithHttpInfo(
         string $projectId
-    ): Project {
+    ): \Upsun\Model\Project {
         $request = $this->getProjectsRequest(
             $projectId
         );
@@ -269,6 +269,7 @@ final class ProjectApi extends AbstractApi
     private function getProjectsRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -293,6 +294,7 @@ final class ProjectApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -363,7 +365,7 @@ final class ProjectApi extends AbstractApi
      */
     public function getProjectsCapabilities(
         string $projectId
-    ): ProjectCapabilities {
+    ): \Upsun\Model\ProjectCapabilities {
         return $this->getProjectsCapabilitiesWithHttpInfo(
             $projectId
         );
@@ -378,7 +380,7 @@ final class ProjectApi extends AbstractApi
     */
     private function getProjectsCapabilitiesWithHttpInfo(
         string $projectId
-    ): ProjectCapabilities {
+    ): \Upsun\Model\ProjectCapabilities {
         $request = $this->getProjectsCapabilitiesRequest(
             $projectId
         );
@@ -419,6 +421,7 @@ final class ProjectApi extends AbstractApi
     private function getProjectsCapabilitiesRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -443,6 +446,7 @@ final class ProjectApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -509,7 +513,7 @@ final class ProjectApi extends AbstractApi
      */
     public function maintenanceRedeployProject(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->maintenanceRedeployProjectWithHttpInfo(
             $projectId
         );
@@ -523,7 +527,7 @@ final class ProjectApi extends AbstractApi
     */
     private function maintenanceRedeployProjectWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->maintenanceRedeployProjectRequest(
             $projectId
         );
@@ -564,6 +568,7 @@ final class ProjectApi extends AbstractApi
     private function maintenanceRedeployProjectRequest(
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -588,6 +593,7 @@ final class ProjectApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

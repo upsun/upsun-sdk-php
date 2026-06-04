@@ -13,7 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\TeamProjectAccess;
 
 /**
  * Low level TeamAccessApi (auto-generated)
@@ -26,13 +25,13 @@ final class TeamAccessApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -44,7 +43,7 @@ final class TeamAccessApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -66,7 +65,7 @@ final class TeamAccessApi extends AbstractApi
     public function getProjectTeamAccess(
         string $projectId,
         string $teamId
-    ): TeamProjectAccess {
+    ): \Upsun\Model\TeamProjectAccess {
         return $this->getProjectTeamAccessWithHttpInfo(
             $projectId,
             $teamId
@@ -87,7 +86,7 @@ final class TeamAccessApi extends AbstractApi
     private function getProjectTeamAccessWithHttpInfo(
         string $projectId,
         string $teamId
-    ): TeamProjectAccess {
+    ): \Upsun\Model\TeamProjectAccess {
         $request = $this->getProjectTeamAccessRequest(
             $projectId,
             $teamId
@@ -134,6 +133,7 @@ final class TeamAccessApi extends AbstractApi
         string $projectId,
         string $teamId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -174,6 +174,7 @@ final class TeamAccessApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -248,7 +249,7 @@ final class TeamAccessApi extends AbstractApi
     public function getTeamProjectAccess(
         string $teamId,
         string $projectId
-    ): TeamProjectAccess {
+    ): \Upsun\Model\TeamProjectAccess {
         return $this->getTeamProjectAccessWithHttpInfo(
             $teamId,
             $projectId
@@ -269,7 +270,7 @@ final class TeamAccessApi extends AbstractApi
     private function getTeamProjectAccessWithHttpInfo(
         string $teamId,
         string $projectId
-    ): TeamProjectAccess {
+    ): \Upsun\Model\TeamProjectAccess {
         $request = $this->getTeamProjectAccessRequest(
             $teamId,
             $projectId
@@ -316,6 +317,7 @@ final class TeamAccessApi extends AbstractApi
         string $teamId,
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'teamId' is set
         if (empty($teamId)) {
             throw new InvalidArgumentException(
@@ -356,6 +358,7 @@ final class TeamAccessApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -486,6 +489,7 @@ final class TeamAccessApi extends AbstractApi
         string $projectId,
         array $grantProjectTeamAccessRequestInner
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -517,6 +521,7 @@ final class TeamAccessApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
@@ -655,6 +660,7 @@ final class TeamAccessApi extends AbstractApi
         string $teamId,
         array $grantTeamProjectAccessRequestInner
     ): RequestInterface {
+
         // verify the required parameter 'teamId' is set
         if (empty($teamId)) {
             throw new InvalidArgumentException(
@@ -686,6 +692,7 @@ final class TeamAccessApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
@@ -872,6 +879,7 @@ final class TeamAccessApi extends AbstractApi
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -894,6 +902,8 @@ final class TeamAccessApi extends AbstractApi
             );
         }
 
+
+
         $resourcePath = '/projects/{project_id}/team-access';
         $formParams = [];
         $queryParams = [];
@@ -914,6 +924,8 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pageBefore !== null) {
             if ('form' === 'form' && is_array($pageBefore)) {
@@ -926,6 +938,8 @@ final class TeamAccessApi extends AbstractApi
                     : ($pageBefore);
             }
         }
+
+
 
         // query params
         if ($pageAfter !== null) {
@@ -940,6 +954,8 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -953,6 +969,8 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
+
+
         // path params
 
         if ($projectId !== null) {
@@ -962,6 +980,7 @@ final class TeamAccessApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -1140,6 +1159,7 @@ final class TeamAccessApi extends AbstractApi
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
+
         // verify the required parameter 'teamId' is set
         if (empty($teamId)) {
             throw new InvalidArgumentException(
@@ -1162,6 +1182,8 @@ final class TeamAccessApi extends AbstractApi
             );
         }
 
+
+
         $resourcePath = '/teams/{team_id}/project-access';
         $formParams = [];
         $queryParams = [];
@@ -1182,6 +1204,8 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($pageBefore !== null) {
             if ('form' === 'form' && is_array($pageBefore)) {
@@ -1194,6 +1218,8 @@ final class TeamAccessApi extends AbstractApi
                     : ($pageBefore);
             }
         }
+
+
 
         // query params
         if ($pageAfter !== null) {
@@ -1208,6 +1234,8 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
+
+
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -1221,6 +1249,8 @@ final class TeamAccessApi extends AbstractApi
             }
         }
 
+
+
         // path params
 
         if ($teamId !== null) {
@@ -1230,6 +1260,7 @@ final class TeamAccessApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -1366,6 +1397,7 @@ final class TeamAccessApi extends AbstractApi
         string $projectId,
         string $teamId
     ): RequestInterface {
+
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1406,6 +1438,7 @@ final class TeamAccessApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],
@@ -1542,6 +1575,7 @@ final class TeamAccessApi extends AbstractApi
         string $teamId,
         string $projectId
     ): RequestInterface {
+
         // verify the required parameter 'teamId' is set
         if (empty($teamId)) {
             throw new InvalidArgumentException(
@@ -1582,6 +1616,7 @@ final class TeamAccessApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/problem+json'],

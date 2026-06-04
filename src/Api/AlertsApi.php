@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,8 +13,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
-use Upsun\Model\GetUsageAlerts200Response;
-use Upsun\Model\UpdateUsageAlertsRequest;
 
 /**
  * Low level AlertsApi (auto-generated)
@@ -26,13 +25,13 @@ final class AlertsApi extends AbstractApi
 {
     private readonly ApiHeaderSelector $headerSelector;
 
-    private APIConfiguration $config;
+    private ApiConfiguration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
-        ?APIConfiguration $config = null,
+        ?ApiConfiguration $config = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?ApiHeaderSelector $selector = null,
     ) {
@@ -44,7 +43,7 @@ final class AlertsApi extends AbstractApi
             $streamFactory
         );
 
-        $this->config = $config ?? (new APIConfiguration())->setHost(AbstractApi::BASE_PATH);
+        $this->config = $config ?? (new ApiConfiguration())->setHost(AbstractApi::BASE_PATH);
 
         $this->headerSelector = $selector ?? new ApiHeaderSelector();
     }
@@ -62,7 +61,7 @@ final class AlertsApi extends AbstractApi
      */
     public function getUsageAlerts(
         string $subscriptionId
-    ): GetUsageAlerts200Response {
+    ): \Upsun\Model\GetUsageAlerts200Response {
         return $this->getUsageAlertsWithHttpInfo(
             $subscriptionId
         );
@@ -79,7 +78,7 @@ final class AlertsApi extends AbstractApi
     */
     private function getUsageAlertsWithHttpInfo(
         string $subscriptionId
-    ): GetUsageAlerts200Response {
+    ): \Upsun\Model\GetUsageAlerts200Response {
         $request = $this->getUsageAlertsRequest(
             $subscriptionId
         );
@@ -122,6 +121,7 @@ final class AlertsApi extends AbstractApi
     private function getUsageAlertsRequest(
         string $subscriptionId
     ): RequestInterface {
+
         // verify the required parameter 'subscriptionId' is set
         if (empty($subscriptionId)) {
             throw new InvalidArgumentException(
@@ -146,6 +146,7 @@ final class AlertsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -216,8 +217,8 @@ final class AlertsApi extends AbstractApi
      */
     public function updateUsageAlerts(
         string $subscriptionId,
-        ?UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
-    ): GetUsageAlerts200Response {
+        ?\Upsun\Model\UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
+    ): \Upsun\Model\GetUsageAlerts200Response {
         return $this->updateUsageAlertsWithHttpInfo(
             $subscriptionId,
             $updateUsageAlertsRequest
@@ -235,8 +236,8 @@ final class AlertsApi extends AbstractApi
     */
     private function updateUsageAlertsWithHttpInfo(
         string $subscriptionId,
-        ?UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
-    ): GetUsageAlerts200Response {
+        ?\Upsun\Model\UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
+    ): \Upsun\Model\GetUsageAlerts200Response {
         $request = $this->updateUsageAlertsRequest(
             $subscriptionId,
             $updateUsageAlertsRequest
@@ -279,8 +280,9 @@ final class AlertsApi extends AbstractApi
      */
     private function updateUsageAlertsRequest(
         string $subscriptionId,
-        ?UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
+        ?\Upsun\Model\UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
     ): RequestInterface {
+
         // verify the required parameter 'subscriptionId' is set
         if (empty($subscriptionId)) {
             throw new InvalidArgumentException(
@@ -305,6 +307,7 @@ final class AlertsApi extends AbstractApi
                 $resourcePath
             );
         }
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
