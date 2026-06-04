@@ -2,13 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Model\BlackfireProfileGraph200Response;
-use Upsun\Model\BlackfireProfileProfile200Response;
-use Upsun\Model\BlackfireProfileSubprofiles200Response;
-use Upsun\Model\BlackfireProfileTimeline200Response;
-use Upsun\Model\BlackfireProfilesList200Response;
-use Upsun\Model\BlackfireProfilesRecommendations200Response;
-use Upsun\Model\ObservabilityEntrypoint200Response;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -22,6 +15,13 @@ use Upsun\Api\HttpTrafficApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\MetricsTask;
 use Upsun\Core\Tasks\TaskBase;
+use Upsun\Model\BlackfireProfileGraph200Response;
+use Upsun\Model\BlackfireProfileProfile200Response;
+use Upsun\Model\BlackfireProfilesList200Response;
+use Upsun\Model\BlackfireProfilesRecommendations200Response;
+use Upsun\Model\BlackfireProfileSubprofiles200Response;
+use Upsun\Model\BlackfireProfileTimeline200Response;
+use Upsun\Model\ObservabilityEntrypoint200Response;
 use Upsun\UpsunClient;
 
 class MetricsTaskTest extends BaseTestCase

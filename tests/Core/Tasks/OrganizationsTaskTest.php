@@ -2,7 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Model\ProvisionEvent;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -66,6 +65,7 @@ use Upsun\Model\OrganizationProject;
 use Upsun\Model\PlanRecords;
 use Upsun\Model\Profile;
 use Upsun\Model\Project;
+use Upsun\Model\ProvisionEvent;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\Subscription;
 use Upsun\Model\SubscriptionCurrentUsageObject;

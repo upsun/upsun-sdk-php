@@ -2,9 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Model\ResourcesByService200Response;
-use Upsun\Model\ResourcesOverview200Response;
-use Upsun\Model\ResourcesSummary200Response;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -17,6 +14,9 @@ use Upsun\Api\ResourcesApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ResourcesTask;
 use Upsun\Model\AcceptedResponse;
+use Upsun\Model\ResourcesByService200Response;
+use Upsun\Model\ResourcesOverview200Response;
+use Upsun\Model\ResourcesSummary200Response;
 use Upsun\UpsunClient;
 
 class ResourcesTaskTest extends BaseTestCase

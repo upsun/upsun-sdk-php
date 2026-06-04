@@ -2,11 +2,6 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
-use Upsun\Model\ListOrgProjectHistory200Response;
-use Upsun\Model\RegistryCredentialCreateInput;
-use Upsun\Model\BasicAuth;
-use Upsun\Model\RegistryCredential;
-use Upsun\Model\RegistryCredentialPatch;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -100,9 +95,11 @@ use Upsun\Core\Tasks\VariablesTask;
 use Upsun\Core\Tasks\WorkersTask;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
+use Upsun\Model\BasicAuth;
 use Upsun\Model\Certificate;
 use Upsun\Model\Domain;
 use Upsun\Model\Environment;
+use Upsun\Model\ListOrgProjectHistory200Response;
 use Upsun\Model\ListProjectTeamAccess200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
 use Upsun\Model\Project;
@@ -111,6 +108,9 @@ use Upsun\Model\ProjectInvitation;
 use Upsun\Model\ProjectSettings;
 use Upsun\Model\ProjectStatus;
 use Upsun\Model\ProjectVariable;
+use Upsun\Model\RegistryCredential;
+use Upsun\Model\RegistryCredentialCreateInput;
+use Upsun\Model\RegistryCredentialPatch;
 use Upsun\Model\Subscription;
 use Upsun\Model\TeamProjectAccess;
 use Upsun\Model\UserProjectAccess;
