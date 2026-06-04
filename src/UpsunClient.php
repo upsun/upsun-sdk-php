@@ -178,6 +178,7 @@ class UpsunClient
             tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
             clientId: $this->upsunConfig->clientId,
             clientSecret: $this->upsunConfig->apiToken,
+            refreshEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->refresh_endpoint,
         );
 
         $taskParams = [$this->auth, $this->apiClient, $requestFactory, $this->apiConfig];
