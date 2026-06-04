@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class RedirectConfiguration implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $expires,
         private readonly array $paths,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -41,21 +38,20 @@ final class RedirectConfiguration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The amount of time, in seconds, to cache the redirects
-    */
+    /**
+     * The amount of time, in seconds, to cache the redirects
+     */
     public function getExpires(): string
     {
         return $this->expires;
     }
 
-   /**
-    * The paths to redirect
-    * @return PathValue[]
-    */
+    /**
+     * The paths to redirect
+     * @return PathValue[]
+     */
     public function getPaths(): array
     {
         return $this->paths;
     }
 }
-

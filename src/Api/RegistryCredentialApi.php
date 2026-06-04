@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -13,6 +12,10 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\RegistryCredential;
+use Upsun\Model\RegistryCredentialCreateInput;
+use Upsun\Model\RegistryCredentialPatch;
 
 /**
  * Low level RegistryCredentialApi (auto-generated)
@@ -58,8 +61,8 @@ final class RegistryCredentialApi extends AbstractApi
      */
     public function createProjectsOciRegistries(
         string $projectId,
-        \Upsun\Model\RegistryCredentialCreateInput $registryCredentialCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        RegistryCredentialCreateInput $registryCredentialCreateInput
+    ): AcceptedResponse {
         return $this->createProjectsOciRegistriesWithHttpInfo(
             $projectId,
             $registryCredentialCreateInput
@@ -75,8 +78,8 @@ final class RegistryCredentialApi extends AbstractApi
     */
     private function createProjectsOciRegistriesWithHttpInfo(
         string $projectId,
-        \Upsun\Model\RegistryCredentialCreateInput $registryCredentialCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        RegistryCredentialCreateInput $registryCredentialCreateInput
+    ): AcceptedResponse {
         $request = $this->createProjectsOciRegistriesRequest(
             $projectId,
             $registryCredentialCreateInput
@@ -118,9 +121,8 @@ final class RegistryCredentialApi extends AbstractApi
      */
     private function createProjectsOciRegistriesRequest(
         string $projectId,
-        \Upsun\Model\RegistryCredentialCreateInput $registryCredentialCreateInput
+        RegistryCredentialCreateInput $registryCredentialCreateInput
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -152,7 +154,6 @@ final class RegistryCredentialApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -228,7 +229,7 @@ final class RegistryCredentialApi extends AbstractApi
     public function deleteProjectsOciRegistries(
         string $projectId,
         string $registryCredentialId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->deleteProjectsOciRegistriesWithHttpInfo(
             $projectId,
             $registryCredentialId
@@ -244,7 +245,7 @@ final class RegistryCredentialApi extends AbstractApi
     private function deleteProjectsOciRegistriesWithHttpInfo(
         string $projectId,
         string $registryCredentialId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->deleteProjectsOciRegistriesRequest(
             $projectId,
             $registryCredentialId
@@ -287,7 +288,6 @@ final class RegistryCredentialApi extends AbstractApi
         string $projectId,
         string $registryCredentialId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -328,7 +328,6 @@ final class RegistryCredentialApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -396,7 +395,7 @@ final class RegistryCredentialApi extends AbstractApi
     public function getProjectsOciRegistries(
         string $projectId,
         string $registryCredentialId
-    ): \Upsun\Model\RegistryCredential {
+    ): RegistryCredential {
         return $this->getProjectsOciRegistriesWithHttpInfo(
             $projectId,
             $registryCredentialId
@@ -412,7 +411,7 @@ final class RegistryCredentialApi extends AbstractApi
     private function getProjectsOciRegistriesWithHttpInfo(
         string $projectId,
         string $registryCredentialId
-    ): \Upsun\Model\RegistryCredential {
+    ): RegistryCredential {
         $request = $this->getProjectsOciRegistriesRequest(
             $projectId,
             $registryCredentialId
@@ -455,7 +454,6 @@ final class RegistryCredentialApi extends AbstractApi
         string $projectId,
         string $registryCredentialId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -496,7 +494,6 @@ final class RegistryCredentialApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -622,7 +619,6 @@ final class RegistryCredentialApi extends AbstractApi
     private function listProjectsOciRegistriesRequest(
         string $projectId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -647,7 +643,6 @@ final class RegistryCredentialApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -716,8 +711,8 @@ final class RegistryCredentialApi extends AbstractApi
     public function updateProjectsOciRegistries(
         string $projectId,
         string $registryCredentialId,
-        \Upsun\Model\RegistryCredentialPatch $registryCredentialPatch
-    ): \Upsun\Model\AcceptedResponse {
+        RegistryCredentialPatch $registryCredentialPatch
+    ): AcceptedResponse {
         return $this->updateProjectsOciRegistriesWithHttpInfo(
             $projectId,
             $registryCredentialId,
@@ -735,8 +730,8 @@ final class RegistryCredentialApi extends AbstractApi
     private function updateProjectsOciRegistriesWithHttpInfo(
         string $projectId,
         string $registryCredentialId,
-        \Upsun\Model\RegistryCredentialPatch $registryCredentialPatch
-    ): \Upsun\Model\AcceptedResponse {
+        RegistryCredentialPatch $registryCredentialPatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsOciRegistriesRequest(
             $projectId,
             $registryCredentialId,
@@ -780,9 +775,8 @@ final class RegistryCredentialApi extends AbstractApi
     private function updateProjectsOciRegistriesRequest(
         string $projectId,
         string $registryCredentialId,
-        \Upsun\Model\RegistryCredentialPatch $registryCredentialPatch
+        RegistryCredentialPatch $registryCredentialPatch
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -830,7 +824,6 @@ final class RegistryCredentialApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

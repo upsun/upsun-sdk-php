@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class EnvironmentPatch implements Model, JsonSerializable
 {
-
     public const TYPE_DEVELOPMENT = 'development';
     public const TYPE_PRODUCTION = 'production';
     public const TYPE_STAGING = 'staging';
@@ -30,7 +29,6 @@ final class EnvironmentPatch implements Model, JsonSerializable
         private readonly ?bool $restrictRobots = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -57,17 +55,17 @@ final class EnvironmentPatch implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The name of the environment
-    */
+    /**
+     * The name of the environment
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-   /**
-    * The title of the environment
-    */
+    /**
+     * The title of the environment
+     */
     public function getTitle(): ?string
     {
         return $this->title;
@@ -78,52 +76,51 @@ final class EnvironmentPatch implements Model, JsonSerializable
         return $this->attributes;
     }
 
-   /**
-    * The type of environment (`production`, `staging` or `development`), if not provided, a default will be calculated
-    */
+    /**
+     * The type of environment (`production`, `staging` or `development`), if not provided, a default will be calculated
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-   /**
-    * The name of the parent environment
-    */
+    /**
+     * The name of the parent environment
+     */
     public function getParent(): ?string
     {
         return $this->parent;
     }
 
-   /**
-    * Clone data when creating that environment
-    */
+    /**
+     * Clone data when creating that environment
+     */
     public function getCloneParentOnCreate(): ?bool
     {
         return $this->cloneParentOnCreate;
     }
 
-   /**
-    * The Http access permissions for this environment
-    */
+    /**
+     * The Http access permissions for this environment
+     */
     public function getHttpAccess(): ?HttpAccessPermissions2
     {
         return $this->httpAccess;
     }
 
-   /**
-    * Whether to configure SMTP for this environment
-    */
+    /**
+     * Whether to configure SMTP for this environment
+     */
     public function getEnableSmtp(): ?bool
     {
         return $this->enableSmtp;
     }
 
-   /**
-    * Whether to restrict robots for this environment
-    */
+    /**
+     * Whether to restrict robots for this environment
+     */
     public function getRestrictRobots(): ?bool
     {
         return $this->restrictRobots;
     }
 }
-

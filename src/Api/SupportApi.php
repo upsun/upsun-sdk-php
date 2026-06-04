@@ -13,6 +13,9 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\Ticket;
+use Upsun\Model\UpdateTicketRequest;
 
 /**
  * Low level SupportApi (auto-generated)
@@ -58,8 +61,8 @@ final class SupportApi extends AbstractApi
      * @see https://docs.upsun.com/api/#tag/Support/operation/create-ticket
      */
     public function createTicket(
-        ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
-    ): \Upsun\Model\Ticket {
+        ?CreateTicketRequest $createTicketRequest = null
+    ): Ticket {
         return $this->createTicketWithHttpInfo(
             $createTicketRequest
         );
@@ -73,8 +76,8 @@ final class SupportApi extends AbstractApi
      * @throws ClientExceptionInterface
     */
     private function createTicketWithHttpInfo(
-        ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
-    ): \Upsun\Model\Ticket {
+        ?CreateTicketRequest $createTicketRequest = null
+    ): Ticket {
         $request = $this->createTicketRequest(
             $createTicketRequest
         );
@@ -113,18 +116,14 @@ final class SupportApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     private function createTicketRequest(
-        ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
+        ?CreateTicketRequest $createTicketRequest = null
     ): RequestInterface {
-
-
         $resourcePath = '/tickets';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -272,8 +271,6 @@ final class SupportApi extends AbstractApi
         ?string $subscriptionId = null,
         ?string $organizationId = null
     ): RequestInterface {
-
-
         $resourcePath = '/tickets/category';
         $formParams = [];
         $queryParams = [];
@@ -294,8 +291,6 @@ final class SupportApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($organizationId !== null) {
             if ('form' === 'form' && is_array($organizationId)) {
@@ -308,10 +303,6 @@ final class SupportApi extends AbstractApi
                     : ($organizationId);
             }
         }
-
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -451,8 +442,6 @@ final class SupportApi extends AbstractApi
         ?string $subscriptionId = null,
         ?string $category = null
     ): RequestInterface {
-
-
         $resourcePath = '/tickets/priority';
         $formParams = [];
         $queryParams = [];
@@ -473,8 +462,6 @@ final class SupportApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($category !== null) {
             if ('form' === 'form' && is_array($category)) {
@@ -487,10 +474,6 @@ final class SupportApi extends AbstractApi
                     : ($category);
             }
         }
-
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -560,8 +543,8 @@ final class SupportApi extends AbstractApi
      */
     public function updateTicket(
         string $ticketId,
-        ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
-    ): \Upsun\Model\Ticket {
+        ?UpdateTicketRequest $updateTicketRequest = null
+    ): Ticket {
         return $this->updateTicketWithHttpInfo(
             $ticketId,
             $updateTicketRequest
@@ -578,8 +561,8 @@ final class SupportApi extends AbstractApi
     */
     private function updateTicketWithHttpInfo(
         string $ticketId,
-        ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
-    ): \Upsun\Model\Ticket {
+        ?UpdateTicketRequest $updateTicketRequest = null
+    ): Ticket {
         $request = $this->updateTicketRequest(
             $ticketId,
             $updateTicketRequest
@@ -621,9 +604,8 @@ final class SupportApi extends AbstractApi
      */
     private function updateTicketRequest(
         string $ticketId,
-        ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
+        ?UpdateTicketRequest $updateTicketRequest = null
     ): RequestInterface {
-
         // verify the required parameter 'ticketId' is set
         if (empty($ticketId)) {
             throw new InvalidArgumentException(
@@ -648,7 +630,6 @@ final class SupportApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

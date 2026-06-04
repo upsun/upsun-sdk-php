@@ -2,8 +2,6 @@
 
 namespace Upsun\Model;
 
-use JsonSerializable;
-
 /**
  * Low level RoutesValue (auto-generated)
  *
@@ -19,4 +17,3 @@ interface RoutesValue
 
     public function __toString(): string;
 }
-

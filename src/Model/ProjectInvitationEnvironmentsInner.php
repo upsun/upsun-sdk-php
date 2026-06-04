@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class ProjectInvitationEnvironmentsInner implements Model, JsonSerializable
 {
-
     public const ROLE_ADMIN = 'admin';
     public const ROLE_VIEWER = 'viewer';
     public const ROLE_CONTRIBUTOR = 'contributor';
@@ -25,7 +24,6 @@ final class ProjectInvitationEnvironmentsInner implements Model, JsonSerializabl
         private readonly ?string $title = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -67,4 +65,3 @@ final class ProjectInvitationEnvironmentsInner implements Model, JsonSerializabl
         return $this->title;
     }
 }
-

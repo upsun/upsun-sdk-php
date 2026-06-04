@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -13,6 +12,10 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Integration;
+use Upsun\Model\IntegrationCreateCreateInput;
+use Upsun\Model\IntegrationPatch;
 
 /**
  * Low level ThirdPartyIntegrationsApi (auto-generated)
@@ -60,8 +63,8 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      */
     public function createProjectsIntegrations(
         string $projectId,
-        \Upsun\Model\IntegrationCreateCreateInput $integrationCreateCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        IntegrationCreateCreateInput $integrationCreateCreateInput
+    ): AcceptedResponse {
         return $this->createProjectsIntegrationsWithHttpInfo(
             $projectId,
             $integrationCreateCreateInput
@@ -78,8 +81,8 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     */
     private function createProjectsIntegrationsWithHttpInfo(
         string $projectId,
-        \Upsun\Model\IntegrationCreateCreateInput $integrationCreateCreateInput
-    ): \Upsun\Model\AcceptedResponse {
+        IntegrationCreateCreateInput $integrationCreateCreateInput
+    ): AcceptedResponse {
         $request = $this->createProjectsIntegrationsRequest(
             $projectId,
             $integrationCreateCreateInput
@@ -121,9 +124,8 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      */
     private function createProjectsIntegrationsRequest(
         string $projectId,
-        \Upsun\Model\IntegrationCreateCreateInput $integrationCreateCreateInput
+        IntegrationCreateCreateInput $integrationCreateCreateInput
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -155,7 +157,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -233,7 +234,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function deleteProjectsIntegrations(
         string $projectId,
         string $integrationId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->deleteProjectsIntegrationsWithHttpInfo(
             $projectId,
             $integrationId
@@ -250,7 +251,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     private function deleteProjectsIntegrationsWithHttpInfo(
         string $projectId,
         string $integrationId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->deleteProjectsIntegrationsRequest(
             $projectId,
             $integrationId
@@ -293,7 +294,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $projectId,
         string $integrationId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -334,7 +334,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -404,7 +403,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function getProjectsIntegrations(
         string $projectId,
         string $integrationId
-    ): \Upsun\Model\Integration {
+    ): Integration {
         return $this->getProjectsIntegrationsWithHttpInfo(
             $projectId,
             $integrationId
@@ -421,7 +420,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     private function getProjectsIntegrationsWithHttpInfo(
         string $projectId,
         string $integrationId
-    ): \Upsun\Model\Integration {
+    ): Integration {
         $request = $this->getProjectsIntegrationsRequest(
             $projectId,
             $integrationId
@@ -464,7 +463,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         string $projectId,
         string $integrationId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -505,7 +503,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -634,7 +631,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     private function listProjectsIntegrationsRequest(
         string $projectId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -659,7 +655,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -730,8 +725,8 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     public function updateProjectsIntegrations(
         string $projectId,
         string $integrationId,
-        \Upsun\Model\IntegrationPatch $integrationPatch
-    ): \Upsun\Model\AcceptedResponse {
+        IntegrationPatch $integrationPatch
+    ): AcceptedResponse {
         return $this->updateProjectsIntegrationsWithHttpInfo(
             $projectId,
             $integrationId,
@@ -750,8 +745,8 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     private function updateProjectsIntegrationsWithHttpInfo(
         string $projectId,
         string $integrationId,
-        \Upsun\Model\IntegrationPatch $integrationPatch
-    ): \Upsun\Model\AcceptedResponse {
+        IntegrationPatch $integrationPatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsIntegrationsRequest(
             $projectId,
             $integrationId,
@@ -795,9 +790,8 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     private function updateProjectsIntegrationsRequest(
         string $projectId,
         string $integrationId,
-        \Upsun\Model\IntegrationPatch $integrationPatch
+        IntegrationPatch $integrationPatch
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -845,7 +839,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

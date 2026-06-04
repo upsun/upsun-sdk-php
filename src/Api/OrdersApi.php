@@ -13,6 +13,9 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CreateAuthorizationCredentials200Response;
+use Upsun\Model\ListOrgOrders200Response;
+use Upsun\Model\Order;
 
 /**
  * Low level OrdersApi (auto-generated)
@@ -66,7 +69,7 @@ final class OrdersApi extends AbstractApi
     public function createAuthorizationCredentials(
         string $organizationId,
         string $orderId
-    ): \Upsun\Model\CreateAuthorizationCredentials200Response {
+    ): CreateAuthorizationCredentials200Response {
         return $this->createAuthorizationCredentialsWithHttpInfo(
             $organizationId,
             $orderId
@@ -88,7 +91,7 @@ final class OrdersApi extends AbstractApi
     private function createAuthorizationCredentialsWithHttpInfo(
         string $organizationId,
         string $orderId
-    ): \Upsun\Model\CreateAuthorizationCredentials200Response {
+    ): CreateAuthorizationCredentials200Response {
         $request = $this->createAuthorizationCredentialsRequest(
             $organizationId,
             $orderId
@@ -136,7 +139,6 @@ final class OrdersApi extends AbstractApi
         string $organizationId,
         string $orderId
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -177,7 +179,6 @@ final class OrdersApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -305,7 +306,6 @@ final class OrdersApi extends AbstractApi
     private function downloadInvoiceRequest(
         string $token
     ): RequestInterface {
-
         // verify the required parameter 'token' is set
         if (empty($token)) {
             throw new InvalidArgumentException(
@@ -333,10 +333,6 @@ final class OrdersApi extends AbstractApi
                     : ($token);
             }
         }
-
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/pdf'],
@@ -415,7 +411,7 @@ final class OrdersApi extends AbstractApi
         string $organizationId,
         string $orderId,
         ?string $mode = null
-    ): \Upsun\Model\Order {
+    ): Order {
         return $this->getOrgOrderWithHttpInfo(
             $organizationId,
             $orderId,
@@ -441,7 +437,7 @@ final class OrdersApi extends AbstractApi
         string $organizationId,
         string $orderId,
         ?string $mode = null
-    ): \Upsun\Model\Order {
+    ): Order {
         $request = $this->getOrgOrderRequest(
             $organizationId,
             $orderId,
@@ -493,7 +489,6 @@ final class OrdersApi extends AbstractApi
         string $orderId,
         ?string $mode = null
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -529,8 +524,6 @@ final class OrdersApi extends AbstractApi
             }
         }
 
-
-
         // path params
 
         if ($organizationId !== null) {
@@ -549,7 +542,6 @@ final class OrdersApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -634,7 +626,7 @@ final class OrdersApi extends AbstractApi
         ?int $filterTotal = null,
         ?int $page = null,
         ?string $mode = null
-    ): \Upsun\Model\ListOrgOrders200Response {
+    ): ListOrgOrders200Response {
         return $this->listOrgOrdersWithHttpInfo(
             $organizationId,
             $filterStatus,
@@ -668,7 +660,7 @@ final class OrdersApi extends AbstractApi
         ?int $filterTotal = null,
         ?int $page = null,
         ?string $mode = null
-    ): \Upsun\Model\ListOrgOrders200Response {
+    ): ListOrgOrders200Response {
         $request = $this->listOrgOrdersRequest(
             $organizationId,
             $filterStatus,
@@ -728,7 +720,6 @@ final class OrdersApi extends AbstractApi
         ?int $page = null,
         ?string $mode = null
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -757,8 +748,6 @@ final class OrdersApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterTotal !== null) {
             if ('form' === 'form' && is_array($filterTotal)) {
@@ -771,8 +760,6 @@ final class OrdersApi extends AbstractApi
                     : ($filterTotal);
             }
         }
-
-
 
         // query params
         if ($page !== null) {
@@ -787,8 +774,6 @@ final class OrdersApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($mode !== null) {
             if ('form' === 'form' && is_array($mode)) {
@@ -802,8 +787,6 @@ final class OrdersApi extends AbstractApi
             }
         }
 
-
-
         // path params
 
         if ($organizationId !== null) {
@@ -813,7 +796,6 @@ final class OrdersApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],

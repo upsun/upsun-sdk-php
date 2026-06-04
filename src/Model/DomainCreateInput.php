@@ -2,8 +2,6 @@
 
 namespace Upsun\Model;
 
-use JsonSerializable;
-
 /**
  * Low level DomainCreateInput (auto-generated)
  *
@@ -21,4 +19,3 @@ interface DomainCreateInput
 
     public function getName(): mixed;
 }
-

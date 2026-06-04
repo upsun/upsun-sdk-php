@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -13,6 +12,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Activity;
 
 /**
  * Low level EnvironmentActivityApi (auto-generated)
@@ -64,7 +65,7 @@ final class EnvironmentActivityApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $activityId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
             $projectId,
             $environmentId,
@@ -83,7 +84,7 @@ final class EnvironmentActivityApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $activityId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->actionProjectsEnvironmentsActivitiesCancelRequest(
             $projectId,
             $environmentId,
@@ -128,7 +129,6 @@ final class EnvironmentActivityApi extends AbstractApi
         string $environmentId,
         string $activityId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -185,7 +185,6 @@ final class EnvironmentActivityApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -260,7 +259,7 @@ final class EnvironmentActivityApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $activityId
-    ): \Upsun\Model\Activity {
+    ): Activity {
         return $this->getProjectsEnvironmentsActivitiesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -279,7 +278,7 @@ final class EnvironmentActivityApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $activityId
-    ): \Upsun\Model\Activity {
+    ): Activity {
         $request = $this->getProjectsEnvironmentsActivitiesRequest(
             $projectId,
             $environmentId,
@@ -324,7 +323,6 @@ final class EnvironmentActivityApi extends AbstractApi
         string $environmentId,
         string $activityId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -381,7 +379,6 @@ final class EnvironmentActivityApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -524,7 +521,6 @@ final class EnvironmentActivityApi extends AbstractApi
         string $projectId,
         string $environmentId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -565,7 +561,6 @@ final class EnvironmentActivityApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

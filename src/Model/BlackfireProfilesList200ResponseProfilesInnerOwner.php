@@ -13,15 +13,12 @@ use JsonSerializable;
  */
 final class BlackfireProfilesList200ResponseProfilesInnerOwner implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $uuid = null,
         private readonly ?string $name = null,
         private readonly ?string $avatar = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -57,4 +54,3 @@ final class BlackfireProfilesList200ResponseProfilesInnerOwner implements Model,
         return $this->avatar;
     }
 }
-

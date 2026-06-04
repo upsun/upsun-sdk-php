@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class DataRetention implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly bool $enabled,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -38,12 +35,11 @@ final class DataRetention implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * If true, data retention configuration can be modified.
-    */
+    /**
+     * If true, data retention configuration can be modified.
+     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 }
-

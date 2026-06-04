@@ -13,15 +13,12 @@ use JsonSerializable;
  */
 final class ListApplications200ResponseApplicationsValue implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $name,
         private readonly array $profileTypes,
         private readonly array $languages,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -47,9 +44,9 @@ final class ListApplications200ResponseApplicationsValue implements Model, JsonS
         return $this->name;
     }
 
-   /**
-    * @return ListApplications200ResponseApplicationsValueProfileTypesValue[]
-    */
+    /**
+     * @return ListApplications200ResponseApplicationsValueProfileTypesValue[]
+     */
     public function getProfileTypes(): array
     {
         return $this->profileTypes;
@@ -60,4 +57,3 @@ final class ListApplications200ResponseApplicationsValue implements Model, JsonS
         return $this->languages;
     }
 }
-

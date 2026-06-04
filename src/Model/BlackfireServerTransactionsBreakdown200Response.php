@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireServerTransactionsBreakdown200Response implements Model, JsonSerializable
 {
-
     public const _BREAKDOWN_DIMENSION_WT = 'wt';
     public const _BREAKDOWN_DIMENSION_PMU = 'pmu';
     public const _BREAKDOWN_DIMENSION_STDOUT = 'stdout';
@@ -100,7 +99,6 @@ final class BlackfireServerTransactionsBreakdown200Response implements Model, Js
         private readonly ?string $distributionCost = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -370,4 +368,3 @@ final class BlackfireServerTransactionsBreakdown200Response implements Model, Js
         return $this->distributionCost;
     }
 }
-

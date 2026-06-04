@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class ResourcesOverview200Response implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly int $grain,
         private readonly int $from,
@@ -25,7 +23,6 @@ final class ResourcesOverview200Response implements Model, JsonSerializable
         private readonly array $data,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -80,12 +77,11 @@ final class ResourcesOverview200Response implements Model, JsonSerializable
         return $this->branchMachineName;
     }
 
-   /**
-    * @return ResourcesOverview200ResponseDataInner[]
-    */
+    /**
+     * @return ResourcesOverview200ResponseDataInner[]
+     */
     public function getData(): array
     {
         return $this->data;
     }
 }
-

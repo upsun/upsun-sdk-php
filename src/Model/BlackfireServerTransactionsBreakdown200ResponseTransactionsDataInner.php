@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInner implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $transaction,
         private readonly float $wt96thPercentile,
@@ -29,7 +27,6 @@ final class BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInner
         private readonly ?float $impact,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -113,4 +110,3 @@ final class BlackfireServerTransactionsBreakdown200ResponseTransactionsDataInner
         return $this->links;
     }
 }
-

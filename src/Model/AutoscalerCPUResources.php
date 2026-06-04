@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class AutoscalerCPUResources implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?float $min = null,
         private readonly ?float $max = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -41,20 +38,19 @@ final class AutoscalerCPUResources implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Minimum CPUs when scaling down vertically
-    */
+    /**
+     * Minimum CPUs when scaling down vertically
+     */
     public function getMin(): ?float
     {
         return $this->min;
     }
 
-   /**
-    * Maximum CPUs when scaling up vertically
-    */
+    /**
+     * Maximum CPUs when scaling up vertically
+     */
     public function getMax(): ?float
     {
         return $this->max;
     }
 }
-

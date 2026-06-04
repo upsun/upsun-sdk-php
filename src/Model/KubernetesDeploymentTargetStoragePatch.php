@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\DeploymentTargetPatch;
 
 /**
  * Low level KubernetesDeploymentTargetStoragePatch (auto-generated)
@@ -14,7 +13,6 @@ use Upsun\Model\DeploymentTargetPatch;
  */
 final class KubernetesDeploymentTargetStoragePatch implements Model, JsonSerializable, DeploymentTargetPatch
 {
-
     public const TYPE_DEDICATED = 'dedicated';
     public const TYPE_ENTERPRISE = 'enterprise';
     public const TYPE_FOUNDATION = 'foundation';
@@ -25,7 +23,6 @@ final class KubernetesDeploymentTargetStoragePatch implements Model, JsonSeriali
         private readonly string $name,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -45,20 +42,19 @@ final class KubernetesDeploymentTargetStoragePatch implements Model, JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of the deployment target
-    */
+    /**
+     * The type of the deployment target
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The name of the deployment target
-    */
+    /**
+     * The name of the deployment target
+     */
     public function getName(): string
     {
         return $this->name;
     }
 }
-

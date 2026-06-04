@@ -2,6 +2,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,7 +15,6 @@ use JsonSerializable;
  */
 final class Invoice implements Model, JsonSerializable
 {
-
     public const TYPE_INVOICE = 'invoice';
     public const TYPE_CREDIT_MEMO = 'credit_memo';
     public const STATUS_PAID = 'paid';
@@ -26,10 +26,10 @@ final class Invoice implements Model, JsonSerializable
 
     public function __construct(
         private readonly ?string $relatedInvoiceId = null,
-        private readonly ?\DateTime $invoiceDate = null,
-        private readonly ?\DateTime $invoiceDue = null,
-        private readonly ?\DateTime $created = null,
-        private readonly ?\DateTime $changed = null,
+        private readonly ?DateTime $invoiceDate = null,
+        private readonly ?DateTime $invoiceDue = null,
+        private readonly ?DateTime $created = null,
+        private readonly ?DateTime $changed = null,
         private readonly ?string $id = null,
         private readonly ?string $invoiceNumber = null,
         private readonly ?string $type = null,
@@ -43,7 +43,6 @@ final class Invoice implements Model, JsonSerializable
         private readonly ?InvoicePDF $invoicePdf = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -77,132 +76,131 @@ final class Invoice implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The invoice id.
-    */
+    /**
+     * The invoice id.
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-   /**
-    * The invoice number.
-    */
+    /**
+     * The invoice number.
+     */
     public function getInvoiceNumber(): ?string
     {
         return $this->invoiceNumber;
     }
 
-   /**
-    * Invoice type.
-    */
+    /**
+     * Invoice type.
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-   /**
-    * The id of the related order.
-    */
+    /**
+     * The id of the related order.
+     */
     public function getOrderId(): ?string
     {
         return $this->orderId;
     }
 
-   /**
-    * If the invoice is a credit memo (type=credit_memo), this field stores the id of the related/original invoice.
-    */
+    /**
+     * If the invoice is a credit memo (type=credit_memo), this field stores the id of the related/original invoice.
+     */
     public function getRelatedInvoiceId(): ?string
     {
         return $this->relatedInvoiceId;
     }
 
-   /**
-    * The invoice status.
-    */
+    /**
+     * The invoice status.
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-   /**
-    * The ULID of the owner.
-    */
+    /**
+     * The ULID of the owner.
+     */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
 
-   /**
-    * The invoice date.
-    */
-    public function getInvoiceDate(): ?\DateTime
+    /**
+     * The invoice date.
+     */
+    public function getInvoiceDate(): ?DateTime
     {
         return $this->invoiceDate;
     }
 
-   /**
-    * The invoice due date.
-    */
-    public function getInvoiceDue(): ?\DateTime
+    /**
+     * The invoice due date.
+     */
+    public function getInvoiceDue(): ?DateTime
     {
         return $this->invoiceDue;
     }
 
-   /**
-    * The time when the invoice was created.
-    */
-    public function getCreated(): ?\DateTime
+    /**
+     * The time when the invoice was created.
+     */
+    public function getCreated(): ?DateTime
     {
         return $this->created;
     }
 
-   /**
-    * The time when the invoice was changed.
-    */
-    public function getChanged(): ?\DateTime
+    /**
+     * The time when the invoice was changed.
+     */
+    public function getChanged(): ?DateTime
     {
         return $this->changed;
     }
 
-   /**
-    * Company name (if any).
-    */
+    /**
+     * Company name (if any).
+     */
     public function getCompany(): ?string
     {
         return $this->company;
     }
 
-   /**
-    * The invoice total.
-    */
+    /**
+     * The invoice total.
+     */
     public function getTotal(): ?float
     {
         return $this->total;
     }
 
-   /**
-    * The address of the user.
-    */
+    /**
+     * The address of the user.
+     */
     public function getAddress(): ?Address
     {
         return $this->address;
     }
 
-   /**
-    * The invoice note.
-    */
+    /**
+     * The invoice note.
+     */
     public function getNotes(): ?string
     {
         return $this->notes;
     }
 
-   /**
-    * Invoice PDF document details.
-    */
+    /**
+     * Invoice PDF document details.
+     */
     public function getInvoicePdf(): ?InvoicePDF
     {
         return $this->invoicePdf;
     }
 }
-

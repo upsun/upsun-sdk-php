@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class UpdateOrgProfileRequest implements Model, JsonSerializable
 {
-
     public const CUSTOMER_TYPE_INDVIDUAL = 'indvidual';
     public const CUSTOMER_TYPE_COMPANY = 'company';
     public const CUSTOMER_TYPE_GOVERNMENT = 'government';
@@ -28,7 +27,6 @@ final class UpdateOrgProfileRequest implements Model, JsonSerializable
         private readonly ?string $billingContact = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -88,4 +86,3 @@ final class UpdateOrgProfileRequest implements Model, JsonSerializable
         return $this->billingContact;
     }
 }
-

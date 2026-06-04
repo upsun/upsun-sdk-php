@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class BlackfireServerTransactionsBreakdown200ResponseBreakdownTopHits implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly int $maxQuantity,
         private readonly float $maxPercentage,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -50,4 +47,3 @@ final class BlackfireServerTransactionsBreakdown200ResponseBreakdownTopHits impl
         return $this->maxPercentage;
     }
 }
-

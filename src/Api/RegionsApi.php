@@ -13,6 +13,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Region;
+use Upsun\Model\StringFilter;
 
 /**
  * Low level RegionsApi (auto-generated)
@@ -62,7 +64,7 @@ final class RegionsApi extends AbstractApi
      */
     public function getRegion(
         string $regionId
-    ): \Upsun\Model\Region {
+    ): Region {
         return $this->getRegionWithHttpInfo(
             $regionId
         );
@@ -79,7 +81,7 @@ final class RegionsApi extends AbstractApi
     */
     private function getRegionWithHttpInfo(
         string $regionId
-    ): \Upsun\Model\Region {
+    ): Region {
         $request = $this->getRegionRequest(
             $regionId
         );
@@ -122,7 +124,6 @@ final class RegionsApi extends AbstractApi
     private function getRegionRequest(
         string $regionId
     ): RequestInterface {
-
         // verify the required parameter 'regionId' is set
         if (empty($regionId)) {
             throw new InvalidArgumentException(
@@ -147,7 +148,6 @@ final class RegionsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -228,9 +228,9 @@ final class RegionsApi extends AbstractApi
      * @see https://docs.upsun.com/api/#tag/Regions/operation/list-regions
      */
     public function listRegions(
-        ?\Upsun\Model\StringFilter $filterAvailable = null,
-        ?\Upsun\Model\StringFilter $filterPrivate = null,
-        ?\Upsun\Model\StringFilter $filterZone = null,
+        ?StringFilter $filterAvailable = null,
+        ?StringFilter $filterPrivate = null,
+        ?StringFilter $filterZone = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -267,9 +267,9 @@ final class RegionsApi extends AbstractApi
      * @throws ClientExceptionInterface
     */
     private function listRegionsWithHttpInfo(
-        ?\Upsun\Model\StringFilter $filterAvailable = null,
-        ?\Upsun\Model\StringFilter $filterPrivate = null,
-        ?\Upsun\Model\StringFilter $filterZone = null,
+        ?StringFilter $filterAvailable = null,
+        ?StringFilter $filterPrivate = null,
+        ?StringFilter $filterZone = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -331,16 +331,14 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     private function listRegionsRequest(
-        ?\Upsun\Model\StringFilter $filterAvailable = null,
-        ?\Upsun\Model\StringFilter $filterPrivate = null,
-        ?\Upsun\Model\StringFilter $filterZone = null,
+        ?StringFilter $filterAvailable = null,
+        ?StringFilter $filterPrivate = null,
+        ?StringFilter $filterZone = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
-
-
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
                 'invalid value for "$pageSize" when calling RegionsApi.listRegions,
@@ -354,8 +352,6 @@ final class RegionsApi extends AbstractApi
                 must be bigger than or equal to 1.'
             );
         }
-
-
 
         $resourcePath = '/regions';
         $formParams = [];
@@ -377,8 +373,6 @@ final class RegionsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterPrivate !== null) {
             if ('form' === 'deepObject' && is_array($filterPrivate)) {
@@ -391,8 +385,6 @@ final class RegionsApi extends AbstractApi
                     : ($filterPrivate->getEq());
             }
         }
-
-
 
         // query params
         if ($filterZone !== null) {
@@ -407,8 +399,6 @@ final class RegionsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageSize !== null) {
             if ('form' === 'form' && is_array($pageSize)) {
@@ -421,8 +411,6 @@ final class RegionsApi extends AbstractApi
                     : ($pageSize);
             }
         }
-
-
 
         // query params
         if ($pageBefore !== null) {
@@ -437,8 +425,6 @@ final class RegionsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageAfter !== null) {
             if ('form' === 'form' && is_array($pageAfter)) {
@@ -452,8 +438,6 @@ final class RegionsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -466,10 +450,6 @@ final class RegionsApi extends AbstractApi
                     : ($sort);
             }
         }
-
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],

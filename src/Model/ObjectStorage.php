@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class ObjectStorage implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly bool $enabled,
         private readonly int $minStorage,
@@ -26,7 +24,6 @@ final class ObjectStorage implements Model, JsonSerializable
         private readonly int $maxMemory,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -52,70 +49,69 @@ final class ObjectStorage implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * If true, implicit object-storage can be used.
-    */
+    /**
+     * If true, implicit object-storage can be used.
+     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-   /**
-    * Lower bound for the size of implicit object-storage on the project, in MiB.
-    */
+    /**
+     * Lower bound for the size of implicit object-storage on the project, in MiB.
+     */
     public function getMinStorage(): int
     {
         return $this->minStorage;
     }
 
-   /**
-    * Upper bound for the size of implicit object-storage on the project, in MiB.
-    */
+    /**
+     * Upper bound for the size of implicit object-storage on the project, in MiB.
+     */
     public function getMaxStorage(): int
     {
         return $this->maxStorage;
     }
 
-   /**
-    * Granularity of implicit object-storage allocations, in MiB. resources.disk.object, min_storage and max_storage
-    * must all be multiples of this value.
-    */
+    /**
+     * Granularity of implicit object-storage allocations, in MiB. resources.disk.object, min_storage and max_storage
+     * must all be multiples of this value.
+     */
     public function getStorageStep(): int
     {
         return $this->storageStep;
     }
 
-   /**
-    * CPU granted to the implicit object-storage service for each storage_step of allocated quota.
-    */
+    /**
+     * CPU granted to the implicit object-storage service for each storage_step of allocated quota.
+     */
     public function getCpuPerStep(): float
     {
         return $this->cpuPerStep;
     }
 
-   /**
-    * Memory granted to the implicit object-storage service for each storage_step of allocated quota, in MiB.
-    */
+    /**
+     * Memory granted to the implicit object-storage service for each storage_step of allocated quota, in MiB.
+     */
     public function getMemoryPerStep(): int
     {
         return $this->memoryPerStep;
     }
 
-   /**
-    * Upper bound on the CPU granted to the implicit object-storage service, regardless of the configured quota.
-    */
+    /**
+     * Upper bound on the CPU granted to the implicit object-storage service, regardless of the configured quota.
+     */
     public function getMaxCpu(): float
     {
         return $this->maxCpu;
     }
 
-   /**
-    * Upper bound on the memory granted to the implicit object-storage service, in MiB, regardless of the configured
-    * quota.
-    */
+    /**
+     * Upper bound on the memory granted to the implicit object-storage service, in MiB, regardless of the configured
+     * quota.
+     */
     public function getMaxMemory(): int
     {
         return $this->maxMemory;
     }
 }
-

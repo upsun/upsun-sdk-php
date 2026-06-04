@@ -259,7 +259,6 @@ final class HttpTrafficApi extends AbstractApi
         ?array $requestDurationSlots = null,
         ?string $requestDurationSlotsMode = null
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -267,8 +266,6 @@ final class HttpTrafficApi extends AbstractApi
                 when calling httpMetricsTimelineIps'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -284,8 +281,6 @@ final class HttpTrafficApi extends AbstractApi
                 when calling httpMetricsTimelineIps'
             );
         }
-
-
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -323,8 +318,6 @@ final class HttpTrafficApi extends AbstractApi
             );
         }
 
-
-
         if ($topHitsCount !== null && $topHitsCount > 15) {
             throw new InvalidArgumentException(
                 'invalid value for "$topHitsCount" when calling HttpTrafficApi.httpMetricsTimelineIps,
@@ -338,8 +331,6 @@ final class HttpTrafficApi extends AbstractApi
                 must be bigger than or equal to 1.'
             );
         }
-
-
 
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/http/breakdown/ips';
         $formParams = [];
@@ -361,8 +352,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -375,8 +364,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($to);
             }
         }
-
-
 
         // query params
         if ($limit !== null) {
@@ -391,8 +378,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($topHitsCount !== null) {
             if ('form' === 'form' && is_array($topHitsCount)) {
@@ -405,8 +390,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($topHitsCount);
             }
         }
-
-
 
         // query params
         if ($applications !== null) {
@@ -421,8 +404,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($applicationsMode !== null) {
             if ('form' === 'form' && is_array($applicationsMode)) {
@@ -435,8 +416,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($applicationsMode);
             }
         }
-
-
 
         // query params
         if ($methods !== null) {
@@ -451,8 +430,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($methodsMode !== null) {
             if ('form' === 'form' && is_array($methodsMode)) {
@@ -465,8 +442,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($methodsMode);
             }
         }
-
-
 
         // query params
         if ($domains !== null) {
@@ -481,8 +456,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($domainsMode !== null) {
             if ('form' === 'form' && is_array($domainsMode)) {
@@ -495,8 +468,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($domainsMode);
             }
         }
-
-
 
         // query params
         if ($codeSlots !== null) {
@@ -511,8 +482,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($codeSlotsMode !== null) {
             if ('form' === 'form' && is_array($codeSlotsMode)) {
@@ -525,8 +494,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($codeSlotsMode);
             }
         }
-
-
 
         // query params
         if ($codes !== null) {
@@ -541,8 +508,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($codesMode !== null) {
             if ('form' === 'form' && is_array($codesMode)) {
@@ -555,8 +520,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($codesMode);
             }
         }
-
-
 
         // query params
         if ($requestDurationSlots !== null) {
@@ -571,8 +534,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($requestDurationSlotsMode !== null) {
             if ('form' === 'form' && is_array($requestDurationSlotsMode)) {
@@ -585,8 +546,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($requestDurationSlotsMode);
             }
         }
-
-
 
         // path params
 
@@ -606,7 +565,6 @@ final class HttpTrafficApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -876,7 +834,6 @@ final class HttpTrafficApi extends AbstractApi
         ?array $requestDurationSlots = null,
         ?string $requestDurationSlotsMode = null
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -884,8 +841,6 @@ final class HttpTrafficApi extends AbstractApi
                 when calling httpMetricsTimelineUrls'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -901,8 +856,6 @@ final class HttpTrafficApi extends AbstractApi
                 when calling httpMetricsTimelineUrls'
             );
         }
-
-
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -940,8 +893,6 @@ final class HttpTrafficApi extends AbstractApi
             );
         }
 
-
-
         if ($topHitsCount !== null && $topHitsCount > 15) {
             throw new InvalidArgumentException(
                 'invalid value for "$topHitsCount" when calling HttpTrafficApi.httpMetricsTimelineUrls,
@@ -955,8 +906,6 @@ final class HttpTrafficApi extends AbstractApi
                 must be bigger than or equal to 1.'
             );
         }
-
-
 
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/http/breakdown/urls';
         $formParams = [];
@@ -978,8 +927,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -992,8 +939,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($to);
             }
         }
-
-
 
         // query params
         if ($limit !== null) {
@@ -1008,8 +953,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($topHitsCount !== null) {
             if ('form' === 'form' && is_array($topHitsCount)) {
@@ -1022,8 +965,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($topHitsCount);
             }
         }
-
-
 
         // query params
         if ($applications !== null) {
@@ -1038,8 +979,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($applicationsMode !== null) {
             if ('form' === 'form' && is_array($applicationsMode)) {
@@ -1052,8 +991,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($applicationsMode);
             }
         }
-
-
 
         // query params
         if ($methods !== null) {
@@ -1068,8 +1005,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($methodsMode !== null) {
             if ('form' === 'form' && is_array($methodsMode)) {
@@ -1082,8 +1017,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($methodsMode);
             }
         }
-
-
 
         // query params
         if ($domains !== null) {
@@ -1098,8 +1031,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($domainsMode !== null) {
             if ('form' === 'form' && is_array($domainsMode)) {
@@ -1112,8 +1043,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($domainsMode);
             }
         }
-
-
 
         // query params
         if ($codeSlots !== null) {
@@ -1128,8 +1057,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($codeSlotsMode !== null) {
             if ('form' === 'form' && is_array($codeSlotsMode)) {
@@ -1142,8 +1069,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($codeSlotsMode);
             }
         }
-
-
 
         // query params
         if ($codes !== null) {
@@ -1158,8 +1083,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($codesMode !== null) {
             if ('form' === 'form' && is_array($codesMode)) {
@@ -1172,8 +1095,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($codesMode);
             }
         }
-
-
 
         // query params
         if ($requestDurationSlots !== null) {
@@ -1188,8 +1109,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($requestDurationSlotsMode !== null) {
             if ('form' === 'form' && is_array($requestDurationSlotsMode)) {
@@ -1202,8 +1121,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($requestDurationSlotsMode);
             }
         }
-
-
 
         // path params
 
@@ -1223,7 +1140,6 @@ final class HttpTrafficApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1492,7 +1408,6 @@ final class HttpTrafficApi extends AbstractApi
         ?array $requestDurationSlots = null,
         ?string $requestDurationSlotsMode = null
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -1500,8 +1415,6 @@ final class HttpTrafficApi extends AbstractApi
                 when calling httpMetricsTimelineUserAgents'
             );
         }
-
-
 
         if (!preg_match("/[a-z0-9]+/", $projectId)) {
             throw new InvalidArgumentException(
@@ -1517,8 +1430,6 @@ final class HttpTrafficApi extends AbstractApi
                 when calling httpMetricsTimelineUserAgents'
             );
         }
-
-
 
         if (!preg_match("/.+/", $environmentId)) {
             throw new InvalidArgumentException(
@@ -1556,8 +1467,6 @@ final class HttpTrafficApi extends AbstractApi
             );
         }
 
-
-
         if ($topHitsCount !== null && $topHitsCount > 15) {
             throw new InvalidArgumentException(
                 'invalid value for "$topHitsCount" when calling HttpTrafficApi.httpMetricsTimelineUserAgents,
@@ -1571,8 +1480,6 @@ final class HttpTrafficApi extends AbstractApi
                 must be bigger than or equal to 1.'
             );
         }
-
-
 
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/http/breakdown/user-agents';
         $formParams = [];
@@ -1594,8 +1501,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($to !== null) {
             if ('form' === 'form' && is_array($to)) {
@@ -1608,8 +1513,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($to);
             }
         }
-
-
 
         // query params
         if ($limit !== null) {
@@ -1624,8 +1527,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($topHitsCount !== null) {
             if ('form' === 'form' && is_array($topHitsCount)) {
@@ -1638,8 +1539,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($topHitsCount);
             }
         }
-
-
 
         // query params
         if ($applications !== null) {
@@ -1654,8 +1553,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($applicationsMode !== null) {
             if ('form' === 'form' && is_array($applicationsMode)) {
@@ -1668,8 +1565,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($applicationsMode);
             }
         }
-
-
 
         // query params
         if ($methods !== null) {
@@ -1684,8 +1579,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($methodsMode !== null) {
             if ('form' === 'form' && is_array($methodsMode)) {
@@ -1698,8 +1591,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($methodsMode);
             }
         }
-
-
 
         // query params
         if ($domains !== null) {
@@ -1714,8 +1605,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($domainsMode !== null) {
             if ('form' === 'form' && is_array($domainsMode)) {
@@ -1728,8 +1617,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($domainsMode);
             }
         }
-
-
 
         // query params
         if ($codeSlots !== null) {
@@ -1744,8 +1631,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($codeSlotsMode !== null) {
             if ('form' === 'form' && is_array($codeSlotsMode)) {
@@ -1758,8 +1643,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($codeSlotsMode);
             }
         }
-
-
 
         // query params
         if ($codes !== null) {
@@ -1774,8 +1657,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($codesMode !== null) {
             if ('form' === 'form' && is_array($codesMode)) {
@@ -1788,8 +1669,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($codesMode);
             }
         }
-
-
 
         // query params
         if ($requestDurationSlots !== null) {
@@ -1804,8 +1683,6 @@ final class HttpTrafficApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($requestDurationSlotsMode !== null) {
             if ('form' === 'form' && is_array($requestDurationSlotsMode)) {
@@ -1818,8 +1695,6 @@ final class HttpTrafficApi extends AbstractApi
                     : ($requestDurationSlotsMode);
             }
         }
-
-
 
         // path params
 
@@ -1839,7 +1714,6 @@ final class HttpTrafficApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

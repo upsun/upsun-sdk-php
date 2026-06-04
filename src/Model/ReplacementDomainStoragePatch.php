@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\DomainPatch;
 
 /**
  * Low level ReplacementDomainStoragePatch (auto-generated)
@@ -14,13 +13,10 @@ use Upsun\Model\DomainPatch;
  */
 final class ReplacementDomainStoragePatch implements Model, JsonSerializable, DomainPatch
 {
-
-
     public function __construct(
         private readonly ?TLSSettings $attributes = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -39,12 +35,11 @@ final class ReplacementDomainStoragePatch implements Model, JsonSerializable, Do
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * TLS settings for the route
-    */
+    /**
+     * TLS settings for the route
+     */
     public function getAttributes(): ?TLSSettings
     {
         return $this->attributes;
     }
 }
-

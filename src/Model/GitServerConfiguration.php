@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class GitServerConfiguration implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly int $pushSizeHardLimit,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -38,12 +35,11 @@ final class GitServerConfiguration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Push Size Reject Limit
-    */
+    /**
+     * Push Size Reject Limit
+     */
     public function getPushSizeHardLimit(): int
     {
         return $this->pushSizeHardLimit;
     }
 }
-

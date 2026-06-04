@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?object $credentials = null,
         private readonly ?string $reference = null,
@@ -22,7 +20,6 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
         private readonly ?string $type = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -64,4 +61,3 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Mode
         return $this->reference;
     }
 }
-

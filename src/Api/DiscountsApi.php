@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -13,6 +12,9 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\Discount;
+use Upsun\Model\GetTypeAllowance200Response;
+use Upsun\Model\ListOrgDiscounts200Response;
 
 /**
  * Low level DiscountsApi (auto-generated)
@@ -61,7 +63,7 @@ final class DiscountsApi extends AbstractApi
      */
     public function getDiscount(
         string $id
-    ): \Upsun\Model\Discount {
+    ): Discount {
         return $this->getDiscountWithHttpInfo(
             $id
         );
@@ -78,7 +80,7 @@ final class DiscountsApi extends AbstractApi
     */
     private function getDiscountWithHttpInfo(
         string $id
-    ): \Upsun\Model\Discount {
+    ): Discount {
         $request = $this->getDiscountRequest(
             $id
         );
@@ -121,7 +123,6 @@ final class DiscountsApi extends AbstractApi
     private function getDiscountRequest(
         string $id
     ): RequestInterface {
-
         // verify the required parameter 'id' is set
         if (empty($id)) {
             throw new InvalidArgumentException(
@@ -146,7 +147,6 @@ final class DiscountsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -212,8 +212,7 @@ final class DiscountsApi extends AbstractApi
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Discounts/operation/get-type-allowance
      */
-    public function getTypeAllowance(
-    ): \Upsun\Model\GetTypeAllowance200Response 
+    public function getTypeAllowance(): GetTypeAllowance200Response
     {
         return $this->getTypeAllowanceWithHttpInfo(
         );
@@ -225,8 +224,7 @@ final class DiscountsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
-    private function getTypeAllowanceWithHttpInfo(
-    ): \Upsun\Model\GetTypeAllowance200Response 
+    private function getTypeAllowanceWithHttpInfo(): GetTypeAllowance200Response
     {
         $request = $this->getTypeAllowanceRequest(
         );
@@ -263,18 +261,14 @@ final class DiscountsApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    private function getTypeAllowanceRequest(
-    ): RequestInterface {
-
-
+    private function getTypeAllowanceRequest(): RequestInterface
+    {
         $resourcePath = '/discounts/types/allowance';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -347,7 +341,7 @@ final class DiscountsApi extends AbstractApi
      */
     public function listOrgDiscounts(
         string $organizationId
-    ): \Upsun\Model\ListOrgDiscounts200Response {
+    ): ListOrgDiscounts200Response {
         return $this->listOrgDiscountsWithHttpInfo(
             $organizationId
         );
@@ -365,7 +359,7 @@ final class DiscountsApi extends AbstractApi
     */
     private function listOrgDiscountsWithHttpInfo(
         string $organizationId
-    ): \Upsun\Model\ListOrgDiscounts200Response {
+    ): ListOrgDiscounts200Response {
         $request = $this->listOrgDiscountsRequest(
             $organizationId
         );
@@ -409,7 +403,6 @@ final class DiscountsApi extends AbstractApi
     private function listOrgDiscountsRequest(
         string $organizationId
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -434,7 +427,6 @@ final class DiscountsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],

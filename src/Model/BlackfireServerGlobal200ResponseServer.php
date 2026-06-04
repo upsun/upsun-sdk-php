@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class BlackfireServerGlobal200ResponseServer implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly float $total,
         private readonly array $data,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -45,12 +42,11 @@ final class BlackfireServerGlobal200ResponseServer implements Model, JsonSeriali
         return $this->total;
     }
 
-   /**
-    * @return BlackfireServerGlobal200ResponseServerDataInner[]
-    */
+    /**
+     * @return BlackfireServerGlobal200ResponseServerDataInner[]
+     */
     public function getData(): array
     {
         return $this->data;
     }
 }
-

@@ -2,8 +2,6 @@
 
 namespace Upsun\Model;
 
-use JsonSerializable;
-
 /**
  * Low level DeploymentTarget (auto-generated)
  *
@@ -23,4 +21,3 @@ interface DeploymentTarget
 
     public function getName(): mixed;
 }
-

@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -13,6 +12,9 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\ProjectSettings;
+use Upsun\Model\ProjectSettingsPatch;
 
 /**
  * Low level ProjectSettingsApi (auto-generated)
@@ -60,7 +62,7 @@ final class ProjectSettingsApi extends AbstractApi
      */
     public function getProjectsSettings(
         string $projectId
-    ): \Upsun\Model\ProjectSettings {
+    ): ProjectSettings {
         return $this->getProjectsSettingsWithHttpInfo(
             $projectId
         );
@@ -75,7 +77,7 @@ final class ProjectSettingsApi extends AbstractApi
     */
     private function getProjectsSettingsWithHttpInfo(
         string $projectId
-    ): \Upsun\Model\ProjectSettings {
+    ): ProjectSettings {
         $request = $this->getProjectsSettingsRequest(
             $projectId
         );
@@ -116,7 +118,6 @@ final class ProjectSettingsApi extends AbstractApi
     private function getProjectsSettingsRequest(
         string $projectId
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -141,7 +142,6 @@ final class ProjectSettingsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -212,8 +212,8 @@ final class ProjectSettingsApi extends AbstractApi
      */
     public function updateProjectsSettings(
         string $projectId,
-        \Upsun\Model\ProjectSettingsPatch $projectSettingsPatch
-    ): \Upsun\Model\AcceptedResponse {
+        ProjectSettingsPatch $projectSettingsPatch
+    ): AcceptedResponse {
         return $this->updateProjectsSettingsWithHttpInfo(
             $projectId,
             $projectSettingsPatch
@@ -230,8 +230,8 @@ final class ProjectSettingsApi extends AbstractApi
     */
     private function updateProjectsSettingsWithHttpInfo(
         string $projectId,
-        \Upsun\Model\ProjectSettingsPatch $projectSettingsPatch
-    ): \Upsun\Model\AcceptedResponse {
+        ProjectSettingsPatch $projectSettingsPatch
+    ): AcceptedResponse {
         $request = $this->updateProjectsSettingsRequest(
             $projectId,
             $projectSettingsPatch
@@ -273,9 +273,8 @@ final class ProjectSettingsApi extends AbstractApi
      */
     private function updateProjectsSettingsRequest(
         string $projectId,
-        \Upsun\Model\ProjectSettingsPatch $projectSettingsPatch
+        ProjectSettingsPatch $projectSettingsPatch
     ): RequestInterface {
-
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
@@ -307,7 +306,6 @@ final class ProjectSettingsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

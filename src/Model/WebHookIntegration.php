@@ -2,8 +2,8 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
-use Upsun\Model\Integration;
 
 /**
  * Low level WebHookIntegration (auto-generated)
@@ -14,7 +14,6 @@ use Upsun\Model\Integration;
  */
 final class WebHookIntegration implements Model, JsonSerializable, Integration
 {
-
     public const RESULT_STAR = '*';
     public const RESULT_FAILURE = 'failure';
     public const RESULT_SUCCESS = 'success';
@@ -28,13 +27,12 @@ final class WebHookIntegration implements Model, JsonSerializable, Integration
         private readonly array $states,
         private readonly string $result,
         private readonly string $url,
-        private readonly ?\DateTime $createdAt,
-        private readonly ?\DateTime $updatedAt,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $sharedKey,
         private readonly ?string $id = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -64,33 +62,33 @@ final class WebHookIntegration implements Model, JsonSerializable, Integration
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The creation date
-    */
-    public function getCreatedAt(): ?\DateTime
+    /**
+     * The creation date
+     */
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-   /**
-    * The update date
-    */
-    public function getUpdatedAt(): ?\DateTime
+    /**
+     * The update date
+     */
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The role of the integration
-    */
+    /**
+     * The role of the integration
+     */
     public function getRole(): string
     {
         return $this->role;
@@ -116,36 +114,35 @@ final class WebHookIntegration implements Model, JsonSerializable, Integration
         return $this->states;
     }
 
-   /**
-    * Result to execute the hook on
-    */
+    /**
+     * Result to execute the hook on
+     */
     public function getResult(): string
     {
         return $this->result;
     }
 
-   /**
-    * The JWS shared secret key
-    */
+    /**
+     * The JWS shared secret key
+     */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
 
-   /**
-    * The URL of the webhook
-    */
+    /**
+     * The URL of the webhook
+     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-   /**
-    * The identifier of WebHookIntegration
-    */
+    /**
+     * The identifier of WebHookIntegration
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
 }
-

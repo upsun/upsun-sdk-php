@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\IntegrationCreateCreateInput;
 
 /**
  * Low level ScriptIntegrationCreateInput (auto-generated)
@@ -14,7 +13,6 @@ use Upsun\Model\IntegrationCreateCreateInput;
  */
 final class ScriptIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateCreateInput
 {
-
     public const RESULT_STAR = '*';
     public const RESULT_FAILURE = 'failure';
     public const RESULT_SUCCESS = 'success';
@@ -29,7 +27,6 @@ final class ScriptIntegrationCreateInput implements Model, JsonSerializable, Int
         private readonly ?string $result = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -54,17 +51,17 @@ final class ScriptIntegrationCreateInput implements Model, JsonSerializable, Int
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of the integration
-    */
+    /**
+     * The type of the integration
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The script to run
-    */
+    /**
+     * The script to run
+     */
     public function getScript(): string
     {
         return $this->script;
@@ -90,12 +87,11 @@ final class ScriptIntegrationCreateInput implements Model, JsonSerializable, Int
         return $this->states;
     }
 
-   /**
-    * Result to execute the hook on
-    */
+    /**
+     * Result to execute the hook on
+     */
     public function getResult(): ?string
     {
         return $this->result;
     }
 }
-

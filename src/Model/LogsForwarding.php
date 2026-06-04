@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class LogsForwarding implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly int $maxExtraPayloadSize,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -38,12 +35,11 @@ final class LogsForwarding implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Limit on the maximum size for the custom extra attributes added to the forwarded logs payload
-    */
+    /**
+     * Limit on the maximum size for the custom extra attributes added to the forwarded logs payload
+     */
     public function getMaxExtraPayloadSize(): int
     {
         return $this->maxExtraPayloadSize;
     }
 }
-

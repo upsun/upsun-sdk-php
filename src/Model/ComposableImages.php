@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class ComposableImages implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly array $runtimes,
         private readonly array $packages,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -45,12 +42,11 @@ final class ComposableImages implements Model, JsonSerializable
         return $this->runtimes;
     }
 
-   /**
-    * @return CommunityPackagesInner[]
-    */
+    /**
+     * @return CommunityPackagesInner[]
+     */
     public function getPackages(): array
     {
         return $this->packages;
     }
 }
-

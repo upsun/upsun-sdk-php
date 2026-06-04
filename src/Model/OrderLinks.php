@@ -14,13 +14,10 @@ use JsonSerializable;
  */
 final class OrderLinks implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?OrderLinksInvoices $invoices = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -39,12 +36,11 @@ final class OrderLinks implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Link to related Invoices API. Use this to retrieve invoices related to this order.
-    */
+    /**
+     * Link to related Invoices API. Use this to retrieve invoices related to this order.
+     */
     public function getInvoices(): ?OrderLinksInvoices
     {
         return $this->invoices;
     }
 }
-

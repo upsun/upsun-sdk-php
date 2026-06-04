@@ -13,16 +13,13 @@ use JsonSerializable;
  */
 final class Ref implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $id,
         private readonly string $ref,
-        private readonly Object $object,
+        private readonly object $object,
         private readonly string $sha,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -44,36 +41,35 @@ final class Ref implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The identifier of Ref
-    */
+    /**
+     * The identifier of Ref
+     */
     public function getId(): string
     {
         return $this->id;
     }
 
-   /**
-    * The name of the reference
-    */
+    /**
+     * The name of the reference
+     */
     public function getRef(): string
     {
         return $this->ref;
     }
 
-   /**
-    * The object the reference points to
-    */
-    public function getObject(): Object
+    /**
+     * The object the reference points to
+     */
+    public function getObject(): object
     {
         return $this->object;
     }
 
-   /**
-    * The commit sha of the ref
-    */
+    /**
+     * The commit sha of the ref
+     */
     public function getSha(): string
     {
         return $this->sha;
     }
 }
-

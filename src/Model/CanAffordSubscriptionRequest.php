@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class CanAffordSubscriptionRequest implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?array $resources = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,4 +40,3 @@ final class CanAffordSubscriptionRequest implements Model, JsonSerializable
         return $this->resources;
     }
 }
-

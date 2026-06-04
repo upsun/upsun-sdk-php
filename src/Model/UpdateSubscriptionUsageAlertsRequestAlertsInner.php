@@ -13,15 +13,12 @@ use JsonSerializable;
  */
 final class UpdateSubscriptionUsageAlertsRequestAlertsInner implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?bool $active = null,
         private readonly ?UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig $config = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -57,4 +54,3 @@ final class UpdateSubscriptionUsageAlertsRequestAlertsInner implements Model, Js
         return $this->config;
     }
 }
-

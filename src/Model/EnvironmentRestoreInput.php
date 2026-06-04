@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class EnvironmentRestoreInput implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $environmentName = null,
         private readonly ?string $branchFrom = null,
@@ -23,7 +21,6 @@ final class EnvironmentRestoreInput implements Model, JsonSerializable
         private readonly ?bool $restoreResources = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -56,17 +53,17 @@ final class EnvironmentRestoreInput implements Model, JsonSerializable
         return $this->branchFrom;
     }
 
-   /**
-    * Whether we should restore the code or only the data
-    */
+    /**
+     * Whether we should restore the code or only the data
+     */
     public function getRestoreCode(): ?bool
     {
         return $this->restoreCode;
     }
 
-   /**
-    * Whether we should restore resources configuration from the backup
-    */
+    /**
+     * Whether we should restore resources configuration from the backup
+     */
     public function getRestoreResources(): ?bool
     {
         return $this->restoreResources;
@@ -77,4 +74,3 @@ final class EnvironmentRestoreInput implements Model, JsonSerializable
         return $this->resources;
     }
 }
-

@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class RunConfiguration implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $command,
         private readonly int $timeout,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -41,20 +38,19 @@ final class RunConfiguration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The command to execute when running the task
-    */
+    /**
+     * The command to execute when running the task
+     */
     public function getCommand(): string
     {
         return $this->command;
     }
 
-   /**
-    * The maximum timeout in seconds after which the task will be forcefully killed
-    */
+    /**
+     * The maximum timeout in seconds after which the task will be forcefully killed
+     */
     public function getTimeout(): int
     {
         return $this->timeout;
     }
 }
-

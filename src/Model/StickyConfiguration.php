@@ -14,13 +14,10 @@ use JsonSerializable;
  */
 final class StickyConfiguration implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly bool $enabled,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -39,12 +36,11 @@ final class StickyConfiguration implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Whether sticky routing is enabled.
-    */
+    /**
+     * Whether sticky routing is enabled.
+     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 }
-

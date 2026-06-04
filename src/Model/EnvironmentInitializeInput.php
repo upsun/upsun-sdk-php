@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class EnvironmentInitializeInput implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $profile,
         private readonly string $repository,
@@ -23,7 +21,6 @@ final class EnvironmentInitializeInput implements Model, JsonSerializable
         private readonly ?array $files = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -46,34 +43,34 @@ final class EnvironmentInitializeInput implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Name of the profile to show in the UI
-    */
+    /**
+     * Name of the profile to show in the UI
+     */
     public function getProfile(): string
     {
         return $this->profile;
     }
 
-   /**
-    * Repository to clone from
-    */
+    /**
+     * Repository to clone from
+     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-   /**
-    * Repository to clone the configuration files from
-    */
+    /**
+     * Repository to clone the configuration files from
+     */
     public function getConfig(): ?string
     {
         return $this->config;
     }
 
-   /**
-    * A list of files to add to the repository during initialization
-    * @return FilesInner[]|null
-    */
+    /**
+     * A list of files to add to the repository during initialization
+     * @return FilesInner[]|null
+     */
     public function getFiles(): ?array
     {
         return $this->files;
@@ -84,4 +81,3 @@ final class EnvironmentInitializeInput implements Model, JsonSerializable
         return $this->resources;
     }
 }
-

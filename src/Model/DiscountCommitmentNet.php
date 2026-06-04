@@ -14,15 +14,12 @@ use JsonSerializable;
  */
 final class DiscountCommitmentNet implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?CurrencyAmount $monthly = null,
         private readonly ?CurrencyAmount $commitmentPeriod = null,
         private readonly ?CurrencyAmount $contractTotal = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,28 +40,27 @@ final class DiscountCommitmentNet implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Currency amount with detailed components.
-    */
+    /**
+     * Currency amount with detailed components.
+     */
     public function getMonthly(): ?CurrencyAmount
     {
         return $this->monthly;
     }
 
-   /**
-    * Currency amount with detailed components.
-    */
+    /**
+     * Currency amount with detailed components.
+     */
     public function getCommitmentPeriod(): ?CurrencyAmount
     {
         return $this->commitmentPeriod;
     }
 
-   /**
-    * Currency amount with detailed components.
-    */
+    /**
+     * Currency amount with detailed components.
+     */
     public function getContractTotal(): ?CurrencyAmount
     {
         return $this->contractTotal;
     }
 }
-

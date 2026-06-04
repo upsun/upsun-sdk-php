@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class Object implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $type,
         private readonly string $sha,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -41,9 +38,9 @@ final class Object implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of object pointed to
-    */
+    /**
+     * The type of object pointed to
+     */
     public function getType(): string
     {
         return $this->type;
@@ -54,4 +51,3 @@ final class Object implements Model, JsonSerializable
         return $this->sha;
     }
 }
-

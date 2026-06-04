@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class ProjectSettingsPatch implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?array $dataRetention = [],
         private readonly ?MaintenanceWindowConfiguration $maintenanceWindow = null,
@@ -22,7 +20,6 @@ final class ProjectSettingsPatch implements Model, JsonSerializable
         private readonly ?BuildResources2 $buildResources = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -49,10 +46,10 @@ final class ProjectSettingsPatch implements Model, JsonSerializable
         return $this->initialize;
     }
 
-   /**
-    * Data retention configuration
-    * @return DataRetentionConfigurationValue1[]|null
-    */
+    /**
+     * Data retention configuration
+     * @return DataRetentionConfigurationValue1[]|null
+     */
     public function getDataRetention(): ?array
     {
         return $this->dataRetention;
@@ -63,12 +60,11 @@ final class ProjectSettingsPatch implements Model, JsonSerializable
         return $this->buildResources;
     }
 
-   /**
-    * Configuration for the maintenance window schedule
-    */
+    /**
+     * Configuration for the maintenance window schedule
+     */
     public function getMaintenanceWindow(): ?MaintenanceWindowConfiguration
     {
         return $this->maintenanceWindow;
     }
 }
-

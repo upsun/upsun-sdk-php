@@ -13,14 +13,11 @@ use JsonSerializable;
  */
 final class GetOrgPrepaymentInfo200Response implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?PrepaymentObject $prepayment = null,
         private readonly ?GetOrgPrepaymentInfo200ResponseLinks $links = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -40,9 +37,9 @@ final class GetOrgPrepaymentInfo200Response implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Prepayment information for an organization.
-    */
+    /**
+     * Prepayment information for an organization.
+     */
     public function getPrepayment(): ?PrepaymentObject
     {
         return $this->prepayment;
@@ -53,4 +50,3 @@ final class GetOrgPrepaymentInfo200Response implements Model, JsonSerializable
         return $this->links;
     }
 }
-

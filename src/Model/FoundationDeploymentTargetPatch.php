@@ -3,7 +3,6 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
-use Upsun\Model\DeploymentTargetPatch;
 
 /**
  * Low level FoundationDeploymentTargetPatch (auto-generated)
@@ -14,7 +13,6 @@ use Upsun\Model\DeploymentTargetPatch;
  */
 final class FoundationDeploymentTargetPatch implements Model, JsonSerializable, DeploymentTargetPatch
 {
-
     public const TYPE_DEDICATED = 'dedicated';
     public const TYPE_ENTERPRISE = 'enterprise';
     public const TYPE_FOUNDATION = 'foundation';
@@ -27,7 +25,6 @@ final class FoundationDeploymentTargetPatch implements Model, JsonSerializable, 
         private readonly ?bool $useDedicatedGrid = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -49,39 +46,38 @@ final class FoundationDeploymentTargetPatch implements Model, JsonSerializable, 
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The type of the deployment target
-    */
+    /**
+     * The type of the deployment target
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The name of the deployment target
-    */
+    /**
+     * The name of the deployment target
+     */
     public function getName(): string
     {
         return $this->name;
     }
 
-   /**
-    * The hosts of the deployment target
-    * @return DeploymentHostsInner[]|null
-    */
+    /**
+     * The hosts of the deployment target
+     * @return DeploymentHostsInner[]|null
+     */
     public function getHosts(): ?array
     {
         return $this->hosts;
     }
 
-   /**
-    * When true, the deployment will be pinned to Grid hosts dedicated to the environment using this deployment target.
-    * Dedicated Grid hosts must be created prior to deploying the environment. The constraints that will be set are as
-    * follows: * `cluster_type` is set to `environment-custom`. * `cluster` is set to the environment's cluster name.
-    */
+    /**
+     * When true, the deployment will be pinned to Grid hosts dedicated to the environment using this deployment target.
+     * Dedicated Grid hosts must be created prior to deploying the environment. The constraints that will be set are as
+     * follows: * `cluster_type` is set to `environment-custom`. * `cluster` is set to the environment's cluster name.
+     */
     public function getUseDedicatedGrid(): ?bool
     {
         return $this->useDedicatedGrid;
     }
 }
-

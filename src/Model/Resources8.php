@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class Resources8 implements Model, JsonSerializable
 {
-
     public const INIT_BACKUP = 'backup';
     public const INIT__DEFAULT = 'default';
     public const INIT_MINIMUM = 'minimum';
@@ -23,7 +22,6 @@ final class Resources8 implements Model, JsonSerializable
         private readonly ?string $init = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -42,12 +40,11 @@ final class Resources8 implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The resources used when initializing services of the environment
-    */
+    /**
+     * The resources used when initializing services of the environment
+     */
     public function getInit(): ?string
     {
         return $this->init;
     }
 }
-

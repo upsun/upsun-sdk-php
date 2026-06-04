@@ -13,6 +13,15 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\CreateTeamMemberRequest;
+use Upsun\Model\CreateTeamRequest;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\ListTeamMembers200Response;
+use Upsun\Model\ListTeams200Response;
+use Upsun\Model\StringFilter;
+use Upsun\Model\Team;
+use Upsun\Model\TeamMember;
+use Upsun\Model\UpdateTeamRequest;
 
 /**
  * Low level TeamsApi (auto-generated)
@@ -59,8 +68,8 @@ final class TeamsApi extends AbstractApi
      * @see https://docs.upsun.com/api/#tag/Teams/operation/create-team
      */
     public function createTeam(
-        \Upsun\Model\CreateTeamRequest $createTeamRequest
-    ): \Upsun\Model\Team {
+        CreateTeamRequest $createTeamRequest
+    ): Team {
         return $this->createTeamWithHttpInfo(
             $createTeamRequest
         );
@@ -74,8 +83,8 @@ final class TeamsApi extends AbstractApi
      * @throws ClientExceptionInterface
     */
     private function createTeamWithHttpInfo(
-        \Upsun\Model\CreateTeamRequest $createTeamRequest
-    ): \Upsun\Model\Team {
+        CreateTeamRequest $createTeamRequest
+    ): Team {
         $request = $this->createTeamRequest(
             $createTeamRequest
         );
@@ -114,9 +123,8 @@ final class TeamsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     private function createTeamRequest(
-        \Upsun\Model\CreateTeamRequest $createTeamRequest
+        CreateTeamRequest $createTeamRequest
     ): RequestInterface {
-
         // verify the required parameter 'createTeamRequest' is set
         if (empty($createTeamRequest)) {
             throw new InvalidArgumentException(
@@ -131,8 +139,6 @@ final class TeamsApi extends AbstractApi
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -212,8 +218,8 @@ final class TeamsApi extends AbstractApi
      */
     public function createTeamMember(
         string $teamId,
-        \Upsun\Model\CreateTeamMemberRequest $createTeamMemberRequest
-    ): \Upsun\Model\TeamMember {
+        CreateTeamMemberRequest $createTeamMemberRequest
+    ): TeamMember {
         return $this->createTeamMemberWithHttpInfo(
             $teamId,
             $createTeamMemberRequest
@@ -231,8 +237,8 @@ final class TeamsApi extends AbstractApi
     */
     private function createTeamMemberWithHttpInfo(
         string $teamId,
-        \Upsun\Model\CreateTeamMemberRequest $createTeamMemberRequest
-    ): \Upsun\Model\TeamMember {
+        CreateTeamMemberRequest $createTeamMemberRequest
+    ): TeamMember {
         $request = $this->createTeamMemberRequest(
             $teamId,
             $createTeamMemberRequest
@@ -275,9 +281,8 @@ final class TeamsApi extends AbstractApi
      */
     private function createTeamMemberRequest(
         string $teamId,
-        \Upsun\Model\CreateTeamMemberRequest $createTeamMemberRequest
+        CreateTeamMemberRequest $createTeamMemberRequest
     ): RequestInterface {
-
         // verify the required parameter 'teamId' is set
         if (empty($teamId)) {
             throw new InvalidArgumentException(
@@ -309,7 +314,6 @@ final class TeamsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -443,7 +447,6 @@ final class TeamsApi extends AbstractApi
     private function deleteTeamRequest(
         string $teamId
     ): RequestInterface {
-
         // verify the required parameter 'teamId' is set
         if (empty($teamId)) {
             throw new InvalidArgumentException(
@@ -468,7 +471,6 @@ final class TeamsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -605,7 +607,6 @@ final class TeamsApi extends AbstractApi
         string $teamId,
         string $userId
     ): RequestInterface {
-
         // verify the required parameter 'teamId' is set
         if (empty($teamId)) {
             throw new InvalidArgumentException(
@@ -646,7 +647,6 @@ final class TeamsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -718,7 +718,7 @@ final class TeamsApi extends AbstractApi
      */
     public function getTeam(
         string $teamId
-    ): \Upsun\Model\Team {
+    ): Team {
         return $this->getTeamWithHttpInfo(
             $teamId
         );
@@ -735,7 +735,7 @@ final class TeamsApi extends AbstractApi
     */
     private function getTeamWithHttpInfo(
         string $teamId
-    ): \Upsun\Model\Team {
+    ): Team {
         $request = $this->getTeamRequest(
             $teamId
         );
@@ -778,7 +778,6 @@ final class TeamsApi extends AbstractApi
     private function getTeamRequest(
         string $teamId
     ): RequestInterface {
-
         // verify the required parameter 'teamId' is set
         if (empty($teamId)) {
             throw new InvalidArgumentException(
@@ -803,7 +802,6 @@ final class TeamsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -878,7 +876,7 @@ final class TeamsApi extends AbstractApi
     public function getTeamMember(
         string $teamId,
         string $userId
-    ): \Upsun\Model\TeamMember {
+    ): TeamMember {
         return $this->getTeamMemberWithHttpInfo(
             $teamId,
             $userId
@@ -899,7 +897,7 @@ final class TeamsApi extends AbstractApi
     private function getTeamMemberWithHttpInfo(
         string $teamId,
         string $userId
-    ): \Upsun\Model\TeamMember {
+    ): TeamMember {
         $request = $this->getTeamMemberRequest(
             $teamId,
             $userId
@@ -946,7 +944,6 @@ final class TeamsApi extends AbstractApi
         string $teamId,
         string $userId
     ): RequestInterface {
-
         // verify the required parameter 'teamId' is set
         if (empty($teamId)) {
             throw new InvalidArgumentException(
@@ -987,7 +984,6 @@ final class TeamsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1065,7 +1061,7 @@ final class TeamsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeamMembers200Response {
+    ): ListTeamMembers200Response {
         return $this->listTeamMembersWithHttpInfo(
             $teamId,
             $pageBefore,
@@ -1091,7 +1087,7 @@ final class TeamsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeamMembers200Response {
+    ): ListTeamMembers200Response {
         $request = $this->listTeamMembersRequest(
             $teamId,
             $pageBefore,
@@ -1143,7 +1139,6 @@ final class TeamsApi extends AbstractApi
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
-
         // verify the required parameter 'teamId' is set
         if (empty($teamId)) {
             throw new InvalidArgumentException(
@@ -1172,8 +1167,6 @@ final class TeamsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageAfter !== null) {
             if ('form' === 'form' && is_array($pageAfter)) {
@@ -1186,8 +1179,6 @@ final class TeamsApi extends AbstractApi
                     : ($pageAfter);
             }
         }
-
-
 
         // query params
         if ($sort !== null) {
@@ -1202,8 +1193,6 @@ final class TeamsApi extends AbstractApi
             }
         }
 
-
-
         // path params
 
         if ($teamId !== null) {
@@ -1213,7 +1202,6 @@ final class TeamsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1289,14 +1277,14 @@ final class TeamsApi extends AbstractApi
      * @see https://docs.upsun.com/api/#tag/Teams/operation/list-teams
      */
     public function listTeams(
-        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
-        ?\Upsun\Model\StringFilter $filterId = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterOrganizationId = null,
+        ?StringFilter $filterId = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeams200Response {
+    ): ListTeams200Response {
         return $this->listTeamsWithHttpInfo(
             $filterOrganizationId,
             $filterId,
@@ -1323,14 +1311,14 @@ final class TeamsApi extends AbstractApi
      * @throws ClientExceptionInterface
     */
     private function listTeamsWithHttpInfo(
-        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
-        ?\Upsun\Model\StringFilter $filterId = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterOrganizationId = null,
+        ?StringFilter $filterId = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeams200Response {
+    ): ListTeams200Response {
         $request = $this->listTeamsRequest(
             $filterOrganizationId,
             $filterId,
@@ -1382,16 +1370,14 @@ final class TeamsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     private function listTeamsRequest(
-        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
-        ?\Upsun\Model\StringFilter $filterId = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterOrganizationId = null,
+        ?StringFilter $filterId = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
-
-
         if ($pageSize !== null && $pageSize > 100) {
             throw new InvalidArgumentException(
                 'invalid value for "$pageSize" when calling TeamsApi.listTeams,
@@ -1405,8 +1391,6 @@ final class TeamsApi extends AbstractApi
                 must be bigger than or equal to 1.'
             );
         }
-
-
 
         $resourcePath = '/teams';
         $formParams = [];
@@ -1428,8 +1412,6 @@ final class TeamsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterId !== null) {
             if ('form' === 'deepObject' && is_array($filterId)) {
@@ -1442,8 +1424,6 @@ final class TeamsApi extends AbstractApi
                     : ($filterId->getEq());
             }
         }
-
-
 
         // query params
         if ($filterUpdatedAt !== null) {
@@ -1458,8 +1438,6 @@ final class TeamsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageSize !== null) {
             if ('form' === 'form' && is_array($pageSize)) {
@@ -1472,8 +1450,6 @@ final class TeamsApi extends AbstractApi
                     : ($pageSize);
             }
         }
-
-
 
         // query params
         if ($pageBefore !== null) {
@@ -1488,8 +1464,6 @@ final class TeamsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageAfter !== null) {
             if ('form' === 'form' && is_array($pageAfter)) {
@@ -1503,8 +1477,6 @@ final class TeamsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -1517,10 +1489,6 @@ final class TeamsApi extends AbstractApi
                     : ($sort);
             }
         }
-
-
-
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1598,13 +1566,13 @@ final class TeamsApi extends AbstractApi
      */
     public function listUserTeams(
         string $userId,
-        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterOrganizationId = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeams200Response {
+    ): ListTeams200Response {
         return $this->listUserTeamsWithHttpInfo(
             $userId,
             $filterOrganizationId,
@@ -1633,13 +1601,13 @@ final class TeamsApi extends AbstractApi
     */
     private function listUserTeamsWithHttpInfo(
         string $userId,
-        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterOrganizationId = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeams200Response {
+    ): ListTeams200Response {
         $request = $this->listUserTeamsRequest(
             $userId,
             $filterOrganizationId,
@@ -1693,14 +1661,13 @@ final class TeamsApi extends AbstractApi
      */
     private function listUserTeamsRequest(
         string $userId,
-        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
-        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?StringFilter $filterOrganizationId = null,
+        ?DateTimeFilter $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -1723,8 +1690,6 @@ final class TeamsApi extends AbstractApi
             );
         }
 
-
-
         $resourcePath = '/users/{user_id}/teams';
         $formParams = [];
         $queryParams = [];
@@ -1745,8 +1710,6 @@ final class TeamsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($filterUpdatedAt !== null) {
             if ('form' === 'deepObject' && is_array($filterUpdatedAt)) {
@@ -1759,8 +1722,6 @@ final class TeamsApi extends AbstractApi
                     : ($filterUpdatedAt->getEq());
             }
         }
-
-
 
         // query params
         if ($pageSize !== null) {
@@ -1775,8 +1736,6 @@ final class TeamsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($pageBefore !== null) {
             if ('form' === 'form' && is_array($pageBefore)) {
@@ -1789,8 +1748,6 @@ final class TeamsApi extends AbstractApi
                     : ($pageBefore);
             }
         }
-
-
 
         // query params
         if ($pageAfter !== null) {
@@ -1805,8 +1762,6 @@ final class TeamsApi extends AbstractApi
             }
         }
 
-
-
         // query params
         if ($sort !== null) {
             if ('form' === 'form' && is_array($sort)) {
@@ -1820,8 +1775,6 @@ final class TeamsApi extends AbstractApi
             }
         }
 
-
-
         // path params
 
         if ($userId !== null) {
@@ -1831,7 +1784,6 @@ final class TeamsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -1903,8 +1855,8 @@ final class TeamsApi extends AbstractApi
      */
     public function updateTeam(
         string $teamId,
-        ?\Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
-    ): \Upsun\Model\Team {
+        ?UpdateTeamRequest $updateTeamRequest = null
+    ): Team {
         return $this->updateTeamWithHttpInfo(
             $teamId,
             $updateTeamRequest
@@ -1922,8 +1874,8 @@ final class TeamsApi extends AbstractApi
     */
     private function updateTeamWithHttpInfo(
         string $teamId,
-        ?\Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
-    ): \Upsun\Model\Team {
+        ?UpdateTeamRequest $updateTeamRequest = null
+    ): Team {
         $request = $this->updateTeamRequest(
             $teamId,
             $updateTeamRequest
@@ -1966,9 +1918,8 @@ final class TeamsApi extends AbstractApi
      */
     private function updateTeamRequest(
         string $teamId,
-        ?\Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
+        ?UpdateTeamRequest $updateTeamRequest = null
     ): RequestInterface {
-
         // verify the required parameter 'teamId' is set
         if (empty($teamId)) {
             throw new InvalidArgumentException(
@@ -1993,7 +1944,6 @@ final class TeamsApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

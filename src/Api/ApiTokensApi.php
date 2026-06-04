@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -13,6 +12,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\ApiToken;
+use Upsun\Model\CreateApiTokenRequest;
 
 /**
  * Low level ApiTokensApi (auto-generated)
@@ -62,8 +63,8 @@ final class ApiTokensApi extends AbstractApi
      */
     public function createApiToken(
         string $userId,
-        ?\Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
-    ): \Upsun\Model\ApiToken {
+        ?CreateApiTokenRequest $createApiTokenRequest = null
+    ): ApiToken {
         return $this->createApiTokenWithHttpInfo(
             $userId,
             $createApiTokenRequest
@@ -81,8 +82,8 @@ final class ApiTokensApi extends AbstractApi
     */
     private function createApiTokenWithHttpInfo(
         string $userId,
-        ?\Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
-    ): \Upsun\Model\ApiToken {
+        ?CreateApiTokenRequest $createApiTokenRequest = null
+    ): ApiToken {
         $request = $this->createApiTokenRequest(
             $userId,
             $createApiTokenRequest
@@ -125,9 +126,8 @@ final class ApiTokensApi extends AbstractApi
      */
     private function createApiTokenRequest(
         string $userId,
-        ?\Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
+        ?CreateApiTokenRequest $createApiTokenRequest = null
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -152,7 +152,6 @@ final class ApiTokensApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -294,7 +293,6 @@ final class ApiTokensApi extends AbstractApi
         string $userId,
         string $tokenId
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -335,7 +333,6 @@ final class ApiTokensApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -409,7 +406,7 @@ final class ApiTokensApi extends AbstractApi
     public function getApiToken(
         string $userId,
         string $tokenId
-    ): \Upsun\Model\ApiToken {
+    ): ApiToken {
         return $this->getApiTokenWithHttpInfo(
             $userId,
             $tokenId
@@ -429,7 +426,7 @@ final class ApiTokensApi extends AbstractApi
     private function getApiTokenWithHttpInfo(
         string $userId,
         string $tokenId
-    ): \Upsun\Model\ApiToken {
+    ): ApiToken {
         $request = $this->getApiTokenRequest(
             $userId,
             $tokenId
@@ -475,7 +472,6 @@ final class ApiTokensApi extends AbstractApi
         string $userId,
         string $tokenId
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -516,7 +512,6 @@ final class ApiTokensApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
@@ -652,7 +647,6 @@ final class ApiTokensApi extends AbstractApi
     private function listApiTokensRequest(
         string $userId
     ): RequestInterface {
-
         // verify the required parameter 'userId' is set
         if (empty($userId)) {
             throw new InvalidArgumentException(
@@ -677,7 +671,6 @@ final class ApiTokensApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],

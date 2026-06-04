@@ -2,8 +2,6 @@
 
 namespace Upsun\Model;
 
-use JsonSerializable;
-
 /**
  * Low level Route (auto-generated)
  *
@@ -25,4 +23,3 @@ interface Route
 
     public function getTls(): mixed;
 }
-

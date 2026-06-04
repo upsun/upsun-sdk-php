@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class CreateProjectInviteRequestPermissionsInner implements Model, JsonSerializable
 {
-
     public const TYPE_PRODUCTION = 'production';
     public const TYPE_STAGING = 'staging';
     public const TYPE_DEVELOPMENT = 'development';
@@ -26,7 +25,6 @@ final class CreateProjectInviteRequestPermissionsInner implements Model, JsonSer
         private readonly ?string $role = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -56,4 +54,3 @@ final class CreateProjectInviteRequestPermissionsInner implements Model, JsonSer
         return $this->role;
     }
 }
-

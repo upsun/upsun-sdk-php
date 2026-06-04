@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class ResourcesByService200ResponseDataInnerInstancesValueMemoryUsed implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?int $min = null,
         private readonly ?int $max = null,
@@ -28,7 +26,6 @@ final class ResourcesByService200ResponseDataInnerInstancesValueMemoryUsed imple
         private readonly ?float $p99 = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -106,4 +103,3 @@ final class ResourcesByService200ResponseDataInnerInstancesValueMemoryUsed imple
         return $this->p99;
     }
 }
-

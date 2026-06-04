@@ -14,14 +14,11 @@ use JsonSerializable;
  */
 final class ProvisionStep implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $stage,
         private readonly string $label,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -41,20 +38,19 @@ final class ProvisionStep implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The step identifier.
-    */
+    /**
+     * The step identifier.
+     */
     public function getStage(): string
     {
         return $this->stage;
     }
 
-   /**
-    * A human-readable label for the step.
-    */
+    /**
+     * A human-readable label for the step.
+     */
     public function getLabel(): string
     {
         return $this->label;
     }
 }
-

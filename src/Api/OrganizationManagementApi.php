@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -13,6 +12,11 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\OAuthProvider;
+use Upsun\Model\GetOrgPrepaymentInfo200Response;
+use Upsun\Model\ListOrgPrepaymentTransactions200Response;
+use Upsun\Model\OrganizationAlertConfig;
+use Upsun\Model\OrganizationEstimationObject;
+use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
 
 /**
  * Low level OrganizationManagementApi (auto-generated)
@@ -63,7 +67,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function estimateOrg(
         string $organizationId
-    ): \Upsun\Model\OrganizationEstimationObject {
+    ): OrganizationEstimationObject {
         return $this->estimateOrgWithHttpInfo(
             $organizationId
         );
@@ -81,7 +85,7 @@ final class OrganizationManagementApi extends AbstractApi
     */
     private function estimateOrgWithHttpInfo(
         string $organizationId
-    ): \Upsun\Model\OrganizationEstimationObject {
+    ): OrganizationEstimationObject {
         $request = $this->estimateOrgRequest(
             $organizationId
         );
@@ -125,7 +129,6 @@ final class OrganizationManagementApi extends AbstractApi
     private function estimateOrgRequest(
         string $organizationId
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -150,7 +153,6 @@ final class OrganizationManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -223,7 +225,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function getOrgBillingAlertConfig(
         string $organizationId
-    ): \Upsun\Model\OrganizationAlertConfig {
+    ): OrganizationAlertConfig {
         return $this->getOrgBillingAlertConfigWithHttpInfo(
             $organizationId
         );
@@ -241,7 +243,7 @@ final class OrganizationManagementApi extends AbstractApi
     */
     private function getOrgBillingAlertConfigWithHttpInfo(
         string $organizationId
-    ): \Upsun\Model\OrganizationAlertConfig {
+    ): OrganizationAlertConfig {
         $request = $this->getOrgBillingAlertConfigRequest(
             $organizationId
         );
@@ -285,7 +287,6 @@ final class OrganizationManagementApi extends AbstractApi
     private function getOrgBillingAlertConfigRequest(
         string $organizationId
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -310,7 +311,6 @@ final class OrganizationManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -382,7 +382,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function getOrgPrepaymentInfo(
         string $organizationId
-    ): \Upsun\Model\GetOrgPrepaymentInfo200Response {
+    ): GetOrgPrepaymentInfo200Response {
         return $this->getOrgPrepaymentInfoWithHttpInfo(
             $organizationId
         );
@@ -399,7 +399,7 @@ final class OrganizationManagementApi extends AbstractApi
     */
     private function getOrgPrepaymentInfoWithHttpInfo(
         string $organizationId
-    ): \Upsun\Model\GetOrgPrepaymentInfo200Response {
+    ): GetOrgPrepaymentInfo200Response {
         $request = $this->getOrgPrepaymentInfoRequest(
             $organizationId
         );
@@ -442,7 +442,6 @@ final class OrganizationManagementApi extends AbstractApi
     private function getOrgPrepaymentInfoRequest(
         string $organizationId
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -467,7 +466,6 @@ final class OrganizationManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -539,7 +537,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function listOrgPrepaymentTransactions(
         string $organizationId
-    ): \Upsun\Model\ListOrgPrepaymentTransactions200Response {
+    ): ListOrgPrepaymentTransactions200Response {
         return $this->listOrgPrepaymentTransactionsWithHttpInfo(
             $organizationId
         );
@@ -556,7 +554,7 @@ final class OrganizationManagementApi extends AbstractApi
     */
     private function listOrgPrepaymentTransactionsWithHttpInfo(
         string $organizationId
-    ): \Upsun\Model\ListOrgPrepaymentTransactions200Response {
+    ): ListOrgPrepaymentTransactions200Response {
         $request = $this->listOrgPrepaymentTransactionsRequest(
             $organizationId
         );
@@ -599,7 +597,6 @@ final class OrganizationManagementApi extends AbstractApi
     private function listOrgPrepaymentTransactionsRequest(
         string $organizationId
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -624,7 +621,6 @@ final class OrganizationManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
@@ -697,8 +693,8 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function updateOrgBillingAlertConfig(
         string $organizationId,
-        ?\Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
-    ): \Upsun\Model\OrganizationAlertConfig {
+        ?UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
+    ): OrganizationAlertConfig {
         return $this->updateOrgBillingAlertConfigWithHttpInfo(
             $organizationId,
             $updateOrgBillingAlertConfigRequest
@@ -717,8 +713,8 @@ final class OrganizationManagementApi extends AbstractApi
     */
     private function updateOrgBillingAlertConfigWithHttpInfo(
         string $organizationId,
-        ?\Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
-    ): \Upsun\Model\OrganizationAlertConfig {
+        ?UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
+    ): OrganizationAlertConfig {
         $request = $this->updateOrgBillingAlertConfigRequest(
             $organizationId,
             $updateOrgBillingAlertConfigRequest
@@ -762,9 +758,8 @@ final class OrganizationManagementApi extends AbstractApi
      */
     private function updateOrgBillingAlertConfigRequest(
         string $organizationId,
-        ?\Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
+        ?UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
     ): RequestInterface {
-
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
             throw new InvalidArgumentException(
@@ -789,7 +784,6 @@ final class OrganizationManagementApi extends AbstractApi
                 $resourcePath
             );
         }
-
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],

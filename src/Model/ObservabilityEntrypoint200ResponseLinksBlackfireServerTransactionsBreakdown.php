@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class ObservabilityEntrypoint200ResponseLinksBlackfireServerTransactionsBreakdown implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly string $href,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,4 +40,3 @@ final class ObservabilityEntrypoint200ResponseLinksBlackfireServerTransactionsBr
         return $this->href;
     }
 }
-

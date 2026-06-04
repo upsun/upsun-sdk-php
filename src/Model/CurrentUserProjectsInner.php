@@ -2,6 +2,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 /**
@@ -13,8 +14,6 @@ use JsonSerializable;
  */
 final class CurrentUserProjectsInner implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $name = null,
@@ -35,10 +34,9 @@ final class CurrentUserProjectsInner implements Model, JsonSerializable
         private readonly ?string $vendorLabel = null,
         private readonly ?string $vendorWebsite = null,
         private readonly ?string $vendorResources = null,
-        private readonly ?\DateTime $createdAt = null,
+        private readonly ?DateTime $createdAt = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -131,9 +129,9 @@ final class CurrentUserProjectsInner implements Model, JsonSerializable
         return $this->owner;
     }
 
-   /**
-    * Project owner information that can be exposed to collaborators.
-    */
+    /**
+     * Project owner information that can be exposed to collaborators.
+     */
     public function getOwnerInfo(): ?OwnerInfo
     {
         return $this->ownerInfo;
@@ -174,9 +172,8 @@ final class CurrentUserProjectsInner implements Model, JsonSerializable
         return $this->vendorResources;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 }
-

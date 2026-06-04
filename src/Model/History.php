@@ -2,6 +2,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 /**
@@ -13,8 +14,6 @@ use JsonSerializable;
  */
 final class History implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $projectId = null,
@@ -23,11 +22,10 @@ final class History implements Model, JsonSerializable
         private readonly ?string $resource = null,
         private readonly ?string $environment = null,
         private readonly ?string $quantity = null,
-        private readonly ?\DateTime $timestamp = null,
+        private readonly ?DateTime $timestamp = null,
         private readonly ?string $user = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -54,76 +52,75 @@ final class History implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The unique identifier of the history record.
-    */
+    /**
+     * The unique identifier of the history record.
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-   /**
-    * The ID of the project.
-    */
+    /**
+     * The ID of the project.
+     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-   /**
-    * The type of event that triggered the record.
-    */
+    /**
+     * The type of event that triggered the record.
+     */
     public function getEventType(): ?string
     {
         return $this->eventType;
     }
 
-   /**
-    * The ID of the event.
-    */
+    /**
+     * The ID of the event.
+     */
     public function getEventId(): ?string
     {
         return $this->eventId;
     }
 
-   /**
-    * The resource type (e.g., cpu_app, memory_services, storage).
-    */
+    /**
+     * The resource type (e.g., cpu_app, memory_services, storage).
+     */
     public function getResource(): ?string
     {
         return $this->resource;
     }
 
-   /**
-    * The environment name.
-    */
+    /**
+     * The environment name.
+     */
     public function getEnvironment(): ?string
     {
         return $this->environment;
     }
 
-   /**
-    * The quantity of the resource.
-    */
+    /**
+     * The quantity of the resource.
+     */
     public function getQuantity(): ?string
     {
         return $this->quantity;
     }
 
-   /**
-    * The timestamp when the record was created.
-    */
-    public function getTimestamp(): ?\DateTime
+    /**
+     * The timestamp when the record was created.
+     */
+    public function getTimestamp(): ?DateTime
     {
         return $this->timestamp;
     }
 
-   /**
-    * The ID of the user who triggered the event.
-    */
+    /**
+     * The ID of the user who triggered the event.
+     */
     public function getUser(): ?string
     {
         return $this->user;
     }
 }
-

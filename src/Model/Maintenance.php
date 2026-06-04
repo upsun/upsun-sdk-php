@@ -2,6 +2,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,13 +15,10 @@ use JsonSerializable;
  */
 final class Maintenance implements Model, JsonSerializable
 {
-
-
     public function __construct(
-        private readonly \DateTime $nextMaintenance,
+        private readonly DateTime $nextMaintenance,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -39,12 +37,11 @@ final class Maintenance implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * Estimated date and time of the next maintenance activity
-    */
-    public function getNextMaintenance(): \DateTime
+    /**
+     * Estimated date and time of the next maintenance activity
+     */
+    public function getNextMaintenance(): DateTime
     {
         return $this->nextMaintenance;
     }
 }
-

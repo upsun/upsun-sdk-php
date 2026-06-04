@@ -2,6 +2,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 /**
@@ -14,7 +15,6 @@ use JsonSerializable;
  */
 final class ProvisionEvent implements Model, JsonSerializable
 {
-
     public const TYPE_DATA = 'data';
     public const TYPE_DONE = 'done';
     public const TYPE_ERROR = 'error';
@@ -26,11 +26,10 @@ final class ProvisionEvent implements Model, JsonSerializable
         private readonly ?string $stage = null,
         private readonly ?string $label = null,
         private readonly ?string $reason = null,
-        private readonly ?\DateTime $timestamp = null,
+        private readonly ?DateTime $timestamp = null,
         private readonly ?array $steps = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -55,61 +54,60 @@ final class ProvisionEvent implements Model, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-   /**
-    * The event type.
-    */
+    /**
+     * The event type.
+     */
     public function getType(): string
     {
         return $this->type;
     }
 
-   /**
-    * The ID of the project being provisioned.
-    */
+    /**
+     * The ID of the project being provisioned.
+     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-   /**
-    * The current provisioning stage.
-    */
+    /**
+     * The current provisioning stage.
+     */
     public function getStage(): ?string
     {
         return $this->stage;
     }
 
-   /**
-    * A human-readable label for the current stage.
-    */
+    /**
+     * A human-readable label for the current stage.
+     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-   /**
-    * The reason for failure (only present on error events).
-    */
+    /**
+     * The reason for failure (only present on error events).
+     */
     public function getReason(): ?string
     {
         return $this->reason;
     }
 
-   /**
-    * The time the event was emitted.
-    */
-    public function getTimestamp(): ?\DateTime
+    /**
+     * The time the event was emitted.
+     */
+    public function getTimestamp(): ?DateTime
     {
         return $this->timestamp;
     }
 
-   /**
-    * Ordered list of provisioning steps.
-    * @return ProvisionStep[]|null
-    */
+    /**
+     * Ordered list of provisioning steps.
+     * @return ProvisionStep[]|null
+     */
     public function getSteps(): ?array
     {
         return $this->steps;
     }
 }
-

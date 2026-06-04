@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class CreateProjectInviteRequest implements Model, JsonSerializable
 {
-
     public const ROLE_ADMIN = 'admin';
     public const ROLE_VIEWER = 'viewer';
 
@@ -25,7 +24,6 @@ final class CreateProjectInviteRequest implements Model, JsonSerializable
         private readonly ?bool $force = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -58,17 +56,17 @@ final class CreateProjectInviteRequest implements Model, JsonSerializable
         return $this->role;
     }
 
-   /**
-    * @return CreateProjectInviteRequestPermissionsInner[]|null
-    */
+    /**
+     * @return CreateProjectInviteRequestPermissionsInner[]|null
+     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
 
-   /**
-    * @return CreateProjectInviteRequestEnvironmentsInner[]|null
-    */
+    /**
+     * @return CreateProjectInviteRequestEnvironmentsInner[]|null
+     */
     public function getEnvironments(): ?array
     {
         return $this->environments;
@@ -79,4 +77,3 @@ final class CreateProjectInviteRequest implements Model, JsonSerializable
         return $this->force;
     }
 }
-

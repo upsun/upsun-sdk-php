@@ -13,15 +13,12 @@ use JsonSerializable;
  */
 final class ListOrgs200Response implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $items = [],
         private readonly ?ListLinks $links = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -47,9 +44,9 @@ final class ListOrgs200Response implements Model, JsonSerializable
         return $this->count;
     }
 
-   /**
-    * @return Organization[]|null
-    */
+    /**
+     * @return Organization[]|null
+     */
     public function getItems(): ?array
     {
         return $this->items;
@@ -60,4 +57,3 @@ final class ListOrgs200Response implements Model, JsonSerializable
         return $this->links;
     }
 }
-

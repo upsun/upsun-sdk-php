@@ -2,8 +2,6 @@
 
 namespace Upsun\Model;
 
-use JsonSerializable;
-
 /**
  * Low level IntegrationPatch (auto-generated)
  *
@@ -21,4 +19,3 @@ interface IntegrationPatch
 
     public function getType(): mixed;
 }
-

@@ -13,13 +13,10 @@ use JsonSerializable;
  */
 final class TaskTriggerInput implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?array $variables = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -43,4 +40,3 @@ final class TaskTriggerInput implements Model, JsonSerializable
         return $this->variables;
     }
 }
-

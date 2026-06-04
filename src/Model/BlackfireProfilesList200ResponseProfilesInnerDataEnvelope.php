@@ -13,8 +13,6 @@ use JsonSerializable;
  */
 final class BlackfireProfilesList200ResponseProfilesInnerDataEnvelope implements Model, JsonSerializable
 {
-
-
     public function __construct(
         private readonly ?float $wt = null,
         private readonly ?float $cpu = null,
@@ -25,7 +23,6 @@ final class BlackfireProfilesList200ResponseProfilesInnerDataEnvelope implements
         private readonly ?float $ct = null,
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -85,4 +82,3 @@ final class BlackfireProfilesList200ResponseProfilesInnerDataEnvelope implements
         return $this->ct;
     }
 }
-

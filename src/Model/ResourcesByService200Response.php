@@ -13,7 +13,6 @@ use JsonSerializable;
  */
 final class ResourcesByService200Response implements Model, JsonSerializable
 {
-
     public const _DG2_HOST_TYPES_MAPPING_WEB = 'web';
     public const _DG2_HOST_TYPES_MAPPING_UNIFIED = 'unified';
     public const _DG2_HOST_TYPES_MAPPING_EMPTY = '';
@@ -30,7 +29,6 @@ final class ResourcesByService200Response implements Model, JsonSerializable
         private readonly ?array $dg2HostTypesMapping = [],
     ) {
     }
-
 
     public function getModelName(): string
     {
@@ -92,9 +90,9 @@ final class ResourcesByService200Response implements Model, JsonSerializable
         return $this->service;
     }
 
-   /**
-    * @return ResourcesByService200ResponseDataInner[]
-    */
+    /**
+     * @return ResourcesByService200ResponseDataInner[]
+     */
     public function getData(): array
     {
         return $this->data;
@@ -105,4 +103,3 @@ final class ResourcesByService200Response implements Model, JsonSerializable
         return $this->dg2HostTypesMapping;
     }
 }
-
