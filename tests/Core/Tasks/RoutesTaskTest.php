@@ -9,7 +9,6 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\RoutingApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\RoutesTask;
 use Upsun\Model\Route;
 use Upsun\UpsunClient;
@@ -30,7 +29,7 @@ class RoutesTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

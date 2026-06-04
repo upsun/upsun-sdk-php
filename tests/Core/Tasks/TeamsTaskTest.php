@@ -12,7 +12,6 @@ use Upsun\Api\ApiException;
 use Upsun\Api\ReferencesApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\TeamsTask;
 use Upsun\Model\{ListProjectTeamAccess200Response,
     ListTeamMembers200Response,
@@ -37,7 +36,7 @@ class TeamsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

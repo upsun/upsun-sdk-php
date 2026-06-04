@@ -11,7 +11,6 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Api\ProjectVariablesApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\VariablesTask;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\EnvironmentVariable;
@@ -34,7 +33,7 @@ class VariablesTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

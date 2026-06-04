@@ -11,7 +11,6 @@ use Upsun\Api\ApiException;
 use Upsun\Api\AutoscalingApi;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\ResourcesApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ResourcesTask;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\ResourcesByService200Response;
@@ -35,7 +34,7 @@ class ResourcesTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

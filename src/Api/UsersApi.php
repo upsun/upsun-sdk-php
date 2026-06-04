@@ -11,7 +11,6 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
-use Upsun\Core\OAuthProvider;
 use Upsun\Model\CurrentUser;
 use Upsun\Model\GetCurrentUserVerificationStatus200Response;
 use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
@@ -33,7 +32,7 @@ final class UsersApi extends AbstractApi
     private ApiConfiguration $config;
 
     public function __construct(
-        OAuthProvider $oauthProvider,
+        \Closure $tokenProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?ApiConfiguration $config = null,
@@ -41,7 +40,7 @@ final class UsersApi extends AbstractApi
         ?ApiHeaderSelector $selector = null,
     ) {
         parent::__construct(
-            $oauthProvider,
+            $tokenProvider,
             $httpClient,
             $requestFactory,
             AbstractApi::BASE_PATH,

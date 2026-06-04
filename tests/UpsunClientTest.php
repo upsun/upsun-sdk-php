@@ -191,11 +191,43 @@ class UpsunClientTest extends TestCase
         $this->assertInstanceOf(WorkersTask::class, $this->upsunClient->workers);
     }
 
-    public function testGetTokenReturnsApiToken()
+    public function testGetTokenDelegatesToOAuthProviderWhenAuthSet(): void
     {
-        $token = $this->upsunClient->getToken();
+        $mockAuth = $this->createMock(OAuthProvider::class);
+        $mockAuth->method('getAuthorization')->willReturn('Bearer oauth-token');
+        $this->upsunClient->auth = $mockAuth;
 
-        $this->assertEquals('test-api-token', $token);
+        $this->assertEquals('Bearer oauth-token', $this->upsunClient->getToken());
+    }
+
+    public function testGetTokenReturnsBearerTokenWhenNoApiKey(): void
+    {
+        $config = new UpsunConfig(
+            base_url: 'https://api.upsun.com',
+            auth_url: 'https://auth.upsun.com',
+            apiToken: '',
+            token_endpoint: 'oauth2/token',
+            clientId: 'test-client-id'
+        );
+        $client = new UpsunClient($config);
+        $client->setBearerToken('static-bearer');
+
+        $this->assertEquals('Bearer static-bearer', $client->getToken());
+    }
+
+    public function testGetTokenThrowsWhenNoAuthMethodSet(): void
+    {
+        $config = new UpsunConfig(
+            base_url: 'https://api.upsun.com',
+            auth_url: 'https://auth.upsun.com',
+            apiToken: '',
+            token_endpoint: 'oauth2/token',
+            clientId: 'test-client-id'
+        );
+        $client = new UpsunClient($config);
+
+        $this->expectException(\RuntimeException::class);
+        $client->getToken();
     }
 
     public function testUserIdIsNullByDefault()
@@ -223,7 +255,7 @@ class UpsunClientTest extends TestCase
         $customClient = new UpsunClient($customConfig);
 
         $this->assertEquals('https://custom.api.com', $customClient->apiConfig->getHost());
-        $this->assertEquals('custom-token', $customClient->getToken());
+        $this->assertInstanceOf(OAuthProvider::class, $customClient->auth);
     }
 
     /**

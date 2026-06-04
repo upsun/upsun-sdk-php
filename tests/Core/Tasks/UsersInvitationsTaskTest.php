@@ -11,7 +11,6 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\UsersInvitationsTask;
 use Upsun\Model\OrganizationInvitation;
 use Upsun\Model\ProjectInvitation;
@@ -33,7 +32,7 @@ class UsersInvitationsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

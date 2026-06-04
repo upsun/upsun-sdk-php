@@ -20,7 +20,6 @@ use Upsun\Api\ProjectActivityApi;
 use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\SourceOperationsApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivitiesTask;
 use Upsun\Core\Tasks\BackupsTask;
 use Upsun\Core\Tasks\DomainsTask;
@@ -59,7 +58,7 @@ class EnvironmentsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            static fn (bool $force = false): string => 'Bearer test-token',
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

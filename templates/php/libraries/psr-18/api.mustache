@@ -12,7 +12,6 @@ use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use {{apiPackage}}\Serializer\ObjectSerializer;
-use {{invokerPackage}}\Core\OAuthProvider;
 use {{invokerPackage}}\FormDataProcessor;
 
 /**
@@ -26,7 +25,7 @@ use {{invokerPackage}}\FormDataProcessor;
     private ApiConfiguration $config;
 
     public function __construct(
-        OAuthProvider $oauthProvider,
+        \Closure $tokenProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?ApiConfiguration $config = null,
@@ -34,7 +33,7 @@ use {{invokerPackage}}\FormDataProcessor;
         ?ApiHeaderSelector $selector = null,
     ) {
         parent::__construct(
-            $oauthProvider,
+            $tokenProvider,
             $httpClient,
             $requestFactory,
             AbstractApi::BASE_PATH,
