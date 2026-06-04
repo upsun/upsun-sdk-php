@@ -205,7 +205,9 @@ class OAuthProvider implements TokenProvider
             // then the token will be valid. In FPM/sync contexts this branch is
             // never taken because acquiringFiber is always null.
             while ($this->acquiringFiber !== null && !$this->acquiringFiber->isTerminated()) {
-                Fiber::getCurrent()?->suspend();
+                if (Fiber::getCurrent() !== null) {
+                    Fiber::suspend();
+                }
             }
             return;
         }
