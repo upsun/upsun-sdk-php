@@ -19,9 +19,9 @@ use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\SupportApi;
 use Upsun\Api\SystemInformationApi;
 use Upsun\Api\ThirdPartyIntegrationsApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ProjectsTask;
 use Upsun\Core\Tasks\SupportTicketsTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\ListTicketCategories200ResponseInner;
 use Upsun\Model\ListTicketPriorities200ResponseInner;
 use Upsun\Model\ListTickets200Response;
@@ -44,7 +44,13 @@ class SupportTicketsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            new class implements TokenProvider
+            {
+                public function __invoke(bool $force = false): string
+                {
+                    return 'Bearer test-token';
+                }
+            },
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

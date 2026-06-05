@@ -3,30 +3,56 @@
 namespace {{invokerPackage}}\Core;
 
 use Exception;
+use Fiber;
+use Nyholm\Psr7\Stream;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
-use Psr\Http\Client\ClientExceptionInterface;
-use Nyholm\Psr7\Stream;
 
 /**
  * {{classname}} class (auto-generated)
  *
+ * Token lifecycle follows RFC 6749 §6 and RFC 6750 §3.1:
+ * - Proactive refresh when token is within the 120 s expiry buffer (FIX 3)
+ * - On 401 from the resource server, forceRefresh() re-acquires unconditionally,
+ *   preferring refresh_token grant over api_token grant (RFC 6749 Fig.2 steps F→G→H)
+ * - Re-entrance guard protects synchronous/Fiber contexts (FIX 5)
+ *
 {{> partial_internal_header }} */
-class OAuthProvider
+class OAuthProvider implements TokenProvider
 {
     private ?string $accessToken = null;
+    private ?string $refreshToken = null;
+    private ?string $typeToken = null;
     private int $tokenExpiry = 0;
+
+    /**
+     * Fiber-based thundering-herd guard (Change 2).
+     * When non-null, a Fiber is already acquiring a token; other Fibers suspend until it finishes.
+     * In synchronous (FPM) contexts Fiber::getCurrent() returns null, so this is always null.
+     *
+     * @var Fiber<void,void,void,void>|null
+     */
+    private ?Fiber $acquiringFiber = null;
+
+    /** Effective refresh endpoint (defaults to tokenEndpoint when not provided). */
+    private readonly string $effectiveRefreshEndpoint;
 
     public function __construct(
         private readonly ClientInterface $httpClient,
         private readonly RequestFactoryInterface $requestFactory,
         private readonly string $tokenEndpoint,
         private readonly string $clientId,
-        private readonly string $clientSecret
+        private readonly string $clientSecret,
+        ?string $refreshEndpoint = null,
     ) {
+        $this->effectiveRefreshEndpoint = $refreshEndpoint ?? $this->tokenEndpoint;
     }
 
     /**
+     * Exchanges the API token for an access token using the custom api_token grant.
+     * Uses tokenEndpoint (not refreshEndpoint).
+     *
      * @throws Exception
      */
     public function exchangeCodeForToken(): bool
@@ -34,8 +60,8 @@ class OAuthProvider
         try {
             $body = http_build_query([
                 'grant_type' => 'api_token',
-                'api_token' => $this->clientSecret,
-                'client_id' => $this->clientId,
+                'api_token'  => $this->clientSecret,
+                'client_id'  => $this->clientId,
             ]);
 
             $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
@@ -73,22 +99,144 @@ class OAuthProvider
         }
     }
 
-    private function storeTokenData(array $data): void
+    /**
+     * Refreshes the access token using the refresh_token grant (RFC 6749 §6).
+     * Sends Authorization: Basic as required for confidential clients (RFC 6749 §3.2.1) (FIX 2).
+     * Uses effectiveRefreshEndpoint (FIX 4).
+     *
+     * @throws Exception
+     */
+    private function refreshAccessToken(): void
     {
-        $this->accessToken = $data['access_token'] ?? null;
-        $this->tokenExpiry = time() + ($data['expires_in'] ?? 0);
+        try {
+            $body = http_build_query([
+                'grant_type'    => 'refresh_token',
+                'refresh_token' => $this->refreshToken,
+                'client_id'     => $this->clientId,
+            ]);
+
+            $request = $this->requestFactory->createRequest('POST', $this->effectiveRefreshEndpoint)
+                ->withHeader('Authorization', 'Basic ' . base64_encode('{{basicUser}}:'))
+                ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
+                ->withBody(Stream::create($body));
+
+            $response = $this->httpClient->sendRequest($request);
+
+            if ($response->getStatusCode() !== 200) {
+                throw new Exception('Token refresh failed with status: ' . $response->getStatusCode());
+            }
+
+            $data = json_decode((string)$response->getBody(), true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new Exception('Invalid JSON response from refresh: ' . json_last_error_msg());
+            }
+
+            if (!is_array($data) || empty($data['access_token'] ?? null)) {
+                throw new Exception('No access token in refresh response.');
+            }
+
+            $this->storeTokenData($data);
+        } catch (ClientExceptionInterface $e) {
+            throw new Exception('Token refresh failed: ' . $e->getMessage());
+        }
     }
 
     /**
+     * Acquires a token, preferring refresh_token grant over api_token grant.
+     * Falls back to api_token grant if refresh fails (RFC 6749 Fig.2 steps F→G→H).
+     *
+     * @throws Exception
+     */
+    private function doAcquireToken(): void
+    {
+        if ($this->refreshToken) {
+            try {
+                $this->refreshAccessToken();
+                return;
+            } catch (Exception) {
+                // Refresh token invalid/expired — fall back to full api_token exchange
+                $this->accessToken  = null;
+                $this->refreshToken = null;
+            }
+        }
+
+        $this->exchangeCodeForToken();
+    }
+
+    private function storeTokenData(array $data): void
+    {
+        $this->typeToken    = $data['token_type'] ?? null;
+        $this->accessToken  = $data['access_token'] ?? null;
+        $this->refreshToken = $data['refresh_token'] ?? null;
+        $this->tokenExpiry  = time() + ($data['expires_in'] ?? 0);
+    }
+
+    /**
+     * Forces unconditional token re-acquisition, bypassing the expiry check.
+     * Called by the 401 retry path (RFC 6750 §3.1) (FIX 1 prerequisite).
+     *
+     * - Clears accessToken and tokenExpiry so ensureValidToken() triggers re-acquisition.
+     * - Does NOT clear refreshToken — the next ensureValidToken() call will prefer it.
+     *
+     * @throws Exception
+     */
+    public function forceRefresh(): void
+    {
+        $this->accessToken = null;
+        $this->tokenExpiry = 0;
+        $this->ensureValidToken();
+    }
+
+    /**
+     * Ensures a valid token is available, with a 120 s proactive buffer (FIX 3).
+     * Uses a Fiber-based thundering-herd guard (Change 2):
+     * - In Fiber contexts, concurrent callers suspend until the first acquisition completes.
+     * - In synchronous (FPM) contexts, Fiber::getCurrent() is null and the guard is a no-op.
+     *
      * @throws Exception
      */
     public function ensureValidToken(): void
     {
-        $buffer = 60;
-
-        if (!$this->accessToken || time() > ($this->tokenExpiry - $buffer)) {
-            $this->exchangeCodeForToken();
+        $buffer = 120;
+        if ($this->accessToken && time() <= ($this->tokenExpiry - $buffer)) {
+            return; // fast path — token is still valid
         }
+
+        if ($this->acquiringFiber !== null && !$this->acquiringFiber->isTerminated()) {
+            // Another Fiber is already acquiring — suspend until it finishes,
+            // then the token will be valid. In FPM/sync contexts this branch is
+            // never taken because acquiringFiber is always null.
+            while ($this->acquiringFiber !== null && !$this->acquiringFiber->isTerminated()) {
+                if (Fiber::getCurrent() !== null) {
+                    Fiber::suspend();
+                }
+            }
+            return;
+        }
+
+        $this->acquiringFiber = Fiber::getCurrent(); // null in sync (FPM) context
+        try {
+            $this->doAcquireToken();
+        } finally {
+            $this->acquiringFiber = null;
+        }
+    }
+
+    /**
+     * TokenProvider implementation: return the Authorization header value.
+     * When `$force` is true, unconditionally re-acquires the token first (401 retry path).
+     *
+     * @throws Exception
+     */
+    public function __invoke(bool $force = false): string
+    {
+        if ($force) {
+            $this->forceRefresh();
+            return 'Bearer ' . $this->accessToken;
+        }
+
+        return $this->getAuthorization();
     }
 
     /**

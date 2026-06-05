@@ -20,7 +20,6 @@ use Upsun\Api\ProjectActivityApi;
 use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\SourceOperationsApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivitiesTask;
 use Upsun\Core\Tasks\BackupsTask;
 use Upsun\Core\Tasks\DomainsTask;
@@ -28,6 +27,7 @@ use Upsun\Core\Tasks\EnvironmentsTask;
 use Upsun\Core\Tasks\RoutesTask;
 use Upsun\Core\Tasks\SourceOperationsTask;
 use Upsun\Core\Tasks\VariablesTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\Backup;
@@ -59,7 +59,13 @@ class EnvironmentsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            new class implements TokenProvider
+            {
+                public function __invoke(bool $force = false): string
+                {
+                    return 'Bearer test-token';
+                }
+            },
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

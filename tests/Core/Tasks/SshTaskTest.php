@@ -10,8 +10,8 @@ use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\SshKeysApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\SshTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\SshKey;
 use Upsun\UpsunClient;
 
@@ -31,7 +31,13 @@ class SshTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            new class implements TokenProvider
+            {
+                public function __invoke(bool $force = false): string
+                {
+                    return 'Bearer test-token';
+                }
+            },
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

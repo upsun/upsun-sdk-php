@@ -2,6 +2,7 @@
 
 namespace Upsun\Tests\Core\Tasks;
 
+use Upsun\Core\TokenProvider;
 use Exception;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
@@ -11,7 +12,6 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\TeamsTask;
 use Upsun\Model\{ListProjectTeamAccess200Response,
     ListTeamMembers200Response,
@@ -36,7 +36,13 @@ class TeamsTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            new class implements TokenProvider
+            {
+                public function __invoke(bool $force = false): string
+                {
+                    return 'Bearer test-token';
+                }
+            },
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

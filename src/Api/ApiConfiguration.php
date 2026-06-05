@@ -5,7 +5,7 @@ namespace Upsun\Api;
 use Upsun\Core\UserAgent;
 
 /**
- * APIConfiguration holder for the Upsun API Client.
+ * ApiConfiguration holder for the Upsun API Client.
  *
  * This class holds API token and other runtime options
  * used by the generated client classes.

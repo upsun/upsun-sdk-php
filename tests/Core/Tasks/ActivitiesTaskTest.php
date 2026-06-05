@@ -10,8 +10,8 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivitiesTask;
+use Upsun\Core\TokenProvider;
 use Upsun\UpsunClient;
 
 class ActivitiesTaskTest extends BaseTestCase
@@ -30,7 +30,13 @@ class ActivitiesTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            new class implements TokenProvider
+            {
+                public function __invoke(bool $force = false): string
+                {
+                    return 'Bearer test-token';
+                }
+            },
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

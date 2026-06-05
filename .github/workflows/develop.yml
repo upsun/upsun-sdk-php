@@ -21,7 +21,7 @@ jobs:
         with:
             ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Set up runtime
+      - name: Set up runtime - Php ${{ env.PRIMARY_PHP_VERSION }}
         uses: shivammathur/setup-php@v2
         with:
             php-version: ${{ env.PRIMARY_PHP_VERSION }}
@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: composer run install:ci
 
-      - name: Run PHP lint (phpcs, rector, php-cs-fixer)
+      - name: Run PHP lint (phpcs, php-cs-fixer, rector)
         id: lint
         continue-on-error: true
         run: composer run lint:all

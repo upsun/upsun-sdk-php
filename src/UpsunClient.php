@@ -79,6 +79,7 @@ use Upsun\Core\Tasks\UsersInvitationsTask;
 use Upsun\Core\Tasks\UsersTask;
 use Upsun\Core\Tasks\VariablesTask;
 use Upsun\Core\Tasks\WorkersTask;
+use Upsun\Core\TokenProvider;
 
 /**
  * Upsun Client to interact with the API.
@@ -93,7 +94,9 @@ class UpsunClient
 
     public ApiConfiguration $apiConfig;
 
-    public OAuthProvider $auth;
+    public ?OAuthProvider $auth = null;
+
+    private ?string $bearerToken = null;
 
     public ?string $userId = null;
 
@@ -156,15 +159,37 @@ class UpsunClient
 
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
 
-        $this->auth = new OAuthProvider(
-            httpClient: $this->apiClient,
-            requestFactory: $requestFactory,
-            tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
-            clientId: $this->upsunConfig->clientId,
-            clientSecret: $this->upsunConfig->apiToken,
-        );
+        if ($upsunConfig->apiToken !== '') {
+            $this->auth = new OAuthProvider(
+                httpClient: $this->apiClient,
+                requestFactory: $requestFactory,
+                tokenEndpoint: $this->upsunConfig->auth_url . '/' . $this->upsunConfig->token_endpoint,
+                clientId: $this->upsunConfig->clientId,
+                clientSecret: $this->upsunConfig->apiToken,
+                refreshEndpoint: $this->upsunConfig->auth_url . '/' . $this->upsunConfig->refresh_endpoint,
+            );
+        }
 
-        $taskParams = [$this->auth, $this->apiClient, $requestFactory, $this->apiConfig];
+        $tokenProvider = new class ($this) implements TokenProvider {
+            public function __construct(private readonly UpsunClient $client)
+            {
+            }
+
+            public function __invoke(bool $force = false): string
+            {
+                if ($force && $this->client->auth !== null) {
+                    $this->client->auth->forceRefresh();
+                }
+                return $this->client->getToken();
+            }
+        };
+
+        $taskParams = [
+            $tokenProvider,
+            $this->apiClient,
+            $requestFactory,
+            $this->apiConfig,
+        ];
 
         // Init used API classes
         $addOnsApi = new AddOnsApi(...$taskParams);
@@ -358,8 +383,21 @@ class UpsunClient
         }
     }
 
+    public function setBearerToken(string $token): void
+    {
+        $this->bearerToken = $token;
+    }
+
     public function getToken(): string
     {
-        return $this->upsunConfig->apiToken;
+        if ($this->auth !== null) {
+            return $this->auth->getAuthorization();
+        }
+        if ($this->bearerToken !== null) {
+            return 'Bearer ' . $this->bearerToken;
+        }
+        throw new RuntimeException(
+            'No authentication method available. Provide an API key via UpsunConfig or call setBearerToken().'
+        );
     }
 }

@@ -10,9 +10,9 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentTypeApi;
-use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\EnvironmentsTask;
 use Upsun\Core\Tasks\ServicesTask;
+use Upsun\Core\TokenProvider;
 use Upsun\Model\ServicesValue;
 use Upsun\UpsunClient;
 
@@ -34,7 +34,13 @@ class ServicesTaskTest extends BaseTestCase
         $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
-            $this->createMock(OAuthProvider::class),
+            new class implements TokenProvider
+            {
+                public function __invoke(bool $force = false): string
+                {
+                    return 'Bearer test-token';
+                }
+            },
             $this->httpClient,
             new Psr17Factory(),
             new ApiConfiguration()

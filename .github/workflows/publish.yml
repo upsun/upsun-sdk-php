@@ -54,7 +54,7 @@ jobs:
         run: composer validate --strict
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-interaction
+        run: composer run install:ci
 
       - name: Run unit tests
         run: vendor/bin/phpunit --testdox
