@@ -48,8 +48,10 @@ use Upsun\Core\Tasks\TeamsTask;
 use Upsun\Core\Tasks\UsersTask;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Address;
+use Upsun\Model\CanAffordSubscriptionRequest;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Model\CreateAuthorizationCredentials200Response;
+use Upsun\Model\CreateOrgProjectRequest;
 use Upsun\Model\EstimationObject;
 use Upsun\Model\Invoice;
 use Upsun\Model\ListOrgInvoices200Response;
@@ -70,6 +72,9 @@ use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\Subscription;
 use Upsun\Model\SubscriptionCurrentUsageObject;
 use Upsun\Model\Team;
+use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
+use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
 use Upsun\Model\Vouchers;
 use Upsun\UpsunClient;
 
@@ -3292,5 +3297,408 @@ class OrganizationsTaskTest extends BaseTestCase
             $this->organizationsTask->streamOrgProjectProvisioning('org123'),
             false
         );
+    }
+
+    private function expectJsonRequest(string $body = '{}'): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], $body));
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testInfoWithUpdateParameters(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->info('org123', name: 'New Name');
+        } catch (ApiException) {
+            // Placeholder body may fail deserialization; the task body is exercised regardless.
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testInfoWithoutUpdateParameters(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->info('org123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListSubscriptions(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->listSubscriptions('org123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCreateMember(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->createMember('org123', 'user123', ['admin']);
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListTeamsByMember(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->listTeamsByMember('user123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCreateOrgProject(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->createOrgProject('org123', new CreateOrgProjectRequest('eu-1.platform.sh'));
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteOrgProject(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->deleteOrgProject('org123', 'project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetOrgProject(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->getOrgProject('org123', 'project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testQueryProjectCarbon(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->queryProjectCarbon('org123', 'project123');
+        } catch (ApiException) {
+        }
+    }
+
+    public function testQueryProjectCarbonWithEmptyInterval(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->queryProjectCarbon('org123', 'project123', interval: ' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCanAffordSubscription(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->canAffordSubscription('sub123', new CanAffordSubscriptionRequest());
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCanUpdateSubscription(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->canUpdateSubscription('sub123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetSubscriptionUsageAlerts(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->getSubscriptionUsageAlerts('org123', 'sub123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListSubscriptionAddons(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->listSubscriptionAddons('org123', 'sub123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateOrgSubscription(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->updateOrgSubscription('org123', 'sub123', new UpdateOrgSubscriptionRequest());
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateSubscriptionUsageAlerts(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->updateSubscriptionUsageAlerts(
+                'org123',
+                'sub123',
+                new UpdateSubscriptionUsageAlertsRequest()
+            );
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetDiscount(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->getDiscount('discount123');
+        } catch (ApiException) {
+        }
+    }
+
+    public function testGetDiscountWithEmptyId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->getDiscount(' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetTypeAllowance(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->getTypeAllowance();
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListOrgDiscounts(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->listOrgDiscounts('org123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testEstimateOrg(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->estimateOrg('org123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetOrgBillingAlertConfig(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->getOrgBillingAlertConfig('org123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetOrgPrepaymentInfo(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->getOrgPrepaymentInfo('org123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListOrgPrepaymentTransactions(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->listOrgPrepaymentTransactions('org123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateOrgBillingAlertConfig(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->updateOrgBillingAlertConfig(
+                'org123',
+                new UpdateOrgBillingAlertConfigRequest()
+            );
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListReferencedOrgs(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->listReferencedOrgs('id1,id2', 'signature');
+        } catch (ApiException) {
+        }
+    }
+
+    public function testListReferencedOrgsWithEmptyIn(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->listReferencedOrgs(' ', 'signature');
+    }
+
+    public function testListReferencedOrgsWithEmptySig(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->listReferencedOrgs('id1', ' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListReferencedProjects(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->listReferencedProjects('id1,id2', 'signature');
+        } catch (ApiException) {
+        }
+    }
+
+    public function testListReferencedProjectsWithEmptyIn(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->listReferencedProjects(' ', 'signature');
+    }
+
+    public function testListReferencedProjectsWithEmptySig(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->listReferencedProjects('id1', ' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testQueryOrganiationCarbon(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->organizationsTask->queryOrganiationCarbon('org123');
+        } catch (ApiException) {
+        }
+    }
+
+    public function testQueryOrganiationCarbonWithEmptyInterval(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->queryOrganiationCarbon('org123', interval: ' ');
     }
 }

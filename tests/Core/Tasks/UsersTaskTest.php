@@ -421,6 +421,20 @@ class UsersTaskTest extends BaseTestCase
         $this->usersTask->listReferencedUsers('abc', '');
     }
 
+    public function testListReferencedUsersWithEmptyIn(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->usersTask->listReferencedUsers('', 'sig123');
+    }
+
+    public function testGetAccessDocumentWithEmptyId(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->usersTask->getAccessDocument('');
+    }
+
     public function testGetCurrentUserVerificationStatusSuccess()
     {
         $responseFake = [

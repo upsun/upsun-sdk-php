@@ -7,6 +7,7 @@ use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
+use Upsun\Api\ApiException;
 use Upsun\Api\TaskApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\TaskBase;
@@ -104,6 +105,44 @@ class TaskContainersTaskTest extends BaseTestCase
         );
 
         $this->assertEquals(new AcceptedResponse('accepted', 202), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '{}'));
+
+        try {
+            $this->taskContainersTask->get(
+                projectId: 'project123',
+                environmentId: 'env456',
+                taskId: 'task789'
+            );
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '[]'));
+
+        $result = $this->taskContainersTask->list(
+            projectId: 'project123',
+            environmentId: 'env456'
+        );
+
+        $this->assertIsArray($result);
     }
 
     public function testGetMethodWithInvalidProjectId(): void

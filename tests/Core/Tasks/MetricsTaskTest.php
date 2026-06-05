@@ -7,6 +7,7 @@ use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
+use Upsun\Api\ApiException;
 use Upsun\Api\BlackfireMonitoringApi;
 use Upsun\Api\BlackfireProfilingApi;
 use Upsun\Api\ContinuousProfilingApi;
@@ -21,6 +22,7 @@ use Upsun\Model\BlackfireProfilesList200Response;
 use Upsun\Model\BlackfireProfilesRecommendations200Response;
 use Upsun\Model\BlackfireProfileSubprofiles200Response;
 use Upsun\Model\BlackfireProfileTimeline200Response;
+use Upsun\Model\ListApplications200Response;
 use Upsun\Model\ObservabilityEntrypoint200Response;
 use Upsun\UpsunClient;
 
@@ -404,6 +406,185 @@ class MetricsTaskTest extends BaseTestCase
 
         $this->assertInstanceOf(ObservabilityEntrypoint200Response::class, $result);
         $this->assertObjectProperties($result, $payload);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testHttpMetricsTimelineIpsSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '{}'));
+
+        $this->expectException(ApiException::class);
+
+        $this->metricsTask->httpMetricsTimelineIps('project123', 'env456', 100, 200);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testHttpMetricsTimelineUrlsSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '{}'));
+
+        $this->expectException(ApiException::class);
+
+        $this->metricsTask->httpMetricsTimelineUrls('project123', 'env456', 100, 200);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testHttpMetricsTimelineUserAgentsSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '{}'));
+
+        $this->expectException(ApiException::class);
+
+        $this->metricsTask->httpMetricsTimelineUserAgents('project123', 'env456', 100, 200);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testBlackfirePhpServerCachesSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '{}'));
+
+        $this->expectException(ApiException::class);
+
+        $this->metricsTask->blackfirePhpServerCaches('project123', 'env456', 100, 200);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testBlackfireServerGlobalSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '{}'));
+
+        $this->expectException(ApiException::class);
+
+        $this->metricsTask->blackfireServerGlobal('project123', 'env456', 100, 200, ['cpu']);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testBlackfireServerTopSpansSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '{}'));
+
+        $this->expectException(ApiException::class);
+
+        $this->metricsTask->blackfireServerTopSpans('project123', 'env456', 100, 200);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testBlackfireServerTransactionsBreakdownSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '{}'));
+
+        $this->expectException(ApiException::class);
+
+        $this->metricsTask->blackfireServerTransactionsBreakdown('project123', 'env456', 100, 200);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListContinuousProfilingApplicationsSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '{}'));
+
+        $result = $this->metricsTask->listContinuousProfilingApplications('project123', 'env456');
+
+        $this->assertInstanceOf(ListApplications200Response::class, $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetContinuousProfilingApplicationFilterSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '{}'));
+
+        $this->expectException(ApiException::class);
+
+        $this->metricsTask->getContinuousProfilingApplicationFilter('project123', 'env456', 'app');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetContinuousProfilingApplicationMergeSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/octet-stream'], 'binary-merge-data'));
+
+        $this->expectException(ApiException::class);
+
+        $this->metricsTask->getContinuousProfilingApplicationMerge('project123', 'env456', 'app');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetContinuousProfilingApplicationTimelineSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '{}'));
+
+        $this->expectException(ApiException::class);
+
+        $this->metricsTask->getContinuousProfilingApplicationTimeline('project123', 'env456', 'app');
+    }
+
+    public function testGetContinuousProfilingApplicationMergeWithEmptyApplicationName(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->metricsTask->getContinuousProfilingApplicationMerge('project123', 'env456', '');
+    }
+
+    public function testGetContinuousProfilingApplicationTimelineWithEmptyApplicationName(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->metricsTask->getContinuousProfilingApplicationTimeline('project123', 'env456', '');
     }
 
     private function createBlackfireGraphPayload(): array

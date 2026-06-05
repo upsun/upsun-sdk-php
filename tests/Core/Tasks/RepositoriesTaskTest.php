@@ -362,6 +362,13 @@ class RepositoriesTaskTest extends BaseTestCase
         $this->repositoriesTask->listGitDiffs('test-project-id', '', 'develop');
     }
 
+    public function testListGitDiffsWithInvalidTargetId(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->repositoriesTask->listGitDiffs('test-project-id', 'main', '');
+    }
+
     /**
      * @throws ClientExceptionInterface
      */

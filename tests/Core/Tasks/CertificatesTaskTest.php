@@ -311,6 +311,44 @@ class CertificatesTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
+    public function testAddSuccess(): void
+    {
+        $fakeResponse = [
+            'status' => 'accepted',
+            'code' => 201,
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                201,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeResponse)
+            ));
+
+        $result = $this->task->add(
+            projectId: 'proj_123',
+            certificate: 'cert-content',
+            key: 'key-content',
+            chain: ['chain1'],
+            isInvalid: false
+        );
+
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertObjectProperties($result, $fakeResponse);
+    }
+
+    public function testAddWithMissingCertificate(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->task->add(projectId: 'proj_123', certificate: '', key: 'key-content');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testGetProvisionerSuccess(): void
     {
         $expected = [
@@ -375,5 +413,19 @@ class CertificatesTaskTest extends BaseTestCase
         $result = $this->task->updateProvisioner('proj_123', 'letsencrypt', $patch);
 
         $this->assertEquals(new AcceptedResponse('accepted', 202), $result);
+    }
+
+    public function testGetProvisionerWithEmptyDocumentId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->task->getProvisioner('proj_123', '');
+    }
+
+    public function testUpdateProvisionerWithEmptyDocumentId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->task->updateProvisioner('proj_123', '');
     }
 }

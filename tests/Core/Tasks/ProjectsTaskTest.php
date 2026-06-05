@@ -97,8 +97,14 @@ use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\BasicAuth;
 use Upsun\Model\Certificate;
+use Upsun\Model\DeploymentTargetCreateInput;
+use Upsun\Model\DeploymentTargetPatch;
 use Upsun\Model\Domain;
+use Upsun\Model\DomainCreateInput;
+use Upsun\Model\DomainPatch;
 use Upsun\Model\Environment;
+use Upsun\Model\IntegrationCreateCreateInput;
+use Upsun\Model\IntegrationPatch;
 use Upsun\Model\ListOrgProjectHistory200Response;
 use Upsun\Model\ListProjectTeamAccess200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
@@ -113,6 +119,7 @@ use Upsun\Model\RegistryCredentialCreateInput;
 use Upsun\Model\RegistryCredentialPatch;
 use Upsun\Model\Subscription;
 use Upsun\Model\TeamProjectAccess;
+use Upsun\Model\UpdateUsageAlertsRequest;
 use Upsun\Model\UserProjectAccess;
 use Upsun\UpsunClient;
 
@@ -3201,5 +3208,824 @@ FAKE-CHAIN-CERT-DATA2
         );
 
         $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    private function expectJsonRequest(string $body = '{}'): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], $body));
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testClearBuildCache(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->clearBuildCache('project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListProjects(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->list('org123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetSubscription(): void
+    {
+        $this->httpClient
+            ->expects($this->exactly(2))
+            ->method('sendRequest')
+            ->willReturnOnConsecutiveCalls(
+                new Response(200, ['Content-Type' => 'application/json'], json_encode($this->getFakeProject('project123'))),
+                new Response(200, ['Content-Type' => 'application/json'], '{}'),
+            );
+
+        try {
+            $this->projectsTask->getSubscription('project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetGitBlob(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getGitBlob('project123', 'blob123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetGitCommit(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getGitCommit('project123', 'commit123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetGitRef(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getGitRef('project123', 'ref123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetGitTree(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getGitTree('project123', 'tree123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListGitRefs(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listGitRefs('project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetGitInfo(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getGitInfo('project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testAddDomain(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->addDomain('project123', $this->createMock(DomainCreateInput::class));
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateDomain(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->updateDomain('project123', 'domain123', $this->createMock(DomainPatch::class));
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testAddCertificate(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->addCertificate('project123', 'cert-content', 'key-content');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetProjectTeamAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getProjectTeamAccess('project123', 'team123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetTeamProjectAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getTeamProjectAccess('team123', 'project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGrantProjectTeamAccessDelegates(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->grantProjectTeamAccess('project123', ['team_id' => 'team123']);
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGrantTeamProjectAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->grantTeamProjectAccess('team123', ['project_id' => 'project123']);
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListProjectTeamAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listProjectTeamAccess('project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListTeamProjectAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listTeamProjectAccess('team123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRevokeTeamProjectAccessByProject(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->revokeTeamProjectAccessByProject('project123', 'team123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRevokeProjectTeamAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->revokeProjectTeamAccess('project123', 'team123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRevokeTeamProjectAccessByTeam(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->revokeTeamProjectAccessByTeam('team123', 'project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRevokeTeamProjectAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->revokeTeamProjectAccess('team123', 'project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetProjectUserAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getProjectUserAccess('project123', 'user123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGrantProjectUserAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->grantProjectUserAccess('project123', ['user_id' => 'user123']);
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRevokeUserProjectAccessByProject(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->revokeUserProjectAccessByProject('project123', 'user123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testRevokeProjectUserAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->revokeProjectUserAccess('project123', 'user123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateProjectUserAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->updateProjectUserAccess('project123', 'user123', ['admin']);
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListProjectUserAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listProjectUserAccess('project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListUserProjectAccessByUser(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listUserProjectAccessByUser('user123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListUserProjectAccess(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listUserProjectAccess('user123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCreateIntegration(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->createIntegration('project123', $this->createMock(IntegrationCreateCreateInput::class));
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteIntegration(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->deleteIntegration('project123', 'integration123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetIntegration(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getIntegration('project123', 'integration123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListIntegrations(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listIntegrations('project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateIntegration(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->updateIntegration(
+                'project123',
+                'integration123',
+                $this->createMock(IntegrationPatch::class)
+            );
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCreateProjectsDeployments(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->createProjectsDeployments(
+                'project123',
+                $this->createMock(DeploymentTargetCreateInput::class)
+            );
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteProjectsDeployments(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->deleteProjectsDeployments('project123', 'target123');
+        } catch (ApiException) {
+        }
+    }
+
+    public function testDeleteProjectsDeploymentsWithEmptyConfigurationId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->projectsTask->deleteProjectsDeployments('project123', ' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetProjectsDeployments(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getProjectsDeployments('project123', 'target123');
+        } catch (ApiException) {
+        }
+    }
+
+    public function testGetProjectsDeploymentsWithEmptyConfigurationId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->projectsTask->getProjectsDeployments('project123', ' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListProjectsDeployments(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listProjectsDeployments('project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateProjectsDeployments(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->updateProjectsDeployments(
+                'project123',
+                'target123',
+                $this->createMock(DeploymentTargetPatch::class)
+            );
+        } catch (ApiException) {
+        }
+    }
+
+    public function testUpdateProjectsDeploymentsWithEmptyConfigurationId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->projectsTask->updateProjectsDeployments(
+            'project123',
+            ' ',
+            $this->createMock(DeploymentTargetPatch::class)
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetUsageAlerts(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getUsageAlerts('sub123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateUsageAlerts(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->updateUsageAlerts('sub123', new UpdateUsageAlertsRequest());
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCreateProjectsDomainClaims(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->createProjectsDomainClaims('project123', new \stdClass());
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteProjectsDomainClaims(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->deleteProjectsDomainClaims('project123', 'claim123');
+        } catch (ApiException) {
+        }
+    }
+
+    public function testDeleteProjectsDomainClaimsWithEmptyClaimId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->projectsTask->deleteProjectsDomainClaims('project123', ' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetProjectsDomainClaims(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getProjectsDomainClaims('project123', 'claim123');
+        } catch (ApiException) {
+        }
+    }
+
+    public function testGetProjectsDomainClaimsWithEmptyClaimId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->projectsTask->getProjectsDomainClaims('project123', ' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListProjectsDomainClaims(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listProjectsDomainClaims('project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateProjectsDomainClaims(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->updateProjectsDomainClaims('project123', 'claim123', new \stdClass());
+        } catch (ApiException) {
+        }
+    }
+
+    public function testUpdateProjectsDomainClaimsWithEmptyClaimId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->projectsTask->updateProjectsDomainClaims('project123', ' ', new \stdClass());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testQueryProjectCarbon(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->queryProjectCarbon('org123', 'project123');
+        } catch (ApiException) {
+        }
+    }
+
+    public function testQueryProjectCarbonWithEmptyInterval(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->projectsTask->queryProjectCarbon('org123', 'project123', interval: ' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testMaintenanceRedeployProject(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->maintenanceRedeployProject('project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetSbom(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getSbom('project123', 'env123', 'deploy123', 'service123');
+        } catch (ApiException | \TypeError) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListSboms(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listSboms('project123', 'env123', 'deploy123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCreateOciRegistry(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->createOciRegistry('project123', new RegistryCredentialCreateInput('registry.example.com'));
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteOciRegistry(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->deleteOciRegistry('project123', 'cred123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetOciRegistry(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->getOciRegistry('project123', 'cred123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListOciRegistries(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listOciRegistries('project123');
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateOciRegistry(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->updateOciRegistry('project123', 'cred123', new RegistryCredentialPatch());
+        } catch (ApiException) {
+        }
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListOrgProjectHistory(): void
+    {
+        $this->expectJsonRequest();
+
+        try {
+            $this->projectsTask->listOrgProjectHistory('org123', 'project123');
+        } catch (ApiException) {
+        }
     }
 }

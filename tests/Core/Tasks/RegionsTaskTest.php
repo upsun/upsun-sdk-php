@@ -239,4 +239,19 @@ class RegionsTaskTest extends BaseTestCase
 
         $this->regionsTask->listReferencedRegions('abc', '');
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListReferencedRegionsSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '[]'));
+
+        $result = $this->regionsTask->listReferencedRegions('abc', 'sig123');
+
+        $this->assertIsArray($result);
+    }
 }

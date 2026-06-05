@@ -238,6 +238,13 @@ class TeamsTaskTest extends BaseTestCase
         $this->task->listReferencedTeams('abc', '');
     }
 
+    public function testListReferencedTeamsWithEmptyIn(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->task->listReferencedTeams('', 'sig123');
+    }
+
     /**
      * @throws ClientExceptionInterface
      * @throws Exception
