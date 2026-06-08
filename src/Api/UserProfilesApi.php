@@ -12,7 +12,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use SplFileObject;
 use Upsun\Api\Serializer\ObjectSerializer;
-use Upsun\FormDataProcessor;
 use Upsun\Core\TokenProvider;
 use Upsun\FormDataProcessor;
 use Upsun\Model\Address;
