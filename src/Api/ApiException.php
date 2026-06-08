@@ -30,7 +30,7 @@ class ApiException extends RequestException
     /**
      * The deserialized response object
      */
-    private mixed $responseObject;
+    private mixed $responseObject = null;
 
     public function __construct(
         $message,
