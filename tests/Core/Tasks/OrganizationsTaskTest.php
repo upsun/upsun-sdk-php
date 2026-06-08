@@ -50,26 +50,42 @@ use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Address;
 use Upsun\Model\CanAffordSubscriptionRequest;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\CanUpdateSubscription200Response;
 use Upsun\Model\CreateAuthorizationCredentials200Response;
 use Upsun\Model\CreateOrgProjectRequest;
+use Upsun\Model\Discount;
 use Upsun\Model\EstimationObject;
+use Upsun\Model\GetOrgPrepaymentInfo200Response;
+use Upsun\Model\GetSubscriptionUsageAlerts200Response;
+use Upsun\Model\GetTypeAllowance200Response;
 use Upsun\Model\Invoice;
+use Upsun\Model\ListOrgDiscounts200Response;
 use Upsun\Model\ListOrgInvoices200Response;
 use Upsun\Model\ListOrgOrders200Response;
 use Upsun\Model\ListOrgPlanRecords200Response;
+use Upsun\Model\ListOrgPrepaymentTransactions200Response;
+use Upsun\Model\ListOrgSubscriptions200Response;
 use Upsun\Model\ListOrgUsageRecords200Response;
+use Upsun\Model\ListTeams200Response;
 use Upsun\Model\Order;
 use Upsun\Model\Organization;
 use Upsun\Model\OrganizationAddonsObject;
+use Upsun\Model\OrganizationAlertConfig;
+use Upsun\Model\OrganizationCarbon;
+use Upsun\Model\OrganizationEstimationObject;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationProject;
+use Upsun\Model\OrganizationReference;
 use Upsun\Model\PlanRecords;
 use Upsun\Model\Profile;
 use Upsun\Model\Project;
+use Upsun\Model\ProjectCarbon;
+use Upsun\Model\ProjectReference;
 use Upsun\Model\ProvisionEvent;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\Subscription;
+use Upsun\Model\SubscriptionAddonsObject;
 use Upsun\Model\SubscriptionCurrentUsageObject;
 use Upsun\Model\Team;
 use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
@@ -3312,13 +3328,13 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testInfoWithUpdateParameters(): void
     {
-        $this->expectJsonRequest();
+        $data = ['id' => 'org123', 'name' => 'New Name', 'label' => 'Acme', 'country' => 'FR', 'status' => 'active'];
+        $this->expectJsonRequest(json_encode($data));
 
-        try {
-            $this->organizationsTask->info('org123', name: 'New Name');
-        } catch (ApiException) {
-            // Placeholder body may fail deserialization; the task body is exercised regardless.
-        }
+        $result = $this->organizationsTask->info('org123', name: 'New Name');
+
+        $this->assertInstanceOf(Organization::class, $result);
+        $this->assertSame('New Name', $result->getName());
     }
 
     /**
@@ -3326,12 +3342,13 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testInfoWithoutUpdateParameters(): void
     {
-        $this->expectJsonRequest();
+        $data = ['id' => 'org123', 'name' => 'Acme', 'status' => 'active'];
+        $this->expectJsonRequest(json_encode($data));
 
-        try {
-            $this->organizationsTask->info('org123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->info('org123');
+
+        $this->assertInstanceOf(Organization::class, $result);
+        $this->assertSame('Acme', $result->getName());
     }
 
     /**
@@ -3339,12 +3356,13 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testListSubscriptions(): void
     {
-        $this->expectJsonRequest();
+        $this->expectJsonRequest(json_encode(['count' => 0, 'items' => []]));
 
-        try {
-            $this->organizationsTask->listSubscriptions('org123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->listSubscriptions('org123');
+
+        $this->assertInstanceOf(ListOrgSubscriptions200Response::class, $result);
+        $this->assertSame(0, $result->getCount());
+        $this->assertIsArray($result->getItems());
     }
 
     /**
@@ -3352,12 +3370,19 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testCreateMember(): void
     {
-        $this->expectJsonRequest();
+        $data = [
+            'id' => 'member123',
+            'organizationId' => 'org123',
+            'userId' => 'user123',
+            'permissions' => ['admin'],
+            'owner' => false,
+        ];
+        $this->expectJsonRequest(json_encode($data));
 
-        try {
-            $this->organizationsTask->createMember('org123', 'user123', ['admin']);
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->createMember('org123', 'user123', ['admin']);
+
+        $this->assertInstanceOf(OrganizationMember::class, $result);
+        $this->assertSame('user123', $result->getUserId());
     }
 
     /**
@@ -3365,12 +3390,23 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testListTeamsByMember(): void
     {
-        $this->expectJsonRequest();
+        $data = [
+            'count' => 1,
+            'items' => [[
+                'id' => 'team123',
+                'label' => 'Observability Team',
+                'organization_id' => 'org123',
+                'project_permissions' => ['admin'],
+                'created_at' => '2023-10-05T13:30:43.073757Z',
+                'updated_at' => '2023-11-15T09:22:18.451321Z',
+            ]],
+        ];
+        $this->expectJsonRequest(json_encode($data));
 
-        try {
-            $this->organizationsTask->listTeamsByMember('user123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->listTeamsByMember('user123');
+
+        $this->assertInstanceOf(ListTeams200Response::class, $result);
+        $this->assertContainsOnlyInstancesOf(Team::class, $result->getItems());
     }
 
     /**
@@ -3378,12 +3414,13 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testCreateOrgProject(): void
     {
-        $this->expectJsonRequest();
+        $data = ['id' => 'project123', 'organization_id' => 'org123', 'title' => 'My Project', 'region' => 'eu-1.platform.sh'];
+        $this->expectJsonRequest(json_encode($data));
 
-        try {
-            $this->organizationsTask->createOrgProject('org123', new CreateOrgProjectRequest('eu-1.platform.sh'));
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->createOrgProject('org123', new CreateOrgProjectRequest('eu-1.platform.sh'));
+
+        $this->assertInstanceOf(OrganizationProject::class, $result);
+        $this->assertSame('project123', $result->getId());
     }
 
     /**
@@ -3391,12 +3428,12 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testDeleteOrgProject(): void
     {
-        $this->expectJsonRequest();
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(204, ['Content-Type' => 'application/json']));
 
-        try {
-            $this->organizationsTask->deleteOrgProject('org123', 'project123');
-        } catch (ApiException) {
-        }
+        $this->organizationsTask->deleteOrgProject('org123', 'project123');
     }
 
     /**
@@ -3404,32 +3441,35 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testGetOrgProject(): void
     {
-        $this->expectJsonRequest();
+        $data = ['id' => 'project123', 'organization_id' => 'org123', 'title' => 'My Project'];
+        $this->expectJsonRequest(json_encode($data));
 
-        try {
-            $this->organizationsTask->getOrgProject('org123', 'project123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->getOrgProject('org123', 'project123');
+
+        $this->assertInstanceOf(OrganizationProject::class, $result);
+        $this->assertSame('project123', $result->getId());
     }
 
     /**
      * @throws ClientExceptionInterface
      */
-    public function testQueryProjectCarbon(): void
+    public function testGetCarbonEmissions(): void
     {
-        $this->expectJsonRequest();
+        $data = ['projectId' => 'project123', 'projectTitle' => 'My Project', 'values' => [], 'total' => 12.5];
+        $this->expectJsonRequest(json_encode($data));
 
-        try {
-            $this->organizationsTask->queryProjectCarbon('org123', 'project123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->getCarbonEmissions('org123', 'project123');
+
+        $this->assertInstanceOf(ProjectCarbon::class, $result);
+        $this->assertSame('project123', $result->getProjectId());
+        $this->assertSame(12.5, $result->getTotal());
     }
 
-    public function testQueryProjectCarbonWithEmptyInterval(): void
+    public function testGetCarbonEmissionsWithEmptyInterval(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $this->organizationsTask->queryProjectCarbon('org123', 'project123', interval: ' ');
+        $this->organizationsTask->getCarbonEmissions('org123', 'project123', interval: ' ');
     }
 
     /**
@@ -3439,10 +3479,7 @@ class OrganizationsTaskTest extends BaseTestCase
     {
         $this->expectJsonRequest();
 
-        try {
-            $this->organizationsTask->canAffordSubscription('sub123', new CanAffordSubscriptionRequest());
-        } catch (ApiException) {
-        }
+        $this->organizationsTask->canAffordSubscription('sub123', new CanAffordSubscriptionRequest());
     }
 
     /**
@@ -3450,12 +3487,12 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testCanUpdateSubscription(): void
     {
-        $this->expectJsonRequest();
+        $this->expectJsonRequest(json_encode(['canUpdate' => true, 'message' => '']));
 
-        try {
-            $this->organizationsTask->canUpdateSubscription('sub123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->canUpdateSubscription('sub123');
+
+        $this->assertInstanceOf(CanUpdateSubscription200Response::class, $result);
+        $this->assertTrue($result->getCanUpdate());
     }
 
     /**
@@ -3463,12 +3500,12 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testGetSubscriptionUsageAlerts(): void
     {
-        $this->expectJsonRequest();
+        $this->expectJsonRequest(json_encode(['current' => [], 'available' => []]));
 
-        try {
-            $this->organizationsTask->getSubscriptionUsageAlerts('org123', 'sub123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->getSubscriptionUsageAlerts('org123', 'sub123');
+
+        $this->assertInstanceOf(GetSubscriptionUsageAlerts200Response::class, $result);
+        $this->assertIsArray($result->getCurrent());
     }
 
     /**
@@ -3478,10 +3515,9 @@ class OrganizationsTaskTest extends BaseTestCase
     {
         $this->expectJsonRequest();
 
-        try {
-            $this->organizationsTask->listSubscriptionAddons('org123', 'sub123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->listSubscriptionAddons('org123', 'sub123');
+
+        $this->assertInstanceOf(SubscriptionAddonsObject::class, $result);
     }
 
     /**
@@ -3489,12 +3525,12 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testUpdateOrgSubscription(): void
     {
-        $this->expectJsonRequest();
+        $this->expectJsonRequest(json_encode(['id' => 'sub123', 'plan' => 'upsun/flexible', 'status' => 'active']));
 
-        try {
-            $this->organizationsTask->updateOrgSubscription('org123', 'sub123', new UpdateOrgSubscriptionRequest());
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->updateOrgSubscription('org123', 'sub123', new UpdateOrgSubscriptionRequest());
+
+        $this->assertInstanceOf(Subscription::class, $result);
+        $this->assertSame('upsun/flexible', $result->getPlan());
     }
 
     /**
@@ -3502,16 +3538,16 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testUpdateSubscriptionUsageAlerts(): void
     {
-        $this->expectJsonRequest();
+        $this->expectJsonRequest(json_encode(['current' => [], 'available' => []]));
 
-        try {
-            $this->organizationsTask->updateSubscriptionUsageAlerts(
-                'org123',
-                'sub123',
-                new UpdateSubscriptionUsageAlertsRequest()
-            );
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->updateSubscriptionUsageAlerts(
+            'org123',
+            'sub123',
+            new UpdateSubscriptionUsageAlertsRequest()
+        );
+
+        $this->assertInstanceOf(GetSubscriptionUsageAlerts200Response::class, $result);
+        $this->assertIsArray($result->getAvailable());
     }
 
     /**
@@ -3519,12 +3555,12 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testGetDiscount(): void
     {
-        $this->expectJsonRequest();
+        $this->expectJsonRequest(json_encode(['id' => 42, 'organizationId' => 'org123', 'type' => 'allowance', 'status' => 'active']));
 
-        try {
-            $this->organizationsTask->getDiscount('discount123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->getDiscount('discount123');
+
+        $this->assertInstanceOf(Discount::class, $result);
+        $this->assertSame('allowance', $result->getType());
     }
 
     public function testGetDiscountWithEmptyId(): void
@@ -3541,23 +3577,23 @@ class OrganizationsTaskTest extends BaseTestCase
     {
         $this->expectJsonRequest();
 
-        try {
-            $this->organizationsTask->getTypeAllowance();
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->getTypeAllowance();
+
+        $this->assertInstanceOf(GetTypeAllowance200Response::class, $result);
     }
 
     /**
      * @throws ClientExceptionInterface
      */
-    public function testListOrgDiscounts(): void
+    public function testListDiscounts(): void
     {
-        $this->expectJsonRequest();
+        $data = ['items' => [['id' => 1, 'type' => 'allowance', 'status' => 'active']]];
+        $this->expectJsonRequest(json_encode($data));
 
-        try {
-            $this->organizationsTask->listOrgDiscounts('org123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->listDiscounts('org123');
+
+        $this->assertInstanceOf(ListOrgDiscounts200Response::class, $result);
+        $this->assertContainsOnlyInstancesOf(Discount::class, $result->getItems());
     }
 
     /**
@@ -3565,12 +3601,12 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testEstimateOrg(): void
     {
-        $this->expectJsonRequest();
+        $this->expectJsonRequest(json_encode(['total' => '100', 'subTotal' => '90']));
 
-        try {
-            $this->organizationsTask->estimateOrg('org123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->estimateOrg('org123');
+
+        $this->assertInstanceOf(OrganizationEstimationObject::class, $result);
+        $this->assertSame('100', $result->getTotal());
     }
 
     /**
@@ -3578,12 +3614,12 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testGetOrgBillingAlertConfig(): void
     {
-        $this->expectJsonRequest();
+        $this->expectJsonRequest(json_encode(['id' => 'alert123', 'active' => true, 'alertsSent' => 3]));
 
-        try {
-            $this->organizationsTask->getOrgBillingAlertConfig('org123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->getOrgBillingAlertConfig('org123');
+
+        $this->assertInstanceOf(OrganizationAlertConfig::class, $result);
+        $this->assertTrue($result->getActive());
     }
 
     /**
@@ -3593,10 +3629,9 @@ class OrganizationsTaskTest extends BaseTestCase
     {
         $this->expectJsonRequest();
 
-        try {
-            $this->organizationsTask->getOrgPrepaymentInfo('org123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->getOrgPrepaymentInfo('org123');
+
+        $this->assertInstanceOf(GetOrgPrepaymentInfo200Response::class, $result);
     }
 
     /**
@@ -3604,12 +3639,12 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testListOrgPrepaymentTransactions(): void
     {
-        $this->expectJsonRequest();
+        $this->expectJsonRequest(json_encode(['count' => 0, 'transactions' => []]));
 
-        try {
-            $this->organizationsTask->listOrgPrepaymentTransactions('org123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->listOrgPrepaymentTransactions('org123');
+
+        $this->assertInstanceOf(ListOrgPrepaymentTransactions200Response::class, $result);
+        $this->assertSame(0, $result->getCount());
     }
 
     /**
@@ -3617,15 +3652,15 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testUpdateOrgBillingAlertConfig(): void
     {
-        $this->expectJsonRequest();
+        $this->expectJsonRequest(json_encode(['id' => 'alert123', 'active' => false]));
 
-        try {
-            $this->organizationsTask->updateOrgBillingAlertConfig(
-                'org123',
-                new UpdateOrgBillingAlertConfigRequest()
-            );
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->updateOrgBillingAlertConfig(
+            'org123',
+            new UpdateOrgBillingAlertConfigRequest()
+        );
+
+        $this->assertInstanceOf(OrganizationAlertConfig::class, $result);
+        $this->assertFalse($result->getActive());
     }
 
     /**
@@ -3633,12 +3668,22 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testListReferencedOrgs(): void
     {
-        $this->expectJsonRequest();
+        $data = ['org1' => [
+            'id' => 'org1',
+            'type' => 'enterprise',
+            'name' => 'Acme',
+            'label' => 'Acme Corp',
+            'vendor' => 'upsun',
+            'createdAt' => '2023-01-01T00:00:00+00:00',
+            'updatedAt' => '2023-02-01T00:00:00+00:00',
+        ]];
+        $this->expectJsonRequest(json_encode($data));
 
-        try {
-            $this->organizationsTask->listReferencedOrgs('id1,id2', 'signature');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->listReferencedOrgs('id1,id2', 'signature');
+
+        $this->assertIsArray($result);
+        $this->assertContainsOnlyInstancesOf(OrganizationReference::class, $result);
+        $this->assertSame('org1', $result['org1']->getId());
     }
 
     public function testListReferencedOrgsWithEmptyIn(): void
@@ -3660,12 +3705,25 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testListReferencedProjects(): void
     {
-        $this->expectJsonRequest();
+        $data = ['proj1' => [
+            'id' => 'proj1',
+            'organizationId' => 'org123',
+            'subscriptionId' => 'sub123',
+            'region' => 'eu-1.platform.sh',
+            'title' => 'My Project',
+            'type' => 'grid',
+            'plan' => 'upsun/flexible',
+            'status' => 'active',
+            'createdAt' => '2023-01-01T00:00:00+00:00',
+            'updatedAt' => '2023-02-01T00:00:00+00:00',
+        ]];
+        $this->expectJsonRequest(json_encode($data));
 
-        try {
-            $this->organizationsTask->listReferencedProjects('id1,id2', 'signature');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->listReferencedProjects('id1,id2', 'signature');
+
+        $this->assertIsArray($result);
+        $this->assertContainsOnlyInstancesOf(ProjectReference::class, $result);
+        $this->assertSame('proj1', $result['proj1']->getId());
     }
 
     public function testListReferencedProjectsWithEmptyIn(): void
@@ -3687,12 +3745,13 @@ class OrganizationsTaskTest extends BaseTestCase
      */
     public function testQueryOrganiationCarbon(): void
     {
-        $this->expectJsonRequest();
+        $data = ['organizationId' => 'org123', 'projects' => [], 'total' => 99.9];
+        $this->expectJsonRequest(json_encode($data));
 
-        try {
-            $this->organizationsTask->queryOrganiationCarbon('org123');
-        } catch (ApiException) {
-        }
+        $result = $this->organizationsTask->queryOrganiationCarbon('org123');
+
+        $this->assertInstanceOf(OrganizationCarbon::class, $result);
+        $this->assertSame('org123', $result->getOrganizationId());
     }
 
     public function testQueryOrganiationCarbonWithEmptyInterval(): void

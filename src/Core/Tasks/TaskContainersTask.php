@@ -88,7 +88,8 @@ class TaskContainersTask extends TaskBase
     public function run(
         string $projectId,
         string $environmentId,
-        string $taskId
+        string $taskId,
+        array $variables = []
     ): AcceptedResponse {
         $this->checkProjectId($projectId);
         $this->checkEnvironmentId($environmentId);
@@ -98,7 +99,9 @@ class TaskContainersTask extends TaskBase
             projectId: $projectId,
             environmentId: $environmentId,
             taskId: $taskId,
-            taskTriggerInput: new TaskTriggerInput()
+            taskTriggerInput: new TaskTriggerInput(
+                variables: $variables
+            )
         );
     }
 }

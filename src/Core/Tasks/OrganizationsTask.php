@@ -1213,7 +1213,7 @@ class OrganizationsTask extends TaskBase
      * @throws InvalidArgumentException if required parameters are missing or invalid
      * @return ProjectCarbon
      */
-    public function queryProjectCarbon(
+    public function getCarbonEmissions(
         string $organizationId,
         string $projectId,
         ?DateTimeFilter $from = null,
@@ -1409,7 +1409,7 @@ class OrganizationsTask extends TaskBase
      * @throws InvalidArgumentException if the organization ID is invalid
      * @return ListOrgDiscounts200Response
      */
-    public function listOrgDiscounts(string $organizationId): ListOrgDiscounts200Response
+    public function listDiscounts(string $organizationId): ListOrgDiscounts200Response
     {
         $this->checkOrganizationId($organizationId);
 
