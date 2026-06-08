@@ -62,6 +62,7 @@ use Upsun\Api\SshKeysApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\SupportApi;
 use Upsun\Api\SystemInformationApi;
+use Upsun\Api\TaskApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
 use Upsun\Api\ThirdPartyIntegrationsApi;
@@ -90,6 +91,7 @@ use Upsun\Core\Tasks\ServicesTask;
 use Upsun\Core\Tasks\SourceOperationsTask;
 use Upsun\Core\Tasks\SshTask;
 use Upsun\Core\Tasks\SupportTicketsTask;
+use Upsun\Core\Tasks\TaskContainersTask;
 use Upsun\Core\Tasks\TeamsTask;
 use Upsun\Core\Tasks\UsersInvitationsTask;
 use Upsun\Core\Tasks\UsersTask;
@@ -155,6 +157,8 @@ class UpsunClient
     public SourceOperationsTask $sourceOperations;
 
     public SshTask $sshTask;
+
+    public TaskContainersTask $taskContainers;
 
     public TeamsTask $teams;
 
@@ -262,6 +266,7 @@ class UpsunClient
         $supportApi = new SupportApi(...$taskParams);
         $systemInformationApi = new SystemInformationApi(...$taskParams);
         $sshKeysApi = new SshKeysApi(...$taskParams);
+        $taskApi = new TaskApi(...$taskParams);
         $teamAccessApi = new TeamAccessApi(...$taskParams);
         $teamsApi = new TeamsApi(...$taskParams);
         $thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi(...$taskParams);
@@ -378,6 +383,10 @@ class UpsunClient
         $this->sourceOperations = new SourceOperationsTask(
             $this,
             $sourceOperationsApi
+        );
+        $this->taskContainers = new TaskContainersTask(
+            $this,
+            $taskApi,
         );
         $this->teams = new TeamsTask(
             $this,
