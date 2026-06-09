@@ -81,6 +81,20 @@ class TaskContainersTask extends TaskBase
      * This method executes an asynchronous task in the specified environment. Tasks are long-running operations
      * that can be executed in the background and tracked via the get() method.
      *
+     * The API expects variables to be a nested map grouped by namespace (e.g. `env`):
+     *
+     *     variables: [
+     *         'env' => [
+     *             'INCIDENT_JSON'      => json_encode($incident),
+     *             'INCIDENT_SIGNATURE' => $signature,
+     *         ],
+     *     ]
+     *
+     * For convenience a flat map of `NAME => value` is also accepted and will be
+     * wrapped automatically under the `env` group.
+     *
+     * @param array<string, mixed> $variables
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if the projectId, environmentId, or taskId is invalid
@@ -100,8 +114,39 @@ class TaskContainersTask extends TaskBase
             environmentId: $environmentId,
             taskId: $taskId,
             taskTriggerInput: new TaskTriggerInput(
-                variables: $variables
+                variables: $this->normalizeVariables($variables)
             )
         );
+    }
+
+    /**
+     * Normalize task variables into the nested map the API expects: `{ group: { NAME: value } }`.
+     *
+     * Already-grouped input (every top-level value is an array) is returned untouched.
+     * A flat `NAME => value` map is wrapped under the `env` group.
+     *
+     * @param array<string, mixed> $variables
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    private function normalizeVariables(array $variables): array
+    {
+        if ($variables === []) {
+            return [];
+        }
+
+        $allGroups = true;
+        foreach ($variables as $value) {
+            if (!is_array($value)) {
+                $allGroups = false;
+                break;
+            }
+        }
+
+        if ($allGroups) {
+            return $variables;
+        }
+
+        return ['env' => $variables];
     }
 }
