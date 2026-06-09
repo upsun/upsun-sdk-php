@@ -40,6 +40,17 @@ class ApiException extends RequestException
             $this->responseHeaders = $response->getHeaders();
             $this->responseBody = (string) $response->getBody();
             $this->code = $response->getStatusCode();
+        } elseif ($previous instanceof self) {
+            // No response in this scope (the operation-level catch in the
+            // generated *Api.php re-wraps the original ApiException with a
+            // null response). Inherit the wrapped exception's context so the
+            // HTTP status, body, headers and deserialized error are preserved.
+            $this->responseHeaders = $previous->getResponseHeaders();
+            $this->responseBody = $previous->getResponseBody();
+            $this->responseObject = $previous->getResponseObject();
+            if ($previous->getCode() !== 0) {
+                $this->code = $previous->getCode();
+            }
         }
     }
 
