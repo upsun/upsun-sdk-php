@@ -177,7 +177,12 @@ class UpsunClient
 
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
 
-        if ($upsunConfig->apiToken !== '') {
+        $isLocalAuth = $this->upsunConfig->auth_url === UpsunConfig::LOCAL_AUTH;
+        $grantType = $isLocalAuth
+            ? OAuthProvider::GRANT_CLIENT_CREDENTIALS
+            : OAuthProvider::GRANT_API_TOKEN;
+
+        if ($upsunConfig->apiToken !== '' || $isLocalAuth) {
             $this->auth = new OAuthProvider(
                 httpClient: $this->apiClient,
                 requestFactory: $requestFactory,
@@ -185,6 +190,8 @@ class UpsunClient
                 clientId: $this->upsunConfig->clientId,
                 clientSecret: $this->upsunConfig->apiToken,
                 refreshEndpoint: $this->upsunConfig->auth_url . '/' . $this->upsunConfig->refresh_endpoint,
+                grantType: $grantType,
+                tokenTtl: $this->upsunConfig->tokenTtl,
             );
         }
 

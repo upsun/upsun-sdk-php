@@ -21,7 +21,7 @@ additionalProperties:
   testsBasePath: tests
   composerVendor: upsun
   basePath: https://api.upsun.com
-  docUrl: https://docs.upsun.com
+  docUrl: https://developer.upsun.com
   composerProject: upsun-sdk-php
   composerVersion: 0.2.0
   licenseName: Apache-2.0
@@ -34,7 +34,7 @@ additionalProperties:
   sdkLongDescription: |
     The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.
 
-    For more information, read [the documentation](https://docs.upsun.com/api).
+    For more information, read [the documentation](https://developer.upsun.com/api).
   escapedInvokerPackage: "Upsun\\"
   coreTestPath: ./tests/Core
   generateInterfaces: true

@@ -230,6 +230,42 @@ class UpsunClientTest extends TestCase
         $client->getToken();
     }
 
+    /**
+     * @throws ReflectionException
+     */
+    public function testLocalAuthUrlUsesClientCredentialsGrant(): void
+    {
+        $config = new UpsunConfig(auth_url: UpsunConfig::LOCAL_AUTH);
+        $client = new UpsunClient($config);
+
+        $this->assertInstanceOf(OAuthProvider::class, $client->auth);
+
+        $grantType = (new \ReflectionObject($client->auth))->getProperty('grantType');
+        $tokenEndpoint = (new \ReflectionObject($client->auth))->getProperty('tokenEndpoint');
+
+        $this->assertEquals(
+            OAuthProvider::GRANT_CLIENT_CREDENTIALS,
+            $grantType->getValue($client->auth)
+        );
+        $this->assertEquals(
+            'http://localhost:8200/oauth2/token',
+            $tokenEndpoint->getValue($client->auth)
+        );
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function testPublicAuthUrlUsesApiTokenGrant(): void
+    {
+        $grantType = (new \ReflectionObject($this->upsunClient->auth))->getProperty('grantType');
+
+        $this->assertEquals(
+            OAuthProvider::GRANT_API_TOKEN,
+            $grantType->getValue($this->upsunClient->auth)
+        );
+    }
+
     public function testUserIdIsNullByDefault()
     {
         $this->assertNull($this->upsunClient->userId);

@@ -37,11 +37,33 @@ require __DIR__ . '/vendor/autoload.php';
 You will need an [Upsun API token](https://docs.upsun.com/administration/cli/api-tokens.html) to use this SDK.
 Store it securely, preferably in an environment variable.
 
+### With an API token (default)
+
+Use this outside of an Upsun runtime, authenticating with your API token.
+
 ```php
 use Upsun\UpsunConfig;
 use Upsun\UpsunClient;
 
 $config = new UpsunConfig(apiToken: getenv('UPSUN_API_TOKEN'));
+$upsunClient = new UpsunClient($config);
+```
+
+### With the local token service (inside an Upsun container)
+
+Inside an Upsun runtime container, a local token service is exposed on
+`http://localhost:8200`. Point `auth_url` to `UpsunConfig::LOCAL_AUTH` and the SDK
+authenticates with the `client_credentials` grant automatically (no API token
+required). You may optionally request a token lifetime via `tokenTtl` (60-900 seconds).
+
+```php
+use Upsun\UpsunConfig;
+use Upsun\UpsunClient;
+
+$config = new UpsunConfig(
+    auth_url: UpsunConfig::LOCAL_AUTH,
+    tokenTtl: 900, // optional, 60-900 seconds
+);
 $upsunClient = new UpsunClient($config);
 ```
 
