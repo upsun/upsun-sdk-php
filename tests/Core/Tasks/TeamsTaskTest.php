@@ -895,4 +895,36 @@ class TeamsTaskTest extends BaseTestCase
         $this->expectException(ApiException::class);
         $this->task->delete(teamId: $teamId);
     }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGrantTeamProjectAccessToTeamSuccess(): void
+    {
+        $teamId = 'team-123';
+        $access = [['projectId' => 'proj-123']];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'No content', 'code' => 204])
+            ));
+
+        $this->task->grantTeamProjectAccessToTeam(teamId: $teamId, access: $access);
+    }
+
+    /**
+     * Regression: an empty teamId must fail team validation (not project
+     * validation), confirming the duplicate checkProjectId() was removed.
+     */
+    public function testGrantTeamProjectAccessToTeamRejectsEmptyTeamId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Team ID is required');
+
+        $this->task->grantTeamProjectAccessToTeam(teamId: '', access: [['projectId' => 'proj-123']]);
+    }
 }

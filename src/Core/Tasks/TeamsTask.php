@@ -383,7 +383,6 @@ class TeamsTask extends TaskBase
     public function grantTeamProjectAccessToTeam(string $teamId, array $access): void
     {
         $this->checkTeamId($teamId);
-        $this->checkProjectId($teamId);
 
         $this->accessApi->grantTeamProjectAccess(teamId: $teamId, grantTeamProjectAccessRequestInner: $access);
     }

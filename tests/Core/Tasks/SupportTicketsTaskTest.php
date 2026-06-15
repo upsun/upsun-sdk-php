@@ -587,4 +587,58 @@ class SupportTicketsTaskTest extends BaseTestCase
         $this->assertContainsOnlyInstancesOf(ListTicketPriorities200ResponseInner::class, $result);
         $this->assertObjectMatchesArray($result, $ticketPriorities);
     }
+
+    /**
+     * Regression: listCategories() without an organizationId must not raise a
+     * TypeError from validating a null organization ID.
+     *
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testListCategoriesWithoutOrganizationId(): void
+    {
+        $ticketCategories = [
+            ['id' => 'bug', 'label' => 'Bug Report'],
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($ticketCategories)
+            ));
+
+        $result = $this->task->listCategories();
+        $this->assertContainsOnlyInstancesOf(ListTicketCategories200ResponseInner::class, $result);
+        $this->assertObjectMatchesArray($result, $ticketCategories);
+    }
+
+    /**
+     * Regression: listPriorities() without a projectId must not call parse_url()
+     * on a null license URI.
+     *
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testListPrioritiesWithoutProjectId(): void
+    {
+        $ticketPriorities = [
+            ['id' => 'low', 'label' => 'Low'],
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($ticketPriorities)
+            ));
+
+        $result = $this->task->listPriorities();
+        $this->assertContainsOnlyInstancesOf(ListTicketPriorities200ResponseInner::class, $result);
+        $this->assertObjectMatchesArray($result, $ticketPriorities);
+    }
 }

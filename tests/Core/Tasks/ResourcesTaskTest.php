@@ -371,6 +371,70 @@ class ResourcesTaskTest extends BaseTestCase
     }
 
     /**
+     * Regression: calling updateAutoscalerSettings() without $services must not
+     * raise a TypeError from unpacking a null value.
+     *
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateAutoscalerSettingsWithoutServices(): void
+    {
+        $capturedBody = null;
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturnCallback(function ($request) use (&$capturedBody) {
+                $capturedBody = (string)$request->getBody();
+                return new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode(['services' => null])
+                );
+            });
+
+        $result = $this->resourcesTask->updateAutoscalerSettings(
+            projectId: 'project123',
+            environmentId: 'env456'
+        );
+
+        $this->assertNull($result->getServices());
+        $this->assertStringContainsString('"services":[]', $capturedBody);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateAutoscalerSettingsWithServices(): void
+    {
+        $services = [
+            'services' => [
+                'db' => [
+                    'mysql' => [
+                        'instances' => ['min' => 1, 'max' => 3]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($services)
+            ));
+
+        $result = $this->resourcesTask->updateAutoscalerSettings(
+            projectId: 'project123',
+            environmentId: 'env456',
+            services: $services
+        );
+
+        $this->assertObjectProperties($result, $services);
+    }
+
+    /**
      * @throws ClientExceptionInterface
      */
     public function testResourcesByServiceSuccess(): void

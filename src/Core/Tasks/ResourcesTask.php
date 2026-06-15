@@ -218,7 +218,7 @@ class ResourcesTask extends TaskBase
         return $this->autoscalingApi->postAutoscalerSettings(
             projectId: $projectId,
             environmentId: $environmentId,
-            autoscalerSettings: new AutoscalerSettings(...$services),
+            autoscalerSettings: new AutoscalerSettings(...($services ?? [])),
         );
     }
 
