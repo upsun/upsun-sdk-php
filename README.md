@@ -2,7 +2,7 @@
 
 The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.
 
-For more information, read [the documentation](https://docs.upsun.com/api).
+For more information, read [the documentation](https://developer.upsun.com/api).
 
 
 > **CAUTION**:
@@ -34,7 +34,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 ## Authentication
 
-You will need an [Upsun API token](https://docs.upsun.com/administration/cli/api-tokens.html) to use this SDK.
+You will need an [Upsun API token](https://developer.upsun.com/cli/api-tokens) to use this SDK.
 Store it securely, preferably in an environment variable.
 
 ### With an API token (default)
@@ -102,7 +102,7 @@ composer install
 
 The SDK is built as follows:
 
-* From the [JSON specs of our API](https://docs.upsun.com/api/openapispec-upsun.json)
+* From the [JSON specs of our API](https://meta.upsun.com/openapi-spec)
 * Using [``@openapitools/openapi-generator-cli``](https://www.npmjs.com/package/%40openapitools/openapi-generator-cli)
 * Which generates:
   * PHP **Models** (in `src/Model/`)
@@ -112,7 +112,7 @@ The SDK is built as follows:
 ### Regenerating API & Model classes
 
 API and Model classes are generated using [openapi-generator-cli](https://openapi-generator.tech)
-from the [Upsun OpenAPI spec](https://docs.upsun.com/api/openapispec-upsun.json).
+from the [Upsun OpenAPI spec](https://meta.upsun.com/openapi-spec).
 
 ```bash
 composer run spec:install
