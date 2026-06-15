@@ -51,12 +51,10 @@ use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\RecordsApi;
 use Upsun\Api\ReferencesApi;
 use Upsun\Api\RegionsApi;
-use Upsun\Api\RegistryCredentialApi;
 use Upsun\Api\RepositoryApi;
 use Upsun\Api\ResourcesApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\RuntimeOperationsApi;
-use Upsun\Api\SbomApi;
 use Upsun\Api\SourceOperationsApi;
 use Upsun\Api\SshKeysApi;
 use Upsun\Api\SubscriptionsApi;
@@ -187,6 +185,7 @@ class UpsunClient
                 clientId: $this->upsunConfig->clientId,
                 clientSecret: $this->upsunConfig->apiToken,
                 refreshEndpoint: $this->upsunConfig->auth_url . '/' . $this->upsunConfig->refresh_endpoint,
+                grantType: $this->upsunConfig->grantType,
             );
         }
 
@@ -257,9 +256,7 @@ class UpsunClient
         $repositoryApi = new RepositoryApi(...$taskParams);
         $routingApi = new RoutingApi(...$taskParams);
         $runtimeOperationsApi = new RuntimeOperationsApi(...$taskParams);
-        $registryCredentialApi = new RegistryCredentialApi(...$taskParams);
         $resourcesApi = new ResourcesApi(...$taskParams);
-        $sbomApi = new SbomApi(...$taskParams);
         $sourceOperationsApi = new SourceOperationsApi(...$taskParams);
         $subscriptionsApi = new SubscriptionsApi(...$taskParams);
         $projectsApi = new ProjectsApi(...$taskParams);
@@ -352,8 +349,6 @@ class UpsunClient
             $alertsApi,
             $domainClaimApi,
             $projectsApi,
-            $sbomApi,
-            $registryCredentialApi,
         );
         $this->regions = new RegionsTask(
             $this,

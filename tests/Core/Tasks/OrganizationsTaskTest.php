@@ -32,8 +32,6 @@ use Upsun\Api\ProjectsApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\RecordsApi;
 use Upsun\Api\ReferencesApi;
-use Upsun\Api\RegistryCredentialApi;
-use Upsun\Api\SbomApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
@@ -149,8 +147,6 @@ class OrganizationsTaskTest extends BaseTestCase
             new AlertsApi(...$apiClassParams),
             new DomainClaimApi(...$apiClassParams),
             new ProjectsApi(...$apiClassParams),
-            new SbomApi(...$apiClassParams),
-            new RegistryCredentialApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
 

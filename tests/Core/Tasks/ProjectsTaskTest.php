@@ -52,12 +52,10 @@ use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\RecordsApi;
 use Upsun\Api\ReferencesApi;
 use Upsun\Api\RegionsApi;
-use Upsun\Api\RegistryCredentialApi;
 use Upsun\Api\RepositoryApi;
 use Upsun\Api\ResourcesApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\RuntimeOperationsApi;
-use Upsun\Api\SbomApi;
 use Upsun\Api\SourceOperationsApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\SupportApi;
@@ -95,7 +93,6 @@ use Upsun\Core\Tasks\WorkersTask;
 use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
-use Upsun\Model\BasicAuth;
 use Upsun\Model\Certificate;
 use Upsun\Model\DeploymentTargetCreateInput;
 use Upsun\Model\DeploymentTargetPatch;
@@ -114,9 +111,6 @@ use Upsun\Model\ProjectInvitation;
 use Upsun\Model\ProjectSettings;
 use Upsun\Model\ProjectStatus;
 use Upsun\Model\ProjectVariable;
-use Upsun\Model\RegistryCredential;
-use Upsun\Model\RegistryCredentialCreateInput;
-use Upsun\Model\RegistryCredentialPatch;
 use Upsun\Model\Subscription;
 use Upsun\Model\TeamProjectAccess;
 use Upsun\Model\UpdateUsageAlertsRequest;
@@ -161,8 +155,6 @@ class ProjectsTaskTest extends BaseTestCase
             new AlertsApi(...$apiClassParams),
             new DomainClaimApi(...$apiClassParams),
             new ProjectsApi(...$apiClassParams),
-            new SbomApi(...$apiClassParams),
-            new RegistryCredentialApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
 
@@ -3077,145 +3069,6 @@ FAKE-CHAIN-CERT-DATA2
         $this->assertObjectProperties($result, $payload);
     }
 
-    public function testGetSbomWithInvalidProjectId(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        $this->projectsTask->getSbom('', 'env456', 'dep123', 'svc123');
-    }
-
-    public function testListSbomsWithInvalidEnvironmentId(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        $this->projectsTask->listSboms('project123', '', 'dep123');
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testCreateOciRegistrySuccess(): void
-    {
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode([
-                'status' => 'accepted',
-                'code' => 200
-            ])));
-
-        $result = $this->projectsTask->createOciRegistry(
-            'project123',
-            new RegistryCredentialCreateInput(
-                'ghcr.io',
-                new BasicAuth('user', 'pass')
-            )
-        );
-
-        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testDeleteOciRegistrySuccess(): void
-    {
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode([
-                'status' => 'accepted',
-                'code' => 200
-            ])));
-
-        $result = $this->projectsTask->deleteOciRegistry('project123', 'registry123');
-
-        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws Exception
-     */
-    public function testGetOciRegistrySuccess(): void
-    {
-        $payload = [
-            'id' => 'registry123',
-            'registry' => 'ghcr.io',
-            'createdAt' => '2025-01-01T00:00:00+00:00',
-            'updatedAt' => '2025-01-02T00:00:00+00:00',
-            'auth' => ['username' => 'user', 'password' => 'pass'],
-            'identityToken' => 'identity-token',
-            'registryToken' => 'registry-token'
-        ];
-
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($payload)));
-
-        $result = $this->projectsTask->getOciRegistry('project123', 'registry123');
-
-        $this->assertInstanceOf(RegistryCredential::class, $result);
-        $this->assertObjectProperties($result, $payload);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws Exception
-     */
-    public function testListOciRegistriesSuccess(): void
-    {
-        $payload = [
-            [
-                'id' => 'registry123',
-                'registry' => 'ghcr.io',
-                'createdAt' => '2025-01-01T00:00:00+00:00',
-                'updatedAt' => '2025-01-02T00:00:00+00:00',
-                'auth' => ['username' => 'user', 'password' => 'pass'],
-                'identityToken' => 'identity-token',
-                'registryToken' => 'registry-token'
-            ]
-        ];
-
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($payload)));
-
-        $result = $this->projectsTask->listOciRegistries('project123');
-
-        $this->assertContainsOnlyInstancesOf(RegistryCredential::class, $result);
-        $this->assertObjectMatchesArray($result, $payload);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateOciRegistrySuccess(): void
-    {
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode([
-                'status' => 'accepted',
-                'code' => 200
-            ])));
-
-        $result = $this->projectsTask->updateOciRegistry(
-            'project123',
-            'registry123',
-            new RegistryCredentialPatch(
-                new BasicAuth('user', 'pass'),
-                null,
-                null,
-                'ghcr.io/new'
-            )
-        );
-
-        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
-    }
-
     private function expectJsonRequest(string $body = '{}'): void
     {
         $this->httpClient
@@ -3927,97 +3780,6 @@ FAKE-CHAIN-CERT-DATA2
 
         try {
             $this->projectsTask->maintenanceRedeployProject('project123');
-        } catch (ApiException) {
-        }
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testGetSbom(): void
-    {
-        $this->expectJsonRequest();
-
-        try {
-            $this->projectsTask->getSbom('project123', 'env123', 'deploy123', 'service123');
-        } catch (ApiException | \TypeError) {
-        }
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testListSboms(): void
-    {
-        $this->expectJsonRequest();
-
-        try {
-            $this->projectsTask->listSboms('project123', 'env123', 'deploy123');
-        } catch (ApiException) {
-        }
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testCreateOciRegistry(): void
-    {
-        $this->expectJsonRequest();
-
-        try {
-            $this->projectsTask->createOciRegistry('project123', new RegistryCredentialCreateInput('registry.example.com'));
-        } catch (ApiException) {
-        }
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testDeleteOciRegistry(): void
-    {
-        $this->expectJsonRequest();
-
-        try {
-            $this->projectsTask->deleteOciRegistry('project123', 'cred123');
-        } catch (ApiException) {
-        }
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testGetOciRegistry(): void
-    {
-        $this->expectJsonRequest();
-
-        try {
-            $this->projectsTask->getOciRegistry('project123', 'cred123');
-        } catch (ApiException) {
-        }
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testListOciRegistries(): void
-    {
-        $this->expectJsonRequest();
-
-        try {
-            $this->projectsTask->listOciRegistries('project123');
-        } catch (ApiException) {
-        }
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateOciRegistry(): void
-    {
-        $this->expectJsonRequest();
-
-        try {
-            $this->projectsTask->updateOciRegistry('project123', 'cred123', new RegistryCredentialPatch());
         } catch (ApiException) {
         }
     }
