@@ -188,4 +188,104 @@ class TaskContainersTaskTest extends BaseTestCase
             taskId: 'task789'
         );
     }
+
+    /**
+     * A flat NAME => value map must be wrapped under the `env` group.
+     *
+     * @throws ClientExceptionInterface
+     */
+    public function testRunWrapsFlatVariablesUnderEnvGroup(): void
+    {
+        $capturedBody = null;
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturnCallback(function ($request) use (&$capturedBody) {
+                $capturedBody = json_decode((string)$request->getBody(), true);
+                return new Response(
+                    202,
+                    ['Content-Type' => 'application/json'],
+                    json_encode(['status' => 'accepted', 'code' => 202])
+                );
+            });
+
+        $this->taskContainersTask->run(
+            projectId: 'project123',
+            environmentId: 'env456',
+            taskId: 'task789',
+            variables: ['FOO' => 'bar', 'BAZ' => 'qux']
+        );
+
+        $this->assertSame(
+            ['env' => ['FOO' => 'bar', 'BAZ' => 'qux']],
+            $capturedBody['variables']
+        );
+    }
+
+    /**
+     * Already-grouped variables must be passed through untouched.
+     *
+     * @throws ClientExceptionInterface
+     */
+    public function testRunKeepsAlreadyGroupedVariables(): void
+    {
+        $capturedBody = null;
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturnCallback(function ($request) use (&$capturedBody) {
+                $capturedBody = json_decode((string)$request->getBody(), true);
+                return new Response(
+                    202,
+                    ['Content-Type' => 'application/json'],
+                    json_encode(['status' => 'accepted', 'code' => 202])
+                );
+            });
+
+        $grouped = ['env' => ['FOO' => 'bar'], 'build' => ['BAZ' => 'qux']];
+
+        $this->taskContainersTask->run(
+            projectId: 'project123',
+            environmentId: 'env456',
+            taskId: 'task789',
+            variables: $grouped
+        );
+
+        $this->assertSame($grouped, $capturedBody['variables']);
+    }
+
+    /**
+     * A map with at least one non-array value is treated as flat and wrapped.
+     *
+     * @throws ClientExceptionInterface
+     */
+    public function testRunWrapsMixedVariablesUnderEnvGroup(): void
+    {
+        $capturedBody = null;
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturnCallback(function ($request) use (&$capturedBody) {
+                $capturedBody = json_decode((string)$request->getBody(), true);
+                return new Response(
+                    202,
+                    ['Content-Type' => 'application/json'],
+                    json_encode(['status' => 'accepted', 'code' => 202])
+                );
+            });
+
+        $mixed = ['env' => ['FOO' => 'bar'], 'FLAT' => 'value'];
+
+        $this->taskContainersTask->run(
+            projectId: 'project123',
+            environmentId: 'env456',
+            taskId: 'task789',
+            variables: $mixed
+        );
+
+        $this->assertSame(['env' => $mixed], $capturedBody['variables']);
+    }
 }
