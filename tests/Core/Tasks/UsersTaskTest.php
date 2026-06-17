@@ -26,7 +26,6 @@ use Upsun\Model\ApiToken;
 use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\Connection;
 use Upsun\Model\CreateProfilePicture200Response;
-use Upsun\Model\CurrentUser;
 use Upsun\Model\GetAddress200Response;
 use Upsun\Model\GetCurrentUserVerificationStatus200Response;
 use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
@@ -307,42 +306,6 @@ class UsersTaskTest extends BaseTestCase
 
         $this->usersTask->resetEmailAddress(userId: 'user_123', emailAddress: $email);
         $this->assertTrue(true);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     * @throws Exception
-     */
-    public function testGetCurrentUserDeprecatedSuccess(): void
-    {
-        $userFake = [
-            'id' => 'user_123',
-            'uuid' => 'user_123',
-            'username' => 'john_doe',
-            'displayName' => 'John Doe',
-            'status' => 1,
-            'mail' => 'john.doe@example.com',
-            'sshKeys' => [],
-            'hasKey' => true,
-            'projects' => [],
-            'sequence' => 1,
-            'roles' => ['user'],
-            'picture' => 'https://example.com/avatar.jpg',
-            'tickets' => (object) ['open' => 1],
-        ];
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode($userFake)
-            ));
-
-        $result = $this->usersTask->getCurrentUserDeprecated();
-
-        $this->assertInstanceOf(CurrentUser::class, $result);
-        $this->assertObjectProperties($result, $userFake);
     }
 
     /**

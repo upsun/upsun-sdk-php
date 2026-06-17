@@ -113,6 +113,11 @@ final class ApiObjectFormatsMapper
             'config' => null
         ],
 
+        'Upsun\Model\AllowedDomainsInner' => [
+            'host' => null,
+            'port' => null
+        ],
+
         'Upsun\Model\ApiToken' => [
             'id' => 'uuid',
             'name' => null,
@@ -229,7 +234,8 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\Autoscaling' => [
-            'enabled' => null
+            'enabled' => null,
+            'supportsHorizontalScalingServices' => null
         ],
 
         'Upsun\Model\Backup' => [
@@ -245,14 +251,10 @@ final class ApiObjectFormatsMapper
             'safe' => null,
             'sizeOfVolumes' => null,
             'sizeUsed' => null,
+            'sizeObjectStorage' => null,
             'deployment' => null,
             'restorable' => null,
             'automated' => null
-        ],
-
-        'Upsun\Model\BasicAuth' => [
-            'username' => null,
-            'password' => null
         ],
 
         'Upsun\Model\Bitbucket' => [
@@ -864,6 +866,10 @@ final class ApiObjectFormatsMapper
         'Upsun\Model\BuildConfiguration' => [
             'flavor' => null,
             'caches' => null
+        ],
+
+        'Upsun\Model\BuildPhaseEgress' => [
+            'allowedDomains' => null
         ],
 
         'Upsun\Model\BuildResources' => [
@@ -1508,6 +1514,15 @@ final class ApiObjectFormatsMapper
         'Upsun\Model\DomainPatch' => [
             'attributes' => null,
             'isDefault' => null
+        ],
+
+        'Upsun\Model\Egress' => [
+            'build' => null,
+            'runtime' => null
+        ],
+
+        'Upsun\Model\EgressProxy' => [
+            'enabled' => null
         ],
 
         'Upsun\Model\EmailIntegration' => [
@@ -3931,6 +3946,7 @@ final class ApiObjectFormatsMapper
             'sourceOperations' => null,
             'runtimeOperations' => null,
             'outboundFirewall' => null,
+            'egressProxy' => null,
             'integrations' => null
         ],
 
@@ -4275,30 +4291,6 @@ final class ApiObjectFormatsMapper
             'private' => null,
             'envimpact' => null,
             'environmentalImpact' => null
-        ],
-
-        'Upsun\Model\RegistryCredential' => [
-            'id' => null,
-            'createdAt' => 'date-time',
-            'updatedAt' => 'date-time',
-            'registry' => null,
-            'auth' => null,
-            'identityToken' => null,
-            'registryToken' => null
-        ],
-
-        'Upsun\Model\RegistryCredentialCreateInput' => [
-            'registry' => null,
-            'auth' => null,
-            'identityToken' => null,
-            'registryToken' => null
-        ],
-
-        'Upsun\Model\RegistryCredentialPatch' => [
-            'registry' => null,
-            'auth' => null,
-            'identityToken' => null,
-            'registryToken' => null
         ],
 
         'Upsun\Model\ReplacementDomainStorage' => [
@@ -4955,6 +4947,10 @@ final class ApiObjectFormatsMapper
             'enabled' => null
         ],
 
+        'Upsun\Model\RuntimePhaseEgress' => [
+            'allowedDomains' => null
+        ],
+
         'Upsun\Model\SSIConfiguration' => [
             'enabled' => null
         ],
@@ -5361,20 +5357,20 @@ final class ApiObjectFormatsMapper
 
         'Upsun\Model\Task' => [
             'id' => null,
-            'type' => null,
-            'source' => null,
-            'hooks' => null,
+            'resources' => null,
+            'authorizations' => null,
             'relationships' => null,
             'additionalHosts' => null,
             'mounts' => null,
             'timezone' => null,
             'variables' => null,
+            'containerProfile' => null,
+            'type' => null,
+            'source' => null,
+            'hooks' => null,
             'dependencies' => null,
             'runtime' => null,
-            'authorizations' => null,
             'run' => null,
-            'resources' => null,
-            'containerProfile' => null,
             'name' => null
         ],
 
@@ -5816,17 +5812,18 @@ final class ApiObjectFormatsMapper
 
         'Upsun\Model\WebApplicationsValue' => [
             'resources' => null,
-            'size' => null,
-            'disk' => null,
-            'access' => null,
             'authorizations' => null,
             'relationships' => null,
             'additionalHosts' => null,
             'mounts' => null,
             'timezone' => null,
             'variables' => null,
-            'firewall' => null,
             'containerProfile' => null,
+            'size' => null,
+            'disk' => null,
+            'access' => null,
+            'firewall' => null,
+            'egress' => null,
             'operations' => null,
             'name' => null,
             'type' => null,
@@ -5930,17 +5927,18 @@ final class ApiObjectFormatsMapper
 
         'Upsun\Model\WorkersValue' => [
             'resources' => null,
-            'size' => null,
-            'disk' => null,
-            'access' => null,
             'authorizations' => null,
             'relationships' => null,
             'additionalHosts' => null,
             'mounts' => null,
             'timezone' => null,
             'variables' => null,
-            'firewall' => null,
             'containerProfile' => null,
+            'size' => null,
+            'disk' => null,
+            'access' => null,
+            'firewall' => null,
+            'egress' => null,
             'operations' => null,
             'name' => null,
             'type' => null,

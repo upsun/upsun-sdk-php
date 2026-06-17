@@ -26,13 +26,13 @@ final class WorkersValue implements Model, JsonSerializable
     public const ACCESS_VIEWER = 'viewer';
 
     public function __construct(
-        private readonly string $size,
-        private readonly array $access,
         private readonly array $authorizations,
         private readonly array $relationships,
         private readonly array $additionalHosts,
         private readonly array $mounts,
         private readonly array $variables,
+        private readonly string $size,
+        private readonly array $access,
         private readonly array $operations,
         private readonly string $name,
         private readonly string $type,
@@ -46,10 +46,11 @@ final class WorkersValue implements Model, JsonSerializable
         private readonly string $slugId,
         private readonly bool $supportsHorizontalScaling,
         private readonly ?Resources $resources,
-        private readonly ?int $disk,
         private readonly ?string $timezone,
-        private readonly ?Firewall $firewall,
         private readonly ?string $containerProfile,
+        private readonly ?int $disk,
+        private readonly ?Firewall $firewall,
+        private readonly ?Egress $egress,
         private readonly ?object $endpoints,
         private readonly ?OCIImage $image,
         private readonly ?int $instanceCount,
@@ -65,17 +66,18 @@ final class WorkersValue implements Model, JsonSerializable
     {
         return [
             'resources' => $this->resources,
-            'size' => $this->size,
-            'disk' => $this->disk,
-            'access' => $this->access,
             'authorizations' => $this->authorizations,
             'relationships' => $this->relationships,
             'additionalHosts' => $this->additionalHosts,
             'mounts' => $this->mounts,
             'timezone' => $this->timezone,
             'variables' => $this->variables,
-            'firewall' => $this->firewall,
             'containerProfile' => $this->containerProfile,
+            'size' => $this->size,
+            'disk' => $this->disk,
+            'access' => $this->access,
+            'firewall' => $this->firewall,
+            'egress' => $this->egress,
             'operations' => $this->operations,
             'name' => $this->name,
             'type' => $this->type,
@@ -102,21 +104,6 @@ final class WorkersValue implements Model, JsonSerializable
     public function getResources(): ?Resources
     {
         return $this->resources;
-    }
-
-    public function getSize(): string
-    {
-        return $this->size;
-    }
-
-    public function getDisk(): ?int
-    {
-        return $this->disk;
-    }
-
-    public function getAccess(): array
-    {
-        return $this->access;
     }
 
     /**
@@ -158,14 +145,34 @@ final class WorkersValue implements Model, JsonSerializable
         return $this->variables;
     }
 
+    public function getContainerProfile(): ?string
+    {
+        return $this->containerProfile;
+    }
+
+    public function getSize(): string
+    {
+        return $this->size;
+    }
+
+    public function getDisk(): ?int
+    {
+        return $this->disk;
+    }
+
+    public function getAccess(): array
+    {
+        return $this->access;
+    }
+
     public function getFirewall(): ?Firewall
     {
         return $this->firewall;
     }
 
-    public function getContainerProfile(): ?string
+    public function getEgress(): ?Egress
     {
-        return $this->containerProfile;
+        return $this->egress;
     }
 
     /**

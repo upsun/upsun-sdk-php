@@ -7,20 +7,20 @@ use Generator;
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\AddOnsApi;
+use Upsun\Api\AlertsApi;
 use Upsun\Api\ApiException;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\DiscountsApi;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
-use Upsun\Api\OrganizationManagementApi;
 use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\OrganizationsApi;
-use Upsun\Api\ProfilesApi;
 use Upsun\Api\RecordsApi;
 use Upsun\Api\ReferencesApi;
 use Upsun\Api\SubscriptionsApi;
+use Upsun\Api\UserProfilesApi;
 use Upsun\Api\VouchersApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Address;
@@ -36,16 +36,14 @@ use Upsun\Model\CreateOrgRequest;
 use Upsun\Model\DateTimeFilter;
 use Upsun\Model\Discount;
 use Upsun\Model\EstimationObject;
-use Upsun\Model\GetOrgPrepaymentInfo200Response;
-use Upsun\Model\GetSubscriptionUsageAlerts200Response;
+use Upsun\Model\GetAddress200Response;
 use Upsun\Model\GetTypeAllowance200Response;
+use Upsun\Model\GetUsageAlerts200Response;
 use Upsun\Model\Invoice;
-use Upsun\Model\ListOrgDiscounts200Response;
 use Upsun\Model\ListOrgInvoices200Response;
 use Upsun\Model\ListOrgMembers200Response;
 use Upsun\Model\ListOrgOrders200Response;
 use Upsun\Model\ListOrgPlanRecords200Response;
-use Upsun\Model\ListOrgPrepaymentTransactions200Response;
 use Upsun\Model\ListOrgProjects200Response;
 use Upsun\Model\ListOrgs200Response;
 use Upsun\Model\ListOrgSubscriptions200Response;
@@ -55,9 +53,7 @@ use Upsun\Model\ListUserOrgs200Response;
 use Upsun\Model\Order;
 use Upsun\Model\Organization;
 use Upsun\Model\OrganizationAddonsObject;
-use Upsun\Model\OrganizationAlertConfig;
 use Upsun\Model\OrganizationCarbon;
-use Upsun\Model\OrganizationEstimationObject;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationProject;
@@ -69,15 +65,13 @@ use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
-use Upsun\Model\SubscriptionAddonsObject;
 use Upsun\Model\SubscriptionCurrentUsageObject;
 use Upsun\Model\UpdateOrgAddonsRequest;
-use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
 use Upsun\Model\UpdateOrgMemberRequest;
-use Upsun\Model\UpdateOrgProfileRequest;
 use Upsun\Model\UpdateOrgRequest;
 use Upsun\Model\UpdateOrgSubscriptionRequest;
-use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
+use Upsun\Model\UpdateProfileRequest;
+use Upsun\Model\UpdateUsageAlertsRequest;
 use Upsun\Model\Vouchers;
 use Upsun\UpsunClient;
 
@@ -101,14 +95,14 @@ class OrganizationsTask extends TaskBase
         private readonly InvoicesApi $invoicesApi,
         private readonly MfaApi $mfaApi,
         private readonly OrdersApi $ordersApi,
-        private readonly ProfilesApi $profilesApi,
+        private readonly UserProfilesApi $userProfilesApi,
         private readonly RecordsApi $recordsApi,
         private readonly VouchersApi $vouchersApi,
         private readonly AddOnsApi $addOnsApi,
         private readonly DiscountsApi $discountsApi,
-        private readonly OrganizationManagementApi $organizationManagementApi,
         private readonly ReferencesApi $referencesApi,
         private readonly DefaultApi $defaultApi,
+        private readonly AlertsApi $alertsApi,
     ) {
         parent::__construct($client);
     }
@@ -275,6 +269,86 @@ class OrganizationsTask extends TaskBase
         $this->checkOrganizationId($organizationId);
 
         return $this->subscriptionsApi->listOrgSubscriptions($organizationId);
+    }
+
+    /**
+     * Check whether a subscription can be updated to the given plan and resources.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function canUpdateSubscription(
+        string $subscriptionId,
+        ?string $plan = null,
+        ?int $environments = null,
+        ?int $storage = null,
+        ?int $userLicenses = null
+    ): CanUpdateSubscription200Response {
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->subscriptionsApi->canUpdateSubscription(
+            subscriptionId: $subscriptionId,
+            plan: $plan,
+            environments: $environments,
+            storage: $storage,
+            userLicenses: $userLicenses
+        );
+    }
+
+    /**
+     * Update an organization subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function updateOrgSubscription(
+        string $organizationId,
+        string $subscriptionId,
+        UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest
+    ): Subscription {
+        $this->checkOrganizationId($organizationId);
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->subscriptionsApi->updateOrgSubscription(
+            organizationId: $organizationId,
+            subscriptionId: $subscriptionId,
+            updateOrgSubscriptionRequest: $updateOrgSubscriptionRequest
+        );
+    }
+
+    /**
+     * Get usage alerts for a subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function getSubscriptionUsageAlerts(string $subscriptionId): GetUsageAlerts200Response
+    {
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->alertsApi->getUsageAlerts(subscriptionId: $subscriptionId);
+    }
+
+    /**
+     * Update usage alerts for a subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function updateSubscriptionUsageAlerts(
+        string $subscriptionId,
+        ?UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
+    ): GetUsageAlerts200Response {
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->alertsApi->updateUsageAlerts(
+            subscriptionId: $subscriptionId,
+            updateUsageAlertsRequest: $updateUsageAlertsRequest
+        );
     }
 
     /**
@@ -907,11 +981,11 @@ class OrganizationsTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function getAddress(string $organizationId): Address
+    public function getAddress(string $userId): GetAddress200Response
     {
-        $this->checkOrganizationId($organizationId);
+        $this->checkUserId($userId);
 
-        return $this->profilesApi->getOrgAddress(organizationId: $organizationId);
+        return $this->userProfilesApi->getAddress(userId: $userId);
     }
 
     /**
@@ -921,11 +995,11 @@ class OrganizationsTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function getProfile(string $organizationId): Profile
+    public function getProfile(string $userId): Profile
     {
-        $this->checkOrganizationId($organizationId);
+        $this->checkUserId($userId);
 
-        return $this->profilesApi->getOrgProfile(organizationId: $organizationId);
+        return $this->userProfilesApi->getProfile(userId: $userId);
     }
 
     /**
@@ -936,7 +1010,7 @@ class OrganizationsTask extends TaskBase
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function updateAddress(
-        string $organizationId,
+        string $userId,
         ?string $country = null,
         ?string $nameLine = null,
         ?string $premise = null,
@@ -947,11 +1021,11 @@ class OrganizationsTask extends TaskBase
         ?string $locality = null,
         ?string $dependentLocality = null,
         ?string $postalCode = null,
-    ): Address {
-        $this->checkOrganizationId($organizationId);
+    ): GetAddress200Response {
+        $this->checkUserId($userId);
 
-        return $this->profilesApi->updateOrgAddress(
-            organizationId: $organizationId,
+        return $this->userProfilesApi->updateAddress(
+            userId: $userId,
             address: new Address(
                 country: $country,
                 nameLine: $nameLine,
@@ -975,23 +1049,21 @@ class OrganizationsTask extends TaskBase
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function updateProfile(
-        string $organizationId,
+        string $userId,
         ?string $defaultCatalog = null,
         ?string $projectOptionsUrl = null,
         ?string $companyName = null,
         ?string $vatNumber = null,
-        ?string $billingContact = null,
     ): Profile {
-        $this->checkOrganizationId($organizationId);
+        $this->checkUserId($userId);
 
-        return $this->profilesApi->updateOrgProfile(
-            organizationId: $organizationId,
-            updateOrgProfileRequest: new UpdateOrgProfileRequest(
-                defaultCatalog: $defaultCatalog,
-                projectOptionsUrl: $projectOptionsUrl,
+        return $this->userProfilesApi->updateProfile(
+            userId: $userId,
+            updateProfileRequest: new UpdateProfileRequest(
                 companyName: $companyName,
                 vatNumber: $vatNumber,
-                billingContact: $billingContact,
+                defaultCatalog: $defaultCatalog,
+                projectOptionsUrl: $projectOptionsUrl,
             )
         );
     }
@@ -1256,120 +1328,6 @@ class OrganizationsTask extends TaskBase
         );
     }
 
-    /**
-     * Checks whether the subscription can be updated with the requested values.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @throws InvalidArgumentException if the subscription ID is invalid
-     * @return CanUpdateSubscription200Response
-     */
-    public function canUpdateSubscription(
-        string $subscriptionId,
-        ?string $plan = null,
-        ?int $environments = null,
-        ?int $storage = null,
-        ?int $userLicenses = null
-    ): CanUpdateSubscription200Response {
-        $this->checkSubscriptionId($subscriptionId);
-
-        return $this->subscriptionsApi->canUpdateSubscription(
-            subscriptionId: $subscriptionId,
-            plan: $plan,
-            environments: $environments,
-            storage: $storage,
-            userLicenses: $userLicenses
-        );
-    }
-
-    /**
-     * Gets subscription usage alerts for an organization subscription.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @throws InvalidArgumentException if required parameters are missing or invalid
-     * @return GetSubscriptionUsageAlerts200Response
-     */
-    public function getSubscriptionUsageAlerts(
-        string $organizationId,
-        string $subscriptionId
-    ): GetSubscriptionUsageAlerts200Response {
-        $this->checkOrganizationId($organizationId);
-        $this->checkSubscriptionId($subscriptionId);
-
-        return $this->subscriptionsApi->getSubscriptionUsageAlerts(
-            organizationId: $organizationId,
-            subscriptionId: $subscriptionId
-        );
-    }
-
-    /**
-     * Lists addons for an organization subscription.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @throws InvalidArgumentException if required parameters are missing or invalid
-     * @return SubscriptionAddonsObject
-     */
-    public function listSubscriptionAddons(
-        string $organizationId,
-        string $subscriptionId
-    ): SubscriptionAddonsObject {
-        $this->checkOrganizationId($organizationId);
-        $this->checkSubscriptionId($subscriptionId);
-
-        return $this->subscriptionsApi->listSubscriptionAddons(
-            organizationId: $organizationId,
-            subscriptionId: $subscriptionId
-        );
-    }
-
-    /**
-     * Updates an organization subscription.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @throws InvalidArgumentException if required parameters are missing or invalid
-     * @return Subscription
-     */
-    public function updateOrgSubscription(
-        string $organizationId,
-        string $subscriptionId,
-        UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest
-    ): Subscription {
-        $this->checkOrganizationId($organizationId);
-        $this->checkSubscriptionId($subscriptionId);
-
-        return $this->subscriptionsApi->updateOrgSubscription(
-            organizationId: $organizationId,
-            subscriptionId: $subscriptionId,
-            updateOrgSubscriptionRequest: $updateOrgSubscriptionRequest
-        );
-    }
-
-    /**
-     * Updates usage alerts for an organization subscription.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @throws InvalidArgumentException if required parameters are missing or invalid
-     * @return GetSubscriptionUsageAlerts200Response
-     */
-    public function updateSubscriptionUsageAlerts(
-        string $organizationId,
-        string $subscriptionId,
-        UpdateSubscriptionUsageAlertsRequest $updateSubscriptionUsageAlertsRequest
-    ): GetSubscriptionUsageAlerts200Response {
-        $this->checkOrganizationId($organizationId);
-        $this->checkSubscriptionId($subscriptionId);
-
-        return $this->subscriptionsApi->updateSubscriptionUsageAlerts(
-            organizationId: $organizationId,
-            subscriptionId: $subscriptionId,
-            updateSubscriptionUsageAlertsRequest: $updateSubscriptionUsageAlertsRequest
-        );
-    }
-
     // Discounts Methods
 
     /**
@@ -1399,103 +1357,6 @@ class OrganizationsTask extends TaskBase
     public function getTypeAllowance(): GetTypeAllowance200Response
     {
         return $this->discountsApi->getTypeAllowance();
-    }
-
-    /**
-     * Lists discounts for an organization.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @throws InvalidArgumentException if the organization ID is invalid
-     * @return ListOrgDiscounts200Response
-     */
-    public function listDiscounts(string $organizationId): ListOrgDiscounts200Response
-    {
-        $this->checkOrganizationId($organizationId);
-
-        return $this->discountsApi->listOrgDiscounts(organizationId: $organizationId);
-    }
-
-    // Organization Management Methods
-
-    /**
-     * Estimates total spend for an organization.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @throws InvalidArgumentException if the organization ID is invalid
-     * @return OrganizationEstimationObject
-     */
-    public function estimateOrg(string $organizationId): OrganizationEstimationObject
-    {
-        $this->checkOrganizationId($organizationId);
-
-        return $this->organizationManagementApi->estimateOrg(organizationId: $organizationId);
-    }
-
-    /**
-     * Gets billing alert configuration for an organization.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @throws InvalidArgumentException if the organization ID is invalid
-     * @return OrganizationAlertConfig
-     */
-    public function getOrgBillingAlertConfig(string $organizationId): OrganizationAlertConfig
-    {
-        $this->checkOrganizationId($organizationId);
-
-        return $this->organizationManagementApi->getOrgBillingAlertConfig(organizationId: $organizationId);
-    }
-
-    /**
-     * Gets prepayment information for an organization.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @throws InvalidArgumentException if the organization ID is invalid
-     * @return GetOrgPrepaymentInfo200Response
-     */
-    public function getOrgPrepaymentInfo(string $organizationId): GetOrgPrepaymentInfo200Response
-    {
-        $this->checkOrganizationId($organizationId);
-
-        return $this->organizationManagementApi->getOrgPrepaymentInfo(organizationId: $organizationId);
-    }
-
-    /**
-     * Lists prepayment transactions for an organization.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @throws InvalidArgumentException if the organization ID is invalid
-     * @return ListOrgPrepaymentTransactions200Response
-     */
-    public function listOrgPrepaymentTransactions(string $organizationId): ListOrgPrepaymentTransactions200Response
-    {
-        $this->checkOrganizationId($organizationId);
-
-        return $this->organizationManagementApi->listOrgPrepaymentTransactions(organizationId: $organizationId);
-    }
-
-    /**
-     * Updates billing alert configuration for an organization.
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     * @throws InvalidArgumentException if the organization ID is invalid
-     * @return OrganizationAlertConfig
-     */
-    public function updateOrgBillingAlertConfig(
-        string $organizationId,
-        UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest
-    ): OrganizationAlertConfig {
-        $this->checkOrganizationId($organizationId);
-
-        return $this->organizationManagementApi->updateOrgBillingAlertConfig(
-            organizationId: $organizationId,
-            updateOrgBillingAlertConfigRequest: $updateOrgBillingAlertConfigRequest
-        );
     }
 
     // References Methods

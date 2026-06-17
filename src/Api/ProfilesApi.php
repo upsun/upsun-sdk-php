@@ -62,6 +62,8 @@ final class ProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Profiles/operation/get-org-address
+     *
+     * @deprecated
      */
     public function getOrgAddress(
         string $organizationId
@@ -73,6 +75,8 @@ final class ProfilesApi extends AbstractApi
 
     /**
      * Get address with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -123,6 +127,8 @@ final class ProfilesApi extends AbstractApi
      *         name instead. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getOrgAddressRequest(
         string $organizationId
@@ -220,6 +226,8 @@ final class ProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Profiles/operation/get-org-profile
+     *
+     * @deprecated
      */
     public function getOrgProfile(
         string $organizationId
@@ -231,6 +239,8 @@ final class ProfilesApi extends AbstractApi
 
     /**
      * Get profile with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -281,6 +291,8 @@ final class ProfilesApi extends AbstractApi
      *         name instead. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getOrgProfileRequest(
         string $organizationId
@@ -377,6 +389,8 @@ final class ProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Profiles/operation/update-org-address
+     *
+     * @deprecated
      */
     public function updateOrgAddress(
         string $organizationId,
@@ -390,6 +404,8 @@ final class ProfilesApi extends AbstractApi
 
     /**
      * Update address with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
@@ -440,6 +456,8 @@ final class ProfilesApi extends AbstractApi
      *         The ID of the organization. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function updateOrgAddressRequest(
         string $organizationId,
@@ -545,6 +563,8 @@ final class ProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Profiles/operation/update-org-profile
+     *
+     * @deprecated
      */
     public function updateOrgProfile(
         string $organizationId,
@@ -558,6 +578,8 @@ final class ProfilesApi extends AbstractApi
 
     /**
      * Update profile with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
@@ -608,6 +630,8 @@ final class ProfilesApi extends AbstractApi
      *         The ID of the organization. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function updateOrgProfileRequest(
         string $organizationId,

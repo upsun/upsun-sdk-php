@@ -36,12 +36,10 @@ use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
 use Upsun\Api\OrganizationInvitationsApi;
-use Upsun\Api\OrganizationManagementApi;
 use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\OrganizationsApi;
 use Upsun\Api\PhoneNumberApi;
-use Upsun\Api\ProfilesApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectInvitationsApi;
@@ -242,11 +240,9 @@ class UpsunClient
         $ordersApi = new OrdersApi(...$taskParams);
         $organizationApi = new OrganizationsApi(...$taskParams);
         $organizationInvitationsApi = new OrganizationInvitationsApi(...$taskParams);
-        $organizationManagementApi = new OrganizationManagementApi(...$taskParams);
         $organizationMembersApi = new OrganizationMembersApi(...$taskParams);
         $organizationProjectsApi = new OrganizationProjectsApi(...$taskParams);
         $phoneNumberApi = new PhoneNumberApi(...$taskParams);
-        $profilesApi = new ProfilesApi(...$taskParams);
         $blackfireMonitoringApi = new BlackfireMonitoringApi(...$taskParams);
         $blackfireProfilingApi = new BlackfireProfilingApi(...$taskParams);
         $projectActivityApi = new ProjectActivityApi(...$taskParams);
@@ -336,14 +332,14 @@ class UpsunClient
             $invoicesApi,
             $mfaApi,
             $ordersApi,
-            $profilesApi,
+            $userProfilesApi,
             $recordsApi,
             $vouchersApi,
             $addOnsApi,
             $discountsApi,
-            $organizationManagementApi,
             $referencesApi,
             $defaultApi,
+            $alertsApi,
         );
         $this->projects = new ProjectsTask(
             $this,

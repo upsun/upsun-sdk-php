@@ -1037,19 +1037,6 @@ class UsersTask extends TaskBase
     }
 
     /**
-     * Get the current user (deprecated method)
-     * This method is deprecated. Use me() instead to retrieve information about the current user.
-     *
-     * @deprecated use me() instead
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws ClientExceptionInterface
-     */
-    public function getCurrentUserDeprecated()
-    {
-        return $this->api->getCurrentUserDeprecated();
-    }
-
-    /**
      * Create a profile picture for a user
      * This method allows you to upload and set a profile picture for a user.
      *

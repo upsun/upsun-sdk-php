@@ -338,6 +338,8 @@ final class DiscountsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Discounts/operation/list-org-discounts
+     *
+     * @deprecated
      */
     public function listOrgDiscounts(
         string $organizationId
@@ -349,6 +351,8 @@ final class DiscountsApi extends AbstractApi
 
     /**
      * List organization discounts with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -399,6 +403,8 @@ final class DiscountsApi extends AbstractApi
      *         name instead. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function listOrgDiscountsRequest(
         string $organizationId

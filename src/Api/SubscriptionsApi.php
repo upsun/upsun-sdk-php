@@ -232,6 +232,8 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Subscriptions/operation/can-create-new-org-subscription
+     *
+     * @deprecated
      */
     public function canCreateNewOrgSubscription(
         string $organizationId
@@ -243,6 +245,8 @@ final class SubscriptionsApi extends AbstractApi
 
     /**
      * Checks if the user is able to create a new project. with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
@@ -291,6 +295,8 @@ final class SubscriptionsApi extends AbstractApi
      *         The ID of the organization. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function canCreateNewOrgSubscriptionRequest(
         string $organizationId
@@ -995,6 +1001,8 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Subscriptions/operation/estimate-new-org-subscription
+     *
+     * @deprecated
      */
     public function estimateNewOrgSubscription(
         string $organizationId,
@@ -1016,6 +1024,8 @@ final class SubscriptionsApi extends AbstractApi
 
     /**
      * Estimate the price of a new subscription with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
@@ -1084,6 +1094,8 @@ final class SubscriptionsApi extends AbstractApi
      * @param  string|null $format (optional)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function estimateNewOrgSubscriptionRequest(
         string $organizationId,
@@ -1284,6 +1296,8 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Subscriptions/operation/estimate-org-subscription
+     *
+     * @deprecated
      */
     public function estimateOrgSubscription(
         string $organizationId,
@@ -1307,6 +1321,8 @@ final class SubscriptionsApi extends AbstractApi
 
     /**
      * Estimate the price of a subscription with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
@@ -1381,6 +1397,8 @@ final class SubscriptionsApi extends AbstractApi
      * @param  string|null $format (optional)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function estimateOrgSubscriptionRequest(
         string $organizationId,
@@ -1756,6 +1774,8 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Subscriptions/operation/get-org-subscription-current-usage
+     *
+     * @deprecated
      */
     public function getOrgSubscriptionCurrentUsage(
         string $organizationId,
@@ -1773,6 +1793,8 @@ final class SubscriptionsApi extends AbstractApi
 
     /**
      * Get current usage for a subscription with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
@@ -1835,6 +1857,8 @@ final class SubscriptionsApi extends AbstractApi
      * @param  bool|null $includeNotCharged (optional)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getOrgSubscriptionCurrentUsageRequest(
         string $organizationId,
@@ -1979,6 +2003,8 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Subscriptions/operation/get-subscription-usage-alerts
+     *
+     * @deprecated
      */
     public function getSubscriptionUsageAlerts(
         string $organizationId,
@@ -1992,6 +2018,8 @@ final class SubscriptionsApi extends AbstractApi
 
     /**
      * Get usage alerts with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -2048,6 +2076,8 @@ final class SubscriptionsApi extends AbstractApi
      *         The ID of the subscription. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getSubscriptionUsageAlertsRequest(
         string $organizationId,
@@ -2565,6 +2595,8 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Subscriptions/operation/list-subscription-addons
+     *
+     * @deprecated
      */
     public function listSubscriptionAddons(
         string $organizationId,
@@ -2578,6 +2610,8 @@ final class SubscriptionsApi extends AbstractApi
 
     /**
      * List addons for a subscription with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
@@ -2632,6 +2666,8 @@ final class SubscriptionsApi extends AbstractApi
      *         The ID of the subscription. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function listSubscriptionAddonsRequest(
         string $organizationId,
@@ -2943,6 +2979,8 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Subscriptions/operation/update-subscription-usage-alerts
+     *
+     * @deprecated
      */
     public function updateSubscriptionUsageAlerts(
         string $organizationId,
@@ -2958,6 +2996,8 @@ final class SubscriptionsApi extends AbstractApi
 
     /**
      * Update usage alerts. with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -3016,6 +3056,8 @@ final class SubscriptionsApi extends AbstractApi
      *         The ID of the subscription. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function updateSubscriptionUsageAlertsRequest(
         string $organizationId,

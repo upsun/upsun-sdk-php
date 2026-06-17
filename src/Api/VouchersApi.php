@@ -60,6 +60,8 @@ final class VouchersApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Vouchers/operation/apply-org-voucher
+     *
+     * @deprecated
      */
     public function applyOrgVoucher(
         string $organizationId,
@@ -73,6 +75,8 @@ final class VouchersApi extends AbstractApi
 
     /**
      * Apply voucher with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
@@ -117,6 +121,8 @@ final class VouchersApi extends AbstractApi
      *         The ID of the organization. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function applyOrgVoucherRequest(
         string $organizationId,
@@ -230,6 +236,8 @@ final class VouchersApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Vouchers/operation/list-org-vouchers
+     *
+     * @deprecated
      */
     public function listOrgVouchers(
         string $organizationId
@@ -241,6 +249,8 @@ final class VouchersApi extends AbstractApi
 
     /**
      * List vouchers with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -291,6 +301,8 @@ final class VouchersApi extends AbstractApi
      *         name instead. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function listOrgVouchersRequest(
         string $organizationId

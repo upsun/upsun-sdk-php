@@ -64,6 +64,8 @@ final class OrganizationManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Organization-Management/operation/estimate-org
+     *
+     * @deprecated
      */
     public function estimateOrg(
         string $organizationId
@@ -75,6 +77,8 @@ final class OrganizationManagementApi extends AbstractApi
 
     /**
      * Estimate total spend with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -125,6 +129,8 @@ final class OrganizationManagementApi extends AbstractApi
      *         name instead. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function estimateOrgRequest(
         string $organizationId
@@ -222,6 +228,8 @@ final class OrganizationManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Organization-Management/operation/get-org-billing-alert-config
+     *
+     * @deprecated
      */
     public function getOrgBillingAlertConfig(
         string $organizationId
@@ -233,6 +241,8 @@ final class OrganizationManagementApi extends AbstractApi
 
     /**
      * Get billing alert configuration with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -283,6 +293,8 @@ final class OrganizationManagementApi extends AbstractApi
      *         name instead. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getOrgBillingAlertConfigRequest(
         string $organizationId
@@ -379,6 +391,8 @@ final class OrganizationManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Organization-Management/operation/get-org-prepayment-info
+     *
+     * @deprecated
      */
     public function getOrgPrepaymentInfo(
         string $organizationId
@@ -390,6 +404,8 @@ final class OrganizationManagementApi extends AbstractApi
 
     /**
      * Get organization prepayment information with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
@@ -438,6 +454,8 @@ final class OrganizationManagementApi extends AbstractApi
      *         The ID of the organization. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getOrgPrepaymentInfoRequest(
         string $organizationId
@@ -534,6 +552,8 @@ final class OrganizationManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Organization-Management/operation/list-org-prepayment-transactions
+     *
+     * @deprecated
      */
     public function listOrgPrepaymentTransactions(
         string $organizationId
@@ -545,6 +565,8 @@ final class OrganizationManagementApi extends AbstractApi
 
     /**
      * List organization prepayment transactions with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
@@ -593,6 +615,8 @@ final class OrganizationManagementApi extends AbstractApi
      *         The ID of the organization. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function listOrgPrepaymentTransactionsRequest(
         string $organizationId
@@ -690,6 +714,8 @@ final class OrganizationManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Organization-Management/operation/update-org-billing-alert-config
+     *
+     * @deprecated
      */
     public function updateOrgBillingAlertConfig(
         string $organizationId,
@@ -703,6 +729,8 @@ final class OrganizationManagementApi extends AbstractApi
 
     /**
      * Update billing alert configuration with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -755,6 +783,8 @@ final class OrganizationManagementApi extends AbstractApi
      *         name instead. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function updateOrgBillingAlertConfigRequest(
         string $organizationId,

@@ -37,12 +37,10 @@ use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
 use Upsun\Api\OrganizationInvitationsApi;
-use Upsun\Api\OrganizationManagementApi;
 use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\OrganizationsApi;
 use Upsun\Api\PhoneNumberApi;
-use Upsun\Api\ProfilesApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectInvitationsApi;
@@ -246,14 +244,14 @@ class ProjectsTaskTest extends BaseTestCase
             new InvoicesApi(...$apiClassParams),
             new MfaApi(...$apiClassParams),
             new OrdersApi(...$apiClassParams),
-            new ProfilesApi(...$apiClassParams),
+            new UserProfilesApi(...$apiClassParams),
             new RecordsApi(...$apiClassParams),
             new VouchersApi(...$apiClassParams),
             new AddOnsApi(...$apiClassParams),
             new DiscountsApi(...$apiClassParams),
-            new OrganizationManagementApi(...$apiClassParams),
             new ReferencesApi(...$apiClassParams),
-            new DefaultApi(...$apiClassParams)
+            new DefaultApi(...$apiClassParams),
+            new AlertsApi(...$apiClassParams)
         ) extends OrganizationsTask {
         };
 
@@ -483,6 +481,7 @@ class ProjectsTaskTest extends BaseTestCase
             ],
             'autoscaling' => [
                 'enabled' => true,
+                'supportsHorizontalScalingServices' => true,
             ],
             'guaranteedResources' => [
                 'enabled' => true,

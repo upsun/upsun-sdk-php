@@ -65,6 +65,8 @@ final class OrdersApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Orders/operation/create-authorization-credentials
+     *
+     * @deprecated
      */
     public function createAuthorizationCredentials(
         string $organizationId,
@@ -78,6 +80,8 @@ final class OrdersApi extends AbstractApi
 
     /**
      * Create confirmation credentials for for 3D-Secure with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -134,6 +138,8 @@ final class OrdersApi extends AbstractApi
      *         The ID of the order. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function createAuthorizationCredentialsRequest(
         string $organizationId,
@@ -406,6 +412,8 @@ final class OrdersApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Orders/operation/get-org-order
+     *
+     * @deprecated
      */
     public function getOrgOrder(
         string $organizationId,
@@ -421,6 +429,8 @@ final class OrdersApi extends AbstractApi
 
     /**
      * Get order with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -483,6 +493,8 @@ final class OrdersApi extends AbstractApi
      *         The output mode. (optional)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getOrgOrderRequest(
         string $organizationId,
@@ -619,6 +631,8 @@ final class OrdersApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://developer.upsun.com/api/#tag/Orders/operation/list-org-orders
+     *
+     * @deprecated
      */
     public function listOrgOrders(
         string $organizationId,
@@ -638,6 +652,8 @@ final class OrdersApi extends AbstractApi
 
     /**
      * List orders with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -712,6 +728,8 @@ final class OrdersApi extends AbstractApi
      *         The output mode. (optional)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function listOrgOrdersRequest(
         string $organizationId,

@@ -100,6 +100,10 @@ final class ApiObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'config' => 'config'
         ],
+        'Upsun\Model\AllowedDomainsInner' => [
+            'host' => 'host',
+            'port' => 'port'
+        ],
         'Upsun\Model\ApiToken' => [
             'id' => 'id',
             'name' => 'name',
@@ -196,7 +200,8 @@ final class ApiObjectAttributesMapper
             'memoryPressure' => 'memory_pressure'
         ],
         'Upsun\Model\Autoscaling' => [
-            'enabled' => 'enabled'
+            'enabled' => 'enabled',
+            'supportsHorizontalScalingServices' => 'supports_horizontal_scaling_services'
         ],
         'Upsun\Model\Backup' => [
             'id' => 'id',
@@ -211,13 +216,10 @@ final class ApiObjectAttributesMapper
             'safe' => 'safe',
             'sizeOfVolumes' => 'size_of_volumes',
             'sizeUsed' => 'size_used',
+            'sizeObjectStorage' => 'size_object_storage',
             'deployment' => 'deployment',
             'restorable' => 'restorable',
             'automated' => 'automated'
-        ],
-        'Upsun\Model\BasicAuth' => [
-            'username' => 'username',
-            'password' => 'password'
         ],
         'Upsun\Model\Bitbucket' => [
             'enabled' => 'enabled',
@@ -765,6 +767,9 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\BuildConfiguration' => [
             'flavor' => 'flavor',
             'caches' => 'caches'
+        ],
+        'Upsun\Model\BuildPhaseEgress' => [
+            'allowedDomains' => 'allowed_domains'
         ],
         'Upsun\Model\BuildResources' => [
             'enabled' => 'enabled',
@@ -1325,6 +1330,13 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\DomainPatch' => [
             'attributes' => 'attributes',
             'isDefault' => 'is_default'
+        ],
+        'Upsun\Model\Egress' => [
+            'build' => 'build',
+            'runtime' => 'runtime'
+        ],
+        'Upsun\Model\EgressProxy' => [
+            'enabled' => 'enabled'
         ],
         'Upsun\Model\EmailIntegration' => [
             'createdAt' => 'created_at',
@@ -3429,6 +3441,7 @@ final class ApiObjectAttributesMapper
             'sourceOperations' => 'source_operations',
             'runtimeOperations' => 'runtime_operations',
             'outboundFirewall' => 'outbound_firewall',
+            'egressProxy' => 'egress_proxy',
             'integrations' => 'integrations'
         ],
         'Upsun\Model\ProjectCarbon' => [
@@ -3742,27 +3755,6 @@ final class ApiObjectAttributesMapper
             'private' => 'private',
             'envimpact' => 'envimpact',
             'environmentalImpact' => 'environmental_impact'
-        ],
-        'Upsun\Model\RegistryCredential' => [
-            'id' => 'id',
-            'createdAt' => 'created_at',
-            'updatedAt' => 'updated_at',
-            'registry' => 'registry',
-            'auth' => 'auth',
-            'identityToken' => 'identity_token',
-            'registryToken' => 'registry_token'
-        ],
-        'Upsun\Model\RegistryCredentialCreateInput' => [
-            'registry' => 'registry',
-            'auth' => 'auth',
-            'identityToken' => 'identity_token',
-            'registryToken' => 'registry_token'
-        ],
-        'Upsun\Model\RegistryCredentialPatch' => [
-            'registry' => 'registry',
-            'auth' => 'auth',
-            'identityToken' => 'identity_token',
-            'registryToken' => 'registry_token'
         ],
         'Upsun\Model\ReplacementDomainStorage' => [
             'createdAt' => 'created_at',
@@ -4345,6 +4337,9 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\RuntimeOperations' => [
             'enabled' => 'enabled'
         ],
+        'Upsun\Model\RuntimePhaseEgress' => [
+            'allowedDomains' => 'allowed_domains'
+        ],
         'Upsun\Model\SSIConfiguration' => [
             'enabled' => 'enabled'
         ],
@@ -4704,20 +4699,20 @@ final class ApiObjectAttributesMapper
         ],
         'Upsun\Model\Task' => [
             'id' => 'id',
-            'type' => 'type',
-            'source' => 'source',
-            'hooks' => 'hooks',
+            'resources' => 'resources',
+            'authorizations' => 'authorizations',
             'relationships' => 'relationships',
             'additionalHosts' => 'additional_hosts',
             'mounts' => 'mounts',
             'timezone' => 'timezone',
             'variables' => 'variables',
+            'containerProfile' => 'container_profile',
+            'type' => 'type',
+            'source' => 'source',
+            'hooks' => 'hooks',
             'dependencies' => 'dependencies',
             'runtime' => 'runtime',
-            'authorizations' => 'authorizations',
             'run' => 'run',
-            'resources' => 'resources',
-            'containerProfile' => 'container_profile',
             'name' => 'name'
         ],
         'Upsun\Model\TaskTriggerInput' => [
@@ -5103,17 +5098,18 @@ final class ApiObjectAttributesMapper
         ],
         'Upsun\Model\WebApplicationsValue' => [
             'resources' => 'resources',
-            'size' => 'size',
-            'disk' => 'disk',
-            'access' => 'access',
             'authorizations' => 'authorizations',
             'relationships' => 'relationships',
             'additionalHosts' => 'additional_hosts',
             'mounts' => 'mounts',
             'timezone' => 'timezone',
             'variables' => 'variables',
-            'firewall' => 'firewall',
             'containerProfile' => 'container_profile',
+            'size' => 'size',
+            'disk' => 'disk',
+            'access' => 'access',
+            'firewall' => 'firewall',
+            'egress' => 'egress',
             'operations' => 'operations',
             'name' => 'name',
             'type' => 'type',
@@ -5208,17 +5204,18 @@ final class ApiObjectAttributesMapper
         ],
         'Upsun\Model\WorkersValue' => [
             'resources' => 'resources',
-            'size' => 'size',
-            'disk' => 'disk',
-            'access' => 'access',
             'authorizations' => 'authorizations',
             'relationships' => 'relationships',
             'additionalHosts' => 'additional_hosts',
             'mounts' => 'mounts',
             'timezone' => 'timezone',
             'variables' => 'variables',
-            'firewall' => 'firewall',
             'containerProfile' => 'container_profile',
+            'size' => 'size',
+            'disk' => 'disk',
+            'access' => 'access',
+            'firewall' => 'firewall',
+            'egress' => 'egress',
             'operations' => 'operations',
             'name' => 'name',
             'type' => 'type',

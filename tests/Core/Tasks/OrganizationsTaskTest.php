@@ -21,12 +21,10 @@ use Upsun\Api\GrantsApi;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
-use Upsun\Api\OrganizationManagementApi;
 use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\OrganizationsApi;
 use Upsun\Api\PhoneNumberApi;
-use Upsun\Api\ProfilesApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectsApi;
 use Upsun\Api\ProjectSettingsApi;
@@ -45,7 +43,6 @@ use Upsun\Core\Tasks\TeamsTask;
 use Upsun\Core\Tasks\UsersTask;
 use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Address;
 use Upsun\Model\CanAffordSubscriptionRequest;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Model\CanUpdateSubscription200Response;
@@ -53,24 +50,20 @@ use Upsun\Model\CreateAuthorizationCredentials200Response;
 use Upsun\Model\CreateOrgProjectRequest;
 use Upsun\Model\Discount;
 use Upsun\Model\EstimationObject;
-use Upsun\Model\GetOrgPrepaymentInfo200Response;
-use Upsun\Model\GetSubscriptionUsageAlerts200Response;
+use Upsun\Model\GetAddress200Response;
 use Upsun\Model\GetTypeAllowance200Response;
+use Upsun\Model\GetUsageAlerts200Response;
 use Upsun\Model\Invoice;
-use Upsun\Model\ListOrgDiscounts200Response;
 use Upsun\Model\ListOrgInvoices200Response;
 use Upsun\Model\ListOrgOrders200Response;
 use Upsun\Model\ListOrgPlanRecords200Response;
-use Upsun\Model\ListOrgPrepaymentTransactions200Response;
 use Upsun\Model\ListOrgSubscriptions200Response;
 use Upsun\Model\ListOrgUsageRecords200Response;
 use Upsun\Model\ListTeams200Response;
 use Upsun\Model\Order;
 use Upsun\Model\Organization;
 use Upsun\Model\OrganizationAddonsObject;
-use Upsun\Model\OrganizationAlertConfig;
 use Upsun\Model\OrganizationCarbon;
-use Upsun\Model\OrganizationEstimationObject;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationProject;
@@ -83,12 +76,10 @@ use Upsun\Model\ProjectReference;
 use Upsun\Model\ProvisionEvent;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\Subscription;
-use Upsun\Model\SubscriptionAddonsObject;
 use Upsun\Model\SubscriptionCurrentUsageObject;
 use Upsun\Model\Team;
-use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
 use Upsun\Model\UpdateOrgSubscriptionRequest;
-use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
+use Upsun\Model\UpdateUsageAlertsRequest;
 use Upsun\Model\Vouchers;
 use Upsun\UpsunClient;
 
@@ -173,14 +164,14 @@ class OrganizationsTaskTest extends BaseTestCase
             new InvoicesApi(...$apiClassParams),
             new MfaApi(...$apiClassParams),
             new OrdersApi(...$apiClassParams),
-            new ProfilesApi(...$apiClassParams),
+            new UserProfilesApi(...$apiClassParams),
             new RecordsApi(...$apiClassParams),
             new VouchersApi(...$apiClassParams),
             new AddOnsApi(...$apiClassParams),
             new DiscountsApi(...$apiClassParams),
-            new OrganizationManagementApi(...$apiClassParams),
             new ReferencesApi(...$apiClassParams),
-            new DefaultApi(...$apiClassParams)
+            new DefaultApi(...$apiClassParams),
+            new AlertsApi(...$apiClassParams)
         ) extends OrganizationsTask {
         };
     }
@@ -2054,8 +2045,8 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->getAddress(organizationId: 'org-123');
-        $this->assertInstanceOf(Address::class, $result);
+        $result = $this->organizationsTask->getAddress(userId: 'org-123');
+        $this->assertInstanceOf(GetAddress200Response::class, $result);
         $this->assertObjectProperties($result, $data);
     }
 
@@ -2721,7 +2712,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->getProfile(organizationId: 'org-123');
+        $result = $this->organizationsTask->getProfile(userId: 'org-123');
         $this->assertInstanceOf(Profile::class, $result);
         $this->assertObjectProperties($result, $data);
     }
@@ -2750,7 +2741,7 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $result = $this->organizationsTask->updateAddress(
-            organizationId: 'org-123',
+            userId: 'org-123',
             country: $fakeAddressData['country'],
             nameLine: $fakeAddressData['nameLine'],
             premise: $fakeAddressData['premise'],
@@ -2762,7 +2753,7 @@ class OrganizationsTaskTest extends BaseTestCase
             dependentLocality: $fakeAddressData['dependentLocality'],
             postalCode: $fakeAddressData['postalCode'],
         );
-        $this->assertInstanceOf(Address::class, $result);
+        $this->assertInstanceOf(GetAddress200Response::class, $result);
         $this->assertObjectProperties($result, $fakeAddressData);
     }
 
@@ -2839,12 +2830,11 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $result = $this->organizationsTask->updateProfile(
-            organizationId: 'org-123',
+            userId: 'org-123',
             defaultCatalog: $fakeUpdateOrgProfileRequestData['defaultCatalog'],
             projectOptionsUrl: $fakeUpdateOrgProfileRequestData['projectOptionsUrl'],
             companyName: $fakeUpdateOrgProfileRequestData['companyName'],
             vatNumber: $fakeUpdateOrgProfileRequestData['vatNumber'],
-            billingContact: $fakeUpdateOrgProfileRequestData['billingContact'],
         );
         $this->assertInstanceOf(Profile::class, $result);
         $this->assertObjectProperties($result, $data);
@@ -3370,6 +3360,56 @@ class OrganizationsTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
+    public function testCanUpdateSubscription(): void
+    {
+        $this->expectJsonRequest(json_encode(['canUpdate' => true, 'message' => '']));
+
+        $result = $this->organizationsTask->canUpdateSubscription('sub123');
+
+        $this->assertInstanceOf(CanUpdateSubscription200Response::class, $result);
+        $this->assertTrue($result->getCanUpdate());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateOrgSubscription(): void
+    {
+        $this->expectJsonRequest(json_encode(['id' => 'sub123', 'plan' => 'upsun/flexible', 'status' => 'active']));
+
+        $result = $this->organizationsTask->updateOrgSubscription('org123', 'sub123', new UpdateOrgSubscriptionRequest());
+
+        $this->assertInstanceOf(Subscription::class, $result);
+        $this->assertSame('upsun/flexible', $result->getPlan());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetSubscriptionUsageAlerts(): void
+    {
+        $this->expectJsonRequest(json_encode(['subscriptionId' => 'sub123']));
+
+        $result = $this->organizationsTask->getSubscriptionUsageAlerts('sub123');
+
+        $this->assertInstanceOf(GetUsageAlerts200Response::class, $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateSubscriptionUsageAlerts(): void
+    {
+        $this->expectJsonRequest(json_encode(['subscriptionId' => 'sub123']));
+
+        $result = $this->organizationsTask->updateSubscriptionUsageAlerts('sub123', new UpdateUsageAlertsRequest());
+
+        $this->assertInstanceOf(GetUsageAlerts200Response::class, $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testCreateMember(): void
     {
         $data = [
@@ -3487,74 +3527,6 @@ class OrganizationsTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testCanUpdateSubscription(): void
-    {
-        $this->expectJsonRequest(json_encode(['canUpdate' => true, 'message' => '']));
-
-        $result = $this->organizationsTask->canUpdateSubscription('sub123');
-
-        $this->assertInstanceOf(CanUpdateSubscription200Response::class, $result);
-        $this->assertTrue($result->getCanUpdate());
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testGetSubscriptionUsageAlerts(): void
-    {
-        $this->expectJsonRequest(json_encode(['current' => [], 'available' => []]));
-
-        $result = $this->organizationsTask->getSubscriptionUsageAlerts('org123', 'sub123');
-
-        $this->assertInstanceOf(GetSubscriptionUsageAlerts200Response::class, $result);
-        $this->assertIsArray($result->getCurrent());
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testListSubscriptionAddons(): void
-    {
-        $this->expectJsonRequest();
-
-        $result = $this->organizationsTask->listSubscriptionAddons('org123', 'sub123');
-
-        $this->assertInstanceOf(SubscriptionAddonsObject::class, $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateOrgSubscription(): void
-    {
-        $this->expectJsonRequest(json_encode(['id' => 'sub123', 'plan' => 'upsun/flexible', 'status' => 'active']));
-
-        $result = $this->organizationsTask->updateOrgSubscription('org123', 'sub123', new UpdateOrgSubscriptionRequest());
-
-        $this->assertInstanceOf(Subscription::class, $result);
-        $this->assertSame('upsun/flexible', $result->getPlan());
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateSubscriptionUsageAlerts(): void
-    {
-        $this->expectJsonRequest(json_encode(['current' => [], 'available' => []]));
-
-        $result = $this->organizationsTask->updateSubscriptionUsageAlerts(
-            'org123',
-            'sub123',
-            new UpdateSubscriptionUsageAlertsRequest()
-        );
-
-        $this->assertInstanceOf(GetSubscriptionUsageAlerts200Response::class, $result);
-        $this->assertIsArray($result->getAvailable());
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
     public function testGetDiscount(): void
     {
         $this->expectJsonRequest(json_encode(['id' => 42, 'organizationId' => 'org123', 'type' => 'allowance', 'status' => 'active']));
@@ -3582,87 +3554,6 @@ class OrganizationsTaskTest extends BaseTestCase
         $result = $this->organizationsTask->getTypeAllowance();
 
         $this->assertInstanceOf(GetTypeAllowance200Response::class, $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testListDiscounts(): void
-    {
-        $data = ['items' => [['id' => 1, 'type' => 'allowance', 'status' => 'active']]];
-        $this->expectJsonRequest(json_encode($data));
-
-        $result = $this->organizationsTask->listDiscounts('org123');
-
-        $this->assertInstanceOf(ListOrgDiscounts200Response::class, $result);
-        $this->assertContainsOnlyInstancesOf(Discount::class, $result->getItems());
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testEstimateOrg(): void
-    {
-        $this->expectJsonRequest(json_encode(['total' => '100', 'subTotal' => '90']));
-
-        $result = $this->organizationsTask->estimateOrg('org123');
-
-        $this->assertInstanceOf(OrganizationEstimationObject::class, $result);
-        $this->assertSame('100', $result->getTotal());
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testGetOrgBillingAlertConfig(): void
-    {
-        $this->expectJsonRequest(json_encode(['id' => 'alert123', 'active' => true, 'alertsSent' => 3]));
-
-        $result = $this->organizationsTask->getOrgBillingAlertConfig('org123');
-
-        $this->assertInstanceOf(OrganizationAlertConfig::class, $result);
-        $this->assertTrue($result->getActive());
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testGetOrgPrepaymentInfo(): void
-    {
-        $this->expectJsonRequest();
-
-        $result = $this->organizationsTask->getOrgPrepaymentInfo('org123');
-
-        $this->assertInstanceOf(GetOrgPrepaymentInfo200Response::class, $result);
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testListOrgPrepaymentTransactions(): void
-    {
-        $this->expectJsonRequest(json_encode(['count' => 0, 'transactions' => []]));
-
-        $result = $this->organizationsTask->listOrgPrepaymentTransactions('org123');
-
-        $this->assertInstanceOf(ListOrgPrepaymentTransactions200Response::class, $result);
-        $this->assertSame(0, $result->getCount());
-    }
-
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testUpdateOrgBillingAlertConfig(): void
-    {
-        $this->expectJsonRequest(json_encode(['id' => 'alert123', 'active' => false]));
-
-        $result = $this->organizationsTask->updateOrgBillingAlertConfig(
-            'org123',
-            new UpdateOrgBillingAlertConfigRequest()
-        );
-
-        $this->assertInstanceOf(OrganizationAlertConfig::class, $result);
-        $this->assertFalse($result->getActive());
     }
 
     /**
