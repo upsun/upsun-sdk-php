@@ -8,10 +8,15 @@ use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\AddOnsApi;
+use Upsun\Api\AlertsApi;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\ApiTokensApi;
 use Upsun\Api\ConnectionsApi;
+use Upsun\Api\DefaultApi;
+use Upsun\Api\DeploymentTargetApi;
+use Upsun\Api\DiscountsApi;
+use Upsun\Api\DomainClaimApi;
 use Upsun\Api\GrantsApi;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
@@ -20,10 +25,11 @@ use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\OrganizationsApi;
 use Upsun\Api\PhoneNumberApi;
-use Upsun\Api\ProfilesApi;
 use Upsun\Api\ProjectApi;
+use Upsun\Api\ProjectsApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\RecordsApi;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
@@ -37,28 +43,43 @@ use Upsun\Core\Tasks\TeamsTask;
 use Upsun\Core\Tasks\UsersTask;
 use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Address;
+use Upsun\Model\CanAffordSubscriptionRequest;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\CanUpdateSubscription200Response;
 use Upsun\Model\CreateAuthorizationCredentials200Response;
+use Upsun\Model\CreateOrgProjectRequest;
+use Upsun\Model\Discount;
 use Upsun\Model\EstimationObject;
+use Upsun\Model\GetAddress200Response;
+use Upsun\Model\GetTypeAllowance200Response;
+use Upsun\Model\GetUsageAlerts200Response;
 use Upsun\Model\Invoice;
 use Upsun\Model\ListOrgInvoices200Response;
 use Upsun\Model\ListOrgOrders200Response;
 use Upsun\Model\ListOrgPlanRecords200Response;
+use Upsun\Model\ListOrgSubscriptions200Response;
 use Upsun\Model\ListOrgUsageRecords200Response;
+use Upsun\Model\ListTeams200Response;
 use Upsun\Model\Order;
 use Upsun\Model\Organization;
 use Upsun\Model\OrganizationAddonsObject;
+use Upsun\Model\OrganizationCarbon;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationProject;
+use Upsun\Model\OrganizationReference;
 use Upsun\Model\PlanRecords;
 use Upsun\Model\Profile;
 use Upsun\Model\Project;
+use Upsun\Model\ProjectCarbon;
+use Upsun\Model\ProjectReference;
+use Upsun\Model\ProvisionEvent;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\Subscription;
 use Upsun\Model\SubscriptionCurrentUsageObject;
 use Upsun\Model\Team;
+use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\UpdateUsageAlertsRequest;
 use Upsun\Model\Vouchers;
 use Upsun\UpsunClient;
 
@@ -100,7 +121,8 @@ class OrganizationsTaskTest extends BaseTestCase
             new ConnectionsApi(...$apiClassParams),
             new GrantsApi(...$apiClassParams),
             new MfaApi(...$apiClassParams),
-            new PhoneNumberApi(...$apiClassParams)
+            new PhoneNumberApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams)
         ) extends UsersTask {
         };
         $upsunClient->users = $usersTask;
@@ -112,6 +134,10 @@ class OrganizationsTaskTest extends BaseTestCase
             new OrganizationProjectsApi(...$apiClassParams),
             new ProjectSettingsApi(...$apiClassParams),
             new SubscriptionsApi(...$apiClassParams),
+            new DeploymentTargetApi(...$apiClassParams),
+            new AlertsApi(...$apiClassParams),
+            new DomainClaimApi(...$apiClassParams),
+            new ProjectsApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
 
@@ -121,7 +147,8 @@ class OrganizationsTaskTest extends BaseTestCase
         $teamsTask = new class (
             $upsunClient,
             new TeamsApi(...$apiClassParams),
-            new TeamAccessApi(...$apiClassParams)
+            new TeamAccessApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams)
         ) extends TeamsTask {
         };
 
@@ -137,10 +164,14 @@ class OrganizationsTaskTest extends BaseTestCase
             new InvoicesApi(...$apiClassParams),
             new MfaApi(...$apiClassParams),
             new OrdersApi(...$apiClassParams),
-            new ProfilesApi(...$apiClassParams),
+            new UserProfilesApi(...$apiClassParams),
             new RecordsApi(...$apiClassParams),
             new VouchersApi(...$apiClassParams),
-            new AddOnsApi(...$apiClassParams)
+            new AddOnsApi(...$apiClassParams),
+            new DiscountsApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams),
+            new DefaultApi(...$apiClassParams),
+            new AlertsApi(...$apiClassParams)
         ) extends OrganizationsTask {
         };
     }
@@ -824,7 +855,7 @@ class OrganizationsTaskTest extends BaseTestCase
      * @throws ClientExceptionInterface
      * @throws Exception
      */
-    public function testCreateMember()
+    public function testAddMember()
     {
         $orgId = 'org_98765';
         $userId = 'user_54321';
@@ -871,7 +902,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($organizationMemberData)
             ));
 
-        $result = $this->organizationsTask->createMember(
+        $result = $this->organizationsTask->addMember(
             organizationId: $orgId,
             userId: $userId,
             permissions: $permissions
@@ -2014,8 +2045,8 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->getAddress(organizationId: 'org-123');
-        $this->assertInstanceOf(Address::class, $result);
+        $result = $this->organizationsTask->getAddress(userId: 'org-123');
+        $this->assertInstanceOf(GetAddress200Response::class, $result);
         $this->assertObjectProperties($result, $data);
     }
 
@@ -2681,7 +2712,7 @@ class OrganizationsTaskTest extends BaseTestCase
                 json_encode($data)
             ));
 
-        $result = $this->organizationsTask->getProfile(organizationId: 'org-123');
+        $result = $this->organizationsTask->getProfile(userId: 'org-123');
         $this->assertInstanceOf(Profile::class, $result);
         $this->assertObjectProperties($result, $data);
     }
@@ -2710,7 +2741,7 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $result = $this->organizationsTask->updateAddress(
-            organizationId: 'org-123',
+            userId: 'org-123',
             country: $fakeAddressData['country'],
             nameLine: $fakeAddressData['nameLine'],
             premise: $fakeAddressData['premise'],
@@ -2722,7 +2753,7 @@ class OrganizationsTaskTest extends BaseTestCase
             dependentLocality: $fakeAddressData['dependentLocality'],
             postalCode: $fakeAddressData['postalCode'],
         );
-        $this->assertInstanceOf(Address::class, $result);
+        $this->assertInstanceOf(GetAddress200Response::class, $result);
         $this->assertObjectProperties($result, $fakeAddressData);
     }
 
@@ -2799,12 +2830,11 @@ class OrganizationsTaskTest extends BaseTestCase
             ));
 
         $result = $this->organizationsTask->updateProfile(
-            organizationId: 'org-123',
+            userId: 'org-123',
             defaultCatalog: $fakeUpdateOrgProfileRequestData['defaultCatalog'],
             projectOptionsUrl: $fakeUpdateOrgProfileRequestData['projectOptionsUrl'],
             companyName: $fakeUpdateOrgProfileRequestData['companyName'],
             vatNumber: $fakeUpdateOrgProfileRequestData['vatNumber'],
-            billingContact: $fakeUpdateOrgProfileRequestData['billingContact'],
         );
         $this->assertInstanceOf(Profile::class, $result);
         $this->assertObjectProperties($result, $data);
@@ -3117,5 +3147,510 @@ class OrganizationsTaskTest extends BaseTestCase
         $this->expectException(ApiException::class);
 
         $this->organizationsTask->downloadInvoice(token: $token);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testStreamOrgProjectProvisioningSuccess(): void
+    {
+        $payload = [
+            'type' => 'data',
+            'projectId' => 'project123',
+            'stage' => 'build',
+            'label' => 'Building project',
+            'reason' => null,
+            'timestamp' => '2025-01-01T00:00:00+00:00',
+            'steps' => []
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/x-ndjson'],
+                    json_encode($payload) . "\n"
+                )
+            );
+
+        $result = $this->organizationsTask->streamOrgProjectProvisioning('org123');
+
+        $this->assertInstanceOf(\Generator::class, $result);
+
+        $events = iterator_to_array($result, false);
+        $this->assertCount(1, $events);
+        $this->assertInstanceOf(ProvisionEvent::class, $events[0]);
+        $this->assertObjectProperties($events[0], $payload);
+    }
+
+    public function testStreamOrgProjectProvisioningWithInvalidOrganizationId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->streamOrgProjectProvisioning('');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testStreamOrgProjectProvisioningYieldsMultipleEventsAndSkipsBlankLines(): void
+    {
+        $first = [
+            'type' => 'data',
+            'projectId' => 'project123',
+            'stage' => 'build',
+            'label' => 'Building project',
+            'reason' => null,
+            'timestamp' => '2025-01-01T00:00:00+00:00',
+            'steps' => []
+        ];
+        $second = [
+            'type' => 'done',
+            'projectId' => 'project123',
+            'stage' => 'finished',
+            'label' => 'Provisioning complete',
+            'reason' => null,
+            'timestamp' => '2025-01-01T00:01:00+00:00',
+            'steps' => []
+        ];
+
+        // Blank lines between/around events must be skipped.
+        $body = "\n" . json_encode($first) . "\n\n" . json_encode($second) . "\n";
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/x-ndjson'], $body));
+
+        $events = iterator_to_array(
+            $this->organizationsTask->streamOrgProjectProvisioning('org123'),
+            false
+        );
+
+        $this->assertCount(2, $events);
+        $this->assertInstanceOf(ProvisionEvent::class, $events[0]);
+        $this->assertInstanceOf(ProvisionEvent::class, $events[1]);
+        $this->assertObjectProperties($events[0], $first);
+        $this->assertObjectProperties($events[1], $second);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testStreamOrgProjectProvisioningYieldsTailWithoutTrailingNewline(): void
+    {
+        $payload = [
+            'type' => 'data',
+            'projectId' => 'project123',
+            'stage' => 'build',
+            'label' => 'Building project',
+            'reason' => null,
+            'timestamp' => '2025-01-01T00:00:00+00:00',
+            'steps' => []
+        ];
+
+        // No trailing newline: the last (and only) event lives in the buffer tail.
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/x-ndjson'], json_encode($payload)));
+
+        $events = iterator_to_array(
+            $this->organizationsTask->streamOrgProjectProvisioning('org123'),
+            false
+        );
+
+        $this->assertCount(1, $events);
+        $this->assertInstanceOf(ProvisionEvent::class, $events[0]);
+        $this->assertObjectProperties($events[0], $payload);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testStreamOrgProjectProvisioningThrowsOnInvalidLine(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/x-ndjson'], "{invalid-json}\n"));
+
+        $this->expectException(ApiException::class);
+
+        iterator_to_array(
+            $this->organizationsTask->streamOrgProjectProvisioning('org123'),
+            false
+        );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testStreamOrgProjectProvisioningThrowsOnInvalidTail(): void
+    {
+        // No trailing newline so the invalid JSON is parsed in the tail branch.
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/x-ndjson'], '{invalid-json}'));
+
+        $this->expectException(ApiException::class);
+
+        iterator_to_array(
+            $this->organizationsTask->streamOrgProjectProvisioning('org123'),
+            false
+        );
+    }
+
+    private function expectJsonRequest(string $body = '{}'): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], $body));
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testInfoWithUpdateParameters(): void
+    {
+        $data = ['id' => 'org123', 'name' => 'New Name', 'label' => 'Acme', 'country' => 'FR', 'status' => 'active'];
+        $this->expectJsonRequest(json_encode($data));
+
+        $result = $this->organizationsTask->info('org123', name: 'New Name');
+
+        $this->assertInstanceOf(Organization::class, $result);
+        $this->assertSame('New Name', $result->getName());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testInfoWithoutUpdateParameters(): void
+    {
+        $data = ['id' => 'org123', 'name' => 'Acme', 'status' => 'active'];
+        $this->expectJsonRequest(json_encode($data));
+
+        $result = $this->organizationsTask->info('org123');
+
+        $this->assertInstanceOf(Organization::class, $result);
+        $this->assertSame('Acme', $result->getName());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListSubscriptions(): void
+    {
+        $this->expectJsonRequest(json_encode(['count' => 0, 'items' => []]));
+
+        $result = $this->organizationsTask->listSubscriptions('org123');
+
+        $this->assertInstanceOf(ListOrgSubscriptions200Response::class, $result);
+        $this->assertSame(0, $result->getCount());
+        $this->assertIsArray($result->getItems());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCanUpdateSubscription(): void
+    {
+        $this->expectJsonRequest(json_encode(['canUpdate' => true, 'message' => '']));
+
+        $result = $this->organizationsTask->canUpdateSubscription('sub123');
+
+        $this->assertInstanceOf(CanUpdateSubscription200Response::class, $result);
+        $this->assertTrue($result->getCanUpdate());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateOrgSubscription(): void
+    {
+        $this->expectJsonRequest(json_encode(['id' => 'sub123', 'plan' => 'upsun/flexible', 'status' => 'active']));
+
+        $result = $this->organizationsTask->updateOrgSubscription('org123', 'sub123', new UpdateOrgSubscriptionRequest());
+
+        $this->assertInstanceOf(Subscription::class, $result);
+        $this->assertSame('upsun/flexible', $result->getPlan());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetSubscriptionUsageAlerts(): void
+    {
+        $this->expectJsonRequest(json_encode(['subscriptionId' => 'sub123']));
+
+        $result = $this->organizationsTask->getSubscriptionUsageAlerts('sub123');
+
+        $this->assertInstanceOf(GetUsageAlerts200Response::class, $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateSubscriptionUsageAlerts(): void
+    {
+        $this->expectJsonRequest(json_encode(['subscriptionId' => 'sub123']));
+
+        $result = $this->organizationsTask->updateSubscriptionUsageAlerts('sub123', new UpdateUsageAlertsRequest());
+
+        $this->assertInstanceOf(GetUsageAlerts200Response::class, $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCreateMember(): void
+    {
+        $data = [
+            'id' => 'member123',
+            'organizationId' => 'org123',
+            'userId' => 'user123',
+            'permissions' => ['admin'],
+            'owner' => false,
+        ];
+        $this->expectJsonRequest(json_encode($data));
+
+        $result = $this->organizationsTask->createMember('org123', 'user123', ['admin']);
+
+        $this->assertInstanceOf(OrganizationMember::class, $result);
+        $this->assertSame('user123', $result->getUserId());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListTeamsByMember(): void
+    {
+        $data = [
+            'count' => 1,
+            'items' => [[
+                'id' => 'team123',
+                'label' => 'Observability Team',
+                'organization_id' => 'org123',
+                'project_permissions' => ['admin'],
+                'created_at' => '2023-10-05T13:30:43.073757Z',
+                'updated_at' => '2023-11-15T09:22:18.451321Z',
+            ]],
+        ];
+        $this->expectJsonRequest(json_encode($data));
+
+        $result = $this->organizationsTask->listTeamsByMember('user123');
+
+        $this->assertInstanceOf(ListTeams200Response::class, $result);
+        $this->assertContainsOnlyInstancesOf(Team::class, $result->getItems());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCreateOrgProject(): void
+    {
+        $data = ['id' => 'project123', 'organization_id' => 'org123', 'title' => 'My Project', 'region' => 'eu-1.platform.sh'];
+        $this->expectJsonRequest(json_encode($data));
+
+        $result = $this->organizationsTask->createOrgProject('org123', new CreateOrgProjectRequest('eu-1.platform.sh'));
+
+        $this->assertInstanceOf(OrganizationProject::class, $result);
+        $this->assertSame('project123', $result->getId());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testDeleteOrgProject(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(204, ['Content-Type' => 'application/json']));
+
+        $this->organizationsTask->deleteOrgProject('org123', 'project123');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetOrgProject(): void
+    {
+        $data = ['id' => 'project123', 'organization_id' => 'org123', 'title' => 'My Project'];
+        $this->expectJsonRequest(json_encode($data));
+
+        $result = $this->organizationsTask->getOrgProject('org123', 'project123');
+
+        $this->assertInstanceOf(OrganizationProject::class, $result);
+        $this->assertSame('project123', $result->getId());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetCarbonEmissions(): void
+    {
+        $data = ['projectId' => 'project123', 'projectTitle' => 'My Project', 'values' => [], 'total' => 12.5];
+        $this->expectJsonRequest(json_encode($data));
+
+        $result = $this->organizationsTask->getCarbonEmissions('org123', 'project123');
+
+        $this->assertInstanceOf(ProjectCarbon::class, $result);
+        $this->assertSame('project123', $result->getProjectId());
+        $this->assertSame(12.5, $result->getTotal());
+    }
+
+    public function testGetCarbonEmissionsWithEmptyInterval(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->getCarbonEmissions('org123', 'project123', interval: ' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testCanAffordSubscription(): void
+    {
+        $this->expectJsonRequest();
+
+        $this->organizationsTask->canAffordSubscription('sub123', new CanAffordSubscriptionRequest());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetDiscount(): void
+    {
+        $this->expectJsonRequest(json_encode(['id' => 42, 'organizationId' => 'org123', 'type' => 'allowance', 'status' => 'active']));
+
+        $result = $this->organizationsTask->getDiscount('discount123');
+
+        $this->assertInstanceOf(Discount::class, $result);
+        $this->assertSame('allowance', $result->getType());
+    }
+
+    public function testGetDiscountWithEmptyId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->getDiscount(' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetTypeAllowance(): void
+    {
+        $this->expectJsonRequest();
+
+        $result = $this->organizationsTask->getTypeAllowance();
+
+        $this->assertInstanceOf(GetTypeAllowance200Response::class, $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListReferencedOrgs(): void
+    {
+        $data = ['org1' => [
+            'id' => 'org1',
+            'type' => 'enterprise',
+            'name' => 'Acme',
+            'label' => 'Acme Corp',
+            'vendor' => 'upsun',
+            'createdAt' => '2023-01-01T00:00:00+00:00',
+            'updatedAt' => '2023-02-01T00:00:00+00:00',
+        ]];
+        $this->expectJsonRequest(json_encode($data));
+
+        $result = $this->organizationsTask->listReferencedOrgs('id1,id2', 'signature');
+
+        $this->assertIsArray($result);
+        $this->assertContainsOnlyInstancesOf(OrganizationReference::class, $result);
+        $this->assertSame('org1', $result['org1']->getId());
+    }
+
+    public function testListReferencedOrgsWithEmptyIn(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->listReferencedOrgs(' ', 'signature');
+    }
+
+    public function testListReferencedOrgsWithEmptySig(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->listReferencedOrgs('id1', ' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListReferencedProjects(): void
+    {
+        $data = ['proj1' => [
+            'id' => 'proj1',
+            'organizationId' => 'org123',
+            'subscriptionId' => 'sub123',
+            'region' => 'eu-1.platform.sh',
+            'title' => 'My Project',
+            'type' => 'grid',
+            'plan' => 'upsun/flexible',
+            'status' => 'active',
+            'createdAt' => '2023-01-01T00:00:00+00:00',
+            'updatedAt' => '2023-02-01T00:00:00+00:00',
+        ]];
+        $this->expectJsonRequest(json_encode($data));
+
+        $result = $this->organizationsTask->listReferencedProjects('id1,id2', 'signature');
+
+        $this->assertIsArray($result);
+        $this->assertContainsOnlyInstancesOf(ProjectReference::class, $result);
+        $this->assertSame('proj1', $result['proj1']->getId());
+    }
+
+    public function testListReferencedProjectsWithEmptyIn(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->listReferencedProjects(' ', 'signature');
+    }
+
+    public function testListReferencedProjectsWithEmptySig(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->listReferencedProjects('id1', ' ');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testQueryOrganiationCarbon(): void
+    {
+        $data = ['organizationId' => 'org123', 'projects' => [], 'total' => 99.9];
+        $this->expectJsonRequest(json_encode($data));
+
+        $result = $this->organizationsTask->queryOrganiationCarbon('org123');
+
+        $this->assertInstanceOf(OrganizationCarbon::class, $result);
+        $this->assertSame('org123', $result->getOrganizationId());
+    }
+
+    public function testQueryOrganiationCarbonWithEmptyInterval(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->organizationsTask->queryOrganiationCarbon('org123', interval: ' ');
     }
 }

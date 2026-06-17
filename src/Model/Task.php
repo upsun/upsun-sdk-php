@@ -15,20 +15,20 @@ final class Task implements Model, JsonSerializable
 {
     public function __construct(
         private readonly string $id,
-        private readonly string $type,
-        private readonly SourceCodeConfiguration1 $source,
-        private readonly Hooks1 $hooks,
+        private readonly array $authorizations,
         private readonly array $relationships,
         private readonly array $additionalHosts,
         private readonly array $mounts,
         private readonly array $variables,
+        private readonly string $type,
+        private readonly SourceCodeConfiguration1 $source,
+        private readonly Hooks1 $hooks,
         private readonly array $dependencies,
         private readonly object $runtime,
-        private readonly array $authorizations,
         private readonly RunConfiguration $run,
         private readonly string $name,
-        private readonly ?string $timezone,
         private readonly ?Resources9 $resources,
+        private readonly ?string $timezone,
         private readonly ?string $containerProfile,
     ) {
     }
@@ -42,20 +42,20 @@ final class Task implements Model, JsonSerializable
     {
         return [
             'id' => $this->id,
-            'type' => $this->type,
-            'source' => $this->source,
-            'hooks' => $this->hooks,
+            'resources' => $this->resources,
+            'authorizations' => $this->authorizations,
             'relationships' => $this->relationships,
             'additionalHosts' => $this->additionalHosts,
             'mounts' => $this->mounts,
             'timezone' => $this->timezone,
             'variables' => $this->variables,
+            'containerProfile' => $this->containerProfile,
+            'type' => $this->type,
+            'source' => $this->source,
+            'hooks' => $this->hooks,
             'dependencies' => $this->dependencies,
             'runtime' => $this->runtime,
-            'authorizations' => $this->authorizations,
             'run' => $this->run,
-            'resources' => $this->resources,
-            'containerProfile' => $this->containerProfile,
             'name' => $this->name,
         ];
     }
@@ -71,6 +71,67 @@ final class Task implements Model, JsonSerializable
     public function getId(): string
     {
         return $this->id;
+    }
+
+    /**
+     * Resources configuration (base memory and memory ratio)
+     */
+    public function getResources(): ?Resources9
+    {
+        return $this->resources;
+    }
+
+    /**
+     * Authorizations available to this container
+     * @return AuthorizationsInner[]
+     */
+    public function getAuthorizations(): array
+    {
+        return $this->authorizations;
+    }
+
+    /**
+     * The relationships of the container to defined services
+     * @return ServiceRelationshipsValue[]
+     */
+    public function getRelationships(): array
+    {
+        return $this->relationships;
+    }
+
+    public function getAdditionalHosts(): array
+    {
+        return $this->additionalHosts;
+    }
+
+    /**
+     * Filesystem mounts of this container. If not specified the container will have no writeable disk space
+     * @return MountsValue[]
+     */
+    public function getMounts(): array
+    {
+        return $this->mounts;
+    }
+
+    /**
+     * The timezone of the task. Defaults to the project's timezone if not specified
+     */
+    public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
+
+    public function getVariables(): array
+    {
+        return $this->variables;
+    }
+
+    /**
+     * Selected container profile for this container
+     */
+    public function getContainerProfile(): ?string
+    {
+        return $this->containerProfile;
     }
 
     /**
@@ -97,42 +158,6 @@ final class Task implements Model, JsonSerializable
         return $this->hooks;
     }
 
-    /**
-     * The relationships of the task to defined services and applications
-     * @return ServiceRelationshipsValue[]
-     */
-    public function getRelationships(): array
-    {
-        return $this->relationships;
-    }
-
-    public function getAdditionalHosts(): array
-    {
-        return $this->additionalHosts;
-    }
-
-    /**
-     * Filesystem mounts of this task
-     * @return MountsValue[]
-     */
-    public function getMounts(): array
-    {
-        return $this->mounts;
-    }
-
-    /**
-     * The timezone of the task. Defaults to the project's timezone if not specified
-     */
-    public function getTimezone(): ?string
-    {
-        return $this->timezone;
-    }
-
-    public function getVariables(): array
-    {
-        return $this->variables;
-    }
-
     public function getDependencies(): array
     {
         return $this->dependencies;
@@ -147,36 +172,11 @@ final class Task implements Model, JsonSerializable
     }
 
     /**
-     * Authorizations available to this task
-     * @return AuthorizationsInner[]
-     */
-    public function getAuthorizations(): array
-    {
-        return $this->authorizations;
-    }
-
-    /**
      * Configuration for task execution
      */
     public function getRun(): RunConfiguration
     {
         return $this->run;
-    }
-
-    /**
-     * Resources configuration (base memory and memory ratio)
-     */
-    public function getResources(): ?Resources9
-    {
-        return $this->resources;
-    }
-
-    /**
-     * Selected container profile for the task
-     */
-    public function getContainerProfile(): ?string
-    {
-        return $this->containerProfile;
     }
 
     /**

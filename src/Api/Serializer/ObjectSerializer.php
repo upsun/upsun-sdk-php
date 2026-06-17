@@ -361,6 +361,8 @@ class ObjectSerializer
                 return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?: '';
             case 'mixed':
                 return $data;
+            case 'object':
+                return (object)$data;
             case 'array':
                 error_log("Warning: Deserializing generic 'array' type - should use specific model class");
                 return (array)$data;

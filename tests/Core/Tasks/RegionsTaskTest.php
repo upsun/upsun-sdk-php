@@ -9,6 +9,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\RegionsApi;
 use Upsun\Core\Tasks\RegionsTask;
 use Upsun\Core\TokenProvider;
@@ -45,7 +46,8 @@ class RegionsTaskTest extends BaseTestCase
 
         $this->regionsTask = new class (
             $upsunClient,
-            new RegionsApi(...$apiClassParams)
+            new RegionsApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams)
         ) extends RegionsTask {
         };
     }
@@ -228,5 +230,34 @@ class RegionsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
         $this->regionsTask->list();
+    }
+
+    public function testListReferencedRegionsWithEmptyIn(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->regionsTask->listReferencedRegions('', 'sig123');
+    }
+
+    public function testListReferencedRegionsWithEmptySig(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->regionsTask->listReferencedRegions('abc', '');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListReferencedRegionsSuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], '[]'));
+
+        $result = $this->regionsTask->listReferencedRegions('abc', 'sig123');
+
+        $this->assertIsArray($result);
     }
 }

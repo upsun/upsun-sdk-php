@@ -3,30 +3,42 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
+use Generator;
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\AddOnsApi;
+use Upsun\Api\AlertsApi;
 use Upsun\Api\ApiException;
+use Upsun\Api\DefaultApi;
+use Upsun\Api\DiscountsApi;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
 use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\OrganizationsApi;
-use Upsun\Api\ProfilesApi;
 use Upsun\Api\RecordsApi;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\SubscriptionsApi;
+use Upsun\Api\UserProfilesApi;
 use Upsun\Api\VouchersApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Address;
 use Upsun\Model\ApplyOrgVoucherRequest;
 use Upsun\Model\ArrayFilter;
+use Upsun\Model\CanAffordSubscriptionRequest;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\CanUpdateSubscription200Response;
 use Upsun\Model\CreateAuthorizationCredentials200Response;
 use Upsun\Model\CreateOrgMemberRequest;
+use Upsun\Model\CreateOrgProjectRequest;
 use Upsun\Model\CreateOrgRequest;
 use Upsun\Model\DateTimeFilter;
+use Upsun\Model\Discount;
 use Upsun\Model\EstimationObject;
+use Upsun\Model\GetAddress200Response;
+use Upsun\Model\GetTypeAllowance200Response;
+use Upsun\Model\GetUsageAlerts200Response;
 use Upsun\Model\Invoice;
 use Upsun\Model\ListOrgInvoices200Response;
 use Upsun\Model\ListOrgMembers200Response;
@@ -41,19 +53,25 @@ use Upsun\Model\ListUserOrgs200Response;
 use Upsun\Model\Order;
 use Upsun\Model\Organization;
 use Upsun\Model\OrganizationAddonsObject;
+use Upsun\Model\OrganizationCarbon;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
+use Upsun\Model\OrganizationProject;
 use Upsun\Model\Profile;
 use Upsun\Model\Project;
-use Upsun\Model\SendOrgMfaReminders200ResponseValue; // only mentionned in PHPDocs
+use Upsun\Model\ProjectCarbon;
+// only mentionned in PHPDocs
+use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
 use Upsun\Model\SubscriptionCurrentUsageObject;
 use Upsun\Model\UpdateOrgAddonsRequest;
 use Upsun\Model\UpdateOrgMemberRequest;
-use Upsun\Model\UpdateOrgProfileRequest;
 use Upsun\Model\UpdateOrgRequest;
+use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\UpdateProfileRequest;
+use Upsun\Model\UpdateUsageAlertsRequest;
 use Upsun\Model\Vouchers;
 use Upsun\UpsunClient;
 
@@ -62,7 +80,7 @@ use Upsun\UpsunClient;
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
- * @see       https://docs.upsun.com
+ * @see       https://developer.upsun.com
  */
 class OrganizationsTask extends TaskBase
 {
@@ -77,10 +95,14 @@ class OrganizationsTask extends TaskBase
         private readonly InvoicesApi $invoicesApi,
         private readonly MfaApi $mfaApi,
         private readonly OrdersApi $ordersApi,
-        private readonly ProfilesApi $profilesApi,
+        private readonly UserProfilesApi $userProfilesApi,
         private readonly RecordsApi $recordsApi,
         private readonly VouchersApi $vouchersApi,
         private readonly AddOnsApi $addOnsApi,
+        private readonly DiscountsApi $discountsApi,
+        private readonly ReferencesApi $referencesApi,
+        private readonly DefaultApi $defaultApi,
+        private readonly AlertsApi $alertsApi,
     ) {
         parent::__construct($client);
     }
@@ -247,6 +269,86 @@ class OrganizationsTask extends TaskBase
         $this->checkOrganizationId($organizationId);
 
         return $this->subscriptionsApi->listOrgSubscriptions($organizationId);
+    }
+
+    /**
+     * Check whether a subscription can be updated to the given plan and resources.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function canUpdateSubscription(
+        string $subscriptionId,
+        ?string $plan = null,
+        ?int $environments = null,
+        ?int $storage = null,
+        ?int $userLicenses = null
+    ): CanUpdateSubscription200Response {
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->subscriptionsApi->canUpdateSubscription(
+            subscriptionId: $subscriptionId,
+            plan: $plan,
+            environments: $environments,
+            storage: $storage,
+            userLicenses: $userLicenses
+        );
+    }
+
+    /**
+     * Update an organization subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function updateOrgSubscription(
+        string $organizationId,
+        string $subscriptionId,
+        UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest
+    ): Subscription {
+        $this->checkOrganizationId($organizationId);
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->subscriptionsApi->updateOrgSubscription(
+            organizationId: $organizationId,
+            subscriptionId: $subscriptionId,
+            updateOrgSubscriptionRequest: $updateOrgSubscriptionRequest
+        );
+    }
+
+    /**
+     * Get usage alerts for a subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function getSubscriptionUsageAlerts(string $subscriptionId): GetUsageAlerts200Response
+    {
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->alertsApi->getUsageAlerts(subscriptionId: $subscriptionId);
+    }
+
+    /**
+     * Update usage alerts for a subscription.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function updateSubscriptionUsageAlerts(
+        string $subscriptionId,
+        ?UpdateUsageAlertsRequest $updateUsageAlertsRequest = null
+    ): GetUsageAlerts200Response {
+        $this->checkSubscriptionId($subscriptionId);
+
+        return $this->alertsApi->updateUsageAlerts(
+            subscriptionId: $subscriptionId,
+            updateUsageAlertsRequest: $updateUsageAlertsRequest
+        );
     }
 
     /**
@@ -604,6 +706,7 @@ class OrganizationsTask extends TaskBase
      * Estimate the cost of creating a new project within the specified organization, based on parameters such as the
      * number of environments, storage, and user licenses.
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -631,6 +734,7 @@ class OrganizationsTask extends TaskBase
      * Estimate the cost of a project within the specified organization, based on parameters such as the
      * number of environments, storage, and user licenses.
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -663,6 +767,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Get current usage for a project
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -770,6 +875,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Get invoice
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -785,6 +891,7 @@ class OrganizationsTask extends TaskBase
     /**
      * List invoices
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -810,6 +917,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Download an invoice.
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
@@ -821,6 +929,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Create confirmation credentials for 3D-Secure
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -838,6 +947,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Get an order
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -853,6 +963,7 @@ class OrganizationsTask extends TaskBase
     /**
      * List orders
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
@@ -879,11 +990,11 @@ class OrganizationsTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function getAddress(string $organizationId): Address
+    public function getAddress(string $userId): GetAddress200Response
     {
-        $this->checkOrganizationId($organizationId);
+        $this->checkUserId($userId);
 
-        return $this->profilesApi->getOrgAddress(organizationId: $organizationId);
+        return $this->userProfilesApi->getAddress(userId: $userId);
     }
 
     /**
@@ -893,11 +1004,11 @@ class OrganizationsTask extends TaskBase
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
-    public function getProfile(string $organizationId): Profile
+    public function getProfile(string $userId): Profile
     {
-        $this->checkOrganizationId($organizationId);
+        $this->checkUserId($userId);
 
-        return $this->profilesApi->getOrgProfile(organizationId: $organizationId);
+        return $this->userProfilesApi->getProfile(userId: $userId);
     }
 
     /**
@@ -908,7 +1019,7 @@ class OrganizationsTask extends TaskBase
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function updateAddress(
-        string $organizationId,
+        string $userId,
         ?string $country = null,
         ?string $nameLine = null,
         ?string $premise = null,
@@ -919,11 +1030,11 @@ class OrganizationsTask extends TaskBase
         ?string $locality = null,
         ?string $dependentLocality = null,
         ?string $postalCode = null,
-    ): Address {
-        $this->checkOrganizationId($organizationId);
+    ): GetAddress200Response {
+        $this->checkUserId($userId);
 
-        return $this->profilesApi->updateOrgAddress(
-            organizationId: $organizationId,
+        return $this->userProfilesApi->updateAddress(
+            userId: $userId,
             address: new Address(
                 country: $country,
                 nameLine: $nameLine,
@@ -947,23 +1058,21 @@ class OrganizationsTask extends TaskBase
      * @throws InvalidArgumentException if required parameters are missing or invalid
      */
     public function updateProfile(
-        string $organizationId,
+        string $userId,
         ?string $defaultCatalog = null,
         ?string $projectOptionsUrl = null,
         ?string $companyName = null,
         ?string $vatNumber = null,
-        ?string $billingContact = null,
     ): Profile {
-        $this->checkOrganizationId($organizationId);
+        $this->checkUserId($userId);
 
-        return $this->profilesApi->updateOrgProfile(
-            organizationId: $organizationId,
-            updateOrgProfileRequest: new UpdateOrgProfileRequest(
-                defaultCatalog: $defaultCatalog,
-                projectOptionsUrl: $projectOptionsUrl,
+        return $this->userProfilesApi->updateProfile(
+            userId: $userId,
+            updateProfileRequest: new UpdateProfileRequest(
                 companyName: $companyName,
                 vatNumber: $vatNumber,
-                billingContact: $billingContact,
+                defaultCatalog: $defaultCatalog,
+                projectOptionsUrl: $projectOptionsUrl,
             )
         );
     }
@@ -971,6 +1080,7 @@ class OrganizationsTask extends TaskBase
     /**
      * List plan records
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -1012,6 +1122,7 @@ class OrganizationsTask extends TaskBase
     /**
      * List usage records
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -1049,6 +1160,7 @@ class OrganizationsTask extends TaskBase
      * organization's account, which may result in discounts, credits, or other benefits being applied to the
      * organization's subscription.
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -1070,6 +1182,7 @@ class OrganizationsTask extends TaskBase
     /**
      * List vouchers
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -1084,6 +1197,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Get Organization Addons
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -1098,6 +1212,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Updates Organization Addons
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -1115,6 +1230,242 @@ class OrganizationsTask extends TaskBase
                 userManagement: $userManagement,
                 supportLevel: $supportLevel
             )
+        );
+    }
+
+    // Organization Projects Methods
+
+    /**
+     * Creates a project in an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return OrganizationProject
+     */
+    public function createOrgProject(
+        string $organizationId,
+        CreateOrgProjectRequest $createOrgProjectRequest
+    ): OrganizationProject {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->projectsApi->createOrgProject(
+            organizationId: $organizationId,
+            createOrgProjectRequest: $createOrgProjectRequest
+        );
+    }
+
+    /**
+     * Deletes a project from an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function deleteOrgProject(string $organizationId, string $projectId): void
+    {
+        $this->checkOrganizationId($organizationId);
+        $this->checkProjectId($projectId);
+
+        $this->projectsApi->deleteOrgProject(
+            organizationId: $organizationId,
+            projectId: $projectId
+        );
+    }
+
+    /**
+     * Gets a project from an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return OrganizationProject
+     */
+    public function getOrgProject(string $organizationId, string $projectId): OrganizationProject
+    {
+        $this->checkOrganizationId($organizationId);
+        $this->checkProjectId($projectId);
+
+        return $this->projectsApi->getOrgProject(
+            organizationId: $organizationId,
+            projectId: $projectId
+        );
+    }
+
+    /**
+     * Queries project carbon emissions metrics.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return ProjectCarbon
+     */
+    public function getCarbonEmissions(
+        string $organizationId,
+        string $projectId,
+        ?DateTimeFilter $from = null,
+        ?DateTimeFilter $to = null,
+        ?string $interval = null
+    ): ProjectCarbon {
+        $this->checkOrganizationId($organizationId);
+        $this->checkProjectId($projectId);
+        if ($interval !== null && trim($interval) === '') {
+            throw new InvalidArgumentException('interval cannot be empty when provided.');
+        }
+
+        return $this->projectsApi->queryProjectCarbon(
+            organizationId: $organizationId,
+            projectId: $projectId,
+            from: $from,
+            to: $to,
+            interval: $interval ?? null
+        );
+    }
+
+    // Subscriptions Methods
+
+    /**
+     * Checks whether the subscription can afford requested resources.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the subscription ID is invalid
+     */
+    public function canAffordSubscription(
+        string $subscriptionId,
+        CanAffordSubscriptionRequest $canAffordSubscriptionRequest
+    ): void {
+        $this->checkSubscriptionId($subscriptionId);
+
+        $this->subscriptionsApi->canAffordSubscription(
+            subscriptionId: $subscriptionId,
+            canAffordSubscriptionRequest: $canAffordSubscriptionRequest
+        );
+    }
+
+    // Discounts Methods
+
+    /**
+     * Gets a discount by ID.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the discount ID is empty
+     * @return Discount
+     */
+    public function getDiscount(string $id): Discount
+    {
+        if (trim($id) === '') {
+            throw new InvalidArgumentException('id cannot be empty.');
+        }
+
+        return $this->discountsApi->getDiscount(id: $id);
+    }
+
+    /**
+     * Gets the First Project Incentive type allowance.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @return GetTypeAllowance200Response
+     */
+    public function getTypeAllowance(): GetTypeAllowance200Response
+    {
+        return $this->discountsApi->getTypeAllowance();
+    }
+
+    // References Methods
+
+    /**
+     * Lists referenced organizations.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return array<string,\Upsun\Model\OrganizationReference>
+     */
+    public function listReferencedOrgs(string $in, string $sig): array
+    {
+        if (trim($in) === '') {
+            throw new InvalidArgumentException('in cannot be empty.');
+        }
+
+        if (trim($sig) === '') {
+            throw new InvalidArgumentException('sig cannot be empty.');
+        }
+
+        return $this->referencesApi->listReferencedOrgs(
+            in: $in,
+            sig: $sig
+        );
+    }
+
+    /**
+     * Lists referenced projects.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return array<string,\Upsun\Model\ProjectReference>
+     */
+    public function listReferencedProjects(string $in, string $sig): array
+    {
+        if (trim($in) === '') {
+            throw new InvalidArgumentException('in cannot be empty.');
+        }
+
+        if (trim($sig) === '') {
+            throw new InvalidArgumentException('sig cannot be empty.');
+        }
+
+        return $this->referencesApi->listReferencedProjects(
+            in: $in,
+            sig: $sig
+        );
+    }
+
+    // Organization Carbon Methods
+
+    /**
+     * Queries organization carbon emissions metrics.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     * @return OrganizationCarbon
+     */
+    public function queryOrganiationCarbon(
+        string $organizationId,
+        ?DateTimeFilter $from = null,
+        ?DateTimeFilter $to = null,
+        ?string $interval = null
+    ): OrganizationCarbon {
+        $this->checkOrganizationId($organizationId);
+        if ($interval !== null && trim($interval) === '') {
+            throw new InvalidArgumentException('interval cannot be empty when provided.');
+        }
+
+        return $this->defaultApi->queryOrganiationCarbon(
+            organizationId: $organizationId,
+            from: $from,
+            to: $to,
+            interval: $interval ?? null
+        );
+    }
+
+    /**
+     * Stream the provisioning progress for a new project in an organization.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the organizationId is invalid
+     */
+    public function streamOrgProjectProvisioning(string $organizationId): Generator
+    {
+        $this->checkOrganizationId($organizationId);
+
+        return $this->projectsApi->streamOrgProjectProvisioning(
+            organizationId: $organizationId
         );
     }
 }

@@ -9,6 +9,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
+use Upsun\Api\DiffApi;
 use Upsun\Api\RepositoryApi;
 use Upsun\Api\SystemInformationApi;
 use Upsun\Core\Tasks\RepositoriesTask;
@@ -51,7 +52,8 @@ class RepositoriesTaskTest extends BaseTestCase
         $this->repositoriesTask = new class (
             $upsunClient,
             new RepositoryApi(...$apiClassParams),
-            new SystemInformationApi(...$apiClassParams)
+            new SystemInformationApi(...$apiClassParams),
+            new DiffApi(...$apiClassParams)
         ) extends RepositoriesTask {
         };
     }
@@ -337,6 +339,40 @@ class RepositoriesTaskTest extends BaseTestCase
         $this->expectException(InvalidArgumentException::class);
 
         $this->repositoriesTask->listGitRefs($projectId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListGitDiffs(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([])
+            ));
+
+        $result = $this->repositoriesTask->listGitDiffs('test-project-id', 'main', 'develop');
+
+        $this->assertIsArray($result);
+        $this->assertSame([], $result);
+    }
+
+    public function testListGitDiffsWithInvalidBaseId(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->repositoriesTask->listGitDiffs('test-project-id', '', 'develop');
+    }
+
+    public function testListGitDiffsWithInvalidTargetId(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->repositoriesTask->listGitDiffs('test-project-id', 'main', '');
     }
 
     /**

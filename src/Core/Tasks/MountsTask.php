@@ -14,7 +14,7 @@ use function is_string;
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
- * @see       https://docs.upsun.com
+ * @see       https://developer.upsun.com
  */
 class MountsTask extends TaskBase
 {

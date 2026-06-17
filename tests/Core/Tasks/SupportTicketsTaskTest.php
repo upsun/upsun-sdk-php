@@ -8,11 +8,14 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
+use Upsun\Api\AlertsApi;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentTargetApi;
+use Upsun\Api\DomainClaimApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\ProjectApi;
+use Upsun\Api\ProjectsApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\RepositoryApi;
 use Upsun\Api\SubscriptionsApi;
@@ -62,6 +65,10 @@ class SupportTicketsTaskTest extends BaseTestCase
             new OrganizationProjectsApi(...$apiClassParams),
             new ProjectSettingsApi(...$apiClassParams),
             new SubscriptionsApi(...$apiClassParams),
+            new DeploymentTargetApi(...$apiClassParams),
+            new AlertsApi(...$apiClassParams),
+            new DomainClaimApi(...$apiClassParams),
+            new ProjectsApi(...$apiClassParams),
         ) extends ProjectsTask {
         };
 
@@ -577,6 +584,60 @@ class SupportTicketsTaskTest extends BaseTestCase
             );
 
         $result = $this->task->listPriorities(projectId: $projId, category: $priority);
+        $this->assertContainsOnlyInstancesOf(ListTicketPriorities200ResponseInner::class, $result);
+        $this->assertObjectMatchesArray($result, $ticketPriorities);
+    }
+
+    /**
+     * Regression: listCategories() without an organizationId must not raise a
+     * TypeError from validating a null organization ID.
+     *
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testListCategoriesWithoutOrganizationId(): void
+    {
+        $ticketCategories = [
+            ['id' => 'bug', 'label' => 'Bug Report'],
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($ticketCategories)
+            ));
+
+        $result = $this->task->listCategories();
+        $this->assertContainsOnlyInstancesOf(ListTicketCategories200ResponseInner::class, $result);
+        $this->assertObjectMatchesArray($result, $ticketCategories);
+    }
+
+    /**
+     * Regression: listPriorities() without a projectId must not call parse_url()
+     * on a null license URI.
+     *
+     * @throws ClientExceptionInterface
+     * @throws Exception
+     */
+    public function testListPrioritiesWithoutProjectId(): void
+    {
+        $ticketPriorities = [
+            ['id' => 'low', 'label' => 'Low'],
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($ticketPriorities)
+            ));
+
+        $result = $this->task->listPriorities();
         $this->assertContainsOnlyInstancesOf(ListTicketPriorities200ResponseInner::class, $result);
         $this->assertObjectMatchesArray($result, $ticketPriorities);
     }

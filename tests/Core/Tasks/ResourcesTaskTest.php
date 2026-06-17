@@ -10,9 +10,13 @@ use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\AutoscalingApi;
 use Upsun\Api\DeploymentApi;
+use Upsun\Api\ResourcesApi;
 use Upsun\Core\Tasks\ResourcesTask;
 use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
+use Upsun\Model\ResourcesByService200Response;
+use Upsun\Model\ResourcesOverview200Response;
+use Upsun\Model\ResourcesSummary200Response;
 use Upsun\UpsunClient;
 
 class ResourcesTaskTest extends BaseTestCase
@@ -47,6 +51,7 @@ class ResourcesTaskTest extends BaseTestCase
             $upsunClient,
             new DeploymentApi(...$apiClassParams),
             new AutoscalingApi(...$apiClassParams),
+            new ResourcesApi(...$apiClassParams),
         ) extends ResourcesTask {
         };
     }
@@ -54,7 +59,7 @@ class ResourcesTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateSuccess(): void
+    public function testSetSuccess(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -97,7 +102,7 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update(
+        $response = $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId,
             webapps: $webapps,
@@ -110,7 +115,7 @@ class ResourcesTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateWithDefaultParameters(): void
+    public function testSetWithDefaultParameters(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -126,7 +131,7 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update(
+        $response = $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId
         );
@@ -136,7 +141,7 @@ class ResourcesTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateWithOnlyWebapps(): void
+    public function testSetWithOnlyWebapps(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -161,7 +166,7 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update(
+        $response = $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId,
             webapps: $webapps
@@ -198,7 +203,7 @@ class ResourcesTaskTest extends BaseTestCase
                 ])
             ));
 
-        $response = $this->resourcesTask->update(
+        $response = $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId,
             webapps: $webapps,
@@ -210,7 +215,7 @@ class ResourcesTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateError(): void
+    public function testSetError(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -235,13 +240,13 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update(projectId: $projectId, environmentId: $environmentId, webapps: $webapps);
+        $this->resourcesTask->set(projectId: $projectId, environmentId: $environmentId, webapps: $webapps);
     }
 
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateNotFound(): void
+    public function testSetNotFound(): void
     {
         $projectId = 'invalidProject';
         $environmentId = 'env456';
@@ -259,13 +264,13 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update(projectId: $projectId, environmentId: $environmentId);
+        $this->resourcesTask->set(projectId: $projectId, environmentId: $environmentId);
     }
 
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateInvalidResources(): void
+    public function testSetInvalidResources(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -290,7 +295,7 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update(
+        $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId,
             webapps: $webapps
@@ -300,7 +305,7 @@ class ResourcesTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
-    public function testUpdateInsufficientResources(): void
+    public function testSetInsufficientResources(): void
     {
         $projectId = 'project123';
         $environmentId = 'env456';
@@ -326,10 +331,185 @@ class ResourcesTaskTest extends BaseTestCase
             ));
 
         $this->expectException(ApiException::class);
-        $this->resourcesTask->update(
+        $this->resourcesTask->set(
             projectId: $projectId,
             environmentId: $environmentId,
             webapps: $webapps
         );
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testPatchAutoscalerSettingsSuccess(): void
+    {
+        $expectedData = [
+            'services' => [
+                'db' => [
+                    'mysql' => [
+                        'instances' => ['min' => 1, 'max' => 3]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($expectedData)
+            ));
+
+        $result = $this->resourcesTask->patchAutoscalerSettings(
+            projectId: 'project123',
+            environmentId: 'env456'
+        );
+
+        $this->assertObjectProperties($result, $expectedData);
+    }
+
+    /**
+     * Regression: calling updateAutoscalerSettings() without $services must not
+     * raise a TypeError from unpacking a null value.
+     *
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateAutoscalerSettingsWithoutServices(): void
+    {
+        $capturedBody = null;
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturnCallback(function ($request) use (&$capturedBody) {
+                $capturedBody = (string)$request->getBody();
+                return new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode(['services' => null])
+                );
+            });
+
+        $result = $this->resourcesTask->updateAutoscalerSettings(
+            projectId: 'project123',
+            environmentId: 'env456'
+        );
+
+        $this->assertNull($result->getServices());
+        $this->assertStringContainsString('"services":[]', $capturedBody);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateAutoscalerSettingsWithServices(): void
+    {
+        $services = [
+            'services' => [
+                'db' => [
+                    'mysql' => [
+                        'instances' => ['min' => 1, 'max' => 3]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($services)
+            ));
+
+        $result = $this->resourcesTask->updateAutoscalerSettings(
+            projectId: 'project123',
+            environmentId: 'env456',
+            services: $services
+        );
+
+        $this->assertObjectProperties($result, $services);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testResourcesByServiceSuccess(): void
+    {
+        $payload = [
+            'grain' => 60,
+            'from' => 100,
+            'to' => 200,
+            'projectId' => 'project123',
+            'environmentId' => 'env456',
+            'branchMachineName' => 'main-abc123',
+            'service' => 'app',
+            'data' => [],
+            'dg2HostTypesMapping' => []
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($payload)));
+
+        $result = $this->resourcesTask->resourcesByService('project123', 'env456', 'app', 100, 200);
+
+        $this->assertInstanceOf(ResourcesByService200Response::class, $result);
+        $this->assertObjectProperties($result, $payload);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testResourcesOverviewSuccess(): void
+    {
+        $payload = [
+            'grain' => 60,
+            'from' => 100,
+            'to' => 200,
+            'projectId' => 'project123',
+            'environmentId' => 'env456',
+            'branchMachineName' => 'main-abc123',
+            'data' => []
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($payload)));
+
+        $result = $this->resourcesTask->resourcesOverview('project123', 'env456', 100, 200);
+
+        $this->assertInstanceOf(ResourcesOverview200Response::class, $result);
+        $this->assertObjectProperties($result, $payload);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testResourcesSummarySuccess(): void
+    {
+        $payload = [
+            'from' => 100,
+            'to' => 200,
+            'projectId' => 'project123',
+            'environmentId' => 'env456',
+            'branchMachineName' => 'main-abc123',
+            'data' => ['services' => []]
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($payload)));
+
+        $result = $this->resourcesTask->resourcesSummary('project123', 'env456', 100, 200);
+
+        $this->assertInstanceOf(ResourcesSummary200Response::class, $result);
+        $this->assertObjectProperties($result, $payload);
     }
 }

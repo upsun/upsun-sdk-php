@@ -14,6 +14,8 @@ use Upsun\Core\Tasks\CertificatesTask;
 use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Certificate;
+use Upsun\Model\CertificateProvisioner;
+use Upsun\Model\CertificateProvisionerPatch;
 use Upsun\UpsunClient;
 
 class CertificatesTaskTest extends BaseTestCase
@@ -310,5 +312,126 @@ class CertificatesTaskTest extends BaseTestCase
         $this->expectException(ApiException::class);
 
         $this->task->update(projectId: $projectId, certificateId: $certificateId, chain: $data);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testAddSuccess(): void
+    {
+        $fakeResponse = [
+            'status' => 'accepted',
+            'code' => 201,
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                201,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeResponse)
+            ));
+
+        $result = $this->task->add(
+            projectId: 'proj_123',
+            certificate: 'cert-content',
+            key: 'key-content',
+            chain: ['chain1'],
+            isInvalid: false
+        );
+
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertObjectProperties($result, $fakeResponse);
+    }
+
+    public function testAddWithMissingCertificate(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->task->add(projectId: 'proj_123', certificate: '', key: 'key-content');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGetProvisionerSuccess(): void
+    {
+        $expected = [
+            'id' => 'letsencrypt',
+            'directoryUrl' => 'https://acme-v02.api.letsencrypt.org/directory',
+            'email' => 'ops@example.com',
+            'eabKid' => null,
+            'eabHmacKey' => null,
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($expected)));
+
+        $result = $this->task->getProvisioner('proj_123', 'letsencrypt');
+
+        $this->assertInstanceOf(CertificateProvisioner::class, $result);
+        $this->assertObjectProperties($result, $expected);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListProvisionersSuccess(): void
+    {
+        $expected = [[
+            'id' => 'letsencrypt',
+            'directoryUrl' => 'https://acme-v02.api.letsencrypt.org/directory',
+            'email' => 'ops@example.com',
+            'eabKid' => null,
+            'eabHmacKey' => null,
+        ]];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($expected)));
+
+        $result = $this->task->listProvisioners('proj_123');
+
+        $this->assertContainsOnlyInstancesOf(CertificateProvisioner::class, $result);
+        $this->assertObjectMatchesArray($result, $expected);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testUpdateProvisionerSuccess(): void
+    {
+        $patch = new CertificateProvisionerPatch(email: 'ops@example.com');
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                202,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'accepted', 'code' => 202])
+            ));
+
+        $result = $this->task->updateProvisioner('proj_123', 'letsencrypt', $patch);
+
+        $this->assertEquals(new AcceptedResponse('accepted', 202), $result);
+    }
+
+    public function testGetProvisionerWithEmptyDocumentId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->task->getProvisioner('proj_123', '');
+    }
+
+    public function testUpdateProvisionerWithEmptyDocumentId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->task->updateProvisioner('proj_123', '');
     }
 }

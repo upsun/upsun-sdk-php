@@ -13,6 +13,7 @@ use Psr\Http\Message\StreamFactoryInterface;
 use SplFileObject;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\TokenProvider;
+use Upsun\FormDataProcessor;
 use Upsun\Model\Address;
 use Upsun\Model\CreateProfilePicture200Response;
 use Upsun\Model\ListProfiles200Response;

@@ -10,6 +10,7 @@ use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
 use Upsun\Core\Tasks\TeamsTask;
@@ -52,6 +53,7 @@ class TeamsTaskTest extends BaseTestCase
             $upsunClient,
             new TeamsApi(...$apiClassParams),
             new TeamAccessApi(...$apiClassParams),
+            new ReferencesApi(...$apiClassParams),
         ) extends TeamsTask {
         };
     }
@@ -197,6 +199,56 @@ class TeamsTaskTest extends BaseTestCase
         $this->expectException(ApiException::class);
 
         $this->task->deleteMember(teamId: $teamId, userId: $userId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListReferencedTeams(): void
+    {
+        $expected = [
+            'team-1' => [
+                'id' => 'team-1',
+                'organizationId' => 'org-1',
+                'label' => 'Team One',
+                'projectPermissions' => [],
+                'counts' => [
+                    'memberCount' => 2,
+                    'projectCount' => 1,
+                ],
+                'createdAt' => '2025-01-01T00:00:00+00:00',
+                'updatedAt' => '2025-01-02T00:00:00+00:00',
+            ],
+        ];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($expected)
+            ));
+
+        $result = $this->task->listReferencedTeams('abc', 'sig123');
+
+        $this->assertIsArray($result);
+        $this->assertArrayHasKey('team-1', $result);
+        $this->assertEquals('Team One', $result['team-1']->getLabel());
+    }
+
+    public function testListReferencedTeamsWithEmptySig(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->task->listReferencedTeams('abc', '');
+    }
+
+    public function testListReferencedTeamsWithEmptyIn(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->task->listReferencedTeams('', 'sig123');
     }
 
     /**
@@ -842,5 +894,37 @@ class TeamsTaskTest extends BaseTestCase
 
         $this->expectException(ApiException::class);
         $this->task->delete(teamId: $teamId);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testGrantTeamProjectAccessToTeamSuccess(): void
+    {
+        $teamId = 'team-123';
+        $access = [['projectId' => 'proj-123']];
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'No content', 'code' => 204])
+            ));
+
+        $this->task->grantTeamProjectAccessToTeam(teamId: $teamId, access: $access);
+    }
+
+    /**
+     * Regression: an empty teamId must fail team validation (not project
+     * validation), confirming the duplicate checkProjectId() was removed.
+     */
+    public function testGrantTeamProjectAccessToTeamRejectsEmptyTeamId(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Team ID is required');
+
+        $this->task->grantTeamProjectAccessToTeam(teamId: '', access: [['projectId' => 'proj-123']]);
     }
 }

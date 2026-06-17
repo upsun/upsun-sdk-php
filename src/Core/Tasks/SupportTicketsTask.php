@@ -21,7 +21,7 @@ use Upsun\UpsunClient;
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
- * @see       https://docs.upsun.com
+ * @see       https://developer.upsun.com
  */
 class SupportTicketsTask extends TaskBase
 {
@@ -118,10 +118,12 @@ class SupportTicketsTask extends TaskBase
      */
     public function listCategories(?string $organizationId = null, ?string $projectId = null): array
     {
-        $this->checkOrganizationId($organizationId);
+        if ($organizationId !== null) {
+            $this->checkOrganizationId($organizationId);
+        }
 
         $project = $projectId ? $this->client->projects->get($projectId) : null;
-        $subscriptionId = $projectId ?
+        $subscriptionId = $project ?
             $this->extractSubscriptionId($project->getSubscription()->getLicenseUri()) : null;
 
         return $this->supportApi->listTicketCategories(
@@ -141,8 +143,8 @@ class SupportTicketsTask extends TaskBase
     public function listPriorities(?string $projectId = null, ?string $category = null): array
     {
         $project = $projectId ? $this->client->projects->get($projectId) : null;
-        $path = parse_url($project?->getSubscription()->getLicenseUri(), PHP_URL_PATH);
-        $subscriptionId = basename($path);
+        $subscriptionId = $project ?
+            $this->extractSubscriptionId($project->getSubscription()->getLicenseUri()) : null;
         return $this->supportApi->listTicketPriorities(subscriptionId: $subscriptionId, category: $category);
     }
 

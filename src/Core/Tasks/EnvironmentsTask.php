@@ -19,6 +19,7 @@ use Upsun\Model\DomainPatch;
 use Upsun\Model\Environment;
 use Upsun\Model\EnvironmentActivateInput;
 use Upsun\Model\EnvironmentBranchInput;
+use Upsun\Model\EnvironmentDeployInput;
 use Upsun\Model\EnvironmentInitializeInput;
 use Upsun\Model\EnvironmentMergeInput;
 use Upsun\Model\EnvironmentPatch;
@@ -42,7 +43,7 @@ use Upsun\UpsunClient;
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
- * @see       https://docs.upsun.com
+ * @see       https://developer.upsun.com
  */
 class EnvironmentsTask extends TaskBase
 {
@@ -995,6 +996,51 @@ class EnvironmentsTask extends TaskBase
             environmentId: $environmentId,
             operation: $operation,
             variables: $variables
+        );
+    }
+
+    /**
+     * Deploy an environment
+     * This method triggers a new deployment of the specified environment, deploying the latest code and configuration.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function deploy(
+        string $projectId,
+        string $environmentId,
+        ?EnvironmentDeployInput $environmentDeployInput = null
+    ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->envApi->deployEnvironment(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            environmentDeployInput: $environmentDeployInput ?? new EnvironmentDeployInput()
+        );
+    }
+
+    /**
+     * Trigger a maintenance redeploy of an environment
+     * This method performs a maintenance redeploy of the specified environment. This is useful for applying
+     * system-level updates or maintenance operations without changing the code or user configuration.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the projectId or environmentId is invalid
+     */
+    public function maintenanceRedeploy(
+        string $projectId,
+        string $environmentId
+    ): AcceptedResponse {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->envApi->maintenanceRedeployEnvironment(
+            projectId: $projectId,
+            environmentId: $environmentId
         );
     }
 }

@@ -24,6 +24,18 @@ use Psr\Http\Message\RequestFactoryInterface;
  */
 class OAuthProvider implements TokenProvider
 {
+    /** Custom grant exchanging a long-lived API token for an access token. */
+    public const GRANT_API_TOKEN = 'api_token';
+
+    /** Grant used by the local token service inside an Upsun runtime container. */
+    public const GRANT_CLIENT_CREDENTIALS = 'client_credentials';
+
+    /** Minimum access-token lifetime (seconds) accepted by the local token service. */
+    public const TOKEN_TTL_MIN = 60;
+
+    /** Maximum access-token lifetime (seconds) accepted by the local token service. */
+    public const TOKEN_TTL_MAX = 900;
+
     private ?string $accessToken = null;
     private ?string $refreshToken = null;
     private ?string $typeToken = null;
@@ -48,29 +60,50 @@ class OAuthProvider implements TokenProvider
         private readonly string $clientId,
         private readonly string $clientSecret,
         ?string $refreshEndpoint = null,
+        private readonly string $grantType = self::GRANT_API_TOKEN,
+        private readonly ?int $tokenTtl = null,
     ) {
         $this->effectiveRefreshEndpoint = $refreshEndpoint ?? $this->tokenEndpoint;
     }
 
     /**
-     * Exchanges the API token for an access token using the custom api_token grant.
-     * Uses tokenEndpoint (not refreshEndpoint).
+     * Exchanges credentials for an access token. Uses tokenEndpoint (not refreshEndpoint).
+     *
+     * - api_token grant (default): exchanges the configured API token, authenticating
+     *   the confidential client with HTTP Basic.
+     * - client_credentials grant: used by the local Upsun container token service,
+     *   which requires neither an API token nor Basic auth.
      *
      * @throws Exception
      */
     public function exchangeCodeForToken(): bool
     {
         try {
-            $body = http_build_query([
-                'grant_type' => 'api_token',
-                'api_token'  => $this->clientSecret,
-                'client_id'  => $this->clientId,
-            ]);
+            if ($this->grantType === self::GRANT_CLIENT_CREDENTIALS) {
+                $body = http_build_query([
+                    'grant_type' => 'client_credentials',
+                ]);
 
-            $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
-                ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
-                ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
-                ->withBody(Stream::create($body));
+                $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
+                    ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
+                    ->withBody(Stream::create($body));
+
+                if ($this->tokenTtl !== null) {
+                    $ttl = max(self::TOKEN_TTL_MIN, min(self::TOKEN_TTL_MAX, $this->tokenTtl));
+                    $request = $request->withHeader('x-token-ttl', (string)$ttl);
+                }
+            } else {
+                $body = http_build_query([
+                    'grant_type' => 'api_token',
+                    'api_token'  => $this->clientSecret,
+                    'client_id'  => $this->clientId,
+                ]);
+
+                $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
+                    ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
+                    ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
+                    ->withBody(Stream::create($body));
+            }
 
             $response = $this->httpClient->sendRequest($request);
 

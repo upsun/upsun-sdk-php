@@ -8,20 +8,30 @@ use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
 use RuntimeException;
 use Upsun\Api\AddOnsApi;
+use Upsun\Api\AlertsApi;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiTokensApi;
 use Upsun\Api\AutoscalingApi;
+use Upsun\Api\BlackfireMonitoringApi;
+use Upsun\Api\BlackfireProfilingApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
+use Upsun\Api\ContinuousProfilingApi;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentApi;
+use Upsun\Api\DeploymentTargetApi;
+use Upsun\Api\DiffApi;
+use Upsun\Api\DiscountsApi;
+use Upsun\Api\DomainClaimApi;
 use Upsun\Api\DomainManagementApi;
+use Upsun\Api\EntrypointApi;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Api\GrantsApi;
+use Upsun\Api\HttpTrafficApi;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
@@ -30,15 +40,17 @@ use Upsun\Api\OrganizationMembersApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\OrganizationsApi;
 use Upsun\Api\PhoneNumberApi;
-use Upsun\Api\ProfilesApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Api\ProjectApi;
 use Upsun\Api\ProjectInvitationsApi;
+use Upsun\Api\ProjectsApi;
 use Upsun\Api\ProjectSettingsApi;
 use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\RecordsApi;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\RegionsApi;
 use Upsun\Api\RepositoryApi;
+use Upsun\Api\ResourcesApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\RuntimeOperationsApi;
 use Upsun\Api\SourceOperationsApi;
@@ -46,6 +58,7 @@ use Upsun\Api\SshKeysApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\SupportApi;
 use Upsun\Api\SystemInformationApi;
+use Upsun\Api\TaskApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
 use Upsun\Api\ThirdPartyIntegrationsApi;
@@ -74,6 +87,7 @@ use Upsun\Core\Tasks\ServicesTask;
 use Upsun\Core\Tasks\SourceOperationsTask;
 use Upsun\Core\Tasks\SshTask;
 use Upsun\Core\Tasks\SupportTicketsTask;
+use Upsun\Core\Tasks\TaskContainersTask;
 use Upsun\Core\Tasks\TeamsTask;
 use Upsun\Core\Tasks\UsersInvitationsTask;
 use Upsun\Core\Tasks\UsersTask;
@@ -140,6 +154,8 @@ class UpsunClient
 
     public SshTask $sshTask;
 
+    public TaskContainersTask $taskContainers;
+
     public TeamsTask $teams;
 
     public SupportTicketsTask $supportTickets;
@@ -159,7 +175,12 @@ class UpsunClient
 
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
 
-        if ($upsunConfig->apiToken !== '') {
+        $isLocalAuth = $this->upsunConfig->auth_url === UpsunConfig::LOCAL_AUTH;
+        $grantType = $isLocalAuth
+            ? OAuthProvider::GRANT_CLIENT_CREDENTIALS
+            : OAuthProvider::GRANT_API_TOKEN;
+
+        if ($upsunConfig->apiToken !== '' || $isLocalAuth) {
             $this->auth = new OAuthProvider(
                 httpClient: $this->apiClient,
                 requestFactory: $requestFactory,
@@ -167,6 +188,8 @@ class UpsunClient
                 clientId: $this->upsunConfig->clientId,
                 clientSecret: $this->upsunConfig->apiToken,
                 refreshEndpoint: $this->upsunConfig->auth_url . '/' . $this->upsunConfig->refresh_endpoint,
+                grantType: $grantType,
+                tokenTtl: $this->upsunConfig->tokenTtl,
             );
         }
 
@@ -194,11 +217,16 @@ class UpsunClient
         // Init used API classes
         $addOnsApi = new AddOnsApi(...$taskParams);
         $apiTokensApi = new ApiTokensApi(...$taskParams);
+        $alertsApi = new AlertsApi(...$taskParams);
         $autoscalingApi = new AutoscalingApi(...$taskParams);
         $certManagementApi = new CertManagementApi(...$taskParams);
         $connectionsApi = new ConnectionsApi(...$taskParams);
         $defaultApi = new DefaultApi(...$taskParams);
         $deploymentApi = new DeploymentApi(...$taskParams);
+        $deploymentTargetApi = new DeploymentTargetApi(...$taskParams);
+        $diffApi = new DiffApi(...$taskParams);
+        $discountsApi = new DiscountsApi(...$taskParams);
+        $domainClaimApi = new DomainClaimApi(...$taskParams);
         $domainManagementApi = new DomainManagementApi(...$taskParams);
         $environmentActivityApi = new EnvironmentActivityApi(...$taskParams);
         $environmentApi = new EnvironmentApi(...$taskParams);
@@ -206,6 +234,7 @@ class UpsunClient
         $environmentTypeApi = new EnvironmentTypeApi(...$taskParams);
         $environmentVariablesApi = new EnvironmentVariablesApi(...$taskParams);
         $grantsApi = new GrantsApi(...$taskParams);
+        $httpTrafficApi = new HttpTrafficApi(...$taskParams);
         $invoicesApi = new InvoicesApi(...$taskParams);
         $mfaApi = new MfaApi(...$taskParams);
         $ordersApi = new OrdersApi(...$taskParams);
@@ -214,22 +243,29 @@ class UpsunClient
         $organizationMembersApi = new OrganizationMembersApi(...$taskParams);
         $organizationProjectsApi = new OrganizationProjectsApi(...$taskParams);
         $phoneNumberApi = new PhoneNumberApi(...$taskParams);
-        $profilesApi = new ProfilesApi(...$taskParams);
+        $blackfireMonitoringApi = new BlackfireMonitoringApi(...$taskParams);
+        $blackfireProfilingApi = new BlackfireProfilingApi(...$taskParams);
         $projectActivityApi = new ProjectActivityApi(...$taskParams);
         $projectApi = new ProjectApi(...$taskParams);
         $projectInvitationsApi = new ProjectInvitationsApi(...$taskParams);
         $projectSettingsApi = new ProjectSettingsApi(...$taskParams);
         $projectVariablesApi = new ProjectVariablesApi(...$taskParams);
+        $continuousProfilingApi = new ContinuousProfilingApi(...$taskParams);
+        $entrypointApi = new EntrypointApi(...$taskParams);
+        $referencesApi = new ReferencesApi(...$taskParams);
         $recordsApi = new RecordsApi(...$taskParams);
         $regionsApi = new RegionsApi(...$taskParams);
         $repositoryApi = new RepositoryApi(...$taskParams);
         $routingApi = new RoutingApi(...$taskParams);
         $runtimeOperationsApi = new RuntimeOperationsApi(...$taskParams);
+        $resourcesApi = new ResourcesApi(...$taskParams);
         $sourceOperationsApi = new SourceOperationsApi(...$taskParams);
         $subscriptionsApi = new SubscriptionsApi(...$taskParams);
+        $projectsApi = new ProjectsApi(...$taskParams);
         $supportApi = new SupportApi(...$taskParams);
         $systemInformationApi = new SystemInformationApi(...$taskParams);
         $sshKeysApi = new SshKeysApi(...$taskParams);
+        $taskApi = new TaskApi(...$taskParams);
         $teamAccessApi = new TeamAccessApi(...$taskParams);
         $teamsApi = new TeamsApi(...$taskParams);
         $thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi(...$taskParams);
@@ -274,7 +310,14 @@ class UpsunClient
             $organizationInvitationsApi,
             $projectInvitationsApi,
         );
-        $this->metrics = new MetricsTask($this);
+        $this->metrics = new MetricsTask(
+            $this,
+            $httpTrafficApi,
+            $blackfireMonitoringApi,
+            $continuousProfilingApi,
+            $blackfireProfilingApi,
+            $entrypointApi,
+        );
         $this->mounts = new MountsTask($this);
         $this->operations = new OperationsTask(
             $this,
@@ -289,10 +332,14 @@ class UpsunClient
             $invoicesApi,
             $mfaApi,
             $ordersApi,
-            $profilesApi,
+            $userProfilesApi,
             $recordsApi,
             $vouchersApi,
             $addOnsApi,
+            $discountsApi,
+            $referencesApi,
+            $defaultApi,
+            $alertsApi,
         );
         $this->projects = new ProjectsTask(
             $this,
@@ -300,21 +347,28 @@ class UpsunClient
             $organizationProjectsApi,
             $projectSettingsApi,
             $subscriptionsApi,
+            $deploymentTargetApi,
+            $alertsApi,
+            $domainClaimApi,
+            $projectsApi,
         );
         $this->regions = new RegionsTask(
             $this,
-            $regionsApi
+            $regionsApi,
+            $referencesApi,
         );
 
         $this->repositories = new RepositoriesTask(
             $this,
             $repositoryApi,
             $systemInformationApi,
+            $diffApi,
         );
         $this->resources = new ResourcesTask(
             $this,
             $deploymentApi,
-            $autoscalingApi
+            $autoscalingApi,
+            $resourcesApi,
         );
         $this->routes = new RoutesTask(
             $this,
@@ -327,10 +381,15 @@ class UpsunClient
             $this,
             $sourceOperationsApi
         );
+        $this->taskContainers = new TaskContainersTask(
+            $this,
+            $taskApi,
+        );
         $this->teams = new TeamsTask(
             $this,
             $teamsApi,
             $teamAccessApi,
+            $referencesApi,
         );
         $this->supportTickets = new SupportTicketsTask(
             $this,
@@ -351,6 +410,7 @@ class UpsunClient
             $grantsApi,
             $mfaApi,
             $phoneNumberApi,
+            $referencesApi,
         );
         $this->variables = new VariablesTask(
             $this,

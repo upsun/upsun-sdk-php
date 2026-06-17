@@ -12,7 +12,7 @@ use Upsun\UpsunClient;
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
- * @see       https://docs.upsun.com
+ * @see       https://developer.upsun.com
  */
 abstract class TaskBase
 {
@@ -239,6 +239,13 @@ abstract class TaskBase
     {
         if (trim($ticketId) === '') {
             throw new InvalidArgumentException('Ticket ID is required');
+        }
+    }
+
+    protected static function checkTaskId(string $taskId): void
+    {
+        if (trim($taskId) === '') {
+            throw new InvalidArgumentException('Task ID is required');
         }
     }
 

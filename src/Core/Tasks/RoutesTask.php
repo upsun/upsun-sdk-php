@@ -14,7 +14,7 @@ use Upsun\UpsunClient;
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
- * @see       https://docs.upsun.com
+ * @see       https://developer.upsun.com
  */
 class RoutesTask extends TaskBase
 {

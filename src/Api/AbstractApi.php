@@ -3,6 +3,7 @@
 namespace Upsun\Api;
 
 use Exception;
+use Generator;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClientFactory;
 use Http\Discovery\Psr17FactoryDiscovery;
@@ -266,6 +267,63 @@ abstract class AbstractApi
         }
 
         return ObjectSerializer::deserialize($content, $dataType, []);
+    }
+
+    /**
+     * Stream newline-delimited JSON responses as model instances.
+     *
+     * @throws ApiException
+     * @return Generator<int, mixed>
+     */
+    protected function handleNdjsonStreamWithDataType(
+        string $itemType,
+        RequestInterface $request,
+        ResponseInterface $response
+    ): Generator {
+        $stream = $response->getBody();
+        $buffer = '';
+
+        while (!$stream->eof()) {
+            $buffer .= $stream->read(8192);
+
+            while (($lineBreakPos = strpos($buffer, "\n")) !== false) {
+                $line = trim(substr($buffer, 0, $lineBreakPos));
+                $buffer = substr($buffer, $lineBreakPos + 1);
+
+                if ($line === '') {
+                    continue;
+                }
+
+                try {
+                    $decoded = json_decode($line, false, 512, JSON_THROW_ON_ERROR);
+                } catch (JsonException $exception) {
+                    throw new ApiException(
+                        sprintf('Error JSON decoding NDJSON line (%s)', $request->getUri()),
+                        $request,
+                        $response,
+                        $exception
+                    );
+                }
+
+                yield ObjectSerializer::deserialize($decoded, $itemType, []);
+            }
+        }
+
+        $tail = trim($buffer);
+        if ($tail !== '') {
+            try {
+                $decoded = json_decode($tail, false, 512, JSON_THROW_ON_ERROR);
+            } catch (JsonException $exception) {
+                throw new ApiException(
+                    sprintf('Error JSON decoding NDJSON tail (%s)', $request->getUri()),
+                    $request,
+                    $response,
+                    $exception
+                );
+            }
+
+            yield ObjectSerializer::deserialize($decoded, $itemType, []);
+        }
     }
 
     /**

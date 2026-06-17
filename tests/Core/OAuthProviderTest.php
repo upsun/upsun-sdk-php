@@ -546,7 +546,7 @@ class OAuthProviderTest extends TestCase
             });
 
         $this->oauthProvider->getAuthorization(); // prime cache with refresh_token stored
-        $auth = $this->oauthProvider->forceRefresh(); // must use refresh_token grant
+        $this->oauthProvider->forceRefresh(); // must use refresh_token grant
 
         $authorization = $this->oauthProvider->getAuthorization();
         $this->assertEquals('Bearer force-refresh-via-refresh-grant', $authorization);
@@ -982,5 +982,116 @@ class OAuthProviderTest extends TestCase
         $authorization = $this->oauthProvider->getAuthorization();
 
         $this->assertEquals('Bearer refreshed-token', $authorization);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testExchangeCodeForTokenWithClientCredentialsGrant()
+    {
+        $provider = new OAuthProvider(
+            $this->httpClient,
+            $this->requestFactory,
+            'http://localhost:8200/oauth2/token',
+            $this->clientId,
+            $this->clientSecret,
+            null,
+            OAuthProvider::GRANT_CLIENT_CREDENTIALS,
+        );
+
+        $responseBody = json_encode([
+            'access_token' => 'task-access-token',
+            'expires_in' => 899,
+            'token_type' => 'bearer',
+        ]);
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->with($this->callback(function (RequestInterface $request) {
+                $this->assertEquals('POST', $request->getMethod());
+                $this->assertEquals('http://localhost:8200/oauth2/token', (string)$request->getUri());
+                $this->assertFalse($request->hasHeader('Authorization'));
+
+                $body = (string)$request->getBody();
+                $this->assertStringContainsString('grant_type=client_credentials', $body);
+                $this->assertStringNotContainsString('api_token', $body);
+
+                return true;
+            }))
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], $responseBody));
+
+        $this->assertTrue($provider->exchangeCodeForToken());
+        $this->assertEquals('Bearer task-access-token', $provider->getAuthorization());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testClientCredentialsGrantSendsTokenTtlHeader()
+    {
+        $provider = new OAuthProvider(
+            $this->httpClient,
+            $this->requestFactory,
+            'http://localhost:8200/oauth2/token',
+            $this->clientId,
+            $this->clientSecret,
+            null,
+            OAuthProvider::GRANT_CLIENT_CREDENTIALS,
+            900,
+        );
+
+        $responseBody = json_encode([
+            'access_token' => 'task-access-token',
+            'expires_in' => 900,
+            'token_type' => 'bearer',
+        ]);
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->with($this->callback(function (RequestInterface $request) {
+                $this->assertEquals('900', $request->getHeaderLine('x-token-ttl'));
+
+                return true;
+            }))
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], $responseBody));
+
+        $this->assertTrue($provider->exchangeCodeForToken());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testClientCredentialsGrantClampsTokenTtlToMaximum()
+    {
+        $provider = new OAuthProvider(
+            $this->httpClient,
+            $this->requestFactory,
+            'http://localhost:8200/oauth2/token',
+            $this->clientId,
+            $this->clientSecret,
+            null,
+            OAuthProvider::GRANT_CLIENT_CREDENTIALS,
+            5000,
+        );
+
+        $responseBody = json_encode([
+            'access_token' => 'task-access-token',
+            'expires_in' => 900,
+            'token_type' => 'bearer',
+        ]);
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->with($this->callback(function (RequestInterface $request) {
+                $this->assertEquals((string)OAuthProvider::TOKEN_TTL_MAX, $request->getHeaderLine('x-token-ttl'));
+
+                return true;
+            }))
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], $responseBody));
+
+        $this->assertTrue($provider->exchangeCodeForToken());
     }
 }

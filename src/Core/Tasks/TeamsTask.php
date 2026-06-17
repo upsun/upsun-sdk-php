@@ -5,6 +5,7 @@ namespace Upsun\Core\Tasks;
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
+use Upsun\Api\ReferencesApi;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
 use Upsun\Model\CreateTeamMemberRequest;
@@ -25,7 +26,7 @@ use Upsun\UpsunClient;
  *
  * @author    Upsun Advocacy Team
  * @license   MIT
- * @see       https://docs.upsun.com
+ * @see       https://developer.upsun.com
  */
 class TeamsTask extends TaskBase
 {
@@ -33,6 +34,7 @@ class TeamsTask extends TaskBase
         UpsunClient $client,
         private readonly TeamsApi $teamsApi,
         private readonly TeamAccessApi $accessApi,
+        private readonly ReferencesApi $referencesApi,
     ) {
         parent::__construct($client);
     }
@@ -381,7 +383,6 @@ class TeamsTask extends TaskBase
     public function grantTeamProjectAccessToTeam(string $teamId, array $access): void
     {
         $this->checkTeamId($teamId);
-        $this->checkProjectId($teamId);
 
         $this->accessApi->grantTeamProjectAccess(teamId: $teamId, grantTeamProjectAccessRequestInner: $access);
     }
@@ -551,5 +552,26 @@ class TeamsTask extends TaskBase
     public function revokeTeamProjectAccess(string $teamId, string $projectId): void
     {
         $this->revokeTeamProjectAccessByTeam(teamId: $teamId, projectId: $projectId);
+    }
+
+    /**
+     * List referenced teams
+     * This method retrieves a list of teams that are referenced by a specific signature.
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the in or sig parameter is invalid or empty
+     * @return array
+     */
+    public function listReferencedTeams(string $in, string $sig): array
+    {
+        if (empty($in)) {
+            throw new InvalidArgumentException('In parameter cannot be empty');
+        }
+        if (empty($sig)) {
+            throw new InvalidArgumentException('Sig parameter cannot be empty');
+        }
+
+        return $this->referencesApi->listReferencedTeams(in: $in, sig: $sig);
     }
 }

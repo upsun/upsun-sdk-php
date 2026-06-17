@@ -3060,6 +3060,44 @@ class EnvironmentsTaskTest extends BaseTestCase
     /**
      * @throws ClientExceptionInterface
      */
+    public function testDeploySuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                202,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'accepted', 'code' => 202])
+            ));
+
+        $result = $this->environmentTask->deploy(projectId: 'project-123', environmentId: 'env-456');
+
+        $this->assertEquals(new AcceptedResponse('accepted', 202), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testMaintenanceRedeploySuccess(): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                202,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'accepted', 'code' => 202])
+            ));
+
+        $result = $this->environmentTask->maintenanceRedeploy(projectId: 'project-123', environmentId: 'env-456');
+
+        $this->assertEquals(new AcceptedResponse('accepted', 202), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
     public function testSynchronizeSuccess(): void
     {
         $projectId = 'project-123';
