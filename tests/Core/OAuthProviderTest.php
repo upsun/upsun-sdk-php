@@ -546,7 +546,7 @@ class OAuthProviderTest extends TestCase
             });
 
         $this->oauthProvider->getAuthorization(); // prime cache with refresh_token stored
-        $auth = $this->oauthProvider->forceRefresh(); // must use refresh_token grant
+        $this->oauthProvider->forceRefresh(); // must use refresh_token grant
 
         $authorization = $this->oauthProvider->getAuthorization();
         $this->assertEquals('Bearer force-refresh-via-refresh-grant', $authorization);

@@ -706,6 +706,7 @@ class OrganizationsTask extends TaskBase
      * Estimate the cost of creating a new project within the specified organization, based on parameters such as the
      * number of environments, storage, and user licenses.
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -733,6 +734,7 @@ class OrganizationsTask extends TaskBase
      * Estimate the cost of a project within the specified organization, based on parameters such as the
      * number of environments, storage, and user licenses.
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -765,6 +767,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Get current usage for a project
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -872,6 +875,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Get invoice
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -887,6 +891,7 @@ class OrganizationsTask extends TaskBase
     /**
      * List invoices
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -912,6 +917,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Download an invoice.
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
@@ -923,6 +929,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Create confirmation credentials for 3D-Secure
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -940,6 +947,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Get an order
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -955,6 +963,7 @@ class OrganizationsTask extends TaskBase
     /**
      * List orders
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      */
@@ -1071,6 +1080,7 @@ class OrganizationsTask extends TaskBase
     /**
      * List plan records
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -1112,6 +1122,7 @@ class OrganizationsTask extends TaskBase
     /**
      * List usage records
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -1149,6 +1160,7 @@ class OrganizationsTask extends TaskBase
      * organization's account, which may result in discounts, credits, or other benefits being applied to the
      * organization's subscription.
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -1170,6 +1182,7 @@ class OrganizationsTask extends TaskBase
     /**
      * List vouchers
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -1184,6 +1197,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Get Organization Addons
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid
@@ -1198,6 +1212,7 @@ class OrganizationsTask extends TaskBase
     /**
      * Updates Organization Addons
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @throws InvalidArgumentException if required parameters are missing or invalid

@@ -130,6 +130,7 @@ class ProjectsTask extends TaskBase
     /**
      * Checks if the user is able to create a new project in the organization.
      *
+     * @deprecated The underlying API endpoint is deprecated.
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network errors
      * @throws InvalidArgumentException if the organization ID is invalid
