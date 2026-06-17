@@ -2,7 +2,7 @@
 
 The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands.
 
-For more information, read [the documentation](https://developer.upsun.com/api).
+For more information, read [the documentation](https://docs.upsun.com/api).
 
 
 > **CAUTION**:
