@@ -21,6 +21,15 @@ use Psr\Http\Message\RequestFactoryInterface;
 {{> partial_internal_header }} */
 class OAuthProvider implements TokenProvider
 {
+    /** Custom grant exchanging a long-lived API token for an access token. */
+    public const GRANT_API_TOKEN = 'api_token';
+
+    /**
+     * Standard OAuth2 client_credentials grant (RFC 6749 §4.4) for confidential
+     * clients, which authenticate with clientId:clientSecret and may request a scope.
+     */
+    public const GRANT_CLIENT_CREDENTIALS = 'client_credentials';
+
     private ?string $accessToken = null;
     private ?string $refreshToken = null;
     private ?string $typeToken = null;
@@ -45,29 +54,42 @@ class OAuthProvider implements TokenProvider
         private readonly string $clientId,
         private readonly string $clientSecret,
         ?string $refreshEndpoint = null,
+        private readonly string $grantType = self::GRANT_API_TOKEN,
+        private readonly string $scope = '',
     ) {
         $this->effectiveRefreshEndpoint = $refreshEndpoint ?? $this->tokenEndpoint;
     }
 
     /**
-     * Exchanges the API token for an access token using the custom api_token grant.
-     * Uses tokenEndpoint (not refreshEndpoint).
+     * Exchanges credentials for an access token. Uses tokenEndpoint (not refreshEndpoint).
+     *
+     * - api_token grant (default): exchanges the configured API token, authenticating
+     *   the confidential client with HTTP Basic.
+     * - client_credentials grant (RFC 6749 §4.4): authenticates via HTTP Basic with
+     *   clientId:clientSecret (RFC 6749 §2.3.1) and may request a scope.
      *
      * @throws Exception
      */
     public function exchangeCodeForToken(): bool
     {
         try {
-            $body = http_build_query([
-                'grant_type' => 'api_token',
-                'api_token'  => $this->clientSecret,
-                'client_id'  => $this->clientId,
-            ]);
+            if ($this->grantType === self::GRANT_CLIENT_CREDENTIALS) {
+                $params = ['grant_type' => 'client_credentials'];
+                if ($this->scope !== '') {
+                    $params['scope'] = $this->scope;
+                }
+            } else {
+                $params = [
+                    'grant_type' => 'api_token',
+                    'api_token'  => $this->clientSecret,
+                    'client_id'  => $this->clientId,
+                ];
+            }
 
             $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
-                ->withHeader('Authorization', 'Basic ' . base64_encode('{{basicUser}}:'))
+                ->withHeader('Authorization', 'Basic ' . base64_encode($this->basicAuthCredentials()))
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
-                ->withBody(Stream::create($body));
+                ->withBody(Stream::create(http_build_query($params)));
 
             {{#headersLoop}}
             foreach ($headers as $name => $value) {
@@ -116,7 +138,7 @@ class OAuthProvider implements TokenProvider
             ]);
 
             $request = $this->requestFactory->createRequest('POST', $this->effectiveRefreshEndpoint)
-                ->withHeader('Authorization', 'Basic ' . base64_encode('{{basicUser}}:'))
+                ->withHeader('Authorization', 'Basic ' . base64_encode($this->basicAuthCredentials()))
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
                 ->withBody(Stream::create($body));
 
@@ -162,6 +184,20 @@ class OAuthProvider implements TokenProvider
         }
 
         $this->exchangeCodeForToken();
+    }
+
+    /**
+     * HTTP Basic credentials for token endpoint requests (RFC 6749 §2.3.1).
+     * client_credentials clients authenticate as themselves; the api_token
+     * grant authenticates as the public {{basicUser}} client.
+     */
+    private function basicAuthCredentials(): string
+    {
+        if ($this->grantType === self::GRANT_CLIENT_CREDENTIALS) {
+            return $this->clientId . ':' . $this->clientSecret;
+        }
+
+        return '{{basicUser}}:';
     }
 
     private function storeTokenData(array $data): void

@@ -230,6 +230,50 @@ class UpsunClientTest extends TestCase
         $client->getToken();
     }
 
+    /**
+     * @throws ReflectionException
+     */
+    public function testPublicAuthUrlUsesApiTokenGrant(): void
+    {
+        $grantType = (new \ReflectionObject($this->upsunClient->auth))->getProperty('grantType');
+
+        $this->assertEquals(
+            OAuthProvider::GRANT_API_TOKEN,
+            $grantType->getValue($this->upsunClient->auth)
+        );
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function testClientCredentialsGrantConfigIsWiredToProvider(): void
+    {
+        $config = new UpsunConfig(
+            apiToken: 'my-client-secret',
+            clientId: 'my-oauth2-client',
+            grantType: OAuthProvider::GRANT_CLIENT_CREDENTIALS,
+            scope: 'projects:read',
+        );
+        $client = new UpsunClient($config);
+
+        $this->assertInstanceOf(OAuthProvider::class, $client->auth);
+
+        $reflection = new \ReflectionObject($client->auth);
+
+        $this->assertEquals(
+            OAuthProvider::GRANT_CLIENT_CREDENTIALS,
+            $reflection->getProperty('grantType')->getValue($client->auth)
+        );
+        $this->assertEquals(
+            'my-client-secret',
+            $reflection->getProperty('clientSecret')->getValue($client->auth)
+        );
+        $this->assertEquals(
+            'projects:read',
+            $reflection->getProperty('scope')->getValue($client->auth)
+        );
+    }
+
     public function testUserIdIsNullByDefault()
     {
         $this->assertNull($this->upsunClient->userId);

@@ -983,4 +983,138 @@ class OAuthProviderTest extends TestCase
 
         $this->assertEquals('Bearer refreshed-token', $authorization);
     }
+
+    /**
+     * client_credentials as a confidential client (RFC 6749 §4.4): the client
+     * authenticates via HTTP Basic with clientId:clientSecret and requests a scope.
+     *
+     * @throws Exception
+     */
+    public function testClientCredentialsGrantSendsBasicAuthAndScope()
+    {
+        $provider = new OAuthProvider(
+            $this->httpClient,
+            $this->requestFactory,
+            $this->tokenEndpoint,
+            'my-oauth2-client',
+            'my-client-secret',
+            null,
+            OAuthProvider::GRANT_CLIENT_CREDENTIALS,
+            'projects:read projects:write',
+        );
+
+        $responseBody = json_encode([
+            'access_token' => 'cc-access-token',
+            'expires_in' => 3600,
+            'token_type' => 'bearer',
+        ]);
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->with($this->callback(function (RequestInterface $request) {
+                $this->assertEquals(
+                    'Basic ' . base64_encode('my-oauth2-client:my-client-secret'),
+                    $request->getHeaderLine('Authorization')
+                );
+                $this->assertStringContainsString(
+                    'application/x-www-form-urlencoded',
+                    $request->getHeaderLine('Content-Type')
+                );
+
+                $body = (string)$request->getBody();
+                $this->assertStringContainsString('grant_type=client_credentials', $body);
+                $this->assertStringContainsString('scope=' . urlencode('projects:read projects:write'), $body);
+                $this->assertStringNotContainsString('client_secret', $body);
+
+                return true;
+            }))
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], $responseBody));
+
+        $this->assertTrue($provider->exchangeCodeForToken());
+        $this->assertEquals('Bearer cc-access-token', $provider->getAuthorization());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testClientCredentialsGrantOmitsScopeWhenEmpty()
+    {
+        $provider = new OAuthProvider(
+            $this->httpClient,
+            $this->requestFactory,
+            $this->tokenEndpoint,
+            'my-oauth2-client',
+            'my-client-secret',
+            null,
+            OAuthProvider::GRANT_CLIENT_CREDENTIALS,
+        );
+
+        $responseBody = json_encode([
+            'access_token' => 'cc-access-token',
+            'expires_in' => 3600,
+        ]);
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->with($this->callback(function (RequestInterface $request) {
+                $this->assertEquals('grant_type=client_credentials', (string)$request->getBody());
+
+                return true;
+            }))
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], $responseBody));
+
+        $this->assertTrue($provider->exchangeCodeForToken());
+    }
+
+    /**
+     * If the server issues a refresh_token to a confidential client_credentials
+     * client, the refresh call authenticates with the client's own Basic credentials
+     * rather than the public platform-api-user client.
+     *
+     * @throws Exception
+     */
+    public function testClientCredentialsRefreshUsesClientBasicAuth()
+    {
+        $provider = new OAuthProvider(
+            $this->httpClient,
+            $this->requestFactory,
+            $this->tokenEndpoint,
+            'my-oauth2-client',
+            'my-client-secret',
+            null,
+            OAuthProvider::GRANT_CLIENT_CREDENTIALS,
+        );
+
+        $firstResponse = json_encode([
+            'access_token'  => 'initial-token',
+            'refresh_token' => 'cc-refresh-token',
+            'expires_in'    => -1,
+        ]);
+
+        $refreshResponse = json_encode([
+            'access_token' => 'refreshed-cc-token',
+            'expires_in'   => 3600,
+        ]);
+
+        $this->httpClient
+            ->expects($this->exactly(2))
+            ->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request) use ($firstResponse, $refreshResponse) {
+                $body = (string)$request->getBody();
+                if (str_contains($body, 'grant_type=refresh_token')) {
+                    $this->assertEquals(
+                        'Basic ' . base64_encode('my-oauth2-client:my-client-secret'),
+                        $request->getHeaderLine('Authorization')
+                    );
+                    return new Response(200, ['Content-Type' => 'application/json'], $refreshResponse);
+                }
+                return new Response(200, ['Content-Type' => 'application/json'], $firstResponse);
+            });
+
+        $provider->exchangeCodeForToken();
+        $auth = $provider->getAuthorization();
+        $this->assertEquals('Bearer refreshed-cc-token', $auth);
+    }
 }
