@@ -4,6 +4,7 @@ namespace Upsun\Core;
 
 use Exception;
 use Fiber;
+use InvalidArgumentException;
 use Nyholm\Psr7\Stream;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -60,6 +61,15 @@ class OAuthProvider implements TokenProvider
         private readonly string $grantType = self::GRANT_API_TOKEN,
         private readonly string $scope = '',
     ) {
+        if (!in_array($this->grantType, [self::GRANT_API_TOKEN, self::GRANT_CLIENT_CREDENTIALS], true)) {
+            throw new InvalidArgumentException(sprintf(
+                'Unsupported grant type "%s"; expected "%s" or "%s".',
+                $this->grantType,
+                self::GRANT_API_TOKEN,
+                self::GRANT_CLIENT_CREDENTIALS,
+            ));
+        }
+
         $this->effectiveRefreshEndpoint = $refreshEndpoint ?? $this->tokenEndpoint;
     }
 
@@ -67,7 +77,7 @@ class OAuthProvider implements TokenProvider
      * Exchanges credentials for an access token. Uses tokenEndpoint (not refreshEndpoint).
      *
      * - api_token grant (default): exchanges the configured API token, authenticating
-     *   the confidential client with HTTP Basic.
+     *   as the public platform-api-user client via HTTP Basic.
      * - client_credentials grant (RFC 6749 §4.4): authenticates via HTTP Basic with
      *   clientId:clientSecret (RFC 6749 §2.3.1) and may request a scope.
      *
@@ -185,13 +195,14 @@ class OAuthProvider implements TokenProvider
 
     /**
      * HTTP Basic credentials for token endpoint requests (RFC 6749 §2.3.1).
-     * client_credentials clients authenticate as themselves; the api_token
-     * grant authenticates as the public platform-api-user client.
+     * client_credentials clients authenticate as themselves, with the id and
+     * secret form-urlencoded before concatenation as §2.3.1 requires; the
+     * api_token grant authenticates as the public platform-api-user client.
      */
     private function basicAuthCredentials(): string
     {
         if ($this->grantType === self::GRANT_CLIENT_CREDENTIALS) {
-            return $this->clientId . ':' . $this->clientSecret;
+            return urlencode($this->clientId) . ':' . urlencode($this->clientSecret);
         }
 
         return 'platform-api-user:';

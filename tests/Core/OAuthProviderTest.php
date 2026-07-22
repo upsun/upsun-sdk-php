@@ -1068,6 +1068,64 @@ class OAuthProviderTest extends TestCase
         $this->assertTrue($provider->exchangeCodeForToken());
     }
 
+    public function testConstructorRejectsUnknownGrantType()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unsupported grant type "password"');
+
+        new OAuthProvider(
+            $this->httpClient,
+            $this->requestFactory,
+            $this->tokenEndpoint,
+            $this->clientId,
+            $this->clientSecret,
+            null,
+            'password',
+        );
+    }
+
+    /**
+     * RFC 6749 §2.3.1: client id and secret are form-urlencoded before being
+     * concatenated and base64-encoded into the Basic header.
+     *
+     * @throws Exception
+     */
+    public function testClientCredentialsBasicAuthUrlEncodesReservedCharacters()
+    {
+        $clientId = 'client:with/reserved';
+        $clientSecret = 's3cr3t+&=%';
+
+        $provider = new OAuthProvider(
+            $this->httpClient,
+            $this->requestFactory,
+            $this->tokenEndpoint,
+            $clientId,
+            $clientSecret,
+            null,
+            OAuthProvider::GRANT_CLIENT_CREDENTIALS,
+        );
+
+        $responseBody = json_encode([
+            'access_token' => 'cc-access-token',
+            'expires_in' => 3600,
+        ]);
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->with($this->callback(function (RequestInterface $request) use ($clientId, $clientSecret) {
+                $this->assertEquals(
+                    'Basic ' . base64_encode(urlencode($clientId) . ':' . urlencode($clientSecret)),
+                    $request->getHeaderLine('Authorization')
+                );
+
+                return true;
+            }))
+            ->willReturn(new Response(200, ['Content-Type' => 'application/json'], $responseBody));
+
+        $this->assertTrue($provider->exchangeCodeForToken());
+    }
+
     /**
      * If the server issues a refresh_token to a confidential client_credentials
      * client, the refresh call authenticates with the client's own Basic credentials

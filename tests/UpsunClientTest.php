@@ -233,7 +233,7 @@ class UpsunClientTest extends TestCase
     /**
      * @throws ReflectionException
      */
-    public function testPublicAuthUrlUsesApiTokenGrant(): void
+    public function testDefaultConfigUsesApiTokenGrant(): void
     {
         $grantType = (new \ReflectionObject($this->upsunClient->auth))->getProperty('grantType');
 
