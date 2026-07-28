@@ -23,6 +23,8 @@ require __DIR__ . '/vendor/autoload.php';
 
 ## Authentication
 
+### With an API token (default)
+
 You will need an [Upsun API token](https://docs.upsun.com/administration/cli/api-tokens.html) to use this SDK.
 Store it securely, preferably in an environment variable.
 
@@ -31,6 +33,26 @@ use Upsun\UpsunConfig;
 use Upsun\UpsunClient;
 
 $config = new UpsunConfig(apiToken: getenv('UPSUN_API_TOKEN'));
+$upsunClient = new UpsunClient($config);
+```
+
+### With an OAuth2 client (client_credentials grant)
+
+If you have a registered OAuth2 client, the SDK can authenticate with the standard
+`client_credentials` grant (RFC 6749 §4.4): the client id and secret are sent via
+HTTP Basic authentication, and an optional `scope` can be requested.
+
+```php
+use Upsun\Core\OAuthProvider;
+use Upsun\UpsunConfig;
+use Upsun\UpsunClient;
+
+$config = new UpsunConfig(
+    grantType: OAuthProvider::GRANT_CLIENT_CREDENTIALS,
+    clientId: getenv('OAUTH_CLIENT_ID'),
+    apiToken: getenv('OAUTH_CLIENT_SECRET'), // the client secret
+    scope: 'projects:read', // optional
+);
 $upsunClient = new UpsunClient($config);
 ```
 

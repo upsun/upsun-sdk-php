@@ -4,6 +4,7 @@ namespace Upsun\Core;
 
 use Exception;
 use Fiber;
+use InvalidArgumentException;
 use Nyholm\Psr7\Stream;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -24,6 +25,15 @@ use Psr\Http\Message\RequestFactoryInterface;
  */
 class OAuthProvider implements TokenProvider
 {
+    /** Custom grant exchanging a long-lived API token for an access token. */
+    public const GRANT_API_TOKEN = 'api_token';
+
+    /**
+     * Standard OAuth2 client_credentials grant (RFC 6749 §4.4) for confidential
+     * clients, which authenticate with clientId:clientSecret and may request a scope.
+     */
+    public const GRANT_CLIENT_CREDENTIALS = 'client_credentials';
+
     private ?string $accessToken = null;
     private ?string $refreshToken = null;
     private ?string $typeToken = null;
@@ -48,29 +58,51 @@ class OAuthProvider implements TokenProvider
         private readonly string $clientId,
         private readonly string $clientSecret,
         ?string $refreshEndpoint = null,
+        private readonly string $grantType = self::GRANT_API_TOKEN,
+        private readonly string $scope = '',
     ) {
+        if (!in_array($this->grantType, [self::GRANT_API_TOKEN, self::GRANT_CLIENT_CREDENTIALS], true)) {
+            throw new InvalidArgumentException(sprintf(
+                'Unsupported grant type "%s"; expected "%s" or "%s".',
+                $this->grantType,
+                self::GRANT_API_TOKEN,
+                self::GRANT_CLIENT_CREDENTIALS,
+            ));
+        }
+
         $this->effectiveRefreshEndpoint = $refreshEndpoint ?? $this->tokenEndpoint;
     }
 
     /**
-     * Exchanges the API token for an access token using the custom api_token grant.
-     * Uses tokenEndpoint (not refreshEndpoint).
+     * Exchanges credentials for an access token. Uses tokenEndpoint (not refreshEndpoint).
+     *
+     * - api_token grant (default): exchanges the configured API token, authenticating
+     *   as the public platform-api-user client via HTTP Basic.
+     * - client_credentials grant (RFC 6749 §4.4): authenticates via HTTP Basic with
+     *   clientId:clientSecret (RFC 6749 §2.3.1) and may request a scope.
      *
      * @throws Exception
      */
     public function exchangeCodeForToken(): bool
     {
         try {
-            $body = http_build_query([
-                'grant_type' => 'api_token',
-                'api_token'  => $this->clientSecret,
-                'client_id'  => $this->clientId,
-            ]);
+            if ($this->grantType === self::GRANT_CLIENT_CREDENTIALS) {
+                $params = ['grant_type' => 'client_credentials'];
+                if ($this->scope !== '') {
+                    $params['scope'] = $this->scope;
+                }
+            } else {
+                $params = [
+                    'grant_type' => 'api_token',
+                    'api_token'  => $this->clientSecret,
+                    'client_id'  => $this->clientId,
+                ];
+            }
 
             $request = $this->requestFactory->createRequest('POST', $this->tokenEndpoint)
-                ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
+                ->withHeader('Authorization', 'Basic ' . base64_encode($this->basicAuthCredentials()))
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
-                ->withBody(Stream::create($body));
+                ->withBody(Stream::create(http_build_query($params)));
 
             $response = $this->httpClient->sendRequest($request);
 
@@ -113,7 +145,7 @@ class OAuthProvider implements TokenProvider
             ]);
 
             $request = $this->requestFactory->createRequest('POST', $this->effectiveRefreshEndpoint)
-                ->withHeader('Authorization', 'Basic ' . base64_encode('platform-api-user:'))
+                ->withHeader('Authorization', 'Basic ' . base64_encode($this->basicAuthCredentials()))
                 ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
                 ->withBody(Stream::create($body));
 
@@ -159,6 +191,21 @@ class OAuthProvider implements TokenProvider
         }
 
         $this->exchangeCodeForToken();
+    }
+
+    /**
+     * HTTP Basic credentials for token endpoint requests (RFC 6749 §2.3.1).
+     * client_credentials clients authenticate as themselves, with the id and
+     * secret form-urlencoded before concatenation as §2.3.1 requires; the
+     * api_token grant authenticates as the public platform-api-user client.
+     */
+    private function basicAuthCredentials(): string
+    {
+        if ($this->grantType === self::GRANT_CLIENT_CREDENTIALS) {
+            return urlencode($this->clientId) . ':' . urlencode($this->clientSecret);
+        }
+
+        return 'platform-api-user:';
     }
 
     private function storeTokenData(array $data): void

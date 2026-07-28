@@ -167,6 +167,8 @@ class UpsunClient
                 clientId: $this->upsunConfig->clientId,
                 clientSecret: $this->upsunConfig->apiToken,
                 refreshEndpoint: $this->upsunConfig->auth_url . '/' . $this->upsunConfig->refresh_endpoint,
+                grantType: $this->upsunConfig->grantType,
+                scope: $this->upsunConfig->scope,
             );
         }
 
