@@ -64,6 +64,8 @@ final class InvoicesApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Invoices/operation/get-org-invoice
+     *
+     * @deprecated
      */
     public function getOrgInvoice(
         string $invoiceId,
@@ -77,6 +79,8 @@ final class InvoicesApi extends AbstractApi
 
     /**
      * Get invoice with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $invoiceId
      *         The ID of the invoice. (required)
@@ -133,6 +137,8 @@ final class InvoicesApi extends AbstractApi
      *         name instead. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getOrgInvoiceRequest(
         string $invoiceId,
@@ -256,6 +262,8 @@ final class InvoicesApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Invoices/operation/list-org-invoices
+     *
+     * @deprecated
      */
     public function listOrgInvoices(
         string $organizationId,
@@ -275,6 +283,8 @@ final class InvoicesApi extends AbstractApi
 
     /**
      * List invoices with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -351,6 +361,8 @@ final class InvoicesApi extends AbstractApi
      *         Page to be displayed. Defaults to 1. (optional)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function listOrgInvoicesRequest(
         string $organizationId,

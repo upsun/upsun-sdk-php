@@ -86,6 +86,8 @@ final class RecordsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-plan-records
+     *
+     * @deprecated
      */
     public function listOrgPlanRecords(
         string $organizationId,
@@ -113,6 +115,8 @@ final class RecordsApi extends AbstractApi
 
     /**
      * List plan records with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -227,6 +231,8 @@ final class RecordsApi extends AbstractApi
      *         Page to be displayed. Defaults to 1. (optional)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function listOrgPlanRecordsRequest(
         string $organizationId,
@@ -450,6 +456,8 @@ final class RecordsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-usage-records
+     *
+     * @deprecated
      */
     public function listOrgUsageRecords(
         string $organizationId,
@@ -471,6 +479,8 @@ final class RecordsApi extends AbstractApi
 
     /**
      * List usage records with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -559,6 +569,8 @@ final class RecordsApi extends AbstractApi
      *         Page to be displayed. Defaults to 1. (optional)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function listOrgUsageRecordsRequest(
         string $organizationId,
