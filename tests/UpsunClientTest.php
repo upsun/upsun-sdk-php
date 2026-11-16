@@ -16,6 +16,7 @@ use Upsun\Core\Tasks\DomainsTask;
 use Upsun\Core\Tasks\EnvironmentsTask;
 use Upsun\Core\Tasks\MetricsTask;
 use Upsun\Core\Tasks\MountsTask;
+use Upsun\Core\Tasks\ObservabilityTask;
 use Upsun\Core\Tasks\OperationsTask;
 use Upsun\Core\Tasks\OrganizationsTask;
 use Upsun\Core\Tasks\ProjectsTask;
@@ -129,6 +130,11 @@ class UpsunClientTest extends TestCase
     public function testConstructorInitializesMountsTask()
     {
         $this->assertInstanceOf(MountsTask::class, $this->upsunClient->mounts);
+    }
+
+    public function testConstructorInitializesObservabilityTask()
+    {
+        $this->assertInstanceOf(ObservabilityTask::class, $this->upsunClient->observability);
     }
 
     public function testConstructorInitializesOperationsTask()
@@ -323,6 +329,7 @@ class UpsunClientTest extends TestCase
             'invitations',
             'metrics',
             'mounts',
+            'observability',
             'operations',
             'organizations',
             'projects',
