@@ -207,10 +207,10 @@ abstract class TaskBase
         }
     }
 
-    protected static function checkSshKeyId(int $keyId): void
+    protected static function checkSshKeyId(string $keyId): void
     {
-        if (!$keyId || $keyId <= 0) {
-            throw new InvalidArgumentException('Key ID must be a positive integer');
+        if (trim($keyId) === '') {
+            throw new InvalidArgumentException('SSH key ID is required');
         }
     }
 

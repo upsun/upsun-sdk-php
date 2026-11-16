@@ -14,17 +14,12 @@ use JsonSerializable;
  */
 final class BitbucketIntegration implements Model, JsonSerializable, Integration
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
     public function __construct(
         private readonly string $type,
         private readonly string $role,
         private readonly bool $fetchBranches,
         private readonly bool $pruneBranches,
-        private readonly string $environmentInitResources,
+        private readonly EnvironmentInitResources $environmentInitResources,
         private readonly string $repository,
         private readonly bool $buildPullRequests,
         private readonly bool $pullRequestsCloneParentData,
@@ -35,6 +30,7 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
         private readonly ?OAuth2Consumer $appCredentials = null,
         private readonly ?AddonCredential $addonCredentials = null,
         private readonly ?string $id = null,
+        private readonly ?string $repositoryUrl = null,
     ) {
     }
 
@@ -59,6 +55,7 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
             'pullRequestsMaxPages' => $this->pullRequestsMaxPages,
             'resyncPullRequests' => $this->resyncPullRequests,
             'id' => $this->id,
+            'repositoryUrl' => $this->repositoryUrl,
             'appCredentials' => $this->appCredentials,
             'addonCredentials' => $this->addonCredentials,
         ];
@@ -118,9 +115,9 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * The resources used when initializing a new service
+     * The resources used when initializing a new environment, per environment type
      */
-    public function getEnvironmentInitResources(): string
+    public function getEnvironmentInitResources(): EnvironmentInitResources
     {
         return $this->environmentInitResources;
     }
@@ -171,6 +168,14 @@ final class BitbucketIntegration implements Model, JsonSerializable, Integration
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    /**
+     * The URL of the remote git repository
+     */
+    public function getRepositoryUrl(): ?string
+    {
+        return $this->repositoryUrl;
     }
 
     /**

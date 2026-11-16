@@ -32,6 +32,7 @@ final class Backup implements Model, JsonSerializable
         private readonly ?int $index,
         private readonly ?int $sizeOfVolumes,
         private readonly ?int $sizeUsed,
+        private readonly ?int $sizeObjectStorage,
         private readonly ?string $deployment,
     ) {
     }
@@ -56,6 +57,7 @@ final class Backup implements Model, JsonSerializable
             'safe' => $this->safe,
             'sizeOfVolumes' => $this->sizeOfVolumes,
             'sizeUsed' => $this->sizeUsed,
+            'sizeObjectStorage' => $this->sizeObjectStorage,
             'deployment' => $this->deployment,
             'restorable' => $this->restorable,
             'automated' => $this->automated,
@@ -158,6 +160,14 @@ final class Backup implements Model, JsonSerializable
     public function getSizeUsed(): ?int
     {
         return $this->sizeUsed;
+    }
+
+    /**
+     * Total object-storage quota configured on webapps at backup time
+     */
+    public function getSizeObjectStorage(): ?int
+    {
+        return $this->sizeObjectStorage;
     }
 
     /**

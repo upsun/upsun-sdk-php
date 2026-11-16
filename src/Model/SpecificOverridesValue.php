@@ -19,6 +19,7 @@ final class SpecificOverridesValue implements Model, JsonSerializable
         private readonly ?bool $scripts = null,
         private readonly ?bool $allow = null,
         private readonly ?array $headers = [],
+        private readonly ?bool $dynamicCompression = null,
     ) {
     }
 
@@ -35,6 +36,7 @@ final class SpecificOverridesValue implements Model, JsonSerializable
             'scripts' => $this->scripts,
             'allow' => $this->allow,
             'headers' => $this->headers,
+            'dynamicCompression' => $this->dynamicCompression,
         ];
     }
 
@@ -66,5 +68,10 @@ final class SpecificOverridesValue implements Model, JsonSerializable
     public function getHeaders(): ?array
     {
         return $this->headers;
+    }
+
+    public function getDynamicCompression(): ?bool
+    {
+        return $this->dynamicCompression;
     }
 }

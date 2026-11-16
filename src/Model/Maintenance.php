@@ -15,8 +15,13 @@ use JsonSerializable;
  */
 final class Maintenance implements Model, JsonSerializable
 {
+    public const SOURCE_PROJECTED = 'projected';
+    public const SOURCE_SCHEDULED = 'scheduled';
+
     public function __construct(
         private readonly DateTime $nextMaintenance,
+        private readonly string $source,
+        private readonly ?string $activity,
     ) {
     }
 
@@ -29,6 +34,8 @@ final class Maintenance implements Model, JsonSerializable
     {
         return [
             'nextMaintenance' => $this->nextMaintenance?->format(DATE_ATOM),
+            'source' => $this->source,
+            'activity' => $this->activity,
         ];
     }
 
@@ -38,10 +45,28 @@ final class Maintenance implements Model, JsonSerializable
     }
 
     /**
-     * Estimated date and time of the next maintenance activity
+     * Date and time of the next maintenance activity. While a booked run is under way this is its start time, so it can
+     * be in the past
      */
     public function getNextMaintenance(): DateTime
     {
         return $this->nextMaintenance;
+    }
+
+    /**
+     * 'scheduled' when a production maintenance run is booked or under way and 'next_maintenance' is its scheduled
+     * date, 'projected' when it is the recurrence projection
+     */
+    public function getSource(): string
+    {
+        return $this->source;
+    }
+
+    /**
+     * The id of the scheduled maintenance activity, or null when the date is a projection
+     */
+    public function getActivity(): ?string
+    {
+        return $this->activity;
     }
 }

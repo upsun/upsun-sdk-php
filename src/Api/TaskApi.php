@@ -60,12 +60,12 @@ final class TaskApi extends AbstractApi
     public function getProjectsEnvironmentsTasks(
         string $projectId,
         string $environmentId,
-        string $taskId
+        string $taskDefinitionId
     ): Task {
         return $this->getProjectsEnvironmentsTasksWithHttpInfo(
             $projectId,
             $environmentId,
-            $taskId
+            $taskDefinitionId
         );
     }
 
@@ -78,12 +78,12 @@ final class TaskApi extends AbstractApi
     private function getProjectsEnvironmentsTasksWithHttpInfo(
         string $projectId,
         string $environmentId,
-        string $taskId
+        string $taskDefinitionId
     ): Task {
         $request = $this->getProjectsEnvironmentsTasksRequest(
             $projectId,
             $environmentId,
-            $taskId
+            $taskDefinitionId
         );
 
         try {
@@ -104,7 +104,7 @@ final class TaskApi extends AbstractApi
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
                     $exception->getCode(),
-                    '/projects/{projectId}/environments/{environmentId}/tasks/{taskId}'
+                    '/projects/{projectId}/environments/{environmentId}/tasks/{taskDefinitionId}'
                 ),
                 $request,
                 $response ?? null,
@@ -122,7 +122,7 @@ final class TaskApi extends AbstractApi
     private function getProjectsEnvironmentsTasksRequest(
         string $projectId,
         string $environmentId,
-        string $taskId
+        string $taskDefinitionId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
@@ -138,15 +138,15 @@ final class TaskApi extends AbstractApi
                 when calling getProjectsEnvironmentsTasks'
             );
         }
-        // verify the required parameter 'taskId' is set
-        if (empty($taskId)) {
+        // verify the required parameter 'taskDefinitionId' is set
+        if (empty($taskDefinitionId)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $taskId
+                'Missing the required parameter $taskDefinitionId
                 when calling getProjectsEnvironmentsTasks'
             );
         }
 
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/tasks/{taskId}';
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/tasks/{taskDefinitionId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -173,10 +173,10 @@ final class TaskApi extends AbstractApi
         }
         // path params
 
-        if ($taskId !== null) {
+        if ($taskDefinitionId !== null) {
             $resourcePath = str_replace(
-                '{' . 'taskId' . '}',
-                ObjectSerializer::toPathValue($taskId),
+                '{' . 'taskDefinitionId' . '}',
+                ObjectSerializer::toPathValue($taskDefinitionId),
                 $resourcePath
             );
         }
@@ -418,13 +418,13 @@ final class TaskApi extends AbstractApi
     public function runTask(
         string $projectId,
         string $environmentId,
-        string $taskId,
+        string $taskDefinitionId,
         TaskTriggerInput $taskTriggerInput
     ): AcceptedResponse {
         return $this->runTaskWithHttpInfo(
             $projectId,
             $environmentId,
-            $taskId,
+            $taskDefinitionId,
             $taskTriggerInput
         );
     }
@@ -439,13 +439,13 @@ final class TaskApi extends AbstractApi
     private function runTaskWithHttpInfo(
         string $projectId,
         string $environmentId,
-        string $taskId,
+        string $taskDefinitionId,
         TaskTriggerInput $taskTriggerInput
     ): AcceptedResponse {
         $request = $this->runTaskRequest(
             $projectId,
             $environmentId,
-            $taskId,
+            $taskDefinitionId,
             $taskTriggerInput
         );
 
@@ -467,7 +467,7 @@ final class TaskApi extends AbstractApi
                 sprintf(
                     '[%d] Error connecting to the API (%s)',
                     $exception->getCode(),
-                    '/projects/{projectId}/environments/{environmentId}/tasks/{taskId}/run'
+                    '/projects/{projectId}/environments/{environmentId}/tasks/{taskDefinitionId}/run'
                 ),
                 $request,
                 $response ?? null,
@@ -486,7 +486,7 @@ final class TaskApi extends AbstractApi
     private function runTaskRequest(
         string $projectId,
         string $environmentId,
-        string $taskId,
+        string $taskDefinitionId,
         TaskTriggerInput $taskTriggerInput
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
@@ -503,10 +503,10 @@ final class TaskApi extends AbstractApi
                 when calling runTask'
             );
         }
-        // verify the required parameter 'taskId' is set
-        if (empty($taskId)) {
+        // verify the required parameter 'taskDefinitionId' is set
+        if (empty($taskDefinitionId)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $taskId
+                'Missing the required parameter $taskDefinitionId
                 when calling runTask'
             );
         }
@@ -518,7 +518,7 @@ final class TaskApi extends AbstractApi
             );
         }
 
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/tasks/{taskId}/run';
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/tasks/{taskDefinitionId}/run';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -545,10 +545,10 @@ final class TaskApi extends AbstractApi
         }
         // path params
 
-        if ($taskId !== null) {
+        if ($taskDefinitionId !== null) {
             $resourcePath = str_replace(
-                '{' . 'taskId' . '}',
-                ObjectSerializer::toPathValue($taskId),
+                '{' . 'taskDefinitionId' . '}',
+                ObjectSerializer::toPathValue($taskDefinitionId),
                 $resourcePath
             );
         }

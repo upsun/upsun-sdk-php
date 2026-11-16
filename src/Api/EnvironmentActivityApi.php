@@ -243,6 +243,198 @@ final class EnvironmentActivityApi extends AbstractApi
     }
 
     /**
+     * Cancel an integration activity
+     *
+     * Cancel a single activity as specified by an `id` returned by the Get integration activity log. Please note that
+     * not all activities are cancelable.
+     *
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/action-projects-integrations-activities-cancel
+     */
+    public function actionProjectsIntegrationsActivitiesCancel(
+        string $projectId,
+        string $integrationId,
+        string $activityId
+    ): AcceptedResponse {
+        return $this->actionProjectsIntegrationsActivitiesCancelWithHttpInfo(
+            $projectId,
+            $integrationId,
+            $activityId
+        );
+    }
+
+    /**
+     * Cancel an integration activity with HTTP Info
+     *
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
+    private function actionProjectsIntegrationsActivitiesCancelWithHttpInfo(
+        string $projectId,
+        string $integrationId,
+        string $activityId
+    ): AcceptedResponse {
+        $request = $this->actionProjectsIntegrationsActivitiesCancelRequest(
+            $projectId,
+            $integrationId,
+            $activityId
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\AcceptedResponse',
+                $request,
+                $response
+            );
+        } catch (Exception $exception) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $exception->getCode(),
+                    '/projects/{projectId}/integrations/{integrationId}/activities/{activityId}/cancel'
+                ),
+                $request,
+                $response ?? null,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Create request for operation 'actionProjectsIntegrationsActivitiesCancel'
+     *
+     *
+     * @throws InvalidArgumentException
+     */
+    private function actionProjectsIntegrationsActivitiesCancelRequest(
+        string $projectId,
+        string $integrationId,
+        string $activityId
+    ): RequestInterface {
+        // verify the required parameter 'projectId' is set
+        if (empty($projectId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $projectId
+                when calling actionProjectsIntegrationsActivitiesCancel'
+            );
+        }
+        // verify the required parameter 'integrationId' is set
+        if (empty($integrationId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $integrationId
+                when calling actionProjectsIntegrationsActivitiesCancel'
+            );
+        }
+        // verify the required parameter 'activityId' is set
+        if (empty($activityId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $activityId
+                when calling actionProjectsIntegrationsActivitiesCancel'
+            );
+        }
+
+        $resourcePath = '/projects/{projectId}/integrations/{integrationId}/activities/{activityId}/cancel';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+
+        if ($projectId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'projectId' . '}',
+                ObjectSerializer::toPathValue($projectId),
+                $resourcePath
+            );
+        }
+        // path params
+
+        if ($integrationId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'integrationId' . '}',
+                ObjectSerializer::toPathValue($integrationId),
+                $resourcePath
+            );
+        }
+        // path params
+
+        if ($activityId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'activityId' . '}',
+                ObjectSerializer::toPathValue($activityId),
+                $resourcePath
+            );
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+        if ($this->config->getUpsunClientHeader()) {
+            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('POST', $uri, $headers, $httpBody);
+    }
+
+    /**
      * Get an environment activity log entry
      *
      * Retrieve a single environment activity entry as specified by an `id` returned by the Get environment activities

@@ -17,9 +17,10 @@ final class HttpLogIntegrationPatch implements Model, JsonSerializable, Integrat
         private readonly string $type,
         private readonly string $url,
         private readonly ?array $extra = [],
+        private readonly ?bool $redaction = null,
+        private readonly ?array $excludedServices = [],
         private readonly ?array $headers = [],
         private readonly ?bool $tlsVerify = null,
-        private readonly ?string $excludedServices = null,
     ) {
     }
 
@@ -34,9 +35,10 @@ final class HttpLogIntegrationPatch implements Model, JsonSerializable, Integrat
             'type' => $this->type,
             'url' => $this->url,
             'extra' => $this->extra,
+            'redaction' => $this->redaction,
+            'excludedServices' => $this->excludedServices,
             'headers' => $this->headers,
             'tlsVerify' => $this->tlsVerify,
-            'excludedServices' => $this->excludedServices,
         ];
     }
 
@@ -66,6 +68,19 @@ final class HttpLogIntegrationPatch implements Model, JsonSerializable, Integrat
         return $this->extra;
     }
 
+    /**
+     * Enable built-in PII redaction (e.g. email addresses) before forwarding log lines
+     */
+    public function getRedaction(): ?bool
+    {
+        return $this->redaction;
+    }
+
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
+    }
+
     public function getHeaders(): ?array
     {
         return $this->headers;
@@ -77,13 +92,5 @@ final class HttpLogIntegrationPatch implements Model, JsonSerializable, Integrat
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
-    }
-
-    /**
-     * The type of the integration
-     */
-    public function getExcludedServices(): ?string
-    {
-        return $this->excludedServices;
     }
 }

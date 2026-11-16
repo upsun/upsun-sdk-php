@@ -982,6 +982,7 @@ class EnvironmentsTaskTest extends BaseTestCase
             'project' => 'project-123',
             'environment' => 'env-456',
             'inherited' => true,
+            'is_overridden' => false,
             'isJson' => false,
             'isSensitive' => true,
             'visibleBuild' => true,
@@ -1065,6 +1066,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                 'project' => 'azertyuiop',
                 'environment' => 'main',
                 'inherited' => false,
+                'is_overridden' => false,
                 'is_enabled' => true,
                 'is_inheritable' => true,
             ],
@@ -1088,6 +1090,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                 'project' => 'azertyuiop',
                 'environment' => 'main',
                 'inherited' => false,
+                'is_overridden' => false,
                 'is_enabled' => true,
                 'is_inheritable' => true,
             ],
@@ -1990,7 +1993,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                 ],
             ],
             'workers' => [],
-            'tasks' => '[]',
+            'tasks' => [],
             'container_profiles' => [
                 'BALANCED' => [
                     '0.1' => ['cpu' => 0.1, 'memory' => 352, 'cpu_type' => 'shared'],
@@ -2416,7 +2419,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                     ],
                 ],
                 'workers' => [],
-                'tasks' => '[]',
+                'tasks' => [],
                 'container_profiles' => [
                     'BALANCED' => [
                         '0.1' => ['cpu' => 0.1, 'memory' => 352, 'cpu_type' => 'shared'],
@@ -2815,7 +2818,7 @@ class EnvironmentsTaskTest extends BaseTestCase
                     ],
                 ],
                 'workers' => [],
-                'tasks' => '[]',
+                'tasks' => [],
                 'container_profiles' => [
                     'BALANCED' => [
                         '0.1' => ['cpu' => 0.1, 'memory' => 352, 'cpu_type' => 'shared'],

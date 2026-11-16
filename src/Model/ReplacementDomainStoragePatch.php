@@ -14,7 +14,7 @@ use JsonSerializable;
 final class ReplacementDomainStoragePatch implements Model, JsonSerializable, DomainPatch
 {
     public function __construct(
-        private readonly ?TLSSettings $attributes = null,
+        private readonly ?array $attributes = [],
     ) {
     }
 
@@ -35,10 +35,7 @@ final class ReplacementDomainStoragePatch implements Model, JsonSerializable, Do
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * TLS settings for the route
-     */
-    public function getAttributes(): ?TLSSettings
+    public function getAttributes(): ?array
     {
         return $this->attributes;
     }

@@ -15,6 +15,8 @@ final class Tasks implements Model, JsonSerializable
 {
     public function __construct(
         private readonly bool $enabled,
+        private readonly ?int $limit,
+        private readonly ?int $concurrencyLimit,
     ) {
     }
 
@@ -27,6 +29,8 @@ final class Tasks implements Model, JsonSerializable
     {
         return [
             'enabled' => $this->enabled,
+            'limit' => $this->limit,
+            'concurrencyLimit' => $this->concurrencyLimit,
         ];
     }
 
@@ -41,5 +45,21 @@ final class Tasks implements Model, JsonSerializable
     public function getEnabled(): bool
     {
         return $this->enabled;
+    }
+
+    /**
+     * Maximum number of tasks that can be defined in the project configuration.
+     */
+    public function getLimit(): ?int
+    {
+        return $this->limit;
+    }
+
+    /**
+     * Maximum number of task activities that can run in parallel.
+     */
+    public function getConcurrencyLimit(): ?int
+    {
+        return $this->concurrencyLimit;
     }
 }

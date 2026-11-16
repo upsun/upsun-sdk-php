@@ -28,6 +28,7 @@ final class EnvironmentVariable implements Model, JsonSerializable
         private readonly bool $inherited,
         private readonly bool $isEnabled,
         private readonly bool $isInheritable,
+        private readonly bool $isOverridden,
         private readonly ?DateTime $createdAt,
         private readonly ?DateTime $updatedAt,
         private readonly ?string $value = null,
@@ -57,6 +58,7 @@ final class EnvironmentVariable implements Model, JsonSerializable
             'inherited' => $this->inherited,
             'isEnabled' => $this->isEnabled,
             'isInheritable' => $this->isInheritable,
+            'isOverridden' => $this->isOverridden,
             'value' => $this->value,
         ];
     }
@@ -178,6 +180,14 @@ final class EnvironmentVariable implements Model, JsonSerializable
     public function getIsInheritable(): bool
     {
         return $this->isInheritable;
+    }
+
+    /**
+     * The variable overrides an inheritable variable from a parent environment
+     */
+    public function getIsOverridden(): bool
+    {
+        return $this->isOverridden;
     }
 
     /**

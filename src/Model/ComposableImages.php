@@ -6,6 +6,7 @@ use JsonSerializable;
 
 /**
  * Low level ComposableImages (auto-generated)
+ * Composable image runtimes and packages
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

@@ -31,6 +31,8 @@ final class ProjectSettings implements Model, JsonSerializable
     public const ENVIRONMENT_NAME_STRATEGY_NAME_AND_HASH = 'name-and-hash';
     public const OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_ALLOW = 'allow';
     public const OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_DENY = 'deny';
+    public const VALIDATION_ENGINE_COLANDER = 'colander';
+    public const VALIDATION_ENGINE_PYDANTIC = 'pydantic';
 
     public function __construct(
         private readonly object $initialize,
@@ -78,12 +80,14 @@ final class ProjectSettings implements Model, JsonSerializable
         private readonly string $certifierUrl,
         private readonly bool $centralizedPermissions,
         private readonly int $glueServerMaxRequestSize,
+        private readonly bool $usePatina,
         private readonly bool $persistentEndpointsSsh,
         private readonly bool $persistentEndpointsSslCertificates,
         private readonly bool $enableDiskHealthMonitoring,
         private readonly bool $enablePausedEnvironments,
         private readonly bool $enableUnifiedConfiguration,
         private readonly bool $enableExplicitEmptyRoutes,
+        private readonly string $validationEngine,
         private readonly bool $enableRoutesTracing,
         private readonly bool $imageDeploymentValidation,
         private readonly bool $supportGenericImages,
@@ -97,12 +101,16 @@ final class ProjectSettings implements Model, JsonSerializable
         private readonly bool $allowManualDeployments,
         private readonly bool $allowRollingDeployments,
         private readonly bool $allowActivityReschedule,
+        private readonly bool $enableMaintenanceWindowHardCheck,
         private readonly bool $allowBurst,
         private readonly RouterResources $routerResources,
+        private readonly InternalStorageResources $internalStorageResources,
         private readonly bool $allowScalingToZero,
         private readonly bool $saveApplicationsVendors,
         private readonly bool $locationsScriptDefault,
         private readonly bool $supportOciImages,
+        private readonly ImageLifecycleValidation $imageLifecycle,
+        private readonly ?string $cliName,
         private readonly ?string $developmentDomainTemplate,
         private readonly ?int $temporaryDiskSize,
         private readonly ?int $localDiskSize,
@@ -124,6 +132,7 @@ final class ProjectSettings implements Model, JsonSerializable
             'initialize' => $this->initialize,
             'productName' => $this->productName,
             'productCode' => $this->productCode,
+            'cliName' => $this->cliName,
             'uiUriTemplate' => $this->uiUriTemplate,
             'variablesPrefix' => $this->variablesPrefix,
             'botEmail' => $this->botEmail,
@@ -172,12 +181,14 @@ final class ProjectSettings implements Model, JsonSerializable
             'certifierUrl' => $this->certifierUrl,
             'centralizedPermissions' => $this->centralizedPermissions,
             'glueServerMaxRequestSize' => $this->glueServerMaxRequestSize,
+            'usePatina' => $this->usePatina,
             'persistentEndpointsSsh' => $this->persistentEndpointsSsh,
             'persistentEndpointsSslCertificates' => $this->persistentEndpointsSslCertificates,
             'enableDiskHealthMonitoring' => $this->enableDiskHealthMonitoring,
             'enablePausedEnvironments' => $this->enablePausedEnvironments,
             'enableUnifiedConfiguration' => $this->enableUnifiedConfiguration,
             'enableExplicitEmptyRoutes' => $this->enableExplicitEmptyRoutes,
+            'validationEngine' => $this->validationEngine,
             'enableRoutesTracing' => $this->enableRoutesTracing,
             'imageDeploymentValidation' => $this->imageDeploymentValidation,
             'supportGenericImages' => $this->supportGenericImages,
@@ -192,12 +203,15 @@ final class ProjectSettings implements Model, JsonSerializable
             'allowRollingDeployments' => $this->allowRollingDeployments,
             'maintenanceWindow' => $this->maintenanceWindow,
             'allowActivityReschedule' => $this->allowActivityReschedule,
+            'enableMaintenanceWindowHardCheck' => $this->enableMaintenanceWindowHardCheck,
             'allowBurst' => $this->allowBurst,
             'routerResources' => $this->routerResources,
+            'internalStorageResources' => $this->internalStorageResources,
             'allowScalingToZero' => $this->allowScalingToZero,
             'saveApplicationsVendors' => $this->saveApplicationsVendors,
             'locationsScriptDefault' => $this->locationsScriptDefault,
             'supportOciImages' => $this->supportOciImages,
+            'imageLifecycle' => $this->imageLifecycle,
         ];
     }
 
@@ -225,6 +239,14 @@ final class ProjectSettings implements Model, JsonSerializable
     public function getProductCode(): string
     {
         return $this->productCode;
+    }
+
+    /**
+     * The command name of the CLI for this product. Falls back to the name known for the product code.
+     */
+    public function getCliName(): ?string
+    {
+        return $this->cliName;
     }
 
     /**
@@ -589,6 +611,14 @@ final class ProjectSettings implements Model, JsonSerializable
     }
 
     /**
+     * Run runtime scripts on patina instead of glue
+     */
+    public function getUsePatina(): bool
+    {
+        return $this->usePatina;
+    }
+
+    /**
      * Enable SSH access update with persistent endpoint
      */
     public function getPersistentEndpointsSsh(): bool
@@ -626,6 +656,14 @@ final class ProjectSettings implements Model, JsonSerializable
     public function getEnableExplicitEmptyRoutes(): bool
     {
         return $this->enableExplicitEmptyRoutes;
+    }
+
+    /**
+     * Selects the validator used for the project configuration files. Switching between engines is safe.
+     */
+    public function getValidationEngine(): string
+    {
+        return $this->validationEngine;
     }
 
     /**
@@ -731,6 +769,14 @@ final class ProjectSettings implements Model, JsonSerializable
         return $this->allowActivityReschedule;
     }
 
+    /**
+     * Forbid rolling deployments if Maintenance Window is not set
+     */
+    public function getEnableMaintenanceWindowHardCheck(): bool
+    {
+        return $this->enableMaintenanceWindowHardCheck;
+    }
+
     public function getAllowBurst(): bool
     {
         return $this->allowBurst;
@@ -742,6 +788,14 @@ final class ProjectSettings implements Model, JsonSerializable
     public function getRouterResources(): RouterResources
     {
         return $this->routerResources;
+    }
+
+    /**
+     * Resource settings for the implicit internal storage services of flex plan projects
+     */
+    public function getInternalStorageResources(): InternalStorageResources
+    {
+        return $this->internalStorageResources;
     }
 
     public function getAllowScalingToZero(): bool
@@ -765,5 +819,13 @@ final class ProjectSettings implements Model, JsonSerializable
     public function getSupportOciImages(): bool
     {
         return $this->supportOciImages;
+    }
+
+    /**
+     * Settings gating push-time image lifecycle validation.
+     */
+    public function getImageLifecycle(): ImageLifecycleValidation
+    {
+        return $this->imageLifecycle;
     }
 }

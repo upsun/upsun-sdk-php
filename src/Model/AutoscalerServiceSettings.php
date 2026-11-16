@@ -45,7 +45,7 @@ final class AutoscalerServiceSettings implements Model, JsonSerializable
     }
 
     /**
-     * Scaling triggers settings
+     * Metrics should be evaluated as triggers for autoscaling
      */
     public function getTriggers(): ?AutoscalerTriggers
     {
@@ -53,7 +53,7 @@ final class AutoscalerServiceSettings implements Model, JsonSerializable
     }
 
     /**
-     * Horizontal scaling settings
+     * Lower/Upper bounds on number of instances for horizontal scaling
      */
     public function getInstances(): ?AutoscalerInstances
     {
@@ -61,7 +61,7 @@ final class AutoscalerServiceSettings implements Model, JsonSerializable
     }
 
     /**
-     * Vertical scaling settings
+     * Lower/Upper bounds on cpu/memory for vertical scaling
      */
     public function getResources(): ?AutoscalerResources
     {
@@ -69,7 +69,7 @@ final class AutoscalerServiceSettings implements Model, JsonSerializable
     }
 
     /**
-     * Scaling factor settings
+     * How many instances to add/remove on each scaling attempt
      */
     public function getScaleFactor(): ?AutoscalerScalingFactor
     {
@@ -77,7 +77,7 @@ final class AutoscalerServiceSettings implements Model, JsonSerializable
     }
 
     /**
-     * Scaling cooldown settings
+     * How long to wait before the next scaling attempt can be performed
      */
     public function getScaleCooldown(): ?AutoscalerScalingCooldown
     {

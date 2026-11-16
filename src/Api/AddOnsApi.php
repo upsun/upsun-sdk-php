@@ -61,6 +61,8 @@ final class AddOnsApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Add-ons/operation/get-org-addons
+     *
+     * @deprecated
      */
     public function getOrgAddons(
         string $organizationId
@@ -72,6 +74,8 @@ final class AddOnsApi extends AbstractApi
 
     /**
      * Get add-ons with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $organizationId
      *         The ID of the organization. Prefix with name= to retrieve the organization by
@@ -122,6 +126,8 @@ final class AddOnsApi extends AbstractApi
      *         name instead. (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getOrgAddonsRequest(
         string $organizationId

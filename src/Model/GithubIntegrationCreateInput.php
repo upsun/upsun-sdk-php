@@ -13,11 +13,6 @@ use JsonSerializable;
  */
 final class GithubIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateCreateInput
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
     public function __construct(
         private readonly string $type,
         private readonly string $token,
@@ -25,7 +20,7 @@ final class GithubIntegrationCreateInput implements Model, JsonSerializable, Int
         private readonly ?string $baseUrl = null,
         private readonly ?bool $fetchBranches = null,
         private readonly ?bool $pruneBranches = null,
-        private readonly ?string $environmentInitResources = null,
+        private readonly ?EnvironmentInitResources1 $environmentInitResources = null,
         private readonly ?bool $buildPullRequests = null,
         private readonly ?bool $buildDraftPullRequests = null,
         private readonly ?bool $buildPullRequestsPostMerge = null,
@@ -101,9 +96,9 @@ final class GithubIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
-     * The resources used when initializing a new service
+     * The resources used when initializing a new environment, per environment type
      */
-    public function getEnvironmentInitResources(): ?string
+    public function getEnvironmentInitResources(): ?EnvironmentInitResources1
     {
         return $this->environmentInitResources;
     }

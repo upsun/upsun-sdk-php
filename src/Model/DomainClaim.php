@@ -17,7 +17,7 @@ final class DomainClaim implements Model, JsonSerializable
     public function __construct(
         private readonly string $id,
         private readonly string $name,
-        private readonly string $count,
+        private readonly int $count,
         private readonly ?DateTime $createdAt,
         private readonly ?DateTime $updatedAt,
     ) {
@@ -77,9 +77,9 @@ final class DomainClaim implements Model, JsonSerializable
     }
 
     /**
-     * The domain name
+     * Number of domains using this claim
      */
-    public function getCount(): string
+    public function getCount(): int
     {
         return $this->count;
     }

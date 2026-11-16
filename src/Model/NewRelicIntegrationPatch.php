@@ -18,8 +18,9 @@ final class NewRelicIntegrationPatch implements Model, JsonSerializable, Integra
         private readonly string $url,
         private readonly string $licenseKey,
         private readonly ?array $extra = [],
-        private readonly ?bool $tlsVerify = null,
+        private readonly ?bool $redaction = null,
         private readonly ?array $excludedServices = [],
+        private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -35,8 +36,9 @@ final class NewRelicIntegrationPatch implements Model, JsonSerializable, Integra
             'url' => $this->url,
             'licenseKey' => $this->licenseKey,
             'extra' => $this->extra,
-            'tlsVerify' => $this->tlsVerify,
+            'redaction' => $this->redaction,
             'excludedServices' => $this->excludedServices,
+            'tlsVerify' => $this->tlsVerify,
         ];
     }
 
@@ -75,15 +77,23 @@ final class NewRelicIntegrationPatch implements Model, JsonSerializable, Integra
     }
 
     /**
-     * Enable/Disable HTTPS certificate verification
+     * Enable built-in PII redaction (e.g. email addresses) before forwarding log lines
      */
-    public function getTlsVerify(): ?bool
+    public function getRedaction(): ?bool
     {
-        return $this->tlsVerify;
+        return $this->redaction;
     }
 
     public function getExcludedServices(): ?array
     {
         return $this->excludedServices;
+    }
+
+    /**
+     * Enable/Disable HTTPS certificate verification
+     */
+    public function getTlsVerify(): ?bool
+    {
+        return $this->tlsVerify;
     }
 }

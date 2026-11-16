@@ -14,17 +14,12 @@ use JsonSerializable;
  */
 final class GitLabIntegration implements Model, JsonSerializable, Integration
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
     public function __construct(
         private readonly string $type,
         private readonly string $role,
         private readonly bool $fetchBranches,
         private readonly bool $pruneBranches,
-        private readonly string $environmentInitResources,
+        private readonly EnvironmentInitResources $environmentInitResources,
         private readonly bool $rotateToken,
         private readonly int $rotateTokenValidityInWeeks,
         private readonly string $baseUrl,
@@ -36,6 +31,7 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
         private readonly ?DateTime $updatedAt,
         private readonly ?DateTime $tokenExpiresAt,
         private readonly ?string $id = null,
+        private readonly ?string $repositoryUrl = null,
     ) {
     }
 
@@ -63,6 +59,7 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
             'buildWipMergeRequests' => $this->buildWipMergeRequests,
             'mergeRequestsCloneParentData' => $this->mergeRequestsCloneParentData,
             'id' => $this->id,
+            'repositoryUrl' => $this->repositoryUrl,
         ];
     }
 
@@ -120,9 +117,9 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * The resources used when initializing a new service
+     * The resources used when initializing a new environment, per environment type
      */
-    public function getEnvironmentInitResources(): string
+    public function getEnvironmentInitResources(): EnvironmentInitResources
     {
         return $this->environmentInitResources;
     }
@@ -197,5 +194,13 @@ final class GitLabIntegration implements Model, JsonSerializable, Integration
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    /**
+     * The URL of the remote git repository
+     */
+    public function getRepositoryUrl(): ?string
+    {
+        return $this->repositoryUrl;
     }
 }

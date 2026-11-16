@@ -25,23 +25,23 @@ final class Environment implements Model, JsonSerializable
 
     public function __construct(
         private readonly string $id,
+        private readonly array $attributes,
         private readonly string $name,
         private readonly string $machineName,
         private readonly string $title,
-        private readonly array $attributes,
         private readonly string $type,
+        private readonly string $status,
+        private readonly string $project,
+        private readonly bool $isMain,
         private readonly bool $hasDomains,
         private readonly bool $cloneParentOnCreate,
         private readonly bool $isPr,
         private readonly bool $hasRemote,
-        private readonly string $status,
         private readonly HttpAccessPermissions1 $httpAccess,
         private readonly bool $enableSmtp,
         private readonly bool $restrictRobots,
         private readonly string $edgeHostname,
         private readonly array $resourcesOverrides,
-        private readonly string $project,
-        private readonly bool $isMain,
         private readonly bool $isDirty,
         private readonly bool $hasStagedActivities,
         private readonly bool $canRollingDeploy,
@@ -53,6 +53,7 @@ final class Environment implements Model, JsonSerializable
         private readonly ?DateTime $createdAt,
         private readonly ?DateTime $updatedAt,
         private readonly ?string $parent,
+        private readonly ?string $headCommit,
         private readonly ?string $defaultDomain,
         private readonly ?string $deploymentTarget,
         private readonly ?DeploymentState $deploymentState,
@@ -60,7 +61,6 @@ final class Environment implements Model, JsonSerializable
         private readonly ?int $maxInstanceCount,
         private readonly ?DateTime $lastActiveAt,
         private readonly ?DateTime $lastBackupAt,
-        private readonly ?string $headCommit,
     ) {
     }
 
@@ -75,19 +75,22 @@ final class Environment implements Model, JsonSerializable
             'id' => $this->id,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
+            'attributes' => $this->attributes,
             'name' => $this->name,
             'machineName' => $this->machineName,
             'title' => $this->title,
-            'attributes' => $this->attributes,
             'type' => $this->type,
             'parent' => $this->parent,
+            'status' => $this->status,
+            'project' => $this->project,
+            'isMain' => $this->isMain,
+            'headCommit' => $this->headCommit,
             'defaultDomain' => $this->defaultDomain,
             'hasDomains' => $this->hasDomains,
             'cloneParentOnCreate' => $this->cloneParentOnCreate,
             'deploymentTarget' => $this->deploymentTarget,
             'isPr' => $this->isPr,
             'hasRemote' => $this->hasRemote,
-            'status' => $this->status,
             'httpAccess' => $this->httpAccess,
             'enableSmtp' => $this->enableSmtp,
             'restrictRobots' => $this->restrictRobots,
@@ -98,14 +101,11 @@ final class Environment implements Model, JsonSerializable
             'maxInstanceCount' => $this->maxInstanceCount,
             'lastActiveAt' => $this->lastActiveAt?->format(DATE_ATOM),
             'lastBackupAt' => $this->lastBackupAt?->format(DATE_ATOM),
-            'project' => $this->project,
-            'isMain' => $this->isMain,
             'isDirty' => $this->isDirty,
             'hasStagedActivities' => $this->hasStagedActivities,
             'canRollingDeploy' => $this->canRollingDeploy,
             'supportsRollingDeployments' => $this->supportsRollingDeployments,
             'hasCode' => $this->hasCode,
-            'headCommit' => $this->headCommit,
             'mergeInfo' => $this->mergeInfo,
             'hasDeployment' => $this->hasDeployment,
             'supportsRestrictRobots' => $this->supportsRestrictRobots,
@@ -141,6 +141,11 @@ final class Environment implements Model, JsonSerializable
         return $this->updatedAt;
     }
 
+    public function getAttributes(): array
+    {
+        return $this->attributes;
+    }
+
     /**
      * The name of the environment
      */
@@ -165,11 +170,6 @@ final class Environment implements Model, JsonSerializable
         return $this->title;
     }
 
-    public function getAttributes(): array
-    {
-        return $this->attributes;
-    }
-
     /**
      * The type of environment (`production`, `staging` or `development`), if not provided, a default will be calculated
      */
@@ -184,6 +184,38 @@ final class Environment implements Model, JsonSerializable
     public function getParent(): ?string
     {
         return $this->parent;
+    }
+
+    /**
+     * The status of the environment
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * The project the environment belongs to
+     */
+    public function getProject(): string
+    {
+        return $this->project;
+    }
+
+    /**
+     * Is this environment the main environment
+     */
+    public function getIsMain(): bool
+    {
+        return $this->isMain;
+    }
+
+    /**
+     * The SHA of the head commit for this environment
+     */
+    public function getHeadCommit(): ?string
+    {
+        return $this->headCommit;
     }
 
     /**
@@ -232,14 +264,6 @@ final class Environment implements Model, JsonSerializable
     public function getHasRemote(): bool
     {
         return $this->hasRemote;
-    }
-
-    /**
-     * The status of the environment
-     */
-    public function getStatus(): string
-    {
-        return $this->status;
     }
 
     /**
@@ -324,22 +348,6 @@ final class Environment implements Model, JsonSerializable
     }
 
     /**
-     * The project the environment belongs to
-     */
-    public function getProject(): string
-    {
-        return $this->project;
-    }
-
-    /**
-     * Is this environment the main environment
-     */
-    public function getIsMain(): bool
-    {
-        return $this->isMain;
-    }
-
-    /**
      * Is there any pending activity on this environment
      */
     public function getIsDirty(): bool
@@ -377,14 +385,6 @@ final class Environment implements Model, JsonSerializable
     public function getHasCode(): bool
     {
         return $this->hasCode;
-    }
-
-    /**
-     * The SHA of the head commit for this environment
-     */
-    public function getHeadCommit(): ?string
-    {
-        return $this->headCommit;
     }
 
     /**

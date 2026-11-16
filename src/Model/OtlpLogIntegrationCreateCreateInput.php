@@ -17,9 +17,10 @@ final class OtlpLogIntegrationCreateCreateInput implements Model, JsonSerializab
         private readonly string $type,
         private readonly string $url,
         private readonly ?array $extra = [],
+        private readonly ?bool $redaction = null,
+        private readonly ?array $excludedServices = [],
         private readonly ?array $headers = [],
         private readonly ?bool $tlsVerify = null,
-        private readonly ?array $excludedServices = [],
     ) {
     }
 
@@ -34,9 +35,10 @@ final class OtlpLogIntegrationCreateCreateInput implements Model, JsonSerializab
             'type' => $this->type,
             'url' => $this->url,
             'extra' => $this->extra,
+            'redaction' => $this->redaction,
+            'excludedServices' => $this->excludedServices,
             'headers' => $this->headers,
             'tlsVerify' => $this->tlsVerify,
-            'excludedServices' => $this->excludedServices,
         ];
     }
 
@@ -66,6 +68,19 @@ final class OtlpLogIntegrationCreateCreateInput implements Model, JsonSerializab
         return $this->extra;
     }
 
+    /**
+     * Enable built-in PII redaction (e.g. email addresses) before forwarding log lines
+     */
+    public function getRedaction(): ?bool
+    {
+        return $this->redaction;
+    }
+
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
+    }
+
     public function getHeaders(): ?array
     {
         return $this->headers;
@@ -77,10 +92,5 @@ final class OtlpLogIntegrationCreateCreateInput implements Model, JsonSerializab
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
-    }
-
-    public function getExcludedServices(): ?array
-    {
-        return $this->excludedServices;
     }
 }

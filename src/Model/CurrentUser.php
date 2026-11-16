@@ -110,7 +110,7 @@ final class CurrentUser implements Model, JsonSerializable
 
     /**
      * The list of user's public SSH keys.
-     * @return SshKey[]|null
+     * @return CurrentUserSshKeysInner[]|null
      */
     public function getSshKeys(): ?array
     {
