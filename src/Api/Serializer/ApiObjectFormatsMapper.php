@@ -2112,6 +2112,11 @@ final class ApiObjectFormatsMapper
             'mergeRequestsCloneParentData' => null
         ],
 
+        'Upsun\Model\GitObject' => [
+            'type' => null,
+            'sha' => null
+        ],
+
         'Upsun\Model\GitServerConfiguration' => [
             'pushSizeHardLimit' => null
         ],
@@ -3081,11 +3086,6 @@ final class ApiObjectFormatsMapper
         'Upsun\Model\OCIImage' => [
             'name' => null,
             'buildfile' => null
-        ],
-
-        'Upsun\Model\Object' => [
-            'type' => null,
-            'sha' => null
         ],
 
         'Upsun\Model\ObjectStorage' => [

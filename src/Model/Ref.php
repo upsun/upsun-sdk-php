@@ -16,7 +16,7 @@ final class Ref implements Model, JsonSerializable
     public function __construct(
         private readonly string $id,
         private readonly string $ref,
-        private readonly object $object,
+        private readonly GitObject $object,
         private readonly string $sha,
     ) {
     }
@@ -60,7 +60,7 @@ final class Ref implements Model, JsonSerializable
     /**
      * The object the reference points to
      */
-    public function getObject(): object
+    public function getObject(): GitObject
     {
         return $this->object;
     }

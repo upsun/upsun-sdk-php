@@ -15,6 +15,7 @@ use Upsun\Core\Tasks\RepositoriesTask;
 use Upsun\Core\TokenProvider;
 use Upsun\Model\Blob;
 use Upsun\Model\Commit;
+use Upsun\Model\GitObject;
 use Upsun\Model\Ref;
 use Upsun\Model\SystemInformation;
 use Upsun\Model\Tree;
@@ -212,6 +213,9 @@ class RepositoriesTaskTest extends BaseTestCase
 
         $this->assertInstanceOf(Ref::class, $result);
         $this->assertObjectProperties($result, $expectedData);
+        $this->assertInstanceOf(GitObject::class, $result->getObject());
+        $this->assertSame('commit', $result->getObject()->getType());
+        $this->assertSame('commit123abc456def', $result->getObject()->getSha());
     }
 
     /**

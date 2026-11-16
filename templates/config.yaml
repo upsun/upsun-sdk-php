@@ -10,6 +10,9 @@ filesToSkip: ["FormDataProcessor.php"]
 nameMappings:
   _transactions: _transactionsFilter
 
+modelNameMappings:
+  Object: GitObject
+
 parameterNameMappings:
   _transactions: _transactions
 
