@@ -329,7 +329,7 @@ final class OrdersApi extends AbstractApi
 
         // query params
         if ($token !== null) {
-            if ('form' === 'form' && is_array($token)) {
+            if ('form' === 'form' && is_array($token) && !array_is_list($token)) {
                 foreach ($token as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -525,7 +525,7 @@ final class OrdersApi extends AbstractApi
 
         // query params
         if ($mode !== null) {
-            if ('form' === 'form' && is_array($mode)) {
+            if ('form' === 'form' && is_array($mode) && !array_is_list($mode)) {
                 foreach ($mode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -755,7 +755,7 @@ final class OrdersApi extends AbstractApi
 
         // query params
         if ($filterStatus !== null) {
-            if ('form' === 'form' && is_array($filterStatus)) {
+            if ('form' === 'form' && is_array($filterStatus) && !array_is_list($filterStatus)) {
                 foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -768,7 +768,7 @@ final class OrdersApi extends AbstractApi
 
         // query params
         if ($filterTotal !== null) {
-            if ('form' === 'form' && is_array($filterTotal)) {
+            if ('form' === 'form' && is_array($filterTotal) && !array_is_list($filterTotal)) {
                 foreach ($filterTotal as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -781,7 +781,7 @@ final class OrdersApi extends AbstractApi
 
         // query params
         if ($page !== null) {
-            if ('form' === 'form' && is_array($page)) {
+            if ('form' === 'form' && is_array($page) && !array_is_list($page)) {
                 foreach ($page as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -794,7 +794,7 @@ final class OrdersApi extends AbstractApi
 
         // query params
         if ($mode !== null) {
-            if ('form' === 'form' && is_array($mode)) {
+            if ('form' === 'form' && is_array($mode) && !array_is_list($mode)) {
                 foreach ($mode as $key => $value) {
                     $queryParams[$key] = $value;
                 }

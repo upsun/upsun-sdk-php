@@ -318,7 +318,7 @@ final class GrantsApi extends AbstractApi
 
         // query params
         if ($filterResourceType !== null) {
-            if ('form' === 'deepObject' && is_array($filterResourceType)) {
+            if ('form' === 'deepObject' && is_array($filterResourceType) && !array_is_list($filterResourceType)) {
                 foreach ($filterResourceType as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -331,7 +331,7 @@ final class GrantsApi extends AbstractApi
 
         // query params
         if ($filterOrganizationId !== null) {
-            if ('form' === 'deepObject' && is_array($filterOrganizationId)) {
+            if ('form' === 'deepObject' && is_array($filterOrganizationId) && !array_is_list($filterOrganizationId)) {
                 foreach ($filterOrganizationId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -344,7 +344,7 @@ final class GrantsApi extends AbstractApi
 
         // query params
         if ($filterPermissions !== null) {
-            if ('form' === 'deepObject' && is_array($filterPermissions)) {
+            if ('form' === 'deepObject' && is_array($filterPermissions) && !array_is_list($filterPermissions)) {
                 foreach ($filterPermissions as $key => $value) {
                     $queryParams[$key] = $value;
                 }

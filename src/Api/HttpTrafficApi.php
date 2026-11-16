@@ -341,7 +341,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from)) {
+            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -354,7 +354,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to)) {
+            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -367,7 +367,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($limit !== null) {
-            if ('form' === 'form' && is_array($limit)) {
+            if ('form' === 'form' && is_array($limit) && !array_is_list($limit)) {
                 foreach ($limit as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -380,7 +380,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($topHitsCount !== null) {
-            if ('form' === 'form' && is_array($topHitsCount)) {
+            if ('form' === 'form' && is_array($topHitsCount) && !array_is_list($topHitsCount)) {
                 foreach ($topHitsCount as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -393,7 +393,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($applications !== null) {
-            if ('form' === 'form' && is_array($applications)) {
+            if ('form' === 'form' && is_array($applications) && !array_is_list($applications)) {
                 foreach ($applications as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -406,7 +406,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($applicationsMode !== null) {
-            if ('form' === 'form' && is_array($applicationsMode)) {
+            if ('form' === 'form' && is_array($applicationsMode) && !array_is_list($applicationsMode)) {
                 foreach ($applicationsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -419,7 +419,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($methods !== null) {
-            if ('form' === 'form' && is_array($methods)) {
+            if ('form' === 'form' && is_array($methods) && !array_is_list($methods)) {
                 foreach ($methods as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -432,7 +432,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($methodsMode !== null) {
-            if ('form' === 'form' && is_array($methodsMode)) {
+            if ('form' === 'form' && is_array($methodsMode) && !array_is_list($methodsMode)) {
                 foreach ($methodsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -445,7 +445,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($domains !== null) {
-            if ('form' === 'form' && is_array($domains)) {
+            if ('form' === 'form' && is_array($domains) && !array_is_list($domains)) {
                 foreach ($domains as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -458,7 +458,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($domainsMode !== null) {
-            if ('form' === 'form' && is_array($domainsMode)) {
+            if ('form' === 'form' && is_array($domainsMode) && !array_is_list($domainsMode)) {
                 foreach ($domainsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -471,7 +471,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codeSlots !== null) {
-            if ('form' === 'form' && is_array($codeSlots)) {
+            if ('form' === 'form' && is_array($codeSlots) && !array_is_list($codeSlots)) {
                 foreach ($codeSlots as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -484,7 +484,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codeSlotsMode !== null) {
-            if ('form' === 'form' && is_array($codeSlotsMode)) {
+            if ('form' === 'form' && is_array($codeSlotsMode) && !array_is_list($codeSlotsMode)) {
                 foreach ($codeSlotsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -497,7 +497,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codes !== null) {
-            if ('form' === 'form' && is_array($codes)) {
+            if ('form' === 'form' && is_array($codes) && !array_is_list($codes)) {
                 foreach ($codes as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -510,7 +510,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codesMode !== null) {
-            if ('form' === 'form' && is_array($codesMode)) {
+            if ('form' === 'form' && is_array($codesMode) && !array_is_list($codesMode)) {
                 foreach ($codesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -523,7 +523,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($requestDurationSlots !== null) {
-            if ('form' === 'form' && is_array($requestDurationSlots)) {
+            if ('form' === 'form' && is_array($requestDurationSlots) && !array_is_list($requestDurationSlots)) {
                 foreach ($requestDurationSlots as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -536,7 +536,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($requestDurationSlotsMode !== null) {
-            if ('form' === 'form' && is_array($requestDurationSlotsMode)) {
+            if ('form' === 'form' && is_array($requestDurationSlotsMode) && !array_is_list($requestDurationSlotsMode)) {
                 foreach ($requestDurationSlotsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -916,7 +916,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from)) {
+            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -929,7 +929,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to)) {
+            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -942,7 +942,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($limit !== null) {
-            if ('form' === 'form' && is_array($limit)) {
+            if ('form' === 'form' && is_array($limit) && !array_is_list($limit)) {
                 foreach ($limit as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -955,7 +955,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($topHitsCount !== null) {
-            if ('form' === 'form' && is_array($topHitsCount)) {
+            if ('form' === 'form' && is_array($topHitsCount) && !array_is_list($topHitsCount)) {
                 foreach ($topHitsCount as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -968,7 +968,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($applications !== null) {
-            if ('form' === 'form' && is_array($applications)) {
+            if ('form' === 'form' && is_array($applications) && !array_is_list($applications)) {
                 foreach ($applications as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -981,7 +981,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($applicationsMode !== null) {
-            if ('form' === 'form' && is_array($applicationsMode)) {
+            if ('form' === 'form' && is_array($applicationsMode) && !array_is_list($applicationsMode)) {
                 foreach ($applicationsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -994,7 +994,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($methods !== null) {
-            if ('form' === 'form' && is_array($methods)) {
+            if ('form' === 'form' && is_array($methods) && !array_is_list($methods)) {
                 foreach ($methods as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1007,7 +1007,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($methodsMode !== null) {
-            if ('form' === 'form' && is_array($methodsMode)) {
+            if ('form' === 'form' && is_array($methodsMode) && !array_is_list($methodsMode)) {
                 foreach ($methodsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1020,7 +1020,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($domains !== null) {
-            if ('form' === 'form' && is_array($domains)) {
+            if ('form' === 'form' && is_array($domains) && !array_is_list($domains)) {
                 foreach ($domains as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1033,7 +1033,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($domainsMode !== null) {
-            if ('form' === 'form' && is_array($domainsMode)) {
+            if ('form' === 'form' && is_array($domainsMode) && !array_is_list($domainsMode)) {
                 foreach ($domainsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1046,7 +1046,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codeSlots !== null) {
-            if ('form' === 'form' && is_array($codeSlots)) {
+            if ('form' === 'form' && is_array($codeSlots) && !array_is_list($codeSlots)) {
                 foreach ($codeSlots as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1059,7 +1059,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codeSlotsMode !== null) {
-            if ('form' === 'form' && is_array($codeSlotsMode)) {
+            if ('form' === 'form' && is_array($codeSlotsMode) && !array_is_list($codeSlotsMode)) {
                 foreach ($codeSlotsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1072,7 +1072,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codes !== null) {
-            if ('form' === 'form' && is_array($codes)) {
+            if ('form' === 'form' && is_array($codes) && !array_is_list($codes)) {
                 foreach ($codes as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1085,7 +1085,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codesMode !== null) {
-            if ('form' === 'form' && is_array($codesMode)) {
+            if ('form' === 'form' && is_array($codesMode) && !array_is_list($codesMode)) {
                 foreach ($codesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1098,7 +1098,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($requestDurationSlots !== null) {
-            if ('form' === 'form' && is_array($requestDurationSlots)) {
+            if ('form' === 'form' && is_array($requestDurationSlots) && !array_is_list($requestDurationSlots)) {
                 foreach ($requestDurationSlots as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1111,7 +1111,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($requestDurationSlotsMode !== null) {
-            if ('form' === 'form' && is_array($requestDurationSlotsMode)) {
+            if ('form' === 'form' && is_array($requestDurationSlotsMode) && !array_is_list($requestDurationSlotsMode)) {
                 foreach ($requestDurationSlotsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1490,7 +1490,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from)) {
+            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1503,7 +1503,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to)) {
+            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1516,7 +1516,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($limit !== null) {
-            if ('form' === 'form' && is_array($limit)) {
+            if ('form' === 'form' && is_array($limit) && !array_is_list($limit)) {
                 foreach ($limit as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1529,7 +1529,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($topHitsCount !== null) {
-            if ('form' === 'form' && is_array($topHitsCount)) {
+            if ('form' === 'form' && is_array($topHitsCount) && !array_is_list($topHitsCount)) {
                 foreach ($topHitsCount as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1542,7 +1542,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($applications !== null) {
-            if ('form' === 'form' && is_array($applications)) {
+            if ('form' === 'form' && is_array($applications) && !array_is_list($applications)) {
                 foreach ($applications as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1555,7 +1555,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($applicationsMode !== null) {
-            if ('form' === 'form' && is_array($applicationsMode)) {
+            if ('form' === 'form' && is_array($applicationsMode) && !array_is_list($applicationsMode)) {
                 foreach ($applicationsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1568,7 +1568,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($methods !== null) {
-            if ('form' === 'form' && is_array($methods)) {
+            if ('form' === 'form' && is_array($methods) && !array_is_list($methods)) {
                 foreach ($methods as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1581,7 +1581,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($methodsMode !== null) {
-            if ('form' === 'form' && is_array($methodsMode)) {
+            if ('form' === 'form' && is_array($methodsMode) && !array_is_list($methodsMode)) {
                 foreach ($methodsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1594,7 +1594,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($domains !== null) {
-            if ('form' === 'form' && is_array($domains)) {
+            if ('form' === 'form' && is_array($domains) && !array_is_list($domains)) {
                 foreach ($domains as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1607,7 +1607,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($domainsMode !== null) {
-            if ('form' === 'form' && is_array($domainsMode)) {
+            if ('form' === 'form' && is_array($domainsMode) && !array_is_list($domainsMode)) {
                 foreach ($domainsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1620,7 +1620,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codeSlots !== null) {
-            if ('form' === 'form' && is_array($codeSlots)) {
+            if ('form' === 'form' && is_array($codeSlots) && !array_is_list($codeSlots)) {
                 foreach ($codeSlots as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1633,7 +1633,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codeSlotsMode !== null) {
-            if ('form' === 'form' && is_array($codeSlotsMode)) {
+            if ('form' === 'form' && is_array($codeSlotsMode) && !array_is_list($codeSlotsMode)) {
                 foreach ($codeSlotsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1646,7 +1646,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codes !== null) {
-            if ('form' === 'form' && is_array($codes)) {
+            if ('form' === 'form' && is_array($codes) && !array_is_list($codes)) {
                 foreach ($codes as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1659,7 +1659,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codesMode !== null) {
-            if ('form' === 'form' && is_array($codesMode)) {
+            if ('form' === 'form' && is_array($codesMode) && !array_is_list($codesMode)) {
                 foreach ($codesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1672,7 +1672,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($requestDurationSlots !== null) {
-            if ('form' === 'form' && is_array($requestDurationSlots)) {
+            if ('form' === 'form' && is_array($requestDurationSlots) && !array_is_list($requestDurationSlots)) {
                 foreach ($requestDurationSlots as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1685,7 +1685,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($requestDurationSlotsMode !== null) {
-            if ('form' === 'form' && is_array($requestDurationSlotsMode)) {
+            if ('form' === 'form' && is_array($requestDurationSlotsMode) && !array_is_list($requestDurationSlotsMode)) {
                 foreach ($requestDurationSlotsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }

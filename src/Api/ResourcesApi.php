@@ -231,7 +231,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from)) {
+            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -244,7 +244,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to)) {
+            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -257,7 +257,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($aggs !== null) {
-            if ('form' === 'form' && is_array($aggs)) {
+            if ('form' === 'form' && is_array($aggs) && !array_is_list($aggs)) {
                 foreach ($aggs as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -270,7 +270,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($types !== null) {
-            if ('form' === 'form' && is_array($types)) {
+            if ('form' === 'form' && is_array($types) && !array_is_list($types)) {
                 foreach ($types as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -541,7 +541,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from)) {
+            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -554,7 +554,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to)) {
+            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -567,7 +567,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($service !== null) {
-            if ('form' === 'form' && is_array($service)) {
+            if ('form' === 'form' && is_array($service) && !array_is_list($service)) {
                 foreach ($service as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -580,7 +580,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($services !== null) {
-            if ('form' === 'form' && is_array($services)) {
+            if ('form' === 'form' && is_array($services) && !array_is_list($services)) {
                 foreach ($services as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -593,7 +593,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($servicesMode !== null) {
-            if ('form' === 'form' && is_array($servicesMode)) {
+            if ('form' === 'form' && is_array($servicesMode) && !array_is_list($servicesMode)) {
                 foreach ($servicesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -863,7 +863,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from)) {
+            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -876,7 +876,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to)) {
+            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -889,7 +889,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($aggs !== null) {
-            if ('form' === 'form' && is_array($aggs)) {
+            if ('form' === 'form' && is_array($aggs) && !array_is_list($aggs)) {
                 foreach ($aggs as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -902,7 +902,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($types !== null) {
-            if ('form' === 'form' && is_array($types)) {
+            if ('form' === 'form' && is_array($types) && !array_is_list($types)) {
                 foreach ($types as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -915,7 +915,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($services !== null) {
-            if ('form' === 'form' && is_array($services)) {
+            if ('form' === 'form' && is_array($services) && !array_is_list($services)) {
                 foreach ($services as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -928,7 +928,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($servicesMode !== null) {
-            if ('form' === 'form' && is_array($servicesMode)) {
+            if ('form' === 'form' && is_array($servicesMode) && !array_is_list($servicesMode)) {
                 foreach ($servicesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }

@@ -246,7 +246,7 @@ use {{invokerPackage}}\Core\TokenProvider;
         {{#isExplode}}
         if (${{paramName}} !== null) {
         {{#style}}
-            if ('form' === '{{style}}' && is_array(${{paramName}})) {
+            if ('form' === '{{style}}' && is_array(${{paramName}}) && !array_is_list(${{paramName}})) {
                 foreach (${{paramName}} as $key => $value) {
                     $queryParams[$key] = $value;
                 }

@@ -157,7 +157,7 @@ final class ReferencesApi extends AbstractApi
 
         // query params
         if ($in !== null) {
-            if ('form' === 'form' && is_array($in)) {
+            if ('form' === 'form' && is_array($in) && !array_is_list($in)) {
                 foreach ($in as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -170,7 +170,7 @@ final class ReferencesApi extends AbstractApi
 
         // query params
         if ($sig !== null) {
-            if ('form' === 'form' && is_array($sig)) {
+            if ('form' === 'form' && is_array($sig) && !array_is_list($sig)) {
                 foreach ($sig as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -346,7 +346,7 @@ final class ReferencesApi extends AbstractApi
 
         // query params
         if ($in !== null) {
-            if ('form' === 'form' && is_array($in)) {
+            if ('form' === 'form' && is_array($in) && !array_is_list($in)) {
                 foreach ($in as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -359,7 +359,7 @@ final class ReferencesApi extends AbstractApi
 
         // query params
         if ($sig !== null) {
-            if ('form' === 'form' && is_array($sig)) {
+            if ('form' === 'form' && is_array($sig) && !array_is_list($sig)) {
                 foreach ($sig as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -535,7 +535,7 @@ final class ReferencesApi extends AbstractApi
 
         // query params
         if ($in !== null) {
-            if ('form' === 'form' && is_array($in)) {
+            if ('form' === 'form' && is_array($in) && !array_is_list($in)) {
                 foreach ($in as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -548,7 +548,7 @@ final class ReferencesApi extends AbstractApi
 
         // query params
         if ($sig !== null) {
-            if ('form' === 'form' && is_array($sig)) {
+            if ('form' === 'form' && is_array($sig) && !array_is_list($sig)) {
                 foreach ($sig as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -724,7 +724,7 @@ final class ReferencesApi extends AbstractApi
 
         // query params
         if ($in !== null) {
-            if ('form' === 'form' && is_array($in)) {
+            if ('form' === 'form' && is_array($in) && !array_is_list($in)) {
                 foreach ($in as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -737,7 +737,7 @@ final class ReferencesApi extends AbstractApi
 
         // query params
         if ($sig !== null) {
-            if ('form' === 'form' && is_array($sig)) {
+            if ('form' === 'form' && is_array($sig) && !array_is_list($sig)) {
                 foreach ($sig as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -913,7 +913,7 @@ final class ReferencesApi extends AbstractApi
 
         // query params
         if ($in !== null) {
-            if ('form' === 'form' && is_array($in)) {
+            if ('form' === 'form' && is_array($in) && !array_is_list($in)) {
                 foreach ($in as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -926,7 +926,7 @@ final class ReferencesApi extends AbstractApi
 
         // query params
         if ($sig !== null) {
-            if ('form' === 'form' && is_array($sig)) {
+            if ('form' === 'form' && is_array($sig) && !array_is_list($sig)) {
                 foreach ($sig as $key => $value) {
                     $queryParams[$key] = $value;
                 }

@@ -1156,7 +1156,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($pageBefore !== null) {
-            if ('form' === 'form' && is_array($pageBefore)) {
+            if ('form' === 'form' && is_array($pageBefore) && !array_is_list($pageBefore)) {
                 foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1169,7 +1169,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($pageAfter !== null) {
-            if ('form' === 'form' && is_array($pageAfter)) {
+            if ('form' === 'form' && is_array($pageAfter) && !array_is_list($pageAfter)) {
                 foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1182,7 +1182,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($sort !== null) {
-            if ('form' === 'form' && is_array($sort)) {
+            if ('form' === 'form' && is_array($sort) && !array_is_list($sort)) {
                 foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1401,7 +1401,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($filterOrganizationId !== null) {
-            if ('form' === 'deepObject' && is_array($filterOrganizationId)) {
+            if ('form' === 'deepObject' && is_array($filterOrganizationId) && !array_is_list($filterOrganizationId)) {
                 foreach ($filterOrganizationId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1414,7 +1414,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($filterId !== null) {
-            if ('form' === 'deepObject' && is_array($filterId)) {
+            if ('form' === 'deepObject' && is_array($filterId) && !array_is_list($filterId)) {
                 foreach ($filterId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1427,7 +1427,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($filterUpdatedAt !== null) {
-            if ('form' === 'deepObject' && is_array($filterUpdatedAt)) {
+            if ('form' === 'deepObject' && is_array($filterUpdatedAt) && !array_is_list($filterUpdatedAt)) {
                 foreach ($filterUpdatedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1440,7 +1440,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($pageSize !== null) {
-            if ('form' === 'form' && is_array($pageSize)) {
+            if ('form' === 'form' && is_array($pageSize) && !array_is_list($pageSize)) {
                 foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1453,7 +1453,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($pageBefore !== null) {
-            if ('form' === 'form' && is_array($pageBefore)) {
+            if ('form' === 'form' && is_array($pageBefore) && !array_is_list($pageBefore)) {
                 foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1466,7 +1466,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($pageAfter !== null) {
-            if ('form' === 'form' && is_array($pageAfter)) {
+            if ('form' === 'form' && is_array($pageAfter) && !array_is_list($pageAfter)) {
                 foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1479,7 +1479,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($sort !== null) {
-            if ('form' === 'form' && is_array($sort)) {
+            if ('form' === 'form' && is_array($sort) && !array_is_list($sort)) {
                 foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1699,7 +1699,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($filterOrganizationId !== null) {
-            if ('form' === 'deepObject' && is_array($filterOrganizationId)) {
+            if ('form' === 'deepObject' && is_array($filterOrganizationId) && !array_is_list($filterOrganizationId)) {
                 foreach ($filterOrganizationId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1712,7 +1712,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($filterUpdatedAt !== null) {
-            if ('form' === 'deepObject' && is_array($filterUpdatedAt)) {
+            if ('form' === 'deepObject' && is_array($filterUpdatedAt) && !array_is_list($filterUpdatedAt)) {
                 foreach ($filterUpdatedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1725,7 +1725,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($pageSize !== null) {
-            if ('form' === 'form' && is_array($pageSize)) {
+            if ('form' === 'form' && is_array($pageSize) && !array_is_list($pageSize)) {
                 foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1738,7 +1738,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($pageBefore !== null) {
-            if ('form' === 'form' && is_array($pageBefore)) {
+            if ('form' === 'form' && is_array($pageBefore) && !array_is_list($pageBefore)) {
                 foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1751,7 +1751,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($pageAfter !== null) {
-            if ('form' === 'form' && is_array($pageAfter)) {
+            if ('form' === 'form' && is_array($pageAfter) && !array_is_list($pageAfter)) {
                 foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1764,7 +1764,7 @@ final class TeamsApi extends AbstractApi
 
         // query params
         if ($sort !== null) {
-            if ('form' === 'form' && is_array($sort)) {
+            if ('form' === 'form' && is_array($sort) && !array_is_list($sort)) {
                 foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
