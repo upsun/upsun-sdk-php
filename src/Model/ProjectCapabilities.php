@@ -28,6 +28,7 @@ final class ProjectCapabilities implements Model, JsonSerializable
         private readonly ?SourceOperations $sourceOperations = null,
         private readonly ?RuntimeOperations $runtimeOperations = null,
         private readonly ?OutboundFirewall $outboundFirewall = null,
+        private readonly ?EgressProxy $egressProxy = null,
         private readonly ?Integrations $integrations = null,
     ) {
     }
@@ -54,6 +55,7 @@ final class ProjectCapabilities implements Model, JsonSerializable
             'sourceOperations' => $this->sourceOperations,
             'runtimeOperations' => $this->runtimeOperations,
             'outboundFirewall' => $this->outboundFirewall,
+            'egressProxy' => $this->egressProxy,
             'integrations' => $this->integrations,
         ];
     }
@@ -134,6 +136,11 @@ final class ProjectCapabilities implements Model, JsonSerializable
     public function getOutboundFirewall(): ?OutboundFirewall
     {
         return $this->outboundFirewall;
+    }
+
+    public function getEgressProxy(): ?EgressProxy
+    {
+        return $this->egressProxy;
     }
 
     public function getIntegrations(): ?Integrations

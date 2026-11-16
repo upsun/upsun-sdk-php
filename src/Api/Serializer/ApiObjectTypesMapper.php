@@ -111,6 +111,11 @@ final class ApiObjectTypesMapper
             'config' => '?object',
         ],
 
+        'Upsun\Model\AllowedDomainsInner' => [
+            'host' => 'string',
+            'port' => '?int',
+        ],
+
         'Upsun\Model\ApiToken' => [
             'id' => '?string',
             'name' => '?string',
@@ -228,6 +233,7 @@ final class ApiObjectTypesMapper
 
         'Upsun\Model\Autoscaling' => [
             'enabled' => 'bool',
+            'supports_horizontal_scaling_services' => 'bool',
         ],
 
         'Upsun\Model\Backup' => [
@@ -243,14 +249,10 @@ final class ApiObjectTypesMapper
             'safe' => 'bool',
             'size_of_volumes' => '?int',
             'size_used' => '?int',
+            'size_object_storage' => '?int',
             'deployment' => '?string',
             'restorable' => 'bool',
             'automated' => 'bool',
-        ],
-
-        'Upsun\Model\BasicAuth' => [
-            'username' => 'string',
-            'password' => 'string',
         ],
 
         'Upsun\Model\Bitbucket' => [
@@ -862,6 +864,10 @@ final class ApiObjectTypesMapper
         'Upsun\Model\BuildConfiguration' => [
             'flavor' => '?string',
             'caches' => '\Upsun\Model\BuildCachesValue[]',
+        ],
+
+        'Upsun\Model\BuildPhaseEgress' => [
+            'allowed_domains' => '\Upsun\Model\AllowedDomainsInner[]',
         ],
 
         'Upsun\Model\BuildResources' => [
@@ -1506,6 +1512,15 @@ final class ApiObjectTypesMapper
         'Upsun\Model\DomainPatch' => [
             'attributes' => '?\Upsun\Model\TLSSettings',
             'is_default' => '?bool',
+        ],
+
+        'Upsun\Model\Egress' => [
+            'build' => '?\Upsun\Model\BuildPhaseEgress',
+            'runtime' => '?\Upsun\Model\RuntimePhaseEgress',
+        ],
+
+        'Upsun\Model\EgressProxy' => [
+            'enabled' => 'bool',
         ],
 
         'Upsun\Model\EmailIntegration' => [
@@ -3929,6 +3944,7 @@ final class ApiObjectTypesMapper
             'source_operations' => '?\Upsun\Model\SourceOperations',
             'runtime_operations' => '?\Upsun\Model\RuntimeOperations',
             'outbound_firewall' => '?\Upsun\Model\OutboundFirewall',
+            'egress_proxy' => '?\Upsun\Model\EgressProxy',
             'integrations' => '?\Upsun\Model\Integrations',
         ],
 
@@ -4273,30 +4289,6 @@ final class ApiObjectTypesMapper
             'private' => '?bool',
             'envimpact' => '?\Upsun\Model\RegionEnvImpact',
             'environmental_impact' => '?object',
-        ],
-
-        'Upsun\Model\RegistryCredential' => [
-            'id' => 'string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'registry' => 'string',
-            'auth' => '?\Upsun\Model\BasicAuth',
-            'identity_token' => '?string',
-            'registry_token' => '?string',
-        ],
-
-        'Upsun\Model\RegistryCredentialCreateInput' => [
-            'registry' => 'string',
-            'auth' => '?\Upsun\Model\BasicAuth',
-            'identity_token' => '?string',
-            'registry_token' => '?string',
-        ],
-
-        'Upsun\Model\RegistryCredentialPatch' => [
-            'registry' => '?string',
-            'auth' => '?\Upsun\Model\BasicAuth',
-            'identity_token' => '?string',
-            'registry_token' => '?string',
         ],
 
         'Upsun\Model\ReplacementDomainStorage' => [
@@ -4953,6 +4945,10 @@ final class ApiObjectTypesMapper
             'enabled' => 'bool',
         ],
 
+        'Upsun\Model\RuntimePhaseEgress' => [
+            'allowed_domains' => '\Upsun\Model\AllowedDomainsInner[]',
+        ],
+
         'Upsun\Model\SSIConfiguration' => [
             'enabled' => 'bool',
         ],
@@ -5359,20 +5355,20 @@ final class ApiObjectTypesMapper
 
         'Upsun\Model\Task' => [
             'id' => 'string',
-            'type' => 'string',
-            'source' => '\Upsun\Model\SourceCodeConfiguration1',
-            'hooks' => '\Upsun\Model\Hooks1',
+            'resources' => '?\Upsun\Model\Resources9',
+            'authorizations' => '\Upsun\Model\AuthorizationsInner[]',
             'relationships' => '\Upsun\Model\ServiceRelationshipsValue[]',
             'additional_hosts' => 'string[]',
             'mounts' => '\Upsun\Model\MountsValue[]',
             'timezone' => '?string',
             'variables' => 'array&lt;string,mixed&gt;[]',
+            'container_profile' => '?string',
+            'type' => 'string',
+            'source' => '\Upsun\Model\SourceCodeConfiguration1',
+            'hooks' => '\Upsun\Model\Hooks1',
             'dependencies' => 'object[]',
             'runtime' => 'object',
-            'authorizations' => '\Upsun\Model\AuthorizationsInner[]',
             'run' => '\Upsun\Model\RunConfiguration',
-            'resources' => '?\Upsun\Model\Resources9',
-            'container_profile' => '?string',
             'name' => 'string',
         ],
 
@@ -5814,17 +5810,18 @@ final class ApiObjectTypesMapper
 
         'Upsun\Model\WebApplicationsValue' => [
             'resources' => '?\Upsun\Model\Resources1',
-            'size' => 'string',
-            'disk' => '?int',
-            'access' => 'string[]',
             'authorizations' => '\Upsun\Model\AuthorizationsInner[]',
             'relationships' => '\Upsun\Model\ServiceRelationshipsValue[]',
             'additional_hosts' => 'string[]',
             'mounts' => '\Upsun\Model\MountsValue[]',
             'timezone' => '?string',
             'variables' => 'array&lt;string,mixed&gt;[]',
-            'firewall' => '?\Upsun\Model\Firewall',
             'container_profile' => '?string',
+            'size' => 'string',
+            'disk' => '?int',
+            'access' => 'string[]',
+            'firewall' => '?\Upsun\Model\Firewall',
+            'egress' => '?\Upsun\Model\Egress',
             'operations' => '\Upsun\Model\OperationsValue[]',
             'name' => 'string',
             'type' => 'string',
@@ -5928,17 +5925,18 @@ final class ApiObjectTypesMapper
 
         'Upsun\Model\WorkersValue' => [
             'resources' => '?\Upsun\Model\Resources',
-            'size' => 'string',
-            'disk' => '?int',
-            'access' => 'string[]',
             'authorizations' => '\Upsun\Model\AuthorizationsInner[]',
             'relationships' => '\Upsun\Model\ServiceRelationshipsValue[]',
             'additional_hosts' => 'string[]',
             'mounts' => '\Upsun\Model\MountsValue[]',
             'timezone' => '?string',
             'variables' => 'array&lt;string,mixed&gt;[]',
-            'firewall' => '?\Upsun\Model\Firewall',
             'container_profile' => '?string',
+            'size' => 'string',
+            'disk' => '?int',
+            'access' => 'string[]',
+            'firewall' => '?\Upsun\Model\Firewall',
+            'egress' => '?\Upsun\Model\Egress',
             'operations' => '\Upsun\Model\OperationsValue[]',
             'name' => 'string',
             'type' => 'string',

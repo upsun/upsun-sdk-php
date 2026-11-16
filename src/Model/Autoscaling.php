@@ -15,6 +15,7 @@ final class Autoscaling implements Model, JsonSerializable
 {
     public function __construct(
         private readonly bool $enabled,
+        private readonly bool $supportsHorizontalScalingServices,
     ) {
     }
 
@@ -27,6 +28,7 @@ final class Autoscaling implements Model, JsonSerializable
     {
         return [
             'enabled' => $this->enabled,
+            'supportsHorizontalScalingServices' => $this->supportsHorizontalScalingServices,
         ];
     }
 
@@ -41,5 +43,13 @@ final class Autoscaling implements Model, JsonSerializable
     public function getEnabled(): bool
     {
         return $this->enabled;
+    }
+
+    /**
+     * Allow autoscaling to be configured for services (not just apps and workers)
+     */
+    public function getSupportsHorizontalScalingServices(): bool
+    {
+        return $this->supportsHorizontalScalingServices;
     }
 }
