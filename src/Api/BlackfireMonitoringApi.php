@@ -264,7 +264,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -277,7 +277,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -290,7 +290,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($grain !== null) {
-            if ('form' === 'form' && is_array($grain) && !array_is_list($grain)) {
+            if ('form' === 'form' && is_array($grain)) {
                 foreach ($grain as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -303,20 +303,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($contexts !== null) {
-            if ('form' === 'form' && is_array($contexts) && !array_is_list($contexts)) {
-                foreach ($contexts as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['contexts[]'] = $contexts instanceof DateTime
-                    ? $contexts->format(DATE_ATOM)
-                    : ($contexts);
-            }
+            $queryParams['contexts[]'] = $contexts;
         }
 
         // query params
         if ($contextsMode !== null) {
-            if ('form' === 'form' && is_array($contextsMode) && !array_is_list($contextsMode)) {
+            if ('form' === 'form' && is_array($contextsMode)) {
                 foreach ($contextsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -329,20 +321,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($applications !== null) {
-            if ('form' === 'form' && is_array($applications) && !array_is_list($applications)) {
-                foreach ($applications as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['applications[]'] = $applications instanceof DateTime
-                    ? $applications->format(DATE_ATOM)
-                    : ($applications);
-            }
+            $queryParams['applications[]'] = $applications;
         }
 
         // query params
         if ($applicationsMode !== null) {
-            if ('form' === 'form' && is_array($applicationsMode) && !array_is_list($applicationsMode)) {
+            if ('form' === 'form' && is_array($applicationsMode)) {
                 foreach ($applicationsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -355,20 +339,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($instances !== null) {
-            if ('form' === 'form' && is_array($instances) && !array_is_list($instances)) {
-                foreach ($instances as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['instances[]'] = $instances instanceof DateTime
-                    ? $instances->format(DATE_ATOM)
-                    : ($instances);
-            }
+            $queryParams['instances[]'] = $instances;
         }
 
         // query params
         if ($instancesMode !== null) {
-            if ('form' === 'form' && is_array($instancesMode) && !array_is_list($instancesMode)) {
+            if ('form' === 'form' && is_array($instancesMode)) {
                 foreach ($instancesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -381,7 +357,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($distributionCost !== null) {
-            if ('form' === 'form' && is_array($distributionCost) && !array_is_list($distributionCost)) {
+            if ('form' === 'form' && is_array($distributionCost)) {
                 foreach ($distributionCost as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -697,7 +673,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -710,7 +686,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -723,20 +699,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($keys !== null) {
-            if ('form' === 'form' && is_array($keys) && !array_is_list($keys)) {
-                foreach ($keys as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['keys[]'] = $keys instanceof DateTime
-                    ? $keys->format(DATE_ATOM)
-                    : ($keys);
-            }
+            $queryParams['keys[]'] = $keys;
         }
 
         // query params
         if ($grain !== null) {
-            if ('form' === 'form' && is_array($grain) && !array_is_list($grain)) {
+            if ('form' === 'form' && is_array($grain)) {
                 foreach ($grain as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -749,20 +717,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($contexts !== null) {
-            if ('form' === 'form' && is_array($contexts) && !array_is_list($contexts)) {
-                foreach ($contexts as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['contexts[]'] = $contexts instanceof DateTime
-                    ? $contexts->format(DATE_ATOM)
-                    : ($contexts);
-            }
+            $queryParams['contexts[]'] = $contexts;
         }
 
         // query params
         if ($contextsMode !== null) {
-            if ('form' === 'form' && is_array($contextsMode) && !array_is_list($contextsMode)) {
+            if ('form' === 'form' && is_array($contextsMode)) {
                 foreach ($contextsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -775,20 +735,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($applications !== null) {
-            if ('form' === 'form' && is_array($applications) && !array_is_list($applications)) {
-                foreach ($applications as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['applications[]'] = $applications instanceof DateTime
-                    ? $applications->format(DATE_ATOM)
-                    : ($applications);
-            }
+            $queryParams['applications[]'] = $applications;
         }
 
         // query params
         if ($applicationsMode !== null) {
-            if ('form' === 'form' && is_array($applicationsMode) && !array_is_list($applicationsMode)) {
+            if ('form' === 'form' && is_array($applicationsMode)) {
                 foreach ($applicationsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -801,20 +753,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($instances !== null) {
-            if ('form' === 'form' && is_array($instances) && !array_is_list($instances)) {
-                foreach ($instances as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['instances[]'] = $instances instanceof DateTime
-                    ? $instances->format(DATE_ATOM)
-                    : ($instances);
-            }
+            $queryParams['instances[]'] = $instances;
         }
 
         // query params
         if ($instancesMode !== null) {
-            if ('form' === 'form' && is_array($instancesMode) && !array_is_list($instancesMode)) {
+            if ('form' === 'form' && is_array($instancesMode)) {
                 foreach ($instancesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -827,7 +771,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($distributionCost !== null) {
-            if ('form' === 'form' && is_array($distributionCost) && !array_is_list($distributionCost)) {
+            if ('form' === 'form' && is_array($distributionCost)) {
                 foreach ($distributionCost as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1312,7 +1256,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1325,7 +1269,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1338,7 +1282,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($grain !== null) {
-            if ('form' === 'form' && is_array($grain) && !array_is_list($grain)) {
+            if ('form' === 'form' && is_array($grain)) {
                 foreach ($grain as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1351,7 +1295,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($sort !== null) {
-            if ('form' === 'form' && is_array($sort) && !array_is_list($sort)) {
+            if ('form' === 'form' && is_array($sort)) {
                 foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1364,20 +1308,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($contexts !== null) {
-            if ('form' === 'form' && is_array($contexts) && !array_is_list($contexts)) {
-                foreach ($contexts as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['contexts[]'] = $contexts instanceof DateTime
-                    ? $contexts->format(DATE_ATOM)
-                    : ($contexts);
-            }
+            $queryParams['contexts[]'] = $contexts;
         }
 
         // query params
         if ($contextsMode !== null) {
-            if ('form' === 'form' && is_array($contextsMode) && !array_is_list($contextsMode)) {
+            if ('form' === 'form' && is_array($contextsMode)) {
                 foreach ($contextsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1390,20 +1326,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($applications !== null) {
-            if ('form' === 'form' && is_array($applications) && !array_is_list($applications)) {
-                foreach ($applications as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['applications[]'] = $applications instanceof DateTime
-                    ? $applications->format(DATE_ATOM)
-                    : ($applications);
-            }
+            $queryParams['applications[]'] = $applications;
         }
 
         // query params
         if ($applicationsMode !== null) {
-            if ('form' === 'form' && is_array($applicationsMode) && !array_is_list($applicationsMode)) {
+            if ('form' === 'form' && is_array($applicationsMode)) {
                 foreach ($applicationsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1416,20 +1344,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($instances !== null) {
-            if ('form' === 'form' && is_array($instances) && !array_is_list($instances)) {
-                foreach ($instances as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['instances[]'] = $instances instanceof DateTime
-                    ? $instances->format(DATE_ATOM)
-                    : ($instances);
-            }
+            $queryParams['instances[]'] = $instances;
         }
 
         // query params
         if ($instancesMode !== null) {
-            if ('form' === 'form' && is_array($instancesMode) && !array_is_list($instancesMode)) {
+            if ('form' === 'form' && is_array($instancesMode)) {
                 foreach ($instancesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1442,20 +1362,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($transactions !== null) {
-            if ('form' === 'form' && is_array($transactions) && !array_is_list($transactions)) {
-                foreach ($transactions as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['transactions[]'] = $transactions instanceof DateTime
-                    ? $transactions->format(DATE_ATOM)
-                    : ($transactions);
-            }
+            $queryParams['transactions[]'] = $transactions;
         }
 
         // query params
         if ($transactionsMode !== null) {
-            if ('form' === 'form' && is_array($transactionsMode) && !array_is_list($transactionsMode)) {
+            if ('form' === 'form' && is_array($transactionsMode)) {
                 foreach ($transactionsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1468,20 +1380,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($wtSlots !== null) {
-            if ('form' === 'form' && is_array($wtSlots) && !array_is_list($wtSlots)) {
-                foreach ($wtSlots as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['wt_slots[]'] = $wtSlots instanceof DateTime
-                    ? $wtSlots->format(DATE_ATOM)
-                    : ($wtSlots);
-            }
+            $queryParams['wt_slots[]'] = $wtSlots;
         }
 
         // query params
         if ($wtSlotsMode !== null) {
-            if ('form' === 'form' && is_array($wtSlotsMode) && !array_is_list($wtSlotsMode)) {
+            if ('form' === 'form' && is_array($wtSlotsMode)) {
                 foreach ($wtSlotsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1494,20 +1398,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($pmuSlots !== null) {
-            if ('form' === 'form' && is_array($pmuSlots) && !array_is_list($pmuSlots)) {
-                foreach ($pmuSlots as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['pmu_slots[]'] = $pmuSlots instanceof DateTime
-                    ? $pmuSlots->format(DATE_ATOM)
-                    : ($pmuSlots);
-            }
+            $queryParams['pmu_slots[]'] = $pmuSlots;
         }
 
         // query params
         if ($pmuSlotsMode !== null) {
-            if ('form' === 'form' && is_array($pmuSlotsMode) && !array_is_list($pmuSlotsMode)) {
+            if ('form' === 'form' && is_array($pmuSlotsMode)) {
                 foreach ($pmuSlotsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1520,20 +1416,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($httpStatusCodes !== null) {
-            if ('form' === 'form' && is_array($httpStatusCodes) && !array_is_list($httpStatusCodes)) {
-                foreach ($httpStatusCodes as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['http_status_codes[]'] = $httpStatusCodes instanceof DateTime
-                    ? $httpStatusCodes->format(DATE_ATOM)
-                    : ($httpStatusCodes);
-            }
+            $queryParams['http_status_codes[]'] = $httpStatusCodes;
         }
 
         // query params
         if ($httpStatusCodesMode !== null) {
-            if ('form' === 'form' && is_array($httpStatusCodesMode) && !array_is_list($httpStatusCodesMode)) {
+            if ('form' === 'form' && is_array($httpStatusCodesMode)) {
                 foreach ($httpStatusCodesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1546,20 +1434,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($httpHosts !== null) {
-            if ('form' === 'form' && is_array($httpHosts) && !array_is_list($httpHosts)) {
-                foreach ($httpHosts as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['http_hosts[]'] = $httpHosts instanceof DateTime
-                    ? $httpHosts->format(DATE_ATOM)
-                    : ($httpHosts);
-            }
+            $queryParams['http_hosts[]'] = $httpHosts;
         }
 
         // query params
         if ($httpHostsMode !== null) {
-            if ('form' === 'form' && is_array($httpHostsMode) && !array_is_list($httpHostsMode)) {
+            if ('form' === 'form' && is_array($httpHostsMode)) {
                 foreach ($httpHostsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1572,20 +1452,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($hosts !== null) {
-            if ('form' === 'form' && is_array($hosts) && !array_is_list($hosts)) {
-                foreach ($hosts as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['hosts[]'] = $hosts instanceof DateTime
-                    ? $hosts->format(DATE_ATOM)
-                    : ($hosts);
-            }
+            $queryParams['hosts[]'] = $hosts;
         }
 
         // query params
         if ($hostsMode !== null) {
-            if ('form' === 'form' && is_array($hostsMode) && !array_is_list($hostsMode)) {
+            if ('form' === 'form' && is_array($hostsMode)) {
                 foreach ($hostsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1598,20 +1470,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($frameworks !== null) {
-            if ('form' === 'form' && is_array($frameworks) && !array_is_list($frameworks)) {
-                foreach ($frameworks as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['frameworks[]'] = $frameworks instanceof DateTime
-                    ? $frameworks->format(DATE_ATOM)
-                    : ($frameworks);
-            }
+            $queryParams['frameworks[]'] = $frameworks;
         }
 
         // query params
         if ($frameworksMode !== null) {
-            if ('form' === 'form' && is_array($frameworksMode) && !array_is_list($frameworksMode)) {
+            if ('form' === 'form' && is_array($frameworksMode)) {
                 foreach ($frameworksMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1624,20 +1488,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($languages !== null) {
-            if ('form' === 'form' && is_array($languages) && !array_is_list($languages)) {
-                foreach ($languages as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['languages[]'] = $languages instanceof DateTime
-                    ? $languages->format(DATE_ATOM)
-                    : ($languages);
-            }
+            $queryParams['languages[]'] = $languages;
         }
 
         // query params
         if ($languagesMode !== null) {
-            if ('form' === 'form' && is_array($languagesMode) && !array_is_list($languagesMode)) {
+            if ('form' === 'form' && is_array($languagesMode)) {
                 foreach ($languagesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1650,20 +1506,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($methods !== null) {
-            if ('form' === 'form' && is_array($methods) && !array_is_list($methods)) {
-                foreach ($methods as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['methods[]'] = $methods instanceof DateTime
-                    ? $methods->format(DATE_ATOM)
-                    : ($methods);
-            }
+            $queryParams['methods[]'] = $methods;
         }
 
         // query params
         if ($methodsMode !== null) {
-            if ('form' === 'form' && is_array($methodsMode) && !array_is_list($methodsMode)) {
+            if ('form' === 'form' && is_array($methodsMode)) {
                 foreach ($methodsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1676,20 +1524,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($runtimes !== null) {
-            if ('form' === 'form' && is_array($runtimes) && !array_is_list($runtimes)) {
-                foreach ($runtimes as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtimes[]'] = $runtimes instanceof DateTime
-                    ? $runtimes->format(DATE_ATOM)
-                    : ($runtimes);
-            }
+            $queryParams['runtimes[]'] = $runtimes;
         }
 
         // query params
         if ($runtimesMode !== null) {
-            if ('form' === 'form' && is_array($runtimesMode) && !array_is_list($runtimesMode)) {
+            if ('form' === 'form' && is_array($runtimesMode)) {
                 foreach ($runtimesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1702,20 +1542,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($oss !== null) {
-            if ('form' === 'form' && is_array($oss) && !array_is_list($oss)) {
-                foreach ($oss as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['oss[]'] = $oss instanceof DateTime
-                    ? $oss->format(DATE_ATOM)
-                    : ($oss);
-            }
+            $queryParams['oss[]'] = $oss;
         }
 
         // query params
         if ($ossMode !== null) {
-            if ('form' === 'form' && is_array($ossMode) && !array_is_list($ossMode)) {
+            if ('form' === 'form' && is_array($ossMode)) {
                 foreach ($ossMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1728,7 +1560,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($distributionCost !== null) {
-            if ('form' === 'form' && is_array($distributionCost) && !array_is_list($distributionCost)) {
+            if ('form' === 'form' && is_array($distributionCost)) {
                 foreach ($distributionCost as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2244,7 +2076,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2257,7 +2089,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2270,7 +2102,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($grain !== null) {
-            if ('form' === 'form' && is_array($grain) && !array_is_list($grain)) {
+            if ('form' === 'form' && is_array($grain)) {
                 foreach ($grain as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2283,7 +2115,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($breakdownDimension !== null) {
-            if ('form' === 'form' && is_array($breakdownDimension) && !array_is_list($breakdownDimension)) {
+            if ('form' === 'form' && is_array($breakdownDimension)) {
                 foreach ($breakdownDimension as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2296,7 +2128,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($sort !== null) {
-            if ('form' === 'form' && is_array($sort) && !array_is_list($sort)) {
+            if ('form' === 'form' && is_array($sort)) {
                 foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2309,7 +2141,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($breakdownLimit !== null) {
-            if ('form' === 'form' && is_array($breakdownLimit) && !array_is_list($breakdownLimit)) {
+            if ('form' === 'form' && is_array($breakdownLimit)) {
                 foreach ($breakdownLimit as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2322,20 +2154,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($contexts !== null) {
-            if ('form' === 'form' && is_array($contexts) && !array_is_list($contexts)) {
-                foreach ($contexts as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['contexts[]'] = $contexts instanceof DateTime
-                    ? $contexts->format(DATE_ATOM)
-                    : ($contexts);
-            }
+            $queryParams['contexts[]'] = $contexts;
         }
 
         // query params
         if ($contextsMode !== null) {
-            if ('form' === 'form' && is_array($contextsMode) && !array_is_list($contextsMode)) {
+            if ('form' === 'form' && is_array($contextsMode)) {
                 foreach ($contextsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2348,20 +2172,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($applications !== null) {
-            if ('form' === 'form' && is_array($applications) && !array_is_list($applications)) {
-                foreach ($applications as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['applications[]'] = $applications instanceof DateTime
-                    ? $applications->format(DATE_ATOM)
-                    : ($applications);
-            }
+            $queryParams['applications[]'] = $applications;
         }
 
         // query params
         if ($applicationsMode !== null) {
-            if ('form' === 'form' && is_array($applicationsMode) && !array_is_list($applicationsMode)) {
+            if ('form' === 'form' && is_array($applicationsMode)) {
                 foreach ($applicationsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2374,20 +2190,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($instances !== null) {
-            if ('form' === 'form' && is_array($instances) && !array_is_list($instances)) {
-                foreach ($instances as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['instances[]'] = $instances instanceof DateTime
-                    ? $instances->format(DATE_ATOM)
-                    : ($instances);
-            }
+            $queryParams['instances[]'] = $instances;
         }
 
         // query params
         if ($instancesMode !== null) {
-            if ('form' === 'form' && is_array($instancesMode) && !array_is_list($instancesMode)) {
+            if ('form' === 'form' && is_array($instancesMode)) {
                 foreach ($instancesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2400,20 +2208,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($transactions !== null) {
-            if ('form' === 'form' && is_array($transactions) && !array_is_list($transactions)) {
-                foreach ($transactions as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['transactions[]'] = $transactions instanceof DateTime
-                    ? $transactions->format(DATE_ATOM)
-                    : ($transactions);
-            }
+            $queryParams['transactions[]'] = $transactions;
         }
 
         // query params
         if ($transactionsMode !== null) {
-            if ('form' === 'form' && is_array($transactionsMode) && !array_is_list($transactionsMode)) {
+            if ('form' === 'form' && is_array($transactionsMode)) {
                 foreach ($transactionsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2426,20 +2226,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($wtSlots !== null) {
-            if ('form' === 'form' && is_array($wtSlots) && !array_is_list($wtSlots)) {
-                foreach ($wtSlots as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['wt_slots[]'] = $wtSlots instanceof DateTime
-                    ? $wtSlots->format(DATE_ATOM)
-                    : ($wtSlots);
-            }
+            $queryParams['wt_slots[]'] = $wtSlots;
         }
 
         // query params
         if ($wtSlotsMode !== null) {
-            if ('form' === 'form' && is_array($wtSlotsMode) && !array_is_list($wtSlotsMode)) {
+            if ('form' === 'form' && is_array($wtSlotsMode)) {
                 foreach ($wtSlotsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2452,20 +2244,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($pmuSlots !== null) {
-            if ('form' === 'form' && is_array($pmuSlots) && !array_is_list($pmuSlots)) {
-                foreach ($pmuSlots as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['pmu_slots[]'] = $pmuSlots instanceof DateTime
-                    ? $pmuSlots->format(DATE_ATOM)
-                    : ($pmuSlots);
-            }
+            $queryParams['pmu_slots[]'] = $pmuSlots;
         }
 
         // query params
         if ($pmuSlotsMode !== null) {
-            if ('form' === 'form' && is_array($pmuSlotsMode) && !array_is_list($pmuSlotsMode)) {
+            if ('form' === 'form' && is_array($pmuSlotsMode)) {
                 foreach ($pmuSlotsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2478,20 +2262,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($httpStatusCodes !== null) {
-            if ('form' === 'form' && is_array($httpStatusCodes) && !array_is_list($httpStatusCodes)) {
-                foreach ($httpStatusCodes as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['http_status_codes[]'] = $httpStatusCodes instanceof DateTime
-                    ? $httpStatusCodes->format(DATE_ATOM)
-                    : ($httpStatusCodes);
-            }
+            $queryParams['http_status_codes[]'] = $httpStatusCodes;
         }
 
         // query params
         if ($httpStatusCodesMode !== null) {
-            if ('form' === 'form' && is_array($httpStatusCodesMode) && !array_is_list($httpStatusCodesMode)) {
+            if ('form' === 'form' && is_array($httpStatusCodesMode)) {
                 foreach ($httpStatusCodesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2504,20 +2280,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($httpHosts !== null) {
-            if ('form' === 'form' && is_array($httpHosts) && !array_is_list($httpHosts)) {
-                foreach ($httpHosts as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['http_hosts[]'] = $httpHosts instanceof DateTime
-                    ? $httpHosts->format(DATE_ATOM)
-                    : ($httpHosts);
-            }
+            $queryParams['http_hosts[]'] = $httpHosts;
         }
 
         // query params
         if ($httpHostsMode !== null) {
-            if ('form' === 'form' && is_array($httpHostsMode) && !array_is_list($httpHostsMode)) {
+            if ('form' === 'form' && is_array($httpHostsMode)) {
                 foreach ($httpHostsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2530,20 +2298,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($hosts !== null) {
-            if ('form' === 'form' && is_array($hosts) && !array_is_list($hosts)) {
-                foreach ($hosts as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['hosts[]'] = $hosts instanceof DateTime
-                    ? $hosts->format(DATE_ATOM)
-                    : ($hosts);
-            }
+            $queryParams['hosts[]'] = $hosts;
         }
 
         // query params
         if ($hostsMode !== null) {
-            if ('form' === 'form' && is_array($hostsMode) && !array_is_list($hostsMode)) {
+            if ('form' === 'form' && is_array($hostsMode)) {
                 foreach ($hostsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2556,20 +2316,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($frameworks !== null) {
-            if ('form' === 'form' && is_array($frameworks) && !array_is_list($frameworks)) {
-                foreach ($frameworks as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['frameworks[]'] = $frameworks instanceof DateTime
-                    ? $frameworks->format(DATE_ATOM)
-                    : ($frameworks);
-            }
+            $queryParams['frameworks[]'] = $frameworks;
         }
 
         // query params
         if ($frameworksMode !== null) {
-            if ('form' === 'form' && is_array($frameworksMode) && !array_is_list($frameworksMode)) {
+            if ('form' === 'form' && is_array($frameworksMode)) {
                 foreach ($frameworksMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2582,20 +2334,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($languages !== null) {
-            if ('form' === 'form' && is_array($languages) && !array_is_list($languages)) {
-                foreach ($languages as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['languages[]'] = $languages instanceof DateTime
-                    ? $languages->format(DATE_ATOM)
-                    : ($languages);
-            }
+            $queryParams['languages[]'] = $languages;
         }
 
         // query params
         if ($languagesMode !== null) {
-            if ('form' === 'form' && is_array($languagesMode) && !array_is_list($languagesMode)) {
+            if ('form' === 'form' && is_array($languagesMode)) {
                 foreach ($languagesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2608,20 +2352,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($methods !== null) {
-            if ('form' === 'form' && is_array($methods) && !array_is_list($methods)) {
-                foreach ($methods as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['methods[]'] = $methods instanceof DateTime
-                    ? $methods->format(DATE_ATOM)
-                    : ($methods);
-            }
+            $queryParams['methods[]'] = $methods;
         }
 
         // query params
         if ($methodsMode !== null) {
-            if ('form' === 'form' && is_array($methodsMode) && !array_is_list($methodsMode)) {
+            if ('form' === 'form' && is_array($methodsMode)) {
                 foreach ($methodsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2634,20 +2370,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($runtimes !== null) {
-            if ('form' === 'form' && is_array($runtimes) && !array_is_list($runtimes)) {
-                foreach ($runtimes as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtimes[]'] = $runtimes instanceof DateTime
-                    ? $runtimes->format(DATE_ATOM)
-                    : ($runtimes);
-            }
+            $queryParams['runtimes[]'] = $runtimes;
         }
 
         // query params
         if ($runtimesMode !== null) {
-            if ('form' === 'form' && is_array($runtimesMode) && !array_is_list($runtimesMode)) {
+            if ('form' === 'form' && is_array($runtimesMode)) {
                 foreach ($runtimesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2660,20 +2388,12 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($oss !== null) {
-            if ('form' === 'form' && is_array($oss) && !array_is_list($oss)) {
-                foreach ($oss as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['oss[]'] = $oss instanceof DateTime
-                    ? $oss->format(DATE_ATOM)
-                    : ($oss);
-            }
+            $queryParams['oss[]'] = $oss;
         }
 
         // query params
         if ($ossMode !== null) {
-            if ('form' === 'form' && is_array($ossMode) && !array_is_list($ossMode)) {
+            if ('form' === 'form' && is_array($ossMode)) {
                 foreach ($ossMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2686,7 +2406,7 @@ final class BlackfireMonitoringApi extends AbstractApi
 
         // query params
         if ($distributionCost !== null) {
-            if ('form' === 'form' && is_array($distributionCost) && !array_is_list($distributionCost)) {
+            if ('form' === 'form' && is_array($distributionCost)) {
                 foreach ($distributionCost as $key => $value) {
                     $queryParams[$key] = $value;
                 }

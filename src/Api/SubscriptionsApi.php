@@ -519,7 +519,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($plan !== null) {
-            if ('form' === 'form' && is_array($plan) && !array_is_list($plan)) {
+            if ('form' === 'form' && is_array($plan)) {
                 foreach ($plan as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -532,7 +532,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($environments !== null) {
-            if ('form' === 'form' && is_array($environments) && !array_is_list($environments)) {
+            if ('form' === 'form' && is_array($environments)) {
                 foreach ($environments as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -545,7 +545,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($storage !== null) {
-            if ('form' === 'form' && is_array($storage) && !array_is_list($storage)) {
+            if ('form' === 'form' && is_array($storage)) {
                 foreach ($storage as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -558,7 +558,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($userLicenses !== null) {
-            if ('form' === 'form' && is_array($userLicenses) && !array_is_list($userLicenses)) {
+            if ('form' === 'form' && is_array($userLicenses)) {
                 foreach ($userLicenses as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1150,7 +1150,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($plan !== null) {
-            if ('form' === 'form' && is_array($plan) && !array_is_list($plan)) {
+            if ('form' === 'form' && is_array($plan)) {
                 foreach ($plan as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1163,7 +1163,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($environments !== null) {
-            if ('form' === 'form' && is_array($environments) && !array_is_list($environments)) {
+            if ('form' === 'form' && is_array($environments)) {
                 foreach ($environments as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1176,7 +1176,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($storage !== null) {
-            if ('form' === 'form' && is_array($storage) && !array_is_list($storage)) {
+            if ('form' === 'form' && is_array($storage)) {
                 foreach ($storage as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1189,7 +1189,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($userLicenses !== null) {
-            if ('form' === 'form' && is_array($userLicenses) && !array_is_list($userLicenses)) {
+            if ('form' === 'form' && is_array($userLicenses)) {
                 foreach ($userLicenses as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1202,7 +1202,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($format !== null) {
-            if ('form' === 'form' && is_array($format) && !array_is_list($format)) {
+            if ('form' === 'form' && is_array($format)) {
                 foreach ($format as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1440,7 +1440,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($plan !== null) {
-            if ('form' === 'form' && is_array($plan) && !array_is_list($plan)) {
+            if ('form' === 'form' && is_array($plan)) {
                 foreach ($plan as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1453,7 +1453,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($environments !== null) {
-            if ('form' === 'form' && is_array($environments) && !array_is_list($environments)) {
+            if ('form' === 'form' && is_array($environments)) {
                 foreach ($environments as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1466,7 +1466,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($storage !== null) {
-            if ('form' === 'form' && is_array($storage) && !array_is_list($storage)) {
+            if ('form' === 'form' && is_array($storage)) {
                 foreach ($storage as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1479,7 +1479,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($userLicenses !== null) {
-            if ('form' === 'form' && is_array($userLicenses) && !array_is_list($userLicenses)) {
+            if ('form' === 'form' && is_array($userLicenses)) {
                 foreach ($userLicenses as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1492,7 +1492,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($format !== null) {
-            if ('form' === 'form' && is_array($format) && !array_is_list($format)) {
+            if ('form' === 'form' && is_array($format)) {
                 foreach ($format as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1890,7 +1890,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($usageGroups !== null) {
-            if ('form' === 'form' && is_array($usageGroups) && !array_is_list($usageGroups)) {
+            if ('form' === 'form' && is_array($usageGroups)) {
                 foreach ($usageGroups as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1903,7 +1903,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($includeNotCharged !== null) {
-            if ('form' === 'form' && is_array($includeNotCharged) && !array_is_list($includeNotCharged)) {
+            if ('form' === 'form' && is_array($includeNotCharged)) {
                 foreach ($includeNotCharged as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2389,7 +2389,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($filterStatus !== null) {
-            if ('form' === 'form' && is_array($filterStatus) && !array_is_list($filterStatus)) {
+            if ('form' === 'form' && is_array($filterStatus)) {
                 foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2402,7 +2402,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($filterId !== null) {
-            if ('form' === 'deepObject' && is_array($filterId) && !array_is_list($filterId)) {
+            if ('form' === 'deepObject' && is_array($filterId)) {
                 foreach ($filterId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2415,7 +2415,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($filterProjectId !== null) {
-            if ('form' === 'deepObject' && is_array($filterProjectId) && !array_is_list($filterProjectId)) {
+            if ('form' === 'deepObject' && is_array($filterProjectId)) {
                 foreach ($filterProjectId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2428,7 +2428,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($filterProjectTitle !== null) {
-            if ('form' === 'deepObject' && is_array($filterProjectTitle) && !array_is_list($filterProjectTitle)) {
+            if ('form' === 'deepObject' && is_array($filterProjectTitle)) {
                 foreach ($filterProjectTitle as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2441,7 +2441,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($filterRegion !== null) {
-            if ('form' === 'deepObject' && is_array($filterRegion) && !array_is_list($filterRegion)) {
+            if ('form' === 'deepObject' && is_array($filterRegion)) {
                 foreach ($filterRegion as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2454,7 +2454,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($filterUpdatedAt !== null) {
-            if ('form' === 'deepObject' && is_array($filterUpdatedAt) && !array_is_list($filterUpdatedAt)) {
+            if ('form' === 'deepObject' && is_array($filterUpdatedAt)) {
                 foreach ($filterUpdatedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2467,7 +2467,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($pageSize !== null) {
-            if ('form' === 'form' && is_array($pageSize) && !array_is_list($pageSize)) {
+            if ('form' === 'form' && is_array($pageSize)) {
                 foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2480,7 +2480,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($pageBefore !== null) {
-            if ('form' === 'form' && is_array($pageBefore) && !array_is_list($pageBefore)) {
+            if ('form' === 'form' && is_array($pageBefore)) {
                 foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2493,7 +2493,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($pageAfter !== null) {
-            if ('form' === 'form' && is_array($pageAfter) && !array_is_list($pageAfter)) {
+            if ('form' === 'form' && is_array($pageAfter)) {
                 foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2506,7 +2506,7 @@ final class SubscriptionsApi extends AbstractApi
 
         // query params
         if ($sort !== null) {
-            if ('form' === 'form' && is_array($sort) && !array_is_list($sort)) {
+            if ('form' === 'form' && is_array($sort)) {
                 foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }

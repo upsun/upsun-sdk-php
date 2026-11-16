@@ -246,7 +246,11 @@ use {{invokerPackage}}\Core\TokenProvider;
         {{#isExplode}}
         if (${{paramName}} !== null) {
         {{#style}}
-            if ('form' === '{{style}}' && is_array(${{paramName}}) && !array_is_list(${{paramName}})) {
+        {{#isArray}}
+            $queryParams['{{baseName}}'] = ${{paramName}};
+        {{/isArray}}
+        {{^isArray}}
+            if ('form' === '{{style}}' && is_array(${{paramName}})) {
                 foreach (${{paramName}} as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -255,6 +259,7 @@ use {{invokerPackage}}\Core\TokenProvider;
                     ? ${{paramName}}->format(DATE_ATOM)
                     : ({{#isModel}}${{paramName}}->getEq(){{/isModel}}{{^isModel}}${{paramName}}{{/isModel}});
             }
+        {{/isArray}}
         {{/style}}
         {{^style}}
             $queryParams['{{baseName}}'] = ${{paramName}} instanceof DateTime

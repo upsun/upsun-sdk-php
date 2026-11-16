@@ -280,7 +280,7 @@ final class SupportApi extends AbstractApi
 
         // query params
         if ($subscriptionId !== null) {
-            if ('form' === 'form' && is_array($subscriptionId) && !array_is_list($subscriptionId)) {
+            if ('form' === 'form' && is_array($subscriptionId)) {
                 foreach ($subscriptionId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -293,7 +293,7 @@ final class SupportApi extends AbstractApi
 
         // query params
         if ($organizationId !== null) {
-            if ('form' === 'form' && is_array($organizationId) && !array_is_list($organizationId)) {
+            if ('form' === 'form' && is_array($organizationId)) {
                 foreach ($organizationId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -451,7 +451,7 @@ final class SupportApi extends AbstractApi
 
         // query params
         if ($subscriptionId !== null) {
-            if ('form' === 'form' && is_array($subscriptionId) && !array_is_list($subscriptionId)) {
+            if ('form' === 'form' && is_array($subscriptionId)) {
                 foreach ($subscriptionId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -464,7 +464,7 @@ final class SupportApi extends AbstractApi
 
         // query params
         if ($category !== null) {
-            if ('form' === 'form' && is_array($category) && !array_is_list($category)) {
+            if ('form' === 'form' && is_array($category)) {
                 foreach ($category as $key => $value) {
                     $queryParams[$key] = $value;
                 }

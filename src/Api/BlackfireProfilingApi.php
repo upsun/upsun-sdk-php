@@ -1203,7 +1203,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($transaction !== null) {
-            if ('form' === 'form' && is_array($transaction) && !array_is_list($transaction)) {
+            if ('form' === 'form' && is_array($transaction)) {
                 foreach ($transaction as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1216,7 +1216,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($page !== null) {
-            if ('form' === 'form' && is_array($page) && !array_is_list($page)) {
+            if ('form' === 'form' && is_array($page)) {
                 foreach ($page as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1229,7 +1229,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($limit !== null) {
-            if ('form' === 'form' && is_array($limit) && !array_is_list($limit)) {
+            if ('form' === 'form' && is_array($limit)) {
                 foreach ($limit as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1242,7 +1242,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($url !== null) {
-            if ('form' === 'form' && is_array($url) && !array_is_list($url)) {
+            if ('form' === 'form' && is_array($url)) {
                 foreach ($url as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1255,7 +1255,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($isAuto !== null) {
-            if ('form' === 'form' && is_array($isAuto) && !array_is_list($isAuto)) {
+            if ('form' === 'form' && is_array($isAuto)) {
                 foreach ($isAuto as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1268,7 +1268,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($isPublic !== null) {
-            if ('form' === 'form' && is_array($isPublic) && !array_is_list($isPublic)) {
+            if ('form' === 'form' && is_array($isPublic)) {
                 foreach ($isPublic as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1281,7 +1281,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($sortBy !== null) {
-            if ('form' === 'form' && is_array($sortBy) && !array_is_list($sortBy)) {
+            if ('form' === 'form' && is_array($sortBy)) {
                 foreach ($sortBy as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1294,7 +1294,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($sortOrder !== null) {
-            if ('form' === 'form' && is_array($sortOrder) && !array_is_list($sortOrder)) {
+            if ('form' === 'form' && is_array($sortOrder)) {
                 foreach ($sortOrder as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1307,7 +1307,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($startDate !== null) {
-            if ('form' === 'form' && is_array($startDate) && !array_is_list($startDate)) {
+            if ('form' === 'form' && is_array($startDate)) {
                 foreach ($startDate as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1320,7 +1320,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($endDate !== null) {
-            if ('form' === 'form' && is_array($endDate) && !array_is_list($endDate)) {
+            if ('form' === 'form' && is_array($endDate)) {
                 foreach ($endDate as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1333,7 +1333,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($statusCode !== null) {
-            if ('form' === 'form' && is_array($statusCode) && !array_is_list($statusCode)) {
+            if ('form' === 'form' && is_array($statusCode)) {
                 foreach ($statusCode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1346,7 +1346,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($owner !== null) {
-            if ('form' === 'form' && is_array($owner) && !array_is_list($owner)) {
+            if ('form' === 'form' && is_array($owner)) {
                 foreach ($owner as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1359,7 +1359,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($languages !== null) {
-            if ('form' === 'form' && is_array($languages) && !array_is_list($languages)) {
+            if ('form' === 'form' && is_array($languages)) {
                 foreach ($languages as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1372,7 +1372,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($frameworks !== null) {
-            if ('form' === 'form' && is_array($frameworks) && !array_is_list($frameworks)) {
+            if ('form' === 'form' && is_array($frameworks)) {
                 foreach ($frameworks as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1385,7 +1385,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($itemsPerPage !== null) {
-            if ('form' === 'form' && is_array($itemsPerPage) && !array_is_list($itemsPerPage)) {
+            if ('form' === 'form' && is_array($itemsPerPage)) {
                 foreach ($itemsPerPage as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1637,7 +1637,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1650,7 +1650,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1663,7 +1663,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($transaction !== null) {
-            if ('form' === 'form' && is_array($transaction) && !array_is_list($transaction)) {
+            if ('form' === 'form' && is_array($transaction)) {
                 foreach ($transaction as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1676,7 +1676,7 @@ final class BlackfireProfilingApi extends AbstractApi
 
         // query params
         if ($limit !== null) {
-            if ('form' === 'form' && is_array($limit) && !array_is_list($limit)) {
+            if ('form' === 'form' && is_array($limit)) {
                 foreach ($limit as $key => $value) {
                     $queryParams[$key] = $value;
                 }

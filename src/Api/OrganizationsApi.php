@@ -710,7 +710,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterId !== null) {
-            if ('form' === 'deepObject' && is_array($filterId) && !array_is_list($filterId)) {
+            if ('form' === 'deepObject' && is_array($filterId)) {
                 foreach ($filterId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -723,7 +723,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterType !== null) {
-            if ('form' === 'deepObject' && is_array($filterType) && !array_is_list($filterType)) {
+            if ('form' === 'deepObject' && is_array($filterType)) {
                 foreach ($filterType as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -736,7 +736,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterOwnerId !== null) {
-            if ('form' === 'deepObject' && is_array($filterOwnerId) && !array_is_list($filterOwnerId)) {
+            if ('form' === 'deepObject' && is_array($filterOwnerId)) {
                 foreach ($filterOwnerId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -749,7 +749,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterName !== null) {
-            if ('form' === 'deepObject' && is_array($filterName) && !array_is_list($filterName)) {
+            if ('form' === 'deepObject' && is_array($filterName)) {
                 foreach ($filterName as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -762,7 +762,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterLabel !== null) {
-            if ('form' === 'deepObject' && is_array($filterLabel) && !array_is_list($filterLabel)) {
+            if ('form' === 'deepObject' && is_array($filterLabel)) {
                 foreach ($filterLabel as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -775,7 +775,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterBillingProfileId !== null) {
-            if ('form' === 'deepObject' && is_array($filterBillingProfileId) && !array_is_list($filterBillingProfileId)) {
+            if ('form' === 'deepObject' && is_array($filterBillingProfileId)) {
                 foreach ($filterBillingProfileId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -788,7 +788,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterVendor !== null) {
-            if ('form' === 'deepObject' && is_array($filterVendor) && !array_is_list($filterVendor)) {
+            if ('form' === 'deepObject' && is_array($filterVendor)) {
                 foreach ($filterVendor as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -801,7 +801,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterCapabilities !== null) {
-            if ('form' === 'deepObject' && is_array($filterCapabilities) && !array_is_list($filterCapabilities)) {
+            if ('form' === 'deepObject' && is_array($filterCapabilities)) {
                 foreach ($filterCapabilities as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -814,7 +814,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterStatus !== null) {
-            if ('form' === 'deepObject' && is_array($filterStatus) && !array_is_list($filterStatus)) {
+            if ('form' === 'deepObject' && is_array($filterStatus)) {
                 foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -827,7 +827,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterUpdatedAt !== null) {
-            if ('form' === 'deepObject' && is_array($filterUpdatedAt) && !array_is_list($filterUpdatedAt)) {
+            if ('form' === 'deepObject' && is_array($filterUpdatedAt)) {
                 foreach ($filterUpdatedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -840,7 +840,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($pageSize !== null) {
-            if ('form' === 'form' && is_array($pageSize) && !array_is_list($pageSize)) {
+            if ('form' === 'form' && is_array($pageSize)) {
                 foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -853,7 +853,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($pageBefore !== null) {
-            if ('form' === 'form' && is_array($pageBefore) && !array_is_list($pageBefore)) {
+            if ('form' === 'form' && is_array($pageBefore)) {
                 foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -866,7 +866,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($pageAfter !== null) {
-            if ('form' === 'form' && is_array($pageAfter) && !array_is_list($pageAfter)) {
+            if ('form' === 'form' && is_array($pageAfter)) {
                 foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -879,7 +879,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($sort !== null) {
-            if ('form' === 'form' && is_array($sort) && !array_is_list($sort)) {
+            if ('form' === 'form' && is_array($sort)) {
                 foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1123,7 +1123,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterId !== null) {
-            if ('form' === 'deepObject' && is_array($filterId) && !array_is_list($filterId)) {
+            if ('form' === 'deepObject' && is_array($filterId)) {
                 foreach ($filterId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1136,7 +1136,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterType !== null) {
-            if ('form' === 'deepObject' && is_array($filterType) && !array_is_list($filterType)) {
+            if ('form' === 'deepObject' && is_array($filterType)) {
                 foreach ($filterType as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1149,7 +1149,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterVendor !== null) {
-            if ('form' === 'deepObject' && is_array($filterVendor) && !array_is_list($filterVendor)) {
+            if ('form' === 'deepObject' && is_array($filterVendor)) {
                 foreach ($filterVendor as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1162,7 +1162,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterStatus !== null) {
-            if ('form' === 'deepObject' && is_array($filterStatus) && !array_is_list($filterStatus)) {
+            if ('form' === 'deepObject' && is_array($filterStatus)) {
                 foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1175,7 +1175,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($filterUpdatedAt !== null) {
-            if ('form' === 'deepObject' && is_array($filterUpdatedAt) && !array_is_list($filterUpdatedAt)) {
+            if ('form' === 'deepObject' && is_array($filterUpdatedAt)) {
                 foreach ($filterUpdatedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1188,7 +1188,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($pageSize !== null) {
-            if ('form' === 'form' && is_array($pageSize) && !array_is_list($pageSize)) {
+            if ('form' === 'form' && is_array($pageSize)) {
                 foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1201,7 +1201,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($pageBefore !== null) {
-            if ('form' === 'form' && is_array($pageBefore) && !array_is_list($pageBefore)) {
+            if ('form' === 'form' && is_array($pageBefore)) {
                 foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1214,7 +1214,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($pageAfter !== null) {
-            if ('form' === 'form' && is_array($pageAfter) && !array_is_list($pageAfter)) {
+            if ('form' === 'form' && is_array($pageAfter)) {
                 foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1227,7 +1227,7 @@ final class OrganizationsApi extends AbstractApi
 
         // query params
         if ($sort !== null) {
-            if ('form' === 'form' && is_array($sort) && !array_is_list($sort)) {
+            if ('form' === 'form' && is_array($sort)) {
                 foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }

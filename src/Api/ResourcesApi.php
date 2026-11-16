@@ -231,7 +231,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -244,7 +244,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -257,28 +257,12 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($aggs !== null) {
-            if ('form' === 'form' && is_array($aggs) && !array_is_list($aggs)) {
-                foreach ($aggs as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['aggs[]'] = $aggs instanceof DateTime
-                    ? $aggs->format(DATE_ATOM)
-                    : ($aggs);
-            }
+            $queryParams['aggs[]'] = $aggs;
         }
 
         // query params
         if ($types !== null) {
-            if ('form' === 'form' && is_array($types) && !array_is_list($types)) {
-                foreach ($types as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['types[]'] = $types instanceof DateTime
-                    ? $types->format(DATE_ATOM)
-                    : ($types);
-            }
+            $queryParams['types[]'] = $types;
         }
 
         // path params
@@ -541,7 +525,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -554,7 +538,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -567,7 +551,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($service !== null) {
-            if ('form' === 'form' && is_array($service) && !array_is_list($service)) {
+            if ('form' === 'form' && is_array($service)) {
                 foreach ($service as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -580,20 +564,12 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($services !== null) {
-            if ('form' === 'form' && is_array($services) && !array_is_list($services)) {
-                foreach ($services as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['services[]'] = $services instanceof DateTime
-                    ? $services->format(DATE_ATOM)
-                    : ($services);
-            }
+            $queryParams['services[]'] = $services;
         }
 
         // query params
         if ($servicesMode !== null) {
-            if ('form' === 'form' && is_array($servicesMode) && !array_is_list($servicesMode)) {
+            if ('form' === 'form' && is_array($servicesMode)) {
                 foreach ($servicesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -863,7 +839,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -876,7 +852,7 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -889,46 +865,22 @@ final class ResourcesApi extends AbstractApi
 
         // query params
         if ($aggs !== null) {
-            if ('form' === 'form' && is_array($aggs) && !array_is_list($aggs)) {
-                foreach ($aggs as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['aggs[]'] = $aggs instanceof DateTime
-                    ? $aggs->format(DATE_ATOM)
-                    : ($aggs);
-            }
+            $queryParams['aggs[]'] = $aggs;
         }
 
         // query params
         if ($types !== null) {
-            if ('form' === 'form' && is_array($types) && !array_is_list($types)) {
-                foreach ($types as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['types[]'] = $types instanceof DateTime
-                    ? $types->format(DATE_ATOM)
-                    : ($types);
-            }
+            $queryParams['types[]'] = $types;
         }
 
         // query params
         if ($services !== null) {
-            if ('form' === 'form' && is_array($services) && !array_is_list($services)) {
-                foreach ($services as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['services[]'] = $services instanceof DateTime
-                    ? $services->format(DATE_ATOM)
-                    : ($services);
-            }
+            $queryParams['services[]'] = $services;
         }
 
         // query params
         if ($servicesMode !== null) {
-            if ('form' === 'form' && is_array($servicesMode) && !array_is_list($servicesMode)) {
+            if ('form' === 'form' && is_array($servicesMode)) {
                 foreach ($servicesMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }

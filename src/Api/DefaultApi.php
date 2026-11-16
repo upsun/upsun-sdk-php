@@ -262,7 +262,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($filterTicketId !== null) {
-            if ('form' === 'form' && is_array($filterTicketId) && !array_is_list($filterTicketId)) {
+            if ('form' === 'form' && is_array($filterTicketId)) {
                 foreach ($filterTicketId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -275,7 +275,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($filterCreated !== null) {
-            if ('form' === 'form' && is_array($filterCreated) && !array_is_list($filterCreated)) {
+            if ('form' === 'form' && is_array($filterCreated)) {
                 foreach ($filterCreated as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -288,7 +288,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($filterUpdated !== null) {
-            if ('form' === 'form' && is_array($filterUpdated) && !array_is_list($filterUpdated)) {
+            if ('form' === 'form' && is_array($filterUpdated)) {
                 foreach ($filterUpdated as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -301,7 +301,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($filterType !== null) {
-            if ('form' === 'form' && is_array($filterType) && !array_is_list($filterType)) {
+            if ('form' === 'form' && is_array($filterType)) {
                 foreach ($filterType as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -314,7 +314,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($filterPriority !== null) {
-            if ('form' === 'form' && is_array($filterPriority) && !array_is_list($filterPriority)) {
+            if ('form' === 'form' && is_array($filterPriority)) {
                 foreach ($filterPriority as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -327,7 +327,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($filterStatus !== null) {
-            if ('form' === 'form' && is_array($filterStatus) && !array_is_list($filterStatus)) {
+            if ('form' === 'form' && is_array($filterStatus)) {
                 foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -340,7 +340,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($filterRequesterId !== null) {
-            if ('form' === 'form' && is_array($filterRequesterId) && !array_is_list($filterRequesterId)) {
+            if ('form' === 'form' && is_array($filterRequesterId)) {
                 foreach ($filterRequesterId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -353,7 +353,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($filterSubmitterId !== null) {
-            if ('form' === 'form' && is_array($filterSubmitterId) && !array_is_list($filterSubmitterId)) {
+            if ('form' === 'form' && is_array($filterSubmitterId)) {
                 foreach ($filterSubmitterId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -366,7 +366,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($filterAssigneeId !== null) {
-            if ('form' === 'form' && is_array($filterAssigneeId) && !array_is_list($filterAssigneeId)) {
+            if ('form' === 'form' && is_array($filterAssigneeId)) {
                 foreach ($filterAssigneeId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -379,7 +379,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($filterHasIncidents !== null) {
-            if ('form' === 'form' && is_array($filterHasIncidents) && !array_is_list($filterHasIncidents)) {
+            if ('form' === 'form' && is_array($filterHasIncidents)) {
                 foreach ($filterHasIncidents as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -392,7 +392,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($filterDue !== null) {
-            if ('form' === 'form' && is_array($filterDue) && !array_is_list($filterDue)) {
+            if ('form' === 'form' && is_array($filterDue)) {
                 foreach ($filterDue as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -405,7 +405,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($search !== null) {
-            if ('form' === 'form' && is_array($search) && !array_is_list($search)) {
+            if ('form' === 'form' && is_array($search)) {
                 foreach ($search as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -418,7 +418,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($page !== null) {
-            if ('form' === 'form' && is_array($page) && !array_is_list($page)) {
+            if ('form' === 'form' && is_array($page)) {
                 foreach ($page as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -612,7 +612,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -625,7 +625,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -638,7 +638,7 @@ final class DefaultApi extends AbstractApi
 
         // query params
         if ($interval !== null) {
-            if ('form' === 'form' && is_array($interval) && !array_is_list($interval)) {
+            if ('form' === 'form' && is_array($interval)) {
                 foreach ($interval as $key => $value) {
                     $queryParams[$key] = $value;
                 }

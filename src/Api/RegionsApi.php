@@ -362,7 +362,7 @@ final class RegionsApi extends AbstractApi
 
         // query params
         if ($filterAvailable !== null) {
-            if ('form' === 'deepObject' && is_array($filterAvailable) && !array_is_list($filterAvailable)) {
+            if ('form' === 'deepObject' && is_array($filterAvailable)) {
                 foreach ($filterAvailable as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -375,7 +375,7 @@ final class RegionsApi extends AbstractApi
 
         // query params
         if ($filterPrivate !== null) {
-            if ('form' === 'deepObject' && is_array($filterPrivate) && !array_is_list($filterPrivate)) {
+            if ('form' === 'deepObject' && is_array($filterPrivate)) {
                 foreach ($filterPrivate as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -388,7 +388,7 @@ final class RegionsApi extends AbstractApi
 
         // query params
         if ($filterZone !== null) {
-            if ('form' === 'deepObject' && is_array($filterZone) && !array_is_list($filterZone)) {
+            if ('form' === 'deepObject' && is_array($filterZone)) {
                 foreach ($filterZone as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -401,7 +401,7 @@ final class RegionsApi extends AbstractApi
 
         // query params
         if ($pageSize !== null) {
-            if ('form' === 'form' && is_array($pageSize) && !array_is_list($pageSize)) {
+            if ('form' === 'form' && is_array($pageSize)) {
                 foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -414,7 +414,7 @@ final class RegionsApi extends AbstractApi
 
         // query params
         if ($pageBefore !== null) {
-            if ('form' === 'form' && is_array($pageBefore) && !array_is_list($pageBefore)) {
+            if ('form' === 'form' && is_array($pageBefore)) {
                 foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -427,7 +427,7 @@ final class RegionsApi extends AbstractApi
 
         // query params
         if ($pageAfter !== null) {
-            if ('form' === 'form' && is_array($pageAfter) && !array_is_list($pageAfter)) {
+            if ('form' === 'form' && is_array($pageAfter)) {
                 foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -440,7 +440,7 @@ final class RegionsApi extends AbstractApi
 
         // query params
         if ($sort !== null) {
-            if ('form' === 'form' && is_array($sort) && !array_is_list($sort)) {
+            if ('form' === 'form' && is_array($sort)) {
                 foreach ($sort as $key => $value) {
                     $queryParams[$key] = $value;
                 }

@@ -388,7 +388,7 @@ final class InvoicesApi extends AbstractApi
 
         // query params
         if ($filterStatus !== null) {
-            if ('form' === 'form' && is_array($filterStatus) && !array_is_list($filterStatus)) {
+            if ('form' === 'form' && is_array($filterStatus)) {
                 foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -401,7 +401,7 @@ final class InvoicesApi extends AbstractApi
 
         // query params
         if ($filterType !== null) {
-            if ('form' === 'form' && is_array($filterType) && !array_is_list($filterType)) {
+            if ('form' === 'form' && is_array($filterType)) {
                 foreach ($filterType as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -414,7 +414,7 @@ final class InvoicesApi extends AbstractApi
 
         // query params
         if ($filterOrderId !== null) {
-            if ('form' === 'form' && is_array($filterOrderId) && !array_is_list($filterOrderId)) {
+            if ('form' === 'form' && is_array($filterOrderId)) {
                 foreach ($filterOrderId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -427,7 +427,7 @@ final class InvoicesApi extends AbstractApi
 
         // query params
         if ($page !== null) {
-            if ('form' === 'form' && is_array($page) && !array_is_list($page)) {
+            if ('form' === 'form' && is_array($page)) {
                 foreach ($page as $key => $value) {
                     $queryParams[$key] = $value;
                 }

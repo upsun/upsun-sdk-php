@@ -262,7 +262,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($filterSubscriptionId !== null) {
-            if ('form' === 'form' && is_array($filterSubscriptionId) && !array_is_list($filterSubscriptionId)) {
+            if ('form' === 'form' && is_array($filterSubscriptionId)) {
                 foreach ($filterSubscriptionId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -275,7 +275,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($filterPlan !== null) {
-            if ('form' === 'form' && is_array($filterPlan) && !array_is_list($filterPlan)) {
+            if ('form' === 'form' && is_array($filterPlan)) {
                 foreach ($filterPlan as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -288,7 +288,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($filterStatus !== null) {
-            if ('form' === 'form' && is_array($filterStatus) && !array_is_list($filterStatus)) {
+            if ('form' === 'form' && is_array($filterStatus)) {
                 foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -301,7 +301,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($filterStart !== null) {
-            if ('form' === 'form' && is_array($filterStart) && !array_is_list($filterStart)) {
+            if ('form' === 'form' && is_array($filterStart)) {
                 foreach ($filterStart as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -314,7 +314,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($filterEnd !== null) {
-            if ('form' === 'form' && is_array($filterEnd) && !array_is_list($filterEnd)) {
+            if ('form' === 'form' && is_array($filterEnd)) {
                 foreach ($filterEnd as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -327,7 +327,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($filterStartedAt !== null) {
-            if ('form' === 'form' && is_array($filterStartedAt) && !array_is_list($filterStartedAt)) {
+            if ('form' === 'form' && is_array($filterStartedAt)) {
                 foreach ($filterStartedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -340,7 +340,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($filterEndedAt !== null) {
-            if ('form' === 'form' && is_array($filterEndedAt) && !array_is_list($filterEndedAt)) {
+            if ('form' === 'form' && is_array($filterEndedAt)) {
                 foreach ($filterEndedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -353,7 +353,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($page !== null) {
-            if ('form' === 'form' && is_array($page) && !array_is_list($page)) {
+            if ('form' === 'form' && is_array($page)) {
                 foreach ($page as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -597,7 +597,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($filterSubscriptionId !== null) {
-            if ('form' === 'form' && is_array($filterSubscriptionId) && !array_is_list($filterSubscriptionId)) {
+            if ('form' === 'form' && is_array($filterSubscriptionId)) {
                 foreach ($filterSubscriptionId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -610,7 +610,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($filterUsageGroup !== null) {
-            if ('form' === 'form' && is_array($filterUsageGroup) && !array_is_list($filterUsageGroup)) {
+            if ('form' === 'form' && is_array($filterUsageGroup)) {
                 foreach ($filterUsageGroup as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -623,7 +623,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($filterStart !== null) {
-            if ('form' === 'form' && is_array($filterStart) && !array_is_list($filterStart)) {
+            if ('form' === 'form' && is_array($filterStart)) {
                 foreach ($filterStart as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -636,7 +636,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($filterStartedAt !== null) {
-            if ('form' === 'form' && is_array($filterStartedAt) && !array_is_list($filterStartedAt)) {
+            if ('form' === 'form' && is_array($filterStartedAt)) {
                 foreach ($filterStartedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -649,7 +649,7 @@ final class RecordsApi extends AbstractApi
 
         // query params
         if ($page !== null) {
-            if ('form' === 'form' && is_array($page) && !array_is_list($page)) {
+            if ('form' === 'form' && is_array($page)) {
                 foreach ($page as $key => $value) {
                     $queryParams[$key] = $value;
                 }

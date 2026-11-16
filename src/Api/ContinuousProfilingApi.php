@@ -396,7 +396,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -409,7 +409,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -422,7 +422,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($profileType !== null) {
-            if ('form' === 'form' && is_array($profileType) && !array_is_list($profileType)) {
+            if ('form' === 'form' && is_array($profileType)) {
                 foreach ($profileType as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -435,7 +435,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeMode !== null) {
-            if ('form' === 'form' && is_array($runtimeMode) && !array_is_list($runtimeMode)) {
+            if ('form' === 'form' && is_array($runtimeMode)) {
                 foreach ($runtimeMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -448,20 +448,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtime !== null) {
-            if ('form' === 'form' && is_array($runtime) && !array_is_list($runtime)) {
-                foreach ($runtime as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime[]'] = $runtime instanceof DateTime
-                    ? $runtime->format(DATE_ATOM)
-                    : ($runtime);
-            }
+            $queryParams['runtime[]'] = $runtime;
         }
 
         // query params
         if ($runtimeVersionMode !== null) {
-            if ('form' === 'form' && is_array($runtimeVersionMode) && !array_is_list($runtimeVersionMode)) {
+            if ('form' === 'form' && is_array($runtimeVersionMode)) {
                 foreach ($runtimeVersionMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -474,20 +466,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeVersion !== null) {
-            if ('form' === 'form' && is_array($runtimeVersion) && !array_is_list($runtimeVersion)) {
-                foreach ($runtimeVersion as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime_version[]'] = $runtimeVersion instanceof DateTime
-                    ? $runtimeVersion->format(DATE_ATOM)
-                    : ($runtimeVersion);
-            }
+            $queryParams['runtime_version[]'] = $runtimeVersion;
         }
 
         // query params
         if ($runtimeArchMode !== null) {
-            if ('form' === 'form' && is_array($runtimeArchMode) && !array_is_list($runtimeArchMode)) {
+            if ('form' === 'form' && is_array($runtimeArchMode)) {
                 foreach ($runtimeArchMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -500,20 +484,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeArch !== null) {
-            if ('form' === 'form' && is_array($runtimeArch) && !array_is_list($runtimeArch)) {
-                foreach ($runtimeArch as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime_arch[]'] = $runtimeArch instanceof DateTime
-                    ? $runtimeArch->format(DATE_ATOM)
-                    : ($runtimeArch);
-            }
+            $queryParams['runtime_arch[]'] = $runtimeArch;
         }
 
         // query params
         if ($runtimeOsMode !== null) {
-            if ('form' === 'form' && is_array($runtimeOsMode) && !array_is_list($runtimeOsMode)) {
+            if ('form' === 'form' && is_array($runtimeOsMode)) {
                 foreach ($runtimeOsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -526,20 +502,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeOs !== null) {
-            if ('form' === 'form' && is_array($runtimeOs) && !array_is_list($runtimeOs)) {
-                foreach ($runtimeOs as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime_os[]'] = $runtimeOs instanceof DateTime
-                    ? $runtimeOs->format(DATE_ATOM)
-                    : ($runtimeOs);
-            }
+            $queryParams['runtime_os[]'] = $runtimeOs;
         }
 
         // query params
         if ($probeVersionMode !== null) {
-            if ('form' === 'form' && is_array($probeVersionMode) && !array_is_list($probeVersionMode)) {
+            if ('form' === 'form' && is_array($probeVersionMode)) {
                 foreach ($probeVersionMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -552,15 +520,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($probeVersion !== null) {
-            if ('form' === 'form' && is_array($probeVersion) && !array_is_list($probeVersion)) {
-                foreach ($probeVersion as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['probe_version[]'] = $probeVersion instanceof DateTime
-                    ? $probeVersion->format(DATE_ATOM)
-                    : ($probeVersion);
-            }
+            $queryParams['probe_version[]'] = $probeVersion;
         }
 
         // path params
@@ -1004,7 +964,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1017,7 +977,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1030,7 +990,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($profileType !== null) {
-            if ('form' === 'form' && is_array($profileType) && !array_is_list($profileType)) {
+            if ('form' === 'form' && is_array($profileType)) {
                 foreach ($profileType as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1043,7 +1003,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($out !== null) {
-            if ('form' === 'form' && is_array($out) && !array_is_list($out)) {
+            if ('form' === 'form' && is_array($out)) {
                 foreach ($out as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1056,7 +1016,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeMode !== null) {
-            if ('form' === 'form' && is_array($runtimeMode) && !array_is_list($runtimeMode)) {
+            if ('form' === 'form' && is_array($runtimeMode)) {
                 foreach ($runtimeMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1069,20 +1029,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtime !== null) {
-            if ('form' === 'form' && is_array($runtime) && !array_is_list($runtime)) {
-                foreach ($runtime as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime[]'] = $runtime instanceof DateTime
-                    ? $runtime->format(DATE_ATOM)
-                    : ($runtime);
-            }
+            $queryParams['runtime[]'] = $runtime;
         }
 
         // query params
         if ($runtimeVersionMode !== null) {
-            if ('form' === 'form' && is_array($runtimeVersionMode) && !array_is_list($runtimeVersionMode)) {
+            if ('form' === 'form' && is_array($runtimeVersionMode)) {
                 foreach ($runtimeVersionMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1095,20 +1047,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeVersion !== null) {
-            if ('form' === 'form' && is_array($runtimeVersion) && !array_is_list($runtimeVersion)) {
-                foreach ($runtimeVersion as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime_version[]'] = $runtimeVersion instanceof DateTime
-                    ? $runtimeVersion->format(DATE_ATOM)
-                    : ($runtimeVersion);
-            }
+            $queryParams['runtime_version[]'] = $runtimeVersion;
         }
 
         // query params
         if ($runtimeArchMode !== null) {
-            if ('form' === 'form' && is_array($runtimeArchMode) && !array_is_list($runtimeArchMode)) {
+            if ('form' === 'form' && is_array($runtimeArchMode)) {
                 foreach ($runtimeArchMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1121,20 +1065,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeArch !== null) {
-            if ('form' === 'form' && is_array($runtimeArch) && !array_is_list($runtimeArch)) {
-                foreach ($runtimeArch as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime_arch[]'] = $runtimeArch instanceof DateTime
-                    ? $runtimeArch->format(DATE_ATOM)
-                    : ($runtimeArch);
-            }
+            $queryParams['runtime_arch[]'] = $runtimeArch;
         }
 
         // query params
         if ($runtimeOsMode !== null) {
-            if ('form' === 'form' && is_array($runtimeOsMode) && !array_is_list($runtimeOsMode)) {
+            if ('form' === 'form' && is_array($runtimeOsMode)) {
                 foreach ($runtimeOsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1147,20 +1083,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeOs !== null) {
-            if ('form' === 'form' && is_array($runtimeOs) && !array_is_list($runtimeOs)) {
-                foreach ($runtimeOs as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime_os[]'] = $runtimeOs instanceof DateTime
-                    ? $runtimeOs->format(DATE_ATOM)
-                    : ($runtimeOs);
-            }
+            $queryParams['runtime_os[]'] = $runtimeOs;
         }
 
         // query params
         if ($probeVersionMode !== null) {
-            if ('form' === 'form' && is_array($probeVersionMode) && !array_is_list($probeVersionMode)) {
+            if ('form' === 'form' && is_array($probeVersionMode)) {
                 foreach ($probeVersionMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1173,15 +1101,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($probeVersion !== null) {
-            if ('form' === 'form' && is_array($probeVersion) && !array_is_list($probeVersion)) {
-                foreach ($probeVersion as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['probe_version[]'] = $probeVersion instanceof DateTime
-                    ? $probeVersion->format(DATE_ATOM)
-                    : ($probeVersion);
-            }
+            $queryParams['probe_version[]'] = $probeVersion;
         }
 
         // path params
@@ -1617,7 +1537,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1630,7 +1550,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1643,7 +1563,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($profileType !== null) {
-            if ('form' === 'form' && is_array($profileType) && !array_is_list($profileType)) {
+            if ('form' === 'form' && is_array($profileType)) {
                 foreach ($profileType as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1656,7 +1576,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeMode !== null) {
-            if ('form' === 'form' && is_array($runtimeMode) && !array_is_list($runtimeMode)) {
+            if ('form' === 'form' && is_array($runtimeMode)) {
                 foreach ($runtimeMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1669,20 +1589,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtime !== null) {
-            if ('form' === 'form' && is_array($runtime) && !array_is_list($runtime)) {
-                foreach ($runtime as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime[]'] = $runtime instanceof DateTime
-                    ? $runtime->format(DATE_ATOM)
-                    : ($runtime);
-            }
+            $queryParams['runtime[]'] = $runtime;
         }
 
         // query params
         if ($runtimeVersionMode !== null) {
-            if ('form' === 'form' && is_array($runtimeVersionMode) && !array_is_list($runtimeVersionMode)) {
+            if ('form' === 'form' && is_array($runtimeVersionMode)) {
                 foreach ($runtimeVersionMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1695,20 +1607,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeVersion !== null) {
-            if ('form' === 'form' && is_array($runtimeVersion) && !array_is_list($runtimeVersion)) {
-                foreach ($runtimeVersion as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime_version[]'] = $runtimeVersion instanceof DateTime
-                    ? $runtimeVersion->format(DATE_ATOM)
-                    : ($runtimeVersion);
-            }
+            $queryParams['runtime_version[]'] = $runtimeVersion;
         }
 
         // query params
         if ($runtimeArchMode !== null) {
-            if ('form' === 'form' && is_array($runtimeArchMode) && !array_is_list($runtimeArchMode)) {
+            if ('form' === 'form' && is_array($runtimeArchMode)) {
                 foreach ($runtimeArchMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1721,20 +1625,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeArch !== null) {
-            if ('form' === 'form' && is_array($runtimeArch) && !array_is_list($runtimeArch)) {
-                foreach ($runtimeArch as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime_arch[]'] = $runtimeArch instanceof DateTime
-                    ? $runtimeArch->format(DATE_ATOM)
-                    : ($runtimeArch);
-            }
+            $queryParams['runtime_arch[]'] = $runtimeArch;
         }
 
         // query params
         if ($runtimeOsMode !== null) {
-            if ('form' === 'form' && is_array($runtimeOsMode) && !array_is_list($runtimeOsMode)) {
+            if ('form' === 'form' && is_array($runtimeOsMode)) {
                 foreach ($runtimeOsMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1747,20 +1643,12 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($runtimeOs !== null) {
-            if ('form' === 'form' && is_array($runtimeOs) && !array_is_list($runtimeOs)) {
-                foreach ($runtimeOs as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['runtime_os[]'] = $runtimeOs instanceof DateTime
-                    ? $runtimeOs->format(DATE_ATOM)
-                    : ($runtimeOs);
-            }
+            $queryParams['runtime_os[]'] = $runtimeOs;
         }
 
         // query params
         if ($probeVersionMode !== null) {
-            if ('form' === 'form' && is_array($probeVersionMode) && !array_is_list($probeVersionMode)) {
+            if ('form' === 'form' && is_array($probeVersionMode)) {
                 foreach ($probeVersionMode as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -1773,15 +1661,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($probeVersion !== null) {
-            if ('form' === 'form' && is_array($probeVersion) && !array_is_list($probeVersion)) {
-                foreach ($probeVersion as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['probe_version[]'] = $probeVersion instanceof DateTime
-                    ? $probeVersion->format(DATE_ATOM)
-                    : ($probeVersion);
-            }
+            $queryParams['probe_version[]'] = $probeVersion;
         }
 
         // path params
@@ -2004,7 +1884,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($from !== null) {
-            if ('form' === 'form' && is_array($from) && !array_is_list($from)) {
+            if ('form' === 'form' && is_array($from)) {
                 foreach ($from as $key => $value) {
                     $queryParams[$key] = $value;
                 }
@@ -2017,7 +1897,7 @@ final class ContinuousProfilingApi extends AbstractApi
 
         // query params
         if ($to !== null) {
-            if ('form' === 'form' && is_array($to) && !array_is_list($to)) {
+            if ('form' === 'form' && is_array($to)) {
                 foreach ($to as $key => $value) {
                     $queryParams[$key] = $value;
                 }

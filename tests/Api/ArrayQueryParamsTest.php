@@ -61,6 +61,14 @@ class ArrayQueryParamsTest extends TestCase
         );
     }
 
+    public function testAFilteredListWithGapsInItsKeysKeepsTheParameterName(): void
+    {
+        $this->assertSame(
+            'from=1&to=2&severities[]=CRITICAL&severities_mode=1',
+            $this->sentQuery(array_filter(['', 'CRITICAL']))
+        );
+    }
+
     public function testAnEmptyListSendsNoParameter(): void
     {
         $this->assertSame('from=1&to=2&severities_mode=1', $this->sentQuery([]));
