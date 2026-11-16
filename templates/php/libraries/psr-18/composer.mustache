@@ -89,7 +89,7 @@
         "spec:dl": "wget -O ./schema/openapispec-upsun.json 'https://meta.upsun.com/openapi-spec?sdks=true'",
 
         "spec:generate:install": "npm install -g @openapitools/openapi-generator-cli@2.42.2",
-        "spec:generate": "npx --no-install openapi-generator-cli generate -c templates/config.yaml",
+        "spec:generate": "npx --no-install @openapitools/openapi-generator-cli generate -c templates/config.yaml",
 
         "doc:generate:md": "vendor/bin/phpdoc -c phpdoc.markdown.xml",
         "doc:generate:html": "vendor/bin/phpdoc -c phpdoc.html.xml",
