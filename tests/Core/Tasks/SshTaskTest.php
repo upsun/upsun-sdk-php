@@ -222,6 +222,56 @@ class SshTaskTest extends BaseTestCase
     }
 
     /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListSendsTheUpdatedAtFilter(): void
+    {
+        $this->respondWith(200, ['items' => [], 'count' => 0]);
+
+        $this->sshTask->list(self::USER_ID, filterUpdatedAt: ['eq' => '2026-02-01T00:00:00+00:00']);
+
+        parse_str($this->sentRequest->getUri()->getQuery(), $query);
+        $this->assertSame(['updated_at' => '2026-02-01T00:00:00+00:00'], $query['filter']);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListWithoutFiltersSendsNoQuery(): void
+    {
+        $this->respondWith(200, ['items' => [], 'count' => 0]);
+
+        $this->sshTask->list(self::USER_ID);
+
+        $this->assertSame('', $this->sentRequest->getUri()->getQuery());
+    }
+
+    /**
+     * The generated SshApi sends only the `eq` operator, so any other key must fail before the request.
+     *
+     * @dataProvider unsupportedDateFilterProvider
+     */
+    public function testListWithUnsupportedDateFilterOperatorIsRejected(string $argument, array $filter): void
+    {
+        $this->httpClient->expects($this->never())->method('sendRequest');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($argument . ' supports only the "eq" operator');
+
+        $this->sshTask->list(self::USER_ID, ...[$argument => $filter]);
+    }
+
+    public static function unsupportedDateFilterProvider(): array
+    {
+        return [
+            'created_at gte' => ['filterCreatedAt', ['gte' => '2026-01-01T00:00:00+00:00']],
+            'created_at between' => ['filterCreatedAt', ['between' => '2026-01-01,2026-02-01']],
+            'updated_at lt' => ['filterUpdatedAt', ['lt' => '2026-01-01T00:00:00+00:00']],
+            'updated_at eq with gt' => ['filterUpdatedAt', ['eq' => '2026-01-01T00:00:00+00:00', 'gt' => 'x']],
+            'unknown key' => ['filterCreatedAt', ['from' => '2026-01-01T00:00:00+00:00']],
+        ];
+    }
+
+    /**
      * @dataProvider invalidIdProvider
      */
     public function testListWithInvalidUserIdIsRejected(string $userId): void

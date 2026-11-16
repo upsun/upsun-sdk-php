@@ -70,9 +70,12 @@ class SshTask extends TaskBase
     /**
      * List the SSH keys of a user.
      *
+     * @param array{eq?: string}|null $filterCreatedAt
+     * @param array{eq?: string}|null $filterUpdatedAt
+     *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface on network error
-     * @throws InvalidArgumentException if the user ID is empty
+     * @throws InvalidArgumentException if the user ID is empty, or if a date filter uses an operator other than `eq`
      */
     public function list(
         string $userId,
@@ -87,8 +90,8 @@ class SshTask extends TaskBase
 
         return $this->sshApi->listUserSshKeys(
             userId: $userId,
-            filterCreatedAt: new DateTimeFilter(...$this->normalizeFilter($filterCreatedAt)),
-            filterUpdatedAt: new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
+            filterCreatedAt: $this->eqDateTimeFilter('filterCreatedAt', $filterCreatedAt),
+            filterUpdatedAt: $this->eqDateTimeFilter('filterUpdatedAt', $filterUpdatedAt),
             pageSize: $pageSize,
             pageBefore: $pageBefore,
             pageAfter: $pageAfter,
@@ -109,5 +112,25 @@ class SshTask extends TaskBase
         $this->checkSshKeyId($keyId);
 
         $this->sshApi->deleteUserSshKey(userId: $userId, keyId: $keyId);
+    }
+
+    // SshApi serializes only the `eq` operator of a DateTimeFilter and drops the others.
+    private function eqDateTimeFilter(string $name, ?array $filter): ?DateTimeFilter
+    {
+        $filter = $this->normalizeFilter($filter);
+        if ($filter === []) {
+            return null;
+        }
+
+        $unsupported = array_diff(array_keys($filter), ['eq']);
+        if ($unsupported !== []) {
+            throw new InvalidArgumentException(sprintf(
+                '%s supports only the "eq" operator, got: %s',
+                $name,
+                implode(', ', $unsupported)
+            ));
+        }
+
+        return new DateTimeFilter(...$filter);
     }
 }
