@@ -16,6 +16,7 @@ use Upsun\Api\ConnectionsApi;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\DomainManagementApi;
+use Upsun\Api\EntrypointApi;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\EnvironmentApi;
 use Upsun\Api\EnvironmentBackupsApi;
@@ -23,6 +24,7 @@ use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Api\GrantsApi;
 use Upsun\Api\InvoicesApi;
+use Upsun\Api\LogsApi;
 use Upsun\Api\MfaApi;
 use Upsun\Api\OrdersApi;
 use Upsun\Api\OrganizationInvitationsApi;
@@ -63,6 +65,7 @@ use Upsun\Core\Tasks\EnvironmentsTask;
 use Upsun\Core\Tasks\IntegrationsTask;
 use Upsun\Core\Tasks\MetricsTask;
 use Upsun\Core\Tasks\MountsTask;
+use Upsun\Core\Tasks\ObservabilityTask;
 use Upsun\Core\Tasks\OperationsTask;
 use Upsun\Core\Tasks\OrganizationsTask;
 use Upsun\Core\Tasks\ProjectsTask;
@@ -119,6 +122,8 @@ class UpsunClient
     public MetricsTask $metrics;
 
     public MountsTask $mounts;
+
+    public ObservabilityTask $observability;
 
     public OperationsTask $operations;
 
@@ -202,6 +207,7 @@ class UpsunClient
         $defaultApi = new DefaultApi(...$taskParams);
         $deploymentApi = new DeploymentApi(...$taskParams);
         $domainManagementApi = new DomainManagementApi(...$taskParams);
+        $entrypointApi = new EntrypointApi(...$taskParams);
         $environmentActivityApi = new EnvironmentActivityApi(...$taskParams);
         $environmentApi = new EnvironmentApi(...$taskParams);
         $environmentBackupsApi = new EnvironmentBackupsApi(...$taskParams);
@@ -209,6 +215,7 @@ class UpsunClient
         $environmentVariablesApi = new EnvironmentVariablesApi(...$taskParams);
         $grantsApi = new GrantsApi(...$taskParams);
         $invoicesApi = new InvoicesApi(...$taskParams);
+        $logsApi = new LogsApi(...$taskParams);
         $mfaApi = new MfaApi(...$taskParams);
         $ordersApi = new OrdersApi(...$taskParams);
         $organizationApi = new OrganizationsApi(...$taskParams);
@@ -278,6 +285,11 @@ class UpsunClient
         );
         $this->metrics = new MetricsTask($this);
         $this->mounts = new MountsTask($this);
+        $this->observability = new ObservabilityTask(
+            $this,
+            $entrypointApi,
+            $logsApi
+        );
         $this->operations = new OperationsTask(
             $this,
             $runtimeOperationsApi
