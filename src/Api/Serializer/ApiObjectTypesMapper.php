@@ -2110,6 +2110,11 @@ final class ApiObjectTypesMapper
             'merge_requests_clone_parent_data' => '?bool',
         ],
 
+        'Upsun\Model\GitObject' => [
+            'type' => 'string',
+            'sha' => 'string',
+        ],
+
         'Upsun\Model\GitServerConfiguration' => [
             'push_size_hard_limit' => 'int',
         ],
@@ -3079,11 +3084,6 @@ final class ApiObjectTypesMapper
         'Upsun\Model\OCIImage' => [
             'name' => '?string',
             'buildfile' => '?string',
-        ],
-
-        'Upsun\Model\Object' => [
-            'type' => 'string',
-            'sha' => 'string',
         ],
 
         'Upsun\Model\ObjectStorage' => [
@@ -4209,7 +4209,7 @@ final class ApiObjectTypesMapper
         'Upsun\Model\Ref' => [
             'id' => 'string',
             'ref' => 'string',
-            'object' => '\Upsun\Model\Object',
+            'object' => '\Upsun\Model\GitObject',
             'sha' => 'string',
         ],
 

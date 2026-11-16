@@ -1854,6 +1854,10 @@ final class ApiObjectAttributesMapper
             'buildWipMergeRequests' => 'build_wip_merge_requests',
             'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data'
         ],
+        'Upsun\Model\GitObject' => [
+            'type' => 'type',
+            'sha' => 'sha'
+        ],
         'Upsun\Model\GitServerConfiguration' => [
             'pushSizeHardLimit' => 'push_size_hard_limit'
         ],
@@ -2704,10 +2708,6 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\OCIImage' => [
             'name' => 'name',
             'buildfile' => 'buildfile'
-        ],
-        'Upsun\Model\Object' => [
-            'type' => 'type',
-            'sha' => 'sha'
         ],
         'Upsun\Model\ObjectStorage' => [
             'enabled' => 'enabled',
