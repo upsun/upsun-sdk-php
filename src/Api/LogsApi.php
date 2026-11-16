@@ -370,15 +370,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($severities !== null) {
-            if ('form' === 'form' && is_array($severities)) {
-                foreach ($severities as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['severities[]'] = $severities instanceof DateTime
-                    ? $severities->format(DATE_ATOM)
-                    : ($severities);
-            }
+            $queryParams['severities[]'] = $severities;
         }
 
         // query params
@@ -396,15 +388,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($services !== null) {
-            if ('form' === 'form' && is_array($services)) {
-                foreach ($services as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['services[]'] = $services instanceof DateTime
-                    ? $services->format(DATE_ATOM)
-                    : ($services);
-            }
+            $queryParams['services[]'] = $services;
         }
 
         // query params
@@ -422,15 +406,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($instances !== null) {
-            if ('form' === 'form' && is_array($instances)) {
-                foreach ($instances as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['instances[]'] = $instances instanceof DateTime
-                    ? $instances->format(DATE_ATOM)
-                    : ($instances);
-            }
+            $queryParams['instances[]'] = $instances;
         }
 
         // query params
@@ -448,15 +424,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($hosts !== null) {
-            if ('form' === 'form' && is_array($hosts)) {
-                foreach ($hosts as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['hosts[]'] = $hosts instanceof DateTime
-                    ? $hosts->format(DATE_ATOM)
-                    : ($hosts);
-            }
+            $queryParams['hosts[]'] = $hosts;
         }
 
         // query params
@@ -474,15 +442,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($commands !== null) {
-            if ('form' === 'form' && is_array($commands)) {
-                foreach ($commands as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['commands[]'] = $commands instanceof DateTime
-                    ? $commands->format(DATE_ATOM)
-                    : ($commands);
-            }
+            $queryParams['commands[]'] = $commands;
         }
 
         // query params
@@ -500,15 +460,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($units !== null) {
-            if ('form' === 'form' && is_array($units)) {
-                foreach ($units as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['units[]'] = $units instanceof DateTime
-                    ? $units->format(DATE_ATOM)
-                    : ($units);
-            }
+            $queryParams['units[]'] = $units;
         }
 
         // query params
@@ -526,15 +478,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($containerIds !== null) {
-            if ('form' === 'form' && is_array($containerIds)) {
-                foreach ($containerIds as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['container_ids[]'] = $containerIds instanceof DateTime
-                    ? $containerIds->format(DATE_ATOM)
-                    : ($containerIds);
-            }
+            $queryParams['container_ids[]'] = $containerIds;
         }
 
         // query params
@@ -552,15 +496,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($containerImages !== null) {
-            if ('form' === 'form' && is_array($containerImages)) {
-                foreach ($containerImages as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['container_images[]'] = $containerImages instanceof DateTime
-                    ? $containerImages->format(DATE_ATOM)
-                    : ($containerImages);
-            }
+            $queryParams['container_images[]'] = $containerImages;
         }
 
         // query params
@@ -578,15 +514,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($logKinds !== null) {
-            if ('form' === 'form' && is_array($logKinds)) {
-                foreach ($logKinds as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['log_kinds[]'] = $logKinds instanceof DateTime
-                    ? $logKinds->format(DATE_ATOM)
-                    : ($logKinds);
-            }
+            $queryParams['log_kinds[]'] = $logKinds;
         }
 
         // query params
@@ -1041,15 +969,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($severities !== null) {
-            if ('form' === 'form' && is_array($severities)) {
-                foreach ($severities as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['severities[]'] = $severities instanceof DateTime
-                    ? $severities->format(DATE_ATOM)
-                    : ($severities);
-            }
+            $queryParams['severities[]'] = $severities;
         }
 
         // query params
@@ -1067,15 +987,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($services !== null) {
-            if ('form' === 'form' && is_array($services)) {
-                foreach ($services as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['services[]'] = $services instanceof DateTime
-                    ? $services->format(DATE_ATOM)
-                    : ($services);
-            }
+            $queryParams['services[]'] = $services;
         }
 
         // query params
@@ -1093,15 +1005,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($instances !== null) {
-            if ('form' === 'form' && is_array($instances)) {
-                foreach ($instances as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['instances[]'] = $instances instanceof DateTime
-                    ? $instances->format(DATE_ATOM)
-                    : ($instances);
-            }
+            $queryParams['instances[]'] = $instances;
         }
 
         // query params
@@ -1119,15 +1023,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($hosts !== null) {
-            if ('form' === 'form' && is_array($hosts)) {
-                foreach ($hosts as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['hosts[]'] = $hosts instanceof DateTime
-                    ? $hosts->format(DATE_ATOM)
-                    : ($hosts);
-            }
+            $queryParams['hosts[]'] = $hosts;
         }
 
         // query params
@@ -1145,15 +1041,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($commands !== null) {
-            if ('form' === 'form' && is_array($commands)) {
-                foreach ($commands as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['commands[]'] = $commands instanceof DateTime
-                    ? $commands->format(DATE_ATOM)
-                    : ($commands);
-            }
+            $queryParams['commands[]'] = $commands;
         }
 
         // query params
@@ -1171,15 +1059,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($units !== null) {
-            if ('form' === 'form' && is_array($units)) {
-                foreach ($units as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['units[]'] = $units instanceof DateTime
-                    ? $units->format(DATE_ATOM)
-                    : ($units);
-            }
+            $queryParams['units[]'] = $units;
         }
 
         // query params
@@ -1197,15 +1077,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($containerIds !== null) {
-            if ('form' === 'form' && is_array($containerIds)) {
-                foreach ($containerIds as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['container_ids[]'] = $containerIds instanceof DateTime
-                    ? $containerIds->format(DATE_ATOM)
-                    : ($containerIds);
-            }
+            $queryParams['container_ids[]'] = $containerIds;
         }
 
         // query params
@@ -1223,15 +1095,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($containerImages !== null) {
-            if ('form' === 'form' && is_array($containerImages)) {
-                foreach ($containerImages as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['container_images[]'] = $containerImages instanceof DateTime
-                    ? $containerImages->format(DATE_ATOM)
-                    : ($containerImages);
-            }
+            $queryParams['container_images[]'] = $containerImages;
         }
 
         // query params
@@ -1249,15 +1113,7 @@ final class LogsApi extends AbstractApi
 
         // query params
         if ($logKinds !== null) {
-            if ('form' === 'form' && is_array($logKinds)) {
-                foreach ($logKinds as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['log_kinds[]'] = $logKinds instanceof DateTime
-                    ? $logKinds->format(DATE_ATOM)
-                    : ($logKinds);
-            }
+            $queryParams['log_kinds[]'] = $logKinds;
         }
 
         // query params

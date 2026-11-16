@@ -393,15 +393,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($applications !== null) {
-            if ('form' === 'form' && is_array($applications)) {
-                foreach ($applications as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['applications[]'] = $applications instanceof DateTime
-                    ? $applications->format(DATE_ATOM)
-                    : ($applications);
-            }
+            $queryParams['applications[]'] = $applications;
         }
 
         // query params
@@ -419,15 +411,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($methods !== null) {
-            if ('form' === 'form' && is_array($methods)) {
-                foreach ($methods as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['methods[]'] = $methods instanceof DateTime
-                    ? $methods->format(DATE_ATOM)
-                    : ($methods);
-            }
+            $queryParams['methods[]'] = $methods;
         }
 
         // query params
@@ -445,15 +429,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($domains !== null) {
-            if ('form' === 'form' && is_array($domains)) {
-                foreach ($domains as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['domains[]'] = $domains instanceof DateTime
-                    ? $domains->format(DATE_ATOM)
-                    : ($domains);
-            }
+            $queryParams['domains[]'] = $domains;
         }
 
         // query params
@@ -471,15 +447,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codeSlots !== null) {
-            if ('form' === 'form' && is_array($codeSlots)) {
-                foreach ($codeSlots as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['code_slots[]'] = $codeSlots instanceof DateTime
-                    ? $codeSlots->format(DATE_ATOM)
-                    : ($codeSlots);
-            }
+            $queryParams['code_slots[]'] = $codeSlots;
         }
 
         // query params
@@ -497,15 +465,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codes !== null) {
-            if ('form' === 'form' && is_array($codes)) {
-                foreach ($codes as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['codes[]'] = $codes instanceof DateTime
-                    ? $codes->format(DATE_ATOM)
-                    : ($codes);
-            }
+            $queryParams['codes[]'] = $codes;
         }
 
         // query params
@@ -523,15 +483,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($requestDurationSlots !== null) {
-            if ('form' === 'form' && is_array($requestDurationSlots)) {
-                foreach ($requestDurationSlots as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['request_duration_slots[]'] = $requestDurationSlots instanceof DateTime
-                    ? $requestDurationSlots->format(DATE_ATOM)
-                    : ($requestDurationSlots);
-            }
+            $queryParams['request_duration_slots[]'] = $requestDurationSlots;
         }
 
         // query params
@@ -968,15 +920,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($applications !== null) {
-            if ('form' === 'form' && is_array($applications)) {
-                foreach ($applications as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['applications[]'] = $applications instanceof DateTime
-                    ? $applications->format(DATE_ATOM)
-                    : ($applications);
-            }
+            $queryParams['applications[]'] = $applications;
         }
 
         // query params
@@ -994,15 +938,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($methods !== null) {
-            if ('form' === 'form' && is_array($methods)) {
-                foreach ($methods as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['methods[]'] = $methods instanceof DateTime
-                    ? $methods->format(DATE_ATOM)
-                    : ($methods);
-            }
+            $queryParams['methods[]'] = $methods;
         }
 
         // query params
@@ -1020,15 +956,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($domains !== null) {
-            if ('form' === 'form' && is_array($domains)) {
-                foreach ($domains as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['domains[]'] = $domains instanceof DateTime
-                    ? $domains->format(DATE_ATOM)
-                    : ($domains);
-            }
+            $queryParams['domains[]'] = $domains;
         }
 
         // query params
@@ -1046,15 +974,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codeSlots !== null) {
-            if ('form' === 'form' && is_array($codeSlots)) {
-                foreach ($codeSlots as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['code_slots[]'] = $codeSlots instanceof DateTime
-                    ? $codeSlots->format(DATE_ATOM)
-                    : ($codeSlots);
-            }
+            $queryParams['code_slots[]'] = $codeSlots;
         }
 
         // query params
@@ -1072,15 +992,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codes !== null) {
-            if ('form' === 'form' && is_array($codes)) {
-                foreach ($codes as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['codes[]'] = $codes instanceof DateTime
-                    ? $codes->format(DATE_ATOM)
-                    : ($codes);
-            }
+            $queryParams['codes[]'] = $codes;
         }
 
         // query params
@@ -1098,15 +1010,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($requestDurationSlots !== null) {
-            if ('form' === 'form' && is_array($requestDurationSlots)) {
-                foreach ($requestDurationSlots as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['request_duration_slots[]'] = $requestDurationSlots instanceof DateTime
-                    ? $requestDurationSlots->format(DATE_ATOM)
-                    : ($requestDurationSlots);
-            }
+            $queryParams['request_duration_slots[]'] = $requestDurationSlots;
         }
 
         // query params
@@ -1542,15 +1446,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($applications !== null) {
-            if ('form' === 'form' && is_array($applications)) {
-                foreach ($applications as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['applications[]'] = $applications instanceof DateTime
-                    ? $applications->format(DATE_ATOM)
-                    : ($applications);
-            }
+            $queryParams['applications[]'] = $applications;
         }
 
         // query params
@@ -1568,15 +1464,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($methods !== null) {
-            if ('form' === 'form' && is_array($methods)) {
-                foreach ($methods as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['methods[]'] = $methods instanceof DateTime
-                    ? $methods->format(DATE_ATOM)
-                    : ($methods);
-            }
+            $queryParams['methods[]'] = $methods;
         }
 
         // query params
@@ -1594,15 +1482,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($domains !== null) {
-            if ('form' === 'form' && is_array($domains)) {
-                foreach ($domains as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['domains[]'] = $domains instanceof DateTime
-                    ? $domains->format(DATE_ATOM)
-                    : ($domains);
-            }
+            $queryParams['domains[]'] = $domains;
         }
 
         // query params
@@ -1620,15 +1500,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codeSlots !== null) {
-            if ('form' === 'form' && is_array($codeSlots)) {
-                foreach ($codeSlots as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['code_slots[]'] = $codeSlots instanceof DateTime
-                    ? $codeSlots->format(DATE_ATOM)
-                    : ($codeSlots);
-            }
+            $queryParams['code_slots[]'] = $codeSlots;
         }
 
         // query params
@@ -1646,15 +1518,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($codes !== null) {
-            if ('form' === 'form' && is_array($codes)) {
-                foreach ($codes as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['codes[]'] = $codes instanceof DateTime
-                    ? $codes->format(DATE_ATOM)
-                    : ($codes);
-            }
+            $queryParams['codes[]'] = $codes;
         }
 
         // query params
@@ -1672,15 +1536,7 @@ final class HttpTrafficApi extends AbstractApi
 
         // query params
         if ($requestDurationSlots !== null) {
-            if ('form' === 'form' && is_array($requestDurationSlots)) {
-                foreach ($requestDurationSlots as $key => $value) {
-                    $queryParams[$key] = $value;
-                }
-            } else {
-                $queryParams['request_duration_slots[]'] = $requestDurationSlots instanceof DateTime
-                    ? $requestDurationSlots->format(DATE_ATOM)
-                    : ($requestDurationSlots);
-            }
+            $queryParams['request_duration_slots[]'] = $requestDurationSlots;
         }
 
         // query params
