@@ -17,9 +17,10 @@ final class SumologicIntegrationCreateInput implements Model, JsonSerializable, 
         private readonly string $type,
         private readonly string $url,
         private readonly ?array $extra = [],
+        private readonly ?bool $redaction = null,
+        private readonly ?array $excludedServices = [],
         private readonly ?string $category = null,
         private readonly ?bool $tlsVerify = null,
-        private readonly ?array $excludedServices = [],
     ) {
     }
 
@@ -34,9 +35,10 @@ final class SumologicIntegrationCreateInput implements Model, JsonSerializable, 
             'type' => $this->type,
             'url' => $this->url,
             'extra' => $this->extra,
+            'redaction' => $this->redaction,
+            'excludedServices' => $this->excludedServices,
             'category' => $this->category,
             'tlsVerify' => $this->tlsVerify,
-            'excludedServices' => $this->excludedServices,
         ];
     }
 
@@ -67,6 +69,19 @@ final class SumologicIntegrationCreateInput implements Model, JsonSerializable, 
     }
 
     /**
+     * Enable built-in PII redaction (e.g. email addresses) before forwarding log lines
+     */
+    public function getRedaction(): ?bool
+    {
+        return $this->redaction;
+    }
+
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
+    }
+
+    /**
      * The Category used to easy filtering (sent as X-Sumo-Category header)
      */
     public function getCategory(): ?string
@@ -80,10 +95,5 @@ final class SumologicIntegrationCreateInput implements Model, JsonSerializable, 
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
-    }
-
-    public function getExcludedServices(): ?array
-    {
-        return $this->excludedServices;
     }
 }

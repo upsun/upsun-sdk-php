@@ -19,9 +19,10 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable, Int
         private readonly string $index,
         private readonly string $token,
         private readonly ?array $extra = [],
+        private readonly ?bool $redaction = null,
+        private readonly ?array $excludedServices = [],
         private readonly ?string $sourcetype = null,
         private readonly ?bool $tlsVerify = null,
-        private readonly ?array $excludedServices = [],
     ) {
     }
 
@@ -38,9 +39,10 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable, Int
             'index' => $this->index,
             'token' => $this->token,
             'extra' => $this->extra,
+            'redaction' => $this->redaction,
+            'excludedServices' => $this->excludedServices,
             'sourcetype' => $this->sourcetype,
             'tlsVerify' => $this->tlsVerify,
-            'excludedServices' => $this->excludedServices,
         ];
     }
 
@@ -87,6 +89,19 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable, Int
     }
 
     /**
+     * Enable built-in PII redaction (e.g. email addresses) before forwarding log lines
+     */
+    public function getRedaction(): ?bool
+    {
+        return $this->redaction;
+    }
+
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
+    }
+
+    /**
      * The event 'sourcetype'
      */
     public function getSourcetype(): ?string
@@ -100,10 +115,5 @@ final class SplunkIntegrationCreateInput implements Model, JsonSerializable, Int
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
-    }
-
-    public function getExcludedServices(): ?array
-    {
-        return $this->excludedServices;
     }
 }

@@ -24,13 +24,14 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
         private readonly string $type,
         private readonly string $role,
         private readonly array $extra,
+        private readonly bool $redaction,
+        private readonly array $excludedServices,
         private readonly string $host,
         private readonly int $port,
         private readonly string $protocol,
         private readonly int $facility,
         private readonly string $messageFormat,
         private readonly bool $tlsVerify,
-        private readonly array $excludedServices,
         private readonly ?DateTime $createdAt,
         private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
@@ -50,13 +51,14 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
             'type' => $this->type,
             'role' => $this->role,
             'extra' => $this->extra,
+            'redaction' => $this->redaction,
+            'excludedServices' => $this->excludedServices,
             'host' => $this->host,
             'port' => $this->port,
             'protocol' => $this->protocol,
             'facility' => $this->facility,
             'messageFormat' => $this->messageFormat,
             'tlsVerify' => $this->tlsVerify,
-            'excludedServices' => $this->excludedServices,
             'id' => $this->id,
         ];
     }
@@ -101,6 +103,19 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
     public function getExtra(): array
     {
         return $this->extra;
+    }
+
+    /**
+     * Enable built-in PII redaction (e.g. email addresses) before forwarding log lines
+     */
+    public function getRedaction(): bool
+    {
+        return $this->redaction;
+    }
+
+    public function getExcludedServices(): array
+    {
+        return $this->excludedServices;
     }
 
     /**
@@ -149,11 +164,6 @@ final class SyslogIntegration implements Model, JsonSerializable, Integration
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
-    }
-
-    public function getExcludedServices(): array
-    {
-        return $this->excludedServices;
     }
 
     /**

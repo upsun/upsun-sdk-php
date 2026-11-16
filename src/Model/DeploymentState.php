@@ -15,6 +15,7 @@ use JsonSerializable;
  */
 final class DeploymentState implements Model, JsonSerializable
 {
+    public const LAST_DEPLOYMENT_FAILURE_REASON_BUILD = 'build';
     public const LAST_DEPLOYMENT_FAILURE_REASON_ERROR = 'error';
     public const LAST_DEPLOYMENT_FAILURE_REASON_SHELL = 'shell';
 

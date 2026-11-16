@@ -2,11 +2,11 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 /**
  * Low level SshKey (auto-generated)
- * The ssh key object.
  *
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -15,12 +15,14 @@ use JsonSerializable;
 final class SshKey implements Model, JsonSerializable
 {
     public function __construct(
-        private readonly ?int $keyId = null,
-        private readonly ?int $uid = null,
-        private readonly ?string $fingerprint = null,
-        private readonly ?string $title = null,
+        private readonly ?string $id = null,
+        private readonly ?string $sha256 = null,
         private readonly ?string $value = null,
-        private readonly ?string $changed = null,
+        private readonly ?string $label = null,
+        private readonly ?bool $active = null,
+        private readonly ?string $userId = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
     ) {
     }
 
@@ -32,12 +34,14 @@ final class SshKey implements Model, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'keyId' => $this->keyId,
-            'uid' => $this->uid,
-            'fingerprint' => $this->fingerprint,
-            'title' => $this->title,
+            'id' => $this->id,
+            'sha256' => $this->sha256,
             'value' => $this->value,
-            'changed' => $this->changed,
+            'label' => $this->label,
+            'active' => $this->active,
+            'userId' => $this->userId,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -47,39 +51,23 @@ final class SshKey implements Model, JsonSerializable
     }
 
     /**
-     * The ID of the public key.
+     * The ID of the SSH key.
      */
-    public function getKeyId(): ?int
+    public function getId(): ?string
     {
-        return $this->keyId;
+        return $this->id;
     }
 
     /**
-     * The internal user ID.
+     * The SHA-256 fingerprint of the public key.
      */
-    public function getUid(): ?int
+    public function getSha256(): ?string
     {
-        return $this->uid;
+        return $this->sha256;
     }
 
     /**
-     * The fingerprint of the public key.
-     */
-    public function getFingerprint(): ?string
-    {
-        return $this->fingerprint;
-    }
-
-    /**
-     * The title of the public key.
-     */
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    /**
-     * The actual value of the public key.
+     * The SSH public key in the OpenSSH authorized keys format.
      */
     public function getValue(): ?string
     {
@@ -87,10 +75,42 @@ final class SshKey implements Model, JsonSerializable
     }
 
     /**
-     * The time of the last key modification (ISO 8601)
+     * A human-readable name for the key.
      */
-    public function getChanged(): ?string
+    public function getLabel(): ?string
     {
-        return $this->changed;
+        return $this->label;
+    }
+
+    /**
+     * Whether the key can be used for authentication.
+     */
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    /**
+     * The ID of the user who owns the key.
+     */
+    public function getUserId(): ?string
+    {
+        return $this->userId;
+    }
+
+    /**
+     * The date and time when the key was added.
+     */
+    public function getCreatedAt(): ?DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * The date and time when the key was last updated.
+     */
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
     }
 }

@@ -14,17 +14,12 @@ use JsonSerializable;
  */
 final class BitbucketServerIntegration implements Model, JsonSerializable, Integration
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
     public function __construct(
         private readonly string $type,
         private readonly string $role,
         private readonly bool $fetchBranches,
         private readonly bool $pruneBranches,
-        private readonly string $environmentInitResources,
+        private readonly EnvironmentInitResources $environmentInitResources,
         private readonly string $url,
         private readonly string $username,
         private readonly string $project,
@@ -34,6 +29,7 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
         private readonly ?DateTime $createdAt,
         private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
+        private readonly ?string $repositoryUrl = null,
     ) {
     }
 
@@ -59,6 +55,7 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
             'buildPullRequests' => $this->buildPullRequests,
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
             'id' => $this->id,
+            'repositoryUrl' => $this->repositoryUrl,
         ];
     }
 
@@ -116,9 +113,9 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
     }
 
     /**
-     * The resources used when initializing a new service
+     * The resources used when initializing a new environment, per environment type
      */
-    public function getEnvironmentInitResources(): string
+    public function getEnvironmentInitResources(): EnvironmentInitResources
     {
         return $this->environmentInitResources;
     }
@@ -177,5 +174,13 @@ final class BitbucketServerIntegration implements Model, JsonSerializable, Integ
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    /**
+     * The URL of the remote git repository
+     */
+    public function getRepositoryUrl(): ?string
+    {
+        return $this->repositoryUrl;
     }
 }

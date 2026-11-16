@@ -444,6 +444,7 @@ class ProjectsTaskTest extends BaseTestCase
             ],
             'autoscaling' => [
                 'enabled' => true,
+                'supports_horizontal_scaling_services' => false,
             ],
             'guaranteedResources' => [
                 'enabled' => true,
@@ -846,6 +847,12 @@ class ProjectsTaskTest extends BaseTestCase
             'max_allowed_routes' => 50,
             'max_allowed_redirects_paths' => 20,
             'enable_incremental_backups' => true,
+            'use_patina' => false,
+            'validation_engine' => 'pydantic',
+            'cli_name' => 'upsun',
+            'enable_maintenance_window_hard_check' => false,
+            'image_lifecycle' => ['enabled' => true, 'enforce' => false],
+            'internal_storage_resources' => ['cpu' => 0.5, 'memory' => 512],
             'sizing_api_enabled' => true,
             'enable_cache_grace_period' => true,
             'enable_zero_downtime_deployments' => true,

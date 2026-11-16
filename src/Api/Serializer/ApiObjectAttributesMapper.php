@@ -100,6 +100,10 @@ final class ApiObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'config' => 'config'
         ],
+        'Upsun\Model\AllowedDomainsInner' => [
+            'host' => 'host',
+            'port' => 'port'
+        ],
         'Upsun\Model\ApiToken' => [
             'id' => 'id',
             'name' => 'name',
@@ -196,7 +200,8 @@ final class ApiObjectAttributesMapper
             'memoryPressure' => 'memory_pressure'
         ],
         'Upsun\Model\Autoscaling' => [
-            'enabled' => 'enabled'
+            'enabled' => 'enabled',
+            'supportsHorizontalScalingServices' => 'supports_horizontal_scaling_services'
         ],
         'Upsun\Model\Backup' => [
             'id' => 'id',
@@ -211,13 +216,10 @@ final class ApiObjectAttributesMapper
             'safe' => 'safe',
             'sizeOfVolumes' => 'size_of_volumes',
             'sizeUsed' => 'size_used',
+            'sizeObjectStorage' => 'size_object_storage',
             'deployment' => 'deployment',
             'restorable' => 'restorable',
             'automated' => 'automated'
-        ],
-        'Upsun\Model\BasicAuth' => [
-            'username' => 'username',
-            'password' => 'password'
         ],
         'Upsun\Model\Bitbucket' => [
             'enabled' => 'enabled',
@@ -237,6 +239,7 @@ final class ApiObjectAttributesMapper
             'pullRequestsMaxPages' => 'pull_requests_max_pages',
             'resyncPullRequests' => 'resync_pull_requests',
             'id' => 'id',
+            'repositoryUrl' => 'repository_url',
             'appCredentials' => 'app_credentials',
             'addonCredentials' => 'addon_credentials'
         ],
@@ -284,7 +287,8 @@ final class ApiObjectAttributesMapper
             'repository' => 'repository',
             'buildPullRequests' => 'build_pull_requests',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
-            'id' => 'id'
+            'id' => 'id',
+            'repositoryUrl' => 'repository_url'
         ],
         'Upsun\Model\BitbucketServerIntegrationCreateInput' => [
             'type' => 'type',
@@ -766,6 +770,9 @@ final class ApiObjectAttributesMapper
             'flavor' => 'flavor',
             'caches' => 'caches'
         ],
+        'Upsun\Model\BuildPhaseEgress' => [
+            'allowedDomains' => 'allowed_domains'
+        ],
         'Upsun\Model\BuildResources' => [
             'enabled' => 'enabled',
             'maxCpu' => 'max_cpu',
@@ -778,6 +785,49 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\BuildResources2' => [
             'cpu' => 'cpu',
             'memory' => 'memory'
+        ],
+        'Upsun\Model\CISIntegration' => [
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at',
+            'type' => 'type',
+            'role' => 'role',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result',
+            'cisId' => 'cis_id',
+            'domainId' => 'domain_id',
+            'zoneName' => 'zone_name',
+            'apiBaseUrl' => 'api_base_url',
+            'nameServers' => 'name_servers',
+            'id' => 'id'
+        ],
+        'Upsun\Model\CISIntegrationCreateInput' => [
+            'type' => 'type',
+            'token' => 'token',
+            'cisId' => 'cis_id',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result',
+            'domainId' => 'domain_id',
+            'zoneName' => 'zone_name',
+            'apiBaseUrl' => 'api_base_url'
+        ],
+        'Upsun\Model\CISIntegrationPatch' => [
+            'type' => 'type',
+            'token' => 'token',
+            'cisId' => 'cis_id',
+            'events' => 'events',
+            'environments' => 'environments',
+            'excludedEnvironments' => 'excluded_environments',
+            'states' => 'states',
+            'result' => 'result',
+            'domainId' => 'domain_id',
+            'zoneName' => 'zone_name',
+            'apiBaseUrl' => 'api_base_url'
         ],
         'Upsun\Model\CacheConfiguration' => [
             'enabled' => 'enabled',
@@ -879,7 +929,15 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\Components' => [
             'voucherVatBaseprice' => 'voucher/vat/baseprice'
         ],
+        'Upsun\Model\ComposableBuilder' => [
+            'stack' => 'stack',
+            'id' => 'id'
+        ],
         'Upsun\Model\ComposableImages' => [
+            'runtimes' => 'runtimes',
+            'packages' => 'packages'
+        ],
+        'Upsun\Model\ComposableImages1' => [
             'runtimes' => 'runtimes',
             'packages' => 'packages'
         ],
@@ -900,6 +958,7 @@ final class ApiObjectAttributesMapper
             'healthPagerduty' => 'health.pagerduty',
             'healthSlack' => 'health.slack',
             'cdnFastly' => 'cdn.fastly',
+            'cdnCis' => 'cdn.cis',
             'blackfire' => 'blackfire',
             'otlplog' => 'otlplog'
         ],
@@ -993,11 +1052,6 @@ final class ApiObjectAttributesMapper
             'type' => 'type',
             'role' => 'role'
         ],
-        'Upsun\Model\CreateSshKeyRequest' => [
-            'value' => 'value',
-            'title' => 'title',
-            'uuid' => 'uuid'
-        ],
         'Upsun\Model\CreateTeamMemberRequest' => [
             'userId' => 'user_id'
         ],
@@ -1022,6 +1076,14 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\CreateTicketRequestAttachmentsInner' => [
             'filename' => 'filename',
             'data' => 'data'
+        ],
+        'Upsun\Model\CreateUserSshKey401Response' => [
+            'error' => 'error',
+            'errorDescription' => 'error_description'
+        ],
+        'Upsun\Model\CreateUserSshKeyRequest' => [
+            'value' => 'value',
+            'label' => 'label'
         ],
         'Upsun\Model\CronsDeploymentState' => [
             'enabled' => 'enabled',
@@ -1082,6 +1144,14 @@ final class ApiObjectAttributesMapper
             'vendorWebsite' => 'vendor_website',
             'vendorResources' => 'vendor_resources',
             'createdAt' => 'created_at'
+        ],
+        'Upsun\Model\CurrentUserSshKeysInner' => [
+            'keyId' => 'key_id',
+            'uid' => 'uid',
+            'fingerprint' => 'fingerprint',
+            'title' => 'title',
+            'value' => 'value',
+            'changed' => 'changed'
         ],
         'Upsun\Model\CustomDomains' => [
             'enabled' => 'enabled',
@@ -1151,6 +1221,7 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\Deployment' => [
             'id' => 'id',
             'clusterName' => 'cluster_name',
+            'headCommit' => 'head_commit',
             'projectInfo' => 'project_info',
             'environmentInfo' => 'environment_info',
             'deploymentTarget' => 'deployment_target',
@@ -1165,8 +1236,8 @@ final class ApiObjectAttributesMapper
             'routes' => 'routes',
             'webapps' => 'webapps',
             'workers' => 'workers',
-            'containerProfiles' => 'container_profiles',
             'tasks' => 'tasks',
+            'containerProfiles' => 'container_profiles',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'fingerprint' => 'fingerprint'
@@ -1302,10 +1373,10 @@ final class ApiObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'type' => 'type',
             'name' => 'name',
+            'registeredName' => 'registered_name',
             'attributes' => 'attributes',
             'id' => 'id',
             'project' => 'project',
-            'registeredName' => 'registered_name',
             'isDefault' => 'is_default',
             'replacementFor' => 'replacement_for'
         ],
@@ -1325,6 +1396,13 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\DomainPatch' => [
             'attributes' => 'attributes',
             'isDefault' => 'is_default'
+        ],
+        'Upsun\Model\Egress' => [
+            'build' => 'build',
+            'runtime' => 'runtime'
+        ],
+        'Upsun\Model\EgressProxy' => [
+            'enabled' => 'enabled'
         ],
         'Upsun\Model\EmailIntegration' => [
             'createdAt' => 'created_at',
@@ -1374,19 +1452,22 @@ final class ApiObjectAttributesMapper
             'id' => 'id',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
+            'attributes' => 'attributes',
             'name' => 'name',
             'machineName' => 'machine_name',
             'title' => 'title',
-            'attributes' => 'attributes',
             'type' => 'type',
             'parent' => 'parent',
+            'status' => 'status',
+            'project' => 'project',
+            'isMain' => 'is_main',
+            'headCommit' => 'head_commit',
             'defaultDomain' => 'default_domain',
             'hasDomains' => 'has_domains',
             'cloneParentOnCreate' => 'clone_parent_on_create',
             'deploymentTarget' => 'deployment_target',
             'isPr' => 'is_pr',
             'hasRemote' => 'has_remote',
-            'status' => 'status',
             'httpAccess' => 'http_access',
             'enableSmtp' => 'enable_smtp',
             'restrictRobots' => 'restrict_robots',
@@ -1397,14 +1478,11 @@ final class ApiObjectAttributesMapper
             'maxInstanceCount' => 'max_instance_count',
             'lastActiveAt' => 'last_active_at',
             'lastBackupAt' => 'last_backup_at',
-            'project' => 'project',
-            'isMain' => 'is_main',
             'isDirty' => 'is_dirty',
             'hasStagedActivities' => 'has_staged_activities',
             'canRollingDeploy' => 'can_rolling_deploy',
             'supportsRollingDeployments' => 'supports_rolling_deployments',
             'hasCode' => 'has_code',
-            'headCommit' => 'head_commit',
             'mergeInfo' => 'merge_info',
             'hasDeployment' => 'has_deployment',
             'supportsRestrictRobots' => 'supports_restrict_robots'
@@ -1436,6 +1514,16 @@ final class ApiObjectAttributesMapper
             'environmentType' => 'environment_type',
             'links' => 'links'
         ],
+        'Upsun\Model\EnvironmentInitResources' => [
+            'production' => 'production',
+            'staging' => 'staging',
+            'development' => 'development'
+        ],
+        'Upsun\Model\EnvironmentInitResources1' => [
+            'production' => 'production',
+            'staging' => 'staging',
+            'development' => 'development'
+        ],
         'Upsun\Model\EnvironmentInitializeInput' => [
             'profile' => 'profile',
             'repository' => 'repository',
@@ -1452,9 +1540,9 @@ final class ApiObjectAttributesMapper
             'parameters' => 'parameters'
         ],
         'Upsun\Model\EnvironmentPatch' => [
+            'attributes' => 'attributes',
             'name' => 'name',
             'title' => 'title',
-            'attributes' => 'attributes',
             'type' => 'type',
             'parent' => 'parent',
             'cloneParentOnCreate' => 'clone_parent_on_create',
@@ -1505,6 +1593,7 @@ final class ApiObjectAttributesMapper
             'inherited' => 'inherited',
             'isEnabled' => 'is_enabled',
             'isInheritable' => 'is_inheritable',
+            'isOverridden' => 'is_overridden',
             'value' => 'value'
         ],
         'Upsun\Model\EnvironmentVariableCreateInput' => [
@@ -1537,6 +1626,7 @@ final class ApiObjectAttributesMapper
             'isJson' => 'is_json',
             'visibleBuild' => 'visible_build',
             'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope',
             'value' => 'value'
         ],
         'Upsun\Model\EnvironmentsCredentialsValue' => [
@@ -1824,7 +1914,8 @@ final class ApiObjectAttributesMapper
             'buildMergeRequests' => 'build_merge_requests',
             'buildWipMergeRequests' => 'build_wip_merge_requests',
             'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data',
-            'id' => 'id'
+            'id' => 'id',
+            'repositoryUrl' => 'repository_url'
         ],
         'Upsun\Model\GitLabIntegrationCreateInput' => [
             'type' => 'type',
@@ -1876,7 +1967,8 @@ final class ApiObjectAttributesMapper
             'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
             'tokenType' => 'token_type',
-            'id' => 'id'
+            'id' => 'id',
+            'repositoryUrl' => 'repository_url'
         ],
         'Upsun\Model\GithubIntegrationCreateInput' => [
             'type' => 'type',
@@ -1978,25 +2070,10 @@ final class ApiObjectAttributesMapper
             'url' => 'url',
             'sharedKey' => 'shared_key'
         ],
-        'Upsun\Model\History' => [
-            'id' => 'id',
-            'projectId' => 'project_id',
-            'eventType' => 'event_type',
-            'eventId' => 'event_id',
-            'resource' => 'resource',
-            'environment' => 'environment',
-            'quantity' => 'quantity',
-            'timestamp' => 'timestamp',
-            'user' => 'user'
-        ],
         'Upsun\Model\Hooks' => [
             'build' => 'build',
             'deploy' => 'deploy',
             'postDeploy' => 'post_deploy'
-        ],
-        'Upsun\Model\Hooks1' => [
-            'build' => 'build',
-            'deploy' => 'deploy'
         ],
         'Upsun\Model\HostsInner' => [
             'id' => 'id',
@@ -2024,27 +2101,30 @@ final class ApiObjectAttributesMapper
             'type' => 'type',
             'role' => 'role',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'url' => 'url',
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services',
             'id' => 'id'
         ],
         'Upsun\Model\HttpLogIntegrationCreateInput' => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'headers' => 'headers',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\HttpLogIntegrationPatch' => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'headers' => 'headers',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\HttpMetricsTimelineIps200Response' => [
             'grain' => '_grain',
@@ -2228,6 +2308,14 @@ final class ApiObjectAttributesMapper
             'count' => 'count',
             'impact' => 'impact'
         ],
+        'Upsun\Model\IBMCISCDN' => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        'Upsun\Model\ImageLifecycleValidation' => [
+            'enabled' => 'enabled',
+            'enforce' => 'enforce'
+        ],
         'Upsun\Model\ImageTypeRestrictions' => [
             'only' => 'only',
             'exclude' => 'exclude'
@@ -2258,6 +2346,11 @@ final class ApiObjectAttributesMapper
             'excludedEnvironments' => 'excluded_environments',
             'states' => 'states',
             'result' => 'result',
+            'cisId' => 'cis_id',
+            'domainId' => 'domain_id',
+            'zoneName' => 'zone_name',
+            'apiBaseUrl' => 'api_base_url',
+            'nameServers' => 'name_servers',
             'serviceId' => 'service_id',
             'tlsCertificates' => 'tls_certificates',
             'baseUrl' => 'base_url',
@@ -2275,9 +2368,10 @@ final class ApiObjectAttributesMapper
             'routingKey' => 'routing_key',
             'channel' => 'channel',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services',
             'script' => 'script',
             'index' => 'index',
             'sourcetype' => 'sourcetype',
@@ -2289,6 +2383,7 @@ final class ApiObjectAttributesMapper
             'messageFormat' => 'message_format',
             'sharedKey' => 'shared_key',
             'id' => 'id',
+            'repositoryUrl' => 'repository_url',
             'appCredentials' => 'app_credentials',
             'addonCredentials' => 'addon_credentials'
         ],
@@ -2299,6 +2394,7 @@ final class ApiObjectAttributesMapper
             'username' => 'username',
             'token' => 'token',
             'project' => 'project',
+            'cisId' => 'cis_id',
             'serviceId' => 'service_id',
             'recipients' => 'recipients',
             'routingKey' => 'routing_key',
@@ -2320,6 +2416,9 @@ final class ApiObjectAttributesMapper
             'excludedEnvironments' => 'excluded_environments',
             'states' => 'states',
             'result' => 'result',
+            'domainId' => 'domain_id',
+            'zoneName' => 'zone_name',
+            'apiBaseUrl' => 'api_base_url',
             'tlsCertificates' => 'tls_certificates',
             'baseUrl' => 'base_url',
             'buildDraftPullRequests' => 'build_draft_pull_requests',
@@ -2332,9 +2431,10 @@ final class ApiObjectAttributesMapper
             'fromAddress' => 'from_address',
             'sharedKey' => 'shared_key',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services',
             'sourcetype' => 'sourcetype',
             'category' => 'category',
             'host' => 'host',
@@ -2352,6 +2452,7 @@ final class ApiObjectAttributesMapper
             'username' => 'username',
             'token' => 'token',
             'project' => 'project',
+            'cisId' => 'cis_id',
             'serviceId' => 'service_id',
             'recipients' => 'recipients',
             'routingKey' => 'routing_key',
@@ -2373,6 +2474,9 @@ final class ApiObjectAttributesMapper
             'excludedEnvironments' => 'excluded_environments',
             'states' => 'states',
             'result' => 'result',
+            'domainId' => 'domain_id',
+            'zoneName' => 'zone_name',
+            'apiBaseUrl' => 'api_base_url',
             'tlsCertificates' => 'tls_certificates',
             'baseUrl' => 'base_url',
             'buildDraftPullRequests' => 'build_draft_pull_requests',
@@ -2385,9 +2489,10 @@ final class ApiObjectAttributesMapper
             'fromAddress' => 'from_address',
             'sharedKey' => 'shared_key',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services',
             'sourcetype' => 'sourcetype',
             'category' => 'category',
             'host' => 'host',
@@ -2402,6 +2507,10 @@ final class ApiObjectAttributesMapper
             'enabled' => 'enabled',
             'config' => 'config',
             'allowedIntegrations' => 'allowed_integrations'
+        ],
+        'Upsun\Model\InternalStorageResources' => [
+            'cpu' => 'cpu',
+            'memory' => 'memory'
         ],
         'Upsun\Model\Invoice' => [
             'id' => 'id',
@@ -2542,7 +2651,12 @@ final class ApiObjectAttributesMapper
         'Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf' => [
             'href' => 'href'
         ],
-        'Upsun\Model\ListOrgProjectHistory200Response' => [
+        'Upsun\Model\ListOrgProjectPlanHistory200Response' => [
+            'count' => 'count',
+            'items' => 'items',
+            'links' => '_links'
+        ],
+        'Upsun\Model\ListOrgProjectUsageHistory200Response' => [
             'count' => 'count',
             'items' => 'items',
             'links' => '_links'
@@ -2626,11 +2740,139 @@ final class ApiObjectAttributesMapper
             'items' => 'items',
             'links' => '_links'
         ],
+        'Upsun\Model\ListUserSshKeys200Response' => [
+            'items' => 'items',
+            'count' => 'count',
+            'links' => '_links'
+        ],
         'Upsun\Model\LogsForwarding' => [
             'maxExtraPayloadSize' => 'max_extra_payload_size'
         ],
+        'Upsun\Model\LogsOverview200Response' => [
+            'grain' => '_grain',
+            'from' => '_from',
+            'to' => '_to',
+            'projectId' => '_project_id',
+            'environmentId' => '_environment_id',
+            'branchMachineName' => '_branch_machine_name',
+            'total' => '_total',
+            'data' => 'data',
+            'links' => '_links',
+            'filters' => 'filters',
+            'severities' => '_severities',
+            'severitiesMode' => '_severities_mode',
+            'services' => '_services',
+            'servicesMode' => '_services_mode',
+            'instances' => '_instances',
+            'instancesMode' => '_instances_mode',
+            'hosts' => '_hosts',
+            'hostsMode' => '_hosts_mode',
+            'commands' => '_commands',
+            'commandsMode' => '_commands_mode',
+            'containerIds' => '_container_ids',
+            'containerIdsMode' => '_container_ids_mode',
+            'containerImages' => '_container_images',
+            'containerImagesMode' => '_container_images_mode',
+            'logKinds' => '_log_kinds',
+            'logKindsMode' => '_log_kinds_mode'
+        ],
+        'Upsun\Model\LogsOverview200ResponseDataInner' => [
+            'timestamp' => 'timestamp',
+            'values' => 'values'
+        ],
+        'Upsun\Model\LogsOverview200ResponseDataInnerValuesInner' => [
+            'severity' => 'severity',
+            'count' => 'count'
+        ],
+        'Upsun\Model\LogsOverview200ResponseLinks' => [
+            'self' => 'self',
+            'query' => 'query'
+        ],
+        'Upsun\Model\LogsOverview200ResponseLinksQuery' => [
+            'href' => 'href'
+        ],
+        'Upsun\Model\LogsOverview200ResponseLinksSelf' => [
+            'href' => 'href'
+        ],
+        'Upsun\Model\LogsOverview501Response' => [
+            'code' => 'code',
+            'message' => 'message'
+        ],
+        'Upsun\Model\LogsQuery200Response' => [
+            'from' => '_from',
+            'to' => '_to',
+            'order' => '_order',
+            'projectId' => '_project_id',
+            'environmentId' => '_environment_id',
+            'branchMachineName' => '_branch_machine_name',
+            'hasMoreResults' => '_has_more_results',
+            'links' => '_links',
+            'data' => 'data',
+            'cursor' => '_cursor',
+            'severities' => '_severities',
+            'severitiesMode' => '_severities_mode',
+            'services' => '_services',
+            'servicesMode' => '_services_mode',
+            'instances' => '_instances',
+            'instancesMode' => '_instances_mode',
+            'hosts' => '_hosts',
+            'hostsMode' => '_hosts_mode',
+            'units' => '_units',
+            'unitsMode' => '_units_mode',
+            'commands' => '_commands',
+            'commandsMode' => '_commands_mode',
+            'containerIds' => '_container_ids',
+            'containerIdsMode' => '_container_ids_mode',
+            'containerImages' => '_container_images',
+            'containerImagesMode' => '_container_images_mode',
+            'logKinds' => '_log_kinds',
+            'logKindsMode' => '_log_kinds_mode'
+        ],
+        'Upsun\Model\LogsQuery200ResponseDataInner' => [
+            'cursor' => 'cursor',
+            'datetime' => 'datetime',
+            'severity' => 'severity',
+            'content' => 'content',
+            'service' => 'service',
+            'instance' => 'instance',
+            'host' => 'host',
+            'command' => 'command',
+            'unit' => 'unit',
+            'containerId' => 'container_id',
+            'containerImage' => 'container_image',
+            'logKind' => 'log_kind',
+            'context' => 'context',
+            'infrastructureTags' => 'infrastructure_tags',
+            'metadata' => 'metadata'
+        ],
+        'Upsun\Model\LogsQuery200ResponseDataInnerInfrastructureTags' => [
+            'argCommand' => 'arg.command',
+            'argUnit' => 'arg.unit',
+            'componentSyslogIdentifier' => 'component.syslog_identifier',
+            'containerId' => 'container.id',
+            'containerName' => 'container.name',
+            'containerInstance' => 'container.instance',
+            'containerService' => 'container.service',
+            'containerImage' => 'container.image'
+        ],
+        'Upsun\Model\LogsQuery200ResponseLinks' => [
+            'self' => 'self',
+            'overview' => 'overview',
+            'next' => 'next'
+        ],
+        'Upsun\Model\LogsQuery200ResponseLinksNext' => [
+            'href' => 'href'
+        ],
+        'Upsun\Model\LogsQuery200ResponseLinksOverview' => [
+            'href' => 'href'
+        ],
+        'Upsun\Model\LogsQuery200ResponseLinksSelf' => [
+            'href' => 'href'
+        ],
         'Upsun\Model\Maintenance' => [
-            'nextMaintenance' => 'next_maintenance'
+            'nextMaintenance' => 'next_maintenance',
+            'source' => 'source',
+            'activity' => 'activity'
         ],
         'Upsun\Model\MaintenanceWindowConfiguration' => [
             'recurrence' => 'recurrence'
@@ -2677,9 +2919,10 @@ final class ApiObjectAttributesMapper
             'type' => 'type',
             'role' => 'role',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'url' => 'url',
             'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services',
             'id' => 'id'
         ],
         'Upsun\Model\NewRelicIntegrationCreateInput' => [
@@ -2687,16 +2930,18 @@ final class ApiObjectAttributesMapper
             'url' => 'url',
             'licenseKey' => 'license_key',
             'extra' => 'extra',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\NewRelicIntegrationPatch' => [
             'type' => 'type',
             'url' => 'url',
             'licenseKey' => 'license_key',
             'extra' => 'extra',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\OAuth2Consumer' => [
             'key' => 'key'
@@ -2705,7 +2950,15 @@ final class ApiObjectAttributesMapper
             'key' => 'key',
             'secret' => 'secret'
         ],
+        'Upsun\Model\OCIBuilder' => [
+            'id' => 'id',
+            'image' => 'image'
+        ],
         'Upsun\Model\OCIImage' => [
+            'name' => 'name',
+            'buildfile' => 'buildfile'
+        ],
+        'Upsun\Model\OCIImages' => [
             'name' => 'name',
             'buildfile' => 'buildfile'
         ],
@@ -2773,8 +3026,6 @@ final class ApiObjectAttributesMapper
             'blackfirePhpServerCaches' => 'blackfire_php_server_caches',
             'blackfireServerGlobal' => 'blackfire_server_global',
             'blackfireServerTransactionsBreakdown' => 'blackfire_server_transactions_breakdown',
-            'logsQuery' => 'logs_query',
-            'logsOverview' => 'logs_overview',
             'httpMetricsTimelineUrls' => 'http_metrics_timeline_urls',
             'httpMetricsTimelineIps' => 'http_metrics_timeline_ips',
             'httpMetricsTimelineUserAgents' => 'http_metrics_timeline_user_agents',
@@ -2782,7 +3033,9 @@ final class ApiObjectAttributesMapper
             'conprofApplications' => 'conprof_applications',
             'conprofApplicationFilters' => 'conprof_application_filters',
             'conprofTimeline' => 'conprof_timeline',
-            'conprofFlamegraph' => 'conprof_flamegraph'
+            'conprofFlamegraph' => 'conprof_flamegraph',
+            'logsQuery' => 'logs_query',
+            'logsOverview' => 'logs_overview'
         ],
         'Upsun\Model\ObservabilityEntrypoint200ResponseLinksBlackfirePhpServerCaches' => [
             'href' => 'href'
@@ -3233,27 +3486,30 @@ final class ApiObjectAttributesMapper
             'type' => 'type',
             'role' => 'role',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'url' => 'url',
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services',
             'id' => 'id'
         ],
         'Upsun\Model\OtlpLogIntegrationCreateCreateInput' => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'headers' => 'headers',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\OtlpLogIntegrationPatch' => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'headers' => 'headers',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\OutboundFirewall' => [
             'enabled' => 'enabled'
@@ -3292,6 +3548,16 @@ final class ApiObjectAttributesMapper
             'appendSuffix' => 'append_suffix',
             'code' => 'code',
             'expires' => 'expires'
+        ],
+        'Upsun\Model\PlanRecord' => [
+            'id' => 'id',
+            'projectId' => 'project_id',
+            'eventType' => 'event_type',
+            'eventId' => 'event_id',
+            'type' => 'type',
+            'value' => 'value',
+            'timestamp' => 'timestamp',
+            'user' => 'user'
         ],
         'Upsun\Model\PlanRecords' => [
             'id' => 'id',
@@ -3349,10 +3615,10 @@ final class ApiObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'type' => 'type',
             'name' => 'name',
+            'registeredName' => 'registered_name',
             'attributes' => 'attributes',
             'id' => 'id',
             'project' => 'project',
-            'registeredName' => 'registered_name',
             'isDefault' => 'is_default'
         ],
         'Upsun\Model\ProdDomainStorageCreateInput' => [
@@ -3429,6 +3695,7 @@ final class ApiObjectAttributesMapper
             'sourceOperations' => 'source_operations',
             'runtimeOperations' => 'runtime_operations',
             'outboundFirewall' => 'outbound_firewall',
+            'egressProxy' => 'egress_proxy',
             'integrations' => 'integrations'
         ],
         'Upsun\Model\ProjectCarbon' => [
@@ -3514,6 +3781,7 @@ final class ApiObjectAttributesMapper
             'initialize' => 'initialize',
             'productName' => 'product_name',
             'productCode' => 'product_code',
+            'cliName' => 'cli_name',
             'uiUriTemplate' => 'ui_uri_template',
             'variablesPrefix' => 'variables_prefix',
             'botEmail' => 'bot_email',
@@ -3562,12 +3830,14 @@ final class ApiObjectAttributesMapper
             'certifierUrl' => 'certifier_url',
             'centralizedPermissions' => 'centralized_permissions',
             'glueServerMaxRequestSize' => 'glue_server_max_request_size',
+            'usePatina' => 'use_patina',
             'persistentEndpointsSsh' => 'persistent_endpoints_ssh',
             'persistentEndpointsSslCertificates' => 'persistent_endpoints_ssl_certificates',
             'enableDiskHealthMonitoring' => 'enable_disk_health_monitoring',
             'enablePausedEnvironments' => 'enable_paused_environments',
             'enableUnifiedConfiguration' => 'enable_unified_configuration',
             'enableExplicitEmptyRoutes' => 'enable_explicit_empty_routes',
+            'validationEngine' => 'validation_engine',
             'enableRoutesTracing' => 'enable_routes_tracing',
             'imageDeploymentValidation' => 'image_deployment_validation',
             'supportGenericImages' => 'support_generic_images',
@@ -3582,12 +3852,15 @@ final class ApiObjectAttributesMapper
             'allowRollingDeployments' => 'allow_rolling_deployments',
             'maintenanceWindow' => 'maintenance_window',
             'allowActivityReschedule' => 'allow_activity_reschedule',
+            'enableMaintenanceWindowHardCheck' => 'enable_maintenance_window_hard_check',
             'allowBurst' => 'allow_burst',
             'routerResources' => 'router_resources',
+            'internalStorageResources' => 'internal_storage_resources',
             'allowScalingToZero' => 'allow_scaling_to_zero',
             'saveApplicationsVendors' => 'save_applications_vendors',
             'locationsScriptDefault' => 'locations_script_default',
-            'supportOciImages' => 'support_oci_images'
+            'supportOciImages' => 'support_oci_images',
+            'imageLifecycle' => 'image_lifecycle'
         ],
         'Upsun\Model\ProjectSettingsPatch' => [
             'initialize' => 'initialize',
@@ -3743,36 +4016,15 @@ final class ApiObjectAttributesMapper
             'envimpact' => 'envimpact',
             'environmentalImpact' => 'environmental_impact'
         ],
-        'Upsun\Model\RegistryCredential' => [
-            'id' => 'id',
-            'createdAt' => 'created_at',
-            'updatedAt' => 'updated_at',
-            'registry' => 'registry',
-            'auth' => 'auth',
-            'identityToken' => 'identity_token',
-            'registryToken' => 'registry_token'
-        ],
-        'Upsun\Model\RegistryCredentialCreateInput' => [
-            'registry' => 'registry',
-            'auth' => 'auth',
-            'identityToken' => 'identity_token',
-            'registryToken' => 'registry_token'
-        ],
-        'Upsun\Model\RegistryCredentialPatch' => [
-            'registry' => 'registry',
-            'auth' => 'auth',
-            'identityToken' => 'identity_token',
-            'registryToken' => 'registry_token'
-        ],
         'Upsun\Model\ReplacementDomainStorage' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
             'name' => 'name',
+            'registeredName' => 'registered_name',
             'attributes' => 'attributes',
             'id' => 'id',
             'project' => 'project',
-            'registeredName' => 'registered_name',
             'replacementFor' => 'replacement_for'
         ],
         'Upsun\Model\ReplacementDomainStorageCreateInput' => [
@@ -3834,10 +4086,6 @@ final class ApiObjectAttributesMapper
         ],
         'Upsun\Model\Resources8' => [
             'init' => 'init'
-        ],
-        'Upsun\Model\Resources9' => [
-            'baseMemory' => 'base_memory',
-            'memoryRatio' => 'memory_ratio'
         ],
         'Upsun\Model\ResourcesByService200Response' => [
             'grain' => '_grain',
@@ -4338,12 +4586,11 @@ final class ApiObjectAttributesMapper
             'upstream' => 'upstream',
             'sticky' => 'sticky'
         ],
-        'Upsun\Model\RunConfiguration' => [
-            'command' => 'command',
-            'timeout' => 'timeout'
-        ],
         'Upsun\Model\RuntimeOperations' => [
             'enabled' => 'enabled'
+        ],
+        'Upsun\Model\RuntimePhaseEgress' => [
+            'allowedDomains' => 'allowed_domains'
         ],
         'Upsun\Model\SSIConfiguration' => [
             'enabled' => 'enabled'
@@ -4445,9 +4692,6 @@ final class ApiObjectAttributesMapper
             'root' => 'root',
             'operations' => 'operations'
         ],
-        'Upsun\Model\SourceCodeConfiguration1' => [
-            'root' => 'root'
-        ],
         'Upsun\Model\SourceOperations' => [
             'enabled' => 'enabled'
         ],
@@ -4459,7 +4703,8 @@ final class ApiObjectAttributesMapper
             'passthru' => 'passthru',
             'scripts' => 'scripts',
             'allow' => 'allow',
-            'headers' => 'headers'
+            'headers' => 'headers',
+            'dynamicCompression' => 'dynamic_compression'
         ],
         'Upsun\Model\Splunk' => [
             'enabled' => 'enabled',
@@ -4471,11 +4716,12 @@ final class ApiObjectAttributesMapper
             'type' => 'type',
             'role' => 'role',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'url' => 'url',
             'index' => 'index',
             'sourcetype' => 'sourcetype',
             'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services',
             'id' => 'id'
         ],
         'Upsun\Model\SplunkIntegrationCreateInput' => [
@@ -4484,9 +4730,10 @@ final class ApiObjectAttributesMapper
             'index' => 'index',
             'token' => 'token',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'sourcetype' => 'sourcetype',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\SplunkIntegrationPatch' => [
             'type' => 'type',
@@ -4494,17 +4741,20 @@ final class ApiObjectAttributesMapper
             'index' => 'index',
             'token' => 'token',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'sourcetype' => 'sourcetype',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\SshKey' => [
-            'keyId' => 'key_id',
-            'uid' => 'uid',
-            'fingerprint' => 'fingerprint',
-            'title' => 'title',
+            'id' => 'id',
+            'sha256' => 'sha256',
             'value' => 'value',
-            'changed' => 'changed'
+            'label' => 'label',
+            'active' => 'active',
+            'userId' => 'user_id',
+            'createdAt' => 'created_at',
+            'updatedAt' => 'updated_at'
         ],
         'Upsun\Model\Status' => [
             'code' => 'code',
@@ -4624,27 +4874,30 @@ final class ApiObjectAttributesMapper
             'type' => 'type',
             'role' => 'role',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'url' => 'url',
             'category' => 'category',
             'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services',
             'id' => 'id'
         ],
         'Upsun\Model\SumologicIntegrationCreateInput' => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'category' => 'category',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\SumologicIntegrationPatch' => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'category' => 'category',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\Syslog' => [
             'enabled' => 'enabled',
@@ -4656,18 +4909,21 @@ final class ApiObjectAttributesMapper
             'type' => 'type',
             'role' => 'role',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'host' => 'host',
             'port' => 'port',
             'protocol' => 'protocol',
             'facility' => 'facility',
             'messageFormat' => 'message_format',
             'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services',
             'id' => 'id'
         ],
         'Upsun\Model\SyslogIntegrationCreateInput' => [
             'type' => 'type',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'host' => 'host',
             'port' => 'port',
             'protocol' => 'protocol',
@@ -4675,12 +4931,13 @@ final class ApiObjectAttributesMapper
             'messageFormat' => 'message_format',
             'authToken' => 'auth_token',
             'authMode' => 'auth_mode',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\SyslogIntegrationPatch' => [
             'type' => 'type',
             'extra' => 'extra',
+            'redaction' => 'redaction',
+            'excludedServices' => 'excluded_services',
             'host' => 'host',
             'port' => 'port',
             'protocol' => 'protocol',
@@ -4688,8 +4945,7 @@ final class ApiObjectAttributesMapper
             'messageFormat' => 'message_format',
             'authToken' => 'auth_token',
             'authMode' => 'auth_mode',
-            'tlsVerify' => 'tls_verify',
-            'excludedServices' => 'excluded_services'
+            'tlsVerify' => 'tls_verify'
         ],
         'Upsun\Model\SystemInformation' => [
             'version' => 'version',
@@ -4703,30 +4959,28 @@ final class ApiObjectAttributesMapper
             'clientCertificateAuthorities' => 'client_certificate_authorities'
         ],
         'Upsun\Model\Task' => [
-            'id' => 'id',
-            'type' => 'type',
-            'source' => 'source',
-            'hooks' => 'hooks',
-            'relationships' => 'relationships',
-            'additionalHosts' => 'additional_hosts',
-            'mounts' => 'mounts',
-            'timezone' => 'timezone',
-            'variables' => 'variables',
+            'stack' => 'stack',
             'dependencies' => 'dependencies',
             'runtime' => 'runtime',
-            'authorizations' => 'authorizations',
-            'run' => 'run',
-            'resources' => 'resources',
-            'containerProfile' => 'container_profile',
-            'name' => 'name'
+            'id' => 'id',
+            'image' => 'image'
         ],
         'Upsun\Model\TaskTriggerInput' => [
             'variables' => 'variables'
         ],
         'Upsun\Model\Tasks' => [
-            'enabled' => 'enabled'
+            'enabled' => 'enabled',
+            'limit' => 'limit',
+            'concurrencyLimit' => 'concurrency_limit'
         ],
         'Upsun\Model\TasksValue' => [
+            'stack' => 'stack',
+            'dependencies' => 'dependencies',
+            'runtime' => 'runtime',
+            'id' => 'id',
+            'image' => 'image'
+        ],
+        'Upsun\Model\TasksValue1' => [
             'resources' => 'resources'
         ],
         'Upsun\Model\Team' => [
@@ -4837,6 +5091,11 @@ final class ApiObjectAttributesMapper
             'mode' => 'mode',
             'type' => 'type',
             'sha' => 'sha'
+        ],
+        'Upsun\Model\TypeBuilder' => [
+            'dependencies' => 'dependencies',
+            'runtime' => 'runtime',
+            'id' => 'id'
         ],
         'Upsun\Model\UpdateOrgAddonsRequest' => [
             'userManagement' => 'user_management',
@@ -5010,6 +5269,17 @@ final class ApiObjectAttributesMapper
             'dailyAverage' => 'daily_average',
             'dailyAverageFormatted' => 'daily_average_formatted'
         ],
+        'Upsun\Model\UsageRecord' => [
+            'id' => 'id',
+            'projectId' => 'project_id',
+            'eventType' => 'event_type',
+            'eventId' => 'event_id',
+            'resource' => 'resource',
+            'environment' => 'environment',
+            'quantity' => 'quantity',
+            'timestamp' => 'timestamp',
+            'user' => 'user'
+        ],
         'Upsun\Model\User' => [
             'id' => 'id',
             'deactivated' => 'deactivated',
@@ -5103,17 +5373,18 @@ final class ApiObjectAttributesMapper
         ],
         'Upsun\Model\WebApplicationsValue' => [
             'resources' => 'resources',
-            'size' => 'size',
-            'disk' => 'disk',
-            'access' => 'access',
             'authorizations' => 'authorizations',
             'relationships' => 'relationships',
             'additionalHosts' => 'additional_hosts',
             'mounts' => 'mounts',
             'timezone' => 'timezone',
             'variables' => 'variables',
-            'firewall' => 'firewall',
             'containerProfile' => 'container_profile',
+            'size' => 'size',
+            'disk' => 'disk',
+            'access' => 'access',
+            'firewall' => 'firewall',
+            'egress' => 'egress',
             'operations' => 'operations',
             'name' => 'name',
             'type' => 'type',
@@ -5196,7 +5467,8 @@ final class ApiObjectAttributesMapper
             'headers' => 'headers',
             'rules' => 'rules',
             'index' => 'index',
-            'requestBuffering' => 'request_buffering'
+            'requestBuffering' => 'request_buffering',
+            'dynamicCompression' => 'dynamic_compression'
         ],
         'Upsun\Model\Webhook' => [
             'enabled' => 'enabled',
@@ -5208,17 +5480,18 @@ final class ApiObjectAttributesMapper
         ],
         'Upsun\Model\WorkersValue' => [
             'resources' => 'resources',
-            'size' => 'size',
-            'disk' => 'disk',
-            'access' => 'access',
             'authorizations' => 'authorizations',
             'relationships' => 'relationships',
             'additionalHosts' => 'additional_hosts',
             'mounts' => 'mounts',
             'timezone' => 'timezone',
             'variables' => 'variables',
-            'firewall' => 'firewall',
             'containerProfile' => 'container_profile',
+            'size' => 'size',
+            'disk' => 'disk',
+            'access' => 'access',
+            'firewall' => 'firewall',
+            'egress' => 'egress',
             'operations' => 'operations',
             'name' => 'name',
             'type' => 'type',

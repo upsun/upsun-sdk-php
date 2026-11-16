@@ -437,7 +437,7 @@ class ApplicationsTaskTest extends BaseTestCase
                         ],
                     ],
                     'workers' => [],
-                    'tasks' => '[]',
+                    'tasks' => [],
                     'container_profiles' => [
                         'BALANCED' => [
                             '0.1' => ['cpu' => 0.1, 'memory' => 352, 'cpu_type' => 'shared'],
@@ -758,7 +758,7 @@ class ApplicationsTaskTest extends BaseTestCase
                     ],
                     'webapps' => [],
                     'workers' => [],
-                    'tasks' => '[]',
+                    'tasks' => [],
                     'container_profiles' => [
                         'BALANCED' => [
                             '0.1' => ['cpu' => 0.1, 'memory' => 352, 'cpu_type' => 'shared'],

@@ -813,7 +813,7 @@ abstract class BaseTestCase extends TestCase
             ],
             'webapps' => $webapps,
             'workers' => $workers,
-            'tasks' => '[]',
+            'tasks' => [],
             'container_profiles' => [],
         ];
     }

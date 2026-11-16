@@ -14,10 +14,6 @@ use JsonSerializable;
  */
 final class GithubIntegration implements Model, JsonSerializable, Integration
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
     public const TOKEN_TYPE_CLASSIC_PERSONAL_TOKEN = 'classic_personal_token';
     public const TOKEN_TYPE_GITHUB_APP = 'github_app';
 
@@ -26,7 +22,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
         private readonly string $role,
         private readonly bool $fetchBranches,
         private readonly bool $pruneBranches,
-        private readonly string $environmentInitResources,
+        private readonly EnvironmentInitResources $environmentInitResources,
         private readonly string $repository,
         private readonly bool $buildPullRequests,
         private readonly bool $buildDraftPullRequests,
@@ -37,6 +33,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
         private readonly ?DateTime $updatedAt,
         private readonly ?string $baseUrl,
         private readonly ?string $id = null,
+        private readonly ?string $repositoryUrl = null,
     ) {
     }
 
@@ -63,6 +60,7 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
             'tokenType' => $this->tokenType,
             'id' => $this->id,
+            'repositoryUrl' => $this->repositoryUrl,
         ];
     }
 
@@ -120,9 +118,9 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
     }
 
     /**
-     * The resources used when initializing a new service
+     * The resources used when initializing a new environment, per environment type
      */
-    public function getEnvironmentInitResources(): string
+    public function getEnvironmentInitResources(): EnvironmentInitResources
     {
         return $this->environmentInitResources;
     }
@@ -189,5 +187,13 @@ final class GithubIntegration implements Model, JsonSerializable, Integration
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    /**
+     * The URL of the remote git repository
+     */
+    public function getRepositoryUrl(): ?string
+    {
+        return $this->repositoryUrl;
     }
 }

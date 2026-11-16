@@ -30,8 +30,9 @@ final class Deployment implements Model, JsonSerializable
         private readonly array $routes,
         private readonly array $webapps,
         private readonly array $workers,
+        private readonly array $tasks,
         private readonly array $containerProfiles,
-        private readonly string $tasks,
+        private readonly ?string $headCommit,
         private readonly ?VPNConfiguration $vpn,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
@@ -49,6 +50,7 @@ final class Deployment implements Model, JsonSerializable
         return [
             'id' => $this->id,
             'clusterName' => $this->clusterName,
+            'headCommit' => $this->headCommit,
             'projectInfo' => $this->projectInfo,
             'environmentInfo' => $this->environmentInfo,
             'deploymentTarget' => $this->deploymentTarget,
@@ -63,8 +65,8 @@ final class Deployment implements Model, JsonSerializable
             'routes' => $this->routes,
             'webapps' => $this->webapps,
             'workers' => $this->workers,
-            'containerProfiles' => $this->containerProfiles,
             'tasks' => $this->tasks,
+            'containerProfiles' => $this->containerProfiles,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'fingerprint' => $this->fingerprint,
@@ -90,6 +92,14 @@ final class Deployment implements Model, JsonSerializable
     public function getClusterName(): string
     {
         return $this->clusterName;
+    }
+
+    /**
+     * The deployed commit for current; the branch tip for next
+     */
+    public function getHeadCommit(): ?string
+    {
+        return $this->headCommit;
     }
 
     /**
@@ -210,17 +220,18 @@ final class Deployment implements Model, JsonSerializable
         return $this->workers;
     }
 
+    /**
+     * The task definitions with the resources frozen on this deployment
+     * @return TasksValue[]
+     */
+    public function getTasks(): array
+    {
+        return $this->tasks;
+    }
+
     public function getContainerProfiles(): array
     {
         return $this->containerProfiles;
-    }
-
-    /**
-     * The name of the deployment target
-     */
-    public function getTasks(): string
-    {
-        return $this->tasks;
     }
 
     /**

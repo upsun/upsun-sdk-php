@@ -42,7 +42,7 @@ use Upsun\Api\RepositoryApi;
 use Upsun\Api\RoutingApi;
 use Upsun\Api\RuntimeOperationsApi;
 use Upsun\Api\SourceOperationsApi;
-use Upsun\Api\SshKeysApi;
+use Upsun\Api\SshApi;
 use Upsun\Api\SubscriptionsApi;
 use Upsun\Api\SupportApi;
 use Upsun\Api\SystemInformationApi;
@@ -231,7 +231,7 @@ class UpsunClient
         $subscriptionsApi = new SubscriptionsApi(...$taskParams);
         $supportApi = new SupportApi(...$taskParams);
         $systemInformationApi = new SystemInformationApi(...$taskParams);
-        $sshKeysApi = new SshKeysApi(...$taskParams);
+        $sshApi = new SshApi(...$taskParams);
         $teamAccessApi = new TeamAccessApi(...$taskParams);
         $teamsApi = new TeamsApi(...$taskParams);
         $thirdPartyIntegrationsApi = new ThirdPartyIntegrationsApi(...$taskParams);
@@ -341,7 +341,7 @@ class UpsunClient
         );
         $this->sshTask = new SshTask(
             $this,
-            $sshKeysApi
+            $sshApi
         );
         $this->users = new UsersTask(
             $this,

@@ -17,12 +17,12 @@ final class ReplacementDomainStorage implements Model, JsonSerializable, Domain
     public function __construct(
         private readonly string $type,
         private readonly string $name,
+        private readonly string $registeredName,
         private readonly array $attributes,
         private readonly ?DateTime $createdAt,
         private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
         private readonly ?string $project = null,
-        private readonly ?string $registeredName = null,
         private readonly ?string $replacementFor = null,
     ) {
     }
@@ -39,10 +39,10 @@ final class ReplacementDomainStorage implements Model, JsonSerializable, Domain
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'name' => $this->name,
+            'registeredName' => $this->registeredName,
             'attributes' => $this->attributes,
             'id' => $this->id,
             'project' => $this->project,
-            'registeredName' => $this->registeredName,
             'replacementFor' => $this->replacementFor,
         ];
     }
@@ -84,6 +84,14 @@ final class ReplacementDomainStorage implements Model, JsonSerializable, Domain
         return $this->name;
     }
 
+    /**
+     * The claimed domain name
+     */
+    public function getRegisteredName(): string
+    {
+        return $this->registeredName;
+    }
+
     public function getAttributes(): array
     {
         return $this->attributes;
@@ -103,14 +111,6 @@ final class ReplacementDomainStorage implements Model, JsonSerializable, Domain
     public function getProject(): ?string
     {
         return $this->project;
-    }
-
-    /**
-     * The claimed domain name
-     */
-    public function getRegisteredName(): ?string
-    {
-        return $this->registeredName;
     }
 
     /**

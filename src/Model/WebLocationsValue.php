@@ -23,6 +23,7 @@ final class WebLocationsValue implements Model, JsonSerializable
         private readonly ?string $root,
         private readonly ?array $index = [],
         private readonly ?RequestBuffering $requestBuffering = null,
+        private readonly ?bool $dynamicCompression = null,
     ) {
     }
 
@@ -43,6 +44,7 @@ final class WebLocationsValue implements Model, JsonSerializable
             'rules' => $this->rules,
             'index' => $this->index,
             'requestBuffering' => $this->requestBuffering,
+            'dynamicCompression' => $this->dynamicCompression,
         ];
     }
 
@@ -97,5 +99,10 @@ final class WebLocationsValue implements Model, JsonSerializable
     public function getRequestBuffering(): ?RequestBuffering
     {
         return $this->requestBuffering;
+    }
+
+    public function getDynamicCompression(): ?bool
+    {
+        return $this->dynamicCompression;
     }
 }

@@ -19,9 +19,9 @@ final class EnvironmentPatch implements Model, JsonSerializable
 
     public function __construct(
         private readonly ?string $parent = null,
+        private readonly ?array $attributes = [],
         private readonly ?string $name = null,
         private readonly ?string $title = null,
-        private readonly ?array $attributes = [],
         private readonly ?string $type = null,
         private readonly ?bool $cloneParentOnCreate = null,
         private readonly ?HttpAccessPermissions2 $httpAccess = null,
@@ -38,9 +38,9 @@ final class EnvironmentPatch implements Model, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'attributes' => $this->attributes,
             'name' => $this->name,
             'title' => $this->title,
-            'attributes' => $this->attributes,
             'type' => $this->type,
             'parent' => $this->parent,
             'cloneParentOnCreate' => $this->cloneParentOnCreate,
@@ -53,6 +53,11 @@ final class EnvironmentPatch implements Model, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
     }
 
     /**
@@ -69,11 +74,6 @@ final class EnvironmentPatch implements Model, JsonSerializable
     public function getTitle(): ?string
     {
         return $this->title;
-    }
-
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
     }
 
     /**

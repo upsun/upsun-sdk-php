@@ -30,6 +30,7 @@ final class Config implements Model, JsonSerializable
         private readonly ?HealthPagerDuty $healthPagerduty = null,
         private readonly ?HealthSlack $healthSlack = null,
         private readonly ?FastlyCDN $cdnFastly = null,
+        private readonly ?IBMCISCDN $cdnCis = null,
         private readonly ?Blackfire $blackfire = null,
         private readonly ?OpenTelemetry $otlplog = null,
     ) {
@@ -59,6 +60,7 @@ final class Config implements Model, JsonSerializable
             'healthPagerduty' => $this->healthPagerduty,
             'healthSlack' => $this->healthSlack,
             'cdnFastly' => $this->cdnFastly,
+            'cdnCis' => $this->cdnCis,
             'blackfire' => $this->blackfire,
             'otlplog' => $this->otlplog,
         ];
@@ -195,6 +197,14 @@ final class Config implements Model, JsonSerializable
     public function getCdnFastly(): ?FastlyCDN
     {
         return $this->cdnFastly;
+    }
+
+    /**
+     * IBM Cloud Internet Services CDN integration configurations
+     */
+    public function getCdnCis(): ?IBMCISCDN
+    {
+        return $this->cdnCis;
     }
 
     /**

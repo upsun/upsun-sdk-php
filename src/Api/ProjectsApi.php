@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use InvalidArgumentException;
@@ -12,6 +13,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\TokenProvider;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\StringFilter;
 
 /**
  * Low level ProjectsApi (auto-generated)
@@ -50,45 +53,114 @@ final class ProjectsApi extends AbstractApi
     /**
      * List project history
      *
-     * Retrieves history records for the specified project, oldest first.
+     * Retrieves history records for the specified project, oldest first. Deprecated: use `usage-history` instead, which
+     * pairs with `plan-history`.
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)
      * @param  string $projectId
      *         The ID of the project. (required)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterResource (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterEnvironment (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterUserId (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterTimestamp (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Projects/operation/list-org-project-history
+     *
+     * @deprecated
      */
     public function listOrgProjectHistory(
         string $organizationId,
-        string $projectId
+        string $projectId,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterResource = null,
+        ?StringFilter $filterEnvironment = null,
+        ?StringFilter $filterUserId = null,
+        ?DateTimeFilter $filterTimestamp = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): mixed {
         return $this->listOrgProjectHistoryWithHttpInfo(
             $organizationId,
-            $projectId
+            $projectId,
+            $filterId,
+            $filterResource,
+            $filterEnvironment,
+            $filterUserId,
+            $filterTimestamp,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
+            $sort
         );
     }
 
     /**
      * List project history with HTTP Info
      *
+     * @deprecated
+     *
      * @param  string $organizationId
      *         The ID of the organization. (required)
      * @param  string $projectId
      *         The ID of the project. (required)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterResource (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterEnvironment (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterUserId (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterTimestamp (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort (optional)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
     private function listOrgProjectHistoryWithHttpInfo(
         string $organizationId,
-        string $projectId
+        string $projectId,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterResource = null,
+        ?StringFilter $filterEnvironment = null,
+        ?StringFilter $filterUserId = null,
+        ?DateTimeFilter $filterTimestamp = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): mixed {
         $request = $this->listOrgProjectHistoryRequest(
             $organizationId,
-            $projectId
+            $projectId,
+            $filterId,
+            $filterResource,
+            $filterEnvironment,
+            $filterUserId,
+            $filterTimestamp,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
+            $sort
         );
 
         try {
@@ -100,7 +172,7 @@ final class ProjectsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgProjectHistory200Response',
+                '\Upsun\Model\ListOrgProjectUsageHistory200Response',
                 $request,
                 $response
             );
@@ -125,12 +197,37 @@ final class ProjectsApi extends AbstractApi
      *         The ID of the organization. (required)
      * @param  string $projectId
      *         The ID of the project. (required)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterResource (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterEnvironment (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterUserId (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterTimestamp (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort (optional)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function listOrgProjectHistoryRequest(
         string $organizationId,
-        string $projectId
+        string $projectId,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterResource = null,
+        ?StringFilter $filterEnvironment = null,
+        ?StringFilter $filterUserId = null,
+        ?DateTimeFilter $filterTimestamp = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (empty($organizationId)) {
@@ -147,12 +244,967 @@ final class ProjectsApi extends AbstractApi
             );
         }
 
+        if ($pageSize !== null && $pageSize > 100) {
+            throw new InvalidArgumentException(
+                'invalid value for "$pageSize" when calling ProjectsApi.listOrgProjectHistory,
+                must be smaller than or equal to 100.'
+            );
+        }
+
+        if ($pageSize !== null && $pageSize < 1) {
+            throw new InvalidArgumentException(
+                'invalid value for "$pageSize" when calling ProjectsApi.listOrgProjectHistory,
+                must be bigger than or equal to 1.'
+            );
+        }
+
         $resourcePath = '/organizations/{organization_id}/projects/{project_id}/history';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
         $httpBody = null;
         $multipart = false;
+
+        // query params
+        if ($filterId !== null) {
+            if ('form' === 'deepObject' && is_array($filterId)) {
+                foreach ($filterId as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[id]'] = $filterId instanceof DateTime
+                    ? $filterId->format(DATE_ATOM)
+                    : ($filterId->getEq());
+            }
+        }
+
+        // query params
+        if ($filterResource !== null) {
+            if ('form' === 'deepObject' && is_array($filterResource)) {
+                foreach ($filterResource as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[resource]'] = $filterResource instanceof DateTime
+                    ? $filterResource->format(DATE_ATOM)
+                    : ($filterResource->getEq());
+            }
+        }
+
+        // query params
+        if ($filterEnvironment !== null) {
+            if ('form' === 'deepObject' && is_array($filterEnvironment)) {
+                foreach ($filterEnvironment as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[environment]'] = $filterEnvironment instanceof DateTime
+                    ? $filterEnvironment->format(DATE_ATOM)
+                    : ($filterEnvironment->getEq());
+            }
+        }
+
+        // query params
+        if ($filterUserId !== null) {
+            if ('form' === 'deepObject' && is_array($filterUserId)) {
+                foreach ($filterUserId as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[user_id]'] = $filterUserId instanceof DateTime
+                    ? $filterUserId->format(DATE_ATOM)
+                    : ($filterUserId->getEq());
+            }
+        }
+
+        // query params
+        if ($filterTimestamp !== null) {
+            if ('form' === 'deepObject' && is_array($filterTimestamp)) {
+                foreach ($filterTimestamp as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[timestamp]'] = $filterTimestamp instanceof DateTime
+                    ? $filterTimestamp->format(DATE_ATOM)
+                    : ($filterTimestamp->getEq());
+            }
+        }
+
+        // query params
+        if ($pageSize !== null) {
+            if ('form' === 'form' && is_array($pageSize)) {
+                foreach ($pageSize as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page[size]'] = $pageSize instanceof DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
+            }
+        }
+
+        // query params
+        if ($pageBefore !== null) {
+            if ('form' === 'form' && is_array($pageBefore)) {
+                foreach ($pageBefore as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page[before]'] = $pageBefore instanceof DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
+            }
+        }
+
+        // query params
+        if ($pageAfter !== null) {
+            if ('form' === 'form' && is_array($pageAfter)) {
+                foreach ($pageAfter as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page[after]'] = $pageAfter instanceof DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
+            }
+        }
+
+        // query params
+        if ($sort !== null) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['sort'] = $sort instanceof DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
+            }
+        }
+
+        // path params
+
+        if ($organizationId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'organization_id' . '}',
+                ObjectSerializer::toPathValue($organizationId),
+                $resourcePath
+            );
+        }
+        // path params
+
+        if ($projectId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'project_id' . '}',
+                ObjectSerializer::toPathValue($projectId),
+                $resourcePath
+            );
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+        if ($this->config->getUpsunClientHeader()) {
+            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+
+    /**
+     * List a project's plan and addon change history
+     *
+     * Retrieves plan and addon change records for the specified project, oldest first. Pre-allocated quantities
+     * (`environments`, `storage`, `user_licenses`) are measured, and are served by the resource usage endpoints
+     * instead.
+     *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterType (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterValue (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterEventType (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterUserId (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterTimestamp (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort (optional)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @see https://docs.upsun.com/api/#tag/Projects/operation/list-org-project-plan-history
+     */
+    public function listOrgProjectPlanHistory(
+        string $organizationId,
+        string $projectId,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
+        ?StringFilter $filterValue = null,
+        ?StringFilter $filterEventType = null,
+        ?StringFilter $filterUserId = null,
+        ?DateTimeFilter $filterTimestamp = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): mixed {
+        return $this->listOrgProjectPlanHistoryWithHttpInfo(
+            $organizationId,
+            $projectId,
+            $filterId,
+            $filterType,
+            $filterValue,
+            $filterEventType,
+            $filterUserId,
+            $filterTimestamp,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
+            $sort
+        );
+    }
+
+    /**
+     * List a project's plan and addon change history with HTTP Info
+     *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterType (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterValue (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterEventType (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterUserId (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterTimestamp (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort (optional)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
+    private function listOrgProjectPlanHistoryWithHttpInfo(
+        string $organizationId,
+        string $projectId,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
+        ?StringFilter $filterValue = null,
+        ?StringFilter $filterEventType = null,
+        ?StringFilter $filterUserId = null,
+        ?DateTimeFilter $filterTimestamp = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): mixed {
+        $request = $this->listOrgProjectPlanHistoryRequest(
+            $organizationId,
+            $projectId,
+            $filterId,
+            $filterType,
+            $filterValue,
+            $filterEventType,
+            $filterUserId,
+            $filterTimestamp,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
+            $sort
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\ListOrgProjectPlanHistory200Response',
+                $request,
+                $response
+            );
+        } catch (Exception $exception) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $exception->getCode(),
+                    '/organizations/{organization_id}/projects/{project_id}/plan-history'
+                ),
+                $request,
+                $response ?? null,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Create request for operation 'listOrgProjectPlanHistory'
+     *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterType (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterValue (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterEventType (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterUserId (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterTimestamp (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort (optional)
+     *
+     * @throws InvalidArgumentException
+     */
+    private function listOrgProjectPlanHistoryRequest(
+        string $organizationId,
+        string $projectId,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
+        ?StringFilter $filterValue = null,
+        ?StringFilter $filterEventType = null,
+        ?StringFilter $filterUserId = null,
+        ?DateTimeFilter $filterTimestamp = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): RequestInterface {
+        // verify the required parameter 'organizationId' is set
+        if (empty($organizationId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $organizationId
+                when calling listOrgProjectPlanHistory'
+            );
+        }
+        // verify the required parameter 'projectId' is set
+        if (empty($projectId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $projectId
+                when calling listOrgProjectPlanHistory'
+            );
+        }
+
+        if ($pageSize !== null && $pageSize > 100) {
+            throw new InvalidArgumentException(
+                'invalid value for "$pageSize" when calling ProjectsApi.listOrgProjectPlanHistory,
+                must be smaller than or equal to 100.'
+            );
+        }
+
+        if ($pageSize !== null && $pageSize < 1) {
+            throw new InvalidArgumentException(
+                'invalid value for "$pageSize" when calling ProjectsApi.listOrgProjectPlanHistory,
+                must be bigger than or equal to 1.'
+            );
+        }
+
+        $resourcePath = '/organizations/{organization_id}/projects/{project_id}/plan-history';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // query params
+        if ($filterId !== null) {
+            if ('form' === 'deepObject' && is_array($filterId)) {
+                foreach ($filterId as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[id]'] = $filterId instanceof DateTime
+                    ? $filterId->format(DATE_ATOM)
+                    : ($filterId->getEq());
+            }
+        }
+
+        // query params
+        if ($filterType !== null) {
+            if ('form' === 'deepObject' && is_array($filterType)) {
+                foreach ($filterType as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[type]'] = $filterType instanceof DateTime
+                    ? $filterType->format(DATE_ATOM)
+                    : ($filterType->getEq());
+            }
+        }
+
+        // query params
+        if ($filterValue !== null) {
+            if ('form' === 'deepObject' && is_array($filterValue)) {
+                foreach ($filterValue as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[value]'] = $filterValue instanceof DateTime
+                    ? $filterValue->format(DATE_ATOM)
+                    : ($filterValue->getEq());
+            }
+        }
+
+        // query params
+        if ($filterEventType !== null) {
+            if ('form' === 'deepObject' && is_array($filterEventType)) {
+                foreach ($filterEventType as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[event_type]'] = $filterEventType instanceof DateTime
+                    ? $filterEventType->format(DATE_ATOM)
+                    : ($filterEventType->getEq());
+            }
+        }
+
+        // query params
+        if ($filterUserId !== null) {
+            if ('form' === 'deepObject' && is_array($filterUserId)) {
+                foreach ($filterUserId as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[user_id]'] = $filterUserId instanceof DateTime
+                    ? $filterUserId->format(DATE_ATOM)
+                    : ($filterUserId->getEq());
+            }
+        }
+
+        // query params
+        if ($filterTimestamp !== null) {
+            if ('form' === 'deepObject' && is_array($filterTimestamp)) {
+                foreach ($filterTimestamp as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[timestamp]'] = $filterTimestamp instanceof DateTime
+                    ? $filterTimestamp->format(DATE_ATOM)
+                    : ($filterTimestamp->getEq());
+            }
+        }
+
+        // query params
+        if ($pageSize !== null) {
+            if ('form' === 'form' && is_array($pageSize)) {
+                foreach ($pageSize as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page[size]'] = $pageSize instanceof DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
+            }
+        }
+
+        // query params
+        if ($pageBefore !== null) {
+            if ('form' === 'form' && is_array($pageBefore)) {
+                foreach ($pageBefore as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page[before]'] = $pageBefore instanceof DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
+            }
+        }
+
+        // query params
+        if ($pageAfter !== null) {
+            if ('form' === 'form' && is_array($pageAfter)) {
+                foreach ($pageAfter as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page[after]'] = $pageAfter instanceof DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
+            }
+        }
+
+        // query params
+        if ($sort !== null) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['sort'] = $sort instanceof DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
+            }
+        }
+
+        // path params
+
+        if ($organizationId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'organization_id' . '}',
+                ObjectSerializer::toPathValue($organizationId),
+                $resourcePath
+            );
+        }
+        // path params
+
+        if ($projectId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'project_id' . '}',
+                ObjectSerializer::toPathValue($projectId),
+                $resourcePath
+            );
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+        if ($this->config->getUpsunClientHeader()) {
+            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+
+    /**
+     * List a project's resource usage history
+     *
+     * Retrieves the specified project's resource usage records, oldest first. Plan and addon changes are served by
+     * `plan-history` instead.
+     *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterResource (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterEnvironment (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterUserId (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterTimestamp (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort (optional)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @see https://docs.upsun.com/api/#tag/Projects/operation/list-org-project-usage-history
+     */
+    public function listOrgProjectUsageHistory(
+        string $organizationId,
+        string $projectId,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterResource = null,
+        ?StringFilter $filterEnvironment = null,
+        ?StringFilter $filterUserId = null,
+        ?DateTimeFilter $filterTimestamp = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): mixed {
+        return $this->listOrgProjectUsageHistoryWithHttpInfo(
+            $organizationId,
+            $projectId,
+            $filterId,
+            $filterResource,
+            $filterEnvironment,
+            $filterUserId,
+            $filterTimestamp,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
+            $sort
+        );
+    }
+
+    /**
+     * List a project's resource usage history with HTTP Info
+     *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterResource (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterEnvironment (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterUserId (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterTimestamp (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort (optional)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
+    private function listOrgProjectUsageHistoryWithHttpInfo(
+        string $organizationId,
+        string $projectId,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterResource = null,
+        ?StringFilter $filterEnvironment = null,
+        ?StringFilter $filterUserId = null,
+        ?DateTimeFilter $filterTimestamp = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): mixed {
+        $request = $this->listOrgProjectUsageHistoryRequest(
+            $organizationId,
+            $projectId,
+            $filterId,
+            $filterResource,
+            $filterEnvironment,
+            $filterUserId,
+            $filterTimestamp,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
+            $sort
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\ListOrgProjectUsageHistory200Response',
+                $request,
+                $response
+            );
+        } catch (Exception $exception) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $exception->getCode(),
+                    '/organizations/{organization_id}/projects/{project_id}/usage-history'
+                ),
+                $request,
+                $response ?? null,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Create request for operation 'listOrgProjectUsageHistory'
+     *
+     * @param  string $organizationId
+     *         The ID of the organization. (required)
+     * @param  string $projectId
+     *         The ID of the project. (required)
+     * @param  \Upsun\Model\StringFilter|null $filterId (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterResource (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterEnvironment (optional)
+     * @param  \Upsun\Model\StringFilter|null $filterUserId (optional)
+     * @param  \Upsun\Model\DateTimeFilter|null $filterTimestamp (optional)
+     * @param  int|null $pageSize
+     *         Determines the number of items to show. (optional)
+     * @param  string|null $pageBefore
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $pageAfter
+     *         Pagination cursor. This is automatically generated as necessary and provided in
+     *         HAL links (_links); it should not be constructed externally. (optional)
+     * @param  string|null $sort (optional)
+     *
+     * @throws InvalidArgumentException
+     */
+    private function listOrgProjectUsageHistoryRequest(
+        string $organizationId,
+        string $projectId,
+        ?StringFilter $filterId = null,
+        ?StringFilter $filterResource = null,
+        ?StringFilter $filterEnvironment = null,
+        ?StringFilter $filterUserId = null,
+        ?DateTimeFilter $filterTimestamp = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
+    ): RequestInterface {
+        // verify the required parameter 'organizationId' is set
+        if (empty($organizationId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $organizationId
+                when calling listOrgProjectUsageHistory'
+            );
+        }
+        // verify the required parameter 'projectId' is set
+        if (empty($projectId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $projectId
+                when calling listOrgProjectUsageHistory'
+            );
+        }
+
+        if ($pageSize !== null && $pageSize > 100) {
+            throw new InvalidArgumentException(
+                'invalid value for "$pageSize" when calling ProjectsApi.listOrgProjectUsageHistory,
+                must be smaller than or equal to 100.'
+            );
+        }
+
+        if ($pageSize !== null && $pageSize < 1) {
+            throw new InvalidArgumentException(
+                'invalid value for "$pageSize" when calling ProjectsApi.listOrgProjectUsageHistory,
+                must be bigger than or equal to 1.'
+            );
+        }
+
+        $resourcePath = '/organizations/{organization_id}/projects/{project_id}/usage-history';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // query params
+        if ($filterId !== null) {
+            if ('form' === 'deepObject' && is_array($filterId)) {
+                foreach ($filterId as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[id]'] = $filterId instanceof DateTime
+                    ? $filterId->format(DATE_ATOM)
+                    : ($filterId->getEq());
+            }
+        }
+
+        // query params
+        if ($filterResource !== null) {
+            if ('form' === 'deepObject' && is_array($filterResource)) {
+                foreach ($filterResource as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[resource]'] = $filterResource instanceof DateTime
+                    ? $filterResource->format(DATE_ATOM)
+                    : ($filterResource->getEq());
+            }
+        }
+
+        // query params
+        if ($filterEnvironment !== null) {
+            if ('form' === 'deepObject' && is_array($filterEnvironment)) {
+                foreach ($filterEnvironment as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[environment]'] = $filterEnvironment instanceof DateTime
+                    ? $filterEnvironment->format(DATE_ATOM)
+                    : ($filterEnvironment->getEq());
+            }
+        }
+
+        // query params
+        if ($filterUserId !== null) {
+            if ('form' === 'deepObject' && is_array($filterUserId)) {
+                foreach ($filterUserId as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[user_id]'] = $filterUserId instanceof DateTime
+                    ? $filterUserId->format(DATE_ATOM)
+                    : ($filterUserId->getEq());
+            }
+        }
+
+        // query params
+        if ($filterTimestamp !== null) {
+            if ('form' === 'deepObject' && is_array($filterTimestamp)) {
+                foreach ($filterTimestamp as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[timestamp]'] = $filterTimestamp instanceof DateTime
+                    ? $filterTimestamp->format(DATE_ATOM)
+                    : ($filterTimestamp->getEq());
+            }
+        }
+
+        // query params
+        if ($pageSize !== null) {
+            if ('form' === 'form' && is_array($pageSize)) {
+                foreach ($pageSize as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page[size]'] = $pageSize instanceof DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
+            }
+        }
+
+        // query params
+        if ($pageBefore !== null) {
+            if ('form' === 'form' && is_array($pageBefore)) {
+                foreach ($pageBefore as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page[before]'] = $pageBefore instanceof DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
+            }
+        }
+
+        // query params
+        if ($pageAfter !== null) {
+            if ('form' === 'form' && is_array($pageAfter)) {
+                foreach ($pageAfter as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page[after]'] = $pageAfter instanceof DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
+            }
+        }
+
+        // query params
+        if ($sort !== null) {
+            if ('form' === 'form' && is_array($sort)) {
+                foreach ($sort as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['sort'] = $sort instanceof DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
+            }
+        }
 
         // path params
 

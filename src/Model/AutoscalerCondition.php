@@ -48,6 +48,9 @@ final class AutoscalerCondition implements Model, JsonSerializable
         return $this->threshold;
     }
 
+    /**
+     * Number of seconds during which the condition must be satisfied
+     */
     public function getDuration(): ?AutoscalerDuration
     {
         return $this->duration;

@@ -7,16 +7,22 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
-use Upsun\Api\SshKeysApi;
+use Upsun\Api\SshApi;
 use Upsun\Core\Tasks\SshTask;
 use Upsun\Core\TokenProvider;
+use Upsun\Model\ListUserSshKeys200Response;
 use Upsun\Model\SshKey;
 use Upsun\UpsunClient;
 
 class SshTaskTest extends BaseTestCase
 {
+    private const USER_ID = 'user-123';
+    private const KEY_ID = 'key-456';
+    private const KEY_VALUE = 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAbCd user@host';
+
     private SshTask $sshTask;
 
     /**
@@ -24,11 +30,11 @@ class SshTaskTest extends BaseTestCase
      */
     private ClientInterface $httpClient;
 
+    private ?RequestInterface $sentRequest = null;
+
     protected function setUp(): void
     {
         $this->httpClient = $this->createMock(ClientInterface::class);
-
-        $upsunClient = $this->createMock(UpsunClient::class);
 
         $apiClassParams = [
             new class implements TokenProvider
@@ -44,285 +50,273 @@ class SshTaskTest extends BaseTestCase
         ];
 
         $this->sshTask = new class (
-            $upsunClient,
-            new SshKeysApi(...$apiClassParams)
+            $this->createMock(UpsunClient::class),
+            new SshApi(...$apiClassParams)
         ) extends SshTask {
         };
     }
 
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testAddSshKey(): void
+    private function respondWith(int $status, ?array $body = null): void
     {
-        $userId = 'user-123';
-        $sshKeyValue = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... user@host';
-        $title = 'My SSH Key';
-        $expectedData = [
-            'id' => 1,
-            'title' => $title,
-            'value' => $sshKeyValue,
-            'fingerprint' => 'SHA256:abcd1234...',
-            'created_at' => '2024-01-01T10:00:00+00:00'
-        ];
-
         $this->httpClient
             ->expects($this->once())
             ->method('sendRequest')
-            ->willReturn(new Response(
-                201,
-                ['Content-Type' => 'application/json'],
-                json_encode($expectedData)
-            ));
+            ->willReturnCallback(function (RequestInterface $request) use ($status, $body): Response {
+                $this->sentRequest = $request;
 
-        $result = $this->sshTask->add($sshKeyValue, $userId, $title);
+                return new Response(
+                    $status,
+                    $body === null ? [] : ['Content-Type' => 'application/json'],
+                    $body === null ? '' : json_encode($body)
+                );
+            });
+    }
 
-        $this->assertInstanceOf(SshKey::class, $result);
-        $this->assertObjectProperties($result, $expectedData);
+    private function sshKeyData(?string $label = 'Laptop'): array
+    {
+        return [
+            'id' => self::KEY_ID,
+            'sha256' => 'SHA256:abcd1234',
+            'value' => self::KEY_VALUE,
+            'label' => $label,
+            'active' => true,
+            'user_id' => self::USER_ID,
+            'created_at' => '2026-01-01T10:00:00+00:00',
+            'updated_at' => '2026-01-01T10:00:00+00:00',
+        ];
     }
 
     /**
      * @throws ClientExceptionInterface
      */
-    public function testAddSshKeyWithoutTitle(): void
+    public function testAddPostsTheKeyToTheUser(): void
     {
-        $userId = 'user-123';
-        $sshKeyValue = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... user@host';
-        $expectedData = [
-            'id' => 1,
-            'value' => $sshKeyValue,
-            'fingerprint' => 'SHA256:abcd1234...',
-            'created_at' => '2024-01-01T10:00:00+00:00'
-        ];
+        $this->respondWith(201, $this->sshKeyData());
 
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                201,
-                ['Content-Type' => 'application/json'],
-                json_encode($expectedData)
-            ));
+        $result = $this->sshTask->add(self::USER_ID, self::KEY_VALUE, 'Laptop');
 
-        $result = $this->sshTask->add($sshKeyValue, $userId);
-
+        $this->assertSame('POST', $this->sentRequest->getMethod());
+        $this->assertSame('/users/user-123/ssh-keys', $this->sentRequest->getUri()->getPath());
+        $this->assertSame(
+            ['value' => self::KEY_VALUE, 'label' => 'Laptop'],
+            json_decode((string) $this->sentRequest->getBody(), true)
+        );
         $this->assertInstanceOf(SshKey::class, $result);
+        $this->assertSame(self::KEY_ID, $result->getId());
+        $this->assertSame('Laptop', $result->getLabel());
     }
 
-    public function testAddSshKeyWithEmptyValue(): void
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testAddWithoutLabelSendsOnlyTheValue(): void
+    {
+        $this->respondWith(201, $this->sshKeyData(null));
+
+        $this->sshTask->add(self::USER_ID, self::KEY_VALUE);
+
+        $body = json_decode((string) $this->sentRequest->getBody(), true);
+        $this->assertSame(self::KEY_VALUE, $body['value']);
+        $this->assertNull($body['label'] ?? null);
+    }
+
+    public function testAddWithEmptyValueIsRejected(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('SSH key value is required');
 
-        $this->sshTask->add('', 'user-123');
+        $this->sshTask->add(self::USER_ID, '');
     }
 
     /**
-     * @dataProvider invalidUserIdProvider
+     * @dataProvider invalidIdProvider
      */
-    public function testAddSshKeyWithInvalidUserId(string $userId): void
+    public function testAddWithInvalidUserIdIsRejected(string $userId): void
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $sshKeyValue = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... user@host';
-        $this->sshTask->add($sshKeyValue, $userId);
+        $this->sshTask->add($userId, self::KEY_VALUE);
     }
 
-    public function testAddSshKeyDuplicate(): void
+    public function testAddDuplicateKeyThrowsApiException(): void
     {
         $this->expectException(ApiException::class);
+        $this->respondWith(409, ['message' => 'SSH key already exists']);
 
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                409,
-                ['Content-Type' => 'application/json'],
-                json_encode(['message' => 'SSH key already exists'])
-            ));
-
-        $sshKeyValue = 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... user@host';
-        $this->sshTask->add($sshKeyValue, 'user-123');
+        $this->sshTask->add(self::USER_ID, self::KEY_VALUE);
     }
 
     /**
-     * @dataProvider sshKeyTypesProvider
      * @throws ClientExceptionInterface
      */
-    public function testAddDifferentSshKeyTypes(string $keyType, string $keyValue): void
+    public function testGetReadsTheKeyOfTheUser(): void
     {
-        $userId = 'user-123';
-        $expectedData = [
-            'id' => 1,
-            'value' => $keyValue,
-            'fingerprint' => 'SHA256:abcd1234...',
-            'created_at' => '2024-01-01T10:00:00+00:00'
+        $this->respondWith(200, $this->sshKeyData());
+
+        $result = $this->sshTask->get(self::USER_ID, self::KEY_ID);
+
+        $this->assertSame('GET', $this->sentRequest->getMethod());
+        $this->assertSame('/users/user-123/ssh-keys/key-456', $this->sentRequest->getUri()->getPath());
+        $this->assertSame(self::KEY_VALUE, $result->getValue());
+        $this->assertSame('SHA256:abcd1234', $result->getSha256());
+    }
+
+    /**
+     * @dataProvider invalidIdProvider
+     */
+    public function testGetWithInvalidKeyIdIsRejected(string $keyId): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->sshTask->get(self::USER_ID, $keyId);
+    }
+
+    /**
+     * @dataProvider invalidIdProvider
+     */
+    public function testGetWithInvalidUserIdIsRejected(string $userId): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->sshTask->get($userId, self::KEY_ID);
+    }
+
+    public function testGetUnknownKeyThrowsApiException(): void
+    {
+        $this->expectException(ApiException::class);
+        $this->respondWith(404, ['message' => 'SSH key not found']);
+
+        $this->sshTask->get(self::USER_ID, 'unknown');
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListReadsOnePageOfKeys(): void
+    {
+        $this->respondWith(200, ['items' => [$this->sshKeyData()], 'count' => 1]);
+
+        $result = $this->sshTask->list(self::USER_ID, pageSize: 10, sort: '-created_at');
+
+        $this->assertSame('GET', $this->sentRequest->getMethod());
+        $this->assertSame('/users/user-123/ssh-keys', $this->sentRequest->getUri()->getPath());
+        parse_str($this->sentRequest->getUri()->getQuery(), $query);
+        $this->assertSame('10', $query['page']['size']);
+        $this->assertSame('-created_at', $query['sort']);
+        $this->assertInstanceOf(ListUserSshKeys200Response::class, $result);
+        $this->assertSame(1, $result->getCount());
+        $this->assertContainsOnlyInstancesOf(SshKey::class, $result->getItems());
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListSendsTheCreatedAtFilter(): void
+    {
+        $this->respondWith(200, ['items' => [], 'count' => 0]);
+
+        $this->sshTask->list(self::USER_ID, filterCreatedAt: ['eq' => '2026-01-01T00:00:00+00:00']);
+
+        parse_str($this->sentRequest->getUri()->getQuery(), $query);
+        $this->assertSame('2026-01-01T00:00:00+00:00', $query['filter']['created_at']);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListSendsTheUpdatedAtFilter(): void
+    {
+        $this->respondWith(200, ['items' => [], 'count' => 0]);
+
+        $this->sshTask->list(self::USER_ID, filterUpdatedAt: ['eq' => '2026-02-01T00:00:00+00:00']);
+
+        parse_str($this->sentRequest->getUri()->getQuery(), $query);
+        $this->assertSame(['updated_at' => '2026-02-01T00:00:00+00:00'], $query['filter']);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     */
+    public function testListWithoutFiltersSendsNoQuery(): void
+    {
+        $this->respondWith(200, ['items' => [], 'count' => 0]);
+
+        $this->sshTask->list(self::USER_ID);
+
+        $this->assertSame('', $this->sentRequest->getUri()->getQuery());
+    }
+
+    /**
+     * The generated SshApi sends only the `eq` operator, so any other key must fail before the request.
+     *
+     * @dataProvider unsupportedDateFilterProvider
+     */
+    public function testListWithUnsupportedDateFilterOperatorIsRejected(string $argument, array $filter): void
+    {
+        $this->httpClient->expects($this->never())->method('sendRequest');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($argument . ' supports only the "eq" operator');
+
+        $this->sshTask->list(self::USER_ID, ...[$argument => $filter]);
+    }
+
+    public static function unsupportedDateFilterProvider(): array
+    {
+        return [
+            'created_at gte' => ['filterCreatedAt', ['gte' => '2026-01-01T00:00:00+00:00']],
+            'created_at between' => ['filterCreatedAt', ['between' => '2026-01-01,2026-02-01']],
+            'updated_at lt' => ['filterUpdatedAt', ['lt' => '2026-01-01T00:00:00+00:00']],
+            'updated_at eq with gt' => ['filterUpdatedAt', ['eq' => '2026-01-01T00:00:00+00:00', 'gt' => 'x']],
+            'unknown key' => ['filterCreatedAt', ['from' => '2026-01-01T00:00:00+00:00']],
         ];
+    }
 
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                201,
-                ['Content-Type' => 'application/json'],
-                json_encode($expectedData)
-            ));
+    /**
+     * @dataProvider invalidIdProvider
+     */
+    public function testListWithInvalidUserIdIsRejected(string $userId): void
+    {
+        $this->expectException(InvalidArgumentException::class);
 
-        $result = $this->sshTask->add($keyValue, $userId, $keyType);
-
-        $this->assertInstanceOf(SshKey::class, $result);
+        $this->sshTask->list($userId);
     }
 
     /**
      * @throws ClientExceptionInterface
      */
-    public function testGetSshKey(): void
+    public function testDeleteRemovesTheKeyOfTheUser(): void
     {
-        $keyId = 123;
-        $expectedData = [
-            'id' => $keyId,
-            'title' => 'My SSH Key',
-            'value' => 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... user@host',
-            'fingerprint' => 'SHA256:abcd1234...',
-            'created_at' => '2024-01-01T10:00:00+00:00'
-        ];
+        $this->respondWith(204);
 
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode($expectedData)
-            ));
+        $this->sshTask->delete(self::USER_ID, self::KEY_ID);
 
-        $result = $this->sshTask->get($keyId);
-
-        $this->assertInstanceOf(SshKey::class, $result);
-        $this->assertObjectProperties($result, $expectedData);
+        $this->assertSame('DELETE', $this->sentRequest->getMethod());
+        $this->assertSame('/users/user-123/ssh-keys/key-456', $this->sentRequest->getUri()->getPath());
     }
 
     /**
-     * @dataProvider invalidKeyIdProvider
+     * @dataProvider invalidIdProvider
      */
-    public function testGetSshKeyWithInvalidKeyId(int $keyId): void
+    public function testDeleteWithInvalidKeyIdIsRejected(string $keyId): void
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->sshTask->get($keyId);
+        $this->sshTask->delete(self::USER_ID, $keyId);
     }
 
-    public function testGetSshKeyNotFound(): void
+    public function testDeleteWithoutRecentAuthenticationThrowsApiException(): void
     {
         $this->expectException(ApiException::class);
+        $this->respondWith(403, ['message' => 'Forbidden']);
 
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                404,
-                ['Content-Type' => 'application/json'],
-                json_encode(['message' => 'SSH key not found'])
-            ));
-
-        $this->sshTask->get(99999);
+        $this->sshTask->delete(self::USER_ID, self::KEY_ID);
     }
 
-    /**
-     * @throws ClientExceptionInterface
-     */
-    public function testDeleteSshKey(): void
-    {
-        $keyId = 123;
-
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                204,
-                [],
-                ''
-            ));
-
-        $this->sshTask->delete($keyId);
-
-        // Assert no exception was thrown
-        $this->assertTrue(true);
-    }
-
-    /**
-     * @dataProvider invalidKeyIdProvider
-     */
-    public function testDeleteSshKeyWithInvalidKeyId(int $keyId): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        $this->sshTask->delete($keyId);
-    }
-
-    public function testDeleteSshKeyNotFound(): void
-    {
-        $this->expectException(ApiException::class);
-
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                404,
-                ['Content-Type' => 'application/json'],
-                json_encode(['message' => 'SSH key not found'])
-            ));
-
-        $this->sshTask->delete(99999);
-    }
-
-    public function testDeleteSshKeyForbidden(): void
-    {
-        $this->expectException(ApiException::class);
-
-        $this->httpClient
-            ->expects($this->once())
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                403,
-                ['Content-Type' => 'application/json'],
-                json_encode(['message' => 'Forbidden'])
-            ));
-
-        $this->sshTask->delete(123);
-    }
-
-    public static function invalidUserIdProvider(): array
+    public static function invalidIdProvider(): array
     {
         return [
             'empty string' => [''],
             'only spaces' => ['   '],
-        ];
-    }
-
-    public static function invalidKeyIdProvider(): array
-    {
-        return [
-            'zero' => [0],
-            'negative' => [-1],
-        ];
-    }
-
-    public static function sshKeyTypesProvider(): array
-    {
-        return [
-            'RSA' => [
-                'RSA Key',
-                'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... user@host'
-            ],
-            'ED25519' => [
-                'ED25519 Key',
-                'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAbCd... user@host'
-            ],
-            'ECDSA' => [
-                'ECDSA Key',
-                'ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlz... user@host'
-            ],
         ];
     }
 }

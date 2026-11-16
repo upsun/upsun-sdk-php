@@ -377,6 +377,8 @@ final class UserProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/get-address
+     *
+     * @deprecated
      */
     public function getAddress(
         string $userId
@@ -388,6 +390,8 @@ final class UserProfilesApi extends AbstractApi
 
     /**
      * Get a user address with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $userId
      *         The UUID of the user (required)
@@ -436,6 +440,8 @@ final class UserProfilesApi extends AbstractApi
      *         The UUID of the user (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getAddressRequest(
         string $userId
@@ -531,6 +537,8 @@ final class UserProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/get-profile
+     *
+     * @deprecated
      */
     public function getProfile(
         string $userId
@@ -542,6 +550,8 @@ final class UserProfilesApi extends AbstractApi
 
     /**
      * Get a single user profile with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $userId
      *         The UUID of the user (required)
@@ -590,6 +600,8 @@ final class UserProfilesApi extends AbstractApi
      *         The UUID of the user (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getProfileRequest(
         string $userId
@@ -808,6 +820,8 @@ final class UserProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/update-address
+     *
+     * @deprecated
      */
     public function updateAddress(
         string $userId,
@@ -821,6 +835,8 @@ final class UserProfilesApi extends AbstractApi
 
     /**
      * Update a user address with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $userId
      *         The UUID of the user (required)
@@ -871,6 +887,8 @@ final class UserProfilesApi extends AbstractApi
      *         The UUID of the user (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function updateAddressRequest(
         string $userId,
@@ -976,6 +994,8 @@ final class UserProfilesApi extends AbstractApi
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/update-profile
+     *
+     * @deprecated
      */
     public function updateProfile(
         string $userId,
@@ -989,6 +1009,8 @@ final class UserProfilesApi extends AbstractApi
 
     /**
      * Update a user profile with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $userId
      *         The UUID of the user (required)
@@ -1039,6 +1061,8 @@ final class UserProfilesApi extends AbstractApi
      *         The UUID of the user (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function updateProfileRequest(
         string $userId,

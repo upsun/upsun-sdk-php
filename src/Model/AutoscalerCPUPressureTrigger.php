@@ -50,7 +50,7 @@ final class AutoscalerCPUPressureTrigger implements Model, JsonSerializable
     }
 
     /**
-     * Trigger condition settings
+     * Lower bound on resource usage. Uses a longer duration than scale-up to prevent premature downscaling.
      */
     public function getDown(): ?AutoscalerCondition
     {
@@ -58,7 +58,7 @@ final class AutoscalerCPUPressureTrigger implements Model, JsonSerializable
     }
 
     /**
-     * Trigger condition settings
+     * Upper bound on resource usage
      */
     public function getUp(): ?AutoscalerCondition
     {

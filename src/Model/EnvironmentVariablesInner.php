@@ -19,6 +19,7 @@ final class EnvironmentVariablesInner implements Model, JsonSerializable
         private readonly bool $isJson,
         private readonly bool $visibleBuild,
         private readonly bool $visibleRuntime,
+        private readonly array $applicationScope,
         private readonly ?string $value = null,
     ) {
     }
@@ -36,6 +37,7 @@ final class EnvironmentVariablesInner implements Model, JsonSerializable
             'isJson' => $this->isJson,
             'visibleBuild' => $this->visibleBuild,
             'visibleRuntime' => $this->visibleRuntime,
+            'applicationScope' => $this->applicationScope,
             'value' => $this->value,
         ];
     }
@@ -68,6 +70,11 @@ final class EnvironmentVariablesInner implements Model, JsonSerializable
     public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
+    }
+
+    public function getApplicationScope(): array
+    {
+        return $this->applicationScope;
     }
 
     public function getValue(): ?string

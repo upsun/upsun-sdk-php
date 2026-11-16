@@ -13,11 +13,6 @@ use JsonSerializable;
  */
 final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, IntegrationCreateCreateInput
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
     public function __construct(
         private readonly string $type,
         private readonly string $repository,
@@ -26,7 +21,7 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
         private readonly ?int $pullRequestsMaxPages = null,
         private readonly ?bool $fetchBranches = null,
         private readonly ?bool $pruneBranches = null,
-        private readonly ?string $environmentInitResources = null,
+        private readonly ?EnvironmentInitResources1 $environmentInitResources = null,
         private readonly ?bool $buildPullRequests = null,
         private readonly ?bool $pullRequestsCloneParentData = null,
         private readonly ?bool $resyncPullRequests = null,
@@ -93,9 +88,9 @@ final class BitbucketIntegrationCreateInput implements Model, JsonSerializable, 
     }
 
     /**
-     * The resources used when initializing a new service
+     * The resources used when initializing a new environment, per environment type
      */
-    public function getEnvironmentInitResources(): ?string
+    public function getEnvironmentInitResources(): ?EnvironmentInitResources1
     {
         return $this->environmentInitResources;
     }

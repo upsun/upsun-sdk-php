@@ -21,5 +21,7 @@ interface Domain
 
     public function getName(): mixed;
 
+    public function getRegisteredName(): mixed;
+
     public function getAttributes(): mixed;
 }

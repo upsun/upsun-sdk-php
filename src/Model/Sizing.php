@@ -66,7 +66,7 @@ final class Sizing implements Model, JsonSerializable
     }
 
     /**
-     * @return TasksValue[]
+     * @return TasksValue1[]
      */
     public function getTasks(): array
     {

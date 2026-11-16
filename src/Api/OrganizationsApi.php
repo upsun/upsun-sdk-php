@@ -206,7 +206,9 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Delete organization
      *
-     * Deletes the specified organization.
+     * Deletes the specified organization. The organization must not have any projects with the status `active`,
+     * `suspended` or `requested` (still provisioning). Projects with the status `failed` or `deleted` do not block the
+     * deletion.
      *
      * @param  string $organizationId
      *         The ID of the organization. (required)

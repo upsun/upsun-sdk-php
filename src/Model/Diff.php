@@ -16,10 +16,10 @@ final class Diff implements Model, JsonSerializable
     public function __construct(
         private readonly string $id,
         private readonly string $diff,
-        private readonly array $oldId,
         private readonly ?string $newPath,
         private readonly ?string $newId,
         private readonly ?string $oldPath,
+        private readonly ?string $oldId,
     ) {
     }
 
@@ -85,7 +85,10 @@ final class Diff implements Model, JsonSerializable
         return $this->oldPath;
     }
 
-    public function getOldId(): array
+    /**
+     * The old object ID of the file in the diff
+     */
+    public function getOldId(): ?string
     {
         return $this->oldId;
     }

@@ -21,8 +21,6 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
         private readonly ObservabilityEntrypoint200ResponseLinksBlackfirePhpServerCaches $blackfirePhpServerCaches,
         private readonly ObservabilityEntrypoint200ResponseLinksBlackfireServerGlobal $blackfireServerGlobal,
         private readonly ObservabilityEntrypoint200ResponseLinksBlackfireServerTransactionsBreakdown $blackfireServerTransactionsBreakdown,
-        private readonly ObservabilityEntrypoint200ResponseLinksLogsQuery $logsQuery,
-        private readonly ObservabilityEntrypoint200ResponseLinksLogsOverview $logsOverview,
         private readonly ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUrls $httpMetricsTimelineUrls,
         private readonly ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineIps $httpMetricsTimelineIps,
         private readonly ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUserAgents $httpMetricsTimelineUserAgents,
@@ -31,6 +29,8 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
         private readonly ObservabilityEntrypoint200ResponseLinksConprofApplicationFilters $conprofApplicationFilters,
         private readonly ObservabilityEntrypoint200ResponseLinksConprofTimeline $conprofTimeline,
         private readonly ObservabilityEntrypoint200ResponseLinksConprofFlamegraph $conprofFlamegraph,
+        private readonly ?ObservabilityEntrypoint200ResponseLinksLogsQuery $logsQuery = null,
+        private readonly ?ObservabilityEntrypoint200ResponseLinksLogsOverview $logsOverview = null,
     ) {
     }
 
@@ -49,8 +49,6 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
             'blackfirePhpServerCaches' => $this->blackfirePhpServerCaches,
             'blackfireServerGlobal' => $this->blackfireServerGlobal,
             'blackfireServerTransactionsBreakdown' => $this->blackfireServerTransactionsBreakdown,
-            'logsQuery' => $this->logsQuery,
-            'logsOverview' => $this->logsOverview,
             'httpMetricsTimelineUrls' => $this->httpMetricsTimelineUrls,
             'httpMetricsTimelineIps' => $this->httpMetricsTimelineIps,
             'httpMetricsTimelineUserAgents' => $this->httpMetricsTimelineUserAgents,
@@ -59,6 +57,8 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
             'conprofApplicationFilters' => $this->conprofApplicationFilters,
             'conprofTimeline' => $this->conprofTimeline,
             'conprofFlamegraph' => $this->conprofFlamegraph,
+            'logsQuery' => $this->logsQuery,
+            'logsOverview' => $this->logsOverview,
         ];
     }
 
@@ -105,16 +105,6 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
         return $this->blackfireServerTransactionsBreakdown;
     }
 
-    public function getLogsQuery(): ObservabilityEntrypoint200ResponseLinksLogsQuery
-    {
-        return $this->logsQuery;
-    }
-
-    public function getLogsOverview(): ObservabilityEntrypoint200ResponseLinksLogsOverview
-    {
-        return $this->logsOverview;
-    }
-
     public function getHttpMetricsTimelineUrls(): ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUrls
     {
         return $this->httpMetricsTimelineUrls;
@@ -153,5 +143,15 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
     public function getConprofFlamegraph(): ObservabilityEntrypoint200ResponseLinksConprofFlamegraph
     {
         return $this->conprofFlamegraph;
+    }
+
+    public function getLogsQuery(): ?ObservabilityEntrypoint200ResponseLinksLogsQuery
+    {
+        return $this->logsQuery;
+    }
+
+    public function getLogsOverview(): ?ObservabilityEntrypoint200ResponseLinksLogsOverview
+    {
+        return $this->logsOverview;
     }
 }
