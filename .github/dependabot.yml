@@ -9,8 +9,8 @@ updates:
       interval: daily
       time: "06:00"
       timezone: Europe/Paris
-    # Wait 7 days after a release before proposing it, to let the registry pull compromised versions.
-    # Cooldown does not delay security updates.
+    # Actions are pinned to commit SHAs, so a new release runs only after its Dependabot PR is merged.
+    # Waiting 7 days gives time to find a compromised release. Cooldown does not delay security updates.
     cooldown:
       default-days: 7
     commit-message:
