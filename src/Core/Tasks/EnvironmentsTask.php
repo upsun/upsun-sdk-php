@@ -20,6 +20,7 @@ use Upsun\Model\Environment;
 use Upsun\Model\EnvironmentActivateInput;
 use Upsun\Model\EnvironmentBranchInput;
 use Upsun\Model\EnvironmentInitializeInput;
+use Upsun\Model\EnvironmentMaintenanceRedeployInput;
 use Upsun\Model\EnvironmentMergeInput;
 use Upsun\Model\EnvironmentPatch;
 use Upsun\Model\EnvironmentSourceOperation;
@@ -352,6 +353,26 @@ class EnvironmentsTask extends TaskBase
         $this->checkEnvironmentId($environmentId);
 
         return $this->envApi->redeployEnvironment(projectId: $projectId, environmentId: $environmentId);
+    }
+
+    /**
+     * Schedule a maintenance redeploy of an environment
+     *
+     * @param bool $safe Redeploy even if the last state update was not successful, and always upgrade the service images
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if required parameters are missing or invalid
+     */
+    public function maintenanceRedeploy(string $projectId, string $environmentId, bool $safe = false): AcceptedResponse
+    {
+        $this->checkProjectId($projectId);
+        $this->checkEnvironmentId($environmentId);
+
+        return $this->envApi->maintenanceRedeployEnvironment(
+            projectId: $projectId,
+            environmentId: $environmentId,
+            environmentMaintenanceRedeployInput: new EnvironmentMaintenanceRedeployInput(safe: $safe)
+        );
     }
 
     /**
