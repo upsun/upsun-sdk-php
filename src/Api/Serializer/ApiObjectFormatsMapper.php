@@ -1740,6 +1740,10 @@ final class ApiObjectFormatsMapper
             'resources' => null
         ],
 
+        'Upsun\Model\EnvironmentMaintenanceRedeployInput' => [
+            'safe' => null
+        ],
+
         'Upsun\Model\EnvironmentMergeInput' => [
             'resources' => null
         ],
@@ -2426,6 +2430,37 @@ final class ApiObjectFormatsMapper
             'tlsVerify' => null
         ],
 
+        'Upsun\Model\HttpMetricsEdgeTimeline200Response' => [
+            'grain' => null,
+            'from' => null,
+            'to' => null,
+            'projectId' => null,
+            'environmentId' => null,
+            'environmentType' => null,
+            'branchMachineName' => null,
+            'topHitsTimeline' => null
+        ],
+
+        'Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimeline' => [
+            'data' => null
+        ],
+
+        'Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimelineDataInner' => [
+            'timestamp' => null,
+            'totalCount' => null,
+            'responseSize' => null,
+            'codes' => null
+        ],
+
+        'Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimelineDataInnerCodes' => [
+            'uNKNOWN' => null,
+            '_1xX' => null,
+            '_2xX' => null,
+            '_3xX' => null,
+            '_4xX' => null,
+            '_5xX' => null
+        ],
+
         'Upsun\Model\HttpMetricsTimelineIps200Response' => [
             'grain' => null,
             'from' => null,
@@ -2637,7 +2672,8 @@ final class ApiObjectFormatsMapper
 
         'Upsun\Model\ImageLifecycleValidation' => [
             'enabled' => null,
-            'enforce' => null
+            'enforce' => null,
+            'showDates' => null
         ],
 
         'Upsun\Model\ImageTypeRestrictions' => [
@@ -3447,6 +3483,7 @@ final class ApiObjectFormatsMapper
             'httpMetricsTimelineUrls' => null,
             'httpMetricsTimelineIps' => null,
             'httpMetricsTimelineUserAgents' => null,
+            'httpMetricsEdgeTimeline' => null,
             'consoleSandboxAccess' => null,
             'conprofApplications' => null,
             'conprofApplicationFilters' => null,
@@ -3485,6 +3522,10 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConsoleSandboxAccess' => [
+            'href' => 'uri'
+        ],
+
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsEdgeTimeline' => [
             'href' => 'uri'
         ],
 

@@ -851,7 +851,7 @@ class ProjectsTaskTest extends BaseTestCase
             'validation_engine' => 'pydantic',
             'cli_name' => 'upsun',
             'enable_maintenance_window_hard_check' => false,
-            'image_lifecycle' => ['enabled' => true, 'enforce' => false],
+            'image_lifecycle' => ['enabled' => true, 'enforce' => false, 'show_dates' => false],
             'internal_storage_resources' => ['cpu' => 0.5, 'memory' => 512],
             'sizing_api_enabled' => true,
             'enable_cache_grace_period' => true,

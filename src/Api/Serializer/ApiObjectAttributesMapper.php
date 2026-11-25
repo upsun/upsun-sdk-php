@@ -1531,6 +1531,9 @@ final class ApiObjectAttributesMapper
             'files' => 'files',
             'resources' => 'resources'
         ],
+        'Upsun\Model\EnvironmentMaintenanceRedeployInput' => [
+            'safe' => 'safe'
+        ],
         'Upsun\Model\EnvironmentMergeInput' => [
             'resources' => 'resources'
         ],
@@ -2126,6 +2129,33 @@ final class ApiObjectAttributesMapper
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify'
         ],
+        'Upsun\Model\HttpMetricsEdgeTimeline200Response' => [
+            'grain' => '_grain',
+            'from' => '_from',
+            'to' => '_to',
+            'projectId' => '_project_id',
+            'environmentId' => '_environment_id',
+            'environmentType' => '_environment_type',
+            'branchMachineName' => '_branch_machine_name',
+            'topHitsTimeline' => 'top_hits_timeline'
+        ],
+        'Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimeline' => [
+            'data' => 'data'
+        ],
+        'Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimelineDataInner' => [
+            'timestamp' => 'timestamp',
+            'totalCount' => '_total_count',
+            'responseSize' => 'response_size',
+            'codes' => 'codes'
+        ],
+        'Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimelineDataInnerCodes' => [
+            'uNKNOWN' => 'UNKNOWN',
+            '_1xX' => '1XX',
+            '_2xX' => '2XX',
+            '_3xX' => '3XX',
+            '_4xX' => '4XX',
+            '_5xX' => '5XX'
+        ],
         'Upsun\Model\HttpMetricsTimelineIps200Response' => [
             'grain' => '_grain',
             'from' => '_from',
@@ -2314,7 +2344,8 @@ final class ApiObjectAttributesMapper
         ],
         'Upsun\Model\ImageLifecycleValidation' => [
             'enabled' => 'enabled',
-            'enforce' => 'enforce'
+            'enforce' => 'enforce',
+            'showDates' => 'show_dates'
         ],
         'Upsun\Model\ImageTypeRestrictions' => [
             'only' => 'only',
@@ -3029,6 +3060,7 @@ final class ApiObjectAttributesMapper
             'httpMetricsTimelineUrls' => 'http_metrics_timeline_urls',
             'httpMetricsTimelineIps' => 'http_metrics_timeline_ips',
             'httpMetricsTimelineUserAgents' => 'http_metrics_timeline_user_agents',
+            'httpMetricsEdgeTimeline' => 'http_metrics_edge_timeline',
             'consoleSandboxAccess' => 'console_sandbox_access',
             'conprofApplications' => 'conprof_applications',
             'conprofApplicationFilters' => 'conprof_application_filters',
@@ -3059,6 +3091,9 @@ final class ApiObjectAttributesMapper
             'href' => 'href'
         ],
         'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConsoleSandboxAccess' => [
+            'href' => 'href'
+        ],
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsEdgeTimeline' => [
             'href' => 'href'
         ],
         'Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineIps' => [

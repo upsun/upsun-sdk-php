@@ -18,6 +18,7 @@ use Upsun\Model\EnvironmentActivateInput;
 use Upsun\Model\EnvironmentBranchInput;
 use Upsun\Model\EnvironmentDeployInput;
 use Upsun\Model\EnvironmentInitializeInput;
+use Upsun\Model\EnvironmentMaintenanceRedeployInput;
 use Upsun\Model\EnvironmentMergeInput;
 use Upsun\Model\EnvironmentPatch;
 use Upsun\Model\EnvironmentSynchronizeInput;
@@ -1503,6 +1504,7 @@ final class EnvironmentApi extends AbstractApi
 
     /**
      *
+     * @param  \Upsun\Model\EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput (required)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
@@ -1510,27 +1512,32 @@ final class EnvironmentApi extends AbstractApi
      */
     public function maintenanceRedeployEnvironment(
         string $projectId,
-        string $environmentId
+        string $environmentId,
+        EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput
     ): AcceptedResponse {
         return $this->maintenanceRedeployEnvironmentWithHttpInfo(
             $projectId,
-            $environmentId
+            $environmentId,
+            $environmentMaintenanceRedeployInput
         );
     }
 
     /**
      *
+     * @param  \Upsun\Model\EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput (required)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
     private function maintenanceRedeployEnvironmentWithHttpInfo(
         string $projectId,
-        string $environmentId
+        string $environmentId,
+        EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput
     ): AcceptedResponse {
         $request = $this->maintenanceRedeployEnvironmentRequest(
             $projectId,
-            $environmentId
+            $environmentId,
+            $environmentMaintenanceRedeployInput
         );
 
         try {
@@ -1563,12 +1570,14 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Create request for operation 'maintenanceRedeployEnvironment'
      *
+     * @param  \Upsun\Model\EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput (required)
      *
      * @throws InvalidArgumentException
      */
     private function maintenanceRedeployEnvironmentRequest(
         string $projectId,
-        string $environmentId
+        string $environmentId,
+        EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
@@ -1581,6 +1590,13 @@ final class EnvironmentApi extends AbstractApi
         if (empty($environmentId)) {
             throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId
+                when calling maintenanceRedeployEnvironment'
+            );
+        }
+        // verify the required parameter 'environmentMaintenanceRedeployInput' is set
+        if (empty($environmentMaintenanceRedeployInput)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $environmentMaintenanceRedeployInput
                 when calling maintenanceRedeployEnvironment'
             );
         }
@@ -1613,12 +1629,20 @@ final class EnvironmentApi extends AbstractApi
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
-            '',
+            'application/json',
             $multipart
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (isset($environmentMaintenanceRedeployInput)) {
+            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentMaintenanceRedeployInput)
+                );
+            } else {
+                $httpBody = $environmentMaintenanceRedeployInput;
+            }
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
