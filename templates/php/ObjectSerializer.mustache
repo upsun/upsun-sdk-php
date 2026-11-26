@@ -49,16 +49,19 @@ class ObjectSerializer
         if (\is_object($data)) {
             $values = [];
             if ($data instanceof Model) {
-                $formats = ApiObjectFormatsMapper::openApiFormats($data->getModelName());
+                $modelName = $data->getModelName();
+                $types = ApiObjectTypesMapper::openApiTypes($modelName);
+                $formats = ApiObjectFormatsMapper::openApiFormats($modelName);
 
-                foreach (ApiObjectTypesMapper::openApiTypes($data->getModelName()) as $property => $openApiType) {
-                    $camelCaseProperty = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $property))));
-                    $getterMethod = 'get' . ucfirst($camelCaseProperty);
+                // The generator renames some properties (`1XX` becomes `_1xX`): the attribute map links both names.
+                foreach (ApiObjectAttributesMapper::attributeMap($modelName) as $property => $name) {
+                    $openApiType = $types[$name];
+                    $getterMethod = 'get' . ucfirst(ltrim($property, '_'));
                     if (method_exists($data, $getterMethod)) {
                         $value = $data->$getterMethod();
                     } else {
                         throw new InvalidArgumentException(
-                            "No valid getter get" . ucfirst($property) . " found for " . $property
+                            "No valid getter " . $getterMethod . " found for " . $property
                         );
                     }
 
@@ -81,8 +84,7 @@ class ObjectSerializer
                     }
 
                     if ($value !== null) {
-                        $values[ApiObjectAttributesMapper::attributeMap($data->getModelName())[$camelCaseProperty]]
-                            = self::sanitizeForSerialization($value, $openApiType, $formats[$camelCaseProperty]);
+                        $values[$name] = self::sanitizeForSerialization($value, $openApiType, $formats[$property]);
                     }
                 }
             } else {
