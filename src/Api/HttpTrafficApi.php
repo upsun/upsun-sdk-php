@@ -49,6 +49,283 @@ final class HttpTrafficApi extends AbstractApi
     }
 
     /**
+     * Get edge HTTP traffic timeline
+     *
+     * Returns the HTTP requests and bandwidth seen by the global edge (Cloudflare) for the environment, including
+     * requests answered from the edge cache or blocked there. The grain is at least 60 seconds.
+     *
+     * @param  string $projectId (required)
+     * @param  string $environmentId (required)
+     * @param  int $from (required)
+     * @param  int $to (required)
+     * @param  int|null $grain (optional)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @see https://docs.upsun.com/api/#tag/Http-Traffic/operation/http_metrics_edge_timeline
+     */
+    public function httpMetricsEdgeTimeline(
+        string $projectId,
+        string $environmentId,
+        int $from,
+        int $to,
+        ?int $grain = null
+    ): mixed {
+        return $this->httpMetricsEdgeTimelineWithHttpInfo(
+            $projectId,
+            $environmentId,
+            $from,
+            $to,
+            $grain
+        );
+    }
+
+    /**
+     * Get edge HTTP traffic timeline with HTTP Info
+     *
+     * @param  string $projectId (required)
+     * @param  string $environmentId (required)
+     * @param  int $from (required)
+     * @param  int $to (required)
+     * @param  int|null $grain (optional)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
+    private function httpMetricsEdgeTimelineWithHttpInfo(
+        string $projectId,
+        string $environmentId,
+        int $from,
+        int $to,
+        ?int $grain = null
+    ): mixed {
+        $request = $this->httpMetricsEdgeTimelineRequest(
+            $projectId,
+            $environmentId,
+            $from,
+            $to,
+            $grain
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\HttpMetricsEdgeTimeline200Response',
+                $request,
+                $response
+            );
+        } catch (Exception $exception) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $exception->getCode(),
+                    '/projects/{projectId}/environments/{environmentId}/observability/http/edge'
+                ),
+                $request,
+                $response ?? null,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Create request for operation 'httpMetricsEdgeTimeline'
+     *
+     * @param  string $projectId (required)
+     * @param  string $environmentId (required)
+     * @param  int $from (required)
+     * @param  int $to (required)
+     * @param  int|null $grain (optional)
+     *
+     * @throws InvalidArgumentException
+     */
+    private function httpMetricsEdgeTimelineRequest(
+        string $projectId,
+        string $environmentId,
+        int $from,
+        int $to,
+        ?int $grain = null
+    ): RequestInterface {
+        // verify the required parameter 'projectId' is set
+        if (empty($projectId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $projectId
+                when calling httpMetricsEdgeTimeline'
+            );
+        }
+
+        if (!preg_match("/[a-z0-9]+/", $projectId)) {
+            throw new InvalidArgumentException(
+                "invalid value for \"projectId\" when calling HttpTrafficApi.httpMetricsEdgeTimeline,
+                must conform to the pattern /[a-z0-9]+/."
+            );
+        }
+
+        // verify the required parameter 'environmentId' is set
+        if (empty($environmentId)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $environmentId
+                when calling httpMetricsEdgeTimeline'
+            );
+        }
+
+        if (!preg_match("/.+/", $environmentId)) {
+            throw new InvalidArgumentException(
+                "invalid value for \"environmentId\" when calling HttpTrafficApi.httpMetricsEdgeTimeline,
+                must conform to the pattern /.+/."
+            );
+        }
+
+        // verify the required parameter 'from' is set
+        if (empty($from)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $from
+                when calling httpMetricsEdgeTimeline'
+            );
+        }
+        // verify the required parameter 'to' is set
+        if (empty($to)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $to
+                when calling httpMetricsEdgeTimeline'
+            );
+        }
+
+        if ($grain !== null && $grain < 60) {
+            throw new InvalidArgumentException(
+                'invalid value for "$grain" when calling HttpTrafficApi.httpMetricsEdgeTimeline,
+                must be bigger than or equal to 60.'
+            );
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/observability/http/edge';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // query params
+        if ($from !== null) {
+            if ('form' === 'form' && is_array($from)) {
+                foreach ($from as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['from'] = $from instanceof DateTime
+                    ? $from->format(DATE_ATOM)
+                    : ($from);
+            }
+        }
+
+        // query params
+        if ($to !== null) {
+            if ('form' === 'form' && is_array($to)) {
+                foreach ($to as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['to'] = $to instanceof DateTime
+                    ? $to->format(DATE_ATOM)
+                    : ($to);
+            }
+        }
+
+        // query params
+        if ($grain !== null) {
+            if ('form' === 'form' && is_array($grain)) {
+                foreach ($grain as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['grain'] = $grain instanceof DateTime
+                    ? $grain->format(DATE_ATOM)
+                    : ($grain);
+            }
+        }
+
+        // path params
+
+        if ($projectId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'projectId' . '}',
+                ObjectSerializer::toPathValue($projectId),
+                $resourcePath
+            );
+        }
+        // path params
+
+        if ($environmentId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'environmentId' . '}',
+                ObjectSerializer::toPathValue($environmentId),
+                $resourcePath
+            );
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+        if ($this->config->getUpsunClientHeader()) {
+            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+
+    /**
      * Get HTTP traffic timeline by IP
      *
      * Returns HTTP traffic analytics grouped by IP address with IPs ranked by impact (response time × request count).

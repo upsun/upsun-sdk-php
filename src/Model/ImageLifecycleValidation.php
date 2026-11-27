@@ -17,6 +17,7 @@ final class ImageLifecycleValidation implements Model, JsonSerializable
     public function __construct(
         private readonly bool $enabled,
         private readonly bool $enforce,
+        private readonly bool $showDates,
     ) {
     }
 
@@ -30,6 +31,7 @@ final class ImageLifecycleValidation implements Model, JsonSerializable
         return [
             'enabled' => $this->enabled,
             'enforce' => $this->enforce,
+            'showDates' => $this->showDates,
         ];
     }
 
@@ -54,5 +56,14 @@ final class ImageLifecycleValidation implements Model, JsonSerializable
     public function getEnforce(): bool
     {
         return $this->enforce;
+    }
+
+    /**
+     * When True, image lifecycle messages include the sunset and decommission dates and the days-remaining countdown.
+     * When False, they keep their warning or blocking meaning but carry no date.
+     */
+    public function getShowDates(): bool
+    {
+        return $this->showDates;
     }
 }

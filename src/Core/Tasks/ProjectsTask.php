@@ -21,6 +21,7 @@ use Upsun\Model\Domain;
 use Upsun\Model\DomainCreateInput;
 use Upsun\Model\DomainPatch;
 use Upsun\Model\Environment;
+use Upsun\Model\EnvironmentMaintenanceRedeployInput;
 use Upsun\Model\Integration;
 use Upsun\Model\IntegrationCreateCreateInput;
 use Upsun\Model\IntegrationPatch;
@@ -75,6 +76,24 @@ class ProjectsTask extends TaskBase
         $this->checkProjectId($projectId);
 
         return $this->prjApi->actionProjectsClearBuildCache(projectId: $projectId);
+    }
+
+    /**
+     * Schedule a maintenance redeploy of all the eligible environments of a project.
+     *
+     * @param bool $safe Redeploy even if the last state update was not successful, and always upgrade the service images
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @throws InvalidArgumentException if the project ID is invalid
+     */
+    public function maintenanceRedeploy(string $projectId, bool $safe = false): AcceptedResponse
+    {
+        $this->checkProjectId($projectId);
+
+        return $this->prjApi->maintenanceRedeployProject(
+            projectId: $projectId,
+            environmentMaintenanceRedeployInput: new EnvironmentMaintenanceRedeployInput(safe: $safe)
+        );
     }
 
     /**

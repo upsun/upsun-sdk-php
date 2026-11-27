@@ -13,7 +13,6 @@ use Upsun\Api\ApiTokensApi;
 use Upsun\Api\AutoscalingApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
-use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Api\EnvironmentActivityApi;
@@ -199,7 +198,6 @@ class UpsunClient
         $autoscalingApi = new AutoscalingApi(...$taskParams);
         $certManagementApi = new CertManagementApi(...$taskParams);
         $connectionsApi = new ConnectionsApi(...$taskParams);
-        $defaultApi = new DefaultApi(...$taskParams);
         $deploymentApi = new DeploymentApi(...$taskParams);
         $domainManagementApi = new DomainManagementApi(...$taskParams);
         $environmentActivityApi = new EnvironmentActivityApi(...$taskParams);
@@ -336,7 +334,6 @@ class UpsunClient
         );
         $this->supportTickets = new SupportTicketsTask(
             $this,
-            $defaultApi,
             $supportApi
         );
         $this->sshTask = new SshTask(

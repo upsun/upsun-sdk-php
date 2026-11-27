@@ -13,6 +13,7 @@ use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\TokenProvider;
 use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentMaintenanceRedeployInput;
 use Upsun\Model\Project;
 use Upsun\Model\ProjectCapabilities;
 
@@ -502,30 +503,36 @@ final class ProjectApi extends AbstractApi
 
     /**
      *
+     * @param  \Upsun\Model\EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput (required)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Project/operation/maintenance-redeploy-project
      */
     public function maintenanceRedeployProject(
-        string $projectId
+        string $projectId,
+        EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput
     ): AcceptedResponse {
         return $this->maintenanceRedeployProjectWithHttpInfo(
-            $projectId
+            $projectId,
+            $environmentMaintenanceRedeployInput
         );
     }
 
     /**
      *
+     * @param  \Upsun\Model\EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput (required)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
     */
     private function maintenanceRedeployProjectWithHttpInfo(
-        string $projectId
+        string $projectId,
+        EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput
     ): AcceptedResponse {
         $request = $this->maintenanceRedeployProjectRequest(
-            $projectId
+            $projectId,
+            $environmentMaintenanceRedeployInput
         );
 
         try {
@@ -558,16 +565,25 @@ final class ProjectApi extends AbstractApi
     /**
      * Create request for operation 'maintenanceRedeployProject'
      *
+     * @param  \Upsun\Model\EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput (required)
      *
      * @throws InvalidArgumentException
      */
     private function maintenanceRedeployProjectRequest(
-        string $projectId
+        string $projectId,
+        EnvironmentMaintenanceRedeployInput $environmentMaintenanceRedeployInput
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
         if (empty($projectId)) {
             throw new InvalidArgumentException(
                 'Missing the required parameter $projectId
+                when calling maintenanceRedeployProject'
+            );
+        }
+        // verify the required parameter 'environmentMaintenanceRedeployInput' is set
+        if (empty($environmentMaintenanceRedeployInput)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $environmentMaintenanceRedeployInput
                 when calling maintenanceRedeployProject'
             );
         }
@@ -591,12 +607,20 @@ final class ProjectApi extends AbstractApi
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
-            '',
+            'application/json',
             $multipart
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (isset($environmentMaintenanceRedeployInput)) {
+            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentMaintenanceRedeployInput)
+                );
+            } else {
+                $httpBody = $environmentMaintenanceRedeployInput;
+            }
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

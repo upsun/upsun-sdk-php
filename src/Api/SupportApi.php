@@ -14,6 +14,7 @@ use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Api\Serializer\ObjectSerializer;
 use Upsun\Core\TokenProvider;
 use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\ListTickets200Response;
 use Upsun\Model\Ticket;
 use Upsun\Model\UpdateTicketRequest;
 
@@ -54,11 +55,14 @@ final class SupportApi extends AbstractApi
     /**
      * Create a new support ticket
      *
+     * Deprecated. This endpoint will be removed on 2027-03-01.
      *
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Support/operation/create-ticket
+     *
+     * @deprecated
      */
     public function createTicket(
         ?CreateTicketRequest $createTicketRequest = null
@@ -70,6 +74,8 @@ final class SupportApi extends AbstractApi
 
     /**
      * Create a new support ticket with HTTP Info
+     *
+     * @deprecated
      *
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -114,6 +120,8 @@ final class SupportApi extends AbstractApi
      *
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function createTicketRequest(
         ?CreateTicketRequest $createTicketRequest = null
@@ -192,6 +200,7 @@ final class SupportApi extends AbstractApi
     /**
      * List support ticket categories
      *
+     * Deprecated. This endpoint will be removed on 2027-03-01.
      *
      * @param  string|null $subscriptionId (optional)
      * @param  string|null $organizationId (optional)
@@ -201,6 +210,8 @@ final class SupportApi extends AbstractApi
      *
      * @return \Upsun\Model\ListTicketCategories200ResponseInner[]
      * @see https://docs.upsun.com/api/#tag/Support/operation/list-ticket-categories
+     *
+     * @deprecated
      */
     public function listTicketCategories(
         ?string $subscriptionId = null,
@@ -214,6 +225,8 @@ final class SupportApi extends AbstractApi
 
     /**
      * List support ticket categories with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string|null $subscriptionId (optional)
      * @param  string|null $organizationId (optional)
@@ -266,6 +279,8 @@ final class SupportApi extends AbstractApi
      * @param  string|null $organizationId (optional)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function listTicketCategoriesRequest(
         ?string $subscriptionId = null,
@@ -363,6 +378,7 @@ final class SupportApi extends AbstractApi
     /**
      * List support ticket priorities
      *
+     * Deprecated. This endpoint will be removed on 2027-03-01.
      *
      * @param  string|null $subscriptionId (optional)
      * @param  string|null $category (optional)
@@ -372,6 +388,8 @@ final class SupportApi extends AbstractApi
      *
      * @return \Upsun\Model\ListTicketPriorities200ResponseInner[]
      * @see https://docs.upsun.com/api/#tag/Support/operation/list-ticket-priorities
+     *
+     * @deprecated
      */
     public function listTicketPriorities(
         ?string $subscriptionId = null,
@@ -385,6 +403,8 @@ final class SupportApi extends AbstractApi
 
     /**
      * List support ticket priorities with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string|null $subscriptionId (optional)
      * @param  string|null $category (optional)
@@ -437,6 +457,8 @@ final class SupportApi extends AbstractApi
      * @param  string|null $category (optional)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function listTicketPrioritiesRequest(
         ?string $subscriptionId = null,
@@ -532,14 +554,458 @@ final class SupportApi extends AbstractApi
     }
 
     /**
+     * List support tickets
+     *
+     * Deprecated. This endpoint will be removed on 2027-03-01.
+     *
+     * @param  int|null $filterTicketId
+     *         The ID of the ticket. (optional)
+     * @param  DateTime|null $filterCreated
+     *         ISO dateformat expected. The time when the support ticket was created. (optional)
+     * @param  DateTime|null $filterUpdated
+     *         ISO dateformat expected. The time when the support ticket was updated. (optional)
+     * @param  string|null $filterType
+     *         The type of the support ticket. (optional)
+     * @param  string|null $filterPriority
+     *         The priority of the support ticket. (optional)
+     * @param  string|null $filterStatus
+     *         The status of the support ticket. (optional)
+     * @param  string|null $filterRequesterId
+     *         UUID of the ticket requester. Converted from the ZID value. (optional)
+     * @param  string|null $filterSubmitterId
+     *         UUID of the ticket submitter. Converted from the ZID value. (optional)
+     * @param  string|null $filterAssigneeId
+     *         UUID of the ticket assignee. Converted from the ZID value. (optional)
+     * @param  bool|null $filterHasIncidents
+     *         Whether or not this ticket has incidents. (optional)
+     * @param  DateTime|null $filterDue
+     *         ISO dateformat expected. A time that the ticket is due at. (optional)
+     * @param  string|null $search (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+     * @see https://docs.upsun.com/api/#tag/Support/operation/list-tickets
+     *
+     * @deprecated
+     */
+    public function listTickets(
+        ?int $filterTicketId = null,
+        ?DateTime $filterCreated = null,
+        ?DateTime $filterUpdated = null,
+        ?string $filterType = null,
+        ?string $filterPriority = null,
+        ?string $filterStatus = null,
+        ?string $filterRequesterId = null,
+        ?string $filterSubmitterId = null,
+        ?string $filterAssigneeId = null,
+        ?bool $filterHasIncidents = null,
+        ?DateTime $filterDue = null,
+        ?string $search = null,
+        ?int $page = null
+    ): ListTickets200Response {
+        return $this->listTicketsWithHttpInfo(
+            $filterTicketId,
+            $filterCreated,
+            $filterUpdated,
+            $filterType,
+            $filterPriority,
+            $filterStatus,
+            $filterRequesterId,
+            $filterSubmitterId,
+            $filterAssigneeId,
+            $filterHasIncidents,
+            $filterDue,
+            $search,
+            $page
+        );
+    }
+
+    /**
+     * List support tickets with HTTP Info
+     *
+     * @deprecated
+     *
+     * @param  int|null $filterTicketId
+     *         The ID of the ticket. (optional)
+     * @param  DateTime|null $filterCreated
+     *         ISO dateformat expected. The time when the support ticket was created. (optional)
+     * @param  DateTime|null $filterUpdated
+     *         ISO dateformat expected. The time when the support ticket was updated. (optional)
+     * @param  string|null $filterType
+     *         The type of the support ticket. (optional)
+     * @param  string|null $filterPriority
+     *         The priority of the support ticket. (optional)
+     * @param  string|null $filterStatus
+     *         The status of the support ticket. (optional)
+     * @param  string|null $filterRequesterId
+     *         UUID of the ticket requester. Converted from the ZID value. (optional)
+     * @param  string|null $filterSubmitterId
+     *         UUID of the ticket submitter. Converted from the ZID value. (optional)
+     * @param  string|null $filterAssigneeId
+     *         UUID of the ticket assignee. Converted from the ZID value. (optional)
+     * @param  bool|null $filterHasIncidents
+     *         Whether or not this ticket has incidents. (optional)
+     * @param  DateTime|null $filterDue
+     *         ISO dateformat expected. A time that the ticket is due at. (optional)
+     * @param  string|null $search (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ClientExceptionInterface
+    */
+    private function listTicketsWithHttpInfo(
+        ?int $filterTicketId = null,
+        ?DateTime $filterCreated = null,
+        ?DateTime $filterUpdated = null,
+        ?string $filterType = null,
+        ?string $filterPriority = null,
+        ?string $filterStatus = null,
+        ?string $filterRequesterId = null,
+        ?string $filterSubmitterId = null,
+        ?string $filterAssigneeId = null,
+        ?bool $filterHasIncidents = null,
+        ?DateTime $filterDue = null,
+        ?string $search = null,
+        ?int $page = null
+    ): ListTickets200Response {
+        $request = $this->listTicketsRequest(
+            $filterTicketId,
+            $filterCreated,
+            $filterUpdated,
+            $filterType,
+            $filterPriority,
+            $filterStatus,
+            $filterRequesterId,
+            $filterSubmitterId,
+            $filterAssigneeId,
+            $filterHasIncidents,
+            $filterDue,
+            $search,
+            $page
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\ListTickets200Response',
+                $request,
+                $response
+            );
+        } catch (Exception $exception) {
+            throw new ApiException(
+                sprintf(
+                    '[%d] Error connecting to the API (%s)',
+                    $exception->getCode(),
+                    '/tickets'
+                ),
+                $request,
+                $response ?? null,
+                $exception
+            );
+        }
+    }
+
+    /**
+     * Create request for operation 'listTickets'
+     *
+     * @param  int|null $filterTicketId
+     *         The ID of the ticket. (optional)
+     * @param  DateTime|null $filterCreated
+     *         ISO dateformat expected. The time when the support ticket was created. (optional)
+     * @param  DateTime|null $filterUpdated
+     *         ISO dateformat expected. The time when the support ticket was updated. (optional)
+     * @param  string|null $filterType
+     *         The type of the support ticket. (optional)
+     * @param  string|null $filterPriority
+     *         The priority of the support ticket. (optional)
+     * @param  string|null $filterStatus
+     *         The status of the support ticket. (optional)
+     * @param  string|null $filterRequesterId
+     *         UUID of the ticket requester. Converted from the ZID value. (optional)
+     * @param  string|null $filterSubmitterId
+     *         UUID of the ticket submitter. Converted from the ZID value. (optional)
+     * @param  string|null $filterAssigneeId
+     *         UUID of the ticket assignee. Converted from the ZID value. (optional)
+     * @param  bool|null $filterHasIncidents
+     *         Whether or not this ticket has incidents. (optional)
+     * @param  DateTime|null $filterDue
+     *         ISO dateformat expected. A time that the ticket is due at. (optional)
+     * @param  string|null $search (optional)
+     * @param  int|null $page
+     *         Page to be displayed. Defaults to 1. (optional)
+     *
+     * @throws InvalidArgumentException
+     *
+     * @deprecated
+     */
+    private function listTicketsRequest(
+        ?int $filterTicketId = null,
+        ?DateTime $filterCreated = null,
+        ?DateTime $filterUpdated = null,
+        ?string $filterType = null,
+        ?string $filterPriority = null,
+        ?string $filterStatus = null,
+        ?string $filterRequesterId = null,
+        ?string $filterSubmitterId = null,
+        ?string $filterAssigneeId = null,
+        ?bool $filterHasIncidents = null,
+        ?DateTime $filterDue = null,
+        ?string $search = null,
+        ?int $page = null
+    ): RequestInterface {
+        $resourcePath = '/tickets';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // query params
+        if ($filterTicketId !== null) {
+            if ('form' === 'form' && is_array($filterTicketId)) {
+                foreach ($filterTicketId as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[ticket_id]'] = $filterTicketId instanceof DateTime
+                    ? $filterTicketId->format(DATE_ATOM)
+                    : ($filterTicketId);
+            }
+        }
+
+        // query params
+        if ($filterCreated !== null) {
+            if ('form' === 'form' && is_array($filterCreated)) {
+                foreach ($filterCreated as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[created]'] = $filterCreated instanceof DateTime
+                    ? $filterCreated->format(DATE_ATOM)
+                    : ($filterCreated);
+            }
+        }
+
+        // query params
+        if ($filterUpdated !== null) {
+            if ('form' === 'form' && is_array($filterUpdated)) {
+                foreach ($filterUpdated as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[updated]'] = $filterUpdated instanceof DateTime
+                    ? $filterUpdated->format(DATE_ATOM)
+                    : ($filterUpdated);
+            }
+        }
+
+        // query params
+        if ($filterType !== null) {
+            if ('form' === 'form' && is_array($filterType)) {
+                foreach ($filterType as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[type]'] = $filterType instanceof DateTime
+                    ? $filterType->format(DATE_ATOM)
+                    : ($filterType);
+            }
+        }
+
+        // query params
+        if ($filterPriority !== null) {
+            if ('form' === 'form' && is_array($filterPriority)) {
+                foreach ($filterPriority as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[priority]'] = $filterPriority instanceof DateTime
+                    ? $filterPriority->format(DATE_ATOM)
+                    : ($filterPriority);
+            }
+        }
+
+        // query params
+        if ($filterStatus !== null) {
+            if ('form' === 'form' && is_array($filterStatus)) {
+                foreach ($filterStatus as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[status]'] = $filterStatus instanceof DateTime
+                    ? $filterStatus->format(DATE_ATOM)
+                    : ($filterStatus);
+            }
+        }
+
+        // query params
+        if ($filterRequesterId !== null) {
+            if ('form' === 'form' && is_array($filterRequesterId)) {
+                foreach ($filterRequesterId as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[requester_id]'] = $filterRequesterId instanceof DateTime
+                    ? $filterRequesterId->format(DATE_ATOM)
+                    : ($filterRequesterId);
+            }
+        }
+
+        // query params
+        if ($filterSubmitterId !== null) {
+            if ('form' === 'form' && is_array($filterSubmitterId)) {
+                foreach ($filterSubmitterId as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[submitter_id]'] = $filterSubmitterId instanceof DateTime
+                    ? $filterSubmitterId->format(DATE_ATOM)
+                    : ($filterSubmitterId);
+            }
+        }
+
+        // query params
+        if ($filterAssigneeId !== null) {
+            if ('form' === 'form' && is_array($filterAssigneeId)) {
+                foreach ($filterAssigneeId as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[assignee_id]'] = $filterAssigneeId instanceof DateTime
+                    ? $filterAssigneeId->format(DATE_ATOM)
+                    : ($filterAssigneeId);
+            }
+        }
+
+        // query params
+        if ($filterHasIncidents !== null) {
+            if ('form' === 'form' && is_array($filterHasIncidents)) {
+                foreach ($filterHasIncidents as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[has_incidents]'] = $filterHasIncidents instanceof DateTime
+                    ? $filterHasIncidents->format(DATE_ATOM)
+                    : ($filterHasIncidents);
+            }
+        }
+
+        // query params
+        if ($filterDue !== null) {
+            if ('form' === 'form' && is_array($filterDue)) {
+                foreach ($filterDue as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[due]'] = $filterDue instanceof DateTime
+                    ? $filterDue->format(DATE_ATOM)
+                    : ($filterDue);
+            }
+        }
+
+        // query params
+        if ($search !== null) {
+            if ('form' === 'form' && is_array($search)) {
+                foreach ($search as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['search'] = $search instanceof DateTime
+                    ? $search->format(DATE_ATOM)
+                    : ($search);
+            }
+        }
+
+        // query params
+        if ($page !== null) {
+            if ('form' === 'form' && is_array($page)) {
+                foreach ($page as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['page'] = $page instanceof DateTime
+                    ? $page->format(DATE_ATOM)
+                    : ($page);
+            }
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if ($this->config->getAccessToken() !== null) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+        if ($this->config->getUpsunClientHeader()) {
+            $defaultHeaders['X-Upsun-Client'] = $this->config->getUpsunClientHeader();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+
+    /**
      * Update a ticket
      *
+     * Deprecated. This endpoint will be removed on 2027-03-01.
      *
      * @param  string $ticketId (required)
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws ClientExceptionInterface
      * @see https://docs.upsun.com/api/#tag/Support/operation/update-ticket
+     *
+     * @deprecated
      */
     public function updateTicket(
         string $ticketId,
@@ -553,6 +1019,8 @@ final class SupportApi extends AbstractApi
 
     /**
      * Update a ticket with HTTP Info
+     *
+     * @deprecated
      *
      * @param  string $ticketId (required)
      *
@@ -601,6 +1069,8 @@ final class SupportApi extends AbstractApi
      * @param  string $ticketId (required)
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function updateTicketRequest(
         string $ticketId,

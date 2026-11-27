@@ -17,6 +17,7 @@ final class BlackfireProfilesRecommendations200ResponseRecommendationsInner impl
         private readonly string $name,
         private readonly int $total,
         private readonly ?object $constraint = null,
+        private readonly ?string $profileUuid = null,
         private readonly ?BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinks $links = null,
     ) {
     }
@@ -32,6 +33,7 @@ final class BlackfireProfilesRecommendations200ResponseRecommendationsInner impl
             'name' => $this->name,
             'total' => $this->total,
             'constraint' => $this->constraint,
+            'profileUuid' => $this->profileUuid,
             'links' => $this->links,
         ];
     }
@@ -54,6 +56,11 @@ final class BlackfireProfilesRecommendations200ResponseRecommendationsInner impl
     public function getConstraint(): ?object
     {
         return $this->constraint;
+    }
+
+    public function getProfileUuid(): ?string
+    {
+        return $this->profileUuid;
     }
 
     public function getLinks(): ?BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinks

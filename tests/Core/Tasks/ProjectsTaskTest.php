@@ -3,10 +3,12 @@
 namespace Upsun\Tests\Core\Tasks;
 
 use Exception;
+use InvalidArgumentException;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
@@ -14,7 +16,6 @@ use Upsun\Api\ApiTokensApi;
 use Upsun\Api\AutoscalingApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
-use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\DomainManagementApi;
@@ -266,7 +267,6 @@ class ProjectsTaskTest extends BaseTestCase
 
         $upsunClient->supportTickets = new class (
             $upsunClient,
-            new DefaultApi(...$apiClassParams),
             new SupportApi(...$apiClassParams)
         ) extends SupportTicketsTask {
         };
@@ -851,7 +851,7 @@ class ProjectsTaskTest extends BaseTestCase
             'validation_engine' => 'pydantic',
             'cli_name' => 'upsun',
             'enable_maintenance_window_hard_check' => false,
-            'image_lifecycle' => ['enabled' => true, 'enforce' => false],
+            'image_lifecycle' => ['enabled' => true, 'enforce' => false, 'show_dates' => false],
             'internal_storage_resources' => ['cpu' => 0.5, 'memory' => 512],
             'sizing_api_enabled' => true,
             'enable_cache_grace_period' => true,
@@ -3001,5 +3001,66 @@ FAKE-CHAIN-CERT-DATA2
 
         $this->expectException(ApiException::class);
         $this->projectsTask->listEnvironments(projectId: $projectId);
+    }
+
+    private function captureMaintenanceRedeployRequest(?RequestInterface &$sent): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request) use (&$sent): Response {
+                $sent = $request;
+
+                return new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode(['status' => 'accepted', 'code' => 200])
+                );
+            });
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws ApiException
+     */
+    public function testMaintenanceRedeploySendsSafeFalseByDefault(): void
+    {
+        $sent = null;
+        $this->captureMaintenanceRedeployRequest($sent);
+
+        $result = $this->projectsTask->maintenanceRedeploy('project-123');
+
+        $this->assertSame('POST', $sent->getMethod());
+        $this->assertSame('/projects/project-123/maintenance-redeploy', $sent->getUri()->getPath());
+        $this->assertSame(['safe' => false], json_decode((string) $sent->getBody(), true));
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws ApiException
+     */
+    public function testMaintenanceRedeploySendsTheGivenSafeFlag(): void
+    {
+        $sent = null;
+        $this->captureMaintenanceRedeployRequest($sent);
+
+        $this->projectsTask->maintenanceRedeploy('project-123', true);
+
+        $this->assertSame(['safe' => true], json_decode((string) $sent->getBody(), true));
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws ApiException
+     */
+    public function testMaintenanceRedeployRejectsAnEmptyProjectId(): void
+    {
+        $this->httpClient->expects($this->never())->method('sendRequest');
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Project ID is required');
+
+        $this->projectsTask->maintenanceRedeploy('');
     }
 }

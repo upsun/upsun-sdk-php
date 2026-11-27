@@ -3,10 +3,12 @@
 namespace Upsun\Tests\Core\Tasks;
 
 use Exception;
+use InvalidArgumentException;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 use Upsun\Api\ApiConfiguration;
 use Upsun\Api\ApiException;
 use Upsun\Api\DeploymentApi;
@@ -3619,5 +3621,69 @@ class EnvironmentsTaskTest extends BaseTestCase
             'internal error' => [500, 'Internal Server Error'],
             'service unavailable' => [503, 'Service Unavailable'],
         ];
+    }
+
+    private function captureMaintenanceRedeployRequest(?RequestInterface &$sent): void
+    {
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturnCallback(function (RequestInterface $request) use (&$sent): Response {
+                $sent = $request;
+
+                return new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode(['status' => 'accepted', 'code' => 200])
+                );
+            });
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws ApiException
+     */
+    public function testMaintenanceRedeploySendsSafeFalseByDefault(): void
+    {
+        $sent = null;
+        $this->captureMaintenanceRedeployRequest($sent);
+
+        $result = $this->environmentTask->maintenanceRedeploy('project-123', 'env-456');
+
+        $this->assertSame('POST', $sent->getMethod());
+        $this->assertSame(
+            '/projects/project-123/environments/env-456/maintenance-redeploy',
+            $sent->getUri()->getPath()
+        );
+        $this->assertSame(['safe' => false], json_decode((string) $sent->getBody(), true));
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws ApiException
+     */
+    public function testMaintenanceRedeploySendsTheGivenSafeFlag(): void
+    {
+        $sent = null;
+        $this->captureMaintenanceRedeployRequest($sent);
+
+        $this->environmentTask->maintenanceRedeploy('project-123', 'env-456', true);
+
+        $this->assertSame(['safe' => true], json_decode((string) $sent->getBody(), true));
+    }
+
+    /**
+     * @throws ClientExceptionInterface
+     * @throws ApiException
+     */
+    public function testMaintenanceRedeployRejectsAnEmptyEnvironmentId(): void
+    {
+        $this->httpClient->expects($this->never())->method('sendRequest');
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Environment ID is required');
+
+        $this->environmentTask->maintenanceRedeploy('project-123', '');
     }
 }

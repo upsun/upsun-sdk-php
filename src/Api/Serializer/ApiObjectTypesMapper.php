@@ -590,6 +590,7 @@ final class ApiObjectTypesMapper
             'name' => 'string',
             'total' => 'int',
             'constraint' => '?object',
+            'profile_uuid' => '?string',
             '_links' => '?\Upsun\Model\BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinks',
         ],
 
@@ -1738,6 +1739,10 @@ final class ApiObjectTypesMapper
             'resources' => '?\Upsun\Model\Resources6',
         ],
 
+        'Upsun\Model\EnvironmentMaintenanceRedeployInput' => [
+            'safe' => '?bool',
+        ],
+
         'Upsun\Model\EnvironmentMergeInput' => [
             'resources' => '?\Upsun\Model\Resources7',
         ],
@@ -2424,6 +2429,37 @@ final class ApiObjectTypesMapper
             'tls_verify' => '?bool',
         ],
 
+        'Upsun\Model\HttpMetricsEdgeTimeline200Response' => [
+            '_grain' => 'int',
+            '_from' => 'int',
+            '_to' => 'int',
+            '_project_id' => 'string',
+            '_environment_id' => 'string',
+            '_environment_type' => 'string',
+            '_branch_machine_name' => 'string',
+            'top_hits_timeline' => '\Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimeline',
+        ],
+
+        'Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimeline' => [
+            'data' => '\Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimelineDataInner[]',
+        ],
+
+        'Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimelineDataInner' => [
+            'timestamp' => 'int',
+            '_total_count' => '?int',
+            'response_size' => '?int',
+            'codes' => '?\Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimelineDataInnerCodes',
+        ],
+
+        'Upsun\Model\HttpMetricsEdgeTimeline200ResponseTopHitsTimelineDataInnerCodes' => [
+            'UNKNOWN' => 'int',
+            '1XX' => 'int',
+            '2XX' => 'int',
+            '3XX' => 'int',
+            '4XX' => 'int',
+            '5XX' => 'int',
+        ],
+
         'Upsun\Model\HttpMetricsTimelineIps200Response' => [
             '_grain' => 'int',
             '_from' => 'int',
@@ -2636,6 +2672,7 @@ final class ApiObjectTypesMapper
         'Upsun\Model\ImageLifecycleValidation' => [
             'enabled' => 'bool',
             'enforce' => 'bool',
+            'show_dates' => 'bool',
         ],
 
         'Upsun\Model\ImageTypeRestrictions' => [
@@ -3445,7 +3482,7 @@ final class ApiObjectTypesMapper
             'http_metrics_timeline_urls' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUrls',
             'http_metrics_timeline_ips' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineIps',
             'http_metrics_timeline_user_agents' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUserAgents',
-            'console_sandbox_access' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksConsoleSandboxAccess',
+            'http_metrics_edge_timeline' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsEdgeTimeline',
             'conprof_applications' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofApplications',
             'conprof_application_filters' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofApplicationFilters',
             'conprof_timeline' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofTimeline',
@@ -3482,7 +3519,7 @@ final class ApiObjectTypesMapper
             'href' => 'string',
         ],
 
-        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConsoleSandboxAccess' => [
+        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsEdgeTimeline' => [
             'href' => 'string',
         ],
 

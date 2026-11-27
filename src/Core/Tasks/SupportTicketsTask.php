@@ -6,7 +6,6 @@ use DateTime;
 use InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Upsun\Api\ApiException;
-use Upsun\Api\DefaultApi;
 use Upsun\Api\SupportApi;
 use Upsun\Model\CreateTicketRequest;
 use Upsun\Model\ListTicketCategories200ResponseInner;
@@ -27,7 +26,6 @@ class SupportTicketsTask extends TaskBase
 {
     public function __construct(
         UpsunClient $client,
-        private readonly DefaultApi $defaultApi,
         private readonly SupportApi $supportApi,
     ) {
         parent::__construct($client);
@@ -55,7 +53,7 @@ class SupportTicketsTask extends TaskBase
         ?string $search = null,
         ?int $page = null
     ): ListTickets200Response {
-        return $this->defaultApi->listTickets(
+        return $this->supportApi->listTickets(
             filterTicketId: $filterTicketId,
             filterCreated: $filterCreated,
             filterUpdated: $filterUpdated,

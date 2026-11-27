@@ -1327,7 +1327,7 @@
                                             "example": 1704153600
                                         },
                                         "_agent": {
-                                            "description": "Blackfire Agent UUID",
+                                            "description": "UUID of the Blackfire agent (server ID).",
                                             "type": "string",
                                             "format": "uuid",
                                             "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
@@ -1912,7 +1912,7 @@
                                             ]
                                         },
                                         "_agent": {
-                                            "description": "Blackfire Agent UUID",
+                                            "description": "UUID of the Blackfire agent (server ID).",
                                             "type": "string",
                                             "format": "uuid",
                                             "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
@@ -2562,7 +2562,7 @@
                     {
                         "name": "http_status_codes[]",
                         "in": "query",
-                        "description": "Filter by HTTP status codes or ranges (e.g., 200, 5xx)",
+                        "description": "Filter by HTTP status codes or ranges (e.g., 200, 5xx) for web transactions, or by exit codes (0-255, e.g., 0) for CLI transactions",
                         "required": false,
                         "style": "form",
                         "explode": true,
@@ -2844,7 +2844,7 @@
                                             "example": 1704153600
                                         },
                                         "_agent": {
-                                            "description": "Blackfire Agent UUID",
+                                            "description": "UUID of the Blackfire agent (server ID).",
                                             "type": "string",
                                             "format": "uuid",
                                             "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
@@ -3241,7 +3241,7 @@
                                                                 "example": 0
                                                             },
                                                             "total_errors": {
-                                                                "description": "Total 5xx error count (float because APM may be sampled)",
+                                                                "description": "Total error count: 5xx responses for web transactions, non-zero exit codes for CLI transactions (float because APM may be sampled)",
                                                                 "type": "number",
                                                                 "format": "float",
                                                                 "example": 12.3
@@ -3275,7 +3275,7 @@
                                                                             "href": {
                                                                                 "type": "string",
                                                                                 "format": "uri",
-                                                                                "example": "https://api.upsun.com/projects/abc123/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%3A%3Alist&from=1771348620&to=1771435020"
+                                                                                "example": "https://api.upsun.com/projects/abc123/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%3A%3Alist&transactions_mode=1&from=1771348620&to=1771435020"
                                                                             }
                                                                         },
                                                                         "type": "object",
@@ -3429,7 +3429,7 @@
                                                 "top_hit": true,
                                                 "_links": {
                                                     "top_spans": {
-                                                        "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CProductController%3A%3Alist&from=1771348620&to=1771435020"
+                                                        "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CProductController%3A%3Alist&transactions_mode=1&from=1771348620&to=1771435020"
                                                     },
                                                     "recommendations": {
                                                         "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CProductController%3A%3Alist"
@@ -3452,7 +3452,7 @@
                                                 "top_hit": true,
                                                 "_links": {
                                                     "top_spans": {
-                                                        "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CCartController%3A%3Acheckout&from=1771348620&to=1771435020"
+                                                        "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CCartController%3A%3Acheckout&transactions_mode=1&from=1771348620&to=1771435020"
                                                     },
                                                     "recommendations": {
                                                         "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CCartController%3A%3Acheckout"
@@ -3475,7 +3475,7 @@
                                                 "top_hit": false,
                                                 "_links": {
                                                     "top_spans": {
-                                                        "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CUserController%3A%3Aprofile&from=1771348620&to=1771435020"
+                                                        "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/server/top-spans?transactions%5B0%5D=App%5CController%5CUserController%3A%3Aprofile&transactions_mode=1&from=1771348620&to=1771435020"
                                                     },
                                                     "recommendations": {
                                                         "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/recommendations?transaction=App%5CController%5CUserController%3A%3Aprofile"
@@ -3893,7 +3893,7 @@
                     {
                         "name": "http_status_codes[]",
                         "in": "query",
-                        "description": "Filter by HTTP status codes or ranges (e.g., 200, 5xx)",
+                        "description": "Filter by HTTP status codes or ranges (e.g., 200, 5xx) for web transactions, or by exit codes (0-255, e.g., 0) for CLI transactions",
                         "required": false,
                         "style": "form",
                         "explode": true,
@@ -4172,7 +4172,7 @@
                                             "example": 1704153600
                                         },
                                         "_agent": {
-                                            "description": "Blackfire Agent UUID",
+                                            "description": "UUID of the Blackfire agent (server ID).",
                                             "type": "string",
                                             "format": "uuid",
                                             "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
@@ -4876,7 +4876,7 @@
                                             "example": "main-bvxea6i"
                                         },
                                         "_agent": {
-                                            "description": "Blackfire Agent UUID",
+                                            "description": "UUID of the Blackfire agent (server ID).",
                                             "type": "string",
                                             "format": "uuid",
                                             "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
@@ -5012,7 +5012,7 @@
                                             "example": "main-bvxea6i"
                                         },
                                         "_agent": {
-                                            "description": "Blackfire Agent UUID",
+                                            "description": "UUID of the Blackfire agent (server ID).",
                                             "type": "string",
                                             "format": "uuid",
                                             "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
@@ -5129,7 +5129,7 @@
                                             "example": "main-bvxea6i"
                                         },
                                         "_agent": {
-                                            "description": "Blackfire Agent UUID",
+                                            "description": "UUID of the Blackfire agent (server ID).",
                                             "type": "string",
                                             "format": "uuid",
                                             "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
@@ -5251,7 +5251,7 @@
                                             "example": "main-bvxea6i"
                                         },
                                         "_agent": {
-                                            "description": "Blackfire Agent UUID",
+                                            "description": "UUID of the Blackfire agent (server ID).",
                                             "type": "string",
                                             "format": "uuid",
                                             "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
@@ -5457,7 +5457,7 @@
                                             "example": "main-bvxea6i"
                                         },
                                         "_agent": {
-                                            "description": "Blackfire Agent UUID",
+                                            "description": "UUID of the Blackfire agent (server ID).",
                                             "type": "string",
                                             "format": "uuid",
                                             "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
@@ -5500,6 +5500,11 @@
                                                         "description": "Number of profiles failing this recommendation",
                                                         "type": "integer",
                                                         "example": 15
+                                                    },
+                                                    "profile_uuid": {
+                                                        "description": "UUID of the latest profile that triggered this recommendation. Only present when a latest profile is available.",
+                                                        "type": "string",
+                                                        "format": "uuid"
                                                     },
                                                     "_links": {
                                                         "description": "API links to the latest profile that triggered this recommendation. Only present when a latest profile is available.",
@@ -5648,6 +5653,7 @@
                                                 "name": "tests.symfony.kernel.secret_is_set"
                                             },
                                             "total": 15,
+                                            "profile_uuid": "4b5266a2-fd71-468b-bf05-87b342079cbf",
                                             "_links": {
                                                 "api_timeline": {
                                                     "href": "https://api.upsun.com/projects/abc123def456/environments/main/observability/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/timeline",
@@ -5996,7 +6002,7 @@
                                             "example": "main-bvxea6i"
                                         },
                                         "_agent": {
-                                            "description": "Blackfire Agent UUID",
+                                            "description": "UUID of the Blackfire agent (server ID).",
                                             "type": "string",
                                             "format": "uuid",
                                             "example": "a38f69ca-3b56-4ea6-beac-272b2568164a"
@@ -6202,6 +6208,7 @@
                                                         "description": "Blackfire agent/environment info",
                                                         "properties": {
                                                             "uuid": {
+                                                                "description": "UUID of the Blackfire agent (server ID).",
                                                                 "type": "string",
                                                                 "format": "uuid"
                                                             },
@@ -6209,6 +6216,7 @@
                                                                 "type": "string"
                                                             },
                                                             "env_uuid": {
+                                                                "description": "UUID of the Blackfire environment.",
                                                                 "type": "string",
                                                                 "format": "uuid"
                                                             },
@@ -6268,7 +6276,7 @@
                                                                     "href": {
                                                                         "type": "string",
                                                                         "format": "uri",
-                                                                        "example": "https://blackfire.io/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph"
+                                                                        "example": "https://blackfire.io/envs/e5b3c2f1-7d4a-4c8e-9b21-3f6a8d0c5e17/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph"
                                                                     },
                                                                     "type": {
                                                                         "type": "string",
@@ -6456,7 +6464,7 @@
                                             "agent": {
                                                 "uuid": "a38f69ca-3b56-4ea6-beac-272b2568164a",
                                                 "name": "Production",
-                                                "env_uuid": "a38f69ca-3b56-4ea6-beac-272b2568164a",
+                                                "env_uuid": "e5b3c2f1-7d4a-4c8e-9b21-3f6a8d0c5e17",
                                                 "is_env": true
                                             },
                                             "has_timeline": true,
@@ -6472,7 +6480,7 @@
                                             },
                                             "_links": {
                                                 "graph_url": {
-                                                    "href": "https://blackfire.io/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph",
+                                                    "href": "https://blackfire.io/envs/e5b3c2f1-7d4a-4c8e-9b21-3f6a8d0c5e17/profiles/4b5266a2-fd71-468b-bf05-87b342079cbf/graph",
                                                     "type": "text/html"
                                                 },
                                                 "api_timeline": {
@@ -10268,7 +10276,7 @@
                                                 "http_metrics_timeline_urls",
                                                 "http_metrics_timeline_ips",
                                                 "http_metrics_timeline_user_agents",
-                                                "console_sandbox_access",
+                                                "http_metrics_edge_timeline",
                                                 "conprof_applications",
                                                 "conprof_application_filters",
                                                 "conprof_timeline",
@@ -10466,7 +10474,7 @@
                                                     "type": "object",
                                                     "additionalProperties": false
                                                 },
-                                                "console_sandbox_access": {
+                                                "http_metrics_edge_timeline": {
                                                     "required": [
                                                         "href"
                                                     ],
@@ -10474,7 +10482,7 @@
                                                         "href": {
                                                             "type": "string",
                                                             "format": "uri",
-                                                            "example": "https://api.upsun.com/projects/abc123def456/environments/main/observability/console/sandbox-access"
+                                                            "example": "https://api.upsun.com/projects/abc123def456/environments/main/observability/http/edge"
                                                         }
                                                     },
                                                     "type": "object",
@@ -11346,6 +11354,17 @@
                                 "schema": {
                                     "$ref": "#/components/schemas/AcceptedResponse"
                                 }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EnvironmentMaintenanceRedeployInput"
                             }
                         }
                     }
@@ -15369,6 +15388,316 @@
                     "control how many items are flagged as top hits and tracked in the timeline (default: 10, max: 15). Items with",
                     "index < top_hits_count are flagged with top_hit: true and tracked in top_hits_timeline; the remainder (up to",
                     "limit) are returned with top_hit: false."
+                ]
+            }
+        },
+        "/projects/{projectId}/environments/{environmentId}/observability/http/edge": {
+            "get": {
+                "tags": [
+                    "Http Traffic"
+                ],
+                "summary": "Get edge HTTP traffic timeline",
+                "description": "Returns the HTTP requests and bandwidth seen by the global edge (Cloudflare) for the environment, including requests answered from the edge cache or blocked there. The grain is at least 60 seconds.",
+                "operationId": "http_metrics_edge_timeline",
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "The unique identifier of the Upsun project",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "[a-z0-9]+",
+                            "example": "abc123def456"
+                        }
+                    },
+                    {
+                        "name": "environmentId",
+                        "in": "path",
+                        "description": "The environment identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "pattern": ".+",
+                            "example": "main"
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "Start timestamp for the time range (Unix timestamp in seconds)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1704067200
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "End timestamp for the time range (Unix timestamp in seconds)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1704153600
+                        }
+                    },
+                    {
+                        "name": "grain",
+                        "in": "query",
+                        "description": "Seconds between two points, at least 60",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "example": 60,
+                            "minimum": 60
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Edge HTTP traffic timeline retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "_grain",
+                                        "_from",
+                                        "_to",
+                                        "_project_id",
+                                        "_environment_id",
+                                        "_environment_type",
+                                        "_branch_machine_name",
+                                        "top_hits_timeline"
+                                    ],
+                                    "properties": {
+                                        "_grain": {
+                                            "description": "Data granularity in seconds, at least 60",
+                                            "type": "integer",
+                                            "example": 60,
+                                            "minimum": 60
+                                        },
+                                        "_from": {
+                                            "description": "Query start timestamp",
+                                            "type": "integer",
+                                            "example": 1704067200
+                                        },
+                                        "_to": {
+                                            "description": "Query end timestamp",
+                                            "type": "integer",
+                                            "example": 1704153600
+                                        },
+                                        "_project_id": {
+                                            "description": "Project identifier",
+                                            "type": "string",
+                                            "example": "abc123def456"
+                                        },
+                                        "_environment_id": {
+                                            "description": "Environment identifier",
+                                            "type": "string",
+                                            "example": "main"
+                                        },
+                                        "_environment_type": {
+                                            "description": "Environment type",
+                                            "type": "string",
+                                            "example": "production",
+                                            "enum": [
+                                                "production",
+                                                "staging",
+                                                "development"
+                                            ]
+                                        },
+                                        "_branch_machine_name": {
+                                            "description": "Branch machine name",
+                                            "type": "string",
+                                            "example": "main-bvxea6i"
+                                        },
+                                        "top_hits_timeline": {
+                                            "description": "Edge HTTP traffic over time",
+                                            "required": [
+                                                "data"
+                                            ],
+                                            "properties": {
+                                                "data": {
+                                                    "description": "Time-series edge HTTP traffic. Fields are omitted for timestamps with no data.",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "required": [
+                                                            "timestamp"
+                                                        ],
+                                                        "properties": {
+                                                            "timestamp": {
+                                                                "description": "Data point timestamp",
+                                                                "type": "integer",
+                                                                "example": 1704067200
+                                                            },
+                                                            "_total_count": {
+                                                                "description": "Requests seen by the edge at this timestamp",
+                                                                "type": "integer",
+                                                                "example": 4120
+                                                            },
+                                                            "response_size": {
+                                                                "description": "Bytes sent by the edge to clients",
+                                                                "type": "integer",
+                                                                "example": 2097152
+                                                            },
+                                                            "codes": {
+                                                                "description": "HTTP status code distribution of edge responses",
+                                                                "required": [
+                                                                    "UNKNOWN",
+                                                                    "1XX",
+                                                                    "2XX",
+                                                                    "3XX",
+                                                                    "4XX",
+                                                                    "5XX"
+                                                                ],
+                                                                "properties": {
+                                                                    "UNKNOWN": {
+                                                                        "type": "integer",
+                                                                        "example": 0
+                                                                    },
+                                                                    "1XX": {
+                                                                        "type": "integer",
+                                                                        "example": 0
+                                                                    },
+                                                                    "2XX": {
+                                                                        "type": "integer",
+                                                                        "example": 3900
+                                                                    },
+                                                                    "3XX": {
+                                                                        "type": "integer",
+                                                                        "example": 150
+                                                                    },
+                                                                    "4XX": {
+                                                                        "type": "integer",
+                                                                        "example": 65
+                                                                    },
+                                                                    "5XX": {
+                                                                        "type": "integer",
+                                                                        "example": 5
+                                                                    }
+                                                                },
+                                                                "type": "object",
+                                                                "additionalProperties": false
+                                                            }
+                                                        },
+                                                        "type": "object",
+                                                        "additionalProperties": false
+                                                    }
+                                                }
+                                            },
+                                            "type": "object",
+                                            "additionalProperties": false
+                                        }
+                                    },
+                                    "type": "object",
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request - Invalid parameters. Please consult the API documentation to fix the request parameters.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "type",
+                                        "title",
+                                        "status",
+                                        "violations"
+                                    ],
+                                    "properties": {
+                                        "type": {
+                                            "description": "RFC 2616 reference URL identifying the error type",
+                                            "type": "string",
+                                            "format": "uri",
+                                            "example": "https://tools.ietf.org/html/rfc2616#section-1"
+                                        },
+                                        "title": {
+                                            "description": "Human-readable summary of the validation error",
+                                            "type": "string",
+                                            "example": "Please ensure parameters are correct."
+                                        },
+                                        "status": {
+                                            "description": "HTTP status code",
+                                            "type": "integer",
+                                            "example": 400
+                                        },
+                                        "violations": {
+                                            "description": "Map of parameter names to their validation errors. Each parameter can have multiple error messages.",
+                                            "type": "object",
+                                            "example": {
+                                                "grain": [
+                                                    "Grain can not be larger than the selection windows."
+                                                ],
+                                                "from": [
+                                                    "The from timestamp must be in the past."
+                                                ],
+                                                "to": [
+                                                    "The to timestamp must be greater than the from timestamp."
+                                                ]
+                                            },
+                                            "additionalProperties": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string",
+                                                    "example": "The from timestamp must be in the past."
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object",
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden - Access denied due to insufficient permissions, or the requested project/environment does not exist (to prevent information disclosure)"
+                    },
+                    "499": {
+                        "description": "Too much data fetched - The query is attempting to retrieve too much data. Please narrow down the query by reducing the time range or adding more specific filters to retrieve less data.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "error",
+                                        "message"
+                                    ],
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Too much data fetched"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Please reduce the time range or add more filters to narrow down the query"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-property-id-kebab": "http_metrics_edge_timeline",
+                "x-tag-id-kebab": "Http-Traffic",
+                "x-return-types-displayReturn": false,
+                "x-phpdoc": {},
+                "x-ndjson-stream": false,
+                "x-stream-item-type": null,
+                "x-returnable": true,
+                "x-return-types": [
+                    "mixed"
+                ],
+                "x-return-types-union": "mixed",
+                "x-description": [
+                    "Returns the HTTP requests and bandwidth seen by the global edge (Cloudflare) for the environment, including",
+                    "requests answered from the edge cache or blocked there. The grain is at least 60 seconds."
                 ]
             }
         },
@@ -21208,6 +21537,17 @@
                                 "schema": {
                                     "$ref": "#/components/schemas/AcceptedResponse"
                                 }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EnvironmentMaintenanceRedeployInput"
                             }
                         }
                     }
@@ -29297,7 +29637,11 @@
         },
         "/tickets": {
             "get": {
+                "tags": [
+                    "Support"
+                ],
                 "summary": "List support tickets",
+                "description": "Deprecated. This endpoint will be removed on 2027-03-01.",
                 "operationId": "list-tickets",
                 "parameters": [
                     {
@@ -29373,7 +29717,9 @@
                         }
                     }
                 },
+                "x-deprecated": true,
                 "x-property-id-kebab": "list-tickets",
+                "x-tag-id-kebab": "Support",
                 "x-return-types-displayReturn": false,
                 "x-phpdoc": {
                     "return": "object"
@@ -29383,6 +29729,9 @@
                 "x-returnable": true,
                 "x-return-types": [
                     "object"
+                ],
+                "x-description": [
+                    "Deprecated. This endpoint will be removed on 2027-03-01."
                 ]
             },
             "post": {
@@ -29390,6 +29739,7 @@
                     "Support"
                 ],
                 "summary": "Create a new support ticket",
+                "description": "Deprecated. This endpoint will be removed on 2027-03-01.",
                 "operationId": "create-ticket",
                 "requestBody": {
                     "content": {
@@ -29499,6 +29849,7 @@
                         }
                     }
                 },
+                "x-deprecated": true,
                 "x-property-id-kebab": "create-ticket",
                 "x-tag-id-kebab": "Support",
                 "x-return-types-displayReturn": false,
@@ -29511,7 +29862,10 @@
                 "x-return-types": [
                     "\\Upsun\\Model\\Ticket"
                 ],
-                "x-return-types-union": "\\Upsun\\Model\\Ticket"
+                "x-return-types-union": "\\Upsun\\Model\\Ticket",
+                "x-description": [
+                    "Deprecated. This endpoint will be removed on 2027-03-01."
+                ]
             }
         },
         "/tickets/{ticket_id}": {
@@ -29520,6 +29874,7 @@
                     "Support"
                 ],
                 "summary": "Update a ticket",
+                "description": "Deprecated. This endpoint will be removed on 2027-03-01.",
                 "operationId": "update-ticket",
                 "parameters": [
                     {
@@ -29578,6 +29933,7 @@
                         "description": "The ticket was not updated."
                     }
                 },
+                "x-deprecated": true,
                 "x-property-id-kebab": "update-ticket",
                 "x-tag-id-kebab": "Support",
                 "x-return-types-displayReturn": false,
@@ -29590,7 +29946,10 @@
                 "x-return-types": [
                     "\\Upsun\\Model\\Ticket"
                 ],
-                "x-return-types-union": "\\Upsun\\Model\\Ticket"
+                "x-return-types-union": "\\Upsun\\Model\\Ticket",
+                "x-description": [
+                    "Deprecated. This endpoint will be removed on 2027-03-01."
+                ]
             }
         },
         "/tickets/priority": {
@@ -29599,6 +29958,7 @@
                     "Support"
                 ],
                 "summary": "List support ticket priorities",
+                "description": "Deprecated. This endpoint will be removed on 2027-03-01.",
                 "operationId": "list-ticket-priorities",
                 "parameters": [
                     {
@@ -29653,6 +30013,7 @@
                         }
                     }
                 },
+                "x-deprecated": true,
                 "x-property-id-kebab": "list-ticket-priorities",
                 "x-tag-id-kebab": "Support",
                 "x-return-types-displayReturn": true,
@@ -29665,7 +30026,10 @@
                 "x-return-types": [
                     "object[]"
                 ],
-                "x-return-types-union": "array"
+                "x-return-types-union": "array",
+                "x-description": [
+                    "Deprecated. This endpoint will be removed on 2027-03-01."
+                ]
             }
         },
         "/tickets/category": {
@@ -29674,6 +30038,7 @@
                     "Support"
                 ],
                 "summary": "List support ticket categories",
+                "description": "Deprecated. This endpoint will be removed on 2027-03-01.",
                 "operationId": "list-ticket-categories",
                 "parameters": [
                     {
@@ -29720,6 +30085,7 @@
                         }
                     }
                 },
+                "x-deprecated": true,
                 "x-property-id-kebab": "list-ticket-categories",
                 "x-tag-id-kebab": "Support",
                 "x-return-types-displayReturn": true,
@@ -29732,7 +30098,10 @@
                 "x-return-types": [
                     "object[]"
                 ],
-                "x-return-types-union": "array"
+                "x-return-types-union": "array",
+                "x-description": [
+                    "Deprecated. This endpoint will be removed on 2027-03-01."
+                ]
             }
         },
         "/projects/{projectId}/system": {
@@ -45238,6 +45607,21 @@
                 ],
                 "additionalProperties": false
             },
+            "EnvironmentMaintenanceRedeployInput": {
+                "type": "object",
+                "properties": {
+                    "safe": {
+                        "type": "boolean",
+                        "title": "Safe maintenance redeploy",
+                        "description": "Redeploy even if the last state update was not successful, and always upgrade the service images",
+                        "x-isDateTime": false,
+                        "x-description": [
+                            "Redeploy even if the last state update was not successful, and always upgrade the service images"
+                        ]
+                    }
+                },
+                "additionalProperties": false
+            },
             "EnvironmentMergeInput": {
                 "type": "object",
                 "properties": {
@@ -52239,11 +52623,21 @@
                                     "allowed); sunset images block only when they were sunset before the project was created. When False, emit",
                                     "warnings only."
                                 ]
+                            },
+                            "show_dates": {
+                                "type": "boolean",
+                                "title": "Image lifecycle show dates",
+                                "description": "When True, image lifecycle messages include the sunset and decommission dates and the days-remaining countdown. When False, they keep their warning or blocking meaning but carry no date.",
+                                "x-description": [
+                                    "When True, image lifecycle messages include the sunset and decommission dates and the days-remaining countdown.",
+                                    "When False, they keep their warning or blocking meaning but carry no date."
+                                ]
                             }
                         },
                         "required": [
                             "enabled",
-                            "enforce"
+                            "enforce",
+                            "show_dates"
                         ],
                         "additionalProperties": false,
                         "title": "Image lifecycle validation",
@@ -61952,6 +62346,7 @@
             "name": "User Activity",
             "tags": [
                 "Project Activity",
+                "Integration Activity",
                 "Environment Activity"
             ]
         },
