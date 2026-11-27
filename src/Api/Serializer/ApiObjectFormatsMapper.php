@@ -592,6 +592,7 @@ final class ApiObjectFormatsMapper
             'name' => null,
             'total' => null,
             'constraint' => null,
+            'profileUuid' => 'uuid',
             'links' => null
         ],
 
@@ -3484,7 +3485,6 @@ final class ApiObjectFormatsMapper
             'httpMetricsTimelineIps' => null,
             'httpMetricsTimelineUserAgents' => null,
             'httpMetricsEdgeTimeline' => null,
-            'consoleSandboxAccess' => null,
             'conprofApplications' => null,
             'conprofApplicationFilters' => null,
             'conprofTimeline' => null,
@@ -3518,10 +3518,6 @@ final class ApiObjectFormatsMapper
         ],
 
         'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofTimeline' => [
-            'href' => 'uri'
-        ],
-
-        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConsoleSandboxAccess' => [
             'href' => 'uri'
         ],
 

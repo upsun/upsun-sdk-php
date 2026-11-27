@@ -9,7 +9,6 @@ use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Upsun\Api\ApiConfiguration;
-use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\OrganizationProjectsApi;
 use Upsun\Api\ProjectApi;
@@ -67,7 +66,6 @@ class SupportTicketsTaskTest extends BaseTestCase
 
         $this->task = new class (
             $upsunClient,
-            new DefaultApi(...$apiClassParams),
             new SupportApi(...$apiClassParams),
         ) extends SupportTicketsTask {
         };

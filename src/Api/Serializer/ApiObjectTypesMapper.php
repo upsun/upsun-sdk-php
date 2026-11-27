@@ -590,6 +590,7 @@ final class ApiObjectTypesMapper
             'name' => 'string',
             'total' => 'int',
             'constraint' => '?object',
+            'profile_uuid' => '?string',
             '_links' => '?\Upsun\Model\BlackfireProfilesRecommendations200ResponseRecommendationsInnerLinks',
         ],
 
@@ -3482,7 +3483,6 @@ final class ApiObjectTypesMapper
             'http_metrics_timeline_ips' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineIps',
             'http_metrics_timeline_user_agents' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUserAgents',
             'http_metrics_edge_timeline' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksHttpMetricsEdgeTimeline',
-            'console_sandbox_access' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksConsoleSandboxAccess',
             'conprof_applications' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofApplications',
             'conprof_application_filters' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofApplicationFilters',
             'conprof_timeline' => '\Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofTimeline',
@@ -3516,10 +3516,6 @@ final class ApiObjectTypesMapper
         ],
 
         'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConprofTimeline' => [
-            'href' => 'string',
-        ],
-
-        'Upsun\Model\ObservabilityEntrypoint200ResponseLinksConsoleSandboxAccess' => [
             'href' => 'string',
         ],
 

@@ -25,7 +25,6 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
         private readonly ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineIps $httpMetricsTimelineIps,
         private readonly ObservabilityEntrypoint200ResponseLinksHttpMetricsTimelineUserAgents $httpMetricsTimelineUserAgents,
         private readonly ObservabilityEntrypoint200ResponseLinksHttpMetricsEdgeTimeline $httpMetricsEdgeTimeline,
-        private readonly ObservabilityEntrypoint200ResponseLinksConsoleSandboxAccess $consoleSandboxAccess,
         private readonly ObservabilityEntrypoint200ResponseLinksConprofApplications $conprofApplications,
         private readonly ObservabilityEntrypoint200ResponseLinksConprofApplicationFilters $conprofApplicationFilters,
         private readonly ObservabilityEntrypoint200ResponseLinksConprofTimeline $conprofTimeline,
@@ -54,7 +53,6 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
             'httpMetricsTimelineIps' => $this->httpMetricsTimelineIps,
             'httpMetricsTimelineUserAgents' => $this->httpMetricsTimelineUserAgents,
             'httpMetricsEdgeTimeline' => $this->httpMetricsEdgeTimeline,
-            'consoleSandboxAccess' => $this->consoleSandboxAccess,
             'conprofApplications' => $this->conprofApplications,
             'conprofApplicationFilters' => $this->conprofApplicationFilters,
             'conprofTimeline' => $this->conprofTimeline,
@@ -125,11 +123,6 @@ final class ObservabilityEntrypoint200ResponseLinks implements Model, JsonSerial
     public function getHttpMetricsEdgeTimeline(): ObservabilityEntrypoint200ResponseLinksHttpMetricsEdgeTimeline
     {
         return $this->httpMetricsEdgeTimeline;
-    }
-
-    public function getConsoleSandboxAccess(): ObservabilityEntrypoint200ResponseLinksConsoleSandboxAccess
-    {
-        return $this->consoleSandboxAccess;
     }
 
     public function getConprofApplications(): ObservabilityEntrypoint200ResponseLinksConprofApplications

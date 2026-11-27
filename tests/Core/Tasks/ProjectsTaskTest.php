@@ -16,7 +16,6 @@ use Upsun\Api\ApiTokensApi;
 use Upsun\Api\AutoscalingApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
-use Upsun\Api\DefaultApi;
 use Upsun\Api\DeploymentApi;
 use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\DomainManagementApi;
@@ -268,7 +267,6 @@ class ProjectsTaskTest extends BaseTestCase
 
         $upsunClient->supportTickets = new class (
             $upsunClient,
-            new DefaultApi(...$apiClassParams),
             new SupportApi(...$apiClassParams)
         ) extends SupportTicketsTask {
         };
